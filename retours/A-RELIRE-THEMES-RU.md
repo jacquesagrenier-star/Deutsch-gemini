@@ -152,3 +152,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **Après deux** : « один медведь, два медведя », « одна лошадь, две лошади », « одна курица, две курицы ».
 3. **La comparaison au génitif** : « Белка меньше медведя. ».
 4. **Les couleurs** : « Лиса рыжая. » (orange en allemand), « Птица сине-жёлтая. ».
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **L'agenda avec un tiret** : « Занятие йогой — во вторник в 9:00. », « Вечеринка — с 20:00 до 23:00. ».
+2. **Hier** : « Вчера был понедельник. », « Вчера была среда. », « Вчера было воскресенье. ».
+3. **Les mois** : « После апреля идёт май. », « Перед июнем идёт май. », « Мой день рождения — 3 мая. », « … в мае. ».
+4. **Les mots** : « приём у врача », « футбольная тренировка длится два часа », « Сейчас полдень. », « Сейчас полночь. ».

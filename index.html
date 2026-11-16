@@ -10954,6 +10954,14 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <div><strong data-i18n="fet_tuile">Fêtes et invitations</strong></div>
         </div>
 
+        <!-- Theme illustre « L'heure et les dates » (16 nov. 2026, decision de Jacques) : l'heure courante et officielle
+             (halb drei, y cuarto, half past, a.m. / p.m.), les jours, les mois, les dates, l'agenda ; des horloges,
+             des reveils, des calendriers dessines. de, es et en : visuel/prototype/heure.html. -->
+        <div class="orb hidden" data-orbid="heure" id="tuileHeure" onclick="ouvrirThemeIllustre('heure')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2.1"/></svg></div>
+            <div><strong data-i18n="heure_tuile">L'heure et les dates</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -16118,6 +16126,8 @@ const I18N = {
         ciu_court: "En ville",
         fet_tuile: "Fêtes et invitations",
         fet_court: "Fêtes",
+        heure_tuile: "L'heure et les dates",
+        heure_court: "L'heure",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -17954,6 +17964,8 @@ const I18N = {
         ciu_court: "In town",
         fet_tuile: "Celebrations and invitations",
         fet_court: "Celebrations",
+        heure_tuile: "Time and dates",
+        heure_court: "Time",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -19750,6 +19762,8 @@ const I18N = {
         ciu_court: "Şehirde",
         fet_tuile: "Bayramlar ve davetler",
         fet_court: "Bayramlar",
+        heure_tuile: "Saat ve tarihler",
+        heure_court: "Saat",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -22011,6 +22025,8 @@ const I18N = {
         ciu_court: "У місті",
         fet_tuile: "Свята й запрошення",
         fet_court: "Свята",
+        heure_tuile: "Час і дати",
+        heure_court: "Час",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -24559,6 +24575,8 @@ const I18N = {
         ciu_court: "در شهر",
         fet_tuile: "جشن‌ها و دعوت‌ها",
         fet_court: "جشن‌ها",
+        heure_tuile: "ساعت و تاریخ",
+        heure_court: "ساعت",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -26512,6 +26530,8 @@ const I18N = {
         ciu_court: "في المدينة",
         fet_tuile: "الأعياد والدعوات",
         fet_court: "الأعياد",
+        heure_tuile: "الوقت والتواريخ",
+        heure_court: "الوقت",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -27034,6 +27054,8 @@ const I18N = {
         ciu_court: "Na cidade",
         fet_tuile: "Festas e convites",
         fet_court: "Festas",
+        heure_tuile: "As horas e as datas",
+        heure_court: "As horas",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -28875,6 +28897,8 @@ const I18N = {
         ciu_court: "W mieście",
         fet_tuile: "Święta i zaproszenia",
         fet_court: "Święta",
+        heure_tuile: "Godzina i daty",
+        heure_court: "Godzina",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -30716,6 +30740,8 @@ const I18N = {
         ciu_court: "В городе",
         fet_tuile: "Праздники и приглашения",
         fet_court: "Праздники",
+        heure_tuile: "Время и даты",
+        heure_court: "Время",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -32559,6 +32585,8 @@ const I18N = {
         ciu_court: "In der Stadt",
         fet_tuile: "Feste und Einladungen",
         fet_court: "Feste",
+        heure_tuile: "Uhrzeit und Datum",
+        heure_court: "Uhrzeit",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -34415,6 +34443,8 @@ const I18N = {
         ciu_court: "En la ciudad",
         fet_tuile: "Fiestas e invitaciones",
         fet_court: "Fiestas",
+        heure_tuile: "La hora y las fechas",
+        heure_court: "La hora",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -53109,7 +53139,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           travail: {page: "travail.html", titre: "trav_tuile", court: "trav_court", tuile: "tuileTravail", pt: true},
                           ecole: {page: "ecole.html", titre: "eco_tuile", court: "eco_court", tuile: "tuileEcole", pt: true},
                           ciudad: {page: "ciudad.html", titre: "ciu_tuile", court: "ciu_court", tuile: "tuileCiudad"},
-                          fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes", pt: true}};
+                          fetes: {page: "fetes.html", titre: "fet_tuile", court: "fet_court", tuile: "tuileFetes", pt: true},
+                          heure: {page: "heure.html", titre: "heure_tuile", court: "heure_court", tuile: "tuileHeure", en: true}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais (en: true)
 // ou en portugais (pt: true, lot P3 du 11 nov. 2026).
 function themesIllustresOuverts(){

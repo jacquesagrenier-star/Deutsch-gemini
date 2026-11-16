@@ -119,3 +119,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **La poule au pluriel** : « الدجاجات » plutôt que le collectif « الدجاج » (qui est masculin : « يعيش الدجاج »).
 3. **Le duel** : « بقرة واحدة، بقرتان », « سمكة ذهبية واحدة، سمكتان ذهبيتان ».
 4. **Pour qui apprend l'espagnol** : les mêmes phrases (« la oveja » = « الخروف », masculin) ; la couleur choisie suit le genre espagnol de l'animal de la question (« gris|1 » = « رمادية »).
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **L'heure en chiffres latins** : « الساعة 14:30. », « يوم الاثنين الساعة 9:00. ».
+2. **Les mois** : يناير … ديسمبر (et non كانون الثاني …) ; « عيد ميلادي في 3 مايو. », « بعد أبريل يأتي مايو. ».
+3. **L'accord du verbe** : « تبدأ الحفلة الساعة 20:00. » (féminin), « يبدأ درس اليوغا … » ; « تنتهي الحفلة عند منتصف الليل. ».
+4. **Les durées à l'accusatif** : « يستغرق درس اليوغا ساعتين. », « … ساعة ونصفًا. », « … خمسًا وأربعين دقيقة. » ; et « أمس كان الاثنين. ».

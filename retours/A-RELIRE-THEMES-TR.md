@@ -152,3 +152,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **La comparaison à l'ablatif** : « Sincap ayıdan küçüktür. », « Ayı japon balığından büyüktür. ».
 3. **Les couleurs** : « Tilki turuncu. » (l'allemand dit orange ; un natif dirait-il « kızıl » ?), « İnek siyah beyaz. », « Kuş mavi ve sarı. ».
 4. **La découverte** : « Kedi evde yaşar. Et yer. » (sans sujet dans la seconde phrase).
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **Le suffixe de l'heure** : « Yoga dersi pazartesi saat 9.00'da. », « Konser saat 13.30'da başlıyor. », « Parti saat 20.00'de başlıyor. » — le suffixe suit le dernier nombre prononcé (dokuz → 'da, otuz → 'da, yirmi → 'de).
+2. **Les jours** en minuscules hors d'une date : « Bugün salı. », « Dün pazartesiydi. », « Dün pazardı. ».
+3. **Les mois** : « Doğum günüm 3 Mayıs'ta. », « Doğum günüm mayısta. », « Nisandan sonra mayıs gelir. », « Hazirandan önce mayıs gelir. ».
+4. **Midi, minuit, l'agenda** : « Şu an öğle vakti. », « Şu an gece yarısı. », « Yoga dersi pazartesi günü. », « Yoga dersi saat 9.00 ile 11.00 arasında. », « Yoga dersi iki saat sürüyor. ».

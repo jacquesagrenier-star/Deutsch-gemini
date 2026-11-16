@@ -66,7 +66,7 @@ TIRAGES = int(os.environ.get("LANGUES_TIRAGES", "2000"))
 # la decouverte (onglets puis elements) s'arrete a ce nombre de gestes ; atteint = releve peut-etre tronque, signale
 PLAFOND = int(os.environ.get("LANGUES_GESTES", "3000"))
 THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes",
-          "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes"]
+          "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes", "heure"]
 # la langue apprise -> les langues d'interface que le DICTIONNAIRE doit couvrir (les autres, la page les fabrique)
 BESOIN = {"de": ["tr", "uk", "fa", "ar", "pl", "ru"], "es": ["ar"]}
 LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
@@ -94,7 +94,10 @@ BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"
             "manger": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "metiers": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "meteo": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "animales": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "animales": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            # l'heure et les dates (16 nov.) : ne avec ses six langues, chaque phrase fabriquee par sa grammaire
+            # (visuel/prototype/heure/dire.js, le meme fichier que la langue apprise)
+            "heure": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

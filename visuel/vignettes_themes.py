@@ -781,6 +781,57 @@ def fetes_invitation():
     return c
 
 
+def heure_reveil():
+    """L'heure et les dates (16 nov. 2026) : un reveil a deux cloches qui marque deux heures et demie (« halb drei »,
+    le piege du theme), son ecran numerique « 14:30 » (l'heure officielle), et le bloc d'un calendrier a effeuiller
+    au chiffre 3 (la date). Autre chose que le cadran rond de « La journee » et que la page de mois des « Fetes » ;
+    aucun mot, la meme vignette sert a l'allemand, a l'espagnol et a l'anglais."""
+    import math
+    c = Image.new("RGB", (W, H), (226, 238, 232))
+    d = ImageDraw.Draw(c)
+    encre, ambre, rouge, blanc = (28, 36, 48), (232, 162, 58), (200, 71, 58), (255, 255, 255)
+    # le bloc du calendrier, a droite, legerement tourne : trois feuilles empilees, le 3 sur celle du dessus
+    p = Image.new("RGBA", (236, 268), (0, 0, 0, 0))
+    g = ImageDraw.Draw(p)
+    for k, teinte in ((2, (214, 220, 228)), (1, (236, 240, 244))):
+        g.rounded_rectangle((6 + 4 * k, 10 + 6 * k, 229 - 2 * k, 261), 16, fill=teinte)
+    g.rounded_rectangle((0, 10, 222, 252), 16, fill=blanc, outline=encre, width=5)
+    g.rounded_rectangle((0, 10, 222, 78), 16, fill=rouge)
+    g.rectangle((0, 56, 222, 78), fill=rouge)
+    for x in (62, 160):
+        g.ellipse((x - 11, -2, x + 11, 20), fill=encre)
+    g.text((111, 168), "3", font=F(150), fill=encre, anchor="mm")
+    p = p.rotate(-6, resample=Image.BICUBIC, expand=True)
+    c.paste(p, (338, 118), p)
+    # le reveil a deux cloches, a gauche
+    cx, cy, r = 190, 250, 122
+    # les cloches : deux ronds derriere le cadran, dont on ne voit que le dome
+    for sens in (-1, 1):
+        a = math.radians(sens * 40)
+        bx, by = cx + (r - 4) * math.sin(a), cy - (r - 4) * math.cos(a)
+        d.ellipse((bx - 50, by - 50, bx + 50, by + 50), fill=ambre, outline=encre, width=6)
+        d.ellipse((bx + 46 * math.sin(a) - 9, by - 46 * math.cos(a) - 9, bx + 46 * math.sin(a) + 9, by - 46 * math.cos(a) + 9), fill=encre)
+    d.line([(cx - 40, cy - r - 36), (cx + 40, cy - r - 36)], fill=encre, width=10)
+    d.line([(cx, cy - r - 36), (cx, cy - r + 4)], fill=encre, width=10)
+    for sens in (-1, 1):
+        d.line([(cx + sens * 62, cy + r - 30), (cx + sens * 96, cy + r + 30)], fill=encre, width=14)
+    d.ellipse((cx - r - 12, cy - r - 12, cx + r + 12, cy + r + 12), fill=encre)
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=blanc)
+    for i in range(12):
+        a = math.radians(i * 30)
+        r1 = r - (30 if i % 3 == 0 else 20)
+        d.line([(cx + r1 * math.sin(a), cy - r1 * math.cos(a)), (cx + (r - 10) * math.sin(a), cy - (r - 10) * math.cos(a))],
+               fill=encre, width=9 if i % 3 == 0 else 4)
+    for angle, longueur, largeur, couleur in ((2.5 * 30, 62, 15, encre), (30 * 6, 98, 9, (47, 109, 176))):
+        a = math.radians(angle)
+        d.line([(cx, cy), (cx + longueur * math.sin(a), cy - longueur * math.cos(a))], fill=couleur, width=largeur)
+    d.ellipse((cx - 12, cy - 12, cx + 12, cy + 12), fill=ambre)
+    # l'ecran numerique, sous les deux : 14:30
+    d.rounded_rectangle((300, 412, 560, 486), 18, fill=(18, 26, 36), outline=encre, width=5)
+    d.text((430, 451), "14:30", font=F(54), fill=(124, 242, 176), anchor="mm")
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
@@ -795,7 +846,8 @@ VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones"
              "travail": travail_cv,
              "ecole": ecole_tableau,
              "ciudad": ville_plan,
-             "fetes": fetes_invitation}
+             "fetes": fetes_invitation,
+             "heure": heure_reveil}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

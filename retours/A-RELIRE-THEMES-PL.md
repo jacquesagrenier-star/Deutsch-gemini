@@ -148,3 +148,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **Les couleurs accordées** : « Krowa jest czarno-biała. », « Lis jest rudy. » (l'allemand dit orange, comme le français « roux »).
 3. **La découverte sans pronom** : « Kot żyje w domu. Je mięso. ».
 4. **« na farmie »** pour « auf dem Bauernhof » (plutôt que « w gospodarstwie » ?) ; « Niedźwiedź je ryby. ».
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **Le jour avec sa préposition** : « Lekcja jogi jest we wtorek o 9:00. », « w środę », « w niedzielę ».
+2. **Hier** : « Wczoraj był poniedziałek. », « Wczoraj była środa. ».
+3. **Les mois** : « Po kwietniu jest maj. », « Przed czerwcem jest maj. », « Moje urodziny są 3 maja. », « … we wrześniu. ».
+4. **Les mots** : « wizyta u lekarza », « trening piłki nożnej trwa dwie godziny », « Jest południe. », « Jest północ. ».

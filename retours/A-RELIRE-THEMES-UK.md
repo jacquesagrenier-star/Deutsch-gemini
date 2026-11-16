@@ -150,3 +150,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **Après deux** : « один кінь, два коні », « одна курка, дві курки » (mais « Кури живуть на фермі. »).
 3. **La comparaison** : « Білка менша за ведмедя. » (за + accusatif).
 4. **« у / в »** : « Ведмідь живе в лісі. » après une voyelle, « Ведмеді живуть у лісі. » après une consonne ; « удома » pour im Haus ; « мʼясо » avec l'apostrophe ʼ.
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **L'agenda avec un tiret** plutôt qu'un verbe : « Заняття йогою — у понеділок о 9:00. », « Вечірка — з 20:00 до 23:00. » ; est-ce naturel ?
+2. **Hier** : « Учора був понеділок. », « Учора була середа. », « Учора була неділя. » (le genre du jour).
+3. **Les mois** : « Після квітня йде травень. », « Перед червнем іде травень. », « Мій день народження — 3 травня. », « … в травні. ».
+4. **Les mots** : « прийом у лікаря » (Termin beim Arzt), « заняття йогою триває дві години » ; « Зараз полудень. », « Зараз північ. ».

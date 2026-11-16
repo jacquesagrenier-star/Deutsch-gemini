@@ -116,3 +116,12 @@ La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce 
 2. **La comparaison** : « سنجاب از خرس کوچک‌تر است. ».
 3. **L'ezafe** : « این یک گربهٔ سیاه و سفید است. ».
 4. **La découverte sans sujet** : « گربه در خانه زندگی می‌کند. گوشت می‌خورد. » ; « ماهی قرمز نارنجی است. » (le poisson rouge est orange, comme en français).
+
+## Lot heure, 16 nov. : « L'heure et les dates »
+
+Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/dire.js` (une heure, une date ou un rendez-vous → la phrase, par la même règle que la langue apprise) ; l'heure y est en chiffres, à la manière de la langue. Tout se voit d'un coup dans `visuel/heure/banc.md` (`node tests/heure_banc.js`). À relire :
+
+1. **Les chiffres persans** pour l'heure et la date : « ساعت ۱۴:۳۰ است. », « امروز ۳ مه است. ».
+2. **Le week-end** : « شنبه و یکشنبه تعطیلات آخر هفته‌اند. » traduit l'allemand (en Iran, le week-end est le vendredi) ; la tournure est-elle claire ?
+3. **Les mois grégoriens** : ژانویه، فوریه … دسامبر ; « بعد از آوریل، مه می‌آید. ».
+4. **L'agenda** : « کلاس یوگا دوشنبه ساعت ۹:۰۰ است. », « کلاس یوگا دو ساعت طول می‌کشد. », « وقت دکتر » pour le rendez-vous chez le médecin.

@@ -355,7 +355,7 @@ def contrarios_textes(langue):
 
 # les themes illustres dont visuel/<theme>/voix.json est lu (les emotions : leur ligne a part, plus haut)
 THEMES_VOIX = ("familia", "descripcion", "ropa", "cuerpo", "manger", "gato", "journee", "contrarios", "metiers", "transportes",
-               "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes")
+               "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes", "heure")
 
 
 def themes_textes(theme, langue):
