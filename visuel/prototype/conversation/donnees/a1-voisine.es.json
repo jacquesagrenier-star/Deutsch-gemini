@@ -1,0 +1,71 @@
+{
+ "id": "a1-voisine",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "Sur le palier, la voisine"},
+ "intro": {"fr": "Tu viens d'emménager à Madrid. Sur le palier, tu rencontres ta voisine d'en face. Présente-toi."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {"recit": {"fr": "Ton premier samedi dans ton nouvel immeuble. Sur le palier, la porte d'en face s'ouvre."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Hola, buenas! ¿Vive usted aquí ahora?", "fr": "Bonjour ! Vous habitez ici, maintenant ?"}
+   ],
+   "choix": [
+    {"t": "Sí, desde el lunes. Soy su nuevo vecino.", "fr": "Oui, depuis lundi. Je suis votre nouveau voisin.", "pose": {"genre": "m"}, "va": "nombre"},
+    {"t": "Sí, desde el lunes. Soy su nueva vecina.", "fr": "Oui, depuis lundi. Je suis votre nouvelle voisine.", "pose": {"genre": "f"}, "va": "nombre"}
+   ]
+  },
+  "nombre": {
+   "dit": [
+    {"si": {"genre": "m"}, "qui": "nachbarin_carmen", "air": "sourire", "t": "¡Qué bien! Yo soy Carmen. ¡Bienvenido al edificio!", "fr": "Super ! Moi, c'est Carmen. Bienvenue dans l'immeuble !"},
+    {"si": {"genre": "f"}, "qui": "nachbarin_carmen", "air": "sourire", "t": "¡Qué bien! Yo soy Carmen. ¡Bienvenida al edificio!", "fr": "Super ! Moi, c'est Carmen. Bienvenue dans l'immeuble !"}
+   ],
+   "choix": [
+    {"si": {"genre": "m"}, "t": "¡Encantado! Muchas gracias.", "fr": "Enchanté ! Merci beaucoup.", "va": "origen"},
+    {"si": {"genre": "f"}, "t": "¡Encantada! Muchas gracias.", "fr": "Enchantée ! Merci beaucoup.", "va": "origen"},
+    {"t": "Gracias. ¿Usted vive aquí desde hace mucho?", "fr": "Merci. Vous habitez ici depuis longtemps ?", "va": "origen",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sí, ¡ya hace diez años!", "fr": "Oui, ça fait déjà dix ans !"}]},
+    {"repete": true, "t": "Perdone, ¿cómo se llama?", "fr": "Pardon, comment vous appelez-vous ?", "va": "nombre",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Carmen. ¡Como la ópera!", "fr": "Carmen. Comme l'opéra !"}]}
+   ]
+  },
+  "origen": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¿Y de dónde es usted?", "fr": "Et vous êtes d'où ?"}],
+   "choix": [
+    {"t": "Soy de Francia.", "fr": "Je suis de France.", "va": "trabajo",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡De Francia! Me encanta París.", "fr": "De France ! J'adore Paris."}]},
+    {"t": "Soy de Canadá.", "fr": "Je suis du Canada.", "va": "trabajo",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡De Canadá! ¡Qué lejos!", "fr": "Du Canada ! C'est loin !"}]},
+    {"t": "Soy de Bélgica.", "fr": "Je suis de Belgique.", "va": "trabajo",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡Ah, Bélgica! ¡El chocolate!", "fr": "Ah, la Belgique ! Le chocolat !"}]},
+    {"faux": true, "t": "Soy de la Francia.", "fr": "Je suis de France.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿De la Francia? Ah, de Francia.", "fr": "« De la » France ? Ah, de France."}],
+     "aide": {"fr": "En espagnol, la plupart des pays n'ont pas d'article : <b>de Francia</b>, <b>de Bélgica</b>, <b>de Canadá</b>. Le « de la France » du français trompe."}}
+   ]
+  },
+  "trabajo": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Yo soy de Sevilla, pero vivo en Madrid desde hace muchos años. Soy cocinera, en un restaurante aquí al lado. ¿Y usted, a qué se dedica?", "fr": "Moi, je suis de Séville, mais je vis à Madrid depuis des années. Je suis cuisinière, dans un restaurant juste à côté. Et vous, qu'est-ce que vous faites dans la vie ?"}],
+   "choix": [
+    {"t": "Trabajo en una oficina.", "fr": "Je travaille dans un bureau.", "va": "puerta",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ah, muy bien.", "fr": "Ah, très bien."}]},
+    {"t": "Estudio español y busco trabajo.", "fr": "J'étudie l'espagnol et je cherche du travail.", "va": "puerta",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Pues ya habla muy bien!", "fr": "Eh bien, vous parlez déjà très bien !"}]},
+    {"t": "Soy estudiante.", "fr": "Je suis étudiant(e).", "va": "puerta",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Qué bien! ¡Mucha suerte!", "fr": "Super ! Bonne chance !"}]}
+   ]
+  },
+  "puerta": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Si necesita algo, llame a mi puerta. Es el tercero B.", "fr": "Si vous avez besoin de quelque chose, frappez à ma porte. C'est le troisième B."}],
+   "choix": [
+    {"t": "¡Muchas gracias, es usted muy amable! ¡Hasta pronto!", "fr": "Merci beaucoup, vous êtes très aimable ! À bientôt !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Hasta pronto!", "fr": "À bientôt !"}]},
+    {"t": "¡Gracias! ¡Buen fin de semana!", "fr": "Merci ! Bon week-end !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Igualmente!", "fr": "Vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté(e) à Carmen, ta voisine : depuis quand tu habites ici, d'où tu viens, ce que tu fais. Elle est cuisinière, et tu peux frapper chez elle."}
+}

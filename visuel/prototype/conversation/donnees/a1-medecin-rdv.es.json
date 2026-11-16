@@ -1,0 +1,75 @@
+{
+ "id": "a1-medecin-rdv",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "À l'accueil du centre de santé"},
+ "intro": {"fr": "Tu ne te sens pas bien. Tu vas au centre de santé (centro de salud) de ton quartier, à Madrid. D'abord, l'accueil."},
+ "personnes": ["praxis_empfang"],
+ "debut": "cita",
+ "noeuds": {
+  "cita": {
+   "dit": [
+    {"recit": {"fr": "Le centre de santé de ton quartier. Au guichet de l'accueil, une employée t'appelle."}},
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Buenos días. ¿Tiene cita?", "fr": "Bonjour. Vous avez rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Sí, tengo cita a las diez.", "fr": "Oui, j'ai rendez-vous à dix heures.", "pose": {"cita": "si"}, "va": "primera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Muy bien, un momento…", "fr": "Très bien, un instant…"}]},
+    {"t": "No, no tengo cita. Estoy enfermo.", "fr": "Non, je n'ai pas rendez-vous. Je suis malade.", "pose": {"cita": "no"}, "va": "primera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "No pasa nada. Pero tiene que esperar un poco.", "fr": "Ce n'est pas grave. Mais vous devez attendre un peu."}]},
+    {"t": "No, no tengo cita. Estoy enferma.", "fr": "Non, je n'ai pas rendez-vous. Je suis malade.", "pose": {"cita": "no"}, "va": "primera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "No pasa nada. Pero tiene que esperar un poco.", "fr": "Ce n'est pas grave. Mais vous devez attendre un peu."}]},
+    {"faux": true, "t": "Sí, tengo una cita a las diez horas.", "fr": "Oui, j'ai un rendez-vous à dix heures.",
+     "puis": [{"qui": "praxis_empfang", "air": "perplexe", "t": "¿A las diez horas…? Ah, a las diez.", "fr": "À dix « heures »… ? Ah, à dix heures."}],
+     "aide": {"fr": "Pour dire l'heure, pas de « horas » : <b>a las diez</b>, <b>a las once y media</b>. Le « heures » du français ne se traduit pas."}}
+   ]
+  },
+  "primera": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "¿Es la primera vez que viene?", "fr": "C'est la première fois que vous venez ?"}],
+   "choix": [
+    {"t": "Sí, es la primera vez. Vivo en Madrid desde hace un mes.", "fr": "Oui, c'est la première fois. J'habite à Madrid depuis un mois.", "va": "tarjeta"},
+    {"t": "Sí, es la primera vez.", "fr": "Oui, c'est la première fois.", "va": "tarjeta"},
+    {"repete": true, "t": "Perdone, ¿puede repetir?", "fr": "Pardon, vous pouvez répéter ?", "va": "primera",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Claro. ¿Viene usted aquí por primera vez?", "fr": "Bien sûr. Vous venez ici pour la première fois ?"}]}
+   ]
+  },
+  "tarjeta": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Muy bien. ¿Me deja su tarjeta sanitaria?", "fr": "Très bien. Vous me donnez votre carte de santé ?"}],
+   "choix": [
+    {"t": "Sí, aquí tiene.", "fr": "Oui, tenez.", "va": "motivo",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Gracias.", "fr": "Merci."}]},
+    {"t": "Todavía no tengo la tarjeta. Tengo el pasaporte.", "fr": "Je n'ai pas encore la carte. J'ai mon passeport.", "va": "motivo",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Vale, no pasa nada. De momento, con el pasaporte está bien.", "fr": "D'accord, ce n'est pas grave. Pour le moment, le passeport suffit."}]}
+   ]
+  },
+  "motivo": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "¿Y qué le pasa?", "fr": "Et qu'est-ce qui ne va pas ?"}],
+   "choix": [
+    {"t": "Me duele la garganta.", "fr": "J'ai mal à la gorge.", "va": "espera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Vaya, lo siento.", "fr": "Oh, je suis désolée."}]},
+    {"t": "Tengo fiebre y tos.", "fr": "J'ai de la fièvre et je tousse.", "va": "espera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Vaya, lo siento.", "fr": "Oh, je suis désolée."}]},
+    {"t": "Me duele mucho la cabeza.", "fr": "J'ai très mal à la tête.", "va": "espera",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Vaya, lo siento.", "fr": "Oh, je suis désolée."}]},
+    {"faux": true, "t": "Me duelo la cabeza.", "fr": "J'ai mal à la tête.",
+     "puis": [{"qui": "praxis_empfang", "air": "perplexe", "t": "¿Se duele…? Ah, le duele la cabeza.", "fr": "Vous vous « faites mal »… ? Ah, vous avez mal à la tête."}],
+     "aide": {"fr": "On dit <b>me duele la cabeza</b> : c'est la tête qui fait mal (« duele »), un peu comme « la tête me fait mal ». Avec un pluriel : <b>me duelen</b> los pies."}}
+   ]
+  },
+  "espera": {
+   "dit": [
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Siéntese en la sala de espera, por favor.", "fr": "Asseyez-vous dans la salle d'attente, s'il vous plaît."},
+    {"si": {"cita": "si"}, "qui": "praxis_empfang", "air": "sourire", "t": "La doctora le llama enseguida.", "fr": "La médecin vous appelle tout de suite."},
+    {"si": {"cita": "no"}, "qui": "praxis_empfang", "air": "attentive", "t": "Hay que esperar media hora, más o menos.", "fr": "Il faut attendre une demi-heure, à peu près."}
+   ],
+   "choix": [
+    {"t": "Muchas gracias. ¿Dónde está la sala de espera?", "fr": "Merci beaucoup. Où est la salle d'attente ?", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Ahí, a la derecha. ¡Que se mejore!", "fr": "Là, à droite. Bon rétablissement !"}]},
+    {"t": "Vale, muchas gracias.", "fr": "D'accord, merci beaucoup.", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "De nada. ¡Que se mejore!", "fr": "De rien. Bon rétablissement !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as dit si tu avais rendez-vous, montré ta carte de santé (ou ton passeport), expliqué ce qui n'allait pas et trouvé la salle d'attente."}
+}

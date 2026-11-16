@@ -1,0 +1,63 @@
+{
+ "id": "a1-poste",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "Un colis à la poste"},
+ "intro": {"fr": "Tu envoies un colis chez toi, à ta famille. Au guichet de la poste, à Berlin, il faut dire où il va, ce qu'il contient, et choisir la vitesse."},
+ "personnes": ["post_schalter"],
+ "debut": "schalter",
+ "prix": {"frankreich": 1699, "kanada": 4699, "normal": 0, "express": 1200, "marke": 125, "keine": 0},
+ "panier": ["land", "versand", "marke"],
+ "textes": {"land_fr": {"cle": "land", "frankreich": "en France", "kanada": "au Canada"}},
+ "noeuds": {
+  "schalter": {
+   "dit": [
+    {"recit": {"fr": "Au bureau de poste. Tu as un colis sous le bras. C'est ton tour."}},
+    {"qui": "post_schalter", "air": "sourire", "t": "Guten Tag! Was kann ich für Sie tun?", "fr": "Bonjour ! Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Ich möchte dieses Paket nach Frankreich schicken.", "fr": "Je voudrais envoyer ce colis en France.", "pose": {"land": "frankreich"}, "va": "inhalt"},
+    {"t": "Ich möchte dieses Paket nach Kanada schicken.", "fr": "Je voudrais envoyer ce colis au Canada.", "pose": {"land": "kanada"}, "va": "inhalt"},
+    {"faux": true, "t": "Ich möchte dieses Paket in Frankreich schicken.", "fr": "Je voudrais envoyer ce colis en France.",
+     "puis": [{"qui": "post_schalter", "air": "perplexe", "t": "In Frankreich? Aber wir sind hier in Berlin …", "fr": "En France ? Mais nous sommes à Berlin, ici…"}],
+     "aide": {"fr": "Vers un pays : <b>nach</b> Frankreich, <b>nach</b> Kanada. « in Frankreich », c'est être déjà en France."}}
+   ]
+  },
+  "inhalt": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Gut. Legen Sie es bitte hier auf die Waage. Was ist im Paket?", "fr": "Bien. Posez-le ici sur la balance, s'il vous plaît. Qu'y a-t-il dans le colis ?"}],
+   "choix": [
+    {"t": "Kleidung und Bücher.", "fr": "Des vêtements et des livres.", "va": "schnell"},
+    {"t": "Ein Geschenk für meine Mutter.", "fr": "Un cadeau pour ma mère.", "va": "schnell",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Oh, wie schön!", "fr": "Oh, comme c'est gentil !"}]},
+    {"repete": true, "t": "Entschuldigung, das verstehe ich nicht.", "fr": "Pardon, je ne comprends pas.", "va": "inhalt",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Was ist im Paket? Kleidung? Bücher?", "fr": "Qu'est-ce qu'il y a dans le colis ? Des vêtements ? Des livres ?"}]}
+   ]
+  },
+  "schnell": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "Normal oder Express? Normal dauert es etwa eine Woche. Express ist schneller, aber teurer.", "fr": "Normal ou express ? En normal, ça prend environ une semaine. En express, c'est plus rapide, mais plus cher."}],
+   "choix": [
+    {"t": "Normal, bitte. Eine Woche ist kein Problem.", "fr": "Normal, s'il vous plaît. Une semaine, ce n'est pas un problème.", "pose": {"versand": "normal"}, "va": "marken"},
+    {"t": "Express, bitte. Wie viel kostet das?", "fr": "En express, s'il vous plaît. Combien ça coûte ?", "pose": {"versand": "express"}, "va": "marken",
+     "puis": [{"qui": "post_schalter", "air": "attentive", "t": "Zwölf Euro mehr.", "fr": "Douze euros de plus."}]}
+   ]
+  },
+  "marken": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "Brauchen Sie sonst noch etwas? Briefmarken vielleicht?", "fr": "Vous avez besoin d'autre chose ? Des timbres, peut-être ?"}],
+   "choix": [
+    {"t": "Ja, eine Briefmarke für eine Postkarte, bitte.", "fr": "Oui, un timbre pour une carte postale, s'il vous plaît.", "pose": {"marke": "marke"}, "va": "zahlen"},
+    {"t": "Nein, danke. Das ist alles.", "fr": "Non, merci. C'est tout.", "pose": {"marke": "keine"}, "va": "zahlen"}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Das macht {a_payer}, bitte.", "dit": "Das macht {a_payer:mots}, bitte.", "fr": "Ça fait {a_payer}, s'il vous plaît."}],
+   "choix": [
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Danke. Hier ist Ihr Beleg. Schönen Tag noch!", "fr": "Merci. Voici votre reçu. Bonne journée !"}]},
+    {"t": "Bar. Hier, bitte.", "fr": "En espèces. Voici.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Danke schön. Auf Wiedersehen!", "fr": "Merci beaucoup. Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as envoyé ton colis {land_fr}, dit ce qu'il contenait, choisi la vitesse et payé {a_payer}."}
+}

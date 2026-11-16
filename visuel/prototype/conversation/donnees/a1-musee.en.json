@@ -1,0 +1,64 @@
+{
+ "id": "a1-musee",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "À la billetterie du musée"},
+ "intro": {"fr": "Un dimanche au musée, à Boston. À la billetterie, tu achètes ton billet, tu demandes la réduction étudiante et tu choisis l'audioguide… ou pas."},
+ "personnes": ["museum_kasse"],
+ "debut": "desk",
+ "prix": {"adult": 2500, "student": 1500, "audio": 500, "none": 0},
+ "panier": ["ticket", "guide"],
+ "noeuds": {
+  "desk": {
+   "dit": [
+    {"recit": {"fr": "À la billetterie d'un grand musée de Boston. Il n'y a pas beaucoup de monde."}},
+    {"qui": "museum_kasse", "air": "sourire", "t": "Hi! How can I help you?", "fr": "Bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "One ticket, please. Do you have a student discount?", "fr": "Un billet, s'il vous plaît. Vous avez une réduction pour les étudiants ?", "va": "id"},
+    {"t": "One adult ticket, please.", "fr": "Un billet adulte, s'il vous plaît.", "pose": {"ticket": "adult"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Sure. That's twenty-five dollars.", "fr": "Bien sûr. C'est vingt-cinq dollars."}]},
+    {"faux": true, "t": "One entrance, please.", "fr": "Une entrée, s'il vous plaît.",
+     "puis": [{"qui": "museum_kasse", "air": "perplexe", "t": "The entrance? It's right behind you… Oh, you mean a ticket!", "fr": "L'entrée ? Elle est juste derrière vous… Ah, vous voulez dire un billet !"}],
+     "aide": {"fr": "Une entrée (un billet) se dit <b>a ticket</b>. <b>The entrance</b>, c'est la porte par où l'on entre."}}
+   ]
+  },
+  "id": {
+   "dit": [{"qui": "museum_kasse", "air": "question", "t": "Yes, with a student ID. Do you have one?", "fr": "Oui, avec une carte d'étudiant. Vous en avez une ?"}],
+   "choix": [
+    {"t": "Yes, here's my student ID.", "fr": "Oui, voici ma carte d'étudiant.", "pose": {"ticket": "student"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Thanks! Then it's only fifteen dollars.", "fr": "Merci ! Alors c'est seulement quinze dollars."}]},
+    {"t": "Oh, I don't have it with me. One adult ticket, then.", "fr": "Oh, je ne l'ai pas sur moi. Un billet adulte, alors.", "pose": {"ticket": "adult"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "No problem. That's twenty-five dollars.", "fr": "Pas de problème. C'est vingt-cinq dollars."}]}
+   ]
+  },
+  "guide": {
+   "dit": [{"qui": "museum_kasse", "air": "question", "t": "Would you like an audio guide? It's five dollars.", "fr": "Vous voulez un audioguide ? C'est cinq dollars."}],
+   "choix": [
+    {"t": "Yes, please. Is it in French?", "fr": "Oui, s'il vous plaît. Il est en français ?", "pose": {"guide": "audio"}, "va": "pay",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Yes, it's in French, Spanish and Chinese.", "fr": "Oui, il existe en français, en espagnol et en chinois."}]},
+    {"t": "No, thank you.", "fr": "Non, merci.", "pose": {"guide": "none"}, "va": "pay"}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "museum_kasse", "air": "attentive", "t": "Okay, that's {a_payer}.", "dit": "Okay, that's {a_payer:mots}.", "fr": "D'accord, ça fait {a_payer}."}],
+   "choix": [
+    {"t": "By card, please.", "fr": "Par carte, s'il vous plaît.", "va": "bag",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Here's your ticket.", "fr": "Voici votre billet."}]},
+    {"t": "Cash. Here's forty dollars.", "fr": "En espèces. Voici quarante dollars.", "va": "bag",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Thanks. Here's your change.", "fr": "Merci. Voici votre monnaie."}]}
+   ]
+  },
+  "bag": {
+   "dit": [{"qui": "museum_kasse", "air": "attentive", "t": "Oh, and please leave your backpack at the coat check.", "t_gb": "Oh, and please leave your rucksack in the cloakroom.", "fr": "Ah, et laissez votre sac à dos au vestiaire, s'il vous plaît."}],
+   "choix": [
+    {"t": "Sure. Where is the coat check?", "t_gb": "Of course. Where is the cloakroom?", "fr": "Bien sûr. Où est le vestiaire ?", "va": null,
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Right over there, on the left. Enjoy the museum!", "fr": "Juste là-bas, à gauche. Bonne visite !"}]},
+    {"t": "Okay. Is it free?", "fr": "D'accord. C'est gratuit ?", "va": null,
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Yes, it's free. Enjoy the museum!", "fr": "Oui, c'est gratuit. Bonne visite !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté ton billet ({a_payer} en tout), demandé ce que tu voulais savoir et trouvé où laisser ton sac."}
+}

@@ -1,0 +1,75 @@
+{
+ "id": "a1-medecin-rdv",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "À l'accueil du cabinet médical"},
+ "intro": {"fr": "Tu ne te sens pas bien. Tu vas chez une médecin généraliste de ton quartier, à Berlin. D'abord, l'accueil."},
+ "personnes": ["praxis_empfang"],
+ "debut": "termin",
+ "noeuds": {
+  "termin": {
+   "dit": [
+    {"recit": {"fr": "Un cabinet médical au premier étage. Derrière le comptoir, une assistante médicale."}},
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Guten Morgen! Haben Sie einen Termin?", "fr": "Bonjour ! Vous avez un rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich habe einen Termin um zehn Uhr.", "fr": "Oui, j'ai un rendez-vous à dix heures.", "pose": {"termin": "ja"}, "va": "neu",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Gut, einen Moment, bitte …", "fr": "Bien, un instant, s'il vous plaît…"}]},
+    {"t": "Nein, ich habe keinen Termin. Ich bin krank.", "fr": "Non, je n'ai pas de rendez-vous. Je suis malade.", "pose": {"termin": "nein"}, "va": "neu",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Kein Problem. Aber Sie müssen ein bisschen warten.", "fr": "Pas de problème. Mais vous devez attendre un peu."}]},
+    {"faux": true, "t": "Ja, ich habe ein Termin um zehn Uhr.", "fr": "Oui, j'ai un rendez-vous à dix heures.",
+     "puis": [{"qui": "praxis_empfang", "air": "perplexe", "t": "Einen Termin um zehn? Moment …", "fr": "Un rendez-vous à dix heures ? Un instant…"}],
+     "aide": {"fr": "<b>der Termin</b> est masculin : après « ich habe », il devient <b>einen Termin</b> (et « pas de rendez-vous » : <b>keinen Termin</b>)."}}
+   ]
+  },
+  "neu": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Sind Sie zum ersten Mal bei uns?", "fr": "C'est la première fois que vous venez chez nous ?"}],
+   "choix": [
+    {"t": "Ja, ich bin neu in Berlin.", "fr": "Oui, je suis nouveau (nouvelle) à Berlin.", "va": "karte",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Herzlich willkommen!", "fr": "Bienvenue !"}]},
+    {"t": "Ja, zum ersten Mal.", "fr": "Oui, pour la première fois.", "va": "karte",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Gut.", "fr": "Bien."}]},
+    {"repete": true, "t": "Wie bitte? Langsam, bitte.", "fr": "Pardon ? Lentement, s'il vous plaît.", "va": "neu",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Natürlich. Sind Sie zum ersten Mal hier?", "fr": "Bien sûr. Vous êtes ici pour la première fois ?"}]}
+   ]
+  },
+  "karte": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Dann brauche ich Ihre Versichertenkarte, bitte.", "fr": "Alors j'ai besoin de votre carte d'assurance maladie, s'il vous plaît."}],
+   "choix": [
+    {"t": "Ja, hier ist meine Karte.", "fr": "Oui, voici ma carte.", "va": "grund",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Danke schön.", "fr": "Merci beaucoup."}]},
+    {"faux": true, "t": "Ja, hier ist meine Kreditkarte.", "fr": "Oui, voici ma carte de crédit.",
+     "puis": [{"qui": "praxis_empfang", "air": "surprise", "t": "Nein, nein, Sie müssen nicht zahlen! Ich brauche die Karte von der Krankenkasse.", "fr": "Non, non, vous n'avez pas à payer ! J'ai besoin de la carte de la caisse d'assurance maladie."}],
+     "aide": {"fr": "<b>die Versichertenkarte</b> (ou <b>Gesundheitskarte</b>), c'est la carte de ta caisse d'assurance maladie (<b>die Krankenkasse</b>). Chez le médecin, en Allemagne, on ne paie pas à l'accueil : on montre cette carte."}},
+    {"repete": true, "t": "Welche Karte, bitte?", "fr": "Quelle carte, s'il vous plaît ?", "va": "karte",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Die Versichertenkarte: die Karte von Ihrer Krankenkasse.", "fr": "La carte d'assurance maladie : la carte de votre caisse d'assurance maladie."}]}
+   ]
+  },
+  "grund": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Was haben Sie denn?", "fr": "Qu'est-ce qui ne va pas ?"}],
+   "choix": [
+    {"t": "Ich habe Fieber und Husten.", "fr": "J'ai de la fièvre et je tousse.", "va": "warten",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, das tut mir leid.", "fr": "Oh, je suis désolée."}]},
+    {"t": "Ich habe Halsschmerzen.", "fr": "J'ai mal à la gorge.", "va": "warten",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, das tut mir leid.", "fr": "Oh, je suis désolée."}]},
+    {"t": "Mein Bauch tut weh.", "fr": "J'ai mal au ventre.", "va": "warten",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, das tut mir leid.", "fr": "Oh, je suis désolée."}]}
+   ]
+  },
+  "warten": {
+   "dit": [
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Füllen Sie bitte dieses Formular aus. Dann nehmen Sie im Wartezimmer Platz.", "fr": "Remplissez ce formulaire, s'il vous plaît. Ensuite, asseyez-vous dans la salle d'attente."},
+    {"si": {"termin": "ja"}, "qui": "praxis_empfang", "air": "sourire", "t": "Die Ärztin ruft Sie gleich auf.", "fr": "La médecin vous appelle tout de suite."},
+    {"si": {"termin": "nein"}, "qui": "praxis_empfang", "air": "attentive", "t": "Es dauert etwa eine halbe Stunde.", "fr": "Ça prendra environ une demi-heure."}
+   ],
+   "choix": [
+    {"t": "Danke. Wo ist das Wartezimmer?", "fr": "Merci. Où est la salle d'attente ?", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Da links. Gute Besserung!", "fr": "Là, à gauche. Bon rétablissement !"}]},
+    {"t": "Vielen Dank!", "fr": "Merci beaucoup !", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Bitte schön. Gute Besserung!", "fr": "Je vous en prie. Bon rétablissement !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as dit si tu avais un rendez-vous, montré ta carte d'assurance maladie, expliqué ce qui n'allait pas et trouvé la salle d'attente."}
+}

@@ -1,0 +1,87 @@
+{
+ "id": "a1-objet-perdu",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "Un objet oublié au café"},
+ "intro": {"fr": "Hier, tu as pris un café dans ton quartier de Boston. Ce matin, impossible de retrouver ton écharpe… ou ton parapluie ? Tu retournes au café."},
+ "personnes": ["kellnerin"],
+ "debut": "start",
+ "textes": {"objet_fr": {"cle": "objet", "scarf": "ton écharpe", "umbrella": "ton parapluie"}},
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Le même café qu'hier. La serveuse te reconnaît."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Hi again! What can I get you?", "fr": "Re-bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "Nothing, thanks. I left my scarf here yesterday.", "fr": "Rien, merci. Hier, j'ai laissé mon écharpe ici.", "pose": {"objet": "scarf"}, "va": "looks",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh! A scarf?", "fr": "Oh ! Une écharpe ?"}]},
+    {"t": "Nothing, thanks. I left my umbrella here yesterday.", "fr": "Rien, merci. Hier, j'ai laissé mon parapluie ici.", "pose": {"objet": "umbrella"}, "va": "looks",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh! An umbrella?", "fr": "Oh ! Un parapluie ?"}]}
+   ]
+  },
+  "looks": {
+   "dit": [
+    {"si": {"objet": "scarf"}, "qui": "kellnerin", "air": "question", "t": "What does it look like?", "fr": "Elle est comment ?"},
+    {"si": {"objet": "umbrella"}, "qui": "kellnerin", "air": "question", "t": "What does it look like?", "fr": "Il est comment ?"}
+   ],
+   "choix": [
+    {"si": {"objet": "scarf"}, "t": "It's a long red scarf.", "fr": "C'est une longue écharpe rouge.", "va": "where"},
+    {"si": {"objet": "umbrella"}, "t": "It's a small black umbrella.", "fr": "C'est un petit parapluie noir.", "va": "where"},
+    {"si": {"objet": "scarf"}, "faux": true, "t": "It's a scarf red and long.", "fr": "C'est une écharpe rouge et longue.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "A scarf… red and long? Oh, a long red scarf!", "fr": "Une écharpe… rouge et longue ? Ah, une longue écharpe rouge !"}],
+     "aide": {"fr": "En anglais, l'adjectif se place <b>avant</b> le nom : <b>a long red scarf</b>. Et il ne s'accorde jamais."}},
+    {"si": {"objet": "umbrella"}, "faux": true, "t": "It's an umbrella black and small.", "fr": "C'est un parapluie noir et petit.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "An umbrella… black and small? Oh, a small black umbrella!", "fr": "Un parapluie… noir et petit ? Ah, un petit parapluie noir !"}],
+     "aide": {"fr": "En anglais, l'adjectif se place <b>avant</b> le nom : <b>a small black umbrella</b>. Et il ne s'accorde jamais."}}
+   ]
+  },
+  "where": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "And where did you sit?", "fr": "Et vous étiez assis(e) où ?"}],
+   "choix": [
+    {"t": "Over there, by the window.", "fr": "Là-bas, près de la fenêtre.", "va": "wrong",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Let me check.", "fr": "Je vais regarder."}]},
+    {"t": "Outside, on the patio.", "t_gb": "Outside, on the terrace.", "fr": "Dehors, en terrasse.", "va": "wrong",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Let me check.", "fr": "Je vais regarder."}]},
+    {"repete": true, "t": "Sorry?", "fr": "Pardon ?", "va": "where",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Where did you sit yesterday? Inside or outside?", "fr": "Où étiez-vous assis(e) hier ? Dedans ou dehors ?"}]}
+   ]
+  },
+  "wrong": {
+   "dit": [
+    {"recit": {"fr": "Elle fouille dans la boîte des objets trouvés, derrière le comptoir, et en sort quelque chose."}},
+    {"si": {"objet": "scarf"}, "qui": "kellnerin", "air": "question", "t": "Is this it? The blue one?", "fr": "C'est celle-ci ? La bleue ?"},
+    {"si": {"objet": "umbrella"}, "qui": "kellnerin", "air": "question", "t": "Is this it? The green one?", "fr": "C'est celui-ci ? Le vert ?"}
+   ],
+   "choix": [
+    {"si": {"objet": "scarf"}, "t": "No, sorry. My scarf is red.", "fr": "Non, désolé(e). Mon écharpe est rouge.", "va": "right"},
+    {"si": {"objet": "umbrella"}, "t": "No, sorry. My umbrella is black.", "fr": "Non, désolé(e). Mon parapluie est noir.", "va": "right"}
+   ]
+  },
+  "right": {
+   "dit": [
+    {"si": {"objet": "scarf"}, "qui": "kellnerin", "air": "sourire", "t": "Red… How about this one?", "fr": "Rouge… Et celle-ci ?"},
+    {"si": {"objet": "umbrella"}, "qui": "kellnerin", "air": "sourire", "t": "Black… How about this one?", "fr": "Noir… Et celui-ci ?"}
+   ],
+   "choix": [
+    {"t": "Yes, that's it! Thank you so much!", "fr": "Oui, c'est ça ! Merci beaucoup !", "va": "coffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "You're welcome!", "fr": "Avec plaisir !"}]},
+    {"si": {"objet": "scarf"}, "t": "Yes, that's my scarf! Thanks a lot!", "fr": "Oui, c'est mon écharpe ! Merci beaucoup !", "va": "coffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "You're welcome!", "fr": "Avec plaisir !"}]},
+    {"si": {"objet": "umbrella"}, "t": "Yes, that's my umbrella! Thanks a lot!", "fr": "Oui, c'est mon parapluie ! Merci beaucoup !", "va": "coffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "You're welcome!", "fr": "Avec plaisir !"}]}
+   ]
+  },
+  "coffee": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "So… can I get you a coffee now?", "fr": "Alors… je vous sers un café, maintenant ?"}],
+   "choix": [
+    {"t": "Yes, please. A small coffee.", "fr": "Oui, s'il vous plaît. Un petit café.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Coming right up!", "fr": "Ça arrive tout de suite !"}]},
+    {"t": "No, thanks. I have to go to work. Bye!", "fr": "Non, merci. Je dois aller au travail. Au revoir !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Bye! Have a great day!", "fr": "Au revoir ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as décrit {objet_fr} (l'adjectif avant le nom), dit où tu étais assis(e), refusé le mauvais… et la serveuse a trouvé le bon."}
+}

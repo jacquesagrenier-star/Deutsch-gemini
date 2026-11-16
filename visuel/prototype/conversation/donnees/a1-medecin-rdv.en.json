@@ -1,0 +1,72 @@
+{
+ "id": "a1-medecin-rdv",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "À l'accueil du cabinet médical"},
+ "intro": {"fr": "Tu ne te sens pas bien. Tu vas chez un médecin de ton quartier, à Boston. D'abord, l'accueil."},
+ "personnes": ["praxis_empfang"],
+ "debut": "appointment",
+ "noeuds": {
+  "appointment": {
+   "dit": [
+    {"recit": {"fr": "Un cabinet médical, au rez-de-chaussée d'un immeuble. Derrière le comptoir d'accueil, une employée."}},
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Good morning! Do you have an appointment?", "fr": "Bonjour ! Vous avez un rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Yes, at ten o'clock.", "fr": "Oui, à dix heures.", "pose": {"rdv": "oui"}, "va": "first",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Great, one moment, please.", "fr": "Parfait, un instant, s'il vous plaît."}]},
+    {"t": "No, I don't. I'm sick.", "fr": "Non. Je suis malade.", "pose": {"rdv": "non"}, "va": "first",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "That's okay, but you'll have to wait a little.", "fr": "Ce n'est pas grave, mais vous devrez attendre un peu."}]}
+   ]
+  },
+  "first": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Is this your first visit?", "fr": "C'est votre première visite ?"}],
+   "choix": [
+    {"t": "Yes, I'm new in town.", "fr": "Oui, je suis nouveau (nouvelle) en ville.", "va": "id",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Welcome!", "fr": "Bienvenue !"}]},
+    {"t": "Yes, it's my first time here.", "fr": "Oui, c'est la première fois que je viens ici.", "va": "id",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Okay.", "fr": "D'accord."}]},
+    {"repete": true, "t": "Sorry, can you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "first",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Sure. Is this your first time here?", "fr": "Bien sûr. C'est la première fois que vous venez ici ?"}]}
+   ]
+  },
+  "id": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "Can I see a photo ID, please?", "fr": "Je peux voir une pièce d'identité avec photo, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Sure. Here's my passport.", "fr": "Bien sûr. Voici mon passeport.", "va": "reason",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Thank you.", "fr": "Merci."}]},
+    {"t": "Yes, here you go.", "fr": "Oui, voilà.", "va": "reason",
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Thanks.", "fr": "Merci."}]}
+   ]
+  },
+  "reason": {
+   "dit": [{"qui": "praxis_empfang", "air": "question", "t": "So, what can we do for you today?", "fr": "Alors, qu'est-ce qu'on peut faire pour vous aujourd'hui ?"}],
+   "choix": [
+    {"t": "I have a sore throat.", "fr": "J'ai mal à la gorge.", "va": "wait",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, I'm sorry to hear that.", "fr": "Oh, je suis désolée."}]},
+    {"t": "I have a fever and a bad cough.", "fr": "J'ai de la fièvre et une mauvaise toux.", "va": "wait",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, I'm sorry to hear that.", "fr": "Oh, je suis désolée."}]},
+    {"t": "My stomach hurts.", "fr": "J'ai mal au ventre.", "va": "wait",
+     "puis": [{"qui": "praxis_empfang", "air": "attentive", "t": "Oh, I'm sorry to hear that.", "fr": "Oh, je suis désolée."}]},
+    {"faux": true, "t": "I am sick since three days.", "fr": "Je suis malade depuis trois jours.",
+     "puis": [{"qui": "praxis_empfang", "air": "perplexe", "t": "Since three days…? Oh, for three days?", "fr": "« Since » trois jours… ? Ah, depuis trois jours ?"}],
+     "aide": {"fr": "« Depuis trois jours » ne se dit pas « since three days ». Pour une durée : <b>for three days</b> (« I've been sick <b>for</b> three days »). <b>since</b> va avec un point de départ : since Monday."}}
+   ]
+  },
+  "wait": {
+   "dit": [
+    {"qui": "praxis_empfang", "air": "sourire", "t": "Please fill out this form and have a seat in the waiting room.", "t_gb": "Please fill in this form and take a seat in the waiting room.", "fr": "Remplissez ce formulaire, s'il vous plaît, et asseyez-vous dans la salle d'attente."},
+    {"si": {"rdv": "oui"}, "qui": "praxis_empfang", "air": "sourire", "t": "The doctor will see you in a few minutes.", "fr": "La médecin va vous recevoir dans quelques minutes."},
+    {"si": {"rdv": "non"}, "qui": "praxis_empfang", "air": "attentive", "t": "It's about a thirty-minute wait.", "fr": "Il y a environ trente minutes d'attente."}
+   ],
+   "choix": [
+    {"t": "Thank you. Where is the waiting room?", "fr": "Merci. Où est la salle d'attente ?", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "Right over there, on the left. Feel better!", "fr": "Juste là-bas, à gauche. Bon rétablissement !"}]},
+    {"t": "Okay, thank you very much.", "fr": "D'accord, merci beaucoup.", "va": null,
+     "puis": [{"qui": "praxis_empfang", "air": "sourire", "t": "You're welcome. Feel better!", "fr": "Je vous en prie. Bon rétablissement !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as dit si tu avais un rendez-vous, montré une pièce d'identité, expliqué ce qui n'allait pas et trouvé la salle d'attente."}
+}

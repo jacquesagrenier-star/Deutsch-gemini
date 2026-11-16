@@ -12,6 +12,16 @@ joue à `visuel/prototype/conversation.html?c=<id>&apprendre=de|es|en`.
 | a1-1 | cafe-voisin (le café, un voisin de table) | à relire | à écrire | à relire (us, gb) |
 | pp | pp5-hotel (la réception de l'hôtel) | à relire | à relire | à relire (us, gb) |
 | pp | pp6-achats (le marché ; en anglais, une boutique de vêtements) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-medecin-rdv (l'accueil du cabinet médical) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-objet-perdu (une écharpe ou un parapluie oublié au café) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-poste (un colis à la poste) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-laverie (la laverie, un habitué aide) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-voisine (Carmen, la voisine du palier) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-parc (l'heure et le temps, sur un banc) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-musee (billet, réduction étudiante, audioguide) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-appartement (la visite d'un appartement) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-mairie (Anmeldung (de), empadronamiento (es), carte de bibliothèque (en)) | à relire | à relire | à relire (us, gb) |
+| a1-2 | a1-cours (s'inscrire à un cours de langue) | à relire | à relire | à relire (us, gb) |
 
 ## Lot a2-3 (A2, troisième série), écrit le 16 nov. 2026
 
@@ -103,3 +113,31 @@ des trois conversations familières (`du` / `tú` / `familier`) et le naturel de
   - Diego (`b13_gast`) : surprise.
   - Marta (`b13_kursleiterin`, `b13_lehrerin`) : surprise.
   - La réceptionniste de Premiers pas (`rezeptionistin`, entretien de stage) : question, attentive, surprise, perplexe, amuse.
+
+## Lot a1-2 : ce que le relecteur regarde en particulier
+
+Écrit le 16 nov. 2026, voix et visages définitifs à venir. Une ou deux fautes typiques par conversation, choisies dans
+chaque langue pour elle-même (faux amis et calques du français).
+
+- **Les fautes proposées** : de : `ein Termin` (accusatif), `Kreditkarte` au lieu de la carte d'assurance maladie, `vergesst`, `Sie ist rot` (der Schal), `in Frankreich
+  schicken`, `du bist sehr nett` (laverie), `von Frankreich`, `zwei und halb`, `Ich bin ein Student`, `Ich komme für
+  die Wohnung`, `Wie viele kostet`, `Ich möchte mich anmachen` (« allumer… ou draguer » : la personne en face s'en étonne ; à garder ?),
+  `einen Kurs nehmen`. es : `a las diez horas`, `me duelo la cabeza`, `es rojo` (la bufanda), `en Francia`, `la
+  máquina a lavar`, `de la Francia`, `es las dos y media`, `un billete` (au musée), `las cargas`, `estoy de
+  Francia`, `soy debutante`. en : `since three days`, `a scarf red and long`, `in France`, `she doesn't work` (la
+  machine), `since one week`, `two hours and a half`, `one entrance`, `free` pour « libre », `subscribe to the
+  library`, `follow a class`. Chacune est-elle une faute qu'un francophone fait vraiment, et la réponse de la
+  personne en face est-elle naturelle ?
+- **Les prix sont plausibles, pas relevés** : colis (de 16,99 € France / 46,99 € Canada, express + 12 € ; es 18,90 € /
+  39,90 €, urgente + 10 € ; en $45 / $32, Priority + $20), timbre de carte postale (1,25 € / 1,85 € / $1.65), musée
+  (12 € / 6 €, audioguide 4 € ; en $25 / $15 / $5), loyers (850 € warm à Neukölln, 900 € à Chamberí, $2,400 dans le
+  South End), cours (250 € / 8 semaines ; 180 € / mois ; gratuit à Boston, programme municipal).
+- **Les démarches** : de, la Wohnungsgeberbestätigung et la Meldebescheinigung remise sur place ; es, la cita previa,
+  le contrat de location et le « volante de empadronamiento » ; en, la carte de la Boston Public Library (pièce
+  d'identité + justificatif de domicile, gratuite). Et, au centre de santé madrilène, la tarjeta sanitaria (ou le
+  passeport en attendant).
+- **Le registre** : de et es au Sie / usted partout, y compris avec Carmen qui donne son prénom. En espagnol, la
+  laverie reste à l'usted (un Madrilène tutoierait peut-être : à juger). en : variantes britanniques par `t_gb`
+  (parcel, flat, neighbour, half past two, fill in, cloakroom, rucksack, a bit, I've got).
+- **Carmen** (la voisine) vient d'Espagne dans les trois langues (Séville en espagnol) et dit qu'elle est
+  cuisinière, comme dans la fiche commune des personnes.

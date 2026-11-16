@@ -1,0 +1,63 @@
+{
+ "id": "a1-mairie",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "Une carte de bibliothèque à Boston"},
+ "intro": {"fr": "Aux États-Unis, pas de déclaration de domicile à la mairie. Mais pour avoir ta carte de la Boston Public Library (gratuite), il faut prouver ton adresse. Tu vas à la bibliothèque de ton quartier."},
+ "personnes": ["bibliothek_schalter"],
+ "debut": "desk",
+ "noeuds": {
+  "desk": {
+   "dit": [
+    {"recit": {"fr": "À l'accueil de la bibliothèque de ton quartier. Une bibliothécaire lève les yeux de son écran."}},
+    {"qui": "bibliothek_schalter", "air": "sourire", "t": "Hi! How can I help you?", "fr": "Bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hi. I'd like a library card, please.", "fr": "Bonjour. Je voudrais une carte de bibliothèque, s'il vous plaît.", "va": "live"},
+    {"t": "Hello. Can I get a library card here?", "fr": "Bonjour. Je peux avoir une carte de bibliothèque ici ?", "va": "live"},
+    {"faux": true, "t": "Hello. I want to subscribe to the library.", "fr": "Bonjour. Je veux m'inscrire à la bibliothèque.",
+     "puis": [{"qui": "bibliothek_schalter", "air": "surprise", "t": "Subscribe? Oh, you mean a library card! And it's free.", "fr": "Vous abonner ? Ah, vous voulez dire une carte de bibliothèque ! Et c'est gratuit."}],
+     "aide": {"fr": "Faux ami : <b>subscribe</b>, c'est s'abonner (et souvent payer). « S'inscrire à la bibliothèque » : <b>get a library card</b>, ou <b>sign up</b>."}}
+   ]
+  },
+  "live": {
+   "dit": [{"qui": "bibliothek_schalter", "air": "question", "t": "Sure! Do you live in Massachusetts?", "fr": "Bien sûr ! Vous habitez dans le Massachusetts ?"}],
+   "choix": [
+    {"t": "Yes, I live in Boston now.", "fr": "Oui, j'habite à Boston maintenant.", "va": "id"},
+    {"t": "Yes, in Jamaica Plain.", "fr": "Oui, à Jamaica Plain.", "va": "id",
+     "puis": [{"qui": "bibliothek_schalter", "air": "sourire", "t": "Oh, nice neighborhood!", "t_gb": "Oh, nice neighbourhood!", "fr": "Oh, joli quartier !"}]}
+   ]
+  },
+  "id": {
+   "dit": [{"qui": "bibliothek_schalter", "air": "attentive", "t": "Great. I need a photo ID, please.", "fr": "Parfait. Il me faut une pièce d'identité avec photo, s'il vous plaît."}],
+   "choix": [
+    {"t": "Here's my passport.", "fr": "Voici mon passeport.", "va": "proof"},
+    {"t": "Sure, here you go.", "fr": "Bien sûr, voilà.", "va": "proof"}
+   ]
+  },
+  "proof": {
+   "dit": [{"qui": "bibliothek_schalter", "air": "question", "t": "And proof of address: a lease, a bill or a letter with your name and address.", "fr": "Et un justificatif de domicile : un bail, une facture ou une lettre avec votre nom et votre adresse."}],
+   "choix": [
+    {"t": "Here's my lease.", "fr": "Voici mon bail.", "va": "card"},
+    {"t": "Is a letter from my bank okay?", "fr": "Une lettre de ma banque, ça va ?", "va": "card",
+     "puis": [{"qui": "bibliothek_schalter", "air": "sourire", "t": "Yes, that works.", "fr": "Oui, ça marche."}]},
+    {"repete": true, "t": "Sorry, can you say that more slowly?", "fr": "Pardon, vous pouvez le dire plus lentement ?", "va": "proof",
+     "puis": [{"qui": "bibliothek_schalter", "air": "sourire", "t": "Of course. A paper… with your name… and your address.", "fr": "Bien sûr. Un papier… avec votre nom… et votre adresse."}]}
+   ]
+  },
+  "card": {
+   "dit": [
+    {"recit": {"fr": "Elle tape, prend ta photo… et te tend une carte toute neuve."}},
+    {"qui": "bibliothek_schalter", "air": "sourire", "t": "Here's your card! You can borrow books, movies and music.", "fr": "Voici votre carte ! Vous pouvez emprunter des livres, des films et de la musique."}
+   ],
+   "choix": [
+    {"t": "Great! Can I borrow books today?", "fr": "Super ! Je peux emprunter des livres aujourd'hui ?", "va": null,
+     "puis": [{"qui": "bibliothek_schalter", "air": "sourire", "t": "Of course! Enjoy!", "fr": "Bien sûr ! Bonne lecture !"}]},
+    {"t": "Thank you very much! Goodbye!", "fr": "Merci beaucoup ! Au revoir !", "va": null,
+     "puis": [{"qui": "bibliothek_schalter", "air": "sourire", "t": "Bye! See you soon!", "fr": "Au revoir ! À bientôt !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as obtenu ta carte de la Boston Public Library : une pièce d'identité, un justificatif de domicile… et tu peux emprunter dès aujourd'hui."}
+}

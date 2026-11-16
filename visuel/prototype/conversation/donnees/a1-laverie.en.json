@@ -1,0 +1,67 @@
+{
+ "id": "a1-laverie",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "À la laverie"},
+ "intro": {"fr": "Pas encore de machine à laver chez toi : tu vas à la laverie automatique (le laundromat) du coin, à Boston. Un habitué t'explique comment ça marche."},
+ "personnes": ["waschsalon_kunde"],
+ "debut": "help",
+ "noeuds": {
+  "help": {
+   "dit": [
+    {"recit": {"fr": "Au laundromat, avec ton gros sac de linge. Les machines ont l'air compliquées. Un homme plie son linge."}},
+    {"qui": "waschsalon_kunde", "air": "question", "t": "Hey there. Do you need some help?", "fr": "Bonjour. Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. How does the washing machine work?", "fr": "Oui, s'il vous plaît. Comment marche la machine à laver ?", "va": "quarters",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "It's easy. I'll show you.", "fr": "C'est facile. Je vais vous montrer."}]},
+    {"t": "Yes, thanks. It's my first time here.", "fr": "Oui, merci. C'est la première fois que je viens ici.", "va": "quarters",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "No problem. I'll show you.", "fr": "Pas de problème. Je vais vous montrer."}]},
+    {"faux": true, "t": "Yes, please. I don't understand the machine. She doesn't work.", "fr": "Oui, s'il vous plaît. Je ne comprends pas la machine. Elle ne marche pas.",
+     "puis": [{"qui": "waschsalon_kunde", "air": "amuse", "t": "She? Ha! It works, don't worry. I'll show you.", "fr": "« She » ? Ha ! Elle marche, ne vous inquiétez pas. Je vais vous montrer."}],
+     "aide": {"fr": "En anglais, un objet n'est ni masculin ni féminin : c'est <b>it</b>. « The machine… <b>it</b> doesn't work ». <b>she</b>, c'est pour une femme."}}
+   ]
+  },
+  "quarters": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "attentive", "t": "First: do you have quarters? The machines only take quarters.", "fr": "D'abord : vous avez des pièces de vingt-cinq cents ? Les machines ne prennent que ça."}],
+   "choix": [
+    {"t": "No. Where can I get quarters?", "fr": "Non. Où est-ce que je peux en trouver ?", "va": "wash",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "The change machine is over there.", "fr": "Le distributeur de monnaie est là-bas."}]},
+    {"t": "Yes, I have some quarters.", "fr": "Oui, j'en ai quelques-unes.", "va": "wash",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Perfect.", "fr": "Parfait."}]},
+    {"repete": true, "t": "Sorry, what are quarters?", "fr": "Pardon, c'est quoi, des « quarters » ?", "va": "quarters",
+     "puis": [{"qui": "waschsalon_kunde", "air": "amuse", "t": "These: twenty-five cent coins. Do you have some?", "fr": "Ça : des pièces de vingt-cinq cents. Vous en avez ?"}]}
+   ]
+  },
+  "wash": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "question", "t": "What are you washing? Cold water for colors, hot water for whites.", "fr": "Qu'est-ce que vous lavez ? L'eau froide pour les couleurs, l'eau chaude pour le blanc."}],
+   "choix": [
+    {"t": "Colors: T-shirts and jeans. So, cold water.", "t_gb": "Colours: T-shirts and jeans. So, cold water.", "fr": "De la couleur : des t-shirts et des jeans. Donc, l'eau froide.", "va": "start"},
+    {"t": "White towels and sheets. So, hot water.", "fr": "Des serviettes et des draps blancs. Donc, l'eau chaude.", "va": "start"}
+   ]
+  },
+  "start": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Okay. Put in eight quarters, then press Start. It takes about thirty minutes.", "fr": "D'accord. Mettez huit pièces, puis appuyez sur Start. Ça prend environ trente minutes."}],
+   "choix": [
+    {"t": "Thirty minutes? Is there a coffee shop near here?", "t_gb": "Thirty minutes? Is there a café near here?", "fr": "Trente minutes ? Il y a un café près d'ici ?", "va": "thanks",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Yes, right next door. Good coffee!", "fr": "Oui, juste à côté. Bon café !"}]},
+    {"t": "Okay, then I'll wait here.", "fr": "D'accord, alors j'attends ici.", "va": "thanks",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Me too. My stuff is almost dry.", "fr": "Moi aussi. Mes affaires sont presque sèches."}]}
+   ]
+  },
+  "thanks": {
+   "dit": [
+    {"recit": {"fr": "La machine démarre. Tu te tournes vers l'homme."}},
+    {"qui": "waschsalon_kunde", "air": "sourire", "t": "See? Easy!", "fr": "Vous voyez ? Facile !"}
+   ],
+   "choix": [
+    {"t": "Thank you so much for your help!", "fr": "Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "No problem! See you around!", "fr": "Pas de problème ! À un de ces jours !"}]},
+    {"t": "Thanks! Have a nice day!", "fr": "Merci ! Bonne journée !", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "You too!", "fr": "Vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé comment marche la machine, trouvé des quarters, choisi l'eau froide ou chaude et remercié ton voisin."}
+}
