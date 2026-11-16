@@ -9570,6 +9570,17 @@ body[data-theme="dark"]{--va-haut:rgba(255,255,255,.05); --va-bas:rgba(255,255,2
 #flashcards.active:has(#flashcardActions:not(.hidden)){padding-bottom:calc(168px + env(safe-area-inset-bottom, 0px)) !important;}
 #flashcards.active:has(#cartePhrase:not(.hidden) .cp-actions){padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)) !important;}
 #flashcards.active:has(#flashcardActions.paquet-garde:not(.hidden)){padding-bottom:calc(130px + env(safe-area-inset-bottom, 0px)) !important;}
+/* 15 nov. 2026 (ligne 110, choix C du chef) : IL RESTE DE LA CARTE SOUS LE ROND. Un tableau d'escale plus haut que
+   l'ecran passait sous le rond (« sie · Sie probieren an ») sans rien qui dise qu'il continue. Un degrade de la couleur
+   de la carte monte derriere le rond tant qu'il reste du contenu dessous (body.cp-reste-dessous, majResteDessous) ;
+   en bas de page il s'efface. Rien d'autre ne change : le rond garde son geste, le degrade ne prend aucun toucher. */
+#flashcards.active #cartePhrase:not(.hidden) .cp-actions::before{content:""; position:absolute; z-index:-1; pointer-events:none;
+    left:8px; right:8px; bottom:calc(-10px - env(safe-area-inset-bottom, 0px)); height:calc(118px + env(safe-area-inset-bottom, 0px));
+    background:linear-gradient(180deg, rgba(255,253,248,0) 0%, rgba(255,253,248,.82) 58%, rgba(255,253,248,.9) 100%);
+    opacity:0; transition:opacity .2s;}
+body[data-theme="dark"] #flashcards.active #cartePhrase:not(.hidden) .cp-actions::before{
+    background:linear-gradient(180deg, rgba(31,38,51,0) 0%, rgba(31,38,51,.82) 58%, rgba(31,38,51,.9) 100%);}
+body.cp-reste-dessous #flashcards.active #cartePhrase:not(.hidden) .cp-actions::before{opacity:1;}
 /* La notification d'un badge (« Badge debloque ») se posait sur le rond et la barre du bas : elle monte au-dessus. */
 body:has(#flashcards.active) .badge-toast{bottom:calc(160px + env(safe-area-inset-bottom, 0px));}
 
@@ -73705,6 +73716,25 @@ function poserTexteCitant(el, texte){
     });
     return el;
 }
+// Ligne 110 (choix C) : le degrade sous le rond, tant que la carte continue sous l'ecran. La carte finit environ
+// 110 px avant le bas de la page (la marge du rond, 96 px, et la sienne) : au-dela, ce qui reste dessous est elle.
+function majResteDessous(){
+    try{
+        const se = document.scrollingElement || document.documentElement;
+        const reste = se.scrollHeight - se.scrollTop - se.clientHeight;
+        const cp = document.getElementById("cartePhrase");
+        const enCarte = !!(cp && !cp.classList.contains("hidden") && cp.offsetParent);
+        document.body.classList.toggle("cp-reste-dessous", enCarte && reste > 110);
+    }catch(e){}
+}
+(function(){
+    const brancher = () => {
+        window.addEventListener("scroll", majResteDessous, { passive: true });
+        window.addEventListener("resize", majResteDessous);
+        try{ const cp = document.getElementById("cartePhrase"); if(cp) new ResizeObserver(majResteDessous).observe(cp); }catch(e){}
+    };
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", brancher); else brancher();
+})();
 function construireTableau(tab){
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
