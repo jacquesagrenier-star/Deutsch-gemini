@@ -451,7 +451,12 @@ def construire():
         d["plan"]["departs"][k] = {"pt": [x, y], "cap": c}
 
     def trad(app, phrase, par_langue):
-        d["trad"][app][phrase] = {l: v for l, v in par_langue.items() if l != app}
+        t = {l: v for l, v in par_langue.items() if l != app}
+        # 15 nov. 2026 (revue des traductions) : l'espagnol APPRIS est d'Espagne (« siga todo recto »), mais l'espagnol
+        # LANGUE D'INTERFACE de l'allemand est celui d'Amerique latine neutre : « siga derecho »
+        if app == "de" and "es" in t:
+            t["es"] = t["es"].replace("Siga todo recto", "Siga derecho").replace("siga todo recto", "siga derecho")
+        d["trad"][app][phrase] = t
 
     for lieu, x in LIEUX.items():
         d["lieux"][lieu] = {"de": {"genre": x["de"][0], "mot": x["de"][1]},

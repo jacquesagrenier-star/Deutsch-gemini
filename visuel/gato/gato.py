@@ -508,11 +508,19 @@ def gloses(d):
             for v in o: parcourir(v, fn)
     parcourir(verbes, lambda w: w["infinitif"] in ("liegen", "legen", "sitzen", "setzen") and w["infinitif"] not in d["gloses"]["de"] and pose("de", w["infinitif"], w))
     te = json.load(io.open(os.path.join(RACINE, "espanol", "datos", "temas.json"), encoding="utf-8"))["themes"]
-    for t in te:
-        for w in t.get("mots", []):
-            for k, (de, es) in NOMS.items():
-                if w.get("mot") == es[1] and w.get("genre") == es[0] and es[1] not in d["gloses"]["es"]:
-                    pose("es", es[1], w)
+    # 15 nov. 2026 (revue des traductions) : un mot espagnol a parfois deux entrees (« la planta » = l'etage dans
+    # el_hotel, la plante dans nom_casa) : d'abord l'entree dont la traduction allemande est le mot de la scene
+    # (die Pflanze), ensuite seulement la premiere venue
+    for meme_sens in (True, False):
+        for t in te:
+            for w in t.get("mots", []):
+                for k, (de, es) in NOMS.items():
+                    if w.get("mot") == es[1] and w.get("genre") == es[0] and es[1] not in d["gloses"]["es"] \
+                            and (not meme_sens or de[1] in (w.get("traduction_de") or "")):
+                        pose("es", es[1], w)
+    # « la caja » de la scene est la boite (der Karton) ; le corpus n'a que la caisse du magasin (las_compras)
+    d["gloses"]["es"]["caja"] = {"fr": "la boîte, le carton", "en": "the box", "ar": "صندوق، علبة", "pt": "a caixa",
+                                 "de": "der Karton, die Schachtel"}
     ve = json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"), encoding="utf-8"))
     parcourir(ve, lambda w: w["infinitif"] == "estar" and "estar" not in d["gloses"]["es"] and pose("es", "estar", w))
     # les prepositions espagnoles : funcionales.json d'abord ; « al lado de » et « dentro de » n'y sont pas, leurs

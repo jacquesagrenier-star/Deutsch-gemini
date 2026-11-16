@@ -32,3 +32,8 @@ za kanapę. Après przed, obok, między, nad, la même forme pour les deux (« s
    « wskakuje ».
 6. **« joggen gehen » → « idzie pobiegać »**.
 7. **« Bild » → « obraz »**, « Regal » → « regał » (« na półce regału » pour « im Regal »), « Korb » → « kosz ».
+
+## Ajouté le 15 nov. (revue des traductions)
+
+- **« Décrire une personne » : « glatt » (des cheveux) → « proste (włosy) »**, au lieu de la glose du corpus (lisse, glissant).
+  Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.

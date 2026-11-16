@@ -31,3 +31,8 @@ aucune phrase de ce lot n'en a.
 6. **« joggen gehen » → « йде на пробіжку »** (й partout, même après une consonne).
 7. **Les noms** : Моріц, Мія (Мії, Мію, Мією), Катрін, Ян.
 8. **« Ben setzt die Katze auf den Tisch » → « Бен садить кота на стіл »**.
+
+## Ajouté le 15 nov. (revue des traductions)
+
+- **« Décrire une personne » : « glatt » (des cheveux) → « пряме (волосся) »**, au lieu de la glose du corpus (lisse, glissant).
+  Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.

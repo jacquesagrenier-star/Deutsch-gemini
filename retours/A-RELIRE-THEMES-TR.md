@@ -34,3 +34,8 @@ içinde / içine, arkasında / arkasına. Le présent en -iyor pour la journée 
 5. **« läuft hinter » → « arkasına geçiyor »**, « kriecht unter » → « altına giriyor ».
 6. **« Ben und Mia » → « Ben ile Mia »**, verbe au pluriel (« uyanıyorlar ») dans la journée.
 7. **Le suffixe de l'heure** suit le dernier nombre prononcé, sur 24 heures (« saat 22.30'da », « saat 18'de »).
+
+## Ajouté le 15 nov. (revue des traductions)
+
+- **« Décrire une personne » : « glatt » (des cheveux) → « düz (saç) »**, au lieu de la glose du corpus (lisse, glissant).
+  Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.

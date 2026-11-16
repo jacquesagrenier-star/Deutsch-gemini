@@ -440,7 +440,7 @@ def phrases_mois():
                     "phraseMois": p2, "trouMois": "En España, ___ es un mes de %s." % s_es}
         trad_es[p1] = ("En Espagne, en %s, c'est %s." % (fr, f_s), "In Spain, it's %s in %s." % (en_s, en),
                        "Na Espanha, em %s é %s." % (pt, pt_s), "In Spanien ist im %s %s." % (m_de, s_de))
-        trad_es[p2] = ("En Espagne, %s est un mois %s." % (fr, f_de_s), "In Spain, %s is a %s month." % (en, en_s),
+        trad_es[p2] = ("En Espagne, %s est un mois %s." % (fr, f_de_s), "In Spain, %s is %s %s month." % (en, "an" if en_s[0] in "aeiou" else "a", en_s),
                        "Na Espanha, %s é um mês de %s." % (pt, pt_s), "In Spanien ist der %s ein %s." % (m_de, SAISON_DE_MONAT[s]))
         q = "Im %s ist in Deutschland %s." % (m_de, s_de)
         de[m_de] = {"saison": s, "phrase": q, "trouSaison": "Im %s ist in Deutschland ___." % m_de,

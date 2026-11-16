@@ -33,3 +33,8 @@ deux : seul le verbe change (сидит / садится).
 5. **Les noms** : Мориц, Мия (Мии, Мию, Мией), Катрин, Ян — comme dans les textes de la page.
 6. **« kocht » → « готовит »**, sans complément.
 7. **« Ben setzt die Katze auf den Tisch » → « Бен сажает кота на стол »**.
+
+## Ajouté le 15 nov. (revue des traductions)
+
+- **« Décrire une personne » : « glatt » (des cheveux) → « прямые (волосы) »**, au lieu de la glose du corpus (lisse, glissant).
+  Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.
