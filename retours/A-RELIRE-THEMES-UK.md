@@ -132,3 +132,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **L'instrumental** après « працює » : « працює лікаркою », « працює продавчинею », « працює механікинею ».
 3. **Les féminins** : « механікиня », « продавчиня », « фармацевтка », « адміністраторка » (receptionist d'hôtel).
 4. **Le lieu** : « у лікарському кабінеті » (Praxis, d'après la glose du corpus).
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **Sans sujet** : « Холодно. », « Спекотно. » (heiß), « Тепло. » (warm), « Зараз весна. ».
+2. **Les mois au locatif** : « У січні в Німеччині зима. », « У травні … ».
+3. **Les degrés accordés** : « 21 градус », « 22 градуси », « 12 градусів », « Зараз мінус 12 градусів. ».
+4. **« Сьогодні сильний дощ. »** pour « Heute gibt es viel Regen. » et « Сьогодні густий туман. » pour « viel Nebel » (plutôt que « багато »).

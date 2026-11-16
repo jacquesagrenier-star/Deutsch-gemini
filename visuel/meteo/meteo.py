@@ -520,6 +520,41 @@ def verifier():
             sys.exit("  %s : mots vises absents de MOTS : %s" % (l, ", ".join(sorted(inconnus))))
 
 
+def langues_natives(trad, choix):
+    """Lot 12 des langues des themes (16 nov. 2026) : le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe
+    pour qui apprend l'allemand, l'arabe pour qui apprend l'espagnol (visuel/meteo/langues.py). Une phrase que la page
+    peut montrer sans sa traduction arrete le script."""
+    sys.path.insert(0, ICI)
+    import langues as LG
+    for m_es, m_de, s, *_ in MOIS:
+        for lg in LG.LANGUES:
+            trad["de"]["Im %s ist in Deutschland %s." % (m_de, SAISONS[s][1])][lg] = LG.mois_de(lg, m_de, s)
+        p1, p2 = LG.mois_es_ar(m_de, s)
+        trad["es"]["En España, en %s es %s." % (m_es, SAISONS[s][0])]["ar"] = p1
+        trad["es"]["En España, %s es un mes de %s." % (m_es, SAISONS[s][0])]["ar"] = p2
+    for t in LEURRES_NOMBRES:
+        for lg in LG.LANGUES:
+            trad["de"][degres_de(t)][lg] = LG.degres(lg, t)
+        trad["es"][degres_es(t)]["ar"] = LG.degres("ar", t)
+    for p, v in LG.DE.items():
+        if p not in trad["de"]:
+            sys.exit("  langues.py : phrase allemande inconnue de la page : " + p)
+        trad["de"][p].update(zip(LG.LANGUES, v))
+    for p, v in LG.ES_AR.items():
+        if p not in trad["es"]:
+            sys.exit("  langues.py : phrase espagnole inconnue de la page : " + p)
+        trad["es"][p]["ar"] = v
+    for p, v in LG.CHOIX.items():
+        if p not in choix:
+            sys.exit("  langues.py : choix inconnu : " + p)
+        choix[p].update(v)
+    manque = ["de %s : %s" % (lg, p) for p, t in trad["de"].items() for lg in LG.LANGUES if not t.get(lg)]
+    manque += ["es ar : " + p for p, t in trad["es"].items() if not t.get("ar")]
+    manque += ["choix %s : %s" % (lg, p) for p in choix for lg in (LG.LANGUES if "de" not in choix[p] else ("ar",)) if not choix[p].get(lg)]
+    if manque:
+        sys.exit("  sans traduction native : " + " | ".join(manque[:20]))
+
+
 def ecrire_json():
     verifier()
     gloses = corpus()
@@ -563,6 +598,7 @@ def ecrire_json():
     for s, t in SAISON_PHRASE.items():
         trad["es"][t[0]] = dict(zip(("fr", "en", "pt", "de"), t[2:] + (t[1],)))
         trad["de"][t[1]] = dict(zip(("fr", "en", "pt"), t[2:]))
+    langues_natives(trad, d["choixRessenti"])
     # ce que la decouverte dit (et l'identifiant de son fichier, sha1 du texte) ; sans fichier, la voix du telephone
     a_dire = {"es": [], "de": []}
     for l in ("es", "de"):

@@ -101,3 +101,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **L'accusatif d'état** : « يعمل طبيبًا », « تعمل طبيبةً », « يعمل موظّفَ استقبال ».
 3. **Coiffeur / coiffeuse** : « حلّاق » / « مصفّفة شعر » (les deux gloses du corpus).
 4. **Pour qui apprend l'espagnol** : « Soy policía. » et « Es policía. » se disent pour Elena comme pour Tomás ; l'arabe garde le masculin (« أنا شرطي. »), comme le français (« Je suis policier. »). « en la comisaría » : « في مركز الشرطة ».
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **Les degrés sans accord du nom** : « درجة الحرارة 30. », « درجة الحرارة 12 تحت الصفر. » (le chiffre seul, pour éviter l'accord de « درجة » avec le nombre).
+2. **Les saisons** : « نحن في الربيع. » pour « Es ist Frühling. » / « Es primavera. ».
+3. **Les mois** : « في شهر يناير، يكون الشتاء في ألمانيا. » ; pour l'espagnol, « في إسبانيا، يناير شهر من أشهر الشتاء. » (noms de mois يناير، فبراير… comme les autres thèmes).
+4. **Pour qui apprend l'espagnol** : « Hace sol. » = « هناك شمس. » (il y a du soleil) et « Hace calor. » = « الجو حارّ. », distincts de « الشمس مشرقة. » et « الجو حارّ جدًا. » de l'allemand (Die Sonne scheint, Es ist heiß).

@@ -134,3 +134,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **La policière** : « сотрудница полиции » (d'après la glose du corpus) ; « Елена работает сотрудницей полиции. ».
 3. **La paire** : « врач (мужчина) → врач (женщина) » quand le mot ne change pas.
 4. **Le lieu** : « во врачебном кабинете » (Praxis), « в гостинице » (Hotel).
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **Sans sujet** : « Холодно. », « Жарко. » (heiß), « Тепло. » (warm), « Сейчас весна. ».
+2. **« Идёт гроза. »** pour « Es gibt ein Gewitter. » (« Сегодня гроза. » avec heute).
+3. **Les degrés accordés** : « 21 градус », « 22 градуса », « 12 градусов », « Сейчас минус 12 градусов. ».
+4. **Le choix « Ich bin kalt. »** : « моё тело холодное на ощупь, или я холодный человек » (« человек » est masculin comme nom).

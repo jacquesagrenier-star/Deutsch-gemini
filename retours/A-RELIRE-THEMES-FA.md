@@ -98,3 +98,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **« travaille comme »** : « به‌عنوان پزشک کار می‌کند ».
 3. **Un seul mot pour les deux sexes** : la paire dit « پزشک مرد → پزشک زن ».
 4. **Le lieu** : « در پلیس کار می‌کند » pour « bei der Polizei ».
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **« ماه مه »** pour le mois de mai, jamais « مه » seul : c'est aussi le brouillard, dans un thème sur la météo.
+2. **heiß et warm** : « هوا خیلی گرم است. » (heiß) et « هوا گرم است. » (warm).
+3. **« سردم است. »** / « گرمم است. » pour « Mir ist kalt / heiß » ; « باد می‌وزد. » pour « Es ist windig. ».
+4. **Les degrés** en chiffres latins comme les prix des autres thèmes : « دما منفی 12 درجه است. ».

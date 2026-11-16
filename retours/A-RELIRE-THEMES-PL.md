@@ -130,3 +130,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **Les féminins** : « mechaniczka », « sprzedawczyni », « farmaceutka », « recepcjonistka ».
 3. **Le pronom gardé** : « Ona jest lekarką. » (l'allemand dit « Sie ist Ärztin. ») ; un natif dirait souvent « Jest lekarką. ».
 4. **« pracuje w policji »** pour « arbeitet bei der Polizei ».
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **« Jest … »** : « Jest zimno. », « Jest gorąco. » (heiß), « Jest ciepło. » (warm), « Jest wiosna. ».
+2. **« Jest mi zimno. »** / « Jest mi gorąco. » pour « Mir ist kalt / heiß ».
+3. **Les degrés accordés** : « Jest 2 stopnie. », « Jest 21 stopni. », « Jest minus 12 stopni. ».
+4. **« Dziś dużo pada. »** pour « Heute gibt es viel Regen. » ; « Pogoda jest brzydka. » pour « Das Wetter ist schlecht. ».

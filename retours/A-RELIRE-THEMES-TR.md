@@ -134,3 +134,12 @@ La page traduit maintenant ses phrases (le métier, « je suis … », où chacu
 2. **« Je suis »** : « Ben doktorum. », « Ben eczacıyım. », « Ben polis memuruyum. ».
 3. **Le lieu** : « muayenehanede » (Praxis), « tamirhanede » (Werkstatt), « emniyette » (bei der Polizei), « dükkânda ».
 4. **Un seul mot pour les deux sexes** : la paire dit « erkek doktor → kadın doktor », « erkek hemşire → kadın hemşire » (Krankenpfleger → Krankenschwester).
+
+## Lot 12, 16 nov. : « La météo et les saisons »
+
+La page traduit maintenant ses phrases (le temps qu'il fait, les activités de chaque saison, « j'ai froid », les mois et les degrés) : elles sont écrites dans `visuel/meteo/langues.py` et versées dans `meteo.json` par `meteo.py`. À relire :
+
+1. **« Hava … »** pour le temps qu'il fait : « Hava soğuk. », « Hava çok sıcak. » (heiß), « Hava ılık. » (warm, « il fait bon ») : « ılık » est-il juste pour 20 à 26 degrés ?
+2. **La saison seule** : « Mevsim ilkbahar. » pour « Es ist Frühling. » ; un natif dirait-il plutôt « İlkbahar. » ou « Şimdi ilkbahar. » ?
+3. **Les mois** : « Ocak ayında Almanya'da kış olur. » ; et « Sıcakladım. » pour « Mir ist heiß. ».
+4. **Les degrés** : « Hava eksi 12 derece. », « Hava 0 derece. » ; « Gök gürültülü fırtına var. » (Gewitter, d'après la glose du corpus).

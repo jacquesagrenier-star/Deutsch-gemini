@@ -275,8 +275,11 @@ const faux = (i, f) => !vrai(i, f) && !D.images[i].douteux.includes(f);
 const phrasesFait = f => D.faits[f][L];
 const premiere = f => phrasesFait(f)[0][0];
 // la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol) ; ailleurs,
-// le mot teste et sa traduction tiree du corpus (gloses)
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le mot teste et sa traduction tiree du corpus (gloses). Lot 12 des langues des themes (16 nov. 2026) : le turc,
+// l'ukrainien, le polonais, le russe, le persan et l'arabe pour qui apprend l'allemand, l'arabe pour qui apprend
+// l'espagnol (visuel/meteo/langues.py)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 function tradPhrase(p){
   if (!PHRASE_TRADUITE || !p) return null;
   const t = D.trad[L];
