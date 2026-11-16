@@ -286,7 +286,11 @@ const autre = s => s === "m" ? "f" : "m";
 const voisins = (a, b) => a === b || D.metiers[a].confus.includes(b) || D.metiers[b].confus.includes(a);
 // la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la
 // famille ; ailleurs, le mot teste et sa traduction tiree du corpus (metiers.json, gloses)
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe pour qui apprend l'allemand, l'arabe pour qui
+// apprend l'espagnol : les phrases traduites viennent de metiers.json (visuel/metiers/langues.py, lot 11 de l'alignement
+// des themes, 16 nov. 2026)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 const glose = m => { const g = (D.gloses[APPRENDRE] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };

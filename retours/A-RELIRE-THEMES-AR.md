@@ -92,3 +92,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **La commande** : « تطلب كارمن قهوة وكوبين من الشاي. المبلغ 6,90 € » (le duel des boissons).
 3. **Les figurants** : « الرجل ذو الشعر الرمادي هو النادل », « المرأة ذات الشعر المجعد هي النادلة ».
 4. **Pour qui apprend l'espagnol** : le jambon de la liste, « لحم مقدد ».
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **Le verbe d'abord, accordé** : « يعمل دييغو في عيادة. », « تعمل إينيس في صالون تصفيف الشعر. » ; avec le pronom seul, « تعمل في عيادة. ».
+2. **L'accusatif d'état** : « يعمل طبيبًا », « تعمل طبيبةً », « يعمل موظّفَ استقبال ».
+3. **Coiffeur / coiffeuse** : « حلّاق » / « مصفّفة شعر » (les deux gloses du corpus).
+4. **Pour qui apprend l'espagnol** : « Soy policía. » et « Es policía. » se disent pour Elena comme pour Tomás ; l'arabe garde le masculin (« أنا شرطي. »), comme le français (« Je suis policier. »). « en la comisaría » : « في مركز الشرطة ».

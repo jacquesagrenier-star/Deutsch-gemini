@@ -262,9 +262,11 @@ def construire():
                                                                 "es": {"genre": l["nes"][0], "mot": l["nes"][1]}},
                           "trad": {"fr": l["fr"], "en": l["en"], "pt": l["pt"], "de": l["de"]}}
     T = d["trad"]
-    def tr(app, phrase, fr, en, pt, de=None):
+    NAT = []          # (app, phrase, sorte) : ce que dit la phrase, pour les langues natives (visuel/metiers/langues.py)
+    def tr(app, phrase, fr, en, pt, de=None, n=None):
         T[app][phrase] = {"fr": fr, "en": en, "pt": pt}
         if app == "es" and de: T[app][phrase]["de"] = de
+        NAT.append((app, phrase, n))
 
     for pid, p in P.items():
         met, s, nom = p["metier"], p["sexe"], p["nom"]
@@ -277,6 +279,9 @@ def construire():
                "fr": nom or maj(fr_art(met, s)), "en": nom or "The " + en_m, "pt": nom or maj(pt_art(met, s))}
         # le sujet d'une phrase sur le metier : le prenom, sinon le pronom (« Sie ist Arztin. », « Es medica. »)
         sm = {"de": nom or pron_de, "fr": nom or pron_fr, "en": nom or pron_en, "pt": nom or pron_pt}
+        # la phrase decrite pour les langues natives : la personne (prenom ou non), son metier, son sexe
+        qui = {"pid": pid if nom else None, "nom": nom, "met": met, "s": s}
+        acte = pid if pid in ACT_SCENE else met
         for app in ("de", "es"):
             q = {}
             mot = de_mot if app == "de" else es_mot
@@ -289,7 +294,7 @@ def construire():
                               "phrase": ("%s es %s." % (nom, es_mot)) if nom else "Es %s." % es_mot}
             ph = q["beruf"]["phrase"]
             tr(app, ph, "%s est %s." % (sm["fr"], fr_m), "%s is %s." % (sm["en"], en_a(en_m)), "%s é %s." % (sm["pt"], pt_m),
-               "%s ist %s." % (sm["de"], de_mot))
+               "%s ist %s." % (sm["de"], de_mot), dict(qui, k="est"))
             # « Je suis medecin » : la reponse a « Was sind Sie von Beruf? » / « ¿A que te dedicas? », et le meme sans
             # le prenom ; l'article en trop est le piege
             if app == "de":
@@ -304,12 +309,12 @@ def construire():
                 bon_fr = ("un bon " if s == "m" else "une bonne ") + fr_m
                 sfr = nom + " est" if nom else "C'est"
                 tr(app, q["adj"]["phrase"], "%s %s." % (sfr, bon_fr), "%s is a good %s." % (sm["en"], en_m),
-                   "%s é %s %s." % (sm["pt"], "um bom" if s == "m" else "uma boa", pt_m))
+                   "%s é %s %s." % (sm["pt"], "um bom" if s == "m" else "uma boa", pt_m), n=dict(qui, k="bon"))
             else:
                 un = "un" if s == "m" else "una"
                 q["ich"] = {"q": "¿A qué te dedicas?", "juste": "Soy %s." % es_mot, "faux": "Soy %s %s." % (un, es_mot)}
                 q["ist"] = {"juste": ph, "faux": ("%s es %s %s." % (nom, un, es_mot)) if nom else "Es %s %s." % (un, es_mot)}
-            tr(app, q["ich"]["juste"], "Je suis %s." % fr_m, "I'm %s." % en_a(en_m), "Sou %s." % pt_m, "Ich bin %s." % de_mot)
+            tr(app, q["ich"]["juste"], "Je suis %s." % fr_m, "I'm %s." % en_a(en_m), "Sou %s." % pt_m, "Ich bin %s." % de_mot, dict(qui, k="je"))
             # ou il travaille : une phrase par lieu juste
             q["ou"] = {"q": ("Wo arbeitet %s?" % (nom or pron_de.lower())) if app == "de" else ("¿Dónde trabaja %s?" % nom if nom else "¿Dónde trabaja?"),
                        "lieux": {}}
@@ -318,14 +323,14 @@ def construire():
                 phl = ("%s arbeitet %s." % (sm["de"], l["de"])) if app == "de" else (("%s trabaja %s." % (nom, l["es"])) if nom else "Trabaja %s." % l["es"])
                 q["ou"]["lieux"][lid] = phl
                 tr(app, phl, "%s travaille %s." % (sm["fr"], l["fr"]), "%s works %s." % (sm["en"], l["en"]),
-                   "%s trabalha %s." % (sm["pt"], l["pt"]), "%s arbeitet %s." % (sm["de"], l["de"]))
+                   "%s trabalha %s." % (sm["pt"], l["pt"]), "%s arbeitet %s." % (sm["de"], l["de"]), dict(qui, k="ou", lieu=lid))
             # ce qu'il fait : « Wer backt Brot? » -> « Pablo backt Brot. » ; et le verbe a trouver
             v, inf, o = a[app]
             phf = "%s %s %s." % (suj[app], v, o)
             q["fait"] = {"q": ("Wer %s %s?" % (v, o)) if app == "de" else "¿Quién %s %s?" % (v, o),
                          "phrase": phf, "trou": "%s ___ %s." % (suj[app], o), "v": v, "inf": inf}
             tr(app, phf, "%s %s." % (suj["fr"], a["fr"]), "%s %s." % (suj["en"], a["en"]), "%s %s." % (suj["pt"], a["pt"]),
-               "%s %s %s." % (suj["de"], a["de"][0], a["de"][2]))
+               "%s %s %s." % (suj["de"], a["de"][0], a["de"][2]), dict(qui, k="fait", act=acte))
             # als / de : « Pablo arbeitet als Backer. » (jamais « wie ») ; « Pablo trabaja de panadero. »
             if app == "de":
                 q["als"] = {"trou": "%s arbeitet ___ %s." % (sm["de"], de_mot), "rep": "als", "opts": ["als", "wie", "bei"],
@@ -335,11 +340,11 @@ def construire():
                 q["als"] = {"trou": "%s ___ %s." % (se, es_mot), "rep": "de", "opts": ["de", "en", "para"],
                             "phrase": "%s de %s." % (se, es_mot)}
             tr(app, q["als"]["phrase"], "%s travaille comme %s." % (sm["fr"], fr_m), "%s works as %s." % (sm["en"], en_a(en_m)),
-               "%s trabalha como %s." % (sm["pt"], pt_m), "%s arbeitet als %s." % (sm["de"], de_mot))
+               "%s trabalha como %s." % (sm["pt"], pt_m), "%s arbeitet als %s." % (sm["de"], de_mot), dict(qui, k="comme"))
             # la phrase a lire ou a entendre, sans prenom (les images n'en portent pas)
             q["cual"] = ("%s ist %s." % (pron_de, de_mot)) if app == "de" else "Es %s." % es_mot
             tr(app, q["cual"], "%s est %s." % (pron_fr, fr_m), "%s is %s." % (pron_en, en_a(en_m)), "%s é %s." % (pron_pt, pt_m),
-               "%s ist %s." % (pron_de, de_mot))
+               "%s ist %s." % (pron_de, de_mot), dict(qui, k="est", pid=None, nom=None))
             d["phrases"][app][pid] = q
 
     # les formes sans image (der Apotheker, die Krankenschwester...) : « als » seul, en texte, avec le pronom
@@ -352,11 +357,12 @@ def construire():
             fr_m, en_m, pt_m = M[met]["fr"][G[s]], en_nom(met, s), M[met]["pt"][G[s]]
             dph = "%s arbeitet als %s." % (pron[0], de_mot)
             d["sansImage"]["de"].append({"metier": met, "sexe": s, "trou": "%s arbeitet ___ %s." % (pron[0], de_mot), "phrase": dph})
-            tr("de", dph, "%s travaille comme %s." % (pron[1], fr_m), "%s works as %s." % (pron[2], en_a(en_m)), "%s trabalha como %s." % (pron[3], pt_m))
+            sans = {"pid": None, "nom": None, "met": met, "s": s, "k": "comme"}
+            tr("de", dph, "%s travaille comme %s." % (pron[1], fr_m), "%s works as %s." % (pron[2], en_a(en_m)), "%s trabalha como %s." % (pron[3], pt_m), n=sans)
             # en espagnol, le pronom dit le genre quand le mot ne le dit pas (el / la policia)
             eph = "%s trabaja de %s." % ("Él" if s == "m" else "Ella", es_mot)
             d["sansImage"]["es"].append({"metier": met, "sexe": s, "trou": "%s trabaja ___ %s." % ("Él" if s == "m" else "Ella", es_mot), "phrase": eph})
-            tr("es", eph, "%s travaille comme %s." % (pron[1], fr_m), "%s works as %s." % (pron[2], en_a(en_m)), "%s trabalha como %s." % (pron[3], pt_m), dph)
+            tr("es", eph, "%s travaille comme %s." % (pron[1], fr_m), "%s works as %s." % (pron[2], en_a(en_m)), "%s trabalha como %s." % (pron[3], pt_m), dph, sans)
     # le masculin et le feminin : « der Arzt → die Arztin » ; les deux sens
     for met in M:
         for app in ("de", "es"):
@@ -364,12 +370,47 @@ def construire():
             d["paires"][app].append({"metier": met, "m": m_, "f": f_})
             tr(app, m_ + " → " + f_, fr_art(met, "m") + " → " + fr_art(met, "f"),
                ("the " + en_nom(met, "m") + " → the " + en_nom(met, "f")) if en_nom(met, "m") != en_nom(met, "f") else "the " + en_nom(met, "m") + " (a man → a woman)",
-               pt_art(met, "m") + " → " + pt_art(met, "f"), aff("de", met, "m") + " → " + aff("de", met, "f"))
+               pt_art(met, "m") + " → " + pt_art(met, "f"), aff("de", met, "m") + " → " + aff("de", met, "f"),
+               {"k": "paire", "met": met, "de": "m", "vers": "f"})
             tr(app, f_ + " → " + m_, fr_art(met, "f") + " → " + fr_art(met, "m"),
                ("the " + en_nom(met, "f") + " → the " + en_nom(met, "m")) if en_nom(met, "m") != en_nom(met, "f") else "the " + en_nom(met, "f") + " (a woman → a man)",
-               pt_art(met, "f") + " → " + pt_art(met, "m"), aff("de", met, "f") + " → " + aff("de", met, "m"))
+               pt_art(met, "f") + " → " + pt_art(met, "m"), aff("de", met, "f") + " → " + aff("de", met, "m"),
+               {"k": "paire", "met": met, "de": "f", "vers": "m"})
     gloses(d)
+    langues_natives(d, NAT)
     return d
+
+
+def langues_natives(d, NAT):
+    """Le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe pour qui apprend l'allemand, l'arabe pour qui
+    apprend l'espagnol (visuel/metiers/langues.py, lot 11 de l'alignement des themes, 16 nov. 2026) : chaque phrase
+    refaite par la grammaire de la langue, le metier et le lieu choisis traduits. Une phrase sans sa traduction arrete
+    le script : une langue ne doit pas retomber sur la glose seule."""
+    sys.path.insert(0, ICI)
+    import langues as LG
+    for app, phrase, n in NAT:
+        if n is None:
+            raise SystemExit("  langues natives : phrase sans description : " + phrase)
+        for lg in (LG.LANGUES if app == "de" else ("ar",)):
+            t = LG.rendre(lg, app, n)
+            ancien = d["trad"][app][phrase].get(lg)
+            # « Soy policía. », « Es policía. » : l'espagnol dit la meme phrase pour Elena et pour Tomas (le mot ne
+            # change pas) ; comme le francais (« Je suis policier. »), la derniere ecrite l'emporte
+            if ancien and ancien != t and app == "es":
+                print("  langues natives : %s se dit pour les deux sexes, %s garde « %s »" % (phrase, lg, t))
+            elif ancien and ancien != t:
+                raise SystemExit("  langues natives : deux traductions pour %s (%s) : %s / %s" % (phrase, lg, ancien, t))
+            d["trad"][app][phrase][lg] = t
+    for met, m in d["metiers"].items():
+        for lg in LG.LANGUES:
+            m["trad"][lg] = [LG.seul(lg, met, "m"), LG.seul(lg, met, "f")]
+    for lid, l in d["lieux"].items():
+        for lg in LG.LANGUES:
+            l["trad"][lg] = LG.LIEUX[lid][lg]
+    manque = [(app, p, lg) for app in ("de", "es") for p, v in d["trad"][app].items()
+              for lg in (LG.LANGUES if app == "de" else ("ar",)) if not v.get(lg)]
+    if manque:
+        raise SystemExit("  langues natives : %d traductions absentes, dont %s" % (len(manque), manque[:5]))
 
 
 # ---------------------------------------------------------------------------------------------------------------

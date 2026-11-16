@@ -125,3 +125,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **Le génitif après la quantité** : « Килограмм апельсинов », « 1 кг помидоров », « 2 пачки печенья ».
 3. **Commander** : « Мне кофе, пожалуйста. » ; « Кармен берёт кофе и два чая. С вас 6,90 €. »
 4. **Les figurants** : « мужчина с седыми волосами », « женщина с кудрявыми волосами ».
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **Le même mot pour les deux sexes** : « Она врач. », « Она хороший врач. » (l'adjectif s'accorde au nom masculin), mais « хорошая учительница ».
+2. **La policière** : « сотрудница полиции » (d'après la glose du corpus) ; « Елена работает сотрудницей полиции. ».
+3. **La paire** : « врач (мужчина) → врач (женщина) » quand le mot ne change pas.
+4. **Le lieu** : « во врачебном кабинете » (Praxis), « в гостинице » (Hotel).

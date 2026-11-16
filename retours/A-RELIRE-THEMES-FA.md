@@ -89,3 +89,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **Goûter** : « آنا چیزی شیرین می‌چشد ».
 3. **Le café** : « مرد موجوگندمی پیشخدمت است », « زن موفرفری » ; « لطفاً منو را بیاورید ».
 4. **La quantité** : « یک کیلو پرتقال », « کمی شکر » ; la liste « 1 کیلو گوجه‌فرنگی ».
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **Le métier** : « دیه‌گو پزشک است. » ; avec l'adjectif « پزشک خوبی است », « نانوای خوبی است » (le « ی » après la voyelle finale).
+2. **« travaille comme »** : « به‌عنوان پزشک کار می‌کند ».
+3. **Un seul mot pour les deux sexes** : la paire dit « پزشک مرد → پزشک زن ».
+4. **Le lieu** : « در پلیس کار می‌کند » pour « bei der Polizei ».

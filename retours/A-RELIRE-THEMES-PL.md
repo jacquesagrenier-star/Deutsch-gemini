@@ -121,3 +121,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **Goûter** : « próbuje czegoś słodkiego » (génitif) ; « Za słodkie! ».
 3. **La liste** : « 1 opakowanie makaronu », « 2 opakowania ciastek », « ½ kg ziemniaków ».
 4. **Le café** : « Poproszę kartę. », « To dla pani. » (le pourboire à la serveuse : à relire).
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **L'instrumental après « jest »** : « Diego jest lekarzem. », « Ona jest dobrą lekarką. » ; mais « pracuje jako lekarka » (nominatif après « jako »).
+2. **Les féminins** : « mechaniczka », « sprzedawczyni », « farmaceutka », « recepcjonistka ».
+3. **Le pronom gardé** : « Ona jest lekarką. » (l'allemand dit « Sie ist Ärztin. ») ; un natif dirait souvent « Jest lekarką. ».
+4. **« pracuje w policji »** pour « arbeitet bei der Polizei ».

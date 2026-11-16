@@ -123,3 +123,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **Le génitif après la quantité** : « Кілограм апельсинів », « 1 кг помідорів », « 2 пачки печива ».
 3. **Trop …** : « Занадто солодко! » (adverbe neutre) ; goûter « куштує щось солодке ».
 4. **Le café** : « Чоловік із сивим волоссям — офіціант », « Кармен бере каву і два чаї. З вас 6,90 €. »
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **Le tiret** entre le prénom et le métier : « Дієго — лікар. », mais « Вона лікарка. » avec le pronom.
+2. **L'instrumental** après « працює » : « працює лікаркою », « працює продавчинею », « працює механікинею ».
+3. **Les féminins** : « механікиня », « продавчиня », « фармацевтка », « адміністраторка » (receptionist d'hôtel).
+4. **Le lieu** : « у лікарському кабінеті » (Praxis, d'après la glose du corpus).

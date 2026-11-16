@@ -125,3 +125,12 @@ La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, le
 2. **Amer et épicé** : « acı » pour l'amer (« Sade kahve acı »), « acılı » pour l'épicé (« Yemek acılı », « Çok acılı! ») — à relire.
 3. **Le café** : « Kır saçlı adam garson. », « Carmen bir kahve ve iki çay alıyor. Toplam 6,90 €. »
 4. **La livre allemande (Pfund)** se dit « ½ kg » (500 g), comme en Allemagne.
+
+## Lot 11, 16 nov. : « Les métiers »
+
+La page traduit maintenant ses phrases (le métier, « je suis … », où chacun travaille, ce qu'il fait, « travaille comme … », le masculin et le féminin) : elles sont fabriquées par `visuel/metiers/langues.py` dans `metiers.json`. À relire :
+
+1. **Le métier sans article** : « Diego doktor. », « O kuaför. » ; avec l'adjectif, « Diego iyi bir doktor. ».
+2. **« Je suis »** : « Ben doktorum. », « Ben eczacıyım. », « Ben polis memuruyum. ».
+3. **Le lieu** : « muayenehanede » (Praxis), « tamirhanede » (Werkstatt), « emniyette » (bei der Polizei), « dükkânda ».
+4. **Un seul mot pour les deux sexes** : la paire dit « erkek doktor → kadın doktor », « erkek hemşire → kadın hemşire » (Krankenpfleger → Krankenschwester).
