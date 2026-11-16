@@ -73683,6 +73683,28 @@ function iconeHP(){
     tpl.innerHTML = HP_SVG;
     return tpl.content.firstChild;
 }
+// 15 nov. 2026 (ligne 110) : un texte de l'interface qui CITE la langue apprise entre « » -- l'astuce d'un tableau en
+// arabe : « Ich probiere die Hose an. » --, dans une page de droite a gauche. Chaque citation qui porte des lettres
+// latines va dans un <bdi> a l'attribut lang de la langue apprise (voir la regle CSS html[dir="rtl"] [lang|="de"]) :
+// elle garde sa ponctuation a sa place. Le texte lui-meme ne change pas ; hors RTL, il est pose tel quel.
+function poserTexteCitant(el, texte){
+    texte = String(texte || "");
+    if(document.documentElement.dir !== "rtl" || texte.indexOf("\u00ab") < 0){ el.textContent = texte; return el; }
+    el.textContent = "";
+    texte.split(/(\u00ab[^\u00ab\u00bb]*\u00bb)/).forEach(m => {
+        if(!m) return;
+        const cite = /^\u00ab([^\u00ab\u00bb]*)\u00bb$/.exec(m);
+        if(cite && /[A-Za-z\u00c0-\u024f]/.test(cite[1])){
+            el.appendChild(document.createTextNode("\u00ab"));
+            const b = document.createElement("bdi");
+            b.setAttribute("lang", LANGUE_ENSEIGNEE.code);
+            b.textContent = cite[1];
+            el.appendChild(b);
+            el.appendChild(document.createTextNode("\u00bb"));
+        } else el.appendChild(document.createTextNode(m));
+    });
+    return el;
+}
 function construireTableau(tab){
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
@@ -73691,7 +73713,7 @@ function construireTableau(tab){
         return n;
     };
     const langueDe = LANGUE_ENSEIGNEE.code;
-    const out = [creer("p", "cp-tableau-titre", sensPremiersPas(tab.t))];
+    const out = [poserTexteCitant(creer("p", "cp-tableau-titre"), sensPremiersPas(tab.t))];
     const table = creer("div", "cp-tableau");
     (tab.l || []).forEach(l => {
         const ligne = creer("button", "cp-tableau-ligne");
@@ -73741,7 +73763,7 @@ function construireTableau(tab){
         table.appendChild(ligne);
     });
     out.push(table);
-    if(tab.a) out.push(creer("div", "cp-astuce", sensPremiersPas(tab.a)));
+    if(tab.a) out.push(poserTexteCitant(creer("div", "cp-astuce"), sensPremiersPas(tab.a)));
     return out;
 }
 // « Mes feuilles » : par niveau, les feuilles vues (a rouvrir), « a revoir »,
