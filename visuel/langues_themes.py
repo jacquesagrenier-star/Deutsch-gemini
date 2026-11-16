@@ -75,8 +75,10 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # l'arabe aussi pour qui apprend l'espagnol (LANGUES_APPRENDRE=es)
 # lot 3 (16 nov.) : les contraires dans les six langues, phrase par phrase dans le generateur (visuel/contrarios/langues.py)
 # lot 4 (16 nov.) : les demarches dans les six langues, morceaux et grammaire dans la page (visuel/prototype/demarches/langues.js)
+# lot 5 (16 nov.) : l'ecole dans les six langues, de meme (visuel/prototype/ecole/langues.js)
 BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            "ecole": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

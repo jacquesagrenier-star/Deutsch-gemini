@@ -134,6 +134,7 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <script src="themes/verre.js?v=8"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
+<script src="ecole/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
@@ -196,7 +197,12 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (ecole.json, faite par visuel/ecole/ecole.py) ----------
 let D = null, LX, ACT, OBJ, CJ, NO;
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (ecole/langues.js, lot 5 de l'alignement des themes, 16 nov. 2026) : leurs morceaux sont poses
+// dans la donnee au chargement, et LEC[langue] assemble les phrases que la grammaire de la langue demande
+let LEC = {};
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
@@ -277,6 +283,7 @@ const objsDe = w => Object.keys(OBJ).filter(k => !w || memeMot(objMot(k), w));
 const objPhrase = k => PT_ ? "É " + objAff(k) + "." : ES_ ? (OBJ[k].genre === "las" ? "Son " : "Es ") + objAff(k) + "." : "Das ist " + objAff(k) + ".";
 function objTrad(k){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].obj(k);
   const t = OBJ[k].trad[TL][0];
   return {fr: (t.startsWith("les ") ? "Ce sont " : "C'est ") + t + ".", en: (t.endsWith("scissors") ? "These are " : "This is ") + t + ".", pt: "É " + t + ".", de: "Das ist " + t + "."}[TL];
 }
@@ -324,6 +331,7 @@ function phraseWohin(e, k, ou, trou){
 }
 function tradWohin(e, k, ou){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].wohin(e, k, ou);
   const t = LX[k].trad[TL], a = AGE_T[D.enfants[e].age][TL], P = PRON[e][TL];
   const dat = TL === "de" ? DAT_DE[k] : t[1];
   if (TL === "fr") return ou ? "Il est dix heures du matin. " + e + " est " + dat + "." : e + " a " + a + " ans. " + P + " va " + t[1] + ".";
@@ -341,7 +349,7 @@ const aHeure = (h, m, l) => { l = l || APPRENDRE; return ({de: "um ", es: "a las
 const dateLongue = (j, m, l) => { l = l || APPRENDRE; const M = D.mois[l][m - 1];
   return l === "de" ? j + ". " + M : l === "es" || l === "pt" ? j + " de " + M : l === "en" ? j + " " + M : (j === 1 ? "1er" : j) + " " + M; };
 const auJour = (j, m, l) => { l = l || APPRENDRE; return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: "em "})[l] + dateLongue(j, m, l); };
-const auJourSemaine = (n, l) => { l = l || APPRENDRE; return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: n >= 6 ? "no " : "na "})[l] + NOM_JOUR(n, l); };
+const auJourSemaine = (n, l) => { l = l || APPRENDRE; if (LEC[l]) return LEC[l].auJour(n); return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: n >= 6 ? "no " : "na "})[l] + NOM_JOUR(n, l); };
 const ceJour = (n, l) => l === "fr" ? NOM_JOUR(n, "fr") : auJourSemaine(n, l);          // un jour precis : « jeudi » (« le jeudi » = tous les jeudis)
 const dateCourte = (j, m, a) => { const p = n => String(n).padStart(2, "0"); return ES_ || PT_ ? p(j) + "/" + p(m) + (a ? "/" + a : "") : p(j) + "." + p(m) + "." + (a || ""); };
 
@@ -395,6 +403,7 @@ const quandMotTrad = m => TL ? joursMot(m).map(j => ceJour(j, TL)).join({fr: " e
 const phraseMot = m => PT_ ? cap(artPt("Ben")) + " falta à escola " + quandMot(m) + " " + parceQue(m.r) + "." : ES_ ? "Ben falta al colegio " + quandMot(m) + " " + parceQue(m.r) + "." : "Ben fehlt " + quandMot(m) + ", " + parceQue(m.r) + ".";
 function tradMot(m){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].mot(joursMot(m), m.r);
   const r = RA(m.r).t[TL], q = quandMotTrad(m), low = r.charAt(0).toLowerCase() + r.slice(1).replace(/\.$/, "");
   return {fr: "Ben est absent " + q + " parce qu'" + low.replace(/^il /, "il ") + ".", en: "Ben is absent " + q + " because " + low.replace(/^he /, "he ") + ".",
           pt: "O Ben falta " + q.replace(/^na /, "na ") + " porque " + low.replace(/^ele /, "ele ") + ".", de: "Ben fehlt " + q + ", weil " + low.replace(/^er /, "er ").replace(/ (ist|hat) (.*)$/, " $2 $1") + "."}[TL].replace("parce qu'il", "parce qu'il");
@@ -423,6 +432,7 @@ function papierReunion(r){
 const phraseReunion = r => PT_ ? "A reunião de pais é " + auJourSemaine(r.j) + ", " + aHeure(r.h, r.mi) + ", na " + r.salle + "." : ES_ ? "La reunión de padres es " + auJourSemaine(r.j) + " " + aHeure(r.h, r.mi) + " en el " + r.salle + "." : "Der Elternabend ist " + auJourSemaine(r.j) + " " + aHeure(r.h, r.mi) + " in " + r.salle + ".";
 function tradReunion(r){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].reunion(r.j, r.h, r.mi, r.salle.replace(/^(Raum|aula|sala) /, ""));
   const s = r.salle.replace(/^(Raum|aula|sala) /, ""), J = ceJour(r.j, TL), H = aHeure(r.h, r.mi, TL);
   return {fr: "La réunion de parents a lieu " + J + " " + H + ", salle " + s + ".", en: "The parents' evening is " + J + " " + H + " in room " + s + ".",
           pt: "A reunião de pais é " + J + " " + H + ", na sala " + s + ".", de: "Der Elternabend ist " + J + " " + H + " in Raum " + s + "."}[TL];
@@ -455,6 +465,7 @@ const phraseFerien = (d, vac) => PT_ ? "No dia " + dateLongue(d.getDate(), d.get
                                      : "Am " + dateLongue(d.getDate(), d.getMonth() + 1) + " hat Ben " + (vac ? "Ferien" : "Schule") + ".";
 function tradFerien(d, vac){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].ferien(d.getDate(), d.getMonth() + 1, vac);
   const q = auJour(d.getDate(), d.getMonth() + 1, TL);
   return {fr: cap(q) + ", Ben " + (vac ? "est en vacances" : "va à l'école") + ".", en: cap(q) + ", Ben " + (vac ? "is on holiday" : "goes to school") + ".",
           pt: cap(q) + ", o Ben " + (vac ? "está de férias" : "tem aula") + ".", de: cap(q) + " hat Ben " + (vac ? "Ferien" : "Schule") + "."}[TL];
@@ -476,6 +487,7 @@ const buscaMia = () => BR ? "busca Mia" : "vai buscar a Mia";
 const phraseAbholung = x => PT_ ? cap(auJourSemaine(x.j)) + ", " + artPt(x.qui) + " " + buscaMia() + " " + aHeure(x.h, x.m) + "." : ES_ ? cap(auJourSemaine(x.j)) + ", " + x.qui + " recoge a Mia " + aHeure(x.h, x.m) + "." : cap(auJourSemaine(x.j)) + " holt " + x.qui + " Mia " + aHeure(x.h, x.m) + " ab.";
 function tradAbholung(x){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].abholung(x.j, x.qui, x.h, x.m);
   const J = ceJour(x.j, TL), H = aHeure(x.h, x.m, TL);
   return {fr: cap(J) + ", " + x.qui + " va chercher Mia " + H + ".", en: cap(J) + ", " + x.qui + " picks Mia up " + H + ".",
           pt: cap(J) + ", " + x.qui + " busca a Mia " + H + ".", de: cap(J) + " holt " + x.qui + " Mia " + H + " ab."}[TL];
@@ -490,7 +502,7 @@ function papierListe(l){
     '<ul>' + l.map(x => '<li>' + x.n + " " + esc(x.n === 1 ? OBJ[x.k].mot : OBJ[x.k].pl) + '</li>').join("") + '</ul>');
 }
 const phraseListe = x => (PT_ ? cap(artPt("Ben")) + " precisa de " : ES_ ? "Ben necesita " : "Ben braucht ") + quantite(x.k, x.n) + ".";
-const tradListe = x => TL ? ({fr: "Ben a besoin de ", en: "Ben needs ", pt: "O Ben precisa de ", de: "Ben braucht "}[TL] + quantiteTrad(x.k, x.n)).replace("de un", "d'un").replace(/^O Ben precisa de (uma?|dois|duas|três|quatro|cinco)/, "O Ben precisa de $1") + "." : null;
+const tradListe = x => TL && LEC[TL] ? LEC[TL].liste(x.k, x.n) : TL ? ({fr: "Ben a besoin de ", en: "Ben needs ", pt: "O Ben precisa de ", de: "Ben braucht "}[TL] + quantiteTrad(x.k, x.n)).replace("de un", "d'un").replace(/^O Ben precisa de (uma?|dois|duas|três|quatro|cinco)/, "O Ben precisa de $1") + "." : null;
 
 // ---------- les reponses ----------
 let file = [], rang = 0, bons = 0, repondu = false;
@@ -710,7 +722,7 @@ const EX = {
       rep = MAT(c).aff;
       opts = melanger(uniques([rep, ...melanger(Object.keys(D.matieres[APPRENDRE]).filter(x => x !== c)).slice(0, 3).map(x => MAT(x).aff)]));
       juste = PT_ ? cap(aulaPt) + ", " + artPt("Ben") + " tem " + rep + "." : ES_ ? "El " + NOM_JOUR(j) + ", Ben tiene " + rep + " a la " + D.ordinaux.es[r + 1] + " hora." : "Am " + NOM_JOUR(j) + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + rep + ".";
-      trad = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
+      trad = TL ? LEC[TL] ? LEC[TL].cours(j, r, c) : {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
                    pt: cap(auJourSemaine(j, "pt")) + ", na " + D.ordinaux.pt[r + 1] + " aula, o Ben tem " + MTR(c).pt + ".", de: "Am " + NOM_JOUR(j, "de") + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MTR(c).de + "."}[TL] : null;
       trads = o => { const x = Object.keys(D.matieres[APPRENDRE]).find(y => MAT(y).aff === o); return x && TL ? MTR(x)[TL] : null; };
     } else if (sorte === "jour"){
@@ -720,7 +732,7 @@ const EX = {
         : ES_ ? "¿Qué día tiene Ben " + MAT(c).aff + "?" : "An welchem Tag hat Ben " + MAT(c).aff + "?";
       rep = auJourSemaine(j); opts = melanger([rep, ...melanger(J.filter(x => x !== j)).slice(0, 3).map(x => auJourSemaine(x))]);
       juste = PT_ ? cap(artPt("Ben")) + " tem " + MAT(c).aff + " " + auJourSemaine(j) + "." : ES_ ? "Ben tiene " + MAT(c).aff + " " + auJourSemaine(j) + "." : "Ben hat " + auJourSemaine(j) + " " + MAT(c).aff + ".";
-      trad = TL ? {fr: "Ben a " + MTR(c).fr + " " + auJourSemaine(j, "fr") + ".", en: "Ben has " + MTR(c).en + " " + auJourSemaine(j, "en") + ".", pt: "O Ben tem " + MTR(c).pt + " " + auJourSemaine(j, "pt") + ".", de: "Ben hat " + auJourSemaine(j, "de") + " " + MTR(c).de + "."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].jourCours(j, c) : {fr: "Ben a " + MTR(c).fr + " " + auJourSemaine(j, "fr") + ".", en: "Ben has " + MTR(c).en + " " + auJourSemaine(j, "en") + ".", pt: "O Ben tem " + MTR(c).pt + " " + auJourSemaine(j, "pt") + ".", de: "Ben hat " + auJourSemaine(j, "de") + " " + MTR(c).de + "."}[TL] : null;
       trads = o => { const x = J.find(y => auJourSemaine(y) === o); return x && TL ? auJourSemaine(x, TL) : null; };
     } else if (sorte === "fin"){
       if (!w) viser(papMot("stundenplan"));
@@ -733,7 +745,7 @@ const EX = {
       opts = melanger(uniques([rep, ...J.map(x => D.heures[H[x].length - 1][1]).filter(x => x !== fin).map(x => aHeure(...x.split(":").map(Number))), aHeure(hh + 1, mm)])).slice(0, 4);
       if (!opts.includes(rep)) opts[0] = rep;
       juste = PT_ ? cap(auJourSemaine(j)) + ", as aulas " + finPt + " " + rep + "." : ES_ ? "El " + NOM_JOUR(j) + ", el colegio termina " + rep + "." : "Am " + NOM_JOUR(j) + " ist " + rep + " Schulschluss.";
-      trad = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", l'école finit " + aHeure(hh, mm, "fr") + ".", en: "On " + NOM_JOUR(j, "en") + ", school ends " + aHeure(hh, mm, "en") + ".", pt: cap(auJourSemaine(j, "pt")) + ", a escola termina " + aHeure(hh, mm, "pt") + ".", de: "Am " + NOM_JOUR(j, "de") + " ist " + aHeure(hh, mm, "de") + " Schulschluss."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].fin(j, hh, mm) : {fr: "Le " + NOM_JOUR(j, "fr") + ", l'école finit " + aHeure(hh, mm, "fr") + ".", en: "On " + NOM_JOUR(j, "en") + ", school ends " + aHeure(hh, mm, "en") + ".", pt: cap(auJourSemaine(j, "pt")) + ", a escola termina " + aHeure(hh, mm, "pt") + ".", de: "Am " + NOM_JOUR(j, "de") + " ist " + aHeure(hh, mm, "de") + " Schulschluss."}[TL] : null;
     } else {
       if (!w) viser(pauseMot());
       const [h1, m1] = D.pause[0].split(":").map(Number);
@@ -741,7 +753,7 @@ const EX = {
       rep = aHeure(h1, m1);
       opts = melanger([rep, ...melanger(D.heures.slice(1).map(x => x[0]).filter(x => x !== D.pause[1])).slice(0, 3).map(x => aHeure(...x.split(":").map(Number)))]);
       juste = PT_ ? "O recreio começa " + rep + "." : ES_ ? "El recreo empieza " + rep + "." : "Die große Pause beginnt " + rep + ".";
-      trad = TL ? {fr: "La récréation commence " + aHeure(h1, m1, "fr") + ".", en: "Break time starts " + aHeure(h1, m1, "en") + ".", pt: "O recreio começa " + aHeure(h1, m1, "pt") + ".", de: "Die große Pause beginnt " + aHeure(h1, m1, "de") + "."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].pause(h1, m1) : {fr: "La récréation commence " + aHeure(h1, m1, "fr") + ".", en: "Break time starts " + aHeure(h1, m1, "en") + ".", pt: "O recreio começa " + aHeure(h1, m1, "pt") + ".", de: "Die große Pause beginnt " + aHeure(h1, m1, "de") + "."}[TL] : null;
     }
     tradQ = trad; dirQ = motQ ? (motQ.genre ? motQ.genre + " " + motQ.mot : motQ.mot) : null;
     ecran("c_horaire", papierHoraire(vise), q, {centre: true});
@@ -755,7 +767,7 @@ const EX = {
     const k = hasard(ks); viser(w || papMot(k) || papMot("stundenplan"));
     const P = {stundenplan: () => papierHoraire(), entschuldigung: () => papierMot(tirerMot()), elternabend: () => papierReunion(tirerReunion()), ferien: papierFerien, liste: () => papierListe(tirerListe())};
     const rep = PAP(k).aff, opts = melanger([rep, ...melanger(Object.keys(D.papiers[APPRENDRE]).filter(x => x !== k)).slice(0, 3).map(x => PAP(x).aff)]);
-    tradQ = TL ? {fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + PAP(k).t[TL] + "." : null; dirQ = PAP(k).mot ? PAP(k).genre + " " + PAP(k).mot : rep;
+    tradQ = TL ? (LEC[TL] ? LEC[TL].papier(k) : {fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + PAP(k).t[TL] + ".") : null; dirQ = PAP(k).mot ? PAP(k).genre + " " + PAP(k).mot : rep;
     // le titre du papier le dirait : on le cache
     ecran("c_papier", P[k]().replace(/<h3>.*?<\/h3>/, "<h3>?</h3>"), queEsto(), {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, (PT_ ? "É " : ES_ ? "Es " : "Das ist ") + rep + "."), o => { const x = Object.keys(D.papiers[APPRENDRE]).find(y => PAP(y).aff === o); return x && TL ? PAP(x).t[TL] : null; });
@@ -842,7 +854,7 @@ const EX = {
     }
     tradQ = tradAbholung(x); dirQ = abholenDit();
     ecran(PT_ ? "c_abholenPt" : "c_abholen", papierAbholung(s, vise), q, {centre: true});
-    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseAbholung(x)), o => D.abholer[o] && TL ? o + ", " + D.abholer[o].t[TL] : null);
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseAbholung(x)), o => D.abholer[o] && TL ? (LEC[TL] ? LEC[TL].nom(o) : o) + ", " + D.abholer[o].t[TL] : null);
     return true;
   },
   // vrai ou faux : une image et sa phrase (ou celle d'une autre image), le mot d'absence, les vacances, qui va chercher Mia
@@ -885,7 +897,7 @@ const EX = {
       const autre = hasard(Object.keys(D.matieres[APPRENDRE]).filter(x => x !== c));
       const ph = x => PT_ ? cap(auJourSemaine(j)) + ", na " + D.ordinaux.pt[r + 1] + " aula, " + artPt("Ben") + " tem " + MAT(x).aff + "." : ES_ ? "El " + NOM_JOUR(j) + ", Ben tiene " + MAT(x).aff + " a la " + D.ordinaux.es[r + 1] + " hora." : "Am " + NOM_JOUR(j) + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MAT(x).aff + ".";
       avant = papierHoraire([j, r]); juste = ph(c); dite = vrai ? juste : ph(autre);
-      tradQ = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
+      tradQ = TL ? LEC[TL] ? LEC[TL].cours(j, r, c) : {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
                     pt: cap(auJourSemaine(j, "pt")) + ", na " + D.ordinaux.pt[r + 1] + " aula, o Ben tem " + MTR(c).pt + ".", de: "Am " + NOM_JOUR(j, "de") + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MTR(c).de + "."}[TL] : null;
       dirQ = motQ.genre ? motQ.genre + " " + motQ.mot : motQ.mot;
     } else {
@@ -1053,6 +1065,7 @@ document.title = T("titre");
 fetch("ecole/ecole.json?v=4").then(r => r.json()).then(d => {
   D = d;
   if (PT_) portugaisAppris(D);
+  if (typeof installerLanguesEcole === "function") LEC = installerLanguesEcole(D, APPRENDRE) || {};
   LX = D.lieux[APPRENDRE]; ACT = D.actions[APPRENDRE]; OBJ = D.objets[APPRENDRE]; CJ = D.conj[APPRENDRE]; NO = D.noms[APPRENDRE];
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });

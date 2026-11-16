@@ -72,3 +72,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 2. **L'heure et son suffixe** : « saat 15.00'te », « saat 9.30'da », « saat 7.00'de » (le suffixe suit la lecture : on beş, dokuz otuz, yedi).
 3. **Le guichet** : « Lütfen … » à l'impératif poli (« Lütfen formu doldurun. ») ; « Lütfen buraya imza atın. » pour « Unterschreiben Sie bitte hier! ».
 4. **Les champs** : « Mark'ın uyruğu Kanadalı. », « Mark'ın medeni durumu bekâr. », « Mark'ın şehri Berlin. » (Ort).
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js`. À relire :
+
+1. **« Ben'e … lazım »** pour « Ben braucht » : le prénom Ben porte l'apostrophe (Ben'e, Ben'in, Ben'i), à ne pas lire comme le pronom « ben ».
+2. **L'heure et le mois prennent le suffixe du dernier mot lu** : « saat 8.45'te », « saat 10.40'ta », « 28 Aralık'ta », « 1 Ocak'ta », « 3 Nisan'da ».
+3. **Kita / Kindergarten** : « kreş » et « anaokulu » ; **Anna**, la tante paternelle de Mia : « halası ».
+4. **Le mot d'absence** : « Ben Pazartesi ve Salı okula gelemiyor, çünkü hasta. »

@@ -71,3 +71,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 2. **Le jour** : « в среду в 15:00 », « во вторник » ; le rendez-vous « Марк записан на вторник на 9:30 в … ».
 3. **« Il faut »** accordé : « нужен паспорт », « нужна фотография », « нужно подтверждение от арендодателя ».
 4. **Les noms** : Марк Гарнье, Монреаль, Берлин, « Гартенштрассе, 12 » ; familienstand « холост » (женат, разведён pour les leurres).
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js`. À relire :
+
+1. **Le nombre** : « нужна тетрадь », « нужны две тетради », « нужно пять тетрадей ».
+2. **Kita / Kindergarten** : « детский сад » et « садик ».
+3. **Le mot d'absence** : « Бена не будет в школе в понедельник и во вторник, потому что он болен ».
+4. **Sachunterricht** : « окружающий мир » (la matière de l'école primaire russe).

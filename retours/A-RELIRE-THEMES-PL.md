@@ -68,3 +68,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 2. **Anmelden** : « Mark melduje się w … » ; le guichet « Proszę się zameldować. ».
 3. **« Il faut »** : « Do zameldowania potrzebny jest paszport », « potrzebna jest karta… », « potrzebne jest zdjęcie ».
 4. **Les champs** au style d'un formulaire : « Nazwisko Marka: Garnier. », « Stan cywilny Marka: kawaler. ».
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js`. À relire :
+
+1. **Kita et Kindergarten** donnent tous deux « przedszkole » (à relire : un mot pour la Kita ?).
+2. **« Ben potrzebuje » + génitif** : « zeszytu », « dwóch zeszytów », « pięciu linijek ».
+3. **La matière à l'accusatif** : « Ben ma matematykę / plastykę / muzykę / przyrodę ».
+4. **Les vacances** : « 28 grudnia Ben ma wolne od szkoły » (ni « ferie » ni « wakacje », qui dépendent de la saison).

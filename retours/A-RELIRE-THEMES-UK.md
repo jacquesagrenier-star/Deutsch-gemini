@@ -69,3 +69,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 3. **Ouvert / fermé** accordés avec le lieu : « центр … відчинений », « лікарняна каса зачинена ».
 4. **« Il faut »** accordé avec le document : « потрібен паспорт », « потрібна довідка про реєстрацію », « потрібне підтвердження від орендодавця ».
 5. **Les noms** : Марк Гарньє, Монреаль, Берлін, « Гартенштрассе, 12 ».
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js`. À relire :
+
+1. **Le nombre** : « потрібен зошит », « потрібні два зошити / дві лінійки », « потрібно пʼять зошитів » ; les ciseaux « дві пари ножиць » (la page n'en compte qu'une).
+2. **Kita / Kindergarten** : « дитсадок » et « дитячий садок » (deux noms proches pour deux mots allemands proches).
+3. **Le mois au génitif** : « 28 грудня у Бена канікули ».
+4. **L'emploi du temps** : « У понеділок на третьому уроці в Бена математика ».

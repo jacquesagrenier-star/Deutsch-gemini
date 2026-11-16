@@ -36,3 +36,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 2. **Le guichet** : « لطفاً … » (« لطفاً فرم را پر کنید. »).
 3. **L'heure** en chiffres latins : « ساعت 15:00 » (comme les autres pages).
 4. **Les noms** : مارک گارنیه, مونترال, برلین, « گارتن‌اشتراسه، پلاک 12 » ; « نام مارک مارک است. » (le prénom de Mark est Mark).
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js`. À relire :
+
+1. **Kita / Kindergarten / Grundschule** : « مهدکودک », « کودکستان », « دبستان ».
+2. **Anna**, tante paternelle de Mia : « عمه‌اش » ; « کاترین, مادرش » garde la virgule latine de la page (à remplacer par « ، » ?).
+3. **L'emploi du temps** : « دوشنبه، زنگ سوم، بن ریاضی دارد ».
+4. **La date** : « روز 28 دسامبر، بن در تعطیلات است » (mois du calendrier grégorien).

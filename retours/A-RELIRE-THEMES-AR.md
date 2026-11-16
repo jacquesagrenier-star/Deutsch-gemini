@@ -39,3 +39,12 @@ La page assemble maintenant ses phrases traduites (les démarches de Mark, la ph
 3. **L'avis** : « لفتح حساب، تحتاج إلى جواز السفر. » (« tu as besoin de »), qui évite d'accorder « يلزم » avec le document.
 4. **Les heures** : « مكتب خدمات المواطنين مغلق يوم الأربعاء في الساعة 15:00. » (le lieu d'abord, l'adjectif accordé : العيادة مفتوحة).
 5. **Les noms** : مارك غارنييه, مونتريال, برلين, « غارتن شتراسه 12 » ; pour l'espagnol « شارع لا لونا 12، الطابق 2، الشقة B ».
+
+## Lot 5, 16 nov. : « L'école et la garderie »
+
+La page assemble maintenant ses phrases traduites (les fournitures comptées, où vont Ben et Mia, le mot d'absence, la réunion de parents, les vacances, qui va chercher Mia, l'emploi du temps) à partir de morceaux posés dans `visuel/prototype/ecole/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le nombre** : « دفترين », « ثلاثة دفاتر », « ثلاث مساطر » (accord inversé du nombre) ; « مماحٍ » pour les gommes.
+2. **Le verbe accordé avec qui va chercher Mia** : « تصطحب كاترين / آنا », « يصطحب يان / مارك ».
+3. **Les mois** : « يناير … ديسمبر » (et non « كانون الثاني … ») ; « في 28 ديسمبر، يكون بن في العطلة ».
+4. **Pour qui apprend l'espagnol** : la matière « Lengua » est « الإسبانية » ; « ترسم ميا في الحضانة ».
