@@ -95,3 +95,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **Le besoin** : « Mark musi kupić kiełbasę » ; la commande « Poproszę … » à l'accusatif.
 3. **Comparer** : « Masło kosztuje więcej / mniej niż ser » (pas de comparatif à accorder).
 4. **Le dialogue** : « Potrzebuje pan torebki? », « Następna osoba, proszę! » (le vendeur vouvoie au masculin : à relire).
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js`. À relire :
+
+1. **La personne dans le verbe** : « spakowałem / spakowałam », « spakowałeś / spakowałaś », « spakowaliśmy » ; « poszedłem / poszłam ».
+2. **Le sujet sous-entendu dans une suite** : « Najpierw Anna spakowała swoją walizkę. Potem pojechała na lotnisko. »
+3. **Mark au port** : « popłynął statkiem po porcie » (Hafenrundfahrt) ; la famille « nad Bałtyk ».
+4. **Les nuits** : « na jedną noc / na dwie noce / na pięć nocy ».

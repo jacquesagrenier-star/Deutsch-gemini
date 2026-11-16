@@ -63,3 +63,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **Le prix** : « قیمت کره 1,29 € است » ; comparer « کره از پنیر گران‌تر است ».
 3. **La commande** : « یک نان می‌خواهم » ; la monnaie « 0,80 € باقی پول می‌گیرد ».
 4. **Le dialogue** : « چه میل دارید؟ », « نفر بعدی، لطفاً! ».
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js`. À relire :
+
+1. **Une forme par personne** : « چمدانم را بستم / چمدانت را بستی / چمدان‌هایمان را بستیم / آنا چمدانش را بست ».
+2. **La famille au singulier, Ben et Mia au pluriel** : « خانواده … رفت », « بن و میا … ساختند ».
+3. **La chambre** : « یک اتاق یک‌تخته / دوتخته برای دو شب ».
+4. **Mark au port** : « با قایق در بندر گشت زد ».

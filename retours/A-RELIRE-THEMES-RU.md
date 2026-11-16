@@ -99,3 +99,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **Le besoin** : « Марку / Анне нужно купить колбасу » ; la commande « Дайте, пожалуйста, … ».
 3. **Le nombre** : « Яблоки стоят », mais « Клубника стоит » (collectif singulier) ; « Клубника дороже, чем … ».
 4. **La monnaie** : « Ему / Ей дают 0,80 € сдачи ».
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js`. À relire :
+
+1. **Je et tu** : « Я собрал(а) свой чемодан », et « пошёл / пошла » quand la forme féminine n'ajoute pas seulement « а ».
+2. **La famille au singulier** : « Семья поехала на машине на Балтийское море » ; « Бен и Мия построили замок из песка ».
+3. **L'accueil** : « Здравствуйте, я забронировал(а) одноместный номер на две ночи ».
+4. **Mark au port** : « прокатился на катере по порту ».

@@ -66,3 +66,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **Le prix** : « سعر الزبدة 1,29 € » ; comparer « الزبدة أغلى من الجبن » (comparatif invariable).
 3. **Metzgerei** : « الملحمة » ; Drogerie « متجر مواد التجميل والتنظيف » (à relire).
 4. **Pour qui apprend l'espagnol** : le jambon de la boucherie, « الجامون ».
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le verbe avant le sujet et accordé** : « حزمت آنا », « حزم مارك », « ذهبت العائلة » ; Ben et Mia « بنى بن وميا » (verbe au singulier devant le sujet).
+2. **Le sujet sous-entendu dans une suite** : « ثم ذهبت إلى المطار », et le duel pour Ben et Mia : « ثم سبحا في البحر ».
+3. **Je et tu** distingués par la voyelle : « حزمتُ / حزمتَ » (le tu au masculin).
+4. **Les nuits** : « لليلة واحدة / لليلتين / لخمس ليالٍ » ; Málaga « مالقة ».

@@ -97,3 +97,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **Le besoin** : « Маркові / Анні треба купити ковбасу » (l'infinitif évite l'accord de « потрібен »).
 3. **Comparer** : « Масло коштує більше, ніж сир » (plutôt qu'un comparatif accordé).
 4. **La monnaie** : « Йому / Їй дають 0,80 € решти » ; la commande « Дайте, будь ласка, … ».
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js`. À relire :
+
+1. **Je et tu, dont le genre n'est pas connu** : les deux formes, « Я зібрав / зібрала свою валізу » (le français écrit « allé(e) »).
+2. **Le possessif réfléchi** à toutes les personnes : « свою валізу », « свій рюкзак » (« Ми зібрали свою валізу » : un seul objet, comme le français).
+3. **La famille** : « Родина поїхала машиною до Балтійського моря » ; Ben et Mia « Бен і Мія збудували замок із піску ».
+4. **Les nuits** : « на одну ніч / на дві ночі / на пʼять ночей ».

@@ -127,6 +127,7 @@ html.nuit .papier .case{background:rgba(255,255,255,.03)}
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
+<script src="vacances/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
@@ -351,7 +352,12 @@ function suiteDite(etapes){
 // APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais, portugais (et en allemand pour qui
 // apprend l'espagnol), la phrase entiere, fabriquee avec les MEMES choix que la question ; ailleurs, le mot et sa
 // traduction du corpus (gloses.json).
-const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && !DE_APP)) ? LANGUE : null;
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (vacances/langues.js, lot 8 de l'alignement des themes, 16 nov. 2026) : chaque etape conjuguee
+// dans la langue, et LVA[langue] fait les phrases
+let LVA = {};
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && !DE_APP)
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && DE_APP) || (LANGUE === "ar" && APPRENDRE === "es")) ? LANGUE : null;
 const AV_FR = ["ai", "as", "a", "avons", "ont"], ETRE_FR = ["suis", "es", "est", "sommes", "sont"], REFL_FR = ["me", "t'", "s'", "nous", "se"];
 function possTr(c, k, g, l){
   if (l === "en") return c.replace("{P}", ["my", "your", g === "m" ? "his" : g === "f" ? "her" : "their", "our", "their"][k]);
@@ -360,6 +366,7 @@ function possTr(c, k, g, l){
 // une etape traduite, a la personne k (sujet s, ou je / tu / nous)
 function traduire(e, k, s){
   if (!TR) return null;
+  if (LVA[TR]) return LVA[TR].etape(e, k, s);
   const sj = s ? D.sujets[s] : null, g = sj ? sj.g : "m";
   k = k == null ? sj.n : k;
   if (TR === "de") return DE.phrase(e, sj ? sj.de : D.personnes.de[k], k, g);
@@ -380,6 +387,7 @@ const tradEtape = e => traduire(e, null, e.sujet);
 const LIENS_TR = {fr: ["D'abord", "Ensuite", "Puis", "Enfin"], en: ["First", "Then", "After that", "Finally"], pt: ["Primeiro", "Depois", "Em seguida", "Por fim"], de: ["Zuerst", "Dann", "Danach", "Schließlich"]};
 function tradSuite(etapes){
   if (!TR) return null;
+  if (LVA[TR]) return LVA[TR].suite(etapes);
   if (TR === "de") return etapes.map((e, i) => DE.v2(LIENS_TR.de[i], e, D.sujets[e.sujet].de)).join(" ");
   const PRON = {fr: {f: "elle", m: "il", pl: "ils"}, en: {f: "she", m: "he", pl: "they"}, pt: {f: "ela", m: "ele", pl: "eles"}}[TR];
   return etapes.map((e, i) => { let t = tradEtape(e);
@@ -394,13 +402,14 @@ const NUITS_TR = {fr: x => x === 1 ? "une nuit" : ["", "", "deux", "trois", "qua
                   pt: x => x === 1 ? "uma noite" : ["", "", "duas", "três", "quatro", "cinco", "seis", "sete", "oito"][x] + " noites"};
 function tradReserve(ch, nu){
   if (!TR) return null;
+  if (LVA[TR]) return LVA[TR].reserve(ch, nu);
   if (TR === "de") return DE.reserve({}, ch, nu);
   return cap(({fr: ch === "doppel" ? "une chambre double" : "une chambre simple", en: ch === "doppel" ? "a double room" : "a single room", pt: ch === "doppel" ? "um quarto duplo" : "um quarto individual"})[TR]
          + ({fr: " pour ", en: " for ", pt: " por "})[TR] + NUITS_TR[TR](nu)) + ".";
 }
-const tradPetitdej = oui => !TR ? null : TR === "de" ? DE.rPetitdej(oui) : ({fr: oui ? "Oui, le petit-déjeuner est compris." : "Non, le petit-déjeuner n'est pas compris.",
+const tradPetitdej = oui => !TR ? null : LVA[TR] ? LVA[TR].petitdej(oui) : TR === "de" ? DE.rPetitdej(oui) : ({fr: oui ? "Oui, le petit-déjeuner est compris." : "Non, le petit-déjeuner n'est pas compris.",
   en: oui ? "Yes, breakfast is included." : "No, breakfast is not included.", pt: oui ? "Sim, o café da manhã está incluído." : "Não, o café da manhã não está incluído."})[TR];
-const tradAccueil = (ch, nu) => !TR ? null : TR === "de" ? DE.accueil({}, ch, nu) : ({fr: "Bonjour, j'ai réservé ", en: "Hello, I booked ", pt: "Boa tarde, eu reservei "})[TR] + tradReserve(ch, nu).replace(/^./, c => c.toLowerCase());
+const tradAccueil = (ch, nu) => !TR ? null : LVA[TR] ? LVA[TR].accueil(ch, nu) : TR === "de" ? DE.accueil({}, ch, nu) : ({fr: "Bonjour, j'ai réservé ", en: "Hello, I booked ", pt: "Boa tarde, eu reservei "})[TR] + tradReserve(ch, nu).replace(/^./, c => c.toLowerCase());
 let GLOSES = {};
 fetch("vacances/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
 function glose(m){
@@ -606,7 +615,7 @@ const EX = {
     const rep = [tete, aux, S, mil, v.pp].join(" ") + ".";
     const opts = unique([rep, [tete, S, aux, mil, v.pp].join(" ") + ".", [tete, aux, S, v.pp, mil].join(" ") + "."]);
     motQ = w || motDe(e);
-    tradQ = TR ? (D.voyages[e.voyage].quand[TR] + ", " + tradEtape(e).replace(/^(La|A|The) /, m => m.toLowerCase())) : null;
+    tradQ = TR && LVA[TR] ? LVA[TR].quand(e) : TR ? (D.voyages[e.voyage].quand[TR] + ", " + tradEtape(e).replace(/^(La|A|The) /, m => m.toLowerCase())) : null;
     ecran("satzbau", photo(e.cle), "", true, true);
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
     return true;
@@ -719,7 +728,7 @@ const EX = {
     const autreCh = r.chambre === "doppel" ? "einzel" : "doppel";
     if (w && w.resa === "nuit" || (!w && Math.random() < 0.35)){
       const rep = L.rNuits(r.nuits), opts = unique([rep, ...melanger([1, 2, 3, 4, 5, 6, 7].filter(x => x !== r.nuits)).slice(0, 3).map(L.rNuits)]);
-      motQ = motResa("nuit"); tradQ = TR ? cap((TR === "de" ? DE.nuits(r.nuits) : NUITS_TR[TR](r.nuits))) + "." : null;
+      motQ = motResa("nuit"); tradQ = TR && LVA[TR] ? LVA[TR].nuits(r.nuits) : TR ? cap((TR === "de" ? DE.nuits(r.nuits) : NUITS_TR[TR](r.nuits))) + "." : null;
       ecran("carte", carteHTML(r), L.qNuits(r), true);
       boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
       return true;
@@ -986,6 +995,7 @@ document.title = T("titre");
 fetch("vacances/vacances.json?v=2").then(r => r.json()).then(d => {
   D = d;
   if (APPRENDRE === "pt") portugaisAppris(D);
+  if (typeof installerLanguesVacances === "function") LVA = installerLanguesVacances(D, APPRENDRE) || {};
   const rangs = {};
   ETAPES = d.etapes.map(e => Object.assign({}, e, {rang: rangs[e.voyage] = (e.voyage in rangs) ? rangs[e.voyage] + 1 : 0}));
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();

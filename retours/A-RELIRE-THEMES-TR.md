@@ -99,3 +99,12 @@ La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où
 2. **« Mark'ın ekmek alması gerekiyor »** pour « Mark braucht Brot » ; Wurst « salam ».
 3. **Le dialogue** : « Ne arzu edersiniz? », « Sıradaki, lütfen! », « para üstü ».
 4. **Comparer** : « Tereyağı peynirden daha pahalı » (l'ablatif écrit à la main pour chaque article).
+
+## Lot 8, 16 nov. : « Les vacances et le voyage »
+
+La page raconte maintenant chaque étape des voyages dans la langue, à la personne que pose la question (je, tu, nous ou le sujet de l'étape), et la suite d'un voyage, la météo, les objets, la chambre réservée ; tout est dans `visuel/prototype/vacances/langues.js`. À relire :
+
+1. **« Ben ve Mia »** : le prénom Ben se lit aussi « je » (« Ben ve Mia kumdan bir kale yaptılar ») ; à relire, peut-être « Ben ile Mia ».
+2. **Le possessif suit la personne** : « bavulumu / bavulunu / bavullarımızı topladık », « sırt çantamı / sırt çantasını ».
+3. **La chambre** : « iki gece için tek kişilik bir oda », l'accueil « … ayırttım ».
+4. **Le sujet sous-entendu dans une suite** : « Önce Anna bavulunu topladı. Sonra havalimanına gitti. »
