@@ -51614,7 +51614,7 @@ function addToMyVocab(i){
     noterDemande(o.m, trads);
 
     if(monVocabTheme.words.some(w => w[0] === o.m)){
-        showInfoToast(tf("myvocab_already", { mot: o.m }));
+        if(!ouvrirMotDeMonVocab(o.m)) showInfoToast(tf("myvocab_already", { mot: o.m }));
         return;
     }
     // Un nom allemand sans article n'est pas seulement incomplet : il pousse
@@ -52122,6 +52122,45 @@ function ouvrirEntreeRecherche(entry){
     setFlashHeader('search_card_kicker', null);
     showScreen("flashcards");
     loadFlashcard();
+    montrerLeMotCherche();
+}
+
+// ⚠️ LA RECHERCHE SERT DE DICTIONNAIRE (retour d'un testeur, 16 nov. 2026, qui cherchait le Präteritum de
+// « vorbereiten ») : la carte trouvee s'ouvre retournee, sur le mot, son sens et ses formes (conjugaisons, pluriel),
+// sans repasser par la question du recto. Les boutons de jugement restent, comme avant ; jamais de rappel actif ici
+// (carteEligibleRappel). Ne retourne qu'une vraie carte : un ecran de fin ou de passage reste tel quel.
+function montrerLeMotCherche(){
+    try{
+        const carte = document.getElementById("flashcard");
+        if(!flashcardFromSearch || !carte || carte.classList.contains("flipped") || paquetTermine()) return;
+        if(!document.getElementById("flashcards").classList.contains("active")) return;
+        flipCard();
+    }catch(e){}
+}
+
+// Une entree du dictionnaire deja dans « Mon vocabulaire » (le ✓) ouvre sa carte, comme la fleche ouvre celle du
+// cours (meme retour du 16 nov. : toucher « verletzt ✓ » ne faisait qu'afficher « déjà dans tes cartes »). Un mot
+// entre depuis dans le cours ouvre la carte du cours. Rend false si le mot n'est pas dans la liste.
+function ouvrirMotDeMonVocab(mot){
+    const mots = loadMyVocab();
+    const index = mots.findIndex(w => w[0] === mot);
+    if(index < 0) return false;
+    if(mots[index][10] === "1"){
+        const cours = entreeDuCoursPour(mot);
+        if(cours){ ouvrirEntreeRecherche(cours); return true; }
+    }
+    const item = { word: mots[index], index: index, themeId: monVocabTheme.id };
+    flashcardMode = 'monvocab';
+    currentTheme = monVocabTheme;
+    currentCards = [item];
+    currentCardsFull = [item];
+    currentFlashcard = 0;
+    flashcardFromSearch = true;
+    setFlashHeader('search_card_kicker', null);
+    showScreen("flashcards");
+    loadFlashcard();
+    montrerLeMotCherche();
+    return true;
 }
 
 // Le panneau depuis lequel la seance de cartes a ete lancee, s'il y en a un.
@@ -60022,6 +60061,9 @@ function carteEligibleRappel(item){
     if(LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "pt") return false;
     if(!frontIsFrench || getLearningDirection() === "en") return false;
     if(dansLePaquetGarde() || decouverteEnCours() || paquetTermine()) return false;
+    // Une carte ouverte depuis la recherche se consulte, elle ne s'interroge pas (retour d'un testeur, 16 nov. 2026 :
+    // « vorbereiten » cherche pour voir son Präteritum s'ouvrait sur « Which one is spelled right? »).
+    if(flashcardFromSearch) return false;
     if(!item || !item.word || RAPPEL_MODES.indexOf(modeDeLaCarteRappel(item)) < 0) return false;
     // Une carte d'une serie de Tout le contenu (item.exo, harmonisation des exercices,
     // 7 nov.) garde le geste de sa serie. item.exo est le rang dans la serie, a partir
