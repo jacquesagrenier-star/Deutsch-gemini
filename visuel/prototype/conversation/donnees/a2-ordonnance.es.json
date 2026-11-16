@@ -1,0 +1,399 @@
+{
+ "id": "a2-ordonnance",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {
+  "fr": "À la pharmacie, avec une ordonnance"
+ },
+ "intro": {
+  "fr": "Tu sors de chez le médecin et tu passes à la pharmacie avec ta carte sanitaire. Retire tes médicaments, vérifie comment les prendre et paie."
+ },
+ "personnes": [
+  "a22_carmen"
+ ],
+ "debut": "hola",
+ "textes": {
+  "retour_fr": {
+   "cle": "retour",
+   "tarde": "ce soir, après sept heures",
+   "manana": "demain matin"
+  }
+ },
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La pharmacie du quartier, sa croix verte allumée. C'est ton tour."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "¡Buenas tardes! Dígame.",
+     "fr": "Bonjour ! Je vous écoute."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Buenas tardes. Tengo una receta del médico.",
+     "fr": "Bonjour. J'ai une ordonnance du médecin.",
+     "va": "tarjeta",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Muy bien.",
+       "fr": "Très bien."
+      }
+     ]
+    },
+    {
+     "t": "Hola. Vengo del médico: tengo una receta electrónica.",
+     "fr": "Bonjour. Je viens de chez le médecin : j'ai une ordonnance électronique.",
+     "va": "tarjeta",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Perfecto.",
+       "fr": "Parfait."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Buenas tardes. Tengo un recibo del médico.",
+     "fr": "Bonjour. J'ai un reçu du médecin.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "¿Un recibo? ¿Quiere decir una receta?",
+       "fr": "Un reçu ? Vous voulez dire une ordonnance ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Un recibo</b>, c'est un reçu (quand on a payé). L'ordonnance : <b>una receta</b>."
+     }
+    }
+   ]
+  },
+  "tarjeta": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "¿Me deja su tarjeta sanitaria, por favor?",
+     "fr": "Vous me donnez votre carte sanitaire, s'il vous plaît ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, aquí tiene.",
+     "fr": "Oui, la voici.",
+     "va": "falta",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "Gracias. A ver… Tiene dos medicamentos: un antibiótico y un jarabe.",
+       "fr": "Merci. Voyons… Vous avez deux médicaments : un antibiotique et un sirop."
+      }
+     ]
+    },
+    {
+     "t": "Claro. Tome.",
+     "fr": "Bien sûr. Tenez.",
+     "va": "falta",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "Gracias. A ver… Son dos medicamentos: un antibiótico y un jarabe.",
+       "fr": "Merci. Voyons… Ce sont deux médicaments : un antibiotique et un sirop."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, aquí tienes.",
+     "fr": "Oui, tiens, la voici.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "Gracias… Aunque todavía no nos conocemos tanto, ¿verdad?",
+       "fr": "Merci… Même si nous ne nous connaissons pas encore si bien, n'est-ce pas ?"
+      }
+     ],
+     "aide": {
+      "fr": "Carmen te dit <b>usted</b> : réponds de même, « aquí <b>tiene</b> ». « Tienes », c'est le tutoiement."
+     }
+    }
+   ]
+  },
+  "falta": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "El antibiótico lo tengo, pero el jarabe no me queda. Lo pido ahora y llega esta tarde, a partir de las 19:00. ¿Puede volver?",
+     "fr": "L'antibiotique, je l'ai, mais il ne me reste plus de sirop. Je le commande maintenant et il arrive ce soir, à partir de 19 h. Pouvez-vous revenir ?",
+     "dit": "El antibiótico lo tengo, pero el jarabe no me queda. Lo pido ahora y llega esta tarde, a partir de las siete. ¿Puede volver?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, vuelvo esta tarde, después de las siete.",
+     "fr": "Oui, je reviens ce soir, après sept heures.",
+     "pose": {
+      "retour": "tarde"
+     },
+     "va": "tomar",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Perfecto. Se lo guardo con su nombre.",
+       "fr": "Parfait. Je vous le mets de côté à votre nom."
+      }
+     ]
+    },
+    {
+     "t": "Esta tarde no puedo. ¿Puedo venir mañana por la mañana?",
+     "fr": "Ce soir, je ne peux pas. Je peux venir demain matin ?",
+     "pose": {
+      "retour": "manana"
+     },
+     "va": "tomar",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Claro. Abrimos a las 9:30.",
+       "fr": "Bien sûr. Nous ouvrons à 9 h 30.",
+       "dit": "Claro. Abrimos a las nueve y media."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Vale, vuelvo a las siete de la mañana.",
+     "fr": "D'accord, je reviens à sept heures du matin.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "surprise",
+       "t": "¿De la mañana? No, no: llega hoy, a las siete de la tarde.",
+       "fr": "Du matin ? Non, non : il arrive aujourd'hui, à sept heures du soir."
+      }
+     ],
+     "aide": {
+      "fr": "« Esta tarde, a partir de las siete » : c'est aujourd'hui, à <b>sept heures du soir</b> (« de la tarde »)."
+     }
+    }
+   ]
+  },
+  "tomar": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Aquí tiene el antibiótico: una pastilla cada 8 horas, siempre con comida.",
+     "fr": "Voici l'antibiotique : un comprimé toutes les 8 heures, toujours en mangeant.",
+     "dit": "Aquí tiene el antibiótico: una pastilla cada ocho horas, siempre con comida."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Entonces, una cada ocho horas, con la comida.",
+     "fr": "Donc, un toutes les huit heures, avec le repas.",
+     "va": "algo",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Eso es. Y termine la caja, aunque se encuentre bien.",
+       "fr": "C'est ça. Et finissez la boîte, même si vous vous sentez bien."
+      }
+     ]
+    },
+    {
+     "t": "¿Cada ocho horas? ¿También por la noche?",
+     "fr": "Toutes les huit heures ? La nuit aussi ?",
+     "va": "algo",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "No hace falta despertarse: con el desayuno, la comida y la cena.",
+       "fr": "Pas besoin de se réveiller : au petit-déjeuner, au déjeuner et au dîner."
+      }
+     ]
+    },
+    {
+     "t": "Perdone, ¿puede repetirlo más despacio?",
+     "fr": "Pardon, pouvez-vous le répéter plus lentement ?",
+     "va": "tomar",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Claro: una pastilla, cada ocho horas, con comida.",
+       "fr": "Bien sûr : un comprimé, toutes les huit heures, en mangeant."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "algo": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "¿Necesita algo más?",
+     "fr": "Vous avez besoin d'autre chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí. ¿Tiene algo para la garganta, sin receta?",
+     "fr": "Oui. Vous avez quelque chose pour la gorge, sans ordonnance ?",
+     "va": "pagar",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Sí, estas pastillas de miel y limón. Una cada tres horas: van muy bien.",
+       "fr": "Oui, ces pastilles au miel et au citron. Une toutes les trois heures : elles sont très efficaces."
+      }
+     ]
+    },
+    {
+     "t": "Sí, algo para el dolor de garganta, por favor.",
+     "fr": "Oui, quelque chose contre le mal de gorge, s'il vous plaît.",
+     "va": "pagar",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Mire, estas pastillas de miel y limón van muy bien. Una cada tres horas.",
+       "fr": "Regardez, ces pastilles au miel et au citron sont très efficaces. Une toutes les trois heures."
+      }
+     ]
+    }
+   ]
+  },
+  "pagar": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Pues el antibiótico, con la receta, son 3,20 €. Y las pastillas de la garganta, 6,50 €. En total, 9,70 €. ¿Con tarjeta o en efectivo?",
+     "fr": "Alors l'antibiotique, avec l'ordonnance, c'est 3,20 €. Et les pastilles pour la gorge, 6,50 €. Au total, 9,70 €. Par carte ou en espèces ?",
+     "dit": "Pues el antibiótico, con la receta, son tres euros con veinte. Y las pastillas de la garganta, seis con cincuenta. En total, nueve euros con setenta. ¿Con tarjeta o en efectivo?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Con tarjeta, por favor.",
+     "fr": "Par carte, s'il vous plaît.",
+     "va": "adios",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Muy bien. Acerque la tarjeta… Ya está.",
+       "fr": "Très bien. Approchez la carte… Voilà."
+      }
+     ]
+    },
+    {
+     "t": "En efectivo. Aquí tiene diez euros.",
+     "fr": "En espèces. Voici dix euros.",
+     "va": "adios",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Gracias. Aquí tiene: treinta céntimos y el recibo.",
+       "fr": "Merci. Voici : trente centimes et le reçu."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¿Puedo pagar con la tarjeta sanitaria?",
+     "fr": "Je peux payer avec la carte sanitaire ?",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "No, con esa no. Con la tarjeta del banco, o en efectivo.",
+       "fr": "Non, pas avec celle-là. Avec la carte bancaire, ou en espèces."
+      }
+     ],
+     "aide": {
+      "fr": "<b>La tarjeta sanitaria</b> sert à lire ton ordonnance, pas à payer. Pour payer : « con tarjeta » (bancaire) ou « en efectivo »."
+     }
+    }
+   ]
+  },
+  "adios": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Entonces, hasta esta tarde: aquí va a estar el jarabe. ¡Que se mejore!",
+     "fr": "Alors, à ce soir : le sirop sera ici. Bon rétablissement !",
+     "si": {
+      "retour": "tarde"
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Entonces, hasta mañana: aquí va a estar el jarabe. ¡Que se mejore!",
+     "fr": "Alors, à demain : le sirop sera ici. Bon rétablissement !",
+     "si": {
+      "retour": "manana"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muchas gracias. ¡Hasta luego!",
+     "fr": "Merci beaucoup. À bientôt !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "¡Hasta luego!",
+       "fr": "À bientôt !"
+      }
+     ]
+    },
+    {
+     "t": "Gracias por todo. ¡Adiós!",
+     "fr": "Merci pour tout. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "¡Adiós! Y cuídese esa garganta.",
+       "fr": "Au revoir ! Et soignez cette gorge."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as retiré ton antibiotique, acheté des pastilles pour la gorge et payé neuf euros soixante-dix ; tu reviens chercher le sirop {retour_fr}."
+ }
+}

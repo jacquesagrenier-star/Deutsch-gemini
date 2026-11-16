@@ -1,0 +1,346 @@
+{
+ "id": "a2-pause",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "tú",
+ "titre": {
+  "fr": "La pause café"
+ },
+ "intro": {
+  "fr": "Quelques jours plus tard, tu retrouves Javier dans la cuisine du bureau. Bavarde avec lui : ton week-end, le déjeuner, le travail."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "finde",
+ "noeuds": {
+  "finde": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Lundi, onze heures. Dans la cuisine du bureau, Javier cherche une tasse propre."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "¡Buenas! ¿Qué tal el fin de semana? ¿Qué hiciste?",
+     "fr": "Salut ! Alors, ce week-end ? Qu'est-ce que tu as fait ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muy bien. El sábado fui al parque con unos amigos.",
+     "fr": "Très bien. Samedi, j'ai été au parc avec des amis.",
+     "va": "maquina",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Qué bien! Con este sol, el parque está precioso.",
+       "fr": "Super ! Avec ce soleil, le parc est magnifique."
+      }
+     ]
+    },
+    {
+     "t": "Tranquilo. Me quedé en casa y dormí mucho.",
+     "fr": "Tranquille. J'ai passé le week-end à la maison et j'ai beaucoup dormi.",
+     "va": "maquina",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Eso también hace falta, ¿eh?",
+       "fr": "Ça aussi, il en faut, hein ?"
+      }
+     ]
+    },
+    {
+     "t": "Bien. El domingo comí en casa de unos amigos.",
+     "fr": "Bien. Dimanche, j'ai déjeuné chez des amis.",
+     "va": "maquina",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Qué suerte! Comer con amigos es lo mejor.",
+       "fr": "Quelle chance ! Manger avec des amis, c'est ce qu'il y a de mieux."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Muy bien. El sábado he ido al parque.",
+     "fr": "Très bien. Samedi, j'ai été au parc.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "¿El sábado… fuiste al parque? ¡Ah, qué bien!",
+       "fr": "Samedi… tu as été au parc ? Ah, super !"
+      }
+     ],
+     "aide": {
+      "fr": "Pour un moment <b>terminé</b> (el sábado, ayer), l'Espagne emploie le passé simple : « <b>fui</b> al parque ». « He ido » va avec « hoy », « esta semana »."
+     }
+    }
+   ]
+  },
+  "maquina": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Oye, malas noticias: la máquina de café se ha roto otra vez.",
+     "fr": "Dis, mauvaise nouvelle : la machine à café est encore tombée en panne."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Otra vez! Pues hoy tomo un té.",
+     "fr": "Encore ! Bon, aujourd'hui je prends un thé.",
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Yo sin café no soy persona. Pero bueno, hoy un té.",
+       "fr": "Moi, sans café, je ne suis bon à rien. Mais bon, aujourd'hui un thé."
+      }
+     ]
+    },
+    {
+     "t": "¡Qué mala suerte! ¿Vamos a la cafetería de enfrente?",
+     "fr": "Pas de chance ! On va au café d'en face ?",
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Luego bajamos, a la una. Ahora tengo una llamada: hoy, té.",
+       "fr": "On descendra tout à l'heure, à une heure. Là, j'ai un appel : aujourd'hui, thé."
+      }
+     ]
+    },
+    {
+     "t": "¿Cómo? No te he entendido bien.",
+     "fr": "Comment ? Je ne t'ai pas bien compris.",
+     "va": "maquina",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "La máquina de café: no funciona. Está rota.",
+       "fr": "La machine à café : elle ne marche pas. Elle est cassée."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "comida": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "¿Y hoy qué comes? ¿Te has traído algo de casa?",
+     "fr": "Et aujourd'hui, tu manges quoi ? Tu as apporté quelque chose de chez toi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, he traído una sopa de verduras.",
+     "fr": "Oui, j'ai apporté une soupe de légumes.",
+     "va": "trabajo",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Qué sano! Yo bajo al bar: hoy hay lentejas.",
+       "fr": "Que c'est sain ! Moi, je descends au bar : aujourd'hui, il y a des lentilles."
+      }
+     ]
+    },
+    {
+     "t": "No, hoy no. ¿Hay un buen restaurante cerca de aquí?",
+     "fr": "Non, pas aujourd'hui. Il y a un bon restaurant près d'ici ?",
+     "va": "trabajo",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "El bar de la esquina. El menú del día cuesta 12 € y está muy rico.",
+       "fr": "Le bar du coin. Le menu du jour coûte 12 € et c'est très bon.",
+       "dit": "El bar de la esquina. El menú del día cuesta doce euros y está muy rico."
+      }
+     ]
+    },
+    {
+     "t": "No lo sé todavía. ¿Dónde comes tú?",
+     "fr": "Je ne sais pas encore. Tu manges où, toi ?",
+     "va": "trabajo",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "En el bar de la esquina, casi siempre. Tienen menú del día. ¡Vente!",
+       "fr": "Au bar du coin, presque toujours. Ils ont un menu du jour. Viens avec moi !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, he aportado una sopa.",
+     "fr": "Oui, j'ai apporté une soupe.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "¿Aportado? Ah, que has traído sopa. ¡Muy bien!",
+       "fr": "« Aportado » ? Ah, tu as apporté de la soupe. Très bien !"
+      }
+     ],
+     "aide": {
+      "fr": "« Aportar », c'est <b>contribuer</b> (de l'argent, une idée). Apporter quelque chose avec soi : <b>traer</b>, « he <b>traído</b> una sopa »."
+     }
+    }
+   ]
+  },
+  "trabajo": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Y dime, ¿qué tal el trabajo? ¿Estás a gusto?",
+     "fr": "Et dis-moi, comment ça va, le travail ? Tu te sens bien ici ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, estoy muy bien. Los compañeros son muy simpáticos.",
+     "fr": "Oui, je suis très bien. Les collègues sont très sympathiques.",
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Hombre, gracias! Aquí somos como una familia.",
+       "fr": "Oh, merci ! Ici, nous sommes comme une famille."
+      }
+     ]
+    },
+    {
+     "t": "Es interesante, pero hay mucho trabajo.",
+     "fr": "C'est intéressant, mais il y a beaucoup de travail.",
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "attentive",
+       "t": "Al principio siempre parece mucho. Poco a poco.",
+       "fr": "Au début, ça paraît toujours beaucoup. Petit à petit."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, soy muy bien.",
+     "fr": "Oui, je suis très bien.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "¿Eres… muy bien? Ah, ¡que estás muy bien!",
+       "fr": "Tu es… très bien ? Ah, tu vas très bien !"
+      }
+     ],
+     "aide": {
+      "fr": "Comment on va, comment on se sent : <b>estar</b>. « <b>Estoy</b> muy bien ». « Ser » dit ce qu'on est."
+     }
+    }
+   ]
+  },
+  "regalo": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Por cierto, el viernes es el cumpleaños de Elena. Estamos poniendo dinero para un regalo. ¿Te apuntas?",
+     "fr": "Au fait, vendredi c'est l'anniversaire d'Elena. Nous mettons de l'argent en commun pour un cadeau. Tu participes ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Claro! ¿Cuánto pone cada uno?",
+     "fr": "Bien sûr ! Combien met chacun ?",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "5 € por persona.",
+       "fr": "5 € par personne.",
+       "dit": "Cinco euros por persona."
+      }
+     ]
+    },
+    {
+     "t": "Sí, claro. ¿Qué le vais a regalar?",
+     "fr": "Oui, bien sûr. Qu'est-ce que vous allez lui offrir ?",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Una planta para su despacho y unos bombones. Son 5 € cada uno.",
+       "fr": "Une plante pour son bureau et des chocolats. C'est 5 € chacun.",
+       "dit": "Una planta para su despacho y unos bombones. Son cinco euros cada uno."
+      }
+     ]
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "surprise",
+     "t": "¡Uy, ya son las 11:30! Tengo una reunión. ¡Se acabó el descanso!",
+     "fr": "Oh là, il est déjà 11 h 30 ! J'ai une réunion. La pause est finie !",
+     "dit": "¡Uy, ya son las once y media! Tengo una reunión. ¡Se acabó el descanso!"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Qué rápido! Nos vemos luego.",
+     "fr": "Déjà ! On se voit tout à l'heure.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Hasta luego! Y a la una, al bar.",
+       "fr": "À tout à l'heure ! Et à une heure, au bar."
+      }
+     ]
+    },
+    {
+     "t": "Gracias por el té, Javier. ¡Hasta luego!",
+     "fr": "Merci pour le thé, Javier. À tout à l'heure !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "¡De nada! Mañana, café de verdad.",
+       "fr": "De rien ! Demain, du vrai café."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as raconté ton week-end, parlé du déjeuner et du travail, et tu participes au cadeau d'Elena : cinq euros."
+ }
+}

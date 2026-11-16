@@ -1,0 +1,439 @@
+{
+ "id": "a2-ecole-absence",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Prévenir l'école d'une absence"
+ },
+ "intro": {
+  "fr": "Ton enfant a de la fièvre ce matin et reste à la maison. Appelle le secrétariat de l'école pour prévenir, et demande ce qu'il faut pour les devoirs."
+ },
+ "personnes": [
+  "a22_marta"
+ ],
+ "debut": "call",
+ "textes": {
+  "enfant_fr": {
+   "cle": "enfant",
+   "fils": "ton fils Leo",
+   "fille": "ta fille Emma"
+  },
+  "il_fr": {
+   "cle": "enfant",
+   "fils": "il",
+   "fille": "elle"
+  },
+  "Il_fr": {
+   "cle": "enfant",
+   "fils": "Il",
+   "fille": "Elle"
+  },
+  "prenom": {
+   "cle": "enfant",
+   "fils": "Leo",
+   "fille": "Emma"
+  },
+  "he": {
+   "cle": "enfant",
+   "fils": "he",
+   "fille": "she"
+  },
+  "He": {
+   "cle": "enfant",
+   "fils": "He",
+   "fille": "She"
+  },
+  "him": {
+   "cle": "enfant",
+   "fils": "him",
+   "fille": "her"
+  },
+  "his": {
+   "cle": "enfant",
+   "fils": "his",
+   "fille": "her"
+  },
+  "His": {
+   "cle": "enfant",
+   "fils": "His",
+   "fille": "Her"
+  }
+ },
+ "noeuds": {
+  "call": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Huit heures du matin. Ton enfant a de la fièvre et reste au lit. Tu appelles l'école."
+     }
+    },
+    {
+     "qui": "a22_marta",
+     "air": "sourire",
+     "t": "Good morning, Lincoln Elementary School, front office. This is Marta.",
+     "fr": "Bonjour, école primaire Lincoln, le secrétariat. Marta à l'appareil.",
+     "t_gb": "Good morning, Lincoln Primary School, school office. This is Marta."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Good morning. My son Leo is sick. He can't come to school today.",
+     "t_gb": "Good morning. My son Leo is ill. He can't come to school today.",
+     "fr": "Bonjour. Mon fils Leo est malade. Il ne peut pas venir à l'école aujourd'hui.",
+     "pose": {
+      "enfant": "fils"
+     },
+     "va": "grade",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oh, I'm sorry to hear that.",
+       "fr": "Oh, j'en suis désolée."
+      }
+     ]
+    },
+    {
+     "t": "Hello. I'm calling about my daughter Emma. She's sick and is staying home today.",
+     "t_gb": "Hello. I'm calling about my daughter Emma. She's ill and is staying at home today.",
+     "fr": "Bonjour. J'appelle au sujet de ma fille Emma. Elle est malade et reste à la maison aujourd'hui.",
+     "pose": {
+      "enfant": "fille"
+     },
+     "va": "grade",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oh, poor thing. Thank you for calling.",
+       "fr": "Oh, la pauvre. Merci d'appeler."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "My son is not coming today. Bye.",
+     "fr": "Mon fils ne vient pas aujourd'hui. Salut.",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "surprise",
+       "t": "Wait, wait! Who is your son? And what's wrong?",
+       "fr": "Attendez, attendez ! Qui est votre fils ? Et qu'est-ce qu'il a ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Au téléphone, on salue et on explique</b> : qui est l'enfant, et pourquoi. « Good morning. My son Leo is sick. He can't come to school today. »"
+     }
+    }
+   ]
+  },
+  "grade": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "What grade is {he} in, and who is {his} teacher?",
+     "fr": "{Il_fr} est en quelle classe, et qui est son enseignante ?",
+     "t_gb": "What year is {he} in, and who is {his} teacher?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "{He}'s in third grade, with Mrs. Miller.",
+     "t_gb": "{He}'s in Year Four, with Mrs. Miller.",
+     "fr": "{Il_fr} est en troisième année (CE2), avec Mrs. Miller.",
+     "va": "what",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Third grade, Mrs. Miller. Got it.",
+       "fr": "Troisième année, Mrs. Miller. C'est noté.",
+       "t_gb": "Year Four, Mrs. Miller. Got it."
+      }
+     ]
+    },
+    {
+     "t": "Third grade. {His} teacher is Mrs. Miller.",
+     "t_gb": "Year Four. {His} teacher is Mrs. Miller.",
+     "fr": "En troisième année (CE2). Son enseignante est Mrs. Miller.",
+     "va": "what",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Mrs. Miller's class. Thank you.",
+       "fr": "La classe de Mrs. Miller. Merci."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "{He} is in the third class.",
+     "fr": "{Il_fr} est dans le troisième « cours ».",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "perplexe",
+       "t": "The third class? Oh, you mean third grade!",
+       "fr": "Le troisième cours ? Ah, vous voulez dire la troisième année !",
+       "t_gb": "The third class? Oh, you mean Year Four!"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Le niveau scolaire se dit « grade »</b> aux États-Unis (« year » en Grande-Bretagne) : « third grade ». « class », c'est le groupe ou le cours."
+     }
+    }
+   ]
+  },
+  "what": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "What's wrong with {him}? And do you know how long {he}'ll be out?",
+     "fr": "Qu'est-ce qu'{il_fr} a ? Et savez-vous combien de temps {il_fr} sera absent(e) ?",
+     "t_gb": "What's wrong with {him}? And do you know how long {he}'ll be off school?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "{He} has a fever. Maybe two or three days.",
+     "t_gb": "{He} has a temperature. Maybe two or three days.",
+     "fr": "{Il_fr} a de la fièvre. Peut-être deux ou trois jours.",
+     "va": "note",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "OK. I'll let Mrs. Miller know.",
+       "fr": "D'accord. Je préviens Mrs. Miller."
+      }
+     ]
+    },
+    {
+     "t": "{He} has a fever and a cough. I think {he}'ll be back on Thursday.",
+     "t_gb": "{He} has a temperature and a cough. I think {he}'ll be back on Thursday.",
+     "fr": "{Il_fr} a de la fièvre et tousse. Je pense qu'{il_fr} reviendra jeudi.",
+     "va": "note",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Thursday. All right, I'll tell Mrs. Miller.",
+       "fr": "Jeudi. Très bien, je le dis à Mrs. Miller."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, the line is bad. Could you repeat that?",
+     "fr": "Pardon, la ligne est mauvaise. Vous pouvez répéter ?",
+     "va": "what",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Of course. Why is {he} sick, and how many days will {he} stay home?",
+       "fr": "Bien sûr. Pourquoi est-{il_fr} malade, et combien de jours restera-t-{il_fr} à la maison ?",
+       "t_gb": "Of course. Why is {he} ill, and how many days will {he} stay at home?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "note": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "attentive",
+     "t": "When {he} comes back, please send a note from a parent. If {he}'s out more than three days, we need a doctor's note.",
+     "fr": "À son retour, envoyez s'il vous plaît un mot d'un parent. Au-delà de trois jours d'absence, il nous faut un mot du médecin.",
+     "t_gb": "When {he} comes back, please send a note from a parent. If {he}'s off more than three days, we need a doctor's note."
+    }
+   ],
+   "choix": [
+    {
+     "t": "All right. I'll write a note.",
+     "fr": "D'accord. J'écrirai un mot.",
+     "va": "homework",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Thank you.",
+       "fr": "Merci."
+      }
+     ]
+    },
+    {
+     "t": "OK. Can I send it by email?",
+     "fr": "D'accord. Je peux l'envoyer par e-mail ?",
+     "va": "homework",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Yes, email is fine. Send it to the front office.",
+       "fr": "Oui, par e-mail, c'est très bien. Envoyez-le au secrétariat.",
+       "t_gb": "Yes, email is fine. Send it to the school office."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, I'll bring a justification.",
+     "fr": "D'accord, j'apporterai une « justification ».",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "perplexe",
+       "t": "A justification? Oh, a short note is fine!",
+       "fr": "Une « justification » ? Oh, un petit mot suffit !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Un mot d'excuse se dit « a note »</b> ; « justification » est un mot savant, pas un papier. Dis : « All right. I'll write a note. »"
+     }
+    }
+   ]
+  },
+  "homework": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "Is there anything else I can help you with?",
+     "fr": "Puis-je faire autre chose pour vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. How can {he} get {his} homework?",
+     "fr": "Oui. Comment peut-{il_fr} avoir ses devoirs ?",
+     "va": "trip",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Mrs. Miller posts it online every afternoon. You can check the class page.",
+       "fr": "Mrs. Miller les met en ligne chaque après-midi. Vous pouvez regarder la page de la classe."
+      }
+     ]
+    },
+    {
+     "t": "Can a friend from class bring the homework?",
+     "fr": "Est-ce qu'un ami de la classe peut apporter les devoirs ?",
+     "va": "trip",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Good idea, but it's all online. Check the class page this afternoon.",
+       "fr": "Bonne idée, mais tout est en ligne. Regardez la page de la classe cet après-midi."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes. How can {he} make {his} homework?",
+     "fr": "Oui. Comment peut-{il_fr} « fabriquer » ses devoirs ?",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "perplexe",
+       "t": "Make the homework? … Oh, you want to know how to get it!",
+       "fr": "« Fabriquer » les devoirs ? … Ah, vous voulez savoir comment les avoir !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Les devoirs, on les « do »</b> (do homework), jamais « make ». Et pour les recevoir : « How can {he} get {his} homework? »"
+     }
+    }
+   ]
+  },
+  "trip": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "attentive",
+     "t": "One more thing: on Friday, the class is going to the science museum. Do you think {he}'ll be better?",
+     "fr": "Encore une chose : vendredi, la classe va au musée des sciences. Pensez-vous qu'{il_fr} ira mieux ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I hope so! Do I need to sign something?",
+     "fr": "J'espère ! Est-ce que je dois signer quelque chose ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Yes, the permission slip. It's in {his} backpack. Please send it back by Thursday.",
+       "fr": "Oui, l'autorisation de sortie. Elle est dans son sac à dos. Renvoyez-la d'ici jeudi, s'il vous plaît.",
+       "t_gb": "Yes, the permission slip. It's in {his} school bag. Please send it back by Thursday."
+      }
+     ]
+    },
+    {
+     "t": "I think so. {He} really wants to go!",
+     "fr": "Je pense que oui. {Il_fr} veut vraiment y aller !",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Great. Don't forget to sign the permission slip. It's in {his} backpack.",
+       "fr": "Très bien. N'oubliez pas de signer l'autorisation de sortie. Elle est dans son sac à dos.",
+       "t_gb": "Great. Don't forget to sign the permission slip. It's in {his} school bag."
+      }
+     ]
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "sourire",
+     "t": "Thank you for calling. I hope {prenom} feels better soon!",
+     "fr": "Merci d'avoir appelé. J'espère que {prenom} ira vite mieux !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you very much. Goodbye!",
+     "fr": "Merci beaucoup. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Goodbye!",
+       "fr": "Au revoir !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks for your help. Have a nice day!",
+     "fr": "Merci pour votre aide. Bonne journée !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "You too. Bye-bye!",
+       "fr": "Vous aussi. Au revoir !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as prévenu l'école de l'absence de {enfant_fr} : tu écriras un mot à son retour, les devoirs sont en ligne et tu signes l'autorisation pour la sortie de vendredi."
+ }
+}

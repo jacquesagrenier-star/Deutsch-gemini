@@ -1,0 +1,373 @@
+{
+ "id": "a2-club-sport",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "tú",
+ "titre": {
+  "fr": "S'inscrire au club de sport"
+ },
+ "intro": {
+  "fr": "Tu veux faire du sport et rencontrer du monde : ce soir, tu vas à l'entraînement d'essai d'un club de volley amateur, au gymnase municipal (el polideportivo). Parle avec Lucas, l'entraîneur."
+ },
+ "personnes": [
+  "a22_lucas"
+ ],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Sept heures moins dix, au gymnase du quartier. Un homme barbu sort des ballons d'un grand sac."
+     }
+    },
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "¡Hola! ¿Vienes a probar el entrenamiento?",
+     "fr": "Salut ! Tu viens essayer l'entraînement ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hola. Sí, quiero probar. Te escribí ayer.",
+     "fr": "Salut. Oui, je veux essayer. Je t'ai écrit hier.",
+     "va": "nivel",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡Ah, sí! Soy Lucas, el entrenador. Me alegro de verte por aquí.",
+       "fr": "Ah, oui ! Je suis Lucas, l'entraîneur. Content de te voir ici."
+      }
+     ]
+    },
+    {
+     "t": "Sí. Me gustaría jugar en el equipo.",
+     "fr": "Oui. J'aimerais jouer dans l'équipe.",
+     "va": "nivel",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡Pues has venido al sitio bueno! Soy Lucas, el entrenador.",
+       "fr": "Eh bien, tu es au bon endroit ! Je suis Lucas, l'entraîneur."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, quiero entrenar al equipo.",
+     "fr": "Oui, je veux entraîner l'équipe.",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "amuse",
+       "t": "¿Entrenar al equipo? ¡Ese es mi trabajo! Tú vienes a entrenar con el equipo, ¿no?",
+       "fr": "Entraîner l'équipe ? C'est mon travail, ça ! Toi, tu viens t'entraîner avec l'équipe, non ?"
+      }
+     ],
+     "aide": {
+      "fr": "« Entrenar <b>al</b> equipo », c'est le travail de l'entraîneur. Toi, tu veux t'entraîner <b>con</b> el equipo — ou, plus simple, « Quiero probar »."
+     }
+    }
+   ]
+  },
+  "nivel": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "¿Has jugado antes al voleibol?",
+     "fr": "Tu as déjà joué au volley ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, jugaba en el colegio. Pero hace muchos años.",
+     "fr": "Oui, je jouais à l'école. Mais il y a bien des années.",
+     "va": "horario",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Eso no se olvida. Ya verás.",
+       "fr": "Ça ne s'oublie pas. Tu verras."
+      }
+     ]
+    },
+    {
+     "t": "No, nunca. ¿Es un problema?",
+     "fr": "Non, jamais. C'est un problème ?",
+     "va": "horario",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡Qué va! Aquí venimos a pasarlo bien. Se aprende rápido.",
+       "fr": "Pas du tout ! Ici, nous venons pour passer un bon moment. On apprend vite."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, jugo un poco.",
+     "fr": "Oui, je joue un peu.",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "perplexe",
+       "t": "¿Juegas un poco? ¡Perfecto!",
+       "fr": "Tu joues un peu ? Parfait !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Jugar</b> change sa voyelle au présent : « <b>juego</b>, juegas, juega ». Pas « jugo » (c'est « jus » en Amérique latine !)."
+     }
+    }
+   ]
+  },
+  "horario": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "Entrenamos los martes y los jueves, de 19:00 a 21:00.",
+     "fr": "Nous nous entraînons le mardi et le jeudi, de 19 h à 21 h.",
+     "dit": "Entrenamos los martes y los jueves, de siete a nueve de la tarde."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¿Puedo venir solo los jueves? Los martes trabajo hasta tarde.",
+     "fr": "Je peux venir seulement le jeudi ? Le mardi, je travaille tard.",
+     "va": "traer",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Sin problema. Mucha gente viene un día solo.",
+       "fr": "Sans problème. Beaucoup de gens ne viennent qu'un jour."
+      }
+     ]
+    },
+    {
+     "t": "Perfecto. Los martes y los jueves puedo.",
+     "fr": "Parfait. Le mardi et le jeudi, je peux.",
+     "va": "traer",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡Así me gusta! Con dos días se aprende mucho.",
+       "fr": "Voilà qui me plaît ! En deux jours, on apprend beaucoup."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Vale, los martes y los viernes.",
+     "fr": "D'accord, le mardi et le vendredi.",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "surprise",
+       "t": "Los viernes no: martes y jueves. El viernes aquí hay baloncesto.",
+       "fr": "Pas le vendredi : mardi et jeudi. Le vendredi, ici, il y a du basket."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Jueves</b> = jeudi ; <b>viernes</b> = vendredi. Lucas a dit « los martes y los jueves »."
+     }
+    },
+    {
+     "t": "Perdona, ¿qué días has dicho?",
+     "fr": "Pardon, quels jours as-tu dit ?",
+     "va": "horario",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Martes y jueves, de siete a nueve.",
+       "fr": "Mardi et jeudi, de sept à neuf."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "traer": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "Para el próximo día, ¿tienes todo lo que hace falta?",
+     "fr": "Pour la prochaine fois, tu as tout ce qu'il faut ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "No lo sé. ¿Qué tengo que traer?",
+     "fr": "Je ne sais pas. Qu'est-ce que je dois apporter ?",
+     "va": "precio",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Zapatillas limpias para la pista, una botella de agua y ganas.",
+       "fr": "Des chaussures propres pour le terrain, une bouteille d'eau et de l'envie."
+      }
+     ]
+    },
+    {
+     "t": "Tengo zapatillas de deporte. ¿Necesito algo más?",
+     "fr": "J'ai des chaussures de sport. Il me faut autre chose ?",
+     "va": "precio",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Zapatillas limpias, para la pista. Y una botella de agua. Nada más.",
+       "fr": "Des chaussures propres, pour le terrain. Et une bouteille d'eau. Rien d'autre."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No lo sé. ¿Qué tengo de traer?",
+     "fr": "Je ne sais pas. Qu'est-ce que j'ai d'apporter ?",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "perplexe",
+       "t": "¿Qué tienes… que traer? Poca cosa: zapatillas limpias y agua.",
+       "fr": "Ce que tu dois… apporter ? Pas grand-chose : des chaussures propres et de l'eau."
+      }
+     ],
+     "aide": {
+      "fr": "L'obligation : <b>tener que</b> + infinitif. « ¿Qué tengo <b>que</b> traer? »."
+     }
+    }
+   ]
+  },
+  "precio": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Ah, y lo del dinero: hoy la prueba es gratis, claro.",
+     "fr": "Ah, et pour l'argent : aujourd'hui, l'essai est gratuit, bien sûr."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Qué bien! ¿Y cuánto cuesta después?",
+     "fr": "Super ! Et combien ça coûte ensuite ?",
+     "va": "ficha",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "15 € al mes. Con eso pagamos la pista y los balones.",
+       "fr": "15 € par mois. Avec ça, nous payons le terrain et les ballons.",
+       "dit": "Quince euros al mes. Con eso pagamos la pista y los balones."
+      }
+     ]
+    },
+    {
+     "t": "Gracias. ¿Cuánto se paga al mes?",
+     "fr": "Merci. On paie combien par mois ?",
+     "va": "ficha",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "Son 15 € al mes, nada más.",
+       "fr": "C'est 15 € par mois, rien de plus.",
+       "dit": "Son quince euros al mes, nada más."
+      }
+     ]
+    }
+   ]
+  },
+  "ficha": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "Si te quedas con nosotros, tienes que rellenar esta ficha: nombre, dirección y fecha de nacimiento. Puedes hacerlo ahora o traerla otro día.",
+     "fr": "Si tu restes avec nous, tu dois remplir cette fiche : nom, adresse et date de naissance. Tu peux le faire maintenant ou la rapporter un autre jour."
+    }
+   ],
+   "choix": [
+    {
+     "t": "La hago en casa y la traigo el jueves.",
+     "fr": "Je la fais à la maison et je la rapporte jeudi.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Perfecto. Sin prisa.",
+       "fr": "Parfait. Rien ne presse."
+      }
+     ]
+    },
+    {
+     "t": "¿Tienes un bolígrafo? La hago ahora.",
+     "fr": "Tu as un stylo ? Je la fais maintenant.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Toma. En esa mesa puedes escribir.",
+       "fr": "Tiens. Tu peux écrire sur cette table."
+      }
+     ]
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Venga, que ya llega la gente. ¡A calentar! Ven, te presento al equipo.",
+     "fr": "Allez, les gens arrivent. On s'échauffe ! Viens, je te présente l'équipe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Vamos! Tengo muchas ganas.",
+     "fr": "On y va ! J'ai très envie.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡Así me gusta! Chicos, hoy tenemos gente nueva.",
+       "fr": "Voilà qui me plaît ! Les amis, aujourd'hui nous avons du nouveau monde."
+      }
+     ]
+    },
+    {
+     "t": "Vale. ¡Gracias, Lucas!",
+     "fr": "D'accord. Merci, Lucas !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "¡De nada! Venga, a jugar.",
+       "fr": "De rien ! Allez, on joue."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as essayé le club de volley : entraînement le mardi et le jeudi de sept à neuf, des chaussures propres et de l'eau, quinze euros par mois, et une fiche d'inscription à remplir."
+ }
+}

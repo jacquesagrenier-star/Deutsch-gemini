@@ -1,0 +1,373 @@
+{
+ "id": "a2-pause",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "familier",
+ "titre": {
+  "fr": "La pause café"
+ },
+ "intro": {
+  "fr": "Lundi matin, dans la cuisine du bureau, tu retrouves Javier pour la pause. Raconte ton week-end, parle du déjeuner et du travail, comme entre collègues."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "weekend",
+ "noeuds": {
+  "weekend": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Lundi, 10 h 30. Tu entres dans la cuisine du bureau. Javier est devant la machine à café."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Hey! So, how was your weekend?",
+     "fr": "Salut ! Alors, ton week-end ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Great! I went to the park with friends.",
+     "fr": "Super ! Je suis allé(e) au parc avec des amis.",
+     "va": "machine",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Nice! The weather was perfect for it.",
+       "fr": "Sympa ! Il faisait un temps parfait pour ça."
+      }
+     ]
+    },
+    {
+     "t": "Very quiet. I stayed home and slept a lot.",
+     "t_gb": "Very quiet. I stayed at home and slept a lot.",
+     "fr": "Très calme. Je suis resté(e) à la maison et j'ai beaucoup dormi.",
+     "va": "machine",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Ha! That's a good weekend too.",
+       "fr": "Ha ! Ça aussi, c'est un bon week-end."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Great! I made a party with my friends.",
+     "fr": "Super ! J'ai « fabriqué » une fête avec mes amis.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "You made a party? Oh, you had a party! Fun!",
+       "fr": "Tu as « fabriqué » une fête ? Ah, tu as fait une fête ! Chouette !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Faire une fête » se dit « have a party »</b>, pas « make ». Dis : « I had a party with my friends. » ou « I went to the park with friends. »"
+     }
+    }
+   ]
+  },
+  "machine": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "perplexe",
+     "t": "Oh no. The coffee machine is broken again. Look: no light, nothing.",
+     "fr": "Oh non. La machine à café est encore en panne. Regarde : pas de lumière, rien."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Too bad. Is there any tea?",
+     "fr": "Dommage. Est-ce qu'il y a du thé ?",
+     "va": "lunch",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Good idea. The tea is right here, on the shelf.",
+       "fr": "Bonne idée. Le thé est juste là, sur l'étagère."
+      }
+     ]
+    },
+    {
+     "t": "Let's go to the bakery across the street.",
+     "t_gb": "Let's go to the bakery across the road.",
+     "fr": "Allons à la boulangerie d'en face.",
+     "va": "lunch",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "I like the way you think! But I have a call at eleven. Let's have tea today.",
+       "fr": "J'aime ta façon de penser ! Mais j'ai un appel à onze heures. Aujourd'hui, on prend du thé."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "It's not grave.",
+     "fr": "Ce n'est pas « tombe ».",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "Grave? … Oh, you mean it's not a big deal!",
+       "fr": "« Grave » ? … Ah, tu veux dire que ce n'est pas bien grave !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« grave »</b>, en anglais, c'est une tombe. « Ce n'est pas grave » se dit « No problem » ou « It's not a big deal ». Ici : « Too bad. Is there any tea? »"
+     }
+    }
+   ]
+  },
+  "lunch": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "So, what are you having for lunch today?",
+     "fr": "Alors, tu manges quoi ce midi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I brought some soup from home.",
+     "fr": "J'ai apporté de la soupe de la maison.",
+     "va": "work",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Smart. The microwave is over there, but there's always a line at noon.",
+       "fr": "Malin. Le micro-ondes est là-bas, mais il y a toujours la queue à midi.",
+       "t_gb": "Smart. The microwave is over there, but there's always a queue at lunchtime."
+      }
+     ]
+    },
+    {
+     "t": "I don't know yet. Is there a good restaurant near here?",
+     "fr": "Je ne sais pas encore. Il y a un bon restaurant près d'ici ?",
+     "va": "work",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Yes! There's a little Thai place on the corner. The lunch special is $12.",
+       "fr": "Oui ! Il y a un petit thaïlandais au coin de la rue. Le menu du midi est à 12 dollars.",
+       "dit": "Yes! There's a little Thai place on the corner. The lunch special is twelve dollars."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, what did you say?",
+     "fr": "Pardon, qu'est-ce que tu as dit ?",
+     "va": "lunch",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Lunch! What are you going to eat today?",
+       "fr": "Le déjeuner ! Qu'est-ce que tu vas manger aujourd'hui ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "work": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "And how do you like the job so far?",
+     "fr": "Et le travail, ça te plaît jusqu'ici ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "It's interesting, but there's a lot to learn.",
+     "fr": "C'est intéressant, mais il y a beaucoup à apprendre.",
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "That's normal. It gets easier after a few weeks.",
+       "fr": "C'est normal. Ça devient plus facile après quelques semaines."
+      }
+     ]
+    },
+    {
+     "t": "I like it. The people here are very nice.",
+     "fr": "Ça me plaît. Les gens ici sont très sympas.",
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "We try! And you're doing great.",
+       "fr": "On fait de notre mieux ! Et tu te débrouilles très bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "It's good, but sometimes I'm boring.",
+     "fr": "C'est bien, mais parfois je suis ennuyeux (ennuyeuse).",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Boring? No, you're not boring at all! Oh, you mean you're bored.",
+       "fr": "Ennuyeux ? Mais non, pas du tout ! Ah, tu veux dire que tu t'ennuies."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« I'm boring »</b> = je suis ennuyeux ; <b>« I'm bored »</b> = je m'ennuie. Ici, dis plutôt : « It's interesting, but there's a lot to learn. »"
+     }
+    }
+   ]
+  },
+  "gift": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "By the way, Friday is Elena's birthday. We're collecting money for a present. Are you in?",
+     "fr": "Au fait, vendredi c'est l'anniversaire d'Elena. On fait une collecte pour un cadeau. Tu participes ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sure! How much is everybody giving?",
+     "fr": "Bien sûr ! Combien chacun donne ?",
+     "va": "money",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Ten dollars each. But give what you want.",
+       "fr": "Dix dollars chacun. Mais donne ce que tu veux."
+      }
+     ]
+    },
+    {
+     "t": "Of course. What are we getting her?",
+     "fr": "Évidemment. Qu'est-ce qu'on lui offre ?",
+     "va": "money",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "A gift card for the bookstore and a big chocolate cake. It's ten dollars each.",
+       "fr": "Une carte-cadeau de la librairie et un gros gâteau au chocolat. C'est dix dollars chacun.",
+       "t_gb": "A gift card for the bookshop and a big chocolate cake. It's ten dollars each."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, what are you collecting?",
+     "fr": "Pardon, vous collectez quoi ?",
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Money, for a present for Elena. Her birthday is on Friday. Are you in?",
+       "fr": "De l'argent, pour un cadeau pour Elena. Son anniversaire est vendredi. Tu participes ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "money": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "You can give me the money today or tomorrow. Cash is easier.",
+     "fr": "Tu peux me donner l'argent aujourd'hui ou demain. En espèces, c'est plus simple."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Here you go, ten dollars.",
+     "fr": "Tiens, dix dollars.",
+     "va": "end",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Thanks! I'll write your name on the card.",
+       "fr": "Merci ! J'écrirai ton nom sur la carte."
+      }
+     ]
+    },
+    {
+     "t": "I don't have cash now. I'll bring it tomorrow.",
+     "fr": "Je n'ai pas d'espèces maintenant. Je l'apporte demain.",
+     "va": "end",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "No rush. Tomorrow is fine.",
+       "fr": "Rien ne presse. Demain, c'est très bien."
+      }
+     ]
+    }
+   ]
+  },
+  "end": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "surprise",
+     "t": "Oh, it's almost eleven already! My call. Break's over.",
+     "fr": "Oh, il est déjà presque onze heures ! Mon appel. La pause est finie."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Too bad. See you later!",
+     "fr": "Dommage. À plus tard !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "See you at lunch!",
+       "fr": "On se voit au déjeuner !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks for the tea. Good luck with your call!",
+     "fr": "Merci pour le thé. Bon courage pour ton appel !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Thanks! See you later.",
+       "fr": "Merci ! À plus tard."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as raconté ton week-end, parlé du déjeuner et du travail, et donné dix dollars pour le cadeau d'anniversaire d'Elena."
+ }
+}

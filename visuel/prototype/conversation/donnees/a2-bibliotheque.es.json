@@ -1,0 +1,373 @@
+{
+ "id": "a2-bibliotheque",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {
+  "fr": "À la bibliothèque"
+ },
+ "intro": {
+  "fr": "Tu passes à la bibliothèque publique de ton quartier, ta carte en poche. Rends tes livres, garde plus longtemps celui que tu n'as pas fini, réserves-en un autre et renseigne-toi sur les activités."
+ },
+ "personnes": [
+  "a22_pablo"
+ ],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La bibliothèque publique du quartier, un après-midi calme. Tu poses trois livres sur le comptoir."
+     }
+    },
+    {
+     "qui": "a22_pablo",
+     "air": "sourire",
+     "t": "Buenas tardes. ¿En qué puedo ayudarle?",
+     "fr": "Bonjour. En quoi puis-je vous aider ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Buenas tardes. Quiero devolver estos dos libros.",
+     "fr": "Bonjour. Je veux rendre ces deux livres.",
+     "va": "renovar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Muy bien… Ya está: devueltos.",
+       "fr": "Très bien… Voilà : ils sont rendus."
+      }
+     ]
+    },
+    {
+     "t": "Hola. Vengo a devolver dos libros. Aquí están.",
+     "fr": "Bonjour. Je viens rendre deux livres. Les voici.",
+     "va": "renovar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Gracias… Ya está: devueltos.",
+       "fr": "Merci… Voilà : ils sont rendus."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Buenas tardes. Quiero volver estos dos libros.",
+     "fr": "Bonjour. Je veux revenir ces deux livres.",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "perplexe",
+       "t": "¿Volver…? Ah, devolver los libros. Claro.",
+       "fr": "Revenir… ? Ah, rendre les livres. Bien sûr."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Volver</b> = revenir. Rendre un objet : <b>devolver</b>. « Quiero devolver estos libros »."
+     }
+    }
+   ]
+  },
+  "renovar": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "¿Y ese otro libro? ¿También lo devuelve?",
+     "fr": "Et cet autre livre ? Vous le rendez aussi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "No, este no lo he terminado. ¿Puedo tenerlo más tiempo?",
+     "fr": "Non, celui-ci, je ne l'ai pas fini. Je peux le garder plus longtemps ?",
+     "va": "buscar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Claro, se lo renuevo: hasta el 30 de noviembre. También puede hacerlo por internet, en la página de la biblioteca.",
+       "fr": "Bien sûr, je vous le prolonge : jusqu'au 30 novembre. Vous pouvez aussi le faire par internet, sur le site de la bibliothèque.",
+       "dit": "Claro, se lo renuevo: hasta el treinta de noviembre. También puede hacerlo por internet, en la página de la biblioteca."
+      }
+     ]
+    },
+    {
+     "t": "Este todavía lo estoy leyendo. ¿Me lo puedo quedar unos días más?",
+     "fr": "Celui-ci, je suis encore en train de le lire. Je peux le garder quelques jours de plus ?",
+     "va": "buscar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Sí, se lo renuevo: tiene hasta el 30 de noviembre. Otra vez puede hacerlo por internet.",
+       "fr": "Oui, je vous le prolonge : vous avez jusqu'au 30 novembre. Une autre fois, vous pouvez le faire par internet.",
+       "dit": "Sí, se lo renuevo: tiene hasta el treinta de noviembre. Otra vez puede hacerlo por internet."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No lo he terminado. ¿Puedo alquilarlo otra vez?",
+     "fr": "Je ne l'ai pas fini. Je peux le louer encore une fois ?",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "amuse",
+       "t": "¿Alquilar? Aquí no se paga nada. Se lo presto otra vez, ¿le parece?",
+       "fr": "Louer ? Ici, on ne paie rien. Je vous le prête encore une fois, ça vous va ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Alquilar</b> = louer, en payant. À la bibliothèque, on emprunte : « llevarse un libro », « tenerlo más tiempo »."
+     }
+    }
+   ]
+  },
+  "buscar": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "¿Necesita algo más?",
+     "fr": "Vous avez besoin d'autre chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí. Busco libros fáciles en español, para aprender.",
+     "fr": "Oui. Je cherche des livres faciles en espagnol, pour apprendre.",
+     "va": "reservar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Tenemos lecturas fáciles por niveles, en la primera planta.",
+       "fr": "Nous avons des lectures faciles par niveaux, au premier étage."
+      }
+     ]
+    },
+    {
+     "t": "Sí. Busco una novela corta y fácil. ¿Qué me recomienda?",
+     "fr": "Oui. Je cherche un roman court et facile. Que me conseillez-vous ?",
+     "va": "reservar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Para empezar, las lecturas fáciles por niveles. Están en la primera planta.",
+       "fr": "Pour commencer, les lectures faciles par niveaux. Elles sont au premier étage."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí. Busco libros fáciles en esta librería.",
+     "fr": "Oui. Je cherche des livres faciles dans cette librairie.",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "perplexe",
+       "t": "¿Librería? Hay una en la plaza, pero allí los libros se compran…",
+       "fr": "Une librairie ? Il y en a une sur la place, mais là-bas, les livres s'achètent…"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Una librería</b>, c'est un magasin de livres. Ici, c'est <b>una biblioteca</b>. Dis simplement : « Busco libros fáciles en español »."
+     }
+    }
+   ]
+  },
+  "reservar": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "attentive",
+     "t": "Le recomiendo «Un verano en Madrid»: gusta mucho. Pero ahora mismo está prestado. ¿Quiere reservarlo?",
+     "fr": "Je vous conseille « Un verano en Madrid » : il plaît beaucoup. Mais en ce moment, il est emprunté. Voulez-vous le réserver ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, por favor. ¿Cómo sé cuándo puedo venir?",
+     "fr": "Oui, s'il vous plaît. Comment est-ce que je sais quand je peux venir ?",
+     "va": "grupo",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Le mandamos un correo. Luego tiene una semana para recogerlo.",
+       "fr": "Nous vous envoyons un e-mail. Ensuite, vous avez une semaine pour venir le chercher."
+      }
+     ]
+    },
+    {
+     "t": "Sí, gracias. ¿Tengo que esperar mucho?",
+     "fr": "Oui, merci. Je dois attendre longtemps ?",
+     "va": "grupo",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Unos diez días. Le avisamos por correo y tiene una semana para venir a recogerlo.",
+       "fr": "Une dizaine de jours. Nous vous prévenons par e-mail et vous avez une semaine pour venir le chercher."
+      }
+     ]
+    },
+    {
+     "t": "Perdone, ¿qué quiere decir «prestado»?",
+     "fr": "Pardon, que veut dire « prestado » ?",
+     "va": "reservar",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Que ahora lo tiene otra persona en casa. ¿Quiere reservarlo?",
+       "fr": "Qu'en ce moment, une autre personne l'a chez elle. Voulez-vous le réserver ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "grupo": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "sourire",
+     "t": "Por cierto, para practicar español: los miércoles a las 18:00 hay un intercambio de idiomas aquí, en la biblioteca. Viene gente del barrio.",
+     "fr": "Au fait, pour pratiquer l'espagnol : le mercredi à 18 h, il y a un échange de langues ici, à la bibliothèque. Des gens du quartier y viennent.",
+     "dit": "Por cierto, para practicar español: los miércoles a las seis hay un intercambio de idiomas aquí, en la biblioteca. Viene gente del barrio."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Qué interesante! ¿Es gratis?",
+     "fr": "Comme c'est intéressant ! C'est gratuit ?",
+     "va": "wifi",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Sí, en la biblioteca todo es gratis. Solo hay que apuntarse: ya le apunto yo.",
+       "fr": "Oui, à la bibliothèque tout est gratuit. Il suffit de s'inscrire : je vous inscris moi-même."
+      }
+     ]
+    },
+    {
+     "t": "Me interesa mucho. ¿Tengo que dar mi nombre antes?",
+     "fr": "Ça m'intéresse beaucoup. Je dois donner mon nom avant ?",
+     "va": "wifi",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Sí, pero es un momento: le apunto yo ahora mismo. Y es gratis.",
+       "fr": "Oui, mais c'est l'affaire d'un instant : je vous inscris tout de suite. Et c'est gratuit."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¡Estoy muy interesante!",
+     "fr": "Je suis très intéressant !",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "amuse",
+       "t": "No lo dudo… ¿Quiere decir que le interesa el intercambio?",
+       "fr": "Je n'en doute pas… Vous voulez dire que l'échange vous intéresse ?"
+      }
+     ],
+     "aide": {
+      "fr": "« Estoy interesante » = je suis <b>intéressant</b> ! Pour dire que ça t'intéresse : « <b>Me interesa</b> mucho »."
+     }
+    }
+   ]
+  },
+  "wifi": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "Pues ya está en la lista del miércoles. ¿Alguna cosa más?",
+     "fr": "Eh bien, vous êtes sur la liste de mercredi. Autre chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, una pregunta: ¿hay wifi en la biblioteca?",
+     "fr": "Oui, une question : il y a le wifi à la bibliothèque ?",
+     "va": "adios",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Sí. La contraseña está en este papel. Y en la primera planta hay mesas para trabajar.",
+       "fr": "Oui. Le mot de passe est sur ce papier. Et au premier étage, il y a des tables pour travailler."
+      }
+     ]
+    },
+    {
+     "t": "¿Hay una sala tranquila para estudiar?",
+     "fr": "Il y a une salle tranquille pour étudier ?",
+     "va": "adios",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "En la primera planta, al fondo. Y hay wifi: la contraseña está en este papel.",
+       "fr": "Au premier étage, au fond. Et il y a le wifi : le mot de passe est sur ce papier."
+      }
+     ]
+    }
+   ]
+  },
+  "adios": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "sourire",
+     "t": "Pues ya lo tiene todo. ¡Hasta el miércoles!",
+     "fr": "Eh bien, vous avez tout. À mercredi !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muchas gracias por su ayuda. ¡Hasta el miércoles!",
+     "fr": "Merci beaucoup pour votre aide. À mercredi !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "A usted. ¡Buena lectura!",
+       "fr": "Merci à vous. Bonne lecture !"
+      }
+     ]
+    },
+    {
+     "t": "Gracias. ¡Adiós, buenas tardes!",
+     "fr": "Merci. Au revoir, bonne fin de journée !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Adiós, hasta pronto.",
+       "fr": "Au revoir, à bientôt."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as rendu deux livres, prolongé le troisième, réservé une lecture facile et découvert l'échange de langues du mercredi à six heures."
+ }
+}

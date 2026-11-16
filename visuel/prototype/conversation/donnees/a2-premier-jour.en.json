@@ -1,0 +1,427 @@
+{
+ "id": "a2-premier-jour",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Le premier jour de travail"
+ },
+ "intro": {
+  "fr": "C'est ton premier jour dans une petite agence de Boston. Elena, ta responsable, t'accueille : réponds-lui, pose tes questions et fais connaissance avec ton collègue."
+ },
+ "personnes": [
+  "a22_elena",
+  "a22_javier"
+ ],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Lundi matin, un peu avant neuf heures. Tu pousses la porte d'une petite agence, au centre de Boston. Une femme vient vers toi."
+     }
+    },
+    {
+     "qui": "a22_elena",
+     "air": "sourire",
+     "t": "Good morning! You must be our new team member. Welcome! I'm Elena.",
+     "fr": "Bonjour ! Vous devez être la nouvelle personne de l'équipe. Bienvenue ! Je suis Elena."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Good morning! Yes, today is my first day.",
+     "fr": "Bonjour ! Oui, aujourd'hui c'est mon premier jour.",
+     "va": "desk",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Great. We're all happy to have you here.",
+       "fr": "Parfait. Nous sommes tous contents de vous avoir ici."
+      }
+     ]
+    },
+    {
+     "t": "Hello, nice to meet you. I'm a little early.",
+     "fr": "Bonjour, enchanté(e). Je suis un peu en avance.",
+     "va": "desk",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "No problem at all. Early is good!",
+       "fr": "Aucun problème. En avance, c'est très bien !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I work here since today.",
+     "fr": "Oui, je travaille ici depuis aujourd'hui.",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "perplexe",
+       "t": "Since today? Oh, you mean you start today!",
+       "fr": "Depuis aujourd'hui ? Ah, vous voulez dire que vous commencez aujourd'hui !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« since » ne va pas avec le présent simple</b>, et « depuis aujourd'hui » ne se dit pas ainsi. Dis simplement : « Today is my first day. »"
+     }
+    }
+   ]
+  },
+  "desk": {
+   "dit": [
+    {
+     "qui": "a22_elena",
+     "air": "sourire",
+     "t": "This is your desk, next to the window. Did you get your password by email?",
+     "fr": "Voici votre bureau, à côté de la fenêtre. Vous avez reçu votre mot de passe par e-mail ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I got it yesterday.",
+     "fr": "Oui, je l'ai reçu hier.",
+     "va": "hours",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Perfect. Then you can log in right away.",
+       "fr": "Parfait. Vous pouvez donc vous connecter tout de suite."
+      }
+     ]
+    },
+    {
+     "t": "No, not yet.",
+     "fr": "Non, pas encore.",
+     "va": "hours",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "attentive",
+       "t": "No worries. I'll send it again in a minute.",
+       "fr": "Pas de souci. Je vous le renvoie dans une minute."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, my passport is in my bag.",
+     "fr": "Oui, mon passeport est dans mon sac.",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "amuse",
+       "t": "Your passport? No, your password, for the computer!",
+       "fr": "Votre passeport ? Non, votre mot de passe, pour l'ordinateur !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« password »</b>, c'est le mot de passe ; le passeport se dit « passport ». Réponds : « Yes, I got it yesterday. » ou « No, not yet. »"
+     }
+    }
+   ]
+  },
+  "hours": {
+   "dit": [
+    {
+     "qui": "a22_elena",
+     "air": "attentive",
+     "t": "We work from 9 to 5:30, with an hour for lunch. And there's a team meeting every Monday at 10. Do you have any questions?",
+     "fr": "Nous travaillons de 9 h à 17 h 30, avec une heure pour le déjeuner. Et il y a une réunion d'équipe tous les lundis à 10 h. Vous avez des questions ?",
+     "dit": "We work from nine to five thirty, with an hour for lunch. And there's a team meeting every Monday at ten. Do you have any questions?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. When is the lunch break?",
+     "fr": "Oui. La pause de midi est à quelle heure ?",
+     "va": "badge",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Usually from 12:30 to 1:30. But it's flexible.",
+       "fr": "En général de 12 h 30 à 13 h 30. Mais c'est souple.",
+       "dit": "Usually from twelve thirty to one thirty. But it's flexible."
+      }
+     ]
+    },
+    {
+     "t": "Can I finish earlier on Friday?",
+     "fr": "Est-ce que je peux finir plus tôt le vendredi ?",
+     "va": "badge",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Yes. On Fridays, most of us leave at 4.",
+       "fr": "Oui. Le vendredi, presque tout le monde part à 16 h.",
+       "dit": "Yes. On Fridays, most of us leave at four."
+      }
+     ]
+    },
+    {
+     "t": "Can I come to the meeting today?",
+     "fr": "Est-ce que je peux venir à la réunion aujourd'hui ?",
+     "va": "badge",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Of course! It's a good way to meet everybody.",
+       "fr": "Bien sûr ! C'est une bonne façon de rencontrer tout le monde."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Can I assist to the meeting today?",
+     "fr": "Est-ce que je peux « aider » à la réunion aujourd'hui ?",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "perplexe",
+       "t": "Assist? Oh, you mean you want to come to the meeting!",
+       "fr": "Aider ? Ah, vous voulez dire venir à la réunion !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« assist »</b> veut dire aider. « Assister à une réunion », c'est « come to » ou « go to a meeting » : « Can I come to the meeting today? »"
+     }
+    },
+    {
+     "t": "Sorry, could you say the hours again?",
+     "fr": "Pardon, vous pouvez redire les horaires ?",
+     "va": "hours",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Sure. From 9 to 5:30, and one hour for lunch.",
+       "fr": "Bien sûr. De 9 h à 17 h 30, et une heure pour le déjeuner.",
+       "dit": "Sure. From nine to five thirty, and one hour for lunch."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "badge": {
+   "dit": [
+    {
+     "qui": "a22_elena",
+     "air": "attentive",
+     "t": "One more thing: your badge isn't ready yet. Can you come by my office tomorrow at 8:45?",
+     "fr": "Encore une chose : votre badge n'est pas encore prêt. Pouvez-vous passer à mon bureau demain à 8 h 45 ?",
+     "dit": "One more thing: your badge isn't ready yet. Can you come by my office tomorrow at eight forty-five?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, no problem. Tomorrow at eight forty-five.",
+     "fr": "Oui, pas de problème. Demain à huit heures quarante-cinq.",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Thank you. It only takes two minutes.",
+       "fr": "Merci. Ça ne prend que deux minutes."
+      }
+     ]
+    },
+    {
+     "t": "Sure. I'll be there.",
+     "fr": "Bien sûr. J'y serai.",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Great. Until then, Javier can open the door for you.",
+       "fr": "Très bien. D'ici là, Javier peut vous ouvrir la porte."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, tomorrow at nine forty-five.",
+     "fr": "D'accord, demain à neuf heures quarante-cinq.",
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "surprise",
+       "t": "No, eight forty-five. Before the day starts!",
+       "fr": "Non, huit heures quarante-cinq. Avant le début de la journée !"
+      }
+     ],
+     "aide": {
+      "fr": "Elle a dit <b>« eight forty-five »</b> : 8 h 45, pas 9 h 45. Confirme l'heure : « Tomorrow at eight forty-five. »"
+     }
+    }
+   ]
+  },
+  "javier": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un homme à moustache arrive, une tasse à la main."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Hi! You're the new person, right? I'm Javier. I sit right across from you.",
+     "fr": "Salut ! C'est toi, la nouvelle personne, non ? Moi, c'est Javier. Je suis assis juste en face de toi."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hi Javier, nice to meet you!",
+     "fr": "Bonjour Javier, enchanté(e) !",
+     "va": "coffee",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Nice to meet you too!",
+       "fr": "Enchanté, moi aussi !"
+      }
+     ]
+    },
+    {
+     "t": "Hello! Nice to meet you. I'm new here.",
+     "fr": "Bonjour ! Enchanté(e). Je suis nouveau (nouvelle) ici.",
+     "va": "coffee",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "I know! Elena told us. Welcome!",
+       "fr": "Je sais ! Elena nous l'a dit. Bienvenue !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nice to meet you, Mister Javier.",
+     "fr": "Enchanté(e), monsieur Javier.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Just Javier, please! We all use first names here.",
+       "fr": "Javier tout court, s'il te plaît ! Ici, tout le monde s'appelle par son prénom."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Mister » ne va qu'avec un nom de famille</b> (Mister Smith). Dans un bureau américain, on s'appelle par le prénom : « Nice to meet you, Javier! »"
+     }
+    }
+   ]
+  },
+  "coffee": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Do you want a coffee? The kitchen is right here, and the coffee is free.",
+     "fr": "Tu veux un café ? La cuisine est juste là, et le café est gratuit."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, please. I'd love a coffee.",
+     "fr": "Oui, s'il te plaît. Je veux bien un café.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Good answer! Come on, I'll show you the machine.",
+       "fr": "Bonne réponse ! Viens, je te montre la machine."
+      }
+     ]
+    },
+    {
+     "t": "No, thank you. Maybe later.",
+     "fr": "Non, merci. Peut-être plus tard.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Sure. Just tell me when.",
+       "fr": "D'accord. Tu me dis quand tu veux."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I want.",
+     "fr": "Oui, je veux.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "You want … a coffee?",
+       "fr": "Tu veux… un café ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« I want » ne s'emploie pas seul</b> : il lui faut un complément, et il est un peu sec. Pour accepter : « Yes, please. »"
+     }
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_elena",
+     "air": "sourire",
+     "t": "Have a great first day! My office is at the end of the hall if you need anything.",
+     "fr": "Bonne première journée ! Mon bureau est au bout du couloir si vous avez besoin de quelque chose.",
+     "t_gb": "Have a great first day! My office is at the end of the corridor if you need anything."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you very much. See you later!",
+     "fr": "Merci beaucoup. À tout à l'heure !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "See you later!",
+       "fr": "À tout à l'heure !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks, Elena. See you tomorrow morning!",
+     "fr": "Merci, Elena. À demain matin !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_elena",
+       "air": "sourire",
+       "t": "Yes, for your badge. Enjoy your day!",
+       "fr": "Oui, pour votre badge. Bonne journée !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as trouvé ton bureau, noté les horaires (de 9 h à 17 h 30), pris rendez-vous demain à 8 h 45 pour ton badge et rencontré Javier, ton collègue."
+ }
+}

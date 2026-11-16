@@ -1,0 +1,325 @@
+{
+ "id": "a2-bibliotheque",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {
+  "fr": "À la bibliothèque"
+ },
+ "intro": {
+  "fr": "Tu as déjà ta carte de la bibliothèque de quartier. Aujourd'hui, tu rends des livres, tu en prolonges un et tu cherches un livre facile."
+ },
+ "personnes": [
+  "a22_pablo"
+ ],
+ "debut": "theke",
+ "noeuds": {
+  "theke": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La bibliothèque du quartier, au comptoir des prêts."
+     }
+    },
+    {
+     "qui": "a22_pablo",
+     "air": "sourire",
+     "t": "Guten Tag! Kann ich Ihnen helfen?",
+     "fr": "Bonjour ! Je peux vous aider ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Guten Tag! Ich möchte diese zwei Bücher zurückgeben.",
+     "fr": "Bonjour ! Je voudrais rendre ces deux livres.",
+     "va": "verlaengern",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Gern, legen Sie sie einfach hier hin.",
+       "fr": "Volontiers, posez-les simplement ici."
+      }
+     ]
+    },
+    {
+     "t": "Ja, bitte. Ich bringe zwei Bücher zurück.",
+     "fr": "Oui, s'il vous plaît. Je rapporte deux livres.",
+     "va": "verlaengern",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Danke, legen Sie sie einfach hier hin.",
+       "fr": "Merci, posez-les simplement ici."
+      }
+     ]
+    }
+   ]
+  },
+  "verlaengern": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "Haben Sie noch andere Bücher ausgeliehen?",
+     "fr": "Vous avez emprunté d'autres livres ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, ein Buch habe ich noch nicht fertig gelesen. Kann ich es länger behalten?",
+     "fr": "Oui, il y a un livre que je n'ai pas fini de lire. Je peux le garder plus longtemps ?",
+     "va": "online",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Natürlich, ich verlängere es. Jetzt können Sie es bis zum 15. Dezember behalten.",
+       "fr": "Bien sûr, je le prolonge. Maintenant, vous pouvez le garder jusqu'au 15 décembre.",
+       "dit": "Natürlich, ich verlängere es. Jetzt können Sie es bis zum fünfzehnten Dezember behalten."
+      }
+     ]
+    },
+    {
+     "t": "Ja, noch eins. Kann ich es noch drei Wochen behalten?",
+     "fr": "Oui, encore un. Je peux le garder encore trois semaines ?",
+     "va": "online",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Ich verlängere es um vier Wochen, bis zum 15. Dezember.",
+       "fr": "Je le prolonge de quatre semaines, jusqu'au 15 décembre.",
+       "dit": "Ich verlängere es um vier Wochen, bis zum fünfzehnten Dezember."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich habe das Buch noch nicht fertig.",
+     "fr": "Oui, je n'ai pas encore fini le livre.",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "attentive",
+       "t": "Sie haben es noch nicht fertig gelesen? Kein Problem.",
+       "fr": "Vous ne l'avez pas encore fini ? Pas de problème."
+      }
+     ],
+     "aide": {
+      "fr": "<b>En allemand, on « finit de lire » : « fertig lesen »</b>. « Ich habe das Buch noch nicht fertig gelesen » (ou « Ich bin mit dem Buch noch nicht fertig »)."
+     }
+    }
+   ]
+  },
+  "online": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "attentive",
+     "t": "Übrigens: Das können Sie auch online machen, mit Ihrer Ausweisnummer und Ihrem Passwort.",
+     "fr": "Au fait : vous pouvez aussi le faire en ligne, avec votre numéro de carte et votre mot de passe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ah, praktisch! Wo finde ich das?",
+     "fr": "Ah, pratique ! Où est-ce que je trouve ça ?",
+     "va": "suchen",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Auf unserer Webseite, unter „Mein Konto“.",
+       "fr": "Sur notre site, sous « Mon compte »."
+      }
+     ]
+    },
+    {
+     "t": "Gut zu wissen, danke.",
+     "fr": "Bon à savoir, merci.",
+     "va": "suchen",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Gern.",
+       "fr": "Je vous en prie."
+      }
+     ]
+    }
+   ]
+  },
+  "suchen": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "Suchen Sie heute noch etwas?",
+     "fr": "Vous cherchez encore quelque chose aujourd'hui ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, ich suche einfache Bücher auf Deutsch.",
+     "fr": "Oui, je cherche des livres faciles en allemand.",
+     "va": "vormerken",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Da haben wir eine schöne Ecke mit leichten Romanen. Oh, aber der beste ist gerade ausgeliehen.",
+       "fr": "Nous avons un joli coin avec des romans faciles. Oh, mais le meilleur est emprunté en ce moment."
+      }
+     ]
+    },
+    {
+     "t": "Ja, ein Buch über Berlin. Etwas Einfaches, bitte.",
+     "fr": "Oui, un livre sur Berlin. Quelque chose de facile, s'il vous plaît.",
+     "va": "vormerken",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Da habe ich etwas Schönes, mit vielen Fotos. Hm, das ist aber gerade ausgeliehen.",
+       "fr": "J'ai quelque chose de joli, avec beaucoup de photos. Hum, mais il est emprunté en ce moment."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich möchte ein Buch für zwei Wochen mieten.",
+     "fr": "Oui, je voudrais louer un livre pour deux semaines.",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "amuse",
+       "t": "Mieten? Bei uns kostet das nichts! Sie können Bücher ausleihen.",
+       "fr": "Louer ? Chez nous, ça ne coûte rien ! Vous pouvez emprunter des livres."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« mieten », c'est louer</b> (un appartement, une voiture). Un livre, on l'emprunte : « ausleihen ». Dis : « Ich suche einfache Bücher auf Deutsch. »"
+     }
+    }
+   ]
+  },
+  "vormerken": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "question",
+     "t": "Soll ich es für Sie vormerken? Dann bekommen Sie eine E-Mail, wenn es wieder da ist.",
+     "fr": "Je vous le réserve ? Vous recevrez un e-mail quand il sera de retour."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, bitte. Wie lange liegt es dann für mich hier?",
+     "fr": "Oui, s'il vous plaît. Il reste ici pour moi combien de temps ?",
+     "va": "sprachcafe",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Eine Woche. Danach bekommt es die nächste Person.",
+       "fr": "Une semaine. Après, c'est la personne suivante qui l'a."
+      }
+     ]
+    },
+    {
+     "t": "Ja, gern. Wann kommt es zurück?",
+     "fr": "Oui, volontiers. Il revient quand ?",
+     "va": "sprachcafe",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Es muss am Freitag zurückkommen. Dann schreiben wir Ihnen.",
+       "fr": "Il doit revenir vendredi. Ensuite, on vous écrit."
+      }
+     ]
+    },
+    {
+     "t": "Entschuldigung, was bedeutet „vormerken“?",
+     "fr": "Pardon, que veut dire « vormerken » ?",
+     "va": "vormerken",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Ich reserviere das Buch für Sie. Dann bekommt es niemand anders.",
+       "fr": "Je réserve le livre pour vous. Comme ça, personne d'autre ne le prend."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "sprachcafe": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "attentive",
+     "t": "Ach, kennen Sie schon unser Sprachcafé? Jeden Mittwoch um 18 Uhr sprechen wir hier Deutsch, ganz locker.",
+     "fr": "Ah, vous connaissez notre café des langues ? Chaque mercredi à 18 h, on parle allemand ici, en toute décontraction.",
+     "dit": "Ach, kennen Sie schon unser Sprachcafé? Jeden Mittwoch um achtzehn Uhr sprechen wir hier Deutsch, ganz locker."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nein! Muss ich mich anmelden?",
+     "fr": "Non ! Je dois m'inscrire ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Nein, kommen Sie einfach vorbei.",
+       "fr": "Non, venez simplement."
+      }
+     ]
+    },
+    {
+     "t": "Das klingt super. Aber ich spreche noch nicht so gut.",
+     "fr": "Ça a l'air super. Mais je ne parle pas encore très bien.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_pablo",
+       "air": "sourire",
+       "t": "Das macht nichts! Alle sind willkommen, auch Anfänger.",
+       "fr": "Ça ne fait rien ! Tout le monde est bienvenu, les débutants aussi."
+      }
+     ]
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "a22_pablo",
+     "air": "sourire",
+     "t": "Dann vielleicht bis Mittwoch! Einen schönen Tag noch.",
+     "fr": "Alors peut-être à mercredi ! Bonne journée."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke, bis Mittwoch!",
+     "fr": "Merci, à mercredi !",
+     "va": null
+    },
+    {
+     "t": "Vielen Dank für Ihre Hilfe! Auf Wiedersehen.",
+     "fr": "Merci beaucoup pour votre aide ! Au revoir.",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as rendu deux livres, prolongé le troisième jusqu'au quinze décembre, réservé un livre déjà emprunté et découvert le café des langues du mercredi."
+ }
+}

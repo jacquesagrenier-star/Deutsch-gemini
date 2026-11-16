@@ -1,0 +1,405 @@
+{
+ "id": "a2-ordonnance",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {
+  "fr": "À la pharmacie, avec une ordonnance"
+ },
+ "intro": {
+  "fr": "Avec l'ordonnance du médecin, tu vas à la pharmacie de ton quartier. Récupère tes médicaments et pose tes questions."
+ },
+ "personnes": [
+  "a22_carmen"
+ ],
+ "debut": "rezept",
+ "prix": {
+  "zuzahlung": 500,
+  "lutsch": 695,
+  "tuecher": 150
+ },
+ "panier": [
+  "rez",
+  "extra"
+ ],
+ "textes": {
+  "extra_fr": {
+   "cle": "extra",
+   "lutsch": " et des pastilles pour la gorge",
+   "tuecher": " et des mouchoirs"
+  },
+  "abholen_fr": {
+   "cle": "abholen",
+   "heute": "cet après-midi",
+   "morgen": "demain matin"
+  }
+ },
+ "noeuds": {
+  "rezept": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La pharmacie près de chez toi. Une pharmacienne aux cheveux roux te sourit."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Guten Tag! Was kann ich für Sie tun?",
+     "fr": "Bonjour ! Qu'est-ce que je peux faire pour vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Guten Tag! Ich habe hier ein Rezept vom Arzt.",
+     "fr": "Bonjour ! J'ai ici une ordonnance du médecin.",
+     "pose": {
+      "rez": "zuzahlung"
+     },
+     "va": "lager",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Danke. Einen Moment, ich schaue mal.",
+       "fr": "Merci. Un instant, je regarde."
+      }
+     ]
+    },
+    {
+     "t": "Hallo! Ich brauche die Medikamente auf diesem Rezept.",
+     "fr": "Bonjour ! J'ai besoin des médicaments de cette ordonnance.",
+     "pose": {
+      "rez": "zuzahlung"
+     },
+     "va": "lager",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Gern. Einen Moment, ich schaue mal.",
+       "fr": "Volontiers. Un instant, je regarde."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Guten Tag, ich möchte ein Rezept kaufen.",
+     "fr": "Bonjour, je voudrais acheter une ordonnance.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "Ein Rezept kaufen? Das Rezept bekommen Sie vom Arzt. Haben Sie eins dabei?",
+       "fr": "Acheter une ordonnance ? L'ordonnance, c'est le médecin qui la donne. Vous en avez une sur vous ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« das Rezept », c'est l'ordonnance</b> : le médecin la donne, on ne l'achète pas. Dis : « Ich habe hier ein Rezept vom Arzt. »"
+     }
+    }
+   ]
+  },
+  "lager": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Also, die Tabletten habe ich hier. Aber den Hustensaft haben wir leider nicht da. Ich bestelle ihn – er ist heute ab 16 Uhr da.",
+     "fr": "Alors, les comprimés, je les ai. Mais le sirop pour la toux, nous ne l'avons pas. Je le commande – il sera là aujourd'hui à partir de 16 h.",
+     "dit": "Also, die Tabletten habe ich hier. Aber den Hustensaft haben wir leider nicht da. Ich bestelle ihn – er ist heute ab sechzehn Uhr da."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Gut, dann komme ich heute Nachmittag wieder.",
+     "fr": "Bien, alors je reviens cet après-midi.",
+     "pose": {
+      "abholen": "heute"
+     },
+     "va": "einnahme",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Prima. Ich lege ihn für Sie zurück.",
+       "fr": "Parfait. Je vous le mets de côté."
+      }
+     ]
+    },
+    {
+     "t": "Heute geht es nicht. Kann ich morgen früh kommen?",
+     "fr": "Aujourd'hui, ce n'est pas possible. Je peux venir demain matin ?",
+     "pose": {
+      "abholen": "morgen"
+     },
+     "va": "einnahme",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Natürlich, wir öffnen um acht.",
+       "fr": "Bien sûr, nous ouvrons à huit heures."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Schade. Dann brauche ich den Saft nicht.",
+     "fr": "Dommage. Alors je n'ai pas besoin du sirop.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "surprise",
+       "t": "Aber der Arzt hat ihn verschrieben! Er ist doch heute Nachmittag schon da.",
+       "fr": "Mais le médecin l'a prescrit ! Et il sera là dès cet après-midi."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Ich bestelle ihn » : elle le commande</b>, il arrive cet après-midi. Dis quand tu reviens : « Dann komme ich heute Nachmittag wieder. »"
+     }
+    }
+   ]
+  },
+  "einnahme": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "Wissen Sie, wie Sie die Tabletten nehmen müssen?",
+     "fr": "Vous savez comment prendre les comprimés ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nicht genau. Vor oder nach dem Essen?",
+     "fr": "Pas exactement. Avant ou après le repas ?",
+     "va": "sonst",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "Nach dem Essen, dreimal am Tag. Ich schreibe es Ihnen auf die Packung.",
+       "fr": "Après le repas, trois fois par jour. Je vous l'écris sur la boîte."
+      }
+     ]
+    },
+    {
+     "t": "Ja, der Arzt hat gesagt: dreimal am Tag, nach dem Essen.",
+     "fr": "Oui, le médecin a dit : trois fois par jour, après le repas.",
+     "va": "sonst",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Richtig. Und bitte mit Wasser, nicht mit Milch.",
+       "fr": "C'est ça. Et avec de l'eau, s'il vous plaît, pas avec du lait."
+      }
+     ]
+    },
+    {
+     "t": "Entschuldigung, wie bitte?",
+     "fr": "Pardon, comment ?",
+     "va": "einnahme",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Ich frage: Wissen Sie, wann Sie die Tabletten nehmen?",
+       "fr": "Je demande : vous savez quand prendre les comprimés ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "sonst": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "Brauchen Sie sonst noch etwas?",
+     "fr": "Vous avez besoin d'autre chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, haben Sie etwas gegen Halsschmerzen? Ohne Rezept?",
+     "fr": "Oui, vous avez quelque chose contre le mal de gorge ? Sans ordonnance ?",
+     "pose": {
+      "extra": "lutsch"
+     },
+     "va": "karte",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Ja, diese Lutschtabletten hier. Die helfen gut.",
+       "fr": "Oui, ces pastilles à sucer. Elles sont efficaces."
+      }
+     ]
+    },
+    {
+     "t": "Ja, eine Packung Taschentücher, bitte.",
+     "fr": "Oui, un paquet de mouchoirs, s'il vous plaît.",
+     "pose": {
+      "extra": "tuecher"
+     },
+     "va": "karte",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Gern, hier, bitte.",
+       "fr": "Volontiers, voilà."
+      }
+     ]
+    },
+    {
+     "t": "Nein danke, das ist alles.",
+     "fr": "Non merci, c'est tout.",
+     "va": "karte"
+    }
+   ]
+  },
+  "karte": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "Haben Sie eine Kundenkarte bei uns?",
+     "fr": "Vous avez une carte de fidélité chez nous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nein. Brauche ich eine?",
+     "fr": "Non. J'en ai besoin d'une ?",
+     "va": "zahlen",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Nein, aber dann bekommen Sie manchmal Rabatt. Hier ist ein Formular, wenn Sie möchten.",
+       "fr": "Non, mais vous avez parfois des réductions. Voici un formulaire, si vous voulez."
+      }
+     ]
+    },
+    {
+     "t": "Nein, heute nicht, danke.",
+     "fr": "Non, pas aujourd'hui, merci.",
+     "va": "zahlen",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Kein Problem.",
+       "fr": "Pas de problème."
+      }
+     ]
+    }
+   ]
+  },
+  "zahlen": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Mit der Zuzahlung für das Rezept macht das zusammen {a_payer}.",
+     "fr": "Avec la participation pour l'ordonnance, ça fait {a_payer} en tout.",
+     "dit": "Mit der Zuzahlung für das Rezept macht das zusammen {a_payer:mots}."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Mit Karte, bitte.",
+     "fr": "Par carte, s'il vous plaît.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Gern. So, hier ist Ihre Quittung.",
+       "fr": "Volontiers. Voilà votre reçu."
+      }
+     ]
+    },
+    {
+     "t": "Bar. Hier, bitte.",
+     "fr": "En espèces. Voilà.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Danke, und hier ist Ihr Wechselgeld.",
+       "fr": "Merci, et voici votre monnaie."
+      }
+     ]
+    },
+    {
+     "t": "Was ist eine Zuzahlung?",
+     "fr": "C'est quoi, une « Zuzahlung » ?",
+     "va": "zahlen",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Für Medikamente auf Rezept zahlen Sie einen kleinen Teil, die Krankenkasse zahlt den Rest.",
+       "fr": "Pour les médicaments sur ordonnance, vous payez une petite partie, la caisse d'assurance maladie paie le reste."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Und denken Sie an den Hustensaft: heute ab vier. Gute Besserung!",
+     "fr": "Et pensez au sirop : aujourd'hui à partir de quatre heures. Bon rétablissement !",
+     "si": {
+      "abholen": "heute"
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Und denken Sie an den Hustensaft: morgen ab acht. Gute Besserung!",
+     "fr": "Et pensez au sirop : demain à partir de huit heures. Bon rétablissement !",
+     "si": {
+      "abholen": "morgen"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke! Bis heute Nachmittag.",
+     "fr": "Merci ! À cet après-midi.",
+     "si": {
+      "abholen": "heute"
+     },
+     "va": null
+    },
+    {
+     "t": "Danke! Bis morgen.",
+     "fr": "Merci ! À demain.",
+     "si": {
+      "abholen": "morgen"
+     },
+     "va": null
+    },
+    {
+     "t": "Vielen Dank! Auf Wiedersehen.",
+     "fr": "Merci beaucoup ! Au revoir.",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as eu tes comprimés{extra_fr}, payé {a_payer} et tu reviens chercher le sirop {abholen_fr}."
+ }
+}

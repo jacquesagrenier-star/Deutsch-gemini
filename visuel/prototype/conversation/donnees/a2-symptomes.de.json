@@ -1,0 +1,519 @@
+{
+ "id": "a2-symptomes",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {
+  "fr": "Chez le médecin"
+ },
+ "intro": {
+  "fr": "Tu ne te sens pas bien depuis quelques jours. Tu vas chez le médecin généraliste de ton quartier : explique ce que tu as et comprends ce qu'il faut faire."
+ },
+ "personnes": [
+  "a22_diego"
+ ],
+ "debut": "beschwerden",
+ "textes": {
+  "sym_fr": {
+   "cle": "sym",
+   "hals": "mal à la gorge et de la fièvre",
+   "bauch": "mal au ventre et la nausée"
+  },
+  "prise_fr": {
+   "cle": "sym",
+   "hals": "après le repas",
+   "bauch": "avant le repas"
+  }
+ },
+ "noeuds": {
+  "beschwerden": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le cabinet du médecin. Le docteur te fait entrer et t'invite à t'asseoir."
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Guten Tag! Bitte, setzen Sie sich. Was fehlt Ihnen denn?",
+     "fr": "Bonjour ! Asseyez-vous, je vous en prie. Qu'est-ce qui ne va pas ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich habe Halsschmerzen, und ich glaube, ich habe Fieber.",
+     "fr": "J'ai mal à la gorge, et je crois que j'ai de la fièvre.",
+     "pose": {
+      "sym": "hals"
+     },
+     "va": "seit",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Oh, das tut mir leid. Seit wann haben Sie die Beschwerden?",
+       "fr": "Oh, je suis désolé. Depuis quand avez-vous ces symptômes ?"
+      }
+     ]
+    },
+    {
+     "t": "Mir ist schlecht, und ich habe Bauchschmerzen.",
+     "fr": "J'ai la nausée, et j'ai mal au ventre.",
+     "pose": {
+      "sym": "bauch"
+     },
+     "va": "seit",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Oh, das tut mir leid. Seit wann haben Sie die Beschwerden?",
+       "fr": "Oh, je suis désolé. Depuis quand avez-vous ces symptômes ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich bin Fieber, und mein Hals ist Schmerzen.",
+     "fr": "J'ai de la fièvre, et j'ai mal à la gorge.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "Sie haben Fieber? Und Halsschmerzen?",
+       "fr": "Vous avez de la fièvre ? Et mal à la gorge ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>On « a » de la fièvre : « Ich habe Fieber ».</b> Pour la douleur : « Ich habe Halsschmerzen » ou « Mein Hals tut weh »."
+     }
+    }
+   ]
+  },
+  "seit": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le médecin prend des notes."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Seit drei Tagen.",
+     "fr": "Depuis trois jours.",
+     "va": "fieber",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Verstehe.",
+       "fr": "Je vois."
+      }
+     ]
+    },
+    {
+     "t": "Seit Montag. Es wird jeden Tag schlimmer.",
+     "fr": "Depuis lundi. C'est pire chaque jour.",
+     "va": "fieber",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Verstehe.",
+       "fr": "Je vois."
+      }
+     ]
+    }
+   ]
+  },
+  "fieber": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Haben Sie Fieber gemessen?",
+     "fr": "Vous avez pris votre température ?",
+     "si": {
+      "sym": "hals"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Haben Sie auch Fieber oder Durchfall?",
+     "fr": "Vous avez aussi de la fièvre ou la diarrhée ?",
+     "si": {
+      "sym": "bauch"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, heute Morgen: achtunddreißig Komma fünf.",
+     "fr": "Oui, ce matin : trente-huit cinq.",
+     "si": {
+      "sym": "hals"
+     },
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Das ist ziemlich hoch.",
+       "fr": "C'est assez élevé."
+      }
+     ]
+    },
+    {
+     "t": "Nein, aber mir ist sehr warm, und ich bin müde.",
+     "fr": "Non, mais j'ai très chaud, et je suis fatigué(e).",
+     "si": {
+      "sym": "hals"
+     },
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Gut, ich messe gleich.",
+       "fr": "Bien, je vais la prendre tout de suite."
+      }
+     ]
+    },
+    {
+     "t": "Kein Fieber. Aber ich kann nichts essen.",
+     "fr": "Pas de fièvre. Mais je ne peux rien manger.",
+     "si": {
+      "sym": "bauch"
+     },
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Verstehe. Trinken Sie bitte viel.",
+       "fr": "Je vois. Buvez beaucoup, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "t": "Ein bisschen Fieber, achtunddreißig Grad.",
+     "fr": "Un peu de fièvre, trente-huit degrés.",
+     "si": {
+      "sym": "bauch"
+     },
+     "va": "medikamente",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Gut, das ist nicht so hoch.",
+       "fr": "Bien, ce n'est pas très élevé."
+      }
+     ]
+    }
+   ]
+  },
+  "medikamente": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Haben Sie schon Medikamente genommen?",
+     "fr": "Vous avez déjà pris des médicaments ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, gestern Abend eine Tablette gegen die Schmerzen.",
+     "fr": "Oui, hier soir, un comprimé contre la douleur.",
+     "va": "allergie",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Gut. Das hilft für den Moment.",
+       "fr": "Bien. Ça soulage sur le moment."
+      }
+     ]
+    },
+    {
+     "t": "Nein, noch nichts.",
+     "fr": "Non, encore rien.",
+     "va": "allergie",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "In Ordnung.",
+       "fr": "D'accord."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich habe gestern eine Tablette genehmt.",
+     "fr": "Oui, hier, j'ai pris un comprimé.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Sie haben gestern eine Tablette genommen? Gut.",
+       "fr": "Vous avez pris un comprimé hier ? Bien."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« nehmen » est irrégulier</b> : « ich habe … genommen »."
+     }
+    }
+   ]
+  },
+  "allergie": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Haben Sie eine Allergie gegen Medikamente?",
+     "fr": "Vous êtes allergique à des médicaments ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nein, ich habe keine Allergien.",
+     "fr": "Non, je n'ai pas d'allergies.",
+     "va": "untersuchung",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Gut.",
+       "fr": "Bien."
+      }
+     ]
+    },
+    {
+     "t": "Ja, gegen Penizillin.",
+     "fr": "Oui, à la pénicilline.",
+     "pose": {
+      "pen": "ja"
+     },
+     "va": "untersuchung",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Gut, dass Sie das sagen. Dann nehmen wir etwas anderes.",
+       "fr": "C'est bien de me le dire. Alors on prendra autre chose."
+      }
+     ]
+    },
+    {
+     "t": "Können Sie das bitte noch einmal sagen?",
+     "fr": "Vous pouvez le redire, s'il vous plaît ?",
+     "va": "allergie",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Natürlich: Vertragen Sie alle Medikamente, oder haben Sie eine Allergie?",
+       "fr": "Bien sûr : vous supportez tous les médicaments, ou vous avez une allergie ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "untersuchung": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le médecin regarde ta gorge et écoute tes poumons."
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Ihr Hals ist sehr rot. Das ist eine Infektion, aber nichts Schlimmes. Arbeiten Sie? Brauchen Sie eine Krankschreibung?",
+     "fr": "Votre gorge est très rouge. C'est une infection, mais rien de grave. Vous travaillez ? Vous avez besoin d'un arrêt de travail ?",
+     "si": {
+      "sym": "hals"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Das ist ein Magen-Darm-Infekt. Nichts Schlimmes, aber Sie brauchen Ruhe. Arbeiten Sie? Brauchen Sie eine Krankschreibung?",
+     "fr": "C'est une gastro-entérite. Rien de grave, mais vous avez besoin de repos. Vous travaillez ? Vous avez besoin d'un arrêt de travail ?",
+     "si": {
+      "sym": "bauch"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, bitte. Für wie lange?",
+     "fr": "Oui, s'il vous plaît. Pour combien de temps ?",
+     "va": "rezept",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Für drei Tage, bis Freitag. Bleiben Sie zu Hause und schlafen Sie viel.",
+       "fr": "Pour trois jours, jusqu'à vendredi. Restez à la maison et dormez beaucoup."
+      }
+     ]
+    },
+    {
+     "t": "Ja, für meinen Chef. Wie viele Tage?",
+     "fr": "Oui, pour mon chef. Combien de jours ?",
+     "va": "rezept",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Drei Tage, bis Freitag. Und ruhen Sie sich gut aus.",
+       "fr": "Trois jours, jusqu'à vendredi. Et reposez-vous bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, bitte, zwei Wochen Urlaub.",
+     "fr": "Oui, s'il vous plaît, deux semaines de vacances.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "amuse",
+       "t": "Urlaub? Nein, nein: Sie sind krank, nicht im Urlaub. Drei Tage reichen.",
+       "fr": "Des vacances ? Non, non : vous êtes malade, pas en vacances. Trois jours, ça suffit."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Urlaub », ce sont les vacances.</b> L'arrêt maladie, c'est la « Krankschreibung » : demande simplement « Ja, bitte. Für wie lange? »"
+     }
+    }
+   ]
+  },
+  "rezept": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Ich schreibe Ihnen ein Rezept. Nehmen Sie die Tabletten dreimal am Tag nach dem Essen, fünf Tage lang.",
+     "fr": "Je vous fais une ordonnance. Prenez les comprimés trois fois par jour après le repas, pendant cinq jours.",
+     "si": {
+      "sym": "hals"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Ich schreibe Ihnen ein Rezept. Nehmen Sie die Tabletten dreimal am Tag vor dem Essen. Und trinken Sie viel Tee.",
+     "fr": "Je vous fais une ordonnance. Prenez les comprimés trois fois par jour avant le repas. Et buvez beaucoup de thé.",
+     "si": {
+      "sym": "bauch"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Natürlich ohne Penizillin.",
+     "fr": "Sans pénicilline, bien sûr.",
+     "si": {
+      "pen": "ja"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Also dreimal am Tag, nach dem Essen.",
+     "fr": "Donc trois fois par jour, après le repas.",
+     "si": {
+      "sym": "hals"
+     },
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Genau.",
+       "fr": "C'est ça."
+      }
+     ]
+    },
+    {
+     "t": "Also dreimal am Tag, vor dem Essen.",
+     "fr": "Donc trois fois par jour, avant le repas.",
+     "si": {
+      "sym": "bauch"
+     },
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Genau.",
+       "fr": "C'est ça."
+      }
+     ]
+    },
+    {
+     "t": "Muss ich die Tabletten mit Wasser nehmen?",
+     "fr": "Je dois prendre les comprimés avec de l'eau ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Ja, mit einem großen Glas Wasser.",
+       "fr": "Oui, avec un grand verre d'eau."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Dreimal in der Woche?",
+     "fr": "Trois fois par semaine ?",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "Nein, dreimal am Tag: morgens, mittags und abends.",
+       "fr": "Non, trois fois par jour : le matin, le midi et le soir."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« am Tag », c'est par jour</b> ; « in der Woche », par semaine. Répète pour vérifier : « Also dreimal am Tag … »"
+     }
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Wenn es in einer Woche nicht besser ist, kommen Sie bitte wieder. Gute Besserung!",
+     "fr": "Si ça ne va pas mieux dans une semaine, revenez, s'il vous plaît. Bon rétablissement !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Vielen Dank, Herr Doktor. Auf Wiedersehen!",
+     "fr": "Merci beaucoup, docteur. Au revoir !",
+     "va": null
+    },
+    {
+     "t": "Danke! Auf Wiedersehen.",
+     "fr": "Merci ! Au revoir.",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as expliqué tes symptômes ({sym_fr}), obtenu un arrêt de travail de trois jours et une ordonnance : trois fois par jour, {prise_fr}."
+ }
+}

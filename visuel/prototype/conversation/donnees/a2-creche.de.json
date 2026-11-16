@@ -1,0 +1,336 @@
+{
+ "id": "a2-creche",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {
+  "fr": "Le premier jour à la crèche"
+ },
+ "intro": {
+  "fr": "Ta fille Lina, deux ans, entre à la crèche (la Kita). Aujourd'hui commence la période d'adaptation : tu restes avec elle et tu parles avec l'éducatrice."
+ },
+ "personnes": [
+  "a22_ines"
+ ],
+ "debut": "ankunft",
+ "textes": {
+  "allergie_fr": {
+   "cle": "allergie",
+   "ja": " (et son allergie aux noix)"
+  }
+ },
+ "noeuds": {
+  "ankunft": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Huit heures et demie, à la Kita. Lina te tient la main très fort."
+     }
+    },
+    {
+     "qui": "a22_ines",
+     "air": "sourire",
+     "t": "Guten Morgen! Hallo, Lina! Ich bin Ines, die Erzieherin. Heute ist der erste Tag der Eingewöhnung, richtig?",
+     "fr": "Bonjour ! Coucou, Lina ! Je suis Ines, l'éducatrice. Aujourd'hui, c'est le premier jour de l'adaptation, c'est bien ça ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, genau. Lina ist ein bisschen nervös.",
+     "fr": "Oui, c'est ça. Lina est un peu nerveuse.",
+     "va": "sachen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Das ist ganz normal. Wir haben viel Zeit.",
+       "fr": "C'est tout à fait normal. On a tout notre temps."
+      }
+     ]
+    },
+    {
+     "t": "Ja, guten Morgen! Lina ist noch ein bisschen müde.",
+     "fr": "Oui, bonjour ! Lina est encore un peu fatiguée.",
+     "va": "sachen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Kein Problem, wir machen alles ganz langsam.",
+       "fr": "Pas de problème, on fait tout tout doucement."
+      }
+     ]
+    }
+   ]
+  },
+  "sachen": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "Haben Sie Wechselkleidung und Hausschuhe für Lina dabei?",
+     "fr": "Vous avez des vêtements de rechange et des chaussons pour Lina ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, alles ist hier in der Tasche.",
+     "fr": "Oui, tout est ici, dans le sac.",
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Super, das kommt in ihr Fach.",
+       "fr": "Super, ça va dans son casier."
+      }
+     ]
+    },
+    {
+     "t": "Die Kleidung ja, aber die Hausschuhe habe ich vergessen. Ich bringe sie morgen mit.",
+     "fr": "Les vêtements, oui, mais j'ai oublié les chaussons. Je les apporte demain.",
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Kein Problem, heute bleibt sie in Socken.",
+       "fr": "Pas de problème, aujourd'hui elle reste en chaussettes."
+      }
+     ]
+    },
+    {
+     "t": "Entschuldigung, was ist Wechselkleidung?",
+     "fr": "Pardon, c'est quoi, « Wechselkleidung » ?",
+     "va": "sachen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Kleidung zum Wechseln: eine Hose, ein T-Shirt, Socken. Wenn etwas schmutzig wird.",
+       "fr": "Des vêtements pour changer : un pantalon, un t-shirt, des chaussettes. Si quelque chose se salit."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "essen": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "Isst Lina alles? Hat sie eine Allergie?",
+     "fr": "Lina mange de tout ? Elle a une allergie ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sie isst fast alles, aber sie trinkt keine Milch.",
+     "fr": "Elle mange presque tout, mais elle ne boit pas de lait.",
+     "va": "bleiben",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Gut zu wissen. Wir haben auch Hafermilch.",
+       "fr": "Bon à savoir. On a aussi du lait d'avoine."
+      }
+     ]
+    },
+    {
+     "t": "Ja, sie ist allergisch gegen Nüsse.",
+     "fr": "Oui, elle est allergique aux noix.",
+     "pose": {
+      "allergie": "ja"
+     },
+     "va": "bleiben",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "Danke, das ist sehr wichtig. Ich schreibe es auf die Liste in der Küche.",
+       "fr": "Merci, c'est très important. Je l'écris sur la liste de la cuisine."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, sie ist allergisch auf Nüsse.",
+     "fr": "Oui, elle est allergique aux noix.",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "Allergisch gegen Nüsse? Danke, das notiere ich.",
+       "fr": "Allergique aux noix ? Merci, je le note."
+      }
+     ],
+     "aide": {
+      "fr": "<b>On est allergique « gegen » quelque chose</b> : « Sie ist allergisch gegen Nüsse »."
+     }
+    }
+   ]
+  },
+  "bleiben": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "attentive",
+     "t": "Heute bleiben Sie eine Stunde mit Lina hier im Gruppenraum. Sie spielen mit ihr, und ich bin dabei.",
+     "fr": "Aujourd'hui, vous restez une heure avec Lina ici, dans la salle. Vous jouez avec elle, et je suis là aussi."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Gut. Und wann kann ich sie allein hier lassen?",
+     "fr": "Bien. Et quand est-ce que je peux la laisser seule ici ?",
+     "va": "abholen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Vielleicht in drei oder vier Tagen. Wir machen es Schritt für Schritt.",
+       "fr": "Peut-être dans trois ou quatre jours. On fait ça pas à pas."
+      }
+     ]
+    },
+    {
+     "t": "Gut. Wie lange dauert das alles?",
+     "fr": "Bien. Combien de temps ça dure, tout ça ?",
+     "va": "abholen",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Meistens zwei oder drei Wochen. Jedes Kind ist anders.",
+       "fr": "En général deux ou trois semaines. Chaque enfant est différent."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Gut, dann gehe ich jetzt einkaufen.",
+     "fr": "Bien, alors je vais faire les courses maintenant.",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "surprise",
+       "t": "Oh, nein! Heute bleiben Sie bitte hier, bei Lina.",
+       "fr": "Oh, non ! Aujourd'hui, vous restez ici, s'il vous plaît, avec Lina."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Heute bleiben Sie … hier »</b> : aujourd'hui, tu restes dans la salle avec Lina. C'est le principe de l'adaptation : on part petit à petit."
+     }
+    }
+   ]
+  },
+  "abholen": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "Wer holt Lina später normalerweise ab?",
+     "fr": "Plus tard, qui viendra chercher Lina, d'habitude ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Meistens ich. Manchmal ihre Oma. Ist das okay?",
+     "fr": "La plupart du temps, moi. Parfois sa grand-mère. Ça va ?",
+     "va": "telefon",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "Ja, aber für die Oma brauchen wir eine Vollmacht mit Ihrer Unterschrift.",
+       "fr": "Oui, mais pour la grand-mère, il nous faut une autorisation avec votre signature."
+      }
+     ]
+    },
+    {
+     "t": "Ich hole sie ab, immer um drei.",
+     "fr": "C'est moi qui viens la chercher, toujours à trois heures.",
+     "va": "telefon",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Gut, das schreibe ich auf.",
+       "fr": "Bien, je le note."
+      }
+     ]
+    }
+   ]
+  },
+  "telefon": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "Und unter welcher Nummer erreichen wir Sie, wenn etwas ist?",
+     "fr": "Et à quel numéro on peut vous joindre, s'il y a quelque chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Meine Nummer ist null eins sieben zwei, drei vier fünf, sechs sieben acht.",
+     "fr": "Mon numéro, c'est zéro un sept deux, trois quatre cinq, six sept huit.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Danke, ich habe sie notiert.",
+       "fr": "Merci, je l'ai noté."
+      }
+     ]
+    },
+    {
+     "t": "Die Nummer steht auf dem Formular. Rufen Sie mich bitte an, wenn etwas ist.",
+     "fr": "Le numéro est sur le formulaire. Appelez-moi, s'il vous plaît, s'il y a quelque chose.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Natürlich, das machen wir.",
+       "fr": "Bien sûr, c'est ce qu'on fera."
+      }
+     ]
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Une heure plus tard. Lina joue avec des cubes, elle a oublié d'être timide."
+     }
+    },
+    {
+     "qui": "a22_ines",
+     "air": "sourire",
+     "t": "Das war ein toller erster Tag! Morgen bleiben Sie wieder eine Stunde, und dann sehen wir weiter.",
+     "fr": "C'était une super première journée ! Demain, vous restez encore une heure, et ensuite on verra."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke! Bis morgen, um halb neun.",
+     "fr": "Merci ! À demain, huit heures et demie.",
+     "va": null
+    },
+    {
+     "t": "Vielen Dank für alles. Bis morgen!",
+     "fr": "Merci beaucoup pour tout. À demain !",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as apporté les affaires de Lina, parlé de ce qu'elle mange{allergie_fr}, compris l'adaptation pas à pas et laissé ton numéro."
+ }
+}

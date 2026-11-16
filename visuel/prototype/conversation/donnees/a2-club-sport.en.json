@@ -1,0 +1,388 @@
+{
+ "id": "a2-club-sport",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "familier",
+ "titre": {
+  "fr": "S'inscrire au club de sport"
+ },
+ "intro": {
+  "fr": "Tu veux jouer au volley-ball avec un groupe amateur, le soir, au gymnase du centre communautaire. Parle à Lucas, l'entraîneur : les jours, ce qu'il faut apporter, le prix."
+ },
+ "personnes": [
+  "a22_lucas"
+ ],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Mardi, un peu avant sept heures du soir, au gymnase du centre communautaire. Des gens installent un filet. Un homme barbu vient vers toi, un ballon sous le bras."
+     }
+    },
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Hey there! Are you here for the free trial night?",
+     "fr": "Salut ! Tu viens pour la soirée d'essai gratuite ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes! I'd like to try volleyball.",
+     "fr": "Oui ! J'aimerais essayer le volley-ball.",
+     "va": "played",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Awesome! I'm Lucas, the coach. Welcome!",
+       "fr": "Génial ! Je suis Lucas, l'entraîneur. Bienvenue !",
+       "t_gb": "Brilliant! I'm Lucas, the coach. Welcome!"
+      }
+     ]
+    },
+    {
+     "t": "Hi! Yes, I saw it online. Can I play tonight?",
+     "fr": "Salut ! Oui, je l'ai vu en ligne. Je peux jouer ce soir ?",
+     "va": "played",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Sure! I'm Lucas, the coach. Welcome!",
+       "fr": "Bien sûr ! Je suis Lucas, l'entraîneur. Bienvenue !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I'm here for the essay.",
+     "fr": "Oui, je viens pour la « dissertation ».",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "amuse",
+       "t": "An essay? This is a gym, not a school! Oh, you want to try!",
+       "fr": "Une dissertation ? C'est un gymnase, pas une école ! Ah, tu veux essayer !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« essay »</b>, c'est une dissertation. Un essai se dit « a trial », et essayer « to try » : « I'd like to try volleyball. »"
+     }
+    }
+   ]
+  },
+  "played": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "Have you played before?",
+     "fr": "Tu as déjà joué ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I played in school, a long time ago.",
+     "t_gb": "Yes, I played at school, a long time ago.",
+     "fr": "Oui, j'ai joué à l'école, il y a longtemps.",
+     "va": "days",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Then it'll come back fast. It's like riding a bike.",
+       "fr": "Alors ça reviendra vite. C'est comme le vélo."
+      }
+     ]
+    },
+    {
+     "t": "No, never. Is that a problem?",
+     "fr": "Non, jamais. C'est un problème ?",
+     "va": "days",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Not at all! We have beginners and good players. Everybody's welcome.",
+       "fr": "Pas du tout ! On a des débutants et de bons joueurs. Tout le monde est bienvenu."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I play since ten years.",
+     "fr": "Oui, je joue depuis dix ans. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "perplexe",
+       "t": "Since ten years …? Oh, you've played for ten years! Wow!",
+       "fr": "« Since ten years »… ? Ah, tu joues depuis dix ans ! Waouh !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une action qui dure encore : present perfect + « for » + la durée</b> : « I've played for ten years. » « since » va avec un point de départ (since 2015)."
+     }
+    }
+   ]
+  },
+  "days": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "We practice on Tuesdays and Thursdays, from 7 to 9 p.m.",
+     "fr": "On s'entraîne le mardi et le jeudi, de 19 h à 21 h.",
+     "t_gb": "We train on Tuesdays and Thursdays, from 7 to 9 p.m.",
+     "dit": "We practice on Tuesdays and Thursdays, from seven to nine p.m.",
+     "dit_gb": "We train on Tuesdays and Thursdays, from seven to nine p.m."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Can I come only on Thursdays?",
+     "fr": "Je peux venir seulement le jeudi ?",
+     "va": "bring",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Sure. Lots of people come once a week.",
+       "fr": "Bien sûr. Beaucoup de gens viennent une fois par semaine."
+      }
+     ]
+    },
+    {
+     "t": "Both days are good for me.",
+     "fr": "Les deux jours me conviennent.",
+     "va": "bring",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Great! The more you play, the faster you learn.",
+       "fr": "Super ! Plus tu joues, plus tu apprends vite."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, which days?",
+     "fr": "Pardon, quels jours ?",
+     "va": "days",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Tuesdays and Thursdays, from 7 to 9 in the evening.",
+       "fr": "Le mardi et le jeudi, de 19 h à 21 h.",
+       "dit": "Tuesdays and Thursdays, from seven to nine in the evening."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "bring": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "Any questions so far?",
+     "fr": "Des questions jusqu'ici ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "What do I need to bring?",
+     "fr": "Qu'est-ce que je dois apporter ?",
+     "va": "cost",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Clean sneakers for the gym, and a water bottle. That's it.",
+       "fr": "Des baskets propres pour la salle, et une bouteille d'eau. C'est tout.",
+       "t_gb": "Clean trainers for the gym, and a water bottle. That's it."
+      }
+     ]
+    },
+    {
+     "t": "Do I need shoes for the gym?",
+     "fr": "Est-ce qu'il me faut des chaussures pour la salle ?",
+     "va": "cost",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Just clean sneakers that you only wear inside. And bring water!",
+       "fr": "Juste des baskets propres que tu ne portes qu'à l'intérieur. Et apporte de l'eau !",
+       "t_gb": "Just clean trainers that you only wear inside. And bring water!"
+      }
+     ]
+    }
+   ]
+  },
+  "cost": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Tonight is free, so you can see if you like it.",
+     "fr": "Ce soir, c'est gratuit, comme ça tu vois si ça te plaît."
+    }
+   ],
+   "choix": [
+    {
+     "t": "And how much is it after that?",
+     "fr": "Et c'est combien ensuite ?",
+     "va": "form",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "$20 a month. You pay at the front desk.",
+       "fr": "20 dollars par mois. Tu paies à l'accueil.",
+       "t_gb": "$20 a month. You pay at reception.",
+       "dit": "Twenty dollars a month. You pay at the front desk.",
+       "dit_gb": "Twenty dollars a month. You pay at reception."
+      }
+     ]
+    },
+    {
+     "t": "How much does it cost per month?",
+     "fr": "Combien ça coûte par mois ?",
+     "va": "form",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "$20 a month. You pay at the front desk.",
+       "fr": "20 dollars par mois. Tu paies à l'accueil.",
+       "t_gb": "$20 a month. You pay at reception.",
+       "dit": "Twenty dollars a month. You pay at the front desk.",
+       "dit_gb": "Twenty dollars a month. You pay at reception."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "How much it costs?",
+     "fr": "Combien ça coûte ? (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "perplexe",
+       "t": "Sorry? Oh, how much does it cost!",
+       "fr": "Pardon ? Ah, combien ça coûte !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une question au présent demande « do » ou « does »</b> : « How much does it cost? »"
+     }
+    }
+   ]
+  },
+  "form": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "If you want to join, I need this form: name, address, date of birth. You can fill it out now or bring it back.",
+     "fr": "Si tu veux t'inscrire, il me faut ce formulaire : nom, adresse, date de naissance. Tu peux le remplir maintenant ou le rapporter.",
+     "t_gb": "If you want to join, I need this form: name, address, date of birth. You can fill it in now or bring it back."
+    }
+   ],
+   "choix": [
+    {
+     "t": "I'll bring it back on Thursday.",
+     "fr": "Je le rapporte jeudi.",
+     "va": "start",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Perfect. No rush.",
+       "fr": "Parfait. Rien ne presse."
+      }
+     ]
+    },
+    {
+     "t": "Can I fill it out after practice?",
+     "t_gb": "Can I fill it in after training?",
+     "fr": "Je peux le remplir après l'entraînement ?",
+     "va": "start",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Sure. I'll leave it on the bench with a pen.",
+       "fr": "Bien sûr. Je le laisse sur le banc avec un stylo."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I will fulfill it now.",
+     "t_gb": "I will fulfil it now.",
+     "fr": "Je vais le « réaliser » maintenant.",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "amuse",
+       "t": "Fulfill it? You mean fill it out! Here's a pen.",
+       "fr": "Le « réaliser » ? Tu veux dire le remplir ! Tiens, un stylo.",
+       "t_gb": "Fulfil it? You mean fill it in! Here's a pen."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Remplir un formulaire se dit « fill out »</b> (« fill in » en anglais britannique). « fulfill », c'est réaliser un rêve, une promesse."
+     }
+    }
+   ]
+  },
+  "start": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "All right, everybody, let's warm up! You're on this side, with Maya and Tom.",
+     "fr": "Allez, tout le monde, on s'échauffe ! Toi, tu es de ce côté, avec Maya et Tom."
+    }
+   ],
+   "choix": [
+    {
+     "t": "OK, let's go!",
+     "fr": "D'accord, c'est parti !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Have fun!",
+       "fr": "Amuse-toi bien !"
+      }
+     ]
+    },
+    {
+     "t": "Great. Thanks, Lucas!",
+     "fr": "Super. Merci, Lucas !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "You're welcome. Have fun!",
+       "fr": "De rien. Amuse-toi bien !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as fait ta séance d'essai : l'entraînement a lieu le mardi et le jeudi de 19 h à 21 h, il faut des chaussures de salle propres et de l'eau, c'est 20 dollars par mois et tu as le formulaire d'inscription."
+ }
+}

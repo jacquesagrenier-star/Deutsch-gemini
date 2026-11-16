@@ -1,0 +1,425 @@
+{
+ "id": "a2-ecole-absence",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {
+  "fr": "Prévenir l'école d'une absence"
+ },
+ "intro": {
+  "fr": "Ce matin, ton enfant a de la fièvre et ne peut pas aller à l'école. Tu appelles le secrétariat de l'école primaire pour le dire."
+ },
+ "personnes": [
+  "a22_marta"
+ ],
+ "debut": "anruf",
+ "textes": {
+  "name_de": {
+   "cle": "kind",
+   "sohn": "Leo",
+   "tochter": "Emma"
+  },
+  "name_fr": {
+   "cle": "kind",
+   "sohn": "Leo",
+   "tochter": "Emma"
+  },
+  "er_de": {
+   "cle": "kind",
+   "sohn": "er",
+   "tochter": "sie"
+  },
+  "il_fr": {
+   "cle": "kind",
+   "sohn": "il",
+   "tochter": "elle"
+  }
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Huit heures moins le quart. Tu appelles l'école primaire du quartier."
+     }
+    },
+    {
+     "qui": "a22_marta",
+     "air": "sourire",
+     "t": "Grundschule am Park, Sekretariat, Weber. Guten Morgen!",
+     "fr": "École primaire du Parc, secrétariat, Weber. Bonjour !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Guten Morgen! Mein Sohn Leo ist krank. Er kann heute nicht kommen.",
+     "fr": "Bonjour ! Mon fils Leo est malade. Il ne peut pas venir aujourd'hui.",
+     "pose": {
+      "kind": "sohn"
+     },
+     "va": "klasse",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oh, das tut mir leid.",
+       "fr": "Oh, je suis désolée."
+      }
+     ]
+    },
+    {
+     "t": "Guten Morgen! Meine Tochter Emma ist krank. Sie kann heute nicht kommen.",
+     "fr": "Bonjour ! Ma fille Emma est malade. Elle ne peut pas venir aujourd'hui.",
+     "pose": {
+      "kind": "tochter"
+     },
+     "va": "klasse",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oh, das tut mir leid.",
+       "fr": "Oh, je suis désolée."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Guten Morgen! Mein Kind ist krank, deshalb es kommt heute nicht.",
+     "fr": "Bonjour ! Mon enfant est malade, c'est pourquoi il ne vient pas aujourd'hui.",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Ihr Kind ist krank und kommt heute nicht? Wie heißt es denn?",
+       "fr": "Votre enfant est malade et ne vient pas aujourd'hui ? Comment s'appelle-t-il ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Après « deshalb », le verbe vient tout de suite</b>, avant le sujet : « deshalb kommt es heute nicht ». Et dis son prénom : « Mein Sohn Leo ist krank. »"
+     }
+    }
+   ]
+  },
+  "klasse": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "In welche Klasse geht {name_de}?",
+     "fr": "{name_fr} est dans quelle classe ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Er geht in die Klasse drei b, bei Frau Schulz.",
+     "fr": "Il est en 3e B, chez Mme Schulz.",
+     "si": {
+      "kind": "sohn"
+     },
+     "va": "was",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Gut, ich sage Frau Schulz Bescheid.",
+       "fr": "Bien, je préviens Mme Schulz."
+      }
+     ]
+    },
+    {
+     "t": "Sie geht in die Klasse drei b, bei Frau Schulz.",
+     "fr": "Elle est en 3e B, chez Mme Schulz.",
+     "si": {
+      "kind": "tochter"
+     },
+     "va": "was",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Gut, ich sage Frau Schulz Bescheid.",
+       "fr": "Bien, je préviens Mme Schulz."
+      }
+     ]
+    },
+    {
+     "t": "In die drei b.",
+     "fr": "En 3e B.",
+     "va": "was",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Ah, bei Frau Schulz. Ich sage ihr Bescheid.",
+       "fr": "Ah, chez Mme Schulz. Je la préviens."
+      }
+     ]
+    }
+   ]
+  },
+  "was": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "Was hat {er_de} denn?",
+     "fr": "Qu'est-ce qu'{il_fr} a ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Er hat Fieber und Husten.",
+     "fr": "Il a de la fièvre et il tousse.",
+     "si": {
+      "kind": "sohn"
+     },
+     "va": "dauer",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oje, das geht gerade herum.",
+       "fr": "Oh là là, ça circule en ce moment."
+      }
+     ]
+    },
+    {
+     "t": "Sie hat Fieber und Husten.",
+     "fr": "Elle a de la fièvre et elle tousse.",
+     "si": {
+      "kind": "tochter"
+     },
+     "va": "dauer",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Oje, das geht gerade herum.",
+       "fr": "Oh là là, ça circule en ce moment."
+      }
+     ]
+    },
+    {
+     "t": "Fieber und Bauchschmerzen. Wir gehen heute zum Arzt.",
+     "fr": "De la fièvre et mal au ventre. On va chez le médecin aujourd'hui.",
+     "va": "dauer",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "Das ist gut. Gute Besserung schon mal.",
+       "fr": "C'est bien. Bon rétablissement, déjà."
+      }
+     ]
+    }
+   ]
+  },
+  "dauer": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "question",
+     "t": "Wie lange bleibt {name_de} ungefähr zu Hause?",
+     "fr": "{name_fr} reste à la maison combien de temps, à peu près ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich denke, zwei oder drei Tage.",
+     "fr": "Je pense, deux ou trois jours.",
+     "va": "entschuldigung",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "attentive",
+       "t": "In Ordnung.",
+       "fr": "D'accord."
+      }
+     ]
+    },
+    {
+     "t": "Das weiß ich noch nicht. Ich rufe morgen wieder an.",
+     "fr": "Je ne sais pas encore. Je rappelle demain.",
+     "va": "entschuldigung",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Ja, das ist gut.",
+       "fr": "Oui, c'est bien."
+      }
+     ]
+    }
+   ]
+  },
+  "entschuldigung": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "attentive",
+     "t": "Wenn {name_de} wieder kommt, brauchen wir eine schriftliche Entschuldigung von Ihnen. Und ab dem dritten Tag ein Attest vom Arzt.",
+     "fr": "Quand {name_fr} reviendra, il nous faudra un mot d'excuse écrit de votre part. Et à partir du troisième jour, un certificat du médecin."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Gut, ich schreibe eine Entschuldigung.",
+     "fr": "Bien, j'écris un mot d'excuse.",
+     "va": "hausaufgaben",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Danke.",
+       "fr": "Merci."
+      }
+     ]
+    },
+    {
+     "t": "Was ist ein Attest?",
+     "fr": "Qu'est-ce que c'est, un « Attest » ?",
+     "va": "hausaufgaben",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Ein Papier vom Arzt. Er schreibt, dass das Kind krank war.",
+       "fr": "Un papier du médecin. Il écrit que l'enfant était malade."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Aber mein Kind hat nichts falsch gemacht!",
+     "fr": "Mais mon enfant n'a rien fait de mal !",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "amuse",
+       "t": "Nein, nein! „Entschuldigung“ heißt hier: ein Brief von Ihnen. Sie schreiben, dass Ihr Kind krank war.",
+       "fr": "Non, non ! Ici, « Entschuldigung » veut dire : une lettre de vous. Vous écrivez que votre enfant était malade."
+      }
+     ],
+     "aide": {
+      "fr": "<b>À l'école, « eine Entschuldigung », c'est le mot d'excuse</b> écrit par les parents, pas des excuses. Réponds : « Gut, ich schreibe eine Entschuldigung. »"
+     }
+    }
+   ]
+  },
+  "hausaufgaben": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Tu penses aux devoirs."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Kann ein Kind aus der Klasse die Hausaufgaben mitbringen?",
+     "fr": "Un enfant de la classe peut apporter les devoirs ?",
+     "va": "ausflug",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Ich frage Frau Schulz. Vielleicht bringt jemand die Aufgaben vorbei.",
+       "fr": "Je demande à Mme Schulz. Peut-être que quelqu'un passera déposer les devoirs."
+      }
+     ]
+    },
+    {
+     "t": "Wo finde ich die Hausaufgaben?",
+     "fr": "Où est-ce que je trouve les devoirs ?",
+     "va": "ausflug",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Frau Schulz schreibt sie jeden Tag in die Schul-App.",
+       "fr": "Mme Schulz les écrit chaque jour dans l'application de l'école."
+      }
+     ]
+    }
+   ]
+  },
+  "ausflug": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "attentive",
+     "t": "Ach, und am Freitag macht die Klasse einen Ausflug in den Zoo. Haben Sie das Formular schon unterschrieben?",
+     "fr": "Ah, et vendredi, la classe fait une sortie au zoo. Vous avez déjà signé le formulaire ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, das habe ich schon unterschrieben.",
+     "fr": "Oui, je l'ai déjà signé.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Prima. Hoffentlich ist {name_de} bis Freitag wieder gesund!",
+       "fr": "Parfait. Espérons que {name_fr} sera guéri(e) d'ici vendredi !"
+      }
+     ]
+    },
+    {
+     "t": "Nein, noch nicht. Ich bringe es mit der Entschuldigung.",
+     "fr": "Non, pas encore. Je l'apporte avec le mot d'excuse.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Gut, so machen wir das.",
+       "fr": "Bien, on fait comme ça."
+      }
+     ]
+    },
+    {
+     "t": "Entschuldigung, am Freitag? Was macht die Klasse?",
+     "fr": "Pardon, vendredi ? Que fait la classe ?",
+     "va": "ausflug",
+     "puis": [
+      {
+       "qui": "a22_marta",
+       "air": "sourire",
+       "t": "Einen Ausflug: Die ganze Klasse fährt am Freitag in den Zoo.",
+       "fr": "Une sortie : vendredi, toute la classe va au zoo."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "a22_marta",
+     "air": "sourire",
+     "t": "Dann gute Besserung für {name_de}! Auf Wiederhören.",
+     "fr": "Alors bon rétablissement à {name_fr} ! Au revoir."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Vielen Dank! Auf Wiederhören.",
+     "fr": "Merci beaucoup ! Au revoir.",
+     "va": null
+    },
+    {
+     "t": "Danke, Frau Weber. Auf Wiederhören!",
+     "fr": "Merci, madame Weber. Au revoir !",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as annoncé l'absence de {name_fr}, compris le mot d'excuse à écrire (et le certificat médical après trois jours), et réglé les devoirs et la sortie au zoo de vendredi."
+ }
+}

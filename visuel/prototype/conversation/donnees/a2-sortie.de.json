@@ -1,0 +1,457 @@
+{
+ "id": "a2-sortie",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "du",
+ "titre": {
+  "fr": "Préparer une fête à deux"
+ },
+ "intro": {
+  "fr": "Vendredi, c'est le dernier cours avec votre professeure, Frau Berger. Avec Rosa, ta camarade du cours d'allemand, vous préparez une petite fête : comme à l'oral du DTZ, proposez, discutez et décidez ensemble."
+ },
+ "personnes": [
+  "a22_rosa"
+ ],
+ "debut": "wann",
+ "textes": {
+  "ort_fr": {
+   "cle": "ort",
+   "raum": "dans la salle de cours",
+   "cafe": "au café d'en face"
+  },
+  "essen_fr": {
+   "cle": "essen",
+   "salat": "une salade de ta part",
+   "getraenke": "les boissons de ta part",
+   "zusammen": "café et gâteau pour tous",
+   "selbst": "chacun paie pour soi et vous invitez Frau Berger"
+  },
+  "gesch_fr": {
+   "cle": "gesch",
+   "blumen": "des fleurs et une carte de tous",
+   "buch": "un livre sur Berlin"
+  },
+  "gesch_fr2": {
+   "cle": "gesch",
+   "blumen": "les fleurs et la carte",
+   "buch": "le livre"
+  },
+  "gesch_de": {
+   "cle": "gesch",
+   "blumen": "die Blumen und die Karte",
+   "buch": "das Buch"
+  }
+ },
+ "noeuds": {
+  "wann": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "À la pause, au café de l'école de langues. Rosa sort un carnet."
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "Also, wir wollen eine kleine Abschiedsfeier für Frau Berger machen. Wann machen wir das? Am Freitag nach dem Kurs?",
+     "fr": "Bon, on veut organiser une petite fête d'adieu pour Frau Berger. On la fait quand ? Vendredi, après le cours ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, das ist eine gute Idee. Dann können alle kommen.",
+     "fr": "Oui, c'est une bonne idée. Comme ça, tout le monde peut venir.",
+     "va": "wo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Genau. Also Freitag, nach dem Unterricht.",
+       "fr": "Exactement. Donc vendredi, après le cours."
+      }
+     ]
+    },
+    {
+     "t": "Freitag ist gut. Oder vielleicht schon in der Pause?",
+     "fr": "Vendredi, c'est bien. Ou peut-être déjà à la pause ?",
+     "va": "wo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "attentive",
+       "t": "Die Pause ist nur zwanzig Minuten. Nach dem Kurs haben wir mehr Zeit.",
+       "fr": "La pause ne dure que vingt minutes. Après le cours, on a plus de temps."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nein, Freitag geht nicht.",
+     "fr": "Non, vendredi, ça ne va pas.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "Hm, okay … und wann dann?",
+       "fr": "Hum, d'accord… alors quand ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>À l'oral du DTZ, on ne refuse pas sans proposer.</b> Si tu n'es pas d'accord, donne une raison et une autre idée ; ici, Rosa propose vendredi : accepte-le ou propose un moment proche."
+     }
+    }
+   ]
+  },
+  "wo": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Und wo feiern wir? Im Kursraum oder in einem Café?",
+     "fr": "Et on fait la fête où ? Dans la salle de cours ou dans un café ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Im Klassenzimmer. Das ist einfach und kostet nichts.",
+     "fr": "Dans la salle de cours. C'est simple et ça ne coûte rien.",
+     "pose": {
+      "ort": "raum"
+     },
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Stimmt. Ich frage die Sekretärin, ob das geht.",
+       "fr": "C'est vrai. Je demande à la secrétaire si c'est possible."
+      }
+     ]
+    },
+    {
+     "t": "Lieber in einem Café. Da ist es gemütlicher.",
+     "fr": "Plutôt dans un café. C'est plus convivial.",
+     "pose": {
+      "ort": "cafe"
+     },
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Gute Idee! Das Café gegenüber hat einen großen Tisch. Ich reserviere.",
+       "fr": "Bonne idée ! Le café d'en face a une grande table. Je réserve."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Wir können im Klassenzimmer treffen.",
+     "fr": "On peut se retrouver dans la salle de cours.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "attentive",
+       "t": "Ja, wir können uns im Klassenzimmer treffen. Gute Idee!",
+       "fr": "Oui, on peut se retrouver dans la salle de cours. Bonne idée !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Se retrouver, c'est « sich treffen »</b> : « Wir können uns im Klassenzimmer treffen. » Sans « uns », il manque quelqu'un."
+     }
+    }
+   ]
+  },
+  "essen": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Und das Essen? Bringt jeder etwas mit?",
+     "fr": "Et pour manger ? Chacun apporte quelque chose ?",
+     "si": {
+      "ort": "raum"
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Und im Café: Bezahlt jeder selbst, oder bestellen wir zusammen?",
+     "fr": "Et au café : chacun paie pour soi, ou on commande ensemble ?",
+     "si": {
+      "ort": "cafe"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, jeder bringt etwas mit. Ich mache einen Salat.",
+     "fr": "Oui, chacun apporte quelque chose. Je fais une salade.",
+     "pose": {
+      "essen": "salat"
+     },
+     "si": {
+      "ort": "raum"
+     },
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Prima, und ich backe einen Kuchen.",
+       "fr": "Parfait, et moi je fais un gâteau."
+      }
+     ]
+    },
+    {
+     "t": "Ich kann Getränke kaufen: Wasser und Saft.",
+     "fr": "Je peux acheter les boissons : de l'eau et du jus.",
+     "pose": {
+      "essen": "getraenke"
+     },
+     "si": {
+      "ort": "raum"
+     },
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Super. Dann bringen die anderen Kuchen und Obst mit.",
+       "fr": "Super. Alors les autres apportent des gâteaux et des fruits."
+      }
+     ]
+    },
+    {
+     "t": "Wir bestellen Kaffee und Kuchen für alle.",
+     "fr": "On commande du café et du gâteau pour tout le monde.",
+     "pose": {
+      "essen": "zusammen"
+     },
+     "si": {
+      "ort": "cafe"
+     },
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Gut, dann sammeln wir vorher Geld.",
+       "fr": "D'accord, alors on récolte l'argent avant."
+      }
+     ]
+    },
+    {
+     "t": "Jeder bezahlt selbst, aber Frau Berger laden wir ein.",
+     "fr": "Chacun paie pour soi, mais Frau Berger, on l'invite.",
+     "pose": {
+      "essen": "selbst"
+     },
+     "si": {
+      "ort": "cafe"
+     },
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Ja, das ist schön!",
+       "fr": "Oui, c'est bien !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich weiß nicht.",
+     "fr": "Je ne sais pas.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "Hm … Hast du keine Idee?",
+       "fr": "Hum… Tu n'as pas d'idée ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Ich weiß nicht » tout seul arrête la discussion.</b> Propose quelque chose, même de simple : « Ich mache einen Salat » ou « Jeder bezahlt selbst »."
+     }
+    }
+   ]
+  },
+  "geschenk": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Und ein Geschenk? Was meinst du?",
+     "fr": "Et un cadeau ? Tu en penses quoi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Wie wäre es mit Blumen und einer Karte von allen?",
+     "fr": "Et si on offrait des fleurs et une carte signée par tout le monde ?",
+     "pose": {
+      "gesch": "blumen"
+     },
+     "va": "geld",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Ja, schön! Alle schreiben etwas auf die Karte.",
+       "fr": "Oui, c'est joli ! Tout le monde écrit quelque chose sur la carte."
+      }
+     ]
+    },
+    {
+     "t": "Vielleicht ein Buch? Sie liest doch so gern.",
+     "fr": "Peut-être un livre ? Elle aime tellement lire.",
+     "pose": {
+      "gesch": "buch"
+     },
+     "va": "geld",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Oh ja, ein schönes Buch über Berlin. Das machen wir!",
+       "fr": "Oh oui, un beau livre sur Berlin. On fait ça !"
+      }
+     ]
+    },
+    {
+     "t": "Wie bitte? Kannst du das wiederholen?",
+     "fr": "Pardon ? Tu peux répéter ?",
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Klar: Was schenken wir Frau Berger?",
+       "fr": "Bien sûr : qu'est-ce qu'on offre à Frau Berger ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "geld": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Wie viel soll jeder bezahlen? Wir sind zwölf Leute.",
+     "fr": "Combien chacun doit payer ? On est douze."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich denke, fünf Euro pro Person sind genug.",
+     "fr": "Je pense que cinq euros par personne, c'est assez.",
+     "va": "aufgaben",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Ja, dann haben wir sechzig Euro. Das reicht.",
+       "fr": "Oui, alors on a soixante euros. Ça suffit."
+      }
+     ]
+    },
+    {
+     "t": "Drei Euro? Nicht alle haben viel Geld.",
+     "fr": "Trois euros ? Tout le monde n'a pas beaucoup d'argent.",
+     "va": "aufgaben",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "attentive",
+       "t": "Da hast du recht. Drei Euro, das sind sechsunddreißig Euro. Das geht auch.",
+       "fr": "Tu as raison. Trois euros, ça fait trente-six euros. Ça va aussi."
+      }
+     ]
+    }
+   ]
+  },
+  "aufgaben": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Gut. Und wer macht was?",
+     "fr": "Bien. Et qui fait quoi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich schreibe den anderen eine Nachricht in unserer Gruppe.",
+     "fr": "J'écris un message aux autres dans notre groupe.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Super, und ich kaufe {gesch_de}.",
+       "fr": "Super, et moi j'achète {gesch_fr2}."
+      }
+     ]
+    },
+    {
+     "t": "Kannst du das Geschenk kaufen? Ich mache das mit dem Geld.",
+     "fr": "Tu peux acheter le cadeau ? Moi, je m'occupe de l'argent.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Abgemacht!",
+       "fr": "Marché conclu !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Du machst alles, okay?",
+     "fr": "Tu fais tout, d'accord ?",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "amuse",
+       "t": "Ha, alles? Nein, nein, wir teilen die Arbeit!",
+       "fr": "Ha, tout ? Non, non, on se partage le travail !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Planifier ensemble, c'est se partager les tâches.</b> Propose ce que TU fais : « Ich schreibe den anderen eine Nachricht. »"
+     }
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "Perfekt, dann haben wir alles. Frau Berger wird sich freuen!",
+     "fr": "Parfait, on a tout. Frau Berger va être contente !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, bestimmt! Bis morgen im Kurs.",
+     "fr": "Oui, sûrement ! À demain au cours.",
+     "va": null
+    },
+    {
+     "t": "Super, das wird schön. Tschüss, Rosa!",
+     "fr": "Super, ça va être chouette. Salut, Rosa !",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Vous avez tout décidé : la fête vendredi après le cours, {ort_fr}, {essen_fr}, {gesch_fr}, une petite somme par personne, et qui fait quoi."
+ }
+}

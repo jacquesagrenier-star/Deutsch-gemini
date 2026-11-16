@@ -1,0 +1,328 @@
+{
+ "id": "a2-club-sport",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "du",
+ "titre": {
+  "fr": "S'inscrire au club de sport"
+ },
+ "intro": {
+  "fr": "Tu veux faire du sport et rencontrer des gens. Ce soir, tu vas à un entraînement d'essai du club de volley-ball du quartier. Au club, tout le monde se tutoie."
+ },
+ "personnes": [
+  "a22_lucas"
+ ],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le gymnase d'une école, dix-neuf heures moins dix. Un homme avec un sifflet vient vers toi."
+     }
+    },
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Hallo! Ich bin Lucas, der Trainer. Bist du zum Probetraining da?",
+     "fr": "Salut ! Je suis Lucas, l'entraîneur. Tu viens pour l'entraînement d'essai ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, genau! Ich möchte gern mit euch spielen.",
+     "fr": "Oui, c'est ça ! J'aimerais bien jouer avec vous.",
+     "va": "erfahrung",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Super, herzlich willkommen!",
+       "fr": "Super, bienvenue !"
+      }
+     ]
+    },
+    {
+     "t": "Hallo! Ja, ich habe euch im Internet gefunden.",
+     "fr": "Salut ! Oui, je vous ai trouvés sur Internet.",
+     "va": "erfahrung",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Ah, schön! Willkommen!",
+       "fr": "Ah, chouette ! Bienvenue !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Guten Abend, Herr Lucas. Darf ich mitspielen?",
+     "fr": "Bonsoir, monsieur Lucas. Est-ce que je peux jouer ?",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "amuse",
+       "t": "„Herr Lucas“? Hier im Verein duzen wir uns. Einfach Lucas!",
+       "fr": "« Monsieur Lucas » ? Ici, au club, on se tutoie. Lucas, tout simplement !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Au club de sport, on se tutoie</b>, et le prénom ne prend jamais « Herr ». Dis : « Ja, genau! Ich möchte gern mitspielen. »"
+     }
+    }
+   ]
+  },
+  "erfahrung": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "Hast du schon mal Volleyball gespielt?",
+     "fr": "Tu as déjà joué au volley ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, früher in der Schule, aber das ist lange her.",
+     "fr": "Oui, autrefois, à l'école, mais ça fait longtemps.",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Kein Problem, das kommt schnell wieder.",
+       "fr": "Pas de problème, ça revient vite."
+      }
+     ]
+    },
+    {
+     "t": "Nein, noch nie. Ist das ein Problem?",
+     "fr": "Non, jamais. C'est un problème ?",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Gar nicht! Bei uns spielen Anfänger und Profis zusammen.",
+       "fr": "Pas du tout ! Chez nous, débutants et pros jouent ensemble."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich habe Volleyball gespielt seit fünf Jahren.",
+     "fr": "Oui, je joue au volley depuis cinq ans.",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "Ah, du spielst seit fünf Jahren? Super!",
+       "fr": "Ah, tu joues depuis cinq ans ? Super !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Avec « seit », l'allemand garde le présent</b> quand ça dure encore : « Ich spiele seit fünf Jahren Volleyball. »"
+     }
+    }
+   ]
+  },
+  "zeiten": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "Wir trainieren dienstags und donnerstags von 19 bis 21 Uhr.",
+     "fr": "On s'entraîne le mardi et le jeudi, de 19 h à 21 h.",
+     "dit": "Wir trainieren dienstags und donnerstags von neunzehn bis einundzwanzig Uhr."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Kann ich auch nur am Donnerstag kommen?",
+     "fr": "Je peux venir seulement le jeudi ?",
+     "va": "sachen",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Klar, wie du willst. Einmal pro Woche ist auch okay.",
+       "fr": "Bien sûr, comme tu veux. Une fois par semaine, ça va aussi."
+      }
+     ]
+    },
+    {
+     "t": "Super, am Dienstag und am Donnerstag habe ich Zeit.",
+     "fr": "Super, le mardi et le jeudi, j'ai le temps.",
+     "va": "sachen",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Toll!",
+       "fr": "Génial !"
+      }
+     ]
+    },
+    {
+     "t": "Wie bitte? Bis wann?",
+     "fr": "Pardon ? Jusqu'à quelle heure ?",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Bis einundzwanzig Uhr, also bis neun Uhr abends.",
+       "fr": "Jusqu'à vingt et une heures, donc neuf heures du soir."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "sachen": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "Heute kannst du einfach so mitspielen.",
+     "fr": "Aujourd'hui, tu peux jouer comme ça, sans rien."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Und was muss ich zum Training mitbringen?",
+     "fr": "Et qu'est-ce que je dois apporter à l'entraînement ?",
+     "va": "kosten",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "Saubere Hallenschuhe, Sportkleidung und eine Flasche Wasser. Mehr nicht.",
+       "fr": "Des chaussures de salle propres, une tenue de sport et une bouteille d'eau. C'est tout."
+      }
+     ]
+    },
+    {
+     "t": "Was für Schuhe brauche ich?",
+     "fr": "De quelles chaussures j'ai besoin ?",
+     "va": "kosten",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "attentive",
+       "t": "Ja, Hallenschuhe mit heller Sohle. Straßenschuhe sind hier verboten.",
+       "fr": "Oui, des chaussures de salle à semelle claire. Les chaussures de ville sont interdites ici."
+      }
+     ]
+    }
+   ]
+  },
+  "kosten": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "question",
+     "t": "Noch Fragen?",
+     "fr": "D'autres questions ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja: Wie viel kostet der Verein im Monat?",
+     "fr": "Oui : le club coûte combien par mois ?",
+     "va": "formular",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Fünfzehn Euro im Monat. Das Probetraining ist natürlich kostenlos.",
+       "fr": "Quinze euros par mois. L'entraînement d'essai est gratuit, bien sûr."
+      }
+     ]
+    },
+    {
+     "t": "Muss ich etwas bezahlen?",
+     "fr": "Est-ce que je dois payer quelque chose ?",
+     "va": "formular",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Heute nicht. Später sind es fünfzehn Euro im Monat.",
+       "fr": "Pas aujourd'hui. Ensuite, c'est quinze euros par mois."
+      }
+     ]
+    }
+   ]
+  },
+  "formular": {
+   "dit": [
+    {
+     "qui": "a22_lucas",
+     "air": "attentive",
+     "t": "Wenn es dir gefällt, füllst du dieses Formular aus: Name, Adresse, Geburtsdatum und Bankverbindung.",
+     "fr": "Si ça te plaît, tu remplis ce formulaire : nom, adresse, date de naissance et coordonnées bancaires."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Kann ich es mit nach Hause nehmen und am Donnerstag mitbringen?",
+     "fr": "Je peux l'emporter à la maison et le rapporter jeudi ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Klar, kein Stress.",
+       "fr": "Bien sûr, pas de stress."
+      }
+     ]
+    },
+    {
+     "t": "Gut, ich fülle es nach dem Training aus.",
+     "fr": "Bien, je le remplis après l'entraînement.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_lucas",
+       "air": "sourire",
+       "t": "Perfekt.",
+       "fr": "Parfait."
+      }
+     ]
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Lucas siffle. L'équipe se met en cercle."
+     }
+    },
+    {
+     "qui": "a22_lucas",
+     "air": "sourire",
+     "t": "So, los geht's! Komm, ich stelle dich dem Team vor.",
+     "fr": "Allez, c'est parti ! Viens, je te présente à l'équipe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Super, ich freue mich!",
+     "fr": "Super, je suis content(e) !",
+     "va": null
+    },
+    {
+     "t": "Okay, los geht's!",
+     "fr": "D'accord, c'est parti !",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu connais les entraînements (le mardi et le jeudi, de dix-neuf à vingt et une heures), ce qu'il faut apporter, le prix (quinze euros par mois), et tu rapportes le formulaire."
+ }
+}

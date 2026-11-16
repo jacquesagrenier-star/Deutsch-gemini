@@ -1,0 +1,563 @@
+{
+ "id": "a2-invitation",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "tú",
+ "titre": {
+  "fr": "Une invitation"
+ },
+ "intro": {
+  "fr": "Javier fête ses cinquante ans samedi et t'invite chez lui. Accepte, ou refuse poliment en proposant autre chose."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "invitacion",
+ "textes": {
+  "issue_fr": {
+   "cle": "reponse",
+   "oui": "accepté l'invitation de Javier : tu sais quoi apporter, où aller et à quelle heure",
+   "non": "refusé poliment l'invitation de Javier, et vous déjeunez ensemble la semaine prochaine"
+  }
+ },
+ "noeuds": {
+  "invitacion": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Jeudi, en fin de journée. Javier s'arrête devant ton bureau."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Oye, el sábado cumplo cincuenta años y hago una barbacoa en la terraza de casa. ¿Te vienes?",
+     "fr": "Dis, samedi j'ai cinquante ans et je fais un barbecue sur la terrasse, à la maison. Tu viens ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Claro que sí! Muchas gracias por la invitación.",
+     "fr": "Bien sûr que oui ! Merci beaucoup pour l'invitation.",
+     "pose": {
+      "reponse": "oui"
+     },
+     "va": "llevar",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Estupendo! Va a venir casi toda la oficina.",
+       "fr": "Formidable ! Presque tout le bureau sera là."
+      }
+     ]
+    },
+    {
+     "t": "¡Cincuenta años, qué bien! Lo siento mucho, pero el sábado no puedo: viene mi familia.",
+     "fr": "Cinquante ans, c'est super ! Je regrette beaucoup, mais samedi je ne peux pas : ma famille vient.",
+     "pose": {
+      "reponse": "non"
+     },
+     "va": "otro",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "surprise",
+       "t": "¡Vaya, qué pena! Pero la familia es lo primero. Otra vez será.",
+       "fr": "Oh, quel dommage ! Mais la famille d'abord. Ce sera pour une autre fois."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No, no puedo.",
+     "fr": "Non, je ne peux pas.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "Ah… vale. Pues nada.",
+       "fr": "Ah… d'accord. Tant pis."
+      }
+     ],
+     "aide": {
+      "fr": "C'est <b>trop sec</b> pour refuser une invitation. Remercie, excuse-toi et donne une raison : « Lo siento mucho, pero el sábado no puedo: viene mi familia »."
+     }
+    }
+   ]
+  },
+  "llevar": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Va a ser algo sencillo: carne, ensalada y buena música.",
+     "fr": "Ce sera quelque chose de simple : de la viande, de la salade et de la bonne musique."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¿Qué llevo? ¿Algo de beber?",
+     "fr": "Qu'est-ce que j'apporte ? Quelque chose à boire ?",
+     "va": "direccion",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "No hace falta nada… Bueno, si quieres, algo de postre.",
+       "fr": "Il ne faut rien… Bon, si tu veux, un dessert."
+      }
+     ]
+    },
+    {
+     "t": "¿Puedo llevar un postre?",
+     "fr": "Je peux apporter un dessert ?",
+     "va": "direccion",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "¡Eso siempre! En mi casa el postre nunca sobra.",
+       "fr": "Ça, toujours ! Chez moi, le dessert n'est jamais de trop."
+      }
+     ]
+    }
+   ]
+  },
+  "direccion": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Te apunto la dirección: calle del Olmo, 14, tercero B. Sobre las 14:00, ¿vale?",
+     "fr": "Je te note l'adresse : calle del Olmo, 14, troisième étage, porte B. Vers 14 h, d'accord ?",
+     "dit": "Te apunto la dirección: calle del Olmo, catorce, tercero B. Sobre las dos, ¿vale?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Vale, el sábado a las dos. ¿Cómo llego? ¿En metro?",
+     "fr": "D'accord, samedi à deux heures. Comment j'y vais ? En métro ?",
+     "va": "acompanante",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Sí, la línea tres, parada de Lavapiés. Son cinco minutos andando.",
+       "fr": "Oui, la ligne trois, station Lavapiés. C'est à cinq minutes à pied."
+      }
+     ]
+    },
+    {
+     "t": "Perfecto, lo apunto: calle del Olmo, catorce.",
+     "fr": "Parfait, je note : calle del Olmo, quatorze.",
+     "va": "acompanante",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Eso es. El timbre no funciona: llámame al móvil cuando llegues.",
+       "fr": "C'est ça. La sonnette ne marche pas : appelle-moi sur mon portable quand tu arrives."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Vale, el sábado a las doce.",
+     "fr": "D'accord, samedi à midi.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "surprise",
+       "t": "¿A las doce? ¡Hombre, no! A las dos. A las doce todavía estoy comprando la carne.",
+       "fr": "À midi ? Ah non ! À deux heures. À midi, je suis encore en train d'acheter la viande."
+      }
+     ],
+     "aide": {
+      "fr": "Tu as confondu <b>dos</b> (deux) et <b>doce</b> (douze). Javier a dit « sobre las dos » : vers deux heures."
+     }
+    },
+    {
+     "t": "Perdona, ¿puedes repetir la dirección?",
+     "fr": "Pardon, tu peux répéter l'adresse ?",
+     "va": "direccion",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Calle del Olmo, 14, tercero B.",
+       "fr": "Calle del Olmo, 14, troisième étage, porte B.",
+       "dit": "Calle del Olmo, catorce, tercero B."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "acompanante": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Ah, y si quieres venir con alguien, perfecto, ¿eh? Hay sitio para todos.",
+     "fr": "Ah, et si tu veux venir avec quelqu'un, c'est parfait, hein ? Il y a de la place pour tout le monde."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¿Sí? Entonces voy con mi pareja.",
+     "fr": "Ah oui ? Alors je viens avec mon compagnon ou ma compagne.",
+     "va": "carne",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Genial! Tengo ganas de conocer a tu pareja.",
+       "fr": "Génial ! J'ai hâte de faire sa connaissance."
+      }
+     ]
+    },
+    {
+     "t": "¡Qué bien! ¿Puedo ir con una amiga?",
+     "fr": "Super ! Je peux venir avec une amie ?",
+     "va": "carne",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Claro! Cuantos más, mejor.",
+       "fr": "Bien sûr ! Plus on est nombreux, mieux c'est."
+      }
+     ]
+    }
+   ]
+  },
+  "carne": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Una cosa: va a haber mucha carne, chorizo, costillas… ¿Tú comes de todo?",
+     "fr": "Une chose : il y aura beaucoup de viande, du chorizo, des travers… Tu manges de tout ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, como de todo. ¡Me encanta la carne!",
+     "fr": "Oui, je mange de tout. J'adore la viande !",
+     "va": "despedida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Así me gusta!",
+       "fr": "Voilà qui me plaît !"
+      }
+     ]
+    },
+    {
+     "t": "No como carne, pero no te preocupes.",
+     "fr": "Je ne mange pas de viande, mais ne t'inquiète pas.",
+     "va": "despedida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "attentive",
+       "t": "No pasa nada: también hago verduras a la plancha y hay tortilla.",
+       "fr": "Pas de souci : je fais aussi des légumes grillés et il y a de la tortilla."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, como todo.",
+     "fr": "Oui, je mange tout.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "¿Todo, todo? ¡Deja algo para los demás!",
+       "fr": "Tout, tout ? Laisse quelque chose aux autres !"
+      }
+     ],
+     "aide": {
+      "fr": "« Como todo » = je mange <b>tout</b> (tout ce qu'il y a !). « Je mange de tout » : « Como <b>de</b> todo »."
+     }
+    }
+   ]
+  },
+  "otro": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Bueno, te guardo un trozo de tarta para el lunes.",
+     "fr": "Bon, je te garde une part de gâteau pour lundi."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Gracias. ¿Y si comemos juntos la semana que viene? Invito yo.",
+     "fr": "Merci. Et si on déjeunait ensemble la semaine prochaine ? C'est moi qui invite.",
+     "va": "dia",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Eso está hecho! A eso no digo que no.",
+       "fr": "Marché conclu ! À ça, je ne dis pas non."
+      }
+     ]
+    },
+    {
+     "t": "Gracias. Quiero invitarte a comer otro día. ¿Te parece?",
+     "fr": "Merci. Je veux t'inviter à déjeuner un autre jour. Ça te va ?",
+     "va": "dia",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Hombre, claro! Me parece muy bien.",
+       "fr": "Mais bien sûr ! Ça me va très bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Gracias. ¿Nos quedamos otro día para comer?",
+     "fr": "Merci. On reste un autre jour pour déjeuner ?",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "¿Nos quedamos… dónde? Ah, ¡que quedamos otro día!",
+       "fr": "On reste… où ? Ah, on se voit un autre jour !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Quedar</b> = se donner rendez-vous ; <b>quedarse</b> = rester. Dis : « ¿<b>Quedamos</b> otro día para comer? »."
+     }
+    }
+   ]
+  },
+  "dia": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "¿Qué día te va bien? Yo el lunes no puedo, tengo médico.",
+     "fr": "Quel jour te convient ? Moi, lundi je ne peux pas, j'ai rendez-vous chez le médecin."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¿El martes te va bien?",
+     "fr": "Mardi, ça te va ?",
+     "va": "sitio",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "El martes, perfecto.",
+       "fr": "Mardi, parfait."
+      }
+     ]
+    },
+    {
+     "t": "¿Qué tal el miércoles?",
+     "fr": "Et mercredi ?",
+     "va": "sitio",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "El miércoles me va muy bien.",
+       "fr": "Mercredi, ça me va très bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¿El martes te va bueno?",
+     "fr": "Mardi, ça te va bon ?",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "¿Bueno? Me va bien, sí. ¡Muy bien!",
+       "fr": "« Bon » ? Ça me va bien, oui. Très bien !"
+      }
+     ],
+     "aide": {
+      "fr": "« Ça te va » : « te va <b>bien</b> ». « Bueno » est un adjectif (un buen día) ; « bien », un adverbe."
+     }
+    }
+   ]
+  },
+  "sitio": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "¿Y adónde vamos? ¿Conoces algún sitio?",
+     "fr": "Et on va où ? Tu connais un endroit ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hay un restaurante italiano cerca de la oficina.",
+     "fr": "Il y a un restaurant italien près du bureau.",
+     "va": "hora",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Me encanta la pasta! Vale.",
+       "fr": "J'adore les pâtes ! D'accord."
+      }
+     ]
+    },
+    {
+     "t": "No conozco muchos restaurantes. ¿Eliges tú?",
+     "fr": "Je ne connais pas beaucoup de restaurants. Tu choisis ?",
+     "va": "hora",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Entonces, al bar de la esquina: el menú del día es muy bueno.",
+       "fr": "Alors, au bar du coin : le menu du jour est très bon."
+      }
+     ]
+    }
+   ]
+  },
+  "hora": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Hecho. ¿A qué hora bajamos? Yo salgo de una reunión a las 14:00.",
+     "fr": "Entendu. À quelle heure on descend ? Moi, je sors d'une réunion à 14 h.",
+     "dit": "Hecho. ¿A qué hora bajamos? Yo salgo de una reunión a las dos."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Entonces, a las dos y cuarto.",
+     "fr": "Alors, à deux heures et quart.",
+     "va": "despedida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "A las dos y cuarto en la puerta. Apuntado.",
+       "fr": "À deux heures et quart devant la porte. C'est noté."
+      }
+     ]
+    },
+    {
+     "t": "¿A las dos y media? Así hay menos gente.",
+     "fr": "À deux heures et demie ? Comme ça, il y a moins de monde.",
+     "va": "despedida",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Bien pensado. A las dos y media.",
+       "fr": "Bien vu. À deux heures et demie."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Entonces, a la una y media.",
+     "fr": "Alors, à une heure et demie.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "A la una y media todavía estoy en la reunión. Salgo a las dos.",
+       "fr": "À une heure et demie, je suis encore en réunion. Je sors à deux heures."
+      }
+     ],
+     "aide": {
+      "fr": "Javier sort de réunion <b>a las dos</b> : propose une heure plus tard, « a las dos y cuarto »."
+     }
+    }
+   ]
+  },
+  "despedida": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Pues nada, ¡nos vemos el sábado! Bueno, y mañana en la oficina, claro.",
+     "fr": "Eh bien, on se voit samedi ! Enfin, et demain au bureau, bien sûr.",
+     "si": {
+      "reponse": "oui"
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Pues quedamos así. Me voy, que pierdo el tren. ¡Hasta mañana!",
+     "fr": "Alors c'est entendu. Je file, je vais rater mon train. À demain !",
+     "si": {
+      "reponse": "non"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Hasta mañana, Javier!",
+     "fr": "À demain, Javier !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Hasta mañana!",
+       "fr": "À demain !"
+      }
+     ]
+    },
+    {
+     "t": "¡Hasta el sábado! Y gracias otra vez.",
+     "fr": "À samedi ! Et merci encore.",
+     "si": {
+      "reponse": "oui"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡A ti por venir!",
+       "fr": "Merci à toi de venir !"
+      }
+     ]
+    },
+    {
+     "t": "Gracias, Javier. ¡Y feliz cumpleaños!",
+     "fr": "Merci, Javier. Et joyeux anniversaire !",
+     "si": {
+      "reponse": "non"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "¡Gracias! El sábado pienso en ti.",
+       "fr": "Merci ! Samedi, je penserai à toi."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as {issue_fr}."
+ }
+}

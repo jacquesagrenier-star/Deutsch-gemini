@@ -1,0 +1,360 @@
+{
+ "id": "a2-creche",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {
+  "fr": "Le premier jour à la crèche"
+ },
+ "intro": {
+  "fr": "Ta fille Lucía, deux ans, commence aujourd'hui la crèche (la escuela infantil). Parle avec Inés, son éducatrice : les affaires, les repas, la période d'adaptation."
+ },
+ "personnes": [
+  "a22_ines"
+ ],
+ "debut": "llegada",
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Neuf heures, à l'entrée de la crèche. Lucía te serre la main très fort."
+     }
+    },
+    {
+     "qui": "a22_ines",
+     "air": "sourire",
+     "t": "¡Buenos días! Esta es Lucía, ¿verdad? Yo soy Inés, su educadora.",
+     "fr": "Bonjour ! Voici Lucía, n'est-ce pas ? Je suis Inés, son éducatrice."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Buenos días. Sí, es Lucía. Hoy es su primer día.",
+     "fr": "Bonjour. Oui, c'est Lucía. Aujourd'hui, c'est son premier jour.",
+     "va": "cosas",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "¡Hola, Lucía! Qué guapa. Pasen, pasen.",
+       "fr": "Bonjour, Lucía ! Qu'elle est jolie. Entrez, entrez."
+      }
+     ]
+    },
+    {
+     "t": "Hola, Inés. Sí, hoy empieza. Está un poco nerviosa.",
+     "fr": "Bonjour, Inés. Oui, elle commence aujourd'hui. Elle est un peu nerveuse.",
+     "va": "cosas",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Es normal el primer día. Pasen, pasen.",
+       "fr": "C'est normal le premier jour. Entrez, entrez."
+      }
+     ]
+    }
+   ]
+  },
+  "cosas": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "¿Ha traído la ropa de cambio y los pañales?",
+     "fr": "Avez-vous apporté les vêtements de rechange et les couches ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, está todo en la mochila.",
+     "fr": "Oui, tout est dans le sac à dos.",
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Perfecto. La dejamos en su sitio: el del dibujo del gato.",
+       "fr": "Parfait. Nous le laissons à sa place : celle avec le dessin du chat."
+      }
+     ]
+    },
+    {
+     "t": "La ropa sí, pero he olvidado lo demás. Lo traigo mañana.",
+     "fr": "Les vêtements oui, mais j'ai oublié le reste. Je l'apporte demain.",
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "No pasa nada. Hoy usamos los de aquí.",
+       "fr": "Ce n'est rien. Aujourd'hui, on prend ceux d'ici."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, he traído todo en el saco.",
+     "fr": "Oui, j'ai tout apporté dans le sac.",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "amuse",
+       "t": "¿En un saco? Ah, en la mochila. ¡Muy bien!",
+       "fr": "Dans un grand sac ? Ah, dans le sac à dos. Très bien !"
+      }
+     ],
+     "aide": {
+      "fr": "« Un saco », c'est un <b>gros sac</b> (de pommes de terre, de ciment). Le sac de l'enfant : <b>la mochila</b> ; un sac de courses : « una bolsa »."
+     }
+    }
+   ]
+  },
+  "comida": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "¿Lucía come de todo? ¿Tiene alguna alergia?",
+     "fr": "Lucía mange de tout ? A-t-elle une allergie ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Come de todo, pero no bebe leche.",
+     "fr": "Elle mange de tout, mais elle ne boit pas de lait.",
+     "va": "adaptacion",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "Apuntado: sin leche. Le damos agua.",
+       "fr": "C'est noté : sans lait. Nous lui donnons de l'eau."
+      }
+     ]
+    },
+    {
+     "t": "Es alérgica a las nueces.",
+     "fr": "Elle est allergique aux noix.",
+     "va": "adaptacion",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "Gracias por decirlo. Lo apunto para la cocina: nada de frutos secos.",
+       "fr": "Merci de le dire. Je le note pour la cuisine : pas de fruits à coque."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Es alérgica de las nueces.",
+     "fr": "Elle est allergique des noix.",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "perplexe",
+       "t": "¿Alérgica… a las nueces? Vale, lo apunto.",
+       "fr": "Allergique… aux noix ? D'accord, je le note."
+      }
+     ],
+     "aide": {
+      "fr": "On est allergique <b>a</b> quelque chose : « alérgica <b>a</b> las nueces », jamais « de »."
+     }
+    }
+   ]
+  },
+  "adaptacion": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "attentive",
+     "t": "Estos días hacemos el periodo de adaptación. Hoy usted se queda una hora con ella en el aula.",
+     "fr": "Ces jours-ci, nous faisons la période d'adaptation. Aujourd'hui, vous restez une heure avec elle dans la salle."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muy bien. ¿Y cuándo puedo dejarla sola?",
+     "fr": "Très bien. Et quand est-ce que je peux la laisser seule ?",
+     "va": "recoger",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Poco a poco. Dentro de unos días, primero media hora, luego toda la mañana.",
+       "fr": "Petit à petit. Dans quelques jours, d'abord une demi-heure, puis toute la matinée."
+      }
+     ]
+    },
+    {
+     "t": "De acuerdo. ¿Mañana también me quedo?",
+     "fr": "D'accord. Demain aussi, je reste ?",
+     "va": "recoger",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Sí, mañana un poco menos. Vamos poco a poco.",
+       "fr": "Oui, demain un peu moins. Nous y allons petit à petit."
+      }
+     ]
+    },
+    {
+     "t": "Perdone, ¿qué es el periodo de adaptación?",
+     "fr": "Pardon, qu'est-ce que c'est, la période d'adaptation ?",
+     "va": "adaptacion",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Son los primeros días: los niños vienen poco tiempo, con la familia, para conocer el sitio. Hoy, una hora con usted.",
+       "fr": "Ce sont les premiers jours : les enfants viennent peu de temps, avec la famille, pour découvrir l'endroit. Aujourd'hui, une heure avec vous."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "recoger": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "question",
+     "t": "¿Quién va a venir a recogerla normalmente?",
+     "fr": "Qui va venir la chercher, d'habitude ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yo, casi siempre. A veces, su abuela. ¿Es posible?",
+     "fr": "Moi, presque toujours. Parfois, sa grand-mère. C'est possible ?",
+     "va": "telefono",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Sí, pero necesitamos una autorización firmada, con el nombre de la abuela.",
+       "fr": "Oui, mais il nous faut une autorisation signée, avec le nom de la grand-mère."
+      }
+     ]
+    },
+    {
+     "t": "Vengo yo. Pero los viernes, ¿puede venir su abuela?",
+     "fr": "C'est moi qui viens. Mais le vendredi, sa grand-mère peut venir ?",
+     "va": "telefono",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Claro, con una autorización firmada por usted. Ahora le doy el papel.",
+       "fr": "Bien sûr, avec une autorisation signée par vous. Je vous donne le papier tout de suite."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yo, o su abuela. Usted le da la niña y ya está.",
+     "fr": "Moi, ou sa grand-mère. Vous lui donnez la petite et voilà.",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "surprise",
+       "t": "Bueno… no es tan fácil. Sin autorización no puedo dejar a la niña con nadie.",
+       "fr": "Eh bien… ce n'est pas si simple. Sans autorisation, je ne peux laisser la petite à personne."
+      }
+     ],
+     "aide": {
+      "fr": "Ce n'est pas à toi d'en décider : <b>demande</b>. « ¿Es posible? », « ¿Puede venir su abuela? »."
+     }
+    }
+   ]
+  },
+  "telefono": {
+   "dit": [
+    {
+     "qui": "a22_ines",
+     "air": "attentive",
+     "t": "Muy bien. Y necesito un teléfono, por si pasa algo.",
+     "fr": "Très bien. Et il me faut un numéro de téléphone, au cas où."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Claro. Apunte: seis, uno, dos, treinta y cuatro, cincuenta y seis, setenta y ocho.",
+     "fr": "Bien sûr. Notez : six, un, deux, trente-quatre, cinquante-six, soixante-dix-huit.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "attentive",
+       "t": "612 34 56 78. Apuntado.",
+       "fr": "612 34 56 78. C'est noté.",
+       "dit": "Seis, uno, dos, treinta y cuatro, cincuenta y seis, setenta y ocho. Apuntado."
+      }
+     ]
+    },
+    {
+     "t": "Sí, claro. ¿Lo escribo aquí? Llámeme si hay algún problema, por favor.",
+     "fr": "Oui, bien sûr. Je l'écris ici ? Appelez-moi s'il y a un problème, s'il vous plaît.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "Sí, aquí mismo, gracias. Y no se preocupe: seguro que todo va bien.",
+       "fr": "Oui, juste ici, merci. Et ne vous inquiétez pas : tout va bien se passer."
+      }
+     ]
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Une heure plus tard, Lucía joue avec un autre enfant et ne te regarde même plus."
+     }
+    },
+    {
+     "qui": "a22_ines",
+     "air": "sourire",
+     "t": "¡Mire qué bien juega! Ha ido muy bien para ser el primer día. Mañana, a la misma hora.",
+     "fr": "Regardez comme elle joue bien ! Ça s'est très bien passé pour un premier jour. Demain, à la même heure."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Qué bien! Muchas gracias, Inés. ¡Hasta mañana!",
+     "fr": "Super ! Merci beaucoup, Inés. À demain !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "¡Hasta mañana! Adiós, Lucía.",
+       "fr": "À demain ! Au revoir, Lucía."
+      }
+     ]
+    },
+    {
+     "t": "¡Qué alegría! Gracias por todo. Hasta mañana.",
+     "fr": "Quelle joie ! Merci pour tout. À demain.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_ines",
+       "air": "sourire",
+       "t": "A ustedes. ¡Hasta mañana, Lucía!",
+       "fr": "Merci à vous deux. À demain, Lucía !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as confié les affaires de Lucía, dit ce qu'elle mange, compris la période d'adaptation et réglé qui vient la chercher."
+ }
+}
