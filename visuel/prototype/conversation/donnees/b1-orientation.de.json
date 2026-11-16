@@ -1,0 +1,154 @@
+{
+ "id": "b1-orientation",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "L'orientation de ma fille"},
+ "intro": {"fr": "Ta fille Clara est en sixième année à l'école primaire, à Berlin : c'est la dernière. Tu rencontres son enseignante pour parler de l'école où elle ira ensuite."},
+ "personnes": ["b13_lehrerin"],
+ "debut": "begruessung",
+ "noeuds": {
+  "begruessung": {
+   "dit": [
+    {"recit": {"fr": "Un soir de décembre, dans la salle de classe de Clara. L'enseignante t'attend à une petite table, un dossier devant elle."}},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Guten Abend! Schön, dass Sie kommen konnten. Nehmen Sie bitte Platz.", "fr": "Bonsoir ! Je suis contente que vous ayez pu venir. Asseyez-vous, je vous en prie."},
+    {"qui": "b13_lehrerin", "air": "question", "t": "Wir sprechen heute über Claras Weg nach der sechsten Klasse. Wie geht es ihr denn zurzeit mit der Schule?", "fr": "Nous parlons aujourd'hui du parcours de Clara après la sixième année. Comment ça se passe pour elle à l'école en ce moment ?"}
+   ],
+   "choix": [
+    {"t": "Guten Abend. Danke für den Termin. Clara geht gern in die Schule, vor allem wegen Mathe.", "fr": "Bonsoir. Merci pour le rendez-vous. Clara aime aller à l'école, surtout pour les maths.", "va": "noten",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Das merkt man im Unterricht.", "fr": "Ça se voit en classe."}]},
+    {"t": "Guten Abend. Es geht ihr gut, aber sie macht sich schon Gedanken über das nächste Jahr.", "fr": "Bonsoir. Elle va bien, mais elle pense déjà beaucoup à l'année prochaine.", "va": "noten",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Das ist in der sechsten Klasse ganz normal.", "fr": "C'est tout à fait normal en sixième année."}]},
+    {"faux": true, "t": "Hallo! Wie geht's dir?", "fr": "Salut ! Comment vas-tu ?",
+     "puis": [{"qui": "b13_lehrerin", "air": "surprise", "t": "Oh … gut, danke. Und Ihnen?", "fr": "Oh… bien, merci. Et vous ?"}],
+     "aide": {"fr": "<b>On vouvoie l'enseignante de son enfant.</b> « Wie geht's dir? » se dit entre amis. Ici : « Guten Abend » et « Wie geht es Ihnen? »."}}
+   ]
+  },
+  "noten": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "In Mathematik ist Clara sehr stark, sie steht auf Eins. In Deutsch ist es schwieriger: Beim Schreiben macht sie noch viele Fehler. Haben Sie das auch bemerkt?", "fr": "En mathématiques, Clara est très forte, elle a la meilleure note. En allemand, c'est plus difficile : à l'écrit, elle fait encore beaucoup de fautes. Vous l'avez remarqué aussi ?"}],
+   "choix": [
+    {"t": "Ja, das Schreiben fällt ihr schwer. Zu Hause sprechen wir Französisch.", "fr": "Oui, écrire lui est difficile. À la maison, nous parlons français.", "va": "prognose",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Das erklärt einiges. Aber sie macht Fortschritte.", "fr": "Cela explique certaines choses. Mais elle fait des progrès."}]},
+    {"t": "Ja, sie schreibt nicht gern. Aber in Mathe hilft sie sogar ihrem großen Bruder.", "fr": "Oui, elle n'aime pas écrire. Mais en maths, elle aide même son grand frère.", "va": "prognose",
+     "puis": [{"qui": "b13_lehrerin", "air": "amuse", "t": "Ihrem großen Bruder? Das glaube ich sofort.", "fr": "Son grand frère ? Je le crois sans peine."}]},
+    {"faux": true, "t": "Ja, sie hat gute Noten in Mathe, aber schlechte Noten auf Deutsch.", "fr": "Oui, elle a de bonnes notes en maths, mais de mauvaises notes « en langue allemande ».",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "In Deutsch, meinen Sie, also im Fach Deutsch. Ja, genau.", "fr": "« In Deutsch », vous voulez dire, donc dans la matière. Oui, exactement."}],
+     "aide": {"fr": "<b>Pour une matière scolaire, on dit « in »</b> : « gute Noten in Mathe, in Deutsch ». « auf Deutsch » veut dire « en langue allemande » : « Sag es auf Deutsch. »"}}
+   ]
+  },
+  "prognose": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Ende Januar bekommen Sie mit dem Zeugnis die Förderprognose. Wissen Sie, was das ist?", "fr": "Fin janvier, vous recevrez avec le bulletin la « Förderprognose ». Vous savez ce que c'est ?"}],
+   "choix": [
+    {"t": "Nein, nicht genau. Können Sie mir das bitte erklären?", "fr": "Non, pas exactement. Pouvez-vous me l'expliquer, s'il vous plaît ?", "va": "wunsch",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Gern. Das ist unsere Empfehlung für die nächste Schule: Gymnasium oder Integrierte Sekundarschule. Sie hängt vor allem von den Noten ab.", "fr": "Volontiers. C'est notre recommandation pour l'école suivante : le Gymnasium ou l'Integrierte Sekundarschule. Elle dépend surtout des notes."}]},
+    {"t": "Ja, ich glaube schon. Das ist die Empfehlung der Schule für das Gymnasium oder die Sekundarschule, oder?", "fr": "Oui, je crois. C'est la recommandation de l'école pour le Gymnasium ou la Sekundarschule, non ?", "va": "wunsch",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Genau. Sie hängt vor allem von den Noten ab.", "fr": "Exactement. Elle dépend surtout des notes."}]},
+    {"faux": true, "t": "Nein, ich kenne nicht das.", "fr": "Non, je connais pas ça (ordre des mots du français).",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Das kennen Sie nicht? Kein Problem, ich erkläre es Ihnen gleich.", "fr": "Vous ne connaissez pas ? Pas de problème, je vous l'explique tout de suite."}],
+     "aide": {"fr": "<b>« nicht » vient après le complément</b> quand on nie toute la phrase : « Das kenne ich nicht » ou « Ich kenne das nicht. »"}},
+    {"repete": true, "t": "Wie bitte? Können Sie das Wort langsam wiederholen?", "fr": "Pardon ? Pouvez-vous répéter le mot lentement ?", "va": "prognose",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Natürlich: die Förder-prognose. Das ist ein Blatt von der Schule, das Sie mit dem Zeugnis bekommen. Kennen Sie das schon?", "fr": "Bien sûr : la « Förder-prognose ». C'est une feuille de l'école que vous recevez avec le bulletin. Vous connaissez déjà ?"}]}
+   ]
+  },
+  "wunsch": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Am Ende entscheiden aber Sie als Eltern. Was wünschen Sie sich für Clara: das Gymnasium oder eine Sekundarschule?", "fr": "Mais à la fin, c'est vous, les parents, qui décidez. Que souhaitez-vous pour Clara : le Gymnasium ou une Sekundarschule ?"}],
+   "choix": [
+    {"t": "Wir möchten, dass sie aufs Gymnasium geht. Sie will später studieren.", "fr": "Nous aimerions qu'elle aille au Gymnasium. Elle veut faire des études supérieures plus tard.", "pose": {"voie": "gym"}, "va": "gymnasium",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Das kann ich gut verstehen.", "fr": "Je le comprends bien."}]},
+    {"t": "Ich denke eher an die Sekundarschule. Dort hat sie mehr Zeit und weniger Druck.", "fr": "Je pense plutôt à la Sekundarschule. Elle y aura plus de temps et moins de pression.", "pose": {"voie": "iss"}, "va": "iss",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Das ist ein guter Gedanke.", "fr": "C'est une bonne réflexion."}]},
+    {"t": "Ich weiß es noch nicht. Was ist eigentlich der Unterschied?", "fr": "Je ne sais pas encore. Quelle est la différence, au juste ?", "va": "unterschied",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Gute Frage. Viele Eltern fragen das.", "fr": "Bonne question. Beaucoup de parents la posent."}]},
+    {"faux": true, "t": "Wir möchten, dass sie geht aufs Gymnasium.", "fr": "Nous aimerions qu'elle va au Gymnasium (ordre des mots du français).",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Sie möchten, dass sie aufs Gymnasium geht. Habe ich das richtig verstanden?", "fr": "Vous aimeriez « dass sie aufs Gymnasium geht ». J'ai bien compris ?"}],
+     "aide": {"fr": "<b>Après « dass », le verbe conjugué va à la fin</b> : « Wir möchten, dass sie aufs Gymnasium geht. »"}}
+   ]
+  },
+  "gymnasium": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Am Gymnasium geht alles schneller, und in Deutsch muss Clara dann viel aufholen. Ist sie dazu bereit?", "fr": "Au Gymnasium, tout va plus vite, et en allemand, Clara devra alors rattraper beaucoup. Y est-elle prête ?"}],
+   "choix": [
+    {"t": "Ja, sie ist fleißig. Und wir suchen eine Nachhilfe für Deutsch.", "fr": "Oui, elle est travailleuse. Et nous cherchons des cours de soutien en allemand.", "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Das ist eine gute Idee. Mit Hilfe kann sie das schaffen.", "fr": "C'est une bonne idée. Avec de l'aide, elle peut y arriver."}]},
+    {"t": "Ich glaube schon. Aber was passiert, wenn ihre Noten für das Gymnasium nicht reichen?", "fr": "Je crois que oui. Mais que se passe-t-il si ses notes ne suffisent pas pour le Gymnasium ?", "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Dann gibt es einen Probetag am Gymnasium. Und wenn das nicht klappt, ist die Sekundarschule auch ein guter Weg.", "fr": "Dans ce cas, il y a une journée d'essai au Gymnasium. Et si cela ne marche pas, la Sekundarschule est aussi une bonne voie."}]},
+    {"faux": true, "t": "Ja, Clara ist sehr seriös.", "fr": "Oui, Clara est très « seriös ».",
+     "puis": [{"qui": "b13_lehrerin", "air": "amuse", "t": "Seriös? Wie eine Bank? Ach so, Sie meinen: Sie ist fleißig.", "fr": "« Seriös » ? Comme une banque ? Ah, vous voulez dire qu'elle est travailleuse."}],
+     "aide": {"fr": "<b>« seriös » est un faux ami</b> : il se dit d'une entreprise ou d'une offre digne de confiance. Pour une élève sérieuse : « fleißig » (travailleuse) ou « zuverlässig » (fiable)."}}
+   ]
+  },
+  "iss": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Viele Eltern wissen das nicht: Auch an der Sekundarschule kann man das Abitur machen, nur ein Jahr später. Wäre das Abitur für Clara wichtig?", "fr": "Beaucoup de parents l'ignorent : à la Sekundarschule aussi, on peut passer l'Abitur, simplement un an plus tard. L'Abitur serait-il important pour Clara ?"}],
+   "choix": [
+    {"t": "Ja, sehr. Sie möchte später vielleicht Ingenieurin werden.", "fr": "Oui, très. Elle aimerait peut-être devenir ingénieure plus tard.", "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Mit ihren Noten in Mathe ist das ein guter Plan.", "fr": "Avec ses notes en maths, c'est un bon projet."}]},
+    {"t": "Das wusste ich nicht. Dann hat sie ein Jahr mehr Zeit, das finde ich gut.", "fr": "Je ne le savais pas. Alors elle a un an de plus, je trouve ça bien.", "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Ja, dieses Jahr hilft vielen Kindern.", "fr": "Oui, cette année-là aide beaucoup d'enfants."}]}
+   ]
+  },
+  "unterschied": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Am Gymnasium lernt man schneller und macht das Abitur nach zwölf Jahren. An der Sekundarschule hat man ein Jahr mehr Zeit, und man kann dort alle Abschlüsse machen, auch das Abitur. Was passt besser zu Clara, was meinen Sie?", "fr": "Au Gymnasium, on apprend plus vite et on passe l'Abitur au bout de douze ans. À la Sekundarschule, on a un an de plus, et on peut y obtenir tous les diplômes, l'Abitur aussi. Qu'est-ce qui convient le mieux à Clara, à votre avis ?"}],
+   "choix": [
+    {"t": "Dann vielleicht die Sekundarschule. Für Deutsch braucht Clara noch Zeit.", "fr": "Alors peut-être la Sekundarschule. Pour l'allemand, Clara a encore besoin de temps.", "pose": {"voie": "iss"}, "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Das sehe ich ähnlich.", "fr": "Je vois les choses à peu près de la même façon."}]},
+    {"t": "Ich glaube, das Gymnasium. Sie lernt schnell, und sonst langweilt sie sich.", "fr": "Je crois que c'est le Gymnasium. Elle apprend vite, et sinon elle s'ennuie.", "pose": {"voie": "gym"}, "va": "sorge",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "In Mathe stimmt das auf jeden Fall. In Deutsch braucht sie dann aber Hilfe.", "fr": "En maths, c'est vrai en tout cas. Mais en allemand, elle aura alors besoin d'aide."}]}
+   ]
+  },
+  "sorge": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Gibt es etwas, das Ihnen Sorgen macht?", "fr": "Y a-t-il quelque chose qui vous inquiète ?"}],
+   "choix": [
+    {"t": "Ja, der Stress. Clara hat schon jetzt Angst vor schlechten Noten.", "fr": "Oui, le stress. Clara a déjà peur des mauvaises notes.", "pose": {"sorge": "stress"}, "va": "schritte",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Das nehme ich ernst. Sagen Sie ihr: Eine Drei ist keine Katastrophe. Und sie braucht Zeit für Freunde und Sport.", "fr": "Je prends cela au sérieux. Dites-lui : un trois n'est pas une catastrophe. Et elle a besoin de temps pour ses amis et le sport."}]},
+    {"t": "Zu Hause sprechen wir nur Französisch. Ist das ein Problem für ihr Deutsch?", "fr": "À la maison, nous ne parlons que français. Est-ce un problème pour son allemand ?", "pose": {"sorge": "sprache"}, "va": "schritte",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Nein, im Gegenteil: Zwei Sprachen sind ein Vorteil. Wichtig ist nur, dass Clara viel auf Deutsch liest.", "fr": "Non, au contraire : deux langues sont un avantage. L'important est seulement que Clara lise beaucoup en allemand."}]},
+    {"t": "Ich kann ihr bei den Hausaufgaben in Deutsch nicht helfen. Gibt es an der Schule Nachhilfe?", "fr": "Je ne peux pas l'aider pour ses devoirs d'allemand. Y a-t-il du soutien à l'école ?", "pose": {"sorge": "hilfe"}, "va": "schritte",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Ja, zweimal pro Woche gibt es nachmittags eine Hausaufgabenhilfe. Ich melde Clara gern an.", "fr": "Oui, deux fois par semaine, l'après-midi, il y a une aide aux devoirs. J'inscris Clara volontiers."}]},
+    {"faux": true, "t": "Ja, ich mache mir Sorgen für Clara.", "fr": "Oui, je me fais du souci « pour » Clara.",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Sie machen sich Sorgen um Clara. Was genau macht Ihnen Sorgen?", "fr": "Vous vous faites du souci « um Clara ». Qu'est-ce qui vous inquiète exactement ?"}],
+     "aide": {"fr": "<b>« sich Sorgen machen » se construit avec « um »</b> : « Ich mache mir Sorgen um Clara. »"}}
+   ]
+  },
+  "schritte": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Gut. Im Januar haben viele Schulen einen Tag der offenen Tür. Haben Sie schon eine Schule im Kopf?", "fr": "Bien. En janvier, beaucoup d'écoles organisent une journée portes ouvertes. Avez-vous déjà une école en tête ?"}],
+   "choix": [
+    {"t": "Ja, eine Schule in unserer Nähe. Wir schauen sie uns im Januar zusammen an.", "fr": "Oui, une école près de chez nous. Nous irons la voir ensemble en janvier.", "va": "anmeldung",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Sehr gut. Nehmen Sie Clara unbedingt mit, sie muss sich dort wohlfühlen.", "fr": "Très bien. Emmenez absolument Clara, il faut qu'elle s'y sente bien."}]},
+    {"t": "Noch nicht. Können Sie uns eine Schule empfehlen?", "fr": "Pas encore. Pouvez-vous nous recommander une école ?", "va": "empfehlung",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Gern.", "fr": "Volontiers."}]}
+   ]
+  },
+  "empfehlung": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Clara mag Mathe. Im Bezirk gibt es ein Gymnasium und eine Sekundarschule mit viel Mathematik und Naturwissenschaften. Soll ich Ihnen die Adressen aufschreiben?", "fr": "Clara aime les maths. Dans l'arrondissement, il y a un Gymnasium et une Sekundarschule avec beaucoup de mathématiques et de sciences. Voulez-vous que je vous note les adresses ?"}],
+   "choix": [
+    {"t": "Ja, sehr gern. Dann gehen wir zu beiden Tagen der offenen Tür.", "fr": "Oui, très volontiers. Alors nous irons aux deux journées portes ouvertes.", "va": "anmeldung",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Das ist das Beste. So kann Clara vergleichen.", "fr": "C'est le mieux. Comme ça, Clara pourra comparer."}]},
+    {"t": "Ja, bitte. Kann Clara dort auch einmal den Unterricht besuchen?", "fr": "Oui, s'il vous plaît. Clara peut-elle aussi y assister une fois à un cours ?", "va": "anmeldung",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Manche Schulen bieten das an. Fragen Sie am Tag der offenen Tür danach.", "fr": "Certaines écoles le proposent. Posez la question à la journée portes ouvertes."}]}
+   ]
+  },
+  "anmeldung": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Die Anmeldung ist dann im Februar. Sie melden Clara an Ihrer ersten Wunschschule an und nennen noch zwei weitere Schulen. Haben Sie dazu Fragen?", "fr": "L'inscription a lieu ensuite en février. Vous inscrivez Clara dans l'école de votre premier choix et vous indiquez encore deux autres écoles. Avez-vous des questions là-dessus ?"}],
+   "choix": [
+    {"t": "Ja: Was passiert, wenn die erste Schule keinen Platz mehr hat?", "fr": "Oui : que se passe-t-il si la première école n'a plus de place ?", "va": "abschied",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Dann kommt die zweite oder die dritte Schule dran. Wählen Sie deshalb alle drei mit Ruhe aus.", "fr": "Dans ce cas, c'est le tour de la deuxième ou de la troisième école. Choisissez donc les trois tranquillement."}]},
+    {"t": "Nein, das ist klar. Welche Papiere brauche ich für die Anmeldung?", "fr": "Non, c'est clair. De quels papiers ai-je besoin pour l'inscription ?", "va": "abschied",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Die Förderprognose und das Anmeldeformular. Beides bekommen Sie von uns mit dem Zeugnis.", "fr": "La Förderprognose et le formulaire d'inscription. Nous vous donnons les deux avec le bulletin."}]}
+   ]
+  },
+  "abschied": {
+   "dit": [
+    {"si": {"voie": "gym"}, "qui": "b13_lehrerin", "air": "sourire", "t": "Dann also das Gymnasium, mit etwas Hilfe in Deutsch. Ich traue Clara das zu.", "fr": "Alors ce sera le Gymnasium, avec un peu d'aide en allemand. Je crois Clara capable d'y arriver."},
+    {"si": {"voie": "iss"}, "qui": "b13_lehrerin", "air": "sourire", "t": "Dann schauen Sie sich die Sekundarschulen in Ruhe an. Clara wird dort ihren Weg machen.", "fr": "Alors allez voir les Sekundarschulen tranquillement. Clara y fera son chemin."},
+    {"si": {"sorge": "stress"}, "qui": "b13_lehrerin", "air": "attentive", "t": "Und wenn der Stress größer wird, rufen Sie mich bitte an.", "fr": "Et si le stress augmente, appelez-moi, s'il vous plaît."},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Grüßen Sie Clara von mir!", "fr": "Saluez Clara de ma part !"}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für Ihre Zeit und Ihre Ratschläge. Auf Wiedersehen!", "fr": "Merci beaucoup pour votre temps et vos conseils. Au revoir !", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Sehr gern. Auf Wiedersehen!", "fr": "Avec plaisir. Au revoir !"}]},
+    {"t": "Danke, das Gespräch hat mir sehr geholfen. Ich spreche heute Abend mit Clara.", "fr": "Merci, cet entretien m'a beaucoup aidé (aidée). Je parle à Clara ce soir.", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Tun Sie das. Einen schönen Abend noch!", "fr": "Faites cela. Bonne fin de soirée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as parlé avec l'enseignante de Clara de ses notes, du choix entre le Gymnasium et la Sekundarschule, de ce qui t'inquiète et de l'inscription en février."}
+}

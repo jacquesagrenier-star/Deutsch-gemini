@@ -1,0 +1,160 @@
+{
+ "id": "b1-livraison",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Un colis qui pose problème"},
+ "intro": {"fr": "Ta commande dans une boutique en ligne pose problème. Tu appelles le service client pour obtenir une solution."},
+ "personnes": ["b13_kundenservice"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Tu appelles le service client de Maple & Finch, une boutique en ligne. Après un peu de musique, quelqu'un décroche."}},
+    {"qui": "b13_kundenservice", "air": "sourire", "t": "Thank you for calling Maple & Finch. This is Dana. How can I help you today?", "fr": "Merci d'avoir appelé Maple & Finch. Dana à l'appareil. Comment puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Hi, I'm calling about an order. There's a problem with it.", "fr": "Bonjour, j'appelle au sujet d'une commande. Il y a un problème.", "va": "number"},
+    {"t": "Hello. I have a problem with a package I ordered.", "t_gb": "Hello. I have a problem with a parcel I ordered.", "fr": "Bonjour. J'ai un problème avec un colis que j'ai commandé.", "va": "number"},
+    {"faux": true, "t": "Hello, I'm calling about a command I made.", "fr": "Bonjour, j'appelle au sujet d'une « commande » que j'ai faite (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "perplexe", "t": "A command? Oh, you mean an order you placed with us?", "fr": "Une « command » ? Ah, vous voulez dire une commande passée chez nous ?"}],
+     "aide": {"fr": "<b>« a command »</b>, c'est un ordre qu'on donne. Une commande dans un magasin se dit « an order » : « I'm calling about an order. »"}}
+   ]
+  },
+  "number": {
+   "dit": [{"qui": "b13_kundenservice", "air": "attentive", "t": "I'm sorry to hear that. Can I get your order number, please?", "fr": "J'en suis désolée. Puis-je avoir votre numéro de commande, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Sure. It's four, seven, three, zero, nine.", "fr": "Bien sûr. C'est le quatre, sept, trois, zéro, neuf.", "va": "problem",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Order 47309. Okay, I have it right here.", "dit": "Order four, seven, three, zero, nine. Okay, I have it right here.", "fr": "Commande 47309. Très bien, je l'ai sous les yeux."}]},
+    {"t": "Just a second … Here it is: four, seven, three, zero, nine.", "fr": "Une seconde… Le voici : quatre, sept, trois, zéro, neuf.", "va": "problem",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Order 47309. Okay, I have it right here.", "dit": "Order four, seven, three, zero, nine. Okay, I have it right here.", "fr": "Commande 47309. Très bien, je l'ai sous les yeux."}]},
+    {"repete": true, "t": "Sorry, what do you need?", "fr": "Pardon, de quoi avez-vous besoin ?", "va": "number",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Your order number. It's in the confirmation email we sent you.", "fr": "Votre numéro de commande. Il se trouve dans l'e-mail de confirmation que nous vous avons envoyé."}]}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "So, what seems to be the problem?", "fr": "Alors, quel est le problème ?"}],
+   "choix": [
+    {"t": "The tracking says it was delivered, but I didn't receive anything.", "fr": "Le suivi dit que le colis a été livré, mais je n'ai rien reçu.", "pose": {"problem": "lost"}, "va": "porch"},
+    {"t": "The package arrived, but the lamp inside is broken.", "t_gb": "The parcel arrived, but the lamp inside is broken.", "fr": "Le colis est arrivé, mais la lampe qu'il contient est cassée.", "pose": {"problem": "broken"}, "va": "damage"},
+    {"t": "You sent me the wrong item. It's not the size I ordered.", "fr": "Vous m'avez envoyé le mauvais article. Ce n'est pas la taille que j'ai commandée.", "pose": {"problem": "wrong"}, "va": "wrong"},
+    {"faux": true, "t": "I didn't received my package.", "t_gb": "I didn't received my parcel.", "fr": "Je n'ai pas « reçu » mon colis (forme fautive).",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "You didn't receive it? Let me take a look. What does the tracking say?", "fr": "Vous ne l'avez pas reçu ? Je regarde. Que dit le suivi ?"}],
+     "aide": {"fr": "<b>Après « didn't », le verbe reste à l'infinitif</b> : « I didn't receive my package », jamais « didn't received »."}}
+   ]
+  },
+  "porch": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "It shows as delivered yesterday afternoon. Did you check around your front door, and with your neighbors?", "t_gb": "It shows as delivered yesterday afternoon. Did you check around your front door, and with your neighbours?", "fr": "Il apparaît comme livré hier après-midi. Avez-vous regardé autour de votre porte d'entrée, et demandé à vos voisins ?"}],
+   "choix": [
+    {"t": "Yes, I asked my neighbors. It's not on the porch, and it's not in the lobby.", "t_gb": "Yes, I asked my neighbours. It's not on the porch, and it's not in the lobby.", "fr": "Oui, j'ai demandé à mes voisins. Il n'est ni sur le perron ni dans le hall.", "va": "photo"},
+    {"t": "I looked everywhere. There's nothing at the front door, and nobody has seen it.", "fr": "J'ai regardé partout. Il n'y a rien à la porte d'entrée, et personne ne l'a vu.", "va": "photo"},
+    {"t": "I haven't asked my neighbors yet. Should I do that first?", "t_gb": "I haven't asked my neighbours yet. Should I do that first?", "fr": "Je n'ai pas encore demandé à mes voisins. Dois-je d'abord le faire ?", "va": "ask"},
+    {"faux": true, "t": "Yes, I demanded to my neighbors.", "t_gb": "Yes, I demanded to my neighbours.", "fr": "Oui, j'ai « demandé » à mes voisins (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "You … demanded? Oh, you asked them. And nobody has it?", "fr": "Vous avez… « exigé » ? Ah, vous leur avez demandé. Et personne ne l'a ?"}],
+     "aide": {"fr": "<b>« to demand »</b>, c'est exiger. Poser une question se dit « to ask », sans préposition : « I asked my neighbors. »"}}
+   ]
+  },
+  "ask": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "That would help. Sometimes a neighbor takes a package inside to keep it safe. When can you check with them?", "t_gb": "That would help. Sometimes a neighbour takes a parcel inside to keep it safe. When can you check with them?", "fr": "Ce serait utile. Il arrive qu'un voisin rentre un colis pour le mettre à l'abri. Quand pouvez-vous leur demander ?"}],
+   "choix": [
+    {"t": "Tonight, when everyone is home from work.", "fr": "Ce soir, quand tout le monde sera rentré du travail.", "va": "photo",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Great. In the meantime, let me check one more thing.", "fr": "Parfait. En attendant, je vérifie encore une chose."}]},
+    {"t": "Right after this call. But I don't think they have it.", "fr": "Tout de suite après cet appel. Mais je ne pense pas qu'ils l'aient.", "va": "photo",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "I understand. In the meantime, let me check one more thing.", "fr": "Je comprends. En attendant, je vérifie encore une chose."}]}
+   ]
+  },
+  "photo": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "The driver took a delivery photo. It shows a box next to a blue door, with a bench on the porch. Does that look like your place?", "fr": "Le livreur a pris une photo de la livraison. On y voit un carton à côté d'une porte bleue, avec un banc sur le perron. Est-ce que cela ressemble à chez vous ?"}],
+   "choix": [
+    {"t": "No, that's not my building. My door is green, and there's no bench.", "fr": "Non, ce n'est pas mon immeuble. Ma porte est verte, et il n'y a pas de banc.", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Then it went to the wrong address. I'm so sorry about that. I'll report it to the carrier right away.", "fr": "Alors il a été livré à la mauvaise adresse. J'en suis vraiment désolée. Je le signale tout de suite au transporteur."}]},
+    {"t": "No, we don't have a bench. I think the driver left it at the wrong house.", "fr": "Non, nous n'avons pas de banc. Je pense que le livreur l'a laissé devant la mauvaise maison.", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "It looks that way. I'm so sorry about that. I'll report it to the carrier right away.", "fr": "On dirait bien. J'en suis vraiment désolée. Je le signale tout de suite au transporteur."}]}
+   ]
+  },
+  "damage": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Oh no, I'm so sorry. What exactly is broken? And was the box damaged too?", "fr": "Oh non, je suis vraiment désolée. Qu'est-ce qui est cassé, exactement ? Et le carton était-il abîmé aussi ?"}],
+   "choix": [
+    {"t": "The glass part of the lamp is broken in several pieces. One corner of the box was damaged.", "fr": "La partie en verre de la lampe est cassée en plusieurs morceaux. Un coin du carton était abîmé.", "va": "pictures"},
+    {"t": "The glass is broken, but the box looked fine from the outside.", "fr": "Le verre est cassé, mais de l'extérieur le carton avait l'air intact.", "va": "pictures"},
+    {"faux": true, "t": "The lamp was already broken when I have opened the box.", "fr": "La lampe était déjà cassée quand j'« ai ouvert » le carton (mauvais temps).",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "It was already broken when you opened the box? And what exactly is broken?", "fr": "Elle était déjà cassée quand vous avez ouvert le carton ? Et qu'est-ce qui est cassé, exactement ?"}],
+     "aide": {"fr": "<b>Un moment précis du passé demande le prétérit</b>, pas le present perfect : « when I opened the box », jamais « when I have opened ». "}}
+   ]
+  },
+  "pictures": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Could you send us a few pictures of the damage and the box? And please hold on to the packaging for now.", "fr": "Pourriez-vous nous envoyer quelques photos du dégât et du carton ? Et gardez l'emballage pour l'instant, s'il vous plaît."}],
+   "choix": [
+    {"t": "Yes, I already took some pictures. Where should I send them?", "t_gb": "Yes, I've already taken some pictures. Where should I send them?", "fr": "Oui, j'ai déjà pris des photos. Où dois-je les envoyer ?", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "I'm sending you an email right now. Just reply to it and attach the pictures.", "fr": "Je vous envoie un e-mail à l'instant. Répondez-y simplement en joignant les photos."}]},
+    {"t": "Of course. I still have the box, so I'll take pictures right away.", "fr": "Bien sûr. J'ai encore le carton, je prends donc des photos tout de suite.", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Perfect. I'm sending you an email right now. Just reply to it and attach the pictures.", "fr": "Parfait. Je vous envoie un e-mail à l'instant. Répondez-y simplement en joignant les photos."}]}
+   ]
+  },
+  "wrong": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "I apologize, that shouldn't happen. What did you order, and what did you get?", "t_gb": "I apologise, that shouldn't happen. What did you order, and what did you get?", "fr": "Je vous présente nos excuses, cela ne devrait pas arriver. Qu'avez-vous commandé, et qu'avez-vous reçu ?"}],
+   "choix": [
+    {"t": "I ordered a winter coat in a medium, but I got a small.", "fr": "J'ai commandé un manteau d'hiver en taille M, mais j'ai reçu une taille S.", "va": "label"},
+    {"t": "I ordered a blue coat, and you sent me a black one. The size is wrong too.", "fr": "J'ai commandé un manteau bleu, et vous m'en avez envoyé un noir. La taille n'est pas la bonne non plus.", "va": "label"},
+    {"faux": true, "t": "I ordered a coat, but it's not the good size.", "fr": "J'ai commandé un manteau, mais ce n'est pas la « bonne » taille (calque du français).",
+     "puis": [{"qui": "b13_kundenservice", "air": "perplexe", "t": "Not the … right size? Got it. What size did you order?", "fr": "Pas la… bonne taille ? Compris. Quelle taille avez-vous commandée ?"}],
+     "aide": {"fr": "<b>« la bonne taille » se dit « the right size »</b>, et la mauvaise, « the wrong size ». « Good » juge la qualité, pas l'exactitude."}}
+   ]
+  },
+  "label": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "I'll email you a prepaid return label. Can you print it, or would you prefer a QR code to show at a UPS Store?", "fr": "Je vous envoie par e-mail une étiquette de retour prépayée. Pouvez-vous l'imprimer, ou préférez-vous un QR code à montrer dans une boutique UPS ?"}],
+   "choix": [
+    {"t": "I don't have a printer. The QR code would be better.", "fr": "Je n'ai pas d'imprimante. Le QR code serait mieux.", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "No problem, I'll send the QR code. The return is free, of course.", "fr": "Pas de problème, j'envoie le QR code. Le retour est gratuit, bien sûr."}]},
+    {"t": "I can print it. Where do I drop off the package?", "t_gb": "I can print it. Where do I drop off the parcel?", "fr": "Je peux l'imprimer. Où est-ce que je dépose le colis ?", "va": "solution",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "At any UPS location. The return is free, of course.", "fr": "Dans n'importe quel point UPS. Le retour est gratuit, bien sûr."}]}
+   ]
+  },
+  "solution": {
+   "dit": [
+    {"si": {"problem": "lost"}, "qui": "b13_kundenservice", "air": "sourire", "t": "But you don't have to wait for the carrier to find it.", "fr": "Mais vous n'avez pas à attendre que le transporteur le retrouve."},
+    {"si": {"problem": "broken"}, "qui": "b13_kundenservice", "air": "sourire", "t": "By the way, you don't need to send the broken lamp back.", "fr": "Au fait, vous n'avez pas besoin de renvoyer la lampe cassée."},
+    {"si": {"problem": "wrong"}, "qui": "b13_kundenservice", "air": "sourire", "t": "And you don't have to wait until we get the coat back.", "fr": "Et vous n'avez pas à attendre que le manteau nous soit revenu."},
+    {"qui": "b13_kundenservice", "air": "question", "t": "Would you like a replacement, or would you prefer a refund?", "fr": "Souhaitez-vous un article de remplacement, ou préférez-vous un remboursement ?"}
+   ],
+   "choix": [
+    {"t": "I'd like a replacement, please. When would it arrive?", "fr": "J'aimerais un article de remplacement, s'il vous plaît. Quand arriverait-il ?", "pose": {"solution": "replacement"}, "va": "replacement"},
+    {"t": "I'd prefer a refund, please.", "fr": "Je préférerais un remboursement, s'il vous plaît.", "pose": {"solution": "refund"}, "va": "refund"},
+    {"faux": true, "t": "I would like that you send me another one.", "fr": "J'aimerais « que vous m'en envoyiez » un autre (calque du français).",
+     "puis": [{"qui": "b13_kundenservice", "air": "perplexe", "t": "Sorry? Oh, you'd like us to send you another one. A replacement, then?", "fr": "Pardon ? Ah, vous aimeriez que nous vous en envoyions un autre. Un remplacement, donc ?"}],
+     "aide": {"fr": "<b>« J'aimerais que vous… » se dit « I'd like you to… »</b>, avec l'infinitif et sans « that » : « I'd like you to send me another one. » Plus simple encore : « I'd like a replacement, please. »"}}
+   ]
+  },
+  "replacement": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "The replacement ships tomorrow and should arrive in two to three business days. Should we send it to the same address?", "t_gb": "The replacement ships tomorrow and should arrive in two to three working days. Should we send it to the same address?", "fr": "L'article de remplacement part demain et devrait arriver en deux à trois jours ouvrables. L'envoyons-nous à la même adresse ?"}],
+   "choix": [
+    {"t": "Yes, the same address, please.", "fr": "Oui, à la même adresse, s'il vous plaît.", "va": "end",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "You got it.", "fr": "C'est noté."}]},
+    {"t": "Could you send it to my work address instead? Someone is always there.", "fr": "Pourriez-vous plutôt l'envoyer à mon adresse professionnelle ? Il y a toujours quelqu'un là-bas.", "va": "end",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Good idea. I'll email you a link so you can enter the new address.", "fr": "Bonne idée. Je vous envoie par e-mail un lien pour saisir la nouvelle adresse."}]}
+   ]
+  },
+  "refund": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "A refund to your card takes five to seven business days. Or I can give you store credit today. Which would you prefer?", "t_gb": "A refund to your card takes five to seven working days. Or I can give you store credit today. Which would you prefer?", "fr": "Un remboursement sur votre carte prend cinq à sept jours ouvrables. Ou bien je peux vous donner un avoir dès aujourd'hui. Que préférez-vous ?"}],
+   "choix": [
+    {"t": "I'll take the refund to my card, thanks. Will I get a confirmation?", "fr": "Je prends le remboursement sur ma carte, merci. Est-ce que je recevrai une confirmation ?", "va": "end",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Yes, absolutely.", "fr": "Oui, tout à fait."}]},
+    {"t": "Store credit is fine. I shop with you pretty often.", "t_gb": "Store credit is fine. I shop with you quite often.", "fr": "Un avoir me convient. J'achète assez souvent chez vous.", "va": "end",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "We really appreciate that. The credit will be in your account in a few minutes.", "fr": "Nous y sommes très sensibles. L'avoir sera sur votre compte dans quelques minutes."}]}
+   ]
+  },
+  "end": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "You'll get a confirmation email in a few minutes. Is there anything else I can help you with?", "fr": "Vous recevrez un e-mail de confirmation dans quelques minutes. Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "No, that's all. Thank you so much for your help!", "fr": "Non, c'est tout. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "You're very welcome. Have a great day!", "fr": "Je vous en prie. Excellente journée !"}]},
+    {"t": "No, thanks. You've been very helpful. Have a good day!", "fr": "Non, merci. Vous m'avez beaucoup aidé. Bonne journée !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Thank you, you too!", "fr": "Merci, vous aussi !"}]},
+    {"faux": true, "t": "No, it's all. Thanks for your help.", "fr": "Non, « c'est tout » (calque du français). Merci pour votre aide.",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "That's all? Okay, great!", "fr": "C'est tout ? Très bien, parfait !"}],
+     "aide": {"fr": "<b>« C'est tout » se dit « That's all »</b> (ou « That's it »), jamais « It's all ». "}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué le problème de ta commande et obtenu une solution, avec une confirmation par e-mail."}
+}

@@ -1,0 +1,201 @@
+{
+ "id": "b1-mon-pays",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Présenter mon pays au cours"},
+ "intro": {"fr": "À ton cours d'anglais pour adultes, à Boston, la professeure te demande de présenter ton pays à la classe. Tu réponds à ses questions et tu compares avec les États-Unis."},
+ "personnes": ["b13_kursleiterin"],
+ "debut": "country",
+ "noeuds": {
+  "country": {
+   "dit": [
+    {"recit": {"fr": "Mercredi soir, au centre d'éducation des adultes. Aujourd'hui, c'est ton tour : tu es devant la classe, à côté de la carte."}},
+    {"qui": "b13_kursleiterin", "air": "sourire", "t": "All right, tonight it's your turn to tell us about your home country. So, where are you from?", "fr": "Bien, ce soir, c'est à vous de nous parler de votre pays. Alors, d'où venez-vous ?"}
+   ],
+   "choix": [
+    {"t": "I'm from Canada, from the province of Quebec.", "fr": "Je viens du Canada, de la province de Québec.", "pose": {"pays": "canada"}, "va": "where",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Oh, our neighbors! Welcome.", "t_gb": "Oh, our neighbours! Welcome.", "fr": "Oh, nos voisins ! Bienvenue."}]},
+    {"t": "I'm from France.", "fr": "Je viens de France.", "pose": {"pays": "france"}, "va": "where",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "France! I've always wanted to go.", "fr": "La France ! J'ai toujours voulu y aller."}]},
+    {"t": "I come from Belgium.", "fr": "Je viens de Belgique.", "pose": {"pays": "belgium"}, "va": "where",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Belgium, how nice! We don't meet many Belgians here.", "fr": "La Belgique, comme c'est bien ! On ne rencontre pas beaucoup de Belges ici."}]},
+    {"t": "I'm from Switzerland.", "fr": "Je viens de Suisse.", "pose": {"pays": "switzerland"}, "va": "where",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Switzerland! From the French-speaking part, I guess.", "fr": "La Suisse ! De la partie francophone, je suppose."}]},
+    {"faux": true, "t": "I come from the France.", "fr": "Je viens de « la » France.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "From France. No 'the' with most countries.", "fr": "« From France ». Pas de « the » avec la plupart des pays."}],
+     "aide": {"fr": "<b>Pas d'article devant la plupart des noms de pays</b> : « from France », « from Canada », « from Belgium », « from Switzerland ». On garde « the » pour quelques-uns : « the United States », « the Netherlands »."}},
+    {"faux": true, "t": "I'm coming from Belgium.", "fr": "Je suis en train d'arriver de Belgique.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "Oh, you just got here from Belgium today? Or do you mean you're from Belgium?", "fr": "Oh, vous venez d'arriver de Belgique aujourd'hui ? Ou vous voulez dire que vous êtes de Belgique ?"}],
+     "aide": {"fr": "<b>« I'm coming from » décrit un trajet</b> en cours. Pour l'origine, on emploie le présent simple : « I come from Belgium » ou, plus courant, « I'm from Belgium »."}}
+   ]
+  },
+  "where": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "And where exactly? Can you show us on the map?", "fr": "Et d'où exactement ? Vous pouvez nous montrer sur la carte ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "I'm from Montreal, in the east of Canada. Most people speak French there.", "fr": "Je viens de Montréal, dans l'est du Canada. La plupart des gens y parlent français.", "va": "weather",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Montreal! That's only about five hours from here by car.", "fr": "Montréal ! Ce n'est qu'à environ cinq heures d'ici en voiture."}]},
+    {"si": {"pays": "france"}, "t": "I'm from Lyon. It's in the southeast, not far from the Alps.", "fr": "Je viens de Lyon. C'est dans le sud-est, pas loin des Alpes.", "va": "weather",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Lyon. I hear the food there is amazing.", "fr": "Lyon. Il paraît qu'on y mange merveilleusement bien."}]},
+    {"si": {"pays": "belgium"}, "t": "I'm from Liège, in the east of Belgium, close to Germany.", "fr": "Je viens de Liège, dans l'est de la Belgique, près de l'Allemagne.", "va": "weather",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "So you have three countries right next door. I'm a little jealous!", "fr": "Vous avez donc trois pays juste à côté. Je suis un peu jalouse !"}]},
+    {"si": {"pays": "switzerland"}, "t": "I'm from Lausanne. It's in the west, on a big lake.", "fr": "Je viens de Lausanne. C'est à l'ouest, au bord d'un grand lac.", "va": "weather",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "A lake and mountains. That sounds like a postcard.", "fr": "Un lac et des montagnes. On dirait une carte postale."}]},
+    {"t": "I'm from a small town, about two hours from the capital.", "fr": "Je viens d'une petite ville, à environ deux heures de la capitale.", "va": "weather",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Okay, so somewhere around here. Thanks!", "fr": "D'accord, donc quelque part par ici. Merci !"}]},
+    {"faux": true, "t": "I am born in a small town near the capital.", "fr": "Je « suis » né dans une petite ville près de la capitale.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "You were born in a small town. Got it!", "fr": "Vous « were born » dans une petite ville. Compris !"}],
+     "aide": {"fr": "<b>« Je suis né » se dit au passé</b> : « I was born in a small town. » « I am born » ne se dit pas."}}
+   ]
+  },
+  "weather": {
+   "dit": [
+    {"si": {"pays": "canada"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "When I think of Canada, I think of snow.", "fr": "Quand je pense au Canada, je pense à la neige."},
+    {"qui": "b13_kursleiterin", "air": "question", "t": "What's the weather like back home? Is it like Boston?", "fr": "Quel temps fait-il chez vous ? C'est comme à Boston ?"}
+   ],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "The winters are even colder than here. It can be minus thirty, and there's snow for months.", "fr": "Les hivers sont encore plus froids qu'ici. Il peut faire moins trente, et il y a de la neige pendant des mois.", "va": "food",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "Minus thirty! And we complain about Boston winters.", "fr": "Moins trente ! Et nous, on se plaint des hivers de Boston."}]},
+    {"si": {"pays": "france"}, "t": "It depends on the region. In the south it's hot and sunny, but in the north it rains more.", "fr": "Ça dépend de la région. Dans le sud, il fait chaud et beau, mais dans le nord, il pleut davantage.", "va": "food",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Hot and sunny sounds good to me, especially in February.", "fr": "Chaud et ensoleillé, ça me va, surtout en février."}]},
+    {"si": {"pays": "belgium"}, "t": "It rains a lot, and the summers are cooler than here. We always carry an umbrella.", "fr": "Il pleut beaucoup, et les étés sont plus frais qu'ici. Nous avons toujours un parapluie sur nous.", "va": "food",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Keep that umbrella. You'll need it here in April.", "fr": "Gardez ce parapluie. Vous en aurez besoin ici en avril."}]},
+    {"si": {"pays": "switzerland"}, "t": "In the mountains there's a lot of snow in winter, and many people go skiing. It's milder near the lake.", "fr": "En montagne, il y a beaucoup de neige en hiver, et beaucoup de gens font du ski. Il fait plus doux près du lac.", "va": "food",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "So the snow here doesn't scare you at all.", "fr": "Donc la neige d'ici ne vous fait pas peur du tout."}]},
+    {"t": "Back home, the summers are milder. Here in Boston, it gets really hot in July.", "fr": "Chez moi, les étés sont plus doux. Ici, à Boston, il fait vraiment très chaud en juillet.", "va": "food",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Hot and sticky. Just wait until August!", "fr": "Chaud et moite. Attendez le mois d'août !"}]},
+    {"faux": true, "t": "It makes very cold in winter.", "fr": "Il « fait » très froid en hiver (calqué sur le français).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "perplexe", "t": "It makes … ? Oh, it gets very cold. Yes, I believe you!", "fr": "« It makes »… ? Ah, il fait très froid. Oui, je vous crois !"}],
+     "aide": {"fr": "<b>Pour le temps qu'il fait, l'anglais dit « it is » ou « it gets »</b>, jamais « it makes » : « It's very cold in winter », « It gets very cold. »"}}
+   ]
+  },
+  "food": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Now, the important question: what do people eat? Is there a typical dish?", "fr": "Maintenant, la question importante : qu'est-ce qu'on mange ? Y a-t-il un plat typique ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "We love poutine: fries with cheese and gravy. And we make maple syrup.", "t_gb": "We love poutine: chips with cheese and gravy. And we make maple syrup.", "fr": "Nous adorons la poutine : des frites avec du fromage et de la sauce brune. Et nous faisons du sirop d'érable.", "va": "holiday",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Maple syrup! Our friends in Vermont say theirs is the best, you know.", "fr": "Le sirop d'érable ! Nos amis du Vermont disent que le leur est le meilleur, vous savez."}]},
+    {"si": {"pays": "france"}, "t": "We eat a lot of cheese, always with fresh bread, at the end of the meal.", "fr": "Nous mangeons beaucoup de fromage, toujours avec du pain frais, à la fin du repas.", "va": "holiday",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "At the end? Here, cheese comes before dinner, with crackers.", "fr": "À la fin ? Ici, le fromage arrive avant le dîner, avec des crackers."}]},
+    {"si": {"pays": "belgium"}, "t": "We're famous for fries, waffles and chocolate.", "t_gb": "We're famous for chips, waffles and chocolate.", "fr": "Nous sommes célèbres pour les frites, les gaufres et le chocolat.", "va": "holiday",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Fries, waffles and chocolate. Now the whole class is hungry.", "t_gb": "Chips, waffles and chocolate. Now the whole class is hungry.", "fr": "Frites, gaufres et chocolat. Maintenant, toute la classe a faim."}]},
+    {"si": {"pays": "switzerland"}, "t": "In winter we eat fondue or raclette, usually with friends or family.", "fr": "En hiver, nous mangeons de la fondue ou de la raclette, en général entre amis ou en famille.", "va": "holiday",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Melted cheese with friends. I can't think of anything better in January.", "fr": "Du fromage fondu entre amis. Je ne vois rien de mieux en janvier."}]},
+    {"t": "There are many typical dishes. I can bring something for the class to try next week.", "fr": "Il y a beaucoup de plats typiques. Je peux apporter quelque chose à faire goûter à la classe la semaine prochaine.", "pose": {"try": "yes"}, "va": "holiday",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Oh, yes, please! I'll remember that.", "fr": "Oh oui, s'il vous plaît ! Je m'en souviendrai."}]},
+    {"faux": true, "t": "The kitchen of my country is very good.", "fr": "La « pièce où l'on cuisine » de mon pays est très bonne.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "The kitchen? Oh, you mean the food! I'm sure it is.", "fr": "La cuisine (la pièce) ? Ah, vous voulez dire ce qu'on mange ! J'en suis sûre."}],
+     "aide": {"fr": "<b>« kitchen », c'est la pièce.</b> Pour ce qu'on mange, on dit « food » ou « cooking » : « The food in my country is very good. »"}}
+   ]
+  },
+  "holiday": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Is there a special holiday or tradition?", "t_gb": "Is there a special celebration or tradition?", "fr": "Y a-t-il une fête ou une tradition particulière ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "On June twenty-fourth, we celebrate Quebec's national holiday, with music and big fires.", "t_gb": "On the twenty-fourth of June, we celebrate Quebec's national holiday, with music and big fires.", "fr": "Le vingt-quatre juin, nous fêtons la fête nationale du Québec, avec de la musique et de grands feux.", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "A big party at the start of summer. I like that.", "fr": "Une grande fête au début de l'été. Ça me plaît."}]},
+    {"si": {"pays": "france"}, "t": "July fourteenth is our national holiday. There are fireworks everywhere, and people dance in the streets.", "t_gb": "The fourteenth of July is our national holiday. There are fireworks everywhere, and people dance in the streets.", "fr": "Le quatorze juillet, c'est notre fête nationale. Il y a des feux d'artifice partout, et les gens dansent dans les rues.", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Just ten days after our Fourth of July. Fireworks for everyone!", "fr": "Dix jours seulement après notre 4 Juillet. Des feux d'artifice pour tout le monde !"}]},
+    {"si": {"pays": "belgium"}, "t": "On December sixth, Saint Nicholas brings presents to the children.", "t_gb": "On the sixth of December, Saint Nicholas brings presents to the children.", "fr": "Le six décembre, saint Nicolas apporte des cadeaux aux enfants.", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "So the kids get presents weeks before Santa comes here. Lucky them!", "fr": "Donc les enfants reçoivent des cadeaux des semaines avant que le père Noël passe ici. Les veinards !"}]},
+    {"si": {"pays": "switzerland"}, "t": "August first is our national holiday. In the evening, people light fires in the mountains.", "t_gb": "The first of August is our national holiday. In the evening, people light fires in the mountains.", "fr": "Le premier août, c'est notre fête nationale. Le soir, les gens allument des feux dans les montagnes.", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Fires in the mountains. That must be beautiful.", "fr": "Des feux dans les montagnes. Ça doit être magnifique."}]},
+    {"t": "Christmas is very important. The whole family has a long dinner together.", "fr": "Noël est très important. Toute la famille fait un long dîner ensemble.", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Like our Thanksgiving, then: family, food, and more food.", "fr": "Comme notre Thanksgiving, alors : la famille, à manger, et encore à manger."}]},
+    {"faux": true, "t": "At Christmas, we make a big party with the family.", "fr": "À Noël, nous « fabriquons » une grande fête en famille.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "You have a big party. That sounds fun!", "fr": "Vous « have » une grande fête. Ça a l'air sympa !"}],
+     "aide": {"fr": "<b>« faire une fête » se dit « have a party »</b> (ou « throw a party »), pas « make a party » : « At Christmas, we have a big party with the family. »"}}
+   ]
+  },
+  "surprised": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "You've been living in the US for a while now. What surprised you the most?", "fr": "Vous vivez aux États-Unis depuis un moment maintenant. Qu'est-ce qui vous a le plus étonné ?"}],
+   "choix": [
+    {"t": "Tipping. Back home, the service is included, so at first I didn't know how much to leave.", "fr": "Le pourboire. Chez moi, le service est compris, alors au début je ne savais pas combien laisser.", "va": "tip",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Everybody says that!", "fr": "Tout le monde dit ça !"}]},
+    {"t": "Small talk. People I don't know ask me how I'm doing, even at the supermarket.", "fr": "Les petites conversations. Des gens que je ne connais pas me demandent comment je vais, même au supermarché.", "va": "smalltalk",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Yes, we do that. We don't really expect a long answer, though.", "fr": "Oui, nous faisons ça. Mais nous n'attendons pas vraiment une longue réponse."}]},
+    {"t": "The miles and the degrees in Fahrenheit. I never know how far or how hot it is.", "fr": "Les miles et les degrés Fahrenheit. Je ne sais jamais à quelle distance c'est ni quelle température il fait.", "va": "units",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "I know, I know. We're almost the only ones left.", "fr": "Je sais, je sais. Nous sommes presque les derniers."}]},
+    {"faux": true, "t": "The tips. In my country, the service is comprised.", "fr": "Les pourboires. Dans mon pays, le service est « comprised ».",
+     "puis": [{"qui": "b13_kursleiterin", "air": "perplexe", "t": "Comprised? Oh, the service is included. I see!", "fr": "« Comprised » ? Ah, le service est compris. Je vois !"}],
+     "aide": {"fr": "<b>« compris » (dans le prix) se dit « included »</b> : « The service is included. » « comprised » ne s'emploie pas dans ce sens."}},
+    {"repete": true, "t": "Sorry, could you repeat the question, please?", "fr": "Pardon, pourriez-vous répéter la question, s'il vous plaît ?", "va": "surprised",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Sure. What is new or strange for you here in America?", "fr": "Bien sûr. Qu'est-ce qui est nouveau ou étrange pour vous ici, en Amérique ?"}]}
+   ]
+  },
+  "tip": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "And how much do you leave now?", "fr": "Et combien laissez-vous maintenant ?"}],
+   "choix": [
+    {"t": "About twenty percent in a restaurant. It felt like a lot at first, but now I'm used to it.", "t_gb": "About twenty per cent in a restaurant. It felt like a lot at first, but now I'm used to it.", "fr": "Environ vingt pour cent au restaurant. Ça me paraissait beaucoup au début, mais maintenant j'y suis habitué (habituée).", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Perfect. You're a real Bostonian now.", "fr": "Parfait. Vous êtes un vrai Bostonien (une vraie Bostonienne) maintenant."}]},
+    {"t": "I still ask my friends every time! And the portions surprised me too: one plate is enough for two people.", "fr": "Je demande encore à mes amis à chaque fois ! Et les portions m'ont étonné aussi : une assiette suffit pour deux personnes.", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "That's why we take the rest home in a box.", "fr": "C'est pour ça qu'on emporte le reste à la maison dans une boîte."}]}
+   ]
+  },
+  "smalltalk": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "So what do you answer?", "fr": "Alors, que répondez-vous ?"}],
+   "choix": [
+    {"t": "At first I told them about my whole day. Now I just say: Good, thanks, how are you?", "fr": "Au début, je leur racontais toute ma journée. Maintenant, je dis simplement : Bien, merci, et vous ?", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Your whole day! That poor cashier.", "fr": "Toute votre journée ! Pauvre caissier."}]},
+    {"t": "I say I'm fine and ask the same question back. I actually like it now.", "fr": "Je dis que ça va et je retourne la question. En fait, j'aime bien ça maintenant.", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Good! It's just our way of being friendly.", "fr": "Très bien ! C'est simplement notre façon d'être aimables."}]}
+   ]
+  },
+  "units": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "So what do you do?", "fr": "Alors, comment faites-vous ?"}],
+   "choix": [
+    {"t": "I use an app on my phone. But I'm starting to remember: seventy degrees is a nice day.", "fr": "J'utilise une appli sur mon téléphone. Mais je commence à retenir : soixante-dix degrés, c'est une belle journée.", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Exactly. Seventy and sunny: that's a perfect day.", "fr": "Exactement. Soixante-dix et du soleil : c'est une journée parfaite."}]},
+    {"t": "I've learned a few numbers by heart. Thirty-two means ice, and a mile is longer than a kilometer.", "t_gb": "I've learned a few numbers by heart. Thirty-two means ice, and a mile is longer than a kilometre.", "fr": "J'ai appris quelques chiffres par cœur. Trente-deux, ça veut dire de la glace, et un mile est plus long qu'un kilomètre.", "va": "miss",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "That's all you need to survive here.", "fr": "C'est tout ce qu'il faut pour survivre ici."}]}
+   ]
+  },
+  "miss": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "And what do you miss the most?", "fr": "Et qu'est-ce qui vous manque le plus ?"}],
+   "choix": [
+    {"t": "I miss my family and my friends the most.", "fr": "Ce sont ma famille et mes amis qui me manquent le plus.", "va": "family",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Of course you do.", "fr": "Bien sûr."}]},
+    {"t": "The food from home. The food here is good, but it's not the same.", "fr": "La cuisine de chez moi. Ici, on mange bien, mais ce n'est pas pareil.", "va": "visit",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Everyone in this class says that. Food is home.", "fr": "Tout le monde dit ça dans cette classe. La cuisine, c'est le chez-soi."}]},
+    {"t": "Honestly, not much. I feel very happy in Boston.", "fr": "Honnêtement, pas grand-chose. Je me sens très bien à Boston.", "va": "visit",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "I'm so glad to hear that!", "fr": "Ça me fait vraiment plaisir !"}]},
+    {"faux": true, "t": "My family misses me.", "fr": "Je manque à ma famille (le contraire de ce que tu veux dire).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "I'm sure they do! But do you miss them, too?", "fr": "J'en suis sûre ! Mais est-ce qu'ils vous manquent aussi ?"}],
+     "aide": {"fr": "<b>« miss » marche à l'envers de « manquer »</b> : la personne qui ressent le manque est le sujet. « Ma famille me manque » = « I miss my family. »"}}
+   ]
+  },
+  "family": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Do you get to see them often?", "fr": "Vous arrivez à les voir souvent ?"}],
+   "choix": [
+    {"t": "I go back twice a year, in summer and at Christmas.", "fr": "J'y retourne deux fois par an, en été et à Noël.", "va": "visit",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Those weeks must be very special.", "fr": "Ces semaines-là doivent être très spéciales."}]},
+    {"t": "Not very often, but we have a video call every Sunday.", "fr": "Pas très souvent, mais nous nous appelons en vidéo tous les dimanches.", "va": "visit",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Thank goodness for video calls, right?", "fr": "Heureusement qu'il y a les appels vidéo, n'est-ce pas ?"}]}
+   ]
+  },
+  "visit": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Last question: when is the best time to visit your country?", "fr": "Dernière question : quel est le meilleur moment pour visiter votre pays ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "In the fall, when the forests turn red and yellow. It's beautiful.", "t_gb": "In the autumn, when the forests turn red and yellow. It's beautiful.", "fr": "En automne, quand les forêts deviennent rouges et jaunes. C'est magnifique.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Just like New England! Thank you, that was a wonderful presentation.", "fr": "Tout comme en Nouvelle-Angleterre ! Merci, c'était une présentation formidable."},
+      {"si": {"try": "yes"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "And don't forget the food next week!", "fr": "Et n'oubliez pas le plat la semaine prochaine !"}]},
+    {"si": {"pays": "france"}, "t": "In spring or in September, when it's still warm and there are fewer tourists.", "fr": "Au printemps ou en septembre, quand il fait encore chaud et qu'il y a moins de touristes.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Good tip. Thank you, that was a wonderful presentation.", "fr": "Bon conseil. Merci, c'était une présentation formidable."},
+      {"si": {"try": "yes"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "And don't forget the food next week!", "fr": "Et n'oubliez pas le plat la semaine prochaine !"}]},
+    {"si": {"pays": "belgium"}, "t": "In summer, when the days are long and everyone sits outside in the evening.", "fr": "En été, quand les journées sont longues et que tout le monde reste dehors le soir.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "That sounds lovely. Thank you, that was a wonderful presentation.", "fr": "Ça a l'air charmant. Merci, c'était une présentation formidable."},
+      {"si": {"try": "yes"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "And don't forget the food next week!", "fr": "Et n'oubliez pas le plat la semaine prochaine !"}]},
+    {"si": {"pays": "switzerland"}, "t": "In winter for skiing, or in summer for walking in the mountains.", "fr": "En hiver pour le ski, ou en été pour marcher en montagne.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "So we'll have to go twice. Thank you, that was a wonderful presentation.", "fr": "Il faudra donc y aller deux fois. Merci, c'était une présentation formidable."},
+      {"si": {"try": "yes"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "And don't forget the food next week!", "fr": "Et n'oubliez pas le plat la semaine prochaine !"}]},
+    {"t": "Come in the summer! I'd be happy to show you around my city.", "fr": "Venez en été ! Je serais ravi (ravie) de vous faire visiter ma ville.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "I might just do that! Thank you, that was a wonderful presentation.", "fr": "Je pourrais bien le faire ! Merci, c'était une présentation formidable."},
+      {"si": {"try": "yes"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "And don't forget the food next week!", "fr": "Et n'oubliez pas le plat la semaine prochaine !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as présenté ton pays en anglais : où il se trouve, son climat, ce qu'on y mange, une fête, et ce qui t'étonne aux États-Unis."}
+}

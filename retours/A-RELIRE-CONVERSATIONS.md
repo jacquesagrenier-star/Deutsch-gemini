@@ -47,3 +47,59 @@ Points à regarder en priorité :
   annonce un prix par jour.
 - **L'anglais britannique** : contents insurance (pour renters insurance), hire, petrol, boot, car park, flat,
   holiday, mobile, guarantee, terrace.
+
+## Lot b1-3 (B1, troisième série) — écrit le 16 nov. 2026, aucune voix
+
+Allemand à Berlin (Sie, ou du entre jeunes adultes et collègues), espagnol d'Espagne à Madrid (usted, ou tú),
+anglais de Boston (américain, variante britannique par `t_gb`). Points à trancher par le relecteur : le registre
+des trois conversations familières (`du` / `tú` / `familier`) et le naturel des fautes proposées.
+
+| Lot | Conversation | Allemand | Espagnol | Anglais |
+|---|---|---|---|---|
+| b1-3 | b1-soiree (bavarder à une soirée, du / tú) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-mon-pays (présenter son pays au cours) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-actualite (les nouvelles du jour, entre collègues, du / tú) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-vol-annule (vol annulé, au comptoir) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-urgences (appeler le 112 / 911) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-orientation (l'orientation scolaire de sa fille) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-benevolat (devenir bénévole, du / tú) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-location-vacances (louer pour les vacances) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-livraison (réclamation pour un colis) | à relire | à relire | à relire (us, gb) |
+| b1-3 | b1-stage (entretien de stage à la réception d'un hôtel) | à relire | à relire | à relire (us, gb) |
+
+**Lot b1-3 : à trancher par le relecteur natif** (les fautes proposées sont-elles de vraies fautes de francophone ?)
+
+- Allemand :
+  - « Ich bin einverstanden zu dir » et « Ich gehe bei Fuß » : des fautes crédibles ?
+  - « Sie ist gefallen » est correct ; seul « hat … gefallen » est compté faux.
+  - « Location » (lieu de fête) contre « Miete » ; « Ambulanz » (consultation en Allemagne, véhicule en Autriche et en Suisse).
+  - Faits à vérifier : Warnstreik de la BVG (le S-Bahn roule) ; jusqu'à 250 € d'indemnité pour Berlin-Paris (règlement européen) ; Führungszeugnis gratuit pour les bénévoles ; Förderprognose fin janvier et inscription en février ; « Probetag » au Gymnasium.
+- Espagnol :
+  - Le usted d'une professeure de cours de langue et d'une petite réception d'hôtel à Madrid (on y tutoierait souvent).
+  - « Emergencias 112 », dit « uno uno dos » ; « Coja un paño ».
+  - « estar bueno » et « excitado » (connotation, réaction amusée) : le ton.
+  - « locación », « apoyo fuerte sobre la herida », « liceo » comme fautes.
+  - Détails de Cadix (plages, chiens, bus) et formules de centre d'appels (« abro una incidencia »).
+- Anglais :
+  - Variantes `t_gb` (paramedics, flat, rota, cot, food shop…), alors que l'action reste à Boston.
+  - « I want well » comme faute.
+  - Pas d'hôtel ni d'indemnité pour une annulation due à la météo aux États-Unis.
+  - Le chèque pour une location à Cape Cod ; le bus South Station → Wellfleet.
+  - « third floor », au sens américain.
+- Les trois langues :
+  - Les traductions `fr` sont au masculin par défaut (« Enchanté », « arrivé »), comme dans les autres lots.
+  - Mots hors du corpus A1-B1 gardés dans les réponses : surtout des noms propres, des spécialités (poutine, raclette) et les mots du sujet (Hüfte, cadera, hip ; umbuchen ; Packstation), souvent dits d'abord par la personne en face.
+
+**Lot b1-3 : visages à fabriquer** (devis groupé du chef ; aucune image faite)
+
+- Provisoires (un visage neuf, plus ses expressions) :
+  - l'employée de la compagnie aérienne : `b13_fluggesellschaft` ;
+  - l'opérateur des urgences : `b13_notruf` ;
+  - la conseillère du service client : `b13_kundenservice` ;
+  - la propriétaire, Irene : `b13_vermieter`, à brancher sur `conversation/Irene-neutre.webp` du lot a2-1, puis ses expressions.
+- Expressions qui retombent aujourd'hui sur le sourire :
+  - Ines, l'amie (`b13_freundin`) : surprise, perplexe, amuse, question.
+  - Elena (`b13_koordinatorin`) : surprise, perplexe.
+  - Diego (`b13_gast`) : surprise.
+  - Marta (`b13_kursleiterin`, `b13_lehrerin`) : surprise.
+  - La réceptionniste de Premiers pas (`rezeptionistin`, entretien de stage) : question, attentive, surprise, perplexe, amuse.

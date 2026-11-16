@@ -1,0 +1,136 @@
+{
+ "id": "b1-location-vacances",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Louer un logement pour les vacances"},
+ "intro": {"fr": "Tu as vu l'annonce d'un appartement de vacances sur l'île d'Usedom, au bord de la mer Baltique. Tu appelles la propriétaire pour le réserver."},
+ "personnes": ["b13_vermieter"],
+ "debut": "anruf",
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "L'annonce : « Ferienwohnung in Ahlbeck, strandnah, Irene Lorenz ». Tu composes le numéro. Ça sonne."}},
+    {"qui": "b13_vermieter", "air": "question", "t": "Lorenz, guten Tag.", "fr": "Lorenz, bonjour."}
+   ],
+   "choix": [
+    {"t": "Guten Tag, Frau Lorenz. Ich rufe wegen Ihrer Ferienwohnung in Ahlbeck an. Ist sie im Juli noch frei?", "fr": "Bonjour, madame Lorenz. J'appelle au sujet de votre appartement de vacances à Ahlbeck. Est-il encore libre en juillet ?", "va": "termin"},
+    {"t": "Guten Tag. Ich habe Ihre Anzeige im Internet gesehen und interessiere mich für die Ferienwohnung.", "fr": "Bonjour. J'ai vu votre annonce sur internet et je m'intéresse à l'appartement de vacances.", "va": "termin"},
+    {"faux": true, "t": "Guten Tag. Ich telefoniere Ihnen wegen der Ferienwohnung.", "fr": "Bonjour. Je vous téléphone au sujet de l'appartement de vacances.",
+     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "Wie bitte? Ach so, Sie rufen wegen der Ferienwohnung an?", "fr": "Pardon ? Ah, vous appelez pour l'appartement de vacances ?"}],
+     "aide": {"fr": "<b>« Je vous téléphone » ne se calque pas.</b> On dit « jemanden anrufen » : « Ich rufe wegen der Ferienwohnung an ». « telefonieren » s'emploie avec « mit » (« ich telefoniere mit ihr »)."}}
+   ]
+  },
+  "termin": {
+   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Ach ja, die Wohnung am Strand. Wann möchten Sie denn kommen, und mit wie vielen Personen?", "fr": "Ah oui, l'appartement près de la plage. Quand voudriez-vous venir, et à combien de personnes ?"}],
+   "choix": [
+    {"t": "Wir sind zwei Erwachsene und möchten gern in der zweiten Juliwoche kommen.", "fr": "Nous sommes deux adultes et nous aimerions venir la deuxième semaine de juillet.", "pose": {"mit": "zwei"}, "va": "belegt"},
+    {"t": "Wir sind zu zweit und haben einen Hund. Wir möchten eine Woche Mitte Juli kommen.", "fr": "Nous sommes deux et nous avons un chien. Nous voudrions venir une semaine à la mi-juillet.", "pose": {"mit": "hund"}, "va": "belegt"},
+    {"t": "Wir kommen mit zwei Kindern, am liebsten Mitte Juli.", "fr": "Nous venons avec deux enfants, de préférence à la mi-juillet.", "pose": {"mit": "kinder"}, "va": "belegt"},
+    {"repete": true, "t": "Entschuldigung, die Verbindung ist schlecht. Können Sie das bitte wiederholen?", "fr": "Excusez-moi, la ligne est mauvaise. Pouvez-vous répéter, s'il vous plaît ?", "va": "termin",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Natürlich. Wann möchten Sie kommen? Und wie viele Personen sind Sie?", "fr": "Bien sûr. Quand voulez-vous venir ? Et combien de personnes êtes-vous ?"}]}
+   ]
+  },
+  "belegt": {
+   "dit": [{"qui": "b13_vermieter", "air": "attentive", "t": "Moment, ich schaue in den Kalender … Vom 11. bis zum 18. Juli ist die Wohnung leider schon vermietet. Frei ist sie vom 4. bis zum 11. oder vom 18. bis zum 25. Juli.", "dit": "Moment, ich schaue in den Kalender … Vom elften bis zum achtzehnten Juli ist die Wohnung leider schon vermietet. Frei ist sie vom vierten bis zum elften oder vom achtzehnten bis zum fünfundzwanzigsten Juli.", "fr": "Un instant, je regarde le calendrier… Du 11 au 18 juillet, l'appartement est malheureusement déjà loué. Il est libre du 4 au 11 ou du 18 au 25 juillet."}],
+   "choix": [
+    {"t": "Dann nehmen wir die Woche vom vierten bis zum elften Juli.", "fr": "Alors nous prenons la semaine du quatre au onze juillet.", "pose": {"woche": "frueh"}, "va": "preis"},
+    {"t": "Die Woche ab dem achtzehnten Juli passt uns besser.", "fr": "La semaine à partir du dix-huit juillet nous convient mieux.", "pose": {"woche": "spaet"}, "va": "preis"},
+    {"faux": true, "t": "Dann nehmen wir die Woche von vier bis elf Juli.", "fr": "Alors nous prenons la semaine de quatre à onze juillet.",
+     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "Von vier bis elf? Meinen Sie die Uhrzeit oder die Woche vom vierten bis zum elften Juli?", "fr": "De quatre à onze ? Vous parlez de l'heure, ou de la semaine du quatre au onze juillet ?"}],
+     "aide": {"fr": "<b>Une date se dit avec le nombre ordinal :</b> « vom vierten bis zum elften Juli ». « von vier bis elf » fait penser à des heures."}}
+   ]
+  },
+  "preis": {
+   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sehr schön. Die Wohnung kostet 95 Euro pro Nacht, dazu kommt die Endreinigung für 60 Euro. Bettwäsche und Handtücher sind im Preis inbegriffen.", "dit": "Sehr schön. Die Wohnung kostet fünfundneunzig Euro pro Nacht, dazu kommt die Endreinigung für sechzig Euro. Bettwäsche und Handtücher sind im Preis inbegriffen.", "fr": "Très bien. L'appartement coûte 95 euros la nuit, plus le ménage de fin de séjour à 60 euros. Les draps et les serviettes sont compris dans le prix."}],
+   "choix": [
+    {"si": {"mit": "hund"}, "t": "Das klingt gut. Dürfen wir unseren Hund mitbringen?", "fr": "Ça me semble bien. Pouvons-nous amener notre chien ?", "va": "hund"},
+    {"si": {"mit": "kinder"}, "t": "Das klingt gut. Ist die Wohnung auch für kleine Kinder praktisch?", "fr": "Ça me semble bien. L'appartement est-il pratique aussi pour de jeunes enfants ?", "va": "kinder"},
+    {"t": "Das ist in Ordnung. Wie weit ist es bis zum Strand?", "fr": "C'est d'accord. La plage est à quelle distance ?", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Nur fünf Minuten zu Fuß. Vom Balkon aus sehen Sie sogar ein Stück Ostsee.", "fr": "Seulement cinq minutes à pied. Du balcon, vous voyez même un bout de mer Baltique."}]},
+    {"t": "Einverstanden. Gibt es in der Wohnung WLAN und eine Waschmaschine?", "fr": "D'accord. Y a-t-il le wifi et une machine à laver dans l'appartement ?", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "WLAN ja, kostenlos. Die Waschmaschine steht im Keller, die dürfen Sie gern benutzen.", "fr": "Le wifi, oui, gratuit. La machine à laver est à la cave, vous pouvez l'utiliser sans problème."}]},
+    {"faux": true, "t": "Und was kostet die Location für die ganze Woche?", "fr": "Et combien coûte la location pour toute la semaine ?",
+     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "Die Location? Wir feiern doch keine Party! Ach, Sie meinen die Miete für die Woche?", "fr": "La « Location » ? Mais nous n'organisons pas de fête ! Ah, vous voulez dire le loyer pour la semaine ?"}],
+     "aide": {"fr": "<b>« die Location »</b>, en allemand, c'est un lieu pour une fête ou un tournage. Le prix de la location : « die Miete ». « Was kostet die Wohnung für die ganze Woche? »"}}
+   ]
+  },
+  "hund": {
+   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Ja, Hunde sind bei mir willkommen. Das kostet 8 Euro pro Nacht extra. Und zehn Minuten von der Wohnung gibt es sogar einen Hundestrand.", "dit": "Ja, Hunde sind bei mir willkommen. Das kostet acht Euro pro Nacht extra. Und zehn Minuten von der Wohnung gibt es sogar einen Hundestrand.", "fr": "Oui, les chiens sont les bienvenus chez moi. C'est 8 euros de plus par nuit. Et à dix minutes de l'appartement, il y a même une plage pour chiens."}],
+   "choix": [
+    {"t": "Wunderbar, das ist kein Problem. Er ist klein und ganz ruhig.", "fr": "Formidable, ce n'est pas un problème. Il est petit et très calme.", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Das höre ich gern.", "fr": "Voilà qui me fait plaisir."}]},
+    {"t": "Einverstanden. Dann freut sich unser Hund auch auf den Urlaub.", "fr": "D'accord. Alors notre chien aussi se réjouit des vacances.", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Am Hundestrand wird es ihm bestimmt gefallen!", "fr": "La plage pour chiens va sûrement lui plaire !"}]},
+    {"faux": true, "t": "Sehr gut. Unser Hund ist sehr weise.", "fr": "Très bien. Notre chien est très sage.",
+     "puis": [{"qui": "b13_vermieter", "air": "amuse", "t": "Weise? Ein Hund, der alles weiß? Sie meinen sicher, er ist brav!", "fr": "« Weise » ? Un chien qui sait tout ? Vous voulez sûrement dire qu'il est « brav » !"}],
+     "aide": {"fr": "<b>« weise »</b>, c'est sage comme un vieux philosophe. Un enfant ou un chien sage est « brav » : « Unser Hund ist sehr brav »."}}
+   ]
+  },
+  "kinder": {
+   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Auf jeden Fall. Es gibt ein Kinderzimmer mit zwei Betten, und der Strand ist flach, ideal für Kinder. Wie alt sind die beiden denn?", "fr": "Tout à fait. Il y a une chambre d'enfants avec deux lits, et la plage est en pente douce, idéale pour les enfants. Quel âge ont-ils, tous les deux ?"}],
+   "choix": [
+    {"t": "Sie sind vier und sieben Jahre alt.", "fr": "Ils ont quatre et sept ans.", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Dann passt das Kinderzimmer perfekt.", "fr": "Alors la chambre d'enfants convient parfaitement."}]},
+    {"t": "Der Kleine ist erst zwei. Haben Sie vielleicht ein Kinderbett?", "fr": "Le petit n'a que deux ans. Auriez-vous un lit pour bébé ?", "va": "zahlung",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Ja, natürlich. Ich stelle es Ihnen ins Schlafzimmer.", "fr": "Oui, bien sûr. Je vous le mets dans la chambre."}]},
+    {"faux": true, "t": "Sie haben vier und sieben Jahre.", "fr": "Ils ont quatre et sept ans.",
+     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "Sie haben …? Ach so, sie sind vier und sieben Jahre alt!", "fr": "Ils ont… ? Ah, ils ont quatre et sept ans !"}],
+     "aide": {"fr": "<b>L'âge se dit avec « sein », pas avec « haben » :</b> « Sie sind vier und sieben Jahre alt »."}}
+   ]
+  },
+  "zahlung": {
+   "dit": [
+    {"qui": "b13_vermieter", "air": "attentive", "si": {"woche": "frueh"}, "t": "Dann reserviere ich für Sie die Woche vom 4. bis zum 11. Juli.", "dit": "Dann reserviere ich für Sie die Woche vom vierten bis zum elften Juli.", "fr": "Alors je vous réserve la semaine du 4 au 11 juillet."},
+    {"qui": "b13_vermieter", "air": "attentive", "si": {"woche": "spaet"}, "t": "Dann reserviere ich für Sie die Woche vom 18. bis zum 25. Juli.", "dit": "Dann reserviere ich für Sie die Woche vom achtzehnten bis zum fünfundzwanzigsten Juli.", "fr": "Alors je vous réserve la semaine du 18 au 25 juillet."},
+    {"qui": "b13_vermieter", "air": "question", "t": "Ich brauche eine Anzahlung von 150 Euro. Den Rest und 100 Euro Kaution zahlen Sie bei der Ankunft. Wie möchten Sie die Anzahlung bezahlen?", "dit": "Ich brauche eine Anzahlung von hundertfünfzig Euro. Den Rest und hundert Euro Kaution zahlen Sie bei der Ankunft. Wie möchten Sie die Anzahlung bezahlen?", "fr": "J'ai besoin d'un acompte de 150 euros. Le reste et 100 euros de caution se paient à l'arrivée. Comment voulez-vous régler l'acompte ?"}
+   ],
+   "choix": [
+    {"t": "Ich überweise Ihnen das Geld. Können Sie mir Ihre Kontonummer schicken?", "fr": "Je vous fais un virement. Pouvez-vous m'envoyer votre numéro de compte ?", "va": "anreise",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Gern. Ich schicke Ihnen heute noch eine E-Mail mit der Bestätigung und meiner IBAN.", "fr": "Volontiers. Je vous envoie aujourd'hui même un courriel avec la confirmation et mon IBAN."}]},
+    {"t": "Kann ich auch mit PayPal bezahlen?", "fr": "Est-ce que je peux aussi payer avec PayPal ?", "va": "anreise",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "PayPal habe ich leider nicht, da bin ich altmodisch. Aber eine Überweisung geht auch schnell: Ich schicke Ihnen meine IBAN per E-Mail.", "fr": "Je n'ai malheureusement pas PayPal, je suis vieux jeu pour ça. Mais un virement, c'est rapide aussi : je vous envoie mon IBAN par courriel."}]},
+    {"faux": true, "t": "Ich schicke Ihnen einen Scheck mit der Post.", "fr": "Je vous envoie un chèque par la poste.",
+     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "Einen Scheck? So etwas habe ich seit zwanzig Jahren nicht mehr gesehen! Könnten Sie das Geld nicht überweisen?", "fr": "Un chèque ? Je n'en ai pas vu depuis vingt ans ! Vous ne pourriez pas faire un virement ?"}],
+     "aide": {"fr": "<b>En Allemagne, on ne paie presque plus jamais par chèque :</b> on fait un virement (« die Überweisung »). « Ich überweise Ihnen das Geld. »"}}
+   ]
+  },
+  "anreise": {
+   "dit": [{"qui": "b13_vermieter", "air": "question", "t": "Die Anreise ist ab 15 Uhr. Vielleicht bin ich an dem Tag nicht da: Der Schlüssel liegt dann im Schlüsselkasten neben der Tür, den Code schicke ich Ihnen per SMS. Wann kommen Sie ungefähr an?", "dit": "Die Anreise ist ab fünfzehn Uhr. Vielleicht bin ich an dem Tag nicht da: Der Schlüssel liegt dann im Schlüsselkasten neben der Tür, den Code schicke ich Ihnen per SMS. Wann kommen Sie ungefähr an?", "fr": "L'arrivée se fait à partir de 15 heures. Je ne serai peut-être pas là ce jour-là : la clé sera alors dans la boîte à clés à côté de la porte, je vous envoie le code par SMS. Vers quelle heure arrivez-vous ?"}],
+   "choix": [
+    {"t": "Wir kommen mit dem Auto und sind wahrscheinlich gegen sechzehn Uhr da.", "fr": "Nous venons en voiture et nous serons sans doute là vers seize heures.", "va": "abschied",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Gut. Ein Parkplatz gehört zur Wohnung, direkt hinter dem Haus.", "fr": "Bien. Une place de parking va avec l'appartement, juste derrière la maison."}]},
+    {"t": "Wir kommen mit dem Zug. Wie kommen wir vom Bahnhof zur Wohnung?", "fr": "Nous venons en train. Comment va-t-on de la gare à l'appartement ?", "va": "bahnhof"},
+    {"faux": true, "t": "Wir sind gegen sechzehn Uhr da, wenn es gibt keinen Stau.", "fr": "Nous serons là vers seize heures, s'il n'y a pas de bouchon.",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Wenn es keinen Stau gibt, ja … Im Juli ist auf der Insel viel Verkehr! Wie kommen Sie denn: mit dem Auto?", "fr": "S'il n'y a pas de bouchon, oui… En juillet, il y a beaucoup de circulation sur l'île ! Vous venez comment : en voiture ?"}],
+     "aide": {"fr": "<b>Après « wenn », le verbe conjugué va à la fin :</b> « …, wenn es keinen Stau gibt »."}}
+   ]
+  },
+  "bahnhof": {
+   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Vom Bahnhof Ahlbeck sind es zehn Minuten zu Fuß. Aber wenn ich an dem Tag da bin, hole ich Sie gern mit dem Auto ab. Wissen Sie schon, wann Ihr Zug ankommt?", "fr": "De la gare d'Ahlbeck, il y a dix minutes à pied. Mais si je suis là ce jour-là, je viens volontiers vous chercher en voiture. Savez-vous déjà à quelle heure votre train arrive ?"}],
+   "choix": [
+    {"t": "Das ist sehr nett von Ihnen. Der Zug kommt kurz nach vier an.", "fr": "C'est très gentil de votre part. Le train arrive peu après quatre heures.", "va": "abschied",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Gut, das schreibe ich mir auf. Ich melde mich am Tag vorher bei Ihnen.", "fr": "Bien, je le note. Je vous fais signe la veille."}]},
+    {"t": "Danke, aber das ist nicht nötig. Wir gehen gern zu Fuß.", "fr": "Merci, mais ce n'est pas nécessaire. Nous marchons volontiers.", "va": "abschied",
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Wie Sie möchten. Der Weg ist ganz einfach: immer geradeaus Richtung Strand.", "fr": "Comme vous voulez. Le chemin est très simple : toujours tout droit vers la plage."}]},
+    {"faux": true, "t": "Sehr nett! Wir kommen um vier Uhr an den Bahnhof an.", "fr": "Très gentil ! Nous arrivons à quatre heures à la gare.",
+     "puis": [{"qui": "b13_vermieter", "air": "attentive", "t": "Um vier am Bahnhof, sagen Sie? Soll ich Sie dann abholen?", "fr": "À quatre heures à la gare, dites-vous ? Je viens vous chercher, alors ?"}],
+     "aide": {"fr": "<b>« ankommen » répond à la question « wo? » : datif.</b> « Wir kommen um vier Uhr am Bahnhof an » (am = an dem), pas « an den Bahnhof »."}}
+   ]
+  },
+  "abschied": {
+   "dit": [
+    {"qui": "b13_vermieter", "air": "sourire", "si": {"mit": "hund"}, "t": "Und für den Hund stelle ich einen Wassernapf auf die Terrasse.", "fr": "Et pour le chien, je mets une gamelle d'eau sur la terrasse."},
+    {"qui": "b13_vermieter", "air": "sourire", "si": {"mit": "kinder"}, "t": "Und für die Kinder gibt es im Keller Eimer und Schaufeln für den Strand.", "fr": "Et pour les enfants, il y a à la cave des seaux et des pelles pour la plage."},
+    {"qui": "b13_vermieter", "air": "question", "t": "Dann schicke ich Ihnen gleich die Bestätigung. Haben Sie sonst noch Fragen?", "fr": "Alors je vous envoie tout de suite la confirmation. Avez-vous d'autres questions ?"}
+   ],
+   "choix": [
+    {"t": "Nein, alles ist klar. Vielen Dank, wir freuen uns schon auf den Urlaub!", "fr": "Non, tout est clair. Merci beaucoup, nous avons déjà hâte d'être en vacances !", "va": null,
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Und ich freue mich auf Sie. Auf Wiederhören!", "fr": "Et moi, j'ai hâte de vous accueillir. Au revoir !"}]},
+    {"t": "Im Moment nicht. Ich warte auf Ihre E-Mail. Auf Wiederhören, Frau Lorenz!", "fr": "Pas pour l'instant. J'attends votre courriel. Au revoir, madame Lorenz !", "va": null,
+     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Bis bald auf Usedom. Auf Wiederhören!", "fr": "À bientôt à Usedom. Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as réservé un appartement de vacances par téléphone : les dates, le prix, l'acompte et l'arrivée."}
+}

@@ -1,0 +1,157 @@
+{
+ "id": "b1-livraison",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Un colis qui pose problème"},
+ "intro": {"fr": "Ta commande dans une boutique en ligne pose problème. Tu appelles le service client pour obtenir une solution."},
+ "personnes": ["b13_kundenservice"],
+ "debut": "gruss",
+ "noeuds": {
+  "gruss": {
+   "dit": [
+    {"recit": {"fr": "Tu appelles le service client de Lindenhaus, une boutique en ligne. Après un peu de musique, quelqu'un décroche."}},
+    {"qui": "b13_kundenservice", "air": "sourire", "t": "Lindenhaus Kundenservice, Sie sprechen mit Frau Kessler. Was kann ich für Sie tun?", "fr": "Service client de Lindenhaus, Mme Kessler à l'appareil. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich rufe wegen einer Bestellung an. Es gibt leider ein Problem.", "fr": "Bonjour. J'appelle au sujet d'une commande. Il y a malheureusement un problème.", "va": "nummer"},
+    {"t": "Guten Tag, ich möchte mich über eine Lieferung beschweren.", "fr": "Bonjour, je voudrais faire une réclamation au sujet d'une livraison.", "va": "nummer"},
+    {"faux": true, "t": "Guten Tag, ich habe ein Problem mit meinem Kommando.", "fr": "Bonjour, j'ai un problème avec ma « commande » (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "amuse", "t": "Mit Ihrem Kommando? Ach, Sie meinen sicher Ihre Bestellung.", "fr": "Avec votre « Kommando » ? Ah, vous voulez sûrement dire votre commande."}],
+     "aide": {"fr": "<b>« das Kommando »</b>, c'est un ordre militaire. Une commande dans un magasin se dit « die Bestellung » : « Ich rufe wegen einer Bestellung an. »"}}
+   ]
+  },
+  "nummer": {
+   "dit": [{"qui": "b13_kundenservice", "air": "attentive", "t": "Das tut mir leid. Nennen Sie mir bitte Ihre Bestellnummer.", "fr": "J'en suis désolée. Donnez-moi votre numéro de commande, s'il vous plaît."}],
+   "choix": [
+    {"t": "Die Nummer ist vier, sieben, drei, null, neun.", "fr": "Le numéro est quatre, sept, trois, zéro, neuf.", "va": "problem",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Danke. Bestellung 47309, ich habe sie vor mir.", "dit": "Danke. Bestellung vier, sieben, drei, null, neun, ich habe sie vor mir.", "fr": "Merci. Commande 47309, je l'ai sous les yeux."}]},
+    {"t": "Einen Moment, bitte … Hier ist sie: vier, sieben, drei, null, neun.", "fr": "Un instant, s'il vous plaît… Le voici : quatre, sept, trois, zéro, neuf.", "va": "problem",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Danke. Bestellung 47309, ich habe sie vor mir.", "dit": "Danke. Bestellung vier, sieben, drei, null, neun, ich habe sie vor mir.", "fr": "Merci. Commande 47309, je l'ai sous les yeux."}]},
+    {"repete": true, "t": "Entschuldigung, was brauchen Sie von mir?", "fr": "Excusez-moi, de quoi avez-vous besoin ?", "va": "nummer",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Ihre Bestellnummer. Sie steht in der E-Mail, die Sie nach der Bestellung bekommen haben.", "fr": "Votre numéro de commande. Il se trouve dans l'e-mail que vous avez reçu après la commande."}]}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Was genau ist das Problem?", "fr": "Quel est le problème, exactement ?"}],
+   "choix": [
+    {"t": "Online steht „zugestellt“, aber ich habe nichts bekommen.", "fr": "En ligne, il est écrit « livré », mais je n'ai rien reçu.", "pose": {"problem": "weg"}, "va": "nachbar"},
+    {"t": "Das Paket ist angekommen, aber die Lampe ist kaputt.", "fr": "Le colis est arrivé, mais la lampe est cassée.", "pose": {"problem": "kaputt"}, "va": "schaden"},
+    {"t": "Sie haben mir den falschen Artikel geschickt. Das ist nicht die Größe, die ich bestellt habe.", "fr": "Vous m'avez envoyé le mauvais article. Ce n'est pas la taille que j'ai commandée.", "pose": {"problem": "falsch"}, "va": "falsch"},
+    {"faux": true, "t": "Ich habe das Paket nicht bekommt.", "fr": "Je n'ai pas « reçu » le colis (participe fautif).",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "Sie haben das Paket nicht bekommen? Was steht denn in der Sendungsverfolgung?", "fr": "Vous n'avez pas reçu le colis ? Que dit le suivi ?"}],
+     "aide": {"fr": "<b>Le participe de « bekommen » est « bekommen »</b>, sans « ge- » et sans « -t » : « Ich habe das Paket nicht bekommen. »"}}
+   ]
+  },
+  "nachbar": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Laut DHL wurde das Paket gestern Vormittag zugestellt. Haben Sie schon bei den Nachbarn gefragt? Oder lag eine Karte im Briefkasten?", "fr": "D'après DHL, le colis a été livré hier matin. Avez-vous déjà demandé aux voisins ? Ou y avait-il un avis de passage dans la boîte aux lettres ?"}],
+   "choix": [
+    {"t": "Ja, ich habe bei allen Nachbarn gefragt. Niemand hat das Paket.", "fr": "Oui, j'ai demandé à tous les voisins. Personne n'a le colis.", "va": "ablage"},
+    {"t": "Im Briefkasten war keine Karte, und die Nachbarn haben auch nichts bekommen.", "fr": "Il n'y avait pas d'avis dans la boîte aux lettres, et les voisins n'ont rien reçu non plus.", "va": "ablage"},
+    {"t": "Bei den Nachbarn habe ich noch nicht gefragt. Soll ich das zuerst machen?", "fr": "Je n'ai pas encore demandé aux voisins. Dois-je d'abord le faire ?", "va": "fragen"}
+   ]
+  },
+  "fragen": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Das wäre gut, denn oft liegt ein Paket einfach beim Nachbarn. Wann können Sie nachfragen?", "fr": "Ce serait bien, car souvent le colis est tout simplement chez un voisin. Quand pouvez-vous aller demander ?"}],
+   "choix": [
+    {"t": "Heute Abend, wenn alle von der Arbeit zurück sind.", "fr": "Ce soir, quand tout le monde sera rentré du travail.", "va": "ablage",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Gut. Ich schaue inzwischen weiter.", "fr": "Bien. En attendant, je continue de chercher."}]},
+    {"t": "Gleich nach unserem Gespräch. Aber ich glaube nicht, dass es dort ist.", "fr": "Tout de suite après notre conversation. Mais je ne crois pas qu'il soit là-bas.", "va": "ablage",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Verstehe. Ich schaue inzwischen weiter.", "fr": "Je comprends. En attendant, je continue de chercher."}]}
+   ]
+  },
+  "ablage": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Im System steht außerdem: „Ablageort: Garage“. Haben Sie DHL erlaubt, Pakete in einer Garage abzulegen?", "fr": "Le système indique aussi : « lieu de dépôt : garage ». Avez-vous autorisé DHL à déposer les colis dans un garage ?"}],
+   "choix": [
+    {"t": "Nein, das habe ich nie erlaubt. Wir haben gar keine Garage.", "fr": "Non, je n'ai jamais autorisé cela. Nous n'avons même pas de garage.", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Dann ist bei der Zustellung etwas schiefgegangen. Ich melde das sofort bei DHL.", "fr": "Alors quelque chose s'est mal passé à la livraison. Je le signale tout de suite à DHL."}]},
+    {"t": "Nein. Ich wohne im vierten Stock, und hier gibt es keinen Garten und keine Garage.", "fr": "Non. J'habite au quatrième étage, et il n'y a ici ni jardin ni garage.", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Dann ist bei der Zustellung etwas schiefgegangen. Ich melde das sofort bei DHL.", "fr": "Alors quelque chose s'est mal passé à la livraison. Je le signale tout de suite à DHL."}]}
+   ]
+  },
+  "schaden": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Oh, das tut mir sehr leid. Was genau ist kaputt? Und war der Karton auch beschädigt?", "fr": "Oh, j'en suis vraiment désolée. Qu'est-ce qui est cassé, exactement ? Et le carton était-il abîmé aussi ?"}],
+   "choix": [
+    {"t": "Das Glas der Lampe ist in mehrere Teile gebrochen. Der Karton war an einer Ecke kaputt.", "fr": "Le verre de la lampe est cassé en plusieurs morceaux. Le carton était abîmé à un coin.", "va": "fotos"},
+    {"t": "Das Glas ist kaputt. Der Karton sah aber von außen ganz normal aus.", "fr": "Le verre est cassé. Mais de l'extérieur, le carton avait l'air tout à fait normal.", "va": "fotos"},
+    {"faux": true, "t": "Die Lampe war kaputt, wenn ich das Paket geöffnet habe.", "fr": "La lampe était cassée « quand » j'ai ouvert le colis (mauvaise conjonction).",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "Als Sie das Paket geöffnet haben, war sie schon kaputt? Was genau ist beschädigt?", "fr": "Quand vous avez ouvert le colis, elle était déjà cassée ? Qu'est-ce qui est abîmé, exactement ?"}],
+     "aide": {"fr": "<b>Pour un moment unique du passé, « quand » se dit « als »</b> : « Die Lampe war kaputt, als ich das Paket geöffnet habe. » « Wenn » sert pour le présent, le futur ou une habitude."}}
+   ]
+  },
+  "fotos": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Können Sie uns Fotos vom Schaden und vom Karton schicken? Und werfen Sie die Verpackung bitte noch nicht weg.", "fr": "Pouvez-vous nous envoyer des photos du dégât et du carton ? Et ne jetez pas encore l'emballage, s'il vous plaît."}],
+   "choix": [
+    {"t": "Ja, ich habe schon Fotos gemacht. Wohin soll ich sie schicken?", "fr": "Oui, j'ai déjà pris des photos. Où dois-je les envoyer ?", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Sie bekommen gleich eine E-Mail von mir. Antworten Sie einfach darauf und hängen Sie die Fotos an.", "fr": "Vous allez recevoir un e-mail de ma part. Répondez-y simplement en joignant les photos."}]},
+    {"t": "Natürlich. Den Karton habe ich noch, ich mache gleich Fotos.", "fr": "Bien sûr. J'ai encore le carton, je prends des photos tout de suite.", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Wunderbar. Sie bekommen gleich eine E-Mail von mir. Antworten Sie einfach darauf und hängen Sie die Fotos an.", "fr": "Parfait. Vous allez recevoir un e-mail de ma part. Répondez-y simplement en joignant les photos."}]}
+   ]
+  },
+  "falsch": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Das darf nicht passieren, entschuldigen Sie bitte. Was haben Sie bestellt, und was ist angekommen?", "fr": "Cela ne devrait pas arriver, veuillez nous excuser. Qu'avez-vous commandé, et qu'est-ce qui est arrivé ?"}],
+   "choix": [
+    {"t": "Ich habe eine Winterjacke in Größe M bestellt, aber im Paket war Größe S.", "fr": "J'ai commandé une veste d'hiver en taille M, mais dans le colis il y avait une taille S.", "va": "etikett"},
+    {"t": "Ich habe eine blaue Jacke bestellt und eine schwarze bekommen. Die Größe stimmt auch nicht.", "fr": "J'ai commandé une veste bleue et j'en ai reçu une noire. La taille n'est pas la bonne non plus.", "va": "etikett"},
+    {"faux": true, "t": "Ich habe eine Jacke bestellt, aber das ist nicht die richtige Taille.", "fr": "J'ai commandé une veste, mais ce n'est pas la bonne « taille » (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "perplexe", "t": "Die Taille? Ach so, Sie meinen die Größe. Welche Größe haben Sie denn bestellt?", "fr": "« Die Taille » ? Ah, vous voulez dire la taille du vêtement. Quelle taille avez-vous commandée ?"}],
+     "aide": {"fr": "<b>« die Taille »</b>, en allemand, c'est seulement le tour de taille (la partie du corps). La taille d'un vêtement se dit « die Größe » : « Größe M »."}}
+   ]
+  },
+  "etikett": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Ich schicke Ihnen ein Rücksendeetikett per E-Mail. Können Sie es ausdrucken, oder möchten Sie lieber einen QR-Code für die Packstation?", "fr": "Je vous envoie une étiquette de retour par e-mail. Pouvez-vous l'imprimer, ou préférez-vous un QR code pour la Packstation (la consigne à colis) ?"}],
+   "choix": [
+    {"t": "Ich habe keinen Drucker. Der QR-Code wäre besser.", "fr": "Je n'ai pas d'imprimante. Le QR code serait mieux.", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Kein Problem, dann bekommen Sie den QR-Code. Die Rücksendung kostet Sie natürlich nichts.", "fr": "Pas de problème, vous recevrez donc le QR code. Le retour ne vous coûte rien, bien sûr."}]},
+    {"t": "Ich kann es ausdrucken. Wo gebe ich das Paket dann ab?", "fr": "Je peux l'imprimer. Où est-ce que je dépose le colis ensuite ?", "va": "loesung",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "In jeder DHL-Filiale oder an einer Packstation. Die Rücksendung kostet Sie natürlich nichts.", "fr": "Dans n'importe quelle agence DHL ou à une Packstation. Le retour ne vous coûte rien, bien sûr."}]}
+   ]
+  },
+  "loesung": {
+   "dit": [
+    {"si": {"problem": "weg"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Sie müssen aber nicht warten, bis DHL das Paket gefunden hat.", "fr": "Mais vous n'avez pas à attendre que DHL ait retrouvé le colis."},
+    {"si": {"problem": "kaputt"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Die kaputte Lampe müssen Sie übrigens nicht zurückschicken.", "fr": "Au fait, vous n'avez pas à renvoyer la lampe cassée."},
+    {"si": {"problem": "falsch"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Und Sie müssen nicht warten, bis die Jacke wieder bei uns ist.", "fr": "Et vous n'avez pas à attendre que la veste soit revenue chez nous."},
+    {"qui": "b13_kundenservice", "air": "question", "t": "Möchten Sie einen Ersatz, oder sollen wir Ihnen das Geld erstatten?", "fr": "Souhaitez-vous un article de remplacement, ou préférez-vous que nous vous remboursions ?"}
+   ],
+   "choix": [
+    {"t": "Ich hätte gern einen Ersatz. Wann würde er ankommen?", "fr": "J'aimerais un article de remplacement. Quand arriverait-il ?", "pose": {"loesung": "ersatz"}, "va": "ersatz"},
+    {"t": "Ich möchte lieber mein Geld zurück.", "fr": "Je préfère être remboursé.", "pose": {"loesung": "geld"}, "va": "erstattung"},
+    {"faux": true, "t": "Schick mir einfach das Geld zurück.", "fr": "Renvoie-moi simplement l'argent.",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Oh … Natürlich bekommen Sie Ihr Geld zurück, wenn Sie das möchten.", "fr": "Oh… Bien sûr, vous serez remboursé, si c'est ce que vous souhaitez."}],
+     "aide": {"fr": "<b>Au téléphone avec un service client, on vouvoie</b>, et « Schick mir » sonne comme un ordre. Dis plutôt : « Ich möchte lieber mein Geld zurück » ou « Könnten Sie mir das Geld erstatten? »."}}
+   ]
+  },
+  "ersatz": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Der Ersatz geht morgen raus und ist in zwei bis drei Werktagen bei Ihnen. Soll er an dieselbe Adresse gehen?", "fr": "L'article de remplacement part demain et sera chez vous dans deux à trois jours ouvrables. Doit-il aller à la même adresse ?"}],
+   "choix": [
+    {"t": "Ja, an dieselbe Adresse, bitte.", "fr": "Oui, à la même adresse, s'il vous plaît.", "va": "ende",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Gut, das ist notiert.", "fr": "Bien, c'est noté."}]},
+    {"t": "Lieber an die Packstation in meiner Straße. Dann muss ich nicht zu Hause sein.", "fr": "Plutôt à la Packstation de ma rue. Comme ça, je n'ai pas besoin d'être à la maison.", "va": "ende",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Gute Idee. Ich schicke Ihnen einen Link, dort können Sie die Packstation eintragen.", "fr": "Bonne idée. Je vous envoie un lien : vous pourrez y indiquer la Packstation."}]}
+   ]
+  },
+  "erstattung": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Die Erstattung dauert fünf bis sieben Werktage. Das Geld geht auf das Konto zurück, mit dem Sie bezahlt haben. Ist das in Ordnung?", "fr": "Le remboursement prend cinq à sept jours ouvrables. L'argent revient sur le compte avec lequel vous avez payé. Cela vous convient-il ?"}],
+   "choix": [
+    {"t": "Ja, das ist in Ordnung. Bekomme ich eine Bestätigung?", "fr": "Oui, cela me convient. Est-ce que je reçois une confirmation ?", "va": "ende",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Ja, natürlich.", "fr": "Oui, bien sûr."}]},
+    {"t": "Gut. Bekomme ich die Versandkosten auch zurück?", "fr": "Bien. Est-ce que les frais de port me sont remboursés aussi ?", "va": "ende",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Ja, selbstverständlich, die Versandkosten auch.", "fr": "Oui, bien entendu, les frais de port aussi."}]}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Sie bekommen in ein paar Minuten eine Bestätigung per E-Mail. Kann ich sonst noch etwas für Sie tun?", "fr": "Vous recevrez une confirmation par e-mail dans quelques minutes. Puis-je faire autre chose pour vous ?"}],
+   "choix": [
+    {"t": "Nein, das war alles. Vielen Dank für Ihre Hilfe!", "fr": "Non, c'était tout. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Sehr gern. Ich wünsche Ihnen noch einen schönen Tag!", "fr": "Avec plaisir. Je vous souhaite une bonne journée !"}]},
+    {"t": "Nein, danke. Sie haben mir sehr geholfen. Auf Wiederhören!", "fr": "Non, merci. Vous m'avez beaucoup aidé. Au revoir !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Das freut mich. Auf Wiederhören!", "fr": "J'en suis ravie. Au revoir !"}]},
+    {"faux": true, "t": "Nein, danke. Sie haben mich sehr geholfen.", "fr": "Non, merci. Vous « m' »avez beaucoup aidé (mauvais cas).",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Schön, dass ich Ihnen helfen konnte!", "fr": "Contente d'avoir pu vous aider !"}],
+     "aide": {"fr": "<b>« helfen » demande le datif</b> : « Sie haben mir sehr geholfen », jamais « mich ». De même : « Ich helfe Ihnen. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué le problème de ta commande et obtenu une solution, avec une confirmation par e-mail."}
+}
