@@ -457,17 +457,32 @@ def gloses(d):
 def ecrire_voix(d):
     """LES VOIX A ENREGISTRER (strategie des voix, 3 nov. : rien avant le renouvellement du 4 nov., le telephone d'ici
     la) : chaque phrase juste que la page peut dire, par langue, et les credits ElevenLabs. L'espagnol se dit deux
-    fois (Lolita pour l'Espagne, Monica pour l'Amerique latine)."""
-    v = {"_lisez_moi": "FABRIQUE par visuel/metiers/metiers.py : les textes a enregistrer (ElevenLabs v2, accord de Jacques).",
-         "de": sorted(d["trad"]["de"]), "es": sorted(d["trad"]["es"])}
-    # l'anglais (et ce que d'autres outils y posent) vient de visuel/voix_themes.py, qui joue la page : on le garde
+    fois (Lolita pour l'Espagne, Monica pour l'Amerique latine).
+
+    Le fichier se COMPLETE, il ne s'ecrase plus (16 nov. 2026, consigne du chef) : visuel/voix_themes.py, qui joue la
+    page, y range ce qu'elle dit en plus des phrases traduites (les fiches, les leurres, les enonces, l'anglais...),
+    environ 750 textes que l'ancien code effacait sans prevenir. Ici, on garde toutes les cles et leur ordre, on AJOUTE
+    seulement les phrases nouvelles, et on ne retire rien : un texte qui n'est plus fabrique ici reste, et il est signale."""
+    fab = {k: sorted(d["trad"][k]) for k in ("de", "es")}
+    # les credits : les phrases fabriquees ICI, comme avant (le chiffrage de ce qui manque est celui de voix_themes.py)
+    credits = {"de (Aurora)": sum(len(t) for t in fab["de"]), "es (Lolita + Monica)": 2 * sum(len(t) for t in fab["es"])}
+    # la paire s'ecrit « der Arzt → die Ärztin » mais la page la DIT « der Arzt, die Ärztin » : c'est ce texte-la qui
+    # s'enregistre (comme dans le releve de visuel/voix_themes.py)
+    dits = {k: {t.replace(" → ", ", ") for t in fab[k]} for k in fab}
     chemin = os.path.join(ICI, "voix.json")
-    if os.path.exists(chemin):
-        for k, x in json.load(io.open(chemin, encoding="utf-8")).items():
-            if k not in v and k != "credits":
-                v[k] = x
-    v["credits"] = {"de (Aurora)": sum(len(t) for t in v["de"]), "es (Lolita + Monica)": 2 * sum(len(t) for t in v["es"])}
-    io.open(os.path.join(ICI, "voix.json"), "w", encoding="utf-8", newline="\n").write(json.dumps(v, ensure_ascii=False, indent=1) + "\n")
+    v = json.load(io.open(chemin, encoding="utf-8")) if os.path.exists(chemin) else {}
+    v.setdefault("_lisez_moi", "FABRIQUE par visuel/metiers/metiers.py : les textes a enregistrer (ElevenLabs v2, accord de Jacques).")
+    for k in ("de", "es"):
+        avant = v.get(k, [])
+        nouveaux = sorted(dits[k] - set(avant))
+        hors = [t for t in avant if t not in dits[k]]
+        if nouveaux:
+            print("  voix.json (%s) : %d texte(s) ajoute(s)" % (k, len(nouveaux)))
+        if hors:
+            print("  voix.json (%s) : %d texte(s) gardes, qui ne sont pas des phrases de metiers.py (voix_themes.py)" % (k, len(hors)))
+        v[k] = avant if not nouveaux else sorted(set(avant) | dits[k])
+    v["credits"] = credits
+    io.open(chemin, "w", encoding="utf-8", newline="\n").write(json.dumps(v, ensure_ascii=False, indent=1) + "\n")
     return v["credits"]
 
 
