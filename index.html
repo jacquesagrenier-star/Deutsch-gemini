@@ -8853,6 +8853,43 @@ body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0
 .tg-rangee.deux .tg-ciel-dessin{flex:1 1 0; width:100%; height:auto; min-height:0;}
 .tg-ciel-dessin svg{display:block; width:100%; height:100%;}
 .tg-tab-pct.tg-ciel-debut{font-family:inherit; font-size:13px !important; font-weight:800; line-height:1.15;}
+/* Ligne 129 (16 nov. 2026) : LA LIGNE « CONVERSER » ET LE FOND DE LA TUILE CONVERSATIONS. Le banc au parc de la partie
+   Conversations de la seance (PAYSAGES_SEANCE.conv, terre de Sienne TEINTES_PAYSAGE.conv), ses couleurs en variables :
+   le passage jour / nuit n'a rien a redessiner. Les melanges sont ceux de paysageSeance() (ciel .72 / .55 vers le
+   blanc, colline .52, avant-plan .26 ; la nuit .82 / .68, .62, .42 vers #0B1626). Le texte est pose sur une vitre
+   presque opaque : son contraste ne depend pas du dessin (tests/audit-contraste.js le mesure sur la vitre). */
+:root{--cv-ciel1:#E4CFC4; --cv-ciel2:#D4B1A0; --cv-ar:#D1AC9A; --cv-av:#B96A4E; --cv-lum:#FFE3A0;
+      --cv-vitre:rgba(255,252,249,.86); --cv-encre:#1C2430; --cv-kick:#783E22; --cv-filet:rgba(160,82,45,.38);}
+body[data-theme="dark"]{--cv-ciel1:#262127; --cv-ciel2:#3B2928; --cv-ar:#442D29; --cv-av:#71392A; --cv-lum:#E8EDF4;
+      --cv-vitre:rgba(11,22,38,.80); --cv-encre:#F1E7E0; --cv-kick:#F0B456; --cv-filet:rgba(240,180,86,.30);}
+.conv-fond{position:absolute; inset:0; overflow:hidden; pointer-events:none; border-radius:inherit;}
+.conv-fond svg{position:absolute; left:0; bottom:0; width:100%; height:100%; display:block;}
+.conv-fond .cv-ar{fill:var(--cv-ar);} .conv-fond .cv-av{fill:var(--cv-av); color:var(--cv-av);} .conv-fond .cv-lum{fill:var(--cv-lum);}
+/* La ligne : le texte et le nombre en colonne a gauche ; a droite, le banc, les deux personnes, la bulle et le
+   lampadaire (un cadrage du dessin, svgFondConversation(true)) ; le sol continue sous la colonne (le bas du degrade). */
+.conv-ligne{grid-column:1 / -1; flex:0 0 100%; box-sizing:border-box; position:relative; display:flex; flex-direction:column; align-items:flex-start;
+    justify-content:space-between; gap:8px; min-height:108px; padding:10px; border-radius:18px; overflow:hidden;
+    background:linear-gradient(180deg, var(--cv-ciel1) 0%, var(--cv-ciel2) 85%, var(--cv-av) 85%); box-shadow:inset 0 0 0 1.5px var(--cv-filet), 0 6px 16px -8px rgba(20,28,40,.25);}
+.conv-ligne > .conv-fond svg{left:auto; right:auto; inset-inline-end:0; width:auto; height:100%; aspect-ratio:2 / 1; max-width:62%;}
+.conv-ligne.hidden, #home.vue-contenu #converserLigne, #home.palier-1 #converserLigne{display:none !important;}
+.conv-ouvrir, .conv-liste{position:relative; z-index:1; border:0; font:inherit; cursor:pointer; color:var(--cv-encre); background:var(--cv-vitre);
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); -webkit-tap-highlight-color:transparent;}
+.conv-ouvrir{flex:0 1 auto; min-width:0; max-width:52%; display:flex; flex-direction:column; align-items:flex-start; gap:1px; padding:7px 12px 8px; border-radius:12px; text-align:start;}
+.conv-kick{font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:var(--cv-kick); line-height:1.3;}
+.conv-ouvrir strong{display:block; max-width:100%; font-size:14.5px; font-weight:900; line-height:1.25; overflow-wrap:anywhere;}
+.conv-haut{display:flex; flex-wrap:wrap; column-gap:5px;}
+.conv-rejouer::before{content:"· ";}
+.conv-rejouer.hidden{display:none;}
+.conv-liste{flex:none; align-self:flex-start; padding:6px 11px; border-radius:999px; font-size:12px; font-weight:800; white-space:nowrap;}
+.conv-liste:empty{display:none;}
+.conv-ouvrir:active, .conv-liste:active{transform:scale(.97);}
+/* La tuile de Tout le contenu : le meme dessin, en bas, plus discret ; l'icone et le nom au-dessus. */
+/* Le meme cadrage que la ligne (le banc, la bulle, le lampadaire), en bas sur un tiers ; l'icone et le nom remontent un
+   peu (padding-bottom) pour que la bulle ne passe pas derriere le nom. */
+.orb.orb-conv{overflow:hidden; padding-bottom:18%;}
+.orb.orb-conv > .conv-fond{top:auto; height:34%; opacity:.55; background:linear-gradient(180deg, transparent 84%, var(--cv-av) 84%);}
+.orb.orb-conv > .conv-fond svg{left:0; right:0; margin:auto; width:auto; height:100%; aspect-ratio:2 / 1; max-width:100%;}
+.orb.orb-conv > :not(.conv-fond){position:relative; z-index:1;}
 #grilleCielCompte{direction:ltr; unicode-bidi:isolate;}
 /* La page : le ciel de la fin de seance, en plein ecran (voir ouvrirCiel). */
 #tonCiel.active{position:fixed; inset:0; z-index:3000; margin:0; box-sizing:border-box; overflow-y:auto; -webkit-overflow-scrolling:touch; color:#FFF6E8;
@@ -10628,6 +10665,18 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
                 <p class="ela-liste-pied" data-i18n="ela_niveau_pied">Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.</p>
             </div>
         </div>
+        <!-- Ligne 129 : LA LIGNE « CONVERSER » (decision de Jacques du 16 nov. 2026, « Oui, fais la ligne Converser »).
+             La prochaine conversation publiee du niveau, pas encore jouee (sinon : rejouer), et le nombre de
+             conversations, qui ouvre la liste ; au fond, le banc au parc (PAYSAGES_SEANCE.conv). Paliers 2 et 3 seulement.
+             Dans l'accueil en tuiles, majLigneConverser() la place dans la grille, sous les six tuiles. -->
+        <div class="conv-ligne hidden" id="converserLigne">
+            <span class="conv-fond" aria-hidden="true"></span>
+            <button type="button" class="conv-ouvrir" onclick="ouvrirConversationDeLaLigne()">
+                <span class="conv-haut"><span class="conv-kick" data-i18n="conv_ligne">Converser</span><span class="conv-kick conv-rejouer hidden" id="converserRejouer" data-i18n="conv_ligne_rejouer">Rejouer</span></span>
+                <strong id="converserTitre"></strong>
+            </button>
+            <button type="button" class="conv-liste" id="converserNb" onclick="ouvrirConversations(null, true)"></button>
+        </div>
         <!-- v932 : L'ACCUEIL ALLEGE. Marc-Antoine, 23 oct. 2026 : toutes ces tuiles,
              « c'est overwhelming ». Choix de Jacques parmi cinq propositions
              (.claude/maquette-accueil-allege.html, puis maquette-accueil-A.html) :
@@ -11105,7 +11154,8 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
              « Deploie les conversations ») : on REPOND, au micro ou en touchant une reponse, et la conversation suit
              le choix. La page visuel/prototype/conversation.html, dans le cadre des scenes, montre la liste rangee par
              niveau ; rien ici ne compte pour la seance du jour. Mode d'emploi : visuel/CONVERSATIONS.md. -->
-        <div class="orb orb-de" data-orbid="conversations" onclick="ouvrirConversations()">
+        <div class="orb orb-de orb-conv" data-orbid="conversations" onclick="ouvrirConversations()">
+            <span class="conv-fond" aria-hidden="true"></span>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 5.5A2.5 2.5 0 015.5 3h8A2.5 2.5 0 0116 5.5v5a2.5 2.5 0 01-2.5 2.5H9l-4 3v-3H5.5A2.5 2.5 0 013 10.5z"/><path d="M19 8.5h.5A1.5 1.5 0 0121 10v5a1.5 1.5 0 01-1.5 1.5H19v3l-3.5-3H12a1.5 1.5 0 01-1.5-1.5"/></svg></div>
             <div>
                 <strong data-i18n="orb_conversations">Conversations</strong>
@@ -17258,6 +17308,10 @@ const I18N = {
         orb_zahlen_title: "Nombres",
         orb_prononciation: "Prononciation",
         orb_conversations: "Conversations",
+        conv_ligne: "Converser",
+        conv_ligne_n: "{n} conversations",
+        conv_ligne_n1: "{n} conversation",
+        conv_ligne_rejouer: "Rejouer",
         pron_kicker: "Lire l'allemand",
         pron_intro: "L'allemand se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
         pron_voyelles: "Les voyelles",
@@ -19094,6 +19148,10 @@ const I18N = {
         orb_zahlen_title: "Numbers",
         orb_prononciation: "Pronunciation",
         orb_conversations: "Conversations",
+        conv_ligne: "Talk",
+        conv_ligne_n: "{n} conversations",
+        conv_ligne_n1: "{n} conversation",
+        conv_ligne_rejouer: "Play again",
         pron_kicker: "Reading German",
         pron_intro: "German is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
         pron_voyelles: "Vowels",
@@ -20874,6 +20932,10 @@ const I18N = {
         orb_zahlen_title: "Sayılar",
         orb_prononciation: "Telaffuz",
         orb_conversations: "Konuşmalar",
+        conv_ligne: "Sohbet et",
+        conv_ligne_n: "{n} konuşma",
+        conv_ligne_n1: "{n} konuşma",
+        conv_ligne_rejouer: "Yeniden oyna",
         pron_kicker: "Almanca okumak",
         pron_intro: "Almanca neredeyse her zaman yazıldığı gibi okunur: bu kurallar her kelimeyi okumaya yeter. Duymak için kelimeye dokun.",
         pron_voyelles: "Ünlüler",
@@ -22860,6 +22922,10 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Вимова",
         orb_conversations: "Розмови",
+        conv_ligne: "Розмовляти",
+        conv_ligne_n: "Розмови: {n}",
+        conv_ligne_n1: "Розмови: {n}",
+        conv_ligne_rejouer: "Ще раз",
         pron_kicker: "Читати німецькою",
         pron_intro: "Німецькі слова майже завжди читаються так, як пишуться: цих правил досить, щоб прочитати будь-яке слово. Торкнись слова, щоб його почути.",
         pron_voyelles: "Голосні",
@@ -23402,6 +23468,10 @@ const I18N = {
         orb_zahlen_title: "عددها",
         orb_prononciation: "تلفظ",
         orb_conversations: "گفت‌وگوها",
+        conv_ligne: "گفت‌وگو کن",
+        conv_ligne_n: "{n} گفت‌وگو",
+        conv_ligne_n1: "{n} گفت‌وگو",
+        conv_ligne_rejouer: "دوباره بازی کن",
         pron_kicker: "خواندن آلمانی",
         pron_intro: "آلمانی تقریباً همیشه همان‌طور که نوشته می‌شود خوانده می‌شود: این قاعده‌ها برای خواندن هر واژه‌ای کافی است. برای شنیدن، واژه را لمس کن.",
         pron_voyelles: "واکه‌ها",
@@ -25249,6 +25319,10 @@ const I18N = {
         orb_zahlen_title: "الأعداد",
         orb_prononciation: "النطق",
         orb_conversations: "المحادثات",
+        conv_ligne: "المحادثة",
+        conv_ligne_n: "المحادثات: {n}",
+        conv_ligne_n1: "المحادثات: {n}",
+        conv_ligne_rejouer: "مرة أخرى",
         pron_kicker: "قراءة الألمانية",
         pron_intro: "تُقرأ الألمانية غالبًا كما تُكتب: هذه القواعد تكفي لقراءة أي كلمة. المس الكلمة لتسمعها.",
         pron_voyelles: "الحروف الصائتة",
@@ -28179,6 +28253,10 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronúncia",
         orb_conversations: "Conversas",
+        conv_ligne: "Conversar",
+        conv_ligne_n: "{n} conversas",
+        conv_ligne_n1: "{n} conversa",
+        conv_ligne_rejouer: "Jogar de novo",
         pron_kicker: "Ler o alemão",
         pron_intro: "O alemão quase sempre se lê como se escreve: estas regras bastam para ler qualquer palavra. Toque numa palavra para ouvi-la.",
         pron_voyelles: "As vogais",
@@ -30022,6 +30100,10 @@ const I18N = {
         orb_zahlen_title: "Liczby",
         orb_prononciation: "Wymowa",
         orb_conversations: "Rozmowy",
+        conv_ligne: "Rozmawiać",
+        conv_ligne_n: "Rozmowy: {n}",
+        conv_ligne_n1: "Rozmowy: {n}",
+        conv_ligne_rejouer: "Jeszcze raz",
         pron_kicker: "Czytanie po niemiecku",
         pron_intro: "Niemiecki prawie zawsze czyta się tak, jak się pisze — podobnie jak polski, tylko według innych reguł: te reguły wystarczą, żeby przeczytać każde słowo. Dotknij słowa, żeby je usłyszeć.",
         pron_voyelles: "Samogłoski",
@@ -31868,6 +31950,10 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Произно­шение",
         orb_conversations: "Разговоры",
+        conv_ligne: "Разговаривать",
+        conv_ligne_n: "Разговоры: {n}",
+        conv_ligne_n1: "Разговоры: {n}",
+        conv_ligne_rejouer: "Ещё раз",
         pron_kicker: "Читать по-немецки",
         pron_intro: "По-немецки почти всегда читают так, как пишут: этих правил достаточно, чтобы прочитать любое слово. Нажми на слово, чтобы его услышать.",
         pron_voyelles: "Гласные",
@@ -33713,6 +33799,10 @@ const I18N = {
         orb_zahlen_title: "Zahlen",
         orb_prononciation: "Aussprache",
         orb_conversations: "Gespräche",
+        conv_ligne: "Sich unterhalten",
+        conv_ligne_n: "{n} Gespräche",
+        conv_ligne_n1: "{n} Gespräch",
+        conv_ligne_rejouer: "Noch einmal",
         pron_kicker: "Deutsch lesen",
         pron_intro: "Deutsch liest man fast immer so, wie es geschrieben wird: Diese Regeln reichen, um jedes Wort zu lesen. Tippe auf ein Wort, um es zu hören.",
         pron_voyelles: "Die Vokale",
@@ -35571,6 +35661,10 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronunciación",
         orb_conversations: "Conversaciones",
+        conv_ligne: "Conversar",
+        conv_ligne_n: "{n} conversaciones",
+        conv_ligne_n1: "{n} conversación",
+        conv_ligne_rejouer: "Volver a jugar",
         pron_kicker: "Leer el alemán",
         pron_intro: "El alemán casi siempre se lee como se escribe: estas reglas bastan para leer cualquier palabra. Toca una palabra para oírla.",
         pron_voyelles: "Las vocales",
@@ -52755,7 +52849,7 @@ function majGrilleAccueil(){
     if(!home || !g) return;
     let actif = false;
     try{ actif = essaiActif("accueil_grille"); }catch(e){}
-    if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); return; }
+    if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); try{ majLigneConverser().catch(() => {}); }catch(e){} return; }
     home.classList.add("grille-c");
     const vis = tuilesProposees(home);
     let i = 0;
@@ -52776,6 +52870,7 @@ function majGrilleAccueil(){
         rangee.classList.toggle("hidden", !montres);
     }
     try{ majTuileCiel(); }catch(e){}
+    try{ majLigneConverser().catch(() => {}); }catch(e){}   // ligne 129 : sa place suit la grille
     grilleEmpreinte = empreinteGrille(home);
     if(!grilleObservee && typeof MutationObserver === "function"){
         grilleObservee = true;
@@ -53182,14 +53277,19 @@ function ouvrirDtzOral(){
 // LES CONVERSATIONS (12 nov. 2026) : la liste de la page, rangee par niveau, dans le cadre des scenes. La page va
 // d'elle-meme de la liste a une conversation et retour ; « fermer » ramene a Tout le contenu. Rien ne compte pour la
 // seance du jour (decision du 11 nov. : la tuile sert a s'entrainer a volonte).
-function ouvrirConversations(){
+// Ligne 129 : depuis la ligne « Converser » de l'accueil, id ouvre cette conversation (puis « ‹ » montre la liste) et
+// depuisAccueil fait revenir a l'accueil au lieu de Tout le contenu.
+let conversationsDepuisAccueil = false;
+function ouvrirConversations(id, depuisAccueil){
     if(!famillePageOuverte("conversation")){ ouvrirAbonnement(); return; }   // ligne 86
     sceneOuverteDepuis = "conversations";
+    conversationsDepuisAccueil = !!depuisAccueil;
     const cadre = document.getElementById("sceneCadre");
     const appris = ["de", "es", "en"].includes(LANGUE_APPRISE) ? LANGUE_APPRISE : "de";
+    const une = typeof id === "string" && /^[a-z0-9-]{1,40}$/.test(id) ? "&c=" + id + "&liste=1" : "";
     if(cadre){
         cadre.title = t("orb_conversations");
-        chargerCadre(cadre, baseScenes() + "conversation.html?apprendre=" + appris
+        chargerCadre(cadre, baseScenes() + "conversation.html?apprendre=" + appris + une
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (appris === "en" && VARIANTE_ANGLAIS === "gb" ? "&variante=gb" : "")
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
@@ -69238,13 +69338,21 @@ window.addEventListener("message", (e) => {
     const dansLArret = sceneOuverteDepuis === "arret" || sceneOuverteDepuis === "premiers_pas";
     if(d.type === "avance"){ if(dansLArret) avancerArret(d.f); return; }
     if(dansLArret && d.type === "exercice"){ try{ exerciceDansLArret(); }catch(err){} }
+    // Ligne 129 : une conversation finie (la page envoie son id ; jamais pour un dialogue des Soins) compte comme jouee,
+    // par la tuile, la ligne de l'accueil ou la seance -- la ligne « Converser » propose alors la suivante.
+    if(d.type === "fini" && typeof d.id === "string" && d.id && !dialogueSoinsOuvert && (sceneOuverteDepuis === "conversations" || dansLArret)){
+        try{ marquerConversationJouee(d.id); }catch(err){}
+    }
     // Le dialogue des Soins que la page a choisi (c=auto), puis sa fin : il compte comme joue.
     if(d.type === "dialogue"){ if(dansLArret) dialogueSoinsOuvert = String(d.id || ""); return; }
     if(dansLArret && d.type === "fini" && dialogueSoinsOuvert){ marquerDialogueSoinsJoue(dialogueSoinsOuvert); dialogueSoinsOuvert = null; }
     if(dansLArret && d.type === "fini"){ try{ avancerArret(1); }catch(err){} }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
-        else if(d.type === "fermer"){ try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
+        else if(d.type === "fermer"){
+            if(conversationsDepuisAccueil){ conversationsDepuisAccueil = false; goHome(); }
+            else { try{ ouvrirToutLeContenu(); }catch(err){ goHome(); } }
+        }
         return;
     }
     // Les dialogues du service (Wortando Pflege, 15 nov.) : comme la tuile Conversations, mais retour aux Soins ; rien
@@ -75232,6 +75340,112 @@ function segmentsSeance(paquet, parts){
 const PAYSAGES_SEANCE = {"pp":{"ar":"M0 100V62C40 44 86 40 130 56S226 78 320 48V100Z","av":"M0 100V80C60 66 120 72 170 84S270 92 320 74V100Z","milieu":"","supM":"","sup":"<rect x=\"69\" y=\"64\" width=\"2.4\" height=\"16\"/><path d=\"M70 70c0-8-6-11-12-11 0 6 5 11 12 11zM70 65c0-6 4-9 10-9 0 5-4 9-10 9z\"/><rect x=\"200\" y=\"74\" width=\"2\" height=\"12\"/><path d=\"M201 78c0-6-5-8-10-8 0 5 4 8 10 8zM201 75c0-5 3-7 8-7 0 4-3 7-8 7z\"/>","supA":"","astre":[238,34,14]},"rev":{"ar":"M-10 100V58c20-14 40-14 60 0s40 14 60 0 40-14 60 0 40 14 60 0 40-14 60 0 40 14 60 0V100Z","av":"M-30 100V76c16-11 32-11 48 0s32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0 32-11 48 0 32 11 48 0V100Z","milieu":"","supM":"","sup":"","supA":"","astre":[70,30,12]},"mots":{"ar":"M0 100V78C70 72 160 71 230 75S300 80 320 77V100Z","av":"M0 100V88C100 84 220 84 320 89V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(112 34) scale(1)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(214 44) scale(0.62)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(166 18) scale(0.36)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g><g transform=\"translate(58 18) scale(0.28)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[158,74,16]},"conj":{"ar":"M0 100V76c30-4 60 4 90 0s60-4 90 0 60 4 140 0V100Z","av":"M0 100V92C40 86 100 94 150 90S200 66 230 64H320V100Z","milieu":"","supM":"","sup":"<path d=\"M262 64L266 24h12l4 40z\"/><path d=\"M264 24V16h16v8z\"/><path d=\"M262 16L272 8l10 8z\"/>","supA":"<path d=\"M266 20L120 6V34z\" opacity=\".55\"/>","astre":[66,26,11]},"scene":{"ar":"M0 100V64H12V46H26V58H40V30H48V22H54V30H62V52H80V38H100V60H116V26H130V50H146V64H160V40H176V32H190V56H206V36H220V20H228V36H240V58H258V44H276V60H294V48H320V100Z","av":"M0 100V90c30-5 60 5 90 0s60-5 90 0 60 5 140 0V100Z","milieu":"M0 100V70C70 58 160 62 320 74V100Z","supM":"<circle cx=\"26\" cy=\"52\" r=\"8\"/><rect x=\"24.8\" y=\"58\" width=\"2.4\" height=\"10\"/><rect x=\"62.5\" y=\"53\" width=\"15\" height=\"13\"/><path d=\"M60.5 53L70 45.5L79.5 53z\"/><rect x=\"91\" y=\"44\" width=\"10\" height=\"22\"/><path d=\"M91 44a5 5 0 0 1 10 0z\"/><g transform=\"translate(192 70) scale(0.66)\"><path d=\"M-13-8c0-5 3-7 8-7h14l3-3 6 1 1 6-4 1v2c0 3-1 5-4 5V0h-3v-4h-13V0h-3v-4c-3-1-5-2-5-4z\"/></g><g transform=\"translate(232 74) scale(0.72)\"><path fill-rule=\"evenodd\" d=\"M-12-18h12v8h10v6h-22zM-8-16h6v5h-6z\"/><circle cx=\"-8\" cy=\"-6\" r=\"6\"/><circle cx=\"10\" cy=\"-4\" r=\"4\"/></g><circle cx=\"286\" cy=\"57\" r=\"9\"/><rect x=\"284.8\" y=\"64\" width=\"2.4\" height=\"10\"/>","sup":"<g transform=\"translate(40 90) scale(0.62)\"><path d=\"M-14-22a14 12 0 0 1 28 0z\"/><path d=\"M0-22L3 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/><rect x=\"-18\" y=\"-2\" width=\"13\" height=\"2\"/></g><g transform=\"translate(70 92) scale(0.66)\"><path d=\"M0 0C2-10 1-18 4-26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"/><path d=\"M4-26c-8-6-14-4-18 2 6-3 12-2 18-2zM4-26c8-6 14-4 18 2-6-3-12-2-18-2zM4-26c-5-8-10-9-15-7 5 1 10 4 15 7zM4-26c5-8 10-9 15-7-5 1-10 4-15 7z\"/></g><circle cx=\"108\" cy=\"87\" r=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M103 87H113M108 82V92\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.8\" stroke-linecap=\"round\"/><path d=\"M124 50q3-4 6 0q3-4 6 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\" stroke-linecap=\"round\"/><g transform=\"translate(196 92) scale(0.6)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g><g transform=\"translate(272 92) scale(0.42)\"><path d=\"M-30-4h60l-8 10h-44z\"/><path d=\"M2-6V-46l26 40z\"/><path d=\"M-2-6V-34l-20 28z\"/></g>","supA":"","astre":[298,18,9]},"theme":{"ar":"M0 100V70C70 56 150 58 220 68S300 76 320 66V100Z","av":"M0 100V86C90 78 200 80 320 88V100Z","milieu":"","supM":"","sup":"<g transform=\"translate(30 86) scale(1.2)\"><path fill-rule=\"evenodd\" d=\"M-12 0V-14L0-25 12-14V0zM-3 0V-8h6V0zM-9-12h5v4h-5zM4-12h5v4h-5z\"/></g><g transform=\"translate(70 84) scale(1.25)\"><circle cx=\"0\" cy=\"-17\" r=\"9\"/><rect x=\"-1.5\" y=\"-10\" width=\"3\" height=\"10\"/></g><g transform=\"translate(108 84) scale(1.3)\"><circle cx=\"-7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><circle cx=\"7\" cy=\"-4.5\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><path d=\"M-7 -4.5L-2 -11H5L7 -4.5M-2 -11L1 -4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/></g><g transform=\"translate(156 84) scale(0.95)\"><path d=\"M-18-4v-7l6-1 5-8h14l6 8 5 1v7z\"/><circle cx=\"-10\" cy=\"-3\" r=\"3.8\"/><circle cx=\"10\" cy=\"-3\" r=\"3.8\"/></g><g transform=\"translate(198 84) scale(1.45)\"><path d=\"M-6 0v-8l-2-6 4 2.4h4l4-2.4-2 6v8z\"/><path d=\"M6 0c5-1 6-7 3-11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></g><g transform=\"translate(240 86) scale(1.05)\"><path fill-rule=\"evenodd\" d=\"M-16 0L0-24 16 0zM-5 0L0-11 5 0z\"/></g><g transform=\"translate(292 88) scale(1.3)\"><rect x=\"-0.9\" y=\"-12\" width=\"1.8\" height=\"12\"/><circle cx=\"0\" cy=\"-19\" r=\"3.2\"/><circle cx=\"-5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"5.6\" cy=\"-16\" r=\"3.2\"/><circle cx=\"-3.6\" cy=\"-22\" r=\"3.2\"/><circle cx=\"3.6\" cy=\"-22\" r=\"3.2\"/></g><g transform=\"translate(150 30) scale(0.42)\"><path d=\"M0-30c-16 0-27 11-27 25 0 12 13 22 21 30h12c8-8 21-18 21-30 0-14-11-25-27-25z\"/><rect x=\"-6\" y=\"28\" width=\"12\" height=\"8\" rx=\"1.5\"/></g>","supA":"","astre":[60,24,11]},"son":{"ar":"M0 100V76C80 70 200 70 320 76V100Z","av":"M0 100V88C100 85 220 85 320 89V100Z","milieu":"","supM":"","sup":"<rect x=\"39\" y=\"38\" width=\"3.2\" height=\"52\"/><rect x=\"34\" y=\"42\" width=\"13\" height=\"2\"/><rect x=\"278\" y=\"38\" width=\"3.2\" height=\"52\"/><rect x=\"273\" y=\"42\" width=\"13\" height=\"2\"/><path d=\"M41 44Q160 80 279 44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M41 50Q160 86 279 50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\"0.7\"/><g transform=\"translate(92.0 56.1) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(130.0 60.9) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(168.0 61.9) scale(1.05)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(204.0 59.5) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(236.0 54.7) scale(0.95)\"><path d=\"M-.9-1.6V0M1.1-1.6V0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".8\" stroke-linecap=\"round\"/><ellipse cx=\"0\" cy=\"-3.9\" rx=\"3.4\" ry=\"2.5\"/><circle cx=\"2.6\" cy=\"-6.5\" r=\"1.8\"/><path d=\"M4.2-6.7l1.8.5-1.8.6z\"/><path d=\"M-3.2-3.5l-3.4 1.8 3.6-.4z\"/></g><g transform=\"translate(140 40) scale(0.95)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g><g transform=\"translate(176 32) scale(0.8)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g><g transform=\"translate(212 40) scale(0.7)\"><ellipse cx=\"0\" cy=\"0\" rx=\"2.6\" ry=\"1.9\" transform=\"rotate(-20)\"/><path d=\"M2.2-.6V-10.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/><path d=\"M2.2-10.5c2.6 1.4 4.2 3 3.4 5.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\"/></g>","supA":"","astre":[74,24,10]},"conv":{"ar":"M0 100V68C60 58 140 60 200 66S290 74 320 64V100Z","av":"M0 100V88C100 82 220 84 320 90V100Z","milieu":"","supM":"","sup":"<rect x=\"58\" y=\"58\" width=\"4\" height=\"32\"/><circle cx=\"60\" cy=\"48\" r=\"15\"/><circle cx=\"47\" cy=\"57\" r=\"10\"/><circle cx=\"73\" cy=\"57\" r=\"10\"/><rect x=\"120\" y=\"69\" width=\"72\" height=\"3\" rx=\"1\"/><rect x=\"120\" y=\"81\" width=\"72\" height=\"3.4\" rx=\"1\"/><rect x=\"124\" y=\"84\" width=\"3\" height=\"7\"/><rect x=\"185\" y=\"84\" width=\"3\" height=\"7\"/><path d=\"M134 82V72c0-5 3-8 7-8s7 3 7 8V82z\"/><circle cx=\"141\" cy=\"58\" r=\"5.6\"/><path d=\"M164 82V72c0-5 3-8 7-8s7 3 7 8V82z\"/><circle cx=\"171\" cy=\"58\" r=\"5.6\"/><path d=\"M146 24h22a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6h-8l-5 6v-6h-9a6 6 0 0 1-6-6v-6a6 6 0 0 1 6-6z\"/><rect x=\"248\" y=\"52\" width=\"2.6\" height=\"38\"/><path d=\"M243 54h12l-2-6h-8z\"/>","supA":"","astre":[272,26,12]}};
 // La palette plus marquee (Jacques, 10 nov.) : six teintes bien separees, que le fond de tout l'ecran reprend.
 const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A3FD1", scene:"#0B9AA0", theme:"#D6336F", son:"#C99A06", conv:"#A0522D" };
+// LIGNE 129 (16 nov. 2026, decision de Jacques : « Oui, fais la ligne Converser ») : LA LIGNE « CONVERSER » DE L'ACCUEIL.
+// Elle propose la prochaine conversation PUBLIEE (index.json, « publies ») de la langue apprise, a son niveau
+// (niveauSeance), pas encore jouee ; a defaut une d'un niveau plus bas, puis n'importe laquelle ; tout joue : celle
+// jouee il y a le plus longtemps, avec « Rejouer ». Le nombre ouvre la liste. Paliers 2 et 3 (palierAccueil), en de, es
+// et en ; jamais en ja ni en pt (aucune conversation). Une conversation compte jouee a sa fin (« fini » avec son id),
+// par la tuile, la ligne ou la seance ; seulement sur cet appareil (CONVERSATIONS_JOUEES_KEY, pas dans le nuage : les
+// regles Firestore n'ont pas ce champ). Une conversation jouee avant la v1216 n'est pas connue : elle est reproposee.
+// ⚠️ var et non const : majPaliersAccueil() passe avant que ce bloc soit lu.
+var CONVERSATIONS_JOUEES_KEY = PREFIXE_STOCKAGE + "conversationsJouees";
+var conversationsPublieesPromesse = null, TITRES_CONVERSATIONS = {}, ligneConverserTour = 0;
+function conversationsJouees(){
+    try{ const v = JSON.parse(localStorage.getItem(CONVERSATIONS_JOUEES_KEY) || "{}"); return v && typeof v === "object" && !Array.isArray(v) ? v : {}; }
+    catch(e){ return {}; }
+}
+function marquerConversationJouee(id){
+    if(!/^[a-z0-9-]{1,40}$/.test(String(id || ""))) return;
+    const v = conversationsJouees();
+    v[id] = Date.now();
+    try{ localStorage.setItem(CONVERSATIONS_JOUEES_KEY, JSON.stringify(v)); }catch(e){}
+}
+function langueConversations(){ return ["de", "es", "en"].indexOf(LANGUE_APPRISE) >= 0 ? LANGUE_APPRISE : null; }
+function lireDonneeConversation(f){
+    return fetch(baseScenes() + "conversation/donnees/" + f, { cache: "no-cache" }).then(r => { if(!r.ok) throw new Error(f + " " + r.status); return r.json(); });
+}
+function chargerConversationsPubliees(){
+    if(conversationsPublieesPromesse) return conversationsPublieesPromesse;
+    conversationsPublieesPromesse = (async () => {
+        const idx = await lireDonneeConversation("index.json");
+        const pub = (idx.lots || []).filter(l => (idx.publies || []).indexOf(l) >= 0);
+        const lots = await Promise.all(pub.map(l => lireDonneeConversation("lot-" + l + ".json").catch(() => null)));
+        const liste = [];
+        lots.forEach(l => { if(l && Array.isArray(l.conversations)) l.conversations.forEach(c => {
+            if(c && typeof c.id === "string") liste.push({ id: c.id, niveau: l.niveau || "A1", langues: Array.isArray(c.langues) ? c.langues : [] });
+        }); });
+        return liste;
+    })().catch(() => { conversationsPublieesPromesse = null; return null; });
+    return conversationsPublieesPromesse;
+}
+// Le titre dans la langue de l'interface (repli en, puis fr), lu dans le fichier de la conversation.
+async function titreConversation(id, langue){
+    const cle = id + "." + langue;
+    if(!TITRES_CONVERSATIONS[cle]) TITRES_CONVERSATIONS[cle] = lireDonneeConversation(cle + ".json").then(d => d.titre || {}).catch(() => { delete TITRES_CONVERSATIONS[cle]; return {}; });
+    const ti = await TITRES_CONVERSATIONS[cle], ui = getUiLang();
+    return ti[ui] || ti.en || ti.fr || "";
+}
+function prochaineConversation(liste){
+    const L = langueConversations();
+    if(!L || !Array.isArray(liste)) return null;
+    const ici = liste.filter(c => c.langues.indexOf(L) >= 0);
+    if(!ici.length) return null;
+    const jouees = conversationsJouees();
+    const rang = n => Math.max(0, LEVELS.indexOf(n));
+    let niv = 0;
+    try{ niv = rang(niveauSeance()); }catch(e){}
+    const ouverte = c => { try{ return pageOuverte("conversation:" + c.id); }catch(e){ return true; } };
+    const neuves = ici.filter(c => !jouees[c.id]);
+    for(const f of [c => rang(c.niveau) === niv, c => rang(c.niveau) < niv, () => true]){
+        const l = neuves.filter(f), c = l.find(ouverte) || l[0];
+        if(c) return { conv: c, n: ici.length, rejouer: false };
+    }
+    const parAge = ici.slice().sort((a, b) => (jouees[a.id] || 0) - (jouees[b.id] || 0));
+    return { conv: parAge.find(c => rang(c.niveau) <= niv && ouverte(c)) || parAge[0], n: ici.length, rejouer: true };
+}
+// Le banc au parc, aux couleurs des variables --cv-* (voir .conv-fond) : dessine une fois, valable jour et nuit.
+// cadre : la ligne de l'accueil ne garde que le banc, la bulle, le lampadaire et l'astre (x 112 a 288).
+function svgFondConversation(cadre){
+    const L = PAYSAGES_SEANCE.conv, [x, y, r] = L.astre;
+    return '<svg viewBox="' + (cadre ? "112 12 176 88" : "0 0 320 100") + '" preserveAspectRatio="' + (cadre ? "xMaxYMax meet" : "xMidYMax slice") + '"><circle class="cv-lum" cx="' + x + '" cy="' + y + '" r="' + r + '"/>'
+        + '<path class="cv-ar" d="' + L.ar + '"/><g class="cv-av"><path d="' + L.av + '"/>' + (L.sup || "") + "</g></svg>";
+}
+function poserFondsConversation(){
+    document.querySelectorAll(".conv-fond").forEach(f => {
+        if(f.firstChild) return;
+        try{ f.innerHTML = svgFondConversation(true); }catch(e){}
+    });
+}
+function ouvrirConversationDeLaLigne(){
+    const el = document.getElementById("converserLigne");
+    ouvrirConversations(el && el.dataset.conv ? el.dataset.conv : null, true);
+}
+// Sa place : dans la grille de l'accueil en tuiles (sous les six tuiles, avant la rangee tableau / ciel), sinon sous
+// « Ecouter, repeter ». Appelee par majPaliersAccueil() a chaque changement d'ecran : tout est en cache apres la 1re fois.
+async function majLigneConverser(){
+    const el = document.getElementById("converserLigne"), home = document.getElementById("home");
+    if(!el || !home) return;
+    const tour = ++ligneConverserTour;
+    const g = document.getElementById("grilleAccueil"), rangee = g ? g.querySelector(".tg-rangee") : null;
+    if(home.classList.contains("grille-c") && g){ if(el.parentNode !== g || el.nextElementSibling !== rangee) g.insertBefore(el, rangee); }
+    else { const e = document.getElementById("ecouteLigneAccueil"); if(e && e.nextElementSibling !== el) e.after(el); }
+    let p = 3;
+    try{ p = palierAccueil(); }catch(e){}
+    if(p < 2 || !langueConversations()){ el.classList.add("hidden"); return; }
+    const choix = prochaineConversation(await chargerConversationsPubliees());
+    if(tour !== ligneConverserTour) return;
+    if(!choix || !choix.conv){ el.classList.add("hidden"); return; }
+    const titre = await titreConversation(choix.conv.id, langueConversations());
+    if(tour !== ligneConverserTour) return;
+    poserFondsConversation();
+    document.getElementById("converserTitre").textContent = (titre || "…") + " · " + choix.conv.niveau;
+    document.getElementById("converserRejouer").classList.toggle("hidden", !choix.rejouer);
+    const nb = document.getElementById("converserNb");
+    nb.textContent = tf(choix.n === 1 ? "conv_ligne_n1" : "conv_ligne_n", { n: choix.n }) + " ›";
+    el.dataset.conv = choix.conv.id;
+    el.classList.remove("hidden");
+}
+try{ poserFondsConversation(); }catch(e){}
 // Le portugais aussi (lot P1, 11 nov. 2026, alignement des langues) : les paysages sont des dessins, les noms des
 // parties des textes d'interface (seance_court_*) ; rien n'y depend de la langue apprise.
 // L'anglais aussi (12 nov. 2026 : deux testeurs Android en anglais n'avaient pas « les nouveaux fonds d'ecran »).

@@ -824,7 +824,7 @@ async function choisir(c, touchee){
 }
 function fin(){
   quiParle(null);
-  if (!SEANCE) parler("fini");
+  if (!SEANCE) parler("fini", SOINS ? null : { id: C && C.id });   // ligne 129 : l'app la compte jouee
   const c = el("div", "carte fin");
   c.appendChild(el("h2", null, S.erreurs.length ? u("bien") : u("parfait")));
   c.appendChild(el("p", null, gabarit(fr(C.bilan), "fr")));
@@ -845,7 +845,7 @@ function fin(){
   if (SEANCE && DANS_APP){
     // dans la seance : « Continuer » rend la main a la seance (« fini ») ; « Rejouer » reste, en second
     const suite = el("button", "gros", u("continuer")); suite.type = "button";
-    suite.onclick = () => { suite.disabled = true; parler("fini"); };
+    suite.onclick = () => { suite.disabled = true; parler("fini", SOINS ? null : { id: C && C.id }); };
     re.className = "gros second";
     c.append(suite, re);
   } else {
