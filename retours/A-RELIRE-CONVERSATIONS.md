@@ -115,12 +115,12 @@ des trois conversations familières (`du` / `tú` / `familier`) et le naturel de
   - l'employée de la compagnie aérienne : `b13_fluggesellschaft` ;
   - l'opérateur des urgences : `b13_notruf` ;
   - la conseillère du service client : `b13_kundenservice` ;
-  - la propriétaire, Irene : `b13_vermieter`, à brancher sur `conversation/Irene-neutre.webp` du lot a2-1, puis ses expressions.
 - Expressions qui retombent aujourd'hui sur le sourire :
   - Ines, l'amie (`b13_freundin`) : surprise, perplexe, amuse, question.
   - Elena (`b13_koordinatorin`) : surprise, perplexe.
   - Diego (`b13_gast`) : surprise.
   - Marta (`b13_kursleiterin`, `b13_lehrerin`) : surprise.
+  - Irene, la propriétaire (`vermieterin` du lot a2-1, location de vacances) : question, attentive, perplexe, amuse.
   - La réceptionniste de Premiers pas (`rezeptionistin`, entretien de stage) : question, attentive, surprise, perplexe, amuse.
 
 ## Lot a1-2 : ce que le relecteur regarde en particulier

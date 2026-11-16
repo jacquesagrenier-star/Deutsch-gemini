@@ -5,130 +5,130 @@
  "registre": "usted",
  "titre": {"fr": "Louer un logement pour les vacances"},
  "intro": {"fr": "Tu as vu l'annonce d'un appartement à Cadix, près de la plage. Tu appelles la propriétaire pour le réserver."},
- "personnes": ["b13_vermieter"],
+ "personnes": ["vermieterin"],
  "debut": "llamada",
  "noeuds": {
   "llamada": {
    "dit": [
     {"recit": {"fr": "L'annonce : « Apartamento en Cádiz, a un paso de la playa de la Victoria. Preguntar por Irene García ». Tu composes le numéro. Ça sonne."}},
-    {"qui": "b13_vermieter", "air": "question", "t": "¿Sí? ¿Dígame?", "fr": "Allô ? Je vous écoute."}
+    {"qui": "vermieterin", "air": "question", "t": "¿Sí? ¿Dígame?", "fr": "Allô ? Je vous écoute."}
    ],
    "choix": [
     {"t": "Buenos días. Llamo por el anuncio del apartamento de Cádiz. ¿Sigue libre en julio?", "fr": "Bonjour. J'appelle pour l'annonce de l'appartement de Cadix. Est-il toujours libre en juillet ?", "va": "fechas"},
     {"t": "Buenos días, ¿la señora García? He visto su anuncio en internet y me interesa el apartamento.", "fr": "Bonjour, madame García ? J'ai vu votre annonce sur internet et l'appartement m'intéresse.", "va": "fechas"},
     {"faux": true, "t": "Buenos días. Llamo para la locación del apartamento.", "fr": "Bonjour. J'appelle pour la location de l'appartement.",
-     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "¿La locación? Ah, ¿llama por el alquiler del apartamento?", "fr": "La « locación » ? Ah, vous appelez pour la location de l'appartement ?"}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿La locación? Ah, ¿llama por el alquiler del apartamento?", "fr": "La « locación » ? Ah, vous appelez pour la location de l'appartement ?"}],
      "aide": {"fr": "<b>La location, en Espagne, c'est « el alquiler »</b> (louer : « alquilar »). « Llamo por el alquiler del apartamento » ou « Llamo por el anuncio del apartamento »."}}
    ]
   },
   "fechas": {
-   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Ah, sí, el de la playa de la Victoria. ¿Para qué fechas lo quiere? ¿Y cuántos son?", "fr": "Ah oui, celui de la plage de la Victoria. Pour quelles dates le voulez-vous ? Et combien êtes-vous ?"}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Ah, sí, el de la playa de la Victoria. ¿Para qué fechas lo quiere? ¿Y cuántos son?", "fr": "Ah oui, celui de la plage de la Victoria. Pour quelles dates le voulez-vous ? Et combien êtes-vous ?"}],
    "choix": [
     {"t": "Somos dos adultos. Nos gustaría ir la segunda semana de julio.", "fr": "Nous sommes deux adultes. Nous aimerions y aller la deuxième semaine de juillet.", "pose": {"con": "dos"}, "va": "ocupado"},
     {"t": "Somos dos y tenemos un perro. Queremos ir una semana a mediados de julio.", "fr": "Nous sommes deux et nous avons un chien. Nous voulons y aller une semaine à la mi-juillet.", "pose": {"con": "perro"}, "va": "ocupado"},
     {"t": "Vamos con dos niños, a mediados de julio si es posible.", "fr": "Nous venons avec deux enfants, à la mi-juillet si c'est possible.", "pose": {"con": "ninos"}, "va": "ocupado"},
     {"repete": true, "t": "Perdone, se oye muy mal. ¿Puede repetir, por favor?", "fr": "Pardon, on entend très mal. Pouvez-vous répéter, s'il vous plaît ?", "va": "fechas",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sí, claro. ¿Qué semana quiere venir? ¿Y cuántas personas son?", "fr": "Oui, bien sûr. Quelle semaine voulez-vous venir ? Et combien de personnes êtes-vous ?"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, claro. ¿Qué semana quiere venir? ¿Y cuántas personas son?", "fr": "Oui, bien sûr. Quelle semaine voulez-vous venir ? Et combien de personnes êtes-vous ?"}]}
    ]
   },
   "ocupado": {
-   "dit": [{"qui": "b13_vermieter", "air": "attentive", "t": "A ver, que miro el calendario… Del 10 al 17 de julio ya lo tengo alquilado. Me queda libre del 3 al 10 o del 17 al 24.", "dit": "A ver, que miro el calendario… Del diez al diecisiete de julio ya lo tengo alquilado. Me queda libre del tres al diez o del diecisiete al veinticuatro.", "fr": "Voyons, je regarde le calendrier… Du 10 au 17 juillet, il est déjà loué. Il me reste du 3 au 10 ou du 17 au 24."}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "A ver, que miro el calendario… Del 10 al 17 de julio ya lo tengo alquilado. Me queda libre del 3 al 10 o del 17 al 24.", "dit": "A ver, que miro el calendario… Del diez al diecisiete de julio ya lo tengo alquilado. Me queda libre del tres al diez o del diecisiete al veinticuatro.", "fr": "Voyons, je regarde le calendrier… Du 10 au 17 juillet, il est déjà loué. Il me reste du 3 au 10 ou du 17 au 24."}],
    "choix": [
     {"t": "Entonces nos quedamos con la semana del tres al diez de julio.", "fr": "Alors nous prenons la semaine du trois au dix juillet.", "pose": {"semana": "pronto"}, "va": "precio"},
     {"t": "Nos viene mejor la semana del diecisiete.", "fr": "La semaine du dix-sept nous convient mieux.", "pose": {"semana": "tarde"}, "va": "precio"},
     {"faux": true, "t": "Entonces, ¿el apartamento es libre del tres al diez?", "fr": "Alors l'appartement est libre du trois au dix ?",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sí, sí, está libre. ¿Se queda con esa semana o prefiere la otra?", "fr": "Oui, oui, il est libre. Vous prenez cette semaine-là ou vous préférez l'autre ?"}],
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, sí, está libre. ¿Se queda con esa semana o prefiere la otra?", "fr": "Oui, oui, il est libre. Vous prenez cette semaine-là ou vous préférez l'autre ?"}],
      "aide": {"fr": "<b>Libre au sens de « disponible » va avec estar :</b> « el apartamento está libre ». Pour réserver : « Nos quedamos con la semana del tres al diez »."}}
    ]
   },
   "precio": {
-   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Muy bien. Son 85 euros por noche, más 50 de limpieza final. La ropa de cama y las toallas están incluidas.", "dit": "Muy bien. Son ochenta y cinco euros por noche, más cincuenta de limpieza final. La ropa de cama y las toallas están incluidas.", "fr": "Très bien. C'est 85 euros la nuit, plus 50 de ménage de fin de séjour. Les draps et les serviettes sont compris."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Muy bien. Son 85 euros por noche, más 50 de limpieza final. La ropa de cama y las toallas están incluidas.", "dit": "Muy bien. Son ochenta y cinco euros por noche, más cincuenta de limpieza final. La ropa de cama y las toallas están incluidas.", "fr": "Très bien. C'est 85 euros la nuit, plus 50 de ménage de fin de séjour. Les draps et les serviettes sont compris."}],
    "choix": [
     {"si": {"con": "perro"}, "t": "Me parece bien. ¿Se admiten mascotas? El perro es pequeño.", "fr": "Ça me convient. Les animaux sont-ils acceptés ? Le chien est petit.", "va": "perro"},
     {"si": {"con": "ninos"}, "t": "Me parece bien. ¿El apartamento es cómodo para niños pequeños?", "fr": "Ça me convient. L'appartement est-il pratique pour de jeunes enfants ?", "va": "ninos"},
     {"t": "De acuerdo. ¿Está lejos de la playa?", "fr": "D'accord. Est-ce loin de la plage ?", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "¡Qué va! A dos minutos andando. Desde la terraza se ve el mar.", "fr": "Pas du tout ! À deux minutes à pied. De la terrasse, on voit la mer."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Qué va! A dos minutos andando. Desde la terraza se ve el mar.", "fr": "Pas du tout ! À deux minutes à pied. De la terrasse, on voit la mer."}]},
     {"t": "Está bien. ¿Tiene wifi y aire acondicionado?", "fr": "C'est bien. Y a-t-il le wifi et la climatisation ?", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Wifi sí. Aire acondicionado no, pero hay ventiladores, y en Cádiz casi siempre corre el aire.", "fr": "Le wifi, oui. La climatisation, non, mais il y a des ventilateurs, et à Cadix il y a presque toujours de l'air."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Wifi sí. Aire acondicionado no, pero hay ventiladores, y en Cádiz casi siempre corre el aire.", "fr": "Le wifi, oui. La climatisation, non, mais il y a des ventilateurs, et à Cadix il y a presque toujours de l'air."}]},
     {"faux": true, "t": "¿Hay que pagar la limpieza en más?", "fr": "Faut-il payer le ménage en plus ?",
-     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "¿En más? Ah, ¿que si se paga aparte? Sí, la limpieza va aparte: son 50 euros.", "dit": "¿En más? Ah, ¿que si se paga aparte? Sí, la limpieza va aparte: son cincuenta euros.", "fr": "« En más » ? Ah, si ça se paie à part ? Oui, le ménage est à part : c'est 50 euros."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿En más? Ah, ¿que si se paga aparte? Sí, la limpieza va aparte: son 50 euros.", "dit": "¿En más? Ah, ¿que si se paga aparte? Sí, la limpieza va aparte: son cincuenta euros.", "fr": "« En más » ? Ah, si ça se paie à part ? Oui, le ménage est à part : c'est 50 euros."}],
      "aide": {"fr": "<b>« En plus » ne se dit pas « en más ».</b> Pour un supplément : « aparte ». « ¿La limpieza se paga aparte? » ; et « además » pour « de plus »."}}
    ]
   },
   "perro": {
-   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sí, claro, se admiten mascotas, con un suplemento de 5 euros por noche. Eso sí: en verano los perros no pueden entrar en la playa de la Victoria. Hay una playa para perros en San Fernando, a veinte minutos en coche.", "dit": "Sí, claro, se admiten mascotas, con un suplemento de cinco euros por noche. Eso sí: en verano los perros no pueden entrar en la playa de la Victoria. Hay una playa para perros en San Fernando, a veinte minutos en coche.", "fr": "Oui, bien sûr, les animaux sont acceptés, avec un supplément de 5 euros par nuit. Attention tout de même : en été, les chiens n'ont pas le droit d'aller sur la plage de la Victoria. Il y a une plage pour chiens à San Fernando, à vingt minutes en voiture."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, claro, se admiten mascotas, con un suplemento de 5 euros por noche. Eso sí: en verano los perros no pueden entrar en la playa de la Victoria. Hay una playa para perros en San Fernando, a veinte minutos en coche.", "dit": "Sí, claro, se admiten mascotas, con un suplemento de cinco euros por noche. Eso sí: en verano los perros no pueden entrar en la playa de la Victoria. Hay una playa para perros en San Fernando, a veinte minutos en coche.", "fr": "Oui, bien sûr, les animaux sont acceptés, avec un supplément de 5 euros par nuit. Attention tout de même : en été, les chiens n'ont pas le droit d'aller sur la plage de la Victoria. Il y a une plage pour chiens à San Fernando, à vingt minutes en voiture."}],
    "choix": [
     {"t": "Entendido. No importa, lo sacaremos a pasear por el paseo marítimo.", "fr": "Compris. Ce n'est pas grave, nous le promènerons sur le front de mer.", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Muy bien. Por la tarde es un paseo precioso.", "fr": "Très bien. Le soir, c'est une promenade magnifique."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Muy bien. Por la tarde es un paseo precioso.", "fr": "Très bien. Le soir, c'est une promenade magnifique."}]},
     {"t": "Vale, gracias por avisar. Es un perro muy tranquilo.", "fr": "D'accord, merci de me prévenir. C'est un chien très calme.", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Me alegro. Entonces no habrá ningún problema.", "fr": "J'en suis ravie. Alors il n'y aura aucun problème."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Me alegro. Entonces no habrá ningún problema.", "fr": "J'en suis ravie. Alors il n'y aura aucun problème."}]},
     {"faux": true, "t": "¡Qué lástima! Él ama mucho el agua.", "fr": "Quel dommage ! Il aime beaucoup l'eau.",
-     "puis": [{"qui": "b13_vermieter", "air": "amuse", "t": "¿Que ama el agua? ¡Qué romántico! Pues si le encanta el agua, llévenlo a San Fernando.", "fr": "Il « aime d'amour » l'eau ? Que c'est romantique ! Eh bien, s'il adore l'eau, emmenez-le à San Fernando."}],
+     "puis": [{"qui": "vermieterin", "air": "amuse", "t": "¿Que ama el agua? ¡Qué romántico! Pues si le encanta el agua, llévenlo a San Fernando.", "fr": "Il « aime d'amour » l'eau ? Que c'est romantique ! Eh bien, s'il adore l'eau, emmenez-le à San Fernando."}],
      "aide": {"fr": "<b>« amar »</b> se garde pour l'amour (une personne, la patrie). Pour ce qu'on aime : « gustar » ou « encantar ». « Le encanta el agua. »"}}
    ]
   },
   "ninos": {
-   "dit": [{"qui": "b13_vermieter", "air": "sourire", "t": "Claro que sí. Hay una habitación con dos camas, y la playa es de arena fina y muy tranquila, perfecta para ellos. ¿Qué edad tienen?", "fr": "Bien sûr. Il y a une chambre avec deux lits, et la plage est de sable fin et très calme, parfaite pour eux. Quel âge ont-ils ?"}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Claro que sí. Hay una habitación con dos camas, y la playa es de arena fina y muy tranquila, perfecta para ellos. ¿Qué edad tienen?", "fr": "Bien sûr. Il y a une chambre avec deux lits, et la plage est de sable fin et très calme, parfaite pour eux. Quel âge ont-ils ?"}],
    "choix": [
     {"t": "Tienen cuatro y siete años.", "fr": "Ils ont quatre et sept ans.", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "¡Qué buena edad para la playa!", "fr": "Quel bel âge pour la plage !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Qué buena edad para la playa!", "fr": "Quel bel âge pour la plage !"}]},
     {"t": "El pequeño solo tiene dos años. ¿Tiene usted una cuna?", "fr": "Le petit n'a que deux ans. Avez-vous un lit pour bébé ?", "va": "pago",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sí, tengo una. Se la dejo puesta en el dormitorio.", "fr": "Oui, j'en ai un. Je vous l'installe dans la chambre."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, tengo una. Se la dejo puesta en el dormitorio.", "fr": "Oui, j'en ai un. Je vous l'installe dans la chambre."}]},
     {"faux": true, "t": "El pequeño tiene cuatro años y el grande tiene siete.", "fr": "Le petit a quatre ans et le grand en a sept.",
-     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "¿El grande? ¿Es muy alto? Ah, quiere decir el mayor.", "fr": "« El grande » ? Il est très grand ? Ah, vous voulez dire l'aîné."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿El grande? ¿Es muy alto? Ah, quiere decir el mayor.", "fr": "« El grande » ? Il est très grand ? Ah, vous voulez dire l'aîné."}],
      "aide": {"fr": "<b>L'aîné se dit « el mayor »</b> (et le cadet « el pequeño » ou « el menor »). « grande » parle de la taille. « El pequeño tiene cuatro años y el mayor, siete. »"}}
    ]
   },
   "pago": {
    "dit": [
-    {"qui": "b13_vermieter", "air": "attentive", "si": {"semana": "pronto"}, "t": "Entonces le reservo del 3 al 10 de julio.", "dit": "Entonces le reservo del tres al diez de julio.", "fr": "Alors je vous réserve du 3 au 10 juillet."},
-    {"qui": "b13_vermieter", "air": "attentive", "si": {"semana": "tarde"}, "t": "Entonces le reservo del 17 al 24 de julio.", "dit": "Entonces le reservo del diecisiete al veinticuatro de julio.", "fr": "Alors je vous réserve du 17 au 24 juillet."},
-    {"qui": "b13_vermieter", "air": "question", "t": "Para confirmar, necesito una señal de 150 euros. El resto y 100 euros de fianza se pagan a la llegada. ¿Cómo prefiere pagar la señal?", "dit": "Para confirmar, necesito una señal de ciento cincuenta euros. El resto y cien euros de fianza se pagan a la llegada. ¿Cómo prefiere pagar la señal?", "fr": "Pour confirmer, j'ai besoin d'un acompte de 150 euros. Le reste et 100 euros de caution se paient à l'arrivée. Comment préférez-vous régler l'acompte ?"}
+    {"qui": "vermieterin", "air": "attentive", "si": {"semana": "pronto"}, "t": "Entonces le reservo del 3 al 10 de julio.", "dit": "Entonces le reservo del tres al diez de julio.", "fr": "Alors je vous réserve du 3 au 10 juillet."},
+    {"qui": "vermieterin", "air": "attentive", "si": {"semana": "tarde"}, "t": "Entonces le reservo del 17 al 24 de julio.", "dit": "Entonces le reservo del diecisiete al veinticuatro de julio.", "fr": "Alors je vous réserve du 17 au 24 juillet."},
+    {"qui": "vermieterin", "air": "question", "t": "Para confirmar, necesito una señal de 150 euros. El resto y 100 euros de fianza se pagan a la llegada. ¿Cómo prefiere pagar la señal?", "dit": "Para confirmar, necesito una señal de ciento cincuenta euros. El resto y cien euros de fianza se pagan a la llegada. ¿Cómo prefiere pagar la señal?", "fr": "Pour confirmer, j'ai besoin d'un acompte de 150 euros. Le reste et 100 euros de caution se paient à l'arrivée. Comment préférez-vous régler l'acompte ?"}
    ],
    "choix": [
     {"t": "Le hago una transferencia hoy mismo. ¿Me manda el número de cuenta?", "fr": "Je vous fais un virement aujourd'hui même. Vous m'envoyez le numéro de compte ?", "va": "llegada",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Ahora mismo se lo mando por WhatsApp, con la confirmación.", "fr": "Je vous l'envoie tout de suite par WhatsApp, avec la confirmation."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Ahora mismo se lo mando por WhatsApp, con la confirmación.", "fr": "Je vous l'envoie tout de suite par WhatsApp, avec la confirmation."}]},
     {"t": "¿Puedo pagar por Bizum?", "fr": "Est-ce que je peux payer par Bizum ?", "va": "llegada",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "¡Claro! A este mismo número. Es lo más rápido.", "fr": "Bien sûr ! À ce même numéro. C'est le plus rapide."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Claro! A este mismo número. Es lo más rápido.", "fr": "Bien sûr ! À ce même numéro. C'est le plus rapide."}]},
     {"faux": true, "t": "Voy a pagar la caución por transferencia.", "fr": "Je vais payer la caution par virement.",
-     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "¿La caución? Ah, la fianza. No, la fianza se paga al llegar. Ahora solo necesito la señal.", "fr": "La « caución » ? Ah, la caution. Non, la caution se paie à l'arrivée. Pour l'instant, il me faut seulement l'acompte."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿La caución? Ah, la fianza. No, la fianza se paga al llegar. Ahora solo necesito la señal.", "fr": "La « caución » ? Ah, la caution. Non, la caution se paie à l'arrivée. Pour l'instant, il me faut seulement l'acompte."}],
      "aide": {"fr": "<b>La caution se dit « la fianza », l'acompte « la señal ».</b> « caución » ne s'emploie pas pour une location. « Le hago una transferencia para la señal. »"}}
    ]
   },
   "llegada": {
-   "dit": [{"qui": "b13_vermieter", "air": "question", "t": "La entrada es a partir de las 16:00. Yo vivo en Jerez, así que le dejo las llaves en una cajita con código al lado de la puerta. ¿Sobre qué hora llegan?", "dit": "La entrada es a partir de las cuatro de la tarde. Yo vivo en Jerez, así que le dejo las llaves en una cajita con código al lado de la puerta. ¿Sobre qué hora llegan?", "fr": "L'arrivée se fait à partir de 16 heures. J'habite à Jerez, alors je vous laisse les clés dans une petite boîte à code à côté de la porte. Vers quelle heure arrivez-vous ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "La entrada es a partir de las 16:00. Yo vivo en Jerez, así que le dejo las llaves en una cajita con código al lado de la puerta. ¿Sobre qué hora llegan?", "dit": "La entrada es a partir de las cuatro de la tarde. Yo vivo en Jerez, así que le dejo las llaves en una cajita con código al lado de la puerta. ¿Sobre qué hora llegan?", "fr": "L'arrivée se fait à partir de 16 heures. J'habite à Jerez, alors je vous laisse les clés dans une petite boîte à code à côté de la porte. Vers quelle heure arrivez-vous ?"}],
    "choix": [
     {"t": "Vamos en coche y llegaremos sobre las cinco de la tarde.", "fr": "Nous venons en voiture et nous arriverons vers cinq heures de l'après-midi.", "va": "despedida",
-     "puis": [{"qui": "b13_vermieter", "air": "attentive", "t": "Perfecto. Pero ojo: aparcar en Cádiz en julio es difícil. Hay un aparcamiento público a dos calles.", "fr": "Parfait. Mais attention : se garer à Cadix en juillet, c'est difficile. Il y a un parking public à deux rues."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Perfecto. Pero ojo: aparcar en Cádiz en julio es difícil. Hay un aparcamiento público a dos calles.", "fr": "Parfait. Mais attention : se garer à Cadix en juillet, c'est difficile. Il y a un parking public à deux rues."}]},
     {"t": "Vamos en tren desde Madrid. ¿Cómo se llega desde la estación?", "fr": "Nous venons en train de Madrid. Comment y va-t-on depuis la gare ?", "va": "estacion"},
     {"faux": true, "t": "Llegaremos sobre las cinco, si no hay de tráfico.", "fr": "Nous arriverons vers cinq heures, s'il n'y a pas de circulation.",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Si no hay tráfico… ¡En julio siempre hay! Entonces, ¿vienen en coche?", "fr": "S'il n'y a pas de circulation… En juillet, il y en a toujours ! Vous venez donc en voiture ?"}],
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Si no hay tráfico… ¡En julio siempre hay! Entonces, ¿vienen en coche?", "fr": "S'il n'y a pas de circulation… En juillet, il y en a toujours ! Vous venez donc en voiture ?"}],
      "aide": {"fr": "<b>Après une négation, l'espagnol ne met pas « de » :</b> « si no hay tráfico », « no tengo dinero »."}}
    ]
   },
   "estacion": {
-   "dit": [{"qui": "b13_vermieter", "air": "question", "t": "Desde la estación puede coger el autobús 1, que para delante del edificio, o un taxi: son diez minutos. ¿Traen mucho equipaje?", "dit": "Desde la estación puede coger el autobús uno, que para delante del edificio, o un taxi: son diez minutos. ¿Traen mucho equipaje?", "fr": "De la gare, vous pouvez prendre le bus 1, qui s'arrête devant l'immeuble, ou un taxi : c'est à dix minutes. Vous avez beaucoup de bagages ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Desde la estación puede coger el autobús 1, que para delante del edificio, o un taxi: son diez minutos. ¿Traen mucho equipaje?", "dit": "Desde la estación puede coger el autobús uno, que para delante del edificio, o un taxi: son diez minutos. ¿Traen mucho equipaje?", "fr": "De la gare, vous pouvez prendre le bus 1, qui s'arrête devant l'immeuble, ou un taxi : c'est à dix minutes. Vous avez beaucoup de bagages ?"}],
    "choix": [
     {"t": "Sí, bastante. Será mejor coger un taxi.", "fr": "Oui, pas mal. Il vaudra mieux prendre un taxi.", "va": "despedida",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Sí, es lo más cómodo. Hay una parada justo a la salida de la estación.", "fr": "Oui, c'est le plus pratique. Il y a une station juste à la sortie de la gare."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, es lo más cómodo. Hay una parada justo a la salida de la estación.", "fr": "Oui, c'est le plus pratique. Il y a une station juste à la sortie de la gare."}]},
     {"t": "No, solo dos mochilas. Iremos en autobús.", "fr": "Non, seulement deux sacs à dos. Nous irons en bus.", "va": "despedida",
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Muy bien. Bájense en la parada de la playa de la Victoria.", "fr": "Très bien. Descendez à l'arrêt de la plage de la Victoria."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Muy bien. Bájense en la parada de la playa de la Victoria.", "fr": "Très bien. Descendez à l'arrêt de la plage de la Victoria."}]},
     {"faux": true, "t": "No mucho. Vamos a tomar el autobús a la gara.", "fr": "Pas beaucoup. Nous allons prendre le bus à la gare.",
-     "puis": [{"qui": "b13_vermieter", "air": "perplexe", "t": "¿A la gara? Ah, en la estación. Sí, el autobús sale de allí mismo.", "fr": "« A la gara » ? Ah, à la gare. Oui, le bus part de là."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿A la gara? Ah, en la estación. Sí, el autobús sale de allí mismo.", "fr": "« A la gara » ? Ah, à la gare. Oui, le bus part de là."}],
      "aide": {"fr": "<b>La gare se dit « la estación »</b> ; « gara » n'existe pas. Et pour dire où l'on prend le bus : « en la estación ». « Vamos a coger el autobús en la estación. »"}}
    ]
   },
   "despedida": {
    "dit": [
-    {"qui": "b13_vermieter", "air": "sourire", "si": {"con": "perro"}, "t": "Y al perro le dejo un cuenco con agua en la terraza.", "fr": "Et pour le chien, je laisse une gamelle d'eau sur la terrasse."},
-    {"qui": "b13_vermieter", "air": "sourire", "si": {"con": "ninos"}, "t": "Y para los niños hay cubos y palas de playa en el armario de la entrada.", "fr": "Et pour les enfants, il y a des seaux et des pelles de plage dans le placard de l'entrée."},
-    {"qui": "b13_vermieter", "air": "question", "t": "Pues nada, ahora le mando todo por WhatsApp. ¿Alguna duda más?", "fr": "Eh bien voilà, je vous envoie tout par WhatsApp. D'autres questions ?"}
+    {"qui": "vermieterin", "air": "sourire", "si": {"con": "perro"}, "t": "Y al perro le dejo un cuenco con agua en la terraza.", "fr": "Et pour le chien, je laisse une gamelle d'eau sur la terrasse."},
+    {"qui": "vermieterin", "air": "sourire", "si": {"con": "ninos"}, "t": "Y para los niños hay cubos y palas de playa en el armario de la entrada.", "fr": "Et pour les enfants, il y a des seaux et des pelles de plage dans le placard de l'entrée."},
+    {"qui": "vermieterin", "air": "question", "t": "Pues nada, ahora le mando todo por WhatsApp. ¿Alguna duda más?", "fr": "Eh bien voilà, je vous envoie tout par WhatsApp. D'autres questions ?"}
    ],
    "choix": [
     {"t": "No, todo claro. Muchas gracias, ¡hasta julio!", "fr": "Non, tout est clair. Merci beaucoup, à juillet !", "va": null,
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "A usted. ¡Ya verá qué bien se está en Cádiz!", "fr": "C'est moi qui vous remercie. Vous verrez comme on est bien à Cadix !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "A usted. ¡Ya verá qué bien se está en Cádiz!", "fr": "C'est moi qui vous remercie. Vous verrez comme on est bien à Cadix !"}]},
     {"t": "De momento no. Espero su mensaje. ¡Gracias y hasta luego!", "fr": "Pas pour l'instant. J'attends votre message. Merci et à bientôt !", "va": null,
-     "puis": [{"qui": "b13_vermieter", "air": "sourire", "t": "Hasta luego. ¡Y buen viaje!", "fr": "À bientôt. Et bon voyage !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Hasta luego. ¡Y buen viaje!", "fr": "À bientôt. Et bon voyage !"}]}
    ]
   }
  },
