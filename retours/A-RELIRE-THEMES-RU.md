@@ -54,3 +54,11 @@ La page fabrique la traduction avec les mêmes choix que la phrase allemande (le
 4. **« мои сын и дочери »**, « мои двоюродный брат и двоюродные сёстры » : le possessif au pluriel devant des mots au
    singulier et au pluriel.
 5. **Le point après la citation** : « Анна говорит: «Петер — мой отец». » ; rien après « ? ».
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **komisch** : « чудной » (la théière, le bruit), **seltsam** : « странный » (la chaise, la question) — les deux gloses disent « странный ».
+2. **gut** : « Торт вкусный » pour le gâteau ; **schlecht** : « Яблоко испорченное ».
+3. **Tür** : « дверь » au singulier, formes courtes pour l'état (« Дверь открыта »).

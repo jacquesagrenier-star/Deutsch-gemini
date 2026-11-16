@@ -54,3 +54,12 @@ La page fabrique la traduction avec les mêmes choix que la phrase allemande (le
 4. **« eşi » pour l'épouse**, « kocası » pour le mari (plutôt que « karısı »).
 5. **« torun », « yeğen », « kuzen »** sans le sexe quand le prénom le dit (« Onların beş torunu var »).
 6. **La citation** : « Anna şöyle diyor: “Peter benim babam.” », « Anna Ben'e soruyor: “Jan senin baban mı?” ».
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **gut** pour le gâteau : « Pasta lezzetli. » plutôt que « Pasta iyi. » (la glose du mot reste iyi) ; « Bu iyi bir restoran. » ailleurs.
+2. **komisch / seltsam** gardent deux mots : garip (la théière, le bruit) et tuhaf (la chaise, la question), comme les gloses.
+3. **Straße** : « Cadde » pour la rue large comme pour l'étroite (un seul nom pour la paire) ; « Die Gasse ist eng und schmal. » : « Ara sokak dar ve sıkışık. »
+4. **wunderschön** : « harika » (la glose dit « göz alıcı », peu naturel dans « Manzara göz alıcı »).

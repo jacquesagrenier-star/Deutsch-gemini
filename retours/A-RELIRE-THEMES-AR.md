@@ -19,3 +19,13 @@ phrase entière traduite (« بيتر هو والد آنا. »), au lieu du seul
    inverse) ; « والداي » pour « mes parents ».
 7. **L'âge** : « عمره 61 سنة », « عمرها 7 سنوات » (chiffres latins, comme les autres pages).
 8. **Les paires** avec la flèche « ← » ; le mot général avec l'article (« العم، الخال ← العمة، الخالة »).
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris, 49 en espagnol appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **komisch** : « غريب » (الإبريق، الصوت), **seltsam** : « عجيب » (الكرسي، السؤال، الوضع), pour garder deux mots.
+2. **Die Gasse ist eng und schmal** : « الزقاق ضيّق ومحصور » (à relire : « eng » et « schmal » n'ont qu'un mot naturel).
+3. **gut** pour le gâteau et la soupe : « لذيذة » ; **schlecht** pour la pomme et le lait : « فاسدة / فاسد ».
+4. **L'accord du demonstratif** : « هذه مزهرية », « هذه حقيبة », « هذا كوب ».
+5. **Pour qui apprend l'espagnol** (49 phrases) : « المنتزه كبير » (el parque), « المبنى قبيح إلى حدٍّ ما » (bastante feo).

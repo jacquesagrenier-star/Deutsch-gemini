@@ -179,7 +179,10 @@ const im = i => D.images[i];
 const sens = k => { const t = (D.trad[APPRENDRE] || {})[k] || {}; return t[LANGUE] || t.fr || ""; };
 // et la phrase entiere en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la famille et
 // Decrire (visuel/THEMES-ILLUSTRES.md) ; ailleurs, le mot et sa traduction suffisent
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (visuel/contrarios/langues.py, lot 3 de l'alignement des themes, 16 nov. 2026)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.phrasesTrad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 

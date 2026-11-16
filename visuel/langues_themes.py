@@ -64,7 +64,9 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # les themes deja branches, et leurs langues (lot 1 : journee + gato, 14 nov. 2026)
 # lot 2 (ligne 111, 15 nov.) : la famille d'Anna dans les six langues, dans la page (visuel/prototype/familia/langues.js),
 # l'arabe aussi pour qui apprend l'espagnol (LANGUES_APPRENDRE=es)
-BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+# lot 3 (16 nov.) : les contraires dans les six langues, phrase par phrase dans le generateur (visuel/contrarios/langues.py)
+BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

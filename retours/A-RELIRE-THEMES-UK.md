@@ -50,3 +50,12 @@ La page fabrique la traduction avec les mêmes choix que la phrase allemande (le
 5. **Les beaux-frères et belles-sœurs** : зять (le mari de la sœur), шурин (le frère de la femme), невістка (la femme
    du frère), зовиця (la sœur du mari). Compris de tous ?
 6. **« пʼять »** avec l'apostrophe ukrainienne.
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **komisch** : « чудернацький » (la théière, le bruit), **seltsam** : « дивний » (la chaise, la question), pour garder deux mots.
+2. **Tür** : « двері », toujours au pluriel (« Двері відчинені », « Це відчинені двері »).
+3. **gut** : « Торт смачний » pour le gâteau, « хороший ресторан » (la glose dit « добрий »).
+4. **klein** : « маленька валіза » (la glose dit « малий »).

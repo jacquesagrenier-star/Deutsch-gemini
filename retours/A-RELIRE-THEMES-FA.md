@@ -18,3 +18,12 @@ traduite (« پتر پدر آنا است. »), au lieu du seul mot du corpus. La
 6. **« همسر »** pour l'épouse, « شوهر » pour le mari ; « آیا … توست؟ » pour la question ; les chiffres latins de l'âge
    (« او 61 سال دارد »), comme les autres pages.
 7. **Les paires** avec la flèche « ← » (de droite à gauche).
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **komisch** : « غریب » (la théière, le bruit), **seltsam** : « عجیب » (la chaise, la question), comme les gloses.
+2. **gut** pour le gâteau : « کیک خوشمزه است » ; **Abend** : « شب » (« این یک شب دل‌انگیز است »).
+3. **L'ezafe ecrite** : « منظرهٔ دل‌انگیز », « دوچرخهٔ نو », « پنجرهٔ باز », « غذای چندش‌آور » ; ailleurs sans signe.
+4. **Die Gasse ist eng und schmal** : « کوچه تنگ و باریک است ».

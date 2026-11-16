@@ -51,3 +51,11 @@ La page fabrique la traduction avec les mêmes choix que la phrase allemande (le
    et Sophie). Pour Frank et Monika (le côté du conjoint), le même mot : juste ?
 4. **wujek / ciocia** (familier) plutôt que stryj / wuj / ciotka.
 5. **Les nombres** : « dwóch wnuków i trzy wnuczki », « ma kuzyna i dwie kuzynki ».
+
+## Lot 3, 16 nov. : « Les contraires »
+
+La page traduit maintenant chaque phrase (58 en allemand appris), écrite à la main dans `visuel/contrarios/langues.py`, à côté du français, de l'anglais et du portugais. À relire :
+
+1. **komisch** : « dziwaczny » (imbryk, dźwięk), **seltsam** : « dziwny » (krzesło, pytanie).
+2. **Teekanne** : « imbryk » ; **Handy** : « telefon » ; **schlecht** pour le film : « zły film » (« słaby film » serait plus courant ?).
+3. **Der Kuchen schmeckt sehr gut** : « Ciasto bardzo dobrze smakuje. »
