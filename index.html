@@ -54632,8 +54632,7 @@ function placementDisponible(){
 }
 // Les niveaux du test : ceux qui ont des noms (l'espagnol s'arrete au B2).
 function niveauxPlacement(){
-    return NIVEAUX_CECR.filter(n => !(LANGUE_APPRISE === "es" && n === "C1")
-        && paquetDuNiveau(n).some(it => it.mode === "nomen"));
+    return niveauxDisponibles().filter(n => paquetDuNiveau(n).some(it => it.mode === "nomen"));
 }
 
 // ---------- Les textes ----------
@@ -68020,6 +68019,48 @@ function majCarteExamen(){
 const NIVEAUX_CECR = ["A1", "A2", "B1", "B2", "C1"];
 const NIVEAU_SEANCE_KEY = PREFIXE_STOCKAGE + "niveauSeance";
 
+// ⚠️ LES NIVEAUX QUE LA LANGUE APPRISE POSSEDE VRAIMENT (C6 de la revue A a Z, 16 nov. 2026 : l'espagnol proposait
+// C1, son corpus s'arrete au B2 ; toucher C1 puis « Commencer la seance » ne faisait rien, et la carte du vocabulaire
+// affichait « A1 0/810 »). MESURES dans les donnees chargees (paquetDuNiveau : themes et sources de la seance), jamais
+// ecrits a la main : un niveau ajoute aux donnees d'une langue apparait de lui-meme. Tant que rien n'est charge, tous
+// (la rangee est redessinee a l'arrivee des donnees). Le calcul est garde tant que la taille des donnees ne change pas.
+let NIVEAUX_DISPO = null;
+function niveauxDisponibles(){
+    let empreinte = "";
+    try{
+        empreinte = (typeof themes !== "undefined" && themes ? themes.length : 0) + ":"
+            + SOURCES_SEANCE.map(s => { try{ const th = s.theme(); return th && th.words ? th.words.length : 0; }catch(e){ return 0; } }).join(",");
+    }catch(e){ return NIVEAUX_CECR.slice(); }
+    if(NIVEAUX_DISPO && NIVEAUX_DISPO.e === empreinte) return NIVEAUX_DISPO.n.slice();
+    let mesure = [];
+    try{ mesure = NIVEAUX_CECR.filter(n => paquetDuNiveau(n).length > 0); }catch(e){ mesure = []; }
+    if(!mesure.length) return NIVEAUX_CECR.slice();
+    NIVEAUX_DISPO = { e: empreinte, n: mesure };
+    return mesure.slice();
+}
+// Le niveau existant le plus proche : lui-meme s'il existe, sinon le plus haut en dessous (C1 -> B2 en espagnol),
+// sinon le premier. La progression n'y perd rien : elle est rangee mot par mot, pas par niveau choisi.
+function niveauExistant(niv){
+    const dispo = niveauxDisponibles();
+    if(dispo.indexOf(niv) >= 0) return niv;
+    const rang = NIVEAUX_CECR.indexOf(niv);
+    const dessous = dispo.filter(n => NIVEAUX_CECR.indexOf(n) < rang);
+    return dessous.length ? dessous[dessous.length - 1] : (dispo[0] || "A1");
+}
+// Le premier reglage (« Niveau tres avance (C1) ») et le filtre des themes ne proposent que les niveaux existants.
+function cacherNiveauxAbsents(){
+    const dispo = niveauxDisponibles();
+    try{
+        document.querySelectorAll("[data-niveau-declare]").forEach(b => {
+            const n = NIVEAU_DES_REPONSES[b.getAttribute("data-niveau-declare")];
+            b.classList.toggle("hidden", !!n && dispo.indexOf(n) < 0);
+        });
+        document.querySelectorAll("#levelFilter option").forEach(o => {
+            if(NIVEAUX_CECR.indexOf(o.value) >= 0) o.hidden = o.disabled = dispo.indexOf(o.value) < 0;
+        });
+    }catch(e){}
+}
+
 // ⚠️ UN SEUL ETAT POUR LES DEUX ENDROITS. Toucher une ligne ici revient a
 // toucher la pastille du bandeau : meme cle, meme consequence -- les mots
 // neufs de la prochaine seance viendront de ce niveau. C'est voulu. Deux
@@ -68043,7 +68084,8 @@ function choisirNiveauVocab(niv){
 function niveauSeance(){
     try{
         const v = localStorage.getItem(NIVEAU_SEANCE_KEY);
-        if(v && NIVEAUX_CECR.indexOf(v) >= 0) return v;
+        // Un C1 enregistre en espagnol (le corpus s'arrete au B2) se lit B2, sans rien reecrire.
+        if(v && NIVEAUX_CECR.indexOf(v) >= 0) return niveauExistant(v);
     }catch(e){}
     return "A1";
 }
@@ -68053,6 +68095,7 @@ function niveauSeance(){
 // jamais la restauration nuage ni le niveau declare a l'inscription.
 function fixerNiveauSeance(niv, parLUsager){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
+    niv = niveauExistant(niv);
     const avant = niveauSeance();
     try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
     // v905 : choisir un autre niveau arrete la revision en cours.
@@ -76205,7 +76248,9 @@ function majTuileSeance(){
         });
         box.appendChild(b);
     }
-    NIVEAUX_CECR.forEach(niv => {
+    // C6 (16 nov. 2026) : seulement les niveaux que la langue apprise possede (pas de C1 en espagnol).
+    try{ cacherNiveauxAbsents(); }catch(e){}
+    niveauxDisponibles().forEach(niv => {
         const b = document.createElement("button");
         b.type = "button";
         const on = niv === niveau && !pp;
