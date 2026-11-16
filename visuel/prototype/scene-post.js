@@ -268,7 +268,7 @@ window.SCENE = {
     ]
    ],
    "fr": "colis",
-   "en": "parcel",
+   "en": "package",
    "tr": "paket",
    "uk": "посилка",
    "fa": "بسته",
@@ -375,7 +375,7 @@ window.SCENE = {
     ]
    ],
    "fr": "colis",
-   "en": "parcel",
+   "en": "package",
    "tr": "paket",
    "uk": "посилка",
    "fa": "بسته",
@@ -465,7 +465,7 @@ window.SCENE = {
     ]
    ],
    "fr": "colis",
-   "en": "parcel",
+   "en": "package",
    "tr": "paket",
    "uk": "посилка",
    "fa": "بسته",
@@ -645,7 +645,7 @@ window.SCENE = {
     ]
    ],
    "fr": "colis",
-   "en": "parcel",
+   "en": "package",
    "tr": "paket",
    "uk": "посилка",
    "fa": "بسته",

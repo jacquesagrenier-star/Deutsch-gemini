@@ -1217,7 +1217,7 @@ window.SCENE = {
     "B1 | Los duraznos son más grandes que los chabacanos.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
     "B1 | Los melocotones son más grandes que los albaricoques.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
     "B1 | ¿Cuánto cuestan las frambuesas?": "The verb agrees with what costs: las frambuesas → <b>cuestan</b>.",
-    "B1 | Me llevo medio kilo de ciruelas.": "<b>medio kilo</b>, no article: never « un medio ». <b>Me llevo</b> = I'll take.",
+    "B1 | Me llevo medio kilo de ciruelas.": "<b>medio kilo</b>, no article: never “un medio”. <b>Me llevo</b> = I'll take.",
     "B2 | Son fresas frescas de la región.": "The adjective agrees: fresas (feminine plural) → <b>frescas</b>.",
     "B2 | Estas manzanas se cultivan en la región.": "The passive with <b>se</b>: se cultivan, agreeing with las manzanas.",
     "B2 | La mujer que elige una manzana se llama Anna.": "Subject of the relative clause, no commas → <b>que</b>.",

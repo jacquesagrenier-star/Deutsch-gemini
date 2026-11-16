@@ -192,7 +192,7 @@ window.SCENE = {
     ]
    ],
    "fr": "l'ascenseur",
-   "en": "the lift",
+   "en": "the elevator",
    "pt": "o elevador",
    "ar": "مصعد",
    "pl": "winda",
@@ -799,7 +799,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -2061,7 +2061,7 @@ window.SCENE = {
     "B1 | El desayuno se sirve por la mañana.": "Breakfast is served in the morning.",
     "B1 | Mark se queda hasta el domingo.": "Mark is staying until Sunday.",
     "B2 | Mark busca una habitación que sea tranquila.": "Mark is looking for a room that is quiet.",
-    "B2 | La señora quiere un hotel que esté cerca del puerto.": "The lady wants a hotel that is near the harbour.",
+    "B2 | La señora quiere un hotel que esté cerca del puerto.": "The lady wants a hotel that is near the harbor.",
     "B2 | Este es el hotel que está más cerca de la estación.": "This is the hotel that is closest to the station.",
     "B2 | ¿Hay alguien que hable inglés en la recepción?": "Is there anyone who speaks English at the reception?",
     "B2 | No hay ninguna habitación que tenga vistas al mar.": "There is no room with a sea view.",

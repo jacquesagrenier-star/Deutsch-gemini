@@ -1840,8 +1840,8 @@ window.SCENE = {
    },
    "sens": {
     "A2 | Anna está sentada en el borde de la fuente.": "Anna is sitting on the edge of the fountain.",
-    "A2 | El bote de basura está al lado de la fuente.": "The bin is next to the fountain.",
-    "A2 | La papelera está al lado de la fuente.": "The bin is next to the fountain.",
+    "A2 | El bote de basura está al lado de la fuente.": "The trash can is next to the fountain.",
+    "A2 | La papelera está al lado de la fuente.": "The trash can is next to the fountain.",
     "A2 | El señor está debajo de la sombrilla.": "The man is under the umbrella.",
     "A2 | La taza está en la mesa.": "The cup is on the table.",
     "A2 | El reloj está en la torre.": "The clock is on the tower.",

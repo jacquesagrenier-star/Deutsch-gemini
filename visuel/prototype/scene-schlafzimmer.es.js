@@ -438,7 +438,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -638,7 +638,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1297,14 +1297,14 @@ window.SCENE = {
     "B1 | Mañana hará calor en el sur.": "Tomorrow it will be hot in the south.",
     "B2 | La maleta que está en la cama es azul.": "The suitcase on the bed is blue.",
     "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "The passport, without which Anna cannot travel, is on the bed.",
-    "B2 | La mujer, cuyo suéter es verde, piensa.": "The woman, whose jumper is green, is thinking.",
-    "B2 | La mujer, cuyo jersey es verde, piensa.": "The woman, whose jumper is green, is thinking.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "The woman, whose sweater is green, is thinking.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "The woman, whose sweater is green, is thinking.",
     "B2 | La maleta ya está medio hecha.": "The suitcase is already half packed.",
     "B2 | Mañana temprano todo tiene que estar ya guardado.": "Early tomorrow, everything has to be packed away already.",
     "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "The camera Anna wants to take photos with is on the bed.",
     "C1 | Debe de estar contenta con el viaje.": "She must be happy about the trip.",
-    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "The jumper may be too warm for the south.",
-    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "The jumper may be too warm for the south.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "The sweater may be too warm for the south.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "The sweater may be too warm for the south.",
     "C1 | Saldrá mañana temprano.": "She probably leaves early tomorrow.",
     "C1 | Dicen que en esa playa hace calor todo el año.": "They say it is hot all year round on that beach."
    }

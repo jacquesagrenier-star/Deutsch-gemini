@@ -544,7 +544,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -779,7 +779,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",

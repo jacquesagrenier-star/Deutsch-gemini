@@ -174,7 +174,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le ballon",
-   "en": "the ball (football)",
+   "en": "the ball (soccer)",
    "pt": "a bola (de futebol)",
    "ar": "كرة",
    "pl": "piłka",
@@ -640,7 +640,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le ballon",
-   "en": "the ball (football)",
+   "en": "the ball (soccer)",
    "pt": "a bola (de futebol)",
    "ar": "كرة",
    "pl": "piłka",
@@ -1289,7 +1289,7 @@ window.SCENE = {
     "B2 | Los espectadores miran mientras los jugadores corren.": "The spectators watch while the players run.",
     "B2 | Antes de que empezara el partido, todos calentaron.": "Before the game started, everyone warmed up.",
     "C1 | Debe de ser su primer gol.": "It must be his first goal.",
-    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "The old man may be Mark's neighbour.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "The old man may be Mark's neighbor.",
     "C1 | El partido estará a punto de terminar.": "The game is probably about to end.",
     "C1 | Dicen que la entrenadora fue profesional.": "They say the coach was a professional."
    }
