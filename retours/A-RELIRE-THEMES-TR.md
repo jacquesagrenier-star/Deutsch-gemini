@@ -39,3 +39,18 @@ içinde / içine, arkasında / arkasına. Le présent en -iyor pour la journée 
 
 - **« Décrire une personne » : « glatt » (des cheveux) → « düz (saç) »**, au lieu de la glose du corpus (lisse, glissant).
   Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.
+
+## Lot 2, 15 nov. : « La famille d'Anna »
+
+La page fabrique la traduction avec les mêmes choix que la phrase allemande (les mêmes personnes, le même lien, le même possessif) : on corrige dans `visuel/prototype/familia/langues.js`, pas phrase par phrase. Contrôle à l'écran : `python visuel/langues_themes.py verifier familia tr`. Il n'y a pas eu de relecture native.
+
+1. **Le côté de l'oncle et de la tante, lu dans l'arbre** : Sabine est la **hala** d'Anna (la sœur du père), Frank son
+   **enişte** (le mari de la hala) ; Peter est le **dayı** de Felix et Sophie (le frère de la mère), Monika leur
+   **yenge**. Dans les paires sans personne : « amca, dayı → hala, teyze ».
+2. **La grand-mère** : **babaanne** du côté du père (Gisela pour Jan, Anna, Lena ; Monika pour Ben et Mia),
+   **anneanne** du côté de la mère (Gisela pour Felix et Sophie).
+3. **Les beaux-frères et belles-sœurs** : enişte (le mari de la sœur), kayınbirader (le frère de la femme), yenge (la
+   femme du frère : Katrin pour Anna), görümce (la sœur du mari : Anna pour Katrin, Sabine pour Monika).
+4. **« eşi » pour l'épouse**, « kocası » pour le mari (plutôt que « karısı »).
+5. **« torun », « yeğen », « kuzen »** sans le sexe quand le prénom le dit (« Onların beş torunu var »).
+6. **La citation** : « Anna şöyle diyor: “Peter benim babam.” », « Anna Ben'e soruyor: “Jan senin baban mı?” ».

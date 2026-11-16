@@ -51,6 +51,8 @@ RACINE = os.path.dirname(ICI)
 DOSSIER = os.path.join(ICI, "langues_themes")
 SOURCE = os.path.join(DOSSIER, "source.json")
 PORT = int(os.environ.get("LANGUES_PORT", "8858"))
+# la langue apprise du controle (de par defaut ; es pour l'arabe de qui apprend l'espagnol)
+APPRENDRE_CTRL = os.environ.get("LANGUES_APPRENDRE", "de")
 TIRAGES = int(os.environ.get("LANGUES_TIRAGES", "2000"))
 # la decouverte (onglets puis elements) s'arrete a ce nombre de gestes ; atteint = releve peut-etre tronque, signale
 PLAFOND = int(os.environ.get("LANGUES_GESTES", "3000"))
@@ -60,7 +62,9 @@ THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "
 BESOIN = {"de": ["tr", "uk", "fa", "ar", "pl", "ru"], "es": ["ar"]}
 LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # les themes deja branches, et leurs langues (lot 1 : journee + gato, 14 nov. 2026)
-BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"]}
+# lot 2 (ligne 111, 15 nov.) : la famille d'Anna dans les six langues, dans la page (visuel/prototype/familia/langues.js),
+# l'arabe aussi pour qui apprend l'espagnol (LANGUES_APPRENDRE=es)
+BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {
@@ -275,12 +279,12 @@ def verifier(seuls, langues):
         with sync_playwright() as p:
             nav = p.chromium.launch()
             for th in seuls:
-                francais = {x["fr"] for x in source.get(th, {}).get("de", []) if mots(x["fr"]) >= 2}
+                francais = {x["fr"] for x in source.get(th, {}).get(APPRENDRE_CTRL, []) if mots(x["fr"]) >= 2}
                 for lg in langues:
                     page = nav.new_page()
                     erreurs = []
                     page.on("pageerror", lambda e: erreurs.append(str(e).split("\n")[0][:160]))
-                    page.goto("http://127.0.0.1:%d/visuel/prototype/%s.html?apprendre=de&lang=%s" % (PORT, th, lg))
+                    page.goto("http://127.0.0.1:%d/visuel/prototype/%s.html?apprendre=%s&lang=%s" % (PORT, th, APPRENDRE_CTRL, lg))
                     page.wait_for_function("() => typeof EX !== 'undefined' && (typeof IDS === 'undefined' || IDS.length > 0) && (typeof D === 'undefined' || D)", timeout=30000)
                     page.wait_for_timeout(600)
                     gl_fr = set(page.evaluate(GLOSES_FR))

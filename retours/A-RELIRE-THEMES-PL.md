@@ -37,3 +37,17 @@ za kanapę. Après przed, obok, między, nad, la même forme pour les deux (« s
 
 - **« Décrire une personne » : « glatt » (des cheveux) → « proste (włosy) »**, au lieu de la glose du corpus (lisse, glissant).
   Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.
+
+## Lot 2, 15 nov. : « La famille d'Anna »
+
+La page fabrique la traduction avec les mêmes choix que la phrase allemande (les mêmes personnes, le même lien, le même possessif) : on corrige dans `visuel/prototype/familia/langues.js`, pas phrase par phrase. Contrôle à l'écran : `python visuel/langues_themes.py verifier familia pl`. Il n'y a pas eu de relecture native.
+
+1. **« Peter jest ojcem Anny »** (być + instrumental), et dans les citations « Peter jest moim ojcem », « Czy Jan jest
+   twoim ojcem? » ; « Anna mówi: „…”. ».
+2. **Les noms** : Anny / Annę, Giseli / Giselę, Moniki / Monikę, Leny / Lenę, Mii / Mię, Petera, Heinza, Franka, Jana,
+   Felixa, Bena ; Sabine, Katrin et Sophie indéclinables.
+3. **Le neveu selon le frère ou la sœur** : bratanek / bratanica (l'enfant du frère : Sabine et Frank pour Jan, Anna,
+   Lena ; Anna et Lena pour Ben et Mia), siostrzeniec / siostrzenica (l'enfant de la sœur : Peter et Monika pour Felix
+   et Sophie). Pour Frank et Monika (le côté du conjoint), le même mot : juste ?
+4. **wujek / ciocia** (familier) plutôt que stryj / wuj / ciotka.
+5. **Les nombres** : « dwóch wnuków i trzy wnuczki », « ma kuzyna i dwie kuzynki ».

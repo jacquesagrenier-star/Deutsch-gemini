@@ -108,6 +108,7 @@ button:disabled{cursor:default}
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
+<script src="familia/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
@@ -364,9 +365,10 @@ const MIXTE = APPRENDRE === "de" ? MIXTE_DE : APPRENDRE === "en" ? ["neveu", "on
 // « Il n'y a pas la traduction française. Qui serait importante. » Sous le mot dans la decouverte, et APRES la
 // reponse, sous la phrase juste -- jamais avant, elle donnerait la reponse. En francais, anglais et portugais (et en
 // allemand pour qui apprend l'espagnol), la phrase entiere, fabriquee avec les MEMES choix que la question (les memes
-// personnes, le meme lien, le meme possessif, le meme groupe) ; dans les autres langues, le mot et sa traduction du
-// corpus (familia/gloses.json) : une phrase fabriquee aux cas du russe, de l'ukrainien, du polonais ou du turc, avec
-// des prenoms etrangers, serait souvent fausse, et personne ne la relirait.
+// personnes, le meme lien, le meme possessif, le meme groupe). Depuis le 15 nov. 2026 (ligne 111), aussi en turc,
+// ukrainien, polonais, russe, persan et arabe : familia/langues.js, ou chaque langue a ses cas, ses prenoms declines et
+// le mot exact que l'arbre donne (l'oncle du cote du pere ou de la mere, les beaux-freres) ; points a relire par un
+// natif dans retours/A-RELIRE-THEMES-<LG>.md. Sans traduction, le mot et sa glose du corpus (familia/gloses.json).
 const etListe = (a, et) => a.length > 1 ? a.slice(0, -1).join(", ") + " " + et + " " + a[a.length - 1] : a[0];
 const compter = g => ({n: g.length, m: g.filter(x => sexe(x) === "m").length, f: g.filter(x => sexe(x) === "f").length});
 const TRADS = {
@@ -549,8 +551,10 @@ TRADS.de = {
   paire: (k, s1, s2) => TRADS.de.rel(k, s1) + " → " + TRADS.de.rel(k, s2),
   soi: (o, age) => DE.soi(o, age), age: (o, age) => DE.age(o, age)
 };
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe (ligne 111, 15 nov. 2026) : familia/langues.js
+if (typeof installerLanguesFamille === "function") installerLanguesFamille(TRADS);
 // la traduction de la phrase, s'il y en a une dans la langue d'interface ; sinon null, et la glose prend le relais
-const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+const TR =(LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
 let GLOSES = {}, trad = null;
 fetch("familia/gloses.json?v=1").then(r => r.json()).then(d => {
   GLOSES = d[APPRENDRE] || {};
@@ -828,7 +832,7 @@ const EX = {
         const ep = L.estPossIl || L.estPoss;
         enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(ep(o, trou(), mo, sexe(o)));
         phrase = ep(o, rep, mo, sexe(o));
-        trad = TR ? TR.estPoss3(o, k, sexe(o), sexe(e)) : null;
+        trad = TR ? TR.estPoss3(o, k, sexe(o), sexe(e), e) : null;
         opts = OPTS_POSS.il;
         ecran("possessif", enonce, {ego: e, cibles: [o]});
       }

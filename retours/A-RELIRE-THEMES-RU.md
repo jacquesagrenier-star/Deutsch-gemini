@@ -38,3 +38,19 @@ deux : seul le verbe change (сидит / садится).
 
 - **« Décrire une personne » : « glatt » (des cheveux) → « прямые (волосы) »**, au lieu de la glose du corpus (lisse, glissant).
   Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.
+
+## Lot 2, 15 nov. : « La famille d'Anna »
+
+La page fabrique la traduction avec les mêmes choix que la phrase allemande (les mêmes personnes, le même lien, le même possessif) : on corrige dans `visuel/prototype/familia/langues.js`, pas phrase par phrase. Contrôle à l'écran : `python visuel/langues_themes.py verifier familia ru`. Il n'y a pas eu de relecture native.
+
+1. **Les noms** : Хайнц, Гизела, Петер, Моника, Сабина (Sabine), Франк, Ян, Катрин et Софи (indéclinables), Анна,
+   Лена, Феликс, Бен, Мия ; génitif (« отец Анны ») et accusatif après спрашивать (« спрашивает Бена »).
+2. **Les beaux-parents selon le conjoint** : свёкор / свекровь pour la femme (Monika, Katrin), тесть / тёща pour le
+   mari (Frank). Dans les paires sans personne : « тесть, свёкор → тёща, свекровь ».
+3. **Les beaux-frères et belles-sœurs, lus dans l'arbre** : зять (le mari de la sœur : Frank pour Peter), шурин (le
+   frère de la femme : Peter pour Frank), невестка (la femme du frère : Katrin pour Anna, Monika pour Sabine), золовка
+   (la sœur du mari : Sabine pour Monika, Anna pour Katrin). Sont-ils encore compris, ou faut-il « муж сестры »,
+   « брат жены » ?
+4. **« мои сын и дочери »**, « мои двоюродный брат и двоюродные сёстры » : le possessif au pluriel devant des mots au
+   singulier et au pluriel.
+5. **Le point après la citation** : « Анна говорит: «Петер — мой отец». » ; rien après « ? ».

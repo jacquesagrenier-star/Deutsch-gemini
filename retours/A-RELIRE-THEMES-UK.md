@@ -36,3 +36,17 @@ aucune phrase de ce lot n'en a.
 
 - **« Décrire une personne » : « glatt » (des cheveux) → « пряме (волосся) »**, au lieu de la glose du corpus (lisse, glissant).
   Elle vit dans `visuel/familia/gloses.py`, `SENS_CHEVEUX` ; on corrige là, puis `python visuel/familia/gloses.py`.
+
+## Lot 2, 15 nov. : « La famille d'Anna »
+
+La page fabrique la traduction avec les mêmes choix que la phrase allemande (les mêmes personnes, le même lien, le même possessif) : on corrige dans `visuel/prototype/familia/langues.js`, pas phrase par phrase. Contrôle à l'écran : `python visuel/langues_themes.py verifier familia uk`. Il n'y a pas eu de relecture native.
+
+1. **Les noms** : Гайнц, Гізела, Петер, Моніка, Сабіна, Франк, Ян, Катрін et Софі (indéclinables), Анна, Лена,
+   Фелікс, Бен, Мія ; génitif (« батько Анни ») et accusatif après питати (« питає Бена »).
+2. **« В Анни »** en début de phrase (devant une voyelle), « У Яна » ailleurs.
+3. **« онучка »** pour la petite-fille (le corpus dit « онука », dont le pluriel « онуки » se confond avec celui
+   d'« онук » : « два онуки і три онучки »).
+4. **Les beaux-parents selon le conjoint** : свекор / свекруха pour la femme, тесть / теща pour le mari.
+5. **Les beaux-frères et belles-sœurs** : зять (le mari de la sœur), шурин (le frère de la femme), невістка (la femme
+   du frère), зовиця (la sœur du mari). Compris de tous ?
+6. **« пʼять »** avec l'apostrophe ukrainienne.
