@@ -108,3 +108,11 @@ La page raconte maintenant chaque étape des voyages dans la langue, à la perso
 2. **La famille au singulier** : « Семья поехала на машине на Балтийское море » ; « Бен и Мия построили замок из песка ».
 3. **L'accueil** : « Здравствуйте, я забронировал(а) одноместный номер на две ночи ».
 4. **Mark au port** : « прокатился на катере по порту ».
+
+## Lot 9, 16 nov. : « Les loisirs »
+
+La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle fréquence, proposer une sortie et répondre) avec les formes de chaque activité, posées dans `visuel/prototype/loisirs/langues.js`. À relire :
+
+1. **« Любит » + infinitif** : « Роза любит играть в футбол », « Феликс и Роза любят … ».
+2. **Proposer** : « Хочешь играть в футбол? », « Давай вместе играть в футбол? ».
+3. **Jamais** : « Феликс никогда не играет в футбол ».

@@ -184,6 +184,7 @@ button:disabled{cursor:default}
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
+<script src="loisirs/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // le portugais (lot P3, 11 nov. 2026) : les memes photos, ses phrases a lui ; variante=br pour le Bresil
@@ -518,8 +519,13 @@ const TRP = {
 };
 // la traduction d'une phrase fabriquee : la meme fonction, dans la langue d'interface (fr, en, pt ; de pour qui apprend
 // l'espagnol) ; ailleurs rien, la ligne du mot teste et sa glose (le corpus) suffit
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
-const tr = (fn, ...args) => !PHRASE_TRADUITE ? null : EN_APP && TRF[fn] ? TRF[fn](...args)
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (loisirs/langues.js, lot 9 de l'alignement des themes, 16 nov. 2026) : LLO[langue] a les memes
+// fonctions que P (fait, aime, freq, propose, repond), avec la grammaire de la langue
+let LLO = {};
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
+const tr = (fn, ...args) => !PHRASE_TRADUITE ? null : LLO[LANGUE] ? (LLO[LANGUE][fn] ? LLO[LANGUE][fn](...args) : null) : EN_APP && TRF[fn] ? TRF[fn](...args)
   : PT_APP && TRP[fn] ? (LANGUE === "fr" ? TRP[fn](...args) : null) : P[fn](LANGUE, ...args);
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
@@ -1540,6 +1546,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("loisirs/loisirs.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (typeof installerLanguesLoisirs === "function") LLO = installerLanguesLoisirs(D, APPRENDRE) || {};
   // le portugais appris : ses adverbes, ses autres mots et leur sens remplacent le bloc « pt » de loisirs.json (la
   // traduction bresilienne, qui ne sert qu'a l'interface portugaise d'une autre langue apprise)
   if (PT_APP) donneesPt(D);

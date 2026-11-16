@@ -72,3 +72,11 @@ La page raconte maintenant chaque étape des voyages dans la langue, à la perso
 2. **La famille au singulier, Ben et Mia au pluriel** : « خانواده … رفت », « بن و میا … ساختند ».
 3. **La chambre** : « یک اتاق یک‌تخته / دوتخته برای دو شب ».
 4. **Mark au port** : « با قایق در بندر گشت زد ».
+
+## Lot 9, 16 nov. : « Les loisirs »
+
+La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle fréquence, proposer une sortie et répondre) avec les formes de chaque activité, posées dans `visuel/prototype/loisirs/langues.js`. À relire :
+
+1. **Le subjonctif après « دوست دارد »** : « روزا دوست دارد فوتبال بازی کند », pluriel « دوست دارند … کنند ».
+2. **Proposer** : « دوست داری فوتبال بازی کنی؟ », « با هم فوتبال بازی کنیم؟ ».
+3. **Les verbes** : گیتار زدن، عکس گرفتن، آواز خواندن، رقصیدن، دویدن.

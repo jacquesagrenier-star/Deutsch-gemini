@@ -106,3 +106,11 @@ La page raconte maintenant chaque étape des voyages dans la langue, à la perso
 2. **Le possessif réfléchi** à toutes les personnes : « свою валізу », « свій рюкзак » (« Ми зібрали свою валізу » : un seul objet, comme le français).
 3. **La famille** : « Родина поїхала машиною до Балтійського моря » ; Ben et Mia « Бен і Мія збудували замок із піску ».
 4. **Les nuits** : « на одну ніч / на дві ночі / на пʼять ночей ».
+
+## Lot 9, 16 nov. : « Les loisirs »
+
+La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle fréquence, proposer une sortie et répondre) avec les formes de chaque activité, posées dans `visuel/prototype/loisirs/langues.js`. À relire :
+
+1. **« Любить » + infinitif** : « Роза любить грати у футбол », « Фелікс і Роза люблять … ».
+2. **Proposer** : « Хочеш грати у футбол? », « Давай разом грати у футбол? ».
+3. **Jamais** : « Фелікс ніколи не грає у футбол ».

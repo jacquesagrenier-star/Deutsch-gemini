@@ -104,3 +104,11 @@ La page raconte maintenant chaque étape des voyages dans la langue, à la perso
 2. **Le sujet sous-entendu dans une suite** : « Najpierw Anna spakowała swoją walizkę. Potem pojechała na lotnisko. »
 3. **Mark au port** : « popłynął statkiem po porcie » (Hafenrundfahrt) ; la famille « nad Bałtyk ».
 4. **Les nuits** : « na jedną noc / na dwie noce / na pięć nocy ».
+
+## Lot 9, 16 nov. : « Les loisirs »
+
+La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle fréquence, proposer une sortie et répondre) avec les formes de chaque activité, posées dans `visuel/prototype/loisirs/langues.js`. À relire :
+
+1. **« Lubi » + infinitif** : « Rosa lubi grać w piłkę nożną », pluriel « lubią ».
+2. **Proposer** : « Masz ochotę grać w piłkę nożną? », « Może razem zagramy w piłkę nożną? » (un futur perfectif par activité, à relire : « poćwiczymy », « ugotujemy coś »).
+3. **Jamais** : « nigdy nie gra ».

@@ -75,3 +75,11 @@ La page raconte maintenant chaque étape des voyages dans la langue, à la perso
 2. **Le sujet sous-entendu dans une suite** : « ثم ذهبت إلى المطار », et le duel pour Ben et Mia : « ثم سبحا في البحر ».
 3. **Je et tu** distingués par la voyelle : « حزمتُ / حزمتَ » (le tu au masculin).
 4. **Les nuits** : « لليلة واحدة / لليلتين / لخمس ليالٍ » ; Málaga « مالقة ».
+
+## Lot 9, 16 nov. : « Les loisirs »
+
+La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle fréquence, proposer une sortie et répondre) avec les formes de chaque activité, posées dans `visuel/prototype/loisirs/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le verbe devant le sujet, accordé** : « تلعب روزا كرة القدم », « يلعب فيليكس » ; à deux, au singulier devant les sujets (« يحب فيليكس وروزا »).
+2. **Aimer + nom verbal** : « تحب روزا لعب كرة القدم », « أحب الرقص كثيرًا ».
+3. **Jamais** : « لا يلعب فيليكس كرة القدم أبدًا » ; proposer « هل تريد أن تلعب …؟ », « هل نلعب … معًا؟ ».
