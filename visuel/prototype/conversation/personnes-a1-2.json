@@ -1,13 +1,17 @@
 {
- "_lisez_moi": "Les personnes du lot a1-2 (visuel/CONVERSATIONS.md). Visages : seulement des images qui existent deja (descripcion, emociones, conversation). Quatre sont PROVISOIRES, a remplacer sur devis (visuel/conversation/visages.py) : praxis_empfang (visage d'Ines, coiffeuse dans la fiche commune), post_schalter (Pablo, boulanger), museum_kasse (Elena, policiere), buergeramt_schalter et bibliothek_schalter (Rosa, mecanicienne). Proposition : des visages tires des prenoms reserves qui ont deja leur portrait source (Silvia pour la mairie et la bibliotheque, Sergio pour la poste, Irene pour le musee) et une assistante medicale neuve. Les autres sont definitifs : Carmen (cuisiniere, ce qu'elle dit d'elle-meme), Marta (enseignante), Diego au parc, Javier proprietaire, Tomas a la laverie (le voisin du cafe).",
+ "_lisez_moi": "Les personnes du lot a1-2 (visuel/CONVERSATIONS.md). Regle des visages (visuel/personnes.json, regle 3 ; chef d'orchestre, 16 nov. 2026) : un visage recurrent ne tient que son metier ou un role prive. Definitifs : Marta (enseignante) au cours, Tomas (policier) client de la laverie, Diego (medecin) promeneur au parc. Carmen, la voisine, est la personne nachbarin_carmen du lot a2-3 (reprise, pas redefinie). Les autres sont PROVISOIRES (« provisoire »: true, avec leur description) : leur visage actuel n'est qu'un bouche-trou en attendant le devis groupe. La proprietaire de l'appartement sera Irene (reserve attribuee par a2-1 a ce role) des que sa personne sera sur main : a1-appartement la reprendra alors et vermieter_besichtigung partira.",
  "praxis_empfang": {
   "nom": {"fr": "L'assistante médicale", "en": "The medical receptionist", "ar": "موظفة الاستقبال في العيادة", "tr": "Tıbbi sekreter", "uk": "Медична реєстраторка", "fa": "منشی مطب", "pt": "A recepcionista do consultório", "pl": "Rejestratorka", "ru": "Медрегистратор", "de": "Die Arzthelferin"},
   "voix": "f",
+  "provisoire": true,
+  "description": "Une femme d'environ trente ans, cheveux attachés, une tunique médicale bleu clair, l'air calme et aimable derrière un comptoir d'accueil.",
   "visages": {"sourire": "descripcion/Ines-visage.webp"}
  },
  "post_schalter": {
   "nom": {"fr": "L'employé de la poste", "en": "The postal clerk", "ar": "موظف البريد", "tr": "Postane memuru", "uk": "Працівник пошти", "fa": "کارمند پست", "pt": "O funcionário dos correios", "pl": "Pracownik poczty", "ru": "Сотрудник почты", "de": "Der Postangestellte"},
   "voix": "m",
+  "provisoire": true,
+  "description": "Un homme d'environ cinquante-cinq ans, cheveux gris courts, une chemise bleue d'uniforme de la poste, l'air tranquille et habitué au guichet.",
   "visages": {"sourire": "descripcion/Pablo-visage.webp"}
  },
  "waschsalon_kunde": {
@@ -22,16 +26,6 @@
    "amuse": "emociones/Tomas-avergonzado.webp"
   }
  },
- "nachbarin_carmen": {
-  "nom": {"fr": "Carmen, la voisine", "en": "Carmen, the neighbor", "ar": "كارمن، الجارة", "tr": "Komşu Carmen", "uk": "Кармен, сусідка", "fa": "کارمن، همسایه", "pt": "Carmen, a vizinha", "pl": "Carmen, sąsiadka", "ru": "Кармен, соседка", "de": "Carmen, die Nachbarin"},
-  "voix": "f",
-  "visages": {
-   "sourire": "descripcion/Carmen-visage.webp",
-   "surprise": "emociones/Carmen-sorprendido.webp",
-   "perplexe": "emociones/Carmen-preocupado.webp",
-   "amuse": "emociones/Carmen-avergonzado.webp"
-  }
- },
  "park_spaziergaenger": {
   "nom": {"fr": "Un promeneur", "en": "A man in the park", "ar": "رجل في الحديقة", "tr": "Parktaki adam", "uk": "Чоловік у парку", "fa": "مردی در پارک", "pt": "Um homem no parque", "pl": "Mężczyzna w parku", "ru": "Мужчина в парке", "de": "Ein Spaziergänger"},
   "voix": "m",
@@ -44,19 +38,22 @@
  "museum_kasse": {
   "nom": {"fr": "La caissière du musée", "en": "The museum cashier", "ar": "موظفة شباك التذاكر في المتحف", "tr": "Müze gişe görevlisi", "uk": "Касирка музею", "fa": "صندوقدار موزه", "pt": "A atendente da bilheteria", "pl": "Kasjerka w muzeum", "ru": "Кассир музея", "de": "Die Kassiererin im Museum"},
   "voix": "f",
+  "provisoire": true,
+  "description": "Une femme d'environ vingt-cinq ans, une étudiante qui travaille le week-end, cheveux courts, un gilet sombre avec le badge du musée.",
   "visages": {"sourire": "descripcion/Elena-visage.webp"}
  },
  "vermieter_besichtigung": {
-  "nom": {"fr": "Le propriétaire", "en": "The landlord", "ar": "المالك", "tr": "Ev sahibi", "uk": "Власник квартири", "fa": "صاحبخانه", "pt": "O proprietário", "pl": "Właściciel mieszkania", "ru": "Хозяин квартиры", "de": "Der Vermieter"},
-  "voix": "m",
-  "visages": {
-   "sourire": "descripcion/Javier-visage.webp",
-   "perplexe": "emociones/Javier-preocupado.webp"
-  }
+  "nom": {"fr": "La propriétaire", "en": "The landlady", "ar": "المالكة", "tr": "Ev sahibi", "uk": "Власниця квартири", "fa": "صاحبخانه", "pt": "A proprietária", "pl": "Właścicielka mieszkania", "ru": "Хозяйка квартиры", "de": "Die Vermieterin"},
+  "voix": "f",
+  "provisoire": true,
+  "description": "Irene (réserve, rôle de propriétaire attribué par a2-1) : une femme d'environ cinquante-cinq ans, cheveux gris en chignon, lunettes dorées, gilet vert olive. À remplacer par sa personne dès qu'elle est sur main.",
+  "visages": {"sourire": "descripcion/Elena-visage.webp"}
  },
  "buergeramt_schalter": {
   "nom": {"fr": "L'employée de la mairie", "en": "The city office clerk", "ar": "موظفة البلدية", "tr": "Belediye memuru", "uk": "Працівниця мерії", "fa": "کارمند شهرداری", "pt": "A funcionária da prefeitura", "pl": "Urzędniczka", "ru": "Сотрудница мэрии", "de": "Die Sachbearbeiterin"},
   "voix": "f",
+  "provisoire": true,
+  "description": "Une femme d'environ quarante ans, cheveux mi-longs bruns, un cardigan sur un chemisier, derrière un bureau de guichet administratif.",
   "visages": {
    "sourire": "descripcion/Rosa-visage.webp",
    "surprise": "emociones/Rosa-sorprendido.webp"
@@ -65,6 +62,8 @@
  "bibliothek_schalter": {
   "nom": {"fr": "La bibliothécaire", "en": "The librarian", "ar": "أمينة المكتبة", "tr": "Kütüphaneci", "uk": "Бібліотекарка", "fa": "کتابدار", "pt": "A bibliotecária", "pl": "Bibliotekarka", "ru": "Библиотекарь", "de": "Die Bibliothekarin"},
   "voix": "f",
+  "provisoire": true,
+  "description": "Une femme d'environ trente-cinq ans, cheveux bouclés, un pull coloré et un cordon de badge, souriante, au comptoir d'une bibliothèque de quartier.",
   "visages": {
    "sourire": "descripcion/Rosa-visage.webp",
    "surprise": "emociones/Rosa-sorprendido.webp"

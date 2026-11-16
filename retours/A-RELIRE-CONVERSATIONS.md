@@ -121,7 +121,7 @@ chaque langue pour elle-même (faux amis et calques du français).
 
 - **Les fautes proposées** : de : `ein Termin` (accusatif), `Kreditkarte` au lieu de la carte d'assurance maladie, `vergesst`, `Sie ist rot` (der Schal), `in Frankreich
   schicken`, `du bist sehr nett` (laverie), `von Frankreich`, `zwei und halb`, `Ich bin ein Student`, `Ich komme für
-  die Wohnung`, `Wie viele kostet`, `Ich möchte mich anmachen` (« allumer… ou draguer » : la personne en face s'en étonne ; à garder ?),
+  die Wohnung`, `Wie viele kostet`, `Ich möchte mich einschreiben` (à la mairie, au lieu de « anmelden »),
   `einen Kurs nehmen`. es : `a las diez horas`, `me duelo la cabeza`, `es rojo` (la bufanda), `en Francia`, `la
   máquina a lavar`, `de la Francia`, `es las dos y media`, `un billete` (au musée), `las cargas`, `estoy de
   Francia`, `soy debutante`. en : `since three days`, `a scarf red and long`, `in France`, `she doesn't work` (la
@@ -140,4 +140,5 @@ chaque langue pour elle-même (faux amis et calques du français).
   laverie reste à l'usted (un Madrilène tutoierait peut-être : à juger). en : variantes britanniques par `t_gb`
   (parcel, flat, neighbour, half past two, fill in, cloakroom, rucksack, a bit, I've got).
 - **Carmen** (la voisine) vient d'Espagne dans les trois langues (Séville en espagnol) et dit qu'elle est
-  cuisinière, comme dans la fiche commune des personnes.
+  cuisinière, comme dans la fiche commune des personnes. C'est la même Carmen que dans le dîner du lot a2-3 : à l'A1,
+  on fait connaissance au Sie / usted ; elle passe au du / tú plus tard, à l'A2.
