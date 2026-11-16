@@ -6,133 +6,133 @@
  "titre": {"fr": "Négocier une hausse de loyer"},
  "intro": {"fr": "Ton contrat de location arrive à son terme après cinq ans. La propriétaire, Mme García, veut augmenter le loyer pour le renouveler. Elle passe te voir pour en parler."},
  "bilan": {"fr": "Tu as négocié ton loyer en espagnol : réagir poliment, donner un argument, faire une contre-proposition et demander que tout soit mis par écrit."},
- "personnes": ["b11_proprietaire"],
+ "personnes": ["vermieterin"],
  "debut": "saludo",
  "noeuds": {
   "saludo": {
    "dit": [
     {"recit": {"fr": "Sept heures du soir. On sonne : c'est Mme García, ta propriétaire. Elle t'avait prévenu(e) de sa visite."}},
-    {"qui": "b11_proprietaire", "air": "sourire", "t": "Buenas tardes. Gracias por recibirme. ¿Qué tal todo por el piso?", "fr": "Bonsoir. Merci de me recevoir. Tout va bien dans l'appartement ?"}
+    {"qui": "vermieterin", "air": "sourire", "t": "Buenas tardes. Gracias por recibirme. ¿Qué tal todo por el piso?", "fr": "Bonsoir. Merci de me recevoir. Tout va bien dans l'appartement ?"}
    ],
    "choix": [
     {"t": "Buenas tardes, señora García. Todo bien, gracias. Pase, por favor.", "fr": "Bonsoir, madame García. Tout va bien, merci. Entrez, je vous en prie.", "va": "subida",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Gracias. Qué bien cuidado lo tiene todo.", "fr": "Merci. Comme tout est bien entretenu chez vous."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Gracias. Qué bien cuidado lo tiene todo.", "fr": "Merci. Comme tout est bien entretenu chez vous."}]},
     {"t": "Buenas tardes. Bien, aunque quería comentarle un par de cosas.", "fr": "Bonsoir. Bien, même si je voulais vous parler de deux ou trois choses.", "va": "subida",
-     "puis": [{"qui": "b11_proprietaire", "air": "attentive", "t": "Claro, ahora lo hablamos todo con calma.", "fr": "Bien sûr, nous allons parler de tout cela tranquillement."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Claro, ahora lo hablamos todo con calma.", "fr": "Bien sûr, nous allons parler de tout cela tranquillement."}]},
     {"faux": true, "t": "Buenas tardes, señora García. Entra, por favor.", "fr": "Bonsoir, madame García. Entre, s'il te plaît.",
-     "puis": [{"qui": "b11_proprietaire", "air": "surprise", "t": "Eh… gracias, muy amable.", "fr": "Euh… merci, c'est gentil."}],
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Eh… gracias, muy amable.", "fr": "Euh… merci, c'est gentil."}],
      "aide": {"fr": "<b>« Entra »</b> tutoie la propriétaire. Au usted, on dit « entre », et plus souvent « pase ». Dis plutôt : « Pase, por favor »."}}
    ]
   },
   "subida": {
-   "dit": [{"qui": "b11_proprietaire", "air": "attentive", "t": "Verá, vengo por la renovación del contrato. Con lo que han subido los precios, a partir de enero el alquiler pasaría de setecientos cincuenta a ochocientos cincuenta euros.", "fr": "Voilà, je viens pour le renouvellement du contrat. Avec la hausse des prix, à partir de janvier, le loyer passerait de sept cent cinquante à huit cent cinquante euros."}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Verá, vengo por la renovación del contrato. Con lo que han subido los precios, a partir de enero el alquiler pasaría de setecientos cincuenta a ochocientos cincuenta euros.", "fr": "Voilà, je viens pour le renouvellement du contrat. Avec la hausse des prix, à partir de janvier, le loyer passerait de sept cent cinquante à huit cent cinquante euros."}],
    "choix": [
     {"t": "¿Cien euros más? La verdad es que me parece mucho.", "fr": "Cent euros de plus ? À vrai dire, ça me paraît beaucoup.", "va": "argumento",
-     "puis": [{"qui": "b11_proprietaire", "air": "attentive", "t": "Ya, lo comprendo. Pero es lo que se paga ahora en el barrio.", "fr": "Oui, je comprends. Mais c'est ce qui se paie maintenant dans le quartier."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Ya, lo comprendo. Pero es lo que se paga ahora en el barrio.", "fr": "Oui, je comprends. Mais c'est ce qui se paie maintenant dans le quartier."}]},
     {"t": "Entiendo que suban los precios, pero es una subida muy grande para mí.", "fr": "Je comprends que les prix montent, mais c'est une très grosse hausse pour moi.", "va": "argumento",
-     "puis": [{"qui": "b11_proprietaire", "air": "attentive", "t": "Lo sé, y créame que no me gusta pedírselo. Pero es lo que se paga ahora en el barrio.", "fr": "Je sais, et croyez bien que je n'aime pas vous le demander. Mais c'est ce qui se paie maintenant dans le quartier."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Lo sé, y créame que no me gusta pedírselo. Pero es lo que se paga ahora en el barrio.", "fr": "Je sais, et croyez bien que je n'aime pas vous le demander. Mais c'est ce qui se paie maintenant dans le quartier."}]},
     {"faux": true, "t": "¡Es demasiado! No estoy de acuerdo que suba el alquiler.", "fr": "C'est trop ! Je ne suis pas d'accord que le loyer augmente.",
-     "puis": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "Bueno, bueno… vamos a hablarlo con calma.", "fr": "Allons, allons… parlons-en calmement."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Bueno, bueno… vamos a hablarlo con calma.", "fr": "Allons, allons… parlons-en calmement."}],
      "aide": {"fr": "On dit <b>« estar de acuerdo con »</b> quelque chose (ou « en que… »), jamais « de acuerdo que ». Et mieux vaut rester mesuré. Dis plutôt : « La verdad es que me parece mucho »."}}
    ]
   },
   "argumento": {
-   "dit": [{"qui": "b11_proprietaire", "air": "question", "t": "A ver, dígame. ¿Qué es lo que le preocupa?", "fr": "Voyons, dites-moi. Qu'est-ce qui vous préoccupe ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "A ver, dígame. ¿Qué es lo que le preocupa?", "fr": "Voyons, dites-moi. Qu'est-ce qui vous préoccupe ?"}],
    "choix": [
     {"t": "Las ventanas son muy viejas y en invierno entra mucho frío.", "fr": "Les fenêtres sont très vieilles et, en hiver, le froid entre beaucoup.", "pose": {"argumento": "ventanas"}, "va": "oferta"},
     {"t": "La calefacción se ha estropeado dos veces este invierno.", "fr": "Le chauffage est tombé en panne deux fois cet hiver.", "pose": {"argumento": "calefaccion"}, "va": "oferta"},
     {"t": "Llevo cinco años aquí y siempre he pagado puntualmente.", "fr": "Je suis ici depuis cinq ans et j'ai toujours payé à l'heure.", "pose": {"argumento": "fiable"}, "va": "oferta"},
     {"faux": true, "t": "La calefacción ha caído en pana dos veces.", "fr": "Le chauffage est tombé en panne deux fois.",
-     "puis": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "¿Que ha caído… dónde? Ah, que se ha estropeado.", "fr": "Il est tombé… où ça ? Ah, il est tombé en panne."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Que ha caído… dónde? Ah, que se ha estropeado.", "fr": "Il est tombé… où ça ? Ah, il est tombé en panne."}],
      "aide": {"fr": "« Tomber en panne » ne se traduit pas mot à mot : on dit <b>« estropearse »</b> (ou « averiarse »). Dis plutôt : « La calefacción se ha estropeado dos veces »."}}
    ]
   },
   "oferta": {
    "dit": [
-    {"si": {"argumento": "ventanas"}, "qui": "b11_proprietaire", "air": "perplexe", "t": "Lo de las ventanas es verdad: son las de toda la vida. Habría que cambiarlas.", "fr": "Pour les fenêtres, c'est vrai : ce sont celles d'origine. Il faudrait les changer."},
-    {"si": {"argumento": "calefaccion"}, "qui": "b11_proprietaire", "air": "perplexe", "t": "Tiene razón, la caldera ya tiene muchos años y nos ha dado guerra.", "fr": "Vous avez raison, la chaudière a déjà beaucoup d'années et elle nous a donné du fil à retordre."},
-    {"si": {"argumento": "fiable"}, "qui": "b11_proprietaire", "air": "sourire", "t": "Eso es cierto: con usted nunca he tenido un problema, y eso vale mucho.", "fr": "C'est vrai : avec vous, je n'ai jamais eu de problème, et ça compte beaucoup."},
-    {"qui": "b11_proprietaire", "air": "question", "t": "Mire, podemos dejarlo en ochocientos veinte. ¿Qué le parece?", "fr": "Écoutez, nous pouvons nous arrêter à huit cent vingt. Qu'en dites-vous ?"}
+    {"si": {"argumento": "ventanas"}, "qui": "vermieterin", "air": "perplexe", "t": "Lo de las ventanas es verdad: son las de toda la vida. Habría que cambiarlas.", "fr": "Pour les fenêtres, c'est vrai : ce sont celles d'origine. Il faudrait les changer."},
+    {"si": {"argumento": "calefaccion"}, "qui": "vermieterin", "air": "perplexe", "t": "Tiene razón, la caldera ya tiene muchos años y nos ha dado guerra.", "fr": "Vous avez raison, la chaudière a déjà beaucoup d'années et elle nous a donné du fil à retordre."},
+    {"si": {"argumento": "fiable"}, "qui": "vermieterin", "air": "sourire", "t": "Eso es cierto: con usted nunca he tenido un problema, y eso vale mucho.", "fr": "C'est vrai : avec vous, je n'ai jamais eu de problème, et ça compte beaucoup."},
+    {"qui": "vermieterin", "air": "question", "t": "Mire, podemos dejarlo en ochocientos veinte. ¿Qué le parece?", "fr": "Écoutez, nous pouvons nous arrêter à huit cent vingt. Qu'en dites-vous ?"}
    ],
    "choix": [
     {"t": "Lo aceptaría si antes se arregla lo que no funciona en el piso.", "fr": "Je l'accepterais si on répare d'abord ce qui ne marche pas dans l'appartement.", "pose": {"trato": "arreglos"}, "va": "arreglos"},
     {"t": "Sigue siendo mucho para mí. ¿Podríamos dejarlo en setecientos noventa?", "fr": "C'est encore beaucoup pour moi. Pourrions-nous nous arrêter à sept cent quatre-vingt-dix ?", "pose": {"trato": "rebaja"}, "va": "regateo"},
     {"faux": true, "t": "Vale, pero quiero que usted arregla el piso.", "fr": "D'accord, mais je veux que vous réparez l'appartement.",
-     "puis": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "¿Que lo arregle? Bueno… ¿qué habría que arreglar, exactamente?", "fr": "Que je le répare ? Bon… que faudrait-il réparer, exactement ?"}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Que lo arregle? Bueno… ¿qué habría que arreglar, exactamente?", "fr": "Que je le répare ? Bon… que faudrait-il réparer, exactement ?"}],
      "aide": {"fr": "Après <b>« quiero que »</b>, il faut le subjonctif : « que arregle ». Et pour négocier, une condition passe mieux qu'un ordre. Dis plutôt : « Lo aceptaría si antes se arregla lo que no funciona en el piso »."}}
    ]
   },
   "arreglos": {
    "dit": [
-    {"si": {"argumento": "ventanas"}, "qui": "b11_proprietaire", "air": "attentive", "t": "De acuerdo. Cambio las ventanas del salón y del dormitorio.", "fr": "D'accord. Je change les fenêtres du salon et de la chambre."},
-    {"si": {"argumento": "calefaccion"}, "qui": "b11_proprietaire", "air": "attentive", "t": "De acuerdo. Mando a un técnico a revisar la caldera y, si hace falta, la cambio.", "fr": "D'accord. J'envoie un technicien vérifier la chaudière et, s'il le faut, je la change."},
-    {"si": {"argumento": "fiable"}, "qui": "b11_proprietaire", "air": "attentive", "t": "Me parece justo. Hágame una lista de lo que hay que arreglar y mando a un técnico.", "fr": "Cela me paraît juste. Faites-moi une liste de ce qu'il faut réparer et j'envoie un technicien."},
-    {"qui": "b11_proprietaire", "air": "question", "t": "Pero entonces serían los ochocientos veinte. ¿Trato hecho?", "fr": "Mais alors, ce serait huit cent vingt. Marché conclu ?"}
+    {"si": {"argumento": "ventanas"}, "qui": "vermieterin", "air": "attentive", "t": "De acuerdo. Cambio las ventanas del salón y del dormitorio.", "fr": "D'accord. Je change les fenêtres du salon et de la chambre."},
+    {"si": {"argumento": "calefaccion"}, "qui": "vermieterin", "air": "attentive", "t": "De acuerdo. Mando a un técnico a revisar la caldera y, si hace falta, la cambio.", "fr": "D'accord. J'envoie un technicien vérifier la chaudière et, s'il le faut, je la change."},
+    {"si": {"argumento": "fiable"}, "qui": "vermieterin", "air": "attentive", "t": "Me parece justo. Hágame una lista de lo que hay que arreglar y mando a un técnico.", "fr": "Cela me paraît juste. Faites-moi une liste de ce qu'il faut réparer et j'envoie un technicien."},
+    {"qui": "vermieterin", "air": "question", "t": "Pero entonces serían los ochocientos veinte. ¿Trato hecho?", "fr": "Mais alors, ce serait huit cent vingt. Marché conclu ?"}
    ],
    "choix": [
     {"t": "Trato hecho. Si se hacen los arreglos, me parece un precio justo.", "fr": "Marché conclu. Si les réparations sont faites, le prix me paraît juste.", "va": "escrito"},
     {"t": "De acuerdo. Con esas condiciones, acepto los ochocientos veinte.", "fr": "D'accord. À ces conditions, j'accepte les huit cent vingt.", "va": "escrito"},
     {"faux": true, "t": "Sí, soy de acuerdo con ochocientos veinte.", "fr": "Oui, je suis d'accord pour huit cent vingt.",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "¿Está de acuerdo, entonces?", "fr": "Vous êtes d'accord, alors ?"}],
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¿Está de acuerdo, entonces?", "fr": "Vous êtes d'accord, alors ?"}],
      "aide": {"fr": "« Être d'accord » se dit toujours avec « estar » : <b>« estoy de acuerdo »</b>, jamais « soy de acuerdo ». Dis plutôt : « De acuerdo. Con esas condiciones, acepto »."}}
    ]
   },
   "regateo": {
-   "dit": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "Setecientos noventa es muy poco… Venga, ni para usted ni para mí: ochocientos, y no se hable más.", "fr": "Sept cent quatre-vingt-dix, c'est très peu… Allez, coupons la poire en deux : huit cents, et n'en parlons plus."}],
+   "dit": [{"qui": "vermieterin", "air": "perplexe", "t": "Setecientos noventa es muy poco… Venga, ni para usted ni para mí: ochocientos, y no se hable más.", "fr": "Sept cent quatre-vingt-dix, c'est très peu… Allez, coupons la poire en deux : huit cents, et n'en parlons plus."}],
    "choix": [
     {"t": "Ochocientos me parece razonable. Acepto.", "fr": "Huit cents, ça me paraît raisonnable. J'accepte.", "va": "escrito"},
     {"t": "Está bien, ochocientos. Gracias por el esfuerzo.", "fr": "C'est bon, huit cents. Merci pour l'effort.", "va": "escrito"},
     {"faux": true, "t": "Bueno, ochocientos es un buen compromiso.", "fr": "Bon, huit cents, c'est un bon compromis.",
-     "puis": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "¿Un compromiso? Bueno, sí, yo me comprometo a no subirlo más… ¿Acepta, entonces?", "fr": "Un engagement ? Bon, oui, je m'engage à ne plus l'augmenter… Vous acceptez, alors ?"}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Un compromiso? Bueno, sí, yo me comprometo a no subirlo más… ¿Acepta, entonces?", "fr": "Un engagement ? Bon, oui, je m'engage à ne plus l'augmenter… Vous acceptez, alors ?"}],
      "aide": {"fr": "<b>« Compromiso »</b> est un faux ami : c'est un engagement, pas un compromis. Dis plutôt : « Ochocientos me parece razonable. Acepto »."}}
    ]
   },
   "escrito": {
-   "dit": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Pues ya está. Me alegro de que nos hayamos entendido.", "fr": "Eh bien voilà. Je suis contente que nous nous soyons entendus."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Pues ya está. Me alegro de que nos hayamos entendido.", "fr": "Eh bien voilà. Je suis contente que nous nous soyons entendus."}],
    "choix": [
     {"t": "Yo también. ¿Podríamos ponerlo todo por escrito en el contrato?", "fr": "Moi aussi. Pourrions-nous tout mettre par écrit dans le contrat ?", "va": "fecha",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Por supuesto. Preparo el contrato nuevo con el precio que hemos dicho y se lo traigo para firmar.", "fr": "Bien entendu. Je prépare le nouveau contrat avec le prix convenu et je vous l'apporte à signer."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Por supuesto. Preparo el contrato nuevo con el precio que hemos dicho y se lo traigo para firmar.", "fr": "Bien entendu. Je prépare le nouveau contrat avec le prix convenu et je vous l'apporte à signer."}]},
     {"t": "Prefiero que todo quede por escrito, si no le importa.", "fr": "Je préfère que tout soit mis par écrit, si cela ne vous dérange pas.", "va": "fecha",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Faltaría más. Preparo el contrato nuevo con el precio que hemos dicho y se lo traigo para firmar.", "fr": "C'est bien normal. Je prépare le nouveau contrat avec le prix convenu et je vous l'apporte à signer."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Faltaría más. Preparo el contrato nuevo con el precio que hemos dicho y se lo traigo para firmar.", "fr": "C'est bien normal. Je prépare le nouveau contrat avec le prix convenu et je vous l'apporte à signer."}]},
     {"faux": true, "t": "¿Podemos ponerlo por escrito? Es más seguro por mí.", "fr": "On peut le mettre par écrit ? C'est plus sûr pour moi.",
-     "puis": [{"qui": "b11_proprietaire", "air": "perplexe", "t": "¿Más seguro… para usted? Sí, claro, y para mí también.", "fr": "Plus sûr… pour vous ? Oui, bien sûr, et pour moi aussi."}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Más seguro… para usted? Sí, claro, y para mí también.", "fr": "Plus sûr… pour vous ? Oui, bien sûr, et pour moi aussi."}],
      "aide": {"fr": "« Pour moi » (dans mon intérêt) se dit <b>« para mí »</b>, pas « por mí ». Dis plutôt : « Prefiero que todo quede por escrito »."}}
    ]
   },
   "fecha": {
-   "dit": [{"qui": "b11_proprietaire", "air": "question", "t": "¿Alguna cosa más?", "fr": "Autre chose ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "¿Alguna cosa más?", "fr": "Autre chose ?"}],
    "choix": [
     {"t": "Sí. ¿A partir de cuándo tengo que pagar el nuevo alquiler?", "fr": "Oui. À partir de quand dois-je payer le nouveau loyer ?", "va": "despedida",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "A partir del uno de enero. Hasta entonces, todo sigue igual.", "fr": "À partir du premier janvier. D'ici là, rien ne change."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "A partir del uno de enero. Hasta entonces, todo sigue igual.", "fr": "À partir du premier janvier. D'ici là, rien ne change."}]},
     {"si": {"trato": "arreglos"}, "t": "Sí. ¿Para cuándo estarían hechos los arreglos?", "fr": "Oui. Pour quand les réparations seraient-elles faites ?", "va": "acceso"},
     {"si": {"trato": "rebaja"}, "t": "Sí. ¿Y la fianza? ¿Se queda como está?", "fr": "Oui. Et la caution ? Elle reste comme elle est ?", "va": "despedida",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Sí, la fianza no la toco, no se preocupe.", "fr": "Oui, la caution, je n'y touche pas, ne vous inquiétez pas."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí, la fianza no la toco, no se preocupe.", "fr": "Oui, la caution, je n'y touche pas, ne vous inquiétez pas."}]},
     {"faux": true, "t": "Sí. ¿Cuándo comienzo de pagar el nuevo alquiler?", "fr": "Oui. Quand est-ce que je commence de payer le nouveau loyer ?",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "¿Que cuándo empieza a pagarlo? Ahora se lo digo.", "fr": "Quand vous commencez à le payer ? Je vous le dis tout de suite."}],
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¿Que cuándo empieza a pagarlo? Ahora se lo digo.", "fr": "Quand vous commencez à le payer ? Je vous le dis tout de suite."}],
      "aide": {"fr": "« Commencer à » se dit <b>« empezar a »</b> (ou « comenzar a »), jamais avec « de ». Dis plutôt : « ¿A partir de cuándo tengo que pagar el nuevo alquiler? »."}}
    ]
   },
   "acceso": {
-   "dit": [{"qui": "b11_proprietaire", "air": "question", "t": "Antes de que acabe el mes. El técnico tiene que entrar en el piso: ¿le viene mejor por la mañana o por la tarde?", "fr": "Avant la fin du mois. Le technicien doit entrer dans l'appartement : le matin ou l'après-midi, qu'est-ce qui vous arrange ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Antes de que acabe el mes. El técnico tiene que entrar en el piso: ¿le viene mejor por la mañana o por la tarde?", "fr": "Avant la fin du mois. Le technicien doit entrer dans l'appartement : le matin ou l'après-midi, qu'est-ce qui vous arrange ?"}],
    "choix": [
     {"t": "Mejor por la tarde, porque por la mañana trabajo.", "fr": "Plutôt l'après-midi, parce que le matin je travaille.", "va": "despedida",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Por la tarde, entonces. Se lo digo al técnico.", "fr": "L'après-midi, alors. Je le dis au technicien."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Por la tarde, entonces. Se lo digo al técnico.", "fr": "L'après-midi, alors. Je le dis au technicien."}]},
     {"t": "Por la mañana, pero avíseme un día antes, por favor.", "fr": "Le matin, mais prévenez-moi un jour avant, s'il vous plaît.", "va": "despedida",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Descuide, le aviso con tiempo.", "fr": "Soyez tranquille, je vous préviens à l'avance."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Descuide, le aviso con tiempo.", "fr": "Soyez tranquille, je vous préviens à l'avance."}]},
     {"faux": true, "t": "Por la tarde. Cuando el técnico vendrá, estaré en casa.", "fr": "L'après-midi. Quand le technicien viendra, je serai à la maison.",
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Cuando venga, sí. Por la tarde, entonces.", "fr": "Quand il viendra, oui. L'après-midi, alors."}],
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Cuando venga, sí. Por la tarde, entonces.", "fr": "Quand il viendra, oui. L'après-midi, alors."}],
      "aide": {"fr": "Après <b>« cuando »</b>, pour un fait à venir, l'espagnol met le subjonctif, pas le futur : « cuando venga el técnico ». Plus simple : « Mejor por la tarde, porque por la mañana trabajo »."}}
    ]
   },
   "despedida": {
-   "dit": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Entonces quedamos así. Le llamo la semana que viene para firmar.", "fr": "Alors c'est entendu. Je vous appelle la semaine prochaine pour signer."}],
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Entonces quedamos así. Le llamo la semana que viene para firmar.", "fr": "Alors c'est entendu. Je vous appelle la semaine prochaine pour signer."}],
    "choix": [
     {"t": "Perfecto. Muchas gracias por venir y por escucharme.", "fr": "Parfait. Merci beaucoup d'être venue et de m'avoir écouté(e).", "va": null,
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Gracias a usted. Así da gusto. ¡Hasta la semana que viene!", "fr": "Merci à vous. C'est un plaisir, dans ces conditions. À la semaine prochaine !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Gracias a usted. Así da gusto. ¡Hasta la semana que viene!", "fr": "Merci à vous. C'est un plaisir, dans ces conditions. À la semaine prochaine !"}]},
     {"t": "De acuerdo, espero su llamada. Que pase una buena tarde.", "fr": "D'accord, j'attends votre appel. Passez une bonne soirée.", "va": null,
-     "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Igualmente. ¡Hasta la semana que viene!", "fr": "Vous de même. À la semaine prochaine !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Igualmente. ¡Hasta la semana que viene!", "fr": "Vous de même. À la semaine prochaine !"}]},
     {"faux": true, "t": "Perfecto. Hasta la semana que viene, y gracias por tu comprensión.", "fr": "Parfait. À la semaine prochaine, et merci pour ta compréhension.",
-     "puis": [{"qui": "b11_proprietaire", "air": "surprise", "t": "Eh… de nada, de nada.", "fr": "Euh… je vous en prie."}],
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Eh… de nada, de nada.", "fr": "Euh… je vous en prie."}],
      "aide": {"fr": "<b>« tu comprensión »</b> tutoie la propriétaire. Au usted, le possessif est « su ». Dis plutôt : « Muchas gracias por venir y por escucharme »."}}
    ]
   }
