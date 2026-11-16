@@ -77,3 +77,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **« Ben potrzebuje » + génitif** : « zeszytu », « dwóch zeszytów », « pięciu linijek ».
 3. **La matière à l'accusatif** : « Ben ma matematykę / plastykę / muzykę / przyrodę ».
 4. **Les vacances** : « 28 grudnia Ben ma wolne od szkoły » (ni « ferie » ni « wakacje », qui dépendent de la saison).
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js`. À relire :
+
+1. **Les prénoms à l'accusatif** : « zaprasza Annę / Feliksa / Lenę », Sophie et Katrin indéclinables.
+2. **Fest / Feier / Einweihungsparty** : « przyjęcie », « uroczystość », « parapetówka ».
+3. **« Dziś Anna ma urodziny »** ; Silvester « sylwester » (minuscule).
+4. **Le délai** : « Anna musi odpowiedzieć do środy ».

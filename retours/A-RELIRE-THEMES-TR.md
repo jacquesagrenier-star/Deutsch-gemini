@@ -81,3 +81,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **L'heure et le mois prennent le suffixe du dernier mot lu** : « saat 8.45'te », « saat 10.40'ta », « 28 Aralık'ta », « 1 Ocak'ta », « 3 Nisan'da ».
 3. **Kita / Kindergarten** : « kreş » et « anaokulu » ; **Anna**, la tante paternelle de Mia : « halası ».
 4. **Le mot d'absence** : « Ben Pazartesi ve Salı okula gelemiyor, çünkü hasta. »
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js`. À relire :
+
+1. **Les prénoms à l'accusatif et au génitif** : « Anna'yı », « Felix'i », « Sophie'yi », « Bugün Anna'nın doğum günü ».
+2. **Le souhait de Silvester** : « İyi yıllar! » (« Bonne fin d'année ») ; de Neujahr « Mutlu yıllar! ».
+3. **L'agenda** : « Pazartesi günü olmaz: çalışmam gerekiyor. Salı günü nasıl? » ; « Parti saat 19.00'da başlıyor ».
+4. **La pendaison de crémaillère** : « yeni ev partisi » (Einweihungsparty).

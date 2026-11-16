@@ -78,3 +78,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **Kita / Kindergarten** : « дитсадок » et « дитячий садок » (deux noms proches pour deux mots allemands proches).
 3. **Le mois au génitif** : « 28 грудня у Бена канікули ».
 4. **L'emploi du temps** : « У понеділок на третьому уроці в Бена математика ».
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js`. À relire :
+
+1. **Les prénoms à l'accusatif** : « запрошує Анну / Фелікса » ; Sophie et Katrin indéclinables (« Софі », « Катрін »).
+2. **Le possessif réfléchi** : « на своє свято », « на свій день народження », « на своє новосілля ».
+3. **Silvester** : « новорічна ніч », le souhait « З наступаючим Новим роком! » ; Felix « зустрічає Новий рік ».
+4. **« J'ai le temps »** neutre (« в мене є час ») plutôt que « я вільний / вільна », la personne pouvant être une femme.

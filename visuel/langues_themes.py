@@ -76,9 +76,11 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # lot 3 (16 nov.) : les contraires dans les six langues, phrase par phrase dans le generateur (visuel/contrarios/langues.py)
 # lot 4 (16 nov.) : les demarches dans les six langues, morceaux et grammaire dans la page (visuel/prototype/demarches/langues.js)
 # lot 5 (16 nov.) : l'ecole dans les six langues, de meme (visuel/prototype/ecole/langues.js)
+# lot 6 (16 nov.) : les fetes et invitations dans les six langues, de meme (visuel/prototype/fetes/langues.js)
 BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "ecole": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "ecole": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            "fetes": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

@@ -45,3 +45,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **Anna**, tante paternelle de Mia : « عمه‌اش » ; « کاترین, مادرش » garde la virgule latine de la page (à remplacer par « ، » ?).
 3. **L'emploi du temps** : « دوشنبه، زنگ سوم، بن ریاضی دارد ».
 4. **La date** : « روز 28 دسامبر، بن در تعطیلات است » (mois du calendrier grégorien).
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js`. À relire :
+
+1. **Les prénoms** : آنا، لنا، فلیکس، سوفی، یان، کاترین، گیزلا، هاینتس.
+2. **L'invitation** : « مهمانی » pour die Party, « جشن » pour die Feier, « ناهار » pour le repas de Noël des grands-parents.
+3. **Le défini avec « را »** : « مارک کیک را می‌آورد » / l'indéfini « مارک یک کیک می‌آورد ».
+4. **Le souhait de la fête des Mères** : « روز مادر مبارک، مامان! ».

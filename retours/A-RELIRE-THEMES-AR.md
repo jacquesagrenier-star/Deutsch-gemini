@@ -48,3 +48,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **Le verbe accordé avec qui va chercher Mia** : « تصطحب كاترين / آنا », « يصطحب يان / مارك ».
 3. **Les mois** : « يناير … ديسمبر » (et non « كانون الثاني … ») ; « في 28 ديسمبر، يكون بن في العطلة ».
 4. **Pour qui apprend l'espagnol** : la matière « Lengua » est « الإسبانية » ; « ترسم ميا في الحضانة ».
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le verbe accordé avec qui agit** : « تدعو / يدعو », « تُحضر آنا / يُحضر مارك », « تبدأ الحفلة / يبدأ الغداء ».
+2. **Le souhait de Silvester** : « كل عام وأنتم بخير! » ; Neujahr « سنة سعيدة! ».
+3. **Le délai** : « على آنا أن ترد قبل يوم الأربعاء » (« avant » mercredi, pour « bis Mittwoch »).
+4. **Pour qui apprend l'espagnol** : « عيد الملوك المجوس » (Día de Reyes), « أسبوع الآلام » (Semana Santa), « يوم الموتى (في المكسيك) ».

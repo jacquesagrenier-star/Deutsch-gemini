@@ -80,3 +80,12 @@ La page assemble maintenant ses phrases traduites (les fournitures comptées, o�
 2. **Kita / Kindergarten** : « детский сад » et « садик ».
 3. **Le mot d'absence** : « Бена не будет в школе в понедельник и во вторник, потому что он болен ».
 4. **Sachunterricht** : « окружающий мир » (la matière de l'école primaire russe).
+
+## Lot 6, 16 nov. : « Fêtes et invitations »
+
+La page assemble maintenant ses phrases traduites (la fête et sa date, le souhait, qui apporte quoi, la réponse selon l'agenda, la contre-proposition, l'ordre des mots, la carte d'invitation) à partir de morceaux posés dans `visuel/prototype/fetes/langues.js`. À relire :
+
+1. **Les prénoms à l'accusatif et au génitif** : « приглашает Анну », « Сегодня у Анны день рождения » ; Софи, Катрин indéclinables.
+2. **Le délai accordé** : « Анна должна / Феликс должен ответить до среды ».
+3. **Silvester** : « новогодняя ночь », « С наступающим Новым годом! » ; « Феликс встречает Новый год ».
+4. **Le possessif réfléchi** : « на свой праздник », « на своё новоселье ».
