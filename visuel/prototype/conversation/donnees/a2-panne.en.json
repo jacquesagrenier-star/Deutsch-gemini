@@ -5,7 +5,7 @@
  "registre": "poli",
  "titre": {"fr": "Le chauffage en panne"},
  "intro": {"fr": "Novembre à Boston : le chauffage de ton appartement ne marche plus. Tu appelles ta propriétaire."},
- "personnes": ["vermieterin-carmen"],
+ "personnes": ["vermieterin"],
  "debut": "hello",
  "textes": {
   "visite_fr": {"cle": "visite", "morning": "demain entre huit et dix heures", "afternoon": "demain entre deux et quatre heures de l'après-midi"}
@@ -14,81 +14,81 @@
   "hello": {
    "dit": [
     {"recit": {"fr": "Ce matin, les radiateurs sont froids. Tu appelles ta propriétaire, Mme Carter."}},
-    {"qui": "vermieterin-carmen", "air": "sourire", "t": "Hello?", "fr": "Allô ?"}
+    {"qui": "vermieterin", "air": "sourire", "t": "Hello?", "fr": "Allô ?"}
    ],
    "choix": [
     {"t": "Hello, Mrs. Carter? Good morning.", "t_gb": "Hello, Mrs Carter? Good morning.", "fr": "Allô, madame Carter ? Bonjour.", "va": "who",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Yes, speaking. Good morning!", "fr": "Oui, c'est moi. Bonjour !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Yes, speaking. Good morning!", "fr": "Oui, c'est moi. Bonjour !"}]},
     {"t": "Good morning, Mrs. Carter. I hope I'm not calling too early.", "t_gb": "Good morning, Mrs Carter. I hope I'm not calling too early.", "fr": "Bonjour, madame Carter. J'espère que je n'appelle pas trop tôt.", "va": "who",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Good morning! No, not at all.", "fr": "Bonjour ! Non, pas du tout."}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Good morning! No, not at all.", "fr": "Bonjour ! Non, pas du tout."}]}
    ]
   },
   "who": {
-   "dit": [{"qui": "vermieterin-carmen", "air": "question", "t": "Who's calling, please?", "fr": "Qui est à l'appareil, s'il vous plaît ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Who's calling, please?", "fr": "Qui est à l'appareil, s'il vous plaît ?"}],
    "choix": [
     {"t": "It's your tenant from apartment four.", "t_gb": "It's your tenant from flat four.", "fr": "C'est votre locataire de l'appartement quatre.", "va": "problem",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Oh yes, hello!", "fr": "Ah oui, bonjour !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Oh yes, hello!", "fr": "Ah oui, bonjour !"}]},
     {"t": "I live in your building. I rent apartment four.", "t_gb": "I live in your building. I rent flat four.", "fr": "J'habite dans votre immeuble. Je loue l'appartement quatre.", "va": "problem",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Oh yes, hello!", "fr": "Ah oui, bonjour !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Oh yes, hello!", "fr": "Ah oui, bonjour !"}]}
    ]
   },
   "problem": {
-   "dit": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "Is everything okay with the apartment?", "t_gb": "Is everything okay with the flat?", "fr": "Tout va bien dans l'appartement ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Is everything okay with the apartment?", "t_gb": "Is everything okay with the flat?", "fr": "Tout va bien dans l'appartement ?"}],
    "choix": [
     {"t": "No. The heat isn't working.", "t_gb": "No. The heating isn't working.", "fr": "Non. Le chauffage ne marche pas.", "va": "since",
-     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "Oh no! In November!", "fr": "Oh non ! En novembre !"}]},
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Oh no! In November!", "fr": "Oh non ! En novembre !"}]},
     {"t": "I have a problem. The radiators are cold.", "fr": "J'ai un problème. Les radiateurs sont froids.", "va": "since",
-     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "Oh no! In November!", "fr": "Oh non ! En novembre !"}]},
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Oh no! In November!", "fr": "Oh non ! En novembre !"}]},
     {"faux": true, "t": "No. The heat doesn't walk.", "t_gb": "No. The heating doesn't walk.", "fr": "Non. Le chauffage ne marche pas. (à pied)",
-     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "It doesn't … walk? Where should it go? Oh, it doesn't work!", "fr": "Il ne… marche pas à pied ? Où devrait-il aller ? Ah, il ne fonctionne pas !"}],
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "It doesn't … walk? Where should it go? Oh, it doesn't work!", "fr": "Il ne… marche pas à pied ? Où devrait-il aller ? Ah, il ne fonctionne pas !"}],
      "aide": {"fr": "<b>« to walk », c'est marcher à pied.</b> Pour un appareil qui marche, on dit « to work » : « The heat isn't working » (« the heating » en anglais britannique)."}}
    ]
   },
   "since": {
-   "dit": [{"qui": "vermieterin-carmen", "air": "question", "t": "Since when?", "fr": "Depuis quand ?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Since when?", "fr": "Depuis quand ?"}],
    "choix": [
     {"t": "Since last night.", "fr": "Depuis hier soir.", "va": "visit",
-     "puis": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "I see. I'll call the technician right away.", "fr": "Je vois. J'appelle le technicien tout de suite."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "I see. I'll call the technician right away.", "fr": "Je vois. J'appelle le technicien tout de suite."}]},
     {"t": "Since this morning. It was fine yesterday.", "fr": "Depuis ce matin. Hier, tout allait bien.", "va": "visit",
-     "puis": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "I see. I'll call the technician right away.", "fr": "Je vois. J'appelle le technicien tout de suite."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "I see. I'll call the technician right away.", "fr": "Je vois. J'appelle le technicien tout de suite."}]},
     {"faux": true, "t": "It makes one day.", "fr": "Ça fait un jour. (mot à mot)",
-     "puis": [{"qui": "vermieterin-carmen", "air": "perplexe", "t": "It makes … what? Oh, for one day. Since yesterday!", "fr": "Ça fait… quoi ? Ah, depuis un jour. Depuis hier !"}],
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "It makes … what? Oh, for one day. Since yesterday!", "fr": "Ça fait… quoi ? Ah, depuis un jour. Depuis hier !"}],
      "aide": {"fr": "<b>« Ça fait un jour » ne se dit pas avec « make ».</b> On répond avec « since » et le moment où ça a commencé : « Since yesterday » ou « Since last night »."}}
    ]
   },
   "visit": {
-   "dit": [{"qui": "vermieterin-carmen", "air": "question", "t": "He can come tomorrow between 8:00 and 10:00. Can you be home?", "t_gb": "He can come tomorrow between 8:00 and 10:00. Can you be at home?", "fr": "Il peut venir demain entre 8 h et 10 h. Vous pouvez être là ?", "dit": "He can come tomorrow between eight and ten. Can you be home?", "dit_gb": "He can come tomorrow between eight and ten. Can you be at home?"}],
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "He can come tomorrow between 8:00 and 10:00. Can you be home?", "t_gb": "He can come tomorrow between 8:00 and 10:00. Can you be at home?", "fr": "Il peut venir demain entre 8 h et 10 h. Vous pouvez être là ?", "dit": "He can come tomorrow between eight and ten. Can you be home?", "dit_gb": "He can come tomorrow between eight and ten. Can you be at home?"}],
    "choix": [
     {"t": "Yes, I can be home tomorrow morning.", "t_gb": "Yes, I can be at home tomorrow morning.", "fr": "Oui, je peux être à la maison demain matin.", "pose": {"visite": "morning"}, "va": "meanwhile",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Perfect.", "fr": "Parfait."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect.", "fr": "Parfait."}]},
     {"t": "No, I work in the morning. Is the afternoon possible?", "fr": "Non, je travaille le matin. L'après-midi, c'est possible ?", "pose": {"visite": "afternoon"}, "va": "meanwhile",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Let me see … yes. Between 2:00 and 4:00, then.", "fr": "Voyons… oui. Entre 14 h et 16 h, alors.", "dit": "Let me see … yes. Between two and four, then."}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Let me see … yes. Between 2:00 and 4:00, then.", "fr": "Voyons… oui. Entre 14 h et 16 h, alors.", "dit": "Let me see … yes. Between two and four, then."}]},
     {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "visit",
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "Of course. Tomorrow morning, between 8:00 and 10:00. Will you be there?", "fr": "Bien sûr. Demain matin, entre 8 h et 10 h. Vous serez là ?", "dit": "Of course. Tomorrow morning, between eight and ten. Will you be there?"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Of course. Tomorrow morning, between 8:00 and 10:00. Will you be there?", "fr": "Bien sûr. Demain matin, entre 8 h et 10 h. Vous serez là ?", "dit": "Of course. Tomorrow morning, between eight and ten. Will you be there?"}]}
    ]
   },
   "meanwhile": {
-   "dit": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "Is it very cold in the apartment right now?", "t_gb": "Is it very cold in the flat right now?", "fr": "Il fait très froid dans l'appartement en ce moment ?"}],
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Is it very cold in the apartment right now?", "t_gb": "Is it very cold in the flat right now?", "fr": "Il fait très froid dans l'appartement en ce moment ?"}],
    "choix": [
     {"t": "Yes, I'm cold, even with a sweater.", "t_gb": "Yes, I'm cold, even with a jumper.", "fr": "Oui, j'ai froid, même avec un pull.", "va": "bye",
-     "puis": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "You poor thing! I have a small electric heater. I'll bring it over tonight.", "fr": "Mon pauvre ! J'ai un petit radiateur électrique. Je vous l'apporte ce soir."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "You poor thing! I have a small electric heater. I'll bring it over tonight.", "fr": "Mon pauvre ! J'ai un petit radiateur électrique. Je vous l'apporte ce soir."}]},
     {"t": "It's okay for now, but the nights are cold.", "fr": "Ça va pour l'instant, mais les nuits sont froides.", "va": "bye",
-     "puis": [{"qui": "vermieterin-carmen", "air": "attentive", "t": "Of course. I have a small electric heater. I'll bring it over tonight.", "fr": "Bien sûr. J'ai un petit radiateur électrique. Je vous l'apporte ce soir."}]},
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Of course. I have a small electric heater. I'll bring it over tonight.", "fr": "Bien sûr. J'ai un petit radiateur électrique. Je vous l'apporte ce soir."}]},
     {"faux": true, "t": "Yes, I have cold.", "fr": "Oui, j'ai un rhume. (presque)",
-     "puis": [{"qui": "vermieterin-carmen", "air": "surprise", "t": "You have a cold? Oh no, are you sick? Or do you mean you're cold?", "t_gb": "You have a cold? Oh no, are you ill? Or do you mean you're cold?", "fr": "Vous avez un rhume ? Oh non, vous êtes malade ? Ou voulez-vous dire que vous avez froid ?"}],
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "You have a cold? Oh no, are you sick? Or do you mean you're cold?", "t_gb": "You have a cold? Oh no, are you ill? Or do you mean you're cold?", "fr": "Vous avez un rhume ? Oh non, vous êtes malade ? Ou voulez-vous dire que vous avez froid ?"}],
      "aide": {"fr": "<b>« Avoir froid » se dit avec « be » : « I'm cold ».</b> « I have a cold » veut dire « j'ai un rhume »."}}
    ]
   },
   "bye": {
    "dit": [
-    {"si": {"visite": "morning"}, "qui": "vermieterin-carmen", "air": "sourire", "t": "So: the heater tonight, and the technician tomorrow between 8:00 and 10:00. Okay?", "fr": "Donc : le radiateur ce soir, et le technicien demain entre 8 h et 10 h. D'accord ?", "dit": "So: the heater tonight, and the technician tomorrow between eight and ten. Okay?"},
-    {"si": {"visite": "afternoon"}, "qui": "vermieterin-carmen", "air": "sourire", "t": "So: the heater tonight, and the technician tomorrow between 2:00 and 4:00. Okay?", "fr": "Donc : le radiateur ce soir, et le technicien demain entre 14 h et 16 h. D'accord ?", "dit": "So: the heater tonight, and the technician tomorrow between two and four. Okay?"}
+    {"si": {"visite": "morning"}, "qui": "vermieterin", "air": "sourire", "t": "So: the heater tonight, and the technician tomorrow between 8:00 and 10:00. Okay?", "fr": "Donc : le radiateur ce soir, et le technicien demain entre 8 h et 10 h. D'accord ?", "dit": "So: the heater tonight, and the technician tomorrow between eight and ten. Okay?"},
+    {"si": {"visite": "afternoon"}, "qui": "vermieterin", "air": "sourire", "t": "So: the heater tonight, and the technician tomorrow between 2:00 and 4:00. Okay?", "fr": "Donc : le radiateur ce soir, et le technicien demain entre 14 h et 16 h. D'accord ?", "dit": "So: the heater tonight, and the technician tomorrow between two and four. Okay?"}
    ],
    "choix": [
     {"t": "Perfect. Thank you very much!", "fr": "Parfait. Merci beaucoup !", "va": null,
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "You're welcome. Stay warm! Bye!", "fr": "Je vous en prie. Restez au chaud ! Au revoir !"}]},
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "You're welcome. Stay warm! Bye!", "fr": "Je vous en prie. Restez au chaud ! Au revoir !"}]},
     {"t": "That's great. Thanks for your help. Goodbye!", "fr": "C'est très bien. Merci pour votre aide. Au revoir !", "va": null,
-     "puis": [{"qui": "vermieterin-carmen", "air": "sourire", "t": "You're welcome. Stay warm! Bye!", "fr": "Je vous en prie. Restez au chaud ! Au revoir !"}]}
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "You're welcome. Stay warm! Bye!", "fr": "Je vous en prie. Restez au chaud ! Au revoir !"}]}
    ]
   }
  },

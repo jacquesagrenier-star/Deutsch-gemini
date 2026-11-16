@@ -5,13 +5,13 @@
  "registre": "Sie",
  "titre": {"fr": "Le bruit du voisin"},
  "intro": {"fr": "Il est tard, la musique du voisin du dessus t'empêche de dormir. Tu montes lui parler, poliment."},
- "personnes": ["nachbar-javier"],
+ "personnes": ["nachbar-hugo"],
  "debut": "tuer",
  "noeuds": {
   "tuer": {
    "dit": [
     {"recit": {"fr": "Onze heures du soir, à Berlin. Au-dessus, la musique est très forte, et demain tu travailles tôt. Tu montes et tu sonnes."}},
-    {"qui": "nachbar-javier", "air": "sourire", "t": "Ja? Oh, hallo! Kommen Sie zur Party?", "fr": "Oui ? Oh, bonsoir ! Vous venez pour la fête ?"}
+    {"qui": "nachbar-hugo", "air": "sourire", "t": "Ja? Oh, hallo! Kommen Sie zur Party?", "fr": "Oui ? Oh, bonsoir ! Vous venez pour la fête ?"}
    ],
    "choix": [
     {"t": "Guten Abend. Nein, ich wohne direkt unter Ihnen.", "fr": "Bonsoir. Non, j'habite juste en dessous de chez vous.", "va": "problem"},
@@ -20,63 +20,63 @@
   },
   "problem": {
    "dit": [
-    {"qui": "nachbar-javier", "air": "attentive", "t": "Ach so! Guten Abend. Gibt es ein Problem?", "fr": "Ah, d'accord ! Bonsoir. Il y a un problème ?"}
+    {"qui": "nachbar-hugo", "air": "attentive", "t": "Ach so! Guten Abend. Gibt es ein Problem?", "fr": "Ah, d'accord ! Bonsoir. Il y a un problème ?"}
    ],
    "choix": [
     {"t": "Die Musik ist leider sehr laut. Ich kann nicht schlafen.", "fr": "La musique est malheureusement très forte. Je n'arrive pas à dormir.", "va": "geburtstag",
-     "puis": [{"qui": "nachbar-javier", "air": "attentive", "t": "Oh, Entschuldigung! Das habe ich nicht gemerkt.", "fr": "Oh, pardon ! Je ne m'en suis pas rendu compte."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "attentive", "t": "Oh, Entschuldigung! Das habe ich nicht gemerkt.", "fr": "Oh, pardon ! Je ne m'en suis pas rendu compte."}]},
     {"t": "Es tut mir leid, aber die Musik ist sehr laut. Ich muss morgen früh arbeiten.", "fr": "Je suis désolé(e), mais la musique est très forte. Je dois travailler tôt demain.", "va": "geburtstag",
-     "puis": [{"qui": "nachbar-javier", "air": "attentive", "t": "Oh, das tut mir leid! Das habe ich nicht gemerkt.", "fr": "Oh, je suis désolé ! Je ne m'en suis pas rendu compte."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "attentive", "t": "Oh, das tut mir leid! Das habe ich nicht gemerkt.", "fr": "Oh, je suis désolé ! Je ne m'en suis pas rendu compte."}]},
     {"faux": true, "t": "Machen Sie die Musik leise!", "fr": "Baissez la musique !",
-     "puis": [{"qui": "nachbar-javier", "air": "perplexe", "t": "Na, na … Das ist aber nicht sehr freundlich.", "fr": "Eh bien… Ce n'est pas très aimable."}],
+     "puis": [{"qui": "nachbar-hugo", "air": "perplexe", "t": "Na, na … Das ist aber nicht sehr freundlich.", "fr": "Eh bien… Ce n'est pas très aimable."}],
      "aide": {"fr": "<b>Un impératif sec sonne comme un ordre.</b> Explique d'abord, gentiment : « Die Musik ist leider sehr laut » ; ou demande : « Könnten Sie die Musik bitte leiser machen? »."}}
    ]
   },
   "geburtstag": {
    "dit": [
-    {"qui": "nachbar-javier", "air": "sourire", "t": "Wissen Sie, ich habe heute Geburtstag. Meine Familie und meine Freunde sind da.", "fr": "Vous savez, c'est mon anniversaire aujourd'hui. Ma famille et mes amis sont là."}
+    {"qui": "nachbar-hugo", "air": "sourire", "t": "Wissen Sie, ich habe heute Geburtstag. Meine Familie und meine Freunde sind da.", "fr": "Vous savez, c'est mon anniversaire aujourd'hui. Ma famille et mes amis sont là."}
    ],
    "choix": [
     {"t": "Oh, herzlichen Glückwunsch zum Geburtstag!", "fr": "Oh, joyeux anniversaire !", "va": "leiser"},
     {"t": "Ach so! Alles Gute zum Geburtstag!", "fr": "Ah, d'accord ! Bon anniversaire !", "va": "leiser"},
     {"faux": true, "t": "Glücklichen Geburtstag!", "fr": "Joyeux anniversaire ! (mot à mot)",
-     "puis": [{"qui": "nachbar-javier", "air": "perplexe", "t": "Glücklichen …? Ach so, danke! Wir sagen: Alles Gute zum Geburtstag!", "fr": "« Glücklichen »… ? Ah, merci ! Chez nous, on dit : « Alles Gute zum Geburtstag » !"}],
+     "puis": [{"qui": "nachbar-hugo", "air": "perplexe", "t": "Glücklichen …? Ach so, danke! Wir sagen: Alles Gute zum Geburtstag!", "fr": "« Glücklichen »… ? Ah, merci ! Chez nous, on dit : « Alles Gute zum Geburtstag » !"}],
      "aide": {"fr": "<b>« Joyeux anniversaire »</b> ne se traduit pas mot à mot. On dit <b>« Alles Gute zum Geburtstag! »</b> ou « Herzlichen Glückwunsch zum Geburtstag! »."}}
    ]
   },
   "leiser": {
    "dit": [
-    {"qui": "nachbar-javier", "air": "question", "t": "Danke! Wir machen die Musik sofort leiser. Dürfen wir trotzdem noch ein bisschen feiern?", "fr": "Merci ! On baisse la musique tout de suite. On peut quand même encore faire un peu la fête ?"}
+    {"qui": "nachbar-hugo", "air": "question", "t": "Danke! Wir machen die Musik sofort leiser. Dürfen wir trotzdem noch ein bisschen feiern?", "fr": "Merci ! On baisse la musique tout de suite. On peut quand même encore faire un peu la fête ?"}
    ],
    "choix": [
     {"t": "Ja, natürlich. Aber bitte nicht zu laut.", "fr": "Oui, bien sûr. Mais pas trop fort, s'il vous plaît.", "va": "einladung",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Versprochen!", "fr": "Promis !"}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Versprochen!", "fr": "Promis !"}]},
     {"t": "Ja, kein Problem. Vielleicht bis Mitternacht?", "fr": "Oui, pas de problème. Peut-être jusqu'à minuit ?", "va": "einladung",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Bis Mitternacht, versprochen!", "fr": "Jusqu'à minuit, promis !"}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Bis Mitternacht, versprochen!", "fr": "Jusqu'à minuit, promis !"}]},
     {"repete": true, "t": "Entschuldigung, können Sie das noch einmal sagen?", "fr": "Pardon, vous pouvez le redire ?", "va": "leiser",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Die Musik wird leiser. Aber wir feiern noch ein bisschen. Ist das okay?", "fr": "La musique sera moins forte. Mais on fait encore un peu la fête. Ça vous va ?"}]}
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Die Musik wird leiser. Aber wir feiern noch ein bisschen. Ist das okay?", "fr": "La musique sera moins forte. Mais on fait encore un peu la fête. Ça vous va ?"}]}
    ]
   },
   "einladung": {
    "dit": [
-    {"qui": "nachbar-javier", "air": "sourire", "t": "Möchten Sie nicht kurz reinkommen? Wir haben noch viel Kuchen!", "fr": "Vous ne voulez pas entrer un moment ? Il nous reste beaucoup de gâteau !"}
+    {"qui": "nachbar-hugo", "air": "sourire", "t": "Möchten Sie nicht kurz reinkommen? Wir haben noch viel Kuchen!", "fr": "Vous ne voulez pas entrer un moment ? Il nous reste beaucoup de gâteau !"}
    ],
    "choix": [
     {"t": "Gern, aber nur fünf Minuten.", "fr": "Volontiers, mais seulement cinq minutes.", "pose": {"rein": "ja"}, "va": "kuchen",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Super, kommen Sie rein!", "fr": "Super, entrez !"}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Super, kommen Sie rein!", "fr": "Super, entrez !"}]},
     {"t": "Das ist nett, aber ich muss schlafen. Vielleicht nächstes Mal!", "fr": "C'est gentil, mais je dois dormir. Peut-être la prochaine fois !", "pose": {"rein": "nein"}, "va": "kuchen",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Natürlich, das verstehe ich.", "fr": "Bien sûr, je comprends."}]}
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Natürlich, das verstehe ich.", "fr": "Bien sûr, je comprends."}]}
    ]
   },
   "kuchen": {
    "dit": [
     {"si": {"rein": "ja"}, "recit": {"fr": "Tu entres. On te sert une part de gâteau au chocolat."}},
-    {"si": {"rein": "ja"}, "qui": "nachbar-javier", "air": "question", "t": "Und, wie schmeckt der Kuchen?", "fr": "Alors, il est bon, ce gâteau ?"},
-    {"si": {"rein": "nein"}, "qui": "nachbar-javier", "air": "sourire", "t": "Warten Sie, ich gebe Ihnen ein Stück Kuchen für morgen mit!", "fr": "Attendez, je vous donne une part de gâteau pour demain !"}
+    {"si": {"rein": "ja"}, "qui": "nachbar-hugo", "air": "question", "t": "Und, wie schmeckt der Kuchen?", "fr": "Alors, il est bon, ce gâteau ?"},
+    {"si": {"rein": "nein"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Warten Sie, ich gebe Ihnen ein Stück Kuchen für morgen mit!", "fr": "Attendez, je vous donne une part de gâteau pour demain !"}
    ],
    "choix": [
     {"si": {"rein": "ja"}, "t": "Sehr lecker! Haben Sie ihn selbst gemacht?", "fr": "Délicieux ! C'est vous qui l'avez fait ?", "va": "nacht",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Nein, meine Schwester. Sie backt sehr gut!", "fr": "Non, ma sœur. Elle fait très bien les gâteaux !"}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Nein, meine Schwester. Sie backt sehr gut!", "fr": "Non, ma sœur. Elle fait très bien les gâteaux !"}]},
     {"si": {"rein": "ja"}, "t": "Mmm, der ist wirklich gut!", "fr": "Mmm, il est vraiment bon !", "va": "nacht"},
     {"si": {"rein": "nein"}, "t": "Oh, danke, das ist sehr nett!", "fr": "Oh, merci, c'est très gentil !", "va": "nacht"},
     {"si": {"rein": "nein"}, "t": "Wie nett! Vielen Dank.", "fr": "Comme c'est gentil ! Merci beaucoup.", "va": "nacht"}
@@ -84,7 +84,7 @@
   },
   "nacht": {
    "dit": [
-    {"qui": "nachbar-javier", "air": "sourire", "t": "Danke, dass Sie so freundlich waren. Gute Nacht!", "fr": "Merci d'avoir été si aimable. Bonne nuit !"}
+    {"qui": "nachbar-hugo", "air": "sourire", "t": "Danke, dass Sie so freundlich waren. Gute Nacht!", "fr": "Merci d'avoir été si aimable. Bonne nuit !"}
    ],
    "choix": [
     {"t": "Gute Nacht, und feiern Sie schön!", "fr": "Bonne nuit, et bonne fête !", "va": null},

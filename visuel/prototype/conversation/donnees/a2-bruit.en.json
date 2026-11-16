@@ -5,7 +5,7 @@
  "registre": "poli",
  "titre": {"fr": "Le bruit du voisin, poliment"},
  "intro": {"fr": "Onze heures du soir. La musique du voisin du dessus est très forte, et demain tu travailles tôt. Tu montes lui parler, poliment."},
- "personnes": ["nachbar-javier"],
+ "personnes": ["nachbar-hugo"],
  "debut": "door",
  "textes": {
   "fin_fr": {"cle": "fin", "midnight": "minuit", "early": "onze heures et demie"}
@@ -14,86 +14,86 @@
   "door": {
    "dit": [
     {"recit": {"fr": "Tu montes un étage et tu sonnes. On entend de la musique et des rires. Le voisin ouvre."}},
-    {"qui": "nachbar-javier", "air": "sourire", "t": "Oh, hi! Yes?", "fr": "Oh, bonsoir ! Oui ?"}
+    {"qui": "nachbar-hugo", "air": "sourire", "t": "Oh, hi! Yes?", "fr": "Oh, bonsoir ! Oui ?"}
    ],
    "choix": [
     {"t": "Good evening. Sorry to bother you so late.", "fr": "Bonsoir. Désolé(e) de vous déranger si tard.", "va": "intro",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "No problem at all.", "fr": "Aucun problème."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "No problem at all.", "fr": "Aucun problème."}]},
     {"t": "Hi. Excuse me, do you have a minute?", "fr": "Bonsoir. Excusez-moi, vous avez une minute ?", "va": "intro",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Sure, of course.", "fr": "Bien sûr."}]}
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Sure, of course.", "fr": "Bien sûr."}]}
    ]
   },
   "intro": {
-   "dit": [{"qui": "nachbar-javier", "air": "question", "t": "Are you here for the party?", "fr": "Vous venez pour la fête ?"}],
+   "dit": [{"qui": "nachbar-hugo", "air": "question", "t": "Are you here for the party?", "fr": "Vous venez pour la fête ?"}],
    "choix": [
     {"t": "No, I'm your neighbor from downstairs.", "t_gb": "No, I'm your neighbour from downstairs.", "fr": "Non, je suis votre voisin (voisine) du dessous.", "va": "explain",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Oh! Nice to meet you.", "fr": "Oh ! Enchanté."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Oh! Nice to meet you.", "fr": "Oh ! Enchanté."}]},
     {"t": "No. I live in the apartment below you.", "t_gb": "No. I live in the flat below you.", "fr": "Non. J'habite l'appartement en dessous du vôtre.", "va": "explain",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Oh! Nice to meet you.", "fr": "Oh ! Enchanté."}]}
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Oh! Nice to meet you.", "fr": "Oh ! Enchanté."}]}
    ]
   },
   "explain": {
-   "dit": [{"qui": "nachbar-javier", "air": "attentive", "t": "Is something wrong?", "fr": "Quelque chose ne va pas ?"}],
+   "dit": [{"qui": "nachbar-hugo", "air": "attentive", "t": "Is something wrong?", "fr": "Quelque chose ne va pas ?"}],
    "choix": [
     {"t": "The music is a little loud, and I have to work early tomorrow.", "fr": "La musique est un peu forte, et je dois travailler tôt demain.", "va": "until",
-     "puis": [{"qui": "nachbar-javier", "air": "attentive", "t": "Oh, I'm so sorry! It's my birthday, and a few friends are here.", "fr": "Oh, je suis vraiment désolé ! C'est mon anniversaire, et quelques amis sont là."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "attentive", "t": "Oh, I'm so sorry! It's my birthday, and a few friends are here.", "fr": "Oh, je suis vraiment désolé ! C'est mon anniversaire, et quelques amis sont là."}]},
     {"t": "Could you turn the music down a little, please? I need to sleep.", "fr": "Pourriez-vous baisser un peu la musique, s'il vous plaît ? J'ai besoin de dormir.", "va": "until",
-     "puis": [{"qui": "nachbar-javier", "air": "attentive", "t": "Oh, I'm so sorry! It's my birthday, and a few friends are here.", "fr": "Oh, je suis vraiment désolé ! C'est mon anniversaire, et quelques amis sont là."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "attentive", "t": "Oh, I'm so sorry! It's my birthday, and a few friends are here.", "fr": "Oh, je suis vraiment désolé ! C'est mon anniversaire, et quelques amis sont là."}]},
     {"faux": true, "t": "The music is loud. Tomorrow I must to work early.", "fr": "La musique est forte. Demain je dois travailler tôt. (mot à mot)",
-     "puis": [{"qui": "nachbar-javier", "air": "perplexe", "t": "You must … to work? Ah, you have to work early. I see.", "fr": "« Must to work » ? Ah, vous devez travailler tôt. Je vois."}],
+     "puis": [{"qui": "nachbar-hugo", "air": "perplexe", "t": "You must … to work? Ah, you have to work early. I see.", "fr": "« Must to work » ? Ah, vous devez travailler tôt. Je vois."}],
      "aide": {"fr": "<b>Après « must », le verbe vient sans « to »</b> : « I must work ». Le plus courant est « have to » : « I have to work early tomorrow »."}}
    ]
   },
   "until": {
-   "dit": [{"qui": "nachbar-javier", "air": "question", "t": "I'll turn it down right now. Is it okay if the music stops at midnight?", "fr": "Je baisse tout de suite. Ça vous va si la musique s'arrête à minuit ?"}],
+   "dit": [{"qui": "nachbar-hugo", "air": "question", "t": "I'll turn it down right now. Is it okay if the music stops at midnight?", "fr": "Je baisse tout de suite. Ça vous va si la musique s'arrête à minuit ?"}],
    "choix": [
     {"t": "Yes, midnight is fine. Thank you.", "fr": "Oui, minuit, c'est très bien. Merci.", "pose": {"fin": "midnight"}, "va": "drink",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Midnight, then. Thank you for being so nice about it.", "fr": "Minuit, alors. Merci de le prendre si gentiment."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Midnight, then. Thank you for being so nice about it.", "fr": "Minuit, alors. Merci de le prendre si gentiment."}]},
     {"t": "Could you stop a little earlier, please? At eleven thirty?", "fr": "Pourriez-vous arrêter un peu plus tôt, s'il vous plaît ? À onze heures et demie ?", "pose": {"fin": "early"}, "va": "drink",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Eleven thirty. No problem. Thank you for being so nice about it.", "fr": "Onze heures et demie. Pas de problème. Merci de le prendre si gentiment."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Eleven thirty. No problem. Thank you for being so nice about it.", "fr": "Onze heures et demie. Pas de problème. Merci de le prendre si gentiment."}]},
     {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "until",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Sure. No more music after midnight. Is that okay for you?", "fr": "Bien sûr. Plus de musique après minuit. Ça vous va ?"}]}
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Sure. No more music after midnight. Is that okay for you?", "fr": "Bien sûr. Plus de musique après minuit. Ça vous va ?"}]}
    ]
   },
   "drink": {
-   "dit": [{"qui": "nachbar-javier", "air": "sourire", "t": "Hey, would you like to come in for a drink? There's cake, too.", "fr": "Dites, vous voulez entrer boire un verre ? Il y a du gâteau, aussi."}],
+   "dit": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Hey, would you like to come in for a drink? There's cake, too.", "fr": "Dites, vous voulez entrer boire un verre ? Il y a du gâteau, aussi."}],
    "choix": [
     {"t": "Okay, but only for five minutes!", "fr": "D'accord, mais seulement cinq minutes !", "pose": {"entre": "oui"}, "va": "birthday",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "Great! Come in, come in.", "fr": "Super ! Entrez, entrez."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Great! Come in, come in.", "fr": "Super ! Entrez, entrez."}]},
     {"t": "That's very kind, but no, thank you. I really need to sleep.", "fr": "C'est très gentil, mais non, merci. J'ai vraiment besoin de dormir.", "pose": {"entre": "non"}, "va": "birthday",
-     "puis": [{"qui": "nachbar-javier", "air": "sourire", "t": "I understand. Next time! Wait one second.", "fr": "Je comprends. La prochaine fois ! Attendez une seconde."}]},
+     "puis": [{"qui": "nachbar-hugo", "air": "sourire", "t": "I understand. Next time! Wait one second.", "fr": "Je comprends. La prochaine fois ! Attendez une seconde."}]},
     {"faux": true, "t": "Yes, I want well.", "fr": "Oui, je veux bien. (mot à mot)",
-     "puis": [{"qui": "nachbar-javier", "air": "perplexe", "t": "You want … a well? For water? Oh, you mean yes!", "fr": "Vous voulez… un puits ? Pour l'eau ? Ah, vous voulez dire oui !"}],
+     "puis": [{"qui": "nachbar-hugo", "air": "perplexe", "t": "You want … a well? For water? Oh, you mean yes!", "fr": "Vous voulez… un puits ? Pour l'eau ? Ah, vous voulez dire oui !"}],
      "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot</b> : « a well », c'est un puits. Pour accepter : « Yes, please » ou « I'd love to »."}}
    ]
   },
   "birthday": {
    "dit": [
     {"si": {"entre": "oui"}, "recit": {"fr": "Tu entres. Il te présente ses amis et te sert une part de gâteau."}},
-    {"si": {"entre": "oui"}, "qui": "nachbar-javier", "air": "sourire", "t": "Here, have some cake. I'm fifty today!", "fr": "Tenez, prenez du gâteau. J'ai cinquante ans aujourd'hui !"},
+    {"si": {"entre": "oui"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Here, have some cake. I'm twenty-two today!", "fr": "Tenez, prenez du gâteau. J'ai vingt-deux ans aujourd'hui !"},
     {"si": {"entre": "non"}, "recit": {"fr": "Il disparaît et revient avec une part de gâteau sur une assiette."}},
-    {"si": {"entre": "non"}, "qui": "nachbar-javier", "air": "sourire", "t": "Here, take some cake with you. I'm fifty today!", "fr": "Tenez, emportez du gâteau. J'ai cinquante ans aujourd'hui !"}
+    {"si": {"entre": "non"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Here, take some cake with you. I'm twenty-two today!", "fr": "Tenez, emportez du gâteau. J'ai vingt-deux ans aujourd'hui !"}
    ],
    "choix": [
-    {"t": "Fifty? Happy birthday!", "fr": "Cinquante ans ? Joyeux anniversaire !", "va": "bye"},
+    {"t": "Twenty-two? Happy birthday!", "fr": "Vingt-deux ans ? Joyeux anniversaire !", "va": "bye"},
     {"t": "Thank you! And happy birthday to you!", "fr": "Merci ! Et joyeux anniversaire !", "va": "bye"},
     {"faux": true, "t": "Thank you! Good birthday!", "fr": "Merci ! Bon anniversaire ! (mot à mot)",
-     "puis": [{"qui": "nachbar-javier", "air": "amuse", "t": "Good birthday? Yes, it's a good one! Oh, you mean happy birthday.", "fr": "« Good birthday » ? Oui, c'est un bon anniversaire ! Ah, vous voulez dire joyeux anniversaire."}],
+     "puis": [{"qui": "nachbar-hugo", "air": "amuse", "t": "Good birthday? Yes, it's a good one! Oh, you mean happy birthday.", "fr": "« Good birthday » ? Oui, c'est un bon anniversaire ! Ah, vous voulez dire joyeux anniversaire."}],
      "aide": {"fr": "<b>« Bon anniversaire » se dit toujours « Happy birthday! »</b>, avec « happy », jamais « good »."}}
    ]
   },
   "bye": {
-   "dit": [{"qui": "nachbar-javier", "air": "sourire", "t": "Thank you! And sorry again about the noise.", "fr": "Merci ! Et encore désolé pour le bruit."}],
+   "dit": [{"qui": "nachbar-hugo", "air": "sourire", "t": "Thank you! And sorry again about the noise.", "fr": "Merci ! Et encore désolé pour le bruit."}],
    "choix": [
     {"t": "No problem. Have a great party!", "fr": "Pas de problème. Bonne fête !", "va": null,
      "puis": [
-      {"si": {"fin": "midnight"}, "qui": "nachbar-javier", "air": "sourire", "t": "Thanks! Music off at midnight, I promise. Good night!", "fr": "Merci ! Plus de musique à minuit, promis. Bonne nuit !"},
-      {"si": {"fin": "early"}, "qui": "nachbar-javier", "air": "sourire", "t": "Thanks! Music off at eleven thirty, I promise. Good night!", "fr": "Merci ! Plus de musique à onze heures et demie, promis. Bonne nuit !"}
+      {"si": {"fin": "midnight"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Thanks! Music off at midnight, I promise. Good night!", "fr": "Merci ! Plus de musique à minuit, promis. Bonne nuit !"},
+      {"si": {"fin": "early"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Thanks! Music off at eleven thirty, I promise. Good night!", "fr": "Merci ! Plus de musique à onze heures et demie, promis. Bonne nuit !"}
      ]},
     {"t": "It's okay. Good night, and enjoy your evening!", "fr": "Ce n'est rien. Bonne nuit, et profitez bien de votre soirée !", "va": null,
      "puis": [
-      {"si": {"fin": "midnight"}, "qui": "nachbar-javier", "air": "sourire", "t": "Thanks! Music off at midnight, I promise. Good night!", "fr": "Merci ! Plus de musique à minuit, promis. Bonne nuit !"},
-      {"si": {"fin": "early"}, "qui": "nachbar-javier", "air": "sourire", "t": "Thanks! Music off at eleven thirty, I promise. Good night!", "fr": "Merci ! Plus de musique à onze heures et demie, promis. Bonne nuit !"}
+      {"si": {"fin": "midnight"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Thanks! Music off at midnight, I promise. Good night!", "fr": "Merci ! Plus de musique à minuit, promis. Bonne nuit !"},
+      {"si": {"fin": "early"}, "qui": "nachbar-hugo", "air": "sourire", "t": "Thanks! Music off at eleven thirty, I promise. Good night!", "fr": "Merci ! Plus de musique à onze heures et demie, promis. Bonne nuit !"}
      ]}
    ]
   }

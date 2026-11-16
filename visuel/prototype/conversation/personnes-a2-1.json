@@ -1,64 +1,92 @@
 {
- "_lisez_moi": "Les personnes du lot a2-1 (visuel/CONVERSATIONS.md). Visages : seulement des images qui existent deja (portraits des emotions et de Descripcion, fiche commune visuel/personnes.json : un metier par personne, jamais un autre). Le lot reprend aussi kellnerin (personnes.json), verkaeuferin et rezeptionistin (personnes-pp.json). Les visages marques _provisoire sont a remplacer (voir le rapport du lot).",
+ "_lisez_moi": "Les personnes du lot a2-1 (visuel/CONVERSATIONS.md), definies une seule fois et reutilisables par les autres lots POUR LE MEME ROLE (regle des visages du chef, 16 nov. 2026, d'apres visuel/personnes.json, regle 3). Recurrents dans leur metier ou un role prive : Diego medecin, Ines coiffeuse, Pablo boulanger (ici le voisin du rez-de-chaussee). Reserves, un role pour tous les lots : Silvia employee de banque (bankberaterin), Sergio controleur (zugbegleiter), Irene proprietaire (vermieterin), Hugo voisin bruyant (nachbar-hugo) ; leurs visages -neutre sont recadres sans generation des portraits ~/.wortando/personnes/img. Le lot reprend aussi kellnerin (personnes.json), verkaeuferin et rezeptionistin (personnes-pp.json).",
  "praxis-diego": {
-  "nom": {"fr": "Le médecin", "en": "The doctor", "de": "Der Arzt"},
+  "nom": {
+   "fr": "Le médecin",
+   "en": "The doctor",
+   "de": "Der Arzt"
+  },
   "voix": "m",
   "visages": {
    "sourire": "emociones/Diego-contento.webp",
    "attentive": "emociones/Diego-preocupado.webp",
    "question": "emociones/Diego-preocupado.webp",
    "perplexe": "emociones/Diego-nervioso.webp"
-  }
+  },
+  "visage": "Diego"
  },
  "friseurin-ines": {
-  "nom": {"fr": "La coiffeuse", "en": "The hairdresser", "de": "Die Friseurin"},
+  "nom": {
+   "fr": "La coiffeuse",
+   "en": "The hairdresser",
+   "de": "Die Friseurin"
+  },
   "voix": "f",
   "visages": {
    "sourire": "descripcion/Ines-visage.webp"
-  }
+  },
+  "visage": "Ines"
  },
  "bankberaterin": {
-  "nom": {"fr": "La conseillère de la banque", "en": "The bank advisor", "de": "Die Bankberaterin"},
+  "nom": {
+   "fr": "La conseillère de la banque",
+   "en": "The bank advisor",
+   "de": "Die Bankberaterin"
+  },
   "voix": "f",
-  "_provisoire": "visage de Nuria en attendant le recadrage du portrait de Silvia",
+  "visage": "Silvia",
   "visages": {
-   "sourire": "conversation/Nuria-neutre.webp"
+   "sourire": "conversation/Silvia-neutre.webp"
   }
  },
  "nachbar-pablo": {
-  "nom": {"fr": "Le voisin du rez-de-chaussée", "en": "The downstairs neighbor", "de": "Der Nachbar"},
+  "nom": {
+   "fr": "Le voisin du rez-de-chaussée",
+   "en": "The downstairs neighbor",
+   "de": "Der Nachbar"
+  },
   "voix": "m",
   "visages": {
    "sourire": "descripcion/Pablo-visage.webp",
    "attentive": "emociones/Pablo-cansado.webp",
    "amuse": "emociones/Pablo-orgulloso.webp"
-  }
+  },
+  "visage": "Pablo"
  },
- "nachbar-javier": {
-  "nom": {"fr": "Le voisin du dessus", "en": "The upstairs neighbor", "de": "Der Nachbar von oben"},
+ "nachbar-hugo": {
+  "nom": {
+   "fr": "Le voisin du dessus",
+   "en": "The upstairs neighbor",
+   "de": "Der Nachbar von oben"
+  },
   "voix": "m",
+  "visage": "Hugo",
   "visages": {
-   "sourire": "descripcion/Javier-visage.webp",
-   "attentive": "emociones/Javier-preocupado.webp",
-   "perplexe": "emociones/Javier-preocupado.webp"
+   "sourire": "conversation/Hugo-neutre.webp"
   }
  },
- "vermieterin-carmen": {
-  "nom": {"fr": "La propriétaire", "en": "The landlady", "de": "Die Vermieterin"},
+ "vermieterin": {
+  "nom": {
+   "fr": "La propriétaire",
+   "en": "The landlady",
+   "de": "Die Vermieterin"
+  },
   "voix": "f",
+  "visage": "Irene",
   "visages": {
-   "sourire": "descripcion/Carmen-visage.webp",
-   "attentive": "emociones/Carmen-preocupado.webp",
-   "question": "emociones/Carmen-preocupado.webp",
-   "surprise": "emociones/Carmen-sorprendido.webp"
+   "sourire": "conversation/Irene-neutre.webp"
   }
  },
  "zugbegleiter": {
-  "nom": {"fr": "Le contrôleur", "en": "The conductor", "de": "Der Zugbegleiter"},
+  "nom": {
+   "fr": "Le contrôleur",
+   "en": "The conductor",
+   "de": "Der Zugbegleiter"
+  },
   "voix": "m",
-  "_provisoire": "visage de Mario en attendant le recadrage du portrait de Sergio",
+  "visage": "Sergio",
   "visages": {
-   "sourire": "conversation/Mario-neutre.webp"
+   "sourire": "conversation/Sergio-neutre.webp"
   }
  }
 }
