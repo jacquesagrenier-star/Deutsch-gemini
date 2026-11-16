@@ -90,3 +90,12 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **Le souhait de Silvester** : « İyi yıllar! » (« Bonne fin d'année ») ; de Neujahr « Mutlu yıllar! ».
 3. **L'agenda** : « Pazartesi günü olmaz: çalışmam gerekiyor. Salı günü nasıl? » ; « Parti saat 19.00'da başlıyor ».
 4. **La pendaison de crémaillère** : « yeni ev partisi » (Einweihungsparty).
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js`. À relire :
+
+1. **Le magasin à cinq formes** : « fırın / fırında / fırına / fırından / Fırındayız » ; Drogerie « kozmetik mağazası » (à relire), Kiosk « büfe ».
+2. **« Mark'ın ekmek alması gerekiyor »** pour « Mark braucht Brot » ; Wurst « salam ».
+3. **Le dialogue** : « Ne arzu edersiniz? », « Sıradaki, lütfen! », « para üstü ».
+4. **Comparer** : « Tereyağı peynirden daha pahalı » (l'ablatif écrit à la main pour chaque article).

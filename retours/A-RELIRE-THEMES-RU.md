@@ -89,3 +89,13 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **Le délai accordé** : « Анна должна / Феликс должен ответить до среды ».
 3. **Silvester** : « новогодняя ночь », « С наступающим Новым годом! » ; « Феликс встречает Новый год ».
 4. **Le possessif réfléchi** : « на свой праздник », « на своё новоселье ».
+5. **Le double tiret de la découverte** : la phrase de la date porte son tiret (« Пасха — в марте или в апреле. »), qui tient lieu du verbe « être » ; la découverte la joint au souhait par un second « — ». Gardé ainsi (chef, 16 nov.).
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js`. À relire :
+
+1. **Le magasin** : « в булочной / в булочную », « на рынке / на рынок », Metzgerei « мясная лавка ».
+2. **Le besoin** : « Марку / Анне нужно купить колбасу » ; la commande « Дайте, пожалуйста, … ».
+3. **Le nombre** : « Яблоки стоят », mais « Клубника стоит » (collectif singulier) ; « Клубника дороже, чем … ».
+4. **La monnaie** : « Ему / Ей дают 0,80 € сдачи ».

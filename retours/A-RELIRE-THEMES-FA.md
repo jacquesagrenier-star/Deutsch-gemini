@@ -54,3 +54,12 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **L'invitation** : « مهمانی » pour die Party, « جشن » pour die Feier, « ناهار » pour le repas de Noël des grands-parents.
 3. **Le défini avec « را »** : « مارک کیک را می‌آورد » / l'indéfini « مارک یک کیک می‌آورد ».
 4. **Le souhait de la fête des Mères** : « روز مادر مبارک، مامان! ».
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js`. À relire :
+
+1. **Le magasin** : « در نانوایی / به نانوایی / از نانوایی » ; Kiosk « دکهٔ روزنامه‌فروشی », Drogerie « فروشگاه لوازم بهداشتی ».
+2. **Le prix** : « قیمت کره 1,29 € است » ; comparer « کره از پنیر گران‌تر است ».
+3. **La commande** : « یک نان می‌خواهم » ; la monnaie « 0,80 € باقی پول می‌گیرد ».
+4. **Le dialogue** : « چه میل دارید؟ », « نفر بعدی، لطفاً! ».

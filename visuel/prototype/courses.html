@@ -139,6 +139,7 @@ button:disabled{cursor:default}
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
+<script src="courses/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
@@ -368,11 +369,16 @@ const roleNom = (r, s) => { const x = D.roles[APPRENDRE][r][s]; return x[1] + " 
 // APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais et portugais (et en allemand pour qui
 // apprend l'espagnol), la phrase entiere, faite avec les MEMES choix que la question ; ailleurs, le mot et sa
 // traduction du corpus (courses/gloses.json).
-const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")) ? LANGUE : null;
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (courses/langues.js, lot 7 de l'alignement des themes, 16 nov. 2026) : leurs morceaux sont poses
+// dans la donnee au chargement, et LCO[langue] assemble les phrases que la grammaire de la langue demande
+let LCO = {};
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es")) ? LANGUE : null;
 const prixTr = c => TR === "en" ? prixEn(c) : prix(c);
 const PRON = {fr: {m: "Il", f: "Elle"}, en: {m: "He", f: "She"}, pt: {m: "Ele", f: "Ela"}, de: {m: "Er", f: "Sie"}};
 // le magasin dans la langue d'interface : [nom, « a la boulangerie » / « at the bakery » / « na padaria », vers]
-const magTr = (m, k) => { if (TR === "de") return [m.de.genre + " " + m.de.mot, m.de.wo + " " + m.de.mot, m.de.zu + " " + m.de.mot][k];
+const magTr = (m, k) => { if (LCO[TR]) return LCO[TR].mag(m, k); if (TR === "de") return [m.de.genre + " " + m.de.mot, m.de.wo + " " + m.de.mot, m.de.zu + " " + m.de.mot][k];
   const t = m.tr[TR]; return TR === "fr" && k === 2 ? t[1] : t[k]; };
 const prodTr = (p, k) => { const t = p.tr[TR]; return Array.isArray(t) ? t[k] : t; };
 // les articles : fr [nom, feminin], pt [nom, feminin], le pluriel vient de l'allemand (die Äpfel)
@@ -384,6 +390,7 @@ function accordTr(a, mot){
 }
 function traduire(q){
   if (!TR || !q) return null;
+  if (LCO[TR]) return LCO[TR].traduire(q);
   const fr = TR === "fr", en = TR === "en", pt = TR === "pt", de = TR === "de";
   if (q.ou){ const p = q.ou.p, m = q.ou.m;
     if (de) return DE.ouQ(p) + " " + maj(magTr(m, 1)) + ".";
@@ -714,7 +721,7 @@ const EX = {
     }
     TRAD_CHOIX = {};
     if (TR){ const fr = TR === "fr", en = TR === "en", pt = TR === "pt";
-      const tx = p => TR === "de" ? (p ? "teurer" : "billiger") : fr ? (p ? "plus cher" : "moins cher") : en ? (p ? "more expensive" : "cheaper") : (p ? "mais caro" : "mais barato");
+      const tx = p => LCO[TR] ? LCO[TR].plusCher(p) : TR === "de" ? (p ? "teurer" : "billiger") : fr ? (p ? "plus cher" : "moins cher") : en ? (p ? "more expensive" : "cheaper") : (p ? "mais caro" : "mais barato");
       if (APPRENDRE === "de"){ TRAD_CHOIX[plus ? "billiger" : "teurer"] = tx(!plus); }
       else TRAD_CHOIX[leurres[0]] = tx(!plus); }
     const enonce = cible(L.coute(a, prix(ca)) + " " + L.coute(b, prix(cb))) + sous(L.plusQue(a, b, "___"));
@@ -832,6 +839,7 @@ const PRIX_DECOUVERTE = [99, 149, 249, 290, 475, 1260, 1770, 1999, 2450, 3780, 6
 function trDecouverte(m){
   if (!TR) return glose(motMag(m));
   const prods = D.produits.filter(p => p.vend[0] === m.id), deux = APPRENDRE === "de" ? prods.slice(0, 2) : prods.slice(0, 1);
+  if (LCO[TR]) return LCO[TR].decouverte(m, deux);
   if (TR === "de") return m.id === "supermarkt" ? "Im Supermarkt kauft man fast alles." : maj(m.de.wo + " " + m.de.mot) + " kauft man " + deux.map(p => p.de).join(" und ") + ".";
   const et = TR === "fr" ? " et " : TR === "en" ? " and " : " e ";
   if (m.id === "supermarkt") return TR === "fr" ? "Au supermarché, on achète presque tout." : TR === "en" ? "At the supermarket, you can buy almost everything." : "No supermercado, compra-se quase tudo.";
@@ -985,6 +993,7 @@ document.title = T("titre");
 fetch("courses/courses.json?v=2").then(r => r.json()).then(d => {
   D = d;
   if (APPRENDRE === "pt") portugaisAppris(D);
+  if (typeof installerLanguesCourses === "function") LCO = installerLanguesCourses(D, APPRENDRE) || {};
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });
 </script>

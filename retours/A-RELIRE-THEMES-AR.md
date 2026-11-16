@@ -57,3 +57,12 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **Le souhait de Silvester** : « كل عام وأنتم بخير! » ; Neujahr « سنة سعيدة! ».
 3. **Le délai** : « على آنا أن ترد قبل يوم الأربعاء » (« avant » mercredi, pour « bis Mittwoch »).
 4. **Pour qui apprend l'espagnol** : « عيد الملوك المجوس » (Día de Reyes), « أسبوع الآلام » (Semana Santa), « يوم الموتى (في المكسيك) ».
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le verbe accordé avec Mark ou Anna** : « يشتري / تشتري », « يدفع / تدفع » ; « يقول البائع / تقول البائعة ».
+2. **Le prix** : « سعر الزبدة 1,29 € » ; comparer « الزبدة أغلى من الجبن » (comparatif invariable).
+3. **Metzgerei** : « الملحمة » ; Drogerie « متجر مواد التجميل والتنظيف » (à relire).
+4. **Pour qui apprend l'espagnol** : le jambon de la boucherie, « الجامون ».

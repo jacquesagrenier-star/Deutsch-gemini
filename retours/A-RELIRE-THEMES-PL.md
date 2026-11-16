@@ -86,3 +86,12 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **Fest / Feier / Einweihungsparty** : « przyjęcie », « uroczystość », « parapetówka ».
 3. **« Dziś Anna ma urodziny »** ; Silvester « sylwester » (minuscule).
 4. **Le délai** : « Anna musi odpowiedzieć do środy ».
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js`. À relire :
+
+1. **Le magasin** : « w piekarni / do piekarni », « na targu / na targ », Metzgerei « sklep mięsny ».
+2. **Le besoin** : « Mark musi kupić kiełbasę » ; la commande « Poproszę … » à l'accusatif.
+3. **Comparer** : « Masło kosztuje więcej / mniej niż ser » (pas de comparatif à accorder).
+4. **Le dialogue** : « Potrzebuje pan torebki? », « Następna osoba, proszę! » (le vendeur vouvoie au masculin : à relire).

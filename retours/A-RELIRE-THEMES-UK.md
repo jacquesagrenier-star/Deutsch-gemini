@@ -87,3 +87,13 @@ La page assemble maintenant ses phrases traduites (la fête et sa date, le souha
 2. **Le possessif réfléchi** : « на своє свято », « на свій день народження », « на своє новосілля ».
 3. **Silvester** : « новорічна ніч », le souhait « З наступаючим Новим роком! » ; Felix « зустрічає Новий рік ».
 4. **« J'ai le temps »** neutre (« в мене є час ») plutôt que « я вільний / вільна », la personne pouvant être une femme.
+5. **Le double tiret de la découverte** : la phrase de la date porte son tiret (« Великдень — у березні або у квітні. »), qui tient lieu du verbe « être » ; la découverte la joint au souhait par un second « — ». Gardé ainsi (chef, 16 nov.).
+
+## Lot 7, 16 nov. : « Faire les courses »
+
+La page assemble maintenant ses phrases traduites (où acheter quoi, qui est où, le dialogue au comptoir, les prix, comparer, la monnaie rendue, commander, les emballages) à partir de morceaux posés dans `visuel/prototype/courses/langues.js`. À relire :
+
+1. **Le magasin** : « у пекарні / до пекарні », « на ринку / на ринок » ; Metzgerei « мʼясна крамниця », Drogerie « магазин побутової хімії ».
+2. **Le besoin** : « Маркові / Анні треба купити ковбасу » (l'infinitif évite l'accord de « потрібен »).
+3. **Comparer** : « Масло коштує більше, ніж сир » (plutôt qu'un comparatif accordé).
+4. **La monnaie** : « Йому / Їй дають 0,80 € решти » ; la commande « Дайте, будь ласка, … ».
