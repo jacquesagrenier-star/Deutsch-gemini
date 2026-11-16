@@ -9,7 +9,16 @@ joue à `visuel/prototype/conversation.html?c=<id>&apprendre=de|es|en`.
 |---|---|---|---|---|
 | pp | pp1-pass (contrôle des passeports) | à relire | à relire | à relire (us, gb) |
 | pp | pp2-cafe (petit-déjeuner) | à relire | à relire | à relire (us, gb) |
-| a1-1 | cafe-voisin (le café, un voisin de table) | à relire | à écrire | à relire (us, gb) |
+| a1-1 | cafe-voisin (le café, un voisin de table ; Madrid : le Rastro) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-restaurant (la table, le plat du jour ; Madrid : le menú del día ; Boston : le pourboire) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-boulangerie (Berlin : « Schrippen » ; Madrid : la barra) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-marche (le kilo, le prix ; Boston : la livre, la barquette, espèces seulement) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-chemin (Alexanderplatz ; Palacio Real ; l'aquarium de Boston) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-ticket (Berlin : zones AB/ABC, composter ; Madrid : la tarjeta Multi ; Boston : le T, le pass de 7 jours) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-gare (Hambourg ; Tolède depuis Atocha ; Salem depuis North Station) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-vetements (la taille, la cabine ; Madrid : les rebajas ; Boston : pas de taxe sur les vêtements) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-supermarche (Berlin : le Pfand ; Madrid : peser les fruits ; Boston : cash back) | à relire | à relire | à relire (us, gb) |
+| a1-1 | a1-pharmacie (Madrid : « constipado » = rhume ; Boston : acetaminophen / paracetamol) | à relire | à relire | à relire (us, gb) |
 | pp | pp5-hotel (la réception de l'hôtel) | à relire | à relire | à relire (us, gb) |
 | pp | pp6-achats (le marché ; en anglais, une boutique de vêtements) | à relire | à relire | à relire (us, gb) |
 | a1-2 | a1-medecin-rdv (l'accueil du cabinet médical) | à relire | à relire | à relire (us, gb) |
@@ -142,3 +151,11 @@ chaque langue pour elle-même (faux amis et calques du français).
 - **Carmen** (la voisine) vient d'Espagne dans les trois langues (Séville en espagnol) et dit qu'elle est
   cuisinière, comme dans la fiche commune des personnes. C'est la même Carmen que dans le dîner du lot a2-3 : à l'A1,
   on fait connaissance au Sie / usted ; elle passe au du / tú plus tard, à l'A2.
+
+## Lot a1-1 : les points à faire juger en priorité (16 nov. 2026)
+
+Écrit sans relecture native. À trancher par chaque relecteur :
+
+- **Allemand.** Les prix des transports (BVG AB 3,80 €, ABC 4,70 €, journée AB 10,60 €, ABC 12,30 € ; ICE Berlin-Hambourg 39,90 € l'aller, réservation 5,50 €) sont plausibles, pas vérifiés pour 2026 (l'aller AB serait passé à 4,00 € ?). Le quai : « Gleis vierzehn, oben » à Berlin Hbf. « Hin und her » est-il une faute que font vraiment les francophones ? « Ich hätte gern vier Brot » sonne-t-il comme la faute attendue ? « Sie steht Ihnen wirklich gut » (la veste) : naturel ?
+- **Espagnol.** Les fautes « jugo » et « boleto » sont des mots d'Amérique latine, pas de vraies fautes : garder l'idée (« à Madrid on dit… ») ou les remplacer ? « Un ir y volver » (aller-retour mot à mot) : vraisemblable ? Prix de la tarjeta Multi (2,50 €), du billete sencillo (1,50 €), du 10 viajes (12,20 €) et de l'Avant Madrid-Tolède (14,30 € / 22,90 €) à vérifier. « ¿A quién le toca? » / « Me toca a mí, creo » au marché : naturel ? « ¿Es un constipado? » dans la bouche d'une pharmacienne madrilène : naturel ?
+- **Anglais.** Prix MBTA (2,40 $, pass 7 jours 22,50 $), Commuter Rail North Station-Salem (7 $ l'aller ; zone 2 ou 3 ?), sac de caisse à 5 cents à Boston, pas de taxe de vente sur les vêtements au Massachusetts (jusqu'à 175 $) : à confirmer. Faute « It was very delicious » : assez nette pour un anglophone ? Variante britannique : « Eat in or take away? », « Single or return? », « platform », « changing room », « loyalty card », « paracetamol », « Get well soon! » ; le reste garde l'américain (l'action se passe à Boston).

@@ -1,0 +1,85 @@
+{
+ "id": "a1-restaurant",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "usted",
+ "titre": {"fr": "Au restaurant : le menú del día"},
+ "intro": {"fr": "Deux heures de l'après-midi à Madrid : l'heure du déjeuner. Tu prends le « menú del día » : une entrée, un plat, la boisson, le dessert ou le café, à prix fixe."},
+ "personnes": ["kellnerin"],
+ "debut": "mesa",
+ "prix": {"menu": 1350},
+ "panier": ["menu"],
+ "textes": {
+  "primero_fr": {"cle": "primero", "gazpacho": "le gaspacho", "ensalada": "la salade composée"},
+  "segundo_fr": {"cle": "segundo", "pollo": "le poulet rôti", "merluza": "le merlu grillé"}
+ },
+ "noeuds": {
+  "mesa": {
+   "dit": [
+    {"recit": {"fr": "Deux heures de l'après-midi, à Madrid. Tu entres dans un restaurant. Sur l'ardoise, à l'entrée : « Menú del día, 13,50 € »."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Buenas tardes. ¿Tiene reserva?", "fr": "Bonjour. Vous avez une réservation ?"}
+   ],
+   "choix": [
+    {"t": "Sí, a nombre de Martin.", "fr": "Oui, au nom de Martin.", "va": "primero",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Martin… sí, aquí está. Pase, por favor.", "fr": "Martin… oui, la voici. Entrez, je vous en prie."}]},
+    {"t": "No. ¿Tiene una mesa para una persona?", "fr": "Non. Vous avez une table pour une personne ?", "va": "primero",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Para una persona… sí, aquella mesa, al lado de la ventana.", "fr": "Pour une personne… oui, cette table-là, à côté de la fenêtre."}]},
+    {"faux": true, "t": "Sí, al nombre de Martin.", "fr": "Oui, au nom de Martin (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Al nombre…? Ah, ¿a nombre de Martin? Un momento.", "fr": "« Al nombre » ? Ah, au nom de Martin ? Un instant."}],
+     "aide": {"fr": "<b>« au nom de… » se dit « a nombre de… »</b>, sans article : « Sí, a nombre de Martin »."}}
+   ]
+  },
+  "primero": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Va a tomar el menú del día? De primero hay gazpacho o ensalada mixta.", "fr": "Vous prenez le menu du jour ? En entrée, il y a du gaspacho ou une salade composée."}],
+   "choix": [
+    {"t": "Sí, el menú. De primero, gazpacho, por favor.", "fr": "Oui, le menu. En entrée, le gaspacho, s'il vous plaît.", "pose": {"menu": "menu", "primero": "gazpacho"}, "va": "segundo"},
+    {"t": "Sí. La ensalada mixta, por favor.", "fr": "Oui. La salade composée, s'il vous plaît.", "pose": {"menu": "menu", "primero": "ensalada"}, "va": "segundo"},
+    {"repete": true, "t": "¿Perdón? ¿Qué hay de primero?", "fr": "Pardon ? Qu'est-ce qu'il y a en entrée ?", "va": "primero",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "De primero: gazpacho, una sopa fría de tomate, o ensalada mixta.", "fr": "En entrée : du gaspacho, une soupe froide de tomate, ou une salade composée."}]}
+   ]
+  },
+  "segundo": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Y de segundo? Pollo asado o merluza a la plancha.", "fr": "Et en plat ? Du poulet rôti ou du merlu grillé."}],
+   "choix": [
+    {"t": "El pollo, por favor.", "fr": "Le poulet, s'il vous plaît.", "pose": {"segundo": "pollo"}, "va": "beber"},
+    {"t": "No como carne. La merluza, por favor.", "fr": "Je ne mange pas de viande. Le merlu, s'il vous plaît.", "pose": {"segundo": "merluza"}, "va": "beber"},
+    {"faux": true, "t": "No como carne. El merluza, por favor.", "fr": "Je ne mange pas de viande. Le merlu (avec le mauvais article), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿El merluza? La merluza, sí… Muy bien.", "fr": "« El » merluza ? La merluza, oui… Très bien."}],
+     "aide": {"fr": "<b>« merluza » est féminin : « la merluza »</b>, alors que « le merlu » est masculin en français. Méfie-toi des noms de poissons !"}}
+   ]
+  },
+  "beber": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Y para beber? El pan y la bebida van incluidos.", "fr": "Et à boire ? Le pain et la boisson sont compris."}],
+   "choix": [
+    {"t": "Agua, por favor.", "fr": "De l'eau, s'il vous plaît.", "va": "postre"},
+    {"t": "Una copa de vino tinto, por favor.", "fr": "Un verre de vin rouge, s'il vous plaît.", "va": "postre"},
+    {"t": "Una cerveza, por favor.", "fr": "Une bière, s'il vous plaît.", "va": "postre"}
+   ]
+  },
+  "postre": {
+   "dit": [
+    {"recit": {"fr": "Plus tard. Tu as tout mangé."}},
+    {"qui": "kellnerin", "air": "question", "t": "¿Qué tal todo? ¿Quiere postre o café?", "fr": "Tout s'est bien passé ? Vous voulez un dessert ou un café ?"}
+   ],
+   "choix": [
+    {"t": "Todo muy rico, gracias. Un café, por favor.", "fr": "Tout était très bon, merci. Un café, s'il vous plaît.", "va": "cuenta"},
+    {"t": "Muy rico. Nada más, gracias. La cuenta, por favor.", "fr": "Très bon. Rien d'autre, merci. L'addition, s'il vous plaît.", "va": "cuenta"},
+    {"faux": true, "t": "¡Estoy muy rico, gracias!", "fr": "Je suis très bon (savoureux), merci !",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "¿Usted está rico? ¡Ja, ja! La comida, querrá decir.", "fr": "C'est vous qui êtes savoureux ? Ha ha ! Le repas, vous voulez dire."}],
+     "aide": {"fr": "<b>C'est le plat qui est bon : « Está muy rico » ou « Todo muy rico ».</b> « Estoy rico » dit que c'est toi qui es… savoureux !"}}
+   ]
+  },
+  "cuenta": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Son {a_payer}. ¿Con tarjeta o en efectivo?", "fr": "Ça fait {a_payer}. Par carte ou en espèces ?", "dit": "Son {a_payer:mots}. ¿Con tarjeta o en efectivo?"}],
+   "choix": [
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gracias. ¡Que tenga una buena tarde!", "fr": "Merci. Bon après-midi !"}]},
+    {"t": "En efectivo. Aquí tiene.", "fr": "En espèces. Voilà.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Muchas gracias! ¡Buenas tardes!", "fr": "Merci beaucoup ! Bon après-midi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris le menú del día ({primero_fr}, puis {segundo_fr}) et payé {a_payer}, boisson et café compris."}
+}

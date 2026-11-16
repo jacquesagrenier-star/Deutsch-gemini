@@ -1,0 +1,66 @@
+{
+ "id": "a1-boulangerie",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "usted",
+ "titre": {"fr": "À la boulangerie"},
+ "intro": {"fr": "Huit heures du matin, une panadería de Madrid. Tu achètes ton pain et quelque chose de sucré, puis tu paies."},
+ "personnes": ["baecker"],
+ "debut": "mostrador",
+ "prix": {"una": 110, "dos": 220, "cruasanes": 240, "napolitana": 150},
+ "panier": ["pan", "dulce"],
+ "textes": {
+  "pan_fr": {"cle": "pan", "una": "une baguette", "dos": "deux baguettes"}
+ },
+ "noeuds": {
+  "mostrador": {
+   "dit": [
+    {"recit": {"fr": "Huit heures du matin, une panadería de Madrid. Ça sent le pain chaud."}},
+    {"qui": "baecker", "air": "sourire", "t": "¡Buenos días! ¿Qué le pongo?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "Una barra de pan, por favor.", "fr": "Une baguette, s'il vous plaît.", "pose": {"pan": "una"}, "va": "mas",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Aquí tiene, recién hecha.", "fr": "Voilà, toute fraîche."}]},
+    {"t": "Dos barras, por favor.", "fr": "Deux baguettes, s'il vous plaît.", "pose": {"pan": "dos"}, "va": "mas",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Muy bien, dos barras.", "fr": "Très bien, deux baguettes."}]}
+   ]
+  },
+  "mas": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "¿Algo más?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Sí, dos cruasanes, por favor.", "fr": "Oui, deux croissants, s'il vous plaît.", "pose": {"dulce": "cruasanes"}, "va": "bolsa"},
+    {"t": "Sí, una napolitana de chocolate, por favor.", "fr": "Oui, un pain au chocolat, s'il vous plaît.", "pose": {"dulce": "napolitana"}, "va": "bolsa"},
+    {"t": "No, nada más, gracias.", "fr": "Non, rien d'autre, merci.", "va": "bolsa"}
+   ]
+  },
+  "bolsa": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "¿Se lo pongo en una bolsa?", "fr": "Je vous le mets dans un sac ?"}],
+   "choix": [
+    {"t": "Sí, por favor.", "fr": "Oui, s'il vous plaît.", "va": "pagar"},
+    {"t": "No, gracias. Tengo una bolsa.", "fr": "Non, merci. J'ai un sac.", "va": "pagar"}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "baecker", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "Aquí tiene.", "fr": "Voilà.", "va": "adios",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Gracias. Aquí tiene la vuelta.", "fr": "Merci. Voici votre monnaie."}]},
+    {"t": "¿Puedo pagar con tarjeta?", "fr": "Je peux payer par carte ?", "va": "adios",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Sí, claro. Acerque la tarjeta aquí… Ya está.", "fr": "Oui, bien sûr. Approchez la carte ici… Voilà, c'est fait."}]},
+    {"faux": true, "t": "¿Puedo pagar con la carta?", "fr": "Je peux payer avec la carte ? (avec le mauvais mot)",
+     "puis": [{"qui": "baecker", "air": "perplexe", "t": "¿Con la carta? ¿Qué carta? … ¡Ah, con tarjeta! Sí, claro.", "fr": "Avec la lettre ? Quelle lettre ? … Ah, par carte ! Oui, bien sûr."}],
+     "aide": {"fr": "<b>La carte bancaire se dit « la tarjeta ».</b> « la carta », c'est une lettre, ou le menu du restaurant."}}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "baecker", "air": "sourire", "t": "¡Que tenga un buen día!", "fr": "Bonne journée !"}],
+   "choix": [
+    {"t": "Igualmente. ¡Adiós!", "fr": "Vous aussi. Au revoir !", "va": null},
+    {"t": "Gracias, igualmente. ¡Hasta mañana!", "fr": "Merci, vous aussi. À demain !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {pan_fr} à la panadería et payé {a_payer}."}
+}

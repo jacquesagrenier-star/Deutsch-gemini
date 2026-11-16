@@ -1,0 +1,64 @@
+{
+ "id": "a1-chemin",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "ville",
+ "registre": "usted",
+ "titre": {"fr": "Demander son chemin"},
+ "intro": {"fr": "Tu sors du métro à la Puerta del Sol et tu cherches le Palais royal. Une policière t'indique le chemin, à pied ou en métro, et tu vérifies."},
+ "personnes": ["polizistin"],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {"recit": {"fr": "Madrid, la Puerta del Sol. Ton téléphone n'a plus de batterie et tu cherches le Palais royal. Une policière te voit hésiter."}},
+    {"qui": "polizistin", "air": "sourire", "t": "Buenos días. ¿Necesita ayuda?", "fr": "Bonjour. Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Sí, por favor. ¿Dónde está el Palacio Real?", "fr": "Oui, s'il vous plaît. Où est le Palais royal ?", "va": "como"},
+    {"t": "Sí, gracias. ¿Cómo llego al Palacio Real?", "fr": "Oui, merci. Comment je vais au Palais royal ?", "va": "como"},
+    {"faux": true, "t": "Sí. ¿Dónde es el Palacio Real?", "fr": "Oui. Où est le Palais royal ? (avec le mauvais verbe)",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "¿Dónde es…? Ah, ¿dónde está? Está muy cerca.", "fr": "« Dónde es » ? Ah, où il se trouve ? C'est tout près."}],
+     "aide": {"fr": "<b>Pour situer un lieu, on emploie « estar » :</b> « ¿Dónde está el Palacio Real? ». « ser » sert à dire ce qu'est la chose : « Es un palacio muy grande »."}}
+   ]
+  },
+  "como": {
+   "dit": [{"qui": "polizistin", "air": "question", "t": "¿Va a pie o en metro?", "fr": "Vous y allez à pied ou en métro ?"}],
+   "choix": [
+    {"t": "A pie. ¿Está lejos?", "fr": "À pied. C'est loin ?", "va": "pie"},
+    {"t": "En metro, por favor.", "fr": "En métro, s'il vous plaît.", "va": "metro"},
+    {"repete": true, "t": "¿Perdón? Más despacio, por favor.", "fr": "Pardon ? Plus lentement, s'il vous plaît.", "va": "como",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Claro. ¿Va andando… o en metro?", "fr": "Bien sûr. Vous y allez à pied… ou en métro ?"}]}
+   ]
+  },
+  "pie": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "No, son diez minutos. Siga todo recto por esta calle hasta el final. Luego cruce la plaza y gire a la izquierda.", "fr": "Non, c'est à dix minutes. Continuez tout droit dans cette rue jusqu'au bout. Ensuite, traversez la place et tournez à gauche."}],
+   "choix": [
+    {"t": "Todo recto, cruzo la plaza y luego a la izquierda, ¿no?", "fr": "Tout droit, je traverse la place, et ensuite à gauche, c'est ça ?", "va": "gracias",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "¡Eso es! Verá el palacio enseguida.", "fr": "C'est ça ! Vous verrez le palais tout de suite."}]},
+    {"faux": true, "t": "Todo recto y luego a la derecha, ¿no?", "fr": "Tout droit, et ensuite à droite, c'est ça ?",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "No, no: a la izquierda.", "fr": "Non, non : à gauche."}],
+     "aide": {"fr": "<b>« la izquierda » = la gauche, « la derecha » = la droite.</b> Et « todo recto », c'est « tout droit » : ne le confonds pas avec « a la derecha »."}},
+    {"repete": true, "t": "¿Puede repetir, por favor?", "fr": "Vous pouvez répéter, s'il vous plaît ?", "va": "pie",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Claro: todo recto hasta el final, cruce la plaza y a la izquierda.", "fr": "Bien sûr : tout droit jusqu'au bout, traversez la place, et à gauche."}]}
+   ]
+  },
+  "metro": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "El metro está aquí mismo. Tome la línea dos hasta Ópera: es solo una parada.", "fr": "Le métro est juste ici. Prenez la ligne deux jusqu'à Ópera : ce n'est qu'à un arrêt."}],
+   "choix": [
+    {"t": "Una parada, hasta Ópera. ¿Dónde compro el billete?", "fr": "Un arrêt, jusqu'à Ópera. Où est-ce que j'achète le billet ?", "va": "gracias",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "En las máquinas, abajo, en la estación.", "fr": "Aux machines, en bas, dans la station."}]},
+    {"t": "Muy bien, una parada. ¡Gracias!", "fr": "Très bien, un arrêt. Merci !", "va": "gracias"}
+   ]
+  },
+  "gracias": {
+   "dit": [{"qui": "polizistin", "air": "sourire", "t": "De nada. ¡Que disfrute de Madrid!", "fr": "De rien. Profitez bien de Madrid !"}],
+   "choix": [
+    {"t": "Muchas gracias. ¡Adiós!", "fr": "Merci beaucoup. Au revoir !", "va": null},
+    {"t": "Gracias, muy amable.", "fr": "Merci, c'est très aimable.", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ton chemin à une policière, compris la réponse et vérifié le chemin."}
+}

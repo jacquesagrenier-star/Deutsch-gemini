@@ -1,0 +1,80 @@
+{
+ "id": "a1-pharmacie",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "sante",
+ "registre": "poli",
+ "titre": {"fr": "À la pharmacie"},
+ "intro": {"fr": "Tu as mal à la gorge ou à la tête. Au comptoir d'une pharmacie de Boston, tu dis ce qui ne va pas, depuis quand, et tu repars avec un médicament."},
+ "personnes": ["apothekerin"],
+ "debut": "counter",
+ "prix": {"throat": 799, "head": 899},
+ "panier": ["med"],
+ "noeuds": {
+  "counter": {
+   "dit": [
+    {"recit": {"fr": "Une pharmacie de Boston, au comptoir du fond. Tu ne te sens pas bien."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "Hi, how can I help you?", "fr": "Bonjour, je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "I have a sore throat.", "fr": "J'ai mal à la gorge.", "pose": {"med": "throat"}, "va": "since"},
+    {"t": "I have a headache.", "fr": "J'ai mal à la tête.", "pose": {"med": "head"}, "va": "since"},
+    {"faux": true, "t": "I have bad in the head.", "fr": "J'ai mal à la tête (mot à mot).",
+     "puis": [{"qui": "apothekerin", "air": "perplexe", "t": "Bad… in the head? Oh, you have a headache?", "fr": "Du mal… dans la tête ? Ah, vous avez mal à la tête ?"}],
+     "aide": {"fr": "<b>« J'ai mal à la tête » se dit « I have a headache ».</b> Pour la gorge : « I have a sore throat ». Ailleurs : « My back hurts »."}}
+   ]
+  },
+  "since": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "How long have you had it?", "fr": "Depuis combien de temps ?"}],
+   "choix": [
+    {"t": "Since yesterday.", "fr": "Depuis hier.", "va": "fever"},
+    {"t": "For two days.", "fr": "Depuis deux jours.", "va": "fever"},
+    {"faux": true, "t": "Since two days.", "fr": "Depuis deux jours (mot à mot).",
+     "puis": [{"qui": "apothekerin", "air": "perplexe", "t": "Since two days? Oh, for two days.", "fr": "« Since two days » ? Ah, depuis deux jours."}],
+     "aide": {"fr": "<b>« depuis deux jours » se dit « for two days »</b> (une durée). « since » s'emploie avec un point de départ : « since yesterday », « since Monday »."}}
+   ]
+  },
+  "fever": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "Do you have a fever?", "fr": "Vous avez de la fièvre ?"}],
+   "choix": [
+    {"t": "No, I don't.", "fr": "Non.", "va": "allergy"},
+    {"t": "Yes, a little.", "fr": "Oui, un peu.", "va": "allergy",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "OK. Drink lots of water and get some rest.", "fr": "D'accord. Buvez beaucoup d'eau et reposez-vous."}]}
+   ]
+  },
+  "allergy": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "Are you allergic to any medication?", "fr": "Vous êtes allergique à un médicament ?"}],
+   "choix": [
+    {"t": "No, I'm not.", "fr": "Non.", "va": "med"},
+    {"t": "Yes, I'm allergic to penicillin.", "fr": "Oui, je suis allergique à la pénicilline.", "va": "med",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Good to know. This one is fine.", "fr": "Bon à savoir. Celui-ci ne pose pas de problème."}]}
+   ]
+  },
+  "med": {
+   "dit": [
+    {"si": {"med": "throat"}, "qui": "apothekerin", "air": "attentive", "t": "Then try these lozenges. One every two hours.", "fr": "Alors essayez ces pastilles. Une toutes les deux heures."},
+    {"si": {"med": "head"}, "qui": "apothekerin", "air": "attentive", "t": "Then take this acetaminophen. Two pills every six hours, with food.", "t_gb": "Then take this paracetamol. Two tablets every six hours, with food.", "fr": "Alors prenez ce paracétamol. Deux comprimés toutes les six heures, en mangeant."}
+   ],
+   "choix": [
+    {"t": "Do I need a prescription?", "fr": "J'ai besoin d'une ordonnance ?", "va": "bye",
+     "puis": [{"qui": "apothekerin", "air": "sourire", "t": "No, you don't. That's {a_payer}.", "fr": "Non. Ça fait {a_payer}.", "dit": "No, you don't. That's {a_payer:mots}."}]},
+    {"t": "Thank you. How much is it?", "fr": "Merci. C'est combien ?", "va": "bye",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "That's {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "That's {a_payer:mots}."}]}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"recit": {"fr": "Tu paies."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "Feel better soon!", "t_gb": "Get well soon!", "fr": "Bon rétablissement !"}
+   ],
+   "choix": [
+    {"t": "Thank you! Bye!", "fr": "Merci ! Au revoir !", "va": null},
+    {"faux": true, "t": "Thanks, you too!", "fr": "Merci, vous aussi !",
+     "puis": [{"qui": "apothekerin", "air": "amuse", "t": "Me too? Ha, I'm fine, thanks!", "fr": "Moi aussi ? Ha, je vais bien, merci !"}],
+     "aide": {"fr": "<b>« Feel better soon! » (« Get well soon! » en britannique, bon rétablissement) se dit au malade</b> : c'est toi. Réponds simplement « Thank you! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ce qui n'allait pas, répondu aux questions de la pharmacienne et payé {a_payer}."}
+}

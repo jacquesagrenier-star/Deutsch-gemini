@@ -1,0 +1,82 @@
+{
+ "id": "a1-marche",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "Sie",
+ "titre": {"fr": "Au marché : le kilo et le prix"},
+ "intro": {"fr": "Samedi, au marché de la Winterfeldtplatz. Tu demandes un prix, tu goûtes, tu choisis la quantité et tu paies."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "stand",
+ "prix": {"erdbeeren_kilo": 600, "erdbeeren_halb": 300, "tomaten": 350, "kartoffeln": 400},
+ "panier": ["obst", "gemuese", "mehr"],
+ "noeuds": {
+  "stand": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, le marché de la Winterfeldtplatz. Un marchand t'appelle derrière son stand de fruits et légumes."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "Guten Morgen! Die Erdbeeren sind heute ganz frisch!", "fr": "Bonjour ! Les fraises sont toutes fraîches aujourd'hui !"}
+   ],
+   "choix": [
+    {"t": "Was kostet ein Kilo Erdbeeren?", "fr": "Combien coûte un kilo de fraises ?", "pose": {"preis": "ja"}, "va": "erdbeeren",
+     "puis": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Sechs Euro das Kilo. Probieren Sie mal!", "fr": "Six euros le kilo. Goûtez donc !"}]},
+    {"t": "Kann ich mal probieren?", "fr": "Je peux goûter ?", "va": "erdbeeren",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Natürlich! Bitte schön.", "fr": "Bien sûr ! Je vous en prie."}]},
+    {"t": "Nein, danke. Ich hätte gern ein Kilo Tomaten.", "fr": "Non, merci. Je voudrais un kilo de tomates.", "pose": {"gemuese": "tomaten"}, "va": "sonst",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Gern. Die sind auch sehr gut!", "fr": "Volontiers. Elles sont très bonnes aussi !"}]},
+    {"faux": true, "t": "Kann ich eine Erdbeere schmecken?", "fr": "Je peux goûter une fraise ? (avec le mauvais verbe)",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "Schmecken? Sie meinen probieren! Ja, klar, probieren Sie!", "fr": "« Schmecken » ? Vous voulez dire goûter ! Oui, bien sûr, goûtez !"}],
+     "aide": {"fr": "<b>« goûter » (essayer un aliment) se dit « probieren » :</b> « Kann ich mal probieren? ». « schmecken » dit le goût qu'a la chose : « Die Erdbeeren schmecken gut »."}}
+   ]
+  },
+  "erdbeeren": {
+   "dit": [
+    {"recit": {"fr": "Il te tend une fraise. Tu goûtes : elle est très sucrée."}},
+    {"qui": "marktverkaeufer", "air": "question", "t": "Na? Süß, oder?", "fr": "Alors ? Sucrée, hein ?"},
+    {"si": {"preis": ""}, "qui": "marktverkaeufer", "air": "attentive", "t": "Ein Kilo kostet sechs Euro.", "fr": "Le kilo coûte six euros."}
+   ],
+   "choix": [
+    {"t": "Sehr süß! Ein Kilo, bitte.", "fr": "Très sucrée ! Un kilo, s'il vous plaît.", "pose": {"obst": "erdbeeren_kilo"}, "va": "sonst"},
+    {"t": "Lecker! Aber das ist teuer. Ein halbes Kilo, bitte.", "fr": "Délicieux ! Mais c'est cher. Un demi-kilo, s'il vous plaît.", "pose": {"obst": "erdbeeren_halb"}, "va": "sonst",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Kein Problem. Ein halbes Kilo, drei Euro.", "fr": "Pas de problème. Un demi-kilo, trois euros."}]}
+   ]
+  },
+  "sonst": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Sonst noch etwas?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Ja, zwei Kilo Kartoffeln, bitte.", "fr": "Oui, deux kilos de pommes de terre, s'il vous plaît.", "pose": {"mehr": "kartoffeln"}, "va": "zahlen"},
+    {"t": "Nein, danke. Das ist alles.", "fr": "Non, merci. C'est tout.", "va": "zahlen"},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "sonst",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Möchten Sie noch etwas? Kartoffeln vielleicht?", "fr": "Vous voulez encore quelque chose ? Des pommes de terre, peut-être ?"}]}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "choix": [
+    {"t": "Hier sind zwanzig Euro.", "fr": "Voici vingt euros.", "va": "kleiner",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Zwanzig? Hm … Haben Sie es nicht kleiner?", "fr": "Vingt ? Hum… vous n'avez pas plus petit ?"}]},
+    {"t": "Hier, bitte.", "fr": "Voilà.", "va": "tuete",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Danke schön!", "fr": "Merci beaucoup !"}]}
+   ]
+  },
+  "kleiner": {
+   "dit": [],
+   "choix": [
+    {"t": "Nein, leider nicht. Tut mir leid.", "fr": "Non, malheureusement. Je suis désolé(e).", "va": "tuete",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Kein Problem, ich habe Wechselgeld.", "fr": "Pas de problème, j'ai de la monnaie."}]},
+    {"t": "Moment … Ja, ich habe auch Münzen. Hier, bitte.", "fr": "Un instant… Oui, j'ai aussi des pièces. Voilà.", "va": "tuete",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Perfekt, danke!", "fr": "Parfait, merci !"}]}
+   ]
+  },
+  "tuete": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Brauchen Sie eine Tüte?", "fr": "Vous avez besoin d'un sac ?"}],
+   "choix": [
+    {"t": "Nein, danke. Ich habe eine Tasche.", "fr": "Non, merci. J'ai un sac.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Sehr gut! Schönes Wochenende!", "fr": "Très bien ! Bon week-end !"}]},
+    {"t": "Ja, bitte.", "fr": "Oui, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Bitte schön. Schönes Wochenende!", "fr": "Voilà. Bon week-end !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé un prix, goûté peut-être, choisi la quantité et payé {a_payer} au marché."}
+}

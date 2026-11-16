@@ -1,0 +1,66 @@
+{
+ "id": "a1-supermarche",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "poli",
+ "titre": {"fr": "Au supermarché : la caisse et le sac"},
+ "intro": {"fr": "À la caisse d'un supermarché de Boston : les questions rituelles de la caissière, la carte de fidélité, le sac qui se paie, le « cash back » et le ticket."},
+ "personnes": ["kassiererin"],
+ "debut": "start",
+ "prix": {"groceries": 2387, "bag": 5},
+ "panier": ["groceries", "bag"],
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Un supermarché de Boston, à la caisse. Tu poses tes courses sur le tapis : du lait, du pain, des pommes, du fromage et des œufs."}},
+    {"qui": "kassiererin", "air": "sourire", "t": "Hi! Did you find everything OK?", "fr": "Bonjour ! Vous avez trouvé tout ce qu'il vous fallait ?"}
+   ],
+   "choix": [
+    {"t": "Yes, thanks!", "fr": "Oui, merci !", "pose": {"groceries": "groceries"}, "va": "card"},
+    {"t": "Yes, I did, thank you.", "fr": "Oui, merci.", "pose": {"groceries": "groceries"}, "va": "card"},
+    {"repete": true, "t": "Sorry?", "fr": "Pardon ?", "va": "start",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Did you find everything you need?", "fr": "Vous avez trouvé tout ce qu'il vous faut ?"}]}
+   ]
+  },
+  "card": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Do you have a rewards card?", "t_gb": "Do you have a loyalty card?", "fr": "Vous avez une carte de fidélité ?"}],
+   "choix": [
+    {"t": "No, I don't.", "fr": "Non.", "va": "bag"},
+    {"t": "No, sorry. What is it?", "fr": "Non, désolé(e). Qu'est-ce que c'est ?", "va": "bag",
+     "puis": [{"qui": "kassiererin", "air": "attentive", "t": "It's a free card for discounts. You can get one online.", "fr": "C'est une carte gratuite pour avoir des réductions. Vous pouvez en avoir une en ligne."}]}
+   ]
+  },
+  "bag": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Do you need a bag? It's five cents.", "fr": "Vous avez besoin d'un sac ? Il coûte cinq centimes (de dollar)."}],
+   "choix": [
+    {"t": "Yes, a paper bag, please.", "fr": "Oui, un sac en papier, s'il vous plaît.", "pose": {"bag": "bag"}, "va": "pay"},
+    {"t": "No, thanks. I have my own bag.", "fr": "Non, merci. J'ai mon propre sac.", "va": "pay"}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "kassiererin", "air": "attentive", "t": "OK, that's {a_payer}. Do you want cash back?", "fr": "Bien, ça fait {a_payer}. Vous voulez retirer de l'argent ?", "dit": "OK, that's {a_payer:mots}. Do you want cash back?"}],
+   "choix": [
+    {"t": "No, thanks. By card, please.", "fr": "Non, merci. Par carte, s'il vous plaît.", "va": "receipt"},
+    {"t": "Yes, twenty dollars, please.", "fr": "Oui, vingt dollars, s'il vous plaît.", "va": "receipt",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Sure. Here's your twenty.", "fr": "Bien sûr. Voici vos vingt dollars."}]},
+    {"repete": true, "t": "Cash back? What's that?", "fr": "« Cash back » ? Qu'est-ce que c'est ?", "va": "pay",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "With your card, I can also give you some cash. Like an ATM! Do you want some?", "t_gb": "With your card, I can also give you some cash. Like a cash machine! Do you want some?", "fr": "Avec votre carte, je peux aussi vous donner de l'argent liquide. Comme un distributeur ! Vous en voulez ?"}]}
+   ]
+  },
+  "receipt": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Do you want your receipt?", "fr": "Vous voulez votre ticket de caisse ?"}],
+   "choix": [
+    {"t": "Yes, please.", "fr": "Oui, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Here you go. Have a good one!", "t_gb": "Here you go. Have a lovely day!", "fr": "Voilà. Bonne journée !"}]},
+    {"t": "No, thanks. Have a nice day!", "fr": "Non, merci. Bonne journée !", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "You too!", "fr": "Vous aussi !"}]},
+    {"faux": true, "t": "No, thanks. I don't need the recipe.", "fr": "Non, merci. Je n'ai pas besoin de la recette.",
+     "puis": [{"qui": "kassiererin", "air": "amuse", "t": "The recipe? Ha! You mean the receipt.", "fr": "La recette ? Ha ! Vous voulez dire le ticket de caisse."}],
+     "aide": {"fr": "<b>Le ticket de caisse, c'est « the receipt »</b> (le p ne se prononce pas : « ri-SIIT »). « recipe », c'est une recette de cuisine."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu es passé(e) à la caisse, tu connais le « cash back », et tu as payé {a_payer}."}
+}

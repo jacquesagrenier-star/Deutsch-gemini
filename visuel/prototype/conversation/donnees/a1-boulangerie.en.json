@@ -1,0 +1,72 @@
+{
+ "id": "a1-boulangerie",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "poli",
+ "titre": {"fr": "À la boulangerie"},
+ "intro": {"fr": "Un matin, dans une petite boulangerie de Beacon Hill, à Boston. Tu achètes ton pain ou une viennoiserie, sur place ou à emporter."},
+ "personnes": ["baecker"],
+ "debut": "counter",
+ "prix": {"loaf": 600, "croissants": 700, "muffin": 375, "coffee": 300},
+ "panier": ["bread", "extra"],
+ "textes": {
+  "bread_fr": {"cle": "bread", "loaf": "un pain", "croissants": "deux croissants", "muffin": "un muffin aux myrtilles"}
+ },
+ "noeuds": {
+  "counter": {
+   "dit": [
+    {"recit": {"fr": "Un matin, une petite boulangerie de Beacon Hill. Ça sent le pain chaud et le café."}},
+    {"qui": "baecker", "air": "sourire", "t": "Morning! What can I get you?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "A loaf of bread, please.", "fr": "Un pain, s'il vous plaît.", "pose": {"bread": "loaf"}, "va": "else",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Sure. This sourdough is still warm.", "fr": "Bien sûr. Ce pain au levain est encore chaud."}]},
+    {"t": "Two croissants, please.", "fr": "Deux croissants, s'il vous plaît.", "pose": {"bread": "croissants"}, "va": "else",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "You got it!", "fr": "C'est parti !"}]},
+    {"t": "Can I have a blueberry muffin, please?", "fr": "Je peux avoir un muffin aux myrtilles, s'il vous plaît ?", "pose": {"bread": "muffin"}, "va": "else",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Of course!", "fr": "Bien sûr !"}]},
+    {"faux": true, "t": "I would like a bread, please.", "fr": "Je voudrais un pain, s'il vous plaît (mot à mot).",
+     "puis": [{"qui": "baecker", "air": "perplexe", "t": "A bread? Um… you mean a loaf of bread?", "fr": "« A bread » ? Euh… vous voulez dire un pain ?"}],
+     "aide": {"fr": "<b>« bread » ne se compte pas :</b> on ne dit pas « a bread », mais « a loaf of bread » (un pain) ou « some bread » (du pain)."}}
+   ]
+  },
+  "else": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "Anything else?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Yes, a coffee, please.", "fr": "Oui, un café, s'il vous plaît.", "pose": {"extra": "coffee"}, "va": "here"},
+    {"t": "No, that's all, thanks.", "fr": "Non, c'est tout, merci.", "va": "here"}
+   ]
+  },
+  "here": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "For here or to go?", "t_gb": "Eat in or take away?", "fr": "Sur place ou à emporter ?"}],
+   "choix": [
+    {"t": "To go, please.", "t_gb": "Take away, please.", "fr": "À emporter, s'il vous plaît.", "va": "pay"},
+    {"t": "For here, please.", "t_gb": "Eat in, please.", "fr": "Sur place, s'il vous plaît.", "va": "pay"},
+    {"repete": true, "t": "Sorry?", "fr": "Pardon ?", "va": "here",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Do you want to eat here, or take it with you?", "fr": "Vous voulez manger ici, ou l'emporter ?"}]}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "baecker", "air": "attentive", "t": "That's {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "That's {a_payer:mots}."}],
+   "choix": [
+    {"t": "Can I pay by card?", "fr": "Je peux payer par carte ?", "va": "bye",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Sure, just tap it here.", "fr": "Bien sûr, approchez-la ici."}]},
+    {"t": "Here you go.", "fr": "Voilà.", "va": "bye",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Thanks! Here's your change.", "fr": "Merci ! Voici votre monnaie."}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "baecker", "air": "sourire", "t": "Have a good one!", "t_gb": "Have a lovely day!", "fr": "Bonne journée !"}],
+   "choix": [
+    {"t": "Thanks, you too!", "fr": "Merci, vous aussi !", "va": null},
+    {"t": "Thank you! Bye!", "fr": "Merci ! Au revoir !", "va": null},
+    {"faux": true, "t": "Thanks, you also!", "fr": "Merci, vous aussi (mot à mot) !",
+     "puis": [{"qui": "baecker", "air": "amuse", "t": "Me also? Ha, thanks!", "fr": "Moi aussi ? Ha, merci !"}],
+     "aide": {"fr": "<b>« Vous aussi ! » se dit « You too! ».</b> « also » ne se met pas seul en fin de phrase comme ça."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {bread_fr} à la boulangerie et payé {a_payer}."}
+}
