@@ -65403,8 +65403,11 @@ async function etatDuCiel(){
         const seq = sequencePremiersPas();
         if(seq.length) n.premiers_pas = Math.min(total("premiers_pas"), seq[Math.min(positionPremiersPas(), seq.length - 1)].jourPP || 0);
     }
-    n.a1_escales = (apresA1 || v.fin) ? total("a1_escales") : (v.a === true ? Math.min(total("a1_escales"), (v.e || 0) + attente("a1_escales", v.e || 0)) : 0);
-    n.a1_suite = (apresA1 || v.sf) ? total("a1_suite") : (v.fin ? Math.min(total("a1_suite"), (v.k || 0) + attente("a1_suite", v.k || 0)) : 0);
+    // Ligne 112 : une etape annoncee finie compte, meme avant que la seance suivante l'ait fait avancer (le ciel
+    // retombait a 0/12 apres la fete de l'etoile, `etoileAttente` effacee).
+    const eA = etapeAfficheeA1V(v);
+    n.a1_escales = (apresA1 || v.fin) ? total("a1_escales") : (v.a === true ? Math.min(total("a1_escales"), eA + attente("a1_escales", eA)) : 0);
+    n.a1_suite = (apresA1 || v.sf) ? total("a1_suite") : (v.fin ? Math.min(total("a1_suite"), eA + attente("a1_suite", eA)) : 0);
     const courant = enPP && !apresA1 ? "premiers_pas" : (apresA1 || v.fin) ? "a1_suite" : "a1_escales";
     const part = etoileLire(CIEL_PART_KEY);
     const groupes = CIEL_GROUPES.map(g => ({ g, c: figure(g), n: n[g], t: total(g), part: part && part.g === g && part.n === n[g] ? Math.min(CIEL_PLAFOND, part.p || 0) : 0 }));
@@ -72737,7 +72740,7 @@ function heureA1Voyage(v){
 function avanceeA1Voyage(v){
     if(!v || typeof v !== "object") return [-1];
     const tableauVu = v.t === true ? 1 : 0;   // un « t » numerique est une heure, pas un tableau vu
-    return [v.sf ? 1 : 0, v.fin ? 1 : 0, v.fin ? (v.k || 0) : (v.e || 0), tableauVu, v.b || 0, v.d ? 1 : 0, v.jalon ? 1 : 0];
+    return [v.sf ? 1 : 0, v.fin ? 1 : 0, etapeAfficheeA1V(v), tableauVu, v.b || 0, v.d ? 1 : 0, v.jalon ? 1 : 0];   // ligne 112 : etapeAfficheeA1V
 }
 function fusionnerA1Voyage(ici, nuage){
     const okIci = ici && typeof ici === "object", okNuage = nuage && typeof nuage === "object";
@@ -72896,8 +72899,32 @@ function itemA1V(forme, extra){
     return Object.assign({ mode: "phrase", forme: forme, av: true, cible: null, themeId: "a1v_" + forme, index: 0,
                            phrase: null, word: "" }, extra || {});
 }
+// 15 nov. 2026 (ligne 112, revue A a Z) : UNE ETAPE ANNONCEE FINIE L'EST. La carte de fin (« Etape 1 : terminee ! »)
+// pose `ef` (escale) ou `kf` (etape de la suite) en s'affichant (marquerCarteA1V) ; l'etape avance alors a la seance
+// suivante, meme s'il reste des mots neufs du lieu. Avant, la carte venait quand il ne restait plus de neuf HORS de la
+// seance, l'avancement attendait qu'il n'en reste plus DU TOUT : un mot presente mais pas encore demande retenait
+// l'escale quatre seances de plus, et le ciel retombait a 0/12 apres sa fete. Un mot vu et reste neuf y devient une
+// revision (`due` maintenant) : il revient dans les seances suivantes sans bloquer rien.
+function etapeFinieA1V(s){
+    if(!s) return false;
+    return s.fin ? (typeof s.kf === "number" && s.kf === (s.k || 0)) : (typeof s.ef === "number" && s.ef === (s.e || 0));
+}
+function reviserMotsVusA1V(pool){
+    pool.forEach(it => {
+        try{
+            const st = getWordState(it.themeId, it.index);
+            if(estNeuf(st) && st.vu){ st.due = Date.now(); setWordState(it.themeId, it.index, st); }
+        }catch(e){}
+    });
+}
+// L'etape ou l'on en est pour l'ecran (accueil, ciel) : celle qui suit une etape annoncee finie.
+function etapeAfficheeA1V(s){
+    const n = s.fin ? (s.k || 0) : (s.e || 0);
+    return etapeFinieA1V(s) ? n + 1 : n;
+}
 // Avance l'escale (ou l'etape) quand tout y est fait : plus de mot neuf, le
-// tableau, les phrases et le dialogue vus. Appelee a l'ouverture de la seance.
+// tableau, les phrases et le dialogue vus -- ou sa carte de fin vue (ligne 112).
+// Appelee a l'ouverture de la seance.
 function avancerA1Voyage(base){
     const s = lireA1Voyage();
     let change = false;
@@ -72906,8 +72933,10 @@ function avancerA1Voyage(base){
         s.e = s.e || 0;
         while(s.e < esc.length){
             const e = esc[s.e];
+            const finie = etapeFinieA1V(s);
             const reste = poolEscale(base, e).some(estNeuveCarte);
-            if(reste || !s.t || (s.b || 0) < (e.blocs || []).length || !s.d) break;
+            if(!finie && (reste || !s.t || (s.b || 0) < (e.blocs || []).length || !s.d)) break;
+            if(finie) reviserMotsVusA1V(poolEscale(base, e));
             s.e++; s.t = false; s.b = 0; s.d = false; change = true;
         }
         if(s.e >= esc.length){ s.fin = true; s.t = false; s.b = 0; s.d = false; s.k = 0; change = true; }
@@ -72918,8 +72947,11 @@ function avancerA1Voyage(base){
         while(s.k < suite.length){
             const et = suite[s.k];
             const phrases = (et.blocs || []).length;
-            if(poolSuite(base, s.k).some(estNeuveCarte) || !s.t) break;
-            if(phrases && ((s.b || 0) < phrases || !s.d)) break;
+            const finie = etapeFinieA1V(s);
+            if(!finie){
+                if(poolSuite(base, s.k).some(estNeuveCarte) || !s.t) break;
+                if(phrases && ((s.b || 0) < phrases || !s.d)) break;
+            } else reviserMotsVusA1V(poolSuite(base, s.k));
             s.k++; s.t = false; s.b = 0; s.d = false; change = true;
         }
     }
@@ -73016,6 +73048,11 @@ function marquerCarteA1V(item){
     if(item.forme === "av_bloc") s.b = Math.max(s.b || 0, item.rang + 1);
     if(item.avDernier) s.d = true;
     if(item.forme === "av_jalon") s.jalon = true;
+    // Ligne 112 : la carte de fin d'une etape (ou le jalon de la 12e escale) la dit finie -- voir etapeFinieA1V.
+    if((item.forme === "av_escale_fin" || item.forme === "av_jalon") && typeof item.n === "number"){
+        if(item.enSuite){ if(s.fin && (s.k || 0) === item.n) s.kf = item.n; }
+        else if(!s.fin && (s.e || 0) === item.n) s.ef = item.n;
+    }
     ecrireA1Voyage(s);
 }
 // Le carnet : les phrases des escales deja ouvertes, l'escale en cours
@@ -73936,15 +73973,17 @@ function majPorteA1Voyage(titreMots, porte){
     // Espagne »). La pilule en fait sa ligne, met le lieu dessous et la frise des
     // etapes en points (majFriseEtapes) ; plus d'emoji du lieu.
     let lieu = null, nEt = 1, totEt = 1, moitie = "av_moitie_1";
+    // Ligne 112 : apres « Etape N : terminee ! », la porte montre deja l'etape suivante (etapeAfficheeA1V).
+    const nA = etapeAfficheeA1V(s);
     if(!s.fin){
         const esc = escalesA1Voyage();
-        lieu = esc[Math.min(s.e || 0, esc.length - 1)];
-        nEt = Math.min((s.e || 0) + 1, esc.length); totEt = esc.length;
+        lieu = esc[Math.min(nA, esc.length - 1)];
+        nEt = Math.min(nA + 1, esc.length); totEt = esc.length;
     } else {
         const suite = suiteA1Voyage();
-        if((s.k || 0) >= suite.length) return false;
-        lieu = suite[s.k || 0];
-        nEt = (s.k || 0) + 1; totEt = suite.length; moitie = "av_moitie_2";
+        if(nA >= suite.length) return false;
+        lieu = suite[nA];
+        nEt = nA + 1; totEt = suite.length; moitie = "av_moitie_2";
     }
     const ligne = tf("av_porte", { m: t(moitie), n: nEt, t: totEt });
     const lieuTxt = sensPremiersPas(lieu.s);
