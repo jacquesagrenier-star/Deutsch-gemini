@@ -70096,9 +70096,25 @@ function insererCartesPhrases(seance, tout){
     // s'ennuie ». La premiere a la 3e carte (debut), puis tous_les ; et une case
     // qui ne trouve pas de phrase assez simple reessaie a la carte suivante au
     // lieu d'attendre tout un intervalle.
+    // Ligne 125 (16 nov. 2026, B9 de la revue) : UNE PHRASE NE PREND JAMAIS LA PLACE D'UN MOT NEUF. Les cases sont
+    // fixes (1, 3, 5... a partir de 400 mots vus) et cartesDeSeance range les neufs a la fin : la derniere neuve d'une
+    // seance pleine tombait a l'index 19, une case, a chaque seance. Jamais montree, elle restait neuve, et une etape
+    // de la suite par themes (qui n'avance que sans neuve) ne finissait plus (« Traurigkeit », plus de 50 seances) ;
+    // ailleurs, les neuves en case de la fin du paquet sautaient en silence. La case tombee sur un mot neuf (ou sur une
+    // phrase deja posee) prend la revision la plus proche APRES elle, sinon AVANT elle : le nombre de phrases ne change
+    // pas tant qu'il reste des revisions (la case seulement decalee vers la fin en perdait 30 %, mesure).
+    const remplacable = i => { const c = sortie[i]; return !!c && c.mode !== "phrase" && !estNeuf(getWordState(c.themeId, c.index)); };
+    const caseLibre = k => {
+        if(remplacable(k)) return k;
+        for(let j = k + 1; j < sortie.length; j++) if(remplacable(j)) return j;
+        for(let j = k - 1; j >= palier.debut; j--) if(remplacable(j)) return j;
+        return -1;
+    };
     for(let k = palier.debut; k < sortie.length; k += palier.tous_les){
-        sortie.slice(0, k).forEach(connaitre);
-        const remplacee = sortie[k];
+        const ici = caseLibre(k);
+        if(ici < 0) break;
+        sortie.slice(0, ici).forEach(connaitre);
+        const remplacee = sortie[ici];
         // La forme prevue ; si elle n'a pas de matiere (pas de serie de
         // grammaire, pas de mot dans la phrase pour le trou), la suivante.
         let item = null;
@@ -70118,10 +70134,10 @@ function insererCartesPhrases(seance, tout){
                 continue;
             }
             const max = f === "parler" ? palier.parler_max : (f === "dictee" && palier.dictee_max) ? palier.dictee_max : 0;
-            const proches = pres(k);
+            const proches = pres(ici);
             const loin = it => avecPhrase(it) && !proches.has(cle(it));
             // Les mots de la seance d'abord, puis tous les mots vus ; une jamais vue l'emporte sur une due d'ou qu'elle vienne.
-            const e1 = meilleur(sortie.slice(0, k).filter(loin), max), e2 = meilleur(vus.filter(loin), max);
+            const e1 = meilleur(sortie.slice(0, ici).filter(loin), max), e2 = meilleur(vus.filter(loin), max);
             const e = (e1 && e2) ? ((e2.rang < e1.rang) ? e2 : e1) : (e1 || e2);
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
@@ -70130,7 +70146,7 @@ function insererCartesPhrases(seance, tout){
                      themeId: e.it.themeId, index: e.it.index, word: e.it.word };
         }
         n++;
-        if(item) sortie[k] = item;
+        if(item) sortie[ici] = item;
         else k -= palier.tous_les - 1;   // la carte suivante
     }
     try{ localStorage.setItem(CYCLE_FORMES_KEY, String(n % 1000)); }catch(e){}
@@ -73090,6 +73106,14 @@ function insererA1Voyage(seance, av){
             const jalon = !av.enSuite && av.n >= av.total - 1;
             sortie.push(itemA1V(jalon ? "av_jalon" : "av_escale_fin", { n: av.n, lieu: lieu, suivant: av.suivant, enSuite: av.enSuite }));
         }
+    } else if(av.enSuite && lieu && !etapeFinieA1V(s)){
+        // Ligne 125 : LES ETAPES PAR THEMES ONT AUSSI LEUR CARTE DE FIN. Sans phrases ni dialogue, elles n'en avaient
+        // aucune : ni « Etape N : terminee ! », ni kf, ni etoile, et elles n'avancaient qu'une fois la derniere neuve
+        // vue. La carte vient a la meme condition que pour les autres etapes : plus de neuve du lieu hors de cette
+        // seance. Elle pose kf (marquerCarteA1V) ; un compte qui l'a deja vue (kf de cette etape) ne la revoit pas.
+        const dansSeance = new Set(seance.map(cle));
+        const neufsApres = av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
+        if(neufsApres === 0) sortie.push(itemA1V("av_escale_fin", { n: av.n, lieu: lieu, suivant: av.suivant, enSuite: true }));
     }
     return tete.concat(sortie);
 }
