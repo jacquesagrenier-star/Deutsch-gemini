@@ -157,3 +157,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Hier** : « Wczoraj był poniedziałek. », « Wczoraj była środa. ».
 3. **Les mois** : « Po kwietniu jest maj. », « Przed czerwcem jest maj. », « Moje urodziny są 3 maja. », « … we wrześniu. ».
 4. **Les mots** : « wizyta u lekarza », « trening piłki nożnej trwa dwie godziny », « Jest południe. », « Jest północ. ».
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **La forme polie en « proszę »** : « Proszę skręcić w pierwszą ulicę w lewo. », « Potem na trzecim skrzyżowaniu proszę skręcić w prawo. ».
+2. **Les cas** : « obok banku », « naprzeciwko poczty », « między piekarnią a bankiem », « jak dojść do apteki ».
+3. **La fin** : « Dworzec jest po lewej stronie. », sans lieu « To jest po lewej stronie. ».
+4. **Les lieux** : « komisariat policji », « kawiarnia » (Café), « przystanek » (Haltestelle).

@@ -128,3 +128,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Les mois** : يناير … ديسمبر (et non كانون الثاني …) ; « عيد ميلادي في 3 مايو. », « بعد أبريل يأتي مايو. ».
 3. **L'accord du verbe** : « تبدأ الحفلة الساعة 20:00. » (féminin), « يبدأ درس اليوغا … » ; « تنتهي الحفلة عند منتصف الليل. ».
 4. **Les durées à l'accusatif** : « يستغرق درس اليوغا ساعتين. », « … ساعة ونصفًا. », « … خمسًا وأربعين دقيقة. » ; et « أمس كان الاثنين. ».
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **L'accord** : « هل توجد صيدلية قريبة من هنا؟ » / « هل يوجد بنك قريب من هنا؟ », « هذه هي المدرسة. » / « هذا هو البنك. ».
+2. **L'impératif des indications** : « خذ الشارع الأول على اليسار. », « انعطف يسارًا هنا. » (masculin, l'usage des panneaux et des guides).
+3. **Les rues en lettres latines** : « عند زاوية Bergstraße و Lindenstraße » (le و détaché devant un nom latin) ; pour l'espagnol « في calle Mayor ».
+4. **La fin sans lieu** : « المكان على اليسار. » pour « Es ist auf der linken Seite. » ; pour l'espagnol, « ¿Dónde está la farmacia? » = « عفوًا، أين الصيدلية؟ ».

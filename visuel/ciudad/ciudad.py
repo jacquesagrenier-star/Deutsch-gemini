@@ -24,6 +24,11 @@ import io, json, os, sys, time
 
 sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, ICI)
+import langues as LG   # lot 14 (16 nov. 2026) : tr, uk, pl, ru, fa, ar (visuel/ciudad/langues.py)
+LGN = LG.LANGUES
+langs = lambda app: ["de", "es", "fr", "en", "pt"] + [l for l in LGN if garder(app, l)]
+garder = lambda app, l: l not in LGN or app == "de" or l == "ar"   # l'espagnol appris : l'arabe seul
 RACINE = os.path.dirname(os.path.dirname(ICI))
 PROTO = os.path.join(RACINE, "visuel", "prototype", "ciudad")
 IMG = os.path.join(ICI, "img")
@@ -196,6 +201,7 @@ def pt_un(lieu): a, n = LIEUX[lieu]["pt"]; return ("um " if a == "o" else "uma "
 
 # le groupe de lieu d'une relation, dans chaque langue. app : la langue apprise (les noms des rues en dependent)
 def groupe(rel, app, langue):
+    if langue in LGN: return LG.groupe(langue, rel, lambda i: rue(i, app), app)
     t = rel[0]
     nomrue = (lambda i: rue(i, app)) if langue != "de" or app == "de" else rue_de_es
     if langue == "de":
@@ -233,6 +239,7 @@ def groupe(rel, app, langue):
 
 def phrase_lieu(lieu, rel, app, langue):
     """« Die Apotheke ist neben der Bank. » et ses traductions"""
+    if langue in LGN: return LG.phrase_lieu(langue, lieu, rel, lambda i: rue(i, app), app)
     g = groupe(rel, app, langue)
     if langue == "de": return CAP(de_nom(lieu)) + " ist " + g + "."
     if langue == "es": return CAP(es_nom(lieu)) + " está " + g + "."
@@ -354,6 +361,7 @@ def liste_rues(ids, app, langue):
 
 def phrases_route(e, app, langue, forme, lieu=None):
     """Les phrases (une liste) : les virages, la traversee finale, la fin (lieu nomme, ou neutre si lieu est None)."""
+    if langue in LGN: return LG.route(langue, e, forme, lieu, lambda i: rue(i, app))
     out = []
     S = COTES[langue]
     for i, v in enumerate(e["virages"]):
@@ -451,11 +459,16 @@ def construire():
         d["plan"]["departs"][k] = {"pt": [x, y], "cap": c}
 
     def trad(app, phrase, par_langue):
-        t = {l: v for l, v in par_langue.items() if l != app}
+        t = {l: v for l, v in par_langue.items() if l != app and garder(app, l)}
         # 15 nov. 2026 (revue des traductions) : l'espagnol APPRIS est d'Espagne (« siga todo recto »), mais l'espagnol
         # LANGUE D'INTERFACE de l'allemand est celui d'Amerique latine neutre : « siga derecho »
         if app == "de" and "es" in t:
             t["es"] = t["es"].replace("Siga todo recto", "Siga derecho").replace("siga todo recto", "siga derecho")
+        # lot 14 : une meme phrase ne recoit jamais deux traductions natives differentes
+        avant = d["trad"][app].get(phrase, {})
+        for l in LGN:
+            if l in avant and l in t and avant[l] != t[l]:
+                raise SystemExit("  %s %s : deux traductions pour « %s » : %s / %s" % (app, l, phrase, avant[l], t[l]))
         d["trad"][app][phrase] = t
 
     for lieu, x in LIEUX.items():
@@ -463,7 +476,7 @@ def construire():
                             "es": {"genre": x["es"][0], "mot": x["es"][1], "etiquette": x["es"][2]},
                             "gibt": lieu not in SANS_GIBT_ES}
         for app in ("de", "es"):
-            L = ["de", "es", "fr", "en", "pt"]
+            L = langs(app)
             # Gibt es hier eine Apotheke ? / ¿Hay una farmacia por aquí? / ¿Dónde está la farmacia?
             if lieu not in SANS_GIBT_ES:
                 q = {"de": "Entschuldigung, gibt es hier " + EIN[x["de"][0]] + " " + x["de"][1] + "?",
@@ -471,12 +484,14 @@ def construire():
                      "fr": "Excusez-moi, est-ce qu'il y a " + fr_un(lieu) + " près d'ici ?",
                      "en": "Excuse me, is there " + en_un(lieu) + " around here?",
                      "pt": "Com licença, tem " + pt_un(lieu) + " por aqui?"}
+                q.update({l: LG.question(l, "gibt", lieu, app) for l in LGN})
                 trad(app, q[app], q)
             q = {"de": "Entschuldigung, wie komme ich " + ZU[x["de"][0]] + " " + x["de"][1] + "?",
                  "es": "Perdone, ¿cómo llego " + es_a(lieu) + "?",
                  "fr": "Excusez-moi, comment est-ce que je vais " + fr_a(lieu) + " ?",
                  "en": "Excuse me, how do I get to " + en_nom(lieu) + "?",
                  "pt": "Com licença, como eu chego " + pt_a(lieu) + "?"}
+            q.update({l: LG.question(l, "wie", lieu, app) for l in LGN})
             trad(app, q[app], q)
             q = {"de": "Ich suche den Weg " + ZU[x["de"][0]] + " " + x["de"][1] + ".",
                  "es": "Perdone, ¿dónde está " + es_nom(lieu) + "?",
@@ -486,20 +501,22 @@ def construire():
             if app == "es":
                 q.update({"fr": "Excusez-moi, où est " + fr_nom(lieu) + " ?", "en": "Excuse me, where is " + en_nom(lieu) + "?",
                           "pt": "Com licença, onde fica " + pt_nom(lieu) + "?", "de": "Entschuldigung, wo ist " + de_nom(lieu) + "?"})
+            q.update({l: LG.question(l, "suche", lieu, app) for l in LGN})
             trad(app, q[app], q)
             # « Das ist die Apotheke. » / « Es la farmacia. » (la photo)
             q = {"de": "Das ist " + de_nom(lieu) + ".", "es": "Es " + es_nom(lieu) + ".", "fr": "C'est " + fr_nom(lieu) + ".",
                  "en": "This is " + en_nom(lieu) + ".", "pt": "É " + pt_nom(lieu) + "."}
+            q.update({l: LG.question(l, "photo", lieu, app) for l in LGN})
             trad(app, q[app], q)
         # les faits
         rels = sorted(relations_du_lieu(lieu))
         for app in ("de", "es"):
             liste = []
             for rel in rels:
-                ph = {l: phrase_lieu(lieu, rel, app, l) for l in ["de", "es", "fr", "en", "pt"]}
-                gr = {l: groupe(rel, app, l) for l in ["de", "es", "fr", "en", "pt"]}
+                ph = {l: phrase_lieu(lieu, rel, app, l) for l in langs(app)}
+                gr = {l: groupe(rel, app, l) for l in langs(app)}
                 trad(app, ph[app], ph)
-                d["trad"][app][gr[app]] = {l: v for l, v in gr.items() if l != app}
+                d["trad"][app][gr[app]] = {l: v for l, v in gr.items() if l != app and garder(app, l)}
                 liste.append({"rel": list(rel), "groupe": gr[app], "phrase": ph[app]})
             d["faits"].setdefault(app, {})[lieu] = liste
     # tous les groupes possibles (vrais pour un lieu, faux pour d'autres : les leurres), pour qu'un leurre se
@@ -511,15 +528,15 @@ def construire():
         d["groupes"] = d.get("groupes", {})
         d["groupes"][app] = {}
         for r in toutes:
-            gr = {l: groupe(r, app, l) for l in ["de", "es", "fr", "en", "pt"]}
+            gr = {l: groupe(r, app, l) for l in langs(app)}
             d["groupes"][app][gr[app]] = r
-            d["trad"][app][gr[app]] = {l: v for l, v in gr.items() if l != app}
+            d["trad"][app][gr[app]] = {l: v for l, v in gr.items() if l != app and garder(app, l)}
     # les itineraires
     for dep in DEPARTS:
         for lieu in LIEUX:
             e = etapes(dep, lieu)
             for app in ("de", "es"):
-                L = ["de", "es", "fr", "en", "pt"]
+                L = langs(app)
                 r = {"depart": dep, "lieu": lieu, "points": e["points"], "gestes": e["gestes"], "cote": e["cote"],
                      "lot": e["lot"], "virages": e["virages"], "traverses": e["traverses"], "formes": {}}
                 for forme in ("A", "B"):
@@ -549,6 +566,8 @@ def construire():
                     "en": "Turn right here.", "pt": "Aqui, vire à direita."},
          "geradeaus": {"de": "Gehen Sie hier geradeaus.", "es": "Aquí siga todo recto.", "fr": "Ici, allez tout droit.",
                        "en": "Go straight on here.", "pt": "Aqui, siga em frente."}}
+    for k in G:
+        G[k].update({l: LG.GESTES[l][k] for l in LGN})
     d["gestes"] = {}
     for app in ("de", "es"):
         d["gestes"][app] = {k: v[app] for k, v in G.items()}

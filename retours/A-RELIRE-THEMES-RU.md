@@ -161,3 +161,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Hier** : « Вчера был понедельник. », « Вчера была среда. », « Вчера было воскресенье. ».
 3. **Les mois** : « После апреля идёт май. », « Перед июнем идёт май. », « Мой день рождения — 3 мая. », « … в мае. ».
 4. **Les mots** : « приём у врача », « футбольная тренировка длится два часа », « Сейчас полдень. », « Сейчас полночь. ».
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **Les cas** : « рядом с банком », « рядом со школой », « напротив почты », « между пекарней и банком », « как мне пройти к аптеке » (к + datif).
+2. **L'itinéraire** : « Поверните налево на первую улицу. », « Потом на третьем перекрёстке поверните направо. ».
+3. **La fin** : « Вокзал слева. », sans lieu « Это слева. » ; « гостиница » pour Hotel, « полицейский участок » pour Polizei.
+4. **Les rues** : « на улице Gartenstraße », « на углу Bergstraße и Lindenstraße », « перейдите Lindenstraße и Schulstraße ».
