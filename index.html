@@ -6673,6 +6673,14 @@ body[data-theme="dark"] .praep-schema-cadre{background:rgba(255,255,255,.05);}
     font-weight:700; cursor:pointer;}
 body[data-theme="dark"] .praep-schema-voir{color:#F6E2BA; background:rgba(232,162,58,.16);}
 html[dir="rtl"] .praep-schema-fleche{display:inline-block; transform:scaleX(-1);}
+/* 15 nov. 2026 (ligne 110, captures Google Play) : LA LANGUE APPRISE S'ECRIT DE GAUCHE A DROITE, MEME DANS UNE PAGE
+   EN ARABE OU EN PERSAN. Le code pose deja lang="de" (ou es, en, pt, ja ; parfois « de-DE ») sur chaque phrase, mot,
+   forme et tuile de la langue apprise ; sans sens propre, elle prenait celui de la page : « ?Haben Sie das in Größe M »,
+   les mots d'une phrase a trou dans le mauvais ordre, les parentheses du tableau retournees. Elle garde maintenant son
+   sens, isolee du texte qui l'entoure. Ce qui est en langue d'interface a l'interieur (la prononciation sous une forme
+   du tableau, en lettres arabes) reprend le sens de la page. Les traductions ar / fa ne sont pas touchees. */
+html[dir="rtl"] :is([lang|="de"], [lang|="es"], [lang|="en"], [lang|="pt"], [lang|="ja"]){direction:ltr; unicode-bidi:isolate;}
+html[dir="rtl"] :is([lang|="de"], [lang|="es"], [lang|="en"], [lang|="pt"], [lang|="ja"]) :is([lang|="ar"], [lang|="fa"]){direction:rtl; unicode-bidi:isolate;}
 .praep-schema{display:block; width:100%; height:auto; font-family:inherit;}
 .praep-schema text{text-anchor:middle; font-weight:700; font-size:13px;}
 .praep-schema .ps-akk{fill:rgba(91,63,166,.10); stroke:#5B3FA6; stroke-width:1.6;}
@@ -13561,7 +13569,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     </div>
 
     <div class="card">
-        <div class="question" id="question"></div>
+        <div class="question" id="question" dir="auto"></div>
         <button id="dictationReplayBtn" class="secondary hidden" style="margin:8px 0;" onclick="replayDictationAudio()" ><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg> <span data-i18n="dictation_replay_btn">RÉÉCOUTER</span></button>
         <div class="translation-example" id="questionTranslation"></div>
         <div id="hint" style="color:#4C566B;margin-bottom:15px"></div>
@@ -13573,7 +13581,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
              l'ecran, et le mot choisi se pose dans le blanc de la phrase. -->
         <div id="answerOptions" class="option-strip hidden"></div>
 
-        <div id="answerChunksWrap" class="hidden">
+        <div id="answerChunksWrap" class="hidden" dir="ltr">
             <div id="answerChunksBuilt" class="chunk-strip chunk-strip-built"></div>
             <div id="answerChunksBank" class="chunk-strip chunk-strip-bank"></div>
         </div>
