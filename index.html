@@ -65347,7 +65347,11 @@ function etatCielFin(){
         const av = CIEL_AV, attente = etoileLire(ETOILE_ATTENTE_KEY);
         g = av.enSuite ? "a1_suite" : "a1_escales";
         n = av.n;
-        const finie = !!(attente && attente.g === g && attente.n === n);
+        // Ligne 123 : l'etape deja annoncee finie (ef / kf, ou rattrapee) compte aussi, sans fete : une seance
+        // reprise garde l'etape de son ouverture, et la fin la redessinait a l'etoile d'avant.
+        const sv = lireA1Voyage();
+        const annoncee = av.enSuite ? (!!sv.fin && sv.kf === n) : (!sv.fin && sv.ef === n);
+        const finie = !!(attente && attente.g === g && attente.n === n) || annoncee;
         if(finie){
             n++;
             const c0 = CIEL.constellations[CIEL.groupes[g]];
@@ -72768,7 +72772,38 @@ function lireA1Voyage(){
     try{ v = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "{}"); if(!v || typeof v !== "object") v = {}; }
     catch(e){ v = {}; }
     if(typeof v.t === "number"){ if(!v.w) v.w = v.t; v.t = false; }
+    // Ecrit tout de suite : la fin de la prochaine seance reecrit la part du ciel, et la preuve partirait avec.
+    if(rattraperEtapeFinieA1V(v)) ecrireA1Voyage(v);
     return v;
+}
+// Ligne 123 (16 nov. 2026, Jacques, espagnol : « j'avais atteint la deuxieme etoile [...] ca m'a ramene a la
+// premiere ») : une carte de fin vue AVANT la v1212 n'a pas pose `ef` / `kf`, et la fete de son etoile a efface
+// l'etoile en attente ; le ciel retombait a l'etape en cours, et la carte de fin ne revient plus (dialogue fait).
+// La preuve qu'elle a ete vue : la part du ciel (etatCielFin) ne passe a l'etoile SUIVANTE que si l'etoile de
+// l'etape attendait sa fete. Elle seule compte ici -- jamais le dialogue fait, qui ne dit pas que la carte de fin
+// a ete vue. Rend vrai si l'etape est rattrapee ; l'avancement (avancerA1Voyage) fait le reste a la seance suivante,
+// sans autre fete (aucune etoile en attente n'est posee ici).
+function rattraperEtapeFinieA1V(v){
+    try{
+        if(!v || v.a !== true || v.sf || etapeFinieA1V(v)) return false;
+        const part = etoileLire(CIEL_PART_KEY);
+        if(!part || typeof part.n !== "number") return false;
+        if(v.fin){
+            const k = v.k || 0;
+            if(part.g === "a1_suite" && part.n === k + 1){ v.kf = k; return true; }
+            return false;
+        }
+        const e = v.e || 0;
+        if(part.g === "a1_escales" && part.n === e + 1){ v.ef = e; return true; }
+        // La 12e escale : son etoile acheve la figure, la part passe a la premiere etoile de la suite.
+        let total = escalesA1Voyage().length;
+        if(!total && CIEL && CIEL.groupes && CIEL.constellations){
+            const c = CIEL.constellations[CIEL.groupes.a1_escales];
+            total = c && c.etoiles ? c.etoiles.length : 0;
+        }
+        if(total && e === total - 1 && part.g === "a1_suite" && part.n === 0){ v.ef = e; return true; }
+    }catch(x){}
+    return false;
 }
 function heureA1Voyage(v){
     // L'heure d'un etat, ecrit avant (« t », un nombre) ou apres (« w ») le 14 nov.
