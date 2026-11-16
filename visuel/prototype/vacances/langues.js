@@ -203,12 +203,32 @@ function installerLanguesVacances(D, APPRENDRE){
     }
     if (lg === "tr" || lg === "fa"){
       if (!s) return maj(x[k === 3 ? 2 : k]) + ".";
-      return sansSujet ? x[3] + "." : SUJ[lg][s][0] + " " + x[3] + ".";      // sans sujet : dans une suite, après « Sonra »
+      // la page peut aussi dire une étape avec un autre sujet que le sien (le vrai ou faux) : la 3e personne au nombre du sujet
+      const pl = s === "BenMia", f = troisieme(lg, x[3], pl);
+      return sansSujet ? f + "." : SUJ[lg][s][0] + " " + f + ".";      // sans sujet : dans une suite, après « Sonra »
     }
-    // l'arabe
+    // l'arabe : le verbe devant le sujet s'accorde à son genre (au singulier devant Ben et Mia), le possessif aussi
     if (!s) return x.p[k === 3 ? 2 : k] + ".";
-    return sansSujet ? x.d + " " + x.c + "." : x.v + " " + SUJ.ar[s][0] + " " + x.c + ".";
+    const g = SEXE_AR[s], v = VERBE_AR[e.cle][g === "f" ? 1 : 0], c = typeof x.c === "string" ? x.c : x.c[g];
+    return sansSujet ? (s === "BenMia" ? x.d : v) + " " + c + "." : v + " " + SUJ.ar[s][0] + " " + c + ".";
   }
+  // le turc et le persan : la 3e personne du singulier ou du pluriel, quelle que soit celle de l'étape
+  function troisieme(lg, t, pl){
+    if (lg === "tr"){
+      const sing = t.replace(/l[ae]r$/, ""), voy = (sing.match(/[aeıioöuü]/g) || ["a"]).pop();
+      return pl ? sing + ("aıou".includes(voy) ? "lar" : "ler") : sing;
+    }
+    const sing = t.replace(/ند$/, "");
+    return pl ? sing.replace(/‌اش را/, "‌شان را").replace(/ش را/, "شان را") + "ند" : sing;
+  }
+  const SEXE_AR = {Anna: "f", Mark: "m", familia: "f", BenMia: "pl"};
+  const VERBE_AR = {"anna-koffer": ["حزم", "حزمت"], "anna-flughafen": ["ذهب", "ذهبت"], "anna-flug": ["سافر", "سافرت"], "anna-meer": ["سبح", "سبحت"],
+    "anna-eis": ["أكل", "أكلت"], "anna-altstadt": ["زار", "زارت"], "anna-souvenirs": ["اشترى", "اشترت"], "mark-rucksack": ["حزم", "حزمت"],
+    "mark-zug": ["ذهب", "ذهبت"], "mark-hotel": ["وصل", "وصلت"], "mark-hafen": ["قام", "قامت"], "mark-fisch": ["أكل", "أكلت"], "mark-museum": ["ذهب", "ذهبت"],
+    "mark-postkarte": ["كتب", "كتبت"], "familia-auto": ["ذهب", "ذهبت"], "familia-wohnung": ["استأجر", "استأجرت"], "familia-sandburg": ["بنى", "بنت"],
+    "familia-baden": ["سبح", "سبحت"], "familia-rad": ["ركب", "ركبت"], "familia-karten": ["لعب", "لعبت"]};
+  ET.ar["anna-koffer"].c = {f: "حقيبتها", m: "حقيبته", pl: "حقيبتيهما"};
+  ET.ar["mark-rucksack"].c = {f: "حقيبة ظهرها", m: "حقيبة ظهره", pl: "حقيبتي ظهرهما"};
   const minuscule = (lg, s, t) => s === "familia" && ["ru", "uk", "pl", "tr"].includes(lg) ? t.charAt(0).toLowerCase() + t.slice(1) : t;
 
   const R = {};
