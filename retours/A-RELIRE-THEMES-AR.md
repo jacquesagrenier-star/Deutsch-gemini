@@ -110,3 +110,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **Les saisons** : « نحن في الربيع. » pour « Es ist Frühling. » / « Es primavera. ».
 3. **Les mois** : « في شهر يناير، يكون الشتاء في ألمانيا. » ; pour l'espagnol, « في إسبانيا، يناير شهر من أشهر الشتاء. » (noms de mois يناير، فبراير… comme les autres thèmes).
 4. **Pour qui apprend l'espagnol** : « Hace sol. » = « هناك شمس. » (il y a du soleil) et « Hace calor. » = « الجو حارّ. », distincts de « الشمس مشرقة. » et « الجو حارّ جدًا. » de l'allemand (Die Sonne scheint, Es ist heiß).
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **Le verbe d'abord, accordé** : « تعيش البقرة في المزرعة. », « يعيش الكلب في البيت. » ; au pluriel (animaux, non humains) le féminin singulier : « تعيش الكلاب في البيت. ».
+2. **La poule au pluriel** : « الدجاجات » plutôt que le collectif « الدجاج » (qui est masculin : « يعيش الدجاج »).
+3. **Le duel** : « بقرة واحدة، بقرتان », « سمكة ذهبية واحدة، سمكتان ذهبيتان ».
+4. **Pour qui apprend l'espagnol** : les mêmes phrases (« la oveja » = « الخروف », masculin) ; la couleur choisie suit le genre espagnol de l'animal de la question (« gris|1 » = « رمادية »).

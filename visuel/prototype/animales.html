@@ -231,7 +231,10 @@ const vitLa = (a, h) => an(a).ou === h || an(a).aussi.includes(h);
 const pasLa = (a, h) => an(a).ou && !vitLa(a, h);
 // la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la
 // famille ; ailleurs, le mot teste et sa traduction tiree du corpus (animales.json, gloses)
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// lot 13 des langues des themes (16 nov. 2026) : le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe pour
+// qui apprend l'allemand, l'arabe pour qui apprend l'espagnol (visuel/animales/langues.py)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 const glose = m => { if (LANGUE === APPRENDRE) return ""; const g = (D.gloses[APPRENDRE] || {})[m] || {}; return g[LANGUE] || g.fr || ""; };

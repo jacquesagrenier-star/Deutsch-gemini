@@ -83,6 +83,7 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # lot 10 (16 nov.) : manger et gouter dans les six langues (visuel/prototype/manger/langues.js)
 # lot 11 (16 nov.) : les metiers dans les six langues, chaque phrase refaite par sa grammaire dans le generateur (visuel/metiers/langues.py)
 # lot 12 (16 nov.) : la meteo dans les six langues, ses phrases fixes, ses mois et ses degres (visuel/meteo/langues.py)
+# lot 13 (16 nov.) : les animaux dans les six langues, chaque phrase refaite par sa grammaire dans le generateur (visuel/animales/langues.py)
 BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "ecole": ["tr", "uk", "pl", "ru", "fa", "ar"],
@@ -92,7 +93,8 @@ BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"
             "loisirs": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "manger": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "metiers": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "meteo": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "meteo": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            "animales": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

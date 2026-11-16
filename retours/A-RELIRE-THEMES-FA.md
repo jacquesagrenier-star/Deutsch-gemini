@@ -107,3 +107,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **heiß et warm** : « هوا خیلی گرم است. » (heiß) et « هوا گرم است. » (warm).
 3. **« سردم است. »** / « گرمم است. » pour « Mir ist kalt / heiß » ; « باد می‌وزد. » pour « Es ist windig. ».
 4. **Les degrés** en chiffres latins comme les prix des autres thèmes : « دما منفی 12 درجه است. ».
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **Le singulier après un nombre** : « یک اسب، دو اسب ».
+2. **La comparaison** : « سنجاب از خرس کوچک‌تر است. ».
+3. **L'ezafe** : « این یک گربهٔ سیاه و سفید است. ».
+4. **La découverte sans sujet** : « گربه در خانه زندگی می‌کند. گوشت می‌خورد. » ; « ماهی قرمز نارنجی است. » (le poisson rouge est orange, comme en français).

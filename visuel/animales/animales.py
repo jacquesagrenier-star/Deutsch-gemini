@@ -392,6 +392,39 @@ def gloses():
     return out
 
 
+def langues_natives(a_traduire, trad):
+    """Lot 13 des langues des themes (16 nov. 2026) : le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe
+    pour qui apprend l'allemand, l'arabe pour qui apprend l'espagnol. Chaque phrase est refaite par la grammaire de sa
+    langue a partir de sa cle (visuel/animales/langues.py) ; deux traductions differentes pour une meme phrase, ou une
+    phrase sans traduction, arretent le script."""
+    sys.path.insert(0, ICI)
+    import langues as LG
+
+    def poser(app, phrase, lg, t):
+        avant = trad[app][phrase].get(lg)
+        if avant and avant != t:
+            sys.exit("  %s %s : deux traductions pour « %s » : %s / %s" % (app, lg, phrase, avant, t))
+        trad[app][phrase][lg] = t
+    for k in a_traduire:
+        v = PH[k]
+        for lg in LG.LANGUES:
+            poser("de", v["de"], lg, LG.rendre(lg, k))
+        if "es" in v:
+            poser("es", v["es"], "ar", LG.rendre("ar", k))
+    for a, x in ANIMAUX.items():
+        base = "hab|%s|%s|sg" % (a, x["ou"]) if x["ou"] else "col|%s|%s" % (a, x["couleur"])
+        d = dit(a)
+        for lg in LG.LANGUES:
+            t = LG.rendre(lg, base) + (" " + LG.suite_mange(lg, a, x["mange"][0]) if x["mange"] else "")
+            poser("de", d["de"], lg, t)
+            if lg == "ar":
+                poser("es", d["es"], "ar", t)
+    manque = ["de %s : %s" % (lg, p) for p, t in trad["de"].items() for lg in LG.LANGUES if not t.get(lg)]
+    manque += ["es ar : " + p for p, t in trad["es"].items() if not t.get("ar")]
+    if manque:
+        sys.exit("  sans traduction native : " + " | ".join(manque[:20]))
+
+
 def ecrire_json():
     a_traduire = sorted(vraies())          # trie : un ensemble change d'ordre d'un lancement a l'autre
     phr = {"de": {k: v["de"] for k, v in PH.items() if "de" in v}, "es": {k: v["es"] for k, v in PH.items() if "es" in v}}
@@ -407,6 +440,7 @@ def ecrire_json():
     for a, d in dits.items():
         trad["es"][d["es"]] = {"fr": d["fr"], "en": d["en"], "pt": d["pt"], "de": d["de"]}
         trad["de"][d["de"]] = {"fr": d["fr"], "en": d["en"], "pt": d["pt"]}
+    langues_natives(a_traduire, trad)
     # les controles : chaque animal a sa couleur dans COULEURS, ses lieux dans HABITATS, une image prevue
     for a, x in ANIMAUX.items():
         if x["ou"] and x["ou"] not in HABITATS or any(h not in HABITATS for h in x["aussi"]):
@@ -433,6 +467,15 @@ def ecrire_json():
                           # « gris » ne change pas en espagnol, mais se traduit gris ou grise : la cle porte le genre de l'animal
                           "es": {f + "|" + str(g): {"fr": cx["fr"][g], "en": cx["en"], "pt": cx["pt"][g], "de": cx["de"]} for cx in COULEURS.values() for g, f in enumerate(cx["es"])}},
          "gloses": gloses()}
+    # lot 13 : le lieu et la couleur choisis, traduits dans les six langues (l'arabe seul pour l'espagnol)
+    import langues as LG
+    for h, hx in HABITATS.items():
+        d["tradLieux"]["de"][hx["de"]].update({lg: LG.lieu(lg, h) for lg in LG.LANGUES})
+        d["tradLieux"]["es"][hx["es"]]["ar"] = LG.lieu("ar", h)
+    for c, cx in COULEURS.items():
+        d["tradCouleurs"]["de"][cx["de"]].update({lg: LG.couleur(lg, c) for lg in LG.LANGUES})
+        for g, f in enumerate(cx["es"]):
+            d["tradCouleurs"]["es"][f + "|" + str(g)]["ar"] = LG.couleur("ar", c, "f" if g else "m")
     # ce que la page peut dire dans la decouverte : les fiches et les noms (les phrases apres les reponses se
     # relevent en jouant, visuel/voix_themes.py)
     a_dire = {"es": [v["es"] for v in dits.values()] + [es_sg(a) for a in ANIMAUX],

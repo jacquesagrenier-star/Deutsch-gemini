@@ -143,3 +143,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **« Идёт гроза. »** pour « Es gibt ein Gewitter. » (« Сегодня гроза. » avec heute).
 3. **Les degrés accordés** : « 21 градус », « 22 градуса », « 12 градусов », « Сейчас минус 12 градусов. ».
 4. **Le choix « Ich bin kalt. »** : « моё тело холодное на ощупь, или я холодный человек » (« человек » est masculin comme nom).
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **Le genre russe** : собака, кошка et лошадь féminins (« Собака чёрно-белая. », « Она ест мясо. »).
+2. **Après deux** : « один медведь, два медведя », « одна лошадь, две лошади », « одна курица, две курицы ».
+3. **La comparaison au génitif** : « Белка меньше медведя. ».
+4. **Les couleurs** : « Лиса рыжая. » (orange en allemand), « Птица сине-жёлтая. ».

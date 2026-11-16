@@ -141,3 +141,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **Les mois au locatif** : « У січні в Німеччині зима. », « У травні … ».
 3. **Les degrés accordés** : « 21 градус », « 22 градуси », « 12 градусів », « Зараз мінус 12 градусів. ».
 4. **« Сьогодні сильний дощ. »** pour « Heute gibt es viel Regen. » et « Сьогодні густий туман. » pour « viel Nebel » (plutôt que « багато »).
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **Le genre ukrainien** : кіт (die Katze), собака masculin (« Собака більший за мишу. »), кінь pour das Pferd.
+2. **Après deux** : « один кінь, два коні », « одна курка, дві курки » (mais « Кури живуть на фермі. »).
+3. **La comparaison** : « Білка менша за ведмедя. » (за + accusatif).
+4. **« у / в »** : « Ведмідь живе в лісі. » après une voyelle, « Ведмеді живуть у лісі. » après une consonne ; « удома » pour im Haus ; « мʼясо » avec l'apostrophe ʼ.

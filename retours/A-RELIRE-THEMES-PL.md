@@ -139,3 +139,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **« Jest mi zimno. »** / « Jest mi gorąco. » pour « Mir ist kalt / heiß ».
 3. **Les degrés accordés** : « Jest 2 stopnie. », « Jest 21 stopni. », « Jest minus 12 stopni. ».
 4. **« Dziś dużo pada. »** pour « Heute gibt es viel Regen. » ; « Pogoda jest brzydka. » pour « Das Wetter ist schlecht. ».
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **La comparaison** : « Wiewiórka jest mniejsza od niedźwiedzia. », « Pies jest większy od myszy. ».
+2. **Les couleurs accordées** : « Krowa jest czarno-biała. », « Lis jest rudy. » (l'allemand dit orange, comme le français « roux »).
+3. **La découverte sans pronom** : « Kot żyje w domu. Je mięso. ».
+4. **« na farmie »** pour « auf dem Bauernhof » (plutôt que « w gospodarstwie » ?) ; « Niedźwiedź je ryby. ».

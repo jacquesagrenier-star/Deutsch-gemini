@@ -143,3 +143,12 @@ La page traduit maintenant ses phrases (le temps qu'il fait, les activités de c
 2. **La saison seule** : « Mevsim ilkbahar. » pour « Es ist Frühling. » ; un natif dirait-il plutôt « İlkbahar. » ou « Şimdi ilkbahar. » ?
 3. **Les mois** : « Ocak ayında Almanya'da kış olur. » ; et « Sıcakladım. » pour « Mir ist heiß. ».
 4. **Les degrés** : « Hava eksi 12 derece. », « Hava 0 derece. » ; « Gök gürültülü fırtına var. » (Gewitter, d'après la glose du corpus).
+
+## Lot 13, 16 nov. : « Les animaux »
+
+La page traduit maintenant ses phrases (c'est un…, le pluriel, où il vit, ce qu'il mange, sa couleur, plus grand / plus petit que, la phrase de la découverte) et le lieu ou la couleur choisis : elles sont refaites par la grammaire de chaque langue dans `visuel/animales/langues.py`, versées dans `animales.json` par `animales.py`. À relire :
+
+1. **Le singulier après un nombre** : « bir at, iki at » pour « ein Pferd, zwei Pferde » (le pluriel allemand n'a pas d'équivalent).
+2. **La comparaison à l'ablatif** : « Sincap ayıdan küçüktür. », « Ayı japon balığından büyüktür. ».
+3. **Les couleurs** : « Tilki turuncu. » (l'allemand dit orange ; un natif dirait-il « kızıl » ?), « İnek siyah beyaz. », « Kuş mavi ve sarı. ».
+4. **La découverte** : « Kedi evde yaşar. Et yer. » (sans sujet dans la seconde phrase).
