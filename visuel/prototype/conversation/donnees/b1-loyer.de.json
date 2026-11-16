@@ -4,17 +4,17 @@
  "niveau": "B1",
  "registre": "Sie",
  "titre": {"fr": "Négocier une hausse de loyer"},
- "intro": {"fr": "Tu loues ton appartement depuis deux ans. Ta propriétaire, Mme Ortega, t'a écrit : elle veut augmenter le loyer. Tu la rencontres pour en discuter, poliment mais avec des arguments."},
+ "intro": {"fr": "Tu loues ton appartement depuis deux ans. Ta propriétaire, Mme Lorenz, t'a écrit : elle veut augmenter le loyer. Tu la rencontres pour en discuter, poliment mais avec des arguments."},
  "personnes": ["b11_proprietaire"],
  "debut": "treffen",
  "noeuds": {
   "treffen": {
    "dit": [
-    {"recit": {"fr": "Samedi matin. Mme Ortega sonne chez toi, sa lettre à la main."}},
+    {"recit": {"fr": "Samedi matin. Mme Lorenz sonne chez toi, sa lettre à la main."}},
     {"qui": "b11_proprietaire", "air": "sourire", "t": "Guten Morgen! Danke, dass Sie sich Zeit nehmen. Sie haben meinen Brief bekommen?", "fr": "Bonjour ! Merci de prendre le temps. Vous avez bien reçu ma lettre ?"}
    ],
    "choix": [
-    {"t": "Guten Morgen, Frau Ortega. Ja, und ich würde gern mit Ihnen darüber sprechen.", "fr": "Bonjour, madame Ortega. Oui, et j'aimerais en parler avec vous.", "va": "erhoehung"},
+    {"t": "Guten Morgen, Frau Lorenz. Ja, und ich würde gern mit Ihnen darüber sprechen.", "fr": "Bonjour, madame Lorenz. Oui, et j'aimerais en parler avec vous.", "va": "erhoehung"},
     {"t": "Ja, kommen Sie bitte herein. Deshalb wollte ich Sie persönlich treffen.", "fr": "Oui, entrez, je vous en prie. C'est pour ça que je voulais vous voir en personne.", "va": "erhoehung"},
     {"faux": true, "t": "Ja. Ich möchte mit dir darüber sprechen.", "fr": "Oui. J'aimerais en parler avec toi.",
      "puis": [{"qui": "b11_proprietaire", "air": "surprise", "t": "Oh … Wir sind noch beim Sie, oder? Aber ja, sprechen wir darüber.", "fr": "Oh… Nous nous vouvoyons encore, non ? Mais oui, parlons-en."}],
@@ -127,7 +127,7 @@
    "choix": [
     {"t": "Ich danke Ihnen auch. Schön, dass wir eine Lösung gefunden haben.", "fr": "Merci à vous aussi. Je suis content(e) que nous ayons trouvé une solution.", "va": null,
      "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Das finde ich auch. Ein schönes Wochenende!", "fr": "Moi aussi. Bon week-end !"}]},
-    {"t": "Vielen Dank, Frau Ortega. Auf Wiedersehen und ein schönes Wochenende!", "fr": "Merci beaucoup, madame Ortega. Au revoir et bon week-end !", "va": null,
+    {"t": "Vielen Dank, Frau Lorenz. Auf Wiedersehen und ein schönes Wochenende!", "fr": "Merci beaucoup, madame Lorenz. Au revoir et bon week-end !", "va": null,
      "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Danke, gleichfalls. Auf Wiedersehen!", "fr": "Merci, vous de même. Au revoir !"}]},
     {"faux": true, "t": "Danke. Ich bin sehr zufrieden von der Lösung.", "fr": "Merci. Je suis très content(e) de la solution.",
      "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Mit der Lösung bin ich auch zufrieden!", "fr": "Moi aussi, je suis contente de la solution !"}],

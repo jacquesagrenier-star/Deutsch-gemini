@@ -4,22 +4,22 @@
  "niveau": "B1",
  "registre": "usted",
  "titre": {"fr": "Négocier une hausse de loyer"},
- "intro": {"fr": "Ton contrat de location arrive à son terme après cinq ans. La propriétaire, Mme Ortega, veut augmenter le loyer pour le renouveler. Elle passe te voir pour en parler."},
+ "intro": {"fr": "Ton contrat de location arrive à son terme après cinq ans. La propriétaire, Mme García, veut augmenter le loyer pour le renouveler. Elle passe te voir pour en parler."},
  "bilan": {"fr": "Tu as négocié ton loyer en espagnol : réagir poliment, donner un argument, faire une contre-proposition et demander que tout soit mis par écrit."},
  "personnes": ["b11_proprietaire"],
  "debut": "saludo",
  "noeuds": {
   "saludo": {
    "dit": [
-    {"recit": {"fr": "Sept heures du soir. On sonne : c'est Mme Ortega, ta propriétaire. Elle t'avait prévenu(e) de sa visite."}},
+    {"recit": {"fr": "Sept heures du soir. On sonne : c'est Mme García, ta propriétaire. Elle t'avait prévenu(e) de sa visite."}},
     {"qui": "b11_proprietaire", "air": "sourire", "t": "Buenas tardes. Gracias por recibirme. ¿Qué tal todo por el piso?", "fr": "Bonsoir. Merci de me recevoir. Tout va bien dans l'appartement ?"}
    ],
    "choix": [
-    {"t": "Buenas tardes, señora Ortega. Todo bien, gracias. Pase, por favor.", "fr": "Bonsoir, madame Ortega. Tout va bien, merci. Entrez, je vous en prie.", "va": "subida",
+    {"t": "Buenas tardes, señora García. Todo bien, gracias. Pase, por favor.", "fr": "Bonsoir, madame García. Tout va bien, merci. Entrez, je vous en prie.", "va": "subida",
      "puis": [{"qui": "b11_proprietaire", "air": "sourire", "t": "Gracias. Qué bien cuidado lo tiene todo.", "fr": "Merci. Comme tout est bien entretenu chez vous."}]},
     {"t": "Buenas tardes. Bien, aunque quería comentarle un par de cosas.", "fr": "Bonsoir. Bien, même si je voulais vous parler de deux ou trois choses.", "va": "subida",
      "puis": [{"qui": "b11_proprietaire", "air": "attentive", "t": "Claro, ahora lo hablamos todo con calma.", "fr": "Bien sûr, nous allons parler de tout cela tranquillement."}]},
-    {"faux": true, "t": "Buenas tardes, señora Ortega. Entra, por favor.", "fr": "Bonsoir, madame Ortega. Entre, s'il te plaît.",
+    {"faux": true, "t": "Buenas tardes, señora García. Entra, por favor.", "fr": "Bonsoir, madame García. Entre, s'il te plaît.",
      "puis": [{"qui": "b11_proprietaire", "air": "surprise", "t": "Eh… gracias, muy amable.", "fr": "Euh… merci, c'est gentil."}],
      "aide": {"fr": "<b>« Entra »</b> tutoie la propriétaire. Au usted, on dit « entre », et plus souvent « pase ». Dis plutôt : « Pase, por favor »."}}
    ]
