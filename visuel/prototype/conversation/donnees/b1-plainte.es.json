@@ -1,0 +1,139 @@
+{
+ "id": "b1-plainte",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Porter plainte pour un vol de vélo"},
+ "intro": {"fr": "On t'a volé ton vélo cette nuit, devant ton immeuble, à Madrid. Tu vas au commissariat porter plainte : raconte ce qui s'est passé, décris le vélo et réponds aux questions de la policière."},
+ "bilan": {"fr": "Tu as porté plainte pour le vol de ton vélo et tu l'as décrit. {num_fr} {testigo_fr} Tu repars avec le numéro de la plainte pour ton assurance."},
+ "personnes": ["polizistin_wache"],
+ "debut": "denuncia",
+ "textes": {
+  "num_fr": {"cle": "num", "si": "Tu avais le numéro de cadre sur la photo de la facture.", "luego": "Tu enverras le numéro de cadre plus tard."},
+  "testigo_fr": {"cle": "testigo", "si": "Tu as aussi rapporté ce qu'un voisin a vu.", "no": "Personne n'a rien vu."}
+ },
+ "noeuds": {
+  "denuncia": {
+   "dit": [
+    {"recit": {"fr": "Le commissariat du quartier, à neuf heures du matin. Une policière te fait signe d'approcher."}},
+    {"qui": "polizistin_wache", "air": "sourire", "t": "Buenos días. ¿En qué puedo ayudarle?", "fr": "Bonjour. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Vengo a poner una denuncia: me han robado la bici esta noche.", "fr": "Bonjour. Je viens porter plainte : on m'a volé mon vélo cette nuit.", "va": "donde"},
+    {"t": "Buenos días. Esta noche me han robado la bicicleta y quiero denunciarlo.", "fr": "Bonjour. Cette nuit, on m'a volé mon vélo et je veux porter plainte.", "va": "donde"},
+    {"faux": true, "t": "Buenos días. Robé mi bicicleta esta noche.", "fr": "Bonjour. J'ai volé mon vélo cette nuit.",
+     "puis": [{"qui": "polizistin_wache", "air": "surprise", "t": "¿Que usted robó su propia bicicleta? Entonces no hay delito… ¿O se la han robado a usted?", "fr": "Vous avez volé votre propre vélo ? Alors il n'y a pas de délit… Ou bien vous l'a-t-on volé ?"}],
+     "aide": {"fr": "<b>« On m'a volé mon vélo » = « Me han robado la bici ».</b> « Robé mi bicicleta » veut dire que c'est toi qui l'as volée."}},
+    {"faux": true, "t": "Buenos días. Me han volado la bici esta noche.", "fr": "Bonjour. On m'a « volé » mon vélo cette nuit.",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "¿Volado? ¿Su bici tiene alas? Robado, querrá decir.", "fr": "Envolé ? Votre vélo a des ailes ? Volé, voulez-vous dire."}],
+     "aide": {"fr": "<b>Voler (dérober) = robar ; « volar », c'est voler dans les airs.</b> « Me han robado la bici. »"}}
+   ]
+  },
+  "donde": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "attentive", "t": "Lo siento. Vamos a tomar nota. ¿Dónde estaba la bicicleta y cuándo la vio por última vez?", "fr": "Je regrette. Nous allons prendre note. Où était le vélo et quand l'avez-vous vu pour la dernière fois ?"}
+   ],
+   "choix": [
+    {"t": "Estaba delante de mi portal, atada a una farola. La vi anoche a las diez.", "fr": "Il était devant mon immeuble, attaché à un lampadaire. Je l'ai vu hier soir à dix heures.", "va": "descripcion"},
+    {"t": "La dejé ayer por la tarde en la calle, delante de mi casa, con candado.", "fr": "Je l'ai laissé hier en fin de journée dans la rue, devant chez moi, avec un antivol.", "va": "descripcion"},
+    {"faux": true, "t": "Estaba atacada a una farola, delante de mi casa.", "fr": "Il était attaché à un lampadaire, devant chez moi.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "¿Atacada? ¿Quién atacó a la bicicleta? Atada, quiere decir. ¿Y cuándo la vio por última vez?", "fr": "Attaquée ? Qui a attaqué le vélo ? Attachée, voulez-vous dire. Et quand l'avez-vous vu pour la dernière fois ?"}],
+     "aide": {"fr": "<b>Attacher = atar.</b> « Atacar », c'est attaquer. « Estaba atada a una farola. »"}}
+   ]
+  },
+  "descripcion": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "question", "t": "¿Cómo es la bicicleta? Marca, color, algo especial…", "fr": "Comment est le vélo ? La marque, la couleur, quelque chose de particulier…"}
+   ],
+   "choix": [
+    {"t": "Es una bici de ciudad azul, de la marca Orbea, con una cesta delante.", "fr": "C'est un vélo de ville bleu, de la marque Orbea, avec un panier à l'avant.", "va": "bastidor"},
+    {"t": "Es roja y bastante vieja, con un timbre amarillo y pegatinas en el cuadro.", "fr": "Il est rouge et assez vieux, avec une sonnette jaune et des autocollants sur le cadre.", "va": "bastidor"},
+    {"faux": true, "t": "Es azul y casi nueva: la he comprado hace dos meses.", "fr": "Il est bleu et presque neuf : je l'ai acheté il y a deux mois.",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "La compró hace dos meses, entonces. ¿Y de qué marca es? ¿Tiene algo especial?", "fr": "Vous l'avez acheté il y a deux mois, donc. Et de quelle marque est-il ? A-t-il quelque chose de particulier ?"}],
+     "aide": {"fr": "<b>Avec « hace dos meses », « ayer », « el lunes » : le passé simple (indefinido).</b> « La compré hace dos meses. » Le passé composé va avec « hoy », « esta noche », « esta semana »."}}
+   ]
+  },
+  "bastidor": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "question", "t": "¿Tiene el número de bastidor? Está grabado en el cuadro, y también aparece en la factura.", "fr": "Avez-vous le numéro de cadre ? Il est gravé sur le cadre, et il figure aussi sur la facture."}
+   ],
+   "choix": [
+    {"t": "Sí, tengo una foto de la factura en el móvil. Aquí está.", "fr": "Oui, j'ai une photo de la facture sur mon téléphone. La voici.", "pose": {"num": "si"}, "va": "testigo",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Perfecto, lo copio. Con el número es mucho más fácil identificarla.", "fr": "Parfait, je le recopie. Avec le numéro, il est beaucoup plus facile de l'identifier."}]},
+    {"t": "Ahora mismo no lo tengo. ¿Puedo traerlo más tarde?", "fr": "Je ne l'ai pas sur moi. Puis-je l'apporter plus tard ?", "pose": {"num": "luego"}, "va": "luego"},
+    {"faux": true, "t": "No conozco el nombre de bastidor.", "fr": "Je ne connais pas le « nombre » de cadre.",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "¿El nombre? Las bicis no tienen nombre… El número, quiere decir. ¿Lo tiene?", "fr": "Le nom ? Les vélos n'ont pas de nom… Le numéro, voulez-vous dire. L'avez-vous ?"}],
+     "aide": {"fr": "<b>Un numéro = un número.</b> « El nombre » est le nom (ou le prénom). « El número de bastidor. »"}},
+    {"repete": true, "t": "Perdone, ¿qué es el número de bastidor?", "fr": "Excusez-moi, qu'est-ce que le « número de bastidor » ?", "va": "bastidor",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Es el número de serie de la bicicleta. Cada una tiene el suyo, grabado en el metal, y está en la factura. ¿Lo tiene?", "fr": "C'est le numéro de série du vélo. Chacun a le sien, gravé dans le métal, et il est sur la facture. L'avez-vous ?"}]}
+   ]
+  },
+  "luego": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "attentive", "t": "Sí, puede traerlo o enviarlo por correo electrónico a esta comisaría. Pero hágalo pronto: sin ese número es difícil demostrar que la bici es suya.", "fr": "Oui, vous pouvez l'apporter ou l'envoyer par courriel à ce commissariat. Mais faites-le vite : sans ce numéro, il est difficile de prouver que le vélo est à vous."}
+   ],
+   "choix": [
+    {"t": "De acuerdo. Busco la factura en casa y se lo envío esta tarde.", "fr": "D'accord. Je cherche la facture à la maison et je vous l'envoie cet après-midi.", "va": "testigo"},
+    {"t": "Creo que la tienda donde la compré lo tiene. Les llamaré hoy mismo.", "fr": "Je crois que le magasin où je l'ai acheté l'a. Je les appellerai aujourd'hui même.", "va": "testigo"},
+    {"faux": true, "t": "De acuerdo, se lo envío tan pronto que posible.", "fr": "D'accord, je vous l'envoie aussi vite que possible.",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Lo antes posible, quiere decir. Muy bien. ¿Hoy mismo?", "fr": "Le plus tôt possible, voulez-vous dire. Très bien. Aujourd'hui même ?"}],
+     "aide": {"fr": "<b>Dès que possible = lo antes posible, cuanto antes.</b> « Tan pronto que posible » est un calque du français."}}
+   ]
+  },
+  "testigo": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "question", "t": "¿Alguien vio algo? ¿Un vecino, alguien en la calle?", "fr": "Quelqu'un a-t-il vu quelque chose ? Un voisin, quelqu'un dans la rue ?"}
+   ],
+   "choix": [
+    {"t": "Sí, un vecino vio a un hombre con unas tenazas grandes hacia las tres.", "fr": "Oui, un voisin a vu un homme avec une grosse pince vers trois heures.", "pose": {"testigo": "si"}, "va": "persona"},
+    {"t": "No, que yo sepa. Esta mañana he preguntado en el portal y nadie oyó nada.", "fr": "Non, pas que je sache. Ce matin, j'ai demandé dans l'immeuble et personne n'a rien entendu.", "pose": {"testigo": "no"}, "va": "seguro",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Es lo habitual, por desgracia. De todas formas, miraremos las cámaras de la calle.", "fr": "C'est le cas le plus fréquent, malheureusement. De toute façon, nous regarderons les caméras de la rue."}]},
+    {"faux": true, "t": "Sí, hay un testimonio: mi vecino.", "fr": "Oui, il y a un témoin : mon voisin.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "¿Un testimonio? ¿Por escrito? Ah, un testigo: una persona que lo vio. ¿Y qué vio?", "fr": "Un témoignage ? Par écrit ? Ah, un témoin : une personne qui l'a vu. Et qu'a-t-il vu ?"}],
+     "aide": {"fr": "<b>Un témoin = un testigo.</b> « Un testimonio » est un témoignage, ce que le témoin raconte."}}
+   ]
+  },
+  "persona": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "attentive", "t": "Eso es muy útil. ¿Su vecino le ha dicho cómo era ese hombre?", "fr": "C'est très utile. Votre voisin vous a-t-il dit comment était cet homme ?"}
+   ],
+   "choix": [
+    {"t": "Dice que era alto y delgado, y que llevaba una sudadera negra con capucha.", "fr": "Il dit qu'il était grand et mince, et qu'il portait un sweat noir à capuche.", "va": "seguro",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Lo apunto. Dígale a su vecino que quizá le llamemos.", "fr": "Je le note. Dites à votre voisin que nous l'appellerons peut-être."}]},
+    {"t": "Solo lo vio de espaldas: era joven y se fue en dirección al metro.", "fr": "Il ne l'a vu que de dos : il était jeune et il est parti en direction du métro.", "va": "seguro",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Lo apunto. Hay cámaras en la boca del metro; las miraremos.", "fr": "Je le note. Il y a des caméras à la bouche du métro ; nous les regarderons."}]},
+    {"faux": true, "t": "Era grande y portaba una capucha.", "fr": "Il était grand et portait une capuche.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "¿Grande? ¿Alto, o gordo? Y «llevaba» una capucha, querrá decir.", "fr": "« Grande » ? Grand de taille, ou gros ? Et il « llevaba » une capuche, voulez-vous dire."}],
+     "aide": {"fr": "<b>Grand (de taille) = alto ; porter un vêtement = llevar.</b> « Era alto y llevaba una capucha. »"}}
+   ]
+  },
+  "seguro": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "question", "t": "Muy bien, con esto ya está la denuncia. ¿Tiene seguro del hogar? A veces cubre el robo de bicicletas.", "fr": "Très bien, avec cela, la plainte est complète. Avez-vous une assurance habitation ? Elle couvre parfois le vol de vélos."}
+   ],
+   "choix": [
+    {"t": "Sí, y me han dicho que necesito el número de la denuncia.", "fr": "Oui, et on m'a dit que j'avais besoin du numéro de la plainte.", "va": "numero"},
+    {"t": "Creo que sí. ¿Qué papel tengo que enviarles?", "fr": "Je crois que oui. Quel papier dois-je leur envoyer ?", "va": "numero"},
+    {"faux": true, "t": "Sí, tengo una aseguranza para mi piso.", "fr": "Oui, j'ai une assurance pour mon appartement.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "¿Una «aseguranza»? Un seguro, querrá decir. Pues le va a hacer falta un papel.", "fr": "Une « aseguranza » ? Une assurance, voulez-vous dire. Eh bien, il va vous falloir un papier."}],
+     "aide": {"fr": "<b>Une assurance = un seguro.</b> L'assurance habitation : « el seguro del hogar ». « Aseguranza » n'est pas de l'espagnol d'Espagne."}}
+   ]
+  },
+  "numero": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "sourire", "t": "Aquí tiene una copia de la denuncia. El número es el 4827: es lo que le va a pedir el seguro.", "dit": "Aquí tiene una copia de la denuncia. El número es el cuatro mil ochocientos veintisiete: es lo que le va a pedir el seguro.", "fr": "Voici une copie de la plainte. Le numéro est le 4827 : c'est ce que l'assurance va vous demander."},
+    {"si": {"num": "luego"}, "qui": "polizistin_wache", "air": "attentive", "t": "Y no olvide enviarnos el número de bastidor.", "fr": "Et n'oubliez pas de nous envoyer le numéro de cadre."},
+    {"qui": "polizistin_wache", "air": "sourire", "t": "Un consejo: cuando tenga otra bici, apúntela en el registro de bicicletas y cómprele un candado en U. Los de cable se cortan en diez segundos.", "fr": "Un conseil : quand vous aurez un autre vélo, inscrivez-le au registre des vélos et achetez-lui un antivol en U. Ceux à câble se coupent en dix secondes."}
+   ],
+   "choix": [
+    {"t": "Gracias por el consejo. La próxima vez compraré un candado mejor.", "fr": "Merci du conseil. La prochaine fois, j'achèterai un meilleur antivol.", "va": null,
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Ojalá no haya próxima vez. Si aparece la bici, le llamamos.", "fr": "Espérons qu'il n'y aura pas de prochaine fois. Si le vélo réapparaît, nous vous appelons."}]},
+    {"t": "Muchas gracias por su ayuda. ¿Me llamarán si la encuentran?", "fr": "Merci beaucoup de votre aide. M'appellerez-vous si vous le retrouvez ?", "va": null,
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Por supuesto, le avisaremos enseguida. ¡Mucha suerte!", "fr": "Bien sûr, nous vous préviendrons tout de suite. Bonne chance !"}]},
+    {"faux": true, "t": "Gracias. Espero que ustedes encuentran mi bici.", "fr": "Merci. J'espère que vous retrouverez mon vélo.",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "«Que la encontremos», con subjuntivo… Haremos todo lo posible.", "fr": "« Que la encontremos », au subjonctif… Nous ferons tout notre possible."}],
+     "aide": {"fr": "<b>« Espero que » demande le subjonctif.</b> « Espero que encuentren mi bici. »"}}
+   ]
+  }
+ }
+}

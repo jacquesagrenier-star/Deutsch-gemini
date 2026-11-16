@@ -1,0 +1,148 @@
+{
+ "id": "b1-conseil-ami",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Un ami épuisé te demande conseil"},
+ "intro": {"fr": "Ton ami est médecin dans un hôpital de Madrid. Il enchaîne les gardes, dort mal et pense à tout quitter. Écoute-le, donne-lui un conseil, rassure-le et propose-lui une aide concrète."},
+ "bilan": {"fr": "Tu as écouté ton ami et tu lui as conseillé {consejo_fr}. Tu lui as aussi proposé une aide concrète : {plan_fr}. Il repart avec le sourire."},
+ "personnes": ["freund_arzt"],
+ "debut": "cansancio",
+ "textes": {
+  "consejo_fr": {"cle": "consejo", "jefa": "de parler à sa cheffe pour avoir moins de gardes", "vacaciones": "de prendre des vacances avant de décider", "centro": "de chercher un poste dans un centre de santé, sans gardes de nuit"},
+  "plan_fr": {"cle": "plan", "correr": "courir ensemble dimanche au Retiro", "papel": "vous retrouver pour vous y mettre à deux"}
+ },
+ "noeuds": {
+  "cansancio": {
+   "dit": [
+    {"recit": {"fr": "Vendredi soir, dans un bar de Lavapiés. Ton ami arrive avec une demi-heure de retard, les traits tirés."}},
+    {"qui": "freund_arzt", "air": "perplexe", "t": "Perdona el retraso. Vengo de otra guardia de veinticuatro horas… Este mes ya llevo siete. Estoy hecho polvo.", "fr": "Excuse-moi du retard. Je sors encore d'une garde de vingt-quatre heures… Ce mois-ci, j'en suis déjà à sept. Je suis lessivé."}
+   ],
+   "choix": [
+    {"t": "Se te nota en la cara. ¿Desde cuándo estás así?", "fr": "Ça se voit sur ton visage. Depuis quand es-tu comme ça ?", "va": "dormir"},
+    {"t": "¡Siete guardias en un mes! ¿Y cuánto tiempo llevas con este ritmo?", "fr": "Sept gardes en un mois ! Et depuis combien de temps tiens-tu ce rythme ?", "va": "dormir"},
+    {"faux": true, "t": "Sí, tienes el aire fatigado.", "fr": "Oui, tu as l'air fatigué.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "¿Que tengo «el aire fatigado»? Dirás que tengo mala cara… Y sí, la tengo.", "fr": "Que j'ai « l'air fatigué » ? Tu veux dire que j'ai mauvaise mine… Et oui, c'est vrai."}],
+     "aide": {"fr": "<b>Avoir l'air fatigué = parecer cansado, tener cara de cansado.</b> « Tener el aire » est un calque du français : « Pareces cansado », « Tienes mala cara »."}}
+   ]
+  },
+  "dormir": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "attentive", "t": "Desde el verano. Duermo fatal, ya no salgo a correr y a los amigos casi no os veo.", "fr": "Depuis l'été. Je dors très mal, je ne vais plus courir et vous, les amis, je ne vous vois presque plus."}
+   ],
+   "choix": [
+    {"t": "Eso no puede seguir así. ¿Has hablado de esto con alguien?", "fr": "Ça ne peut pas continuer comme ça. Tu en as parlé à quelqu'un ?", "va": "dejarlo"},
+    {"t": "Me preocupa verte así. ¿Qué piensas hacer?", "fr": "Ça m'inquiète de te voir comme ça. Que penses-tu faire ?", "va": "dejarlo"},
+    {"faux": true, "t": "¡Pero tú eres médico! Eres siempre cansado, es normal.", "fr": "Mais tu es médecin ! Tu es toujours fatigué, c'est normal.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "«Estás» siempre cansado… Y no, no es normal. Por eso quería hablar contigo.", "fr": "« Estás » siempre cansado… Et non, ce n'est pas normal. C'est pour ça que je voulais te parler."}],
+     "aide": {"fr": "<b>Un état passager se dit avec estar : « estás cansado ».</b> « Ser cansado » voudrait dire « être fatigant ». Et ton ami attend de l'écoute, pas un « c'est normal »."}}
+   ]
+  },
+  "dejarlo": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "No se lo he contado a nadie. Pero a veces pienso en dejarlo todo: irme del hospital, o incluso de Madrid.", "fr": "Je ne l'ai raconté à personne. Mais parfois, je pense à tout laisser tomber : quitter l'hôpital, ou même Madrid."}
+   ],
+   "choix": [
+    {"t": "Si yo fuera tú, hablaría con tu jefa antes de tomar una decisión.", "fr": "Si j'étais toi, je parlerais à ta cheffe avant de prendre une décision.", "pose": {"consejo": "jefa"}, "va": "jefa"},
+    {"t": "Deberías cogerte unas vacaciones antes de decidir nada.", "fr": "Tu devrais prendre des vacances avant de décider quoi que ce soit.", "pose": {"consejo": "vacaciones"}, "va": "vacaciones"},
+    {"t": "¿Has pensado en buscar un puesto en un centro de salud, sin guardias de noche?", "fr": "As-tu pensé à chercher un poste dans un centre de santé, sans gardes de nuit ?", "pose": {"consejo": "centro"}, "va": "centro"},
+    {"faux": true, "t": "No debes quitar el hospital.", "fr": "Tu ne dois pas quitter l'hôpital.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "¿Quitar el hospital? ¿Y dónde lo pongo? Dejar el hospital, querrás decir…", "fr": "Enlever l'hôpital ? Et je le mets où ? Quitter l'hôpital, tu veux dire…"}],
+     "aide": {"fr": "<b>Quitter un lieu, un travail = dejar ; irse de.</b> « Quitar » veut dire enlever. « No deberías dejar el hospital. »"}},
+    {"repete": true, "t": "Espera, ¿dejarlo todo? ¿Qué quieres decir exactamente?", "fr": "Attends, tout laisser tomber ? Que veux-tu dire exactement ?", "va": "dejarlo",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "Pues eso: buscar otro trabajo, o irme a vivir a otra ciudad. No puedo más.", "fr": "Eh bien voilà : chercher un autre travail, ou partir vivre dans une autre ville. Je n'en peux plus."}]}
+   ]
+  },
+  "jefa": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "¿Con mi jefa? Pero si faltan médicos… Me va a decir que todos estamos igual.", "fr": "À ma cheffe ? Mais il manque des médecins… Elle va me dire que nous en sommes tous là."}
+   ],
+   "choix": [
+    {"t": "Puede ser, pero si no se lo dices, no va a cambiar nada.", "fr": "C'est possible, mais si tu ne le lui dis pas, rien ne changera.", "va": "animo"},
+    {"t": "Es mejor que lo sepa ahora, antes de que te pongas enfermo de verdad.", "fr": "Il vaut mieux qu'elle le sache maintenant, avant que tu tombes vraiment malade.", "va": "animo"},
+    {"faux": true, "t": "Hace falta que le hablas.", "fr": "Il faut que tu lui parles.",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "«Que le hables», con subjuntivo… Ya. Pero ¿y si no sirve de nada?", "fr": "« Que le hables », au subjonctif… Oui. Mais si ça ne sert à rien ?"}],
+     "aide": {"fr": "<b>« Hace falta que » demande le subjonctif</b>, comme « il faut que » : « Hace falta que le hables ». Et il a besoin d'un argument."}}
+   ]
+  },
+  "vacaciones": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "¿Vacaciones? Pero no puedo dejar a mis pacientes ahora. Y además, no sabría adónde ir.", "fr": "Des vacances ? Mais je ne peux pas laisser mes patients maintenant. Et en plus, je ne saurais pas où aller."}
+   ],
+   "choix": [
+    {"t": "Tus pacientes necesitan un médico que haya dormido. Una semana no es el fin del mundo.", "fr": "Tes patients ont besoin d'un médecin qui a dormi. Une semaine, ce n'est pas la fin du monde.", "va": "animo"},
+    {"t": "No hace falta ir lejos: unos días en la sierra, sin móvil, y vuelves con otra cara.", "fr": "Pas besoin d'aller loin : quelques jours à la montagne, sans téléphone, et tu reviens avec une autre mine.", "va": "animo"},
+    {"faux": true, "t": "Puedes restar en casa unos días.", "fr": "Tu peux rester à la maison quelques jours.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "¿Restar? ¿Como en matemáticas? Quedarme en casa, quieres decir…", "fr": "Soustraire ? Comme en maths ? Rester à la maison, tu veux dire…"}],
+     "aide": {"fr": "<b>Rester = quedarse.</b> « Restar » veut dire soustraire. « Puedes quedarte en casa unos días. »"}}
+   ]
+  },
+  "centro": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "¿Un centro de salud? Pero a mí me gusta el hospital, las urgencias, mi equipo… Y nunca he escrito una carta de presentación.", "fr": "Un centre de santé ? Mais moi, j'aime l'hôpital, les urgences, mon équipe… Et je n'ai jamais écrit de lettre de candidature."}
+   ],
+   "choix": [
+    {"t": "No pierdes nada por mirar las ofertas. Siempre puedes decir que no.", "fr": "Tu ne perds rien à regarder les offres. Tu peux toujours dire non.", "va": "animo"},
+    {"t": "En un centro de salud también ayudarías a mucha gente, y dormirías en tu cama.", "fr": "Dans un centre de santé aussi, tu aiderais beaucoup de gens, et tu dormirais dans ton lit.", "va": "animo"},
+    {"faux": true, "t": "Es fácil: escribes una letra de motivación y ya está.", "fr": "C'est facile : tu écris une lettre de motivation et voilà.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "¿Una letra? ¿Cuál, la a, la be…? Una carta, querrás decir. Y no, no es tan fácil.", "fr": "Une lettre ? Laquelle, le a, le b… ? Une « carta », tu veux dire. Et non, ce n'est pas si facile."}],
+     "aide": {"fr": "<b>Une lettre qu'on envoie = una carta.</b> « Una letra » est une lettre de l'alphabet. La lettre de motivation : « la carta de presentación »."}}
+   ]
+  },
+  "animo": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "attentive", "t": "Puede que tengas razón… Pero no sé por dónde empezar. Me falta energía para todo.", "fr": "Tu as peut-être raison… Mais je ne sais pas par où commencer. Je manque d'énergie pour tout."}
+   ],
+   "choix": [
+    {"t": "Empecemos por algo fácil: el domingo salimos a correr juntos, como antes.", "fr": "Commençons par quelque chose de facile : dimanche, on va courir ensemble, comme avant.", "pose": {"plan": "correr"}, "va": "correr"},
+    {"si": {"consejo": "jefa"}, "t": "Si quieres, preparamos juntos lo que le vas a decir a tu jefa.", "fr": "Si tu veux, on prépare ensemble ce que tu vas dire à ta cheffe.", "pose": {"plan": "papel"}, "va": "papel"},
+    {"si": {"consejo": "vacaciones"}, "t": "Si quieres, te ayudo a buscar una casa rural en la sierra.", "fr": "Si tu veux, je t'aide à chercher un gîte à la montagne.", "pose": {"plan": "papel"}, "va": "papel"},
+    {"si": {"consejo": "centro"}, "t": "Si quieres, te ayudo con la carta de presentación y la leemos juntos.", "fr": "Si tu veux, je t'aide pour la lettre de candidature et on la relit ensemble.", "pose": {"plan": "papel"}, "va": "papel"},
+    {"faux": true, "t": "Vamos a correr juntos domingo.", "fr": "On va courir ensemble dimanche.",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "«El» domingo, se dice. ¿Y tú crees que yo estoy para correr?", "fr": "On dit « el domingo ». Et tu crois que je suis en état de courir ?"}],
+     "aide": {"fr": "<b>Devant un jour précis, il faut l'article : « el domingo ».</b> « Los domingos » = tous les dimanches."}}
+   ]
+  },
+  "correr": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "t": "¿Correr? Hace meses que no me pongo las zapatillas… ¿A qué hora? No me hagas madrugar, por favor.", "fr": "Courir ? Ça fait des mois que je n'ai pas mis mes baskets… À quelle heure ? Ne me fais pas lever tôt, s'il te plaît."}
+   ],
+   "choix": [
+    {"t": "A las once en el Retiro, tranquilamente. Y después desayunamos churros.", "fr": "À onze heures au Retiro, tranquillement. Et après, on prend des churros au petit-déjeuner.", "va": "final"},
+    {"t": "Cuando te despiertes, me llamas y quedamos. Sin prisa.", "fr": "Quand tu te réveilleras, tu m'appelles et on se retrouve. Sans se presser.", "va": "final"},
+    {"faux": true, "t": "A las once, y después tomamos el pequeño desayuno.", "fr": "À onze heures, et après on prend le petit-déjeuner.",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "¿El «pequeño desayuno»? ¡Yo lo quiero grande! Se dice «el desayuno», sin más.", "fr": "Le « pequeño desayuno » ? Moi, je le veux grand ! On dit « el desayuno », tout simplement."}],
+     "aide": {"fr": "<b>Le petit-déjeuner = el desayuno</b> ; prendre le petit-déjeuner = desayunar. Pas de « pequeño »."}}
+   ]
+  },
+  "papel": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "t": "¿Harías eso por mí? Pues sí, yo solo no lo hago nunca. ¿Cuándo te viene bien?", "fr": "Tu ferais ça pour moi ? Eh bien oui, tout seul, je ne le ferai jamais. Quand est-ce que ça t'arrange ?"}
+   ],
+   "choix": [
+    {"t": "El sábado por la tarde, en mi casa. Yo preparo la cena.", "fr": "Samedi en fin de journée, chez moi. C'est moi qui prépare le dîner.", "va": "final"},
+    {"t": "Mañana mismo, si quieres. Cuanto antes, mejor.", "fr": "Dès demain, si tu veux. Le plus tôt sera le mieux.", "va": "final"},
+    {"faux": true, "t": "Cuando quieres.", "fr": "Quand tu veux.",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "«Cuando quieras», con subjuntivo. Pero dime un día, que si no, no lo hacemos.", "fr": "« Cuando quieras », au subjonctif. Mais dis-moi un jour, sinon on ne le fera pas."}],
+     "aide": {"fr": "<b>« Quand tu veux » (plus tard) = « cuando quieras »</b> : « cuando » + subjonctif pour un moment à venir."}}
+   ]
+  },
+  "final": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "t": "¿Sabes qué? Solo con hablarlo ya me siento mejor. Gracias por escucharme.", "fr": "Tu sais quoi ? Rien que d'en parler, je me sens déjà mieux. Merci de m'avoir écouté."},
+    {"si": {"consejo": "jefa"}, "qui": "freund_arzt", "air": "sourire", "t": "El lunes le pido una cita a mi jefa. Prometido.", "fr": "Lundi, je demande un rendez-vous à ma cheffe. Promis."},
+    {"si": {"consejo": "vacaciones"}, "qui": "freund_arzt", "air": "sourire", "t": "El lunes pido una semana libre. Prometido.", "fr": "Lundi, je demande une semaine de congé. Promis."},
+    {"si": {"consejo": "centro"}, "qui": "freund_arzt", "air": "sourire", "t": "Esta semana miro las ofertas de los centros de salud. Prometido.", "fr": "Cette semaine, je regarde les offres des centres de santé. Promis."}
+   ],
+   "choix": [
+    {"t": "Para eso están los amigos. Y llámame cuando quieras, aunque sea de madrugada.", "fr": "Les amis sont là pour ça. Et appelle-moi quand tu veux, même en pleine nuit.", "va": null,
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "¡Te tomo la palabra! Venga, esta ronda la pago yo.", "fr": "Je te prends au mot ! Allez, cette tournée, c'est moi qui la paie."}]},
+    {"t": "Me alegro de verte sonreír otra vez. Lo importante es que te cuides.", "fr": "Ça me fait plaisir de te voir sourire à nouveau. L'important, c'est que tu prennes soin de toi.", "va": null,
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Lo intentaré. Venga, esta ronda la pago yo.", "fr": "J'essaierai. Allez, cette tournée, c'est moi qui la paie."}]},
+    {"faux": true, "t": "De nada. Tienes que tomar cuidado de ti.", "fr": "De rien. Tu dois prendre soin de toi.",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "¿«Tomar cuidado»? Cuidarme, quieres decir. Sí, ya lo sé…", "fr": "« Tomar cuidado » ? Prendre soin de moi, tu veux dire. Oui, je sais…"}],
+     "aide": {"fr": "<b>Prendre soin de soi = cuidarse.</b> « Tienes que cuidarte », « Cuídate ». « Tomar cuidado » est un calque du français."}}
+   ]
+  }
+ }
+}

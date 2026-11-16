@@ -1,0 +1,141 @@
+{
+ "id": "b1-resilier",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Résilier l'abonnement à la salle de sport"},
+ "intro": {"fr": "Tu quittes Boston pour un nouveau travail dans le Vermont. Il faut résilier ton abonnement à la salle de sport, près de Davis Square. L'employée va tout essayer pour te garder : reste poli(e), et tiens bon."},
+ "personnes": ["fitness_beraterin"],
+ "debut": "ask",
+ "textes": {
+  "preuve_fr": {"cle": "preuve", "ici": "en montrant une copie de ton nouveau bail", "courriel": "en promettant d'envoyer ton nouveau bail par courriel"},
+  "fin_fr": {"cle": "fin", "mois": "à la fin du mois, sans autre prélèvement", "date": "le quinze, avec un dernier prélèvement d'un demi-mois"}
+ },
+ "noeuds": {
+  "ask": {
+   "dit": [
+    {"recit": {"fr": "L'accueil de ta salle de sport. L'employée te sourit de toutes ses dents derrière le comptoir."}},
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Hi there! Ready for a great workout?", "fr": "Bonjour ! Prêt(e) pour une bonne séance ?"}
+   ],
+   "choix": [
+    {"t": "Not today. I'd like to cancel my membership, please.", "fr": "Pas aujourd'hui. Je voudrais résilier mon abonnement, s'il vous plaît.", "va": "why"},
+    {"t": "Actually, I'm here because I need to cancel my membership.", "fr": "En fait, je suis ici parce que je dois résilier mon abonnement.", "va": "why"},
+    {"faux": true, "t": "I want to resign my membership.", "fr": "Je veux résilier mon abonnement.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Resign? You don't work here … do you?", "fr": "Démissionner ? Vous ne travaillez pas ici… si ?"}],
+     "aide": {"fr": "<b>Résilier un abonnement ou un contrat = « cancel » :</b> « I'd like to cancel my membership. » « Resign », c'est démissionner d'un emploi."}},
+    {"faux": true, "t": "I would like to stop my abonnement.", "fr": "Je voudrais arrêter mon abonnement.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Your … what? Is that one of our classes?", "fr": "Votre… quoi ? C'est un de nos cours ?"}],
+     "aide": {"fr": "<b>L'abonnement à une salle ou à un club = « membership »</b> (pour un journal ou une chaîne : « subscription »). « I'd like to cancel my membership. »"}}
+   ]
+  },
+  "why": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "surprise", "t": "Oh no! May I ask why? Is something wrong with the gym?", "fr": "Oh non ! Puis-je vous demander pourquoi ? Quelque chose ne va pas à la salle ?"}
+   ],
+   "choix": [
+    {"t": "No, the gym is great. I'm moving to Vermont for a new job.", "fr": "Non, la salle est très bien. Je déménage dans le Vermont pour un nouveau travail.", "va": "freeze"},
+    {"t": "Not at all. I've found a job in Vermont, so I'm leaving Boston.", "fr": "Pas du tout. J'ai trouvé un emploi dans le Vermont, donc je quitte Boston.", "va": "freeze"},
+    {"faux": true, "t": "No, I move in Vermont for a new work.", "fr": "Non, je déménage dans le Vermont pour un nouveau travail.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "You move in Vermont … Oh, you're moving to Vermont! For a new job?", "fr": "Vous bougez dans le Vermont… Ah, vous partez vivre dans le Vermont ! Pour un nouvel emploi ?"}],
+     "aide": {"fr": "<b>« I'm moving to Vermont for a new job. »</b> Un projet proche se dit au présent continu, on déménage « to » un endroit, et un emploi est « a job » (« work » ne se compte pas)."}}
+   ]
+  },
+  "freeze": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Congratulations on the job! But you know, you don't have to cancel. Your membership could be frozen for up to six months. It only costs five dollars a month.", "fr": "Félicitations pour l'emploi ! Mais vous savez, vous n'êtes pas obligé(e) de résilier. Votre abonnement pourrait être suspendu jusqu'à six mois. Ça ne coûte que cinq dollars par mois."}
+   ],
+   "choix": [
+    {"t": "Thank you, but I'm not coming back. I'd really like to cancel.", "fr": "Merci, mais je ne reviendrai pas. Je voudrais vraiment résilier.", "va": "partner"},
+    {"t": "That's a kind offer, but freezing it wouldn't make sense for me.", "fr": "C'est une offre aimable, mais le suspendre n'aurait pas de sens pour moi.", "va": "partner"},
+    {"repete": true, "t": "Sorry, what does “frozen” mean here?", "fr": "Pardon, que veut dire « frozen » ici ?", "va": "freeze",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "It means your membership is paused: you pay only five dollars a month, and you can come back later. So, would you like to freeze it?", "fr": "Cela veut dire que votre abonnement est mis en pause : vous ne payez que cinq dollars par mois, et vous pouvez revenir plus tard. Alors, voulez-vous le suspendre ?"}]},
+    {"faux": true, "t": "No thanks, I don't come back.", "fr": "Non merci, je ne reviens pas.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "You don't come … often? That's exactly why a freeze is perfect!", "fr": "Vous ne venez… pas souvent ? C'est justement pour ça que la suspension est parfaite !"}],
+     "aide": {"fr": "<b>Pour une décision sur l'avenir, le présent continu ou « won't » :</b> « I'm not coming back » / « I won't be back. » « I don't come back » décrit une habitude."}}
+   ]
+  },
+  "partner": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "I understand. But we have partner clubs all over the country! Let me check Vermont … Hmm. OK, not in Vermont. What about our online classes, for only $9.99 a month?", "dit": "I understand. But we have partner clubs all over the country! Let me check Vermont … Hmm. OK, not in Vermont. What about our online classes, for only nine ninety-nine a month?", "fr": "Je comprends. Mais nous avons des clubs partenaires dans tout le pays ! Je regarde pour le Vermont… Hum. Bon, pas dans le Vermont. Et nos cours en ligne, pour seulement 9,99 $ par mois ?"}
+   ],
+   "choix": [
+    {"t": "No, thank you. I would just like to cancel, please.", "fr": "Non, merci. Je voudrais simplement résilier, s'il vous plaît.", "va": "contract"},
+    {"t": "I appreciate it, but I've made my decision.", "fr": "C'est gentil, mais ma décision est prise.", "va": "contract"},
+    {"faux": true, "t": "No! I said I want cancel. You don't listen me.", "fr": "Non ! J'ai dit que je veux résilier. Vous ne m'écoutez pas.",
+     "puis": [{"qui": "fitness_beraterin", "air": "surprise", "t": "Whoa, OK! No need to get upset. I'm only doing my job.", "fr": "Oh là, d'accord ! Pas la peine de s'énerver. Je ne fais que mon travail."}],
+     "aide": {"fr": "<b>On peut insister sans être brusque :</b> « No, thank you. I would just like to cancel, please. » Et la grammaire : « want to cancel », « listen to me »."}}
+   ]
+  },
+  "contract": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "amuse", "t": "All right, all right, I tried! Let me look at your account … You signed a twelve-month contract in March, so normally you would pay until next February.", "fr": "D'accord, d'accord, j'aurai essayé ! Je regarde votre dossier… Vous avez signé un contrat de douze mois en mars, donc normalement vous paieriez jusqu'en février prochain."},
+    {"qui": "fitness_beraterin", "air": "question", "t": "But if you move more than twenty-five miles away, the contract can be cancelled early with proof of your new address. Do you have something like a lease or a utility bill?", "t_gb": "But if you move more than twenty-five miles away, the contract can be cancelled early with proof of your new address. Do you have something like a tenancy agreement or a utility bill?", "fr": "Mais si vous déménagez à plus de vingt-cinq milles, le contrat peut être résilié plus tôt avec une preuve de votre nouvelle adresse. Avez-vous un bail, ou une facture d'électricité, par exemple ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I have a copy of my new lease right here.", "t_gb": "Yes, I have a copy of my new tenancy agreement right here.", "fr": "Oui, j'ai une copie de mon nouveau bail ici même.", "pose": {"preuve": "ici"}, "va": "date",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Let me see … Burlington, Vermont. Yes, that's far enough!", "fr": "Voyons… Burlington, Vermont. Oui, c'est assez loin !"}]},
+    {"t": "Not with me. Could I send it to you by email?", "fr": "Pas sur moi. Pourrais-je vous l'envoyer par courriel ?", "pose": {"preuve": "courriel"}, "va": "email"},
+    {"faux": true, "t": "Yes, I have my new bail.", "fr": "Oui, j'ai mon nouveau bail.",
+     "puis": [{"qui": "fitness_beraterin", "air": "surprise", "t": "Your bail? Were you arrested? Oh … your lease!", "t_gb": "Your bail? Were you arrested? Oh … your tenancy agreement!", "fr": "Votre caution ? On vous a arrêté(e) ? Ah… votre bail !"}],
+     "aide": {"fr": "<b>Le bail d'un logement = « a lease ».</b> « Bail », en anglais, c'est la caution qu'on paie pour sortir de prison !"}}
+   ]
+  },
+  "email": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Sure. Send it to the address on this card. I'll start the cancellation today, and it becomes final when the document is received.", "fr": "Bien sûr. Envoyez-le à l'adresse sur cette carte. Je lance la résiliation aujourd'hui, et elle devient définitive à la réception du document."}
+   ],
+   "choix": [
+    {"t": "Thank you. I'll send it as soon as I get home.", "fr": "Merci. Je l'enverrai dès que je rentre.", "va": "date"},
+    {"t": "Perfect. I'll email it to you this evening.", "fr": "Parfait. Je vous l'enverrai par courriel ce soir.", "va": "date"}
+   ]
+  },
+  "date": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "question", "t": "When would you like the membership to end? At the end of this month, or on a specific date?", "fr": "Quand voulez-vous que l'abonnement prenne fin ? À la fin du mois, ou à une date précise ?"}
+   ],
+   "choix": [
+    {"t": "At the end of this month, please.", "fr": "À la fin du mois, s'il vous plaît.", "pose": {"fin": "mois"}, "va": "month"},
+    {"t": "On the fifteenth of next month, please. That's my moving day.", "fr": "Le quinze du mois prochain, s'il vous plaît. C'est le jour de mon déménagement.", "pose": {"fin": "date"}, "va": "fifteenth"},
+    {"faux": true, "t": "At the end of the actual month.", "fr": "À la fin du mois actuel.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "The actual month? As opposed to a fake one? This month, you mean?", "fr": "Le « vrai » mois ? Par opposition à un faux ? Ce mois-ci, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« actuel » = « current » (ou simplement « this month ») ; « actual » veut dire « réel, véritable ».</b>"}}
+   ]
+  },
+  "month": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "attentive", "t": "OK. Your membership ends on the last day of this month. This month has already been paid, so you won't be charged again. Is that all right?", "fr": "D'accord. Votre abonnement prend fin le dernier jour du mois. Ce mois-ci est déjà payé, donc il n'y aura plus de prélèvement. Cela vous convient ?"}
+   ],
+   "choix": [
+    {"t": "Yes, that's fine. Could I have a confirmation in writing?", "fr": "Oui, c'est très bien. Pourrais-je avoir une confirmation écrite ?", "va": "confirm"},
+    {"t": "Perfect. Will a confirmation be sent to me by email?", "fr": "Parfait. Une confirmation me sera-t-elle envoyée par courriel ?", "va": "confirm"},
+    {"faux": true, "t": "Yes. Can I have a paper who confirms it?", "fr": "Oui. Je peux avoir un papier qui le confirme ?",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "A paper who … ? Oh, a letter that confirms it. Of course.", "fr": "Un papier « qui »… ? Ah, une lettre qui le confirme. Bien sûr."}],
+     "aide": {"fr": "<b>« who » est réservé aux personnes ; pour une chose, « that » ou « which » :</b> « a letter that confirms it ». Plus simple : « a confirmation in writing »."}}
+   ]
+  },
+  "fifteenth": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "attentive", "t": "OK. It ends on the fifteenth. You'll be charged for half a month on the first, and that will be your last payment. Is that all right?", "fr": "D'accord. Il prend fin le quinze. Un demi-mois vous sera prélevé le premier, et ce sera votre dernier paiement. Cela vous convient ?"}
+   ],
+   "choix": [
+    {"t": "That sounds fair. Could I have a confirmation in writing?", "fr": "Cela me paraît juste. Pourrais-je avoir une confirmation écrite ?", "va": "confirm"},
+    {"t": "Yes, that's fine. Will a confirmation be sent to me by email?", "fr": "Oui, c'est très bien. Une confirmation me sera-t-elle envoyée par courriel ?", "va": "confirm"},
+    {"faux": true, "t": "OK, but after, you don't take more money on my account.", "fr": "D'accord, mais après, vous ne prenez plus d'argent sur mon compte.",
+     "puis": [{"qui": "fitness_beraterin", "air": "surprise", "t": "Of course not! We're a gym, not thieves. That will be the last payment, I promise.", "fr": "Bien sûr que non ! Nous sommes une salle de sport, pas des voleurs. Ce sera le dernier paiement, promis."}],
+     "aide": {"fr": "<b>Dit ainsi, c'est un ordre un peu soupçonneux.</b> Demande plutôt : « So I won't be charged after that, will I? » — et l'argent est pris « from my account »."}}
+   ]
+  },
+  "confirm": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Of course. I'm printing it now, and you'll get an email too.", "fr": "Bien sûr. Je l'imprime tout de suite, et vous recevrez aussi un courriel."},
+    {"si": {"preuve": "courriel"}, "qui": "fitness_beraterin", "air": "sourire", "t": "Just don't forget to send me that lease.", "t_gb": "Just don't forget to send me that tenancy agreement.", "fr": "N'oubliez surtout pas de m'envoyer ce bail."},
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "There you go! We'll miss you. Good luck in Vermont, and if you ever come back to Boston, you know where to find us!", "fr": "Et voilà ! Vous allez nous manquer. Bonne chance dans le Vermont, et si vous revenez un jour à Boston, vous savez où nous trouver !"}
+   ],
+   "choix": [
+    {"t": "Thank you! You've been very helpful. Goodbye!", "fr": "Merci ! Vous m'avez bien aidé(e). Au revoir !", "va": null},
+    {"t": "Thanks. I'll miss this place too. Take care!", "fr": "Merci. Cet endroit me manquera aussi. Bonne continuation !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as refusé poliment la suspension, les clubs partenaires et les cours en ligne. Tu as obtenu la résiliation pour déménagement {preuve_fr} : l'abonnement prend fin {fin_fr}. Confirmation écrite en main."}
+}

@@ -31,6 +31,16 @@ joue à `visuel/prototype/conversation.html?c=<id>&apprendre=de|es|en`.
 | a1-2 | a1-appartement (la visite d'un appartement) | à relire | à relire | à relire (us, gb) |
 | a1-2 | a1-mairie (Anmeldung (de), empadronamiento (es), carte de bibliothèque (en)) | à relire | à relire | à relire (us, gb) |
 | a1-2 | a1-cours (s'inscrire à un cours de langue) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-conflit-voisin (la voisine du dessous : l'eau du balcon, la machine à laver) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-horaires (changer ses horaires avec la cheffe de cuisine) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-malentendu (un collègue de cuisine vexé ; du, tú, familier) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-fete-quartier (le boulanger organise la fête de la rue) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-conseil-ami (l'ami médecin épuisé ; du, tú, familier) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-pret (un petit crédit à la banque) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-garage (les freins, le TÜV / la ITV / l'inspection) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-plainte (vélo volé, au commissariat) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-resilier (l'abonnement de la salle de sport) | à relire | à relire | à relire (us, gb) |
+| b1-2 | b1-demenageurs (organiser le déménagement au téléphone) | à relire | à relire | à relire (us, gb) |
 
 ## Lot a2-3 (A2, troisième série), écrit le 16 nov. 2026
 
@@ -210,3 +220,21 @@ Points à regarder en priorité :
 - **Allemand** : la Zuzahlung expliquée au comptoir (« einen kleinen Teil ») ; « Ab dem dritten Tag ein Attest » (la règle varie selon les écoles) ; « allergisch auf » donné comme faute (dit dans le sud et en Autriche, mais « gegen » est la norme) ; « Herr Doktor » au médecin de famille ; la cheffe propose le « du » dès l'accueil (l'usage en cuisine).
 - **Espagnol** : la faute « El sábado he ido al parque » (norme péninsulaire : « fui », mais des Madrilènes le disent) ; « excusa » donné comme faute pour le justificante ; à la crèche, l'éducatrice au usted (« Pasen, pasen ») alors qu'on tutoie souvent les parents ; « la píldora » (sens contraceptif) ; « Es un virus de estómago » ; « Un placer » entre collègues ; le barbecue « en la terraza », calle del Olmo à Lavapiés.
 - **Anglais** : la fièvre en Fahrenheit dans une réponse juste (« a hundred and one », Celsius en britannique) ; « I feel sick » pour la nausée (net en britannique, vague en américain) ; « third grade » → « Year Four » ; en britannique, des usages américains gardés (copay, insurance card, doctor's note, permission slip) ; « peg » et « settling-in day » à confirmer ; les fautes « It's not grave », « I'm here for the essay », « I rest with her ».
+
+## Lot b1-2 (B1, deuxième série), écrit le 16 nov. 2026
+
+Allemand à Berlin, espagnol à Madrid, anglais à Boston (américain, britannique par `t_gb`). Registre : Sie / usted
+/ poli, sauf le collègue de cuisine et l'ami médecin (du, tú, familier) ; en espagnol aussi la cheffe de cuisine et
+le boulanger de la fête (tú). Chiffres, prix et faits locaux plausibles, pas vérifiés : un natif du pays les juge.
+
+- **Allemand.** Mots un peu au-dessus du B1 dans des réponses justes (une réponse plus simple existe chaque fois au
+  même nœud) : Anzeige erstatten, unbefristeter Vertrag, Kostenvoranschlag, Untersetzer, Kartoffelauflauf,
+  Hausratversicherung, « Ich hätte zuerst mit dir sprechen sollen ». Fautes anecdotiques, à garder ou non : Velo,
+  Veston, Okkasion, Konfirmation, « mit meiner blauen Karte », « ich bin heiß für ein Bier ». b1-resilier : la
+  résiliation pour déménagement est une clause du contrat ; le Sie, même si des salles berlinoises tutoient.
+- **Espagnol.** Le usted envers une voisine d'une quarantaine d'années, un peu formel pour Madrid. Fautes à juger :
+  colega (en Espagne : un pote), weekend, gato, inmueble, emprestar, « la he comprado hace dos meses ». Mots
+  techniques de l'apprenant au guichet : nóminas, NIE, contrato indefinido, periodo de prueba.
+- **Anglais.** Mots peut-être au-dessus du B1 : savory, hoodie, security deposit, pay stubs, lease, quote, taken
+  apart, cover letter. À confirmer : résiliation d'une salle au-delà de 25 milles, inspection annuelle à 35 $,
+  panneaux « No Parking » posés 48 h avant. « third floor » américain = « second floor » britannique.

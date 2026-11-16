@@ -1,0 +1,140 @@
+{
+ "id": "b1-malentendu",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "Un malentendu avec un collègue"},
+ "intro": {"fr": "Ton collègue de cuisine est vexé : il a entendu dire que tu avais demandé « son » service du matin à la cheffe. Et tu n'as pas répondu à son message. À toi de dissiper le malentendu."},
+ "personnes": ["kuechenkollege"],
+ "debut": "start",
+ "textes": {
+  "tel_fr": {"cle": "tel", "casse": "ton téléphone est en panne depuis samedi", "vu": "tu n'avais pas vu son message"},
+  "plan_fr": {"cle": "plan", "chef": "vous irez parler à la cheffe ensemble", "nous": "vous échangez deux services entre vous, le mardi et le jeudi"}
+ },
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Au vestiaire, avant le service. Ton collègue te dit à peine bonjour et claque la porte de son casier."}},
+    {"qui": "kuechenkollege", "air": "perplexe", "t": "So. I heard you asked Chef for my morning shift. Thanks a lot. Now I guess I'm stuck working nights.", "fr": "Alors. Il paraît que tu as demandé mon service du matin à la cheffe. Merci beaucoup. Moi, je me retrouve coincé le soir, j'imagine."}
+   ],
+   "choix": [
+    {"t": "Wait, that's not what happened. Let me explain.", "fr": "Attends, ce n'est pas ce qui s'est passé. Laisse-moi t'expliquer.", "va": "explain"},
+    {"t": "I'm sorry you heard it that way. Why don't we go talk to Chef together?", "t_gb": "I'm sorry you heard it that way. Why don't we go and talk to Chef together?", "fr": "Je suis désolé(e) que tu l'aies appris comme ça. Et si on allait parler à la cheffe ensemble ?", "va": "doubt"},
+    {"faux": true, "t": "It's not true! Who said you that?", "fr": "Ce n'est pas vrai ! Qui t'a dit ça ?",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Who said me … ? Who told me, you mean. It doesn't matter who.", "fr": "Qui m'a… ? Qui me l'a dit, tu veux dire. Peu importe qui."}],
+     "aide": {"fr": "<b>« dire quelque chose à quelqu'un » = « tell someone something » :</b> « Who told you that? » Avec « say », il faut « to » : « Who said that to you? »"}}
+   ]
+  },
+  "explain": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "OK, go ahead. I'm listening.", "fr": "D'accord, vas-y. Je t'écoute."}
+   ],
+   "choix": [
+    {"t": "I only asked for Tuesday and Thursday mornings, because of my English class.", "fr": "J'ai seulement demandé les matins du mardi et du jeudi, à cause de mon cours d'anglais.", "va": "message"},
+    {"t": "I asked to change two evenings a week. Nothing has been decided yet.", "fr": "J'ai demandé à changer deux soirs par semaine. Rien n'a encore été décidé.", "va": "message"},
+    {"faux": true, "t": "I have asked her yesterday for two mornings.", "fr": "Je lui ai demandé deux matins hier.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "You have asked … yesterday? OK, you asked her yesterday. And?", "fr": "Tu as demandé… hier ? Bon, tu lui as demandé hier. Et ?"}],
+     "aide": {"fr": "<b>Avec un moment précis du passé (« yesterday », « last week »), le prétérit :</b> « I asked her yesterday », jamais « I have asked her yesterday »."}}
+   ]
+  },
+  "doubt": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "perplexe", "t": "Talk to Chef? Maybe. But first tell me: did you ask for my shift or not?", "fr": "Parler à la cheffe ? Peut-être. Mais dis-moi d'abord : tu as demandé mon service, oui ou non ?"}
+   ],
+   "choix": [
+    {"t": "No. I asked for two mornings a week, not your whole shift.", "fr": "Non. J'ai demandé deux matins par semaine, pas tout ton service.", "va": "message"},
+    {"t": "I didn't ask for your shift. I just need Tuesday and Thursday evenings off.", "fr": "Je n'ai pas demandé ton service. J'ai juste besoin d'avoir mes mardis et jeudis soir libres.", "va": "message"},
+    {"faux": true, "t": "No, I didn't asked for your shift.", "fr": "Non, je n'ai pas demandé ton service.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "You didn't ask, or you asked? Which one?", "fr": "Tu n'as pas demandé, ou tu as demandé ? C'est lequel ?"}],
+     "aide": {"fr": "<b>Après « didn't », le verbe reste à la forme de base :</b> « I didn't ask », jamais « I didn't asked »."}}
+   ]
+  },
+  "message": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Hmm. OK … But there's another thing. I texted the team group on Sunday to ask who could cover for me. Everybody answered except you.", "fr": "Hum. D'accord… Mais il y a autre chose. J'ai écrit dans le groupe de l'équipe dimanche pour demander qui pouvait me remplacer. Tout le monde a répondu, sauf toi."}
+   ],
+   "choix": [
+    {"t": "Sorry about that. My phone has been broken since Saturday.", "fr": "Désolé(e). Mon téléphone est en panne depuis samedi.", "pose": {"tel": "casse"}, "va": "feel",
+     "puis": [{"qui": "kuechenkollege", "air": "surprise", "t": "Broken? Oh. OK, that explains it. I thought you were ignoring me.", "fr": "En panne ? Ah. Bon, ça explique tout. Je croyais que tu m'ignorais."}]},
+    {"t": "I'm sorry, I didn't see your message. I've turned off the notifications for that group.", "fr": "Je suis désolé(e), je n'ai pas vu ton message. J'ai coupé les notifications de ce groupe.", "pose": {"tel": "vu"}, "va": "feel",
+     "puis": [{"qui": "kuechenkollege", "air": "amuse", "t": "Yeah, that group never stops … Still, I thought you were ignoring me.", "fr": "Ouais, ce groupe n'arrête jamais… N'empêche, je croyais que tu m'ignorais."}]},
+    {"faux": true, "t": "Sorry, my phone is broken since Saturday.", "fr": "Désolé(e), mon téléphone est en panne depuis samedi.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "It is broken … since Saturday? It's been broken, you mean?", "fr": "Il est en panne… depuis samedi ? Ça fait depuis samedi, tu veux dire ?"}],
+     "aide": {"fr": "<b>« depuis » + présent en français = present perfect en anglais :</b> « My phone has been broken since Saturday. »"}}
+   ]
+  },
+  "feel": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Look, I'm not mad at you. It's just that I have my kids in the afternoon. If I lose my mornings, I can't pick them up from school.", "t_gb": "Look, I'm not angry with you. It's just that I have my kids in the afternoon. If I lose my mornings, I can't pick them up from school.", "fr": "Écoute, je ne t'en veux pas. C'est juste que j'ai mes enfants l'après-midi. Si je perds mes matins, je ne peux plus aller les chercher à l'école."}
+   ],
+   "choix": [
+    {"t": "I understand. I'd never want to cause problems for your family.", "fr": "Je comprends. Je ne voudrais jamais causer de problèmes à ta famille.", "va": "plan"},
+    {"t": "I didn't know that. If I were you, I'd be worried too.", "fr": "Je ne le savais pas. À ta place, je serais inquiet (inquiète) aussi.", "va": "plan"},
+    {"repete": true, "t": "Sorry, what did you say about the afternoon?", "fr": "Pardon, qu'est-ce que tu as dit pour l'après-midi ?", "va": "feel",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "I pick up my kids from school in the afternoon. That's why I need my morning shift.", "fr": "Je vais chercher mes enfants à l'école l'après-midi. C'est pour ça que j'ai besoin de mon service du matin."}]},
+    {"faux": true, "t": "I understand. I didn't want to make you problems.", "fr": "Je comprends. Je ne voulais pas te créer de problèmes.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Make me problems? You mean cause me problems? Well, you almost did.", "fr": "Me fabriquer des problèmes ? Me causer des problèmes, tu veux dire ? Eh bien, c'était moins une."}],
+     "aide": {"fr": "<b>« créer des problèmes à quelqu'un » = « cause problems for someone » :</b> « I didn't want to cause you any problems. » Pas « make you problems »."}}
+   ]
+  },
+  "plan": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "question", "t": "So what do we do now?", "fr": "Alors, on fait quoi maintenant ?"}
+   ],
+   "choix": [
+    {"t": "Let's go see Chef together and explain the situation.", "t_gb": "Let's go and see Chef together and explain the situation.", "fr": "Allons voir la cheffe ensemble et expliquons-lui la situation.", "pose": {"plan": "chef"}, "va": "chef"},
+    {"t": "Maybe we can work it out between us. What if we swapped just two shifts?", "fr": "On peut peut-être s'arranger entre nous. Et si on échangeait seulement deux services ?", "pose": {"plan": "nous"}, "va": "between"},
+    {"faux": true, "t": "We must to speak with Chef.", "fr": "Nous devons parler à la cheffe.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "We must … what? Speak to her? Yeah, maybe.", "fr": "On doit… quoi ? Lui parler ? Ouais, peut-être."}],
+     "aide": {"fr": "<b>Après « must », jamais de « to » :</b> « We must speak to Chef », ou plus naturel : « We have to talk to Chef » / « Let's talk to Chef »."}}
+   ]
+  },
+  "chef": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Yeah, good idea. She listens better when we both show up. But when? She's always in a bad mood before dinner service.", "fr": "Ouais, bonne idée. Elle écoute mieux quand on vient à deux. Mais quand ? Elle est toujours de mauvaise humeur avant le service du soir."}
+   ],
+   "choix": [
+    {"t": "Let's go tomorrow morning, before the deliveries arrive.", "fr": "Allons-y demain matin, avant l'arrivée des livraisons.", "va": "after",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Tomorrow at seven, then. I'll bring the coffee.", "fr": "Demain à sept heures, alors. J'apporte le café."}]},
+    {"t": "What about right after the shift, when things have calmed down?", "fr": "Et juste après le service, quand ça se sera calmé ?", "va": "after",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "OK. Tonight, after the last table.", "fr": "D'accord. Ce soir, après la dernière table."}]}
+   ]
+  },
+  "between": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Just two shifts? So you'd take my Tuesday and Thursday mornings, and I'd take your Tuesday and Thursday nights? Hmm. Actually … my wife is home on those nights. That could work.", "fr": "Seulement deux services ? Donc tu prendrais mes matins du mardi et du jeudi, et moi tes soirs du mardi et du jeudi ? Hum. En fait… ma femme est à la maison ces soirs-là. Ça pourrait marcher."}
+   ],
+   "choix": [
+    {"t": "Great! And if it doesn't work for you, we'll change it back.", "fr": "Super ! Et si ça ne te convient pas, on reviendra en arrière.", "va": "after"},
+    {"t": "Perfect. Then we'll just tell Chef what we've decided.", "fr": "Parfait. Alors on dira simplement à la cheffe ce qu'on a décidé.", "va": "after"},
+    {"faux": true, "t": "Super! So we are agree.", "fr": "Super ! Donc on est d'accord.",
+     "puis": [{"qui": "kuechenkollege", "air": "amuse", "t": "We are agree? We agree, my friend. Yes.", "fr": "« We are agree » ? On est d'accord, mon ami. Oui."}],
+     "aide": {"fr": "<b>« agree » est un verbe :</b> « So we agree », jamais « we are agree »."}}
+   ]
+  },
+  "after": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "sourire", "t": "Deal. And sorry I jumped on you like that. I should have asked you first.", "fr": "Marché conclu. Et désolé de t'avoir sauté dessus comme ça. J'aurais dû te demander d'abord."}
+   ],
+   "choix": [
+    {"t": "No worries. I should have talked to you before I talked to Chef.", "fr": "Pas de souci. J'aurais dû te parler avant de parler à la cheffe.", "va": "drink"},
+    {"t": "It's fine. I'm glad we cleared it up.", "fr": "Ce n'est rien. Je suis content(e) qu'on ait tiré ça au clair.", "va": "drink"}
+   ]
+  },
+  "drink": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "sourire", "t": "Hey, are you doing anything after work? Let me buy you a beer. Or a coffee, if you prefer.", "fr": "Dis, tu fais quelque chose après le travail ? Je te paie une bière. Ou un café, si tu préfères."}
+   ],
+   "choix": [
+    {"t": "A beer sounds great. But I'm buying the second round!", "fr": "Une bière, bonne idée. Mais la deuxième tournée est pour moi !", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "amuse", "t": "Ha! Deal.", "fr": "Ha ! Ça marche."}]},
+    {"t": "I'd love a coffee. I have to get up early tomorrow.", "fr": "Un café, volontiers. Je dois me lever tôt demain.", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Coffee it is. See you after the shift.", "fr": "Va pour un café. À tout à l'heure, après le service."}]},
+    {"faux": true, "t": "Yes, with pleasure, but I invite you!", "fr": "Oui, avec plaisir, mais c'est moi qui t'invite !",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "You invite me … where? I just invited you!", "fr": "Tu m'invites… où ? Je viens de t'inviter !"}],
+     "aide": {"fr": "<b>« C'est moi qui invite » (je paie) = « It's on me » ou « My treat ».</b> « I invite you » veut seulement dire « je te propose de venir »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as dissipé le malentendu : tu n'avais demandé que deux matins, et {tel_fr}. Pour la suite, {plan_fr}. Et vous prenez un verre après le service."}
+}

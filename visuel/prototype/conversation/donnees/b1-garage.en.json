@@ -1,0 +1,143 @@
+{
+ "id": "b1-garage",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Au garage : les freins et l'inspection"},
+ "intro": {"fr": "Ta voiture fait un drôle de bruit quand tu freines, et un voyant s'est allumé. Lundi matin, tu passes au garage de ton quartier, à Somerville. Problème : tu as besoin de la voiture demain."},
+ "personnes": ["mechanikerin_werkstatt"],
+ "debut": "noise",
+ "textes": {
+  "plan_fr": {"cle": "plan", "freins": "les freins sont refaits aujourd'hui (voiture prête à quatre heures) et l'inspection est prévue plus tard dans la semaine", "tout": "le garage garde la voiture jusqu'à jeudi midi pour tout faire, freins et inspection"},
+  "moyen_fr": {"cle": "moyen", "velo": " ; en attendant, la mécanicienne te prête un vélo", "bus": " ; en attendant, tu prends le bus"}
+ },
+ "noeuds": {
+  "noise": {
+   "dit": [
+    {"recit": {"fr": "Tu gares ta voiture devant l'atelier. La mécanicienne s'essuie les mains et vient vers toi."}},
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Morning! What can I do for you?", "fr": "Bonjour ! Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Good morning. My car makes a strange noise when I brake.", "fr": "Bonjour. Ma voiture fait un bruit bizarre quand je freine.", "va": "since"},
+    {"t": "Hi. There's a problem with my brakes, and a warning light has come on.", "fr": "Bonjour. Il y a un problème avec mes freins, et un voyant s'est allumé.", "va": "since"},
+    {"faux": true, "t": "Good morning. My car does a strange noise when I brake.", "fr": "Bonjour. Ma voiture fait un bruit bizarre quand je freine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "It does a … ? Oh, it makes a noise. OK.", "fr": "Elle fait un… ? Ah, elle fait un bruit. D'accord."}],
+     "aide": {"fr": "<b>« faire du bruit » = « make a noise »,</b> avec « make » et non « do » : « My car makes a strange noise. »"}}
+   ]
+  },
+  "since": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "OK. How long has it been doing that? And when exactly do you hear it?", "fr": "D'accord. Ça dure depuis combien de temps ? Et vous l'entendez quand, exactement ?"}
+   ],
+   "choix": [
+    {"t": "Since last week. I hear it every time I slow down.", "fr": "Depuis la semaine dernière. Je l'entends chaque fois que je ralentis.", "va": "light"},
+    {"t": "For about a week, especially when I brake hard.", "fr": "Depuis une semaine environ, surtout quand je freine fort.", "va": "light"},
+    {"faux": true, "t": "Since one week, when I brake.", "fr": "Depuis une semaine, quand je freine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Since … one week? For a week, you mean. That's a long time to drive like that.", "fr": "Depuis… une semaine ? Ça fait une semaine, vous voulez dire. C'est long, rouler comme ça."}],
+     "aide": {"fr": "<b>Une durée prend « for » : « for a week ».</b> « Since » va avec un point de départ : « since last week », « since Monday »."}}
+   ]
+  },
+  "light": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "And the warning light: is it red or yellow?", "fr": "Et le voyant : il est rouge ou jaune ?"}
+   ],
+   "choix": [
+    {"t": "It's red. It came on yesterday, on the highway.", "t_gb": "It's red. It came on yesterday, on the motorway.", "fr": "Il est rouge. Il s'est allumé hier, sur l'autoroute.", "va": "look"},
+    {"t": "It's red, I think. Here, I took a picture of it.", "fr": "Rouge, je crois. Tenez, je l'ai pris en photo.", "va": "look"},
+    {"repete": true, "t": "Sorry, which light do you mean?", "fr": "Pardon, de quel voyant parlez-vous ?", "va": "light",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "The little light on your dashboard, behind the steering wheel. Is it red or yellow?", "fr": "La petite lumière sur votre tableau de bord, derrière le volant. Elle est rouge ou jaune ?"}]}
+   ]
+  },
+  "look": {
+   "dit": [
+    {"recit": {"fr": "Elle monte la voiture sur le pont et démonte une roue. Dix minutes plus tard, elle t'appelle."}},
+    {"qui": "mechanikerin_werkstatt", "air": "surprise", "t": "Come take a look. Your front brake pads are completely worn out. They have to be replaced: you shouldn't drive like this.", "t_gb": "Come and take a look. Your front brake pads are completely worn out. They have to be replaced: you shouldn't drive like this.", "fr": "Venez voir. Vos plaquettes de frein avant sont complètement usées. Il faut les remplacer : vous ne devriez pas rouler comme ça."},
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "And I noticed something else: your inspection sticker expires at the end of this month.", "fr": "Et j'ai remarqué autre chose : votre vignette d'inspection expire à la fin du mois."}
+   ],
+   "choix": [
+    {"t": "Oh. How much will all of that cost?", "fr": "Ah. Combien tout cela va-t-il coûter ?", "va": "estimate"},
+    {"t": "What does the inspection involve? I'm new in Massachusetts.", "fr": "En quoi consiste l'inspection ? Je viens d'arriver au Massachusetts.", "va": "sticker"},
+    {"faux": true, "t": "Oh. How much it will cost?", "fr": "Ah. Combien ça va coûter ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "How much it will … ? You're asking me, right? How much will it cost?", "fr": "Combien ça… ? C'est une question, non ? Combien ça va coûter ?"}],
+     "aide": {"fr": "<b>Dans une question, l'auxiliaire passe avant le sujet :</b> « How much will it cost? », pas « How much it will cost? »"}}
+   ]
+  },
+  "sticker": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Every car in Massachusetts has to be inspected once a year: brakes, lights, tires, emissions. If it passes, you get a new sticker on the windshield. Without it, you can get a ticket.", "t_gb": "Every car in Massachusetts has to be inspected once a year: brakes, lights, tyres, emissions. If it passes, you get a new sticker on the windscreen. Without it, you can get a fine.", "fr": "Toute voiture au Massachusetts doit être inspectée une fois par an : freins, phares, pneus, émissions. Si elle passe, vous recevez une nouvelle vignette sur le pare-brise. Sans elle, vous risquez une amende."}
+   ],
+   "choix": [
+    {"t": "I didn't know that. Then let's do it. How much will everything cost?", "fr": "Je ne le savais pas. Alors faisons-la. Combien coûtera le tout ?", "va": "estimate"},
+    {"t": "Thanks for explaining. Can it be done here, and what would it all cost?", "fr": "Merci de l'explication. Peut-on la faire ici, et combien coûterait le tout ?", "va": "estimate",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Yes, we're a licensed inspection station.", "fr": "Oui, nous sommes un centre d'inspection agréé."}]}
+   ]
+  },
+  "estimate": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Here's my estimate. The front brake pads are $240, parts and labor. The state inspection is $35. With tax, that's about $285 in total.", "t_gb": "Here's my estimate. The front brake pads are $240, parts and labour. The state inspection is $35. With tax, that's about $285 in total.", "dit": "Here's my estimate. The front brake pads are two hundred forty dollars, parts and labor. The state inspection is thirty-five dollars. With tax, that's about two hundred eighty-five dollars in total.", "dit_gb": "Here's my estimate. The front brake pads are two hundred and forty dollars, parts and labour. The state inspection is thirty-five dollars. With tax, that's about two hundred and eighty-five dollars in total.", "fr": "Voici mon devis. Les plaquettes avant, c'est 240 $, pièces et main-d'œuvre. L'inspection de l'État, 35 $. Avec la taxe, ça fait environ 285 $ en tout."}
+   ],
+   "choix": [
+    {"t": "All right. That seems reasonable.", "fr": "D'accord. Ça me paraît raisonnable.", "va": "when"},
+    {"t": "That's more than I expected, but the brakes are important.", "fr": "C'est plus que ce que je pensais, mais les freins, c'est important.", "va": "when",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "They are. I wouldn't wait.", "fr": "En effet. Moi, je n'attendrais pas."}]},
+    {"faux": true, "t": "It's expensive! Can you make me a price?", "fr": "C'est cher ! Vous pouvez me faire un prix ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Make you a price? I just gave you one! Oh, you'd like a discount …", "fr": "Vous faire un prix ? Je viens de vous en donner un ! Ah, vous voudriez un rabais…"}],
+     "aide": {"fr": "<b>« faire un prix » = « give a discount » :</b> « Could you give me a discount? » « Make me a price » ne se dit pas."}}
+   ]
+  },
+  "when": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "The brakes take about two hours. But for the inspection, I don't have an opening until Thursday. How would you like to do this?", "fr": "Les freins, c'est environ deux heures. Mais pour l'inspection, je n'ai pas de place avant jeudi. Comment voulez-vous faire ?"}
+   ],
+   "choix": [
+    {"t": "Please just do the brakes today. I need the car tomorrow for work.", "fr": "Faites seulement les freins aujourd'hui, s'il vous plaît. J'ai besoin de la voiture demain pour le travail.", "pose": {"plan": "freins"}, "va": "brakes"},
+    {"t": "I'd rather have everything done at once. Could I borrow a car in the meantime?", "fr": "J'aimerais mieux tout faire faire en une fois. Pourrais-je emprunter une voiture en attendant ?", "pose": {"plan": "tout"}, "va": "loaner"},
+    {"faux": true, "t": "I need the car tomorrow for go to work.", "fr": "J'ai besoin de la voiture demain pour aller au travail.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "For go … ? To go to work, got it. So what should I do today?", "fr": "Pour… ? Pour aller au travail, compris. Alors je fais quoi aujourd'hui ?"}],
+     "aide": {"fr": "<b>Le but se dit « to » + verbe :</b> « I need the car to go to work. » Jamais « for go » ni « for to go »."}}
+   ]
+  },
+  "brakes": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "No problem. Brakes today, and I'll put you down for the inspection. Thursday at eight in the morning, or Friday at two?", "fr": "Pas de problème. Les freins aujourd'hui, et je vous inscris pour l'inspection. Jeudi à huit heures du matin, ou vendredi à deux heures ?"}
+   ],
+   "choix": [
+    {"t": "Thursday at eight, please, before work.", "fr": "Jeudi à huit heures, s'il vous plaît, avant le travail.", "va": "pay"},
+    {"t": "Friday at two would be better for me.", "fr": "Vendredi à deux heures m'irait mieux.", "va": "pay"},
+    {"faux": true, "t": "The Thursday at eight hours.", "fr": "Le jeudi à huit heures.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Eight hours? The inspection only takes twenty minutes! Thursday at eight o'clock, right?", "fr": "Huit heures de temps ? L'inspection ne prend que vingt minutes ! Jeudi à huit heures, c'est ça ?"}],
+     "aide": {"fr": "<b>« jeudi à huit heures » = « (on) Thursday at eight » :</b> pas d'article devant le jour, et « hours » ne sert que pour une durée."}}
+   ]
+  },
+  "loaner": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Then I'd keep the car until Thursday. I'm sorry, I don't have a loaner car this week. But I can lend you a bike, or there's the bus: it stops right out front.", "t_gb": "Then I'd keep the car until Thursday. I'm sorry, I don't have a courtesy car this week. But I can lend you a bike, or there's the bus: it stops right outside.", "fr": "Alors je garderais la voiture jusqu'à jeudi. Désolée, je n'ai pas de voiture de prêt cette semaine. Mais je peux vous prêter un vélo, ou il y a le bus : il s'arrête juste devant."}
+   ],
+   "choix": [
+    {"t": "A bike would be perfect. My work isn't far from here.", "fr": "Un vélo, ce serait parfait. Mon travail n'est pas loin d'ici.", "pose": {"moyen": "velo"}, "va": "pay",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Great. Its brakes are brand-new, I promise!", "fr": "Super. Ses freins sont tout neufs, promis !"}]},
+    {"t": "I'll take the bus, then. Thank you anyway.", "fr": "Je prendrai le bus, alors. Merci quand même.", "pose": {"moyen": "bus"}, "va": "pay"},
+    {"faux": true, "t": "I will take the bike. It's not far of my work.", "fr": "Je prendrai le vélo. Ce n'est pas loin de mon travail.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Not far … from your work? Good, then the bike is yours.", "fr": "Pas loin… de votre travail ? Bien, alors le vélo est à vous."}],
+     "aide": {"fr": "<b>« loin de » = « far from » :</b> « It's not far from my work. » Jamais « far of »."}}
+   ]
+  },
+  "pay": {
+   "dit": [
+    {"si": {"plan": "freins"}, "qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Good. The car will be ready today at four.", "fr": "Bien. La voiture sera prête aujourd'hui à quatre heures."},
+    {"si": {"plan": "tout"}, "qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Good. The car will be ready on Thursday at noon, with a new sticker.", "fr": "Bien. La voiture sera prête jeudi à midi, avec une vignette neuve."},
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "You can pay when you pick it up. Cash or card?", "fr": "Vous paierez en venant la chercher. En espèces ou par carte ?"}
+   ],
+   "choix": [
+    {"t": "By card, please. Thank you for your help!", "fr": "Par carte, s'il vous plaît. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "You're welcome. See you then!", "fr": "Je vous en prie. À bientôt !"}]},
+    {"t": "I'll pay cash. Could I get a receipt, please?", "t_gb": "I'll pay in cash. Could I have a receipt, please?", "fr": "Je paierai en espèces. Pourrais-je avoir un reçu, s'il vous plaît ?", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Of course, it'll be waiting for you. See you then!", "fr": "Bien sûr, il vous attendra. À bientôt !"}]},
+    {"faux": true, "t": "I will pay in cash. Can I have a ticket?", "fr": "Je paierai en espèces. Je peux avoir un ticket ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "surprise", "t": "A ticket? That's what you get from the police without a sticker! You mean a receipt.", "fr": "Un « ticket » ? C'est ce que la police vous donne quand vous n'avez pas de vignette ! Vous voulez dire un reçu."}],
+     "aide": {"fr": "<b>Le ticket de caisse = « a receipt ».</b> « A ticket », c'est un billet (de train, de concert)… ou une contravention."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Plaquettes avant usées et inspection annuelle à faire : devis d'environ 285 $. Votre arrangement : {plan_fr}{moyen_fr}."}
+}
