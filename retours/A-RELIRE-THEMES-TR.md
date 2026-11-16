@@ -116,3 +116,12 @@ La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle 
 1. **L'aoriste pour l'habitude** : « Rosa futbol oynar », « Felix hiç futbol oynamaz », « futbol oynamayı sever ».
 2. **Proposer** : « Futbol oynamak ister misin? », « Birlikte futbol oynayalım mı? » (mı / mi par l'harmonie).
 3. **Les instruments** : « gitar / piyano / keman çalar » ; « dans eder », « şarkı söyler ».
+
+## Lot 10, 16 nov. : « Manger et goûter »
+
+La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, les saveurs, les quantités, la liste de courses, le café, la commande et l'addition) par `visuel/prototype/manger/langues.js`. À relire :
+
+1. **L'accusatif de l'aliment** : « Anna pastayı çok sever », « Carmen limonu sevmez » ; « Lucas balığı hiç sevmez ».
+2. **Amer et épicé** : « acı » pour l'amer (« Sade kahve acı »), « acılı » pour l'épicé (« Yemek acılı », « Çok acılı! ») — à relire.
+3. **Le café** : « Kır saçlı adam garson. », « Carmen bir kahve ve iki çay alıyor. Toplam 6,90 €. »
+4. **La livre allemande (Pfund)** se dit « ½ kg » (500 g), comme en Allemagne.

@@ -80,13 +80,15 @@ LANGUES = ["tr", "uk", "fa", "ar", "pl", "ru"]
 # lot 7 (16 nov.) : faire les courses dans les six langues, de meme (visuel/prototype/courses/langues.js)
 # lot 8 (16 nov.) : les vacances dans les six langues, chaque etape conjuguee (visuel/prototype/vacances/langues.js)
 # lot 9 (16 nov.) : les loisirs dans les six langues (visuel/prototype/loisirs/langues.js)
+# lot 10 (16 nov.) : manger et gouter dans les six langues (visuel/prototype/manger/langues.js)
 BRANCHES = {"gato": ["tr", "uk", "pl", "ru"], "journee": ["tr", "uk", "pl", "ru"], "familia": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "contrarios": ["tr", "uk", "pl", "ru", "fa", "ar"], "demarches": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "ecole": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "fetes": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "courses": ["tr", "uk", "pl", "ru", "fa", "ar"],
             "vacances": ["tr", "uk", "pl", "ru", "fa", "ar"],
-            "loisirs": ["tr", "uk", "pl", "ru", "fa", "ar"]}
+            "loisirs": ["tr", "uk", "pl", "ru", "fa", "ar"],
+            "manger": ["tr", "uk", "pl", "ru", "fa", "ar"]}
 BRANCHEES = ["tr", "uk", "pl", "ru"]
 
 RELEVER = r"""() => {

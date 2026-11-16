@@ -80,3 +80,12 @@ La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle 
 1. **Le subjonctif après « دوست دارد »** : « روزا دوست دارد فوتبال بازی کند », pluriel « دوست دارند … کنند ».
 2. **Proposer** : « دوست داری فوتبال بازی کنی؟ », « با هم فوتبال بازی کنیم؟ ».
 3. **Les verbes** : گیتار زدن، عکس گرفتن، آواز خواندن، رقصیدن، دویدن.
+
+## Lot 10, 16 nov. : « Manger et goûter »
+
+La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, les saveurs, les quantités, la liste de courses, le café, la commande et l'addition) par `visuel/prototype/manger/langues.js`. À relire :
+
+1. **Le « را » de l'aliment** : « آنا کیک را خیلی دوست دارد ».
+2. **Goûter** : « آنا چیزی شیرین می‌چشد ».
+3. **Le café** : « مرد موجوگندمی پیشخدمت است », « زن موفرفری » ; « لطفاً منو را بیاورید ».
+4. **La quantité** : « یک کیلو پرتقال », « کمی شکر » ; la liste « 1 کیلو گوجه‌فرنگی ».

@@ -83,3 +83,12 @@ La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle 
 1. **Le verbe devant le sujet, accordé** : « تلعب روزا كرة القدم », « يلعب فيليكس » ; à deux, au singulier devant les sujets (« يحب فيليكس وروزا »).
 2. **Aimer + nom verbal** : « تحب روزا لعب كرة القدم », « أحب الرقص كثيرًا ».
 3. **Jamais** : « لا يلعب فيليكس كرة القدم أبدًا » ; proposer « هل تريد أن تلعب …؟ », « هل نلعب … معًا؟ ».
+
+## Lot 10, 16 nov. : « Manger et goûter »
+
+La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, les saveurs, les quantités, la liste de courses, le café, la commande et l'addition) par `visuel/prototype/manger/langues.js` (et pour qui apprend l'espagnol). À relire :
+
+1. **Le verbe accordé à qui aime ou goûte** : « تعشق آنا الكعكة », « يحب مارك … », « تتذوّق آنا شيئًا حلوًا ».
+2. **La commande** : « تطلب كارمن قهوة وكوبين من الشاي. المبلغ 6,90 € » (le duel des boissons).
+3. **Les figurants** : « الرجل ذو الشعر الرمادي هو النادل », « المرأة ذات الشعر المجعد هي النادلة ».
+4. **Pour qui apprend l'espagnol** : le jambon de la liste, « لحم مقدد ».

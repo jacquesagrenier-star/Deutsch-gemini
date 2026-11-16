@@ -112,3 +112,12 @@ La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle 
 1. **« Lubi » + infinitif** : « Rosa lubi grać w piłkę nożną », pluriel « lubią ».
 2. **Proposer** : « Masz ochotę grać w piłkę nożną? », « Może razem zagramy w piłkę nożną? » (un futur perfectif par activité, à relire : « poćwiczymy », « ugotujemy coś »).
 3. **Jamais** : « nigdy nie gra ».
+
+## Lot 10, 16 nov. : « Manger et goûter »
+
+La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, les saveurs, les quantités, la liste de courses, le café, la commande et l'addition) par `visuel/prototype/manger/langues.js`. À relire :
+
+1. **Le génitif après la négation** : « nie lubi cytryn », « w ogóle nie lubi ryb », « Nie lubię zupy ».
+2. **Goûter** : « próbuje czegoś słodkiego » (génitif) ; « Za słodkie! ».
+3. **La liste** : « 1 opakowanie makaronu », « 2 opakowania ciastek », « ½ kg ziemniaków ».
+4. **Le café** : « Poproszę kartę. », « To dla pani. » (le pourboire à la serveuse : à relire).

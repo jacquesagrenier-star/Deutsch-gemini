@@ -114,3 +114,12 @@ La page traduit maintenant ses phrases (qui fait quoi, qui aime quoi, à quelle 
 1. **« Любить » + infinitif** : « Роза любить грати у футбол », « Фелікс і Роза люблять … ».
 2. **Proposer** : « Хочеш грати у футбол? », « Давай разом грати у футбол? ».
 3. **Jamais** : « Фелікс ніколи не грає у футбол ».
+
+## Lot 10, 16 nov. : « Manger et goûter »
+
+La page traduit maintenant ses phrases (les goûts, ce qu'on dit en goûtant, les saveurs, les quantités, la liste de courses, le café, la commande et l'addition) par `visuel/prototype/manger/langues.js`. À relire :
+
+1. **L'accusatif** : « Анна обожнює торт », « любить полуницю », « зовсім не любить рибу ».
+2. **Le génitif après la quantité** : « Кілограм апельсинів », « 1 кг помідорів », « 2 пачки печива ».
+3. **Trop …** : « Занадто солодко! » (adverbe neutre) ; goûter « куштує щось солодке ».
+4. **Le café** : « Чоловік із сивим волоссям — офіціант », « Кармен бере каву і два чаї. З вас 6,90 €. »
