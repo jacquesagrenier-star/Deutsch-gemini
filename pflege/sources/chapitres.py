@@ -19,7 +19,9 @@ Titres et sous-titres : français d'abord, puis les 8 autres langues d'interface
 comme tout texte d'interface : retours/A-RELIRE-CHAPITRES-SOINS.md).
 """
 
-LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
+# Les 10 langues d'interface de l'allemand : l'espagnol depuis la v1205 ; décision de Jacques du 16 nov. : tout le
+# contenu des Soins dans toutes les langues retenues, « dont l'espagnol » (titres espagnols : ES, en fin de fichier).
+LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru", "es"]
 
 CHAPITRES = [
     {
@@ -287,4 +289,28 @@ GROUPE_DEFAUT = {
 
 # Ce qu'un chapitre doit réunir pour être « complet » (montré pendant l'essai ; l'app cache les autres, ou les
 # montre « bientôt » si Jacques le préfère : un seul drapeau dans index.html).
-COMPLET = {"scenes": 1, "theme_illustre": 1, "dialogues": 2, "ecrits": 1, "mots": 20}
+# Décision de Jacques du 16 nov. : « un minimum de 8 conversations par thème ». Un seuil plus bas pour le premier jour
+# (« 4 au premier jour, 8 ensuite ») se règlerait ici seulement, et Jacques seul le décide.
+COMPLET = {"scenes": 1, "theme_illustre": 1, "dialogues": 8, "ecrits": 1, "mots": 20}
+
+# L'espagnol d'interface (Amérique latine, comme celui de l'anglais appris : champEs) : titre, sous-titre.
+ES = {
+    "ch01_aufnahme": ("La admisión", "Recibir, preguntar, anotar"),
+    "ch02_morgenpflege": ("Los cuidados de la mañana", "Asear, vestir, explicar"),
+    "ch03_mobilisation": ("Moverse y levantarse", "Ayudar a levantarse, a caminar, a acomodarse"),
+    "ch04_essen": ("Las comidas y la hidratación", "Ayudar a comer, dar de beber, anotar"),
+    "ch05_medikamente": ("Los medicamentos", "Preparar, administrar, explicar, volver a preguntar"),
+    "ch06_visite": ("La visita médica", "Presentar a un paciente, anotar las indicaciones"),
+    "ch07_schmerz": ("El dolor", "Preguntar, evaluar, anotar"),
+    "ch08_uebergabe": ("El cambio de turno", "Transmitir lo esencial, de viva voz"),
+    "ch09_dokumentation": ("La documentación", "Escribir con precisión, breve y con fecha"),
+    "ch10_telefon": ("Al teléfono", "Llamar al médico, al laboratorio, a la familia"),
+    "ch11_angehoerige": ("La familia del paciente", "Informar, tranquilizar, guardar el secreto"),
+    "ch12_notfall": ("La urgencia", "Dar la alarma, actuar, informar"),
+    "ch13_entlassung": ("El alta del paciente", "Preparar el regreso a casa"),
+    "ch14_pause": ("La sala de descanso", "El equipo, los turnos, los cambios de turno"),
+}
+for _c in CHAPITRES:
+    if _c["id"] in ES:
+        _c["titre"].setdefault("es", ES[_c["id"]][0])
+        _c["sous_titre"].setdefault("es", ES[_c["id"]][1])
