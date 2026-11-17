@@ -9886,3 +9886,14 @@ s… ; il ne faut jamais qu'on ait trois petits points », puis « peut-être ju
 - 16 nov. au matin (Jacques, espagnol, iPhone, relayé par le chef) : « En espagnol, j'avais atteint la deuxième étoile de la constellation. Puis c'est comme si ça m'a ramené au début, lorsque j'étais à la première étoile. »
   → Lu (lecture seule, nuage du 16 nov. 12 h 31 UTC) : l’app iPhone (les ouvertures journalisées des 15 et 16 nov. viennent toutes d’elle) ; le voyage est à l'escale 2 (e = 1), tableau, 6 phrases et dialogue faits, sans `ef` ; la constellation garde la trace de la 2e étoile (part `a1_escales` n = 2, fête du 14 nov. au soir, en v1192), l'étoile en attente effacée par la fête. Le voyage n'a plus été écrit depuis le 15 nov. 01 h 43 UTC.
   → Cause : le défaut d'avant la v1212 (ligne 112), pas une régression ni un appareil écrasé par un autre. La carte de fin de l'escale 2 a été vue le 14 nov. en v1192, avant que la v1212 pose `ef` ; une fois l'étoile en attente effacée par la fête, le ciel compte l'escale en cours, 1/12. La v1212 ne rattrape pas un état d'avant elle, et le dialogue étant fait (`d`), la carte de fin ne revient plus : l'escale n'avance qu'au dernier mot neuf du lieu. Reproduit par une sonde avec son état exact : 1/12 en v1192, v1205 et v1212 ; 2/12 si `ef` est posé.
+
+## 17 nov. 2026 -- retours de Jacques (son compte, iPhone), triés par le chef
+- 17 nov., v1219, de, Premiers pas, alphabet : « le C n'est pas prononcé comme il faut » (fichiers Ell, Emm, Enn, Zeh ; C écrit « Zeh » dans reperes.json) -> verification-son (écoute des 26 lettres, remède, devis s'il faut régénérer).
+- 17 nov., v1219, es, scène du restaurant dans la séance : question « los zapatos », toucher le pantalon n'entoure plus la bonne réponse et ne montre plus la flèche -> scènes (piste : 1b834bd, vêtements rattachés à qui les porte).
+- 16 nov., v1212, es, carte nomen 4/10 : « Il n'y a pas de son » -> verification-son.
+- 14 nov., v1186, es : « tren » non reconnu au micro ; 11 nov., v1158 : « … a nombre de Tremblay » refusé (nom propre) -> verification-son (tolérance du micro).
+- 14 nov., v1186, es, Mark au restaurant : la salade à peine visible -> scènes.
+- 11 nov., v1158, es, aéroport : flèche noire sur brun peu visible -> scènes.
+- 11 nov., v1158, es : après « signaler » depuis une scène, la barre de progression reste celle de la scène -> scènes.
+- 13 nov., v1182, es : accepter une réponse écrite à qui ne manque qu'un accent ; 15 nov., v1192, es : décompte de séance qui semble recommencer (« grand-mère… trois… ») -> à donner à retours-testeur-seance après la ligne 134.
+- 11 nov., v1158 : bandes bleues en haut et en bas dans un thème (navigateur) -> noté, à vérifier avec la revue A à Z.
