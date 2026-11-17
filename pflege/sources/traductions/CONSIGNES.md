@@ -40,6 +40,21 @@ courant de la langue (M. / Mme, Mr / Mrs, Bay / Bayan, пан / пані, гос
 - Chiffres : on les garde en chiffres dans les traductions (elles ne sont pas lues à voix haute).
 - Persan et arabe : pas de caractères de direction invisibles ; les mots allemands cités restent en lettres latines.
 - Portugais : celui du **Brésil** (você / o senhor, a senhora).
+- **L'apprenant** (16 nov., décision de Jacques) : les textes qui s'adressent à lui (`intro`, `but`, `consigne`,
+  `aide`, `pieges`, `situation`) le tutoient, comme le français, **persan compris** (« تو »). En ukrainien, russe et
+  polonais, **jamais de masculin seul pour l'apprenant** : on tourne la phrase pour éviter le genre (présent,
+  impératif, nom, « tu es de service » au lieu de « tu étais de service » au passé), ou on écrit les deux formes
+  (« ти був(-ла) », « ты был(а) », « byłeś / byłaś »). Une réplique dite par un personnage garde le genre du
+  personnage (Elif, Olena, Amira : féminin ; Yusuf, Arun, Jonas : masculin).
+- Anglais : **américain** (Mom, family doctor, nurse manager, liter).
+- **Espagnol** (10e langue, 16 nov.) : espagnol **neutre d'Amérique latine** (Mexique, Colombie) ; « usted » avec un
+  patient, un proche, un médecin, la cadre ; « tú » entre collègues au « du » ; au pluriel « ustedes », jamais
+  « vosotros » ni le voseo. L'apprenant est tutoyé, sans genre supposé (« Te toca », pas « estás listo »).
+  Ponctuation ¿…? ¡…!, guillemets «…». Mots du métier : la relève = « la entrega de turno », le dossier = « el
+  expediente » / « la historia clínica », si besoin = « si es necesario », l'escarre = « la úlcera por presión »,
+  la chute = « la caída », le service (de l'hôpital) = « el área » / « el piso ». Noms : `{brandt}` = « el Sr.
+  Brandt », `{brandt:a}` = « al Sr. Brandt », `{brandt:de}` = « del Sr. Brandt », `{brandt:voc}` = « señor Brandt »
+  (`traductions/es/noms.json`).
 
 ## Ensuite
 

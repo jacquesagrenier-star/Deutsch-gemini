@@ -1,0 +1,106 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/ecrit/e14-telefonnotiz-labor.json",
+ "cles": {
+  "titre": {
+   "fr": "Note d'appel : une valeur critique du labo",
+   "de": "Telefonnotiz: ein kritischer Laborwert",
+   "ru": "Телефонная заметка: критический лабораторный показатель"
+  },
+  "consigne": {
+   "fr": "Tu as pris l'appel du laboratoire central (dialogue 19). À l'aide de tes notes, écris la note d'appel pour le dossier de {lehmann} : qui a appelé, et quand ? De quelle patiente s'agit-il ? Quelle valeur ? Qu'as-tu fait, et qui as-tu informé ? Écris court, mais en phrases complètes.",
+   "de": "Sie haben den Anruf aus dem Zentrallabor angenommen (Dialog 19). Schreiben Sie mit Hilfe Ihrer Notizen die Telefonnotiz für die Akte von {lehmann}: Wer hat wann angerufen? Um welche Patientin geht es? Welcher Wert? Was haben Sie getan, und wen haben Sie informiert? Schreiben Sie kurz, aber in ganzen Sätzen.",
+   "ru": "Звонок из центральной лаборатории принимаешь ты (диалог 19). По своим заметкам напиши телефонную заметку для карты {lehmann:gen}: кто звонил и когда? О какой пациентке идёт речь? Какой показатель? Что сделано и кто проинформирован? Пиши коротко, но полными предложениями."
+  },
+  "relire_notes": {
+   "fr": "Note d'appel d'une valeur critique : date et heure, interlocuteur (nom, service), identité de la patiente vérifiée (nom et date de naissance), valeur et unité, valeur relue (« read back »), échantillon non hémolysé, médecin informée avec l'heure, signature. Kaliémie 6,2 mmol/l (dialogue 19).",
+   "ru": "Телефонная заметка о критическом показателе: дата и время, кто звонил (фамилия, подразделение), личность пациентки проверена (фамилия и дата рождения), показатель и единица, показатель повторён вслух («read back»), проба не гемолизирована, врач проинформирована (со временем), подпись. Калий 6,2 ммоль/л (диалог 19)."
+  },
+  "fiche.titre": {
+   "fr": "Notes",
+   "de": "Notizen",
+   "ru": "Заметки"
+  },
+  "fiche.rubriques.0": {
+   "fr": "Date / heure",
+   "de": "Datum / Uhrzeit",
+   "ru": "Дата / время"
+  },
+  "fiche.rubriques.1": {
+   "fr": "Appelant",
+   "de": "Anrufer",
+   "ru": "Кто звонил"
+  },
+  "fiche.rubriques.2": {
+   "fr": "Patiente",
+   "de": "Patientin",
+   "ru": "Пациентка"
+  },
+  "fiche.rubriques.3": {
+   "fr": "Résultat",
+   "de": "Befund",
+   "ru": "Результат"
+  },
+  "fiche.rubriques.4": {
+   "fr": "Vérification",
+   "de": "Kontrolle",
+   "ru": "Проверка"
+  },
+  "fiche.rubriques.5": {
+   "fr": "Transmis",
+   "de": "weitergeleitet",
+   "ru": "Передано"
+  },
+  "points.0": {
+   "fr": "12.11, 11 h 20, appel de {aksoy} du laboratoire central",
+   "de": "12.11., 11:20 Uhr, Anruf von {aksoy} aus dem Zentrallabor",
+   "ru": "12.11., 11:20, звонок от {aksoy:gen} из центральной лаборатории"
+  },
+  "points.1": {
+   "fr": "patiente {lehmann}, née le 21.08.1952, chambre 14 ; nom et date de naissance vérifiés",
+   "de": "Patientin {lehmann}, geboren am 21.08.1952, Zimmer 14; Name und Geburtsdatum geprüft",
+   "ru": "пациентка {lehmann}, дата рождения 21.08.1952, палата 14; фамилия и дата рождения проверены"
+  },
+  "points.2": {
+   "fr": "potassium 6,2 mmol/l, valeur critique, échantillon non hémolysé",
+   "de": "Kalium 6,2 mmol/l, kritischer Wert, Probe nicht hämolysiert",
+   "ru": "калий 6,2 ммоль/л, критический показатель, проба не гемолизирована"
+  },
+  "points.3": {
+   "fr": "valeur relue et confirmée par le labo",
+   "de": "Wert wiederholt und vom Labor bestätigt",
+   "ru": "показатель повторён и подтверждён лабораторией"
+  },
+  "points.4": {
+   "fr": "11 h 22, {sommer} informée, elle va voir la patiente",
+   "de": "11:22 Uhr {sommer} informiert, sie geht zur Patientin",
+   "ru": "11:22, {sommer} проинформирована, она идёт к пациентке"
+  },
+  "points.5": {
+   "fr": "signature",
+   "de": "Unterschrift",
+   "ru": "подпись"
+  },
+  "modele": {
+   "fr": "Note d'appel, 12.11.2026, 11 h 20\n\nAppel de {aksoy}, laboratoire central.\n\nPatiente : {lehmann}, née le 21.08.1952, chambre 14. Le nom et la date de naissance ont été vérifiés.\n\nRésultat : potassium 6,2 mmol/l (valeur critique). Selon le labo, l'échantillon n'est pas hémolysé. J'ai relu la valeur, le labo l'a confirmée.\n\n11 h 22 : {sommer} a été informée. Elle va tout de suite voir la patiente.\n\n{elif}",
+   "de": "Telefonnotiz, 12.11.2026, 11:20 Uhr\n\nAnruf von {aksoy}, Zentrallabor.\n\nPatientin: {lehmann:fiche}, geboren am 21.08.1952, Zimmer 14. Name und Geburtsdatum wurden geprüft.\n\nBefund: Kalium 6,2 mmol/l (kritischer Wert). Die Probe ist laut Labor nicht hämolysiert. Ich habe den Wert wiederholt, das Labor hat ihn bestätigt.\n\n11:22 Uhr: {sommer} wurde informiert. Sie geht sofort zur Patientin.\n\n{elif}",
+   "ru": "Телефонная заметка, 12.11.2026, 11:20\n\nЗвонок от {aksoy:gen}, центральная лаборатория.\n\nПациентка: {lehmann}, дата рождения 21.08.1952, палата 14. Фамилия и дата рождения проверены.\n\nРезультат: калий 6,2 ммоль/л (критический показатель). По данным лаборатории, проба не гемолизирована. Я повторила показатель, лаборатория его подтвердила.\n\n11:22: {sommer} проинформирована. Она сразу идёт к пациентке.\n\n{elif}"
+  },
+  "pieges.0": {
+   "fr": "Une note d'appel dit toujours qui a appelé, de quel service, et quand.",
+   "ru": "В телефонной заметке всегда указывают, кто звонил, из какого подразделения и когда."
+  },
+  "pieges.1": {
+   "fr": "La valeur s'écrit avec son unité : « Kalium 6,2 mmol/l », jamais « Kalium 6,2 » seul.",
+   "ru": "Показатель пишут с единицей: «Kalium 6,2 mmol/l», никогда просто «Kalium 6,2»."
+  },
+  "pieges.2": {
+   "fr": "Note que tu as vérifié l'identité et relu la valeur : « Name und Geburtsdatum wurden geprüft », « Ich habe den Wert wiederholt ».",
+   "ru": "Запиши, что личность проверена, а показатель повторён: «Name und Geburtsdatum wurden geprüft», «Ich habe den Wert wiederholt»."
+  },
+  "pieges.3": {
+   "fr": "Qui a été informé, et à quelle heure : « 11:22 Uhr: {sommer} wurde informiert. »",
+   "ru": "Кто проинформирован и в котором часу: «11:22 Uhr: {sommer} wurde informiert.»"
+  }
+ }
+}

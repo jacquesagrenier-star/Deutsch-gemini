@@ -1,0 +1,387 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d16-notfall.json",
+ "cles": {
+  "titre": {
+   "fr": "L'urgence : appeler à l'aide, réanimer",
+   "de": "Notfall im Zimmer",
+   "es": "La emergencia: pedir ayuda, reanimar"
+  },
+  "intro": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 : le patient ne bouge pas. Tu joues {elif} : vérifie s'il réagit, appelle à l'aide depuis la chambre (le bouton d'appel d'urgence, sans quitter le patient), dis l'essentiel en phrases courtes à {jonas}, commence le massage cardiaque, puis transmets à {sommer} quand l'équipe de réanimation arrive. Après, {jonas} te demande ce que tu ferais dans la rue.",
+   "es": "10:12. {elif} entra en la habitación 14: el paciente no se mueve. Juegas el papel de {elif}: verifica si responde, pide ayuda desde la habitación (el botón de llamada de emergencia, sin dejar al paciente), dile lo esencial en frases cortas a {jonas}, empieza el masaje cardíaco, y luego informa {sommer:a} cuando llega el equipo de reanimación. Después, {jonas} te pregunta qué harías en la calle."
+  },
+  "but": {
+   "fr": "Agir et parler sous stress : vérifier la réaction, appeler à l'aide, dire l'essentiel en phrases courtes (style télégraphique), suivre la séquence de réanimation, se relayer ; transmettre au médecin (l'heure, l'état, ce qui a été fait) ; connaître les questions du 112 hors de l'hôpital.",
+   "es": "Actuar y hablar bajo estrés: verificar la respuesta, pedir ayuda, decir lo esencial en frases cortas (estilo telegráfico), seguir la secuencia de reanimación, relevarse; informar al médico (la hora, el estado, lo que se hizo); conocer las preguntas del 112 fuera del hospital."
+  },
+  "relire_notes": {
+   "fr": "Séquence de réanimation de base (ERC 2021 : réaction, appel à l'aide, voies aériennes, respiration au plus 10 secondes, respiration anormale ou gasps = arrêt, 30 compressions pour 2 insufflations, défibrillateur au plus tôt, relais toutes les 2 minutes) ; à l'hôpital, le numéro d'urgence interne et non le 112 ; le contenu de la transmission à l'équipe ; les questions du 112 (les « W-Fragen ») ; ce qu'une assistante de soins fait et ne fait pas dans une réanimation.",
+   "es": "Secuencia de reanimación básica (ERC 2021: respuesta, pedir ayuda, vía aérea, respiración máximo 10 segundos, respiración anormal o boqueadas = paro, 30 compresiones por 2 ventilaciones, desfibrilador lo antes posible, relevo cada 2 minutos); en el hospital, el número de emergencia interno y no el 112; el contenido del informe al equipo; las preguntas del 112 (las «W-Fragen»); lo que una auxiliar de enfermería hace y no hace en una reanimación."
+  },
+  "redemittel.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux !",
+   "de": "Hallo! Hören Sie mich? Machen Sie die Augen auf!",
+   "es": "¡Hola! ¿Me escucha? ¡Abra los ojos!"
+  },
+  "redemittel.1": {
+   "fr": "À l'aide ! Urgence chambre 14 !",
+   "de": "Hilfe! Notfall in Zimmer 14!",
+   "es": "¡Ayuda! ¡Emergencia en la habitación 14!"
+  },
+  "redemittel.2": {
+   "fr": "Inconscient, pas de respiration normale.",
+   "de": "Nicht ansprechbar, keine normale Atmung.",
+   "es": "No responde, sin respiración normal."
+  },
+  "redemittel.3": {
+   "fr": "Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Ruf das Reanimationsteam und bring den Defi!",
+   "es": "¡Llama al equipo de reanimación y trae el desfibrilador!"
+  },
+  "redemittel.4": {
+   "fr": "Je fais les compressions, tu ventiles.",
+   "de": "Ich drücke, du beatmest.",
+   "es": "Yo comprimo, tú ventilas."
+  },
+  "redemittel.5": {
+   "fr": "Deux minutes sont passées. On change.",
+   "de": "Zwei Minuten sind um. Wir wechseln.",
+   "es": "Ya pasaron dos minutos. Cambiamos."
+  },
+  "redemittel.6": {
+   "fr": "Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "es": "Reanimación desde las 10:13, una descarga administrada."
+  },
+  "redemittel.7": {
+   "fr": "Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Attendre les questions.",
+   "de": "Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten auf Rückfragen.",
+   "es": "¿Dónde pasó? ¿Qué pasó? ¿Cuántos heridos? ¿Qué lesiones? Esperar las preguntas."
+  },
+  "noeuds.finden.dit.0.recit": {
+   "fr": "10 h 12. {elif} entre dans la chambre 14 avec le petit-déjeuner. Le patient est couché sur le dos, la tête sur le côté, les yeux fermés. Il ne bouge pas.",
+   "es": "10:12. {elif} entra en la habitación 14 con el desayuno. El paciente está acostado boca arriba, con la cabeza de lado y los ojos cerrados. No se mueve."
+  },
+  "noeuds.finden.choix.0": {
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux, s'il vous plaît !",
+   "de": "Hallo! Hören Sie mich? Machen Sie bitte die Augen auf!",
+   "es": "¡Hola! ¿Me escucha? ¡Abra los ojos, por favor!"
+  },
+  "noeuds.finden.choix.1": {
+   "fr": "Vous pouvez m'entendre ? Serrez-moi la main !",
+   "de": "Können Sie mich hören? Drücken Sie meine Hand!",
+   "es": "¿Puede oírme? ¡Apriéteme la mano!"
+  },
+  "noeuds.rufen.dit.0.recit": {
+   "fr": "{elif} lui secoue doucement les épaules. Aucune réaction.",
+   "es": "{elif} le sacude suavemente los hombros. Ninguna reacción."
+  },
+  "noeuds.rufen.choix.0": {
+   "fr": "À l'aide ! Urgence chambre 14 ! J'ai besoin d'aide !",
+   "de": "Hilfe! Notfall in Zimmer 14! Ich brauche Hilfe!",
+   "es": "¡Ayuda! ¡Emergencia en la habitación 14! ¡Necesito ayuda!"
+  },
+  "noeuds.rufen.choix.0.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "es": "¡Aquí estoy! ¿Qué pasa?"
+  },
+  "noeuds.rufen.choix.1": {
+   "fr": "Urgence ! Venez vite à la 14, s'il vous plaît !",
+   "de": "Notfall! Kommt bitte schnell in die Vierzehn!",
+   "es": "¡Emergencia! ¡Vengan rápido a la 14, por favor!"
+  },
+  "noeuds.rufen.choix.1.puis.0": {
+   "fr": "Je suis là ! Qu'est-ce qui se passe ?",
+   "de": "Ich bin da! Was ist los?",
+   "es": "¡Aquí estoy! ¿Qué pasa?"
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Il ne réagit pas. Je libère les voies aériennes et je vérifie la respiration.",
+   "de": "Er reagiert nicht. Ich mache die Atemwege frei und prüfe die Atmung.",
+   "es": "No reacciona. Despejo la vía aérea y reviso la respiración."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Inconscient. Je vérifie la respiration.",
+   "de": "Nicht ansprechbar. Ich prüfe jetzt die Atmung.",
+   "es": "No responde. Ahora reviso la respiración."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Alors, je suis entrée parce que je voulais lui apporter le petit-déjeuner, et là, j'ai vu qu'il était couché bizarrement…",
+   "de": "Also, ich bin reingekommen, weil ich ihm das Frühstück bringen wollte, und da habe ich gesehen, dass er irgendwie komisch daliegt …",
+   "es": "Pues, entré porque le quería traer el desayuno, y entonces vi que estaba acostado como raro…"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Bref, {elif} ! Il réagit ?",
+   "de": "Kurz, {elif}! Reagiert er?",
+   "es": "¡Breve, {elif}! ¿Reacciona?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Dans l'urgence, des phrases courtes : l'essentiel d'abord.</b> « Nicht ansprechbar. Ich prüfe die Atmung. » Le récit vient plus tard, dans la documentation.",
+   "es": "<b>En una emergencia, frases cortas: primero lo esencial.</b> «Nicht ansprechbar. Ich prüfe die Atmung.» El relato viene después, en la documentación."
+  },
+  "noeuds.atmung.dit.0.recit": {
+   "fr": "{elif} bascule la tête en arrière, soulève le menton. Elle regarde, écoute, sent : dix secondes. Seulement un hoquet irrégulier, de temps en temps.",
+   "es": "{elif} le inclina la cabeza hacia atrás y le levanta el mentón. Mira, escucha, siente: diez segundos. Solo un jadeo irregular, de vez en cuando."
+  },
+  "noeuds.atmung.dit.1": {
+   "fr": "Alors ? Il respire ?",
+   "de": "Und? Atmet er?",
+   "es": "¿Y? ¿Respira?"
+  },
+  "noeuds.atmung.choix.0": {
+   "fr": "Non, pas de respiration normale ! Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "de": "Nein, keine normale Atmung! Ruf das Reanimationsteam und bring den Defi!",
+   "es": "¡No, sin respiración normal! ¡Llama al equipo de reanimación y trae el desfibrilador!"
+  },
+  "noeuds.atmung.choix.0.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "es": "¡Voy! ¡Empieza con el masaje cardíaco!"
+  },
+  "noeuds.atmung.choix.1": {
+   "fr": "Il ne respire pas normalement, ce sont des gasps. Il faut réanimer. Tu appelles l'équipe ?",
+   "de": "Er atmet nicht richtig, nur Schnappatmung. Wir müssen reanimieren. Rufst du das Team?",
+   "es": "No respira bien, solo son boqueadas. Tenemos que reanimar. ¿Llamas tú al equipo?"
+  },
+  "noeuds.atmung.choix.1.puis.0": {
+   "fr": "J'y vais ! Commence le massage cardiaque !",
+   "de": "Mach ich! Fang mit der Herzdruckmassage an!",
+   "es": "¡Voy! ¡Empieza con el masaje cardíaco!"
+  },
+  "noeuds.atmung.choix.2": {
+   "fr": "J'appelle tout de suite le 112 !",
+   "de": "Ich rufe sofort die 112 an!",
+   "es": "¡Llamo ahora mismo al 112!"
+  },
+  "noeuds.atmung.choix.2.puis.0": {
+   "fr": "Le 112 ? On est à l'hôpital ! J'appelle l'équipe de réanimation.",
+   "de": "Die 112? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+   "es": "¿Al 112? ¡Estamos en el hospital! Yo llamo al equipo de reanimación."
+  },
+  "noeuds.atmung.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on appelle le numéro d'urgence interne, l'équipe de réanimation.</b> Le 112, c'est pour l'extérieur. Retiens le numéro de ta clinique : il est souvent sur le téléphone du poste et sur le chariot d'urgence.",
+   "es": "<b>En el hospital, se llama al número de emergencia interno, al equipo de reanimación.</b> El 112 es para afuera. Apréndete el número de tu clínica: muchas veces está en el teléfono de la estación de enfermería y en el carro de paro."
+  },
+  "noeuds.druecken.choix.0": {
+   "fr": "Je commence. Trente compressions, deux insufflations.",
+   "de": "Ich fange an. Dreißig Kompressionen, zwei Beatmungen.",
+   "es": "Empiezo. Treinta compresiones, dos ventilaciones."
+  },
+  "noeuds.druecken.choix.1": {
+   "fr": "D'accord. Je fais les compressions, tu ventiles dès que tu es là avec le ballon.",
+   "de": "Okay. Ich drücke, du beatmest, sobald du mit dem Beutel da bist.",
+   "es": "De acuerdo. Yo comprimo, tú ventilas en cuanto llegues con la bolsa."
+  },
+  "noeuds.druecken.choix.2": {
+   "fr": "Je cherche d'abord le pouls, tranquillement.",
+   "de": "Ich suche erst mal den Puls, ganz in Ruhe.",
+   "es": "Primero busco el pulso, con toda calma."
+  },
+  "noeuds.druecken.choix.2.puis.0": {
+   "fr": "Non ! Ne perds pas de temps, appuie !",
+   "de": "Nein! Keine Zeit verlieren, drück!",
+   "es": "¡No! ¡No pierdas tiempo, comprime!"
+  },
+  "noeuds.druecken.choix.2.aide": {
+   "fr": "<b>Pas de recherche de pouls qui dure : on commence le massage.</b> Pas de réaction et pas de respiration normale, cela suffit. Chaque minute sans massage diminue les chances du patient.",
+   "es": "<b>Nada de buscar el pulso largo rato: se empieza el masaje.</b> Sin respuesta y sin respiración normal: con eso basta. Cada minuto sin masaje reduce las probabilidades del paciente."
+  },
+  "noeuds.wechsel.dit.0.recit": {
+   "fr": "{elif} pose ses mains au milieu du thorax et appuie, fort et vite. Une minute plus tard, {jonas} revient avec le chariot d'urgence et le défibrillateur.",
+   "es": "{elif} pone las manos en el centro del tórax y comprime, fuerte y rápido. Un minuto después, {jonas} vuelve con el carro de paro y el desfibrilador."
+  },
+  "noeuds.wechsel.dit.1": {
+   "fr": "L'équipe est alertée. Je ventile au ballon, tu continues les compressions. Je colle les électrodes.",
+   "de": "Das Team ist alarmiert. Ich beatme mit dem Beutel, du drückst weiter. Ich klebe die Elektroden.",
+   "es": "El equipo ya está avisado. Yo ventilo con la bolsa, tú sigues comprimiendo. Yo pego los electrodos."
+  },
+  "noeuds.wechsel.choix.0": {
+   "fr": "Deux minutes sont passées. On change, je fatigue.",
+   "de": "Zwei Minuten sind um. Wir wechseln, ich werde müde.",
+   "es": "Ya pasaron dos minutos. Cambiamos, me estoy cansando."
+  },
+  "noeuds.wechsel.choix.0.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "es": "De acuerdo, yo sigo. El desfibrilador está analizando. ¡Todos lejos del paciente!"
+  },
+  "noeuds.wechsel.choix.1": {
+   "fr": "Tu peux prendre le relais après ce cycle ? Alors je ventile.",
+   "de": "Kannst du nach diesem Zyklus übernehmen? Dann beatme ich.",
+   "es": "¿Puedes relevarme después de este ciclo? Entonces yo ventilo."
+  },
+  "noeuds.wechsel.choix.1.puis.0": {
+   "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !",
+   "de": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+   "es": "De acuerdo, yo sigo. El desfibrilador está analizando. ¡Todos lejos del paciente!"
+  },
+  "noeuds.uebergabe.dit.0.recit": {
+   "fr": "Le défibrillateur conseille un choc. {jonas} le délivre, puis reprend aussitôt les compressions. Des pas dans le couloir : l'équipe de réanimation arrive, avec {sommer}.",
+   "es": "El desfibrilador recomienda una descarga. {jonas} la administra y retoma enseguida las compresiones. Pasos en el pasillo: llega el equipo de reanimación, con {sommer}."
+  },
+  "noeuds.uebergabe.dit.1": {
+   "fr": "Qu'est-ce qu'on a ?",
+   "de": "Was haben wir?",
+   "es": "¿Qué tenemos?"
+  },
+  "noeuds.uebergabe.choix.0": {
+   "fr": "Patient de la chambre 14, trouvé inconscient à 10 h 12, pas de respiration normale. Réanimation depuis 10 h 13, un choc délivré.",
+   "de": "Patient aus Zimmer 14, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "es": "Paciente de la habitación 14, encontrado a las 10:12 sin respuesta, sin respiración normal. Reanimación desde las 10:13, una descarga administrada."
+  },
+  "noeuds.uebergabe.choix.0.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "es": "Gracias. Nosotros continuamos. Quédese aquí, por favor, y vaya anotando las horas."
+  },
+  "noeuds.uebergabe.choix.1": {
+   "fr": "Trouvé inconscient à 10 h 12. Massage et ventilation depuis 10 h 13. Le défibrillateur a choqué une fois.",
+   "de": "Bewusstlos aufgefunden um zehn Uhr zwölf. Seit zehn Uhr dreizehn Herzdruckmassage und Beatmung. Der Defi hat einmal geschockt.",
+   "es": "Encontrado inconsciente a las 10:12. Masaje cardíaco y ventilación desde las 10:13. El desfibrilador dio una descarga."
+  },
+  "noeuds.uebergabe.choix.1.puis.0": {
+   "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures.",
+   "de": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+   "es": "Gracias. Nosotros continuamos. Quédese aquí, por favor, y vaya anotando las horas."
+  },
+  "noeuds.uebergabe.choix.2": {
+   "fr": "Je ne sais pas exactement quand ça a commencé. Il y a quelques minutes, je crois.",
+   "de": "Ich weiß nicht genau, wann es angefangen hat. Vor ein paar Minuten, glaube ich.",
+   "es": "No sé exactamente cuándo empezó. Hace unos minutos, creo."
+  },
+  "noeuds.uebergabe.choix.2.puis.0": {
+   "fr": "Combien de minutes exactement ? Quand l'avez-vous trouvé ?",
+   "de": "Wie viele Minuten genau? Wann haben Sie ihn gefunden?",
+   "es": "¿Cuántos minutos exactamente? ¿Cuándo lo encontró?"
+  },
+  "noeuds.uebergabe.choix.2.aide": {
+   "fr": "<b>L'équipe a besoin des heures : quand trouvé, depuis quand le massage, combien de chocs.</b> « Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn. » Regarde l'heure dès que tu trouves le patient.",
+   "es": "<b>El equipo necesita las horas: cuándo se le encontró, desde cuándo el masaje, cuántas descargas.</b> «Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn.» Mira la hora en cuanto encuentres al paciente."
+  },
+  "noeuds.nachbesprechung.dit.0.recit": {
+   "fr": "Vingt minutes plus tard, le cœur du patient bat de nouveau. Il part en soins intensifs. Dans le poste de soins, {jonas} tend un verre d'eau à {elif}.",
+   "es": "Veinte minutos después, el corazón del paciente vuelve a latir. Lo trasladan a cuidados intensivos. En la estación de enfermería, {jonas} le da un vaso de agua a {elif}."
+  },
+  "noeuds.nachbesprechung.dit.1": {
+   "fr": "Tu t'en es vraiment bien sortie. Comment tu vas ?",
+   "de": "Du hast das richtig gut gemacht. Wie geht's dir?",
+   "es": "Lo hiciste realmente bien. ¿Cómo estás?"
+  },
+  "noeuds.nachbesprechung.choix.0": {
+   "fr": "Je tremble encore un peu. Mais ça va. Merci d'être arrivé si vite.",
+   "de": "Ich zittere noch ein bisschen. Aber es geht. Danke, dass du so schnell da warst.",
+   "es": "Todavía tiemblo un poco. Pero estoy bien. Gracias por llegar tan rápido."
+  },
+  "noeuds.nachbesprechung.choix.0.puis.0": {
+   "fr": "C'est normal, ça nous fait tous ça. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Das ist normal, das geht uns allen so. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "es": "Es normal, a todos nos pasa. Oye: ¿y si algo así pasa afuera, en la calle? ¿Qué haces entonces?"
+  },
+  "noeuds.nachbesprechung.choix.1": {
+   "fr": "Honnêtement, j'ai eu peur. C'était ma première réanimation. On peut en reparler plus tard ?",
+   "de": "Ehrlich gesagt hatte ich Angst. Ich habe zum ersten Mal reanimiert. Können wir später noch einmal darüber sprechen?",
+   "es": "La verdad, tuve miedo. Es la primera vez que reanimo a alguien. ¿Podemos volver a hablar de esto más tarde?"
+  },
+  "noeuds.nachbesprechung.choix.1.puis.0": {
+   "fr": "Bien sûr, absolument. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?",
+   "de": "Klar, auf jeden Fall. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+   "es": "Claro, por supuesto. Oye: ¿y si algo así pasa afuera, en la calle? ¿Qué haces entonces?"
+  },
+  "noeuds.notruf.choix.0": {
+   "fr": "Alors j'appelle le 112 et je dis : où ça s'est passé, ce qui s'est passé, combien de blessés, quelles blessures. Et ensuite j'attends les questions.",
+   "de": "Dann rufe ich die 112 an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+   "es": "Entonces llamo al 112 y digo: dónde pasó, qué pasó, cuántos heridos, qué lesiones. Y después espero las preguntas."
+  },
+  "noeuds.notruf.choix.0.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "es": "Exacto. Y nunca cuelgues tú primero. Cuelga la central de emergencias, no tú."
+  },
+  "noeuds.notruf.choix.1": {
+   "fr": "J'appelle le 112, je dis où je suis et ce qui s'est passé, et je commence le massage cardiaque. Le centre d'appels m'aide au téléphone.",
+   "de": "Ich rufe die 112 an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+   "es": "Llamo al 112, digo dónde estoy y qué pasó, y empiezo con el masaje cardíaco. La central de emergencias me ayuda por teléfono."
+  },
+  "noeuds.notruf.choix.1.puis.0": {
+   "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi.",
+   "de": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+   "es": "Exacto. Y nunca cuelgues tú primero. Cuelga la central de emergencias, no tú."
+  },
+  "noeuds.notruf.choix.2": {
+   "fr": "J'appelle, je dis « Venez vite ! » et je raccroche.",
+   "de": "Ich rufe an, sage „Kommen Sie schnell!“ und lege auf.",
+   "es": "Llamo, digo «¡Vengan rápido!» y cuelgo."
+  },
+  "noeuds.notruf.choix.2.puis.0": {
+   "fr": "Et où doivent-ils venir ? Comment le centre d'appels sait ce qui se passe ?",
+   "de": "Und wohin sollen sie kommen? Woher weiß die Leitstelle, was los ist?",
+   "es": "¿Y a dónde tienen que ir? ¿Cómo sabe la central de emergencias qué está pasando?"
+  },
+  "noeuds.notruf.choix.2.aide": {
+   "fr": "<b>Au 112, on répond aux questions, et on ne raccroche pas.</b> Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Puis on attend les questions de la Leitstelle, qui peut aussi te guider pour le massage.",
+   "es": "<b>En el 112, se responde a las preguntas, y no se cuelga.</b> ¿Dónde? ¿Qué pasó? ¿Cuántos heridos? ¿Qué lesiones? Luego se esperan las preguntas de la Leitstelle (la central de emergencias), que también puede guiarte en el masaje."
+  },
+  "ecouter.0.q": {
+   "fr": "Qui {jonas} appelle-t-il à l'hôpital ?",
+   "de": "Wen ruft {jonas} im Krankenhaus an?",
+   "es": "¿A quién llama {jonas} en el hospital?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "L'équipe de réanimation.",
+   "de": "Das Reanimationsteam.",
+   "es": "Al equipo de reanimación."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La police.",
+   "de": "Die Polizei.",
+   "es": "A la policía."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La famille du patient.",
+   "de": "Die Familie des Patienten.",
+   "es": "A la familia del paciente."
+  },
+  "ecouter.1.q": {
+   "fr": "Combien de compressions {elif} fait-elle avant les insufflations ?",
+   "de": "Wie viele Kompressionen macht {elif}, bevor beatmet wird?",
+   "es": "¿Cuántas compresiones hace {elif} antes de las ventilaciones?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Dix.",
+   "de": "Zehn.",
+   "es": "Diez."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vingt.",
+   "de": "Zwanzig.",
+   "es": "Veinte."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Trente.",
+   "de": "Dreißig.",
+   "es": "Treinta."
+  },
+  "ecouter.2.q": {
+   "fr": "Que ne faut-il pas faire en appelant le 112 dans la rue ?",
+   "de": "Was soll man beim Notruf auf der Straße nicht tun?",
+   "es": "¿Qué no se debe hacer al llamar a emergencias en la calle?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Dire où l'on est.",
+   "de": "Sagen, wo man ist.",
+   "es": "Decir dónde está uno."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Raccrocher le premier.",
+   "de": "Zuerst auflegen.",
+   "es": "Colgar primero."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Attendre les questions.",
+   "de": "Auf Rückfragen warten.",
+   "es": "Esperar las preguntas."
+  }
+ }
+}
