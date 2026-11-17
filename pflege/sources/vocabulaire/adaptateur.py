@@ -181,6 +181,8 @@ def convertir(e, lectures):
                 d["article_fr"] = art or d.get("article_fr", "")
         else:
             tr = {l: f.get("traduction" if l == "fr" else "traduction_" + l) for l in LANGUES_APP + ["es"]}
+            if e.get("es_trad"):
+                tr["es"] = e["es_trad"]
             if sorte == "nom" and not d.get("article_fr"):
                 art, tr["fr"] = _article(tr["fr"] or "")
                 d["article_fr"] = art
@@ -247,13 +249,13 @@ def theme_soins(nom_module):
     """(THEME, MOTS) au format de pflege/FORMAT-DONNEES.md, § 1, pour pflege/sources/<theme>.py."""
     m = charger(nom_module)
     T = m.THEME
-    titre = dict(zip(ORDRE_SOURCE, [x.strip() for x in T["titre"].split("|")]))
+    titre = _avec_es([x.strip() for x in T["titre"].split("|")])
     fr = titre["fr"][:1].upper() + titre["fr"][1:]
     theme = {
         "base": "soins_" + T["cle"],
         "nom_theme": T["nom_theme"],
         "nom_theme_fr": fr,
-        "nom_theme_trad": {l: (titre[l][:1].upper() + titre[l][1:]) for l in LANGUES_APP},
+        "nom_theme_trad": {l: (titre[l][:1].upper() + titre[l][1:]) for l in LANGUES_APP + (["es"] if "es" in titre else [])},
         "svg": ICONES[T["cle"]],
     }
     lect = _lectures(m)

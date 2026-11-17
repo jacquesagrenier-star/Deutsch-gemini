@@ -45,6 +45,7 @@ perfekt="hat sich verschlechtert / hat sich gebessert" en entier (paires).
 Options communes : chapitre="ch01_aufnahme" (le chapitre de « Ma journee au service »,
 pflege/sources/chapitres.py ; sinon chapitres_mots.py, sinon le chapitre du theme), relire=True (une infirmiere doit valider ; ⚕️ de l'annexe A),
 note="..." (pour la relectrice, en francais, jamais affichee),
+es_trad="..." (une reprise sans precision= dont la fiche du corpus n'a pas d'espagnol),
 sens_distinct="..." (le mot existe au corpus dans un AUTRE sens : on en fait une
 carte a part, et on dit lequel).
 """
@@ -71,12 +72,13 @@ def _base(niveau, typ, mot, trad, ex, opts):
     if trad is not None:
         e["trad"] = _champs(trad, 9, "la traduction", mot)
     e["ex"] = _champs(ex, 10, "l'exemple", mot)
-    for k in ("relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "chapitre"):
+    for k in ("relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "chapitre",
+              "es_trad"):
         if opts.get(k):
             e[k] = opts[k]
     if opts.get("precision"):
         e["precision"] = _champs(opts["precision"], 9, "la precision", mot)
-    inconnus = set(opts) - {"relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "precision", "typ", "chapitre"}
+    inconnus = set(opts) - {"relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "precision", "typ", "chapitre", "es_trad"}
     if inconnus:
         raise ValueError("%s : options inconnues %s" % (mot, sorted(inconnus)))
     return e

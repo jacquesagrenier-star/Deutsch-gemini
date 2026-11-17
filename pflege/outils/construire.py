@@ -53,6 +53,10 @@ def entree_mot(ligne):
     for l in LANGUES[1:]:
         e["traduction_" + l] = trad[l][0]
         e["exemple_" + l] = trad[l][1]
+    # L'espagnol, 10e langue d'interface (16 nov.) : seulement la ou la source le donne (tuple ou dictionnaire).
+    if trad.get("es"):
+        e["traduction_es"] = trad["es"][0]
+        e["exemple_es"] = trad["es"][1]
     if lecture:
         e["lecture"] = lecture
     if isinstance(ligne, dict):
@@ -61,10 +65,6 @@ def entree_mot(ligne):
         #    rangsDuMotDeTheme comme au corpus (rang 8) ;
         #  - lecture_mot : le MOT dit en lettres quand il porte des chiffres (« die 112 ») ;
         #  - sens_distinct, source_corpus : pour l'integration (homographe du corpus, fiche reprise).
-        # L'espagnol, 10e langue d'interface (16 nov.) : seulement la ou la source le donne.
-        if trad.get("es"):
-            e["traduction_es"] = trad["es"][0]
-            e["exemple_es"] = trad["es"][1]
         # chapitre : le chapitre de « Ma journee au service » (pflege/sources/chapitres.py), lu par
         # pflege/outils/chapitres.py ; sans lui, le chapitre par defaut du theme.
         for cle in ("feminin", "masculin", "lecture_mot", "sens_distinct", "source_corpus", "chapitre"):

@@ -126,7 +126,7 @@ def main():
         if not src.THEME.get("svg"):
             echecs.append("%s : svg absent" % nom)
         tt = src.THEME.get("nom_theme_trad") or {}
-        if sorted(tt) != sorted(LANGUES) or not all(tt.values()):
+        if sorted(set(tt) - {"es"}) != sorted(LANGUES) or not all(tt.values()):
             echecs.append("%s : nom_theme_trad sans ses 9 langues" % nom)
         for ligne in src.MOTS:
             d = en_dict(ligne)
