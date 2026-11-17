@@ -1,0 +1,139 @@
+{
+ "id": "b1-entretien",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "L'entretien d'embauche à la boulangerie"},
+ "intro": {"fr": "Une boulangerie de Chamberí cherche quelqu'un pour la vente, le matin. Pablo, le patron, te reçoit pour un entretien."},
+ "bilan": {"fr": "Tu as passé un entretien d'embauche en espagnol : te présenter, parler de ton expérience et de tes points forts, discuter des horaires et fixer un jour d'essai."},
+ "personnes": ["b11_patron"],
+ "debut": "llegada",
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {"recit": {"fr": "Quatre heures de l'après-midi, à Chamberí. La boulangerie rouvre dans une demi-heure. Pablo, le patron, t'attend derrière le comptoir."}},
+    {"qui": "b11_patron", "air": "sourire", "t": "¡Hola, buenas tardes! Pase, pase. ¿Ha encontrado bien la panadería?", "fr": "Bonjour ! Entrez, entrez. Vous avez trouvé la boulangerie facilement ?"}
+   ],
+   "choix": [
+    {"t": "Sí, sin problema. Vivo bastante cerca de aquí.", "fr": "Oui, sans problème. J'habite assez près d'ici.", "va": "presentacion",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "¡Qué bien! Así no llegará tarde por las mañanas.", "fr": "Très bien ! Comme ça, vous n'arriverez pas en retard le matin."}]},
+    {"t": "Sí, gracias. He venido en metro y está a dos minutos.", "fr": "Oui, merci. Je suis venu(e) en métro, c'est à deux minutes.", "va": "presentacion",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sí, la verdad es que estamos muy bien comunicados.", "fr": "Oui, c'est vrai que nous sommes très bien desservis."}]},
+    {"faux": true, "t": "Sí, gracias. Soy venido en metro.", "fr": "Oui, merci. Je suis venu en métro.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "¿Cómo dice? Ah, que ha venido en metro.", "fr": "Comment ? Ah, vous êtes venu en métro."}],
+     "aide": {"fr": "<b>« Soy venido »</b> calque « je suis venu ». En espagnol, le passé composé se forme toujours avec « haber ». Dis plutôt : « He venido en metro »."}}
+   ]
+  },
+  "presentacion": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Siéntese, por favor. Bueno, hábleme un poco de usted. ¿Cuánto tiempo lleva en Madrid?", "fr": "Asseyez-vous, je vous en prie. Bon, parlez-moi un peu de vous. Depuis combien de temps êtes-vous à Madrid ?"}],
+   "choix": [
+    {"t": "Llevo dos años en Madrid y estoy buscando un trabajo estable.", "fr": "Je suis à Madrid depuis deux ans et je cherche un travail stable.", "va": "experiencia",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Dos años ya, muy bien. Y se nota: habla usted muy bien.", "fr": "Deux ans déjà, très bien. Et ça s'entend : vous parlez très bien."}]},
+    {"t": "Vivo aquí desde hace un año y medio y me gusta mucho el barrio.", "fr": "Je vis ici depuis un an et demi et j'aime beaucoup le quartier.", "va": "experiencia",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Me alegro. Aquí casi todos los clientes son vecinos del barrio.", "fr": "J'en suis ravi. Ici, presque tous les clients sont des gens du quartier."}]},
+    {"faux": true, "t": "Estoy en Madrid desde dos años.", "fr": "Je suis à Madrid depuis deux ans.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "¿Desde… hace dos años, quiere decir?", "fr": "Depuis… deux ans, vous voulez dire ?"}],
+     "aide": {"fr": "Devant une durée, « depuis » se dit <b>« desde hace »</b>, ou bien on emploie « llevar ». Dis plutôt : « Llevo dos años en Madrid »."}}
+   ]
+  },
+  "experiencia": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "¿Y tiene experiencia de cara al público?", "fr": "Et vous avez de l'expérience au contact de la clientèle ?"}],
+   "choix": [
+    {"t": "Sí, he trabajado dos años en una tienda de ropa.", "fr": "Oui, j'ai travaillé deux ans dans un magasin de vêtements.", "pose": {"exp": "venta"}, "va": "puntos"},
+    {"t": "He trabajado en la cafetería de un hotel, sirviendo desayunos.", "fr": "J'ai travaillé à la cafétéria d'un hôtel, je servais les petits-déjeuners.", "pose": {"exp": "hosteleria"}, "va": "puntos"},
+    {"t": "No tengo experiencia, pero aprendo rápido y tengo muchas ganas.", "fr": "Je n'ai pas d'expérience, mais j'apprends vite et j'ai très envie de travailler.", "pose": {"exp": "ninguna"}, "va": "motivacion"},
+    {"faux": true, "t": "Sí, he trabajado para dos años en una tienda.", "fr": "Oui, j'ai travaillé pour deux ans dans un magasin.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "¿Para dos años? Ah, durante dos años.", "fr": "Pour deux ans ? Ah, pendant deux ans."}],
+     "aide": {"fr": "Pour une durée, pas de <b>« para »</b> : on dit « durante dos años », ou simplement « dos años ». Dis plutôt : « He trabajado dos años en una tienda »."}}
+   ]
+  },
+  "motivacion": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "No pasa nada, todo se aprende. Pero dígame: ¿por qué quiere trabajar en una panadería?", "fr": "Ce n'est pas grave, tout s'apprend. Mais dites-moi : pourquoi voulez-vous travailler dans une boulangerie ?"}],
+   "choix": [
+    {"t": "Porque me gusta el trato con la gente y me encanta el pan.", "fr": "Parce que j'aime le contact avec les gens et que j'adore le pain.", "va": "puntos",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "¡Pues ha venido al sitio perfecto!", "fr": "Eh bien, vous êtes au bon endroit !"}]},
+    {"t": "Porque busco un trabajo en el barrio y me gusta hablar con los clientes.", "fr": "Parce que je cherche un travail dans le quartier et que j'aime parler avec les clients.", "va": "puntos",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Eso es lo más importante en este oficio.", "fr": "C'est le plus important dans ce métier."}]},
+    {"faux": true, "t": "Porque estoy muy interesante en este trabajo.", "fr": "Parce que je suis très intéressant dans ce travail.",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "¿Interesante? Seguro que sí, pero… ¿le interesa el trabajo?", "fr": "Intéressant ? Sûrement, mais… le travail vous intéresse ?"}],
+     "aide": {"fr": "<b>« Interesante »</b> veut dire « intéressant », pas « intéressé ». Dis plutôt : « Porque me interesa mucho este trabajo »."}}
+   ]
+  },
+  "puntos": {
+   "dit": [
+    {"si": {"exp": "venta"}, "qui": "b11_patron", "air": "sourire", "t": "Una tienda de ropa, muy bien: entonces ya sabe atender a los clientes.", "fr": "Un magasin de vêtements, très bien : alors vous savez déjà vous occuper des clients."},
+    {"si": {"exp": "hosteleria"}, "qui": "b11_patron", "air": "sourire", "t": "Desayunos en un hotel, perfecto: entonces ya conoce el ritmo de las mañanas.", "fr": "Des petits-déjeuners dans un hôtel, parfait : alors vous connaissez déjà le rythme du matin."},
+    {"qui": "b11_patron", "air": "question", "t": "¿Y cuáles diría que son sus puntos fuertes?", "fr": "Et quels sont vos points forts, d'après vous ?"}
+   ],
+   "choix": [
+    {"t": "Soy puntual y muy responsable, y me gusta trabajar en equipo.", "fr": "Je suis ponctuel(le) et très responsable, et j'aime travailler en équipe.", "va": "cliente"},
+    {"t": "Tengo mucha paciencia y siempre intento ser amable con todo el mundo.", "fr": "J'ai beaucoup de patience et j'essaie toujours d'être aimable avec tout le monde.", "va": "cliente"},
+    {"faux": true, "t": "Tengo paciencia y estoy amable con los clientes.", "fr": "J'ai de la patience et je suis aimable avec les clients.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "¿Está amable… hoy? ¿O lo es siempre?", "fr": "Vous êtes aimable… aujourd'hui ? Ou vous l'êtes toujours ?"}],
+     "aide": {"fr": "Un trait de caractère se dit avec « ser » : <b>« estoy amable »</b> laisse entendre que c'est seulement en ce moment. Dis plutôt : « Siempre intento ser amable con todo el mundo »."}}
+   ]
+  },
+  "cliente": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Eso es importante aquí. Y si un cliente se pone desagradable, ¿qué hace usted?", "fr": "C'est important ici. Et si un client devient désagréable, que faites-vous ?"}],
+   "choix": [
+    {"t": "Intentaría mantener la calma y le escucharía con atención.", "fr": "J'essaierais de garder mon calme et je l'écouterais avec attention.", "va": "horario",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Muy bien. Escuchar es la mitad del trabajo.", "fr": "Très bien. Écouter, c'est la moitié du travail."}]},
+    {"t": "Le pediría disculpas y buscaría una solución con él.", "fr": "Je lui présenterais des excuses et je chercherais une solution avec lui.", "va": "horario",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Eso es. Casi siempre hay una solución.", "fr": "C'est ça. Il y a presque toujours une solution."}]},
+    {"faux": true, "t": "Intentaría de mantener la calma.", "fr": "J'essaierais de garder mon calme.",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Intentaría mantener la calma, claro. ¿Y después?", "fr": "Vous essaieriez de garder votre calme, bien sûr. Et ensuite ?"}],
+     "aide": {"fr": "« Essayer de » se dit <b>« intentar »</b> sans préposition : pas de « de ». Dis plutôt : « Intentaría mantener la calma y le escucharía con atención »."}}
+   ]
+  },
+  "horario": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "Le explico el horario. Es media jornada, turno de mañana: de seis y media a diez y media, de lunes a sábado. Y de vez en cuando, algún domingo. ¿Cómo lo ve?", "fr": "Je vous explique les horaires. C'est un mi-temps, l'équipe du matin : de six heures et demie à dix heures et demie, du lundi au samedi. Et de temps en temps, un dimanche. Qu'en pensez-vous ?"}],
+   "choix": [
+    {"t": "Me parece bien. Puedo trabajar cualquier día de la semana.", "fr": "Ça me convient. Je peux travailler n'importe quel jour de la semaine.", "va": "preguntas",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "¡Estupendo! Eso me facilita mucho las cosas.", "fr": "Formidable ! Ça me facilite beaucoup les choses."}]},
+    {"t": "De lunes a sábado, sin problema, pero los domingos no puedo.", "fr": "Du lundi au samedi, sans problème, mais le dimanche je ne peux pas.", "va": "domingo"},
+    {"t": "Madrugar no me importa, pero los domingos me resulta difícil.", "fr": "Me lever tôt ne me dérange pas, mais le dimanche, c'est difficile pour moi.", "va": "domingo"},
+    {"faux": true, "t": "Es bien para mí.", "fr": "C'est bien pour moi.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "¿Le viene bien, entonces? ¿También los domingos?", "fr": "Ça vous convient, alors ? Les dimanches aussi ?"}],
+     "aide": {"fr": "<b>« Es bien »</b> ne se dit pas : « bien » va avec « estar » ou avec « parecer ». Dis plutôt : « Me parece bien » ou « Me viene bien »."}}
+   ]
+  },
+  "domingo": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "¿Y eso? ¿Tiene algún compromiso los domingos?", "fr": "Ah bon ? Vous avez un engagement le dimanche ?"}],
+   "choix": [
+    {"t": "Sí, los domingos cuido de mis hijos porque mi pareja trabaja.", "fr": "Oui, le dimanche je garde mes enfants parce que mon conjoint travaille.", "va": "preguntas",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Lo entiendo, yo también tengo niños. No se preocupe: los domingos nos arreglamos entre los demás.", "fr": "Je comprends, j'ai des enfants moi aussi. Ne vous inquiétez pas : le dimanche, nous nous arrangeons entre nous."}]},
+    {"t": "Es el único día que puedo pasar con mi familia.", "fr": "C'est le seul jour que je peux passer avec ma famille.", "va": "preguntas",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Claro, la familia es lo primero. No se preocupe: los domingos nos arreglamos entre los demás.", "fr": "Bien sûr, la famille d'abord. Ne vous inquiétez pas : le dimanche, nous nous arrangeons entre nous."}]},
+    {"faux": true, "t": "Sí, los domingos tengo que guardar a mis niños.", "fr": "Oui, le dimanche je dois garder mes enfants.",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "¿Guardarlos? ¿Dónde, en un armario? Ah, cuidarlos.", "fr": "Les ranger ? Où ça, dans une armoire ? Ah, les garder."}],
+     "aide": {"fr": "<b>« Guardar »</b>, c'est ranger ou conserver un objet. Garder des enfants se dit « cuidar ». Dis plutôt : « Los domingos cuido de mis hijos »."}}
+   ]
+  },
+  "preguntas": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Y usted, ¿tiene alguna pregunta?", "fr": "Et vous, vous avez des questions ?"}],
+   "choix": [
+    {"t": "Sí. ¿Podría decirme cuál es el sueldo?", "fr": "Oui. Pourriez-vous me dire quel est le salaire ?", "va": "prueba",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Claro. Es lo que marca el convenio: unos setecientos euros netos al mes, con contrato desde el primer día.", "fr": "Bien sûr. C'est ce que prévoit la convention collective : environ sept cents euros nets par mois, avec un contrat dès le premier jour."}]},
+    {"t": "Me gustaría saber si hay un periodo de formación.", "fr": "J'aimerais savoir s'il y a une période de formation.", "va": "prueba",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sí. La primera semana estará siempre con una compañera que lleva diez años aquí. Ella le enseñará todo.", "fr": "Oui. La première semaine, vous serez toujours avec une collègue qui est ici depuis dix ans. Elle vous montrera tout."}]},
+    {"t": "¿Cuántas personas trabajan en el equipo?", "fr": "Combien de personnes travaillent dans l'équipe ?", "va": "prueba",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Somos cuatro: dos en el horno y dos en el mostrador. Y hay muy buen ambiente.", "fr": "Nous sommes quatre : deux au fournil et deux au comptoir. Et l'ambiance est très bonne."}]},
+    {"faux": true, "t": "Sí. ¿Cuánto me pagas?", "fr": "Oui. Tu me paies combien ?",
+     "puis": [{"qui": "b11_patron", "air": "surprise", "t": "Bueno, bueno… vamos por partes.", "fr": "Holà… chaque chose en son temps."}],
+     "aide": {"fr": "<b>« ¿Cuánto me pagas? »</b> tutoie le patron et sonne très direct. Dis plutôt : « ¿Podría decirme cuál es el sueldo? »."}}
+   ]
+  },
+  "prueba": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "Mire, me ha causado muy buena impresión. Le propongo hacer un día de prueba esta semana. ¿Le viene mejor el jueves o el sábado?", "fr": "Écoutez, vous m'avez fait très bonne impression. Je vous propose de faire un jour d'essai cette semaine. Le jeudi ou le samedi, qu'est-ce qui vous arrange ?"}],
+   "choix": [
+    {"t": "El jueves me viene muy bien. ¿A qué hora tengo que estar aquí?", "fr": "Jeudi me convient très bien. À quelle heure dois-je être là ?", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "A las seis y media en punto. Y traiga su NIE, para ir preparando los papeles. ¡Hasta el jueves!", "fr": "À six heures et demie pile. Et apportez votre NIE, pour que je prépare les papiers. À jeudi !"}]},
+    {"t": "Prefiero el sábado, si es posible. Estaré aquí a la hora que me diga.", "fr": "Je préfère samedi, si c'est possible. Je serai là à l'heure que vous me direz.", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Pues el sábado, a las seis y media. Verá qué ambiente hay los sábados. ¡Hasta entonces!", "fr": "Alors samedi, à six heures et demie. Vous verrez l'ambiance du samedi. À samedi !"}]},
+    {"faux": true, "t": "El jueves es perfecto. Espero que todo va bien.", "fr": "Jeudi, c'est parfait. J'espère que tout va bien se passer.",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Seguro que todo irá bien. Entonces, ¿el jueves?", "fr": "Tout ira bien, j'en suis sûr. Alors, jeudi ?"}],
+     "aide": {"fr": "Après <b>« espero que »</b>, l'espagnol veut le subjonctif : « Espero que todo vaya bien ». Dis plutôt : « El jueves me viene muy bien »."}}
+   ]
+  }
+ }
+}

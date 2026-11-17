@@ -1,0 +1,450 @@
+{
+ "id": "a2-sortie",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "tú",
+ "titre": {
+  "fr": "Préparer une fête à deux"
+ },
+ "intro": {
+  "fr": "Votre professeure d'espagnol, Pilar, donne son dernier cours vendredi. Avec Rosa, ta camarade, organise une petite fête de départ : proposez, discutez, décidez."
+ },
+ "personnes": [
+  "a22_rosa"
+ ],
+ "debut": "cuando",
+ "textes": {
+  "lieu_fr": {
+   "cle": "lieu",
+   "aula": "dans la salle de classe",
+   "bar": "au bar d'à côté"
+  }
+ },
+ "noeuds": {
+  "cuando": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Après le cours, tu restes dans la salle avec Rosa."
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "Oye, el viernes es la última clase de Pilar. Tenemos que hacerle una fiesta de despedida, ¿no? ¿La hacemos el sábado por la tarde?",
+     "fr": "Dis, vendredi c'est le dernier cours de Pilar. Il faut lui faire une fête de départ, non ? On la fait samedi après-midi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "El sábado mucha gente no puede. ¿Y el viernes, después de la clase?",
+     "fr": "Samedi, beaucoup de gens ne peuvent pas. Et vendredi, après le cours ?",
+     "va": "donde",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Tienes razón. El viernes estamos todos.",
+       "fr": "Tu as raison. Vendredi, nous sommes tous là."
+      }
+     ]
+    },
+    {
+     "t": "Buena idea, pero mejor el viernes: ya estamos todos aquí.",
+     "fr": "Bonne idée, mais plutôt vendredi : nous sommes déjà tous ici.",
+     "va": "donde",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Es verdad. El viernes, entonces.",
+       "fr": "C'est vrai. Vendredi, alors."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No.",
+     "fr": "Non.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "¿No? Bueno… ¿y entonces cuándo?",
+       "fr": "Non ? Bon… et alors quand ?"
+      }
+     ],
+     "aide": {
+      "fr": "Un « non » tout seul bloque la discussion. Comme à l'examen : <b>refuse en proposant</b> autre chose. « Mejor el viernes, después de la clase »."
+     }
+    }
+   ]
+  },
+  "donde": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Vale, el viernes a las 13:00, cuando termina la clase. ¿Y dónde? ¿Aquí en el aula o en un bar?",
+     "fr": "D'accord, vendredi à 13 h, quand le cours se termine. Et où ? Ici, dans la salle, ou dans un bar ?",
+     "dit": "Vale, el viernes a la una, cuando termina la clase. ¿Y dónde? ¿Aquí en el aula o en un bar?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Aquí en el aula es más fácil. Y es gratis.",
+     "fr": "Ici, dans la salle, c'est plus simple. Et c'est gratuit.",
+     "pose": {
+      "lieu": "aula"
+     },
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Sí, y así es una sorpresa. Yo pregunto en secretaría si podemos.",
+       "fr": "Oui, et comme ça c'est une surprise. Je demande au secrétariat si nous pouvons."
+      }
+     ]
+    },
+    {
+     "t": "Yo prefiero el bar de al lado: tiene terraza.",
+     "fr": "Moi, je préfère le bar d'à côté : il a une terrasse.",
+     "pose": {
+      "lieu": "bar"
+     },
+     "va": "comida",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Vale, me gusta la idea. Yo llamo para reservar.",
+       "fr": "D'accord, l'idée me plaît. J'appelle pour réserver."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Propongo de hacerla en el aula.",
+     "fr": "Je propose de la faire dans la salle.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "¿Propones… de? Ah, hacerla en el aula. Vale.",
+       "fr": "Tu proposes… « de » ? Ah, la faire dans la salle. D'accord."
+      }
+     ],
+     "aide": {
+      "fr": "« Proposer <b>de</b> » ne se copie pas : <b>proponer + infinitif</b>, sans « de ». « Propongo hacerla en el aula »."
+     }
+    }
+   ]
+  },
+  "comida": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "¿Y la comida? ¿Compramos algo o cocinamos?",
+     "fr": "Et à manger ? On achète quelque chose ou on cuisine ?",
+     "si": {
+      "lieu": "aula"
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "En el bar podemos pedir unas raciones para compartir. ¿O prefieres otra cosa?",
+     "fr": "Au bar, nous pouvons commander des assiettes à partager. Ou tu préfères autre chose ?",
+     "si": {
+      "lieu": "bar"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Cada uno puede traer algo de su país.",
+     "fr": "Chacun peut apporter quelque chose de son pays.",
+     "si": {
+      "lieu": "aula"
+     },
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "¡Qué buena idea! Comida de todo el mundo.",
+       "fr": "Quelle bonne idée ! De la cuisine du monde entier."
+      }
+     ]
+    },
+    {
+     "t": "Yo puedo hacer una tarta. ¿Tú traes las bebidas?",
+     "fr": "Je peux faire un gâteau. Tu apportes les boissons ?",
+     "si": {
+      "lieu": "aula"
+     },
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Hecho: yo traigo zumo y refrescos.",
+       "fr": "Entendu : j'apporte du jus et des sodas."
+      }
+     ]
+    },
+    {
+     "t": "Sí, unas raciones para todos. Es más fácil.",
+     "fr": "Oui, des assiettes pour tout le monde. C'est plus simple.",
+     "si": {
+      "lieu": "bar"
+     },
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Perfecto: tortilla, croquetas y jamón. Lo de siempre.",
+       "fr": "Parfait : tortilla, croquettes et jambon. Comme d'habitude."
+      }
+     ]
+    },
+    {
+     "t": "Vale. ¿Y podemos llevar una tarta?",
+     "fr": "D'accord. Et nous pouvons apporter un gâteau ?",
+     "si": {
+      "lieu": "bar"
+     },
+     "va": "regalo",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Lo pregunto cuando llame. Seguro que sí.",
+       "fr": "Je le demande quand j'appelle. Sûrement, oui."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yo puedo hacer un gato.",
+     "fr": "Je peux faire un chat.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "amuse",
+       "t": "¿Un gato? ¡Pobre animal! Una tarta, ¿no?",
+       "fr": "Un chat ? Pauvre bête ! Un gâteau, non ?"
+      }
+     ],
+     "aide": {
+      "fr": "« Un gato », c'est <b>un chat</b> ! Le gâteau se dit <b>una tarta</b> (ou « un pastel »)."
+     }
+    }
+   ]
+  },
+  "regalo": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "¡Y el regalo! ¿Qué le compramos a Pilar?",
+     "fr": "Et le cadeau ! Qu'est-ce qu'on achète à Pilar ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "A Pilar le gustan mucho las plantas. ¿Le compramos una?",
+     "fr": "Pilar aime beaucoup les plantes. On lui en achète une ?",
+     "va": "dinero",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "¡Sí! Una planta bonita para su casa.",
+       "fr": "Oui ! Une jolie plante pour chez elle."
+      }
+     ]
+    },
+    {
+     "t": "¿Qué tal un libro y una tarjeta de toda la clase?",
+     "fr": "Pourquoi pas un livre et une carte de toute la classe ?",
+     "va": "dinero",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Me gusta. Y en la tarjeta escribimos todos algo.",
+       "fr": "Ça me plaît. Et sur la carte, nous écrivons tous quelque chose."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¿Compramos unas flores por Pilar?",
+     "fr": "On achète des fleurs pour Pilar ?",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "¿Por Pilar? Ah, para Pilar. Sí, flores, ¿por qué no?",
+       "fr": "« Por » Pilar ? Ah, pour Pilar. Oui, des fleurs, pourquoi pas ?"
+      }
+     ],
+     "aide": {
+      "fr": "Le destinataire se dit avec <b>para</b> : « flores <b>para</b> Pilar ». « Por Pilar » voudrait dire « à cause de » ou « à la place de » Pilar."
+     }
+    }
+   ]
+  },
+  "dinero": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "Somos doce en clase. ¿Cuánto ponemos cada uno?",
+     "fr": "Nous sommes douze dans la classe. Combien met chacun ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¿Cinco euros cada uno? Así tenemos sesenta.",
+     "fr": "Cinq euros chacun ? Comme ça, nous en avons soixante.",
+     "va": "tareas",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Sí, con sesenta euros hay para el regalo y para la fiesta.",
+       "fr": "Oui, avec soixante euros, il y a de quoi payer le cadeau et la fête."
+      }
+     ]
+    },
+    {
+     "t": "Cinco euros está bien, ¿no?",
+     "fr": "Cinq euros, c'est bien, non ?",
+     "va": "tareas",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Sí, cinco euros puede pagarlos todo el mundo.",
+       "fr": "Oui, cinq euros, tout le monde peut les payer."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Cada uno pone cincuenta euros.",
+     "fr": "Chacun met cinquante euros.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "surprise",
+       "t": "¿Cincuenta? ¡Qué dices! Eso es muchísimo. ¿No será cinco?",
+       "fr": "Cinquante ? Qu'est-ce que tu racontes ! C'est énorme. Ce ne serait pas plutôt cinq ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Cincuenta</b> = 50 ; <b>cinco</b> = 5. Dis : « Cinco euros cada uno »."
+     }
+    }
+   ]
+  },
+  "tareas": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "attentive",
+     "t": "Vale. Ahora, ¿quién hace qué? Yo puedo comprar el regalo mañana.",
+     "fr": "D'accord. Maintenant, qui fait quoi ? Moi, je peux acheter le cadeau demain."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muy bien. Yo escribo a los compañeros esta tarde.",
+     "fr": "Très bien. Moi, j'écris aux camarades cet après-midi.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Perfecto. Diles que es una sorpresa.",
+       "fr": "Parfait. Dis-leur que c'est une surprise."
+      }
+     ]
+    },
+    {
+     "t": "Entonces yo recojo el dinero y escribo a los demás.",
+     "fr": "Alors moi, je ramasse l'argent et j'écris aux autres.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Genial. Y diles que es una sorpresa.",
+       "fr": "Génial. Et dis-leur que c'est une surprise."
+      }
+     ]
+    },
+    {
+     "t": "Perdona, ¿qué has dicho?",
+     "fr": "Pardon, qu'est-ce que tu as dit ?",
+     "va": "tareas",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Que yo compro el regalo mañana. ¿Y tú qué haces?",
+       "fr": "Que j'achète le cadeau demain. Et toi, tu fais quoi ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "¡Qué bien! Ya está todo. A Pilar le va a encantar. Mañana te cuento qué regalo he encontrado.",
+     "fr": "Super ! Tout est prêt. Pilar va adorer. Demain, je te raconte quel cadeau j'ai trouvé."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Vale. ¡Hasta mañana, Rosa!",
+     "fr": "D'accord. À demain, Rosa !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "¡Hasta mañana!",
+       "fr": "À demain !"
+      }
+     ]
+    },
+    {
+     "t": "Perfecto. Gracias por tu ayuda. ¡Nos vemos mañana!",
+     "fr": "Parfait. Merci pour ton aide. On se voit demain !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "¡A ti! Hasta mañana.",
+       "fr": "Merci à toi ! À demain."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as organisé avec Rosa la fête de départ de Pilar : vendredi à une heure, {lieu_fr}, un cadeau, cinq euros chacun, et c'est toi qui préviens les autres."
+ }
+}

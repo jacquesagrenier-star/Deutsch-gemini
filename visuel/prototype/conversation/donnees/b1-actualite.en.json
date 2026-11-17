@@ -1,0 +1,145 @@
+{
+ "id": "b1-actualite",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "Les nouvelles du jour, entre amis"},
+ "intro": {"fr": "Tu prends un café avec ton amie Erin pendant sa pause. Elle a vu les nouvelles : une grosse tempête de neige arrive demain sur Boston."},
+ "personnes": ["b13_freundin"],
+ "debut": "news",
+ "noeuds": {
+  "news": {
+   "dit": [
+    {"recit": {"fr": "Un café de Boston, en début d'après-midi. Dehors, le ciel est déjà gris. Erin te montre l'écran de son téléphone."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "Did you see the news? There's a nor'easter coming tomorrow. They're saying 12 to 18 inches of snow!", "dit": "Did you see the news? There's a nor'easter coming tomorrow. They're saying twelve to eighteen inches of snow!", "t_gb": "Have you seen the news? There's a nor'easter coming tomorrow. They're saying 12 to 18 inches of snow!", "dit_gb": "Have you seen the news? There's a nor'easter coming tomorrow. They're saying twelve to eighteen inches of snow!", "fr": "Tu as vu les nouvelles ? Un « nor'easter » arrive demain. On annonce 30 à 45 centimètres de neige !"}
+   ],
+   "choix": [
+    {"t": "No, I hadn't heard! What's a nor'easter, exactly?", "fr": "Non, je n'étais pas au courant ! C'est quoi, un « nor'easter », exactement ?", "va": "opinion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "A big storm that comes up the coast. Lots of snow, lots of wind. The schools are already closed for tomorrow.", "fr": "Une grosse tempête qui remonte la côte. Beaucoup de neige, beaucoup de vent. Les écoles sont déjà fermées pour demain."}]},
+    {"t": "Yes, I saw it this morning. Is it really going to be that bad?", "fr": "Oui, j'ai vu ça ce matin. Ça va vraiment être si terrible ?", "va": "opinion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Well, the schools are already closed for tomorrow, and the T is going to have delays.", "fr": "Eh bien, les écoles sont déjà fermées pour demain, et le métro aura des retards."}]},
+    {"faux": true, "t": "No. The news are bad?", "fr": "Non. Les nouvelles sont mauvaises ?",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "The news is bad, yeah. A big snowstorm tomorrow!", "fr": "Les nouvelles sont mauvaises, oui. Une grosse tempête de neige demain !"}],
+     "aide": {"fr": "<b>« news » est toujours singulier</b>, malgré son « s » : « The news is bad. » Et la question se fait avec l'inversion : « Is the news bad? »"}},
+    {"repete": true, "t": "Sorry, how much snow did you say?", "fr": "Pardon, tu as dit combien de neige ?", "va": "news",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Twelve to eighteen inches. That's up to your knees!", "fr": "Douze à dix-huit pouces. Ça arrive aux genoux !"}]}
+   ]
+  },
+  "opinion": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "What do you think? Are people overreacting? The grocery stores are already out of bread and milk.", "t_gb": "What do you think? Are people overreacting? The supermarkets have already run out of bread and milk.", "fr": "Tu en penses quoi ? Les gens en font trop ? Les supermarchés n'ont déjà plus de pain ni de lait."}],
+   "choix": [
+    {"t": "I think it's better to be careful. In my opinion, closing the schools is a good idea.", "fr": "Je pense qu'il vaut mieux être prudent. À mon avis, fermer les écoles est une bonne idée.", "va": "plan",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Yeah, I agree. Nobody wants school buses on icy roads.", "fr": "Oui, je suis d'accord. Personne ne veut de bus scolaires sur des routes verglacées."}]},
+    {"t": "Honestly, I'm excited. Where I come from, we almost never get snow.", "fr": "Franchement, j'ai hâte. Là d'où je viens, il ne neige presque jamais.", "va": "plan",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Aw. Enjoy it! The first storm is always magical. Ask me again in March.", "fr": "Oh. Profites-en ! La première tempête est toujours magique. Repose-moi la question en mars."}]},
+    {"t": "On the one hand, I understand. On the other hand, it's only snow!", "fr": "D'un côté, je comprends. De l'autre, ce n'est que de la neige !", "va": "debate"},
+    {"faux": true, "t": "For me, people exaggerate. It's not so grave.", "fr": "Pour moi, les gens exagèrent. Ce n'est pas si grave.",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "Grave? Like in a cemetery? Oh, you mean it's not that serious!", "fr": "« Grave » ? Comme une tombe au cimetière ? Ah, tu veux dire que ce n'est pas si grave !"}],
+     "aide": {"fr": "<b>« grave » est un faux ami :</b> « a grave », c'est une tombe. « Ce n'est pas si grave » se dit « It's not that serious » ou « It's not a big deal ». "}}
+   ]
+  },
+  "debate": {
+   "dit": [{"qui": "b13_freundin", "air": "amuse", "t": "Only snow? You've never had to dig your car out! Last time, mine was buried for three days.", "fr": "Que de la neige ? Tu n'as jamais eu à déterrer ta voiture ! La dernière fois, la mienne est restée ensevelie trois jours."}],
+   "choix": [
+    {"t": "Okay, you're right. I've never seen that much snow.", "fr": "D'accord, tu as raison. Je n'ai jamais vu autant de neige.", "va": "plan",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "You will tomorrow!", "fr": "Tu verras demain !"}]},
+    {"t": "Three days? Now I'm a little worried.", "t_gb": "Three days? Now I'm a bit worried.", "fr": "Trois jours ? Maintenant, je suis un peu inquiet.", "va": "plan",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Don't be. Just buy some food tonight and stay warm.", "fr": "Ne t'inquiète pas. Achète juste de quoi manger ce soir et reste au chaud."}]},
+    {"faux": true, "t": "Okay, I am agree with you.", "fr": "D'accord, je suis d'accord avec toi (mot à mot).",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "You agree with me? Good. I like it when people agree with me.", "fr": "Tu es d'accord avec moi ? Bien. J'aime qu'on soit d'accord avec moi."}],
+     "aide": {"fr": "<b>« agree » est un verbe, sans « be » :</b> « I agree with you », jamais « I am agree ». "}}
+   ]
+  },
+  "plan": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "So what are you going to do about work tomorrow?", "fr": "Et pour le travail, demain, tu vas faire comment ?"}],
+   "choix": [
+    {"t": "I'll ask my boss if I can work from home.", "fr": "Je vais demander à mon chef si je peux travailler de chez moi.", "pose": {"trajet": "home"}, "va": "home"},
+    {"t": "I'll take the T, but I'll leave home really early.", "fr": "Je prendrai le métro, mais je partirai de chez moi très tôt.", "pose": {"trajet": "t"}, "va": "train"},
+    {"t": "You drive to the salon, right? Could you give me a ride?", "t_gb": "You drive to the salon, don't you? Could you give me a lift?", "fr": "Tu vas au salon en voiture, non ? Tu pourrais m'emmener ?", "pose": {"trajet": "ride"}, "va": "ride",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Sure, your office is on my way. And I have snow tires.", "t_gb": "Sure, your office is on my way. And I've got snow tyres.", "fr": "Bien sûr, ton bureau est sur mon chemin. Et j'ai des pneus neige."}]},
+    {"faux": true, "t": "I will rest at home.", "fr": "Je vais me reposer à la maison.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Rest? Lucky you! Oh, you mean you'll stay home and work.", "t_gb": "Rest? Lucky you! Oh, you mean you'll stay at home and work.", "fr": "Te reposer ? Veinard ! Ah, tu veux dire que tu resteras travailler chez toi."}],
+     "aide": {"fr": "<b>« rest » est un faux ami :</b> il veut dire « se reposer ». « Rester » se dit « stay » : « I'll stay home » (« stay at home » en anglais britannique)."}}
+   ]
+  },
+  "home": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Lucky you. I can't cut hair from home! But don't you have that big meeting tomorrow?", "fr": "Veinard. Moi, je ne peux pas couper les cheveux depuis chez moi ! Mais tu n'as pas cette grosse réunion, demain ?"}],
+   "choix": [
+    {"t": "Right. I'll join by video. That should be fine.", "fr": "C'est vrai. J'y participerai en visio. Ça devrait aller.", "va": "rent",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "In a nice shirt and pajama pants. I'm jealous!", "t_gb": "In a nice shirt and pyjama bottoms. I'm jealous!", "fr": "En belle chemise et en bas de pyjama. Je suis jalouse !"}]},
+    {"t": "Oh no, I forgot! Then I have to go in. Could you give me a ride?", "t_gb": "Oh no, I forgot! Then I have to go in. Could you give me a lift?", "fr": "Oh non, j'avais oublié ! Alors il faut que j'y aille. Tu pourrais m'emmener ?", "pose": {"trajet": "ride"}, "va": "ride",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Sure, your office is on my way. And I have snow tires.", "t_gb": "Sure, your office is on my way. And I've got snow tyres.", "fr": "Bien sûr, ton bureau est sur mon chemin. Et j'ai des pneus neige."}]},
+    {"faux": true, "t": "Right. I will assist to the meeting online.", "fr": "C'est vrai. J'assisterai à la réunion en ligne (mot à mot).",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "Assist? Who are you helping? Oh, you'll attend it online!", "fr": "« Assist » ? Tu aides qui ? Ah, tu y assisteras en ligne !"}],
+     "aide": {"fr": "<b>« assist » est un faux ami :</b> il veut dire « aider ». Assister à une réunion = « attend a meeting » (sans préposition) ou « join a meeting ». "}}
+   ]
+  },
+  "train": {
+   "dit": [{"qui": "b13_freundin", "air": "attentive", "t": "Good luck. During the last storm, the Red Line was stuck for two hours. Why don't you ride with me? I'm driving to the salon anyway.", "t_gb": "Good luck. During the last storm, the Red Line was stuck for two hours. Why don't you come with me? I'm driving to the salon anyway.", "fr": "Bon courage. À la dernière tempête, la ligne rouge est restée bloquée deux heures. Pourquoi tu ne viens pas avec moi ? Je vais au salon en voiture de toute façon."}],
+   "choix": [
+    {"t": "That would be great, thank you! What time do you leave?", "fr": "Ce serait super, merci ! Tu pars à quelle heure ?", "pose": {"trajet": "ride"}, "va": "ride"},
+    {"t": "Thanks, but I'll try the T. I'll bring a book, just in case.", "fr": "Merci, mais je vais tenter le métro. J'emporterai un livre, au cas où.", "va": "rent",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Bring two books. And a sandwich.", "fr": "Prends deux livres. Et un sandwich."}]},
+    {"faux": true, "t": "Yes, I want well!", "fr": "Oui, je veux bien !",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "You want … what? Is that a yes?", "fr": "Tu veux… quoi ? C'est un oui ?"}],
+     "aide": {"fr": "<b>« je veux bien » ne se traduit pas mot à mot.</b> Pour accepter une offre : « Yes, please! », « I'd love that » ou « That would be great ». "}}
+   ]
+  },
+  "ride": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "I leave Dorchester at seven, before traffic gets bad. Is that too early for you?", "t_gb": "I leave Dorchester at seven, before the traffic gets bad. Is that too early for you?", "fr": "Je pars de Dorchester à sept heures, avant les bouchons. C'est trop tôt pour toi ?"}],
+   "choix": [
+    {"t": "No, that works. Where should I wait for you?", "fr": "Non, ça me va. Je t'attends où ?", "va": "rent",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "In front of the coffee shop on your corner. Dress warm!", "t_gb": "In front of the coffee shop on your corner. Wrap up warm!", "fr": "Devant le café au coin de ta rue. Habille-toi chaudement !"}]},
+    {"t": "It's early, but it's better than walking. I'll bring the coffee!", "fr": "C'est tôt, mais c'est mieux qu'à pied. J'apporte le café !", "va": "rent",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Deal! I'll pick you up in front of your building.", "fr": "Marché conclu ! Je passe te prendre devant ton immeuble."}]},
+    {"faux": true, "t": "No, it's fine. I will wait you at the corner.", "fr": "Non, c'est bon. Je t'attends au coin (sans préposition).",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "You'll wait for me? Great. But which corner?", "fr": "Tu m'attendras ? Super. Mais à quel coin ?"}],
+     "aide": {"fr": "<b>« attendre quelqu'un » = « wait for someone »</b>, toujours avec « for » : « I'll wait for you at the corner. »"}}
+   ]
+  },
+  "rent": {
+   "dit": [
+    {"recit": {"fr": "Erin fait défiler les titres sur son téléphone."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "Oh, and did you see this? Rents in Boston went up again. A one-bedroom is now around $3,000 a month!", "dit": "Oh, and did you see this? Rents in Boston went up again. A one-bedroom is now around three thousand dollars a month!", "t_gb": "Oh, and have you seen this? Rents in Boston have gone up again. A one-bedroom flat is now around $3,000 a month!", "dit_gb": "Oh, and have you seen this? Rents in Boston have gone up again. A one-bedroom flat is now around three thousand dollars a month!", "fr": "Oh, et tu as vu ça ? Les loyers ont encore augmenté à Boston. Un deux-pièces coûte maintenant environ 3 000 dollars par mois !"}
+   ],
+   "choix": [
+    {"t": "That's crazy! When I moved here, it took me three months to find a place.", "fr": "C'est fou ! Quand je me suis installé ici, j'ai mis trois mois à trouver un logement.", "va": "fix",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "And you were lucky. My brother still has four roommates, and he's thirty-five.", "t_gb": "And you were lucky. My brother still has four flatmates, and he's thirty-five.", "fr": "Et tu as eu de la chance. Mon frère a encore quatre colocataires, et il a trente-cinq ans."}]},
+    {"t": "I'm not surprised. Almost half of my salary goes to rent.", "t_gb": "I'm not surprised. Almost half of my salary goes on rent.", "fr": "Ça ne m'étonne pas. Presque la moitié de mon salaire part dans le loyer.", "va": "fix",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Same here. And the rent for the salon is going up next year, too.", "fr": "Pareil pour moi. Et le loyer du salon augmente aussi l'an prochain."}]},
+    {"faux": true, "t": "Yes, the location is very expensive here.", "fr": "Oui, la « location » est très chère ici.",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "The location? Which one? Oh, you mean the rent!", "fr": "L'emplacement ? Lequel ? Ah, tu veux dire le loyer !"}],
+     "aide": {"fr": "<b>« location » est un faux ami :</b> c'est un emplacement, un lieu. Le loyer se dit « rent » : « Rent is very expensive here. »"}}
+   ]
+  },
+  "fix": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "What do you think the city should do about it?", "fr": "À ton avis, que devrait faire la ville ?"}],
+   "choix": [
+    {"t": "It should build more apartments, especially cheap ones.", "t_gb": "It should build more flats, especially cheap ones.", "fr": "Elle devrait construire plus d'appartements, surtout des pas chers.", "va": "end",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Sure, but where? Nobody wants a tall building next door.", "fr": "D'accord, mais où ? Personne ne veut d'un grand immeuble à côté de chez soi."}]},
+    {"t": "In my opinion, there should be a limit on rent.", "fr": "À mon avis, il devrait y avoir une limite aux loyers.", "va": "end",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "People have been arguing about that for years. I'd vote for it!", "fr": "Ça fait des années que les gens en débattent. Moi, je voterais pour !"}]},
+    {"t": "Honestly, I don't know. It's a complicated problem.", "fr": "Franchement, je ne sais pas. C'est un problème compliqué.", "va": "end",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "True. We're not going to fix it over coffee.", "fr": "C'est vrai. Ce n'est pas autour d'un café qu'on va régler ça."}]},
+    {"faux": true, "t": "The city must to build more apartments.", "fr": "La ville doit « de » construire plus d'appartements.",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "It must build more, yeah. I agree. But where?", "fr": "Elle doit en construire plus, oui. Je suis d'accord. Mais où ?"}],
+     "aide": {"fr": "<b>Après « must » ou « should », le verbe vient sans « to » :</b> « The city must build… », « The city should build… ». "}}
+   ]
+  },
+  "end": {
+   "dit": [
+    {"recit": {"fr": "Erin regarde l'heure et enfile son manteau."}},
+    {"si": {"trajet": "ride"}, "qui": "b13_freundin", "air": "sourire", "t": "Oops, look at the time! My next client is coming in soon. So, seven o'clock tomorrow. Don't oversleep!", "fr": "Oups, tu as vu l'heure ? Ma prochaine cliente arrive bientôt. Alors, sept heures demain. Ne te réveille pas en retard !"},
+    {"si": {"trajet": "home"}, "qui": "b13_freundin", "air": "sourire", "t": "Oops, look at the time! My next client is coming in soon. Enjoy your day at home tomorrow!", "fr": "Oups, tu as vu l'heure ? Ma prochaine cliente arrive bientôt. Profite bien de ta journée à la maison demain !"},
+    {"si": {"trajet": "t"}, "qui": "b13_freundin", "air": "sourire", "t": "Oops, look at the time! My next client is coming in soon. Good luck on the T tomorrow!", "fr": "Oups, tu as vu l'heure ? Ma prochaine cliente arrive bientôt. Bon courage dans le métro demain !"}
+   ],
+   "choix": [
+    {"t": "See you soon! And thanks for telling me.", "fr": "À bientôt ! Et merci de m'avoir prévenu.", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Anytime! Stay warm!", "fr": "Quand tu veux ! Reste au chaud !"}]},
+    {"t": "Bye, Erin! I'll text you tomorrow.", "fr": "Salut, Erin ! Je t'envoie un message demain.", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Please do. Bye!", "fr": "Oui, fais ça. Salut !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commenté les nouvelles du jour avec une amie : tu as donné ton avis sur la tempête et sur les loyers, et tu t'es organisé pour demain."}
+}

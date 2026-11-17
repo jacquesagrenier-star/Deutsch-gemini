@@ -1,0 +1,116 @@
+{
+ "id": "a2-reclamation-resto",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Une réclamation au restaurant"},
+ "intro": {"fr": "Tu dînes dans un restaurant de Boston. Quelque chose ne va pas avec ton plat : tu le dis poliment à la serveuse."},
+ "personnes": ["kellnerin"],
+ "debut": "check",
+ "textes": {
+  "plat_fr": {"cle": "souci", "soup": "une soupe bien chaude", "dish": "ton poisson"},
+  "souci_fr": {"cle": "souci", "soup": "que ta soupe était froide", "dish": "qu'on t'avait apporté le mauvais plat"}
+ },
+ "noeuds": {
+  "check": {
+   "dit": [
+    {"recit": {"fr": "Un restaurant près du port de Boston. On vient de t'apporter ton plat, mais quelque chose ne va pas. La serveuse repasse."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Hi! How is everything?", "fr": "Alors, tout se passe bien ?"}
+   ],
+   "choix": [
+    {"t": "Excuse me, I have a small problem.", "fr": "Excusez-moi, j'ai un petit problème.", "va": "problem",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Oh no.", "fr": "Oh non."}]},
+    {"t": "I'm sorry, but something is wrong.", "fr": "Je suis désolé(e), mais quelque chose ne va pas.", "va": "problem",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Oh no.", "fr": "Oh non."}]}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "What's the matter?", "fr": "Qu'est-ce qui ne va pas ?"}],
+   "choix": [
+    {"t": "My soup is cold.", "fr": "Ma soupe est froide.", "pose": {"souci": "soup"}, "va": "offer",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh, I'm so sorry about that!", "fr": "Oh, je suis vraiment désolée !"}]},
+    {"t": "I ordered the fish, but this is chicken.", "fr": "J'ai commandé le poisson, mais ça, c'est du poulet.", "pose": {"souci": "dish"}, "va": "offer",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh, I'm so sorry about that!", "fr": "Oh, je suis vraiment désolée !"}]},
+    {"faux": true, "t": "This is not what I commanded.", "fr": "Ce n'est pas ce que j'ai ordonné.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "What you … commanded? Like in the army? Oh, what you ordered!", "fr": "Ce que vous avez… ordonné ? Comme à l'armée ? Ah, ce que vous avez commandé !"}],
+     "aide": {"fr": "<b>« to command », c'est donner un ordre, comme un général.</b> Au restaurant, commander se dit « to order » : « This is not what I ordered »."}}
+   ]
+  },
+  "offer": {
+   "dit": [
+    {"si": {"souci": "soup"}, "qui": "kellnerin", "air": "attentive", "t": "I can heat it up, or I can bring you a new one. What would you like?", "fr": "Je peux la réchauffer, ou vous en apporter une autre. Que préférez-vous ?"},
+    {"si": {"souci": "dish"}, "qui": "kellnerin", "air": "attentive", "t": "That's our mistake. Would you still like the fish, or would you like to keep the chicken?", "fr": "C'est notre erreur. Voulez-vous toujours le poisson, ou préférez-vous garder le poulet ?"}
+   ],
+   "choix": [
+    {"si": {"souci": "soup"}, "t": "A new soup, please.", "fr": "Une autre soupe, s'il vous plaît.", "va": "wait",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course.", "fr": "Bien sûr."}]},
+    {"si": {"souci": "soup"}, "t": "Could you heat it up, please?", "fr": "Pourriez-vous la réchauffer, s'il vous plaît ?", "va": "wait",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course.", "fr": "Bien sûr."}]},
+    {"si": {"souci": "dish"}, "t": "I'd still like the fish, please.", "fr": "Je voudrais toujours le poisson, s'il vous plaît.", "va": "wait",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course.", "fr": "Bien sûr."}]},
+    {"si": {"souci": "dish"}, "t": "The fish, please. I don't eat meat.", "fr": "Le poisson, s'il vous plaît. Je ne mange pas de viande.", "va": "wait",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course. I'll take this away.", "fr": "Bien sûr. Je remporte ceci."}]}
+   ]
+  },
+  "wait": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "It'll take about 10 minutes. Is that okay?", "fr": "Il faudra environ 10 minutes. Ça vous va ?", "dit": "It'll take about ten minutes. Is that okay?"}],
+   "choix": [
+    {"t": "Yes, that's fine. Thank you.", "fr": "Oui, c'est très bien. Merci.", "va": "better",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Thank you for understanding.", "fr": "Merci de votre compréhension."}]},
+    {"t": "No problem. I'm not in a hurry.", "fr": "Pas de problème. Je ne suis pas pressé(e).", "va": "better",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Thank you for understanding.", "fr": "Merci de votre compréhension."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "wait",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure. You have to wait about 10 minutes. Is that okay?", "fr": "Bien sûr. Il faut attendre environ 10 minutes. Ça vous va ?", "dit": "Sure. You have to wait about ten minutes. Is that okay?"}]}
+   ]
+  },
+  "better": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes plus tard, elle revient avec {plat_fr}."}},
+    {"qui": "kellnerin", "air": "question", "t": "Here you go. Is this better?", "fr": "Voilà. C'est mieux ?"}
+   ],
+   "choix": [
+    {"t": "Yes, much better. Thank you!", "fr": "Oui, beaucoup mieux. Merci !", "va": "treat",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, good!", "fr": "Ah, tant mieux !"}]},
+    {"t": "Yes, it's delicious.", "fr": "Oui, c'est délicieux.", "va": "treat",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, good!", "fr": "Ah, tant mieux !"}]},
+    {"faux": true, "t": "Yes, it's terrible!", "fr": "Oui, c'est très mauvais !",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Terrible? Oh no, not again! What's wrong this time?", "fr": "Très mauvais ? Oh non, encore ! Qu'est-ce qui ne va pas, cette fois ?"}],
+     "aide": {"fr": "<b>En anglais, « terrible » veut toujours dire « très mauvais ».</b> Pour un plat qu'on aime : « It's delicious » ou « It's very good »."}}
+   ]
+  },
+  "treat": {
+   "dit": [
+    {"recit": {"fr": "Tu finis ton plat. La serveuse revient."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "I'm sorry again for the mistake. Can I bring you a dessert or a coffee? It's on the house.", "fr": "Encore désolée pour cette erreur. Je vous apporte un dessert ou un café ? C'est offert par la maison."}
+   ],
+   "choix": [
+    {"t": "A coffee, please. That's very kind.", "fr": "Un café, s'il vous plaît. C'est très gentil.", "va": "bill",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "One coffee, coming right up!", "fr": "Un café, tout de suite !"}]},
+    {"t": "A dessert, please. What is good here?", "fr": "Un dessert, s'il vous plaît. Qu'est-ce qui est bon ici ?", "va": "bill",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "The Boston cream pie. It's the best in town! I'll bring you a slice.", "fr": "La Boston cream pie. C'est la meilleure de la ville ! Je vous en apporte une part."}]}
+   ]
+  },
+  "bill": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard."}},
+    {"qui": "kellnerin", "air": "question", "t": "Can I get you anything else?", "fr": "Vous désirez autre chose ?"}
+   ],
+   "choix": [
+    {"t": "No, thank you. Just the check, please.", "t_gb": "No, thank you. Just the bill, please.", "fr": "Non, merci. Seulement l'addition, s'il vous plaît.", "va": null,
+     "puis": [
+      {"qui": "kellnerin", "air": "sourire", "t": "Here you go. Thanks for your patience. Have a good night!", "fr": "Voici. Merci de votre patience. Bonne soirée !"},
+      {"recit": {"fr": "Tu paies et tu laisses vingt pour cent de pourboire, comme c'est l'usage ici."}}
+     ]},
+    {"t": "No, thanks. Could I have the check, please?", "t_gb": "No, thanks. Could I have the bill, please?", "fr": "Non, merci. Je pourrais avoir l'addition, s'il vous plaît ?", "va": null,
+     "puis": [
+      {"qui": "kellnerin", "air": "sourire", "t": "Here you go. Thanks for your patience. Have a good night!", "fr": "Voici. Merci de votre patience. Bonne soirée !"},
+      {"recit": {"fr": "Tu paies et tu laisses vingt pour cent de pourboire, comme c'est l'usage ici."}}
+     ]},
+    {"faux": true, "t": "No, thank you. The addition, please.", "fr": "Non, merci. L'addition (le calcul), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "The addition? Like in math class? Oh, the check!", "t_gb": "The addition? Like in maths? Oh, the bill!", "fr": "L'addition ? Comme en cours de maths ? Ah, la note !"}],
+     "aide": {"fr": "<b>« addition » n'existe en anglais que pour le calcul.</b> Au restaurant : « The check, please » (« The bill, please » en anglais britannique)."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé poliment {souci_fr}, accepté la solution de la serveuse et demandé l'addition."}
+}

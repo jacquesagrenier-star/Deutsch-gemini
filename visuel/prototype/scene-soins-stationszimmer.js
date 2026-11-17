@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "tafel",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "pinnwand",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "desinfektionsmittel",
@@ -261,7 +264,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "computer",
@@ -285,7 +289,8 @@ window.SCENE = {
      "pt": "tela",
      "ar": "شاشة",
      "pl": "ekran",
-     "ru": "экран"
+     "ru": "экран",
+     "es": "la pantalla"
     }
    ],
    "sur": "schreibtisch",
@@ -306,7 +311,8 @@ window.SCENE = {
    "pt": "computador",
    "ar": "حاسوب",
    "pl": "komputer",
-   "ru": "компьютер"
+   "ru": "компьютер",
+   "es": "la computadora"
   },
   {
    "id": "tastatur",
@@ -335,7 +341,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -364,7 +371,8 @@ window.SCENE = {
    "pt": "rato",
    "ar": "فأر",
    "pl": "mysz",
-   "ru": "мышь"
+   "ru": "мышь",
+   "es": "el ratón"
   },
   {
    "id": "telefon",
@@ -393,7 +401,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "drucker",
@@ -422,7 +431,8 @@ window.SCENE = {
    "pt": "impressora",
    "ar": "طابعة",
    "pl": "drukarka",
-   "ru": "принтер"
+   "ru": "принтер",
+   "es": "la impresora"
   },
   {
    "id": "klemmbrett",
@@ -509,7 +519,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "blutdruckmessgeraet",
@@ -625,7 +636,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   },
   {
    "id": "stuhl",
@@ -654,7 +666,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "medikamentenwagen",
@@ -741,7 +754,8 @@ window.SCENE = {
    "pt": "comprimido",
    "ar": "قرص دواء",
    "pl": "tabletka",
-   "ru": "таблетка"
+   "ru": "таблетка",
+   "es": "la pastilla, la tableta"
   },
   {
    "id": "handschuhe",
@@ -770,7 +784,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "handschuhe-2",
@@ -799,7 +814,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "abwurfbehaelter",
@@ -1194,60 +1210,50 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
-   "niveau": "B1",
+   "titre": "Que répondez-vous ?",
+   "niveau": "B2",
    "qs": [
     {
-     "q": "Das Telefon klingelt. Ein Angehöriger fragt nach der Diagnose seines Vaters. Was sagen Sie?",
+     "q": "Nachts rufen Sie den Dienstarzt an. Er meldet sich: „Krämer, Dienstarzt.“",
      "c": [
-      "Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.",
-      "Ich lese Ihnen kurz den Arztbrief vor.",
-      "Ich sage Ihnen, was ich weiß."
+      "Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.",
+      "Hallo, hier ist Yusuf. Dem Patienten geht's nicht gut.",
+      "Hallo, ich bin's. Ich komm heute nicht, okay?"
      ],
      "f": "telefon",
      "type": "situation",
-     "phrase": "Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.",
-     "sens": "Je n'ai pas le droit de donner d'informations au téléphone. Je vous passe la médecin.",
-     "n": "Le secret professionnel : on ne sait pas qui appelle, et le diagnostic, c'est au médecin de le dire ⚕️."
+     "phrase": "Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.",
+     "sens": "Excusez-moi de vous déranger, docteur Krämer. Ici Yusuf, du service 4B. C'est au sujet de M. Brandt, chambre 12.",
+     "n": "<b>S comme Situation : qui tu es, d'où tu appelles, pour quel patient.</b> « Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12. » Le médecin ne connaît pas encore le patient.",
+     "source": "d07-sbar/melden"
     },
     {
-     "q": "Der Betäubungsmittelschrank ist offen, der Schlüssel steckt. Was tun Sie?",
+     "q": "Am Telefon fragt Dr. Krämer: „Verstehe. Was ist das für ein Patient?“",
      "c": [
-      "Ich schließe ihn ab und informiere sofort die Stationsleitung.",
-      "Ich lasse ihn offen, gleich braucht ihn sicher jemand.",
-      "Ich ziehe den Schlüssel ab und lege ihn auf den Schreibtisch."
+      "Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.",
+      "Er hat am Dienstag eine Operation an der Hüfte gemacht.",
+      "Ich weiß nicht … vielleicht ist es auch nichts."
      ],
-     "f": "btm-schrank",
+     "f": "telefon",
      "type": "situation",
-     "phrase": "Ich schließe ihn ab und informiere sofort die Stationsleitung.",
-     "sens": "Je le ferme à clé et j'informe tout de suite la cadre du service.",
-     "n": "Les stupéfiants sont sous clé et la clé reste sur une personne ; un écart se signale tout de suite ⚕️."
+     "phrase": "Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.",
+     "sens": "Il a 82 ans et il a été opéré de la hanche mardi. Depuis, il ne s'est presque pas levé.",
+     "n": "<b>Le patient ne fait pas l'opération, il la subit : le passif.</b> « Er ist am Dienstag operiert worden » (Perfekt du passif) ou « Er wurde am Dienstag operiert » (Präteritum). C'est le B de SBAR (Background, Hintergrund) : le contexte.",
+     "source": "d07-sbar/hintergrund"
     },
     {
-     "q": "Der Medikamentenkühlschrank ist warm. Was tun Sie?",
+     "q": "Am Telefon fragt Dr. Krämer: „Hm. Das gefällt mir nicht. Was denken Sie?“",
      "c": [
-      "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
-      "Ich stelle die Medikamente ans offene Fenster.",
-      "Ich warte bis morgen, vielleicht wird er wieder kalt."
+      "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.",
+      "Ich weiß nicht … vielleicht ist es auch nichts.",
+      "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht."
      ],
-     "f": "kuehlschrank",
+     "f": "telefon",
      "type": "situation",
-     "phrase": "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
-     "sens": "Je préviens tout de suite l'infirmière ou l'infirmier responsable.",
-     "n": "Des médicaments sortis du froid peuvent être perdus : on prévient sans attendre, et on documente ⚕️."
-    },
-    {
-     "q": "Nach der Blutzuckermessung fällt die Lanzette auf den Boden. Was tun Sie?",
-     "c": [
-      "Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.",
-      "Ich lasse sie liegen, die Reinigung kommt später.",
-      "Ich werfe sie in den Papierkorb."
-     ],
-     "f": "abwurfbehaelter",
-     "type": "situation",
-     "phrase": "Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.",
-     "sens": "Je la ramasse avec précaution et je la jette dans le collecteur.",
-     "n": "Tout ce qui pique va dans le collecteur, jamais à la poubelle : quelqu'un pourrait se blesser ⚕️."
+     "phrase": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.",
+     "sens": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.",
+     "n": "<b>A comme Assessment (Einschätzung) : dis clairement ce que tu penses.</b> « Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss. » Ton inquiétude est une information pour le médecin. ⚕️",
+     "source": "d07-sbar/einschaetzung"
     }
    ]
   }
@@ -1264,7 +1270,7 @@ window.SCENE = {
     "B1": "Separable verbs on the ward",
     "B2": "Modal verbs of the rules",
     "C1": "Konjunktiv I in reported instructions",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "At work, the <b>official</b> time, on the 24-hour clock: dreizehn Uhr dreißig.",
@@ -1290,10 +1296,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I of sein: <b>sei</b>; here with a past passive (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I of werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The reported past: <b>habe</b> + participle (schlafen takes haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Confidentiality: you don't know who is calling, and it is for the doctor to give the diagnosis ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Controlled drugs are kept locked and the key stays with one person; any discrepancy is reported at once ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Medicines left out of the fridge may no longer be usable: report it without delay, and document it ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Anything sharp goes into the sharps container, never the bin: someone could get hurt ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S for Situation: who you are, where you're calling from, which patient it's about.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” The doctor doesn't know the patient yet.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>The patient doesn't perform the operation, he undergoes it: use the passive.</b> “Er ist am Dienstag operiert worden” (passive Perfekt) or “Er wurde am Dienstag operiert” (Präteritum). This is the B of SBAR (Background, Hintergrund in German): the background.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "The late shift starts at 1:30 pm.",
@@ -1319,10 +1324,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Mrs Hoffmann said that the rota had been changed.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "On the phone, the daughter said her mother often gets dizzy at home.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The night shift reported that Mrs Lehmann had slept restlessly.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "I'm not allowed to give information over the phone. I'll put you through to the doctor.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "I lock it and inform the ward manager straight away.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "I tell the nurse in charge straight away.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "I pick it up carefully and throw it into the sharps container."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Sorry to disturb you, Dr. Krämer. This is Yusuf from ward 4B. It's about Mr. Brandt, room 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "He's 82 years old, and he had hip surgery on Tuesday. He has hardly been on his feet since.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "I'm worried. His condition has gotten noticeably worse over the last hour. I'm afraid it's something with his lungs."
    }
   },
   "tr": {
@@ -1336,7 +1340,7 @@ window.SCENE = {
     "B1": "Serviste ayrılabilen fiiller",
     "B2": "Kuralların kiplik fiilleri",
     "C1": "Talimatlarda Konjunktiv I",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "İşte <b>resmî</b> saat, 24 saat üzerinden: dreizehn Uhr dreißig.",
@@ -1362,10 +1366,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "sein'ın Konjunktiv I'i: <b>sei</b>; burada geçmiş zamanda edilgenle (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "werden'in Konjunktiv I'i: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Aktarılan geçmiş: <b>habe</b> + Partizip II (schlafen, haben alır).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Meslek sırrı: arayanın kim olduğu bilinmez ve tanıyı söylemek doktorun işidir ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Uyuşturucu ilaçlar kilit altında durur ve anahtar tek bir kişide kalır; bir eksiklik hemen bildirilir ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Soğuktan çıkmış ilaçlar kullanılamaz hâle gelebilir: beklemeden haber verilir ve kayda geçirilir ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Batan her şey kesici-delici atık kutusuna gider, asla çöpe değil: biri yaralanabilir ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S, yani Situation: kim olduğun, nereden aradığın, hangi hasta için aradığın.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Doktor hastayı henüz tanımıyor.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Ameliyatı hasta yapmaz, ona yapılır: edilgen yapı.</b> “Er ist am Dienstag operiert worden” (edilgen Perfekt) ya da “Er wurde am Dienstag operiert” (Präteritum). Bu, SBAR'daki B (Background, Hintergrund): arka plan.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Öğleden sonra vardiyası 13.30'da başlar.",
@@ -1391,10 +1394,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Bayan Hoffmann nöbet çizelgesinin değiştirildiğini bildirdi.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Kızı telefonda, annesinin evde sık sık başının döndüğünü söyledi.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Gece vardiyası, Bayan Lehmann'ın huzursuz uyuduğunu bildirdi.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Telefonda bilgi vermem yasak. Sizi doktora bağlıyorum.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Kilitlerim ve hemen servis sorumlusuna haber veririm.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Hemen sorumlu hemşireye haber veririm.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Dikkatlice yerden alır ve kesici-delici atık kutusuna atarım."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Rahatsız ettiğim için kusura bakmayın, Doktor Krämer. Ben 4B servisinden Yusuf. Bay Brandt ile ilgili arıyorum, 12 numaralı oda.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 yaşında ve salı günü kalçasından ameliyat edildi. O zamandan beri neredeyse hiç ayağa kalkmadı.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Endişeliyim. Son bir saatte durumu belirgin şekilde kötüleşti. Akciğerleriyle ilgili bir şey olmasından korkuyorum."
    }
   },
   "uk": {
@@ -1408,7 +1410,7 @@ window.SCENE = {
     "B1": "Дієслова з часткою у відділенні",
     "B2": "Модальні дієслова правил",
     "C1": "Konjunktiv I у переказаних вказівках",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "На роботі — <b>офіційний</b> час, у 24-годинному форматі: dreizehn Uhr dreißig.",
@@ -1434,10 +1436,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I від sein: <b>sei</b>; тут із пасивом минулого часу (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I від werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Минуле в непрямій мові: <b>habe</b> + Partizip II (schlafen вживається з haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Професійна таємниця: невідомо, хто телефонує, а діагноз повідомляє лікар ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Наркотичні засоби зберігають під замком, а ключ лишається в однієї особи; про розбіжність повідомляють одразу ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Ліки, що полежали поза холодильником, можуть стати непридатними: повідомляємо негайно й документуємо ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Усе гостре — у контейнер для гострих відходів, ніколи не в смітник: хтось може поранитися ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: хто ти, звідки телефонуєш, щодо якого пацієнта.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Лікар ще не знає цього пацієнта.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пацієнт не робить операцію, її роблять йому: пасив.</b> «Er ist am Dienstag operiert worden» (Perfekt пасиву) або «Er wurde am Dienstag operiert» (Präteritum). Це B у SBAR (Background, Hintergrund): передісторія.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Друга зміна починається о 13:30.",
@@ -1463,10 +1464,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Пані Гофман повідомила, що графік змінили.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Донька сказала телефоном, що її мати вдома часто відчуває запаморочення.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Нічна зміна повідомила, що пані Леман спала неспокійно.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Я не маю права давати інформацію телефоном. Зʼєдную вас із лікаркою.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Я замикаю його й одразу повідомляю керівництво відділення.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Я одразу повідомляю відповідальну медсестру чи медбрата.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Я обережно піднімаю її й викидаю в контейнер для гострих відходів."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Перепрошую, що турбую, пане лікарю Кремер. Це Юсуф з відділення 4B. Ідеться про пана Брандта, палата 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Йому 82 роки, у вівторок його прооперували на кульшовому суглобі. Відтоді він майже не вставав.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я стурбований. За останню годину його стан помітно погіршився. Боюся, що це щось із легенями."
    }
   },
   "fa": {
@@ -1480,7 +1480,7 @@ window.SCENE = {
     "B1": "فعل‌های جداشدنی در بخش",
     "B2": "فعل‌های وجهیِ مقررات",
     "C1": "<span lang=\"de\">Konjunktiv I</span> در نقلِ دستورها",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "سرِ کار، ساعتِ <b>رسمی</b>، به صورتِ 24 ساعته: <span lang=\"de\">dreizehn Uhr dreißig</span>.",
@@ -1506,10 +1506,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "<span lang=\"de\">Konjunktiv I</span>ِ <span lang=\"de\">sein</span>: <b>sei</b>؛ اینجا با مجهولِ گذشته (<span lang=\"de\">sei … geändert worden</span>).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "<span lang=\"de\">Konjunktiv I</span>ِ <span lang=\"de\">werden</span>: <b>werde</b> (<span lang=\"de\">er / sie werde</span>).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "گذشتهٔ نقل‌شده: <b>habe</b> + Partizip II (<span lang=\"de\">schlafen</span> با <span lang=\"de\">haben</span> می‌آید).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "رازداریِ حرفه‌ای: نمی‌دانیم چه کسی زنگ زده، و گفتنِ تشخیص کارِ پزشک است ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "داروهای مخدر زیرِ قفل‌اند و کلید پیشِ یک نفر می‌ماند؛ هر مغایرتی فوراً گزارش می‌شود ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "داروهایی که بیرون از یخچال مانده‌اند ممکن است دیگر قابلِ مصرف نباشند: بی‌درنگ خبر می‌دهیم و ثبت می‌کنیم ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "هر چیزِ تیز به سیفتی‌باکس می‌رود، هرگز به سطلِ زباله: ممکن است کسی آسیب ببیند ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S یعنی Situation (وضعیت): تو کی هستی، از کجا زنگ می‌زنی، درباره‌ی کدام بیمار.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» پزشک هنوز بیمار را نمی‌شناسد.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>بیمار عمل را انجام نمی‌دهد، عمل روی او انجام می‌شود: مجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt مجهول) یا «Er wurde am Dienstag operiert» (Präteritum). این B در SBAR است (Background، Hintergrund): زمینه.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "شیفتِ عصر ساعتِ 13:30 شروع می‌شود.",
@@ -1535,10 +1534,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "<span lang=\"de\">Frau Hoffmann</span> اطلاع داد که برنامهٔ شیفت تغییر کرده است.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "دختر پشتِ تلفن گفت مادرش در خانه اغلب سرگیجه می‌گیرد.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "شیفتِ شب گزارش داد که <span lang=\"de\">Frau Lehmann</span> ناآرام خوابیده است.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "پشتِ تلفن اجازه ندارم اطلاعات بدهم. شما را به پزشک وصل می‌کنم.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "قفلش می‌کنم و فوراً به مسئولِ بخش اطلاع می‌دهم.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "فوراً به پرستارِ مسئول خبر می‌دهم.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "با احتیاط برش می‌دارم و در سیفتی‌باکس می‌اندازم."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "ببخشید که مزاحمتان می‌شوم، آقای دکتر کرمر. یوسف هستم از بخش 4B. موضوع آقای برانت است، اتاق 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 سال دارد و سه‌شنبه لگنش را عمل کرده‌اند. از آن موقع تقریباً سر پا نبوده است.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "نگرانم. حالش در یک ساعت گذشته به‌وضوح بدتر شده است. می‌ترسم مشکلی در ریه‌ها باشد."
    }
   },
   "ar": {
@@ -1552,7 +1550,7 @@ window.SCENE = {
     "B1": "الأفعال ذات الأداة في عمل القسم",
     "B2": "الأفعال المساعدة في القواعد",
     "C1": "<span lang=\"de\">Konjunktiv I</span> في التعليمات",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "في العمل نستعمل الساعة <b>الرسمية</b> بنظام أربع وعشرين ساعة: <span lang=\"de\">dreizehn Uhr dreißig</span>.",
@@ -1578,10 +1576,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "<span lang=\"de\">Konjunktiv I</span> من <span lang=\"de\">sein</span>: <b>sei</b>؛ وهنا مع مجهول في الماضي (<span lang=\"de\">sei … geändert worden</span>).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "<span lang=\"de\">Konjunktiv I</span> من <span lang=\"de\">werden</span>: <b>werde</b> (<span lang=\"de\">er / sie werde</span>).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "الماضي المنقول: <b>habe</b> + اسم المفعول (<span lang=\"de\">schlafen</span> يأخذ <span lang=\"de\">haben</span>).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "السرّ المهني: لا نعرف من المتّصل، والتشخيص يعلنه الطبيب ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "المواد المخدّرة تحت القفل، والمفتاح يبقى مع شخص واحد؛ ويُبلَّغ عن أيّ فرق فورًا ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "الأدوية التي أُخرجت من التبريد قد تتلف: نُبلغ دون انتظار ونوثّق ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "كل ما يخِز يوضع في الحاوية، لا في سلّة المهملات أبدًا: قد يُجرح أحد ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S تعني Situation (الوضع): من أنت، ومن أين تتصل، وبخصوص أي مريض.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» الطبيب لا يعرف المريض بعد.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>المريض لا يُجري العملية، بل تُجرى له: المبني للمجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt المجهول) أو «Er wurde am Dienstag operiert» (Präteritum). هذا هو حرف B في SBAR (Background، Hintergrund): الخلفية.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "تبدأ مناوبة بعد الظهر في الساعة 13:30.",
@@ -1607,10 +1604,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "أفادت السيدة <span lang=\"de\">Hoffmann</span> بأن جدول المناوبات قد تغيّر.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "قالت الابنة عبر الهاتف إن والدتها تُصاب بالدوار كثيرًا في البيت.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "أفاد فريق الليل بأن السيدة <span lang=\"de\">Lehmann</span> نامت نومًا مضطربًا.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "لا يحقّ لي إعطاء معلومات عبر الهاتف. سأحوّلك إلى الطبيبة.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "أقفلها وأُبلغ رئيسة التمريض في القسم فورًا.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "أُبلغ الممرّضة أو الممرّض المسؤول فورًا.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "ألتقطها بحذر وأرميها في حاوية الإبر."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "عذرًا على الإزعاج يا دكتور كريمر. معك يوسف من القسم 4B. الأمر يتعلق بالمريض السيد برانت، الغرفة 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "عمره 82 سنة، وأُجريت له عملية في الورك يوم الثلاثاء. ومنذ ذلك الحين لم يكد ينهض.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "أنا قلق. ساءت حالته بشكل واضح خلال الساعة الأخيرة. أخشى أن تكون المشكلة في الرئتين."
    }
   },
   "pt": {
@@ -1624,7 +1620,7 @@ window.SCENE = {
     "B1": "Os verbos com partícula do plantão",
     "B2": "Os verbos modais das regras",
     "C1": "O Konjunktiv I das instruções",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "No trabalho, a hora <b>oficial</b>, em vinte e quatro horas: dreizehn Uhr dreißig.",
@@ -1650,10 +1646,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I de sein: <b>sei</b>; aqui com uma passiva no passado (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I de werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "O passado relatado: <b>habe</b> + particípio (schlafen leva haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "O sigilo profissional: não se sabe quem está ligando, e o diagnóstico cabe ao médico comunicar ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Os entorpecentes ficam trancados e a chave fica com uma pessoa; qualquer discrepância é comunicada na hora ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Medicamentos que saíram da refrigeração podem se perder: avisa-se sem esperar, e documenta-se ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Tudo o que é perfurocortante vai para o coletor, nunca para o lixo: alguém poderia se ferir ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situação: quem você é, de onde está ligando, sobre qual paciente.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” O médico ainda não conhece o paciente.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>O paciente não faz a cirurgia, ele passa por ela: a voz passiva.</b> “Er ist am Dienstag operiert worden” (Perfekt da passiva) ou “Er wurde am Dienstag operiert” (Präteritum). É o B do SBAR (Background, Hintergrund): o contexto.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "O turno da tarde começa às 13h30.",
@@ -1679,10 +1674,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "A sra. Hoffmann informou que a escala tinha sido alterada.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Por telefone, a filha disse que a mãe tinha tonturas com frequência em casa.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "A equipe da noite relatou que a sra. Lehmann tinha dormido mal.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Não posso dar informações por telefone. Vou transferir para a médica.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Tranco-o e informo imediatamente a coordenadora de enfermagem do setor.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Aviso imediatamente a enfermeira ou o enfermeiro responsável.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Pego a agulha com cuidado e a jogo no coletor."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Desculpe incomodar, doutor Krämer. Aqui é o Yusuf, da ala 4B. É sobre o Sr. Brandt, quarto 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ele tem 82 anos e foi operado do quadril na terça-feira. Desde então, quase não saiu da cama.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estou preocupado. O estado dele piorou bastante na última hora. Tenho medo de que seja alguma coisa no pulmão."
    }
   },
   "pl": {
@@ -1696,7 +1690,7 @@ window.SCENE = {
     "B1": "Czasowniki z partykułą na dyżurze",
     "B2": "Czasowniki modalne w przepisach",
     "C1": "Konjunktiv I w poleceniach",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "W pracy godzina <b>oficjalna</b>, w systemie dwudziestoczterogodzinnym: dreizehn Uhr dreißig.",
@@ -1722,10 +1716,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I od sein: <b>sei</b>; tu ze stroną bierną w czasie przeszłym (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I od werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Przeszłość w mowie zależnej: <b>habe</b> + imiesłów (schlafen łączy się z haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Tajemnica zawodowa: nie wiadomo, kto dzwoni, a diagnozę przekazuje lekarz ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Środki odurzające są pod kluczem, a klucz ma przy sobie jedna osoba; każdą rozbieżność zgłasza się od razu ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Leki wyjęte z lodówki mogą się zepsuć: zgłasza się to bez zwłoki i dokumentuje ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Wszystko, co kłuje, trafia do pojemnika, nigdy do kosza: ktoś mógłby się zranić ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S jak Situation: kim jesteś, skąd dzwonisz, w sprawie którego pacjenta.</b> „Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Lekarz jeszcze nie zna pacjenta.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Pacjent nie wykonuje operacji, tylko jej podlega: strona bierna.</b> „Er ist am Dienstag operiert worden” (Perfekt strony biernej) albo „Er wurde am Dienstag operiert” (Präteritum). To B w SBAR (Background, Hintergrund): tło.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Dyżur popołudniowy zaczyna się o 13:30.",
@@ -1751,10 +1744,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Pani Hoffmann poinformowała, że grafik został zmieniony.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Córka powiedziała przez telefon, że jej mama w domu często ma zawroty głowy.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Zespół nocny przekazał, że pani Lehmann spała niespokojnie.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Przez telefon nie wolno mi udzielać informacji. Łączę z lekarką.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Zamykam ją na klucz i od razu informuję oddziałową.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Od razu informuję odpowiedzialną pielęgniarkę lub pielęgniarza.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Ostrożnie ją podnoszę i wyrzucam do pojemnika na igły."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Przepraszam, że przeszkadzam, panie doktorze. Mówi Yusuf z oddziału 4B. Chodzi o pana Brandta, sala 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ma 82 lata i we wtorek przeszedł operację biodra. Od tego czasu prawie nie wstawał.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Niepokoję się. W ciągu ostatniej godziny jego stan wyraźnie się pogorszył. Boję się, że to coś z płucami."
    }
   },
   "ru": {
@@ -1768,7 +1760,7 @@ window.SCENE = {
     "B1": "Глаголы с частицей в работе отделения",
     "B2": "Модальные глаголы правил",
     "C1": "Konjunktiv I в распоряжениях",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "На работе — <b>официальное</b> время, в 24-часовом формате: dreizehn Uhr dreißig.",
@@ -1794,10 +1786,9 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I от sein: <b>sei</b>; здесь с пассивом в прошедшем времени (sei … geändert worden).",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I от werden: <b>werde</b> (er / sie werde).",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Прошедшее в косвенной речи: <b>habe</b> + причастие (schlafen спрягается с haben).",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "Врачебная тайна: неизвестно, кто звонит, а диагноз сообщает врач ⚕️.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Наркотические средства хранятся под замком, а ключ всегда у одного человека; о любом расхождении сообщают сразу ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Лекарства, вынутые из холодильника, могут испортиться: сообщают без промедления и документируют ⚕️.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Всё колющее идёт в контейнер, никогда в мусор: кто-то может пораниться ⚕️."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: кто ты, откуда звонишь, по поводу какого пациента.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Врач ещё не знает пациента.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пациент не делает операцию, ему её делают: это Passiv.</b> «Er ist am Dienstag operiert worden» (Perfekt пассива) или «Er wurde am Dienstag operiert» (Präteritum). Это B в SBAR (Background, Hintergrund): предыстория.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Вторая смена начинается в 13:30.",
@@ -1823,10 +1814,79 @@ window.SCENE = {
     "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Госпожа Хофман сообщила, что график смен изменили.",
     "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "По телефону дочь сказала, что у её мамы дома часто кружится голова.",
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Ночная смена сообщила, что госпожа Леман спала беспокойно.",
-    "SIT | Am Telefon darf ich keine Auskunft geben. Ich verbinde Sie mit der Ärztin.": "По телефону я не имею права давать информацию. Я соединю вас с врачом.",
-    "SIT | Ich schließe ihn ab und informiere sofort die Stationsleitung.": "Я запираю его и сразу сообщаю старшей медсестре отделения.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Я сразу сообщаю ответственной медсестре или медбрату.",
-    "SIT | Ich hebe sie vorsichtig auf und werfe sie in den Abwurfbehälter.": "Я осторожно поднимаю её и выбрасываю в контейнер для игл."
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Извините за беспокойство, доктор Крамер. Говорит Юсуф, отделение 4B. Речь о господине Брандте, палата 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ему 82 года, во вторник его прооперировали на тазобедренном суставе. С тех пор он почти не вставал.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я беспокоюсь. За последний час его состояние заметно ухудшилось. Боюсь, что это что-то с лёгкими."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La estación de enfermería de un servicio hospitalario, vacía por un momento: en la pared, una pizarra magnética, el horario de turnos del equipo y un reloj; un armario de medicamentos con puertas de vidrio, una pequeña caja fuerte gris cerrada; sobre el escritorio, la computadora, el teléfono, la impresora, la hoja de entrega de turno, un café, el tensiómetro; el carrito de medicamentos, el contenedor amarillo para agujas, el refrigerador y el carro de paro rojo con su desfibrilador.",
+    "consigne": "Toca un objeto de la estación de enfermería."
+   },
+   "couches": {
+    "A1": "Los objetos de la estación de enfermería",
+    "A2": "La hora del turno",
+    "B1": "Los verbos separables del servicio",
+    "B2": "Los modales de la norma",
+    "C1": "El Konjunktiv I de las indicaciones",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "En el trabajo, la hora <b>oficial</b>, de veinticuatro horas: dreizehn Uhr dreißig.",
+    "A2 | Es ist halb zwei.": "<b>halb zwei</b> = la 1:30: la media ANTES de las dos. ¡La trampa para los hispanohablantes!",
+    "A2 | Die Übergabe beginnt um dreizehn Uhr fünfzehn, also um Viertel nach eins.": "<b>Viertel nach eins</b> = la una y cuarto; <b>Viertel vor zwei</b> = cuarto para las dos.",
+    "A2 | Der Nachtdienst dauert von zweiundzwanzig bis sechs Uhr.": "<b>von … bis …</b> = de … a …",
+    "A2 | Ich habe am Wochenende Dienst.": "<b>am</b> + día o Wochenende; <b>um</b> + hora; <b>im</b> + mes.",
+    "A2 | Nach Donnerstag kommt Freitag.": "Los días del horario de turnos: Montag, Dienstag, Mittwoch, Donnerstag, <b>Freitag</b>, Samstag, Sonntag.",
+    "B1 | Jonas stellt die Tabletten für den Abend bereit.": "<b>bereitstellen</b>: el verbo conjugado en la 2.ª posición, la partícula <b>bereit</b> al final.",
+    "B1 | Kannst du morgen für Yusuf einspringen? Er ist krank.": "Con un modal, el verbo separable queda entero al final: <b>einspringen</b> (cubrir a alguien de improviso). Entre colegas: <b>du</b>.",
+    "B1 | Bitte zeichnen Sie die Gabe im Plan ab.": "<b>abzeichnen</b> = firmar con iniciales lo que se dio o se hizo ⚕️. En imperativo, <b>ab</b> va al final.",
+    "B1 | Ich habe den Blutdruck schon in die Akte eingetragen.": "El participio de un verbo separable: ein<b>ge</b>tragen (el ge- entre la partícula y el verbo).",
+    "B1 | Die Handschuhe sind fast leer. Ich fülle sie gleich nach.": "<b>nachfüllen</b> = reponer lo que falta; <b>nach</b> va al final.",
+    "B1 | Frau Hoffmann ist im Gespräch. Sie ruft Sie gleich zurück.": "<b>zurückrufen</b> = devolver la llamada; <b>anrufen</b> = llamar.",
+    "B2 | Betäubungsmittel dürfen nur im verschlossenen Schrank aufbewahrt werden.": "<b>dürfen nur</b> = solo se permite: todo lo demás está prohibido ⚕️. Modal + participio + <b>werden</b>: la pasiva.",
+    "B2 | Gebrauchte Nadeln dürfen nicht in den normalen Müll geworfen werden.": "<b>nicht dürfen</b> = prohibido; <b>nicht müssen</b> = no es obligatorio. ¡Cuidado: «no debe» prohíbe en español, pero «nicht müssen» no!",
+    "B2 | Die Temperatur im Medikamentenkühlschrank muss jeden Tag kontrolliert werden.": "<b>müssen</b> = una obligación sin excepción ⚕️.",
+    "B2 | Laut Hygieneplan sollen wir nach dem Ausziehen der Handschuhe die Hände desinfizieren.": "<b>sollen</b> = la norma viene de otra parte (el plan de higiene, la jefa de la unidad).",
+    "B2 | Der Notfallwagen muss immer vollständig sein.": "<b>muss</b>: se revisa según la norma de la institución ⚕️.",
+    "B2 | Am Telefon dürfen wir keine Auskunft über Patienten geben.": "<b>keine … dürfen</b> = prohibición: el secreto profesional ⚕️.",
+    "C1 | Die Ärztin sagte, die Patientin solle nüchtern bleiben.": "Estilo indirecto por escrito: Konjunktiv I (<b>solle</b>). Al hablar, se oye a menudo «soll».",
+    "C1 | Herr Brandt gab an, er habe keine Schmerzen.": "<b>angeben</b> + Konjunktiv I: se refiere lo que dice el paciente, sin confirmarlo.",
+    "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "Konjunktiv I de sein: <b>sei</b>; aquí con una pasiva en pasado (sei … geändert worden).",
+    "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "Konjunktiv I de werden: <b>werde</b> (er / sie werde).",
+    "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El pasado en estilo indirecto: <b>habe</b> + participio (schlafen va con haben).",
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situación: quién eres, de dónde llamas, por cuál paciente.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» El médico todavía no conoce al paciente.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>El paciente no hace la operación, la recibe: la pasiva.</b> «Er ist am Dienstag operiert worden» (Perfekt de la pasiva) o «Er wurde am Dienstag operiert» (Präteritum). Es la B de SBAR (Background, Hintergrund): los antecedentes.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): di claramente lo que piensas.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Tu preocupación es una información para el médico. ⚕️"
+   },
+   "sens": {
+    "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "El turno de la tarde empieza a las 13:30.",
+    "A2 | Es ist halb zwei.": "Es la una y media.",
+    "A2 | Die Übergabe beginnt um dreizehn Uhr fünfzehn, also um Viertel nach eins.": "La entrega de turno empieza a las 13:15, o sea, a la una y cuarto.",
+    "A2 | Der Nachtdienst dauert von zweiundzwanzig bis sechs Uhr.": "El turno de la noche dura de las 22:00 a las 6:00.",
+    "A2 | Ich habe am Wochenende Dienst.": "Tengo turno el fin de semana.",
+    "A2 | Nach Donnerstag kommt Freitag.": "Después del jueves viene el viernes.",
+    "B1 | Jonas stellt die Tabletten für den Abend bereit.": "Jonas deja listas las pastillas para la noche.",
+    "B1 | Kannst du morgen für Yusuf einspringen? Er ist krank.": "¿Puedes cubrir a Yusuf mañana? Está enfermo.",
+    "B1 | Bitte zeichnen Sie die Gabe im Plan ab.": "Por favor, firme la administración en el plan.",
+    "B1 | Ich habe den Blutdruck schon in die Akte eingetragen.": "Ya anoté la presión arterial en el expediente.",
+    "B1 | Die Handschuhe sind fast leer. Ich fülle sie gleich nach.": "Casi no quedan guantes. Enseguida los repongo.",
+    "B1 | Frau Hoffmann ist im Gespräch. Sie ruft Sie gleich zurück.": "La Sra. Hoffmann está atendiendo a alguien. Enseguida le devuelve la llamada.",
+    "B2 | Betäubungsmittel dürfen nur im verschlossenen Schrank aufbewahrt werden.": "Los estupefacientes solo pueden guardarse en el armario cerrado con llave.",
+    "B2 | Gebrauchte Nadeln dürfen nicht in den normalen Müll geworfen werden.": "Las agujas usadas no deben tirarse a la basura común.",
+    "B2 | Die Temperatur im Medikamentenkühlschrank muss jeden Tag kontrolliert werden.": "La temperatura del refrigerador de medicamentos debe controlarse todos los días.",
+    "B2 | Laut Hygieneplan sollen wir nach dem Ausziehen der Handschuhe die Hände desinfizieren.": "Según el plan de higiene, debemos desinfectarnos las manos después de quitarnos los guantes.",
+    "B2 | Der Notfallwagen muss immer vollständig sein.": "El carro de paro debe estar siempre completo.",
+    "B2 | Am Telefon dürfen wir keine Auskunft über Patienten geben.": "Por teléfono no podemos dar información sobre pacientes.",
+    "C1 | Die Ärztin sagte, die Patientin solle nüchtern bleiben.": "La doctora dijo que la paciente debía permanecer en ayunas.",
+    "C1 | Herr Brandt gab an, er habe keine Schmerzen.": "El Sr. Brandt indicó que no tenía dolor.",
+    "C1 | Frau Hoffmann teilte mit, der Dienstplan sei geändert worden.": "La Sra. Hoffmann comunicó que el horario de turnos había sido modificado.",
+    "C1 | Die Tochter meinte am Telefon, ihre Mutter werde zu Hause oft schwindelig.": "La hija comentó por teléfono que su madre se marea a menudo en casa.",
+    "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El turno de la noche informó que la Sra. Lehmann había dormido intranquila.",
+    "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Disculpe la molestia, doctor Krämer. Habla Yusuf, del servicio 4B. Se trata del Sr. Brandt, habitación 12.",
+    "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Tiene 82 años y fue operado de la cadera el martes. Desde entonces casi no se ha levantado.",
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estoy preocupado. Su estado empeoró notablemente en la última hora. Temo que sea algo de los pulmones."
    }
   }
  }

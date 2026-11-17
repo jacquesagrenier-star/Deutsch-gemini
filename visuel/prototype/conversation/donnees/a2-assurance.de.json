@@ -1,0 +1,116 @@
+{
+ "id": "a2-assurance",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "À l'agence d'assurances"},
+ "intro": {"fr": "Tu viens d'emménager à Berlin. En Allemagne, presque tout le monde a une « Haftpflichtversicherung », une assurance responsabilité civile. Tu vas en prendre une : tu compares deux formules, tu poses tes questions et tu choisis."},
+ "personnes": ["versicherung_beraterin"],
+ "debut": "empfang",
+ "prix": {"basis": 490, "komfort": 750, "zuzweit": 150},
+ "panier": ["tarif", "haushalt"],
+ "textes": {
+  "tarif_fr": {"cle": "tarif", "basis": "Basis", "komfort": "Komfort"},
+  "haushalt_fr": {"cle": "haushalt", "allein": "pour toi", "zuzweit": "pour vous deux"}
+ },
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {"recit": {"fr": "Tu viens d'emménager à Berlin. Tes collègues te le répètent : ici, il faut une « Haftpflichtversicherung ». Tu pousses la porte d'une agence d'assurances de ton quartier."}},
+    {"qui": "versicherung_beraterin", "air": "sourire", "t": "Guten Tag! Nehmen Sie bitte Platz. Wie kann ich Ihnen helfen?", "fr": "Bonjour ! Asseyez-vous, je vous en prie. Comment puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich brauche eine Haftpflichtversicherung.", "fr": "Bonjour. J'ai besoin d'une assurance responsabilité civile.", "va": "neu",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sehr vernünftig. Die braucht in Deutschland wirklich jeder.", "fr": "Très raisonnable. En Allemagne, tout le monde en a vraiment besoin."}]},
+    {"t": "Guten Tag. Ich suche eine Haftpflichtversicherung.", "fr": "Bonjour. Je cherche une assurance responsabilité civile.", "va": "neu",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Da sind Sie hier richtig. Die braucht in Deutschland wirklich jeder.", "fr": "Vous êtes au bon endroit. En Allemagne, tout le monde en a vraiment besoin."}]},
+    {"faux": true, "t": "Guten Tag. Ich möchte eine Versicherung für die zivile Verantwortung.", "fr": "Bonjour. Je voudrais une assurance pour la « responsabilité civile » (mot à mot).",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "Zivile Verantwortung? Ach so, Sie meinen eine Haftpflichtversicherung!", "fr": "« Responsabilité civile » ? Ah, vous voulez dire une Haftpflichtversicherung !"}],
+     "aide": {"fr": "<b>La responsabilité civile ne se traduit pas mot à mot : c'est « die Haftpflichtversicherung ».</b> On dit aussi simplement « die Haftpflicht ». Dis : « Ich brauche eine Haftpflichtversicherung »."}}
+   ]
+  },
+  "neu": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Haben Sie schon eine Versicherung in Deutschland?", "fr": "Avez-vous déjà une assurance en Allemagne ?"}],
+   "choix": [
+    {"t": "Nein, ich bin neu in Berlin.", "fr": "Non, je suis nouveau (nouvelle) à Berlin.", "va": "haushalt",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Na dann: herzlich willkommen in Berlin!", "fr": "Eh bien : bienvenue à Berlin !"}]},
+    {"t": "Nein. Ich bin gerade in eine neue Wohnung gezogen.", "fr": "Non. Je viens d'emménager dans un nouvel appartement.", "va": "haushalt",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Glückwunsch zur neuen Wohnung!", "fr": "Félicitations pour le nouvel appartement !"}]},
+    {"faux": true, "t": "Nein. Ich habe gerade umgezogen.", "fr": "Non. Je viens de déménager (avec « haben »).",
+     "puis": [{"qui": "versicherung_beraterin", "air": "amuse", "t": "Sie haben … umgezogen? Ach so, Sie sind umgezogen, in eine neue Wohnung!", "fr": "Vous avez… déménagé ? Ah, vous avez déménagé, dans un nouvel appartement !"}],
+     "aide": {"fr": "<b>« umziehen » (déménager) forme son passé avec « sein ».</b> On change de lieu : « Ich bin umgezogen ». Avec « haben », on entend « Ich habe mich umgezogen » : je me suis changé(e)."}}
+   ]
+  },
+  "haushalt": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Eine Frage zuerst: Wohnen Sie allein oder zu zweit?", "fr": "Une question d'abord : vous habitez seul(e) ou à deux ?"}],
+   "choix": [
+    {"t": "Ich wohne allein.", "fr": "J'habite seul(e).", "pose": {"haushalt": "allein"}, "va": "tarife"},
+    {"t": "Wir wohnen zu zweit.", "fr": "Nous habitons à deux.", "pose": {"haushalt": "zuzweit"}, "va": "tarife",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Gut, dann versichern wir Sie beide zusammen.", "fr": "Bien, alors nous vous assurons tous les deux ensemble."}]},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "haushalt",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Gern. Wohnen Sie allein in Ihrer Wohnung? Oder wohnt noch jemand bei Ihnen?", "fr": "Volontiers. Vous habitez seul(e) dans votre appartement ? Ou quelqu'un d'autre habite avec vous ?"}]}
+   ]
+  },
+  "tarife": {
+   "dit": [
+    {"qui": "versicherung_beraterin", "air": "attentive", "si": {"haushalt": "allein"}, "t": "Ich habe zwei Tarife für Sie: Basis für 4,90 Euro im Monat und Komfort für 7,50 Euro im Monat.", "dit": "Ich habe zwei Tarife für Sie: Basis für vier Euro neunzig im Monat und Komfort für sieben Euro fünfzig im Monat.", "fr": "J'ai deux formules pour vous : Basis à 4,90 euros par mois et Komfort à 7,50 euros par mois."},
+    {"qui": "versicherung_beraterin", "air": "attentive", "si": {"haushalt": "zuzweit"}, "t": "Ich habe zwei Tarife für Sie beide: Basis für 6,40 Euro im Monat und Komfort für 9 Euro im Monat.", "dit": "Ich habe zwei Tarife für Sie beide: Basis für sechs Euro vierzig im Monat und Komfort für neun Euro im Monat.", "fr": "J'ai deux formules pour vous deux : Basis à 6,40 euros par mois et Komfort à 9 euros par mois."}
+   ],
+   "choix": [
+    {"t": "Was ist der Unterschied?", "fr": "Quelle est la différence ?", "va": "beispiel",
+     "puis": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Beide bezahlen, wenn Sie bei anderen Leuten etwas kaputt machen. Bei Komfort ist auch Ihr Wohnungsschlüssel versichert.", "fr": "Les deux paient si vous cassez quelque chose chez d'autres gens. Avec Komfort, la clé de votre appartement est assurée aussi."}]},
+    {"t": "Was bezahlt die Versicherung genau?", "fr": "Que paie l'assurance exactement ?", "va": "beispiel",
+     "puis": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Sie bezahlt, wenn Sie bei anderen Leuten etwas kaputt machen. Bei Komfort ist auch Ihr Wohnungsschlüssel versichert.", "fr": "Elle paie si vous cassez quelque chose chez d'autres gens. Avec Komfort, la clé de votre appartement est assurée aussi."}]},
+    {"faux": true, "t": "Was ist der Unterschied zwischen die zwei?", "fr": "Quelle est la différence entre les deux ? (« zwischen » suivi de l'accusatif)",
+     "puis": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Der Unterschied zwischen den beiden? Das erkläre ich Ihnen gern.", "fr": "La différence entre les deux ? Je vous l'explique volontiers."}],
+     "aide": {"fr": "<b>« zwischen » demande ici le datif : « zwischen den beiden ».</b> Sans mouvement, c'est le datif, et au pluriel l'article devient « den ». Plus simple : « Was ist der Unterschied? »."}}
+   ]
+  },
+  "beispiel": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Haben Sie noch Fragen dazu?", "fr": "Avez-vous encore des questions là-dessus ?"}],
+   "choix": [
+    {"t": "Ja. Und wenn ich das Handy von einem Freund kaputt mache?", "fr": "Oui. Et si je casse le téléphone d'un ami ?", "va": "wahl",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Dann bezahlen wir das Handy. Das ist in beiden Tarifen versichert.", "fr": "Alors nous payons le téléphone. C'est assuré dans les deux formules."}]},
+    {"t": "Ja. Ist mein Fahrrad auch versichert?", "fr": "Oui. Mon vélo est-il assuré aussi ?", "va": "hausrat"},
+    {"faux": true, "t": "Ja. Und wenn ich mache das Handy von einem Freund kaputt?", "fr": "Oui. Et si je casse le téléphone d'un ami ? (verbe en deuxième position, comme en français)",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "Entschuldigung, wie meinen Sie das? Ach so: wenn Sie das Handy kaputt machen!", "fr": "Excusez-moi, que voulez-vous dire ? Ah : si vous cassez le téléphone !"}],
+     "aide": {"fr": "<b>Après « wenn », le verbe conjugué va à la fin.</b> « Und wenn ich das Handy von einem Freund kaputt mache? » : « mache » ferme la phrase."}}
+   ]
+  },
+  "hausrat": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Leider nein. Die Haftpflicht bezahlt nur die Sachen von anderen Leuten. Für Ihr Fahrrad brauchen Sie eine Hausratversicherung. Möchten Sie dazu auch ein Angebot?", "fr": "Malheureusement non. La responsabilité civile ne paie que les affaires des autres. Pour votre vélo, il vous faut une assurance habitation. Voulez-vous aussi une offre pour cela ?"}],
+   "choix": [
+    {"t": "Nein, danke. Heute nur die Haftpflicht.", "fr": "Non, merci. Aujourd'hui, seulement la responsabilité civile.", "va": "wahl",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Kein Problem. Dann bleiben wir bei der Haftpflicht.", "fr": "Pas de problème. Alors restons-en à la responsabilité civile."}]},
+    {"t": "Vielleicht später. Zuerst die Haftpflicht, bitte.", "fr": "Peut-être plus tard. D'abord la responsabilité civile, s'il vous plaît.", "va": "wahl",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Gern. Ich gebe Ihnen nachher einen Prospekt mit.", "fr": "Volontiers. Je vous donnerai un prospectus tout à l'heure."}]}
+   ]
+  },
+  "wahl": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Welchen Tarif möchten Sie nehmen?", "fr": "Quelle formule souhaitez-vous prendre ?"}],
+   "choix": [
+    {"t": "Ich nehme den Basis-Tarif. Das ist genug für mich.", "fr": "Je prends la formule Basis. Ça me suffit.", "pose": {"tarif": "basis"}, "va": "papiere",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Gern. Das macht dann {a_payer} im Monat.", "dit": "Gern. Das macht dann {a_payer:mots} im Monat.", "fr": "Volontiers. Ça fait donc {a_payer} par mois."}]},
+    {"t": "Ich nehme Komfort. Das ist sicherer.", "fr": "Je prends Komfort. C'est plus sûr.", "pose": {"tarif": "komfort"}, "va": "papiere",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Eine gute Wahl. Das macht dann {a_payer} im Monat.", "dit": "Eine gute Wahl. Das macht dann {a_payer:mots} im Monat.", "fr": "Un bon choix. Ça fait donc {a_payer} par mois."}]},
+    {"faux": true, "t": "Ich nehme der Basis-Tarif.", "fr": "Je prends la formule Basis (article au nominatif).",
+     "puis": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Den Basis-Tarif, ja?", "fr": "La formule Basis, c'est ça ?"}],
+     "aide": {"fr": "<b>Après « nehmen », le complément est à l'accusatif : « der » devient « den ».</b> « der Tarif » est masculin, donc : « Ich nehme den Basis-Tarif »."}}
+   ]
+  },
+  "papiere": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Für den Vertrag brauche ich noch Ihren Ausweis und Ihre Bankverbindung.", "fr": "Pour le contrat, il me faut encore votre pièce d'identité et vos coordonnées bancaires."}],
+   "choix": [
+    {"t": "Hier ist mein Ausweis. Meine Kontonummer habe ich auf dem Handy.", "fr": "Voici ma pièce d'identité. Mon numéro de compte, je l'ai sur mon téléphone.", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Perfekt. Dann unterschreiben Sie bitte hier … Fertig! Sie sind ab heute versichert.", "fr": "Parfait. Alors signez ici, s'il vous plaît… Voilà ! Vous êtes assuré(e) à partir d'aujourd'hui."}]},
+    {"t": "Kann ich Ihnen die Bankverbindung per E-Mail schicken?", "fr": "Je peux vous envoyer les coordonnées bancaires par e-mail ?", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Ja, natürlich. Hier ist meine Karte mit der Adresse. Den Vertrag bekommen Sie dann per Post.", "fr": "Oui, bien sûr. Voici ma carte avec l'adresse. Vous recevrez ensuite le contrat par la poste."}]},
+    {"faux": true, "t": "Kann ich Sie die Bankverbindung per E-Mail schicken?", "fr": "Je peux « vous » envoyer les coordonnées bancaires par e-mail ? (« Sie » au lieu de « Ihnen »)",
+     "puis": [{"qui": "versicherung_beraterin", "air": "amuse", "t": "Mich schicken? Per E-Mail? Ach so, Sie schicken mir die Bankverbindung!", "fr": "M'envoyer, moi ? Par e-mail ? Ah, vous m'envoyez les coordonnées bancaires !"}],
+     "aide": {"fr": "<b>« schicken » : la personne qui reçoit est au datif, donc « Ihnen ».</b> « Kann ich Ihnen die Bankverbindung schicken? ». Avec « Sie », on comprend que c'est la conseillère qu'on envoie !"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris une assurance responsabilité civile {haushalt_fr}, formule {tarif_fr} : {a_payer} par mois."}
+}

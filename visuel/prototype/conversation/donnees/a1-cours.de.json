@@ -1,0 +1,66 @@
+{
+ "id": "a1-cours",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "S'inscrire à un cours d'allemand"},
+ "intro": {"fr": "Tu veux suivre un cours d'allemand près de chez toi. À l'école de langues, une enseignante s'occupe des inscriptions."},
+ "personnes": ["kursleiterin_sprachschule"],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Dans une école de langues de ton quartier. Une femme à lunettes t'accueille au bureau des inscriptions."}},
+    {"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Guten Tag! Kann ich Ihnen helfen?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte. Ich möchte einen Deutschkurs machen.", "fr": "Oui, s'il vous plaît. Je voudrais suivre un cours d'allemand.", "va": "niveau",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Sehr gern! Ich bin Marta, ich unterrichte hier.", "fr": "Avec plaisir ! Je suis Marta, j'enseigne ici."}]},
+    {"t": "Guten Tag. Haben Sie Deutschkurse für Anfänger?", "fr": "Bonjour. Vous avez des cours d'allemand pour débutants ?", "va": "niveau",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Ja, natürlich! Ich bin Marta, ich unterrichte hier.", "fr": "Oui, bien sûr ! Je suis Marta, j'enseigne ici."}]},
+    {"faux": true, "t": "Ja. Ich möchte einen Deutschkurs nehmen.", "fr": "Oui. Je voudrais prendre un cours d'allemand.",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "perplexe", "t": "Nehmen? Ach so, Sie möchten einen Kurs machen!", "fr": "« Prendre » ? Ah, vous voulez suivre un cours !"}],
+     "aide": {"fr": "En allemand, on ne « prend » pas un cours : on le <b>fait</b>, « einen Kurs <b>machen</b> » (ou « besuchen »)."}}
+   ]
+  },
+  "niveau": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Sprechen Sie schon ein bisschen Deutsch?", "fr": "Vous parlez déjà un peu allemand ?"}],
+   "choix": [
+    {"t": "Ja, ein bisschen. Ich lerne seit zwei Monaten.", "fr": "Oui, un peu. J'apprends depuis deux mois.", "va": "zeit",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Das hört man! Dann passt der Kurs für Anfänger.", "fr": "Ça s'entend ! Alors le cours pour débutants vous convient."}]},
+    {"t": "Nur ein bisschen. Ich bin ganz neu.", "fr": "Seulement un peu. Je suis tout nouveau (toute nouvelle).", "va": "zeit",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Kein Problem. Der Kurs ist für Anfänger.", "fr": "Pas de problème. Le cours est pour les débutants."}]},
+    {"repete": true, "t": "Langsam, bitte.", "fr": "Lentement, s'il vous plaît.", "va": "niveau",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Natürlich. Sprechen … Sie … schon … Deutsch?", "fr": "Bien sûr. Vous… parlez… déjà… allemand ?"}]}
+   ]
+  },
+  "zeit": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Es gibt einen Kurs am Vormittag und einen am Abend. Was passt Ihnen besser?", "fr": "Il y a un cours le matin et un cours le soir. Qu'est-ce qui vous convient le mieux ?"}],
+   "choix": [
+    {"t": "Am Abend, bitte. Am Tag arbeite ich.", "fr": "Le soir, s'il vous plaît. La journée, je travaille.", "va": "fragen",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Gut: montags und mittwochs, von 18 bis 20 Uhr.", "dit": "Gut: montags und mittwochs, von achtzehn bis zwanzig Uhr.", "fr": "Bien : le lundi et le mercredi, de 18 h à 20 h."}]},
+    {"t": "Am Vormittag, bitte.", "fr": "Le matin, s'il vous plaît.", "va": "fragen",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Gut: von Montag bis Freitag, von 9 bis 12 Uhr.", "dit": "Gut: von Montag bis Freitag, von neun bis zwölf Uhr.", "fr": "Bien : du lundi au vendredi, de 9 h à 12 h."}]}
+   ]
+  },
+  "fragen": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Haben Sie noch Fragen?", "fr": "Vous avez encore des questions ?"}],
+   "choix": [
+    {"t": "Ja. Wie viel kostet der Kurs?", "fr": "Oui. Combien coûte le cours ?", "va": "formular",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "attentive", "t": "Zweihundertfünfzig Euro für acht Wochen, mit Buch.", "fr": "Deux cent cinquante euros pour huit semaines, livre compris."}]},
+    {"t": "Ja. Wann beginnt der Kurs?", "fr": "Oui. Quand commence le cours ?", "va": "formular",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "attentive", "t": "Am Montag, den 7. Dezember.", "dit": "Am Montag, den siebten Dezember.", "fr": "Le lundi 7 décembre."}]}
+   ]
+  },
+  "formular": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Dann füllen Sie bitte dieses Formular aus: Name, Adresse und Telefonnummer.", "fr": "Alors remplissez ce formulaire, s'il vous plaît : nom, adresse et numéro de téléphone."}],
+   "choix": [
+    {"t": "Gern. Haben Sie einen Kuli für mich?", "fr": "Volontiers. Vous avez un stylo pour moi ?", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Hier, bitte. Bis bald im Kurs!", "fr": "Tenez. À bientôt au cours !"}]},
+    {"t": "Okay. Vielen Dank für Ihre Hilfe!", "fr": "D'accord. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Gern geschehen. Bis bald im Kurs!", "fr": "Avec plaisir. À bientôt au cours !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es inscrit(e) au cours d'allemand de Marta : ton niveau, le matin ou le soir, le prix ou la date de début, et le formulaire."}
+}

@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "schrank",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "blume",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "vase",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "vaso (de flores)",
    "ar": "مزهرية",
    "pl": "wazon",
-   "ru": "ваза"
+   "ru": "ваза",
+   "es": "el florero"
   },
   {
    "id": "nachttisch",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "prothesendose",
@@ -290,7 +295,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "pulsoximeter",
@@ -348,7 +354,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "patientin",
@@ -377,7 +384,8 @@ window.SCENE = {
    "pt": "paciente (mulher)",
    "ar": "مريضة",
    "pl": "pacjentka",
-   "ru": "пациентка"
+   "ru": "пациентка",
+   "es": "la paciente"
   },
   {
    "id": "brille",
@@ -406,7 +414,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "patientenarmband",
@@ -485,15 +494,16 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "pansement ; fédération",
-   "en": "bandage; association",
+   "fr": "pansement",
+   "en": "bandage",
    "tr": "sargı",
-   "uk": "повʼязка; спілка",
-   "fa": "باند زخم؛ اتحادیه",
-   "pt": "curativo, atadura; associação",
-   "ar": "ضمادة؛ اتحاد، جمعية",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение"
+   "uk": "повʼязка",
+   "fa": "باند زخم",
+   "pt": "curativo, atadura",
+   "ar": "ضمادة",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
+   "es": "el vendaje"
   },
   {
    "id": "kissen",
@@ -522,7 +532,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "bettdecke",
@@ -667,7 +678,8 @@ window.SCENE = {
    "pt": "tablet",
    "ar": "جهاز لوحي",
    "pl": "tablet",
-   "ru": "планшет"
+   "ru": "планшет",
+   "es": "la tableta"
   },
   {
    "id": "pflegefachmann",
@@ -754,7 +766,8 @@ window.SCENE = {
    "pt": "filha",
    "ar": "ابنة",
    "pl": "córka",
-   "ru": "дочь"
+   "ru": "дочь",
+   "es": "la hija"
   },
   {
    "id": "regenjacke",
@@ -783,7 +796,8 @@ window.SCENE = {
    "pt": "capa de chuva",
    "ar": "سترة واقية من المطر",
    "pl": "kurtka przeciwdeszczowa",
-   "ru": "дождевик"
+   "ru": "дождевик",
+   "es": "el impermeable"
   }
  ],
  "grosPlans": [],
@@ -1103,60 +1117,51 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
+   "titre": "Que répondez-vous ?",
    "niveau": "B2",
    "qs": [
     {
-     "q": "Was gehört NICHT in die Übergabe am Bett?",
+     "q": "Jonas fragt: „So, Elif, dann leg mal los. Wer ist neu, wer macht Probleme?“",
      "c": [
-      "Eine persönliche Bemerkung über die Tochter.",
-      "Der Zustand der Wunde.",
-      "Wie viel die Patientin getrunken hat."
-     ],
-     "f": "tochter",
-     "type": "situation",
-     "phrase": "Eine persönliche Bemerkung über die Tochter.",
-     "sens": "Une remarque personnelle sur la fille.",
-     "n": "La relève au lit se fait devant la patiente et sa famille : objective, sans jugement sur personne ⚕️."
-    },
-    {
-     "q": "Frau Lehmann sagt während der Übergabe: „Das stimmt nicht, ich hatte nachts Schmerzen.“ Was tun Sie?",
-     "c": [
-      "Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.",
-      "Ich bitte sie, nicht zu unterbrechen.",
-      "Ich gehe darüber hinweg, in der Akte steht etwas anderes."
-     ],
-     "f": "patientin",
-     "type": "situation",
-     "phrase": "Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.",
-     "sens": "Je lui pose la question, je le note et je le transmets dans la relève.",
-     "n": "La patiente est la première source : on l'écoute et on corrige la relève ⚕️."
-    },
-    {
-     "q": "Die Tochter fragt bei der Übergabe, was die Patientin im Nachbarzimmer hat. Was sagen Sie?",
-     "c": [
-      "Dazu darf ich Ihnen leider nichts sagen.",
-      "Sie hat Diabetes, wie Ihre Mutter.",
-      "Fragen Sie meinen Kollegen, er weiß es."
-     ],
-     "f": "tochter",
-     "type": "situation",
-     "phrase": "Dazu darf ich Ihnen leider nichts sagen.",
-     "sens": "Je ne peux malheureusement rien vous dire à ce sujet.",
-     "n": "Le secret professionnel (<b>Schweigepflicht</b>) : rien sur les autres patients ⚕️."
-    },
-    {
-     "q": "Jonas versteht einen Wert nicht, und Elif hat gleich Feierabend. Was soll er tun?",
-     "c": [
-      "Er fragt sofort nach, bevor sie geht.",
-      "Er fragt morgen früh nach.",
-      "Er schreibt einen Wert auf, der passt."
+      "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch."
      ],
      "f": "pflegefachmann",
      "type": "situation",
-     "phrase": "Er fragt sofort nach, bevor sie geht.",
-     "sens": "Il pose la question tout de suite, avant qu'elle parte.",
-     "n": "Une relève se clarifie avant le départ de la collègue : une question qu'on ne pose pas devient une erreur ⚕️."
+     "phrase": "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+     "sens": "Je commence par la chambre 14. Mme Lehmann, 74 ans, admise pour une plaie au pied droit, sur un diabète.",
+     "n": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins.",
+     "source": "d06-uebergabe/start"
+    },
+    {
+     "q": "Jonas fragt: „Gut. Und der Zucker?“",
+     "c": [
+      "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+     "sens": "Glycémie à 7 h : 180. Elle a eu son insuline selon le schéma. À midi, elle était à 140.",
+     "n": "<b>Une valeur se transmet avec son chiffre et son heure.</b> « Blutzucker um 7 Uhr: 180 ». Si tu ne t'en souviens pas, relis le dossier avant la relève. ⚕️",
+     "source": "d06-uebergabe/zucker",
+     "r": "fieberkurve"
+    },
+    {
+     "q": "Jonas fragt nach Herrn Brandt, Zimmer zwölf: „Gut. Und die Mobilisation?“",
+     "c": [
+      "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+      "Er wollte nicht laufen, er ist halt ein bisschen faul.",
+      "Wenn Sie nicht laufen, werden Sie nie wieder gesund."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+     "sens": "Mobilisation refusée aujourd'hui, par peur d'une nouvelle chute. C'est noté, et le médecin est au courant.",
+     "n": "<b>Une relève est objective : des faits, pas de jugement.</b> Dis ce qui s'est passé et la raison donnée par le patient : « Mobilisation abgelehnt, wegen Angst vor einem Sturz ».",
+     "source": "d06-uebergabe/mobi"
     }
    ]
   }
@@ -1173,7 +1178,7 @@ window.SCENE = {
     "B1": "Perfekt and Präteritum in the handover",
     "B2": "Relative clauses in the handover",
     "C1": "The handover in SBAR order",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> forms its Perfekt with <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1200,10 +1205,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, in German <b>Empfehlung</b>: what the colleague needs to do.",
     "C1 | Das gehört zur Einschätzung.": "What you have observed and what you make of it: the <b>Einschätzung</b>. <b>reizlos</b> = with no signs of inflammation ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "What still needs to be done: the <b>Empfehlung</b>, with a specific time ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "A bedside handover takes place in front of the patient and her family: objective, with no judgement about anyone ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "The patient is the primary source: listen to her and correct the handover ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Confidentiality (<b>Schweigepflicht</b>): nothing about other patients ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "A handover is clarified before the colleague leaves: a question not asked becomes an error ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>A handoff has an order: who, why, what has happened, what still needs doing.</b> Start with the room, the name, the age and the reason for admission. The rest comes afterwards, if it matters for her care.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>A value is handed off with its number and its time.</b> “Blutzucker um 7 Uhr: 180”. If you can't remember it, look at the chart again before the handoff. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>A handoff is objective: facts, not judgments.</b> Say what happened and the reason the patient gave: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann slept well.",
@@ -1230,10 +1234,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Finally, the recommendation: what should happen next?",
     "C1 | Das gehört zur Einschätzung.": "That is part of the assessment.",
     "C1 | Das gehört zur Empfehlung.": "That is part of the recommendation.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "A personal remark about the daughter.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "I ask about it, note it down and pass it on in the handover.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Unfortunately, I'm not allowed to tell you anything about that.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "He asks right away, before she leaves."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "I'll start with room 14. Mrs. Lehmann, 74, admitted for a wound on her right foot; she's diabetic.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Blood sugar at 7:00: 180. She got insulin per sliding scale. At noon she was at 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilization refused today, due to fear of another fall. It's documented, and the doctor knows."
    }
   },
   "tr": {
@@ -1247,7 +1250,7 @@ window.SCENE = {
     "B1": "Vardiya tesliminde Perfekt ve Präteritum",
     "B2": "Vardiya tesliminde ilgi cümleleri",
     "C1": "SBAR sırasına göre vardiya teslimi",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b>, Perfekt'ini <b>haben</b> ile yapar: sie <b>hat</b> geschlafen.",
@@ -1274,10 +1277,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (öneri), Almancası <b>Empfehlung</b>: meslektaşın yapması gerekenler.",
     "C1 | Das gehört zur Einschätzung.": "Gözlemlenen ve bunun hakkında düşünülen: <b>Einschätzung</b>. <b>reizlos</b> = iltihap belirtisi olmayan ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "Yapılması gerekenler: <b>Empfehlung</b>, belirli bir saatle ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Yatak başında vardiya teslimi hastanın ve ailesinin önünde yapılır: nesnel olmalı, kimse hakkında yargı içermemeli ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "İlk bilgi kaynağı hastanın kendisidir: dinlenir ve vardiya teslimi düzeltilir ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Meslekî sır saklama yükümlülüğü (<b>Schweigepflicht</b>): diğer hastalar hakkında hiçbir şey söylenmez ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Vardiya teslimi meslektaş gitmeden önce netleştirilir: sorulmayan bir soru hataya dönüşür ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Nöbet tesliminin bir sırası vardır: kim, neden, neler oldu, neler yapılacak.</b> Odayla, adla, yaşla ve yatış nedeniyle başla. Gerisi, bakım için önemliyse, sonra gelir.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Bir değer, sayısı ve saatiyle aktarılır.</b> “Blutzucker um 7 Uhr: 180”. Hatırlamıyorsan, nöbet tesliminden önce dosyaya tekrar bak. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Nöbet teslimi nesneldir: yargı değil, gerçekler.</b> Ne olduğunu ve hastanın söylediği nedeni aktar: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann iyi uyudu.",
@@ -1304,10 +1306,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Son olarak öneri: bundan sonra ne olmalı?",
     "C1 | Das gehört zur Einschätzung.": "Bu, değerlendirmeye aittir.",
     "C1 | Das gehört zur Empfehlung.": "Bu, öneriye aittir.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Kızı hakkında kişisel bir yorum.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Ayrıntısını sorarım, kaydederim ve vardiya tesliminde aktarırım.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Bu konuda maalesef size bir şey söyleyemem.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "O gitmeden hemen sorar."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "14 numaralı odayla başlıyorum. Bayan Lehmann, 74 yaşında, diyabete bağlı sağ ayağındaki bir yara nedeniyle yatırıldı.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Saat 7'de kan şekeri: 180. Şemaya göre insülinini aldı. Öğlen 140'tı.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilizasyonu bugün reddetti, tekrar düşme korkusu nedeniyle. Kaydedildi, doktorun da bilgisi var."
    }
   },
   "uk": {
@@ -1321,7 +1322,7 @@ window.SCENE = {
     "B1": "Perfekt і Präteritum під час передачі зміни",
     "B2": "Означальні підрядні речення під час передачі зміни",
     "C1": "Передача зміни за схемою SBAR",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> утворює Perfekt із <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1348,10 +1349,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (рекомендація), німецькою <b>Empfehlung</b>: що має зробити колега.",
     "C1 | Das gehört zur Einschätzung.": "Те, що спостерігали, і що про це думаємо: <b>Einschätzung</b>. <b>reizlos</b> = без ознак запалення ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "Те, що ще треба зробити: <b>Empfehlung</b>, із точним часом ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Передача зміни біля ліжка відбувається при пацієнтці та її родині: обʼєктивно, без оцінок будь-кого ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Пацієнтка — перше джерело інформації: її вислуховують і виправляють дані передачі зміни ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Професійна таємниця (<b>Schweigepflicht</b>): нічого про інших пацієнтів ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Усе неясне в передачі зміни зʼясовують до того, як колега піде: незадане питання стає помилкою ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Передача зміни має порядок: хто, чому, що сталося, що ще треба зробити.</b> Почни з палати, прізвища, віку й причини госпіталізації. Решта — потім, якщо це важливо для догляду.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Показник передають із числом і часом.</b> «Blutzucker um 7 Uhr: 180». Якщо не памʼятаєш, перечитай документацію перед передачею зміни. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Передача зміни обʼєктивна: факти, а не оцінки.</b> Скажи, що сталося і яку причину назвав пацієнт: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann добре спала.",
@@ -1378,10 +1378,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Наостанок — рекомендація: що має відбутися далі?",
     "C1 | Das gehört zur Einschätzung.": "Це належить до оцінки.",
     "C1 | Das gehört zur Empfehlung.": "Це належить до рекомендації.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Особисте зауваження про доньку.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Я перепитую, записую це й передаю далі під час передачі зміни.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "На жаль, я не можу вам про це нічого сказати.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Він одразу перепитує, поки вона не пішла."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Я почну з чотирнадцятої палати. пані Леман, 74 роки, госпіталізована з раною на правій стопі на тлі діабету.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Глюкоза о 7:00: 180. Вона отримала інсулін за схемою. Опівдні було 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Мобілізація сьогодні — відмова, через страх повторного падіння. Задокументовано, і лікарка в курсі."
    }
   },
   "fa": {
@@ -1395,7 +1394,7 @@ window.SCENE = {
     "B1": "<span lang=\"de\">Perfekt</span> و <span lang=\"de\">Präteritum</span> در تحویلِ شیفت",
     "B2": "جمله‌های موصولیِ تحویلِ شیفت",
     "C1": "تحویلِ شیفت به ترتیبِ <span lang=\"de\">SBAR</span>",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> زمانِ <span lang=\"de\">Perfekt</span> را با <b>haben</b> می‌سازد: <span lang=\"de\">sie <b>hat</b> geschlafen</span>.",
@@ -1422,10 +1421,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation، به آلمانی <b>Empfehlung</b>: کاری که همکار باید انجام دهد.",
     "C1 | Das gehört zur Einschätzung.": "آنچه دیده‌ایم و برداشتمان از آن: <b>Einschätzung</b>. <b>reizlos</b> = بدونِ نشانهٔ التهاب ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "کاری که باقی مانده: <b>Empfehlung</b>، با ساعتِ دقیق ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "تحویلِ شیفت بالای سرِ بیمار جلوی خودِ بیمار و خانواده‌اش انجام می‌شود: عینی، بدونِ قضاوت دربارهٔ هیچ‌کس ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "بیمار نخستین منبعِ اطلاعات است: به حرفش گوش می‌دهیم و گزارشِ تحویل را اصلاح می‌کنیم ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "رازداریِ حرفه‌ای (<b>Schweigepflicht</b>): هیچ چیز دربارهٔ بیمارانِ دیگر ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "ابهامِ تحویلِ شیفت پیش از رفتنِ همکار برطرف می‌شود: پرسشی که پرسیده نشود، به خطا تبدیل می‌شود ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>تحویل شیفت ترتیب دارد: چه کسی، به چه دلیل، چه اتفاقی افتاده، چه کارهایی مانده.</b> با اتاق، نام، سن و علت بستری شروع کن. بقیه بعداً می‌آید، اگر برای مراقبت مهم باشد.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>هر مقدار با عدد و ساعتش منتقل می‌شود.</b> «Blutzucker um 7 Uhr: 180». اگر یادت نیست، پیش از تحویل شیفت پرونده را دوباره بخوان. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>تحویل شیفت عینی است: واقعیت‌ها، نه قضاوت.</b> بگو چه اتفاقی افتاده و بیمار چه دلیلی آورده: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<span lang=\"de\">Frau Lehmann</span> خوب خوابیده است.",
@@ -1452,10 +1450,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "در پایان، توصیه: بعد از این چه باید بشود؟",
     "C1 | Das gehört zur Einschätzung.": "این بخشی از ارزیابی است.",
     "C1 | Das gehört zur Empfehlung.": "این بخشی از توصیه است.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "یک اظهارنظرِ شخصی دربارهٔ دخترش.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "از او می‌پرسم، یادداشتش می‌کنم و در تحویلِ شیفت منتقلش می‌کنم.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "متأسفانه در این باره نمی‌توانم چیزی به شما بگویم.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "فوراً می‌پرسد، پیش از آنکه او برود."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "از اتاق 14 شروع می‌کنم. خانم لمان، 74 ساله، به خاطر زخم پای راست در زمینه‌ی دیابت بستری شده.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "قند خون ساعت 7: 180. طبق جدول انسولین گرفت. ظهر 140 بود.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "تحرک‌بخشی امروز رد شد، به دلیل ترس از زمین خوردن دوباره. ثبت شده و خانم دکتر در جریان است."
    }
   },
   "ar": {
@@ -1469,7 +1466,7 @@ window.SCENE = {
     "B1": "<span lang=\"de\">Perfekt</span> و<span lang=\"de\">Präteritum</span> في تسليم المناوبة",
     "B2": "جمل الصلة في تسليم المناوبة",
     "C1": "تسليم المناوبة بترتيب <span lang=\"de\">SBAR</span>",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> يصوغ <span lang=\"de\">Perfekt</span> مع <b>haben</b>: <span lang=\"de\">sie <b>hat</b> geschlafen</span>.",
@@ -1496,10 +1493,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation، وبالألمانية <b>Empfehlung</b>: ما يجب أن تفعله الزميلة.",
     "C1 | Das gehört zur Einschätzung.": "ما لاحظناه وما نستنتجه منه: <b>Einschätzung</b>. <b>reizlos</b> = بلا علامات التهاب ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "ما بقي من عمل: <b>Empfehlung</b>، مع ساعة محدّدة ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "تسليم المناوبة عند السرير يجري أمام المريضة وعائلتها: موضوعي، بلا حكم على أحد ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "المريضة هي المصدر الأول: نستمع إليها ونصحّح ما قيل في التسليم ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "السرّ المهني (<b>Schweigepflicht</b>): لا شيء عن المرضى الآخرين ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "يُوضَّح التسليم قبل مغادرة الزميلة: السؤال الذي لا يُطرح يصبح خطأً ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>لتسليم المناوبة ترتيب: من هو، ولماذا هو هنا، وما الذي حدث، وما الذي بقي لفعله.</b> ابدأ بالغرفة والاسم والعمر وسبب الدخول. وما تبقّى يأتي بعد ذلك، إن كان مهمًا للرعاية.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>القيمة تُنقل مع رقمها وساعتها.</b> «Blutzucker um 7 Uhr: 180». إن لم تتذكرها، فراجع الملف قبل تسليم المناوبة. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>تسليم المناوبة موضوعي: وقائع، لا أحكام.</b> قل ما حدث والسبب الذي ذكره المريض: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "نامت السيدة <span lang=\"de\">Lehmann</span> جيدًا.",
@@ -1526,10 +1522,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "وأخيرًا التوصية: ما الذي يجب أن يحدث بعد ذلك؟",
     "C1 | Das gehört zur Einschätzung.": "هذا جزء من التقييم.",
     "C1 | Das gehört zur Empfehlung.": "هذا جزء من التوصية.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "ملاحظة شخصية عن الابنة.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "أسألها، وأسجّل ذلك، وأنقله في تسليم المناوبة.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "للأسف لا يحقّ لي أن أقول لك شيئًا عن ذلك.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "يسأل فورًا، قبل أن تغادر."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "أبدأ بالغرفة 14. السيدة ليمان، 74 سنة، دخلت بسبب جرح في القدم اليمنى، مع سكري.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "سكر الدم في السابعة: 180. أخذت الإنسولين حسب الجدول. وفي الظهر كان 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "رفض التحريك اليوم، خوفًا من سقوط جديد. هذا موثّق، والطبيبة على علم."
    }
   },
   "pt": {
@@ -1543,7 +1538,7 @@ window.SCENE = {
     "B1": "Perfekt e Präteritum na passagem de plantão",
     "B2": "As orações relativas da passagem de plantão",
     "C1": "A passagem de plantão na ordem SBAR",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> forma o Perfekt com <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1570,10 +1565,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation (recomendação), em alemão <b>Empfehlung</b>: o que o colega deve fazer.",
     "C1 | Das gehört zur Einschätzung.": "O que se observou e o que se pensa disso: a <b>Einschätzung</b>. <b>reizlos</b> = sem sinais de inflamação ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "O que ainda falta fazer: a <b>Empfehlung</b>, com um horário preciso ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "A passagem de plantão à beira do leito é feita diante da paciente e da família: objetiva, sem julgar ninguém ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "A paciente é a primeira fonte: escuta-se o que ela diz e corrige-se a passagem de plantão ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "O sigilo profissional (<b>Schweigepflicht</b>): nada sobre os outros pacientes ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "A passagem de plantão se esclarece antes de a colega ir embora: uma pergunta não feita vira um erro ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Uma passagem de plantão tem uma ordem: quem, por quê, o que aconteceu, o que falta fazer.</b> Comece pelo quarto, o nome, a idade e o motivo da internação. O resto vem depois, se for importante para os cuidados.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Um valor se passa com o número e o horário.</b> “Blutzucker um 7 Uhr: 180”. Se você não lembrar, releia o prontuário antes da passagem de plantão. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Uma passagem de plantão é objetiva: fatos, não julgamentos.</b> Diga o que aconteceu e o motivo dado pelo paciente: “Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann dormiu bem.",
@@ -1600,10 +1594,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Por fim, a recomendação: o que deve acontecer em seguida?",
     "C1 | Das gehört zur Einschätzung.": "Isso faz parte da avaliação.",
     "C1 | Das gehört zur Empfehlung.": "Isso faz parte da recomendação.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Um comentário pessoal sobre a filha.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Faço a pergunta, anoto e repasso na passagem de plantão.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Infelizmente não posso lhe dizer nada sobre isso.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Ele pergunta na hora, antes que ela vá embora."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Vou começar pelo quarto 14. Sra. Lehmann, 74 anos, internada por causa de uma ferida no pé direito, diabética.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glicemia às 7 h: 180. Ela recebeu insulina conforme o esquema. Ao meio-dia, estava em 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Mobilização recusada hoje, por medo de uma nova queda. Está registrado, e a médica está ciente."
    }
   },
   "pl": {
@@ -1617,7 +1610,7 @@ window.SCENE = {
     "B1": "Perfekt i Präteritum przy przekazaniu dyżuru",
     "B2": "Zdania względne przy przekazaniu dyżuru",
     "C1": "Przekazanie dyżuru według schematu SBAR",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> tworzy Perfekt z <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1644,10 +1637,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, po niemiecku <b>Empfehlung</b>: co ma zrobić osoba, która przejmuje dyżur.",
     "C1 | Das gehört zur Einschätzung.": "To, co się zaobserwowało, i co się o tym myśli: <b>Einschätzung</b>. <b>reizlos</b> = bez cech stanu zapalnego ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "To, co zostaje do zrobienia: <b>Empfehlung</b>, z dokładną godziną ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Przekazanie dyżuru przy łóżku odbywa się w obecności pacjentki i jej rodziny: rzeczowo, bez oceniania kogokolwiek ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Pacjentka jest pierwszym źródłem informacji: słucha się jej i poprawia raport ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Tajemnica zawodowa (<b>Schweigepflicht</b>): nic o innych pacjentach ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Niejasności przy przekazaniu dyżuru wyjaśnia się przed wyjściem koleżanki: niezadane pytanie staje się błędem ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Raport ma swoją kolejność: kto, z jakiego powodu, co się wydarzyło, co zostało do zrobienia.</b> Zacznij od sali, nazwiska, wieku i powodu przyjęcia. Reszta potem, jeśli ma znaczenie dla opieki.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Wartość przekazuje się z liczbą i godziną.</b> „Blutzucker um 7 Uhr: 180”. Jeśli jej nie pamiętasz, przejrzyj dokumentację przed raportem. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Raport jest obiektywny: fakty, bez ocen.</b> Powiedz, co się wydarzyło i jaki powód podał pacjent: „Mobilisation abgelehnt, wegen Angst vor einem Sturz”."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann dobrze spała.",
@@ -1674,10 +1666,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Na koniec zalecenie: co ma się stać dalej?",
     "C1 | Das gehört zur Einschätzung.": "To należy do oceny.",
     "C1 | Das gehört zur Empfehlung.": "To należy do zalecenia.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Osobista uwaga o córce.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Dopytuję, zapisuję to i przekazuję dalej przy przekazaniu dyżuru.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Niestety nie mogę pani nic na ten temat powiedzieć.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Od razu dopytuje, zanim ona wyjdzie."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Zacznę od sali 14. Pani Lehmann, 74 lata, przyjęta z powodu rany na prawej stopie, na tle cukrzycy.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glikemia o 7:00: 180. Dostała insulinę według schematu. W południe było 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Pionizacja dziś odmówiona, z powodu strachu przed ponownym upadkiem. Jest to udokumentowane, a lekarka wie."
    }
   },
   "ru": {
@@ -1691,7 +1682,7 @@ window.SCENE = {
     "B1": "Perfekt и Präteritum при передаче смены",
     "B2": "Относительные придаточные при передаче смены",
     "C1": "Передача смены по схеме SBAR",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> образует Perfekt с <b>haben</b>: sie <b>hat</b> geschlafen.",
@@ -1718,10 +1709,9 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, по-немецки <b>Empfehlung</b>: что нужно сделать следующей смене.",
     "C1 | Das gehört zur Einschätzung.": "То, что наблюдали, и что об этом думают: <b>Einschätzung</b>. <b>reizlos</b> = без признаков воспаления ⚕️.",
     "C1 | Das gehört zur Empfehlung.": "То, что ещё нужно сделать: <b>Empfehlung</b>, с точным временем ⚕️.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Передача смены у постели проходит при пациентке и её родственниках: объективно, без оценок в чей-либо адрес ⚕️.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Пациентка — первый источник информации: её выслушивают и исправляют передачу ⚕️.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "Профессиональная тайна (<b>Schweigepflicht</b>): ничего о других пациентах ⚕️.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Неясное при передаче смены выясняют до ухода коллеги: незаданный вопрос превращается в ошибку ⚕️."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>У передачи смены есть порядок: кто, почему, что произошло, что осталось сделать.</b> Начни с палаты, имени, возраста и причины госпитализации. Остальное — потом, если это важно для ухода.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Показатель передают с цифрой и временем.</b> «Blutzucker um 7 Uhr: 180». Если не помнишь, перечитай документацию перед передачей смены. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Передача смены объективна: факты, никаких оценок.</b> Скажи, что произошло и какую причину назвал пациент: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
    },
    "sens": {
     "A2 | Frau Lehmann hat gut geschlafen.": "Frau Lehmann хорошо спала.",
@@ -1748,10 +1738,81 @@ window.SCENE = {
     "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "В конце рекомендация: что должно произойти дальше?",
     "C1 | Das gehört zur Einschätzung.": "Это относится к оценке.",
     "C1 | Das gehört zur Empfehlung.": "Это относится к рекомендации.",
-    "SIT | Eine persönliche Bemerkung über die Tochter.": "Личное замечание о дочери.",
-    "SIT | Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.": "Я уточняю, записываю это и передаю дальше при передаче смены.",
-    "SIT | Dazu darf ich Ihnen leider nichts sagen.": "К сожалению, я не могу вам ничего об этом сказать.",
-    "SIT | Er fragt sofort nach, bevor sie geht.": "Он сразу уточняет, пока она не ушла."
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Начну с 14-й палаты. госпожа Леман, 74 года, поступила с раной на правой стопе на фоне диабета.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Сахар крови в 7:00 — 180. Она получила инсулин по схеме. В полдень было 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Мобилизация сегодня отклонена из-за страха повторного падения. Задокументировано, врач в курсе."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación de hospital, a primera hora de la tarde: la señora Lehmann está sentada en su cama, con el pie vendado apoyado en un cojín; Elif, la enfermera de la mañana, tiene la tableta y le entrega el turno a Jonas, que empieza el turno de la tarde con su tabla con clip; la hija de la señora Lehmann escucha, sentada cerca de la ventana; sobre la mesita de la cama, el vaso con boquilla, el vaso de agua, el registro de líquidos y el oxímetro; a los pies de la cama, la hoja de control.",
+    "consigne": "Toca un objeto de la habitación, a la señora Lehmann, a su hija, a Elif o a Jonas."
+   },
+   "couches": {
+    "A1": "Los objetos de la entrega de turno",
+    "A2": "El Perfekt",
+    "B1": "Perfekt y Präteritum de la entrega de turno",
+    "B2": "Las relativas de la entrega de turno",
+    "C1": "La entrega de turno en el orden SBAR",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> forma su Perfekt con <b>haben</b>: sie <b>hat</b> geschlafen.",
+    "A2 | Sie ist heute Morgen zweimal aufgestanden.": "Un cambio de lugar o de posición: <b>sein</b> → sie <b>ist</b> aufgestanden.",
+    "A2 | Sie hat den ganzen Tee getrunken.": "<b>trinken</b> es un verbo fuerte: <b>getrunken</b>.",
+    "A2 | Elif hat den Verband um acht Uhr gewechselt.": "Un verbo débil: <b>ge</b>…<b>t</b> → <b>gewechselt</b>.",
+    "A2 | Die Tochter ist um elf Uhr gekommen.": "<b>kommen</b> → <b>sein</b>: sie <b>ist</b> gekommen.",
+    "A2 | Haben Sie heute Mittag schon etwas gegessen?": "<b>essen</b> → <b>gegessen</b>, con una g de más en medio.",
+    "B1 | Heute Nacht hatte sie keine Schmerzen.": "Con <b>haben</b> y <b>sein</b>, incluso al hablar, se prefiere el Präteritum: sie <b>hatte</b>, sie <b>war</b>.",
+    "B1 | Der Blutzucker war heute Morgen zu hoch.": "<b>war</b>: el Präteritum de sein, la forma normal de una entrega de turno. <b>wäre</b> querría decir «estaría».",
+    "B1 | Bis jetzt hat sie anderthalb Liter getrunken.": "Lo que ha tomado se anota en el <b>Trinkprotokoll</b>. <b>trinken</b> → haben.",
+    "B1 | Sie konnte allein zur Toilette gehen.": "Los modales también se dicen en Präteritum: sie <b>konnte</b>, sie <b>wollte</b>, sie <b>musste</b>.",
+    "B1 | Der Verband wurde heute um acht Uhr gewechselt.": "La pasiva en pasado: <b>wurde</b> + participio. La entrega de turno dice lo que se hizo, no necesariamente quién lo hizo.",
+    "B1 | Um zehn Uhr hat die Tochter angerufen.": "<b>anrufen</b> → <b>haben</b>: hat an<b>ge</b>rufen (el ge entre la partícula y el verbo).",
+    "B2 | Die Patientin, deren Wunde heute verbunden wurde, hat keine Schmerzen.": "<b>deren</b> = cuyo, cuya…, cuando quien posee es una mujer o un plural; <b>dessen</b>, cuando es un hombre o un neutro.",
+    "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: por un hombre (der Herr), aunque el sustantivo que sigue sea femenino (die Hüfte). Al revés que «cuyo», que concuerda con lo poseído.",
+    "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "El relativo toma el género del sustantivo (das Protokoll) y el caso de su función: <b>das</b>, complemento de weiterführen. Entre colegas: <b>du</b>.",
+    "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Preposición + relativo: <b>mit der</b> (mit + dativo; die Tochter → <b>der</b>).",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + dativo (¿dónde?, sin movimiento): auf <b>dem</b>. El pie en alto forma parte de la indicación ⚕️.",
+    "B2 | Alles, was du wissen musst, steht in der Akte.": "Después de <b>alles</b>, <b>etwas</b>, <b>nichts</b>, el relativo es <b>was</b>.",
+    "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: quién es la persona y por qué se habla de ella ahora.",
+    "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, en alemán <b>Hintergrund</b>.",
+    "C1 | Dann folgt die Einschätzung: Wie schätze ich die Lage ein?": "<b>A</b> = Assessment, en alemán <b>Einschätzung</b> (de <b>einschätzen</b>, evaluar).",
+    "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, en alemán <b>Empfehlung</b>: lo que la colega debe hacer.",
+    "C1 | Das gehört zur Einschätzung.": "Lo que se observó y lo que se piensa de ello: la <b>Einschätzung</b>. <b>reizlos</b> = sin signos de inflamación ⚕️.",
+    "C1 | Das gehört zur Empfehlung.": "Lo que queda por hacer: la <b>Empfehlung</b>, con una hora precisa ⚕️.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Una entrega de turno tiene un orden: quién, por qué, qué pasó, qué queda por hacer.</b> Empieza por la habitación, el nombre, la edad y el motivo de ingreso. Lo demás viene después, si importa para el cuidado.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Un valor se transmite con su cifra y su hora.</b> «Blutzucker um 7 Uhr: 180». Si no lo recuerdas, vuelve a leer el expediente antes de la entrega de turno. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Una entrega de turno es objetiva: hechos, no juicios.</b> Di lo que pasó y la razón que dio el paciente: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
+   },
+   "sens": {
+    "A2 | Frau Lehmann hat gut geschlafen.": "La Sra. Lehmann durmió bien.",
+    "A2 | Sie ist heute Morgen zweimal aufgestanden.": "Se levantó dos veces esta mañana.",
+    "A2 | Sie hat den ganzen Tee getrunken.": "Se tomó todo el té.",
+    "A2 | Elif hat den Verband um acht Uhr gewechselt.": "Elif cambió el vendaje a las ocho.",
+    "A2 | Die Tochter ist um elf Uhr gekommen.": "La hija llegó a las once.",
+    "A2 | Haben Sie heute Mittag schon etwas gegessen?": "¿Ya comió algo hoy al mediodía?",
+    "B1 | Heute Nacht hatte sie keine Schmerzen.": "Anoche no tuvo dolor.",
+    "B1 | Der Blutzucker war heute Morgen zu hoch.": "La glucosa estaba demasiado alta esta mañana.",
+    "B1 | Bis jetzt hat sie anderthalb Liter getrunken.": "Hasta ahora ha tomado un litro y medio.",
+    "B1 | Sie konnte allein zur Toilette gehen.": "Pudo ir sola al baño.",
+    "B1 | Der Verband wurde heute um acht Uhr gewechselt.": "El vendaje se cambió hoy a las ocho.",
+    "B1 | Um zehn Uhr hat die Tochter angerufen.": "A las diez llamó la hija.",
+    "B2 | Die Patientin, deren Wunde heute verbunden wurde, hat keine Schmerzen.": "La paciente, cuya herida fue vendada hoy, no tiene dolor.",
+    "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "El señor, cuya cadera fue operada, está en la habitación doce.",
+    "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Este es el registro de líquidos, que por favor sigues llenando.",
+    "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "La hija, con la que hablé hace un rato, vuelve a las tres.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "La almohada sobre la que descansa el pie debe quedarse así.",
+    "B2 | Alles, was du wissen musst, steht in der Akte.": "Todo lo que tienes que saber está en el expediente.",
+    "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Primero viene la situación: quién, dónde, qué está pasando ahora.",
+    "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Después viene el contexto: diagnóstico, antecedentes, lo que ya se hizo.",
+    "C1 | Dann folgt die Einschätzung: Wie schätze ich die Lage ein?": "Luego sigue la evaluación: ¿cómo valoro la situación?",
+    "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Por último, la recomendación: ¿qué debe pasar a continuación?",
+    "C1 | Das gehört zur Einschätzung.": "Eso forma parte de la evaluación.",
+    "C1 | Das gehört zur Empfehlung.": "Eso forma parte de la recomendación.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Empiezo con la habitación 14. La Sra. Lehmann, 74 años, ingresada por una herida en el pie derecho, con diabetes.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glucosa a las 7:00: 180. Recibió insulina según el esquema. Al mediodía estaba en 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Movilización rechazada hoy, por miedo a una nueva caída. Está documentado, y la doctora está enterada."
    }
   }
  }

@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -39,7 +40,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -60,7 +62,8 @@ window.SCENE = {
    "pt": "framboesa",
    "ar": "توت العليق",
    "pl": "malina",
-   "ru": "малина"
+   "ru": "малина",
+   "es": "la frambuesa"
   },
   {
    "id": "heidelbeere",
@@ -84,7 +87,8 @@ window.SCENE = {
      "pt": "mirtilo (blueberry)",
      "ar": "توت أزرق",
      "pl": "borówka, czarna jagoda",
-     "ru": "черника"
+     "ru": "черника",
+     "es": "el arándano (azul)"
     },
     {
      "mot": "Kiste",
@@ -99,7 +103,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -114,7 +119,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -135,7 +141,8 @@ window.SCENE = {
    "pt": "mirtilo",
    "ar": "توت أزرق",
    "pl": "borówka, jagoda",
-   "ru": "черника"
+   "ru": "черника",
+   "es": "el arándano"
   },
   {
    "id": "traube",
@@ -159,7 +166,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -174,7 +182,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -195,7 +204,8 @@ window.SCENE = {
    "pt": "uva",
    "ar": "عنب",
    "pl": "winogrono",
-   "ru": "виноград"
+   "ru": "виноград",
+   "es": "la uva"
   },
   {
    "id": "pflaume",
@@ -219,7 +229,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -234,7 +245,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -255,7 +267,8 @@ window.SCENE = {
    "pt": "ameixa",
    "ar": "برقوق",
    "pl": "śliwka",
-   "ru": "слива"
+   "ru": "слива",
+   "es": "la ciruela"
   },
   {
    "id": "rhabarber",
@@ -279,7 +292,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -294,7 +308,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -315,7 +330,8 @@ window.SCENE = {
    "pt": "ruibarbo",
    "ar": "راوند",
    "pl": "rabarbar",
-   "ru": "ревень"
+   "ru": "ревень",
+   "es": "el ruibarbo"
   },
   {
    "id": "nuss",
@@ -339,7 +355,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -354,7 +371,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -375,7 +393,8 @@ window.SCENE = {
    "pt": "noz, castanha",
    "ar": "جوز، مكسّرات",
    "pl": "orzech",
-   "ru": "орех"
+   "ru": "орех",
+   "es": "la nuez, el fruto seco"
   },
   {
    "id": "birne",
@@ -399,7 +418,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -414,7 +434,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -435,7 +456,8 @@ window.SCENE = {
    "pt": "pera",
    "ar": "كمثرى",
    "pl": "gruszka",
-   "ru": "груша"
+   "ru": "груша",
+   "es": "la pera"
   },
   {
    "id": "johannisbeere",
@@ -459,7 +481,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -474,7 +497,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -495,7 +519,8 @@ window.SCENE = {
    "pt": "groselha",
    "ar": "كشمش",
    "pl": "porzeczka",
-   "ru": "смородина"
+   "ru": "смородина",
+   "es": "la grosella"
   },
   {
    "id": "stachelbeere",
@@ -519,7 +544,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -534,7 +560,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -555,7 +582,8 @@ window.SCENE = {
    "pt": "groselha-espinhosa",
    "ar": "عنب الثعلب",
    "pl": "agrest",
-   "ru": "крыжовник"
+   "ru": "крыжовник",
+   "es": "la grosella espinosa"
   },
   {
    "id": "kirsche",
@@ -579,7 +607,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -594,7 +623,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -615,7 +645,8 @@ window.SCENE = {
    "pt": "cereja",
    "ar": "كرز",
    "pl": "wiśnia, czereśnia",
-   "ru": "вишня, черешня"
+   "ru": "вишня, черешня",
+   "es": "la cereza"
   },
   {
    "id": "brombeere",
@@ -639,7 +670,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -654,7 +686,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -675,7 +708,8 @@ window.SCENE = {
    "pt": "amora",
    "ar": "توت العلّيق الأسود",
    "pl": "jeżyna",
-   "ru": "ежевика"
+   "ru": "ежевика",
+   "es": "la mora, la zarzamora"
   },
   {
    "id": "aprikose",
@@ -699,7 +733,8 @@ window.SCENE = {
      "pt": "damasco (Áustria)",
      "ar": "مشمش (نمساوية)",
      "pl": "morela (Austria)",
-     "ru": "абрикос (австр.)"
+     "ru": "абрикос (австр.)",
+     "es": "el albaricoque, el chabacano (Austria)"
     },
     {
      "mot": "Kiste",
@@ -714,7 +749,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -729,7 +765,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -750,7 +787,8 @@ window.SCENE = {
    "pt": "damasco",
    "ar": "مشمش",
    "pl": "morela",
-   "ru": "абрикос"
+   "ru": "абрикос",
+   "es": "el albaricoque"
   },
   {
    "id": "erdbeere",
@@ -774,7 +812,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -789,7 +828,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -810,7 +850,8 @@ window.SCENE = {
    "pt": "morango",
    "ar": "فراولة",
    "pl": "truskawka",
-   "ru": "клубника"
+   "ru": "клубника",
+   "es": "la fresa"
   },
   {
    "id": "pfirsich",
@@ -834,7 +875,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -849,7 +891,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -870,7 +913,8 @@ window.SCENE = {
    "pt": "pêssego",
    "ar": "خوخ",
    "pl": "brzoskwinia",
-   "ru": "персик"
+   "ru": "персик",
+   "es": "el durazno"
   },
   {
    "id": "apfel",
@@ -894,7 +938,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Obst",
@@ -909,7 +954,8 @@ window.SCENE = {
      "pt": "frutas",
      "ar": "فواكه",
      "pl": "owoce",
-     "ru": "фрукты"
+     "ru": "фрукты",
+     "es": "la fruta (en general)"
     }
    ],
    "sur": null,
@@ -930,7 +976,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "anna",
@@ -965,7 +1012,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "apfel-main",
@@ -994,7 +1042,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "stand",
@@ -1021,15 +1070,25 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "l'état, le stand",
-   "en": "state, stall",
-   "tr": "durum; tezgâh",
-   "uk": "стан; ятка",
-   "fa": "وضع کنونی؛ غرفه",
-   "pt": "situação, estado; barraca",
-   "ar": "وضع، حالة؛ كشك",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк"
+   "fr": "le stand",
+   "en": "stall",
+   "tr": "tezgâh",
+   "uk": "ятка",
+   "fa": "غرفه",
+   "pt": "barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "es": "el puesto",
+   "zone": {
+    "es_sens": {
+     "fr": "le stand",
+     "en": "the stall",
+     "pt": "a barraca",
+     "ar": "كشك",
+     "de": "der Stand"
+    }
+   }
   }
  ],
  "grosPlans": [],
@@ -1754,7 +1813,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Анна берёт яблоко у прилавка с местными фруктами: малина, черника, виноград, сливы, ревень, орехи, груши, крыжовник, вишня, ежевика, абрикосы, клубника, персики и яблоки — каждые в своём ящике.",
+    "alt": "Анна берёт яблоко у прилавка с местными фруктами: малина, черника, виноград, сливы, ревень, орехи, груши, крыжовник, вишня, ежевика, абрикосы, клубника, персики и яблоки — каждый вид в своём ящике.",
     "consigne": "Нажми на фрукт, овощ или ящик.",
     "nom_vue": "Местные фрукты",
     "autre_vue": "→ Южные фрукты"
@@ -1809,6 +1868,65 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Если бы вишни были дешевле, я взял бы два килограмма.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Хотя ревень кислый, Анна любит печь с ним пироги.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Малина, вероятно, собрана сегодня утром."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna toma una manzana en el puesto de frutas de la región: frambuesas, arándanos, uvas, ciruelas, ruibarbo, nueces, peras, grosellas espinosas, cerezas, moras, albaricoques, fresas, duraznos y manzanas, cada fruta en su caja.",
+    "consigne": "Toca una fruta, una verdura o una caja.",
+    "nom_vue": "Frutas de la región",
+    "autre_vue": "→ Frutas del sur"
+   },
+   "couches": {
+    "A1": "En el mercado",
+    "A2": "Wo? — las preposiciones en el mercado",
+    "B1": "Hacer las compras: cantidades y precios",
+    "B2": "Pasiva, relativas y adjetivos",
+    "C1": "Hipótesis, je … desto, genitivo"
+   },
+   "questions": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "<b>zwischen</b> + dativo plural: <b>den</b> Stachelbeere<b>n</b>, <b>den</b> Brombeere<b>n</b>.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "der Apfel → acusativo: <b>einen</b> Apfel.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "die Nuss → plural die Nüsse → dativo <b>den Nüssen</b>.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "<b>rechts neben</b> + dativo. die Himbeeren → <b>den</b> Himbeeren.",
+    "A2 | Anna steht vor dem Stand.": "<b>vor</b> + dativo (Wo?): der Stand → vor <b>dem</b> Stand.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "<b>eine Schale</b> = una canastilla. «Ich hätte gern …» = quisiera, la fórmula cortés.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Después de una cantidad, el sustantivo en plural, sin artículo: ein Kilo <b>Äpfel</b>.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Comparativo: groß → <b>größer</b> … <b>als</b>.",
+    "B1 | Was kosten die Himbeeren?": "El sujeto está en plural (die Himbeeren) → <b>kosten</b>.",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "<b>ein Pfund</b> = 500 gramos, muy común en el mercado.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Plural sin artículo, nominativo → <b>-e</b>: frisch<b>e</b> Erdbeeren.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Pasiva: <b>werden</b> + participio II (angebaut = cultivadas).",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "Sujeto de la relativa, femenino → <b>die</b>.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "Relativa con preposición: Wo? → dativo, die Kiste → <b>in der</b>.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "Pasiva: wird + participio II <b>verarbeitet</b> (transformado).",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "<b>je</b> + comparativo …, <b>desto</b> + comparativo: cuanto más…, más…",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "<b>angesichts</b> + genitivo = en vista de, teniendo en cuenta.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Condición sin <b>wenn</b>: el verbo al principio, luego <b>würde</b> + infinitivo.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = aunque (concesión), con el verbo al final.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Suposición sobre el pasado, en pasiva: participio II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "Las cerezas están entre las grosellas espinosas y las moras.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Anna toma una manzana en la mano.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "Las peras están al lado de las nueces.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Los arándanos están a la derecha de las frambuesas.",
+    "A2 | Anna steht vor dem Stand.": "Anna está delante del puesto.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Quisiera una canastilla de fresas.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Un kilo de manzanas, por favor.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Los duraznos son más grandes que los albaricoques.",
+    "B1 | Was kosten die Himbeeren?": "¿Cuánto cuestan las frambuesas?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Me llevo una libra de ciruelas.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Son fresas frescas de la región.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Las manzanas se cultivan aquí, en Brandeburgo.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "La mujer que escoge una manzana se llama Anna.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "La caja en la que están las moras está al lado de las cerezas.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "El ruibarbo se usa a menudo para hacer pasteles.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Cuanto más maduras están las fresas, más dulces saben.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "En vista de los largos trayectos de transporte, prefiero comprar fruta de la región.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Si las cerezas fueran más baratas, me llevaría dos kilos.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Aunque el ruibarbo es ácido, a Anna le gusta hacer pasteles con él.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Probablemente las frambuesas fueron recogidas esta mañana."
    }
   }
  }

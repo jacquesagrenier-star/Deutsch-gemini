@@ -1,0 +1,69 @@
+{
+ "id": "a1-voisine",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "Sur le palier, la voisine"},
+ "intro": {"fr": "Tu viens d'emménager à Berlin. Sur le palier, tu rencontres ta voisine d'en face. Présente-toi."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Ton premier samedi dans ton nouvel immeuble. Sur le palier, la porte d'en face s'ouvre."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Hallo! Wohnen Sie jetzt hier?", "fr": "Bonjour ! Vous habitez ici, maintenant ?"}
+   ],
+   "choix": [
+    {"t": "Ja, seit Montag. Ich bin Ihr neuer Nachbar.", "fr": "Oui, depuis lundi. Je suis votre nouveau voisin.", "va": "name"},
+    {"t": "Ja, seit Montag. Ich bin Ihre neue Nachbarin.", "fr": "Oui, depuis lundi. Je suis votre nouvelle voisine.", "va": "name"}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Wie schön! Ich heiße Carmen. Herzlich willkommen im Haus!", "fr": "C'est super ! Je m'appelle Carmen. Bienvenue dans l'immeuble !"}],
+   "choix": [
+    {"t": "Freut mich! Vielen Dank.", "fr": "Enchanté(e) ! Merci beaucoup.", "va": "woher"},
+    {"t": "Danke! Wohnen Sie schon lange hier?", "fr": "Merci ! Vous habitez ici depuis longtemps ?", "va": "woher",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ja, schon zehn Jahre!", "fr": "Oui, depuis dix ans déjà !"}]},
+    {"repete": true, "t": "Entschuldigung, wie heißen Sie?", "fr": "Pardon, comment vous appelez-vous ?", "va": "name",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Carmen. C, A, R, M, E, N.", "fr": "Carmen. C, A, R, M, E, N."}]}
+   ]
+  },
+  "woher": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "Und woher kommen Sie?", "fr": "Et vous venez d'où ?"}],
+   "choix": [
+    {"t": "Ich komme aus Frankreich.", "fr": "Je viens de France.", "va": "beruf",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Oh, aus Frankreich! Ich liebe Paris.", "fr": "Oh, de France ! J'adore Paris."}]},
+    {"t": "Ich komme aus Kanada.", "fr": "Je viens du Canada.", "va": "beruf",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Aus Kanada! Das ist aber weit!", "fr": "Du Canada ! C'est vraiment loin !"}]},
+    {"t": "Ich komme aus Belgien.", "fr": "Je viens de Belgique.", "va": "beruf",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Ah, Belgien! Die Schokolade!", "fr": "Ah, la Belgique ! Le chocolat !"}]},
+    {"faux": true, "t": "Ich komme von Frankreich.", "fr": "Je viens de France.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Von Frankreich? Ach so, aus Frankreich!", "fr": "« Von » Frankreich ? Ah, de France !"}],
+     "aide": {"fr": "Pour le pays d'où l'on vient : <b>aus</b> Frankreich, <b>aus</b> Kanada. « von » sert pour une personne ou un point de départ : von hier, von meiner Mutter."}}
+   ]
+  },
+  "beruf": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ich komme aus Spanien, aber ich lebe schon lange in Berlin. Ich bin Köchin, hier um die Ecke. Und Sie, was machen Sie beruflich?", "fr": "Moi, je viens d'Espagne, mais je vis à Berlin depuis longtemps. Je suis cuisinière, au coin de la rue. Et vous, qu'est-ce que vous faites dans la vie ?"}],
+   "choix": [
+    {"t": "Ich arbeite in einem Büro.", "fr": "Je travaille dans un bureau.", "va": "klingeln",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ah, schön.", "fr": "Ah, très bien."}]},
+    {"t": "Ich lerne Deutsch und suche Arbeit.", "fr": "J'apprends l'allemand et je cherche du travail.", "va": "klingeln",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Ihr Deutsch ist schon gut!", "fr": "Votre allemand est déjà bon !"}]},
+    {"t": "Ich bin Student.", "fr": "Je suis étudiant.", "va": "klingeln",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Toll! Viel Erfolg!", "fr": "Super ! Bonne réussite !"}]},
+    {"t": "Ich bin Studentin.", "fr": "Je suis étudiante.", "va": "klingeln",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Toll! Viel Erfolg!", "fr": "Super ! Bonne réussite !"}]}
+   ]
+  },
+  "klingeln": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Wenn Sie etwas brauchen, klingeln Sie einfach bei mir.", "fr": "Si vous avez besoin de quelque chose, sonnez chez moi, tout simplement."}],
+   "choix": [
+    {"t": "Vielen Dank, das ist sehr nett! Bis bald!", "fr": "Merci beaucoup, c'est très gentil ! À bientôt !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Bis bald!", "fr": "À bientôt !"}]},
+    {"t": "Danke! Schönes Wochenende!", "fr": "Merci ! Bon week-end !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Danke, gleichfalls!", "fr": "Merci, à vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté(e) à Carmen, ta voisine : depuis quand tu habites ici, d'où tu viens, ce que tu fais. Elle est cuisinière, et tu peux sonner chez elle."}
+}

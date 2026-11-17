@@ -1,0 +1,78 @@
+{
+ "id": "a1-pharmacie",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "sante",
+ "registre": "usted",
+ "titre": {"fr": "À la pharmacie"},
+ "intro": {"fr": "Tu as mal à la gorge ou à la tête. Dans une pharmacie de Madrid, tu dis ce qui ne va pas, depuis quand, et tu découvres un faux ami célèbre."},
+ "personnes": ["apothekerin"],
+ "debut": "inicio",
+ "prix": {"garganta": 650, "cabeza": 290},
+ "panier": ["medicina"],
+ "noeuds": {
+  "inicio": {
+   "dit": [
+    {"recit": {"fr": "Une farmacia de Madrid, avec sa croix verte. Tu ne te sens pas bien."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "Buenos días. ¿Qué le pasa?", "fr": "Bonjour. Qu'est-ce qui ne va pas ?"}
+   ],
+   "choix": [
+    {"t": "Me duele la garganta.", "fr": "J'ai mal à la gorge.", "pose": {"medicina": "garganta"}, "va": "constipado"},
+    {"t": "Me duele la cabeza.", "fr": "J'ai mal à la tête.", "pose": {"medicina": "cabeza"}, "va": "constipado"},
+    {"faux": true, "t": "Tengo mal a la cabeza.", "fr": "J'ai mal à la tête (mot à mot).",
+     "puis": [{"qui": "apothekerin", "air": "perplexe", "t": "¿Mal a la cabeza? Ah… le duele la cabeza, ¿no?", "fr": "« Mal à la tête » ? Ah… vous avez mal à la tête, c'est ça ?"}],
+     "aide": {"fr": "<b>« J'ai mal à… » se dit avec « doler » :</b> « Me duele la cabeza », « Me duele la garganta » (mot à mot : la tête me fait mal)."}}
+   ]
+  },
+  "constipado": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "¿Es un constipado? ¿Tiene tos?", "fr": "C'est un rhume ? Vous toussez ?"}],
+   "choix": [
+    {"t": "¿Constipado? ¿Qué significa?", "fr": "« Constipado » ? Qu'est-ce que ça veut dire ?", "va": "desde",
+     "puis": [{"qui": "apothekerin", "air": "sourire", "t": "Un constipado es un resfriado: con tos y la nariz tapada.", "fr": "Un « constipado », c'est un rhume : on tousse et on a le nez bouché."}]},
+    {"t": "Sí, un poco de tos.", "fr": "Oui, je tousse un peu.", "va": "desde"},
+    {"t": "No, no tengo tos.", "fr": "Non, je ne tousse pas.", "va": "desde"}
+   ]
+  },
+  "desde": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "¿Desde cuándo está así?", "fr": "Depuis quand êtes-vous comme ça ?"}],
+   "choix": [
+    {"t": "Desde ayer.", "fr": "Depuis hier.", "va": "fiebre"},
+    {"t": "Desde hace dos días.", "fr": "Depuis deux jours.", "va": "fiebre"}
+   ]
+  },
+  "fiebre": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "¿Tiene fiebre? ¿Y alergia a algún medicamento?", "fr": "Vous avez de la fièvre ? Et une allergie à un médicament ?"}],
+   "choix": [
+    {"t": "No, no tengo fiebre ni alergias.", "fr": "Non, je n'ai ni fièvre ni allergies.", "va": "medicina"},
+    {"t": "Un poco de fiebre. Y no tengo alergias.", "fr": "Un peu de fièvre. Et je n'ai pas d'allergies.", "va": "medicina",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Entonces beba mucha agua y descanse.", "fr": "Alors buvez beaucoup d'eau et reposez-vous."}]}
+   ]
+  },
+  "medicina": {
+   "dit": [
+    {"si": {"medicina": "garganta"}, "qui": "apothekerin", "air": "attentive", "t": "Tome estas pastillas para la garganta: una cada cuatro horas.", "fr": "Prenez ces pastilles pour la gorge : une toutes les quatre heures."},
+    {"si": {"medicina": "cabeza"}, "qui": "apothekerin", "air": "attentive", "t": "Tome este paracetamol: una pastilla cada ocho horas, después de comer.", "fr": "Prenez ce paracétamol : un comprimé toutes les huit heures, après le repas."}
+   ],
+   "choix": [
+    {"t": "¿Necesito receta?", "fr": "J'ai besoin d'une ordonnance ?", "va": "adios",
+     "puis": [{"qui": "apothekerin", "air": "sourire", "t": "No, no hace falta receta. Son {a_payer}.", "fr": "Non, pas besoin d'ordonnance. Ça fait {a_payer}.", "dit": "No, no hace falta receta. Son {a_payer:mots}."}]},
+    {"t": "Muy bien. ¿Cuánto es?", "fr": "Très bien. C'est combien ?", "va": "adios",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}]}
+   ]
+  },
+  "adios": {
+   "dit": [
+    {"recit": {"fr": "Tu paies."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "¡Que se mejore!", "fr": "Bon rétablissement !"}
+   ],
+   "choix": [
+    {"t": "Muchas gracias. ¡Adiós!", "fr": "Merci beaucoup. Au revoir !", "va": null},
+    {"faux": true, "t": "Gracias. ¡Que se mejore usted también!", "fr": "Merci. Bon rétablissement à vous aussi !",
+     "puis": [{"qui": "apothekerin", "air": "amuse", "t": "¿Yo? ¡Ja, ja! Yo estoy muy bien, gracias.", "fr": "Moi ? Ha ha ! Je vais très bien, merci."}],
+     "aide": {"fr": "<b>« ¡Que se mejore! » se dit au malade</b> : c'est toi. Réponds simplement « Muchas gracias » ou « Gracias, adiós »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ce qui n'allait pas, appris qu'un « constipado » est un rhume, et payé {a_payer}."}
+}

@@ -1,0 +1,64 @@
+{
+ "id": "a1-musee",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "À la caisse du musée"},
+ "intro": {"fr": "Un dimanche au musée, à Berlin. À la caisse, tu achètes ton billet, tu demandes la réduction étudiante et tu choisis l'audioguide… ou pas."},
+ "personnes": ["museum_kasse"],
+ "debut": "kasse",
+ "prix": {"voll": 1200, "ermaessigt": 600, "audio": 400, "ohne": 0},
+ "panier": ["karte", "guide"],
+ "noeuds": {
+  "kasse": {
+   "dit": [
+    {"recit": {"fr": "À la caisse d'un grand musée de Berlin. Il n'y a pas beaucoup de monde."}},
+    {"qui": "museum_kasse", "air": "sourire", "t": "Guten Tag! Was darf es sein?", "fr": "Bonjour ! Qu'est-ce que ce sera ?"}
+   ],
+   "choix": [
+    {"t": "Eine Karte, bitte. Gibt es eine Ermäßigung für Studenten?", "fr": "Un billet, s'il vous plaît. Il y a une réduction pour les étudiants ?", "va": "ausweis"},
+    {"t": "Eine Karte für die Ausstellung, bitte.", "fr": "Un billet pour l'exposition, s'il vous plaît.", "pose": {"karte": "voll"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Gern. Die Karte kostet zwölf Euro.", "fr": "Volontiers. Le billet coûte douze euros."}]},
+    {"faux": true, "t": "Eine Karte, bitte. Ich bin ein Student.", "fr": "Un billet, s'il vous plaît. Je suis un étudiant.",
+     "puis": [{"qui": "museum_kasse", "air": "perplexe", "t": "Ein Student? Ach so, Sie studieren.", "fr": "« Un étudiant » ? Ah, vous faites des études."}],
+     "aide": {"fr": "Pour un métier ou des études, pas d'article : « Ich bin <b>Student</b> » (ou « <b>Studentin</b> »). Et pour la réduction : « Gibt es eine <b>Ermäßigung</b> für Studenten? »."}}
+   ]
+  },
+  "ausweis": {
+   "dit": [{"qui": "museum_kasse", "air": "question", "t": "Ja. Haben Sie einen Studentenausweis?", "fr": "Oui. Vous avez une carte d'étudiant ?"}],
+   "choix": [
+    {"t": "Ja, hier ist er.", "fr": "Oui, la voici.", "pose": {"karte": "ermaessigt"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Danke. Dann kostet die Karte nur sechs Euro.", "fr": "Merci. Alors le billet ne coûte que six euros."}]},
+    {"t": "Nein, leider nicht. Dann eine normale Karte, bitte.", "fr": "Non, malheureusement. Alors un billet normal, s'il vous plaît.", "pose": {"karte": "voll"}, "va": "guide",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Kein Problem. Das sind zwölf Euro.", "fr": "Pas de problème. Ça fait douze euros."}]}
+   ]
+  },
+  "guide": {
+   "dit": [{"qui": "museum_kasse", "air": "question", "t": "Möchten Sie auch einen Audioguide? Er kostet vier Euro.", "fr": "Vous voulez aussi un audioguide ? Il coûte quatre euros."}],
+   "choix": [
+    {"t": "Ja, gern. Gibt es ihn auch auf Französisch?", "fr": "Oui, volontiers. Il existe aussi en français ?", "pose": {"guide": "audio"}, "va": "zahlen",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Ja, auf Französisch, Englisch und Spanisch.", "fr": "Oui, en français, en anglais et en espagnol."}]},
+    {"t": "Nein, danke.", "fr": "Non, merci.", "pose": {"guide": "ohne"}, "va": "zahlen"}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "museum_kasse", "air": "attentive", "t": "Das macht dann {a_payer}.", "dit": "Das macht dann {a_payer:mots}.", "fr": "Ça fait donc {a_payer}."}],
+   "choix": [
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": "tasche",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Danke. Hier ist Ihre Eintrittskarte.", "fr": "Merci. Voici votre billet d'entrée."}]},
+    {"t": "Bar, bitte. Hier sind zwanzig Euro.", "fr": "En espèces, s'il vous plaît. Voici vingt euros.", "va": "tasche",
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Danke. Und hier ist Ihr Wechselgeld.", "fr": "Merci. Et voici votre monnaie."}]}
+   ]
+  },
+  "tasche": {
+   "dit": [{"qui": "museum_kasse", "air": "attentive", "t": "Ach, und Ihren Rucksack geben Sie bitte an der Garderobe ab.", "fr": "Ah, et votre sac à dos, merci de le déposer au vestiaire."}],
+   "choix": [
+    {"t": "Natürlich. Wo ist die Garderobe?", "fr": "Bien sûr. Où est le vestiaire ?", "va": null,
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Da hinten links. Viel Spaß im Museum!", "fr": "Là-bas, à gauche. Bonne visite !"}]},
+    {"t": "Okay. Ist die Garderobe kostenlos?", "fr": "D'accord. Le vestiaire est gratuit ?", "va": null,
+     "puis": [{"qui": "museum_kasse", "air": "sourire", "t": "Ja, sie ist kostenlos. Viel Spaß!", "fr": "Oui, il est gratuit. Bonne visite !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté ton entrée au musée ({a_payer} en tout), demandé ce que tu voulais savoir et trouvé où laisser ton sac."}
+}

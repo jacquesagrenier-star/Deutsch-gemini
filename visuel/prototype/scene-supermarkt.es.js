@@ -1258,7 +1258,7 @@ window.SCENE = {
     "C1 | Debe de querer chocolate.": "She must want chocolate.",
     "C1 | Puede que el hombre de la caja sea el dueño.": "The man at the till may be the owner.",
     "C1 | Estará a punto de cerrar.": "It is probably about to close.",
-    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "They say the bread here is the best in the neighbourhood."
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "They say the bread here is the best in the neighborhood."
    }
   },
   "tr": {

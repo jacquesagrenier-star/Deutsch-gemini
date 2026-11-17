@@ -1,0 +1,139 @@
+{
+ "id": "b1-loyer",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Négocier une hausse de loyer"},
+ "intro": {"fr": "Tu loues ton appartement depuis deux ans. Ta propriétaire, Mme Lorenz, t'a écrit : elle veut augmenter le loyer. Tu la rencontres pour en discuter, poliment mais avec des arguments."},
+ "personnes": ["vermieterin"],
+ "debut": "treffen",
+ "noeuds": {
+  "treffen": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin. Mme Lorenz sonne chez toi, sa lettre à la main."}},
+    {"qui": "vermieterin", "air": "sourire", "t": "Guten Morgen! Danke, dass Sie sich Zeit nehmen. Sie haben meinen Brief bekommen?", "fr": "Bonjour ! Merci de prendre le temps. Vous avez bien reçu ma lettre ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, Frau Lorenz. Ja, und ich würde gern mit Ihnen darüber sprechen.", "fr": "Bonjour, madame Lorenz. Oui, et j'aimerais en parler avec vous.", "va": "erhoehung"},
+    {"t": "Ja, kommen Sie bitte herein. Deshalb wollte ich Sie persönlich treffen.", "fr": "Oui, entrez, je vous en prie. C'est pour ça que je voulais vous voir en personne.", "va": "erhoehung"},
+    {"faux": true, "t": "Ja. Ich möchte mit dir darüber sprechen.", "fr": "Oui. J'aimerais en parler avec toi.",
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Oh … Wir sind noch beim Sie, oder? Aber ja, sprechen wir darüber.", "fr": "Oh… Nous nous vouvoyons encore, non ? Mais oui, parlons-en."}],
+     "aide": {"fr": "<b>« mit dir »</b>, c'est le tutoiement. On vouvoie sa propriétaire : « Ich würde gern mit <b>Ihnen</b> darüber sprechen. »"}}
+   ]
+  },
+  "erhoehung": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Also, wie ich geschrieben habe: Ab dem ersten März möchte ich die Kaltmiete von siebenhundertfünfzig auf achthundertfünfzig Euro erhöhen.", "fr": "Donc, comme je l'ai écrit : à partir du premier mars, je souhaite augmenter le loyer hors charges de sept cent cinquante à huit cent cinquante euros."}],
+   "choix": [
+    {"t": "Ehrlich gesagt hat mich das sehr überrascht.", "fr": "Honnêtement, ça m'a beaucoup surpris(e).", "va": "grund"},
+    {"t": "Hundert Euro mehr im Monat, das ist wirklich viel für mich.", "fr": "Cent euros de plus par mois, c'est vraiment beaucoup pour moi.", "va": "grund"},
+    {"faux": true, "t": "Das ist zu viel teuer für mich.", "fr": "C'est trop cher pour moi.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Zu teuer, meinen Sie? Na ja, alles wird teurer, auch für mich.", "fr": "Trop cher, vous voulez dire ? Eh oui, tout augmente, pour moi aussi."}],
+     "aide": {"fr": "« Trop cher » se dit <b>« zu teuer »</b>, sans « viel ». Plus diplomate : « Das ist wirklich viel für mich. »"}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie die Zahlen bitte wiederholen?", "fr": "Pardon, pourriez-vous répéter les chiffres, s'il vous plaît ?", "va": "erhoehung",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Gern. Bisher zahlen Sie siebenhundertfünfzig Euro kalt, ab März wären es achthundertfünfzig.", "fr": "Volontiers. Jusqu'ici, vous payez sept cent cinquante euros hors charges ; à partir de mars, ce serait huit cent cinquante."}]}
+   ]
+  },
+  "grund": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Das verstehe ich. Aber die Mieten im Kiez sind stark gestiegen, und laut Mietspiegel liegt Ihre Wohnung unter dem Durchschnitt. Was spricht denn aus Ihrer Sicht dagegen?", "fr": "Je comprends. Mais les loyers du quartier ont beaucoup augmenté, et d'après le barème des loyers, votre appartement est en dessous de la moyenne. Qu'est-ce qui s'y oppose, de votre point de vue ?"}],
+   "choix": [
+    {"t": "Die Fenster sind alt und nicht mehr dicht. Im Winter ist es im Wohnzimmer kalt.", "fr": "Les fenêtres sont vieilles et ne sont plus étanches. En hiver, il fait froid dans le salon.", "pose": {"arg": "fenster", "reparatur": "ja"}, "va": "maengel"},
+    {"t": "Die Heizung ist diesen Winter schon zweimal ausgefallen.", "fr": "Le chauffage est déjà tombé en panne deux fois cet hiver.", "pose": {"arg": "heizung", "reparatur": "ja"}, "va": "maengel"},
+    {"t": "Ich wohne seit zwei Jahren hier und habe die Miete immer pünktlich bezahlt.", "fr": "J'habite ici depuis deux ans et j'ai toujours payé le loyer à temps.", "pose": {"arg": "treu", "reparatur": "nein"}, "va": "angebot",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Das stimmt, mit Ihnen hatte ich nie Ärger. Und gute Mieter möchte ich nicht verlieren.", "fr": "C'est vrai, avec vous, je n'ai jamais eu d'ennuis. Et je ne veux pas perdre de bons locataires."}]},
+    {"faux": true, "t": "Ich bin nicht einverstanden, weil die Fenster sind alt.", "fr": "Je ne suis pas d'accord, parce que les fenêtres sont vieilles.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Weil die Fenster alt sind? Erzählen Sie mal genauer.", "fr": "Parce que les fenêtres sont vieilles ? Dites-m'en plus."}],
+     "aide": {"fr": "Après <b>« weil »</b>, le verbe va à la fin : « weil die Fenster alt <b>sind</b> ». Dis plutôt : « Die Fenster sind alt und nicht mehr dicht. »"}}
+   ]
+  },
+  "maengel": {
+   "dit": [
+    {"qui": "vermieterin", "air": "surprise", "si": {"arg": "fenster"}, "t": "Die Fenster? Davon hat mir die Hausverwaltung nie etwas gesagt. Wie schlimm ist es denn?", "fr": "Les fenêtres ? La gérance ne m'en a jamais parlé. C'est grave à quel point ?"},
+    {"qui": "vermieterin", "air": "surprise", "si": {"arg": "heizung"}, "t": "Zweimal? Die Hausverwaltung hat mir nur von einem Mal erzählt. Wie lange hat das denn gedauert?", "fr": "Deux fois ? La gérance ne m'a parlé que d'une fois. Ça a duré combien de temps ?"}
+   ],
+   "choix": [
+    {"si": {"arg": "fenster"}, "t": "Es zieht stark, und ich muss viel mehr heizen als früher.", "fr": "Il y a de forts courants d'air, et je dois chauffer beaucoup plus qu'avant.", "va": "angebot",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Das ist natürlich nicht in Ordnung. Da muss etwas gemacht werden.", "fr": "Ce n'est évidemment pas normal. Il faut faire quelque chose."}]},
+    {"si": {"arg": "fenster"}, "t": "Morgens sind die Fenster innen ganz nass, und meine Heizkosten sind sehr hoch.", "fr": "Le matin, les fenêtres sont toutes mouillées à l'intérieur, et mes frais de chauffage sont très élevés.", "va": "angebot",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Das ist natürlich nicht in Ordnung. Da muss etwas gemacht werden.", "fr": "Ce n'est évidemment pas normal. Il faut faire quelque chose."}]},
+    {"si": {"arg": "heizung"}, "t": "Beim ersten Mal drei Tage, beim zweiten Mal fast eine Woche.", "fr": "La première fois trois jours, la deuxième presque une semaine.", "va": "angebot",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Fast eine Woche, mitten im Winter? Das tut mir leid, das hätte schneller gehen müssen.", "fr": "Presque une semaine, en plein hiver ? Je suis désolée, ça aurait dû aller plus vite."}]},
+    {"si": {"arg": "heizung"}, "t": "Im Januar hatten wir fünf Tage lang keine Heizung und kein warmes Wasser.", "fr": "En janvier, nous avons passé cinq jours sans chauffage ni eau chaude.", "va": "angebot",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Fünf Tage, mitten im Winter? Das tut mir leid, das hätte schneller gehen müssen.", "fr": "Cinq jours, en plein hiver ? Je suis désolée, ça aurait dû aller plus vite."}]},
+    {"faux": true, "t": "Es ist sehr kalt in die Wohnung.", "fr": "Il fait très froid dans l'appartement.",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "In der Wohnung ist es kalt, verstehe. Aber was genau ist das Problem?", "fr": "Il fait froid dans l'appartement, je comprends. Mais quel est le problème, exactement ?"}],
+     "aide": {"fr": "Pour dire où l'on est (sans mouvement), <b>« in »</b> prend le datif : « in <b>der</b> Wohnung ». Et réponds à sa question avec un détail précis."}}
+   ]
+  },
+  "angebot": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Also gut, ich komme Ihnen entgegen: Sagen wir achthundertzwanzig Euro statt achthundertfünfzig.", "fr": "Bon, je fais un pas vers vous : disons huit cent vingt euros au lieu de huit cent cinquante."}],
+   "choix": [
+    {"si": {"reparatur": "ja"}, "t": "Damit bin ich einverstanden, wenn zuerst alles repariert wird.", "fr": "Je suis d'accord, à condition que tout soit d'abord réparé.", "va": "schriftlich",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Das ist fair. Die Handwerker kommen, bevor die neue Miete gilt. Abgemacht!", "fr": "C'est honnête. Les artisans viendront avant que le nouveau loyer s'applique. Marché conclu !"}]},
+    {"si": {"reparatur": "nein"}, "t": "Damit bin ich einverstanden, wenn die Miete dann zwei Jahre lang gleich bleibt.", "fr": "Je suis d'accord, à condition que le loyer reste ensuite le même pendant deux ans.", "va": "schriftlich",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Zwei Jahre ohne Erhöhung … Na gut, das kann ich Ihnen versprechen. Abgemacht!", "fr": "Deux ans sans augmentation… Bon, ça, je peux vous le promettre. Marché conclu !"}]},
+    {"t": "Das ist immer noch viel. Wären achthundert Euro für Sie möglich?", "fr": "C'est encore beaucoup. Huit cents euros, ce serait possible pour vous ?", "va": "mitte"},
+    {"faux": true, "t": "Die Miete bekommt zu teuer für mich.", "fr": "Le loyer devient trop cher pour moi.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Die Miete bekommt …? Ach, sie wird Ihnen zu teuer, meinen Sie.", "fr": "Le loyer reçoit… ? Ah, il devient trop cher pour vous, vous voulez dire."}],
+     "aide": {"fr": "<b>« bekommen »</b> veut dire recevoir. « Devenir » se dit <b>« werden »</b> : « Die Miete wird zu teuer für mich. » Ou propose un chiffre : « Wären achthundert Euro möglich? »"}}
+   ]
+  },
+  "mitte": {
+   "dit": [
+    {"qui": "vermieterin", "air": "amuse", "t": "Achthundert … Sie verhandeln gut! Treffen wir uns in der Mitte: achthundertzehn Euro.", "fr": "Huit cents… Vous négociez bien ! Coupons la poire en deux : huit cent dix euros."},
+    {"qui": "vermieterin", "air": "sourire", "si": {"arg": "fenster"}, "t": "Und die Fenster lasse ich noch diesen Monat reparieren.", "fr": "Et je fais réparer les fenêtres ce mois-ci encore."},
+    {"qui": "vermieterin", "air": "sourire", "si": {"arg": "heizung"}, "t": "Und die Heizung lasse ich noch diesen Monat gründlich prüfen.", "fr": "Et je fais vérifier le chauffage à fond ce mois-ci encore."},
+    {"qui": "vermieterin", "air": "sourire", "si": {"arg": "treu"}, "t": "Und dafür bleibt die Miete zwei Jahre lang gleich.", "fr": "Et en échange, le loyer ne bouge plus pendant deux ans."}
+   ],
+   "choix": [
+    {"t": "Gut, achthundertzehn Euro – damit bin ich einverstanden.", "fr": "Bien, huit cent dix euros : je suis d'accord.", "va": "schriftlich",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Wunderbar. Dann haben wir eine Lösung.", "fr": "Formidable. Alors nous avons une solution."}]},
+    {"t": "In Ordnung, das ist ein fairer Vorschlag. Vielen Dank.", "fr": "Entendu, c'est une proposition honnête. Merci beaucoup.", "va": "schriftlich",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Wunderbar. Dann haben wir eine Lösung.", "fr": "Formidable. Alors nous avons une solution."}]},
+    {"faux": true, "t": "Gut, das ist korrekt für mich.", "fr": "Bon, c'est correct pour moi.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Korrekt? … Sie meinen, das ist in Ordnung für Sie?", "fr": "Exact ?… Vous voulez dire que ça vous convient ?"}],
+     "aide": {"fr": "<b>« korrekt »</b> veut dire exact, sans faute. Pour accepter : « Das ist in Ordnung » ou « Damit bin ich einverstanden »."}}
+   ]
+  },
+  "schriftlich": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Schön, dass wir uns einig sind.", "fr": "Je suis contente que nous soyons d'accord."}],
+   "choix": [
+    {"t": "Könnten Sie mir das bitte schriftlich geben?", "fr": "Pourriez-vous me donner ça par écrit, s'il vous plaît ?", "va": "datum",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Selbstverständlich. Die Hausverwaltung schickt Ihnen nächste Woche einen Nachtrag zum Mietvertrag, den unterschreiben wir beide.", "fr": "Naturellement. La gérance vous envoie la semaine prochaine un avenant au bail, que nous signerons, vous et moi."}]},
+    {"t": "Ich hätte das gern schriftlich, mit der neuen Miete und dem Datum.", "fr": "J'aimerais avoir ça par écrit, avec le nouveau loyer et la date.", "va": "datum",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Selbstverständlich. Die Hausverwaltung schickt Ihnen nächste Woche einen Nachtrag zum Mietvertrag, den unterschreiben wir beide.", "fr": "Naturellement. La gérance vous envoie la semaine prochaine un avenant au bail, que nous signerons, vous et moi."}]},
+    {"faux": true, "t": "Können Sie mir das auf Schrift geben?", "fr": "Vous pouvez me donner ça par écrit ?",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Auf Schrift? … Ach, schriftlich! Ja, natürlich.", "fr": "« Auf Schrift » ?… Ah, par écrit ! Oui, bien sûr."}],
+     "aide": {"fr": "« Par écrit » se dit en un mot : <b>« schriftlich »</b>. « Könnten Sie mir das bitte schriftlich geben? »"}}
+   ]
+  },
+  "datum": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Haben Sie sonst noch eine Frage?", "fr": "Avez-vous une autre question ?"}],
+   "choix": [
+    {"si": {"reparatur": "ja"}, "t": "Ja. Wann kommen denn die Handwerker?", "fr": "Oui. Quand les artisans viendront-ils ?", "va": "ende",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Ich rufe am Montag die Firma an. Ich denke, in zwei bis drei Wochen. Die Hausverwaltung meldet sich bei Ihnen wegen des Termins.", "fr": "J'appelle l'entreprise lundi. Je pense que ce sera dans deux à trois semaines. La gérance vous contactera pour la date."}]},
+    {"si": {"reparatur": "ja"}, "t": "Ja. Muss ich zu Hause sein, wenn die Handwerker kommen?", "fr": "Oui. Dois-je être à la maison quand les artisans viendront ?", "va": "ende",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Ja, bitte, oder Sie geben der Hausverwaltung einen Schlüssel. Sie meldet sich bei Ihnen wegen des Termins.", "fr": "Oui, s'il vous plaît, ou alors vous laissez une clé à la gérance. Elle vous contactera pour la date."}]},
+    {"si": {"reparatur": "nein"}, "t": "Ja. Ab wann muss ich die neue Miete überweisen?", "fr": "Oui. À partir de quand dois-je virer le nouveau loyer ?", "va": "ende",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Ab dem ersten März, wie im Brief. Denken Sie daran, Ihren Dauerauftrag bei der Bank zu ändern.", "fr": "À partir du premier mars, comme dans la lettre. Pensez à modifier votre virement permanent à la banque."}]},
+    {"si": {"reparatur": "nein"}, "t": "Ja. Steht dann auch im Vertrag, dass die Miete zwei Jahre gleich bleibt?", "fr": "Oui. Le contrat dira-t-il aussi que le loyer reste le même pendant deux ans ?", "va": "ende",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Ja, das lasse ich hineinschreiben. Versprochen ist versprochen.", "fr": "Oui, je le ferai inscrire. Chose promise, chose due."}]},
+    {"faux": true, "t": "Ja. Wenn bekomme ich den Nachtrag?", "fr": "Oui. Quand est-ce que je reçois l'avenant ?",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Wann Sie ihn bekommen? Nächste Woche, mit der Post.", "fr": "Quand vous le recevrez ? La semaine prochaine, par la poste."}],
+     "aide": {"fr": "Dans une question, « quand » se dit <b>« wann »</b>. « Wenn » veut dire « si » ou « quand » dans une subordonnée. « <b>Wann</b> kommen die Handwerker? »"}}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Dann ist ja alles geklärt. Danke für das offene Gespräch!", "fr": "Alors tout est réglé. Merci pour cette discussion franche !"}],
+   "choix": [
+    {"t": "Ich danke Ihnen auch. Schön, dass wir eine Lösung gefunden haben.", "fr": "Merci à vous aussi. Je suis content(e) que nous ayons trouvé une solution.", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Das finde ich auch. Ein schönes Wochenende!", "fr": "Moi aussi. Bon week-end !"}]},
+    {"t": "Vielen Dank, Frau Lorenz. Auf Wiedersehen und ein schönes Wochenende!", "fr": "Merci beaucoup, madame Lorenz. Au revoir et bon week-end !", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Danke, gleichfalls. Auf Wiedersehen!", "fr": "Merci, vous de même. Au revoir !"}]},
+    {"faux": true, "t": "Danke. Ich bin sehr zufrieden von der Lösung.", "fr": "Merci. Je suis très content(e) de la solution.",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Mit der Lösung bin ich auch zufrieden!", "fr": "Moi aussi, je suis contente de la solution !"}],
+     "aide": {"fr": "« Content de » se dit <b>« zufrieden mit »</b> + datif : « Ich bin sehr zufrieden <b>mit</b> der Lösung. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as négocié avec ta propriétaire : tu as donné ton argument, obtenu un loyer plus bas que prévu et demandé que tout soit mis par écrit."}
+}

@@ -1,0 +1,396 @@
+{
+ "id": "a2-creche",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Le premier jour à la crèche"
+ },
+ "intro": {
+  "fr": "Ta fille Lily, deux ans, commence la crèche à Boston : c'est le premier jour d'adaptation. Réponds à Kate, son éducatrice, et pose tes questions."
+ },
+ "personnes": [
+  "a22_erzieherin"
+ ],
+ "debut": "hello",
+ "textes": {
+  "regime_fr": {
+   "cle": "regime",
+   "lait": "qu'elle ne boit pas de lait",
+   "noix": "son allergie aux noix"
+  }
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Huit heures et demie. Tu arrives avec Lily, qui serre sa peluche contre elle. Une jeune femme rousse s'accroupit devant vous."
+     }
+    },
+    {
+     "qui": "a22_erzieherin",
+     "air": "sourire",
+     "t": "Good morning! This must be Lily! I'm Kate, her teacher. She's two, right?",
+     "fr": "Bonjour ! Ce doit être Lily ! Je suis Kate, son éducatrice. Elle a deux ans, c'est ça ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, she's two. It's her first day.",
+     "fr": "Oui, elle a deux ans. C'est son premier jour.",
+     "va": "things",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Welcome to you both! We're so happy to have her.",
+       "fr": "Bienvenue à vous deux ! Nous sommes ravis de l'accueillir."
+      }
+     ]
+    },
+    {
+     "t": "Yes, she's two years old. She's a little shy today.",
+     "fr": "Oui, elle a deux ans. Elle est un peu timide aujourd'hui.",
+     "va": "things",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "That's normal on the first day. Take your time, Lily.",
+       "fr": "C'est normal le premier jour. Prends ton temps, Lily."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, she has two years.",
+     "fr": "Oui, elle « possède » deux ans.",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "amuse",
+       "t": "She has two years? Ah, she is two years old!",
+       "fr": "Elle « a » deux ans ? Ah, elle « est » âgée de deux ans !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>L'âge se dit avec « be »</b>, pas avec « have » : « She's two. » ou « She's two years old. »"
+     }
+    }
+   ]
+  },
+  "things": {
+   "dit": [
+    {
+     "qui": "a22_erzieherin",
+     "air": "question",
+     "t": "Did you bring a change of clothes, diapers, and a blanket for nap time?",
+     "fr": "Avez-vous apporté des vêtements de rechange, des couches et une couverture pour la sieste ?",
+     "t_gb": "Did you bring a change of clothes, nappies and a blanket for nap time?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, everything is in her bag.",
+     "fr": "Oui, tout est dans son sac.",
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Perfect. Her cubby is right here, with her name on it.",
+       "fr": "Parfait. Son casier est juste ici, avec son nom dessus.",
+       "t_gb": "Perfect. Her peg is right here, with her name on it."
+      }
+     ]
+    },
+    {
+     "t": "I forgot the blanket. I'll bring it tomorrow.",
+     "fr": "J'ai oublié la couverture. Je l'apporte demain.",
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "No problem. We have extra blankets for today.",
+       "fr": "Pas de problème. Nous avons des couvertures en plus pour aujourd'hui."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, could you speak more slowly, please?",
+     "fr": "Pardon, pouvez-vous parler plus lentement, s'il vous plaît ?",
+     "va": "things",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Of course. Do you have extra clothes, diapers, and a blanket for her?",
+       "fr": "Bien sûr. Avez-vous des vêtements en plus, des couches et une couverture pour elle ?",
+       "t_gb": "Of course. Do you have extra clothes, nappies and a blanket for her?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "food": {
+   "dit": [
+    {
+     "qui": "a22_erzieherin",
+     "air": "question",
+     "t": "Does she eat everything? Any allergies?",
+     "fr": "Est-ce qu'elle mange de tout ? Des allergies ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "She eats everything, but she doesn't drink milk.",
+     "fr": "Elle mange de tout, mais elle ne boit pas de lait.",
+     "pose": {
+      "regime": "lait"
+     },
+     "va": "stay",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "attentive",
+       "t": "OK, no milk. We'll give her water.",
+       "fr": "D'accord, pas de lait. Nous lui donnerons de l'eau."
+      }
+     ]
+    },
+    {
+     "t": "She's allergic to nuts.",
+     "fr": "Elle est allergique aux noix.",
+     "pose": {
+      "regime": "noix"
+     },
+     "va": "stay",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "attentive",
+       "t": "Thank you, that's very important. I'll tell the whole team.",
+       "fr": "Merci, c'est très important. Je préviens toute l'équipe."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "She is allergic of nuts.",
+     "fr": "Elle est allergique « de » noix.",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "perplexe",
+       "t": "Allergic … to nuts? Let me write that down.",
+       "fr": "Allergique… aux noix ? Je le note."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« allergic » se construit avec « to »</b>, jamais « of » : « She's allergic to nuts. »"
+     }
+    }
+   ]
+  },
+  "stay": {
+   "dit": [
+    {
+     "qui": "a22_erzieherin",
+     "air": "attentive",
+     "t": "Today is her first transition day. You stay with her in the classroom for an hour, and then you go home together.",
+     "fr": "Aujourd'hui, c'est son premier jour d'adaptation. Vous restez une heure avec elle dans la salle, puis vous rentrez ensemble.",
+     "t_gb": "Today is her first settling-in day. You stay with her in the room for an hour, and then you go home together."
+    }
+   ],
+   "choix": [
+    {
+     "t": "All right. When can I leave her alone here?",
+     "fr": "D'accord. Quand est-ce que je pourrai la laisser seule ici ?",
+     "va": "pickup",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Little by little. Tomorrow you leave for thirty minutes, and by Friday she stays until lunch.",
+       "fr": "Petit à petit. Demain, vous partez trente minutes, et d'ici vendredi elle reste jusqu'au déjeuner."
+      }
+     ]
+    },
+    {
+     "t": "OK. How many days does it take?",
+     "fr": "D'accord. Ça prend combien de jours ?",
+     "va": "pickup",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "About a week. Every day you leave a little longer. Every child is different.",
+       "fr": "Environ une semaine. Chaque jour, vous partez un peu plus longtemps. Chaque enfant est différent."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK. I rest with her one hour.",
+     "fr": "D'accord. Je me repose avec elle une heure.",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "amuse",
+       "t": "Rest? You can try, but she'll want to play!",
+       "fr": "Vous reposer ? Vous pouvez essayer, mais elle voudra jouer !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« rest »</b> veut dire se reposer. « Rester » se dit « stay » : « I'll stay with her for an hour. »"
+     }
+    }
+   ]
+  },
+  "pickup": {
+   "dit": [
+    {
+     "qui": "a22_erzieherin",
+     "air": "question",
+     "t": "Who usually picks her up in the afternoon?",
+     "fr": "Qui vient la chercher l'après-midi, d'habitude ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I do. But sometimes her grandmother comes. Is that OK?",
+     "fr": "Moi. Mais parfois, c'est sa grand-mère qui vient. C'est possible ?",
+     "va": "phone",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Yes, but we need her name on the pick-up list. And she has to show an ID the first time.",
+       "fr": "Oui, mais il nous faut son nom sur la liste des personnes autorisées. Et elle doit montrer une pièce d'identité la première fois.",
+       "t_gb": "Yes, but we need her name on the pick-up list. And she has to show some ID the first time."
+      }
+     ]
+    },
+    {
+     "t": "Me, or her grandmother. Do I need to sign a paper for that?",
+     "fr": "Moi, ou sa grand-mère. Est-ce que je dois signer un papier pour ça ?",
+     "va": "phone",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Yes. Please write her name on this form and sign it. She has to show an ID the first time.",
+       "fr": "Oui. Écrivez son nom sur ce formulaire et signez-le, s'il vous plaît. Elle doit montrer une pièce d'identité la première fois.",
+       "t_gb": "Yes. Please write her name on this form and sign it. She has to show some ID the first time."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Her grandmother comes too. Give me the paper.",
+     "fr": "Sa grand-mère vient aussi. Donnez-moi le papier.",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "surprise",
+       "t": "Um … sure. Here's the form.",
+       "fr": "Euh… bien sûr. Voici le formulaire."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Give me … » sonne comme un ordre.</b> Demande avec une question : « Is that OK? » ou « Do I need to sign a paper for that? »"
+     }
+    }
+   ]
+  },
+  "phone": {
+   "dit": [
+    {
+     "qui": "a22_erzieherin",
+     "air": "question",
+     "t": "And what's the best number to reach you during the day?",
+     "fr": "Et à quel numéro peut-on vous joindre dans la journée ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "My cell is six one seven, five five five, zero one four two.",
+     "t_gb": "My mobile is six one seven, five five five, zero one four two.",
+     "fr": "Mon portable, c'est le six un sept, cinq cinq cinq, zéro un quatre deux.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Got it. I'll call you if there's any problem. But don't worry!",
+       "fr": "C'est noté. Je vous appelle s'il y a le moindre problème. Mais ne vous inquiétez pas !"
+      }
+     ]
+    },
+    {
+     "t": "Call my cell phone. The number is on the form.",
+     "t_gb": "Call my mobile. The number is on the form.",
+     "fr": "Appelez mon portable. Le numéro est sur le formulaire.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Great. I'll call you if there's any problem. But don't worry!",
+       "fr": "Très bien. Je vous appelle s'il y a le moindre problème. Mais ne vous inquiétez pas !"
+      }
+     ]
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Une heure plus tard. Lily a joué avec les cubes et ne veut plus partir."
+     }
+    },
+    {
+     "qui": "a22_erzieherin",
+     "air": "sourire",
+     "t": "She did great today! See you tomorrow, Lily!",
+     "fr": "Elle s'est très bien débrouillée aujourd'hui ! À demain, Lily !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you for everything. See you tomorrow!",
+     "fr": "Merci pour tout. À demain !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "See you tomorrow! Bye-bye, Lily!",
+       "fr": "À demain ! Au revoir, Lily !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks, Kate. Say bye-bye, Lily!",
+     "fr": "Merci, Kate. Dis au revoir, Lily !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_erzieherin",
+       "air": "sourire",
+       "t": "Bye-bye, Lily! See you tomorrow!",
+       "fr": "Au revoir, Lily ! À demain !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as confié les affaires de Lily, signalé {regime_fr}, compris l'adaptation (une heure avec elle aujourd'hui, puis petit à petit) et inscrit sa grand-mère sur la liste des personnes qui viennent la chercher."
+ }
+}

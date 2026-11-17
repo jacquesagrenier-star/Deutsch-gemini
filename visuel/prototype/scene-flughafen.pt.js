@@ -41,9 +41,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -58,7 +58,7 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "wand",
@@ -862,7 +862,7 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "br": {
     "mot": "guichê",
     "pluriel": "os guichês"

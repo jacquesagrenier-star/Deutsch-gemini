@@ -1,0 +1,93 @@
+{
+ "id": "a1-vetements",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "poli",
+ "titre": {"fr": "Acheter une veste : essayer, la taille"},
+ "intro": {"fr": "Novembre à Boston : le vent est glacial. Dans une boutique de Newbury Street, tu cherches une veste d'hiver, tu demandes ta taille, tu essaies et tu achètes."},
+ "personnes": ["verkaeuferin"],
+ "debut": "help",
+ "prix": {"jacket": 8999},
+ "panier": ["buy"],
+ "noeuds": {
+  "help": {
+   "dit": [
+    {"recit": {"fr": "Novembre à Boston. Le vent est glacial : il te faut une veste d'hiver. Tu entres dans une boutique de Newbury Street."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Hi there! Are you looking for anything special?", "fr": "Bonjour ! Vous cherchez quelque chose en particulier ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I'm looking for a winter jacket.", "fr": "Oui, je cherche une veste d'hiver.", "va": "size",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Great, they're right over here.", "fr": "Très bien, elles sont juste ici."}]},
+    {"t": "Yes, a warm jacket, please. It's so cold!", "fr": "Oui, une veste chaude, s'il vous plaît. Il fait tellement froid !", "va": "size",
+     "puis": [{"qui": "verkaeuferin", "air": "amuse", "t": "Ha, welcome to Boston! Over here.", "fr": "Ha, bienvenue à Boston ! Par ici."}]},
+    {"t": "No, I'm just looking, thanks.", "fr": "Non, je regarde seulement, merci.", "va": "later",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sure, take your time!", "fr": "Bien sûr, prenez votre temps !"}]}
+   ]
+  },
+  "later": {
+   "dit": [{"recit": {"fr": "Dix minutes plus tard, tu trouves une veste bleue qui te plaît. Mais pas dans ta taille."}}],
+   "choix": [
+    {"t": "Excuse me, do you have this jacket in medium?", "fr": "Excusez-moi, vous avez cette veste en M ?", "va": "try",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Let me check… yes, here you go.", "fr": "Je regarde… oui, la voici."}]},
+    {"t": "Excuse me, is there a medium in this color?", "t_gb": "Excuse me, is there a medium in this colour?", "fr": "Excusez-moi, il y a un M dans cette couleur ?", "va": "try",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Yes, one moment… here it is.", "fr": "Oui, un instant… la voici."}]}
+   ]
+  },
+  "size": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "What size are you?", "fr": "Quelle taille faites-vous ?"}],
+   "choix": [
+    {"t": "Medium, I think.", "fr": "M, je crois.", "va": "try",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "OK, here's a medium.", "fr": "D'accord, voici un M."}]},
+    {"t": "I'm a medium.", "fr": "Je fais du M.", "va": "try",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Here you go, a medium.", "fr": "Voilà, un M."}]},
+    {"faux": true, "t": "I make a medium.", "fr": "Je fais du M (mot à mot).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "You make…? Oh, you're a medium? OK!", "fr": "Vous fabriquez… ? Ah, vous faites du M ? D'accord !"}],
+     "aide": {"fr": "<b>« Je fais du M » se dit « I'm a medium »</b> (ou « I'm a size medium »). « make », c'est fabriquer."}}
+   ]
+  },
+  "try": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Do you want to try it on?", "fr": "Vous voulez l'essayer ?"}],
+   "choix": [
+    {"t": "Yes, please. Where's the fitting room?", "t_gb": "Yes, please. Where's the changing room?", "fr": "Oui, s'il vous plaît. Où est la cabine d'essayage ?", "va": "fitting",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Right over there, on the left.", "fr": "Juste là-bas, à gauche."}]},
+    {"t": "No, thanks. How much is it?", "fr": "Non, merci. Combien elle coûte ?", "va": "price"}
+   ]
+  },
+  "fitting": {
+   "dit": [
+    {"recit": {"fr": "Tu essaies la veste et tu sors de la cabine."}},
+    {"qui": "verkaeuferin", "air": "question", "t": "How does it fit?", "fr": "Elle vous va comment ?"}
+   ],
+   "choix": [
+    {"t": "It fits great!", "fr": "Elle me va très bien !", "va": "price",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "It looks great on you!", "fr": "Elle vous va à merveille !"}]},
+    {"t": "It's too small. Do you have a large?", "fr": "Elle est trop petite. Vous avez un L ?", "va": "price",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Sure, here's a large.", "fr": "Bien sûr, voici un L."},
+              {"recit": {"fr": "Tu essaies la veste en L : elle est parfaite."}}]},
+    {"faux": true, "t": "It goes me well.", "fr": "Elle me va bien (mot à mot).",
+     "puis": [{"qui": "verkaeuferin", "air": "amuse", "t": "It goes…? Oh, it fits you? Great!", "fr": "Elle va… ? Ah, elle vous va ? Super !"}],
+     "aide": {"fr": "<b>« ça me va » se dit « it fits »</b> pour la taille (« It fits great! »), ou « it looks good on me » pour le style."}}
+   ]
+  },
+  "price": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "It's usually a hundred and twenty, but it's on sale today: eighty-nine ninety-nine.", "t_gb": "It's usually a hundred and twenty, but it's in the sale today: eighty-nine ninety-nine.", "fr": "D'habitude, elle coûte cent vingt dollars, mais aujourd'hui elle est en solde : quatre-vingt-neuf dollars quatre-vingt-dix-neuf."}],
+   "choix": [
+    {"t": "Great, I'll take it!", "fr": "Super, je la prends !", "pose": {"buy": "jacket"}, "va": "checkout"},
+    {"t": "I'll take it. Can I return it?", "fr": "Je la prends. Je peux la rapporter ?", "pose": {"buy": "jacket"}, "va": "checkout",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Sure, within thirty days, with the receipt.", "fr": "Bien sûr, dans les trente jours, avec le ticket de caisse."}]}
+   ]
+  },
+  "checkout": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "That's {a_payer}. And good news: in Massachusetts, there's no sales tax on clothes!", "fr": "Ça fait {a_payer}. Et bonne nouvelle : au Massachusetts, il n'y a pas de taxe sur les vêtements !", "dit": "That's {a_payer:mots}. And good news: in Massachusetts, there's no sales tax on clothes!"}],
+   "choix": [
+    {"t": "Great! By card, please.", "fr": "Super ! Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Here's your receipt. Stay warm!", "fr": "Voici votre ticket. Restez au chaud !"}]},
+    {"t": "Cash, please. Here you go.", "fr": "En espèces, s'il vous plaît. Voilà.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thanks! Here's your change. Stay warm!", "fr": "Merci ! Voici votre monnaie. Restez au chaud !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ta taille, essayé la veste et l'as achetée {a_payer}, sans taxe."}
+}

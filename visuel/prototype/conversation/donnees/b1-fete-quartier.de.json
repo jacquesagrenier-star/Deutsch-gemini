@@ -1,0 +1,147 @@
+{
+ "id": "b1-fete-quartier",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "La fête de la rue"},
+ "intro": {"fr": "Le boulanger de ton quartier organise la fête de la rue. Il t'invite, et tout le monde met la main à la pâte : que peux-tu apporter ou faire ?"},
+ "personnes": ["baecker_fest"],
+ "debut": "einladung",
+ "textes": {
+  "hilfe_fr": {"cle": "hilfe", "essen": "d'apporter un plat sans viande pour le buffet", "aufbau": "d'aider à monter les tables le matin", "musik": "de t'occuper de la musique"},
+  "fehlt_fr": {"cle": "fehlt", "stuehle": "tu apportes quatre chaises pliantes", "kabel": "tu prêtes une rallonge", "stand": "tu tiendras le stand de gâteaux pendant une heure"},
+  "zettel_fr": {"cle": "zettel", "briefkasten": "dans les boîtes aux lettres", "klingeln": "en sonnant chez tes voisins"}
+ },
+ "noeuds": {
+  "einladung": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, à la boulangerie du coin. Tu paies tes petits pains quand le boulanger te tend une affichette colorée."}},
+    {"qui": "baecker_fest", "air": "sourire", "t": "Sagen Sie, Sie wohnen doch auch hier in der Straße? In zwei Wochen, am Samstag, feiern wir unser Straßenfest. Kommen Sie auch?", "fr": "Dites, vous habitez bien dans la rue, vous aussi ? Dans deux semaines, le samedi, nous faisons notre fête de la rue. Vous venez ?"}
+   ],
+   "choix": [
+    {"t": "Ja, sehr gern! Ich wusste gar nicht, dass es hier ein Straßenfest gibt.", "fr": "Oui, avec grand plaisir ! Je ne savais pas du tout qu'il y avait une fête de la rue ici.", "va": "hilfe",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Jedes Jahr! Das Bezirksamt hat die Genehmigung schon geschickt: Die Straße wird von 12 bis 22 Uhr für Autos gesperrt.", "dit": "Jedes Jahr! Das Bezirksamt hat die Genehmigung schon geschickt: Die Straße wird von zwölf bis zweiundzwanzig Uhr für Autos gesperrt.", "fr": "Tous les ans ! La mairie d'arrondissement a déjà envoyé l'autorisation : la rue sera fermée aux voitures de 12 à 22 heures."}]},
+    {"t": "Das klingt toll! Wann fängt es denn an?", "fr": "Ça a l'air super ! Ça commence quand ?", "va": "hilfe",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Um 15 Uhr geht es los. Die Straße wird schon ab 12 Uhr für Autos gesperrt, das Bezirksamt hat es genehmigt.", "dit": "Um fünfzehn Uhr geht es los. Die Straße wird schon ab zwölf Uhr für Autos gesperrt, das Bezirksamt hat es genehmigt.", "fr": "Ça démarre à 15 heures. La rue sera fermée aux voitures dès midi, la mairie d'arrondissement a donné son accord."}]},
+    {"faux": true, "t": "Ja, ich will gut.", "fr": "Oui, je veux bien.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Sie wollen gut … was? Gut feiern? Kommen Sie also?", "fr": "Vous voulez bien… quoi ? Bien faire la fête ? Vous venez, alors ?"}],
+     "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> Pour accepter : « Ja, gern! » ou « Ja, sehr gern! »."}}
+   ]
+  },
+  "hilfe": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Bei uns macht jeder ein bisschen mit. Wir brauchen noch Essen fürs Büfett, Leute für den Aufbau am Vormittag und jemanden für die Musik. Hätten Sie Lust zu helfen?", "fr": "Chez nous, chacun participe un peu. Il nous faut encore des plats pour le buffet, des bras pour le montage le matin et quelqu'un pour la musique. Ça vous dirait d'aider ?"}],
+   "choix": [
+    {"t": "Ich könnte ein Gericht aus meiner Heimat mitbringen.", "fr": "Je pourrais apporter un plat de mon pays.", "pose": {"hilfe": "essen"}, "va": "essen"},
+    {"t": "Ich helfe gern beim Aufbau. Am Vormittag habe ich Zeit.", "fr": "J'aide volontiers au montage. Le matin, j'ai le temps.", "pose": {"hilfe": "aufbau"}, "va": "aufbau"},
+    {"t": "Ich könnte mich um die Musik kümmern. Ich habe einen guten Lautsprecher.", "fr": "Je pourrais m'occuper de la musique. J'ai une bonne enceinte.", "pose": {"hilfe": "musik"}, "va": "musik"},
+    {"faux": true, "t": "Ich kann helfen zu montieren die Tische.", "fr": "Je peux aider à monter les tables.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Montieren? Ach, Sie wollen beim Aufbau helfen, die Tische aufbauen!", "fr": "« Montieren » ? Ah, vous voulez aider au montage, monter les tables !"}],
+     "aide": {"fr": "<b>« Aider à faire » : « beim … helfen »</b> : « Ich helfe gern beim Aufbau ». Pour des tables, on dit « aufbauen », et l'infinitif va à la fin : « die Tische aufzubauen »."}}
+   ]
+  },
+  "essen": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Wunderbar, das Büfett wird jedes Jahr internationaler! Was wäre das denn? Denken Sie daran: Manche Nachbarn essen kein Fleisch.", "fr": "Formidable, le buffet devient plus international chaque année ! Ce serait quoi ? Pensez-y : certains voisins ne mangent pas de viande."}],
+   "choix": [
+    {"t": "Ich mache einen großen Kartoffelauflauf mit Käse, ohne Fleisch.", "fr": "Je fais un grand gratin de pommes de terre au fromage, sans viande.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Kartoffeln und Käse? Dann ist die Schüssel in zehn Minuten leer, das verspreche ich Ihnen.", "fr": "Des pommes de terre et du fromage ? Alors le plat sera vide en dix minutes, je vous le promets."}]},
+    {"t": "Ich backe zwei Gemüsekuchen. Die kann man auch kalt essen.", "fr": "Je fais deux tartes aux légumes. On peut aussi les manger froides.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Gemüsekuchen, sehr gut. Hoffentlich backen Sie nicht besser als ich!", "fr": "Des tartes aux légumes, très bien. J'espère que vous ne les réussissez pas mieux que moi !"}]},
+    {"faux": true, "t": "Ich koche einen Kuchen mit Gemüse.", "fr": "Je cuisine un gâteau aux légumes.",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "Einen Kuchen kochen? Im Topf? Als Bäcker muss ich sagen: Einen Kuchen backt man!", "fr": "« Cuire » un gâteau ? Dans une casserole ? En tant que boulanger, je dois le dire : un gâteau, ça se fait au four !"}],
+     "aide": {"fr": "<b>Au four, c'est « backen »</b> ; « kochen », c'est cuisiner dans une casserole : « Ich backe einen Gemüsekuchen »."}}
+   ]
+  },
+  "aufbau": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Sehr gut! Wir treffen uns um halb zehn vor der Bäckerei. Die Tische und Bänke werden von der Brauerei geliefert. Können Sie schwere Sachen tragen?", "fr": "Très bien ! On se retrouve à neuf heures et demie devant la boulangerie. Les tables et les bancs sont livrés par la brasserie. Vous pouvez porter des choses lourdes ?"}],
+   "choix": [
+    {"t": "Ja, das ist kein Problem. Ich bin um halb zehn da.", "fr": "Oui, ce n'est pas un problème. Je serai là à neuf heures et demie.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Prima. Für alle Helfer gibt es vorher Kaffee und Schrippen, natürlich von mir.", "fr": "Parfait. Pour tous ceux qui aident, il y a d'abord du café et des petits pains, offerts par la maison bien sûr."}]},
+    {"t": "Schwere Sachen lieber nicht, mein Rücken tut manchmal weh. Aber ich kann die Tische schmücken.", "fr": "Les choses lourdes, plutôt non, j'ai parfois mal au dos. Mais je peux décorer les tables.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Schmücken ist genauso wichtig. Für alle Helfer gibt es vorher Kaffee und Schrippen.", "fr": "Décorer, c'est tout aussi important. Pour tous ceux qui aident, il y a d'abord du café et des petits pains."}]},
+    {"faux": true, "t": "In Ordnung, ich komme also um zehn Uhr dreißig.", "fr": "D'accord, je viens donc à dix heures trente.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Nein, nein: halb zehn! Neun Uhr dreißig. Um halb elf steht schon alles.", "fr": "Non, non : « halb zehn » ! Neuf heures trente. À dix heures et demie, tout est déjà monté."}],
+     "aide": {"fr": "<b>« halb zehn », c'est 9 h 30</b> : la moitié du chemin vers dix heures. 10 h 30 se dit « halb elf »."}}
+   ]
+  },
+  "musik": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Musik, prima! Aber bitte nicht zu laut, und für alle etwas: Die Kinder wollen tanzen, die anderen wollen sich unterhalten. Was würden Sie spielen?", "fr": "La musique, parfait ! Mais pas trop fort, s'il vous plaît, et un peu pour tout le monde : les enfants veulent danser, les autres veulent discuter. Vous passeriez quoi ?"}],
+   "choix": [
+    {"t": "Am Nachmittag ruhige Musik und am Abend etwas zum Tanzen.", "fr": "L'après-midi, de la musique calme, et le soir, de quoi danser.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Genau so. Und um 22 Uhr ist Schluss, sonst kommt das Ordnungsamt.", "dit": "Genau so. Und um zweiundzwanzig Uhr ist Schluss, sonst kommt das Ordnungsamt.", "fr": "Exactement. Et à 22 heures, on arrête, sinon les services municipaux débarquent."}]},
+    {"t": "Ich mache eine Liste mit Liedern aus vielen Ländern. Jeder kann sich etwas wünschen.", "fr": "Je fais une liste de chansons de beaucoup de pays. Chacun peut demander un titre.", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Schöne Idee. Aber um 22 Uhr ist Schluss, sonst kommt das Ordnungsamt.", "dit": "Schöne Idee. Aber um zweiundzwanzig Uhr ist Schluss, sonst kommt das Ordnungsamt.", "fr": "Belle idée. Mais à 22 heures, on arrête, sinon les services municipaux débarquent."}]},
+    {"faux": true, "t": "Ich spiele Musik für tanzen.", "fr": "Je passe de la musique pour danser.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Für tanzen? Musik zum Tanzen, meinen Sie. Ja, gern, aber nicht nur!", "fr": "« Pour danser » ? De la musique pour danser, vous voulez dire. Oui, volontiers, mais pas seulement !"}],
+     "aide": {"fr": "<b>« Pour » + verbe ne se dit pas « für »</b> : « Musik zum Tanzen » ou « …, um zu tanzen »."}}
+   ]
+  },
+  "fehlt": {
+   "dit": [{"qui": "baecker_fest", "air": "attentive", "t": "Dann schreibe ich Sie auf die Liste. Ach, und uns fehlt noch einiges: Stühle, ein Verlängerungskabel und jemand für den Kuchenstand. Hätten Sie vielleicht etwas davon?", "fr": "Alors je vous inscris sur la liste. Ah, et il nous manque encore pas mal de choses : des chaises, une rallonge et quelqu'un pour le stand de gâteaux. Vous auriez peut-être quelque chose de tout ça ?"}],
+   "choix": [
+    {"t": "Ich habe vier Klappstühle im Keller. Die bringe ich mit.", "fr": "J'ai quatre chaises pliantes à la cave. Je les apporte.", "pose": {"fehlt": "stuehle"}, "va": "regen",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Vier Stühle, notiert. Schreiben Sie Ihren Namen darunter, dann bekommen Sie sie sicher zurück.", "fr": "Quatre chaises, c'est noté. Écrivez votre nom dessous, comme ça vous les récupérerez à coup sûr."}]},
+    {"t": "Ein Verlängerungskabel kann ich Ihnen leihen. Es ist zwanzig Meter lang.", "fr": "Une rallonge, je peux vous en prêter une. Elle fait vingt mètres.", "pose": {"fehlt": "kabel"}, "va": "regen",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Zwanzig Meter, das reicht bis zur Bühne. Sie retten das Fest!", "fr": "Vingt mètres, ça va jusqu'à la scène. Vous sauvez la fête !"}]},
+    {"t": "Ich könnte eine Stunde am Kuchenstand stehen, wenn Sie mir alles zeigen.", "fr": "Je pourrais tenir le stand de gâteaux pendant une heure, si vous me montrez tout.", "pose": {"fehlt": "stand"}, "va": "regen",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Das ist ganz einfach: Jedes Stück kostet einen Euro, das Geld ist für den Spielplatz. Sagen wir, von vier bis fünf?", "fr": "C'est tout simple : chaque part coûte un euro, l'argent va à l'aire de jeux. Disons de quatre à cinq ?"}]},
+    {"repete": true, "t": "Entschuldigung, was fehlt noch? Könnten Sie das wiederholen?", "fr": "Pardon, qu'est-ce qui manque encore ? Vous pourriez répéter ?", "va": "fehlt",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Gern: Stühle, ein langes Kabel für den Strom und jemand, der eine Stunde lang Kuchen verkauft.", "fr": "Volontiers : des chaises, un long câble pour le courant et quelqu'un qui vende des gâteaux pendant une heure."}]},
+    {"faux": true, "t": "Ich kann mir von Ihnen ein Verlängerungskabel leihen.", "fr": "Je peux vous emprunter une rallonge.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Von mir? Aber ich habe doch keins, ich suche ja eins!", "fr": "À moi ? Mais je n'en ai pas, justement, j'en cherche une !"}],
+     "aide": {"fr": "<b>Prêter : « jemandem etwas leihen »</b> (« Ich kann Ihnen ein Kabel leihen »). « sich etwas von jemandem leihen », c'est emprunter."}}
+   ]
+  },
+  "regen": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Perfekt. Haben Sie sonst noch eine Frage zum Fest?", "fr": "Parfait. Vous avez encore une question sur la fête ?"}],
+   "choix": [
+    {"t": "Ja: Was passiert, wenn es regnet?", "fr": "Oui : qu'est-ce qui se passe s'il pleut ?", "va": "zettel",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Dann feiern wir im Hof hinter der Bäckerei, da gibt es ein Dach. Ein bisschen Regen hält in Berlin niemanden auf!", "fr": "Alors on fait la fête dans la cour derrière la boulangerie, il y a un toit. Un peu de pluie n'arrête personne à Berlin !"}]},
+    {"t": "Fällt das Fest aus, wenn das Wetter schlecht ist?", "fr": "Est-ce que la fête est annulée s'il fait mauvais ?", "va": "zettel",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Ausfallen? Niemals! Dann feiern wir im Hof hinter der Bäckerei, da gibt es ein Dach.", "fr": "Annulée ? Jamais ! Dans ce cas, on fait la fête dans la cour derrière la boulangerie, il y a un toit."}]},
+    {"faux": true, "t": "Was passiert, ob es regnet?", "fr": "Qu'est-ce qui se passe, si (= est-ce que) il pleut ?",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Ob es regnet? Das weiß ich leider auch noch nicht! Ach so: wenn es regnet …", "fr": "S'il va pleuvoir ? Ça, hélas, je ne le sais pas non plus ! Ah, d'accord : au cas où il pleuvrait…"}],
+     "aide": {"fr": "<b>Le « si » de condition est « wenn »</b> : « Was passiert, wenn es regnet? ». « ob » est le « si » de la question indirecte (« Ich weiß nicht, ob es regnet »)."}}
+   ]
+  },
+  "zettel": {
+   "dit": [{"qui": "baecker_fest", "air": "question", "t": "Eine Bitte hätte ich noch: Könnten Sie diese Zettel in Ihrem Haus verteilen? Dann wissen alle Nachbarn Bescheid.", "fr": "J'aurais encore un service à vous demander : vous pourriez distribuer ces affichettes dans votre immeuble ? Comme ça, tous les voisins seront au courant."}],
+   "choix": [
+    {"t": "Klar, ich werfe sie heute Abend in alle Briefkästen.", "fr": "Bien sûr, je les glisse ce soir dans toutes les boîtes aux lettres.", "pose": {"zettel": "briefkasten"}, "va": "ende"},
+    {"t": "Gern. Ich klingele bei den Nachbarn, dann lerne ich sie endlich kennen.", "fr": "Volontiers. Je sonnerai chez les voisins, comme ça je ferai enfin leur connaissance.", "pose": {"zettel": "klingeln"}, "va": "nachbarn"},
+    {"faux": true, "t": "Ja, ich gebe sie zu meinen Nachbarn.", "fr": "Oui, je les donne à mes voisins.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Zu den Nachbarn? Sie geben sie den Nachbarn, ja? Sehr schön.", "fr": "« Vers » les voisins ? Vous les donnez aux voisins, c'est ça ? Très bien."}],
+     "aide": {"fr": "<b>« Donner à quelqu'un » : datif sans préposition</b> : « Ich gebe sie meinen Nachbarn ». Pas de « zu » avec « geben »."}}
+   ]
+  },
+  "nachbarn": {
+   "dit": [{"qui": "baecker_fest", "air": "amuse", "t": "Das ist eine schöne Idee! Aber Vorsicht bei Herrn Krüger im ersten Stock: Er redet sehr gern. Da brauchen Sie eine halbe Stunde.", "fr": "C'est une belle idée ! Mais attention à M. Krüger, au premier : il adore parler. Comptez une demi-heure."}],
+   "choix": [
+    {"t": "Kein Problem, ich nehme mir Zeit. So übe ich auch mein Deutsch.", "fr": "Pas de problème, je prendrai le temps. Comme ça, je pratique aussi mon allemand.", "va": "ende",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Bei Herrn Krüger lernen Sie Berlinerisch, kein Deutsch!", "fr": "Chez M. Krüger, c'est le berlinois que vous apprendrez, pas l'allemand !"}]},
+    {"t": "Danke für die Warnung! Dann klingele ich bei ihm zuletzt.", "fr": "Merci de l'avertissement ! Alors je sonnerai chez lui en dernier.", "va": "ende",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "Sehr klug. Und grüßen Sie ihn von mir!", "fr": "Très malin. Et saluez-le de ma part !"}]},
+    {"faux": true, "t": "Das macht nichts, ich bin nicht gepresst.", "fr": "Ça ne fait rien, je ne suis pas pressé(e).",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Gepresst? Wie eine Zitrone? Ach, Sie haben es nicht eilig!", "fr": "« Pressé » ? Comme un citron ? Ah, vous n'êtes pas pressé(e) !"}],
+     "aide": {"fr": "<b>« Être pressé » : « es eilig haben »</b> : « Ich habe es nicht eilig ». « gepresst », c'est pressé comme un fruit."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "Vielen Dank, das hilft mir sehr. Dann sehen wir uns in zwei Wochen!", "fr": "Merci beaucoup, ça m'aide énormément. Alors on se voit dans deux semaines !"},
+    {"qui": "baecker_fest", "air": "sourire", "si": {"hilfe": "essen"}, "t": "Ich bin schon sehr gespannt auf Ihr Gericht.", "fr": "J'ai déjà hâte de goûter votre plat."},
+    {"qui": "baecker_fest", "air": "sourire", "si": {"hilfe": "aufbau"}, "t": "Und nicht vergessen: um halb zehn vor der Bäckerei!", "fr": "Et n'oubliez pas : neuf heures et demie devant la boulangerie !"},
+    {"qui": "baecker_fest", "air": "sourire", "si": {"hilfe": "musik"}, "t": "Und vergessen Sie Ihren Lautsprecher nicht!", "fr": "Et n'oubliez pas votre enceinte !"}
+   ],
+   "choix": [
+    {"t": "Bis Samstag in zwei Wochen! Ich freue mich schon auf das Fest.", "fr": "À samedi en quinze ! Je me réjouis déjà de la fête.", "va": null,
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Ich mich auch. Und hier, Ihre Schrippen. Schönes Wochenende!", "fr": "Moi aussi. Et tenez, vos petits pains. Bon week-end !"}]},
+    {"t": "Danke für die Einladung! Ich sage auch meinen Freunden Bescheid.", "fr": "Merci pour l'invitation ! Je préviens aussi mes amis.", "va": null,
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Sehr gut, je mehr Leute, desto besser. Bis Samstag in zwei Wochen!", "fr": "Très bien, plus on est nombreux, mieux c'est. À samedi en quinze !"}]},
+    {"faux": true, "t": "Bis Samstag! Ich freue mich schon für das Fest.", "fr": "À samedi ! Je me réjouis déjà pour la fête.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Für das Fest? Sie freuen sich auf das Fest, ich hoffe doch!", "fr": "« Pour » la fête ? Vous vous réjouissez de la fête, j'espère bien !"}],
+     "aide": {"fr": "<b>Se réjouir d'une chose à venir : « sich auf etwas freuen »</b> : « Ich freue mich auf das Fest ». « sich für jemanden freuen », c'est être content pour quelqu'un."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as accepté l'invitation et proposé {hilfe_fr}. En plus, {fehlt_fr}, et tu distribueras les affichettes {zettel_fr}. S'il pleut, la fête aura lieu dans la cour. À samedi en quinze !"}
+}

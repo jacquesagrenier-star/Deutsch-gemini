@@ -30,7 +30,7 @@ import hashlib, io, json, os, re, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru")
+LANGUES = ("fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es")
 
 
 def guillemets(t):
@@ -469,6 +469,63 @@ def corpus():
     return idx
 
 
+# L'ESPAGNOL D'AMERIQUE LATINE (15 nov. 2026, interface-es/) : a part, (court, explication)
+# par regle, comme le russe. Ecrit CONTRE l'espagnol : cinq voyelles sans longueur, ni ü ni ö,
+# pas de « ch » doux, un h qui souffle sans etre la « j », le r jamais roule. Non relu par un natif.
+ES = {
+ "u-trema": ("una «i» con labios de «u»",
+        "El español no tiene ü: di «i» y, sin mover la lengua, redondea los labios como para decir «u»: müde, Tür."),
+ "o-trema": ("una «e» con labios de «o»",
+        "El español no tiene ö: di «e» y, sin mover la lengua, redondea los labios como para decir «o»: schön, hören."),
+ "a-trema": ("una «e» abierta",
+        "ä suena como una «e» un poco más abierta que la española, parecida a la de «perro»: larga en Käse, breve en Mädchen."),
+ "u": ("como la «u» española",
+        "La u alemana es la «u» de «luna»: larga en gut y Buch, breve en Hund. No la confundas con ü, que es otro sonido."),
+ "ei": ("«ai», nunca «ei»",
+        "ei se pronuncia «ai», como en «aire»: Wein se dice «vain», klein «klain». La trampa: leerlo «ei», como en «peine»."),
+ "ie": ("una «i» larga",
+        "ie es una sola «i» alargada: Liebe se dice «liibe». La e no se oye: no lo leas «ie», como en «tiene»."),
+ "eu": ("«oi», como en «hoy»",
+        "eu y äu se pronuncian «oi», como en «hoy»: neu se dice «noi», träumen «troimen»."),
+ "au": ("«au», como en «auto»",
+        "au se pronuncia igual que en «auto» o «causa»: Haus, Frau. Nada que cambiar."),
+ "longueur": ("vocal larga o breve",
+        "Una vocal es larga delante de h o cuando va doble (Tee, Sohn), breve delante de una consonante doble (Bett, kommen). En español la duración no cuenta; en alemán cambia la palabra."),
+ "sch": ("el «sh» de «shampú»",
+        "sch es el «sh» de «shampú» o de «show», no la «ch» de «chico»: Schule se dice «shule», Fisch «fish»."),
+ "sp-st": ("«shp», «sht» al inicio",
+        "Al principio de una palabra (o de una parte de palabra), sp y st se dicen «shp» y «sht»: Straße se dice «shtrase», Sport «shport». Y sin «e» de apoyo delante: no «eshport»."),
+ "ch-doux": ("un soplo suave, sin equivalente",
+        "Después de e, i, ä, ö, ü, ei, eu, l, n o r, ch es un soplo suave que roza el paladar, con la lengua puesta como para decir «i»: Milch, leicht. No es la «ch» de «chico» ni la «j» de «jamón»."),
+ "ch-dur": ("parecido a la «j» española",
+        "Después de a, o, u y au, ch suena en el fondo de la garganta, como la «j» de «jamón» dicha con fuerza: Nacht, Buch, Bauch."),
+ "z": ("«ts»",
+        "z (y tz) se pronuncia siempre «ts», nunca como la «z» española: Zeit se dice «tsait», Katze «katse»."),
+ "v": ("casi siempre «f»",
+        "v se pronuncia casi siempre «f»: Vater se dice «fater», viel «fiil». Unas pocas palabras venidas de otras lenguas suenan como la w alemana (Vase, Klavier)."),
+ "w": ("una «v» con los dientes",
+        "w es una «v» que roza el labio de abajo contra los dientes de arriba, como una «f» con voz: Wasser, wo. No es la «b» de «vaca» ni la «u» de «web»."),
+ "s": ("una «s» sonora, que vibra",
+        "Delante de una vocal, s es una «s» sonora, que zumba como una abeja («zzz»): Sonne, sagen, Hose. Pon la mano en la garganta: debe vibrar."),
+ "eszett": ("una «s» sorda, como en «casa»",
+        "ß y ss son la «s» española de siempre, sin vibración, como en «casa». ß sigue a una vocal larga (groß), ss a una breve (essen)."),
+ "j": ("como la «y» de «yo»",
+        "j se pronuncia como la «y» de «yo» o de «ya», nunca como la «j» española: ja se dice «ya», Jahr «yar», jung «yung»."),
+ "h": ("un soplo al inicio, muda tras vocal",
+        "Al principio de una palabra o de una sílaba, h es un soplo ligero, más suave que la «j» y nunca muda como en español: Hund, Haus. Después de una vocal no se pronuncia y alarga la vocal: gehen, Uhr."),
+ "r": ("en el fondo de la garganta",
+        "La r alemana se hace en el fondo de la garganta, como una gárgara muy suave, nunca con la punta de la lengua como la «r» o la «rr» españolas: rot, Brot."),
+ "pf": ("p + f de un solo golpe",
+        "pf se pronuncia p y f de un solo golpe; se oyen las dos: Apfel, Kopf."),
+ "er-final": ("una «a» breve",
+        "Al final de una palabra, -er se dice como una «a» breve y débil, sin «r»: Vater ≈ «fata», Mutter ≈ «muta»."),
+ "ig-final": ("«-ich», con la ch suave",
+        "Al final de una palabra, -ig se dice «-ich», con la ch suave de Milch: richtig, billig."),
+ "b-d-g-final": ("«p», «t», «k»",
+        "Al final de una palabra, b, d y g pierden la voz y se dicen p, t, k: Kind ≈ «kint», Tag ≈ «tak», gelb ≈ «gelp»."),
+}
+
+
 def construire():
     idx = corpus()
     fautes, ids, out = [], set(), []
@@ -487,6 +544,9 @@ def construire():
             if rid in PL:
                 court = dict(court, pl=PL[rid][0])
                 expl = dict(expl, pl=PL[rid][1])
+            if rid in ES:
+                court = dict(court, es=ES[rid][0])
+                expl = dict(expl, es=ES[rid][1])
             for nom, v in (("court", court), ("explication", expl)):
                 manque = [l for l in LANGUES if not v.get(l)]
                 if manque:
@@ -501,7 +561,7 @@ def construire():
                 if not os.path.exists(os.path.join(RACINE, "audio", "mp3", h + ".mp3")):
                     fautes.append("%s : « %s » sans voix d'Aurora" % (rid, mot))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_tr",
-                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar", "traduction_pl", "traduction_ru") if e.get(c)}})
+                                                             "traduction_uk", "traduction_fa", "traduction_pt", "traduction_ar", "traduction_pl", "traduction_ru", "traduction_es") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             g["regles"].append({"id": rid, "graphie": graphie, "api": api, "court": court,

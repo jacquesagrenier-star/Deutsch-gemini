@@ -1,0 +1,94 @@
+{
+ "id": "a2-hotel-probleme",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Un problème à l'hôtel"},
+ "intro": {"fr": "Le soir, à ton hôtel de Berlin, quelque chose ne va pas dans ta chambre. Tu redescends à la réception pour trouver une solution."},
+ "personnes": ["rezeptionistin"],
+ "debut": "abend",
+ "noeuds": {
+  "abend": {
+   "dit": [
+    {"recit": {"fr": "Le soir, dans ton hôtel. Dans la chambre, ça ne va pas : tu redescends à la réception."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Guten Abend! Kann ich Ihnen helfen?", "fr": "Bonsoir ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Guten Abend. Ich habe ein Problem mit meinem Zimmer.", "fr": "Bonsoir. J'ai un problème avec ma chambre.", "va": "problem"},
+    {"t": "Ja, bitte. In meinem Zimmer funktioniert etwas nicht.", "fr": "Oui, s'il vous plaît. Dans ma chambre, quelque chose ne fonctionne pas.", "va": "problem"}
+   ]
+  },
+  "problem": {
+   "dit": [
+    {"qui": "rezeptionistin", "air": "question", "t": "Oh, das tut mir leid. Was ist denn los?", "fr": "Oh, je suis désolée. Qu'est-ce qui se passe ?"}
+   ],
+   "choix": [
+    {"t": "Das WLAN funktioniert nicht.", "fr": "Le wifi ne fonctionne pas.", "pose": {"problem": "wlan"}, "va": "loesung",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ah, ich weiß warum. Wir haben seit heute ein neues Passwort.", "fr": "Ah, je sais pourquoi. Nous avons un nouveau mot de passe depuis aujourd'hui."}]},
+    {"t": "Das Fenster geht nicht zu, und es ist sehr kalt.", "fr": "La fenêtre ne ferme pas, et il fait très froid.", "pose": {"problem": "fenster"}, "va": "loesung",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh nein! Das ist ja unangenehm.", "fr": "Oh non ! C'est vraiment désagréable."}]},
+    {"repete": true, "t": "Entschuldigung, wie bitte?", "fr": "Pardon, comment ?", "va": "problem",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Was ist das Problem in Ihrem Zimmer?", "fr": "Quel est le problème dans votre chambre ?"}]}
+   ]
+  },
+  "loesung": {
+   "dit": [
+    {"si": {"problem": "wlan"}, "qui": "rezeptionistin", "air": "sourire", "t": "Hier ist das neue Passwort. Probieren Sie mal: Geht es jetzt?", "fr": "Voici le nouveau mot de passe. Essayez : ça marche, maintenant ?"},
+    {"si": {"problem": "fenster"}, "qui": "rezeptionistin", "air": "question", "t": "Ich kann Ihnen ein anderes Zimmer geben, im vierten Stock. Ist das in Ordnung?", "fr": "Je peux vous donner une autre chambre, au quatrième étage. Ça vous va ?"}
+   ],
+   "choix": [
+    {"si": {"problem": "wlan"}, "t": "Ja, jetzt geht es. Danke!", "fr": "Oui, maintenant ça marche. Merci !", "va": "handtuch"},
+    {"si": {"problem": "wlan"}, "t": "Moment … Ja, perfekt!", "fr": "Un instant… Oui, parfait !", "va": "handtuch"},
+    {"si": {"problem": "fenster"}, "t": "Ja, sehr gern. Danke!", "fr": "Oui, très volontiers. Merci !", "va": "handtuch",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Hier ist der Schlüssel. Zimmer 412.", "fr": "Voici la clé. Chambre 412.", "dit": "Hier ist der Schlüssel. Zimmer vierhundertzwölf."}]},
+    {"si": {"problem": "fenster"}, "t": "Ja, gern. Ist das Zimmer ruhig?", "fr": "Oui, volontiers. La chambre est calme ?", "va": "handtuch",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ja, sehr ruhig, zum Hof. Hier ist der Schlüssel.", "fr": "Oui, très calme, sur la cour. Voici la clé."}]}
+   ]
+  },
+  "handtuch": {
+   "dit": [
+    {"qui": "rezeptionistin", "air": "question", "t": "Kann ich sonst noch etwas für Sie tun?", "fr": "Je peux faire autre chose pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Ja. Im Bad sind keine Handtücher.", "fr": "Oui. Dans la salle de bains, il n'y a pas de serviettes.", "va": "fruehstueck"},
+    {"t": "Ja, bitte. Ich brauche noch zwei Handtücher.", "fr": "Oui, s'il vous plaît. Il me faudrait encore deux serviettes.", "va": "fruehstueck"},
+    {"faux": true, "t": "Ja. Im Bad gibt es keine Servietten.", "fr": "Oui. Dans la salle de bains, il n'y a pas de serviettes (avec le mot « Servietten »).",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "Servietten? Im Bad? … Ach so, Sie meinen Handtücher!", "fr": "Des serviettes de table ? Dans la salle de bains ? … Ah, vous voulez dire des serviettes de toilette !"}],
+     "aide": {"fr": "<b>die Serviette</b>, c'est la serviette de table. Pour se sécher : <b>das Handtuch</b> (die Handtücher) : « Im Bad sind keine Handtücher »."}}
+   ]
+  },
+  "fruehstueck": {
+   "dit": [
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Oh, Entschuldigung! Ich schicke sofort jemanden mit Handtüchern.", "fr": "Oh, pardon ! J'envoie tout de suite quelqu'un avec des serviettes."}
+   ],
+   "choix": [
+    {"t": "Danke! Und wann gibt es morgen Frühstück?", "fr": "Merci ! Et le petit-déjeuner, demain, c'est à quelle heure ?", "va": "auschecken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Von halb sieben bis zehn Uhr, im Erdgeschoss.", "fr": "De six heures et demie à dix heures, au rez-de-chaussée."}]},
+    {"t": "Danke schön. Wo ist morgen das Frühstück?", "fr": "Merci beaucoup. Le petit-déjeuner, demain, c'est où ?", "va": "auschecken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Im Restaurant im Erdgeschoss, von halb sieben bis zehn Uhr.", "fr": "Au restaurant du rez-de-chaussée, de six heures et demie à dix heures."}]}
+   ]
+  },
+  "auschecken": {
+   "dit": [
+    {"qui": "rezeptionistin", "air": "question", "t": "Möchten Sie sonst noch etwas wissen?", "fr": "Vous voulez savoir autre chose ?"}
+   ],
+   "choix": [
+    {"t": "Ja. Kann ich morgen später gehen? Mein Zug fährt erst am Nachmittag.", "fr": "Oui. Je peux partir plus tard demain ? Mon train ne part que l'après-midi.", "va": "nacht",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Wegen der Probleme heute: Sie können bis zwölf Uhr bleiben. Das kostet nichts extra.", "fr": "Vu les problèmes d'aujourd'hui : vous pouvez rester jusqu'à midi. Sans supplément."}]},
+    {"t": "Nein, danke. Das ist alles.", "fr": "Non, merci. C'est tout.", "va": "nacht"},
+    {"repete": true, "t": "Entschuldigung, können Sie das wiederholen?", "fr": "Pardon, vous pouvez répéter ?", "va": "auschecken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Haben Sie noch eine Frage?", "fr": "Vous avez encore une question ?"}]}
+   ]
+  },
+  "nacht": {
+   "dit": [
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Noch einmal Entschuldigung für die Probleme. Gute Nacht!", "fr": "Encore pardon pour ces problèmes. Bonne nuit !"}
+   ],
+   "choix": [
+    {"t": "Kein Problem. Gute Nacht!", "fr": "Pas de problème. Bonne nuit !", "va": null},
+    {"t": "Danke für Ihre Hilfe. Einen schönen Abend noch!", "fr": "Merci pour votre aide. Bonne soirée !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué un problème dans ta chambre, demandé des serviettes et obtenu une solution."}
+}

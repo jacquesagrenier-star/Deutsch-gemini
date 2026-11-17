@@ -1,0 +1,130 @@
+{
+ "id": "b1-sinistre",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Le dégât des eaux"},
+ "intro": {"fr": "Un dimanche matin, dans ton immeuble de Boston, de l'eau traverse ton plafond. Elle vient de l'appartement du dessus : tu montes voir le voisin, que tu connais à peine."},
+ "personnes": ["b11_voisin"],
+ "debut": "door",
+ "noeuds": {
+  "door": {
+   "dit": [
+    {"recit": {"fr": "Tu montes l'escalier en vitesse et tu sonnes. La porte s'ouvre : le voisin, en tee-shirt, une tasse à la main."}},
+    {"qui": "b11_voisin", "air": "surprise", "t": "Oh — hi! You're from downstairs, right? Is everything okay?", "fr": "Oh, bonjour ! Vous habitez en dessous, c'est ça ? Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Hi, sorry to bother you. Water is dripping from my bathroom ceiling.", "fr": "Bonjour, désolé(e) de vous déranger. De l'eau goutte du plafond de ma salle de bains.", "pose": {"piece": "bains"}, "va": "found",
+     "puis": [{"qui": "b11_voisin", "air": "surprise", "t": "What? Oh no. Hang on, let me check!", "fr": "Quoi ? Oh non. Attendez, je vais voir !"}]},
+    {"t": "Sorry to bother you, but there's a wet spot on my kitchen ceiling, and it's getting bigger.", "t_gb": "Sorry to bother you, but there's a wet patch on my kitchen ceiling, and it's getting bigger.", "fr": "Désolé(e) de vous déranger, mais il y a une tache humide au plafond de ma cuisine, et elle grandit.", "pose": {"piece": "cuisine"}, "va": "found",
+     "puis": [{"qui": "b11_voisin", "air": "surprise", "t": "What? Oh no. Hang on, let me check!", "fr": "Quoi ? Oh non. Attendez, je vais voir !"}]},
+    {"faux": true, "t": "Hello. There is water who falls from my ceiling.", "fr": "Bonjour. Il y a de l'eau qui tombe de mon plafond.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Water who …? Wait, water is coming through your ceiling?", "fr": "De l'eau « who »… ? Attendez, de l'eau traverse votre plafond ?"}],
+     "aide": {"fr": "<b>who</b> ne s'emploie que pour les personnes ; pour une chose, c'est « that ». Mais le plus naturel est : « Water is dripping from my ceiling. »"}}
+   ]
+  },
+  "found": {
+   "dit": [
+    {"recit": {"fr": "Il disparaît une minute, puis revient, les chaussettes trempées."}},
+    {"qui": "b11_voisin", "air": "perplexe", "t": "I'm so sorry. It's my washing machine — the hose came off, and there's water all over the floor. I just shut the water off.", "t_gb": "I'm so sorry. It's my washing machine — the hose came off, and there's water all over the floor. I've just turned the water off.", "fr": "Je suis vraiment désolé. C'est ma machine à laver : le tuyau s'est détaché, et il y a de l'eau partout par terre. Je viens de couper l'eau."}
+   ],
+   "choix": [
+    {"t": "Thank you for turning it off so quickly.", "fr": "Merci de l'avoir coupée aussi vite.", "va": "damage"},
+    {"t": "Okay, good. Don't worry, these things happen.", "fr": "Bon, très bien. Ne vous en faites pas, ce sont des choses qui arrivent.", "va": "damage"},
+    {"t": "At least it stopped. Do you need help cleaning up?", "t_gb": "At least it's stopped. Do you need help cleaning up?", "fr": "Au moins, ça s'est arrêté. Vous avez besoin d'aide pour nettoyer ?", "va": "damage",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "That's really nice of you, but I've got it. You have enough to deal with!", "fr": "C'est vraiment gentil, mais je m'en occupe. Vous avez déjà assez à faire !"}]},
+    {"faux": true, "t": "It's not grave.", "fr": "Ce n'est pas grave.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "A grave? I hope nobody died! Oh — you mean it's no big deal.", "fr": "Une tombe ? J'espère que personne n'est mort ! Ah, vous voulez dire que ce n'est pas grave."}],
+     "aide": {"fr": "<b>« grave »</b>, en anglais, c'est une tombe. « Ce n'est pas grave » se dit <b>It's no big deal</b> ou <b>Don't worry about it</b>."}}
+   ]
+  },
+  "damage": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Is there a lot of damage at your place?", "fr": "Il y a beaucoup de dégâts chez vous ?"}],
+   "choix": [
+    {"t": "The ceiling is all wet, and water got into the light.", "t_gb": "The ceiling is all wet, and water has got into the light.", "fr": "Le plafond est tout mouillé, et de l'eau est entrée dans la lampe.", "va": "dmg_light"},
+    {"t": "Not too much. A rug and a few things on the floor got wet.", "fr": "Pas trop. Un tapis et quelques affaires par terre sont mouillés.", "va": "dmg_rug"},
+    {"faux": true, "t": "There are many damages.", "fr": "Il y a beaucoup de dégâts.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Damages? Like, in court? I hope we won't need a judge!", "fr": "Des « damages » ? Comme au tribunal ? J'espère qu'on n'aura pas besoin d'un juge !"}],
+     "aide": {"fr": "<b>damage</b> (les dégâts) est indénombrable : pas de « s », pas de « many ». « Damages », au pluriel, ce sont des dommages-intérêts. Dis plutôt : « There's a lot of damage. »"}}
+   ]
+  },
+  "dmg_light": {
+   "dit": [{"qui": "b11_voisin", "air": "perplexe", "t": "Water in the light? Don't touch the switch! You should turn off the power for that room at the breaker box.", "t_gb": "Water in the light? Don't touch the switch! You should turn off the power for that room at the fuse box.", "fr": "De l'eau dans la lampe ? Ne touchez pas à l'interrupteur ! Vous devriez couper le courant de cette pièce au tableau électrique."}],
+   "choix": [
+    {"t": "Good idea. I'll turn it off as soon as I go back down.", "fr": "Bonne idée. Je le coupe dès que je redescends.", "va": "insurance"},
+    {"t": "I already did. I turned off the electricity before I came up.", "t_gb": "I already have. I turned off the electricity before I came up.", "fr": "C'est déjà fait. J'ai coupé l'électricité avant de monter.", "va": "insurance",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Smart. You're calmer than I am!", "fr": "Bien vu. Vous êtes plus calme que moi !"}]},
+    {"faux": true, "t": "Yes, I will close the light.", "fr": "Oui, je vais fermer la lumière.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Close the light? You mean turn it off? Yes — but at the breaker box, not the switch!", "t_gb": "Close the light? You mean turn it off? Yes — but at the fuse box, not the switch!", "fr": "« Fermer » la lumière ? Vous voulez dire l'éteindre ? Oui, mais au tableau électrique, pas à l'interrupteur !"}],
+     "aide": {"fr": "En anglais, on n'« ouvre » ni ne « ferme » la lumière : on dit <b>turn on</b> et <b>turn off</b>. Dis plutôt : « I'll turn it off as soon as I go back down. »"}}
+   ]
+  },
+  "dmg_rug": {
+   "dit": [{"qui": "b11_voisin", "air": "attentive", "t": "I'm really sorry. I'll pay for the cleaning, of course — or for a new rug if it's ruined.", "fr": "Je suis vraiment désolé. Je paierai le nettoyage, bien sûr, ou un tapis neuf s'il est abîmé."}],
+   "choix": [
+    {"t": "That's kind of you. Let's see first if it dries.", "fr": "C'est gentil de votre part. Voyons d'abord s'il sèche.", "va": "insurance"},
+    {"t": "Thank you. I think the insurance will take care of it.", "fr": "Merci. Je pense que l'assurance s'en chargera.", "va": "insurance"},
+    {"faux": true, "t": "Thanks, it's very sympathetic.", "fr": "Merci, c'est très sympathique.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Sympathetic? Well, I do feel sorry for you! Oh — you mean it's nice of me.", "fr": "« Sympathetic » ? C'est vrai que je vous plains ! Ah, vous voulez dire que c'est gentil de ma part."}],
+     "aide": {"fr": "<b>« sympathetic »</b> veut dire compatissant. « Sympathique » se dit <b>nice</b> ou <b>kind</b>. Dis plutôt : « Thanks, that's very kind of you. »"}}
+   ]
+  },
+  "insurance": {
+   "dit": [{"qui": "b11_voisin", "air": "attentive", "t": "Listen, I have renters insurance, and it covers this kind of thing. Can I get your phone number for the claim?", "t_gb": "Listen, I have home insurance, and it covers this kind of thing. Can I get your phone number for the claim?", "fr": "Écoutez, j'ai une assurance habitation, et elle couvre ce genre de choses. Je peux avoir votre numéro de téléphone pour la déclaration ?"}],
+   "choix": [
+    {"t": "Sure. Let me type my number into your phone.", "fr": "Bien sûr. Je tape mon numéro dans votre téléphone.", "va": "photos",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Thanks. I'll text you so you have mine, too.", "fr": "Merci. Je vous envoie un message pour que vous ayez le mien aussi."}]},
+    {"t": "Of course. Could you give me your insurance information, too?", "t_gb": "Of course. Could you give me your insurance details, too?", "fr": "Bien sûr. Pourriez-vous aussi me donner les coordonnées de votre assurance ?", "va": "photos",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Sure. I'll text you the company name and my policy number.", "fr": "Bien sûr. Je vous envoie par message le nom de la compagnie et mon numéro de contrat."}]},
+    {"faux": true, "t": "Yes, I give you my number.", "fr": "Oui, je vous donne mon numéro.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "You give it to me … every day? Oh, you'll give it to me now. Great!", "fr": "Vous me le donnez… tous les jours ? Ah, vous allez me le donner maintenant. Parfait !"}],
+     "aide": {"fr": "Pour une décision prise à l'instant, l'anglais emploie <b>will</b> (« I'll »), pas le présent simple. Dis plutôt : « Sure, I'll give you my number. »"}}
+   ]
+  },
+  "photos": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "The insurance company will want pictures. Could you take some of the damage before everything dries?", "fr": "L'assurance voudra des photos. Pourriez-vous en prendre des dégâts avant que tout sèche ?"}],
+   "choix": [
+    {"t": "Yes, I'll take pictures and send them to you right away.", "fr": "Oui, je prends des photos et je vous les envoie tout de suite.", "va": "landlord"},
+    {"t": "I already took a few. I'll text them to you.", "t_gb": "I've already taken a few. I'll text them to you.", "fr": "J'en ai déjà pris quelques-unes. Je vous les envoie par message.", "va": "landlord",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Perfect. You think of everything.", "fr": "Parfait. Vous pensez à tout."}]},
+    {"faux": true, "t": "Yes, I will make photos now.", "fr": "Oui, je vais faire des photos maintenant.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Make photos? Oh, take some pictures. Yes, please!", "fr": "« Make photos » ? Ah, prendre des photos. Oui, s'il vous plaît !"}],
+     "aide": {"fr": "On <b>takes</b> a picture, on ne la « fait » pas. Dis plutôt : « Yes, I'll take pictures right away. »"}}
+   ]
+  },
+  "landlord": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Somebody should tell the landlord, too. But it's Sunday … the office is closed.", "fr": "Il faudrait aussi prévenir le propriétaire. Mais on est dimanche… le bureau est fermé."}],
+   "choix": [
+    {"t": "There's an emergency number for the building. I can call it.", "fr": "Il y a un numéro d'urgence pour l'immeuble. Je peux l'appeler.", "va": "call"},
+    {"t": "Would you mind calling them? The leak started in your apartment.", "t_gb": "Would you mind calling them? The leak started in your flat.", "fr": "Cela vous ennuierait de les appeler ? La fuite vient de votre appartement.", "va": "coffee",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "You're right, that's on me. I'll call the emergency line right now.", "fr": "Vous avez raison, c'est à moi de le faire. J'appelle le numéro d'urgence tout de suite."}]},
+    {"faux": true, "t": "Yes, we must prevent the landlord.", "fr": "Oui, il faut prévenir le propriétaire.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Prevent him? From doing what?", "fr": "L'empêcher ? De faire quoi ?"}],
+     "aide": {"fr": "<b>« prevent »</b>, c'est empêcher. « Prévenir quelqu'un » se dit <b>tell</b> ou <b>let someone know</b>. Dis plutôt : « Yes, we should let the landlord know. »"}}
+   ]
+  },
+  "call": {
+   "dit": [{"qui": "b11_voisin", "air": "sourire", "t": "Thanks. The number's on the board by the mailboxes, I think. Tell them I'm home all day if they want to come up.", "t_gb": "Thanks. The number's on the board by the letterboxes, I think. Tell them I'm home all day if they want to come up.", "fr": "Merci. Le numéro est sur le panneau près des boîtes aux lettres, je crois. Dites-leur que je suis chez moi toute la journée s'ils veulent monter."}],
+   "choix": [
+    {"t": "Okay. I'll tell them the water is off, but the ceiling needs to be checked.", "fr": "D'accord. Je leur dirai que l'eau est coupée, mais qu'il faut vérifier le plafond.", "va": "coffee"},
+    {"t": "All right. I'll let you know what they say.", "fr": "Entendu. Je vous tiens au courant de ce qu'ils disent.", "va": "coffee"},
+    {"faux": true, "t": "Okay. I will recall you later.", "fr": "D'accord. Je vous rappelle plus tard.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "You'll recall me? I hope so, we just met! Oh — you'll call me back.", "t_gb": "You'll recall me? I hope so, we've only just met! Oh — you'll call me back.", "fr": "Vous vous souviendrez de moi ? J'espère bien, on vient de se rencontrer ! Ah, vous me rappellerez."}],
+     "aide": {"fr": "<b>« recall »</b>, c'est se souvenir. « Rappeler quelqu'un » se dit <b>call back</b>. Dis plutôt : « I'll call you back later. » ou « I'll let you know what they say. »"}}
+   ]
+  },
+  "coffee": {
+   "dit": [{"qui": "b11_voisin", "air": "sourire", "t": "Again, I'm really sorry about all this. Hey — once everything's cleaned up, come up for a coffee. It's the least I can do.", "fr": "Encore une fois, je suis vraiment désolé pour tout ça. Tenez, quand tout sera nettoyé, montez prendre un café. C'est la moindre des choses."}],
+   "choix": [
+    {"t": "I'd love to. And really, don't worry about it.", "fr": "Avec grand plaisir. Et vraiment, ne vous en faites pas.", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Thanks for being so understanding. See you later, then!", "fr": "Merci d'être aussi compréhensif (compréhensive). À plus tard, alors !"}]},
+    {"t": "That's very nice of you. Maybe this afternoon?", "fr": "C'est très gentil de votre part. Cet après-midi, peut-être ?", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "This afternoon it is. I'll make a fresh pot!", "fr": "Va pour cet après-midi. Je préparerai du café frais !"}]},
+    {"faux": true, "t": "Yes, willingly!", "fr": "Oui, volontiers !",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Willingly? Nobody has said that since my grandmother! But great — come on up later.", "fr": "« Willingly » ? Je n'ai plus entendu ça depuis ma grand-mère ! Mais très bien, montez tout à l'heure."}],
+     "aide": {"fr": "<b>« willingly »</b> existe, mais on ne l'emploie pas pour accepter une invitation. « Volontiers » se dit <b>I'd love to.</b>"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé la fuite au voisin du dessus, échangé vos coordonnées pour l'assurance, pensé aux photos et au propriétaire, et gagné une invitation à prendre un café."}
+}

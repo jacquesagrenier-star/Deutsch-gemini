@@ -1244,7 +1244,7 @@ window.SCENE = {
     "B2 | Las calabazas ya están recogidas.": "The pumpkins have already been harvested.",
     "B2 | La acelga, cuyos tallos son rojos y amarillos, es muy sana.": "The chard, whose stalks are red and yellow, is very healthy.",
     "C1 | A pesar de su precio alto, Anna se lleva los tomates en rama.": "Despite their high price, Anna takes the vine tomatoes.",
-    "C1 | Cuanto más maduros están los tomates, más sabor tienen.": "The riper the tomatoes, the more flavour they have.",
+    "C1 | Cuanto más maduros están los tomates, más sabor tienen.": "The riper the tomatoes, the more flavor they have.",
     "C1 | Si la calabaza no fuera tan pesada, Anna se la llevaría.": "If the pumpkin were not so heavy, Anna would take it.",
     "C1 | Hay que lavar bien las alcachofas antes de cocinarlas.": "Artichokes must be washed well before cooking.",
     "C1 | Puede que Anna haga una ensalada con estos tomates.": "Anna may make a salad with these tomatoes."

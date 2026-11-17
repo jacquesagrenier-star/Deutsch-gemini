@@ -1,0 +1,130 @@
+{
+ "id": "b1-demenageurs",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Organiser son déménagement au téléphone"},
+ "intro": {"fr": "Tu déménages de Neukölln à Pankow le mois prochain. Tu appelles une entreprise de déménagement : la date, les étages, les meubles, les cartons, le stationnement et le prix."},
+ "personnes": ["umzugschef"],
+ "debut": "anruf",
+ "textes": {
+  "tag_fr": {"cle": "tag", "samstag": "le samedi 16, avec un supplément de week-end de 80 euros", "montag": "le lundi 18, au tarif normal"},
+  "packen_fr": {"cle": "packen", "selbst": "Tu emballes toi-même, et trente cartons te sont livrés une semaine avant", "firma": "Les déménageurs emballent tout la veille, pour 150 euros de plus"}
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Tu composes le numéro d'une entreprise de déménagement recommandée par une collègue. Ça sonne deux fois."}},
+    {"qui": "umzugschef", "air": "sourire", "t": "Umzüge Krause, guten Tag! Was kann ich für Sie tun?", "fr": "Déménagements Krause, bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich ziehe nächsten Monat um und suche eine Umzugsfirma.", "fr": "Bonjour. Je déménage le mois prochain et je cherche une entreprise de déménagement.", "va": "datum"},
+    {"t": "Guten Tag. Ich brauche Hilfe für meinen Umzug im nächsten Monat. Haben Sie noch Termine frei?", "fr": "Bonjour. J'ai besoin d'aide pour mon déménagement le mois prochain. Vous avez encore des dates libres ?", "va": "datum"},
+    {"faux": true, "t": "Guten Tag. Ich ziehe mich nächsten Monat um.", "fr": "Bonjour. Je me change le mois prochain.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Sie ziehen sich um? Dafür brauchen Sie uns aber nicht! Ach so, Sie ziehen um, in eine neue Wohnung!", "fr": "Vous vous changez ? Pour ça, vous n'avez pas besoin de nous ! Ah, vous déménagez, dans un nouvel appartement !"}],
+     "aide": {"fr": "<b>Déménager : « umziehen », sans « sich »</b> : « Ich ziehe nächsten Monat um ». « sich umziehen », c'est changer de vêtements."}}
+   ]
+  },
+  "datum": {
+   "dit": [{"qui": "umzugschef", "air": "attentive", "t": "Da sind Sie bei uns richtig. Ich sage es Ihnen aber gleich: Der nächste Monat ist fast voll. Frei sind nur noch Samstag, der 16., mit einem Wochenendzuschlag von 80 Euro, und Montag, der 18.", "dit": "Da sind Sie bei uns richtig. Ich sage es Ihnen aber gleich: Der nächste Monat ist fast voll. Frei sind nur noch Samstag, der Sechzehnte, mit einem Wochenendzuschlag von achtzig Euro, und Montag, der Achtzehnte.", "fr": "Vous êtes à la bonne adresse. Mais je vous le dis tout de suite : le mois prochain est presque complet. Il ne reste que le samedi 16, avec un supplément de week-end de 80 euros, et le lundi 18."}],
+   "choix": [
+    {"t": "Dann nehme ich den Samstag, auch wenn es teurer ist. In der Woche muss ich arbeiten.", "fr": "Alors je prends le samedi, même si c'est plus cher. En semaine, je dois travailler.", "pose": {"tag": "samstag"}, "va": "adressen",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Samstag, der 16., ist notiert.", "dit": "Samstag, der Sechzehnte, ist notiert.", "fr": "Samedi 16, c'est noté."}]},
+    {"t": "Der Montag wäre mir lieber, weil er billiger ist.", "fr": "Je préférerais le lundi, parce qu'il est moins cher.", "pose": {"tag": "montag"}, "va": "montag"},
+    {"faux": true, "t": "Ich nehme Montag, weil es ist weniger teuer.", "fr": "Je prends lundi, parce que c'est moins cher.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Weil es billiger ist, meinen Sie? Ja, das stimmt.", "fr": "Parce que c'est moins cher, vous voulez dire ? Oui, c'est vrai."}],
+     "aide": {"fr": "<b>« Moins cher » se dit « billiger » ou « günstiger »</b>, et après « weil » le verbe va à la fin : « weil es billiger ist »."}}
+   ]
+  },
+  "montag": {
+   "dit": [{"qui": "umzugschef", "air": "question", "t": "Montag, der 18., gern. Sie müssen nur wissen: Montags ist viel Verkehr, die Fahrt dauert vielleicht eine halbe Stunde länger. Ist das in Ordnung für Sie?", "dit": "Montag, der Achtzehnte, gern. Sie müssen nur wissen: Montags ist viel Verkehr, die Fahrt dauert vielleicht eine halbe Stunde länger. Ist das in Ordnung für Sie?", "fr": "Lundi 18, volontiers. Il faut juste que vous le sachiez : le lundi, il y a beaucoup de circulation, le trajet durera peut-être une demi-heure de plus. Ça vous va ?"}],
+   "choix": [
+    {"t": "Ja, das ist kein Problem. Ich nehme mir den ganzen Tag frei.", "fr": "Oui, ce n'est pas un problème. Je prends toute ma journée.", "va": "adressen",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Sehr gut, dann ist der Montag notiert.", "fr": "Très bien, alors le lundi est noté."}]},
+    {"t": "Eine halbe Stunde macht nichts. Hauptsache, alles ist am Abend in der neuen Wohnung.", "fr": "Une demi-heure, ce n'est rien. L'essentiel, c'est que tout soit dans le nouvel appartement le soir.", "va": "adressen",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Am Abend? Am Nachmittag sind wir fertig, versprochen. Der Montag ist notiert.", "fr": "Le soir ? Nous aurons fini l'après-midi, promis. Le lundi est noté."}]},
+    {"faux": true, "t": "Ja, ich nehme einen Tag von Urlaub.", "fr": "Oui, je prends un jour de congé.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Einen Tag von Urlaub? Einen Urlaubstag, meinen Sie. Gute Idee!", "fr": "« Un jour de congé » mot à mot ? Un « Urlaubstag », vous voulez dire. Bonne idée !"}],
+     "aide": {"fr": "<b>L'allemand colle les mots</b> : « einen Urlaubstag nehmen », ou « Ich nehme mir den Tag frei ». Pas de « von » comme le « de » français."}}
+   ]
+  },
+  "adressen": {
+   "dit": [{"qui": "umzugschef", "air": "question", "t": "Dann brauche ich die Adressen. Von wo nach wo geht es, und in welchem Stock wohnen Sie?", "fr": "Il me faut maintenant les adresses. Vous partez d'où pour aller où, et à quel étage habitez-vous ?"}],
+   "choix": [
+    {"t": "Von Neukölln nach Pankow. Jetzt wohne ich im dritten Stock ohne Aufzug, die neue Wohnung liegt im Erdgeschoss.", "fr": "De Neukölln à Pankow. En ce moment, j'habite au troisième sans ascenseur ; le nouvel appartement est au rez-de-chaussée.", "va": "moebel",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Dritter Stock ohne Aufzug, das kennen wir in Berlin. Und Erdgeschoss in Pankow, da freuen sich meine Leute!", "fr": "Troisième sans ascenseur, on connaît ça à Berlin. Et rez-de-chaussée à Pankow : mes gars vont être contents !"}]},
+    {"t": "Ich ziehe von Neukölln nach Pankow. Im alten Haus gibt es leider keinen Aufzug, und ich wohne im dritten Stock.", "fr": "Je déménage de Neukölln à Pankow. Dans l'ancien immeuble, il n'y a malheureusement pas d'ascenseur, et j'habite au troisième.", "va": "moebel",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Dritter Stock ohne Aufzug, das kennen wir in Berlin. Runter geht es zum Glück leichter als rauf!", "fr": "Troisième sans ascenseur, on connaît ça à Berlin. Heureusement, descendre est plus facile que monter !"}]},
+    {"faux": true, "t": "Von Neukölln nach Pankow. Ich wohne auf dem dritten Stock.", "fr": "De Neukölln à Pankow. J'habite au troisième étage.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Auf dem Stock? Im dritten Stock, meinen Sie. Mit oder ohne Aufzug?", "fr": "« Sur » l'étage ? Au troisième étage, vous voulez dire. Avec ou sans ascenseur ?"}],
+     "aide": {"fr": "<b>« Au troisième étage » : « im dritten Stock »</b>. Et précise l'ascenseur, c'est ce qui compte pour le prix : « ohne Aufzug »."}}
+   ]
+  },
+  "moebel": {
+   "dit": [{"qui": "umzugschef", "air": "question", "t": "Wie groß ist die Wohnung, und was muss alles mit? Gibt es besonders schwere oder empfindliche Sachen?", "fr": "Quelle est la taille de l'appartement, et qu'est-ce qu'il faut emporter ? Y a-t-il des choses particulièrement lourdes ou fragiles ?"}],
+   "choix": [
+    {"t": "Es sind zwei Zimmer und ungefähr dreißig Kartons. Der große Kleiderschrank muss abgebaut werden, und es gibt eine Waschmaschine.", "fr": "Il y a deux pièces et une trentaine de cartons. La grande armoire doit être démontée, et il y a une machine à laver.", "va": "packen",
+     "puis": [{"qui": "umzugschef", "air": "attentive", "t": "Den Schrank bauen wir ab und in Pankow wieder auf. Die Waschmaschine tragen zwei Mann, kein Problem.", "fr": "L'armoire, on la démonte et on la remonte à Pankow. La machine à laver, on la porte à deux, pas de problème."}]},
+    {"t": "Zwei Zimmer mit ungefähr dreißig Kartons. Schwer sind der Kleiderschrank und die Waschmaschine, und ich habe einen großen Spiegel, der leicht kaputtgeht.", "fr": "Deux pièces avec une trentaine de cartons. L'armoire et la machine à laver sont lourdes, et j'ai un grand miroir qui se casse facilement.", "va": "packen",
+     "puis": [{"qui": "umzugschef", "air": "attentive", "t": "Den Schrank bauen wir ab und wieder auf. Den Spiegel packen wir in Decken, da passiert nichts.", "fr": "L'armoire, on la démonte et on la remonte. Le miroir, on l'emballe dans des couvertures, il ne lui arrivera rien."}]},
+    {"repete": true, "t": "Entschuldigung, was meinen Sie mit „empfindlich“?", "fr": "Excusez-moi, que voulez-vous dire par « empfindlich » ?", "va": "moebel",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Sachen, die leicht kaputtgehen: Glas, ein Spiegel, ein Fernseher. Und wie viele Zimmer und Kartons sind es?", "fr": "Des choses qui se cassent facilement : du verre, un miroir, un téléviseur. Et combien de pièces et de cartons y a-t-il ?"}]},
+    {"faux": true, "t": "Zwei Zimmer. Ich habe einen Schrank zu demontieren und eine Maschine zu waschen.", "fr": "Deux pièces. J'ai une armoire à démonter et une machine à laver.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Eine Maschine zu waschen? Waschen müssen Sie sie nicht! Ach, eine Waschmaschine. Und der Schrank muss abgebaut werden.", "fr": "Une machine « à laver » ? Vous n'avez pas besoin de la laver ! Ah, un lave-linge. Et l'armoire doit être démontée."}],
+     "aide": {"fr": "<b>La machine à laver : « die Waschmaschine »</b>, en un mot. Et démonter un meuble : « abbauen » (« Der Schrank muss abgebaut werden »)."}}
+   ]
+  },
+  "packen": {
+   "dit": [{"qui": "umzugschef", "air": "question", "t": "Packen Sie die Kartons selbst, oder sollen wir das übernehmen? Das Einpacken kostet 150 Euro extra.", "dit": "Packen Sie die Kartons selbst, oder sollen wir das übernehmen? Das Einpacken kostet hundertfünfzig Euro extra.", "fr": "Vous faites les cartons vous-même, ou on s'en charge ? L'emballage coûte 150 euros en plus."}],
+   "choix": [
+    {"t": "Ich packe selbst. Könnten Sie mir vorher Kartons liefern?", "fr": "J'emballe moi-même. Vous pourriez me livrer des cartons avant ?", "pose": {"packen": "selbst"}, "va": "kartons"},
+    {"t": "Packen Sie bitte alles ein. Ich habe vor dem Umzug zu wenig Zeit.", "fr": "Emballez tout, s'il vous plaît. J'ai trop peu de temps avant le déménagement.", "pose": {"packen": "firma"}, "va": "halteverbot",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Machen wir. Meine Leute kommen am Tag vorher und packen alles ein, auch das Geschirr.", "fr": "On s'en occupe. Mes gars viennent la veille et emballent tout, la vaisselle aussi."}]},
+    {"faux": true, "t": "Ich mache die Kartons selbst.", "fr": "Je fais les cartons moi-même.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Sie machen die Kartons selbst? Aus Pappe? Ach so, Sie packen sie selbst!", "fr": "Vous fabriquez les cartons vous-même ? En carton ? Ah, vous les remplissez vous-même !"}],
+     "aide": {"fr": "<b>« Faire les cartons » : « Kartons packen »</b> : « Ich packe selbst ». « Kartons machen », ce serait les fabriquer."}}
+   ]
+  },
+  "kartons": {
+   "dit": [{"qui": "umzugschef", "air": "sourire", "t": "Klar. Wir bringen Ihnen eine Woche vorher dreißig Kartons. Die kosten nichts, wenn Sie sie nach dem Umzug zurückgeben. Brauchen Sie auch Papier für das Geschirr?", "fr": "Bien sûr. On vous apporte trente cartons une semaine avant. Ils ne coûtent rien si vous les rendez après le déménagement. Vous avez aussi besoin de papier pour la vaisselle ?"}],
+   "choix": [
+    {"t": "Ja, bitte. Ich habe viele Gläser und Teller.", "fr": "Oui, s'il vous plaît. J'ai beaucoup de verres et d'assiettes.", "va": "halteverbot",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Dann lege ich ein Paket Papier dazu.", "fr": "Alors j'ajoute un paquet de papier."}]},
+    {"t": "Nein, danke. Ich packe das Geschirr in Handtücher und alte Zeitungen.", "fr": "Non, merci. J'emballe la vaisselle dans des serviettes et de vieux journaux.", "va": "halteverbot",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Das machen viele so, das geht gut.", "fr": "Beaucoup de gens font comme ça, ça marche bien."}]}
+   ]
+  },
+  "halteverbot": {
+   "dit": [{"qui": "umzugschef", "air": "attentive", "t": "Noch etwas Wichtiges: Der Lkw muss direkt vor dem Haus parken können. Dafür muss eine Halteverbotszone beantragt werden, mindestens zwei Wochen vorher. Sollen wir das für Sie machen? Das kostet 90 Euro für beide Adressen.", "dit": "Noch etwas Wichtiges: Der Lkw muss direkt vor dem Haus parken können. Dafür muss eine Halteverbotszone beantragt werden, mindestens zwei Wochen vorher. Sollen wir das für Sie machen? Das kostet neunzig Euro für beide Adressen.", "fr": "Encore une chose importante : le camion doit pouvoir se garer juste devant l'immeuble. Pour cela, il faut demander une zone d'interdiction de stationner, au moins deux semaines avant. On s'en occupe pour vous ? Ça coûte 90 euros pour les deux adresses."}],
+   "choix": [
+    {"t": "Ja, bitte machen Sie das. Ich weiß nicht, wie man das beantragt.", "fr": "Oui, faites-le, s'il vous plaît. Je ne sais pas comment on fait cette demande.", "va": "preis"},
+    {"t": "Ja, gern. Dann muss ich mich nicht darum kümmern.", "fr": "Oui, volontiers. Comme ça, je n'ai pas à m'en occuper.", "va": "preis"},
+    {"faux": true, "t": "Ja, bitte. Ich kenne nicht, wie man das macht.", "fr": "Oui, s'il vous plaît. Je ne connais pas comment on fait.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Sie wissen nicht, wie das geht? Kein Problem, das machen wir jeden Tag.", "fr": "Vous ne savez pas comment ça marche ? Pas de problème, on fait ça tous les jours."}],
+     "aide": {"fr": "<b>Devant une phrase (« wie… », « ob… », « dass… »), c'est « wissen »</b> : « Ich weiß nicht, wie man das macht ». « kennen » s'emploie avec un nom : « Ich kenne die Firma »."}}
+   ]
+  },
+  "preis": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Gut, dann rechne ich zusammen. Drei Mann und ein Lkw: 690 Euro pauschal, und 90 Euro für die Halteverbotszone.", "dit": "Gut, dann rechne ich zusammen. Drei Mann und ein Lkw: sechshundertneunzig Euro pauschal, und neunzig Euro für die Halteverbotszone.", "fr": "Bon, je fais le calcul. Trois hommes et un camion : 690 euros au forfait, et 90 euros pour la zone de stationnement."},
+    {"qui": "umzugschef", "air": "attentive", "si": {"tag": "samstag"}, "t": "Dazu kommen 80 Euro für den Samstag.", "dit": "Dazu kommen achtzig Euro für den Samstag.", "fr": "S'y ajoutent 80 euros pour le samedi."},
+    {"qui": "umzugschef", "air": "attentive", "si": {"packen": "firma"}, "t": "Und 150 Euro für das Einpacken.", "dit": "Und hundertfünfzig Euro für das Einpacken.", "fr": "Et 150 euros pour l'emballage."},
+    {"qui": "umzugschef", "air": "question", "t": "Das Angebot schicke ich Ihnen heute noch per E-Mail. Am Umzugstag sind wir um 8 Uhr bei Ihnen. Einverstanden?", "dit": "Das Angebot schicke ich Ihnen heute noch per E-Mail. Am Umzugstag sind wir um acht Uhr bei Ihnen. Einverstanden?", "fr": "Je vous envoie le devis par courriel aujourd'hui même. Le jour du déménagement, nous serons chez vous à 8 heures. D'accord ?"}
+   ],
+   "choix": [
+    {"t": "Einverstanden. Ich bestätige das Angebot, sobald ich die E-Mail bekommen habe.", "fr": "D'accord. Je confirme le devis dès que j'ai reçu le courriel.", "va": null,
+     "puis": [
+      {"qui": "umzugschef", "air": "sourire", "si": {"tag": "samstag"}, "t": "Wunderbar. Dann bis Samstag, den 16., pünktlich um acht!", "dit": "Wunderbar. Dann bis Samstag, den Sechzehnten, pünktlich um acht!", "fr": "Parfait. Alors à samedi 16, huit heures précises !"},
+      {"qui": "umzugschef", "air": "sourire", "si": {"tag": "montag"}, "t": "Wunderbar. Dann bis Montag, den 18., pünktlich um acht!", "dit": "Wunderbar. Dann bis Montag, den Achtzehnten, pünktlich um acht!", "fr": "Parfait. Alors à lundi 18, huit heures précises !"}]},
+    {"t": "Ja, das passt. Um acht Uhr steht bei mir der Kaffee für Ihre Leute auf dem Tisch.", "fr": "Oui, ça me va. À huit heures, le café pour vos gars sera sur la table.", "va": null,
+     "puis": [
+      {"qui": "umzugschef", "air": "sourire", "si": {"tag": "samstag"}, "t": "Kaffee? Dann arbeiten sie doppelt so schnell! Bis Samstag, den 16.!", "dit": "Kaffee? Dann arbeiten sie doppelt so schnell! Bis Samstag, den Sechzehnten!", "fr": "Du café ? Alors ils travailleront deux fois plus vite ! À samedi 16 !"},
+      {"qui": "umzugschef", "air": "sourire", "si": {"tag": "montag"}, "t": "Kaffee? Dann arbeiten sie doppelt so schnell! Bis Montag, den 18.!", "dit": "Kaffee? Dann arbeiten sie doppelt so schnell! Bis Montag, den Achtzehnten!", "fr": "Du café ? Alors ils travailleront deux fois plus vite ! À lundi 18 !"}]},
+    {"faux": true, "t": "Einverstanden. Ich erwarte Sie um acht Stunden.", "fr": "D'accord. Je vous attends à huit heures.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Acht Stunden? So lange brauchen wir hoffentlich nicht! Um acht Uhr, meinen Sie.", "fr": "Huit heures de travail ? J'espère qu'il ne nous en faudra pas autant ! À huit heures du matin, vous voulez dire."}],
+     "aide": {"fr": "<b>L'heure qu'il est : « Uhr »</b> (« um acht Uhr ») ; une durée : « Stunden » (« acht Stunden lang »)."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as organisé ton déménagement de Neukölln à Pankow : {tag_fr}. {packen_fr}. L'entreprise demande la zone de stationnement (90 euros), le forfait est de 690 euros, et le devis arrive par courriel. Rendez-vous à 8 heures."}
+}

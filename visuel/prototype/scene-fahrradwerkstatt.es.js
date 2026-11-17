@@ -25,8 +25,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -1588,7 +1588,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le métro",
-   "en": "the underground",
+   "en": "the subway",
    "pt": "o metrô",
    "ar": "مترو",
    "pl": "miarka składana",
@@ -1644,7 +1644,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le métro",
-   "en": "the underground",
+   "en": "the subway",
    "pt": "o metrô",
    "ar": "مترو",
    "pl": "miarka składana",
@@ -2385,7 +2385,7 @@ window.SCENE = {
     "C1 | Debe de estar rota.": "It must be broken.",
     "C1 | Puede que el perro sea del mecánico.": "The dog may be the mechanic's.",
     "C1 | La reparación durará una hora.": "The repair will probably take an hour.",
-    "C1 | Dicen que este taller es el mejor del barrio.": "They say this workshop is the best in the neighbourhood."
+    "C1 | Dicen que este taller es el mejor del barrio.": "They say this workshop is the best in the neighborhood."
    }
   },
   "tr": {

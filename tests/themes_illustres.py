@@ -20,13 +20,14 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 8798 par defaut ; THEMES_PORT=<n> quand une autre session en lance en meme temps (3 nov. 2026 : avec
 # allow_reuse_address, deux serveurs sur le meme port se lisent l'un l'autre sous Windows -- vecu).
 PORT = int(os.environ.get("THEMES_PORT", "8798"))
-THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes", "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes", "heure"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
 # L'ANGLAIS (3 nov. 2026) : les themes qui ont deja leurs phrases anglaises, a mesure qu'ils les recoivent ; et le
 # britannique, la variante (« en&variante=gb »)
-ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs", "animales", "meteo", "logement", "demarches"]
+ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs", "animales", "meteo", "logement", "demarches", "heure"]
 # LE PORTUGAIS (lots P3 et P4, 11-12 nov. 2026) : les themes qui ont leurs phrases portugaises, au Portugal et en
 # variante du Bresil (« pt&variante=br »)
-PORTUGAIS = ANGLAIS + ["courses", "vacances", "ecole", "travail", "fetes"]
+# (l'heure et les dates n'a pas de portugais : de, es, en seulement)
+PORTUGAIS = [t for t in ANGLAIS if t != "heure"] + ["courses", "vacances", "ecole", "travail", "fetes"]
 PLANCHER = 100
 
 COMPTER = """(n) => {

@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "uhr",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "katze",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "haken",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "gancho",
    "ar": "علّاقة، خطّاف",
    "pl": "wieszak, hak",
-   "ru": "крючок"
+   "ru": "крючок",
+   "es": "el gancho"
   },
   {
    "id": "schluessel",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "kueche",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "cozinha",
    "ar": "مطبخ",
    "pl": "kuchnia",
-   "ru": "кухня"
+   "ru": "кухня",
+   "es": "la cocina"
   },
   {
    "id": "kaffeemaschine",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "máquina de café",
    "ar": "آلة القهوة",
    "pl": "ekspres do kawy",
-   "ru": "кофемашина"
+   "ru": "кофемашина",
+   "es": "la cafetera"
   },
   {
    "id": "kuehlschrank",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "geladeira",
    "ar": "ثلّاجة",
    "pl": "lodówka",
-   "ru": "холодильник"
+   "ru": "холодильник",
+   "es": "el refrigerador"
   },
   {
    "id": "tuer",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "pflegebett",
@@ -285,7 +294,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -364,7 +374,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "fernbedienung",
@@ -393,7 +404,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "heizkoerper",
@@ -422,7 +434,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "sessel",
@@ -451,7 +464,8 @@ window.SCENE = {
    "pt": "poltrona",
    "ar": "كرسي بذراعين",
    "pl": "fotel",
-   "ru": "кресло"
+   "ru": "кресло",
+   "es": "el sillón"
   },
   {
    "id": "klientin",
@@ -475,7 +489,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -490,7 +505,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "sessel",
@@ -540,7 +556,8 @@ window.SCENE = {
    "pt": "roupão",
    "ar": "رداء الحمّام",
    "pl": "szlafrok",
-   "ru": "халат"
+   "ru": "халат",
+   "es": "la bata de baño"
   },
   {
    "id": "hausnotruf",
@@ -598,7 +615,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "tisch",
@@ -627,7 +645,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "ordner",
@@ -656,7 +675,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "مجلّد",
    "pl": "folder; segregator",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta"
   },
   {
    "id": "tasse",
@@ -685,7 +705,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "telefon",
@@ -714,7 +735,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "dispenser",
@@ -830,7 +852,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "tasche",
@@ -859,7 +882,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "diensthandy",
@@ -883,7 +907,8 @@ window.SCENE = {
      "pt": "smartphone",
      "ar": "هاتف ذكي",
      "pl": "smartfon",
-     "ru": "смартфон"
+     "ru": "смартфон",
+     "es": "el teléfono inteligente, el smartphone"
     }
    ],
    "sur": "stuhl",
@@ -904,7 +929,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "strumpf",
@@ -928,7 +954,8 @@ window.SCENE = {
      "pt": "meia (meia-calça)",
      "ar": "جورب طويل",
      "pl": "pończocha, skarpeta",
-     "ru": "чулок, носок"
+     "ru": "чулок, носок",
+     "es": "la media, el calcetín"
     }
    ],
    "sur": "stuhl",
@@ -1324,60 +1351,51 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
+   "titre": "Que répondez-vous ?",
    "niveau": "B1",
    "qs": [
     {
-     "q": "Frau Kowalski öffnet die Tür nicht und geht nicht ans Telefon. Was tun Sie?",
+     "q": "Frau Kowalski fragt: „Der Hausarzt hat sie mir aufgeschrieben. Wofür ist die denn?“",
      "c": [
-      "Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.",
-      "Ich fahre zur nächsten Klientin und komme morgen wieder.",
-      "Ich trete die Tür allein ein."
+      "Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.",
+      "Keine Ahnung. Nehmen Sie sie einfach.",
+      "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen."
      ],
-     "f": "tuer",
+     "f": "klientin",
      "type": "situation",
-     "phrase": "Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.",
-     "sens": "J'appelle la responsable du service et je suis le plan d'urgence.",
-     "n": "Ne jamais partir, ne jamais forcer seule : on alerte et on suit la procédure du service (proches, clé, secours) ⚕️."
+     "phrase": "Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.",
+     "sens": "Je peux voir la boîte ? Ah, du ramipril. C'est contre l'hypertension.",
+     "n": "<b>Lis la boîte et le plan de médication, puis explique en mots simples : « für den Blutdruck ».</b> Si tu ne sais pas, dis-le et propose de demander : ne réponds jamais « nehmen Sie sie einfach ». ⚕️",
+     "source": "d10-medikamente/frage",
+     "r": "dispenser"
     },
     {
-     "q": "Ihr Blutzucker ist sehr niedrig, sie zittert und schwitzt. Was tun Sie?",
+     "q": "Frau Kowalski fragt: „Ach so. Und wann nehme ich sie?“",
      "c": [
-      "Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.",
-      "Ich spritze ihr ihr Insulin.",
-      "Ich warte, bis sie gefrühstückt hat."
+      "Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.",
+      "Die nehmen Sie, wann Sie wollen.",
+      "Das Frühstück ist um sieben Uhr dreißig Minuten."
      ],
-     "f": "blutzuckermessgeraet",
+     "f": "klientin",
      "type": "situation",
-     "phrase": "Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.",
-     "sens": "Je lui donne tout de suite du sucre ou du jus, puis je mesure à nouveau.",
-     "n": "Hypoglycémie : du sucre rapide tout de suite, puis un contrôle ; jamais d'insuline ⚕️."
+     "phrase": "Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.",
+     "sens": "Vous le prenez une fois par jour, le matin. C'est écrit ici, dans votre plan.",
+     "n": "<b>Le moment de la prise est dans le plan de médication : lis-le.</b> « Laut Medikamentenplan einmal täglich, morgens. » Chaque médicament a son heure, et ce n'est pas à la soignante de la choisir. ⚕️",
+     "source": "d10-medikamente/wann"
     },
     {
-     "q": "Die Katze hat die Tabletten vom Tisch geworfen. Was tun Sie?",
+     "q": "Frau Kowalski fragt: „Und kann ich sie zerkleinern? Die ist so groß.“",
      "c": [
-      "Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.",
-      "Ich lege sie irgendwo zurück in den Dispenser.",
-      "Ich werfe alle weg und sage nichts."
+      "Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.",
+      "Ja, klar, Tabletten kann man immer zerkleinern.",
+      "Das ist nicht schlimm."
      ],
-     "f": "dispenser",
+     "f": "klientin",
      "type": "situation",
-     "phrase": "Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.",
-     "sens": "Je les ramasse toutes, je compare le pilulier au plan et je le signale s'il en manque une.",
-     "n": "Un comprimé avalé par le chat, ou oublié, change le traitement : on compte et on signale."
-    },
-    {
-     "q": "Frau Kowalski sagt, ihr Bein ist rot, warm und dick. Was tun Sie?",
-     "c": [
-      "Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.",
-      "Ich ziehe die Strümpfe besonders fest an.",
-      "Ich massiere das Bein kräftig."
-     ],
-     "f": "strumpf",
-     "type": "situation",
-     "phrase": "Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.",
-     "sens": "Je ne mets pas les bas et je préviens tout de suite la médecin traitante.",
-     "n": "Une jambe rouge, chaude et gonflée peut être une thrombose : ni bas ni massage, on appelle ⚕️."
+     "phrase": "Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.",
+     "sens": "Je n'en suis pas sûre. Le mieux, c'est de demander à la pharmacie ou à votre médecin traitant.",
+     "n": "<b>Certains comprimés ne s'écrasent pas (enrobage, libération prolongée).</b> Quand tu ne sais pas, renvoie à la pharmacie : « Das fragen wir am besten in der Apotheke. » C'est une réponse professionnelle. ⚕️",
+     "source": "d10-medikamente/teilen"
     }
    ]
   }
@@ -1394,7 +1412,7 @@ window.SCENE = {
     "B1": "Giving advice with “sollten”",
     "B2": "Phoning the doctor's surgery",
     "C1": "Documenting a refusal",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + time; am + day; im + month.",
@@ -1420,10 +1438,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "A record entry: dated, verifiable facts, never an opinion.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (often Dativ in speech); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Record the person's choice AND what you did: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Never leave, never force your way in alone: raise the alarm and follow the service's procedure (relatives, key, emergency services) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hypoglycaemia: fast-acting sugar straight away, then a check; never insulin ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "A tablet swallowed by the cat, or forgotten, changes the treatment: count and report.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "A red, warm, swollen leg may be a thrombosis: no stockings, no massage, call the doctor ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Read the box and the medication plan, then explain in simple words: “für den Blutdruck”.</b> If you don't know, say so and offer to ask: never answer “nehmen Sie sie einfach”. ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>When to take it is written in the medication plan: read it.</b> “Laut Medikamentenplan einmal täglich, morgens.” Every medication has its time, and it isn't for the nurse to choose it. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Some tablets must not be crushed (coating, extended release).</b> When you don't know, refer to the pharmacy: “Das fragen wir am besten in der Apotheke.” That is a professional answer. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "She arrives at eight o'clock.",
@@ -1449,10 +1466,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "The time, the observation, the action taken and who was informed.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Despite instruction, the client does not measure her blood sugar on her own.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Client does not wear the call button at night; risk discussed with her.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "I call the nursing service manager and follow the emergency plan.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "I give her glucose or juice straight away, then measure again.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "I pick them all up, check the pill organiser against the chart and report it if one is missing.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "I don't put the stockings on and inform the GP straight away."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "May I see the box? Ah, ramipril. It's for high blood pressure.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "You take it once a day, in the morning. That's what it says here in your plan.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "I'm not sure about that. The best thing is to ask at the pharmacy or your doctor's office."
    }
   },
   "tr": {
@@ -1466,7 +1482,7 @@ window.SCENE = {
     "B1": "“sollten” ile öğüt vermek",
     "B2": "Muayenehaneyi telefonla aramak",
     "C1": "Bir reddi kayda geçirmek",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + saat; am + gün; im + ay.",
@@ -1492,10 +1508,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Bir dosya kaydı: tarihli, doğrulanabilir olgular, asla bir görüş değil.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (konuşmada çoğu zaman Dativ); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Kişinin seçimi VE yapılan şey yazılır: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Asla çekip gitmek yok, asla tek başına zorlamak yok: haber verilir ve kurumun prosedürü izlenir (yakınlar, anahtar, acil yardım) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hipoglisemi: hemen hızlı etkili şeker, sonra kontrol; asla insülin yok ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Kedinin yuttuğu ya da unutulan bir tablet tedaviyi değiştirir: sayılır ve bildirilir.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Kırmızı, sıcak ve şiş bir bacak tromboz olabilir: ne çorap ne masaj, hemen aranır ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Kutuyu ve ilaç planını oku, sonra basit kelimelerle açıkla: “für den Blutdruck”.</b> Bilmiyorsan söyle ve sormayı teklif et: asla “nehmen Sie sie einfach” diye cevap verme. ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>İlacın alınma zamanı ilaç planında yazar: onu oku.</b> “Laut Medikamentenplan einmal täglich, morgens.” Her ilacın kendi saati vardır ve bunu seçmek hemşireye düşmez. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Bazı tabletler ezilmez (kaplama, uzatılmış salım).</b> Bilmediğinde eczaneye yönlendir: “Das fragen wir am besten in der Apotheke.” Bu profesyonel bir yanıttır. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Saat sekizde geliyor.",
@@ -1521,10 +1536,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Saat, gözlem, alınan önlem ve kimin bilgilendirildiği.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Açıklamalara rağmen danışan kan şekerini kendi başına ölçmüyor.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Danışan acil çağrı butonunu geceleri takmıyor; risk kendisiyle konuşuldu.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Bakım hizmeti sorumlusunu ararım ve acil durum planını izlerim.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Ona hemen glikoz ya da meyve suyu veririm, sonra yeniden ölçerim.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Hepsini toplarım, ilaç kutusunu planla karşılaştırırım ve biri eksikse bildiririm.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Çorapları giydirmem ve hemen aile hekimine haber veririm."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "Kutusunu görebilir miyim? Ah, ramipril. Bu yüksek tansiyona karşı.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "Bunu günde bir kez, sabah alıyorsunuz. Burada, planınızda böyle yazıyor.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "Bundan emin değilim. En iyisi eczaneye ya da aile hekiminize soralım."
    }
   },
   "uk": {
@@ -1538,7 +1552,7 @@ window.SCENE = {
     "B1": "Радити за допомогою «sollten»",
     "B2": "Телефонувати до кабінету лікаря",
     "C1": "Документувати відмову",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + година; am + день; im + місяць.",
@@ -1564,10 +1578,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Запис у документації: датовані факти, які можна перевірити, ніколи не думка.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (усно часто Dativ); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Записуємо вибір людини І те, що зробили ми: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Ніколи не йти, ніколи не ламати двері самотужки: піднімаємо тривогу й діємо за процедурою служби (рідні, ключ, швидка) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Гіпоглікемія: одразу швидкий цукор, потім контроль; ніколи не інсулін ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Таблетка, яку проковтнув кіт або яку забули, змінює лікування: рахуємо й повідомляємо.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Червона, гаряча й набрякла нога може означати тромбоз: ні панчіх, ні масажу — телефонуємо лікарю ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Прочитай упаковку й план прийому ліків, а потім поясни простими словами: «für den Blutdruck».</b> Якщо не знаєш, так і скажи й запропонуй запитати: ніколи не відповідай «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>Час прийому вказано в плані прийому ліків: прочитай його.</b> «Laut Medikamentenplan einmal täglich, morgens.» Кожні ліки мають свій час, і не медсестрі його вибирати. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Деякі таблетки не подрібнюють (оболонка, пролонгована дія).</b> Коли не знаєш, направ до аптеки: «Das fragen wir am besten in der Apotheke.» Це професійна відповідь. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Вона приходить о восьмій.",
@@ -1593,10 +1606,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Час, спостереження, вжитий захід і кого повідомлено.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Попри пояснення, клієнтка не вимірює цукор у крові самостійно.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Клієнтка не носить кнопку виклику вночі; ризик обговорено з нею.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Я телефоную керівництву служби догляду й дію за планом на випадок надзвичайної ситуації.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Я одразу даю їй глюкозу або сік, а потім вимірюю ще раз.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Я збираю їх усі, звіряю таблетницю з планом і повідомляю, якщо однієї бракує.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Я не вдягаю панчохи й одразу повідомляю сімейну лікарку."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "Можна мені подивитися на упаковку? А, раміприл. Він від підвищеного тиску.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "Її ви приймаєте раз на день, уранці. Так написано ось тут, у вашому плані.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "Я не впевнена. Найкраще запитати в аптеці або у вашого сімейного лікаря."
    }
   },
   "fa": {
@@ -1610,7 +1622,7 @@ window.SCENE = {
     "B1": "نصیحت با «<span lang=\"de\">sollten</span>»",
     "B2": "تماسِ تلفنی با مطبِ پزشک",
     "C1": "ثبتِ یک امتناع",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + ساعت؛ <span lang=\"de\">am</span> + روز؛ <span lang=\"de\">im</span> + ماه.",
@@ -1636,10 +1648,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "یک یادداشتِ پرونده: واقعیت‌هایی با زمان و قابلِ بررسی، هرگز یک نظر.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (در گفتار اغلب Dativ)؛ <b>BZ</b> = <span lang=\"de\">Blutzucker</span> ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "انتخابِ فرد و همچنین کاری را که کردیم ثبت می‌کنیم: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "هرگز نباید رفت، هرگز نباید به‌تنهایی به زور وارد شد: خبر می‌دهیم و روالِ مؤسسه را دنبال می‌کنیم (نزدیکان، کلید، اورژانس) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "افتِ قند: فوراً قندِ سریع‌الاثر، بعد کنترل؛ هرگز انسولین ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "قرصی که گربه قورت داده یا فراموش شده، درمان را تغییر می‌دهد: می‌شماریم و گزارش می‌دهیم.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "پای قرمز، گرم و متورم ممکن است ترومبوز باشد: نه جوراب، نه ماساژ؛ تماس می‌گیریم ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>جعبه و برنامه‌ی دارویی را بخوان، بعد با کلمات ساده توضیح بده: «für den Blutdruck».</b> اگر نمی‌دانی، بگو و پیشنهاد کن که بپرسید: هرگز جواب نده «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>زمان مصرف در برنامه‌ی دارویی آمده است: آن را بخوان.</b> «Laut Medikamentenplan einmal täglich, morgens.» هر دارویی زمان خودش را دارد، و انتخاب آن با مراقب نیست. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>بعضی قرص‌ها را نباید خرد کرد (روکش‌دار، آهسته‌رهش).</b> وقتی نمی‌دانی، به داروخانه ارجاع بده: «Das fragen wir am besten in der Apotheke.» این یک جواب حرفه‌ای است. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "ساعتِ هشت می‌آید.",
@@ -1665,10 +1676,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "ساعت، مشاهده، اقدامِ انجام‌شده و اینکه به چه کسی اطلاع داده شد.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "با وجودِ آموزش، مددجو قندِ خونش را خودش اندازه نمی‌گیرد.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "مددجو شب‌ها دکمهٔ تماسِ اضطراری را همراه ندارد؛ خطر با خودش در میان گذاشته شد.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "به مسئولِ خدماتِ پرستاری زنگ می‌زنم و طبقِ برنامهٔ اضطراری عمل می‌کنم.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "فوراً به او گلوکز یا آبمیوه می‌دهم و بعد دوباره اندازه می‌گیرم.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "همه را جمع می‌کنم، جعبهٔ قرص را با برنامه مقایسه می‌کنم و اگر یکی کم باشد، گزارش می‌دهم.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "جوراب‌ها را پایش نمی‌کنم و فوراً به پزشکِ خانواده خبر می‌دهم."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "اجازه می‌دهید جعبه‌اش را ببینم؟ آهان، رامیپریل. برای فشار خون بالاست.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "روزی یک بار، صبح، می‌خوریدش. اینجا در برنامه‌تان همین نوشته شده.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "مطمئن نیستم. بهتر است از داروخانه یا پزشک خانواده‌تان بپرسیم."
    }
   },
   "ar": {
@@ -1682,7 +1692,7 @@ window.SCENE = {
     "B1": "النصح بـ «<span lang=\"de\">sollten</span>»",
     "B2": "الاتصال بعيادة الطبيب",
     "C1": "توثيق الرفض",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + الساعة؛ <span lang=\"de\">am</span> + اليوم؛ <span lang=\"de\">im</span> + الشهر.",
@@ -1708,10 +1718,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "مدخل في الملف: وقائع مؤرّخة يمكن التحقّق منها، لا رأي أبدًا.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (وغالبًا Dativ في الكلام)؛ <b>BZ</b> = <span lang=\"de\">Blutzucker</span> ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "ندوّن اختيار الشخص وأيضًا ما فعلناه: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "لا ننصرف أبدًا، ولا نقتحم الباب بمفردنا أبدًا: ننبّه ونتّبع إجراءات الخدمة (الأقارب، المفتاح، الإسعاف) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "نقص السكر في الدم: سكر سريع فورًا، ثم قياس جديد؛ ولا إنسولين أبدًا ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "قرص ابتلعته القطّة أو نُسي يغيّر العلاج: نعدّ ونُبلغ.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "الساق الحمراء الساخنة المتورّمة قد تكون خثارًا (جلطة): لا جوارب ولا تدليك، بل نتّصل ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>اقرأ العلبة وخطة الأدوية، ثم اشرح بكلمات بسيطة: «für den Blutdruck».</b> إن كنت لا تعرف، فقل ذلك واقترح أن تسأل: لا تجب أبدًا «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>موعد تناول الدواء مكتوب في خطة الأدوية: اقرأها.</b> «Laut Medikamentenplan einmal täglich, morgens.» لكل دواء موعده، وليست الممرضة من يختاره. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>بعض الأقراص لا تُسحق (الغلاف، التحرّر المديد).</b> عندما لا تعرف، أحِل إلى الصيدلية: «Das fragen wir am besten in der Apotheke.» هذا جواب مهني. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "تأتي في الساعة الثامنة.",
@@ -1737,10 +1746,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "الوقت، والملاحظة، والإجراء المتّخذ، ومن أُبلغ.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "رغم التوجيه، لا تقيس المستفيدة سكر الدم بنفسها.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "المستفيدة لا تلبس زرّ الطوارئ ليلًا؛ نوقش الخطر معها.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "أتّصل بمسؤولة خدمة الرعاية وأتّبع خطة الطوارئ.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "أعطيها فورًا سكرًا أو عصيرًا، ثم أقيس مرة أخرى.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "ألتقطها كلها، وأقارن علبة الأدوية بالخطة، وأُبلغ إن نقص قرص.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "لا ألبسها الجوارب، وأُبلغ طبيبة الأسرة فورًا."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "هل يمكنني أن أرى العلبة؟ آه، راميبريل. إنه لعلاج ارتفاع ضغط الدم.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "تأخذينه مرة واحدة في اليوم، صباحًا. هكذا هو مكتوب هنا في خطتك.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "لست متأكدة من ذلك. الأفضل أن نسأل في الصيدلية أو طبيب العائلة."
    }
   },
   "pt": {
@@ -1754,7 +1762,7 @@ window.SCENE = {
     "B1": "Aconselhar com “sollten”",
     "B2": "Ligar para o consultório médico",
     "C1": "Documentar uma recusa",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + hora; am + dia; im + mês.",
@@ -1780,10 +1788,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Um registro no prontuário: fatos datados, verificáveis, nunca uma opinião.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (muitas vezes Dativ na fala); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Anota-se a escolha da pessoa E o que foi feito: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Nunca ir embora, nunca forçar a porta por conta própria: alerta-se e segue-se o procedimento do serviço (familiares, chave, socorro) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hipoglicemia: açúcar de absorção rápida imediatamente, depois um novo controle; nunca insulina ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Um comprimido engolido pelo gato, ou esquecido, muda o tratamento: conta-se e comunica-se.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Uma perna vermelha, quente e inchada pode ser uma trombose: nem meias nem massagem, liga-se ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Leia a caixa e o plano de medicação, depois explique em palavras simples: “für den Blutdruck”.</b> Se você não souber, diga isso e proponha perguntar: nunca responda “nehmen Sie sie einfach”. ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>O horário da tomada está no plano de medicação: leia.</b> “Laut Medikamentenplan einmal täglich, morgens.” Cada medicamento tem o seu horário, e não cabe à profissional de enfermagem escolhê-lo. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Alguns comprimidos não podem ser triturados (revestimento, liberação prolongada).</b> Quando você não souber, encaminhe à farmácia: “Das fragen wir am besten in der Apotheke.” É uma resposta profissional. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Ela chega às oito horas.",
@@ -1809,10 +1816,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "A hora, a observação, a medida tomada e quem foi informado.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Apesar das orientações, a cliente não mede a glicemia sozinha.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "A cliente não usa o botão de emergência à noite; o risco foi discutido com ela.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Ligo para a coordenação do serviço e sigo o plano de emergência.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Dou a ela imediatamente açúcar ou suco e depois meço de novo.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Recolho todos, comparo o porta-comprimidos com o plano e comunico se faltar algum.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Não calço as meias e aviso imediatamente a médica de família."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "Posso ver a caixa? Ah, ramipril. É contra a pressão alta.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "A senhora toma uma vez por dia, de manhã. Está escrito aqui, no seu plano.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "Disso eu não tenho certeza. O melhor é perguntarmos na farmácia ou ao seu médico de família."
    }
   },
   "pl": {
@@ -1826,7 +1832,7 @@ window.SCENE = {
     "B1": "Doradzać z „sollten”",
     "B2": "Telefon do gabinetu lekarskiego",
     "C1": "Dokumentowanie odmowy",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + godzina; am + dzień; im + miesiąc.",
@@ -1852,10 +1858,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Wpis do dokumentacji: fakty z datą i godziną, sprawdzalne, nigdy opinia.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (w mowie często Dativ); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Zapisuje się wybór osoby ORAZ to, co zrobiono: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Nigdy nie odchodzić i nigdy nie wchodzić siłą na własną rękę: alarmuje się i postępuje zgodnie z procedurą zespołu (bliscy, klucz, pogotowie) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Hipoglikemia: od razu szybko wchłaniany cukier, potem kontrola; nigdy insuliny ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Tabletka połknięta przez kota albo pominięta zmienia leczenie: liczy się i zgłasza.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Czerwona, ciepła i obrzęknięta noga może oznaczać zakrzepicę: ani pończoch, ani masażu, dzwoni się ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Przeczytaj opakowanie i plan leków, a potem wyjaśnij prostymi słowami: „für den Blutdruck”.</b> Jeśli nie wiesz, powiedz to i zaproponuj, że zapytasz: nigdy nie odpowiadaj „nehmen Sie sie einfach”. ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>Pora przyjmowania jest w planie leków: przeczytaj go.</b> „Laut Medikamentenplan einmal täglich, morgens.” Każdy lek ma swoją porę i to nie osoba z personelu ją wybiera. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Niektórych tabletek się nie rozkrusza (otoczka, przedłużone uwalnianie).</b> Kiedy nie wiesz, odeślij do apteki: „Das fragen wir am besten in der Apotheke.” To profesjonalna odpowiedź. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Przychodzi o ósmej.",
@@ -1881,10 +1886,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Godzina, obserwacja, podjęte działanie i kogo poinformowano.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Mimo instruktażu podopieczna nie mierzy sama poziomu cukru.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Podopieczna nie nosi przycisku alarmowego w nocy; ryzyko z nią omówiono.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Dzwonię do koordynatorki opieki i postępuję zgodnie z planem awaryjnym.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Od razu daję jej cukier albo sok, a potem mierzę jeszcze raz.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Zbieram wszystkie, porównuję kasetkę z planem i zgłaszam, jeśli którejś brakuje.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Nie zakładam pończoch i od razu informuję lekarkę rodzinną."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "Mogę zobaczyć opakowanie? Ach, ramipryl. To jest na wysokie ciśnienie.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "Bierze ją pani raz dziennie, rano. Tak jest napisane tutaj, w pani planie.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "Nie wiem tego na pewno. Najlepiej zapytamy w aptece albo u pani lekarza rodzinnego."
    }
   },
   "ru": {
@@ -1898,7 +1902,7 @@ window.SCENE = {
     "B1": "Советовать с помощью «sollten»",
     "B2": "Звонок в кабинет врача",
     "C1": "Документировать отказ",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Sie kommt um acht Uhr.": "<b>um</b> + час; am + день; im + месяц.",
@@ -1924,10 +1928,9 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Запись в документации: факты с датой и временем, проверяемые, никогда не мнение.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + Genitiv (в устной речи часто Dativ); <b>BZ</b> = Blutzucker ⚕️.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Записывают выбор человека И то, что было сделано: <b>Risiko mit ihr besprochen</b>.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Никогда не уходить и никогда не вскрывать дверь в одиночку: поднимают тревогу и действуют по процедуре службы (родственники, ключ, скорая помощь) ⚕️.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Гипогликемия: сразу быстрые углеводы, затем контроль; никогда не инсулин ⚕️.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Таблетка, проглоченная кошкой или забытая, меняет лечение: пересчитывают и сообщают.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Красная, горячая и отёкшая нога может означать тромбоз: ни чулок, ни массажа, звонят врачу ⚕️."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Прочитай упаковку и план приёма лекарств, потом объясни простыми словами: «für den Blutdruck».</b> Если не знаешь, так и скажи и предложи спросить: никогда не отвечай «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>Время приёма указано в плане приёма лекарств: прочитай его.</b> «Laut Medikamentenplan einmal täglich, morgens.» У каждого лекарства своё время, и выбирать его не медсестре. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Некоторые таблетки не измельчают (оболочка, пролонгированное действие).</b> Если не знаешь, направь в аптеку: «Das fragen wir am besten in der Apotheke.» Это профессиональный ответ. ⚕️"
    },
    "sens": {
     "A2 | Sie kommt um acht Uhr.": "Она приходит в восемь часов.",
@@ -1953,10 +1956,79 @@ window.SCENE = {
     "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Время, наблюдение, принятая мера и кого проинформировали.",
     "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "Несмотря на инструктаж, подопечная не измеряет сахар самостоятельно.",
     "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Подопечная не носит тревожную кнопку ночью; риск с ней обсуждён.",
-    "SIT | Ich rufe die Pflegedienstleitung an und folge dem Notfallplan.": "Я звоню руководителю службы ухода и действую по плану действий в экстренной ситуации.",
-    "SIT | Ich gebe ihr sofort Traubenzucker oder Saft und messe danach noch einmal.": "Я сразу даю ей сахар или сок, а потом снова измеряю.",
-    "SIT | Ich sammle alle auf, vergleiche den Dispenser mit dem Plan und melde es, wenn eine fehlt.": "Я собираю все, сравниваю таблетницу с планом и сообщаю, если одной не хватает.",
-    "SIT | Ich ziehe die Strümpfe nicht an und informiere sofort die Hausärztin.": "Я не надеваю чулки и сразу сообщаю семейному врачу."
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "Можно посмотреть упаковку? А, рамиприл. Это от повышенного давления.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "Её принимают один раз в день, утром. Так написано вот здесь, в вашем плане.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "Этого я точно не знаю. Лучше всего спросить об этом в аптеке или у вашего лечащего врача."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala de Frau Kowalski, en un edificio antiguo, por la mañana: está sentada en su sillón, en bata, con los pies sobre un reposapiés y un botón de emergencia en la muñeca, y mira a su gato en el borde de la ventana; sobre la mesita, el café, el pastillero, la pluma de insulina, el glucómetro y la carpeta de cuidados; sobre la silla, el maletín y el celular de la cuidadora, las medias de compresión y una muleta; la cama hospitalaria, el andador, las llaves en el gancho, la cocina.",
+    "consigne": "Toca un objeto del apartamento, o a Frau Kowalski."
+   },
+   "couches": {
+    "A1": "Los objetos del apartamento",
+    "A2": "La ronda de la mañana",
+    "B1": "Aconsejar con «sollten»",
+    "B2": "Llamar al consultorio médico",
+    "C1": "Documentar una negativa",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Sie kommt um acht Uhr.": "<b>um</b> + hora; am + día; im + mes.",
+    "A2 | Frau Kowalski wohnt im dritten Stock.": "<b>im</b> dritten Stock (in + dem) = en el tercer piso.",
+    "A2 | Die Katze sitzt am Fenster.": "<b>am</b> = an + dem: junto a, pegado a.",
+    "A2 | Auf dem Tisch.": "<b>auf</b> + dativo: puesto sobre una superficie.",
+    "A2 | Die Schlüssel hängen am Haken.": "Lo que cuelga: <b>hängen an</b> + dativo (am Haken).",
+    "A2 | Die Tasche steht auf dem Stuhl.": "<b>auf</b> dem Stuhl: sobre el asiento de la silla.",
+    "B1 | Sie sollten die Strümpfe morgens vor dem Aufstehen anziehen.": "<b>sollten</b> (Konjunktiv II) = un consejo cortés. Las medias se ponen en la mañana, con las piernas todavía poco hinchadas ⚕️.",
+    "B1 | Sie sollten mehr trinken.": "Después de un verbo modal, el infinitivo va al final.",
+    "B1 | Sie sollten den Notrufknopf immer tragen, auch nachts.": "Con Sie: <b>sollten</b> (como en plural).",
+    "B1 | Könnten Sie Ihren Blutzucker vor dem Frühstück messen?": "<b>Könnten Sie …?</b> (Konjunktiv II): una petición cortés. Konnten = el pasado.",
+    "B1 | Sie sollten den Rollator immer in der Nähe haben.": "Modal + infinitivo al final: sollten … <b>haben</b>.",
+    "B1 | An Ihrer Stelle würde ich die Katze nicht ins Bett lassen.": "<b>An Ihrer Stelle würde ich …</b> = en su lugar, yo …: aconsejar con tacto.",
+    "B2 | Guten Tag, hier ist Amira vom Pflegedienst. Ich rufe wegen Frau Kowalski an.": "Quién llama, de dónde y por quién: <b>Ich rufe wegen … an</b>.",
+    "B2 | Ihr Blutzucker ist heute Morgen deutlich höher als sonst.": "Comparar: <b>höher als</b> sonst; <b>deutlich</b> refuerza el comparativo.",
+    "B2 | Könnten Sie mir bitte sagen, wann die Ärztin zurückruft?": "Pregunta indirecta: <b>wann</b>, el verbo al final (zurückruft).",
+    "B2 | Ich würde gern einen Hausbesuch vereinbaren.": "<b>Ich würde gern …</b>: una petición cortés por teléfono.",
+    "B2 | Soll ich die Insulindosis anpassen oder so lassen?": "Una dosis solo se cambia con indicación médica: se pregunta ⚕️. Modal + infinitivo completo al final: <b>anpassen</b>.",
+    "B2 | Darf ich das kurz wiederholen: ab morgen zwei Einheiten mehr?": "Una indicación recibida por teléfono se repite para comprobarla ⚕️.",
+    "C1 | Klientin lehnt das Anziehen der Kompressionsstrümpfe ab, wurde über mögliche Folgen aufgeklärt.": "La fórmula de la negativa: <b>lehnt … ab</b>, y luego <b>wurde über mögliche Folgen aufgeklärt</b>: la información se dio, la decisión se respeta ⚕️.",
+    "C1 | Einnahme der Morgenmedikation verweigert, Hausärztin informiert.": "El estilo nominal (<b>Einnahme … verweigert</b>): el hecho, y luego a quién se informó ⚕️.",
+    "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "Una nota en el expediente: hechos con fecha y hora, comprobables, nunca una opinión.",
+    "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "<b>trotz</b> + genitivo (a menudo dativo al hablar); <b>BZ</b> = Blutzucker ⚕️.",
+    "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "Se anota la decisión de la persona Y lo que se hizo: <b>Risiko mit ihr besprochen</b>.",
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "<b>Lee la caja y el plan de medicación, y luego explica con palabras sencillas: «für den Blutdruck».</b> Si no sabes, dilo y ofrece preguntar: nunca respondas «nehmen Sie sie einfach». ⚕️",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "<b>El momento de la toma está en el plan de medicación: léelo.</b> «Laut Medikamentenplan einmal täglich, morgens.» Cada medicamento tiene su hora, y no le corresponde a la enfermera elegirla. ⚕️",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "<b>Algunas tabletas no se trituran (recubrimiento, liberación prolongada).</b> Cuando no sepas, remite a la farmacia: «Das fragen wir am besten in der Apotheke.» Es una respuesta profesional. ⚕️"
+   },
+   "sens": {
+    "A2 | Sie kommt um acht Uhr.": "Ella llega a las ocho.",
+    "A2 | Frau Kowalski wohnt im dritten Stock.": "La Sra. Kowalski vive en el tercer piso.",
+    "A2 | Die Katze sitzt am Fenster.": "El gato está sentado junto a la ventana.",
+    "A2 | Auf dem Tisch.": "Sobre la mesa.",
+    "A2 | Die Schlüssel hängen am Haken.": "Las llaves están colgadas en el gancho.",
+    "A2 | Die Tasche steht auf dem Stuhl.": "El bolso está sobre la silla.",
+    "B1 | Sie sollten die Strümpfe morgens vor dem Aufstehen anziehen.": "Debería ponerse las medias en la mañana, antes de levantarse.",
+    "B1 | Sie sollten mehr trinken.": "Debería beber más.",
+    "B1 | Sie sollten den Notrufknopf immer tragen, auch nachts.": "Debería llevar siempre el botón de emergencia, también de noche.",
+    "B1 | Könnten Sie Ihren Blutzucker vor dem Frühstück messen?": "¿Podría medirse la glucosa antes del desayuno?",
+    "B1 | Sie sollten den Rollator immer in der Nähe haben.": "Debería tener siempre el andador cerca.",
+    "B1 | An Ihrer Stelle würde ich die Katze nicht ins Bett lassen.": "En su lugar, yo no dejaría que el gato se subiera a la cama.",
+    "B2 | Guten Tag, hier ist Amira vom Pflegedienst. Ich rufe wegen Frau Kowalski an.": "Buenos días, habla Amira, del servicio de enfermería a domicilio. Llamo por la Sra. Kowalski.",
+    "B2 | Ihr Blutzucker ist heute Morgen deutlich höher als sonst.": "Esta mañana, su glucosa está notablemente más alta que de costumbre.",
+    "B2 | Könnten Sie mir bitte sagen, wann die Ärztin zurückruft?": "¿Podría decirme, por favor, cuándo devuelve la llamada la doctora?",
+    "B2 | Ich würde gern einen Hausbesuch vereinbaren.": "Me gustaría acordar una visita a domicilio.",
+    "B2 | Soll ich die Insulindosis anpassen oder so lassen?": "¿Ajusto la dosis de insulina o la dejo así?",
+    "B2 | Darf ich das kurz wiederholen: ab morgen zwei Einheiten mehr?": "¿Puedo repetirlo un momento: a partir de mañana, dos unidades más?",
+    "C1 | Klientin lehnt das Anziehen der Kompressionsstrümpfe ab, wurde über mögliche Folgen aufgeklärt.": "La usuaria se niega a ponerse las medias de compresión; se le informó de las posibles consecuencias.",
+    "C1 | Einnahme der Morgenmedikation verweigert, Hausärztin informiert.": "Toma de los medicamentos de la mañana rechazada, médica de cabecera informada.",
+    "C1 | Uhrzeit, Beobachtung, Maßnahme und wer informiert wurde.": "La hora, la observación, la medida tomada y a quién se informó.",
+    "C1 | Klientin führt die BZ-Messung trotz Anleitung nicht selbstständig durch.": "A pesar de las instrucciones, la usuaria no se mide la glucosa por sí sola.",
+    "C1 | Klientin trägt den Notrufknopf nachts nicht; Risiko mit ihr besprochen.": "La usuaria no lleva el botón de emergencia de noche; se habló del riesgo con ella.",
+    "SIT | Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.": "¿Puedo ver la caja? Ah, ramipril. Es para la presión alta.",
+    "SIT | Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.": "La toma una vez al día, por la mañana. Así dice aquí, en su plan.",
+    "SIT | Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.": "No lo sé con seguridad. Lo mejor es preguntarlo en la farmacia o a su médico de cabecera."
    }
   }
  }

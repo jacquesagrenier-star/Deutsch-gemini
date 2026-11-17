@@ -1,0 +1,117 @@
+{
+ "id": "a2-internet",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "La hotline : ton internet ne marche plus"},
+ "intro": {"fr": "Depuis hier soir, tu n'as plus d'internet dans ton appartement de Somerville. Tu appelles le service client de ton fournisseur : tu expliques la panne et tu obtiens un technicien."},
+ "personnes": ["hotline_agentin"],
+ "debut": "hello",
+ "textes": {
+  "creneau_en": {"cle": "creneau", "demain": "tomorrow morning", "vendredi": "Friday afternoon"},
+  "creneau_fr": {"cle": "creneau", "demain": "demain matin", "vendredi": "vendredi après-midi"},
+  "lumiere_fr": {"cle": "lumiere", "red": "Avec un voyant rouge, le problème vient sans doute de la ligne.", "green": "Des voyants verts mais pas d'internet… Je ne peux pas régler ça d'ici."},
+  "lumiere_en": {"cle": "lumiere", "red": "With a red light, the problem is probably on the line.", "green": "Green lights but no internet … I can't fix that from here."}
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Ton internet ne marche plus depuis hier soir. Tu appelles le service client. Après cinq minutes de musique, quelqu'un répond."}},
+    {"qui": "hotline_agentin", "air": "sourire", "t": "Thank you for calling Harborline Internet. My name is Denise. How can I help you today?", "fr": "Merci d'appeler Harborline Internet. Je m'appelle Denise. Que puis-je faire pour vous aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Hi. My internet stopped working last night.", "fr": "Bonjour. Mon internet a arrêté de marcher hier soir.", "va": "account",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Oh, I'm sorry to hear that. Let's take a look.", "fr": "Oh, j'en suis désolée. Regardons ça."}]},
+    {"t": "Hello. I have a problem with my internet. It isn't working.", "fr": "Bonjour. J'ai un problème avec mon internet. Il ne marche pas.", "va": "account",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "I'm sorry about that. I can help you.", "fr": "J'en suis désolée. Je peux vous aider."}]},
+    {"faux": true, "t": "Hello. My internet doesn't walk.", "fr": "Bonjour. Mon internet ne marche pas (à pied).",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Sorry, it doesn't … walk? Do you mean it isn't working?", "fr": "Pardon, il ne… marche pas à pied ? Vous voulez dire qu'il ne fonctionne pas ?"}],
+     "aide": {"fr": "<b>« marcher » pour un appareil se dit « work ».</b> « walk », c'est marcher à pied. Dis : « My internet isn't working » ou « My internet doesn't work »."}}
+   ]
+  },
+  "account": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Can I have your account number, please?", "fr": "Je peux avoir votre numéro de client, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Yes. It's four, seven, two, nine, one, five.", "fr": "Oui. C'est le quatre, sept, deux, neuf, un, cinq.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Thank you. I have your account right here.", "fr": "Merci. J'ai votre dossier sous les yeux."}]},
+    {"t": "Sorry, I don't have it with me.", "fr": "Désolé(e), je ne l'ai pas sur moi.", "va": "name"},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "account",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Of course. Your account number. It's on your bill: six numbers.", "fr": "Bien sûr. Votre numéro de client. Il est sur votre facture : six chiffres."}]}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "No problem. Can I have your name and your address, then?", "fr": "Pas de problème. Je peux avoir votre nom et votre adresse, alors ?"}],
+   "choix": [
+    {"t": "My name is Alex Martin. I live at twelve Elm Street, in Somerville.", "fr": "Je m'appelle Alex Martin. J'habite au douze, Elm Street, à Somerville.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Thank you, I found your account.", "fr": "Merci, j'ai trouvé votre dossier."}]},
+    {"t": "Alex Martin. My address is twelve Elm Street, in Somerville.", "fr": "Alex Martin. Mon adresse, c'est le douze, Elm Street, à Somerville.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Martin … Elm Street … Yes, here you are.", "fr": "Martin… Elm Street… Oui, vous voilà."}]},
+    {"faux": true, "t": "I call myself Alex Martin. I live at twelve Elm Street.", "fr": "Je m'appelle moi-même Alex Martin. J'habite au douze, Elm Street.",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "You call yourself …? Oh, your name is Alex Martin. Got it!", "fr": "Vous vous appelez vous-même… ? Ah, votre nom est Alex Martin. C'est noté !"}],
+     "aide": {"fr": "<b>« Je m'appelle » se dit « My name is … ».</b> « I call myself » est un calque du français. Dis : « My name is Alex Martin » ou « I'm Alex Martin »."}}
+   ]
+  },
+  "router": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "OK. Please look at your router, the small box. What color are the lights?", "t_gb": "OK. Please look at your router, the small box. What colour are the lights?", "fr": "Bien. Regardez votre routeur, le petit boîtier. De quelle couleur sont les voyants ?"}],
+   "choix": [
+    {"t": "There is a red light.", "fr": "Il y a un voyant rouge.", "pose": {"lumiere": "red"}, "va": "restart",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "A red light. OK, so the router has no signal.", "fr": "Un voyant rouge. D'accord, le routeur n'a donc pas de signal."}]},
+    {"t": "All the lights are green, but nothing works.", "fr": "Tous les voyants sont verts, mais rien ne marche.", "pose": {"lumiere": "green"}, "va": "restart",
+     "puis": [{"qui": "hotline_agentin", "air": "surprise", "t": "Hmm, that's strange.", "fr": "Hum, c'est bizarre."}]},
+    {"faux": true, "t": "The lights are greens.", "fr": "Les voyants sont verts (avec un « s » à l'adjectif).",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Sorry? Oh, the lights are green! All of them?", "fr": "Pardon ? Ah, les voyants sont verts ! Tous ?"}],
+     "aide": {"fr": "<b>En anglais, l'adjectif ne prend jamais de « s ».</b> Un voyant ou dix, c'est « green » : « The lights are green »."}}
+   ]
+  },
+  "restart": {
+   "dit": [{"qui": "hotline_agentin", "air": "attentive", "t": "Let's try something. Please unplug the router, wait thirty seconds, and plug it back in.", "fr": "Essayons quelque chose. Débranchez le routeur, attendez trente secondes et rebranchez-le."}],
+   "choix": [
+    {"t": "I already did that. It didn't help.", "fr": "Je l'ai déjà fait. Ça n'a rien changé.", "va": "tech",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "I see. Thanks for trying.", "fr": "Je vois. Merci d'avoir essayé."}]},
+    {"t": "OK, one moment … No, it still doesn't work.", "fr": "D'accord, un instant… Non, ça ne marche toujours pas.", "va": "tech",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "OK. Thanks for trying.", "fr": "D'accord. Merci d'avoir essayé."}]},
+    {"faux": true, "t": "I already made that.", "fr": "J'ai déjà fabriqué ça.",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "You … made it? Oh, you already did that!", "fr": "Vous l'avez… fabriqué ? Ah, vous l'avez déjà fait !"}],
+     "aide": {"fr": "<b>« faire » se dit « do » pour une action, « make » pour fabriquer.</b> Ici : « I already did that »."}},
+    {"repete": true, "t": "Sorry, could you say that again, slowly?", "fr": "Pardon, vous pouvez répéter, lentement ?", "va": "restart",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Of course. Take the cable out of the router. Wait thirty seconds. Then put the cable back in.", "fr": "Bien sûr. Retirez le câble du routeur. Attendez trente secondes. Puis remettez le câble."}]}
+   ]
+  },
+  "tech": {
+   "dit": [
+    {"qui": "hotline_agentin", "air": "attentive", "t": "{lumiere_en} I need to send a technician.", "t_gb": "{lumiere_en} I need to send an engineer.", "fr": "{lumiere_fr} Je dois vous envoyer un technicien."},
+    {"qui": "hotline_agentin", "air": "question", "t": "I have tomorrow morning, between eight and noon, or Friday afternoon, between one and five. Which is better for you?", "fr": "J'ai demain matin, entre huit heures et midi, ou vendredi après-midi, entre treize et dix-sept heures. Qu'est-ce qui vous convient le mieux ?"}
+   ],
+   "choix": [
+    {"t": "Tomorrow morning, please.", "fr": "Demain matin, s'il vous plaît.", "pose": {"creneau": "demain"}, "va": "phone"},
+    {"t": "Friday afternoon is better for me.", "fr": "Vendredi après-midi, ça me convient mieux.", "pose": {"creneau": "vendredi"}, "va": "phone"},
+    {"faux": true, "t": "I am free the Friday afternoon.", "fr": "Je suis libre le vendredi après-midi.",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Sorry … every Friday? Or this Friday afternoon?", "fr": "Pardon… tous les vendredis ? Ou ce vendredi après-midi ?"}],
+     "aide": {"fr": "<b>Pas d'article devant un jour.</b> On dit « on Friday afternoon » ou simplement « Friday afternoon » : « I'm free on Friday afternoon »."}}
+   ]
+  },
+  "phone": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "OK, you're all set for {creneau_en}. Can I have a cell phone number for the technician?", "t_gb": "OK, that's booked for {creneau_en}. Can I have a mobile number for the engineer?", "fr": "Très bien, c'est noté pour {creneau_fr}. Je peux avoir un numéro de portable pour le technicien ?"}],
+   "choix": [
+    {"t": "Sure. It's six one seven, five five five, zero one four two.", "fr": "Bien sûr. C'est le six un sept, cinq cinq cinq, zéro un quatre deux.", "va": "bye",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Got it. He'll call you before he comes.", "fr": "C'est noté. Il vous appellera avant de venir."}]},
+    {"t": "Yes. My cell number is six one seven, five five five, zero one four two.", "t_gb": "Yes. My mobile number is six one seven, five five five, zero one four two.", "fr": "Oui. Mon numéro de portable est le six un sept, cinq cinq cinq, zéro un quatre deux.", "va": "bye",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Thank you. He'll call you before he comes.", "fr": "Merci. Il vous appellera avant de venir."}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Is there anything else I can help you with?", "fr": "Puis-je faire autre chose pour vous ?"}],
+   "choix": [
+    {"t": "Yes, one question. Do I have to pay for the visit?", "fr": "Oui, une question. Est-ce que je dois payer la visite ?", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "No, the visit is free. Thanks for calling Harborline, and have a great day!", "fr": "Non, la visite est gratuite. Merci d'avoir appelé Harborline, et très bonne journée !"}]},
+    {"t": "No, that's all. Thank you very much. Goodbye!", "fr": "Non, c'est tout. Merci beaucoup. Au revoir !", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "You're welcome. Thanks for calling Harborline, and have a great day!", "fr": "Je vous en prie. Merci d'avoir appelé Harborline, et très bonne journée !"}]},
+    {"faux": true, "t": "Yes. Is the technician paying?", "fr": "Oui. Est-ce que le technicien paie ?",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "Is he paying? No, he doesn't pay you! Oh, you mean: is the visit free? Yes, it is.", "fr": "S'il paie ? Non, il ne vous paie pas ! Ah, vous voulez dire : la visite est-elle gratuite ? Oui."}],
+     "aide": {"fr": "<b>« payant » ne se dit pas « paying ».</b> « paying » veut dire « en train de payer ». Demande : « Do I have to pay? » ou « Is it free? »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué une panne au téléphone, répondu aux questions de la conseillère et obtenu un technicien pour {creneau_fr}."}
+}

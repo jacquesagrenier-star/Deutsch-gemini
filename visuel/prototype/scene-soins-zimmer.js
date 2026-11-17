@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "spender",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "cama",
    "ar": "سرير",
    "pl": "łóżko",
-   "ru": "кровать"
+   "ru": "кровать",
+   "es": "la cama"
   },
   {
    "id": "nachttisch",
@@ -232,7 +235,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "wasserglas",
@@ -319,7 +323,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "hoergeraet",
@@ -401,7 +406,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -480,7 +486,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "urinbeutel",
@@ -538,7 +545,8 @@ window.SCENE = {
    "pt": "cadeira de rodas",
    "ar": "كرسي متحرّك",
    "pl": "wózek inwalidzki",
-   "ru": "инвалидная коляска"
+   "ru": "инвалидная коляска",
+   "es": "la silla de ruedas"
   },
   {
    "id": "kissen",
@@ -567,7 +575,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "patient",
@@ -591,7 +600,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -612,7 +622,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "schlafanzug",
@@ -641,7 +652,8 @@ window.SCENE = {
    "pt": "pijama",
    "ar": "بيجامة",
    "pl": "piżama",
-   "ru": "пижама"
+   "ru": "пижама",
+   "es": "la piyama"
   },
   {
    "id": "nasenbrille",
@@ -786,7 +798,8 @@ window.SCENE = {
    "pt": "campainha",
    "ar": "جرس",
    "pl": "dzwonek",
-   "ru": "звонок"
+   "ru": "звонок",
+   "es": "el timbre"
   },
   {
    "id": "rollator",
@@ -1148,34 +1161,64 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
-   "niveau": "B2",
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
    "qs": [
     {
-     "q": "Herr Brandt nimmt die Nasenbrille ab: Sie stört ihn. Was tun Sie?",
+     "q": "Herr Brandt fragt: „Sind Sie neu hier?“",
      "c": [
-      "Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.",
-      "Ich setze sie ihm wieder auf und sage nichts.",
-      "Ich lege sie weg und schreibe nichts auf."
+      "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.",
+      "Ja, ich bin neu. Ich komme von Türkei.",
+      "Hallo! Wie geht's dir?"
      ],
-     "f": "nasenbrille",
-     "phrase": "Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.",
-     "sens": "Je lui explique à quoi sert l'oxygène et je préviens la médecin s'il n'en veut pas.",
-     "n": "Le patient décide, mais il doit savoir pourquoi : on explique, on respecte, on informe et on documente ⚕️.",
-     "type": "situation"
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.",
+     "sens": "Oui, je travaille ici depuis quatre mois. Je viens de Turquie, d'Izmir.",
+     "n": "<b>On dit « aus der Türkei ».</b> Pour le pays d'où l'on vient : « aus » + datif. Quelques pays ont un article : die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+     "source": "d01-vorstellung/neu"
     },
     {
-     "q": "Der Infusionsbeutel ist leer. Was tun Sie?",
+     "q": "Herr Brandt sagt: „Schlecht. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.“",
      "c": [
-      "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
-      "Ich hänge einfach einen neuen Beutel aus dem Schrank an.",
-      "Ich warte bis zur Übergabe."
+      "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.",
+      "Das ist nicht schlimm.",
+      "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg."
      ],
-     "f": "infusion",
-     "phrase": "Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.",
-     "sens": "Je préviens tout de suite l'infirmière ou l'infirmier responsable.",
-     "n": "Une perfusion se change sur prescription, par la personne habilitée : en attendant la reconnaissance du diplôme, on prévient sans tarder ⚕️.",
-     "type": "situation"
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.",
+     "sens": "Je suis désolée. Si la douleur devient forte, dites-le-moi tout de suite.",
+     "n": "<b>D'abord, montre que tu as entendu : « Das tut mir leid ».</b> Dire « ce n'est pas grave » à quelqu'un qui a mal le vexe, même avec une bonne intention.",
+     "source": "d01-vorstellung/schmerz"
+    },
+    {
+     "q": "Herr Brandt sagt: „Ach, Elif, gut, dass Sie kommen. Es tut wieder so weh.“",
+     "c": [
+      "Das tut mir leid, Herr Brandt. Wo genau tut es weh?",
+      "Wo haben Sie weh?",
+      "Wie viel Schmerzen haben Sie?"
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Das tut mir leid, Herr Brandt. Wo genau tut es weh?",
+     "sens": "Je suis désolée, monsieur Brandt. Où avez-vous mal, exactement ?",
+     "n": "<b>« weh » n'est pas un nom : on dit « Wo tut es weh? » ou « Wo haben Sie Schmerzen? ».</b> « wehtun » est un verbe (es tut weh) ; « der Schmerz, die Schmerzen » est le nom.",
+     "source": "d02-schmerzen/klingel"
+    },
+    {
+     "q": "Herr Brandt sagt: „Stechend. Wie ein Messer, wenn ich das Bein bewege.“",
+     "c": [
+      "Seit wann sind die Schmerzen so stark?",
+      "Seit wie lange haben Sie die Schmerzen?",
+      "Wann haben Sie geschlafen?"
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Seit wann sind die Schmerzen so stark?",
+     "sens": "Depuis quand la douleur est-elle aussi forte ?",
+     "n": "<b>On dit « Seit wann …? » ou « Wie lange schon …? ».</b> « Seit wie lange » est un mélange des deux, que les Allemands remarquent tout de suite.",
+     "source": "d02-schmerzen/seit"
     }
    ]
   }
@@ -1199,7 +1242,7 @@ window.SCENE = {
     "B1": "The polite imperative — Sie",
     "B2": "The passive in patient care",
     "C1": "The style of handover notes",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1223,8 +1266,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: the legal reason first. ⚕️ Without consent or authorisation, the bed rail is a deprivation of liberty.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "The compound noun (<b>Sauerstoffgabe</b>) replaces a clause; you write what you observe (atmet ruhig), not what you think. ⚕️ The flow rate is recorded as prescribed.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Handover style: the heading (<b>Sturzprophylaxe</b>), then the measures without a conjugated verb. <b>griffbereit</b> = within reach.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "The patient decides, but must know why: you explain, respect, inform and document ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "An IV is changed on prescription, by an authorised person: until your qualification is recognised, you notify someone straight away ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>You say “aus der Türkei”.</b> For the country you come from: “aus” + dative. A few countries take an article: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>First, show that you've heard: “Das tut mir leid”.</b> Telling someone in pain “that's not so bad” offends them, even with good intentions.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>“weh” is not a noun: you say “Wo tut es weh?” or “Wo haben Sie Schmerzen?”.</b> “wehtun” is a verb (es tut weh); “der Schmerz, die Schmerzen” is the noun.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>You say “Seit wann …?” or “Wie lange schon …?”.</b> “Seit wie lange” is a mix of the two, and Germans notice it straight away."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "The rollator is next to the bed.",
@@ -1248,8 +1293,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Bed rail raised at the patient's request, consent documented.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Oxygen via nasal cannula, patient breathing calmly, no dyspnoea.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Fall prevention: rollator within reach, call bell to hand.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "I explain to him what the oxygen is for and tell the doctor if he doesn't want it.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "I tell the nurse in charge straight away."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Yes, I've been working here for four months. I'm from Turkey, from Izmir.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "I'm sorry to hear that. If the pain gets bad, please tell me straight away.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "I'm sorry to hear that, Mr. Brandt. Where exactly does it hurt?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "Since when has the pain been this bad?"
    }
   },
   "tr": {
@@ -1264,7 +1311,7 @@ window.SCENE = {
     "B1": "Kibar emir kipi — Sie",
     "B2": "Bakımda edilgen çatı",
     "C1": "Vardiya devri notlarının üslubu",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1288,8 +1335,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: önce hukuki gerekçe. ⚕️ Onay ya da izin olmadan korkuluk, özgürlüğü kısıtlayıcı bir önlemdir.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Birleşik isim (<b>Sauerstoffgabe</b>) bir cümlenin yerini tutar; düşünülen değil, gözlenen yazılır (atmet ruhig). ⚕️ Akış hızı, hekim istemine göre kaydedilir.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Devir notu üslubu: başlık (<b>Sturzprophylaxe</b>), ardından çekimli fiil olmadan önlemler. <b>griffbereit</b> = el altında.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Karar hastanındır, ama nedenini bilmesi gerekir: açıklanır, saygı gösterilir, bilgi verilir ve kayda geçirilir ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Serum, hekim istemiyle ve yetkili kişi tarafından değiştirilir: diploma denkliği alınana kadar hemen haber verilir ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>“aus der Türkei” denir.</b> Gelinen ülke için: “aus” + Dativ. Bazı ülke adlarının artikeli vardır: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Önce duyduğunu göster: “Das tut mir leid”.</b> Ağrısı olan birine “önemli değil” demek, iyi niyetle bile olsa onu kırar.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>“weh” bir isim değildir: “Wo tut es weh?” ya da “Wo haben Sie Schmerzen?” denir.</b> “wehtun” bir fiildir (es tut weh); “der Schmerz, die Schmerzen” isimdir.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>“Seit wann …?” ya da “Wie lange schon …?” denir.</b> “Seit wie lange” ikisinin karışımıdır ve Almanlar bunu hemen fark eder."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "Yürüteç yatağın yanında.",
@@ -1313,8 +1362,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Yatak korkuluğu hastanın isteği üzerine kaldırıldı, onay kayda geçirildi.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Nazal kanülle oksijen, hasta sakin soluyor, nefes darlığı yok.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Düşme önleme: yürüteç ulaşılabilir yerde, zil el altında.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Ona oksijenin ne işe yaradığını açıklarım, istemezse doktora haber veririm.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Hemen sorumlu hemşireye haber veririm."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Evet, dört aydır burada çalışıyorum. Türkiye'den, İzmir'den geliyorum.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Buna üzüldüm. Ağrınız şiddetlenirse lütfen hemen bana söyleyin.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Buna üzüldüm, Brandt Bey. Tam olarak neresi ağrıyor?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "Ağrı ne zamandan beri bu kadar şiddetli?"
    }
   },
   "uk": {
@@ -1329,7 +1380,7 @@ window.SCENE = {
     "B1": "Ввічливий наказовий спосіб — Sie",
     "B2": "Пасив у догляді",
     "C1": "Стиль записів при передачі зміни",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1353,8 +1404,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: спершу юридична підстава. ⚕️ Без згоди чи дозволу поручні — це захід позбавлення свободи.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Складний іменник (<b>Sauerstoffgabe</b>) замінює речення; пишуть те, що спостерігають (atmet ruhig), а не те, що думають. ⚕️ Швидкість потоку записують згідно з призначенням.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Стиль запису при передачі зміни: заголовок (<b>Sturzprophylaxe</b>), далі заходи без особової форми дієслова. <b>griffbereit</b> = під рукою.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Вирішує пацієнт, але він має знати чому: пояснюємо, поважаємо, повідомляємо й документуємо ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Крапельницю міняють за призначенням, і робить це уповноважена особа: доки диплом не визнано, негайно повідомляємо ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Кажуть «aus der Türkei».</b> Про країну, з якої ти родом: «aus» + Dativ. Деякі країни мають артикль: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Спершу покажи, що чуєш людину: «Das tut mir leid».</b> Сказати «нічого страшного» тому, кому болить, — образити його, навіть із добрими намірами.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» — не іменник: кажуть «Wo tut es weh?» або «Wo haben Sie Schmerzen?».</b> «wehtun» — дієслово (es tut weh); «der Schmerz, die Schmerzen» — іменник.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Кажуть «Seit wann …?» або «Wie lange schon …?».</b> «Seit wie lange» — це суміш обох, і німці її одразу помічають."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "Ходунки стоять біля ліжка.",
@@ -1378,8 +1431,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Бокові поручні підняті на прохання пацієнта, згоду задокументовано.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Кисень через носову канюлю, пацієнт дихає спокійно, задишки немає.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Профілактика падінь: ходунки поруч, кнопка виклику під рукою.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Я пояснюю йому, для чого кисень, і повідомляю лікарку, якщо він його не хоче.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Я одразу повідомляю відповідальну медсестру чи медбрата."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Так, я працюю тут уже чотири місяці. Я з Туреччини, з Ізміра.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Мені дуже шкода. Якщо біль посилиться, скажіть мені, будь ласка, одразу.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Мені дуже шкода, пане Брандте. Де саме болить?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "Відколи біль такий сильний?"
    }
   },
   "fa": {
@@ -1394,7 +1449,7 @@ window.SCENE = {
     "B1": "امرِ مؤدبانه — <span lang=\"de\">Sie</span>",
     "B2": "مجهول در پرستاری",
     "C1": "سبکِ گزارشِ تحویلِ شیفت",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: <span lang=\"de\">das Bett → neben <b>dem</b> Bett</span>.",
@@ -1418,8 +1473,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: اول دلیلِ حقوقی. ⚕️ بدونِ رضایت یا اجازه، نرده اقدامی سالبِ آزادی است.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "اسمِ مرکب (<b>Sauerstoffgabe</b>) جای یک جمله را می‌گیرد؛ آنچه را می‌بینیم می‌نویسیم (<span lang=\"de\">atmet ruhig</span>)، نه آنچه گمان می‌کنیم. ⚕️ میزانِ جریان طبقِ دستورِ پزشک ثبت می‌شود.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "سبکِ گزارشِ تحویلِ شیفت: عنوان (<b>Sturzprophylaxe</b>)، بعد اقدام‌ها بدونِ فعلِ صرف‌شده. <b>griffbereit</b> = دمِ دست.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "تصمیم با بیمار است، اما باید بداند چرا: توضیح می‌دهیم، احترام می‌گذاریم، خبر می‌دهیم و ثبت می‌کنیم ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "سرم با دستورِ پزشک و به دستِ فردِ مجاز عوض می‌شود: تا وقتی مدرک به رسمیت شناخته نشده، فوراً خبر می‌دهیم ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>درستش «aus der Türkei» است.</b> برای کشوری که از آن می‌آییم: «aus» + حالت Dativ. چند کشور حرف تعریف دارند: die Türkei → aus der Türkei، die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>اول نشان بده که شنیدی: «Das tut mir leid».</b> گفتن «چیز مهمی نیست» به کسی که درد دارد او را می‌رنجاند، حتی با نیت خوب.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» اسم نیست: می‌گوییم «Wo tut es weh?» یا «Wo haben Sie Schmerzen?».</b> «wehtun» فعل است (es tut weh)؛ «der Schmerz, die Schmerzen» اسم است.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>می‌گوییم «Seit wann …?» یا «Wie lange schon …?».</b> «Seit wie lange» آمیزه‌ای از این دو است که آلمانی‌ها فوراً متوجهش می‌شوند."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "واکر کنارِ تخت است.",
@@ -1443,8 +1500,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "نردهٔ تخت به درخواستِ بیمار بالا کشیده شد، رضایت ثبت شد.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "اکسیژن با کانولای بینی، بیمار آرام نفس می‌کشد، تنگیِ نفس ندارد.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "پیشگیری از سقوط: واکر در دسترس، زنگ دمِ دست.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "برایش توضیح می‌دهم اکسیژن برای چیست و اگر نخواهد، به پزشک خبر می‌دهم.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "فوراً به پرستارِ مسئول خبر می‌دهم."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "بله، چهار ماه است که اینجا کار می‌کنم. اهل ترکیه‌ام، از ازمیر.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "متأسفم. اگر دردتان شدید شد، لطفاً فوراً به من بگویید.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "متأسفم، آقای برانت. دقیقاً کجایتان درد می‌کند؟",
+    "SIT | Seit wann sind die Schmerzen so stark?": "از کی درد این‌قدر شدید است؟"
    }
   },
   "ar": {
@@ -1459,7 +1518,7 @@ window.SCENE = {
     "B1": "صيغة الأمر المهذّبة — <span lang=\"de\">Sie</span>",
     "B2": "المبني للمجهول في التمريض",
     "C1": "أسلوب التقارير التمريضية",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: <span lang=\"de\">das Bett → neben <b>dem</b> Bett</span>.",
@@ -1483,8 +1542,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: السبب القانوني أولًا. ⚕️ دون موافقة أو إذن، يكون الحاجز إجراءً مقيِّدًا للحرية.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "الاسم المركّب (<b>Sauerstoffgabe</b>) يحلّ محلّ جملة؛ نكتب ما نلاحظه (<span lang=\"de\">atmet ruhig</span>)، لا ما نظنّه. ⚕️ يُدوَّن معدّل التدفّق وفق الوصفة الطبية.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "أسلوب التقارير: العنوان (<b>Sturzprophylaxe</b>)، ثم الإجراءات دون فعل مصرَّف. <b>griffbereit</b> = في متناول اليد.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "المريض يقرّر، لكن عليه أن يعرف السبب: نشرح ونحترم ونُبلغ ونوثّق ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "يُغيَّر المحلول الوريدي بوصفة طبية، على يد الشخص المخوَّل: وإلى حين الاعتراف بالشهادة، نُبلغ دون تأخير ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>نقول «aus der Türkei».</b> للبلد الذي نأتي منه: «aus» + حالة الجر (Dativ). بعض البلدان لها أداة تعريف: die Türkei → aus der Türkei، وdie Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>أولًا، أظهر أنك سمعت: «Das tut mir leid».</b> أن تقول «ليس خطيرًا» لشخص يتألم يجرح مشاعره، حتى لو كانت نيتك حسنة.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» ليست اسمًا: نقول «Wo tut es weh?» أو «Wo haben Sie Schmerzen?».</b> «wehtun» فعل (es tut weh)؛ أما «der Schmerz, die Schmerzen» فهو الاسم.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>نقول «Seit wann …?» أو «Wie lange schon …?».</b> أما «Seit wie lange» فهي خليط من الاثنين يلاحظه الألمان فورًا."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "المشّاية بجانب السرير.",
@@ -1508,8 +1569,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "رُفع حاجز السرير بطلب من المريض، ووُثّقت الموافقة.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "أكسجين عبر القنية الأنفية، تنفّس المريض هادئ، لا ضيق في التنفّس.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "الوقاية من السقوط: المشّاية في المتناول، وجرس الاستدعاء في متناول اليد.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "أشرح له فائدة الأكسجين، وأُبلغ الطبيبة إن كان لا يريده.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "أُبلغ الممرّضة أو الممرّض المسؤول فورًا."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "نعم، أعمل هنا منذ أربعة أشهر. أنا من تركيا، من إزمير.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "أنا آسفة لذلك. إذا اشتدّ الألم، فأخبرني فورًا من فضلك.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "أنا آسفة لذلك يا سيد برانت. أين يؤلمك بالضبط؟",
+    "SIT | Seit wann sind die Schmerzen so stark?": "منذ متى والألم بهذه الشدة؟"
    }
   },
   "pt": {
@@ -1524,7 +1587,7 @@ window.SCENE = {
     "B1": "O imperativo formal — Sie",
     "B2": "A voz passiva nos cuidados",
     "C1": "O estilo das anotações de enfermagem",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1548,8 +1611,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: primeiro o motivo jurídico. ⚕️ Sem consentimento nem autorização, a grade é uma medida de restrição de liberdade.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "O substantivo composto (<b>Sauerstoffgabe</b>) substitui uma frase; escreve-se o que se observa (atmet ruhig), não o que se acha. ⚕️ O fluxo é anotado conforme a prescrição.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Estilo das anotações: o título (<b>Sturzprophylaxe</b>), depois as medidas sem verbo conjugado. <b>griffbereit</b> = ao alcance da mão.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "O paciente decide, mas precisa saber por quê: explica-se, respeita-se, informa-se e documenta-se ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "O soro se troca com prescrição, pela pessoa habilitada: enquanto o diploma não é reconhecido, avisa-se sem demora ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>O certo é “aus der Türkei”.</b> Para o país de onde se vem: “aus” + dativo. Alguns países têm artigo: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Primeiro, mostre que você ouviu: “Das tut mir leid”.</b> Dizer “não é nada grave” a quem está com dor magoa a pessoa, mesmo com boa intenção.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>“weh” não é um substantivo: diz-se “Wo tut es weh?” ou “Wo haben Sie Schmerzen?”.</b> “wehtun” é um verbo (es tut weh); “der Schmerz, die Schmerzen” é o substantivo.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Diz-se “Seit wann …?” ou “Wie lange schon …?”.</b> “Seit wie lange” é uma mistura das duas, que os alemães percebem na hora."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "O andador está ao lado da cama.",
@@ -1573,8 +1638,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Grade da cama levantada a pedido do paciente, consentimento documentado.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Oxigênio por cateter nasal, paciente respira tranquilo, sem dispneia.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Prevenção de quedas: andador ao alcance, campainha à mão.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Explico a ele para que serve o oxigênio e aviso a médica se ele não quiser.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Aviso imediatamente a enfermeira ou o enfermeiro responsável."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Sou, sim, trabalho aqui há quatro meses. Sou da Turquia, de Izmir.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Sinto muito. Se a dor ficar forte, me avise na hora, por favor.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Sinto muito, senhor Brandt. Onde exatamente está doendo?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "Desde quando a dor está tão forte?"
    }
   },
   "pl": {
@@ -1589,7 +1656,7 @@ window.SCENE = {
     "B1": "Grzeczny tryb rozkazujący — Sie",
     "B2": "Strona bierna w opiece",
     "C1": "Styl raportu pielęgniarskiego",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1613,8 +1680,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: najpierw podstawa prawna. ⚕️ Bez zgody pacjenta lub sądu barierki są środkiem ograniczającym wolność.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Rzeczownik złożony (<b>Sauerstoffgabe</b>) zastępuje zdanie; zapisuje się to, co się obserwuje (atmet ruhig), a nie to, co się przypuszcza. ⚕️ Przepływ zapisuje się zgodnie ze zleceniem.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Styl raportu: tytuł (<b>Sturzprophylaxe</b>), potem działania bez odmienionego czasownika. <b>griffbereit</b> = pod ręką.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Pacjent decyduje, ale musi wiedzieć dlaczego: wyjaśnia się, szanuje, informuje i dokumentuje ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Kroplówkę zmienia się na zlecenie, robi to osoba uprawniona: do czasu uznania dyplomu należy to niezwłocznie zgłosić ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Mówi się „aus der Türkei”.</b> O kraju, z którego się pochodzi: „aus” + Dativ. Niektóre kraje mają rodzajnik: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Najpierw pokaż, że to do ciebie dotarło: „Das tut mir leid”.</b> Powiedzenie „to nic poważnego” komuś, kogo boli, rani go, nawet w dobrej wierze.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>„weh” nie jest rzeczownikiem: mówi się „Wo tut es weh?” albo „Wo haben Sie Schmerzen?”.</b> „wehtun” to czasownik (es tut weh); „der Schmerz, die Schmerzen” to rzeczownik.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Mówi się „Seit wann …?” albo „Wie lange schon …?”.</b> „Seit wie lange” to pomieszanie obu, które Niemcy od razu zauważają."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "Rolator stoi obok łóżka.",
@@ -1638,8 +1707,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Barierki podniesione na prośbę pacjenta, zgoda udokumentowana.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Tlen przez kaniulę donosową, pacjent oddycha spokojnie, bez duszności.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Profilaktyka upadków: rolator w zasięgu, dzwonek pod ręką.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Wyjaśniam mu, do czego służy tlen, i informuję lekarkę, jeśli go nie chce.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Od razu informuję odpowiedzialną pielęgniarkę lub pielęgniarza."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Tak, pracuję tu od czterech miesięcy. Pochodzę z Turcji, z Izmiru.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Przykro mi. Jeśli ból się nasili, proszę mi od razu powiedzieć.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Przykro mi, panie Brandt. Gdzie dokładnie pana boli?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "Od kiedy ból jest taki silny?"
    }
   },
   "ru": {
@@ -1654,7 +1725,7 @@ window.SCENE = {
     "B1": "Вежливый императив — Sie",
     "B2": "Пассив в уходе за пациентом",
     "C1": "Стиль сестринских записей",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + Dativ: das Bett → neben <b>dem</b> Bett.",
@@ -1678,8 +1749,10 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + Genitiv: сначала юридическое основание. ⚕️ Без согласия или разрешения ограждение — мера, ограничивающая свободу.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Сложное существительное (<b>Sauerstoffgabe</b>) заменяет целое предложение; записывают то, что наблюдают (atmet ruhig), а не то, что предполагают. ⚕️ Скорость потока записывают по назначению врача.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Стиль записей: заголовок (<b>Sturzprophylaxe</b>), затем меры без спрягаемого глагола. <b>griffbereit</b> = под рукой.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Решает пациент, но он должен знать почему: объяснить, уважать решение, сообщить и задокументировать ⚕️.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Капельницу меняют по назначению, и делает это уполномоченный специалист: пока диплом не признан, нужно сразу сообщить ⚕️."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Говорят «aus der Türkei».</b> О стране, откуда ты родом: «aus» + Dativ. У некоторых стран есть артикль: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Сначала покажи, что слышишь человека: «Das tut mir leid».</b> Сказать «ничего страшного» тому, кому больно, — значит задеть его, даже из лучших побуждений.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» — не существительное: говорят «Wo tut es weh?» или «Wo haben Sie Schmerzen?».</b> «wehtun» — глагол (es tut weh); «der Schmerz, die Schmerzen» — существительное.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Говорят «Seit wann …?» или «Wie lange schon …?».</b> «Seit wie lange» — смесь того и другого, и немцы сразу это замечают."
    },
    "sens": {
     "A2 | Der Rollator steht neben dem Bett.": "Ходунки стоят рядом с кроватью.",
@@ -1703,8 +1776,79 @@ window.SCENE = {
     "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Ограждение кровати поднято по просьбе пациента, согласие задокументировано.",
     "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Кислород через носовую канюлю, пациент дышит спокойно, одышки нет.",
     "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Профилактика падений: ходунки рядом, кнопка вызова под рукой.",
-    "SIT | Ich erkläre ihm, wofür der Sauerstoff ist, und sage der Ärztin Bescheid, wenn er ihn nicht möchte.": "Я объясняю ему, зачем нужен кислород, и сообщаю врачу, если он отказывается.",
-    "SIT | Ich sage sofort der verantwortlichen Pflegefachkraft Bescheid.": "Я сразу сообщаю ответственной медсестре или медбрату."
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Да, я работаю здесь уже четыре месяца. Я из Турции, из Измира.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Мне очень жаль. Если боль усилится, сразу скажите мне, пожалуйста.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Мне очень жаль, господин Брандт. Где именно болит?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "С какого времени боль такая сильная?"
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación doble de hospital, en la mañana: Herr Brandt, de 82 años, está semisentado en su cama hospitalaria, con una cánula nasal de oxígeno bajo la nariz y un suero; al lado, la mesita de noche, el andador, la silla de ruedas; al fondo, la ventana, el biombo y la segunda cama, vacía.",
+    "consigne": "Toca un objeto de la habitación, o a Herr Brandt.",
+    "nom_vue": "La habitación"
+   },
+   "couches": {
+    "A1": "Los objetos de la habitación",
+    "A2": "Wo? — junto a la cama del paciente",
+    "B1": "El imperativo de cortesía — Sie",
+    "B2": "La pasiva en los cuidados",
+    "C1": "El estilo de los registros de enfermería",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + dativo: das Bett → neben <b>dem</b> Bett.",
+    "A2 | Die Infusion hängt am Infusionsständer.": "<b>am</b> = an + <b>dem</b>: der Infusionsständer → am Infusionsständer.",
+    "A2 | Die Klingel liegt auf der Bettdecke.": "Femenino en dativo: die Bettdecke → auf <b>der</b> Bettdecke.",
+    "A2 | Die Hausschuhe stehen auf dem Boden.": "Los zapatos <b>stehen</b> (de pie sobre su suela), un objeto acostado <b>liegt</b>. El español dice «están» para los dos.",
+    "A2 | Der Sichtschutz steht zwischen den Betten.": "<b>zwischen</b> + dativo plural: die Betten → zwischen <b>den</b> Betten (la -n del dativo plural).",
+    "A2 | Der Desinfektionsmittelspender hängt an der Wand.": "<b>an der Wand</b>: contra una superficie vertical se dice <b>an</b>, nunca auf, aunque el español diga «en» para las dos.",
+    "B1 | Setzen Sie sich bitte auf.": "Con un paciente: <b>Sie</b>. El verbo primero, luego Sie, luego el pronombre reflexivo; la partícula <b>auf</b> va al final.",
+    "B1 | Klingeln Sie bitte, wenn Sie Hilfe brauchen.": "Después de <b>wenn</b>, el verbo conjugado va al final: wenn Sie Hilfe <b>brauchen</b>.",
+    "B1 | Nehmen Sie bitte den Rollator.": "El imperativo de Sie conserva la forma del infinitivo (<b>nehmen</b> Sie, nunca nimm); nehmen + acusativo: <b>den</b> Rollator.",
+    "B1 | Trinken Sie bitte noch einen Schluck.": "<b>bitte</b> suaviza la orden; con un paciente se propone, no se amenaza.",
+    "B1 | Bleiben Sie bitte liegen, ich komme gleich wieder.": "Dos oraciones principales: el verbo conjugado se queda en 2.ª posición (ich <b>komme</b> gleich wieder).",
+    "B2 | Das Kopfteil ist schon hochgestellt: Herr Brandt sitzt halb aufrecht.": "<b>sein</b> + participio = la pasiva de ESTADO, el resultado (ya levantada), como «estar» + participio. <b>werden</b> + participio = la acción que se está haciendo.",
+    "B2 | Die Infusion muss um zehn Uhr gewechselt werden.": "Pasiva con verbo modal: modal conjugado + participio + <b>werden</b> al final.",
+    "B2 | Das Bettgitter wird nur mit Einwilligung des Patienten hochgezogen.": "Pasiva en presente: <b>werden</b> + participio, para una regla. ⚕️ La baranda de la cama priva de la libertad: hace falta el consentimiento del paciente o, si no puede darlo, la autorización del juzgado (salvo urgencia).",
+    "B2 | Die Hände werden vor und nach jedem Patientenkontakt desinfiziert.": "El sujeto está en plural (die Hände): <b>werden</b>, no wird.",
+    "B2 | Herr Brandt wurde vorgestern an der Hüfte operiert.": "Pasiva en pasado: <b>wurde</b> + participio (al hablar también: ist … operiert worden).",
+    "B2 | Herr Brandt möchte, dass das Fenster geöffnet wird.": "Después de <b>dass</b>, el verbo conjugado de la pasiva (<b>wird</b>) va al final de todo.",
+    "C1 | Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.": "Un registro es objetivo y nominal (<b>Mobilisation … abgelehnt</b>): la causa (<b>aufgrund von</b> + dativo) y la medida tomada, nunca un estado de ánimo.",
+    "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + genitivo: el motivo jurídico primero. ⚕️ Sin consentimiento ni autorización, la baranda es una medida privativa de la libertad.",
+    "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "El sustantivo compuesto (<b>Sauerstoffgabe</b>) reemplaza una oración; se escribe lo que se observa (atmet ruhig), no lo que se cree. ⚕️ El flujo se anota según la indicación médica.",
+    "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Estilo de los registros: el título (<b>Sturzprophylaxe</b>), luego las medidas sin verbo conjugado. <b>griffbereit</b> = al alcance de la mano.",
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Se dice «aus der Türkei».</b> Para el país de donde uno viene: «aus» + dativo. Algunos países llevan artículo: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Primero, muestra que escuchaste: «Das tut mir leid».</b> Decirle «no es para tanto» a alguien que tiene dolor lo ofende, aunque sea con buena intención.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» no es un sustantivo: se dice «Wo tut es weh?» o «Wo haben Sie Schmerzen?».</b> «wehtun» es un verbo (es tut weh); «der Schmerz, die Schmerzen» es el sustantivo.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Se dice «Seit wann …?» o «Wie lange schon …?».</b> «Seit wie lange» es una mezcla de las dos, que los alemanes notan enseguida."
+   },
+   "sens": {
+    "A2 | Der Rollator steht neben dem Bett.": "El andador está al lado de la cama.",
+    "A2 | Die Infusion hängt am Infusionsständer.": "El suero cuelga del portasueros.",
+    "A2 | Die Klingel liegt auf der Bettdecke.": "El timbre está sobre la cobija.",
+    "A2 | Die Hausschuhe stehen auf dem Boden.": "Las pantuflas están en el piso.",
+    "A2 | Der Sichtschutz steht zwischen den Betten.": "El biombo está entre las camas.",
+    "A2 | Der Desinfektionsmittelspender hängt an der Wand.": "El dispensador de desinfectante está colgado en la pared.",
+    "B1 | Setzen Sie sich bitte auf.": "Incorpórese, por favor.",
+    "B1 | Klingeln Sie bitte, wenn Sie Hilfe brauchen.": "Toque el timbre, por favor, si necesita ayuda.",
+    "B1 | Nehmen Sie bitte den Rollator.": "Tome el andador, por favor.",
+    "B1 | Trinken Sie bitte noch einen Schluck.": "Beba un trago más, por favor.",
+    "B1 | Bleiben Sie bitte liegen, ich komme gleich wieder.": "Quédese acostado, por favor, ya vuelvo.",
+    "B2 | Das Kopfteil ist schon hochgestellt: Herr Brandt sitzt halb aufrecht.": "La cabecera ya está levantada: el Sr. Brandt está semisentado.",
+    "B2 | Die Infusion muss um zehn Uhr gewechselt werden.": "El suero debe cambiarse a las diez.",
+    "B2 | Das Bettgitter wird nur mit Einwilligung des Patienten hochgezogen.": "La baranda de la cama solo se sube con el consentimiento del paciente.",
+    "B2 | Die Hände werden vor und nach jedem Patientenkontakt desinfiziert.": "Las manos se desinfectan antes y después de cada contacto con un paciente.",
+    "B2 | Herr Brandt wurde vorgestern an der Hüfte operiert.": "Al Sr. Brandt lo operaron de la cadera anteayer.",
+    "B2 | Herr Brandt möchte, dass das Fenster geöffnet wird.": "El Sr. Brandt quisiera que abrieran la ventana.",
+    "C1 | Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.": "Movilización rechazada por dolor, doctora informada.",
+    "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Baranda de la cama subida a petición del pac., consentimiento documentado.",
+    "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Oxígeno por cánula nasal, pac. respira tranquilo, sin disnea.",
+    "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Prevención de caídas: andador al alcance, timbre a la mano.",
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Sí, trabajo aquí desde hace cuatro meses. Vengo de Turquía, de Izmir.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Lo siento. Si el dolor se vuelve fuerte, dígamelo enseguida, por favor.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Lo siento, señor Brandt. ¿Dónde le duele exactamente?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "¿Desde cuándo es tan fuerte el dolor?"
    }
   }
  }

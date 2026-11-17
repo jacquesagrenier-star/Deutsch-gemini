@@ -1,0 +1,64 @@
+{
+ "id": "a1-chemin",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "ville",
+ "registre": "poli",
+ "titre": {"fr": "Demander son chemin"},
+ "intro": {"fr": "Tu es à Boston Common et tu cherches l'aquarium. Une policière t'indique le chemin, à pied ou en métro (« the T »), et tu vérifies."},
+ "personnes": ["polizistin"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Boston Common, le grand parc du centre-ville. Ton téléphone n'a plus de batterie et tu cherches l'aquarium. Une policière te voit hésiter."}},
+    {"qui": "polizistin", "air": "sourire", "t": "Hi there! Can I help you?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. Where is the aquarium?", "fr": "Oui, s'il vous plaît. Où est l'aquarium ?", "va": "how"},
+    {"t": "Yes, thank you. How do I get to the aquarium?", "fr": "Oui, merci. Comment je vais à l'aquarium ?", "va": "how"},
+    {"faux": true, "t": "Yes. I search the aquarium.", "fr": "Oui. Je cherche l'aquarium (mot à mot).",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "You… search it? Oh, you're looking for the aquarium?", "fr": "Vous le… fouillez ? Ah, vous cherchez l'aquarium ?"}],
+     "aide": {"fr": "<b>« chercher » se dit « look for » :</b> « I'm looking for the aquarium. » « search », c'est fouiller (une pièce, Internet)."}}
+   ]
+  },
+  "how": {
+   "dit": [{"qui": "polizistin", "air": "question", "t": "Do you want to walk, or take the T?", "fr": "Vous voulez y aller à pied, ou prendre le T (le métro) ?"}],
+   "choix": [
+    {"t": "I'd like to walk. Is it far?", "fr": "J'aimerais y aller à pied. C'est loin ?", "va": "walk"},
+    {"t": "The T, please.", "fr": "Le métro, s'il vous plaît.", "va": "subway"},
+    {"repete": true, "t": "Sorry? What's the T?", "fr": "Pardon ? C'est quoi, le T ?", "va": "how",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "The T is the subway here in Boston. So: walk, or subway?", "fr": "Le T, c'est le métro, ici à Boston. Alors : à pied, ou en métro ?"}]}
+   ]
+  },
+  "walk": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "It's about fifteen minutes. Go straight down State Street, all the way to the water. Then turn right.", "fr": "C'est à environ quinze minutes. Descendez State Street tout droit, jusqu'à l'eau. Ensuite, tournez à droite."}],
+   "choix": [
+    {"t": "So, straight to the water and then right?", "fr": "Donc, tout droit jusqu'à l'eau, et ensuite à droite ?", "va": "thanks",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "That's it! You can't miss it.", "fr": "C'est ça ! Vous ne pouvez pas le manquer."}]},
+    {"faux": true, "t": "So, straight and then left?", "fr": "Donc, tout droit, et ensuite à gauche ?",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "No, no: right!", "fr": "Non, non : à droite !"}],
+     "aide": {"fr": "<b>« right » = à droite, « left » = à gauche.</b> Redire le chemin pour vérifier, c'est une très bonne habitude."}},
+    {"repete": true, "t": "Sorry, can you say that again, slowly?", "fr": "Pardon, vous pouvez répéter, lentement ?", "va": "walk",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Sure. Straight down State Street… to the water… then right.", "fr": "Bien sûr. Tout droit sur State Street… jusqu'à l'eau… puis à droite."}]}
+   ]
+  },
+  "subway": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "The station is right there, Park Street. Take the Green Line one stop, then change to the Blue Line. Get off at Aquarium.", "fr": "La station est juste là, Park Street. Prenez la ligne verte sur un arrêt, puis changez pour la ligne bleue. Descendez à Aquarium."}],
+   "choix": [
+    {"t": "One stop, then the Blue Line. Thank you!", "fr": "Un arrêt, puis la ligne bleue. Merci !", "va": "thanks"},
+    {"t": "Where can I buy a ticket?", "fr": "Où est-ce que je peux acheter un ticket ?", "va": "thanks",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "You don't need one: just tap your card at the gate.", "fr": "Pas besoin : passez simplement votre carte bancaire au portillon."}]}
+   ]
+  },
+  "thanks": {
+   "dit": [{"qui": "polizistin", "air": "sourire", "t": "You're welcome. Enjoy the aquarium!", "fr": "Je vous en prie. Profitez bien de l'aquarium !"}],
+   "choix": [
+    {"t": "Thanks a lot! Have a nice day!", "fr": "Merci beaucoup ! Bonne journée !", "va": null},
+    {"t": "Thank you very much. Bye!", "fr": "Merci beaucoup. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ton chemin à une policière, compris la réponse et vérifié le chemin."}
+}

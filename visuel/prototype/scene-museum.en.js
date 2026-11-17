@@ -26,9 +26,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "blanket",
+   "mot": "ceiling",
    "genre": "",
-   "pluriel": "blankets",
+   "pluriel": "ceilings",
    "niveau": "A1",
    "theme": "home_a1",
    "personne": null,
@@ -43,9 +43,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "couverture",
-   "es": "la cobija, la manta",
-   "esp": "la manta"
+   "fr": "plafond",
+   "es": "el techo"
   },
   {
    "id": "lampe-2",
@@ -851,9 +850,9 @@ window.SCENE = {
   },
   {
    "id": "bank",
-   "mot": "bank",
+   "mot": "bench",
    "genre": "",
-   "pluriel": "banks",
+   "pluriel": "benches",
    "niveau": "A1",
    "theme": "city_a1",
    "personne": null,
@@ -868,8 +867,9 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque",
-   "es": "el banco"
+   "fr": "le banc",
+   "es": "la banca, el banco (para sentarse)",
+   "esp": "el banco (para sentarse)"
   },
   {
    "id": "rucksack",

@@ -1,0 +1,106 @@
+{
+ "id": "a2-puces",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Marchander aux puces"},
+ "intro": {"fr": "Dimanche matin, à un marché aux puces du South End, à Boston. Un vieil appareil photo te plaît. Aux États-Unis, on marchande peu : il faut le faire en douceur."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "price",
+ "prix": {"camera": 3000, "cups": 1000},
+ "panier": ["appareil", "tasses"],
+ "textes": {
+  "tasses_fr": {"cle": "tasses", "cups": " et quatre tasses"}
+ },
+ "noeuds": {
+  "price": {
+   "dit": [
+    {"recit": {"fr": "Dimanche matin, aux puces. Sur une table, entre des disques et des tasses, un vieil appareil photo."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "Morning! Are you looking for anything special?", "fr": "Bonjour ! Vous cherchez quelque chose de particulier ?"}
+   ],
+   "choix": [
+    {"t": "Good morning. How much is this camera?", "fr": "Bonjour. Combien coûte cet appareil photo ?", "va": "works",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "That one? Forty dollars. It's from the sixties.", "fr": "Celui-là ? Quarante dollars. Il date des années soixante."}]},
+    {"t": "Hi. How much do you want for the camera?", "fr": "Bonjour. Vous voulez combien pour l'appareil photo ?", "va": "works",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Forty dollars. It's from the sixties, you know.", "fr": "Quarante dollars. Il date des années soixante, vous savez."}]},
+    {"faux": true, "t": "Good morning. How much costs this camera?", "fr": "Bonjour. Combien coûte cet appareil photo ? (ordre des mots)",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "How much …? Oh, how much does it cost?", "fr": "Combien… ? Ah, combien il coûte ?"}],
+     "aide": {"fr": "<b>Une question au présent a besoin de « does »</b> : « How much does this camera cost? ». Plus simple et plus courant : « How much is this camera? »."}}
+   ]
+  },
+  "works": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Go ahead, pick it up. It's a beauty, isn't it?", "fr": "Allez-y, prenez-le en main. Il est beau, n'est-ce pas ?"}],
+   "choix": [
+    {"t": "Yes, it's very nice. Does it still work?", "fr": "Oui, il est très beau. Il marche encore ?", "va": "offer",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "It works perfectly. There's a small scratch on the back, that's all.", "fr": "Il marche parfaitement. Il y a une petite rayure à l'arrière, c'est tout."}]},
+    {"t": "It is. Is anything broken?", "fr": "C'est vrai. Il y a quelque chose de cassé ?", "va": "offer",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "No, nothing. There's a small scratch on the back, but it works perfectly.", "fr": "Non, rien. Il y a une petite rayure à l'arrière, mais il marche parfaitement."}]},
+    {"faux": true, "t": "Yes, it's very nice. Does it still walk?", "fr": "Oui, il est très beau. Il marche encore ? (mauvais verbe)",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "Walk? No legs on this one! But yes, it still works.", "fr": "Marcher à pied ? Il n'a pas de jambes, celui-là ! Mais oui, il fonctionne encore."}],
+     "aide": {"fr": "<b>Pour une machine, « marcher » se dit « work »</b> : « Does it still work? ». « Walk », c'est marcher à pied."}}
+   ]
+  },
+  "offer": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "So, forty dollars. What do you say?", "fr": "Alors, quarante dollars. Qu'en dites-vous ?"}],
+   "choix": [
+    {"t": "It's a little expensive for me. Would you take twenty?", "fr": "C'est un peu cher pour moi. Vous accepteriez vingt ?", "pose": {"offre": "bas"}, "va": "counter"},
+    {"t": "Hmm. Could you do twenty-five?", "fr": "Hmm. Vous pourriez le faire à vingt-cinq ?", "pose": {"offre": "haut"}, "va": "counter"},
+    {"faux": true, "t": "It's too expensive. Twenty dollars.", "fr": "C'est trop cher. Vingt dollars. (trop sec)",
+     "puis": [{"qui": "marktverkaeufer", "air": "surprise", "t": "Whoa, twenty? Just like that? That's not very friendly.", "fr": "Holà, vingt ? Comme ça ? Ce n'est pas très aimable."}],
+     "aide": {"fr": "<b>Aux États-Unis, on marchande peu, et toujours en douceur.</b> On adoucit (« a little expensive ») et on demande : « Would you take twenty? », « Could you do twenty-five? », « Is that your best price? »."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "offer",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Sure. The camera is forty dollars. Is that okay for you?", "fr": "Bien sûr. L'appareil photo est à quarante dollars. Ça vous va ?"}]}
+   ]
+  },
+  "counter": {
+   "dit": [
+    {"si": {"offre": "bas"}, "qui": "marktverkaeufer", "air": "surprise", "t": "Twenty? Ouch. No, I can't do twenty. I can do thirty, and that's my best price.", "fr": "Vingt ? Aïe. Non, à vingt, je ne peux pas. Je peux le faire à trente, et c'est mon meilleur prix."},
+    {"si": {"offre": "haut"}, "qui": "marktverkaeufer", "air": "sourire", "t": "Twenty-five … you're close. Thirty, and that's my best price.", "fr": "Vingt-cinq… vous n'êtes pas loin. Trente, et c'est mon meilleur prix."}
+   ],
+   "choix": [
+    {"t": "Okay, thirty is fine.", "fr": "D'accord, trente, ça me va.", "pose": {"appareil": "camera"}, "va": "second"},
+    {"t": "All right, thirty dollars. Thank you!", "fr": "Entendu, trente dollars. Merci !", "pose": {"appareil": "camera"}, "va": "second"},
+    {"faux": true, "t": "Okay, I am agree for thirty.", "fr": "D'accord, je suis d'accord pour trente (mot à mot).",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "You are …? Oh, you agree! Thirty it is.", "fr": "Vous êtes… ? Ah, vous êtes d'accord ! Va pour trente."}],
+     "aide": {"fr": "<b>« agree » est un verbe, pas un adjectif</b> : « I agree », jamais « I am agree ». Ici, le plus naturel : « Okay, thirty is fine »."}}
+   ]
+  },
+  "second": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Good. Anything else? Those four coffee cups are fifteen dollars.", "fr": "Bien. Autre chose ? Ces quatre tasses à café sont à quinze dollars."}],
+   "choix": [
+    {"t": "They're pretty. How much for both, the camera and the cups?", "fr": "Elles sont jolies. C'est combien pour les deux, l'appareil et les tasses ?", "va": "deal"},
+    {"t": "No, thank you. Just the camera.", "fr": "Non, merci. Juste l'appareil photo.", "va": "pay",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "No problem. Let me wrap it up for you.", "fr": "Pas de problème. Je vous l'emballe."}]},
+    {"faux": true, "t": "They're pretty. How much for the both?", "fr": "Elles sont jolies. C'est combien pour les deux ? (un « the » en trop)",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "For the …? Oh, for both! Let me think.", "fr": "Pour « the »… ? Ah, pour les deux ! Laissez-moi réfléchir."}],
+     "aide": {"fr": "<b>« les deux » se dit « both », sans article</b> : « How much for both? », « I'll take both »."}}
+   ]
+  },
+  "deal": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Thirty and fifteen … for you, forty dollars for both.", "fr": "Trente et quinze… pour vous, quarante dollars les deux."}],
+   "choix": [
+    {"t": "Forty for both? Okay, I'll take them.", "fr": "Quarante pour les deux ? D'accord, je les prends.", "pose": {"tasses": "cups"}, "va": "pay",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Good eye! Let me wrap them up for you.", "fr": "Vous avez l'œil ! Je vous les emballe."}]},
+    {"t": "That's a good price. I'll take both, thank you!", "fr": "C'est un bon prix. Je prends les deux, merci !", "pose": {"tasses": "cups"}, "va": "pay",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "You got it. Let me wrap them up for you.", "fr": "C'est entendu. Je vous les emballe."}]},
+    {"faux": true, "t": "Forty for both? Okay, I take them.", "fr": "Quarante pour les deux ? D'accord, je les prends (mauvais temps).",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "You take them … every Sunday? Oh, you'll take them now. Great!", "fr": "Vous les prenez… tous les dimanches ? Ah, vous les prenez maintenant. Parfait !"}],
+     "aide": {"fr": "<b>Une décision prise à l'instant se dit avec « I'll »</b> : « I'll take them ». Le présent simple (« I take ») décrit une habitude."}}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "That's {a_payer}. Cash only, sorry.", "dit": "That's {a_payer:mots}. Cash only, sorry.", "fr": "Ça fait {a_payer}. En espèces seulement, désolé."}],
+   "choix": [
+    {"t": "No problem. I only have a fifty. Do you have change?", "fr": "Pas de problème. Je n'ai qu'un billet de cinquante. Vous avez de la monnaie ?", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "A fifty? Let me see … yes. Here's your change. Enjoy, and have a great Sunday!", "fr": "Un billet de cinquante ? Voyons… oui. Voici votre monnaie. Profitez-en bien, et bon dimanche !"}]},
+    {"t": "Here you go. {a_payer:mots_maj} exactly.", "fr": "Tenez. {a_payer}, le compte est bon.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Perfect, thank you. Enjoy, and have a great Sunday!", "fr": "Parfait, merci. Profitez-en bien, et bon dimanche !"}]},
+    {"faux": true, "t": "I only have a ticket of fifty dollars.", "fr": "Je n'ai qu'un billet de cinquante dollars (faux ami).",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "A ticket? For a concert? Oh, a fifty-dollar bill!", "t_gb": "A ticket? For a concert? Oh, a fifty-dollar note!", "fr": "Un « ticket » ? Pour un concert ? Ah, un billet de cinquante dollars !"}],
+     "aide": {"fr": "<b>« ticket » ne désigne jamais de l'argent</b> : c'est un billet de train ou de concert. Le billet de banque : « a bill » (« a note » en anglais britannique). « I only have a fifty-dollar bill », ou simplement « a fifty »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as marchandé poliment : l'appareil photo{tasses_fr}, affiché(s) plus cher, pour {a_payer} au total."}
+}

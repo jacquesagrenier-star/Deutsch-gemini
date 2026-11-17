@@ -1,0 +1,95 @@
+{
+ "id": "a2-colis-voisin",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Un colis chez le voisin"},
+ "intro": {"fr": "Le livreur a laissé ton colis chez un voisin de ton immeuble, à Berlin. Tu sonnes chez lui pour le récupérer."},
+ "personnes": ["nachbar-pablo"],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Dans ta boîte aux lettres, un avis de passage : ton colis est chez le voisin du rez-de-chaussée. Tu sonnes chez lui en fin d'après-midi. Il ouvre en bâillant."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "Ja … hallo?", "fr": "Oui… bonjour ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag! Entschuldigung, dass ich störe.", "fr": "Bonjour ! Excusez-moi de vous déranger.", "va": "paket",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Kein Problem. Hallo!", "fr": "Pas de problème. Bonjour !"}]},
+    {"t": "Hallo! Ich wohne neu hier im Haus, im dritten Stock.", "fr": "Bonjour ! J'habite depuis peu dans l'immeuble, au troisième étage.", "va": "paket",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Ah, hallo! Willkommen im Haus!", "fr": "Ah, bonjour ! Bienvenue dans l'immeuble !"}]}
+   ]
+  },
+  "paket": {
+   "dit": [
+    {"qui": "nachbar-pablo", "air": "question", "t": "Was kann ich für Sie tun?", "fr": "Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Ich habe einen Zettel im Briefkasten. Haben Sie ein Paket für mich?", "fr": "J'ai trouvé un avis dans ma boîte aux lettres. Vous avez un colis pour moi ?", "va": "wohnung"},
+    {"t": "Ist mein Paket vielleicht bei Ihnen?", "fr": "Mon colis est peut-être chez vous ?", "va": "wohnung"},
+    {"faux": true, "t": "Haben Sie mein Paket genommen?", "fr": "Vous avez pris mon colis ?",
+     "puis": [{"qui": "nachbar-pablo", "air": "perplexe", "t": "Genommen? Nein, nein! Ich habe es für Sie angenommen.", "fr": "Pris ? Mais non ! Je l'ai réceptionné pour vous."}],
+     "aide": {"fr": "<b>« genommen »</b> sonne comme « pris », presque « volé ». Le voisin a <b>angenommen</b> le colis (il l'a réceptionné). Demande simplement : « Haben Sie ein Paket für mich? »."}}
+   ]
+  },
+  "wohnung": {
+   "dit": [
+    {"qui": "nachbar-pablo", "air": "question", "t": "Ja, ich glaube schon. In welcher Wohnung wohnen Sie?", "fr": "Oui, je crois bien. Vous habitez dans quel appartement ?"}
+   ],
+   "choix": [
+    {"t": "Im dritten Stock, rechts.", "fr": "Au troisième étage, à droite.", "va": "schwer"},
+    {"t": "Ganz oben, im dritten Stock links.", "fr": "Tout en haut, au troisième étage à gauche.", "va": "schwer"},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "wohnung",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Ihre Wohnung: In welchem Stock wohnen Sie?", "fr": "Votre appartement : vous habitez à quel étage ?"}]}
+   ]
+  },
+  "schwer": {
+   "dit": [
+    {"qui": "nachbar-pablo", "air": "sourire", "t": "Ah, Sie sind das! Moment, ich hole es.", "fr": "Ah, c'est vous ! Un instant, je vais le chercher."},
+    {"recit": {"fr": "Il revient avec un gros carton."}},
+    {"qui": "nachbar-pablo", "air": "amuse", "t": "Hier, bitte. Puh, das ist aber schwer! Was ist denn da drin?", "fr": "Tenez. Ouf, il est lourd ! Qu'est-ce qu'il y a dedans ?"}
+   ],
+   "choix": [
+    {"t": "Bücher! Meine Familie schickt sie mir.", "fr": "Des livres ! C'est ma famille qui me les envoie.", "va": "schlafen"},
+    {"t": "Eine Lampe für meine Wohnung.", "fr": "Une lampe pour mon appartement.", "va": "schlafen"}
+   ]
+  },
+  "schlafen": {
+   "dit": [
+    {"recit": {"fr": "Il bâille encore une fois."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "Entschuldigung … Ich habe heute Nacht gearbeitet. Ich bin Bäcker.", "fr": "Pardon… J'ai travaillé cette nuit. Je suis boulanger."}
+   ],
+   "choix": [
+    {"t": "Oh, und ich habe Sie geweckt! Das tut mir leid.", "fr": "Oh, et je vous ai réveillé ! Je suis désolé(e).", "va": "pakete",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Das macht nichts. Ich musste sowieso aufstehen.", "fr": "Ce n'est rien. De toute façon, je devais me lever."}]},
+    {"t": "Ach so! Dann schlafen Sie am Tag?", "fr": "Ah, d'accord ! Alors vous dormez le jour ?", "va": "pakete",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Ja, genau, bis drei Uhr am Nachmittag. Jetzt bin ich aber wach.", "fr": "Oui, c'est ça, jusqu'à trois heures de l'après-midi. Mais maintenant, je suis réveillé."}]},
+    {"faux": true, "t": "Oh, ich habe Sie aufgewacht! Das tut mir leid.", "fr": "Oh, je vous ai réveillé (avec le verbe « aufwachen ») ! Je suis désolé(e).",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Aufgewacht? Sie haben mich geweckt! Aber das macht nichts.", "fr": "« Aufgewacht » ? Vous m'avez réveillé ! Mais ce n'est rien."}],
+     "aide": {"fr": "<b>aufwachen</b>, c'est se réveiller soi-même. Réveiller quelqu'un, c'est <b>wecken</b> : « Ich habe Sie geweckt »."}}
+   ]
+  },
+  "pakete": {
+   "dit": [
+    {"qui": "nachbar-pablo", "air": "sourire", "t": "Am Nachmittag bin ich fast immer zu Hause. Wenn wieder ein Paket kommt, nehme ich es gern an.", "fr": "L'après-midi, je suis presque toujours chez moi. Si un autre colis arrive, je le prends volontiers."}
+   ],
+   "choix": [
+    {"t": "Das ist sehr nett, vielen Dank!", "fr": "C'est très gentil, merci beaucoup !", "va": "baeckerei"},
+    {"t": "Danke! Ich bin am Abend zu Hause. Dann nehme ich gern Ihre Pakete.", "fr": "Merci ! Moi, je suis chez moi le soir. Alors je prendrai volontiers vos colis.", "va": "baeckerei",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Super, das ist eine gute Idee!", "fr": "Super, c'est une bonne idée !"}]}
+   ]
+  },
+  "baeckerei": {
+   "dit": [
+    {"qui": "nachbar-pablo", "air": "sourire", "t": "Und kommen Sie mal in meine Bäckerei, an der Ecke. Das erste Brötchen ist gratis!", "fr": "Et passez donc à ma boulangerie, au coin de la rue. Le premier petit pain est gratuit !"}
+   ],
+   "choix": [
+    {"t": "Gern! Dann bis bald!", "fr": "Volontiers ! Alors à bientôt !", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Bis bald!", "fr": "À bientôt !"}]},
+    {"t": "Super, das mache ich. Und schlafen Sie gut!", "fr": "Super, je n'y manquerai pas. Et dormez bien !", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Danke, heute Abend bestimmt! Tschüss!", "fr": "Merci, ce soir, sûrement ! Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as récupéré ton colis chez le voisin, tu t'es présenté(e) et tu t'es excusé(e) de l'avoir réveillé : vous voilà presque amis."}
+}

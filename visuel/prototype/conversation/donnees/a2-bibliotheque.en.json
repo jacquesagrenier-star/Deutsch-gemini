@@ -1,0 +1,383 @@
+{
+ "id": "a2-bibliotheque",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "À la bibliothèque"
+ },
+ "intro": {
+  "fr": "Tu as ta carte de la bibliothèque publique. Aujourd'hui, tu rends deux livres, tu veux en garder un plus longtemps et en trouver un facile en anglais."
+ },
+ "personnes": [
+  "a22_bibliothekar"
+ ],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La bibliothèque publique de ton quartier, un mardi après-midi. Tu poses trois livres sur le comptoir."
+     }
+    },
+    {
+     "qui": "a22_bibliothekar",
+     "air": "sourire",
+     "t": "Hi! How can I help you today?",
+     "fr": "Bonjour ! Que puis-je faire pour vous aujourd'hui ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hello. I'd like to return these two books. And can I keep this one longer?",
+     "fr": "Bonjour. Je voudrais rendre ces deux livres. Et est-ce que je peux garder celui-ci plus longtemps ?",
+     "va": "renew",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Of course. I can renew it for you.",
+       "fr": "Bien sûr. Je peux le prolonger pour vous."
+      }
+     ]
+    },
+    {
+     "t": "Hi. I want to return these two. But I haven't finished this one yet.",
+     "fr": "Bonjour. Je veux rendre ces deux-là. Mais je n'ai pas encore fini celui-ci.",
+     "va": "renew",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "No problem. I can renew it for you.",
+       "fr": "Pas de problème. Je peux le prolonger pour vous."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Hello. I'd like to render these two books.",
+     "fr": "Bonjour. Je voudrais « restituer en image » ces deux livres.",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "perplexe",
+       "t": "Render? Oh, return them! Of course.",
+       "fr": "« Render » ? Ah, les rendre ! Bien sûr."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Rendre un livre se dit « return »</b> (ou « bring back »). « render » existe, mais pas dans ce sens : « I'd like to return these two books. »"
+     }
+    }
+   ]
+  },
+  "renew": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "attentive",
+     "t": "Done. It's now due on March 24. You can also renew online, you know.",
+     "fr": "C'est fait. Il est maintenant à rendre le 24 mars. Vous pouvez aussi prolonger en ligne, vous savez.",
+     "t_gb": "Done. It's now due on 24 March. You can also renew online, you know.",
+     "dit": "Done. It's now due on March twenty-fourth. You can also renew online, you know.",
+     "dit_gb": "Done. It's now due on the twenty-fourth of March. You can also renew online, you know."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Oh, good. How do I do that?",
+     "fr": "Ah, très bien. Comment je fais ?",
+     "va": "find",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Log in on the library website with your card number, and click “Renew.”",
+       "fr": "Connectez-vous sur le site de la bibliothèque avec votre numéro de carte, et cliquez sur « Renew »."
+      }
+     ]
+    },
+    {
+     "t": "Online? Do I need my card number?",
+     "fr": "En ligne ? Il me faut mon numéro de carte ?",
+     "va": "find",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Yes, your card number and your password. Then you click “Renew.”",
+       "fr": "Oui, votre numéro de carte et votre mot de passe. Puis vous cliquez sur « Renew »."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, until when?",
+     "fr": "Pardon, jusqu'à quand ?",
+     "va": "renew",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Until March 24. That's three more weeks.",
+       "fr": "Jusqu'au 24 mars. Ça fait trois semaines de plus.",
+       "t_gb": "Until 24 March. That's three more weeks.",
+       "dit": "Until March twenty-fourth. That's three more weeks.",
+       "dit_gb": "Until the twenty-fourth of March. That's three more weeks."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "find": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "question",
+     "t": "Is there anything else I can do for you?",
+     "fr": "Puis-je faire autre chose pour vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. I'm looking for easy books in English.",
+     "fr": "Oui. Je cherche des livres faciles en anglais.",
+     "va": "hold",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "We have a whole series for English learners. Let me check the first one.",
+       "fr": "Nous avons toute une série pour ceux qui apprennent l'anglais. Je regarde pour le premier."
+      }
+     ]
+    },
+    {
+     "t": "Yes. Do you have easy books for people who are learning English?",
+     "fr": "Oui. Vous avez des livres faciles pour les gens qui apprennent l'anglais ?",
+     "va": "hold",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Yes, a whole series. Let me check the first one.",
+       "fr": "Oui, toute une série. Je regarde pour le premier."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes. Can you borrow me an easy book in English?",
+     "fr": "Oui. Pouvez-vous m'« emprunter » un livre facile en anglais ?",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "perplexe",
+       "t": "Borrow you …? Oh! You want to borrow a book. Yes, of course.",
+       "fr": "Vous emprunter… ? Ah ! Vous voulez emprunter un livre. Oui, bien sûr."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« borrow »</b> = emprunter ; <b>« lend »</b> = prêter. « Can I borrow a book? » (je l'emprunte) ou « Can you lend me a book? » (vous me le prêtez)."
+     }
+    }
+   ]
+  },
+  "hold": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "attentive",
+     "t": "Hmm, it's checked out right now. Do you want me to put it on hold for you?",
+     "fr": "Hum, il est emprunté en ce moment. Voulez-vous que je vous le réserve ?",
+     "t_gb": "Hmm, it's out on loan right now. Would you like me to reserve it for you?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, please. That would be great.",
+     "fr": "Oui, s'il vous plaît. Ce serait très bien.",
+     "va": "group",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Done. We'll send you an email when it's in. Then you have one week to pick it up.",
+       "fr": "C'est fait. Nous vous enverrons un e-mail quand il sera là. Vous aurez alors une semaine pour venir le chercher.",
+       "t_gb": "Done. We'll send you an email when it's in. Then you have one week to collect it."
+      }
+     ]
+    },
+    {
+     "t": "Yes, please. How will I know when it's here?",
+     "fr": "Oui, s'il vous plaît. Comment est-ce que je saurai qu'il est là ?",
+     "va": "group",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "We'll send you an email. Then you have one week to pick it up.",
+       "fr": "Nous vous enverrons un e-mail. Vous aurez alors une semaine pour venir le chercher.",
+       "t_gb": "We'll send you an email. Then you have one week to collect it."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I'd like to book it.",
+     "fr": "Oui, j'aimerais le « réserver » (comme une table).",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "amuse",
+       "t": "Book a book? You mean put it on hold! Sure.",
+       "fr": "« Book » un livre ? Vous voulez dire le mettre de côté ! Bien sûr.",
+       "t_gb": "Book a book? You mean reserve it! Sure."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« book » se dit pour une table, une chambre, un billet.</b> Pour un livre de bibliothèque : « put it on hold » (« reserve it » en anglais britannique). Ici : « Yes, please. »"
+     }
+    }
+   ]
+  },
+  "group": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "sourire",
+     "t": "By the way, since you're learning English: we have a free conversation group on Wednesdays at 6 p.m.",
+     "fr": "Au fait, puisque vous apprenez l'anglais : nous avons un groupe de conversation gratuit le mercredi à 18 h.",
+     "dit": "By the way, since you're learning English: we have a free conversation group on Wednesdays at six p.m."
+    }
+   ],
+   "choix": [
+    {
+     "t": "That sounds great! Do I need to sign up?",
+     "fr": "Ça a l'air super ! Est-ce que je dois m'inscrire ?",
+     "va": "wifi",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "No, just come. It's in the community room, on the second floor.",
+       "fr": "Non, venez, tout simplement. C'est dans la salle commune, au premier étage.",
+       "t_gb": "No, just come. It's in the community room, on the first floor."
+      }
+     ]
+    },
+    {
+     "t": "Is it really free?",
+     "fr": "C'est vraiment gratuit ?",
+     "va": "wifi",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Yes, completely free, like everything at the library. Just come to the community room, on the second floor.",
+       "fr": "Oui, entièrement gratuit, comme tout à la bibliothèque. Venez simplement à la salle commune, au premier étage.",
+       "t_gb": "Yes, completely free, like everything at the library. Just come to the community room, on the first floor."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Great! So I must not sign up?",
+     "fr": "Super ! Donc il m'est interdit de m'inscrire ?",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "amuse",
+       "t": "Must not? No, no, it's not forbidden! But you don't have to.",
+       "fr": "Interdit ? Non, non, ce n'est pas défendu ! Mais ce n'est pas nécessaire."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« must not »</b> = c'est interdit. « Ce n'est pas nécessaire » se dit « don't have to ». Demande : « Do I need to sign up? »"
+     }
+    }
+   ]
+  },
+  "wifi": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "question",
+     "t": "Anything else I can help you with?",
+     "fr": "Je peux vous aider pour autre chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. Is there Wi-Fi here?",
+     "fr": "Oui. Est-ce qu'il y a le Wi-Fi ici ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Yes, and it's free. The password is printed on your receipt, right here.",
+       "fr": "Oui, et il est gratuit. Le mot de passe est imprimé sur votre reçu, juste ici."
+      }
+     ]
+    },
+    {
+     "t": "Is there a quiet room where I can study?",
+     "fr": "Est-ce qu'il y a une salle calme où je peux étudier ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "Yes, the reading room is upstairs. And the Wi-Fi password is on your receipt.",
+       "fr": "Oui, la salle de lecture est à l'étage. Et le mot de passe du Wi-Fi est sur votre reçu."
+      }
+     ]
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_bibliothekar",
+     "air": "sourire",
+     "t": "Here's your receipt. Enjoy your book, and maybe see you on Wednesday!",
+     "fr": "Voici votre reçu. Bonne lecture, et peut-être à mercredi !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you very much. See you on Wednesday!",
+     "fr": "Merci beaucoup. À mercredi !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "See you then!",
+       "fr": "À mercredi !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks for your help. Goodbye!",
+     "fr": "Merci pour votre aide. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_bibliothekar",
+       "air": "sourire",
+       "t": "You're welcome. Have a good one!",
+       "fr": "Je vous en prie. Bonne journée !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as rendu deux livres, prolongé le troisième jusqu'au 24 mars, réservé un livre facile en anglais et découvert le groupe de conversation gratuit du mercredi à 18 h."
+ }
+}

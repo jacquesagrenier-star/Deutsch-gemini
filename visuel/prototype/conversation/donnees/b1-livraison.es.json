@@ -1,0 +1,160 @@
+{
+ "id": "b1-livraison",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Un colis qui pose problème"},
+ "intro": {"fr": "Ta commande dans une boutique en ligne pose problème. Tu appelles le service client pour obtenir une solution."},
+ "personnes": ["b13_kundenservice"],
+ "debut": "saludo",
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Tu appelles le service client de Casa Olmo, une boutique en ligne. Après un peu de musique, quelqu'un décroche."}},
+    {"qui": "b13_kundenservice", "air": "sourire", "t": "Casa Olmo, atención al cliente, le atiende Marisa. ¿En qué puedo ayudarle?", "fr": "Casa Olmo, service client, Marisa à l'appareil. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Llamo por un pedido: ha habido un problema.", "fr": "Bonjour. J'appelle au sujet d'une commande : il y a eu un problème.", "va": "numero"},
+    {"t": "Hola, buenos días. Quería hacer una reclamación por un pedido.", "fr": "Bonjour. Je voudrais faire une réclamation au sujet d'une commande.", "va": "numero"},
+    {"faux": true, "t": "Buenos días. Tengo un problema con una comanda.", "fr": "Bonjour. J'ai un problème avec une « commande » (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "amuse", "t": "¿Una comanda? Eso es en un restaurante. Será un pedido, ¿verdad?", "fr": "Une « comanda » ? Ça, c'est au restaurant. Il s'agit d'une commande en ligne, n'est-ce pas ?"}],
+     "aide": {"fr": "<b>« la comanda »</b>, c'est ce que le serveur note au restaurant. Une commande dans un magasin se dit « el pedido » : « Llamo por un pedido. »"}}
+   ]
+  },
+  "numero": {
+   "dit": [{"qui": "b13_kundenservice", "air": "attentive", "t": "Vaya, lo siento. ¿Me dice el número de pedido, por favor?", "fr": "Oh, je suis désolée. Vous me donnez le numéro de commande, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Sí, es el cuatro, siete, tres, cero, nueve.", "fr": "Oui, c'est le quatre, sept, trois, zéro, neuf.", "va": "problema",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Pedido 47309. Aquí lo tengo.", "dit": "Pedido cuatro, siete, tres, cero, nueve. Aquí lo tengo.", "fr": "Commande 47309. Je l'ai sous les yeux."}]},
+    {"t": "Un momento… Aquí está: cuatro, siete, tres, cero, nueve.", "fr": "Un instant… Le voici : quatre, sept, trois, zéro, neuf.", "va": "problema",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Pedido 47309. Aquí lo tengo.", "dit": "Pedido cuatro, siete, tres, cero, nueve. Aquí lo tengo.", "fr": "Commande 47309. Je l'ai sous les yeux."}]},
+    {"repete": true, "t": "Perdone, ¿qué número necesita?", "fr": "Pardon, de quel numéro avez-vous besoin ?", "va": "numero",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "El número de pedido. Lo tiene en el correo de confirmación que le enviamos.", "fr": "Le numéro de commande. Il se trouve dans l'e-mail de confirmation que nous vous avons envoyé."}]}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Cuénteme, ¿qué ha pasado exactamente?", "fr": "Dites-moi, que s'est-il passé exactement ?"}],
+   "choix": [
+    {"t": "El pedido figura como entregado, pero yo no he recibido nada.", "fr": "La commande apparaît comme livrée, mais je n'ai rien reçu.", "pose": {"problema": "perdido"}, "va": "vecinos"},
+    {"t": "El paquete ha llegado, pero la lámpara está rota.", "fr": "Le colis est arrivé, mais la lampe est cassée.", "pose": {"problema": "roto"}, "va": "danos"},
+    {"t": "Me han enviado un artículo equivocado. No es la talla que pedí.", "fr": "On m'a envoyé le mauvais article. Ce n'est pas la taille que j'ai commandée.", "pose": {"problema": "equivocado"}, "va": "equivocado"},
+    {"faux": true, "t": "El paquete no es llegado todavía.", "fr": "Le colis « n'est » pas encore arrivé (calque du français).",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "¿Que no ha llegado todavía? Vamos a ver… Aquí figura como entregado.", "fr": "Il n'est pas encore arrivé ? Voyons… Ici, il apparaît comme livré."}],
+     "aide": {"fr": "<b>En espagnol, le passé composé se forme toujours avec « haber »</b> : « El paquete no ha llegado todavía. »"}}
+   ]
+  },
+  "vecinos": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Según el seguimiento, lo entregaron ayer por la mañana. ¿Ha preguntado a algún vecino o al conserje?", "fr": "D'après le suivi, il a été livré hier matin. Avez-vous demandé à un voisin ou au gardien ?"}],
+   "choix": [
+    {"t": "Sí, he preguntado al conserje y a los vecinos. Nadie lo tiene.", "fr": "Oui, j'ai demandé au gardien et aux voisins. Personne ne l'a.", "va": "firma"},
+    {"t": "En mi edificio no hay conserje, y los vecinos no saben nada.", "fr": "Dans mon immeuble, il n'y a pas de gardien, et les voisins ne savent rien.", "va": "firma"},
+    {"t": "Todavía no he podido preguntar al conserje. Hoy no trabaja.", "fr": "Je n'ai pas encore pu demander au gardien. Il ne travaille pas aujourd'hui.", "va": "preguntar"},
+    {"faux": true, "t": "Sí, he demandado a los vecinos.", "fr": "Oui, j'ai « demandé » aux voisins (faux ami).",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "¿Demandado? ¿Ha llevado a los vecinos a juicio? Querrá decir que les ha preguntado…", "fr": "« Demandado » ? Vous avez traîné les voisins en justice ? Vous voulez sans doute dire que vous leur avez posé la question…"}],
+     "aide": {"fr": "<b>« demandar »</b>, c'est poursuivre quelqu'un en justice. Poser une question se dit « preguntar » : « He preguntado a los vecinos. »"}}
+   ]
+  },
+  "preguntar": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Pregúntele en cuanto pueda: muchas veces el paquete está en la portería. ¿Cuándo podrá hablar con él?", "fr": "Demandez-lui dès que possible : bien souvent, le colis est à la loge. Quand pourrez-vous lui parler ?"}],
+   "choix": [
+    {"t": "Mañana por la mañana, antes de ir a trabajar.", "fr": "Demain matin, avant d'aller travailler.", "va": "firma",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Perfecto. Mientras, sigo mirando.", "fr": "Parfait. En attendant, je continue de chercher."}]},
+    {"t": "Mañana a primera hora. Pero no creo que lo tenga él: me habría avisado.", "fr": "Demain à la première heure. Mais je ne crois pas que ce soit lui qui l'ait : il m'aurait prévenu.", "va": "firma",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Entiendo. Mientras, sigo mirando.", "fr": "Je comprends. En attendant, je continue de chercher."}]}
+   ]
+  },
+  "firma": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Aquí aparece una firma de entrega a nombre de «M. Ruiz». ¿Conoce a alguien que se llame así?", "fr": "Je vois ici une signature de livraison au nom de « M. Ruiz ». Connaissez-vous quelqu'un qui s'appelle ainsi ?"}],
+   "choix": [
+    {"t": "No, no conozco a nadie con ese nombre. En mi escalera no vive ningún Ruiz.", "fr": "Non, je ne connais personne de ce nom. Dans mon escalier, il n'y a aucun Ruiz.", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Entonces lo han entregado mal. Ahora mismo abro una incidencia con la empresa de transporte.", "fr": "Alors il a été mal livré. J'ouvre tout de suite un dossier auprès du transporteur."}]},
+    {"t": "No me suena de nada. Y yo no he firmado nada, eso seguro.", "fr": "Ça ne me dit rien du tout. Et moi, je n'ai rien signé, c'est sûr.", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Entonces lo han entregado mal. Ahora mismo abro una incidencia con la empresa de transporte.", "fr": "Alors il a été mal livré. J'ouvre tout de suite un dossier auprès du transporteur."}]}
+   ]
+  },
+  "danos": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Vaya, cuánto lo siento. ¿Qué es lo que está roto? ¿La caja también venía dañada?", "fr": "Oh, je suis vraiment désolée. Qu'est-ce qui est cassé ? Le carton était-il abîmé lui aussi ?"}],
+   "choix": [
+    {"t": "El cristal de la lámpara está roto en varios trozos. La caja tenía un golpe en una esquina.", "fr": "Le verre de la lampe est cassé en plusieurs morceaux. Le carton avait reçu un coup à un coin.", "va": "fotos"},
+    {"t": "El cristal está roto, pero la caja parecía normal por fuera.", "fr": "Le verre est cassé, mais de l'extérieur le carton avait l'air normal.", "va": "fotos"},
+    {"faux": true, "t": "La lámpara ya estaba rota cuando he abrido la caja.", "fr": "La lampe était déjà cassée quand j'ai « ouvri » le carton.",
+     "puis": [{"qui": "b13_kundenservice", "air": "attentive", "t": "¿Ya estaba rota cuando abrió la caja? ¿Y qué es lo que está roto?", "fr": "Elle était déjà cassée quand vous avez ouvert le carton ? Et qu'est-ce qui est cassé ?"}],
+     "aide": {"fr": "<b>Le participe de « abrir » est irrégulier : « abierto »</b>. « Cuando he abierto la caja » ou, mieux, « cuando abrí la caja »."}}
+   ]
+  },
+  "fotos": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "¿Puede enviarnos unas fotos del daño y de la caja? Y, por favor, no tire el embalaje todavía.", "fr": "Pouvez-vous nous envoyer quelques photos du dégât et du carton ? Et, s'il vous plaît, ne jetez pas encore l'emballage."}],
+   "choix": [
+    {"t": "Sí, ya he hecho fotos. ¿Adónde las envío?", "fr": "Oui, j'ai déjà pris des photos. Où est-ce que je les envoie ?", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Ahora le llega un correo mío. Responda a ese correo con las fotos.", "fr": "Vous allez recevoir un e-mail de ma part. Répondez à cet e-mail en y joignant les photos."}]},
+    {"t": "Claro. Todavía tengo la caja, ahora mismo hago las fotos.", "fr": "Bien sûr. J'ai encore le carton, je prends les photos tout de suite.", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Estupendo. Ahora le llega un correo mío. Responda a ese correo con las fotos.", "fr": "Parfait. Vous allez recevoir un e-mail de ma part. Répondez à cet e-mail en y joignant les photos."}]}
+   ]
+  },
+  "equivocado": {
+   "dit": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Le pido disculpas, eso no debería pasar. ¿Qué pidió usted y qué ha recibido?", "fr": "Je vous présente nos excuses, cela ne devrait pas arriver. Qu'avez-vous commandé et qu'avez-vous reçu ?"}],
+   "choix": [
+    {"t": "Pedí un abrigo de la talla M y me ha llegado la S.", "fr": "J'ai commandé un manteau en taille M et j'ai reçu la taille S.", "va": "etiqueta"},
+    {"t": "Pedí un abrigo azul y me han enviado uno negro. Además, la talla no es la mía.", "fr": "J'ai commandé un manteau bleu et on m'en a envoyé un noir. En plus, la taille n'est pas la mienne.", "va": "etiqueta"},
+    {"faux": true, "t": "Pedí un abrigo, pero no es la buena talla.", "fr": "J'ai commandé un manteau, mais ce n'est pas la « bonne » taille (calque du français).",
+     "puis": [{"qui": "b13_kundenservice", "air": "perplexe", "t": "¿La buena talla…? Ah, que no es la talla correcta. ¿Cuál pidió usted?", "fr": "La « buena talla »… ? Ah, ce n'est pas la bonne taille. Laquelle avez-vous commandée ?"}],
+     "aide": {"fr": "<b>« la bonne taille » se dit « la talla correcta »</b>. On peut dire aussi : « No es mi talla » ou « No es la talla que pedí »."}}
+   ]
+  },
+  "etiqueta": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "Le envío por correo electrónico una etiqueta de devolución. ¿Puede imprimirla, o prefiere un código para enseñarlo en el móvil?", "fr": "Je vous envoie par e-mail une étiquette de retour. Pouvez-vous l'imprimer, ou préférez-vous un code à montrer sur votre téléphone ?"}],
+   "choix": [
+    {"t": "No tengo impresora. Prefiero el código.", "fr": "Je n'ai pas d'imprimante. Je préfère le code.", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Sin problema, le envío el código. La devolución es gratuita, por supuesto.", "fr": "Sans problème, je vous envoie le code. Le retour est gratuit, bien entendu."}]},
+    {"t": "Puedo imprimirla. ¿Dónde entrego el paquete después?", "fr": "Je peux l'imprimer. Où est-ce que je dépose le colis ensuite ?", "va": "solucion",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "En cualquier oficina de Correos o en un punto de recogida. La devolución es gratuita, por supuesto.", "fr": "Dans n'importe quel bureau de Correos (la poste) ou dans un point relais. Le retour est gratuit, bien entendu."}]}
+   ]
+  },
+  "solucion": {
+   "dit": [
+    {"si": {"problema": "perdido"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Pero usted no tiene que esperar a que aparezca el paquete.", "fr": "Mais vous n'avez pas à attendre que le colis réapparaisse."},
+    {"si": {"problema": "roto"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Por cierto, no hace falta que nos devuelva la lámpara rota.", "fr": "Au fait, il n'est pas nécessaire de nous renvoyer la lampe cassée."},
+    {"si": {"problema": "equivocado"}, "qui": "b13_kundenservice", "air": "sourire", "t": "Y no tiene que esperar a que recibamos el abrigo.", "fr": "Et vous n'avez pas à attendre que nous ayons reçu le manteau."},
+    {"qui": "b13_kundenservice", "air": "question", "t": "¿Prefiere que le enviemos otro artículo o que le hagamos el reembolso?", "fr": "Préférez-vous que nous vous envoyions un autre article ou que nous vous remboursions ?"}
+   ],
+   "choix": [
+    {"t": "Prefiero que me envíen otro. ¿Cuándo llegaría?", "fr": "Je préfère que vous m'en envoyiez un autre. Quand arriverait-il ?", "pose": {"solucion": "cambio"}, "va": "cambio"},
+    {"t": "Prefiero el reembolso, por favor.", "fr": "Je préfère le remboursement, s'il vous plaît.", "pose": {"solucion": "reembolso"}, "va": "reembolso"},
+    {"faux": true, "t": "Devuélveme el dinero y ya está.", "fr": "Rends-moi l'argent, et voilà.",
+     "puis": [{"qui": "b13_kundenservice", "air": "surprise", "t": "Eh… Sí, claro, le devolvemos el dinero si lo prefiere.", "fr": "Euh… Oui, bien sûr, nous vous remboursons si vous préférez."}],
+     "aide": {"fr": "<b>Avec un service client, on reste au « usted »</b>, et l'impératif seul sonne comme un ordre. Dis plutôt : « Prefiero el reembolso, por favor » ou « ¿Podría devolverme el dinero? »."}}
+   ]
+  },
+  "cambio": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "El nuevo envío sale mañana y llega en dos o tres días laborables. ¿Lo enviamos a la misma dirección?", "fr": "Le nouvel envoi part demain et arrive en deux ou trois jours ouvrables. Nous l'envoyons à la même adresse ?"}],
+   "choix": [
+    {"t": "Sí, a la misma dirección, por favor.", "fr": "Oui, à la même adresse, s'il vous plaît.", "va": "fin",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Muy bien, anotado.", "fr": "Très bien, c'est noté."}]},
+    {"t": "Mejor a un punto de recogida cerca de casa. Así no tengo que estar esperando.", "fr": "Plutôt à un point relais près de chez moi. Comme ça, je n'ai pas à attendre à la maison.", "va": "fin",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Buena idea. Le envío un enlace para que elija el punto de recogida.", "fr": "Bonne idée. Je vous envoie un lien pour que vous choisissiez le point relais."}]}
+   ]
+  },
+  "reembolso": {
+   "dit": [{"qui": "b13_kundenservice", "air": "sourire", "t": "El reembolso tarda entre cinco y siete días laborables y se hace en la misma tarjeta con la que pagó. ¿Le parece bien?", "fr": "Le remboursement prend entre cinq et sept jours ouvrables et se fait sur la carte avec laquelle vous avez payé. Cela vous convient-il ?"}],
+   "choix": [
+    {"t": "Sí, me parece bien. ¿Voy a recibir una confirmación?", "fr": "Oui, cela me convient. Est-ce que je vais recevoir une confirmation ?", "va": "fin",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Sí, por supuesto.", "fr": "Oui, bien sûr."}]},
+    {"t": "De acuerdo. ¿También me devuelven los gastos de envío?", "fr": "D'accord. Vous me remboursez aussi les frais de port ?", "va": "fin",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Sí, claro, los gastos de envío también.", "fr": "Oui, bien sûr, les frais de port aussi."}]}
+   ]
+  },
+  "fin": {
+   "dit": [{"qui": "b13_kundenservice", "air": "question", "t": "En unos minutos recibirá un correo de confirmación. ¿Puedo ayudarle en algo más?", "fr": "Dans quelques minutes, vous recevrez un e-mail de confirmation. Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "No, eso es todo. ¡Muchas gracias por su ayuda!", "fr": "Non, c'est tout. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "A usted. ¡Que tenga un buen día!", "fr": "Merci à vous. Bonne journée !"}]},
+    {"t": "No, nada más. Ha sido usted muy amable. ¡Adiós!", "fr": "Non, rien d'autre. Vous avez été très aimable. Au revoir !", "va": null,
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Muchas gracias. ¡Adiós, que tenga un buen día!", "fr": "Merci beaucoup. Au revoir, bonne journée !"}]},
+    {"faux": true, "t": "No, gracias. Usted me ha mucho ayudado.", "fr": "Non, merci. Vous m'avez beaucoup aidé (ordre des mots français).",
+     "puis": [{"qui": "b13_kundenservice", "air": "sourire", "t": "Me alegro de haberle ayudado.", "fr": "Je suis contente de vous avoir aidé."}],
+     "aide": {"fr": "<b>En espagnol, rien ne se glisse entre « haber » et le participe</b> : « Me ha ayudado mucho », jamais « me ha mucho ayudado »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué le problème de ta commande et obtenu une solution, avec une confirmation par e-mail."}
+}

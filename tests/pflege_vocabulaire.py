@@ -8,7 +8,7 @@ tests/pflege.py controle le FORMAT que l'app charge (pflege/datos/themes.json). 
 SOURCES de chaque theme (pflege/sources/<theme>.py, la liste THEMES de pflege/outils/construire.py),
 qui gardent ce que le fichier derive laisse tomber (homographes, lectures du mot), et verifie :
   1. pflege/datos/themes.json est a jour (construire.py --verifier) ;
-  2. chaque entree : niveau A2 / B1 / B2 (C1 pour les scenes), sorte nom | verbe | adjectif |
+  2. chaque entree : niveau A2 / B1 / B2 (C1 pour les scenes), sorte nom | verbe | adjectif | paire |
      expression, genre der / die / das + pluriel + article_fr pour un nom, perfekt pour un verbe,
      traduction et exemple dans les 9 langues d'interface ;
   3. aucun doublon entre deux entrees des Soins (meme mot, meme sorte) ;
@@ -35,9 +35,9 @@ import corpus  # noqa: E402
 
 LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 NIVEAUX = {"A2", "B1", "B2", "C1"}
-SORTES = {"nom", "verbe", "adjectif", "expression"}
+SORTES = {"nom", "verbe", "adjectif", "expression", "paire"}
 CLASSE = {"nom": "nom", "verbe": "verbe", "adjectif": "adj", "adverbe": "adj", "expression": "expr", "mot-outil": "expr"}
-CLASSE_SORTE = {"nom": "nom", "verbe": "verbe", "adjectif": "adj", "expression": "expr"}
+CLASSE_SORTE = {"nom": "nom", "verbe": "verbe", "adjectif": "adj", "expression": "expr", "paire": "paire"}
 
 CYR = re.compile(r"[Ѐ-ӿ]")
 ARABE = re.compile(r"[؀-ۿ]")
@@ -139,6 +139,25 @@ def main():
                 ecritures(echecs, ou, l, "traduction", t[0])
                 ecritures(echecs, ou, l, "exemple", t[1])
             ecritures(echecs, ou, "de", "exemple", d.get("exemple", ""))
+            if sorte == "paire":
+                # le cote du patient : memes exigences que le cote du service
+                if not d.get("patient") or not d.get("exemple_patient"):
+                    echecs.append("%s : paire sans « patient » ou « exemple_patient »" % ou)
+                tp = d.get("trad_patient") or {}
+                for l in LANGUES:
+                    t = tp.get(l)
+                    if not t or len(t) != 2 or not t[0] or not t[1]:
+                        echecs.append("%s : traduction ou exemple du patient %s vide" % (ou, l))
+                        continue
+                    ecritures(echecs, ou, l, "traduction du patient", t[0])
+                    ecritures(echecs, ou, l, "exemple du patient", t[1])
+                ecritures(echecs, ou, "de", "exemple du patient", d.get("exemple_patient", ""))
+                if re.search(r"\d", d.get("exemple_patient", "")) and not d.get("lecture_patient"):
+                    echecs.append("%s : chiffre dans l'exemple du patient sans « lecture_patient »" % ou)
+                if re.search(r"\d", d.get("patient", "")) and not d.get("lecture_mot_patient"):
+                    echecs.append("%s : chiffre dans le mot du patient sans « lecture_mot_patient »" % ou)
+                if corpus.cle(d.get("patient", "")) == corpus.cle(mot):
+                    echecs.append("%s : les deux cotes de la paire sont le meme mot" % ou)
             if not d.get("exemple"):
                 echecs.append("%s : exemple allemand vide" % ou)
             # chiffres
@@ -146,16 +165,19 @@ def main():
                 echecs.append("%s : chiffre dans l'exemple sans « lecture »" % ou)
             if re.search(r"\d", mot) and not (d.get("lecture_mot") or d.get("lecture")):
                 echecs.append("%s : chiffre dans le mot sans « lecture_mot »" % ou)
-            for k in ("lecture", "lecture_mot"):
+            for k in ("lecture", "lecture_mot", "lecture_patient", "lecture_mot_patient"):
                 if d.get(k) and re.search(r"\d", d[k]):
                     echecs.append("%s : %s encore chiffree : %s" % (ou, k, d[k]))
             # doublons dans les Soins
             cl = (corpus.cle(mot, garder_sich=True), CLASSE_SORTE.get(sorte))
+            if sorte == "paire":  # une paire est un LIEN : deux paires peuvent partager un cote, pas les deux
+                cl = (corpus.cle(mot, garder_sich=True) + " | " + corpus.cle(d.get("patient", ""), garder_sich=True), "paire")
             if cl in vus:
                 echecs.append("%s : deux fois dans les Soins (deja dans %s)" % (ou, vus[cl]))
             vus[cl] = base
             # doublons avec le corpus general
-            hits = [h for h in corpus.chercher(mot) if CLASSE.get(h["type"]) == CLASSE_SORTE.get(sorte)]
+            # une paire relie deux registres, souvent deja au corpus chacun : pas de controle de doublon
+            hits = [] if sorte == "paire" else [h for h in corpus.chercher(mot) if CLASSE.get(h["type"]) == CLASSE_SORTE.get(sorte)]
             if d.get("corpus"):
                 if not hits:
                     echecs.append("%s : marque corpus, mais absent du corpus general" % ou)

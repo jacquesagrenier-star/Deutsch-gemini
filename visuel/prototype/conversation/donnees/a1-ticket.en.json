@@ -1,0 +1,74 @@
+{
+ "id": "a1-ticket",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "transports",
+ "registre": "poli",
+ "titre": {"fr": "Le ticket de métro"},
+ "intro": {"fr": "À Boston, le métro s'appelle « the T ». Devant la machine à tickets, un voyageur t'aide : un trajet ou un pass pour la semaine ?"},
+ "personnes": ["fahrgast"],
+ "debut": "machine",
+ "prix": {"one": 240, "pass": 2250},
+ "panier": ["fare"],
+ "textes": {
+  "fare_fr": {"cle": "fare", "one": "un trajet", "pass": "un pass de sept jours"}
+ },
+ "noeuds": {
+  "machine": {
+   "dit": [
+    {"recit": {"fr": "La station Park Street, dans le métro de Boston. Devant la machine à tickets, tu hésites. Un homme, derrière toi, te sourit."}},
+    {"qui": "fahrgast", "air": "question", "t": "Need some help?", "fr": "Besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. I'd like a ticket.", "fr": "Oui, s'il vous plaît. Je voudrais un ticket.", "va": "where"},
+    {"t": "Yes, thanks. How does this machine work?", "fr": "Oui, merci. Comment marche cette machine ?", "va": "where"},
+    {"faux": true, "t": "Yes. I want a ticket of metro.", "fr": "Oui. Je veux un ticket de métro (mot à mot).",
+     "puis": [{"qui": "fahrgast", "air": "amuse", "t": "A ticket… of metro? Oh, a subway ticket! Here in Boston, the subway is the T.", "fr": "Un ticket… « of metro » ? Ah, un ticket de métro ! Ici, à Boston, le métro, c'est le T."}],
+     "aide": {"fr": "<b>« un ticket de métro » se dit « a subway ticket »</b> : le mot qui précise passe devant, sans « of ». Et à Boston, le métro s'appelle « the T » (« the Underground » ou « the Tube » à Londres). Plus simple : « I'd like a ticket, please »."}}
+   ]
+  },
+  "where": {
+   "dit": [{"qui": "fahrgast", "air": "question", "t": "Sure. Where are you going?", "fr": "Bien sûr. Vous allez où ?"}],
+   "choix": [
+    {"t": "To Harvard.", "fr": "À Harvard.", "va": "fare",
+     "puis": [{"qui": "fahrgast", "air": "attentive", "t": "Harvard, OK. That's the Red Line.", "fr": "Harvard, d'accord. C'est la ligne rouge."}]},
+    {"t": "To Fenway Park.", "fr": "À Fenway Park.", "va": "fare",
+     "puis": [{"qui": "fahrgast", "air": "attentive", "t": "Fenway, OK. That's the Green Line.", "fr": "Fenway, d'accord. C'est la ligne verte."}]}
+   ]
+  },
+  "fare": {
+   "dit": [{"qui": "fahrgast", "air": "attentive", "t": "One trip is two forty. But if you're here for a week, the seven-day pass is better: twenty-two fifty.", "fr": "Un trajet coûte deux dollars quarante. Mais si vous êtes là pour une semaine, le pass de sept jours est plus avantageux : vingt-deux dollars cinquante."}],
+   "choix": [
+    {"t": "I'm here for a week. I'll take the pass.", "fr": "Je suis là pour une semaine. Je prends le pass.", "pose": {"fare": "pass"}, "va": "pay"},
+    {"t": "Just one trip, please.", "fr": "Un seul trajet, s'il vous plaît.", "pose": {"fare": "one"}, "va": "pay"},
+    {"repete": true, "t": "Sorry? How much is one trip?", "fr": "Pardon ? Combien coûte un trajet ?", "va": "fare",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Two dollars and forty cents. The pass for a week is twenty-two fifty.", "fr": "Deux dollars quarante. Le pass pour une semaine, vingt-deux cinquante."}]}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "fahrgast", "air": "attentive", "t": "OK, press here… and here. That's {a_payer}.", "fr": "D'accord, appuyez ici… et ici. Ça fait {a_payer}.", "dit": "OK, press here… and here. That's {a_payer:mots}."}],
+   "choix": [
+    {"t": "OK, I'll pay by card.", "fr": "D'accord, je paie par carte.", "va": "gate"},
+    {"t": "Can I pay in cash?", "fr": "Je peux payer en espèces ?", "va": "gate",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Yes, this machine takes cash too.", "fr": "Oui, cette machine prend aussi les espèces."}]}
+   ]
+  },
+  "gate": {
+   "dit": [
+    {"recit": {"fr": "Le ticket sort de la machine."}},
+    {"qui": "fahrgast", "air": "sourire", "t": "There you go! Tap it at the gate, over there.", "fr": "Et voilà ! Passez-le au portillon, là-bas."}
+   ],
+   "choix": [
+    {"t": "Thank you so much for your help!", "fr": "Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "No problem. Enjoy Boston!", "fr": "Pas de problème. Profitez bien de Boston !"}]},
+    {"t": "Thanks! Which way is the train?", "fr": "Merci ! Le train, c'est de quel côté ?", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Downstairs, on the left. Have a good one!", "fr": "En bas, à gauche. Bonne journée !"}]},
+    {"faux": true, "t": "Thanks, you are very gentle!", "fr": "Merci, vous êtes très gentil (avec le mauvais mot) !",
+     "puis": [{"qui": "fahrgast", "air": "amuse", "t": "Gentle? Ha! You mean kind? You're welcome!", "fr": "Doux ? Ha ! Vous voulez dire gentil ? Je vous en prie !"}],
+     "aide": {"fr": "<b>« gentil » se dit « kind » ou « nice »</b> : « That's very kind of you! ». « gentle », c'est « doux », « délicat »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {fare_fr} pour {a_payer} et tu sais qu'à Boston, le métro, c'est « the T »."}
+}

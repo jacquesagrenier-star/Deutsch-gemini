@@ -323,60 +323,51 @@
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
+   "titre": "Que répondez-vous ?",
    "niveau": "B2",
    "qs": [
     {
-     "q": "Was gehört NICHT in die Übergabe am Bett?",
+     "q": "Jonas fragt: „So, Elif, dann leg mal los. Wer ist neu, wer macht Probleme?“",
      "c": [
-      "Eine persönliche Bemerkung über die Tochter.",
-      "Der Zustand der Wunde.",
-      "Wie viel die Patientin getrunken hat."
-     ],
-     "f": "tochter",
-     "type": "situation",
-     "phrase": "Eine persönliche Bemerkung über die Tochter.",
-     "sens": "Une remarque personnelle sur la fille.",
-     "n": "La relève au lit se fait devant la patiente et sa famille : objective, sans jugement sur personne ⚕️."
-    },
-    {
-     "q": "Frau Lehmann sagt während der Übergabe: „Das stimmt nicht, ich hatte nachts Schmerzen.“ Was tun Sie?",
-     "c": [
-      "Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.",
-      "Ich bitte sie, nicht zu unterbrechen.",
-      "Ich gehe darüber hinweg, in der Akte steht etwas anderes."
-     ],
-     "f": "patientin",
-     "type": "situation",
-     "phrase": "Ich frage nach, nehme es auf und gebe es in der Übergabe weiter.",
-     "sens": "Je lui pose la question, je le note et je le transmets dans la relève.",
-     "n": "La patiente est la première source : on l'écoute et on corrige la relève ⚕️."
-    },
-    {
-     "q": "Die Tochter fragt bei der Übergabe, was die Patientin im Nachbarzimmer hat. Was sagen Sie?",
-     "c": [
-      "Dazu darf ich Ihnen leider nichts sagen.",
-      "Sie hat Diabetes, wie Ihre Mutter.",
-      "Fragen Sie meinen Kollegen, er weiß es."
-     ],
-     "f": "tochter",
-     "type": "situation",
-     "phrase": "Dazu darf ich Ihnen leider nichts sagen.",
-     "sens": "Je ne peux malheureusement rien vous dire à ce sujet.",
-     "n": "Le secret professionnel (<b>Schweigepflicht</b>) : rien sur les autres patients ⚕️."
-    },
-    {
-     "q": "Jonas versteht einen Wert nicht, und Elif hat gleich Feierabend. Was soll er tun?",
-     "c": [
-      "Er fragt sofort nach, bevor sie geht.",
-      "Er fragt morgen früh nach.",
-      "Er schreibt einen Wert auf, der passt."
+      "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch."
      ],
      "f": "pflegefachmann",
      "type": "situation",
-     "phrase": "Er fragt sofort nach, bevor sie geht.",
-     "sens": "Il pose la question tout de suite, avant qu'elle parte.",
-     "n": "Une relève se clarifie avant le départ de la collègue : une question qu'on ne pose pas devient une erreur ⚕️."
+     "phrase": "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+     "sens": "Je commence par la chambre 14. Mme Lehmann, 74 ans, admise pour une plaie au pied droit, sur un diabète.",
+     "n": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins.",
+     "source": "d06-uebergabe/start"
+    },
+    {
+     "q": "Jonas fragt: „Gut. Und der Zucker?“",
+     "c": [
+      "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+     "sens": "Glycémie à 7 h : 180. Elle a eu son insuline selon le schéma. À midi, elle était à 140.",
+     "n": "<b>Une valeur se transmet avec son chiffre et son heure.</b> « Blutzucker um 7 Uhr: 180 ». Si tu ne t'en souviens pas, relis le dossier avant la relève. ⚕️",
+     "source": "d06-uebergabe/zucker",
+     "r": "fieberkurve"
+    },
+    {
+     "q": "Jonas fragt nach Herrn Brandt, Zimmer zwölf: „Gut. Und die Mobilisation?“",
+     "c": [
+      "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+      "Er wollte nicht laufen, er ist halt ein bisschen faul.",
+      "Wenn Sie nicht laufen, werden Sie nie wieder gesund."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+     "sens": "Mobilisation refusée aujourd'hui, par peur d'une nouvelle chute. C'est noté, et le médecin est au courant.",
+     "n": "<b>Une relève est objective : des faits, pas de jugement.</b> Dis ce qui s'est passé et la raison donnée par le patient : « Mobilisation abgelehnt, wegen Angst vor einem Sturz ».",
+     "source": "d06-uebergabe/mobi"
     }
    ]
   }
@@ -556,7 +547,19 @@
     57.8,
     13.8,
     5.8
-   ]
+   ],
+   "sens_zone": {
+    "fr": "pansement",
+    "en": "bandage",
+    "tr": "sargı",
+    "uk": "повʼязка",
+    "fa": "باند زخم",
+    "ar": "ضمادة",
+    "pt": "curativo, atadura",
+    "pl": "opatrunek, bandaż",
+    "ru": "повязка",
+    "es": "el vendaje"
+   }
   },
   {
    "id": "kissen",

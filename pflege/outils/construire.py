@@ -18,7 +18,7 @@ SOURCES = RACINE / "sources"
 SORTIE = RACINE / "datos" / "themes.json"
 
 # Les themes, dans l'ordre ou l'ecran Soins les montre (annexe A du plan).
-THEMES = ["koerper", "grundpflege", "vitalzeichen", "medikamente", "hygiene", "ernaehrung", "notfaelle", "team", "dokumentation", "angehoerige", "szenen"]
+THEMES = ["koerper", "grundpflege", "vitalzeichen", "medikamente", "hygiene", "ernaehrung", "notfaelle", "team", "dokumentation", "angehoerige", "sprache", "szenen"]
 
 LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 NIVEAUX = ["A2", "B1", "B2", "C1"]
@@ -64,6 +64,20 @@ def entree_mot(ligne):
         for cle in ("feminin", "masculin", "lecture_mot", "sens_distinct", "source_corpus"):
             if ligne.get(cle):
                 e[cle] = ligne[cle]
+        # La paire « dit le patient / dit le service » (FORMAT-DONNEES.md, § 1 bis, 15 nov.) : le cote du
+        # service est mot / traduction / exemple ; le cote du patient, les memes champs suffixes « _patient ».
+        if sorte == "paire":
+            tp = ligne["trad_patient"]
+            e["patient"] = ligne["patient"]
+            e["traduction_patient"] = tp["fr"][0]
+            e["exemple_patient"] = ligne["exemple_patient"]
+            e["exemple_patient_fr"] = tp["fr"][1]
+            for l in LANGUES[1:]:
+                e["traduction_patient_" + l] = tp[l][0]
+                e["exemple_patient_" + l] = tp[l][1]
+            for cle in ("lecture_patient", "lecture_mot_patient"):
+                if ligne.get(cle):
+                    e[cle] = ligne[cle]
     if corpus:
         e["corpus"] = True
     if relire:

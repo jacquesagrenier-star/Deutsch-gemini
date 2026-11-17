@@ -1,0 +1,103 @@
+{
+ "id": "a2-echanger",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Rapporter un article"},
+ "intro": {"fr": "Hier, tu as acheté un pull dans une boutique de Boston. Il est trop petit : tu le rapportes."},
+ "personnes": ["verkaeuferin"],
+ "debut": "help",
+ "textes": {
+  "issue_fr": {"cle": "retour", "exchange": "échangé ton pull contre une taille plus grande", "refund": "obtenu le remboursement sur ta carte"}
+ },
+ "noeuds": {
+  "help": {
+   "dit": [
+    {"recit": {"fr": "Une boutique de vêtements de Newbury Street. Tu entres avec ton sac."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Hi! How can I help you today?", "fr": "Bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hi. I bought this sweater here yesterday.", "t_gb": "Hi. I bought this jumper here yesterday.", "fr": "Bonjour. J'ai acheté ce pull ici hier.", "va": "explain",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Okay.", "fr": "D'accord."}]},
+    {"t": "Hello. I'd like to return this sweater.", "t_gb": "Hello. I'd like to return this jumper.", "fr": "Bonjour. Je voudrais rapporter ce pull.", "va": "explain",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Okay, no problem.", "fr": "D'accord, pas de problème."}]}
+   ]
+  },
+  "explain": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Is there a problem with it?", "fr": "Il y a un problème avec ce pull ?"}],
+   "choix": [
+    {"t": "Yes, it's too small for me.", "fr": "Oui, il est trop petit pour moi.", "va": "receipt",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "I see.", "fr": "Je vois."}]},
+    {"t": "It doesn't fit. I need a bigger size.", "fr": "Il ne me va pas. Il me faut une taille plus grande.", "va": "receipt",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "I see.", "fr": "Je vois."}]}
+   ]
+  },
+  "receipt": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Do you have your receipt?", "fr": "Vous avez votre ticket de caisse ?"}],
+   "choix": [
+    {"t": "Yes, here it is.", "fr": "Oui, le voici.", "va": "choice",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thanks.", "fr": "Merci."}]},
+    {"t": "Yes, I have the receipt. Here you go.", "fr": "Oui, j'ai le ticket de caisse. Tenez.", "va": "choice",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thanks.", "fr": "Merci."}]},
+    {"faux": true, "t": "Yes, here is the ticket.", "fr": "Oui, voici le billet.",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "A ticket? For a concert? Oh, your receipt!", "fr": "Un billet ? Pour un concert ? Ah, votre ticket de caisse !"}],
+     "aide": {"fr": "<b>« a ticket », c'est un billet (train, concert) ou une amende.</b> Le ticket de caisse se dit « the receipt » : « Here is the receipt »."}}
+   ]
+  },
+  "choice": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Would you like to exchange it, or would you like a refund?", "fr": "Voulez-vous l'échanger, ou préférez-vous un remboursement ?"}],
+   "choix": [
+    {"t": "I'd like to exchange it, please.", "fr": "Je voudrais l'échanger, s'il vous plaît.", "pose": {"retour": "exchange"}, "va": "next",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sure. Let me find a bigger one.", "fr": "Bien sûr. Je vais en chercher un plus grand."}]},
+    {"t": "I'd like my money back, please.", "fr": "Je voudrais être remboursé(e), s'il vous plaît.", "pose": {"retour": "refund"}, "va": "next",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "No problem.", "fr": "Pas de problème."}]},
+    {"faux": true, "t": "I demand my money back.", "fr": "J'exige d'être remboursé(e).",
+     "puis": [{"qui": "verkaeuferin", "air": "surprise", "t": "Whoa, you demand it? Okay, okay! There's no need to be angry.", "fr": "Oh là, vous l'exigez ? D'accord, d'accord ! Pas besoin de vous fâcher."}],
+     "aide": {"fr": "<b>« to demand » veut dire « exiger » : c'est très dur.</b> Pour demander poliment : « I'd like my money back, please » ou « Could I have a refund? »."}}
+   ]
+  },
+  "next": {
+   "dit": [
+    {"si": {"retour": "exchange"}, "qui": "verkaeuferin", "air": "question", "t": "Here's a large. Would you like to try it on?", "fr": "Voici une taille L. Vous voulez l'essayer ?"},
+    {"si": {"retour": "refund"}, "qui": "verkaeuferin", "air": "question", "t": "Did you pay by card?", "fr": "Vous avez payé par carte ?"}
+   ],
+   "choix": [
+    {"si": {"retour": "exchange"}, "t": "Yes, please. Where is the fitting room?", "fr": "Oui, s'il vous plaît. Où est la cabine d'essayage ?", "va": "else",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Right over there, on the left.", "fr": "Juste là-bas, à gauche."}]},
+    {"si": {"retour": "exchange"}, "t": "Yes, I'll try it on right here.", "fr": "Oui, je vais l'essayer ici même.", "va": "else",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Go ahead. There's a mirror behind you.", "fr": "Allez-y. Il y a un miroir derrière vous."}]},
+    {"si": {"retour": "refund"}, "t": "Yes, with this card.", "fr": "Oui, avec cette carte.", "va": "else",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Perfect. The money will be back on your card in 3 to 5 days.", "fr": "Parfait. L'argent sera de retour sur votre carte dans 3 à 5 jours.", "dit": "Perfect. The money will be back on your card in three to five days."}]},
+    {"si": {"retour": "refund"}, "t": "Yes, by card. Here it is.", "fr": "Oui, par carte. La voici.", "va": "else",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thanks. The money will be back on your card in 3 to 5 days.", "fr": "Merci. L'argent sera de retour sur votre carte dans 3 à 5 jours.", "dit": "Thanks. The money will be back on your card in three to five days."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "next",
+     "puis": [
+      {"si": {"retour": "exchange"}, "qui": "verkaeuferin", "air": "sourire", "t": "Sure. This one is bigger. Do you want to try it on?", "fr": "Bien sûr. Celui-ci est plus grand. Vous voulez l'essayer ?"},
+      {"si": {"retour": "refund"}, "qui": "verkaeuferin", "air": "sourire", "t": "Sure. How did you pay yesterday? By card?", "fr": "Bien sûr. Comment avez-vous payé hier ? Par carte ?"}
+     ]}
+   ]
+  },
+  "else": {
+   "dit": [
+    {"si": {"retour": "exchange"}, "recit": {"fr": "Le pull en taille L te va bien. Elle le met dans un sac."}},
+    {"si": {"retour": "refund"}, "recit": {"fr": "Elle te rend ta carte et un nouveau reçu."}},
+    {"qui": "verkaeuferin", "air": "question", "t": "You're all set! Is there anything else I can do for you?", "fr": "Voilà, c'est fait ! Puis-je faire autre chose pour vous ?"}
+   ],
+   "choix": [
+    {"t": "No, thank you. That's all.", "fr": "Non, merci. C'est tout.", "va": "bye"},
+    {"t": "No, thanks. You were very helpful.", "fr": "Non, merci. Vous m'avez bien aidé(e).", "va": "bye"},
+    {"faux": true, "t": "No, thank you. It's all.", "fr": "Non, merci. C'est tout. (mot à mot)",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "It's … all? All what? Oh, that's all!", "fr": "C'est… tout ? Tout quoi ? Ah, ce sera tout !"}],
+     "aide": {"fr": "<b>« C'est tout » se dit « That's all »</b>, avec « that », jamais « It's all »."}}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "verkaeuferin", "air": "sourire", "t": "Thank you for coming in. Have a great day!", "fr": "Merci d'être passé(e). Excellente journée !"}],
+   "choix": [
+    {"t": "Thank you. You too!", "fr": "Merci. Vous aussi !", "va": null},
+    {"t": "Thanks for your help. Goodbye!", "fr": "Merci pour votre aide. Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as rapporté ton pull trop petit, montré le ticket de caisse et {issue_fr}."}
+}

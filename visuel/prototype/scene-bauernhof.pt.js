@@ -424,7 +424,7 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "brunnen",

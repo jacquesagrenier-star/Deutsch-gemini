@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -50,15 +51,20 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "lampe-2",
@@ -105,7 +111,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "gemaelde",
@@ -129,7 +136,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -150,7 +158,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "gemaelde-2",
@@ -174,7 +183,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -195,7 +205,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "gemaelde-3",
@@ -219,7 +230,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -240,7 +252,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "gemaelde-4",
@@ -264,7 +277,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -285,7 +299,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "gemaelde-5",
@@ -309,7 +324,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -330,7 +346,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "gemaelde-6",
@@ -354,7 +371,8 @@ window.SCENE = {
      "pt": "quadro",
      "ar": "صورة، لوحة",
      "pl": "obraz",
-     "ru": "картина, изображение"
+     "ru": "картина, изображение",
+     "es": "el cuadro, la imagen"
     },
     {
      "mot": "Pferd",
@@ -369,7 +387,8 @@ window.SCENE = {
      "pt": "cavalo",
      "ar": "حصان",
      "pl": "koń",
-     "ru": "лошадь"
+     "ru": "лошадь",
+     "es": "el caballo"
     }
    ],
    "sur": null,
@@ -390,7 +409,8 @@ window.SCENE = {
    "pt": "pintura, quadro",
    "ar": "لوحة زيتية",
    "pl": "obraz (malowany)",
-   "ru": "картина (живопись)"
+   "ru": "картина (живопись)",
+   "es": "el cuadro, la pintura"
   },
   {
    "id": "vorhang",
@@ -425,7 +445,8 @@ window.SCENE = {
    "pt": "cortina",
    "ar": "ستارة",
    "pl": "zasłona",
-   "ru": "штора, занавеска"
+   "ru": "штора, занавеска",
+   "es": "la cortina"
   },
   {
    "id": "fenster",
@@ -454,7 +475,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "tuer",
@@ -483,7 +505,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "wand",
@@ -512,7 +535,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "skulptur",
@@ -536,7 +560,8 @@ window.SCENE = {
      "pt": "cachorro",
      "ar": "كلب",
      "pl": "pies",
-     "ru": "собака"
+     "ru": "собака",
+     "es": "el perro"
     }
    ],
    "sur": null,
@@ -557,7 +582,8 @@ window.SCENE = {
    "pt": "escultura",
    "ar": "منحوتة",
    "pl": "rzeźba",
-   "ru": "скульптура"
+   "ru": "скульптура",
+   "es": "la escultura"
   },
   {
    "id": "mann",
@@ -586,7 +612,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "krawatte",
@@ -615,7 +642,8 @@ window.SCENE = {
    "pt": "gravata",
    "ar": "ربطة عنق",
    "pl": "krawat",
-   "ru": "галстук"
+   "ru": "галстук",
+   "es": "la corbata"
   },
   {
    "id": "jacke",
@@ -644,7 +672,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-2",
@@ -673,7 +702,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "stuhl",
@@ -702,7 +732,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "student",
@@ -726,7 +757,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -747,7 +779,8 @@ window.SCENE = {
    "pt": "estudante (universitário)",
    "ar": "طالب جامعي",
    "pl": "student",
-   "ru": "студент"
+   "ru": "студент",
+   "es": "el estudiante (universitario)"
   },
   {
    "id": "kopfhoerer",
@@ -776,7 +809,8 @@ window.SCENE = {
    "pt": "fone de ouvido",
    "ar": "سمّاعات الرأس",
    "pl": "słuchawki",
-   "ru": "наушники"
+   "ru": "наушники",
+   "es": "los audífonos"
   },
   {
    "id": "jacke-2",
@@ -805,7 +839,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-3",
@@ -834,7 +869,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "rucksack-2",
@@ -863,7 +899,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "heizkoerper",
@@ -892,7 +929,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "pflanze",
@@ -921,7 +959,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "anna",
@@ -950,7 +989,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "pullover",
@@ -979,7 +1019,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "rock",
@@ -1008,7 +1049,8 @@ window.SCENE = {
    "pt": "saia",
    "ar": "تنورة",
    "pl": "spódnica",
-   "ru": "юбка"
+   "ru": "юбка",
+   "es": "la falda"
   },
   {
    "id": "bleistift",
@@ -1037,7 +1079,8 @@ window.SCENE = {
    "pt": "lápis",
    "ar": "قلم رصاص",
    "pl": "ołówek",
-   "ru": "карандаш"
+   "ru": "карандаш",
+   "es": "el lápiz"
   },
   {
    "id": "heft",
@@ -1066,7 +1109,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "stiefel",
@@ -1101,7 +1145,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "mantel",
@@ -1130,7 +1175,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "bank",
@@ -1151,15 +1197,26 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "rucksack",
@@ -1188,7 +1245,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "boden",
@@ -1217,7 +1275,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2178,6 +2237,75 @@ window.SCENE = {
     "C1 | Der junge Mann könnte Kunst studieren.": "Возможно, юноша изучает искусство.",
     "C1 | Der Mann an der Tür dürfte jeden Tag hier sitzen.": "Мужчина у двери, наверное, сидит здесь каждый день.",
     "C1 | Das Bild mit dem Schiff soll sehr wertvoll sein.": "Говорят, картина с кораблём очень ценная."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en el museo, un domingo de lluvia en Berlín: sentada en una larga banca de terciopelo verde, con su cuaderno abierto sobre las rodillas y un lápiz en la mano, levanta la vista hacia la escultura de mármol blanco de un perro sentado sobre su pedestal; su abrigo gris, doblado, está a su lado, y su mochila negra en el piso; en las paredes verde oscuro, cuadros en pesados marcos dorados, cada uno debajo de una lamparita: montañas nevadas sobre un lago, el retrato de una señora mayor vestida de negro, un bodegón de manzanas y flores amarillas, un gran velero en la tormenta y un caballo; un vigilante mayor, de uniforme, está sentado en una silla cerca de la puerta abierta a la sala siguiente; a la derecha, un joven con audífonos y mochila mira el caballo, delante de la ventana alta de cortinas rojas, un radiador y una planta grande en maceta; en el techo, una lámpara de araña; en el piso, un parquet en espiga.",
+    "consigne": "Anna dibuja una escultura en el museo. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los interrogativos: welcher? was für ein?",
+    "B2": "El modo: indem, dadurch dass",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Das Bild mit dem Schiff hängt über der Tür.": "die Tür → über <b>der</b> Tür: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Anna sitzt auf der Bank.": "die Bank → auf <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Mantel liegt auf der Bank.": "die Bank → auf <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Rucksack steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Mann sitzt neben der Tür.": "<b>neben</b> = al lado de. die Tür → neben <b>der</b> Tür.",
+    "A2 | Der Student steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "A2 | Die Lampe hängt an der Decke.": "die Decke → an <b>der</b> Decke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Pflanze steht neben dem Heizkörper.": "<b>neben</b> = al lado de. der Heizkörper → neben <b>dem</b> Heizkörper.",
+    "B1 | Welche Skulptur zeichnet Anna? — Die Skulptur mit dem Hund.": "<b>welch-</b> se declina como el artículo definido: die Skulptur → <b>welche</b>?",
+    "B1 | Welches Bild gefällt dir am besten? — Das mit dem Schiff.": "das Bild, sujeto → <b>welches</b> (neutro, nominativo).",
+    "B1 | In welchem Saal hängt das Pferd? — Im ersten Saal.": "in + dativo (Wo?): der Saal → in <b>welchem</b> Saal?",
+    "B1 | Was für ein Bild ist das? — Ein Porträt.": "<b>was für ein</b> pregunta por la clase de cosa, como «¿qué tipo de…?»; ein toma el caso y el género del sustantivo: das Bild → was für <b>ein</b> Bild?",
+    "B1 | Was für eine Jacke trägt der Student? — Eine braune Jacke.": "Acusativo femenino: was für <b>eine</b> Jacke?",
+    "B1 | Mit was für einem Stift zeichnet Anna? — Mit einem Bleistift.": "mit + dativo: was für <b>einem</b> Stift? (für no cambia nada en el caso)",
+    "B1 | Welcher Mann sitzt an der Tür? — Der Mann in der Uniform.": "der Mann, sujeto → <b>welcher</b> (nominativo).",
+    "B1 | Welcher Mantel gehört Anna? — Der graue Mantel auf der Bank.": "der Mantel es el sujeto de gehören → <b>welcher</b>.",
+    "B2 | Anna lernt, indem sie die Skulptur zeichnet.": "<b>indem</b> = el gerundio del español (dibujando): dice CÓMO se hace; el verbo va al final.",
+    "B2 | Der Student lernt etwas über das Bild, indem er die Kopfhörer benutzt.": "Después de indem, el verbo conjugado va <b>al final</b>.",
+    "B2 | Man schützt die Bilder, indem man sie nicht berührt.": "<b>indem</b> + la manera de hacerlo.",
+    "B2 | Der Mann passt auf, indem er alle Besucher beobachtet.": "indem + verbo conjugado al final de la oración: … <b>beobachtet</b>.",
+    "B2 | Anna merkt sich die Skulptur dadurch, dass sie sie zeichnet.": "<b>dadurch, dass</b> = indem: dadurch en la principal, dass abre la subordinada.",
+    "B2 | Man spart Geld, indem man am Sonntag ins Museum geht.": "Sujeto man → verbo en 3.ª persona del singular: <b>geht</b>.",
+    "C1 | Sie muss Kunst lieben.": "<b>müssen</b> = deducción casi segura, como «debe de» + infinitivo.",
+    "C1 | Der junge Mann könnte Kunst studieren.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Mann an der Tür dürfte jeden Tag hier sitzen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Das Bild mit dem Schiff soll sehr wertvoll sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Das Bild mit dem Schiff hängt über der Tür.": "El cuadro del barco está colgado encima de la puerta.",
+    "A2 | Anna sitzt auf der Bank.": "Anna está sentada en la banca.",
+    "A2 | Der Mantel liegt auf der Bank.": "El abrigo está sobre la banca.",
+    "A2 | Der Rucksack steht auf dem Boden.": "La mochila está en el piso.",
+    "A2 | Der Mann sitzt neben der Tür.": "El hombre está sentado al lado de la puerta.",
+    "A2 | Der Student steht am Fenster.": "El estudiante está de pie junto a la ventana.",
+    "A2 | Die Lampe hängt an der Decke.": "La lámpara cuelga del techo.",
+    "A2 | Die Pflanze steht neben dem Heizkörper.": "La planta está al lado del radiador.",
+    "B1 | Welche Skulptur zeichnet Anna? — Die Skulptur mit dem Hund.": "¿Qué escultura dibuja Anna? — La escultura del perro.",
+    "B1 | Welches Bild gefällt dir am besten? — Das mit dem Schiff.": "¿Qué cuadro te gusta más? — El del barco.",
+    "B1 | In welchem Saal hängt das Pferd? — Im ersten Saal.": "¿En qué sala está colgado el caballo? — En la primera sala.",
+    "B1 | Was für ein Bild ist das? — Ein Porträt.": "¿Qué tipo de cuadro es? — Un retrato.",
+    "B1 | Was für eine Jacke trägt der Student? — Eine braune Jacke.": "¿Qué tipo de chaqueta lleva el estudiante? — Una chaqueta café.",
+    "B1 | Mit was für einem Stift zeichnet Anna? — Mit einem Bleistift.": "¿Con qué tipo de lápiz dibuja Anna? — Con un lápiz de grafito.",
+    "B1 | Welcher Mann sitzt an der Tür? — Der Mann in der Uniform.": "¿Qué hombre está sentado junto a la puerta? — El hombre de uniforme.",
+    "B1 | Welcher Mantel gehört Anna? — Der graue Mantel auf der Bank.": "¿Qué abrigo es de Anna? — El abrigo gris que está sobre la banca.",
+    "B2 | Anna lernt, indem sie die Skulptur zeichnet.": "Anna aprende dibujando la escultura.",
+    "B2 | Der Student lernt etwas über das Bild, indem er die Kopfhörer benutzt.": "El estudiante aprende algo sobre el cuadro usando los audífonos.",
+    "B2 | Man schützt die Bilder, indem man sie nicht berührt.": "Los cuadros se protegen no tocándolos.",
+    "B2 | Der Mann passt auf, indem er alle Besucher beobachtet.": "El hombre vigila observando a todos los visitantes.",
+    "B2 | Anna merkt sich die Skulptur dadurch, dass sie sie zeichnet.": "Anna memoriza la escultura dibujándola.",
+    "B2 | Man spart Geld, indem man am Sonntag ins Museum geht.": "Se ahorra dinero yendo al museo el domingo.",
+    "C1 | Sie muss Kunst lieben.": "Debe de amar el arte.",
+    "C1 | Der junge Mann könnte Kunst studieren.": "Puede que el joven estudie arte.",
+    "C1 | Der Mann an der Tür dürfte jeden Tag hier sitzen.": "El hombre de la puerta probablemente se sienta aquí todos los días.",
+    "C1 | Das Bild mit dem Schiff soll sehr wertvoll sein.": "Dicen que el cuadro del barco es muy valioso."
    }
   }
  }

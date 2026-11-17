@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -64,7 +65,8 @@ window.SCENE = {
    "pt": "nuvem",
    "ar": "غيمة، سحابة",
    "pl": "chmura",
-   "ru": "облако, туча"
+   "ru": "облако, туча",
+   "es": "la nube"
   },
   {
    "id": "vogel",
@@ -93,7 +95,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "wald",
@@ -122,7 +125,8 @@ window.SCENE = {
    "pt": "floresta",
    "ar": "غابة",
    "pl": "las",
-   "ru": "лес"
+   "ru": "лес",
+   "es": "el bosque"
   },
   {
    "id": "baum-2",
@@ -151,7 +155,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "feld",
@@ -180,7 +185,8 @@ window.SCENE = {
    "pt": "campo (de cultivo)",
    "ar": "حقل",
    "pl": "pole",
-   "ru": "поле"
+   "ru": "поле",
+   "es": "el campo"
   },
   {
    "id": "wiese",
@@ -209,7 +215,8 @@ window.SCENE = {
    "pt": "prado, pasto",
    "ar": "مرج",
    "pl": "łąka",
-   "ru": "луг"
+   "ru": "луг",
+   "es": "el prado, la pradera"
   },
   {
    "id": "schaf",
@@ -256,7 +263,8 @@ window.SCENE = {
    "pt": "ovelha",
    "ar": "خروف",
    "pl": "owca",
-   "ru": "овца"
+   "ru": "овца",
+   "es": "la oveja"
   },
   {
    "id": "baum",
@@ -285,7 +293,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "dach",
@@ -314,7 +323,8 @@ window.SCENE = {
    "pt": "telhado",
    "ar": "سقف",
    "pl": "dach",
-   "ru": "крыша"
+   "ru": "крыша",
+   "es": "el techo, el tejado"
   },
   {
    "id": "haus",
@@ -343,7 +353,8 @@ window.SCENE = {
    "pt": "casa",
    "ar": "بيت، منزل",
    "pl": "dom",
-   "ru": "дом"
+   "ru": "дом",
+   "es": "la casa"
   },
   {
    "id": "fenster",
@@ -378,7 +389,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "tuer",
@@ -407,7 +419,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "holz",
@@ -436,7 +449,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "leiter",
@@ -465,7 +479,8 @@ window.SCENE = {
    "pt": "escada (de mão)",
    "ar": "سُلّم",
    "pl": "drabina",
-   "ru": "лестница (стремянка)"
+   "ru": "лестница (стремянка)",
+   "es": "la escalera (de mano)"
   },
   {
    "id": "kuerbis",
@@ -494,7 +509,8 @@ window.SCENE = {
    "pt": "abóbora",
    "ar": "يقطين",
    "pl": "dynia",
-   "ru": "тыква"
+   "ru": "тыква",
+   "es": "la calabaza"
   },
   {
    "id": "katze",
@@ -523,7 +539,8 @@ window.SCENE = {
    "pt": "gato",
    "ar": "قطة",
    "pl": "kot",
-   "ru": "кошка"
+   "ru": "кошка",
+   "es": "el gato"
   },
   {
    "id": "mauer",
@@ -552,7 +569,8 @@ window.SCENE = {
    "pt": "muro",
    "ar": "سور، جدار",
    "pl": "mur",
-   "ru": "стена (каменная)"
+   "ru": "стена (каменная)",
+   "es": "el muro"
   },
   {
    "id": "bank",
@@ -573,15 +591,26 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "brunnen",
@@ -610,7 +639,8 @@ window.SCENE = {
    "pt": "fonte, chafariz",
    "ar": "نافورة",
    "pl": "fontanna, studnia",
-   "ru": "фонтан, колодец"
+   "ru": "фонтан, колодец",
+   "es": "la fuente, el pozo"
   },
   {
    "id": "eimer",
@@ -639,7 +669,8 @@ window.SCENE = {
    "pt": "balde",
    "ar": "دلو",
    "pl": "wiadro",
-   "ru": "ведро"
+   "ru": "ведро",
+   "es": "el balde"
   },
   {
    "id": "onkel",
@@ -663,7 +694,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -684,7 +716,8 @@ window.SCENE = {
    "pt": "tio",
    "ar": "عمّ، خال",
    "pl": "wujek",
-   "ru": "дядя"
+   "ru": "дядя",
+   "es": "el tío"
   },
   {
    "id": "muetze",
@@ -713,7 +746,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "hemd",
@@ -742,7 +776,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "hose-2",
@@ -766,7 +801,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "onkel",
@@ -787,7 +823,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "stiefel-2",
@@ -816,7 +853,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "kuh",
@@ -845,7 +883,8 @@ window.SCENE = {
    "pt": "vaca",
    "ar": "بقرة",
    "pl": "krowa",
-   "ru": "корова"
+   "ru": "корова",
+   "es": "la vaca"
   },
   {
    "id": "gras",
@@ -880,7 +919,8 @@ window.SCENE = {
    "pt": "grama, capim",
    "ar": "عشب",
    "pl": "trawa",
-   "ru": "трава"
+   "ru": "трава",
+   "es": "el pasto, la hierba"
   },
   {
    "id": "pferd",
@@ -909,7 +949,8 @@ window.SCENE = {
    "pt": "cavalo",
    "ar": "حصان",
    "pl": "koń",
-   "ru": "лошадь"
+   "ru": "лошадь",
+   "es": "el caballo"
   },
   {
    "id": "schwein",
@@ -938,7 +979,8 @@ window.SCENE = {
    "pt": "porco",
    "ar": "خنزير",
    "pl": "świnia",
-   "ru": "свинья"
+   "ru": "свинья",
+   "es": "el cerdo"
   },
   {
    "id": "cousin",
@@ -962,7 +1004,8 @@ window.SCENE = {
      "pt": "criança",
      "ar": "طفل",
      "pl": "dziecko",
-     "ru": "ребёнок"
+     "ru": "ребёнок",
+     "es": "el niño"
     }
    ],
    "sur": null,
@@ -983,7 +1026,8 @@ window.SCENE = {
    "pt": "menino",
    "ar": "ولد، صبي",
    "pl": "chłopiec",
-   "ru": "мальчик"
+   "ru": "мальчик",
+   "es": "el chico"
   },
   {
    "id": "hut",
@@ -1012,7 +1056,8 @@ window.SCENE = {
    "pt": "chapéu",
    "ar": "قبّعة",
    "pl": "kapelusz",
-   "ru": "шляпа"
+   "ru": "шляпа",
+   "es": "el sombrero"
   },
   {
    "id": "hemd-3",
@@ -1041,7 +1086,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "huhn",
@@ -1070,7 +1116,8 @@ window.SCENE = {
    "pt": "galinha",
    "ar": "دجاجة",
    "pl": "kura",
-   "ru": "курица"
+   "ru": "курица",
+   "es": "la gallina"
   },
   {
    "id": "anna",
@@ -1099,7 +1146,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "hemd-2",
@@ -1128,7 +1176,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "t-shirt",
@@ -1157,7 +1206,8 @@ window.SCENE = {
    "pt": "camiseta",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
-   "ru": "футболка"
+   "ru": "футболка",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -1181,7 +1231,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "anna",
@@ -1202,7 +1253,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "stiefel",
@@ -1231,7 +1283,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "apfel",
@@ -1260,7 +1313,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "apfel-2",
@@ -1289,7 +1343,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "apfel-3",
@@ -1318,7 +1373,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "kiste",
@@ -1347,7 +1403,8 @@ window.SCENE = {
    "pt": "caixote",
    "ar": "صندوق",
    "pl": "skrzynia, skrzynka",
-   "ru": "ящик"
+   "ru": "ящик",
+   "es": "la caja (grande)"
   },
   {
    "id": "kanne",
@@ -1371,7 +1428,8 @@ window.SCENE = {
      "pt": "leite",
      "ar": "حليب",
      "pl": "mleko",
-     "ru": "молоко"
+     "ru": "молоко",
+     "es": "la leche"
     }
    ],
    "sur": null,
@@ -1392,7 +1450,8 @@ window.SCENE = {
    "pt": "jarra, bule",
    "ar": "إبريق",
    "pl": "dzbanek",
-   "ru": "кофейник, кувшин"
+   "ru": "кофейник, кувшин",
+   "es": "la jarra, la cafetera"
   },
   {
    "id": "korb",
@@ -1421,7 +1480,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "ei",
@@ -1450,7 +1510,8 @@ window.SCENE = {
    "pt": "ovo",
    "ar": "بيضة",
    "pl": "jajko",
-   "ru": "яйцо"
+   "ru": "яйцо",
+   "es": "el huevo"
   },
   {
    "id": "huhn-2",
@@ -1479,7 +1540,8 @@ window.SCENE = {
    "pt": "galinha",
    "ar": "دجاجة",
    "pl": "kura",
-   "ru": "курица"
+   "ru": "курица",
+   "es": "la gallina"
   },
   {
    "id": "huhn-3",
@@ -1508,7 +1570,8 @@ window.SCENE = {
    "pt": "galinha",
    "ar": "دجاجة",
    "pl": "kura",
-   "ru": "курица"
+   "ru": "курица",
+   "es": "la gallina"
   },
   {
    "id": "huhn-4",
@@ -1537,7 +1600,8 @@ window.SCENE = {
    "pt": "galinha",
    "ar": "دجاجة",
    "pl": "kura",
-   "ru": "курица"
+   "ru": "курица",
+   "es": "la gallina"
   },
   {
    "id": "hund",
@@ -1566,7 +1630,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "boden",
@@ -1607,7 +1672,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2562,6 +2628,75 @@ window.SCENE = {
     "C1 | Der Hund könnte Felix' Sohn gehören.": "Собака, возможно, принадлежит сыну Феликса.",
     "C1 | Die Eier dürften von heute Morgen sein.": "Яйца, вероятно, сегодняшние.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Говорят, ферме больше ста лет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le ofrece una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo está en su corral, unas ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga una paca de paja, el hijo de Felix, con sombrero de paja, le da grano a una gallina; en el suelo, una canasta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
+    "consigne": "Anna pasa la mañana en la granja de su tío, en Brandeburgo. Toca un objeto o un animal."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los verbos reflexivos",
+    "B2": "Las subordinadas de tiempo: bevor, nachdem, seit, bis",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die Katze sitzt auf der Mauer.": "die Mauer → auf <b>der</b> Mauer: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Die Eier sind im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
+    "A2 | Die Leiter steht neben dem Holz.": "<b>neben</b> = al lado de. das Holz → neben <b>dem</b> Holz.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "das Dach → auf <b>dem</b> Dach.",
+    "A2 | Die Äpfel liegen in der Kiste.": "die Kiste → in <b>der</b> Kiste: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Kuh steht auf der Wiese.": "die Wiese → auf <b>der</b> Wiese: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Eimer hängt am Brunnen.": "<b>am</b> = an + <b>dem</b>: der Brunnen → am Brunnen.",
+    "B1 | Anna freut sich über das Pferd.": "<b>sich freuen</b>: en 3.ª persona, el pronombre es <b>sich</b>, como «se».",
+    "B1 | Der Hund legt sich auf den Boden.": "<b>sich legen</b> = acostarse, echarse; er → <b>sich</b>.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "<b>sich setzen</b> = sentarse; sie → <b>sich</b>.",
+    "B1 | Ich wasche mich nach der Arbeit.": "<b>sich waschen</b>: ich → <b>mich</b> (acusativo).",
+    "B1 | Wir setzen uns auf die Bank.": "wir → <b>uns</b>.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "<b>sich erinnern an</b>: du → <b>dich</b>.",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "Con un complemento (die Hände), el pronombre va en dativo — pero en 3.ª persona siempre es <b>sich</b>.",
+    "B1 | Die Hühner bewegen sich schnell.": "<b>sich bewegen</b>: sie (plural) → <b>sich</b>.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "<b>bevor</b> = antes de que: la acción de la subordinada viene después.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "<b>nachdem</b> + Perfekt en la subordinada cuando la principal está en presente.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "<b>seit</b> + dativo = desde hace, y sigue (presente).",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "<b>nachdem</b>: la acción anterior en Perfekt, verbo conjugado al final.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "<b>seit</b> + subordinada: el verbo conjugado va al final.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "<b>bis</b> = hasta que, verbo al final.",
+    "C1 | Das Pferd muss sehr lieb sein.": "<b>müssen</b> = deducción casi segura, como «debe de ser».",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "El gato está sentado en el muro.",
+    "A2 | Der Hund liegt auf dem Boden.": "El perro está echado en el suelo.",
+    "A2 | Die Eier sind im Korb.": "Los huevos están en la canasta.",
+    "A2 | Die Leiter steht neben dem Holz.": "La escalera está al lado de la leña.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "El pájaro está posado en el techo.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Las manzanas están en la caja.",
+    "A2 | Die Kuh steht auf der Wiese.": "La vaca está en el prado.",
+    "A2 | Der Eimer hängt am Brunnen.": "El balde está colgado en el pozo.",
+    "B1 | Anna freut sich über das Pferd.": "Anna se alegra de ver al caballo.",
+    "B1 | Der Hund legt sich auf den Boden.": "El perro se echa en el suelo.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "El gato se sienta en el muro.",
+    "B1 | Ich wasche mich nach der Arbeit.": "Me lavo después del trabajo.",
+    "B1 | Wir setzen uns auf die Bank.": "Nos sentamos en la banca.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "¿Te acuerdas de la granja?",
+    "B1 | Felix' Sohn wäscht sich die Hände.": "El hijo de Felix se lava las manos.",
+    "B1 | Die Hühner bewegen sich schnell.": "Las gallinas se mueven rápido.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Antes de darle de comer al caballo, Anna lava las manzanas.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Después de traer la paja, su tío le da de comer al cerdo.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "El perro vive en la granja desde hace un año.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "El gato duerme después de comer.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Desde que Anna trabaja en la granja, se levanta temprano.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "El perro espera hasta que Anna lo llame.",
+    "C1 | Das Pferd muss sehr lieb sein.": "El caballo debe de ser muy manso.",
+    "C1 | Der Hund könnte Felix' Sohn gehören.": "El perro podría ser del hijo de Felix.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Los huevos probablemente son de esta mañana.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Dicen que la granja tiene más de cien años."
    }
   }
  }

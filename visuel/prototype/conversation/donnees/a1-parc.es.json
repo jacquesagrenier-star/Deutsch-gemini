@@ -1,0 +1,62 @@
+{
+ "id": "a1-parc",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "Sur un banc, au Retiro"},
+ "intro": {"fr": "Un après-midi au parc du Retiro, à Madrid. Un promeneur te demande l'heure, puis parle du temps qu'il fait."},
+ "personnes": ["park_spaziergaenger"],
+ "debut": "hora",
+ "noeuds": {
+  "hora": {
+   "dit": [
+    {"recit": {"fr": "Un après-midi de printemps au Retiro. Tu es assis(e) sur un banc ; ton téléphone indique 14 h 30. Un homme s'approche."}},
+    {"qui": "park_spaziergaenger", "air": "attentive", "t": "Perdone, ¿tiene hora?", "fr": "Pardon, vous avez l'heure ?"}
+   ],
+   "choix": [
+    {"t": "Sí, son las dos y media.", "fr": "Oui, il est deux heures et demie.", "va": "tiempo",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡Gracias!", "fr": "Merci !"}]},
+    {"t": "Sí, claro. Son las dos y media.", "fr": "Oui, bien sûr. Il est deux heures et demie.", "va": "tiempo",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡Muchas gracias!", "fr": "Merci beaucoup !"}]},
+    {"faux": true, "t": "Sí, es las dos y media.", "fr": "Oui, il est deux heures et demie.",
+     "puis": [{"qui": "park_spaziergaenger", "air": "perplexe", "t": "¿Es…? Ah, son las dos y media. ¡Gracias!", "fr": "« Es »… ? Ah, il est deux heures et demie. Merci !"}],
+     "aide": {"fr": "Avec les heures, le verbe s'accorde au pluriel : <b>son</b> las dos, <b>son</b> las tres… Seule exception : <b>es</b> la una (une heure)."}}
+   ]
+  },
+  "tiempo": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡Qué buen día hace hoy!", "fr": "Quelle belle journée aujourd'hui !"}],
+   "choix": [
+    {"t": "Sí, hace sol y hace calor.", "fr": "Oui, il y a du soleil et il fait chaud.", "va": "manana"},
+    {"t": "Sí, pero hace un poco de viento.", "fr": "Oui, mais il y a un peu de vent.", "va": "manana",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Es verdad, el viento todavía es fresco.", "fr": "C'est vrai, le vent est encore frais."}]},
+    {"repete": true, "t": "Perdone, ¿cómo dice?", "fr": "Pardon, vous dites ?", "va": "tiempo",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡El tiempo! Hace muy bueno hoy, ¿verdad?", "fr": "Le temps ! Il fait très beau aujourd'hui, non ?"}]}
+   ]
+  },
+  "manana": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "Pues dicen que mañana va a llover todo el día.", "fr": "Pourtant, on dit que demain, il va pleuvoir toute la journée."}],
+   "choix": [
+    {"t": "¡Qué pena! Entonces me quedo en casa.", "fr": "Dommage ! Alors je reste à la maison.", "va": "mucho"},
+    {"t": "No pasa nada. Tengo paraguas.", "fr": "Ce n'est pas grave. J'ai un parapluie.", "va": "mucho",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡Muy bien!", "fr": "Très bien !"}]}
+   ]
+  },
+  "mucho": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "¿Viene mucho al Retiro?", "fr": "Vous venez souvent au Retiro ?"}],
+   "choix": [
+    {"t": "Sí, paseo aquí todos los días.", "fr": "Oui, je me promène ici tous les jours.", "va": "adios",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Yo también, con mi perro. Se llama Toby.", "fr": "Moi aussi, avec mon chien. Il s'appelle Toby."}]},
+    {"t": "No, es la primera vez.", "fr": "Non, c'est la première fois.", "va": "adios",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "¡Pues es el parque más bonito de Madrid!", "fr": "Eh bien, c'est le plus beau parc de Madrid !"}]}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Bueno, me voy. ¡Que tenga una buena tarde!", "fr": "Bon, j'y vais. Bon après-midi !"}],
+   "choix": [
+    {"t": "¡Gracias, igualmente! ¡Adiós!", "fr": "Merci, vous aussi ! Au revoir !", "va": null},
+    {"t": "¡Gracias! ¡Hasta luego!", "fr": "Merci ! À plus tard !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné l'heure (son las dos y media !), parlé du soleil et de la pluie de demain, et dit au revoir poliment."}
+}

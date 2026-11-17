@@ -1,0 +1,67 @@
+{
+ "id": "a1-appartement",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "La visite d'un appartement"},
+ "intro": {"fr": "Tu cherches un appartement à Berlin. La propriétaire te fait visiter : les pièces, le loyer, la date. À toi de poser les bonnes questions."},
+ "personnes": ["vermieterin"],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Un vieil immeuble de Neukölln, au deuxième étage. La propriétaire t'attend devant la porte."}},
+    {"qui": "vermieterin", "air": "sourire", "t": "Guten Tag! Sie kommen wegen der Wohnung?", "fr": "Bonjour ! Vous venez pour l'appartement ?"}
+   ],
+   "choix": [
+    {"t": "Ja, guten Tag! Ich suche eine Wohnung.", "fr": "Oui, bonjour ! Je cherche un appartement.", "va": "wohnzimmer",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Dann kommen Sie herein!", "fr": "Alors entrez !"}]},
+    {"t": "Ja, genau. Wir haben gestern telefoniert.", "fr": "Oui, exactement. Nous nous sommes téléphoné hier.", "va": "wohnzimmer",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Ach ja! Kommen Sie herein!", "fr": "Ah oui ! Entrez !"}]},
+    {"faux": true, "t": "Ja, ich komme für die Wohnung.", "fr": "Oui, je viens pour l'appartement.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Für die Wohnung? Ach so, wegen der Wohnung, ja!", "fr": "« Für » l'appartement ? Ah, pour l'appartement, oui !"}],
+     "aide": {"fr": "« Je viens pour l'appartement » ne se calque pas avec <b>für</b>. On dit « Ich komme <b>wegen</b> der Wohnung », ou plus simple : « Ich <b>suche</b> eine Wohnung »."}}
+   ]
+  },
+  "wohnzimmer": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Das ist das Wohnzimmer. Schön hell, oder?", "fr": "Voici le salon. Bien lumineux, non ?"}],
+   "choix": [
+    {"t": "Ja, sehr schön! Wie groß ist die Wohnung?", "fr": "Oui, très beau ! L'appartement fait quelle taille ?", "va": "kueche",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Fünfzig Quadratmeter: zwei Zimmer, Küche, Bad.", "fr": "Cinquante mètres carrés : deux pièces, cuisine, salle de bain."}]},
+    {"t": "Ja, aber es ist ein bisschen klein.", "fr": "Oui, mais c'est un peu petit.", "va": "kueche",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Klein? Für Berlin ist das groß!", "fr": "Petit ? Pour Berlin, c'est grand !"}]}
+   ]
+  },
+  "kueche": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Hier ist die Küche, und da ist das Bad.", "fr": "Ici, c'est la cuisine, et là, la salle de bain."}],
+   "choix": [
+    {"t": "Die Küche ist schön. Gibt es auch einen Balkon?", "fr": "La cuisine est jolie. Il y a aussi un balcon ?", "va": "miete",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Ja, hinten, zum Hof. Er ist klein, aber ruhig.", "fr": "Oui, à l'arrière, côté cour. Il est petit, mais calme."}]},
+    {"t": "Gibt es eine Waschmaschine?", "fr": "Il y a une machine à laver ?", "va": "miete",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Nein, leider nicht. Aber es gibt einen Waschsalon um die Ecke.", "fr": "Non, malheureusement. Mais il y a une laverie au coin de la rue."}]}
+   ]
+  },
+  "miete": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Haben Sie noch Fragen?", "fr": "Vous avez encore des questions ?"}],
+   "choix": [
+    {"t": "Ja. Wie viel kostet die Miete?", "fr": "Oui. Combien coûte le loyer ?", "va": "nehmen",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "850 Euro warm, also mit Heizung.", "dit": "Achthundertfünfzig Euro warm, also mit Heizung.", "fr": "850 euros charges comprises, donc chauffage compris."}]},
+    {"t": "Ja. Ab wann ist die Wohnung frei?", "fr": "Oui. L'appartement est libre à partir de quand ?", "va": "nehmen",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Ab dem 1. Dezember.", "dit": "Ab dem ersten Dezember.", "fr": "À partir du 1er décembre."}]},
+    {"faux": true, "t": "Ja. Wie viele kostet die Miete?", "fr": "Oui. Combien coûte le loyer ?",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Wie viele …? Ach, wie viel! Die Miete?", "fr": "Combien de… ? Ah, combien ! Le loyer ?"}],
+     "aide": {"fr": "Pour un prix : <b>wie viel</b> (« Wie viel kostet die Miete? »). <b>wie viele</b> sert à compter : « Wie viele Zimmer hat die Wohnung? »."}}
+   ]
+  },
+  "nehmen": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Und? Möchten Sie die Wohnung nehmen?", "fr": "Alors ? Vous voulez prendre l'appartement ?"}],
+   "choix": [
+    {"t": "Ja, sehr gern! Sie gefällt mir sehr.", "fr": "Oui, très volontiers ! Il me plaît beaucoup.", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Wunderbar! Dann schicke ich Ihnen den Vertrag.", "fr": "Formidable ! Alors je vous envoie le contrat."}]},
+    {"t": "Ich weiß noch nicht. Kann ich Sie morgen anrufen?", "fr": "Je ne sais pas encore. Je peux vous appeler demain ?", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Natürlich. Aber nicht zu spät: Es gibt viele Interessenten!", "fr": "Bien sûr. Mais pas trop tard : il y a beaucoup de candidats !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as visité l'appartement, demandé la taille, l'équipement, le loyer ou la date, et donné ta réponse à la propriétaire."}
+}

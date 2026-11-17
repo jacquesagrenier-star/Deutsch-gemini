@@ -1,0 +1,109 @@
+{
+ "id": "a2-puces",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Marchander au Rastro"},
+ "intro": {"fr": "Dimanche matin au Rastro, le grand marché aux puces de Madrid, à La Latina. Une vieille lampe te plaît. Ici, on discute le prix, mais toujours avec le sourire."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "precio",
+ "prix": {"lampara": 2200, "tazas": 600},
+ "panier": ["objeto", "segundo"],
+ "textes": {
+  "compra_fr": {"cle": "segundo", "tazas": "une lampe des années soixante et quatre tasses de Talavera", "no": "une lampe des années soixante"}
+ },
+ "noeuds": {
+  "precio": {
+   "dit": [
+    {"recit": {"fr": "Dimanche, onze heures, Ribera de Curtidores. Entre les étals, tu remarques une vieille lampe de bureau verte."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "¡Buenos días! Mire, mire, sin compromiso.", "fr": "Bonjour ! Regardez, regardez, sans engagement."}
+   ],
+   "choix": [
+    {"t": "Buenos días. ¿Cuánto cuesta esta lámpara?", "fr": "Bonjour. Combien coûte cette lampe ?", "pose": {"objeto": "lampara", "segundo": "no"}, "va": "regatear"},
+    {"t": "Hola, buenos días. ¿Qué precio tiene la lámpara verde?", "fr": "Bonjour. Quel est le prix de la lampe verte ?", "pose": {"objeto": "lampara", "segundo": "no"}, "va": "regatear"},
+    {"faux": true, "t": "La lámpara, ¿cuánto?", "fr": "La lampe, combien ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "Buenos días primero, ¿no? Así se empieza en el Rastro.", "fr": "Bonjour d'abord, non ? C'est comme ça qu'on commence au Rastro."}],
+     "aide": {"fr": "<b>On salue avant de demander un prix.</b> Sans « buenos días » ni verbe, la question est sèche. Dis : « Buenos días. ¿Cuánto cuesta esta lámpara? »."}}
+   ]
+  },
+  "regatear": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Esa, treinta euros. Es de los años sesenta. ¡Una joya!", "fr": "Celle-là, trente euros. Elle est des années soixante. Un bijou !"}],
+   "choix": [
+    {"t": "Es muy bonita, pero un poco cara. ¿Me la deja en quince?", "fr": "Elle est très jolie, mais un peu chère. Vous me la laissez à quinze ?", "pose": {"oferta": "quince"}, "va": "contra"},
+    {"t": "Me gusta mucho, pero es mucho dinero. ¿Veinte euros?", "fr": "Elle me plaît beaucoup, mais c'est beaucoup d'argent. Vingt euros ?", "pose": {"oferta": "veinte"}, "va": "contra"},
+    {"faux": true, "t": "Es un poco cara. ¿Puede hacer un precio?", "fr": "Elle est un peu chère. Vous pouvez faire un prix ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "¿Hacer un precio? El precio ya está hecho: treinta. Ah, ¿quiere una rebaja?", "fr": "Faire un prix ? Le prix est déjà fait : trente. Ah, vous voulez une réduction ?"}],
+     "aide": {"fr": "<b>« Faire un prix » ne se traduit pas mot à mot.</b> On propose une somme : « ¿Me la deja en veinte? », ou on demande : « ¿Me hace una rebaja? »."}}
+   ]
+  },
+  "contra": {
+   "dit": [
+    {"qui": "marktverkaeufer", "air": "surprise", "si": {"oferta": "quince"}, "t": "¿Quince? ¡Uy, no, no! Por quince no puedo. Veinticinco, y es un regalo.", "fr": "Quinze ? Oh non, non ! À quinze, je ne peux pas. Vingt-cinq, et c'est un cadeau."},
+    {"qui": "marktverkaeufer", "air": "attentive", "si": {"oferta": "veinte"}, "t": "¿Veinte? Uf… Veinticinco, y ya pierdo dinero.", "fr": "Vingt ? Ouf… Vingt-cinq, et j'y perds déjà de l'argent."}
+   ],
+   "choix": [
+    {"t": "Veinticinco… ¿Y funciona bien?", "fr": "Vingt-cinq… Et elle marche bien ?", "va": "defecto"},
+    {"t": "No sé… ¿Tiene algún defecto?", "fr": "Je ne sais pas… Elle a un défaut ?", "va": "defecto"},
+    {"faux": true, "t": "Veinticinco… ¿Y marcha bien?", "fr": "Vingt-cinq… Et elle « marche » bien ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "¿Marchar? Las lámparas no caminan… ¡pero esta funciona muy bien!", "fr": "Marcher ? Les lampes ne marchent pas à pied… mais celle-ci fonctionne très bien !"}],
+     "aide": {"fr": "<b>Un appareil qui marche : « funcionar ».</b> « ¿Funciona bien? ». « Marchar », c'est marcher au pas ou s'en aller."}}
+   ]
+  },
+  "defecto": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Funciona perfectamente. Mire, la enciendo… ¿Ve? Solo tiene un golpe pequeño aquí detrás.", "fr": "Elle marche parfaitement. Regardez, je l'allume… Vous voyez ? Elle a seulement un petit coup ici, derrière."}],
+   "choix": [
+    {"t": "Vale. Y esas tazas, ¿cuánto cuestan?", "fr": "D'accord. Et ces tasses, combien coûtent-elles ?", "va": "tazas"},
+    {"t": "Bueno, no es grave. ¿Me la deja en veintidós?", "fr": "Bon, ce n'est pas grave. Vous me la laissez à vingt-deux ?", "va": "solo"},
+    {"faux": true, "t": "Está bien. La prendo por veintidós.", "fr": "C'est bon. Je la « prends » pour vingt-deux (calque de « prendre »).",
+     "puis": [{"qui": "marktverkaeufer", "air": "surprise", "t": "¿La prende? ¡No, hombre, no me la queme! Ah, ¿se la lleva?", "fr": "Vous y mettez le feu ? Non, voyons, ne me la brûlez pas ! Ah, vous l'emportez ?"}],
+     "aide": {"fr": "<b>« Je la prends » (j'achète) se dit « me la llevo ».</b> « Prender » veut dire allumer ou mettre le feu. Pour proposer un prix : « ¿Me la deja en veintidós? »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir más despacio?", "fr": "Pardon ? Vous pouvez répéter plus lentement ?", "va": "defecto",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Sí, claro. La lámpara funciona muy bien. Solo tiene un golpe pequeño detrás.", "fr": "Oui, bien sûr. La lampe marche très bien. Elle a seulement un petit coup derrière."}]}
+   ]
+  },
+  "tazas": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Las tazas, ocho euros las cuatro. Son de Talavera, pintadas a mano.", "fr": "Les tasses, huit euros les quatre. Elles sont de Talavera, peintes à la main."}],
+   "choix": [
+    {"t": "¿Y si me llevo la lámpara y las tazas?", "fr": "Et si je prends la lampe et les tasses ?", "pose": {"segundo": "tazas"}, "va": "acuerdo"},
+    {"t": "¿Cuánto me hace por las dos cosas?", "fr": "Vous me faites combien pour les deux ?", "pose": {"segundo": "tazas"}, "va": "acuerdo"},
+    {"faux": true, "t": "¿Y cuánto para los dos?", "fr": "Et combien pour les deux ? (avec « para »)",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "¿Para los dos? ¿Para quiénes? Ah, ¡por las dos cosas!", "fr": "Pour tous les deux ? Pour qui ? Ah, pour les deux choses !"}],
+     "aide": {"fr": "<b>Le prix qu'on paie en échange : « por ».</b> « ¿Cuánto por las dos cosas? », « veinte euros por la lámpara ». « Para » dit à qui c'est destiné : « es para mi hermana »."}}
+   ]
+  },
+  "acuerdo": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "La lámpara y las cuatro tazas… {a_payer} todo. Y es mi último precio, ¿eh?", "fr": "La lampe et les quatre tasses… {a_payer} le tout. Et c'est mon dernier prix, hein ?", "dit": "La lámpara y las cuatro tazas… {a_payer:mots} todo. Y es mi último precio, ¿eh?"}],
+   "choix": [
+    {"t": "Vale, de acuerdo. Me lo llevo todo.", "fr": "D'accord, ça marche. Je prends tout.", "va": "pagar"},
+    {"t": "Muy bien, es un buen precio. Me llevo las dos cosas.", "fr": "Très bien, c'est un bon prix. Je prends les deux.", "va": "pagar"},
+    {"faux": true, "t": "Vale, soy de acuerdo.", "fr": "D'accord, je suis d'accord (avec « ser »).",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "¿Es de acuerdo? ¡Está de acuerdo! Pues muy bien.", "fr": "« Es de acuerdo » ? « Está de acuerdo » ! Eh bien, très bien."}],
+     "aide": {"fr": "<b>« Être d'accord » : « estar de acuerdo ».</b> « Estoy de acuerdo ». Ou plus court, comme à Madrid : « Vale » ou « De acuerdo »."}}
+   ]
+  },
+  "solo": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Veintidós… Venga, vale, porque es domingo. ¿Y no quiere también estas tazas? Son de Talavera.", "fr": "Vingt-deux… Allez, d'accord, parce que c'est dimanche. Et vous ne voulez pas aussi ces tasses ? Elles sont de Talavera."}],
+   "choix": [
+    {"t": "No, gracias, solo la lámpara.", "fr": "Non, merci, seulement la lampe.", "va": "pagar"},
+    {"t": "Son muy bonitas, pero hoy no. Gracias.", "fr": "Elles sont très jolies, mais pas aujourd'hui. Merci.", "va": "pagar"},
+    {"faux": true, "t": "No, gracias, no tengo necesidad.", "fr": "Non, merci, je n'en ai pas besoin (mot à mot).",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "¿Necesidad? Ah, que no las necesita. Otro día, entonces.", "fr": "Nécessité ? Ah, vous n'en avez pas besoin. Un autre jour, alors."}],
+     "aide": {"fr": "<b>« Avoir besoin de » se dit « necesitar ».</b> « No las necesito ». Ou, tout simplement : « No, gracias, solo la lámpara »."}}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Pues son {a_payer}. Se lo envuelvo en papel de periódico.", "fr": "Alors, ça fait {a_payer}. Je vous l'emballe dans du papier journal.", "dit": "Pues son {a_payer:mots}. Se lo envuelvo en papel de periódico."}],
+   "choix": [
+    {"t": "Gracias. Solo tengo un billete de cincuenta, lo siento.", "fr": "Merci. Je n'ai qu'un billet de cinquante, je suis désolé(e).", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "No pasa nada, tengo cambio. Aquí tiene. ¡Que la disfrute, y buen domingo!", "fr": "Ce n'est rien, j'ai de la monnaie. Voilà. Profitez-en bien, et bon dimanche !"}]},
+    {"t": "Muchas gracias. Tenga, lo tengo justo.", "fr": "Merci beaucoup. Tenez, j'ai le compte juste.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¡Perfecto! Gracias a usted. ¡Que la disfrute, y buen domingo!", "fr": "Parfait ! Merci à vous. Profitez-en bien, et bon dimanche !"}]},
+    {"faux": true, "t": "Solo tengo un billete de cincuenta. ¿Tiene moneda?", "fr": "Je n'ai qu'un billet de cinquante. Vous avez une pièce ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "¿Una moneda? Ah, ¡cambio! Sí, sí, tengo cambio.", "fr": "Une pièce ? Ah, de la monnaie ! Oui, oui, j'ai de la monnaie."}],
+     "aide": {"fr": "<b>La monnaie qu'on rend, c'est « el cambio » (ou « la vuelta »).</b> « ¿Tiene cambio? ». « Una moneda » est une pièce : « una moneda de dos euros »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as marchandé poliment au Rastro : {compra_fr}, pour {a_payer} au lieu de trente euros et plus."}
+}

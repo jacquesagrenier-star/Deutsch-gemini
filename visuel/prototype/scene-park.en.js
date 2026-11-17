@@ -232,9 +232,9 @@ window.SCENE = {
   },
   {
    "id": "bank",
-   "mot": "bank",
+   "mot": "bench",
    "genre": "",
-   "pluriel": "banks",
+   "pluriel": "benches",
    "niveau": "A1",
    "theme": "city_a1",
    "personne": null,
@@ -249,8 +249,9 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "la banque",
-   "es": "el banco"
+   "fr": "le banc",
+   "es": "la banca, el banco (para sentarse)",
+   "esp": "el banco (para sentarse)"
   },
   {
    "id": "monsieur",

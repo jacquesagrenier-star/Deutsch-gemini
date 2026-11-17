@@ -1,0 +1,57 @@
+{
+ "id": "a1-supermarche",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "usted",
+ "titre": {"fr": "Au supermarché : la caisse et le sac"},
+ "intro": {"fr": "À la caisse d'un supermarché de Madrid : les bananes qu'on a oublié de peser, le sac qui se paie, le paiement et le ticket."},
+ "personnes": ["kassiererin"],
+ "debut": "pesar",
+ "prix": {"compra": 1695, "bolsa": 15},
+ "panier": ["compra", "bolsa"],
+ "noeuds": {
+  "pesar": {
+   "dit": [
+    {"recit": {"fr": "Au supermarché du quartier, à la caisse. Tu poses tes courses : du lait, du pain, des bananes, du jambon et de l'huile d'olive. La caissière prend les bananes et s'arrête."}},
+    {"qui": "kassiererin", "air": "perplexe", "t": "Perdone, los plátanos no están pesados.", "fr": "Excusez-moi, les bananes ne sont pas pesées."}
+   ],
+   "choix": [
+    {"t": "¡Ay, perdón! ¿Dónde se pesan?", "fr": "Oh, pardon ! Où est-ce qu'on les pèse ?", "pose": {"compra": "compra"}, "va": "bolsa",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Allí, en la sección de fruta. Pero no se preocupe: ya los peso yo.", "fr": "Là-bas, au rayon fruits. Mais ne vous inquiétez pas : je les pèse moi-même."}]},
+    {"t": "Perdón. ¿Puede pesarlos usted, por favor?", "fr": "Pardon. Vous pouvez les peser, s'il vous plaît ?", "pose": {"compra": "compra"}, "va": "bolsa",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Sí, claro, no pasa nada.", "fr": "Oui, bien sûr, ce n'est pas grave."}]},
+    {"repete": true, "t": "No entiendo. ¿Puede repetir, por favor?", "fr": "Je ne comprends pas. Vous pouvez répéter, s'il vous plaît ?", "va": "pesar",
+     "puis": [{"qui": "kassiererin", "air": "attentive", "t": "Los plátanos: hay que pesarlos allí, en la báscula. ¿Ve?", "fr": "Les bananes : il faut les peser là-bas, sur la balance. Vous voyez ?"}]}
+   ]
+  },
+  "bolsa": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "¿Quiere bolsa? Son quince céntimos.", "fr": "Vous voulez un sac ? C'est quinze centimes."}],
+   "choix": [
+    {"t": "Sí, una bolsa, por favor.", "fr": "Oui, un sac, s'il vous plaît.", "pose": {"bolsa": "bolsa"}, "va": "pagar"},
+    {"t": "No, gracias. Tengo bolsa.", "fr": "Non, merci. J'ai un sac.", "va": "pagar"},
+    {"faux": true, "t": "Sí, un saco, por favor.", "fr": "Oui, un sac (mot à mot), s'il vous plaît.",
+     "puis": [{"qui": "kassiererin", "air": "amuse", "t": "¿Un saco? ¡Ja, ja! ¿Para patatas? Ah, ¿una bolsa?", "fr": "Un « saco » ? Ha ha ! Pour des pommes de terre ? Ah, un sac de caisse ?"}],
+     "aide": {"fr": "<b>Le sac de caisse se dit « la bolsa ».</b> « el saco », c'est un grand sac de toile, pour les pommes de terre."}}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "kassiererin", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": "tique"},
+    {"t": "En efectivo. Aquí tiene veinte euros.", "fr": "En espèces. Voici vingt euros.", "va": "tique"}
+   ]
+  },
+  "tique": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "¿Quiere el tique?", "fr": "Vous voulez le ticket de caisse ?"}],
+   "choix": [
+    {"t": "Sí, por favor.", "fr": "Oui, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Aquí tiene. ¡Hasta luego!", "fr": "Voilà. Au revoir !"}]},
+    {"t": "No, gracias. ¡Hasta luego!", "fr": "Non, merci. Au revoir !", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "¡Hasta luego, que tenga buen día!", "fr": "Au revoir, bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu es passé(e) à la caisse, tu sais qu'on pèse les fruits soi-même, et tu as payé {a_payer}."}
+}

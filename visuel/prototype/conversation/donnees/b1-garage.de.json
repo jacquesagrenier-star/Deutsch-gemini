@@ -1,0 +1,142 @@
+{
+ "id": "b1-garage",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Au garage : les freins et le contrôle technique"},
+ "intro": {"fr": "Ta voiture fait un drôle de bruit quand tu freines, et un voyant s'est allumé. Tu passes au garage : le diagnostic, le devis, et il te faut la voiture demain pour aller travailler."},
+ "personnes": ["mechanikerin_werkstatt"],
+ "debut": "problem",
+ "textes": {
+  "plan_fr": {"cle": "plan", "bremsen": "Les freins sont refaits aujourd'hui pour 17 heures, et le contrôle technique (TÜV) aura lieu dans deux semaines", "alles": "Le garage fait tout d'ici demain 17 heures, freins et contrôle technique (TÜV)"},
+  "weg_fr": {"cle": "weg", "rad": " ; en attendant, tu roules avec le vélo prêté par le garage", "ubahn": " ; en attendant, tu prends le métro"}
+ },
+ "noeuds": {
+  "problem": {
+   "dit": [
+    {"recit": {"fr": "Un petit garage dans une cour de Neukölln, huit heures du matin. La mécanicienne s'essuie les mains et vient vers toi."}},
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Morgen! Was kann ich für Sie tun?", "fr": "Bonjour ! Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Mein Auto macht ein komisches Geräusch, wenn ich bremse.", "fr": "Bonjour. Ma voiture fait un bruit bizarre quand je freine.", "va": "seit_wann"},
+    {"t": "Guten Morgen. Mit meinen Bremsen stimmt etwas nicht: Sie machen ein lautes Geräusch.", "fr": "Bonjour. Il y a quelque chose qui ne va pas avec mes freins : ils font un bruit fort.", "va": "seit_wann"},
+    {"faux": true, "t": "Guten Morgen. Mein Auto macht ein Geräusch, wann ich bremse.", "fr": "Bonjour. Ma voiture fait un bruit quand je freine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Wann Sie bremsen? Das weiß ich doch nicht! Ach so: immer, wenn Sie bremsen.", "fr": "À quel moment vous freinez ? Je n'en sais rien, moi ! Ah, d'accord : chaque fois que vous freinez."}],
+     "aide": {"fr": "<b>« Quand » dans une phrase se dit « wenn »</b> : « …, wenn ich bremse ». « wann » ne sert qu'à poser une question sur le moment (« Wann kommen Sie? »)."}}
+   ]
+  },
+  "seit_wann": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "question", "t": "Ein Geräusch beim Bremsen, aha. Seit wann ist das so? Und ist Ihnen sonst noch etwas aufgefallen?", "fr": "Un bruit au freinage, je vois. C'est comme ça depuis quand ? Et vous avez remarqué autre chose ?"}],
+   "choix": [
+    {"t": "Seit ungefähr einer Woche. Und seit gestern leuchtet eine rote Lampe.", "fr": "Depuis une semaine environ. Et depuis hier, un voyant rouge est allumé.", "va": "diagnose"},
+    {"t": "Seit letztem Montag, vor allem in der Stadt. Außerdem ist gestern eine Warnlampe angegangen.", "fr": "Depuis lundi dernier, surtout en ville. En plus, un voyant s'est allumé hier.", "va": "diagnose"},
+    {"faux": true, "t": "Es macht eine Woche.", "fr": "Ça fait une semaine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Was macht eine Woche? Ach, seit einer Woche ist das so!", "fr": "Qu'est-ce qui « fait » une semaine ? Ah, c'est comme ça depuis une semaine !"}],
+     "aide": {"fr": "<b>« Ça fait une semaine » se dit avec « seit »</b> : « Seit einer Woche ». « Es macht » ne s'emploie pas pour la durée."}}
+   ]
+  },
+  "diagnose": {
+   "dit": [
+    {"recit": {"fr": "Elle monte la voiture sur le pont et démonte une roue. Dix minutes plus tard, elle revient."}},
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "So, ich habe es mir angesehen. Die Bremsbeläge vorne sind fast komplett abgefahren, daher die Lampe. Und noch etwas: Ihr TÜV läuft nächsten Monat ab.", "fr": "Voilà, j'ai regardé. Les plaquettes de frein avant sont presque complètement usées, d'où le voyant. Et autre chose : votre contrôle technique expire le mois prochain."}
+   ],
+   "choix": [
+    {"t": "Oh. Ist das gefährlich? Kann ich heute noch damit fahren?", "fr": "Oh. C'est dangereux ? Je peux encore rouler avec aujourd'hui ?", "va": "kosten",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Ein paar Kilometer vielleicht, aber ich würde es nicht tun. Die Bremsen müssen gewechselt werden.", "fr": "Quelques kilomètres peut-être, mais je ne le ferais pas. Les freins doivent être changés."}]},
+    {"t": "Das habe ich mir fast gedacht. Was muss alles gemacht werden?", "fr": "Je m'en doutais presque. Qu'est-ce qu'il faut faire, au total ?", "va": "kosten",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Die Bremsbeläge müssen gewechselt werden, und dann ist die Hauptuntersuchung fällig.", "fr": "Il faut changer les plaquettes de frein, et ensuite c'est l'heure du contrôle technique."}]},
+    {"repete": true, "t": "Entschuldigung, was sind Bremsbeläge?", "fr": "Excusez-moi, c'est quoi, « Bremsbeläge » ?", "va": "diagnose",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Das sind die Teile, die beim Bremsen auf das Rad drücken. Bei Ihnen sind sie zu dünn geworden. Und der TÜV, die Kontrolle alle zwei Jahre, ist auch bald fällig.", "fr": "Ce sont les pièces qui appuient sur la roue quand on freine. Les vôtres sont devenues trop fines. Et le TÜV, le contrôle tous les deux ans, arrive bientôt lui aussi."}]}
+   ]
+  },
+  "kosten": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Ich habe Ihnen einen Kostenvoranschlag gemacht: neue Bremsbeläge vorne 180 Euro, der TÜV 150 Euro. Zusammen 330 Euro, inklusive Mehrwertsteuer.", "dit": "Ich habe Ihnen einen Kostenvoranschlag gemacht: neue Bremsbeläge vorne hundertachtzig Euro, der TÜV hundertfünfzig Euro. Zusammen dreihundertdreißig Euro, inklusive Mehrwertsteuer.", "fr": "Je vous ai fait un devis : plaquettes neuves à l'avant, 180 euros ; le contrôle technique, 150 euros. En tout 330 euros, TVA comprise."}],
+   "choix": [
+    {"t": "Ist die Arbeitszeit in dem Preis schon enthalten?", "fr": "Est-ce que la main-d'œuvre est déjà comprise dans le prix ?", "va": "wann",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Ja, Material, Arbeit und Mehrwertsteuer, alles drin.", "fr": "Oui, les pièces, la main-d'œuvre et la TVA, tout est dedans."}]},
+    {"t": "Das ist in Ordnung. Könnte ich den Kostenvoranschlag schriftlich bekommen?", "fr": "C'est d'accord. Est-ce que je pourrais avoir le devis par écrit ?", "va": "wann",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Natürlich, ich drucke ihn gleich aus.", "fr": "Bien sûr, je l'imprime tout de suite."}]},
+    {"t": "Das ist viel Geld für mich. Gibt es vielleicht eine günstigere Möglichkeit?", "fr": "C'est beaucoup d'argent pour moi. Est-ce qu'il y aurait une solution moins chère ?", "va": "sparen"},
+    {"faux": true, "t": "Ist die TVA inklusive?", "fr": "Est-ce que la TVA est comprise ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Die … TVA? Die kenne ich nicht. Ach, die Mehrwertsteuer! Ja, die ist drin.", "fr": "La… TVA ? Connais pas. Ah, la « Mehrwertsteuer » ! Oui, elle est dedans."}],
+     "aide": {"fr": "<b>La TVA s'appelle « die Mehrwertsteuer »</b> (abrégée « MwSt. ») : « Ist die Mehrwertsteuer im Preis enthalten? »."}}
+   ]
+  },
+  "sparen": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Bei den Bremsen kann ich leider nicht sparen, da geht es um Ihre Sicherheit. Aber den TÜV müssen Sie nicht sofort bezahlen: Er läuft ja erst nächsten Monat ab.", "fr": "Sur les freins, je ne peux malheureusement pas faire d'économie, il s'agit de votre sécurité. Mais le contrôle technique, vous n'êtes pas obligé(e) de le payer tout de suite : il n'expire que le mois prochain."}],
+   "choix": [
+    {"t": "Das verstehe ich. Die Sicherheit ist wichtiger als das Geld.", "fr": "Je comprends. La sécurité compte plus que l'argent.", "va": "wann",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "So sehe ich das auch.", "fr": "C'est aussi mon avis."}]},
+    {"t": "Gut zu wissen, dass ich für den TÜV noch etwas Zeit habe.", "fr": "C'est bon à savoir que j'ai encore un peu de temps pour le contrôle technique.", "va": "wann",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Genau. Nur zu lange warten sollten Sie nicht, sonst wird es teuer.", "fr": "Exactement. Il ne faudrait simplement pas attendre trop longtemps, sinon ça coûte cher."}]},
+    {"faux": true, "t": "Können Sie mir einen Preis machen?", "fr": "Vous pouvez me faire un prix ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Einen Preis machen? Den habe ich Ihnen doch gerade gesagt! Ach, Sie möchten einen Rabatt …", "fr": "« Faire un prix » ? Je viens justement de vous le dire ! Ah, vous voulez une remise…"}],
+     "aide": {"fr": "<b>« Faire un prix » ne se traduit pas mot à mot.</b> On demande : « Können Sie mir einen Rabatt geben? » ou « Geht es auch etwas günstiger? »."}}
+   ]
+  },
+  "wann": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "question", "t": "Wann brauchen Sie den Wagen denn wieder? Für alles zusammen müsste er bis morgen Abend hierbleiben.", "fr": "Vous avez besoin de la voiture pour quand ? Pour tout faire, il faudrait qu'elle reste ici jusqu'à demain soir."}],
+   "choix": [
+    {"t": "Ich brauche das Auto morgen früh für die Arbeit. Könnten Sie heute nur die Bremsen machen?", "fr": "J'ai besoin de la voiture demain matin pour le travail. Vous pourriez faire seulement les freins aujourd'hui ?", "pose": {"plan": "bremsen"}, "va": "bremsen"},
+    {"t": "Dann machen Sie bitte alles. Hätten Sie vielleicht einen Ersatzwagen für mich?", "fr": "Alors faites tout, s'il vous plaît. Vous auriez peut-être une voiture de remplacement pour moi ?", "pose": {"plan": "alles"}, "va": "ersatz"},
+    {"faux": true, "t": "Ich brauche das Auto morgen Morgen.", "fr": "J'ai besoin de la voiture demain matin.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "amuse", "t": "Morgen Morgen? Das klingt lustig. Morgen früh, meinen Sie!", "fr": "« Demain demain » ? C'est rigolo. Demain matin, vous voulez dire !"}],
+     "aide": {"fr": "<b>« Demain matin » se dit « morgen früh »</b>, jamais « morgen Morgen »."}}
+   ]
+  },
+  "bremsen": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Das geht. Die Bremsen schaffe ich bis heute um 17 Uhr. Für den TÜV machen wir einen neuen Termin: Passt Ihnen Freitag in zwei Wochen?", "dit": "Das geht. Die Bremsen schaffe ich bis heute um siebzehn Uhr. Für den TÜV machen wir einen neuen Termin: Passt Ihnen Freitag in zwei Wochen?", "fr": "C'est possible. Les freins, je les termine pour 17 heures aujourd'hui. Pour le contrôle technique, on prend un autre rendez-vous : vendredi dans deux semaines, ça vous va ?"}],
+   "choix": [
+    {"t": "Ja, Freitag passt. Um wie viel Uhr soll ich das Auto bringen?", "fr": "Oui, vendredi me convient. À quelle heure dois-je amener la voiture ?", "va": "zahlen",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Um acht. Dann ist es am Mittag fertig, mit neuer Plakette.", "fr": "À huit heures. Elle sera prête à midi, avec la nouvelle vignette."}]},
+    {"t": "Freitags arbeite ich leider. Ginge es auch an einem Samstag?", "fr": "Le vendredi, je travaille, malheureusement. Ce serait possible un samedi ?", "va": "zahlen",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Samstags sind wir bis 13 Uhr da. Also Samstag in zwei Wochen, um neun.", "dit": "Samstags sind wir bis dreizehn Uhr da. Also Samstag in zwei Wochen, um neun.", "fr": "Le samedi, nous sommes là jusqu'à 13 heures. Donc samedi dans deux semaines, à neuf heures."}]},
+    {"faux": true, "t": "Ja, Freitag geht mir gut.", "fr": "Oui, vendredi me va bien.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Es geht Ihnen gut? Das freut mich! Und der Freitag, passt er Ihnen auch?", "fr": "Vous allez bien ? J'en suis ravie ! Et le vendredi, il vous convient aussi ?"}],
+     "aide": {"fr": "<b>« Ça me va » (une date) : « Das passt mir »</b> : « Freitag passt mir gut ». « Es geht mir gut » veut dire « je vais bien »."}}
+   ]
+  },
+  "ersatz": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Einen Ersatzwagen habe ich diese Woche leider nicht. Aber ich kann Ihnen ein Fahrrad leihen. Oder Sie nehmen die U-Bahn, die ist gleich um die Ecke.", "fr": "Une voiture de remplacement, je n'en ai malheureusement pas cette semaine. Mais je peux vous prêter un vélo. Ou alors vous prenez le métro, il est juste au coin."}],
+   "choix": [
+    {"t": "Ein Fahrrad wäre super. Bis zur Arbeit sind es nur fünf Kilometer.", "fr": "Un vélo, ce serait parfait. Il n'y a que cinq kilomètres jusqu'au travail.", "pose": {"weg": "rad"}, "va": "zahlen",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Prima, es steht hinten im Hof, mit Schloss. Das Auto ist morgen um 17 Uhr fertig, mit neuem TÜV.", "dit": "Prima, es steht hinten im Hof, mit Schloss. Das Auto ist morgen um siebzehn Uhr fertig, mit neuem TÜV.", "fr": "Parfait, il est au fond de la cour, avec un antivol. La voiture sera prête demain à 17 heures, contrôle technique fait."}]},
+    {"t": "Dann nehme ich die U-Bahn, das ist kein Problem. Wann ist das Auto fertig?", "fr": "Alors je prends le métro, ce n'est pas un problème. La voiture sera prête quand ?", "pose": {"weg": "ubahn"}, "va": "zahlen",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Morgen um 17 Uhr, mit neuem TÜV.", "dit": "Morgen um siebzehn Uhr, mit neuem TÜV.", "fr": "Demain à 17 heures, contrôle technique fait."}]},
+    {"faux": true, "t": "Gut, dann fahre ich mit dem Velo.", "fr": "Bon, alors j'y vais à vélo.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "surprise", "t": "Mit dem Velo? Sind Sie aus der Schweiz? In Berlin sagen wir Fahrrad, oder einfach Rad!", "fr": "« Velo » ? Vous venez de Suisse ? À Berlin, on dit « Fahrrad », ou simplement « Rad » !"}],
+     "aide": {"fr": "<b>Le vélo : « das Fahrrad »</b> en Allemagne (« Ich fahre mit dem Fahrrad »). « Velo » ne se dit qu'en Suisse."}}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "mechanikerin_werkstatt", "air": "question", "t": "Bezahlen können Sie beim Abholen. Bar oder mit Karte?", "fr": "Vous pourrez payer en venant la chercher. En espèces ou par carte ?"}],
+   "choix": [
+    {"t": "Mit Karte, wenn das möglich ist.", "fr": "Par carte, si c'est possible.", "va": "ende",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Klar, Karte geht bei uns immer.", "fr": "Bien sûr, la carte, ça marche toujours chez nous."}]},
+    {"t": "Ich zahle bar. Bekomme ich dann eine Rechnung?", "fr": "Je paie en espèces. Est-ce que j'aurai une facture ?", "va": "ende",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Selbstverständlich, mit Mehrwertsteuer und Stempel.", "fr": "Évidemment, avec la TVA et le tampon."}]},
+    {"faux": true, "t": "Mit meiner blauen Karte.", "fr": "Avec ma carte bleue.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "amuse", "t": "Die Farbe ist mir egal! Hauptsache, es ist eine Bankkarte.", "fr": "La couleur m'est égale ! L'essentiel, c'est que ce soit une carte bancaire."}],
+     "aide": {"fr": "<b>La « carte bleue » n'existe qu'en France.</b> En Allemagne : « mit Karte », « mit der Bankkarte » ou « mit Kreditkarte »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "si": {"plan": "bremsen"}, "t": "Also: Heute um 17 Uhr sind die Bremsen fertig, und der TÜV-Termin steht im Kalender. Lassen Sie mir bitte den Schlüssel da.", "dit": "Also: Heute um siebzehn Uhr sind die Bremsen fertig, und der TÜV-Termin steht im Kalender. Lassen Sie mir bitte den Schlüssel da.", "fr": "Donc : aujourd'hui à 17 heures, les freins sont faits, et le rendez-vous pour le contrôle technique est noté. Laissez-moi la clé, s'il vous plaît."},
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "si": {"plan": "alles"}, "t": "Also: Morgen um 17 Uhr ist alles fertig, Bremsen und TÜV. Lassen Sie mir bitte den Schlüssel da.", "dit": "Also: Morgen um siebzehn Uhr ist alles fertig, Bremsen und TÜV. Lassen Sie mir bitte den Schlüssel da.", "fr": "Donc : demain à 17 heures, tout est prêt, les freins et le contrôle technique. Laissez-moi la clé, s'il vous plaît."}
+   ],
+   "choix": [
+    {"si": {"plan": "bremsen"}, "t": "Hier ist der Schlüssel. Dann hole ich das Auto heute um fünf ab.", "fr": "Voici la clé. Alors je viens chercher la voiture aujourd'hui à cinq heures.", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Genau. Bis heute Nachmittag!", "fr": "Exactement. À cet après-midi !"}]},
+    {"si": {"plan": "alles"}, "t": "Hier ist der Schlüssel. Dann hole ich das Auto morgen um fünf ab.", "fr": "Voici la clé. Alors je viens chercher la voiture demain à cinq heures.", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Genau. Bis morgen!", "fr": "Exactement. À demain !"}]},
+    {"t": "Hier, bitte. Vielen Dank, dass es so schnell geht!", "fr": "Tenez. Merci beaucoup de faire aussi vite !", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Gern. Mit guten Bremsen fährt man einfach ruhiger. Bis dann!", "fr": "Avec plaisir. Avec de bons freins, on roule tout de même plus tranquille. À bientôt !"}]},
+    {"faux": true, "t": "Danke, ich suche das Auto um fünf.", "fr": "Merci, je viens chercher la voiture à cinq heures.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "amuse", "t": "Suchen? Keine Angst, es steht hier im Hof, ich verstecke es nicht! Sie holen es ab.", "fr": "La « chercher » ? N'ayez pas peur, elle est ici dans la cour, je ne la cache pas ! Vous venez la prendre."}],
+     "aide": {"fr": "<b>« Venir chercher » : « abholen »</b>, séparable : « Ich hole das Auto um fünf ab ». « suchen », c'est chercher ce qu'on a perdu."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as décrit le problème et compris le diagnostic : plaquettes de frein usées, et le contrôle technique à passer. Devis : 330 euros, TVA comprise. {plan_fr}{weg_fr}."}
+}

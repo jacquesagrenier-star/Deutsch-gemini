@@ -1,0 +1,600 @@
+{
+ "id": "a2-invitation",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "familier",
+ "titre": {
+  "fr": "Une invitation"
+ },
+ "intro": {
+  "fr": "Javier fête ses cinquante ans lundi, le jour de fermeture du restaurant, avec un barbecue chez lui. Javier, ton collègue cuisinier, t'invite : accepte, ou refuse poliment avec une raison et propose autre chose."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "invite",
+ "textes": {
+  "suite_fr": {
+   "cle": "reponse",
+   "oui": "Tu as accepté l'invitation de Javier : lundi à 17 h, au 24 Maple Street, et tu sais quoi apporter.",
+   "non": "Tu as refusé poliment, avec une raison, et proposé à Javier un déjeuner le lundi suivant, le jour de fermeture du restaurant, pour fêter ses cinquante ans."
+  }
+ },
+ "noeuds": {
+  "invite": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Mercredi, après le service du soir. Javier range ses couteaux et se tourne vers toi, tout sourire."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Hey, I'm turning fifty on Monday! It's our day off, so I'm having a barbecue at my place. Would you like to come?",
+     "fr": "Dis, j'ai cinquante ans lundi ! C'est notre jour de congé, alors je fais un barbecue chez moi. Ça te dirait de venir ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I'd love to! Thanks for inviting me.",
+     "fr": "Avec plaisir ! Merci de m'inviter.",
+     "pose": {
+      "reponse": "oui"
+     },
+     "va": "bring",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Great! That makes me really happy.",
+       "fr": "Super ! Ça me fait vraiment plaisir."
+      }
+     ]
+    },
+    {
+     "t": "Thanks, that's so nice! But I'm sorry, I can't. My sister is visiting.",
+     "fr": "Merci, c'est très gentil ! Mais je suis désolé(e), je ne peux pas. Ma sœur est en visite.",
+     "pose": {
+      "reponse": "non"
+     },
+     "va": "other",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "attentive",
+       "t": "Oh, that's too bad! But family comes first.",
+       "fr": "Oh, c'est dommage ! Mais la famille d'abord."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No, I can't.",
+     "fr": "Non, je ne peux pas.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "surprise",
+       "t": "Oh. OK … Did I say something wrong?",
+       "fr": "Oh. D'accord… J'ai dit quelque chose de mal ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Un « No » sec vexe.</b> Pour refuser, on remercie, on s'excuse et on donne une raison : « Thanks, that's so nice! But I'm sorry, I can't. My sister is visiting. »"
+     }
+    }
+   ]
+  },
+  "bring": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "It'll be very relaxed: my family, a few friends, some people from work.",
+     "fr": "Ce sera très détendu : ma famille, quelques amis, des gens du bureau."
+    }
+   ],
+   "choix": [
+    {
+     "t": "What can I bring?",
+     "fr": "Qu'est-ce que je peux apporter ?",
+     "va": "address",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Just yourself! OK … maybe something to drink.",
+       "fr": "Juste toi ! Bon… peut-être quelque chose à boire."
+      }
+     ]
+    },
+    {
+     "t": "Can I bring a dessert?",
+     "fr": "Je peux apporter un dessert ?",
+     "va": "address",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Oh yes, please! My kids love dessert.",
+       "fr": "Oh oui, volontiers ! Mes enfants adorent les desserts."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "What do I must bring?",
+     "fr": "Qu'est-ce que je dois apporter ? (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "Hm? Oh, what should you bring! Nothing special.",
+       "fr": "Hein ? Ah, ce que tu dois apporter ! Rien de spécial."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« must » ne se combine jamais avec « do »</b>. Pour demander quoi apporter : « What can I bring? » ou « What should I bring? »"
+     }
+    }
+   ]
+  },
+  "address": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "It starts at 5, at 24 Maple Street in Somerville. It's the yellow house.",
+     "fr": "Ça commence à 17 h, au 24 Maple Street, à Somerville. C'est la maison jaune.",
+     "dit": "It starts at five, at twenty-four Maple Street in Somerville. It's the yellow house."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Twenty-four Maple Street, at five. I'll be there!",
+     "fr": "24 Maple Street, à cinq heures. J'y serai !",
+     "va": "guest",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Exactly. Ring the bell, or just come around to the backyard.",
+       "fr": "Exactement. Sonne, ou fais simplement le tour jusqu'au jardin.",
+       "t_gb": "Exactly. Ring the bell, or just come round to the back garden."
+      }
+     ]
+    },
+    {
+     "t": "Can I get there by bus?",
+     "fr": "Je peux y aller en bus ?",
+     "va": "guest",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Yes, the bus stops right on the corner.",
+       "fr": "Oui, le bus s'arrête juste au coin de la rue."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, Monday at seventeen o'clock.",
+     "fr": "D'accord, lundi à dix-sept heures.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Seventeen o'clock? Here we just say five, or five p.m.!",
+       "fr": "Dix-sept heures ? Ici on dit simplement cinq heures, ou « five p.m. » !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Dans la conversation, l'anglais compte les heures jusqu'à douze</b> : 17 h se dit « five » ou « five p.m. », jamais « seventeen o'clock »."
+     }
+    }
+   ]
+  },
+  "guest": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Are you coming alone, or are you bringing someone?",
+     "fr": "Tu viens seul(e), ou tu amènes quelqu'un ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Can I come with a friend?",
+     "fr": "Je peux venir avec un ami ou une amie ?",
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Of course! The more, the merrier.",
+       "fr": "Bien sûr ! Plus on est de fous, plus on rit."
+      }
+     ]
+    },
+    {
+     "t": "I'll come alone.",
+     "fr": "Je viendrai seul(e).",
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Perfect. You'll meet lots of nice people.",
+       "fr": "Parfait. Tu vas rencontrer plein de gens sympas."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, can you say that again?",
+     "fr": "Pardon, tu peux répéter ?",
+     "va": "guest",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Sure. Do you want to bring a friend, or are you coming alone?",
+       "fr": "Bien sûr. Tu veux amener un ami, ou tu viens seul(e) ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "food": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "One last thing: there'll be a lot of meat on the grill. Do you eat everything?",
+     "fr": "Une dernière chose : il y aura beaucoup de viande sur le gril. Tu manges de tout ?",
+     "t_gb": "One last thing: there'll be a lot of meat on the barbecue. Do you eat everything?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I eat everything. I love barbecue!",
+     "t_gb": "Yes, I eat everything. I love barbecues!",
+     "fr": "Oui, je mange de tout. J'adore le barbecue !",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Then you'll be happy. My burgers are famous!",
+       "fr": "Alors tu seras content(e). Mes burgers sont célèbres !"
+      }
+     ]
+    },
+    {
+     "t": "I don't eat meat, but I love vegetables.",
+     "fr": "Je ne mange pas de viande, mais j'adore les légumes.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "No problem! I'll put some corn and peppers on the grill for you.",
+       "fr": "Pas de problème ! Je mettrai du maïs et des poivrons sur le gril pour toi.",
+       "t_gb": "No problem! I'll put some corn and peppers on the barbecue for you."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I eat all.",
+     "fr": "Oui, je mange tout (tout ce qu'il y a).",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "All? All the burgers? Leave some for the others!",
+       "fr": "Tout ? Tous les burgers ? Laisses-en pour les autres !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Tout », employé seul, se dit « everything »</b>, pas « all ». « Je mange de tout » : « I eat everything. »"
+     }
+    }
+   ]
+  },
+  "other": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Don't worry about it. We'll celebrate another time.",
+     "fr": "Ne t'en fais pas. On fêtera ça une autre fois."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Can we have lunch together next week?",
+     "fr": "On peut déjeuner ensemble la semaine prochaine ?",
+     "va": "day",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Lunch? I never say no to lunch!",
+       "fr": "Un déjeuner ? Je ne dis jamais non à un déjeuner !"
+      }
+     ]
+    },
+    {
+     "t": "Let's have lunch next week. I'd like to celebrate your birthday.",
+     "fr": "Déjeunons ensemble la semaine prochaine. J'aimerais fêter ton anniversaire.",
+     "va": "day",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "That's a great idea. I'd like that.",
+       "fr": "Excellente idée. Ça me ferait plaisir."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I invite you at the restaurant next week.",
+     "fr": "Je t'invite au restaurant la semaine prochaine.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "You … invite me? To what? Oh, you mean lunch together!",
+       "fr": "Tu… m'invites ? À quoi ? Ah, tu veux dire déjeuner ensemble !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« I invite you » ne se dit pas pour proposer</b> (ni pour dire « c'est moi qui paie » : « It's on me »). Propose avec « Let's … » : « Let's have lunch next week. »"
+     }
+    }
+   ]
+  },
+  "day": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Which day? We're closed on Mondays, so the Monday after? It's our only free day!",
+     "fr": "Quel jour ? On est fermés le lundi, alors le lundi suivant ? C'est notre seul jour libre !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Then Monday is perfect.",
+     "fr": "Alors lundi, c'est parfait.",
+     "va": "time",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Monday it is!",
+       "fr": "Va pour lundi !"
+      }
+     ]
+    },
+    {
+     "t": "Monday is good for me too.",
+     "fr": "Lundi me convient aussi.",
+     "va": "time",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Great. Monday, then.",
+       "fr": "Super. Lundi, alors."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "For Monday, I am agree.",
+     "fr": "Pour lundi, je « suis » d'accord. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "You are … agree? Oh, you agree! Great.",
+       "fr": "Tu « es agree » ? Ah, tu es d'accord ! Super."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« agree » est un verbe</b> : « I agree », jamais « I am agree ». Ici, dis simplement : « Then Monday is perfect. »"
+     }
+    }
+   ]
+  },
+  "time": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "What time? I like to sleep late on my day off.",
+     "fr": "À quelle heure ? J'aime bien dormir tard, mon jour de congé."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Is one o'clock OK?",
+     "fr": "Une heure, ça te va ?",
+     "va": "place",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "One o'clock is perfect.",
+       "fr": "Une heure, c'est parfait."
+      }
+     ]
+    },
+    {
+     "t": "How about twelve thirty?",
+     "fr": "Midi et demi, ça te dit ?",
+     "va": "place",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Twelve thirty works. I'll be awake, I promise!",
+       "fr": "Midi et demi, ça marche. Je serai réveillé, promis !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "At thirteen hours.",
+     "fr": "À treize heures (pendant treize heures).",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Thirteen hours? That's a long lunch! You mean one o'clock.",
+       "fr": "Treize heures ? C'est un long déjeuner ! Tu veux dire à une heure."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« hours » mesure une durée</b>, et l'anglais compte les heures jusqu'à douze dans la conversation : 13 h se dit « one o'clock »."
+     }
+    }
+   ]
+  },
+  "place": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "And where do you want to go? You choose! For once, I'm not cooking.",
+     "fr": "Et où veux-tu aller ? C'est toi qui choisis ! Pour une fois, ce n'est pas moi qui cuisine."
+    }
+   ],
+   "choix": [
+    {
+     "t": "I know a good Italian restaurant near the station.",
+     "fr": "Je connais un bon restaurant italien près de la gare.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Italian? Perfect. I love pasta.",
+       "fr": "Italien ? Parfait. J'adore les pâtes."
+      }
+     ]
+    },
+    {
+     "t": "I don't know yet. Do you have an idea?",
+     "fr": "Je ne sais pas encore. Tu as une idée ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "There's a little Mexican place near the station. You'll love it.",
+       "fr": "Il y a un petit mexicain près de la gare. Tu vas adorer."
+      }
+     ]
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "So, see you Monday at my place!",
+     "fr": "Alors, à lundi chez moi !",
+     "si": {
+      "reponse": "oui"
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "So, lunch on the Monday after. And say hi to your sister!",
+     "fr": "Alors, déjeuner le lundi suivant. Et salue ta sœur de ma part !",
+     "si": {
+      "reponse": "non"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "See you Monday! Thanks again.",
+     "fr": "À lundi ! Merci encore.",
+     "si": {
+      "reponse": "oui"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Thank you for coming!",
+       "fr": "Merci à toi de venir !"
+      }
+     ]
+    },
+    {
+     "t": "Thanks for the invitation. See you tomorrow in the kitchen!",
+     "fr": "Merci pour l'invitation. À demain en cuisine !",
+     "si": {
+      "reponse": "oui"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "See you tomorrow!",
+       "fr": "À demain !"
+      }
+     ]
+    },
+    {
+     "t": "I will. Have a great party on Monday!",
+     "fr": "Je le ferai. Bonne fête lundi !",
+     "si": {
+      "reponse": "non"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Thanks! I'll keep a piece of cake for you.",
+       "fr": "Merci ! Je te garderai une part de gâteau."
+      }
+     ]
+    },
+    {
+     "t": "Thanks again for the invitation. And happy birthday!",
+     "fr": "Merci encore pour l'invitation. Et bon anniversaire !",
+     "si": {
+      "reponse": "non"
+     },
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Thank you! See you tomorrow.",
+       "fr": "Merci ! À demain."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "{suite_fr}"
+ }
+}

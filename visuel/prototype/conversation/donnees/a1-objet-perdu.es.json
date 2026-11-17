@@ -1,0 +1,85 @@
+{
+ "id": "a1-objet-perdu",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "Un objet oublié au café"},
+ "intro": {"fr": "Hier, tu as pris un café dans ton quartier de Madrid. Ce matin, impossible de retrouver ton écharpe… ou ton parapluie ? Tu retournes au café."},
+ "personnes": ["kellnerin"],
+ "debut": "olvido",
+ "textes": {"objet_fr": {"cle": "objeto", "bufanda": "ton écharpe", "paraguas": "ton parapluie"}},
+ "noeuds": {
+  "olvido": {
+   "dit": [
+    {"recit": {"fr": "Le même café qu'hier. La serveuse te reconnaît."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "¡Buenos días! ¿Qué le pongo?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "Nada, gracias. Ayer me dejé la bufanda aquí.", "fr": "Rien, merci. Hier, j'ai oublié mon écharpe ici.", "pose": {"objeto": "bufanda"}, "va": "como",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¡Ah! ¿Una bufanda?", "fr": "Ah ! Une écharpe ?"}]},
+    {"t": "Nada, gracias. Ayer me dejé el paraguas aquí.", "fr": "Rien, merci. Hier, j'ai oublié mon parapluie ici.", "pose": {"objeto": "paraguas"}, "va": "como",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¡Ah! ¿Un paraguas?", "fr": "Ah ! Un parapluie ?"}]}
+   ]
+  },
+  "como": {
+   "dit": [
+    {"si": {"objeto": "bufanda"}, "qui": "kellnerin", "air": "question", "t": "¿Y cómo es?", "fr": "Et elle est comment ?"},
+    {"si": {"objeto": "paraguas"}, "qui": "kellnerin", "air": "question", "t": "¿Y cómo es?", "fr": "Et il est comment ?"}
+   ],
+   "choix": [
+    {"si": {"objeto": "bufanda"}, "t": "Es roja y muy larga.", "fr": "Elle est rouge et très longue.", "va": "donde"},
+    {"si": {"objeto": "paraguas"}, "t": "Es negro y pequeño.", "fr": "Il est noir et petit.", "va": "donde"},
+    {"si": {"objeto": "bufanda"}, "faux": true, "t": "Es rojo y muy largo.", "fr": "Elle est rouge et très longue.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Rojo? Ah, la bufanda es roja…", "fr": "« Rojo » ? Ah, l'écharpe est rouge…"}],
+     "aide": {"fr": "<b>la bufanda</b> est féminin : l'adjectif s'accorde, <b>roja</b> y <b>larga</b>."}},
+    {"si": {"objeto": "paraguas"}, "faux": true, "t": "Es negra y pequeña.", "fr": "Il est noir et petit.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Negra? Ah, el paraguas es negro…", "fr": "« Negra » ? Ah, le parapluie est noir…"}],
+     "aide": {"fr": "<b>el paraguas</b> est masculin (malgré son -s final) : <b>negro</b> y <b>pequeño</b>."}}
+   ]
+  },
+  "donde": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Y dónde se sentó?", "fr": "Et vous vous êtes assis(e) où ?"}],
+   "choix": [
+    {"t": "Allí, al lado de la ventana.", "fr": "Là-bas, à côté de la fenêtre.", "va": "primero",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "A ver, voy a mirar.", "fr": "Voyons, je vais regarder."}]},
+    {"t": "Fuera, en la terraza.", "fr": "Dehors, en terrasse.", "va": "primero",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "A ver, voy a mirar.", "fr": "Voyons, je vais regarder."}]},
+    {"repete": true, "t": "Perdone, ¿cómo dice?", "fr": "Pardon, vous dites ?", "va": "donde",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¿Dónde se sentó ayer? ¿Dentro o en la terraza?", "fr": "Où vous êtes-vous assis(e) hier ? Dedans ou en terrasse ?"}]}
+   ]
+  },
+  "primero": {
+   "dit": [
+    {"recit": {"fr": "Elle fouille dans une boîte sous le comptoir et en sort quelque chose."}},
+    {"si": {"objeto": "bufanda"}, "qui": "kellnerin", "air": "question", "t": "¿Es esta? ¿La azul?", "fr": "C'est celle-ci ? La bleue ?"},
+    {"si": {"objeto": "paraguas"}, "qui": "kellnerin", "air": "question", "t": "¿Es este? ¿El verde?", "fr": "C'est celui-ci ? Le vert ?"}
+   ],
+   "choix": [
+    {"si": {"objeto": "bufanda"}, "t": "No, no es esa. Mi bufanda es roja.", "fr": "Non, ce n'est pas celle-là. Mon écharpe est rouge.", "va": "segundo"},
+    {"si": {"objeto": "paraguas"}, "t": "No, no es ese. Mi paraguas es negro.", "fr": "Non, ce n'est pas celui-là. Mon parapluie est noir.", "va": "segundo"}
+   ]
+  },
+  "segundo": {
+   "dit": [
+    {"si": {"objeto": "bufanda"}, "qui": "kellnerin", "air": "sourire", "t": "Roja… ¿Y esta?", "fr": "Rouge… Et celle-ci ?"},
+    {"si": {"objeto": "paraguas"}, "qui": "kellnerin", "air": "sourire", "t": "Negro… ¿Y este?", "fr": "Noir… Et celui-ci ?"}
+   ],
+   "choix": [
+    {"si": {"objeto": "bufanda"}, "t": "¡Sí, es esa! ¡Muchísimas gracias!", "fr": "Oui, c'est celle-là ! Merci mille fois !", "va": "cafe",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡De nada!", "fr": "De rien !"}]},
+    {"si": {"objeto": "paraguas"}, "t": "¡Sí, es ese! ¡Muchísimas gracias!", "fr": "Oui, c'est celui-là ! Merci mille fois !", "va": "cafe",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡De nada!", "fr": "De rien !"}]}
+   ]
+  },
+  "cafe": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Y ahora? ¿Le pongo un café?", "fr": "Et maintenant ? Je vous sers un café ?"}],
+   "choix": [
+    {"t": "Sí, un café con leche, por favor.", "fr": "Oui, un café au lait, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Marchando!", "fr": "Ça arrive !"}]},
+    {"t": "No, gracias. Tengo prisa. ¡Hasta luego!", "fr": "Non, merci. Je suis pressé(e). À plus tard !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Hasta luego! ¡Que le vaya bien!", "fr": "À plus tard ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as décrit {objet_fr} en accordant les adjectifs, dit où tu étais assis(e), refusé le mauvais… et la serveuse a trouvé le bon."}
+}

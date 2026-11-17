@@ -1,0 +1,67 @@
+{
+ "id": "a1-mairie",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "L'empadronamiento à la mairie"},
+ "intro": {"fr": "En Espagne, quand on s'installe, on s'inscrit au registre de la mairie : c'est l'empadronamiento. Tu as pris rendez-vous (cita previa) à l'Oficina de Atención a la Ciudadanía."},
+ "personnes": ["buergeramt_schalter"],
+ "debut": "turno",
+ "noeuds": {
+  "turno": {
+   "dit": [
+    {"recit": {"fr": "Au bureau de la mairie. Ton numéro s'affiche à l'écran : c'est à toi."}},
+    {"qui": "buergeramt_schalter", "air": "sourire", "t": "Buenos días. Siéntese, por favor. ¿En qué puedo ayudarle?", "fr": "Bonjour. Asseyez-vous, je vous en prie. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Quiero empadronarme. Ahora vivo en Madrid.", "fr": "Bonjour. Je veux m'inscrire au registre de la mairie. Maintenant, j'habite à Madrid.", "va": "pasaporte"},
+    {"t": "Buenos días. Tengo cita para el empadronamiento.", "fr": "Bonjour. J'ai rendez-vous pour l'inscription au registre.", "va": "pasaporte"}
+   ]
+  },
+  "pasaporte": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Muy bien. ¿Me deja su pasaporte, por favor?", "fr": "Très bien. Vous me donnez votre passeport, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Sí, aquí tiene.", "fr": "Oui, tenez.", "va": "pais"},
+    {"t": "Claro. Aquí está mi pasaporte.", "fr": "Bien sûr. Voici mon passeport.", "va": "pais"}
+   ]
+  },
+  "pais": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Gracias. ¿De qué país es usted?", "fr": "Merci. Vous êtes de quel pays ?"}],
+   "choix": [
+    {"t": "Soy de Francia.", "fr": "Je suis de France.", "va": "contrato"},
+    {"t": "Soy de Canadá.", "fr": "Je suis du Canada.", "va": "contrato"},
+    {"faux": true, "t": "Estoy de Francia.", "fr": "Je suis de France.",
+     "puis": [{"qui": "buergeramt_schalter", "air": "surprise", "t": "¿Está…? Ah, es de Francia.", "fr": "Vous « êtes »… ? Ah, vous êtes de France."}],
+     "aide": {"fr": "Pour l'origine, c'est <b>ser</b> : « <b>Soy</b> de Francia ». <b>estar</b> sert pour un état ou l'endroit où l'on se trouve : « Estoy en Madrid »."}}
+   ]
+  },
+  "contrato": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "¿Y el contrato de alquiler?", "fr": "Et le contrat de location ?"}],
+   "choix": [
+    {"t": "Sí, aquí lo tiene.", "fr": "Oui, le voici.", "va": "direccion"},
+    {"repete": true, "t": "Perdone, ¿qué documento?", "fr": "Pardon, quel document ?", "va": "contrato",
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "El contrato del piso: el papel de su casero.", "fr": "Le contrat de l'appartement : le papier de votre propriétaire."}]}
+   ]
+  },
+  "direccion": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "¿Y cuál es su dirección?", "fr": "Et quelle est votre adresse ?"}],
+   "choix": [
+    {"t": "Calle del Pez, número ocho.", "fr": "8, calle del Pez.", "va": "volante"},
+    {"t": "Calle de Toledo, número veinte.", "fr": "20, calle de Toledo.", "va": "volante"}
+   ]
+  },
+  "volante": {
+   "dit": [
+    {"recit": {"fr": "Elle tape, imprime, tamponne."}},
+    {"qui": "buergeramt_schalter", "air": "sourire", "t": "Ya está. Aquí tiene su volante de empadronamiento.", "fr": "Voilà, c'est fait. Voici votre attestation d'inscription au registre."}
+   ],
+   "choix": [
+    {"t": "¡Muchas gracias! ¡Qué rápido!", "fr": "Merci beaucoup ! C'était rapide !", "va": null,
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "De nada. ¡Que disfrute de Madrid!", "fr": "De rien. Profitez bien de Madrid !"}]},
+    {"t": "Gracias. ¡Adiós!", "fr": "Merci. Au revoir !", "va": null,
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "¡Adiós, buenos días!", "fr": "Au revoir, bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es empadronado(a) : passeport, pays, contrat de location, adresse… et tu repars avec ton volante de empadronamiento."}
+}

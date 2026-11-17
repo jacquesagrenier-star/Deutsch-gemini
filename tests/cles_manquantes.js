@@ -35,7 +35,9 @@ function bloc(nom){
 const REPLI = (() => {
     const d = src.indexOf("const REPLI_LANGUE = {");
     const f = src.indexOf("};", d);
-    const ctx = { r: null };
+    // v1205 : REPLI_LANGUE.es depend de la langue apprise (["es","fr"] pour
+    // l'anglais appris, ["es","en","fr"] ailleurs). On mesure l'allemand.
+    const ctx = { r: null, LANGUE_APPRISE: "de" };
     vm.createContext(ctx);
     vm.runInContext(src.slice(d, f + 2).replace("const REPLI_LANGUE", "var REPLI_LANGUE") + "\nr = REPLI_LANGUE;", ctx);
     return ctx.r;

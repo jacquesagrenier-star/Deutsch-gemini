@@ -1,0 +1,148 @@
+{
+ "id": "b1-soiree",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "À une soirée, faire connaissance"},
+ "intro": {"fr": "Ton amie Rachel pend la crémaillère dans son nouvel appartement de Somerville. Près du buffet, un invité que tu ne connais pas engage la conversation."},
+ "personnes": ["b13_gast"],
+ "debut": "hi",
+ "noeuds": {
+  "hi": {
+   "dit": [
+    {"recit": {"fr": "Samedi soir, près de Boston. L'appartement de Rachel est plein de monde et de cartons pas encore ouverts. Un homme à lunettes te sourit au-dessus du bol de chips."}},
+    {"qui": "b13_gast", "air": "sourire", "t": "Hey, I don't think we've met. I'm Marcus.", "fr": "Salut, je ne crois pas qu'on se connaisse. Moi, c'est Marcus."}
+   ],
+   "choix": [
+    {"t": "Hi Marcus! Nice to meet you.", "fr": "Salut Marcus ! Enchanté.", "va": "know"},
+    {"t": "Hey! No, I don't think so. How's it going?", "fr": "Salut ! Non, je ne crois pas. Ça va ?", "va": "know"}
+   ]
+  },
+  "know": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "So, how do you know Rachel?", "fr": "Alors, tu connais Rachel comment ?"}],
+   "choix": [
+    {"t": "We work together. Her desk is right next to mine.", "fr": "On travaille ensemble. Son bureau est juste à côté du mien.", "va": "work_same"},
+    {"t": "I was her neighbor before she moved here.", "t_gb": "I was her neighbour before she moved here.", "fr": "J'étais son voisin avant qu'elle emménage ici.", "va": "work",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Oh, so you know all her secrets!", "fr": "Oh, alors tu connais tous ses secrets !"}]},
+    {"t": "From a French conversation group. She's learning French, and I help her.", "fr": "D'un groupe de conversation en français. Elle apprend le français, et je l'aide.", "va": "work",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Oh, that's you! She's told me about you.", "fr": "Ah, c'est toi ! Elle m'a parlé de toi."}]},
+    {"faux": true, "t": "We know us from work.", "fr": "On se connaît (« nous connaissons nous ») du travail.",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "You know … us? Oh, you know each other from work!", "fr": "Tu connais… nous ? Ah, vous vous connaissez du travail !"}],
+     "aide": {"fr": "<b>« se connaître » = « know each other »</b>, jamais « know us ». Dis : « We know each other from work. »"}},
+    {"repete": true, "t": "Sorry, the music's pretty loud. What was that?", "t_gb": "Sorry, the music's quite loud. What was that?", "fr": "Pardon, la musique est assez forte. Tu disais ?", "va": "know",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "I said, how do you know Rachel? Are you guys friends?", "t_gb": "I said, how do you know Rachel? Are you two friends?", "fr": "Je disais : tu connais Rachel comment ? Vous êtes amis ?"}]}
+   ]
+  },
+  "work_same": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Oh, so you're at the design studio too! Rachel says you guys have the best coffee machine in Boston. What do you do there?", "t_gb": "Oh, so you're at the design studio too! Rachel says you lot have the best coffee machine in Boston. What do you do there?", "fr": "Ah, alors tu es au studio de design, toi aussi ! Rachel dit que vous avez la meilleure machine à café de Boston. Tu y fais quoi ?"}],
+   "choix": [
+    {"t": "I'm in customer service. I'm on the phone all day.", "fr": "Je suis au service client. Je suis au téléphone toute la journée.", "va": "hisjob"},
+    {"t": "I build websites for our clients.", "fr": "Je crée des sites web pour nos clients.", "va": "hisjob"},
+    {"faux": true, "t": "I do a stage there.", "fr": "J'y fais un stage.",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "A stage? Like, in a theater?", "t_gb": "A stage? Like, in a theatre?", "fr": "Une scène ? Comme au théâtre ?"}],
+     "aide": {"fr": "<b>« stage » est un faux ami :</b> c'est la scène d'un théâtre. Un stage se dit « an internship » : « I'm doing an internship there. »"}}
+   ]
+  },
+  "work": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "And what do you do?", "fr": "Et tu fais quoi dans la vie ?"}],
+   "choix": [
+    {"t": "I work at a hotel, at the front desk.", "t_gb": "I work in a hotel, on reception.", "fr": "Je travaille dans un hôtel, à la réception.", "va": "hisjob"},
+    {"t": "I'm still in school. I'm doing a master's in architecture.", "t_gb": "I'm still at university. I'm doing a master's in architecture.", "fr": "Je fais encore des études. Je fais un master d'architecture.", "va": "hisjob"},
+    {"faux": true, "t": "I work like a receptionist.", "fr": "Je travaille comme (à la manière d')un réceptionniste.",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Like a receptionist? So you're not really one?", "fr": "À la manière d'un réceptionniste ? Donc tu n'en es pas vraiment un ?"}],
+     "aide": {"fr": "<b>« comme » (en tant que) = « as »</b>, pas « like », qui compare. Dis : « I work as a receptionist. »"}}
+   ]
+  },
+  "hisjob": {
+   "dit": [{"qui": "b13_gast", "air": "sourire", "t": "Cool. I'm a doctor at a hospital downtown. I was on nights all week, so tonight I'm celebrating.", "t_gb": "Nice. I'm a doctor at a hospital in the city centre. I was on nights all week, so tonight I'm celebrating.", "fr": "Sympa. Moi, je suis médecin dans un hôpital du centre-ville. J'étais de nuit toute la semaine, alors ce soir je fête ça."}],
+   "choix": [
+    {"t": "A doctor! That must be hard work. Do you like it?", "fr": "Médecin ! Ça doit être dur. Ça te plaît ?", "va": "city",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Most days, yeah. Ask me again after a night shift.", "fr": "La plupart du temps, oui. Repose-moi la question après une garde de nuit."}]},
+    {"t": "Nights all week? You must be really tired.", "fr": "De nuit toute la semaine ? Tu dois être vraiment fatigué.", "va": "city",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Exhausted. But there's free pizza here, so I'm staying.", "fr": "Épuisé. Mais ici il y a de la pizza gratuite, alors je reste."}]},
+    {"faux": true, "t": "Nice! How much money do you make?", "fr": "Sympa ! Tu gagnes combien ?",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "Uh … enough to pay rent in Somerville, I guess. Barely!", "fr": "Euh… assez pour payer un loyer à Somerville, j'imagine. Tout juste !"}],
+     "aide": {"fr": "<b>Aux États-Unis, on ne demande pas son salaire à quelqu'un qu'on vient de rencontrer :</b> la question gêne. Demande plutôt : « Do you like it? »"}}
+   ]
+  },
+  "city": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "So how long have you been in Boston?", "fr": "Et ça fait combien de temps que tu es à Boston ?"}],
+   "choix": [
+    {"t": "For about a year. It was hard at first, but now I feel at home.", "fr": "Environ un an. C'était dur au début, mais maintenant je me sens chez moi.", "va": "surprise"},
+    {"t": "Only three months. Everything is still new to me.", "fr": "Trois mois seulement. Tout est encore nouveau pour moi.", "va": "surprise"},
+    {"faux": true, "t": "I am here since one year.", "fr": "Je suis ici depuis un an (mot à mot).",
+     "puis": [{"qui": "b13_gast", "air": "attentive", "t": "Oh, you've been here for a year! So you've already survived one winter.", "fr": "Ah, tu es ici depuis un an ! Tu as donc déjà survécu à un hiver."}],
+     "aide": {"fr": "<b>« depuis » + une durée = present perfect + « for » :</b> « I've been here for a year. » « Since » va avec un point de départ : « since last May ». "}}
+   ]
+  },
+  "surprise": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "What surprised you the most here?", "fr": "Qu'est-ce qui t'a le plus surpris, ici ?"}],
+   "choix": [
+    {"t": "People are so friendly. Strangers ask me how I'm doing!", "fr": "Les gens sont tellement aimables. Des inconnus me demandent comment je vais !", "va": "concert",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Ha, yeah. We don't always wait for the answer, though.", "fr": "Ha, oui. Mais on n'attend pas toujours la réponse."}]},
+    {"t": "The winter! I had never seen so much snow.", "fr": "L'hiver ! Je n'avais jamais vu autant de neige.", "va": "redsox",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Oh, I know. But summer makes up for it. Especially at Fenway Park.", "fr": "Oh, je sais. Mais l'été rattrape tout. Surtout à Fenway Park."}]},
+    {"faux": true, "t": "The people are very sympathetic.", "fr": "Les gens sont très sympathiques (mot à mot).",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "Sympathetic? Why, did something bad happen to you?", "fr": "Compatissants ? Pourquoi, il t'est arrivé quelque chose ?"}],
+     "aide": {"fr": "<b>« sympathetic » est un faux ami :</b> il veut dire « compatissant ». « Sympathique » se dit « nice » ou « friendly » : « People are very friendly. »"}}
+   ]
+  },
+  "concert": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Do you like live music? A friend's band is playing tomorrow night at a bar in Cambridge. Want to come?", "fr": "Tu aimes la musique en direct ? Le groupe d'un ami joue demain soir dans un bar de Cambridge. Tu veux venir ?"}],
+   "choix": [
+    {"t": "Sure, I'd love to! What kind of music do they play?", "fr": "Bien sûr, avec plaisir ! Ils jouent quel genre de musique ?", "pose": {"plan": "concert"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Indie rock. Kind of loud, but good. And it's free.", "t_gb": "Indie rock. A bit loud, but good. And it's free.", "fr": "Du rock indé. Un peu fort, mais bon. Et c'est gratuit."}]},
+    {"t": "I can't tomorrow, sorry. But let me know next time!", "fr": "Demain je ne peux pas, désolé. Mais préviens-moi la prochaine fois !", "va": "number",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Too bad! I'll let you know when they play again.", "t_gb": "What a shame! I'll let you know when they play again.", "fr": "Dommage ! Je te préviens quand ils rejouent."}]},
+    {"faux": true, "t": "Yes, I am very interesting!", "fr": "Oui, je suis très intéressant !",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "I'm sure you are! But are you interested?", "fr": "J'en suis sûr ! Mais est-ce que ça t'intéresse ?"}],
+     "aide": {"fr": "<b>« interesting » = intéressant ; « interested » = intéressé.</b> Dis : « Yes, I'm interested! » ou, plus naturel : « Sure, I'd love to! »"}}
+   ]
+  },
+  "redsox": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Have you been to a Red Sox game yet? Some friends and I are going Sunday afternoon, and we have an extra ticket.", "t_gb": "Have you been to a Red Sox game yet? Some friends and I are going on Sunday afternoon, and we've got a spare ticket.", "fr": "Tu es déjà allé voir un match des Red Sox ? J'y vais dimanche après-midi avec des amis, et on a un billet en trop."}],
+   "choix": [
+    {"t": "No, never! I don't even know the rules, but I'd love to come.", "fr": "Non, jamais ! Je ne connais même pas les règles, mais je viendrais avec plaisir.", "pose": {"plan": "redsox"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Don't worry, I'll explain. Mostly you eat hot dogs and sing.", "fr": "Ne t'inquiète pas, je t'expliquerai. En gros, on mange des hot-dogs et on chante."}]},
+    {"t": "Yes, once. I didn't understand everything, but the atmosphere was great. I'd love to go again!", "fr": "Oui, une fois. Je n'ai pas tout compris, mais l'ambiance était géniale. J'y retournerais avec plaisir !", "pose": {"plan": "redsox"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Great, then the ticket is yours!", "fr": "Super, alors le billet est à toi !"}]},
+    {"faux": true, "t": "No, never. But I am agree to come!", "fr": "Non, jamais. Mais je suis d'accord pour venir !",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "You … agree? So that's a yes?", "fr": "Tu… es d'accord ? C'est un oui, alors ?"}],
+     "aide": {"fr": "<b>« agree » est un verbe, sans « be » :</b> « I agree ». Et pour accepter une invitation, on dit plutôt : « I'd love to come! »"}}
+   ]
+  },
+  "plan": {
+   "dit": [
+    {"si": {"plan": "redsox"}, "qui": "b13_gast", "air": "question", "t": "The game starts at one thirty. Want to meet at Kenmore station at one?", "t_gb": "The game starts at half past one. Shall we meet at Kenmore station at one?", "fr": "Le match commence à une heure et demie. On se retrouve à la station Kenmore à une heure ?"},
+    {"si": {"plan": "concert"}, "qui": "b13_gast", "air": "question", "t": "They go on at nine. Want to meet outside the bar at eight thirty?", "t_gb": "They're on at nine. Shall we meet outside the bar at half past eight?", "fr": "Ils passent à neuf heures. On se retrouve devant le bar à huit heures et demie ?"}
+   ],
+   "choix": [
+    {"t": "Sounds good. I'm looking forward to it!", "fr": "Ça me va. J'ai hâte !", "va": "number"},
+    {"t": "Could we meet a little earlier? I don't want to get lost on the T.", "t_gb": "Could we meet a bit earlier? I don't want to get lost on the T.", "fr": "On pourrait se retrouver un peu plus tôt ? Je ne veux pas me perdre dans le métro.", "va": "number",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Sure. Let's say fifteen minutes earlier.", "fr": "Bien sûr. Disons un quart d'heure plus tôt."}]}
+   ]
+  },
+  "number": {
+   "dit": [{"qui": "b13_gast", "air": "sourire", "t": "Let me get your number, and I'll text you.", "fr": "Donne-moi ton numéro, je t'enverrai un message."}],
+   "choix": [
+    {"t": "Sure. Give me your phone, and I'll type it in.", "fr": "Bien sûr. Passe-moi ton téléphone, je le tape.", "va": "end",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Perfect. I'll text you right now, so you have mine.", "fr": "Parfait. Je t'envoie un message tout de suite, comme ça tu as le mien."}]},
+    {"t": "Give me yours, and I'll call you right now. Then you'll have mine.", "fr": "Donne-moi le tien, je t'appelle tout de suite. Comme ça tu auras le mien.", "va": "end",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Good idea. Hang on … yep, it's ringing!", "fr": "Bonne idée. Attends… oui, ça sonne !"}]}
+   ]
+  },
+  "end": {
+   "dit": [
+    {"recit": {"fr": "Dans le salon, Rachel tape sur un verre avec une cuillère : elle veut porter un toast."}},
+    {"qui": "b13_gast", "air": "sourire", "t": "Oh, Rachel's making a toast. Are you coming?", "fr": "Oh, Rachel porte un toast. Tu viens ?"}
+   ],
+   "choix": [
+    {"t": "Yes, let's go. I haven't even said hi to her yet.", "fr": "Oui, allons-y. Je ne lui ai même pas encore dit bonjour.", "va": null,
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Let's go, then. It was really nice meeting you!", "fr": "Allons-y, alors. Ravi d'avoir fait ta connaissance !"}]},
+    {"t": "Go ahead, I'll just get another drink. See you in a minute!", "fr": "Vas-y, je vais juste me resservir à boire. À tout de suite !", "va": null,
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Okay. Nice meeting you. See you in there!", "fr": "D'accord. Ravi de t'avoir rencontré. On se retrouve là-bas !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait la conversation avec un inconnu à une soirée américaine : tu t'es présenté, tu as parlé de ta vie à Boston et vous avez échangé vos numéros."}
+}

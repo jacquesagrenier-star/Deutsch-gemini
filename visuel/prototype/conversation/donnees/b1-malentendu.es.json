@@ -1,0 +1,119 @@
+{
+ "id": "b1-malentendu",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Un malentendu avec un collègue"},
+ "intro": {"fr": "Au restaurant, ton collègue de cuisine est vexé : il a entendu dire que tu avais demandé « son » service du matin. Dissipe le malentendu et trouve une solution qui vous convienne à tous les deux."},
+ "bilan": {"fr": "Tu as dissipé le malentendu : tu n'avais demandé que les matins du mardi et du jeudi, et rien n'était décidé contre ton collègue. {via_fr} Et vous avez fait la paix."},
+ "personnes": ["kuechenkollege"],
+ "debut": "enfado",
+ "textes": {
+  "via_fr": {"cle": "via", "jefa": "Vous irez en parler ensemble à la cheffe.", "nosotros": "Vous avez réglé l'échange entre vous, et il sera noté sur le planning."}
+ },
+ "noeuds": {
+  "enfado": {
+   "dit": [
+    {"recit": {"fr": "Avant le service, au vestiaire du restaurant. Ton collègue ne te dit pas bonjour. Il referme son casier et se tourne vers toi."}},
+    {"qui": "kuechenkollege", "air": "perplexe", "t": "Oye, tenemos que hablar. Me han dicho que le has pedido a la jefa mi turno de mañana. O sea, que a mí me toca pasar a las cenas, ¿no?", "fr": "Dis donc, il faut qu'on parle. On m'a dit que tu avais demandé à la cheffe mon service du matin. Autrement dit, c'est moi qui dois passer au dîner, c'est ça ?"}
+   ],
+   "choix": [
+    {"t": "¡Qué va! Solo he pedido las mañanas del martes y del jueves, y no hay nada decidido.", "fr": "Mais non ! J'ai seulement demandé les matins du mardi et du jeudi, et rien n'est décidé.", "va": "mensaje"},
+    {"t": "Espera, no quiero quitarte nada. ¿Buscamos juntos una solución que te venga bien?", "fr": "Attends, je ne veux rien te prendre. On cherche ensemble une solution qui t'arrange ?", "va": "aclarar"},
+    {"faux": true, "t": "Eres equivocado, no es verdad.", "fr": "Tu te trompes, ce n'est pas vrai.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿Que yo «soy» equivocado? Estoy equivocado, dirás… si es que lo estoy.", "fr": "Que je « suis » trompé ? Que je me trompe, tu veux dire… si c'est le cas."}],
+     "aide": {"fr": "<b>Se tromper = equivocarse, estar equivocado</b>, jamais « ser » : « Te equivocas », « Estás equivocado ». Et mieux vaut expliquer : « ¡Qué va! Solo he pedido… »"}}
+   ]
+  },
+  "aclarar": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "perplexe", "t": "¿Una solución? Primero dime qué le has pedido exactamente a la jefa.", "fr": "Une solution ? Dis-moi d'abord ce que tu as demandé exactement à la cheffe."}
+   ],
+   "choix": [
+    {"t": "Solo las mañanas del martes y del jueves, por mi curso de español. Nada más.", "fr": "Seulement les matins du mardi et du jeudi, pour mon cours d'espagnol. Rien de plus.", "va": "mensaje"},
+    {"t": "Le pedí cambiar dos días, pero ella todavía no ha decidido nada.", "fr": "Je lui ai demandé de changer deux jours, mais elle n'a encore rien décidé.", "va": "mensaje"},
+    {"faux": true, "t": "Le pregunté dos mañanas, nada más.", "fr": "Je lui ai demandé deux matins, rien de plus.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿Le preguntaste dos mañanas? Se las pediste, querrás decir. ¿Cuáles?", "fr": "Tu lui as « questionné » deux matins ? Tu les lui as demandés, tu veux dire. Lesquels ?"}],
+     "aide": {"fr": "<b>Demander pour obtenir = pedir ; demander pour savoir = preguntar.</b> « Le pedí dos mañanas », mais « Le pregunté la hora »."}}
+   ]
+  },
+  "mensaje": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Vale, puede ser. Pero ayer te escribí por el grupo del equipo para preguntártelo y no me contestaste. Eso me sentó fatal.", "fr": "D'accord, c'est possible. Mais hier, je t'ai écrit dans le groupe de l'équipe pour te poser la question et tu ne m'as pas répondu. Ça m'a vraiment blessé."}
+   ],
+   "choix": [
+    {"t": "Perdona, se me ha roto el móvil y no he visto ningún mensaje.", "fr": "Excuse-moi, mon téléphone est cassé et je n'ai vu aucun message.", "pose": {"movil": "roto"}, "va": "solucion"},
+    {"t": "Lo siento. Ayer no miré el grupo en todo el día; no fue por mala intención.", "fr": "Je regrette. Hier, je n'ai pas regardé le groupe de toute la journée ; ce n'était pas par mauvaise intention.", "pose": {"movil": "novisto"}, "va": "solucion"},
+    {"faux": true, "t": "Perdona, mi móvil está en pana.", "fr": "Excuse-moi, mon téléphone est en panne.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿En pana? ¿Como los pantalones? Ah, que está estropeado…", "fr": "En velours côtelé ? Comme les pantalons ? Ah, qu'il est en panne…"}],
+     "aide": {"fr": "<b>En panne = estropeado, averiado</b> (ou « se me ha roto »). « La pana », c'est le velours côtelé."}},
+    {"repete": true, "t": "Perdona, ¿qué mensaje? ¿Me lo puedes explicar otra vez?", "fr": "Excuse-moi, quel message ? Tu peux me l'expliquer encore une fois ?", "va": "mensaje",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Ayer por la tarde te pregunté en el grupo del equipo si era verdad lo del turno. Y tú, ni una palabra.", "fr": "Hier après-midi, je t'ai demandé dans le groupe de l'équipe si c'était vrai, cette histoire de service. Et toi, pas un mot."}]}
+   ]
+  },
+  "solucion": {
+   "dit": [
+    {"si": {"movil": "roto"}, "qui": "kuechenkollege", "air": "attentive", "t": "Ah, por eso… Yo pensaba que pasabas de mí.", "fr": "Ah, c'est pour ça… Moi, je pensais que tu m'ignorais."},
+    {"si": {"movil": "novisto"}, "qui": "kuechenkollege", "air": "attentive", "t": "Bueno… Yo pensaba que pasabas de mí.", "fr": "Bon… Moi, je pensais que tu m'ignorais."},
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Mira, los martes y los jueves me da igual. Lo que no puedo es hacer cenas toda la semana: por la tarde recojo a mi hija del colegio. ¿Qué hacemos?", "fr": "Écoute, le mardi et le jeudi, ça m'est égal. Ce que je ne peux pas, c'est faire le dîner toute la semaine : l'après-midi, je vais chercher ma fille à l'école. Qu'est-ce qu'on fait ?"}
+   ],
+   "choix": [
+    {"t": "¿Por qué no vamos a hablar con la jefa los dos juntos?", "fr": "Pourquoi n'irions-nous pas parler à la cheffe tous les deux ensemble ?", "pose": {"via": "jefa"}, "va": "jefa"},
+    {"t": "Entonces cambiemos solo esos dos días: yo hago tus mañanas y tú mis tardes.", "fr": "Alors échangeons seulement ces deux jours : je fais tes matins et toi mes soirs.", "pose": {"via": "nosotros"}, "va": "nosotros"},
+    {"faux": true, "t": "Vamos a ver la jefa.", "fr": "Allons voir la cheffe.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "«A» la jefa: vamos a ver a la jefa. Sí, pero ¿cómo? ¿Cada uno por su lado?", "fr": "« A » la jefa : vamos a ver a la jefa. Oui, mais comment ? Chacun de son côté ?"}],
+     "aide": {"fr": "<b>Devant une personne complément direct, il faut « a ».</b> « Ver a la jefa », « llamar a un compañero »."}}
+   ]
+  },
+  "jefa": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "¿Los dos juntos? Vale, así se acaban los cotilleos. ¿Y qué le decimos?", "fr": "Tous les deux ensemble ? D'accord, comme ça, fini les ragots. Et qu'est-ce qu'on lui dit ?"}
+   ],
+   "choix": [
+    {"t": "Que solo cambiamos el martes y el jueves, y que el resto de la semana sigue igual.", "fr": "Que nous échangeons seulement le mardi et le jeudi, et que le reste de la semaine ne change pas.", "va": "paz"},
+    {"t": "Que tú te quedas con tus mañanas y que yo solo necesito dos.", "fr": "Que tu gardes tes matins et que je n'en ai besoin que de deux.", "va": "paz"},
+    {"faux": true, "t": "Le decimos que somos de acuerdo.", "fr": "Nous lui disons que nous sommes d'accord.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Que estamos de acuerdo, sí. Pero ¿de acuerdo en qué, exactamente?", "fr": "Que nous sommes d'accord, oui. Mais d'accord sur quoi, exactement ?"}],
+     "aide": {"fr": "<b>Être d'accord = estar de acuerdo</b>, jamais « ser ». « Estamos de acuerdo. »"}}
+   ]
+  },
+  "nosotros": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "attentive", "t": "Dos tardes… Con las propinas de las cenas, no me viene mal. Pero quiero que quede apuntado en el cuadrante.", "fr": "Deux soirs… Avec les pourboires du dîner, ça ne m'arrange pas mal. Mais je veux que ce soit noté sur le planning."}
+   ],
+   "choix": [
+    {"t": "Por supuesto. Se lo decimos a la jefa para que lo apunte hoy mismo.", "fr": "Bien sûr. Nous le disons à la cheffe pour qu'elle le note aujourd'hui même.", "va": "paz"},
+    {"t": "Claro. Y si un día no puedes, me avisas y lo cambiamos.", "fr": "Bien sûr. Et si un jour tu ne peux pas, tu me préviens et on change.", "va": "paz"},
+    {"faux": true, "t": "Vale, lo escribimos sobre el planning.", "fr": "D'accord, on l'écrit sur le planning.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿El «planning»? Aquí es el cuadrante. Y se apunta en el cuadrante, no «sobre».", "fr": "Le « planning » ? Ici, c'est « el cuadrante ». Et on note « en el cuadrante », pas « sobre »."}],
+     "aide": {"fr": "<b>Le planning (du personnel) = el cuadrante</b>, et « sur » un document se dit « en » : « Lo apuntamos en el cuadrante »."}}
+   ]
+  },
+  "paz": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "sourire", "t": "Hecho. Oye, y perdona por el tono de antes. Es que cuando oí lo del turno, me puse de los nervios.", "fr": "Entendu. Dis, et excuse-moi pour le ton de tout à l'heure. Quand j'ai entendu cette histoire de service, ça m'a mis hors de moi."}
+   ],
+   "choix": [
+    {"t": "No pasa nada. Yo en tu lugar habría reaccionado igual.", "fr": "Ce n'est rien. À ta place, j'aurais réagi de la même façon.", "va": "tomar"},
+    {"t": "Tranquilo. La próxima vez te lo cuento yo antes de que te enteres por otros.", "fr": "Ne t'en fais pas. La prochaine fois, je te le dis moi-même avant que tu l'apprennes par d'autres.", "va": "tomar"},
+    {"faux": true, "t": "De nada.", "fr": "De rien.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿De nada? Si no te he dado las gracias… Dirás que no pasa nada.", "fr": "De rien ? Mais je ne t'ai pas remercié… Tu veux dire que ce n'est rien."}],
+     "aide": {"fr": "<b>Pour accepter des excuses : « No pasa nada » ou « Tranquilo ».</b> « De nada » ne répond qu'à un « gracias »."}}
+   ]
+  },
+  "tomar": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "sourire", "t": "Eso. Bueno, ¿qué haces cuando salgamos? Te invito a una caña en el bar de enfrente, para hacer las paces.", "fr": "Voilà. Bon, tu fais quoi à la sortie ? Je t'invite à boire une bière au bar d'en face, pour faire la paix."}
+   ],
+   "choix": [
+    {"t": "¡Acepto! Pero la segunda ronda la pago yo.", "fr": "J'accepte ! Mais la deuxième tournée, c'est moi qui la paie.", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "¡Trato hecho! Venga, a trabajar, que hoy hay lío.", "fr": "Marché conclu ! Allez, au travail, ça va être chargé aujourd'hui."}]},
+    {"t": "Hoy prefiero un café, que luego tengo que estudiar. ¿Te parece?", "fr": "Aujourd'hui, je préfère un café, parce qu'après je dois étudier. Ça te va ?", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Un café, vale. Pero la caña me la debes. Venga, a trabajar.", "fr": "Un café, d'accord. Mais la bière, tu me la dois. Allez, au travail."}]},
+    {"faux": true, "t": "Sí, vamos a tomar un vaso.", "fr": "Oui, allons prendre un verre.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "¿Un vaso? ¿Vacío? Aquí se dice «tomar algo» o «tomar una caña».", "fr": "Un verre ? Vide ? Ici, on dit « tomar algo » ou « tomar una caña »."}],
+     "aide": {"fr": "<b>Prendre un verre = tomar algo.</b> « Un vaso » n'est que le récipient. À Madrid : « ¿Tomamos algo? », « ¿Una caña? »"}}
+   ]
+  }
+ }
+}

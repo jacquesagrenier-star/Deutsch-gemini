@@ -1,0 +1,151 @@
+{
+ "id": "b1-fete-quartier",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "La fête de la rue"},
+ "intro": {"fr": "Samedi matin, à la boulangerie de ta rue, à Somerville. Le boulanger organise une « block party », la fête de la rue, et il compte sur toi. Que peux-tu apporter ou faire ?"},
+ "personnes": ["baecker_fest"],
+ "debut": "invite",
+ "textes": {
+  "aide_fr": {"cle": "aide", "cuisine": "préparer un plat de ton pays", "montage": "aider à monter les tables dès neuf heures", "musique": "t'occuper de la musique"},
+  "tracts_fr": {"cle": "tracts", "boites": "dans les boîtes aux lettres", "portes": "en frappant aux portes, pour rencontrer tes voisins"}
+ },
+ "noeuds": {
+  "invite": {
+   "dit": [
+    {"recit": {"fr": "Tu achètes ton pain. Le boulanger te reconnaît et pose un paquet d'affichettes sur le comptoir."}},
+    {"qui": "baecker_fest", "air": "sourire", "t": "Good morning! You live on this street, right? We're having a block party next Saturday. The whole street is invited. Can you come?", "t_gb": "Good morning! You live on this street, don't you? We're having a street party next Saturday. The whole street is invited. Can you come?", "fr": "Bonjour ! Vous habitez dans la rue, non ? On organise une fête de rue samedi prochain. Toute la rue est invitée. Vous pouvez venir ?"}
+   ],
+   "choix": [
+    {"t": "I'd love to come! What time does it start?", "fr": "Je viendrai avec plaisir ! Ça commence à quelle heure ?", "va": "help",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "At noon. The street is closed to cars until eight in the evening.", "fr": "À midi. La rue est fermée aux voitures jusqu'à huit heures du soir."}]},
+    {"t": "That sounds like fun. I've never been to a block party before.", "t_gb": "That sounds like fun. I've never been to a street party before.", "fr": "Ça a l'air sympa. Je ne suis encore jamais allé(e) à une fête de rue.", "va": "help",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Then you'll love it. Everybody brings food, the kids play in the street, and there are no cars all day.", "fr": "Alors vous allez adorer. Tout le monde apporte à manger, les enfants jouent dans la rue, et il n'y a pas de voitures de la journée."}]},
+    {"faux": true, "t": "Oh, you make a party? Super!", "fr": "Oh, vous faites une fête ? Super !",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "Make a party? I make bread. But yes, we're having a party!", "fr": "Fabriquer une fête ? Moi, je fabrique du pain. Mais oui, on fait une fête !"}],
+     "aide": {"fr": "<b>« faire une fête » = « have a party »</b> (ou « throw a party »), jamais « make a party »."}}
+   ]
+  },
+  "help": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "It's a potluck, so everyone brings something or helps out. What would you like to do?", "fr": "C'est un « potluck » : chacun apporte quelque chose ou donne un coup de main. Qu'est-ce que vous aimeriez faire ?"}
+   ],
+   "choix": [
+    {"t": "I could make a dish from my country.", "fr": "Je pourrais préparer un plat de mon pays.", "pose": {"aide": "cuisine"}, "va": "dish"},
+    {"t": "I can help set up the tables in the morning.", "fr": "Je peux aider à monter les tables le matin.", "pose": {"aide": "montage"}, "va": "setup"},
+    {"t": "I could take care of the music.", "fr": "Je pourrais m'occuper de la musique.", "pose": {"aide": "musique"}, "va": "music"},
+    {"repete": true, "t": "Sorry, what does “potluck” mean?", "fr": "Pardon, que veut dire « potluck » ?", "va": "help",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "A potluck is a meal where every guest brings a dish to share. So, would you like to cook, help set up, or do something else?", "fr": "Un « potluck », c'est un repas où chaque invité apporte un plat à partager. Alors, vous aimeriez cuisiner, aider à installer, ou faire autre chose ?"}]},
+    {"faux": true, "t": "I will cook a plate of my country.", "fr": "Je cuisinerai un plat de mon pays.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "You'll cook … a plate? I hope there's something on it!", "fr": "Vous allez cuisiner… une assiette ? J'espère qu'il y aura quelque chose dedans !"}],
+     "aide": {"fr": "<b>Un plat cuisiné = « a dish » ; « a plate », c'est l'assiette.</b> « I could make a dish from my country. »"}}
+   ]
+  },
+  "dish": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Wonderful! What will you make? We already have plenty of desserts, of course. I'm the baker!", "fr": "Formidable ! Qu'est-ce que vous allez préparer ? On a déjà beaucoup de desserts, forcément. Le boulanger, c'est moi !"}
+   ],
+   "choix": [
+    {"t": "I'll make a big vegetable tart. It can be eaten cold.", "fr": "Je ferai une grande tarte aux légumes. Elle peut se manger froide.", "va": "missing",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Perfect for a street party.", "fr": "Parfait pour une fête de rue."}]},
+    {"t": "Something savory, since you already have the desserts. Maybe a cheese tart.", "t_gb": "Something savoury, since you already have the desserts. Maybe a cheese tart.", "fr": "Quelque chose de salé, puisque vous avez déjà les desserts. Peut-être une tarte au fromage.", "va": "missing",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "A cheese tart! Save me a slice.", "fr": "Une tarte au fromage ! Gardez-m'en une part."}]},
+    {"faux": true, "t": "I will do a salted cake.", "fr": "Je ferai un cake salé.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "A salted cake? With salt on top? As a baker, I'm a little worried.", "fr": "Un gâteau au sel ? Avec du sel dessus ? En tant que boulanger, je m'inquiète un peu."}],
+     "aide": {"fr": "<b>« salé » (pas sucré) = « savory » ; « salted » veut dire « avec du sel ajouté ».</b> Et on dit « make » : « I'll make a savory cake. »"}}
+   ]
+  },
+  "setup": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "Great, we need strong arms! We start setting up at nine. The tables are stored in the church basement.", "fr": "Super, on a besoin de bras ! On commence l'installation à neuf heures. Les tables sont rangées au sous-sol de l'église."}
+   ],
+   "choix": [
+    {"t": "No problem. I'll be there at nine.", "fr": "Pas de problème. J'y serai à neuf heures.", "va": "missing"},
+    {"t": "Sure. How many tables have to be carried?", "fr": "Bien sûr. Combien de tables faut-il porter ?", "va": "missing",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "About twelve. With four people, it takes half an hour.", "fr": "Une douzaine. À quatre, ça prend une demi-heure."}]},
+    {"faux": true, "t": "OK, I will be there at nine hours.", "fr": "D'accord, j'y serai à neuf heures.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Nine hours? The party doesn't last that long! At nine o'clock, you mean.", "fr": "Neuf heures de temps ? La fête ne dure pas si longtemps ! À neuf heures, vous voulez dire."}],
+     "aide": {"fr": "<b>L'heure qu'il est se dit « at nine » ou « at nine o'clock ».</b> « Nine hours » est une durée (neuf heures de temps)."}}
+   ]
+  },
+  "music": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Music! Perfect, nobody has offered yet. Do you play an instrument, or do you have speakers?", "fr": "La musique ! Parfait, personne ne s'est encore proposé. Vous jouez d'un instrument, ou vous avez des enceintes ?"}
+   ],
+   "choix": [
+    {"t": "I have a good speaker, and I can make a playlist.", "fr": "J'ai une bonne enceinte, et je peux préparer une playlist.", "va": "missing",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Great. Something for everyone, please: the kids and the grandparents.", "fr": "Super. De tout pour tout le monde, s'il vous plaît : les enfants et les grands-parents."}]},
+    {"t": "I play the guitar a little, and a friend of mine sings.", "fr": "Je joue un peu de guitare, et j'ai un ami qui chante.", "va": "missing",
+     "puis": [{"qui": "baecker_fest", "air": "surprise", "t": "Live music! The neighbors will love that.", "t_gb": "Live music! The neighbours will love that.", "fr": "De la musique en direct ! Les voisins vont adorer."}]},
+    {"faux": true, "t": "I play the guitar since ten years.", "fr": "Je joue de la guitare depuis dix ans.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Since … ten years? Ah, you've played for ten years. Even better!", "fr": "Depuis… dix ans ? Ah, ça fait dix ans que vous jouez. Encore mieux !"}],
+     "aide": {"fr": "<b>« depuis dix ans » = present perfect + « for » :</b> « I've played the guitar for ten years. » « Since » va avec un point de départ (« since 2015 »)."}}
+   ]
+  },
+  "missing": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "attentive", "t": "By the way, we're still missing a few things: chairs, a long extension cord, and someone for the cake stand in the afternoon. Could you help with any of that?", "t_gb": "By the way, we're still missing a few things: chairs, a long extension lead, and someone for the cake stand in the afternoon. Could you help with any of that?", "fr": "Au fait, il nous manque encore deux ou trois choses : des chaises, une longue rallonge, et quelqu'un pour le stand de gâteaux l'après-midi. Vous pourriez nous aider pour l'une d'elles ?"}
+   ],
+   "choix": [
+    {"t": "I have four folding chairs that you can borrow.", "fr": "J'ai quatre chaises pliantes que vous pouvez emprunter.", "va": "rain"},
+    {"t": "I can lend you a long extension cord.", "t_gb": "I can lend you a long extension lead.", "fr": "Je peux vous prêter une longue rallonge.", "va": "rain"},
+    {"t": "I could work at the cake stand for an hour or two.", "fr": "Je pourrais tenir le stand de gâteaux une heure ou deux.", "va": "rain"},
+    {"faux": true, "t": "I have an extension cord. It is long of ten meters.", "fr": "J'ai une rallonge. Elle est longue de dix mètres.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "Long of … ? Oh, it's ten meters long. That's about thirty feet. Perfect!", "t_gb": "Long of … ? Oh, it's ten metres long. Perfect!", "fr": "Longue de… ? Ah, elle fait dix mètres de long. Une trentaine de pieds. Parfait !"}],
+     "aide": {"fr": "<b>La mesure vient avant l'adjectif :</b> « It's ten meters long », comme « two meters tall » ou « five years old »."}}
+   ]
+  },
+  "rain": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "Thank you, that's a big help. Do you have any questions about the day?", "fr": "Merci, ça nous aide beaucoup. Vous avez des questions sur la journée ?"}
+   ],
+   "choix": [
+    {"t": "Yes. What happens if it rains?", "fr": "Oui. Que se passe-t-il s'il pleut ?", "va": "flyers",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Good question. If it rains, everything is moved to Sunday. The city permit covers both days.", "fr": "Bonne question. S'il pleut, tout est reporté à dimanche. Le permis de la ville couvre les deux jours."}]},
+    {"t": "Do we need a permit to close the street?", "fr": "Faut-il un permis pour fermer la rue ?", "va": "flyers",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Yes. I applied a month ago, and the city has approved it. It also covers Sunday, in case it rains on Saturday.", "fr": "Oui. J'ai fait la demande il y a un mois, et la ville l'a approuvée. Il couvre aussi le dimanche, au cas où il pleuvrait samedi."}]},
+    {"faux": true, "t": "What happens if it will rain?", "fr": "Que se passe-t-il s'il pleut ?",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "If it will … ? If it rains, you mean. Let's hope it won't!", "fr": "S'il… ? S'il pleut, vous voulez dire. Espérons que non !"}],
+     "aide": {"fr": "<b>Après « if », pas de « will » :</b> « What happens if it rains? », « If it rains, we'll move the party. »"}}
+   ]
+  },
+  "flyers": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "One last thing. I've printed flyers for the neighbors. Could you hand some out on your side of the street?", "t_gb": "One last thing. I've printed flyers for the neighbours. Could you hand some out on your side of the street?", "fr": "Une dernière chose. J'ai imprimé des affichettes pour les voisins. Pourriez-vous en distribuer de votre côté de la rue ?"}
+   ],
+   "choix": [
+    {"t": "Sure. I'll put them in the mailboxes tonight.", "t_gb": "Sure. I'll put them through the letterboxes tonight.", "fr": "Bien sûr. Je les mettrai dans les boîtes aux lettres ce soir.", "pose": {"tracts": "boites"}, "va": "bye"},
+    {"t": "Of course. I'd rather knock on doors, so I can meet my neighbors.", "t_gb": "Of course. I'd rather knock on doors, so I can meet my neighbours.", "fr": "Bien sûr. J'aime mieux frapper aux portes, pour rencontrer mes voisins.", "pose": {"tracts": "portes"}, "va": "doors"},
+    {"faux": true, "t": "Yes, I will give them to all the persons of the street.", "fr": "Oui, je les donnerai à toutes les personnes de la rue.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "All the … persons? All the people on the street, yes, please!", "fr": "Toutes les… personnes ? Tous les gens de la rue, oui, s'il vous plaît !"}],
+     "aide": {"fr": "<b>Le pluriel courant de « person » est « people »,</b> et on habite « on » une rue : « all the people on the street »."}}
+   ]
+  },
+  "doors": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "Even better! Just don't ring at number fourteen before noon: she works nights and sleeps in the morning.", "fr": "Encore mieux ! Mais ne sonnez pas au numéro quatorze avant midi : elle travaille de nuit et dort le matin."}
+   ],
+   "choix": [
+    {"t": "Thanks for the warning. I'll leave her flyer in the mailbox.", "t_gb": "Thanks for the warning. I'll put her flyer through the letterbox.", "fr": "Merci de me prévenir. Je laisserai son affichette dans la boîte aux lettres.", "va": "bye"},
+    {"t": "Good to know. I'll go there in the late afternoon.", "fr": "C'est bon à savoir. J'y passerai en fin d'après-midi.", "va": "bye"}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"si": {"aide": "cuisine"}, "qui": "baecker_fest", "air": "sourire", "t": "Thank you so much. I can't wait to taste your dish!", "fr": "Merci beaucoup. J'ai hâte de goûter votre plat !"},
+    {"si": {"aide": "montage"}, "qui": "baecker_fest", "air": "sourire", "t": "Thank you so much. Nine o'clock sharp, and bring gloves!", "fr": "Merci beaucoup. Neuf heures pile, et apportez des gants !"},
+    {"si": {"aide": "musique"}, "qui": "baecker_fest", "air": "amuse", "t": "Thank you so much. And please, no heavy metal before noon!", "fr": "Merci beaucoup. Et s'il vous plaît, pas de heavy metal avant midi !"},
+    {"qui": "baecker_fest", "air": "sourire", "t": "Here are the flyers, and your bread. See you Saturday!", "fr": "Voici les affichettes, et votre pain. À samedi !"}
+   ],
+   "choix": [
+    {"t": "See you Saturday! I'm looking forward to it.", "fr": "À samedi ! J'ai hâte d'y être.", "va": null},
+    {"t": "See you then. Thank you for inviting me!", "fr": "À samedi, alors. Merci de m'avoir invité(e) !", "va": null},
+    {"faux": true, "t": "See you Saturday! I look forward to see everyone.", "fr": "À samedi ! J'ai hâte de voir tout le monde.",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "To seeing everyone, yes! So are we.", "fr": "De voir tout le monde, oui ! Nous aussi."}],
+     "aide": {"fr": "<b>« look forward to » + -ing :</b> « I'm looking forward to seeing everyone. » Ici, « to » est une préposition, pas la marque de l'infinitif."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu viens à la fête de la rue : tu vas {aide_fr}, tu as proposé ton aide pour ce qui manquait, et tu distribueras les affichettes {tracts_fr}. À samedi !"}
+}

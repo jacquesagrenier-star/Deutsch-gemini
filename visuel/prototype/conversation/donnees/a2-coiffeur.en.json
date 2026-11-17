@@ -1,0 +1,105 @@
+{
+ "id": "a2-coiffeur",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Chez le coiffeur"},
+ "intro": {"fr": "Tu as rendez-vous dans un salon de coiffure de ton quartier, à Boston. Tu expliques la coupe que tu veux, tu bavardes un peu, tu paies."},
+ "personnes": ["friseurin-ines"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Un salon de coiffure, dans ton quartier. Tu as rendez-vous à trois heures."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "Hi there! Welcome. Do you have an appointment?", "fr": "Bonjour ! Bienvenue. Vous avez rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I have an appointment at three.", "fr": "Oui, j'ai rendez-vous à trois heures.", "va": "wash",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Great, have a seat right here.", "fr": "Parfait, asseyez-vous ici."}]},
+    {"t": "Hi! Yes, at three o'clock. For a haircut.", "fr": "Bonjour ! Oui, à trois heures. Pour une coupe.", "va": "wash",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Yes, I see it. Have a seat right here.", "fr": "Oui, je le vois. Asseyez-vous ici."}]}
+   ]
+  },
+  "wash": {
+   "dit": [{"qui": "friseurin-ines", "air": "question", "t": "Would you like me to wash your hair first?", "fr": "Voulez-vous que je vous lave les cheveux d'abord ?"}],
+   "choix": [
+    {"t": "Yes, please.", "fr": "Oui, s'il vous plaît.", "pose": {"lavage": "oui"}, "va": "cut",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Okay, come with me to the sink.", "t_gb": "Okay, come with me to the basin.", "fr": "D'accord, venez avec moi au bac."}]},
+    {"t": "No, thanks. I washed it this morning.", "fr": "Non, merci. Je les ai lavés ce matin.", "pose": {"lavage": "non"}, "va": "cut",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "No problem. I'll just wet it a little.", "fr": "Pas de problème. Je vais juste les mouiller un peu."}]}
+   ]
+  },
+  "cut": {
+   "dit": [
+    {"si": {"lavage": "oui"}, "recit": {"fr": "Les cheveux lavés, tu t'installes devant le miroir."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "So, what are we doing today?", "fr": "Alors, qu'est-ce qu'on fait aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Just the ends, please.", "fr": "Seulement les pointes, s'il vous plaît.", "pose": {"coupe": "ends"}, "va": "length",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Just a trim. Sure!", "fr": "Juste un rafraîchissement. Bien sûr !"}]},
+    {"t": "I'd like it shorter, please.", "fr": "Je les voudrais plus courts, s'il vous plaît.", "pose": {"coupe": "short"}, "va": "length",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Shorter. Sure!", "fr": "Plus courts. Bien sûr !"}]},
+    {"faux": true, "t": "Can you cut my hairs, please?", "fr": "Pouvez-vous me couper les poils, s'il vous plaît ?",
+     "puis": [{"qui": "friseurin-ines", "air": "amuse", "t": "Your hairs? One by one? That will take all day!", "fr": "Vos cheveux ? Un par un ? Ça va prendre la journée !"}],
+     "aide": {"fr": "<b>« hair » ne prend pas de « s » quand on parle de la chevelure.</b> « hairs », ce sont des cheveux ou des poils comptés un à un. Dis : « Can you cut my hair, please? »."}}
+   ]
+  },
+  "length": {
+   "dit": [
+    {"recit": {"fr": "Elle te montre une longueur avec ses doigts."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "How short? Like this?", "fr": "Courts comment ? Comme ça ?"}
+   ],
+   "choix": [
+    {"t": "Yes, like that. That's perfect.", "fr": "Oui, comme ça. C'est parfait.", "va": "chat",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Okay, here we go.", "fr": "D'accord, c'est parti."}]},
+    {"t": "A little shorter, please.", "fr": "Un peu plus court, s'il vous plaît.", "va": "chat",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "A little shorter. Got it!", "fr": "Un peu plus court. Compris !"}]},
+    {"faux": true, "t": "Not too much short, please.", "fr": "Pas trop court, s'il vous plaît. (mot à mot : pas trop beaucoup court)",
+     "puis": [{"qui": "friseurin-ines", "air": "perplexe", "t": "Too much … short? Ah, not too short. Got it!", "fr": "Trop… beaucoup court ? Ah, pas trop court. Compris !"}],
+     "aide": {"fr": "<b>Devant un adjectif, « trop » se dit « too » tout seul</b> : « not too short ». « too much » va devant un nom : « too much water »."}}
+   ]
+  },
+  "chat": {
+   "dit": [
+    {"recit": {"fr": "Elle commence à couper."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "So, do you live around here?", "fr": "Alors, vous habitez dans le coin ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I live two streets from here.", "fr": "Oui, j'habite à deux rues d'ici.", "va": "mirror",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Oh, nice! It's a great neighborhood.", "t_gb": "Oh, nice! It's a great neighbourhood.", "fr": "Oh, super ! C'est un quartier formidable."}]},
+    {"t": "Yes, I moved here in September.", "fr": "Oui, je me suis installé(e) ici en septembre.", "va": "mirror",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Oh, welcome! It's a great neighborhood.", "t_gb": "Oh, welcome! It's a great neighbourhood.", "fr": "Oh, bienvenue ! C'est un quartier formidable."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "chat",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Sure. Do you live near here? In this part of town?", "fr": "Bien sûr. Vous habitez près d'ici ? Dans ce coin de la ville ?"}]}
+   ]
+  },
+  "mirror": {
+   "dit": [
+    {"recit": {"fr": "Vingt minutes plus tard, elle te tend un miroir."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "All done! What do you think?", "fr": "Et voilà ! Qu'en pensez-vous ?"}
+   ],
+   "choix": [
+    {"t": "I love it. Thank you!", "fr": "J'adore. Merci !", "va": "pay",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "I'm so glad!", "fr": "Ça me fait plaisir !"}]},
+    {"t": "It looks great. It's exactly what I wanted.", "fr": "C'est très réussi. C'est exactement ce que je voulais.", "va": "pay",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "I'm so glad!", "fr": "Ça me fait plaisir !"}]}
+   ]
+  },
+  "pay": {
+   "dit": [
+    {"recit": {"fr": "À la caisse. Aux États-Unis, on laisse un pourboire au coiffeur : environ vingt pour cent."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "That's $45, please.", "fr": "Ça fait 45 dollars, s'il vous plaît.", "dit": "That's forty-five dollars, please."}
+   ],
+   "choix": [
+    {"t": "Here's fifty-five dollars. Keep the change!", "fr": "Voici cinquante-cinq dollars. Gardez la monnaie !", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Oh, thank you so much! See you next time!", "fr": "Oh, merci beaucoup ! À la prochaine !"}]},
+    {"t": "By card, please. And I'd like to add a tip.", "fr": "Par carte, s'il vous plaît. Et je voudrais ajouter un pourboire.", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "That's very kind, thank you! See you next time!", "fr": "C'est très gentil, merci ! À la prochaine !"}]},
+    {"faux": true, "t": "Here's fifty-five dollars. Keep the money!", "fr": "Voici cinquante-cinq dollars. Gardez l'argent !",
+     "puis": [{"qui": "friseurin-ines", "air": "surprise", "t": "Keep the money? Well, yes, I will! Oh, you mean the change.", "fr": "Garder l'argent ? Eh bien oui, je vais le garder ! Ah, vous voulez dire la monnaie."}],
+     "aide": {"fr": "<b>« money », c'est l'argent en général.</b> La monnaie qu'on vous rend se dit « the change » : « Keep the change! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué la coupe que tu voulais, bavardé avec la coiffeuse et payé quarante-cinq dollars, plus le pourboire."}
+}

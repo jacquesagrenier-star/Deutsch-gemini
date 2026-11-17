@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "fenster-m",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "uhr",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "kalender",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "calendário",
    "ar": "تقويم، رزنامة",
    "pl": "kalendarz",
-   "ru": "календарь"
+   "ru": "календарь",
+   "es": "el calendario"
   },
   {
    "id": "pflanze",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "trinkstation",
@@ -203,7 +208,8 @@ window.SCENE = {
    "pt": "água",
    "ar": "ماء",
    "pl": "woda",
-   "ru": "вода"
+   "ru": "вода",
+   "es": "el agua"
   },
   {
    "id": "saft",
@@ -232,7 +238,8 @@ window.SCENE = {
    "pt": "suco",
    "ar": "عصير",
    "pl": "sok",
-   "ru": "сок"
+   "ru": "сок",
+   "es": "el jugo"
   },
   {
    "id": "becher",
@@ -319,7 +326,8 @@ window.SCENE = {
    "pt": "cadeira de rodas",
    "ar": "كرسي متحرّك",
    "pl": "wózek inwalidzki",
-   "ru": "инвалидная коляска"
+   "ru": "инвалидная коляска",
+   "es": "la silla de ruedas"
   },
   {
    "id": "bewohnerin",
@@ -343,7 +351,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -358,7 +367,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "rollstuhl",
@@ -408,7 +418,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "herr-schulze",
@@ -432,7 +443,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Rentner",
@@ -447,7 +459,8 @@ window.SCENE = {
      "pt": "aposentado",
      "ar": "متقاعد",
      "pl": "emeryt",
-     "ru": "пенсионер"
+     "ru": "пенсионер",
+     "es": "el jubilado"
     }
    ],
    "sur": "stuhl-l",
@@ -468,7 +481,8 @@ window.SCENE = {
    "pt": "morador",
    "ar": "ساكن، مقيم",
    "pl": "mieszkaniec",
-   "ru": "житель, жилец"
+   "ru": "житель, жилец",
+   "es": "el habitante, el residente"
   },
   {
    "id": "hoergeraet",
@@ -521,7 +535,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -536,7 +551,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "stuhl-r",
@@ -586,7 +602,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-r",
@@ -615,7 +632,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "tisch",
@@ -644,7 +662,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "kanne",
@@ -673,7 +692,8 @@ window.SCENE = {
    "pt": "jarra, bule",
    "ar": "إبريق",
    "pl": "dzbanek",
-   "ru": "кофейник, кувшин"
+   "ru": "кофейник, кувшин",
+   "es": "la jarra, la cafetera"
   },
   {
    "id": "tasse-1",
@@ -702,7 +722,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-2",
@@ -731,7 +752,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-3",
@@ -760,7 +782,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-weber",
@@ -789,7 +812,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "kuchen",
@@ -818,7 +842,8 @@ window.SCENE = {
    "pt": "bolo",
    "ar": "كعكة",
    "pl": "ciasto",
-   "ru": "пирог, торт"
+   "ru": "пирог, торт",
+   "es": "el pastel"
   },
   {
    "id": "fotoalbum",
@@ -847,7 +872,8 @@ window.SCENE = {
    "pt": "álbum de fotos",
    "ar": "ألبوم صور",
    "pl": "album ze zdjęciami",
-   "ru": "фотоальбом"
+   "ru": "фотоальбом",
+   "es": "el álbum de fotos"
   },
   {
    "id": "brille",
@@ -876,7 +902,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "puzzle",
@@ -905,7 +932,8 @@ window.SCENE = {
    "pt": "quebra-cabeça",
    "ar": "أحجية تركيب (بازل)",
    "pl": "puzzle",
-   "ru": "пазл"
+   "ru": "пазл",
+   "es": "el rompecabezas"
   },
   {
    "id": "zeitung",
@@ -934,7 +962,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "rollator",
@@ -992,7 +1021,8 @@ window.SCENE = {
    "pt": "bola",
    "ar": "كرة",
    "pl": "piłka",
-   "ru": "мяч"
+   "ru": "мяч",
+   "es": "la pelota, el balón"
   }
  ],
  "grosPlans": [],
@@ -1301,60 +1331,92 @@ window.SCENE = {
    ]
   },
   "SIT": {
-   "titre": "Que faites-vous ?",
-   "niveau": "B2",
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
    "qs": [
     {
-     "q": "Herr Schulze steht auf und will das Haus verlassen: „Ich muss zur Arbeit.“ Was tun Sie?",
+     "q": "Sie finden Frau Weber neben ihrem Bett auf dem Boden. Sie sagt: „Ach je … ich wollte doch nur zur Toilette.“",
      "c": [
-      "Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.",
-      "Ich halte ihn am Arm fest und bringe ihn an seinen Platz zurück.",
-      "Ich schließe die Tür ab und sage nichts."
-     ],
-     "f": "herr-schulze",
-     "type": "situation",
-     "phrase": "Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.",
-     "sens": "Je fais calmement quelques pas avec lui, je parle de son travail et je préviens l'équipe.",
-     "n": "Accompagner et détourner l'attention, prévenir l'équipe selon la procédure de la maison ; jamais de contrainte ⚕️."
-    },
-    {
-     "q": "Frau Weber hustet stark, sie hat sich beim Kuchen verschluckt. Was tun Sie?",
-     "c": [
-      "Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.",
-      "Ich gebe ihr schnell ein Glas Wasser.",
-      "Ich gehe weg, damit sie in Ruhe husten kann."
+      "Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+      "Kommen Sie, ich ziehe Sie schnell hoch!",
+      "Bewegen Sie die Hand ganz fest, bitte."
      ],
      "f": "frau-weber",
      "type": "situation",
-     "phrase": "Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.",
-     "sens": "Je reste près d'elle, je l'encourage à tousser et j'appelle de l'aide si elle n'arrive plus à respirer.",
-     "n": "Tant qu'elle tousse, la toux dégage : on encourage, on ne donne pas à boire ; si l'air ne passe plus, c'est une urgence ⚕️."
+     "phrase": "Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+     "sens": "madame Weber, je suis là. Restez assise pour l'instant, je vais vous aider.",
+     "n": "<b>Ne relève jamais tout de suite une personne tombée.</b> D'abord rassurer et vérifier : une fracture ou un choc à la tête peut passer inaperçu. « Bleiben Sie bitte erst mal sitzen. » ⚕️",
+     "source": "d08-sturz/finden"
     },
     {
-     "q": "Herr Schulze will aufstehen, aber sein Rollator steht zu weit weg. Was tun Sie?",
+     "q": "Sie fragen Frau Weber, ob sie mit dem Kopf aufgeschlagen ist. Sie sagt: „Nein, ich glaube nicht. Ich bin auf den Po gefallen.“",
      "c": [
-      "Ich stelle ihm den Rollator hin und warte, bis er sicher steht.",
-      "Ich sage ihm, er soll sitzen bleiben.",
-      "Ich lasse ihn gehen, es sind ja nur ein paar Schritte."
+      "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+      "Warten Sie hier, ich bin in zehn Minuten wieder da.",
+      "Stehen Sie jetzt auf. Wir müssen laufen."
      ],
-     "f": "rollator",
+     "f": "frau-weber",
      "type": "situation",
-     "phrase": "Ich stelle ihm den Rollator hin und warte, bis er sicher steht.",
-     "sens": "Je lui approche le déambulateur et j'attends qu'il soit bien debout.",
-     "n": "Prévenir la chute sans l'empêcher de bouger : l'aide à portée, et on reste là."
+     "phrase": "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+     "sens": "J'appuie sur la sonnette et j'appelle ma collègue. Je reste avec vous.",
+     "n": "<b>On ne laisse pas seule une personne tombée.</b> Appelle de l'aide depuis la chambre : la sonnette, le téléphone. « Ich rufe meine Kollegin. Ich bleibe bei Ihnen. » ⚕️",
+     "source": "d08-sturz/hilfe"
     },
     {
-     "q": "Die Bewohnerin im Rollstuhl hat ihren Kaffee nicht angerührt. Was tun Sie?",
+     "q": "Beim Mittagessen sagt Herr Schulze: „Die Suppe. Aber nicht so heiß!“",
      "c": [
-      "Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.",
-      "Ich räume die Tasse einfach ab.",
-      "Ich sage ihr, dass sie jetzt trinken muss."
+      "Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.",
+      "Ich probiere mal mit Ihrem Löffel, ob sie zu heiß ist.",
+      "Bleiben Sie ruhig so halb liegen, das ist bequemer."
      ],
-     "f": "bewohnerin",
+     "f": "herr-schulze",
      "type": "situation",
-     "phrase": "Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.",
-     "sens": "Je lui propose autre chose à boire et je note combien elle boit.",
-     "n": "Les personnes âgées boivent souvent trop peu : proposer ce qu'elle aime, et suivre ce qu'elle boit ⚕️."
+     "phrase": "Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.",
+     "sens": "Ne vous inquiétez pas, je remue un peu, comme ça elle sera moins chaude. Prenez votre temps.",
+     "n": "<b>On ne goûte jamais avec la cuillère du résident : c'est une faute d'hygiène.</b> Pour la température, on remue, on attend, ou on vérifie sur le bord de l'assiette. ⚕️",
+     "source": "d09-essen-anreichen/heiss"
+    },
+    {
+     "q": "Herr Schulze sagt: „Ich hab mich … verschluckt …“",
+     "c": [
+      "Husten Sie kräftig, das ist gut so. Ich bin da.",
+      "Schnell, trinken Sie einen großen Schluck Wasser!",
+      "Sie essen jetzt zuerst die Suppe."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Husten Sie kräftig, das ist gut so. Ich bin da.",
+     "sens": "Toussez fort, c'est bien. Je suis là.",
+     "n": "<b>Pendant la toux, rien à boire ni à manger : la toux nettoie elle-même.</b> Laisse tousser, buste un peu en avant, reste près de lui. S'il ne peut plus respirer ni tousser, c'est une urgence : appeler à l'aide. ⚕️",
+     "source": "d09-essen-anreichen/verschluckt"
+    },
+    {
+     "q": "Nachts steht Herr Schulze angezogen im Flur: „Lassen Sie mich durch, junger Mann. Ich muss zum Depot, meine Schicht fängt gleich an.“",
+     "c": [
+      "Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?",
+      "Herr Schulze, Sie arbeiten doch seit über zwanzig Jahren nicht mehr! Sie sind in Rente.",
+      "Die Straßenbahn kommt gleich. Warten Sie hier im Flur."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?",
+     "sens": "monsieur Schulze, vous êtes déjà réveillé. Vous voulez aller au travail ?",
+     "n": "<b>Ne contredis pas une personne désorientée : pour elle, c'est vrai maintenant.</b> La corriger l'inquiète et la met en colère. Entre dans son monde : « Sie wollen zur Arbeit? » ⚕️",
+     "source": "d12-nachts-demenz/flur"
+    },
+    {
+     "q": "Nachts im Flur sagt Herr Schulze: „Meinen Sie? Hm … ich bin auch ein bisschen müde.“",
+     "c": [
+      "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.",
+      "Sie gehen jetzt sofort ins Bett. Es ist drei Uhr!",
+      "Aber das ist doch wichtig! Sie müssen das machen."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.",
+     "sens": "Je peux vous accompagner un bout de chemin ? On pourrait déjà suspendre votre veste dans votre chambre.",
+     "n": "<b>Un ordre déclenche la résistance.</b> Propose et accompagne : « Darf ich Sie ein Stück begleiten? » La personne garde le sentiment de choisir.",
+     "source": "d12-nachts-demenz/begleiten"
     }
    ]
   }
@@ -1371,7 +1433,7 @@ window.SCENE = {
     "B1": "Telling a life story in the past",
     "B2": "Speaking gently, without contradicting",
     "C1": "Qualifying an observation",
-    "SIT": "What do you do?"
+    "SIT": "What do you answer?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "The day, without an article: Heute ist <b>Mittwoch</b>. “am Mittwoch” answers the question Wann?",
@@ -1396,10 +1458,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = increasingly: a change over time, not a state.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = quite, rather.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Comparing with his usual state (<b>als sonst</b>): the basis of a useful observation.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Walk with him and redirect his attention, inform the team according to the home's procedure; never use force ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "As long as she is coughing, the cough clears the airway: encourage her, don't give her anything to drink; if no air gets through, it's an emergency ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Prevent falls without stopping him from moving: the walking aid within reach, and you stay with him.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Older people often drink too little: offer what she likes, and keep track of how much she drinks ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Never get a person who has fallen up right away.</b> First reassure and check: a fracture or a blow to the head can go unnoticed. “Bleiben Sie bitte erst mal sitzen.” ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>You don't leave a person who has fallen alone.</b> Call for help from the room: the call button, the phone. “Ich rufe meine Kollegin. Ich bleibe bei Ihnen.” ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Never taste with the resident's spoon: it's a hygiene mistake.</b> To check the temperature, stir, wait, or test it at the edge of the plate. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>While he is coughing, nothing to drink or eat: the cough clears the airway by itself.</b> Let him cough, upper body leaning slightly forward, and stay close to him. If he can no longer breathe or cough, it's an emergency: call for help. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Don't contradict a disoriented person: for him, it is true right now.</b> Correcting him makes him anxious and angry. Step into his world: “Sie wollen zur Arbeit?” ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>An order triggers resistance.</b> Suggest and accompany: “Darf ich Sie ein Stück begleiten?” The person keeps the feeling of choosing."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Today is Wednesday.",
@@ -1424,10 +1488,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "His orientation is getting steadily worse.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "Mrs Weber was in quite a good mood today.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "While telling his story, he seemed calmer than usual.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "I calmly walk a little way with him, talk about his work and let the team know.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "I stay with her, encourage her to cough and call for help if she can't breathe.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "I put the rollator in front of him and wait until he's standing safely.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "I offer her something else to drink and note how much she drinks."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "Mrs. Weber, I'm here. Please stay sitting for now; I'll help you in a moment.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "I'm going to press the call button now and call my colleague. I'm staying with you.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Don't worry, I'll give it a quick stir, then it won't be so hot. Take your time.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Cough hard, that's good. I'm right here.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "Mr. Schulze, you're up already. You want to go to work?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "May I walk with you for a bit? We could hang up your jacket in your room for now."
    }
   },
   "tr": {
@@ -1441,7 +1507,7 @@ window.SCENE = {
     "B1": "Bir hayatı geçmiş zamanda anlatmak",
     "B2": "Karşı çıkmadan, yumuşak konuşmak",
     "C1": "Bir gözlemi incelikle ifade etmek",
-    "SIT": "Ne yaparsınız?"
+    "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "Gün, artikelsiz: Heute ist <b>Mittwoch</b>. “am Mittwoch” Wann? sorusunu yanıtlar.",
@@ -1466,10 +1532,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = giderek: bir durum değil, bir gelişim.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = oldukça, epey.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Her zamanki hâliyle karşılaştırmak (<b>als sonst</b>): yararlı bir gözlemin temeli.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Eşlik etmek ve dikkatini başka yöne çekmek, kurumun prosedürüne göre ekibe haber vermek; asla zorlama yok ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Öksürdüğü sürece öksürük yolu açar: cesaretlendirilir, içecek verilmez; hava geçmiyorsa bu bir acil durumdur ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Hareket etmesini engellemeden düşmeyi önlemek: yardımcı araç el altında, ve yanında kalınır.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Yaşlılar çoğu zaman çok az içer: sevdiği bir şey önerilir ve ne kadar içtiği izlenir ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Düşen birini asla hemen kaldırma.</b> Önce sakinleştir ve kontrol et: bir kırık ya da başa darbe fark edilmeyebilir. “Bleiben Sie bitte erst mal sitzen.” ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>Düşmüş bir kişi yalnız bırakılmaz.</b> Odadan yardım çağır: zil, telefon. “Ich rufe meine Kollegin. Ich bleibe bei Ihnen.” ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Sakinin kaşığıyla asla tadına bakılmaz: bu bir hijyen hatasıdır.</b> Sıcaklık için karıştırılır, beklenir ya da tabağın kenarından kontrol edilir. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Öksürük sırasında ne içecek ne yemek: öksürük kendisi temizler.</b> Öksürmesine izin ver, üst gövde biraz öne eğik, yanında kal. Artık nefes alamıyor ya da öksüremiyorsa bu bir acil durumdur: yardım çağır. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Yönelimi bozulmuş bir kişiye karşı çıkma: onun için bu şu an gerçek.</b> Onu düzeltmek kaygılandırır ve öfkelendirir. Onun dünyasına gir: “Sie wollen zur Arbeit?” ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Emir direnci tetikler.</b> Öner ve eşlik et: “Darf ich Sie ein Stück begleiten?” Kişi seçim yaptığı duygusunu korur."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Bugün çarşamba.",
@@ -1494,10 +1562,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "Yönelimi giderek azalıyor.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "Bayan Weber bugün oldukça neşeliydi.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Anlatırken her zamankinden daha sakin görünüyordu.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Onunla sakince biraz yürürüm, işinden konuşurum ve ekibe haber veririm.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Yanında kalırım, öksürmesi için cesaretlendiririm ve nefes alamazsa yardım çağırırım.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Yürüteci önüne koyarım ve güvenle ayakta durana kadar beklerim.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Ona içecek başka bir şey öneririm ve ne kadar içtiğini not ederim."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "Weber Hanım, buradayım. Lütfen şimdilik oturduğunuz yerde kalın, birazdan size yardım edeceğim.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Şimdi zile basıp meslektaşımı çağırıyorum. Yanınızdan ayrılmıyorum.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Merak etmeyin, biraz karıştırıyorum, böylece daha az sıcak olur. Acele etmeyin.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Kuvvetlice öksürün, böyle iyi. Buradayım.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "Schulze Bey, uyanmışsınız bile. İşe mi gitmek istiyorsunuz?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Size biraz eşlik edebilir miyim? Ceketinizi şimdiden odanızda asabiliriz."
    }
   },
   "uk": {
@@ -1511,7 +1581,7 @@ window.SCENE = {
     "B1": "Розповідати про життя в минулому",
     "B2": "Говорити лагідно, не заперечуючи",
     "C1": "Зважено описувати спостереження",
-    "SIT": "Що ви робите?"
+    "SIT": "Що ви відповісте?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "День без артикля: Heute ist <b>Mittwoch</b>. «am Mittwoch» відповідає на питання Wann?",
@@ -1536,10 +1606,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = дедалі більше: зміна, а не стан.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = досить, доволі.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Порівняння зі звичним станом (<b>als sonst</b>): основа корисного спостереження.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Супроводити й переключити увагу, повідомити команду за процедурою закладу; жодного примусу ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Поки вона кашляє, кашель очищує дихальні шляхи: підбадьорюємо, пити не даємо; якщо повітря не проходить — це невідкладний стан ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Запобігти падінню, не заважаючи рухатися: допоміжний засіб під рукою, і ми поруч.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Літні люди часто пʼють замало: запропонувати те, що їй до смаку, і стежити, скільки вона пʼє ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Ніколи не піднімай людину одразу після падіння.</b> Спочатку заспокой і перевір: перелом чи удар головою можна не помітити. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>Людину, яка впала, не залишають саму.</b> Клич допомогу з кімнати: кнопкою виклику, телефоном. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Ніколи не куштують ложкою мешканця: це порушення гігієни.</b> Щоб перевірити температуру, помішують, чекають або пробують край тарілки. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Під час кашлю — ні пити, ні їсти: кашель сам очищає дихальні шляхи.</b> Дай відкашлятися, верхня частина тіла трохи вперед, залишайся поруч. Якщо він не може ні дихати, ні кашляти, це невідкладний стан: клич допомогу. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Не заперечуй дезорієнтованій людині: для неї це правда зараз.</b> Виправлення тривожить її і злить. Увійди в її світ: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Наказ викликає опір.</b> Пропонуй і супроводжуй: «Darf ich Sie ein Stück begleiten?» Людина зберігає відчуття, що вибирає сама."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Сьогодні середа.",
@@ -1564,10 +1636,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "Його орієнтація дедалі погіршується.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "Пані Вебер сьогодні була в досить гарному настрої.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Розповідаючи, він здавався спокійнішим, ніж зазвичай.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Я спокійно проходжу з ним трохи, говорю про його роботу й повідомляю команду.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Я лишаюся з нею, заохочую її кашляти й кличу допомогу, якщо їй бракує повітря.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Я ставлю перед ним ходунки й чекаю, поки він надійно стоятиме.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Я пропоную їй інший напій і записую, скільки вона пʼє."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "пані Вебер, я тут. Посидьте поки що, будь ласка, я зараз вам допоможу.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Я зараз натисну кнопку виклику й покличу колегу. Я залишаюся з вами.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Не хвилюйтеся, я трохи помішаю, і він буде вже не такий гарячий. Не поспішайте.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Кашляйте сильно, це добре. Я тут.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "пане Шульце, ви вже не спите. Ви хочете на роботу?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Можна, я вас трохи проведу? Ми могли б уже повісити вашу куртку у вашій кімнаті."
    }
   },
   "fa": {
@@ -1581,7 +1655,7 @@ window.SCENE = {
     "B1": "تعریفِ یک زندگی در زمانِ گذشته",
     "B2": "با ملایمت حرف زدن، بی‌آنکه مخالفت کنیم",
     "C1": "سنجیده بیان کردنِ یک مشاهده",
-    "SIT": "چه می‌کنید؟"
+    "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "روز، بدونِ حرفِ تعریف: <span lang=\"de\">Heute ist <b>Mittwoch</b></span>. «<span lang=\"de\">am Mittwoch</span>» جوابِ پرسشِ <span lang=\"de\">Wann?</span> است.",
@@ -1606,10 +1680,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = روزبه‌روز بیشتر: یک روند، نه یک حالت.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = نسبتاً، تا حدی.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "مقایسه با حالِ همیشگی‌اش (<b>als sonst</b>): پایهٔ یک مشاهدهٔ مفید.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "همراهی کردن و پرت کردنِ حواس، خبر دادن به تیم طبقِ روالِ خانهٔ سالمندان؛ هرگز اجبار ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "تا وقتی سرفه می‌کند، سرفه راهِ هوا را باز می‌کند: تشویقش می‌کنیم، چیزی برای نوشیدن نمی‌دهیم؛ اگر هوا رد نشود، اورژانس است ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "پیشگیری از زمین خوردن بی‌آنکه جلوی حرکتش را بگیریم: وسیلهٔ کمکی دمِ دست، و کنارش می‌مانیم.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "سالمندان اغلب خیلی کم می‌نوشند: چیزی را که دوست دارد پیشنهاد می‌کنیم و مقدارِ نوشیدنش را پیگیری می‌کنیم ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>کسی را که زمین خورده هرگز فوراً بلند نکن.</b> اول آرامش کن و بررسی کن: شکستگی یا ضربه به سر ممکن است دیده نشود. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>کسی را که زمین خورده تنها نمی‌گذاریم.</b> از همان اتاق کمک بخواه: با زنگ، با تلفن. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>هرگز با قاشق سالمند مزه نمی‌کنیم: این یک خطای بهداشتی است.</b> برای سنجیدن دما، هم می‌زنیم، صبر می‌کنیم، یا لبه‌ی بشقاب را امتحان می‌کنیم. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>در حین سرفه، نه چیزی برای نوشیدن، نه برای خوردن: سرفه خودش راه نفس را پاک می‌کند.</b> بگذار سرفه کند، بالاتنه کمی رو به جلو، کنارش بمان. اگر دیگر نمی‌تواند نفس بکشد یا سرفه کند، وضعیت اورژانسی است: کمک بخواه. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>حرف فرد دچار سردرگمی را رد نکن: برای او، همین الان حقیقت است.</b> اصلاح کردنش نگرانش می‌کند و عصبانی‌اش می‌کند. وارد دنیای او شو: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>دستور دادن مقاومت ایجاد می‌کند.</b> پیشنهاد بده و همراهی کن: «Darf ich Sie ein Stück begleiten?» فرد این احساس را حفظ می‌کند که خودش انتخاب می‌کند."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "امروز چهارشنبه است.",
@@ -1634,10 +1710,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "جهت‌یابی‌اش روزبه‌روز کمتر می‌شود.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<span lang=\"de\">Frau Weber</span> امروز نسبتاً سرِ حال بود.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "موقعِ تعریف کردن، آرام‌تر از همیشه به نظر می‌رسید.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "آرام کمی با او قدم می‌زنم، از کارش حرف می‌زنم و به تیم خبر می‌دهم.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "کنارش می‌مانم، تشویقش می‌کنم سرفه کند و اگر نتواند نفس بکشد، کمک می‌آورم.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "واکر را جلویش می‌گذارم و صبر می‌کنم تا محکم بایستد.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "نوشیدنیِ دیگری به او پیشنهاد می‌کنم و یادداشت می‌کنم چقدر می‌نوشد."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "خانم وبر، من اینجا هستم. لطفاً فعلاً همان‌طور بنشینید، الان کمکتان می‌کنم.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "الان زنگ را فشار می‌دهم و همکارم را صدا می‌کنم. پیش شما می‌مانم.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "نگران نباشید، کمی همش می‌زنم تا آن‌قدر داغ نباشد. عجله نکنید.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "محکم سرفه کنید، خوب است. من اینجا هستم.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "آقای شولتسه، چه زود بیدار شده‌اید. می‌خواهید سر کار بروید؟",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "اجازه می‌دهید کمی همراهتان بیایم؟ می‌توانیم فعلاً کتتان را در اتاقتان آویزان کنیم."
    }
   },
   "ar": {
@@ -1651,7 +1729,7 @@ window.SCENE = {
     "B1": "رواية حياة بصيغة الماضي",
     "B2": "التحدّث بلطف دون مناقضة",
     "C1": "التعبير الدقيق عن الملاحظة",
-    "SIT": "ما التصرّف الصحيح؟"
+    "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "اليوم دون أداة تعريف: <span lang=\"de\">Heute ist <b>Mittwoch</b></span>. أما «<span lang=\"de\">am Mittwoch</span>» فتجيب عن السؤال <span lang=\"de\">Wann?</span>",
@@ -1676,10 +1754,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = أكثر فأكثر: تطوّر، لا حالة.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = إلى حدّ ما، نوعًا ما.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "المقارنة بحالته المعتادة (<b>als sonst</b>): أساس الملاحظة المفيدة.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "المرافقة وصرف الانتباه، وإبلاغ الفريق وفق إجراءات المؤسسة؛ دون إكراه أبدًا ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "ما دامت تسعل فالسعال ينظّف المجرى: نشجّعها ولا نعطيها ما تشربه؛ وإن لم يعد الهواء يمرّ فهي حالة طوارئ ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "الوقاية من السقوط دون منعه من الحركة: المساعدة في المتناول، ونبقى بجانبه.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "كثيرًا ما يشرب المسنّون أقلّ من اللازم: نقترح ما تحبّه ونتابع كمية ما تشربه ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>لا تُنهض أبدًا شخصًا سقط فورًا.</b> أولًا الطمأنة والفحص: قد يمرّ كسر أو ارتطام بالرأس من دون أن يُلاحظ. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>لا نترك شخصًا سقط وحده.</b> اطلب المساعدة من داخل الغرفة: بالجرس أو بالهاتف. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>لا نتذوق أبدًا بملعقة المقيم: هذا خطأ في النظافة.</b> لمعرفة الحرارة نحرّك، أو ننتظر، أو نتحقق على حافة الصحن. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>أثناء السعال لا شرب ولا أكل: السعال ينظّف وحده.</b> دعه يسعل، والجزء العلوي من جسمه مائل قليلًا إلى الأمام، وابقَ قريبًا منه. إذا لم يعد يستطيع التنفس ولا السعال، فهذه حالة طارئة: اطلب النجدة. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>لا تناقض شخصًا مشوّش الإدراك: بالنسبة إليه، هذا صحيح الآن.</b> تصحيحه يقلقه ويغضبه. ادخل إلى عالمه: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>الأمر يثير المقاومة.</b> اقترح ورافق: «Darf ich Sie ein Stück begleiten?» هكذا يبقى لدى الشخص الشعور بأنه هو من يختار."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "اليوم الأربعاء.",
@@ -1704,10 +1784,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "قدرته على التوجّه تتراجع أكثر فأكثر.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "كانت السيدة <span lang=\"de\">Weber</span> اليوم في مزاج جيّد إلى حدّ ما.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "بدا وهو يحكي أهدأ من المعتاد.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "أمشي معه قليلًا بهدوء، وأتحدّث عن عمله، وأُبلغ الفريق.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "أبقى بجانبها، وأشجّعها على السعال، وأطلب المساعدة إن لم تستطع التنفّس.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "أضع المشّاية أمامه وأنتظر حتى يقف بثبات.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "أقترح عليها مشروبًا آخر، وأدوّن كمية ما تشربه."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "يا سيدة فيبر، أنا هنا. ابقي جالسة الآن من فضلك، سأساعدك حالًا.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "سأضغط الآن على الجرس وأنادي زميلتي. سأبقى معك.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "لا تقلق، سأحرّكه قليلًا، فلا يبقى ساخنًا جدًا. خذ وقتك.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "اسعل بقوة، هذا جيد. أنا هنا.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "يا سيد شولتسه، أنت مستيقظ مبكرًا. تريد الذهاب إلى العمل؟",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "هل تسمح لي بأن أرافقك قليلًا؟ يمكننا أن نعلّق سترتك في غرفتك من الآن."
    }
   },
   "pt": {
@@ -1721,7 +1803,7 @@ window.SCENE = {
     "B1": "Contar uma vida no passado",
     "B2": "Falar com delicadeza, sem contradizer",
     "C1": "Matizar uma observação",
-    "SIT": "O que fazer?"
+    "SIT": "O que responder?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "O dia, sem artigo: Heute ist <b>Mittwoch</b>. “am Mittwoch” responde à pergunta Wann?",
@@ -1746,10 +1828,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = cada vez mais: uma evolução, não um estado.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = bastante, um tanto.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Comparar com o estado habitual dele (<b>als sonst</b>): a base de uma observação útil.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Acompanhar e desviar a atenção, avisar a equipe conforme o procedimento da instituição; nunca usar coerção ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Enquanto ela tosse, a tosse desobstrui: encoraja-se, não se dá de beber; se o ar não passa mais, é uma emergência ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Prevenir a queda sem impedi-lo de se movimentar: a ajuda ao alcance, e fica-se por perto.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Os idosos muitas vezes bebem pouco demais: oferecer o que ela gosta e acompanhar quanto ela bebe ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Nunca levante logo uma pessoa que caiu.</b> Primeiro tranquilizar e verificar: uma fratura ou uma batida na cabeça podem passar despercebidas. “Bleiben Sie bitte erst mal sitzen.” ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>Não se deixa sozinha uma pessoa que caiu.</b> Chame ajuda do próprio quarto: a campainha, o telefone. “Ich rufe meine Kollegin. Ich bleibe bei Ihnen.” ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Nunca se prova com a colher do residente: é um erro de higiene.</b> Para a temperatura, mexe-se, espera-se, ou verifica-se na borda do prato. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Durante a tosse, nada de beber nem de comer: a própria tosse limpa.</b> Deixe tossir, tronco um pouco para a frente, fique perto dele. Se ele não conseguir mais respirar nem tossir, é uma emergência: chame ajuda. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Não contradiga uma pessoa desorientada: para ela, isso é verdade agora.</b> Corrigi-la a deixa inquieta e com raiva. Entre no mundo dela: “Sie wollen zur Arbeit?” ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Uma ordem provoca resistência.</b> Proponha e acompanhe: “Darf ich Sie ein Stück begleiten?” A pessoa continua com a sensação de que escolhe."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Hoje é quarta-feira.",
@@ -1774,10 +1858,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "A orientação dele está diminuindo cada vez mais.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "A sra. Weber estava de bastante bom humor hoje.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Enquanto contava, ele parecia mais calmo do que de costume.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Caminho calmamente um pouco com ele, falo sobre o trabalho dele e aviso a equipe.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Fico perto dela, encorajo-a a tossir e chamo ajuda se ela não conseguir mais respirar.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Coloco o andador perto dele e espero até ele estar bem firme de pé.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Ofereço a ela outra coisa para beber e anoto quanto ela bebe."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "senhora Weber, estou aqui. Fique sentada por enquanto, eu já vou ajudar a senhora.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Vou apertar a campainha e chamar a minha colega. Fico aqui com a senhora.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Não se preocupe, vou mexer um pouquinho, assim ela esfria. Fique à vontade, sem pressa.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Tussa com força, isso, assim mesmo. Estou aqui.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "senhor Schulze, o senhor já está acordado. O senhor quer ir trabalhar?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Posso acompanhar o senhor um pedacinho do caminho? A gente podia já ir pendurar o seu paletó no quarto."
    }
   },
   "pl": {
@@ -1791,7 +1877,7 @@ window.SCENE = {
     "B1": "Opowiadać o życiu w przeszłości",
     "B2": "Mówić łagodnie, bez zaprzeczania",
     "C1": "Niuansowanie obserwacji",
-    "SIT": "Co zrobić?"
+    "SIT": "Co odpowiedzieć?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "Dzień bez rodzajnika: Heute ist <b>Mittwoch</b>. „am Mittwoch” odpowiada na pytanie Wann?",
@@ -1816,10 +1902,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = coraz bardziej: zmiana, a nie stan.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = dość, raczej.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Porównanie z jego zwykłym stanem (<b>als sonst</b>): podstawa przydatnej obserwacji.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Towarzyszyć i odwrócić uwagę, powiadomić zespół zgodnie z procedurą placówki; nigdy przymusu ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Dopóki kaszle, kaszel oczyszcza drogi oddechowe: zachęca się, nie podaje się picia; jeśli powietrze nie przechodzi, to nagły wypadek ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Zapobiegać upadkom, nie odbierając swobody ruchu: pomoc w zasięgu ręki i być obok.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Osoby starsze często piją za mało: zaproponować to, co lubi, i śledzić, ile pije ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Nigdy nie podnoś od razu osoby, która upadła.</b> Najpierw uspokój i sprawdź: złamanie albo uraz głowy mogą pozostać niezauważone. „Bleiben Sie bitte erst mal sitzen.” ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>Nie zostawia się samej osoby, która upadła.</b> Wezwij pomoc z pokoju: dzwonkiem, telefonem. „Ich rufe meine Kollegin. Ich bleibe bei Ihnen.” ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Nigdy nie próbuje się łyżką mieszkańca: to błąd higieniczny.</b> Żeby sprawdzić temperaturę, miesza się, czeka albo sprawdza na brzegu talerza. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>W trakcie kaszlu nic do picia ani do jedzenia: kaszel sam oczyszcza drogi oddechowe.</b> Pozwól kaszleć, tułów lekko pochylony do przodu, zostań przy nim. Jeśli nie może już oddychać ani kaszleć, to nagły wypadek: wezwij pomoc. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Nie zaprzeczaj osobie zdezorientowanej: dla niej to jest prawda teraz.</b> Poprawianie jej niepokoi ją i złości. Wejdź w jej świat: „Sie wollen zur Arbeit?” ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Polecenie wywołuje opór.</b> Proponuj i towarzysz: „Darf ich Sie ein Stück begleiten?” Osoba zachowuje poczucie, że sama wybiera."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Dziś jest środa.",
@@ -1844,10 +1932,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "Jego orientacja coraz bardziej się pogarsza.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "Pani Weber była dziś w dość dobrym humorze.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Kiedy opowiadał, wydawał się spokojniejszy niż zwykle.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Spokojnie przechodzę z nim kawałek, rozmawiam o jego pracy i powiadamiam zespół.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Zostaję przy niej, zachęcam ją do kaszlu i wzywam pomoc, jeśli nie może złapać tchu.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Podstawiam mu rolator i czekam, aż będzie pewnie stał.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Proponuję jej coś innego do picia i zapisuję, ile pije."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "pani Weber, jestem tu. Proszę na razie siedzieć, zaraz pani pomogę.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Naciskam teraz dzwonek i wołam koleżankę. Zostaję z panią.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Proszę się nie martwić, chwilę zamieszam, wtedy nie będzie już taka gorąca. Proszę się nie spieszyć.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Proszę mocno kaszleć, tak jest dobrze. Jestem przy panu.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "panie Schulze, pan już nie śpi. Chce pan iść do pracy?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Czy mogę pana kawałek odprowadzić? Moglibyśmy już powiesić kurtkę w pana pokoju."
    }
   },
   "ru": {
@@ -1861,7 +1951,7 @@ window.SCENE = {
     "B1": "Рассказывать о жизни в прошлом",
     "B2": "Говорить мягко, не возражая",
     "C1": "Наблюдение с оттенками",
-    "SIT": "Что делать?"
+    "SIT": "Что ответить?"
    },
    "questions": {
     "A2 | Heute ist Mittwoch.": "День недели без артикля: Heute ist <b>Mittwoch</b>. «am Mittwoch» отвечает на вопрос Wann?",
@@ -1886,10 +1976,12 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = всё больше: изменение, а не состояние.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = довольно, достаточно.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Сравнение с его обычным состоянием (<b>als sonst</b>): основа полезного наблюдения.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Сопровождать и переключать внимание, сообщать команде по процедуре учреждения; никогда не применять принуждение ⚕️.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Пока она кашляет, кашель очищает дыхательные пути: подбадривают, пить не дают; если воздух не проходит, это экстренный случай ⚕️.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Предотвратить падение, не мешая двигаться: помощь под рукой, и находиться рядом.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Пожилые люди часто пьют слишком мало: предложить то, что она любит, и следить, сколько она пьёт ⚕️."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Никогда не поднимай упавшего человека сразу.</b> Сначала успокой и проверь: перелом или удар головой можно не заметить. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>Упавшего человека не оставляют одного.</b> Зови на помощь из комнаты: кнопкой вызова, по телефону. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Никогда не пробуют еду ложкой проживающего: это нарушение гигиены.</b> Чтобы проверить температуру, помешивают, ждут или проверяют у края тарелки. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Во время кашля — ни питья, ни еды: кашель сам очищает дыхательные пути.</b> Дай откашляться, верхняя часть тела немного вперёд, оставайся рядом. Если он не может ни дышать, ни кашлять — это неотложная ситуация: зови на помощь. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>Не спорь с дезориентированным человеком: для него это правда сейчас.</b> Если его поправлять, он тревожится и злится. Войди в его мир: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Приказ вызывает сопротивление.</b> Предлагай и сопровождай: «Darf ich Sie ein Stück begleiten?» У человека остаётся ощущение, что он выбирает сам."
    },
    "sens": {
     "A2 | Heute ist Mittwoch.": "Сегодня среда.",
@@ -1914,10 +2006,86 @@ window.SCENE = {
     "C1 | Seine Orientierung lässt zunehmend nach.": "Его ориентация всё больше ухудшается.",
     "C1 | Frau Weber war heute ziemlich gut gelaunt.": "Госпожа Вебер сегодня была в довольно хорошем настроении.",
     "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Когда он рассказывал, он казался спокойнее, чем обычно.",
-    "SIT | Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.": "Я спокойно прохожу с ним немного, говорю о его работе и сообщаю команде.",
-    "SIT | Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.": "Я остаюсь рядом с ней, побуждаю её кашлять и зову на помощь, если она не может дышать.",
-    "SIT | Ich stelle ihm den Rollator hin und warte, bis er sicher steht.": "Я подставляю ему ходунки и жду, пока он будет уверенно стоять.",
-    "SIT | Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.": "Я предлагаю ей что-нибудь другое попить и записываю, сколько она пьёт."
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "госпожа Вебер, я здесь. Пожалуйста, пока посидите, я сейчас вам помогу.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Я сейчас нажму кнопку вызова и позову коллегу. Я остаюсь с вами.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "Не волнуйтесь, я немного помешаю, и он будет не такой горячий. Не торопитесь.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Кашляйте сильно, так и надо. Я рядом.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "господин Шульце, вы уже проснулись. Вы собрались на работу?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Можно я вас немного провожу? Мы могли бы уже повесить вашу куртку у вас в комнате."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala común de una residencia de adultos mayores a la hora del café: Herr Schulze muestra una foto de un tranvía en un álbum, Frau Weber se ríe con su taza en la mano, una residente en una silla de ruedas de cuidados bajo una manta azul; sobre la mesa, la cafetera, el pastel, el rompecabezas, el periódico; alrededor, un andador, una pelota roja, el dispensador de bebidas, el pasamanos, un reloj grande y un calendario.",
+    "consigne": "Toca un objeto o a una persona de la sala común."
+   },
+   "couches": {
+    "A1": "Los objetos de la sala común",
+    "A2": "El día y la hora: orientarse",
+    "B1": "Contar una vida en pasado",
+    "B2": "Hablar con suavidad, sin contradecir",
+    "C1": "Matizar una observación",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Heute ist Mittwoch.": "El día, sin artículo: Heute ist <b>Mittwoch</b>. «am Mittwoch» (el miércoles) responde a la pregunta Wann?",
+    "A2 | Herr Schulze, welchen Monat haben wir?": "haben + acusativo: der Monat → welch<b>en</b> Monat. Estas preguntas ayudan a un residente a orientarse.",
+    "A2 | Gleich gibt es Kaffee und Kuchen.": "<b>Kaffee und Kuchen</b>: el café con pastel de la tarde, un punto fijo del día.",
+    "A2 | Sie liegt auf dem Tisch.": "<b>auf</b> + dativo: sobre una superficie. «die Brille» es singular en alemán: sie liegt.",
+    "A2 | Die Uhr hängt an der Wand.": "Contra una superficie vertical: <b>an</b> + dativo.",
+    "A2 | Frau Weber, möchten Sie noch eine Tasse Kaffee?": "die Tasse, en acusativo: <b>eine</b> Tasse.",
+    "B1 | Herr Schulze ist vierzig Jahre Straßenbahn gefahren.": "<b>fahren</b> → Perfekt con <b>sein</b>, no con haben.",
+    "B1 | Frau Weber hat früher als Schneiderin gearbeitet.": "<b>arbeiten</b> → Perfekt con <b>haben</b>.",
+    "B1 | Herr Schulze ist mit zwanzig nach Berlin gezogen.": "<b>ziehen</b> (mudarse, cambiar de lugar) → <b>sein</b>.",
+    "B1 | Als junger Mann trug er eine Uniform.": "Una biografía escrita se cuenta en Präteritum: tragen → <b>trug</b> (verbo fuerte).",
+    "B1 | Frau Weber hat heute viel gelacht.": "<b>lachen</b> → <b>haben</b>.",
+    "B1 | Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.": "<b>einschlafen</b>: un cambio de estado → <b>sein</b>.",
+    "B2 | Sie waren gern Straßenbahnfahrer, nicht wahr?": "La validación: se acoge lo que siente y su historia, no se le opone la realidad ⚕️.",
+    "B2 | Wie wäre es, wenn wir zusammen das Album anschauen?": "<b>Wie wäre es, wenn …?</b>: proponer con suavidad (Konjunktiv II), como «¿Qué tal si…?».",
+    "B2 | Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?": "<b>Würden Sie …?</b>: una petición cortés, que deja elegir.",
+    "B2 | Möchten Sie sich ein bisschen ausruhen?": "Se propone (<b>Möchten Sie …?</b>), no se impone.",
+    "B2 | Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?": "Nombrar el sentimiento y luego invitar a contar: la validación, sin mentira ni confrontación ⚕️.",
+    "C1 | Herr Schulze erinnert sich eher an früher als an gestern.": "<b>eher … als …</b> = más bien … que …",
+    "C1 | Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.": "<b>kaum</b> = casi no: una observación que hay que transmitir ⚕️.",
+    "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = cada vez más: una evolución, no un estado.",
+    "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = bastante.",
+    "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Comparar con su estado habitual (<b>als sonst</b>): la base de una observación útil.",
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Nunca levantes enseguida a una persona que se cayó.</b> Primero tranquilizar y revisar: una fractura o un golpe en la cabeza pueden pasar inadvertidos. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>No se deja sola a una persona que se cayó.</b> Pide ayuda desde la habitación: el timbre, el teléfono. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Nunca se prueba con la cuchara del residente: es una falta de higiene.</b> Para la temperatura, se revuelve, se espera o se comprueba en el borde del plato. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Mientras tose, nada de beber ni de comer: la tos limpia por sí sola.</b> Déjalo toser, con el tronco un poco hacia adelante, y quédate cerca de él. Si ya no puede respirar ni toser, es una emergencia: pedir ayuda. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>No contradigas a una persona desorientada: para ella, eso es verdad ahora.</b> Corregirla la inquieta y la enoja. Entra en su mundo: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Una orden provoca resistencia.</b> Propón y acompaña: «Darf ich Sie ein Stück begleiten?» La persona conserva la sensación de elegir."
+   },
+   "sens": {
+    "A2 | Heute ist Mittwoch.": "Hoy es miércoles.",
+    "A2 | Herr Schulze, welchen Monat haben wir?": "Señor Schulze, ¿en qué mes estamos?",
+    "A2 | Gleich gibt es Kaffee und Kuchen.": "Dentro de poco hay café y pastel.",
+    "A2 | Sie liegt auf dem Tisch.": "Están sobre la mesa.",
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Frau Weber, möchten Sie noch eine Tasse Kaffee?": "Señora Weber, ¿quiere otra taza de café?",
+    "B1 | Herr Schulze ist vierzig Jahre Straßenbahn gefahren.": "El Sr. Schulze manejó tranvías durante cuarenta años.",
+    "B1 | Frau Weber hat früher als Schneiderin gearbeitet.": "Antes, la Sra. Weber trabajaba como costurera.",
+    "B1 | Herr Schulze ist mit zwanzig nach Berlin gezogen.": "El Sr. Schulze se mudó a Berlín a los veinte años.",
+    "B1 | Als junger Mann trug er eine Uniform.": "De joven llevaba uniforme.",
+    "B1 | Frau Weber hat heute viel gelacht.": "La Sra. Weber se rio mucho hoy.",
+    "B1 | Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.": "La residente en silla de ruedas se durmió después del almuerzo.",
+    "B2 | Sie waren gern Straßenbahnfahrer, nicht wahr?": "A usted le gustaba ser conductor de tranvía, ¿verdad?",
+    "B2 | Wie wäre es, wenn wir zusammen das Album anschauen?": "¿Qué tal si vemos el álbum juntos?",
+    "B2 | Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?": "¿Me contaría por dónde pasaba este tranvía?",
+    "B2 | Möchten Sie sich ein bisschen ausruhen?": "¿Quiere descansar un poco?",
+    "B2 | Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?": "Últimamente piensa mucho en su esposo. ¿Me cuenta de él?",
+    "C1 | Herr Schulze erinnert sich eher an früher als an gestern.": "El Sr. Schulze se acuerda más de antes que de ayer.",
+    "C1 | Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.": "Últimamente, la residente en silla de ruedas casi no come nada.",
+    "C1 | Seine Orientierung lässt zunehmend nach.": "Su orientación disminuye cada vez más.",
+    "C1 | Frau Weber war heute ziemlich gut gelaunt.": "La Sra. Weber estuvo hoy de bastante buen humor.",
+    "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Mientras contaba, se veía más tranquilo que de costumbre.",
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "Señora Weber, aquí estoy. Por favor, quédese sentada por ahora, enseguida la ayudo.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Ahora toco el timbre y llamo a mi colega. Me quedo con usted.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "No se preocupe, la revuelvo un poco y así ya no estará tan caliente. Tómese su tiempo.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Tosa fuerte, así está bien. Aquí estoy.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "Señor Schulze, ya está despierto. ¿Quiere ir al trabajo?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "¿Puedo acompañarlo un tramo? Podríamos ir colgando la chaqueta en su habitación."
    }
   }
  }

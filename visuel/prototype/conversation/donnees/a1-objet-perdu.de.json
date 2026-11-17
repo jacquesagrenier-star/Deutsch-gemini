@@ -1,0 +1,90 @@
+{
+ "id": "a1-objet-perdu",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "Un objet oublié au café"},
+ "intro": {"fr": "Hier, tu as pris un café dans ton quartier. Ce matin, impossible de retrouver ton écharpe… ou ton parapluie ? Tu retournes au café."},
+ "personnes": ["kellnerin"],
+ "debut": "vergessen",
+ "textes": {"objet_fr": {"cle": "objet", "schal": "ton écharpe", "schirm": "ton parapluie"}},
+ "noeuds": {
+  "vergessen": {
+   "dit": [
+    {"recit": {"fr": "Le même café qu'hier. La serveuse te reconnaît."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Guten Morgen! Möchten Sie einen Kaffee?", "fr": "Bonjour ! Vous voulez un café ?"}
+   ],
+   "choix": [
+    {"t": "Nein, danke. Ich habe gestern meinen Schal hier vergessen.", "fr": "Non, merci. Hier, j'ai oublié mon écharpe ici.", "pose": {"objet": "schal"}, "va": "aussehen",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh, einen Schal!", "fr": "Oh, une écharpe !"}]},
+    {"t": "Nein, danke. Ich habe gestern meinen Regenschirm hier vergessen.", "fr": "Non, merci. Hier, j'ai oublié mon parapluie ici.", "pose": {"objet": "schirm"}, "va": "aussehen",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Oh, einen Regenschirm!", "fr": "Oh, un parapluie !"}]},
+    {"faux": true, "t": "Nein, danke. Ich habe gestern meinen Schal hier vergesst.", "fr": "Non, merci. Hier, j'ai oublié mon écharpe ici.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Vergessen? Ihren Schal?", "fr": "Oublié ? Votre écharpe ?"}],
+     "aide": {"fr": "Au Perfekt, <b>vergessen</b> ne change pas : « ich habe meinen Schal <b>vergessen</b> » (jamais « vergesst »)."}}
+   ]
+  },
+  "aussehen": {
+   "dit": [
+    {"si": {"objet": "schal"}, "qui": "kellnerin", "air": "question", "t": "Wie sieht er aus?", "fr": "Elle est comment ?"},
+    {"si": {"objet": "schirm"}, "qui": "kellnerin", "air": "question", "t": "Wie sieht er aus?", "fr": "Il est comment ?"}
+   ],
+   "choix": [
+    {"si": {"objet": "schal"}, "t": "Er ist rot und sehr lang.", "fr": "Elle est rouge et très longue.", "va": "wo"},
+    {"si": {"objet": "schirm"}, "t": "Er ist schwarz und klein.", "fr": "Il est noir et petit.", "va": "wo"},
+    {"si": {"objet": "schal"}, "faux": true, "t": "Sie ist rot und sehr lang.", "fr": "Elle est rouge et très longue.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Sie? Ach so, der Schal … er ist rot.", "fr": "« Sie » ? Ah, l'écharpe… elle est rouge."}],
+     "aide": {"fr": "<b>der Schal</b> est masculin en allemand : on le reprend par <b>er</b>, même si « écharpe » est féminin en français."}},
+    {"si": {"objet": "schirm"}, "faux": true, "t": "Es ist schwarz und klein.", "fr": "Il est noir et petit.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Es? Ach so, der Regenschirm … er ist schwarz.", "fr": "« Es » ? Ah, le parapluie… il est noir."}],
+     "aide": {"fr": "<b>der Regenschirm</b> est masculin : on le reprend par <b>er</b>. « es » sert pour les mots en <b>das</b>."}}
+   ]
+  },
+  "wo": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Und wo haben Sie gesessen?", "fr": "Et où étiez-vous assis(e) ?"}],
+   "choix": [
+    {"t": "Da, am Fenster.", "fr": "Là, près de la fenêtre.", "va": "falsch",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Moment, ich schaue mal nach.", "fr": "Un instant, je vais voir."}]},
+    {"t": "Draußen, auf der Terrasse.", "fr": "Dehors, sur la terrasse.", "va": "falsch",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Moment, ich schaue mal nach.", "fr": "Un instant, je vais voir."}]},
+    {"repete": true, "t": "Entschuldigung, wie bitte?", "fr": "Excusez-moi, pardon ?", "va": "wo",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Wo haben Sie gestern gesessen? Drinnen oder draußen?", "fr": "Où étiez-vous assis(e) hier ? Dedans ou dehors ?"}]}
+   ]
+  },
+  "falsch": {
+   "dit": [
+    {"recit": {"fr": "Elle fouille dans une boîte derrière le comptoir et en sort quelque chose."}},
+    {"si": {"objet": "schal"}, "qui": "kellnerin", "air": "question", "t": "Ist das Ihr Schal? Der blaue hier?", "fr": "C'est votre écharpe ? La bleue, là ?"},
+    {"si": {"objet": "schirm"}, "qui": "kellnerin", "air": "question", "t": "Ist das Ihr Regenschirm? Der grüne hier?", "fr": "C'est votre parapluie ? Le vert, là ?"}
+   ],
+   "choix": [
+    {"si": {"objet": "schal"}, "t": "Nein, leider nicht. Mein Schal ist rot.", "fr": "Non, malheureusement pas. Mon écharpe est rouge.", "va": "richtig"},
+    {"si": {"objet": "schirm"}, "t": "Nein, leider nicht. Mein Regenschirm ist schwarz.", "fr": "Non, malheureusement pas. Mon parapluie est noir.", "va": "richtig"}
+   ]
+  },
+  "richtig": {
+   "dit": [
+    {"si": {"objet": "schal"}, "qui": "kellnerin", "air": "sourire", "t": "Rot … Und der hier?", "fr": "Rouge… Et celle-ci ?"},
+    {"si": {"objet": "schirm"}, "qui": "kellnerin", "air": "sourire", "t": "Schwarz … Und der hier?", "fr": "Noir… Et celui-ci ?"}
+   ],
+   "choix": [
+    {"t": "Ja, das ist er! Vielen Dank!", "fr": "Oui, c'est ça ! Merci beaucoup !", "va": "kaffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern geschehen!", "fr": "Avec plaisir !"}]},
+    {"si": {"objet": "schal"}, "t": "Super, das ist mein Schal! Danke schön!", "fr": "Super, c'est mon écharpe ! Merci beaucoup !", "va": "kaffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern geschehen!", "fr": "Avec plaisir !"}]},
+    {"si": {"objet": "schirm"}, "t": "Super, das ist mein Regenschirm! Danke schön!", "fr": "Super, c'est mon parapluie ! Merci beaucoup !", "va": "kaffee",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern geschehen!", "fr": "Avec plaisir !"}]}
+   ]
+  },
+  "kaffee": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Und jetzt? Möchten Sie vielleicht doch einen Kaffee?", "fr": "Et maintenant ? Vous voulez finalement un café ?"}],
+   "choix": [
+    {"t": "Ja, gern. Einen Kaffee, bitte.", "fr": "Oui, volontiers. Un café, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort!", "fr": "Ça arrive tout de suite !"}]},
+    {"t": "Nein, danke. Ich muss zur Arbeit. Auf Wiedersehen!", "fr": "Non, merci. Je dois aller au travail. Au revoir !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Auf Wiedersehen! Schönen Tag noch!", "fr": "Au revoir ! Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as décrit {objet_fr} (sa couleur, sa taille), dit où tu étais assis(e), refusé le mauvais… et la serveuse a trouvé le bon."}
+}

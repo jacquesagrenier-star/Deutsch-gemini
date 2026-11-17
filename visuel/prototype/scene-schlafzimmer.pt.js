@@ -314,7 +314,7 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "caméra"
+   "fr": "appareil photo"
   },
   {
    "id": "handy",

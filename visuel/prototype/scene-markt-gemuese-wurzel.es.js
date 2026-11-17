@@ -258,7 +258,7 @@ window.SCENE = {
    ],
    "fr": "le chou-rave",
    "en": "the kohlrabi",
-   "pt": "o couve-rábano",
+   "pt": "a couve-rábano",
    "ar": "كرنب ساقي، كولرابي",
    "pl": "kalarepa",
    "ru": "кольраби",
@@ -832,10 +832,10 @@ window.SCENE = {
    "devant": 2,
    "boites": [
     [
-     39,
-     65.0,
-     6,
-     5.0
+     38.5,
+     69.9,
+     8.6,
+     4.6
     ]
    ],
    "fr": "le radis",

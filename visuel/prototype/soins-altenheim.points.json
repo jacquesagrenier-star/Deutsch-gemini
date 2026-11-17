@@ -11,127 +11,776 @@
  "alt": "La salle commune d'une maison de retraite à l'heure du café : Herr Schulze montre une photo de tramway dans un album, Frau Weber rit, sa tasse à la main, une résidente en fauteuil de soins sous une couverture bleue ; sur la table, la cafetière, le gâteau, le puzzle, le journal ; autour, un déambulateur, un ballon rouge, la fontaine à boissons, la main courante, une grande horloge et un calendrier.",
  "consigne": "Touche un objet ou une personne de la salle commune.",
  "couches": {
-  "A1": {"titre": "Les objets de la salle commune"},
-  "A2": {"titre": "Le jour et le temps : s'orienter", "qs": [
-   {"q": "Welcher Tag ist heute? — Heute ist ___.", "c": ["Mittwoch", "am Mittwoch", "Mittwochs"], "f": "kalender",
-    "phrase": "Heute ist Mittwoch.", "sens": "Aujourd'hui, c'est mercredi.",
-    "n": "Le jour, sans article : Heute ist <b>Mittwoch</b>. « am Mittwoch » répond à la question Wann?"},
-   {"q": "Herr Schulze, ___ Monat haben wir?", "c": ["welchen", "welcher", "welches"], "f": "kalender", "r": "herr-schulze",
-    "phrase": "Herr Schulze, welchen Monat haben wir?", "sens": "Monsieur Schulze, quel mois sommes-nous ?",
-    "n": "haben + accusatif : der Monat → welch<b>en</b> Monat. Ces questions aident un résident à s'orienter."},
-   {"q": "Gleich gibt es Kaffee ___ Kuchen.", "c": ["und", "oder", "mit"], "f": "kuchen",
-    "phrase": "Gleich gibt es Kaffee und Kuchen.", "sens": "Tout à l'heure, il y aura café et gâteau.",
-    "n": "<b>Kaffee und Kuchen</b> : le goûter de l'après-midi, un repère fixe de la journée."},
-   {"q": "Wo ist Ihre Brille, Herr Schulze? — Sie liegt ___ dem Tisch.", "c": ["auf", "an", "in"], "f": "brille", "r": "tisch",
-    "phrase": "Sie liegt auf dem Tisch.", "sens": "Elles sont sur la table.",
-    "n": "<b>auf</b> + datif : sur une surface. « die Brille » est un singulier en allemand : sie liegt."},
-   {"q": "Die Uhr hängt ___ der Wand.", "c": ["an", "auf", "in"], "f": "uhr",
-    "phrase": "Die Uhr hängt an der Wand.", "sens": "L'horloge est accrochée au mur.",
-    "n": "Contre une surface verticale : <b>an</b> + datif."},
-   {"q": "Frau Weber, möchten Sie noch ___ Tasse Kaffee?", "c": ["eine", "einen", "ein"], "f": "tasse-weber", "r": "frau-weber",
-    "phrase": "Frau Weber, möchten Sie noch eine Tasse Kaffee?", "sens": "Madame Weber, voulez-vous encore une tasse de café ?",
-    "n": "die Tasse, à l'accusatif : <b>eine</b> Tasse."}
-  ]},
-  "B1": {"titre": "Raconter une vie au passé", "qs": [
-   {"q": "Herr Schulze ___ vierzig Jahre Straßenbahn gefahren.", "c": ["ist", "hat", "wird"], "f": "fotoalbum", "r": "herr-schulze",
-    "phrase": "Herr Schulze ist vierzig Jahre Straßenbahn gefahren.", "sens": "M. Schulze a conduit le tramway pendant quarante ans.",
-    "n": "<b>fahren</b> → Perfekt avec <b>sein</b>.", "revise": "fahren"},
-   {"q": "Frau Weber ___ früher als Schneiderin gearbeitet.", "c": ["hat", "ist", "wird"], "f": "frau-weber",
-    "phrase": "Frau Weber hat früher als Schneiderin gearbeitet.", "sens": "Mme Weber a été couturière autrefois.",
-    "n": "<b>arbeiten</b> → Perfekt avec <b>haben</b>.", "revise": "arbeiten"},
-   {"q": "Herr Schulze ___ mit zwanzig nach Berlin gezogen.", "c": ["ist", "hat", "wird"], "f": "herr-schulze",
-    "phrase": "Herr Schulze ist mit zwanzig nach Berlin gezogen.", "sens": "M. Schulze s'est installé à Berlin à vingt ans.",
-    "n": "<b>ziehen</b> (déménager, changer de lieu) → <b>sein</b>."},
-   {"q": "Als junger Mann ___ er eine Uniform.", "c": ["trug", "tragte", "getragen"], "f": "fotoalbum",
-    "phrase": "Als junger Mann trug er eine Uniform.", "sens": "Jeune homme, il portait un uniforme.",
-    "n": "Une biographie écrite se raconte au Präteritum : tragen → <b>trug</b> (verbe fort)."},
-   {"q": "Frau Weber ___ heute viel gelacht.", "c": ["hat", "ist", "wird"], "f": "frau-weber",
-    "phrase": "Frau Weber hat heute viel gelacht.", "sens": "Mme Weber a beaucoup ri aujourd'hui.",
-    "n": "<b>lachen</b> → <b>haben</b>."},
-   {"q": "Die Bewohnerin im Rollstuhl ___ nach dem Mittagessen eingeschlafen.", "c": ["ist", "hat", "wird"], "f": "bewohnerin",
-    "phrase": "Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.", "sens": "La résidente en fauteuil s'est endormie après le déjeuner.",
-    "n": "<b>einschlafen</b> : un changement d'état → <b>sein</b>."}
-  ]},
-  "B2": {"titre": "Parler avec douceur, sans contredire", "qs": [
-   {"q": "Herr Schulze sagt: „Ich muss los, meine Bahn fährt gleich.“ Was sagen Sie?", "c": ["Sie waren gern Straßenbahnfahrer, nicht wahr?", "Herr Schulze, Sie sind doch schon lange in Rente.", "Das stimmt nicht, Sie wohnen jetzt hier."], "f": "herr-schulze",
-    "phrase": "Sie waren gern Straßenbahnfahrer, nicht wahr?", "sens": "Vous aimiez conduire le tramway, n'est-ce pas ?",
-    "n": "La validation : on accueille ce qu'il ressent et son histoire, on ne lui oppose pas la réalité ⚕️."},
-   {"q": "Wie ___ es, wenn wir zusammen das Album anschauen?", "c": ["wäre", "ist", "war"], "f": "fotoalbum",
-    "phrase": "Wie wäre es, wenn wir zusammen das Album anschauen?", "sens": "Et si nous regardions l'album ensemble ?",
-    "n": "<b>Wie wäre es, wenn …?</b> : proposer avec douceur (Konjunktiv II)."},
-   {"q": "___ Sie mir erzählen, wo diese Straßenbahn gefahren ist?", "c": ["Würden", "Werden", "Wären"], "f": "fotoalbum", "r": "herr-schulze",
-    "phrase": "Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?", "sens": "Voudriez-vous me raconter où roulait ce tramway ?",
-    "n": "<b>Würden Sie …?</b> : une demande polie, qui laisse le choix."},
-   {"q": "Die Bewohnerin im Rollstuhl wirkt müde. Was sagen Sie?", "c": ["Möchten Sie sich ein bisschen ausruhen?", "Sie müssen jetzt wach bleiben.", "Warum schlafen Sie schon wieder?"], "f": "bewohnerin",
-    "phrase": "Möchten Sie sich ein bisschen ausruhen?", "sens": "Voulez-vous vous reposer un peu ?",
-    "n": "On propose (<b>Möchten Sie …?</b>), on n'impose pas."},
-   {"q": "Frau Weber fragt zum dritten Mal, wann ihr Mann kommt. Was sagen Sie?", "c": ["Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?", "Das haben Sie mich schon dreimal gefragt.", "Ihr Mann kommt nicht mehr, das wissen Sie doch."], "f": "frau-weber",
-    "phrase": "Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?", "sens": "Vous pensez beaucoup à votre mari en ce moment. Vous me parlez de lui ?",
-    "n": "Nommer le sentiment, puis inviter à raconter : la validation, sans mensonge ni confrontation ⚕️."}
-  ]},
-  "C1": {"titre": "Nuancer une observation", "qs": [
-   {"q": "Herr Schulze erinnert sich ___ an früher als an gestern.", "c": ["eher", "kaum", "zunehmend"], "f": "herr-schulze",
-    "phrase": "Herr Schulze erinnert sich eher an früher als an gestern.", "sens": "M. Schulze se souvient plutôt d'autrefois que d'hier.",
-    "n": "<b>eher … als …</b> = plutôt … que …"},
-   {"q": "Die Bewohnerin im Rollstuhl isst in letzter Zeit ___ etwas.", "c": ["kaum", "eher", "ziemlich"], "f": "bewohnerin",
-    "phrase": "Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.", "sens": "Ces derniers temps, la résidente en fauteuil ne mange presque rien.",
-    "n": "<b>kaum</b> = presque pas : une observation à transmettre ⚕️."},
-   {"q": "Seine Orientierung lässt ___ nach.", "c": ["zunehmend", "ziemlich", "eher"], "f": "herr-schulze",
-    "phrase": "Seine Orientierung lässt zunehmend nach.", "sens": "Son orientation diminue de plus en plus.",
-    "n": "<b>zunehmend</b> = de plus en plus : une évolution, pas un état."},
-   {"q": "Frau Weber war heute ___ gut gelaunt.", "c": ["ziemlich", "kaum", "zunehmend"], "f": "frau-weber",
-    "phrase": "Frau Weber war heute ziemlich gut gelaunt.", "sens": "Mme Weber était plutôt de bonne humeur aujourd'hui.",
-    "n": "<b>ziemlich</b> = assez, plutôt."},
-   {"q": "Er wirkte beim Erzählen ___ als sonst.", "c": ["ruhiger", "ruhig", "am ruhigsten"], "f": "herr-schulze",
-    "phrase": "Er wirkte beim Erzählen ruhiger als sonst.", "sens": "En racontant, il paraissait plus calme que d'habitude.",
-    "n": "Comparer à son état habituel (<b>als sonst</b>) : la base d'une observation utile."}
-  ]},
-  "SIT": {"titre": "Que faites-vous ?", "niveau": "B2", "qs": [
-   {"q": "Herr Schulze steht auf und will das Haus verlassen: „Ich muss zur Arbeit.“ Was tun Sie?", "c": ["Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.", "Ich halte ihn am Arm fest und bringe ihn an seinen Platz zurück.", "Ich schließe die Tür ab und sage nichts."], "f": "herr-schulze", "type": "situation",
-    "phrase": "Ich gehe ruhig ein Stück mit ihm, spreche über seine Arbeit und sage dem Team Bescheid.", "sens": "Je fais calmement quelques pas avec lui, je parle de son travail et je préviens l'équipe.",
-    "n": "Accompagner et détourner l'attention, prévenir l'équipe selon la procédure de la maison ; jamais de contrainte ⚕️."},
-   {"q": "Frau Weber hustet stark, sie hat sich beim Kuchen verschluckt. Was tun Sie?", "c": ["Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.", "Ich gebe ihr schnell ein Glas Wasser.", "Ich gehe weg, damit sie in Ruhe husten kann."], "f": "frau-weber", "type": "situation",
-    "phrase": "Ich bleibe bei ihr, ermutige sie zu husten und hole Hilfe, wenn sie keine Luft bekommt.", "sens": "Je reste près d'elle, je l'encourage à tousser et j'appelle de l'aide si elle n'arrive plus à respirer.",
-    "n": "Tant qu'elle tousse, la toux dégage : on encourage, on ne donne pas à boire ; si l'air ne passe plus, c'est une urgence ⚕️."},
-   {"q": "Herr Schulze will aufstehen, aber sein Rollator steht zu weit weg. Was tun Sie?", "c": ["Ich stelle ihm den Rollator hin und warte, bis er sicher steht.", "Ich sage ihm, er soll sitzen bleiben.", "Ich lasse ihn gehen, es sind ja nur ein paar Schritte."], "f": "rollator", "type": "situation",
-    "phrase": "Ich stelle ihm den Rollator hin und warte, bis er sicher steht.", "sens": "Je lui approche le déambulateur et j'attends qu'il soit bien debout.",
-    "n": "Prévenir la chute sans l'empêcher de bouger : l'aide à portée, et on reste là."},
-   {"q": "Die Bewohnerin im Rollstuhl hat ihren Kaffee nicht angerührt. Was tun Sie?", "c": ["Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.", "Ich räume die Tasse einfach ab.", "Ich sage ihr, dass sie jetzt trinken muss."], "f": "bewohnerin", "type": "situation",
-    "phrase": "Ich biete ihr etwas anderes zu trinken an und schreibe auf, wie viel sie trinkt.", "sens": "Je lui propose autre chose à boire et je note combien elle boit.",
-    "n": "Les personnes âgées boivent souvent trop peu : proposer ce qu'elle aime, et suivre ce qu'elle boit ⚕️."}
-  ]}
+  "A1": {
+   "titre": "Les objets de la salle commune"
+  },
+  "A2": {
+   "titre": "Le jour et le temps : s'orienter",
+   "qs": [
+    {
+     "q": "Welcher Tag ist heute? — Heute ist ___.",
+     "c": [
+      "Mittwoch",
+      "am Mittwoch",
+      "Mittwochs"
+     ],
+     "f": "kalender",
+     "phrase": "Heute ist Mittwoch.",
+     "sens": "Aujourd'hui, c'est mercredi.",
+     "n": "Le jour, sans article : Heute ist <b>Mittwoch</b>. « am Mittwoch » répond à la question Wann?"
+    },
+    {
+     "q": "Herr Schulze, ___ Monat haben wir?",
+     "c": [
+      "welchen",
+      "welcher",
+      "welches"
+     ],
+     "f": "kalender",
+     "r": "herr-schulze",
+     "phrase": "Herr Schulze, welchen Monat haben wir?",
+     "sens": "Monsieur Schulze, quel mois sommes-nous ?",
+     "n": "haben + accusatif : der Monat → welch<b>en</b> Monat. Ces questions aident un résident à s'orienter."
+    },
+    {
+     "q": "Gleich gibt es Kaffee ___ Kuchen.",
+     "c": [
+      "und",
+      "oder",
+      "mit"
+     ],
+     "f": "kuchen",
+     "phrase": "Gleich gibt es Kaffee und Kuchen.",
+     "sens": "Tout à l'heure, il y aura café et gâteau.",
+     "n": "<b>Kaffee und Kuchen</b> : le goûter de l'après-midi, un repère fixe de la journée."
+    },
+    {
+     "q": "Wo ist Ihre Brille, Herr Schulze? — Sie liegt ___ dem Tisch.",
+     "c": [
+      "auf",
+      "an",
+      "in"
+     ],
+     "f": "brille",
+     "r": "tisch",
+     "phrase": "Sie liegt auf dem Tisch.",
+     "sens": "Elles sont sur la table.",
+     "n": "<b>auf</b> + datif : sur une surface. « die Brille » est un singulier en allemand : sie liegt."
+    },
+    {
+     "q": "Die Uhr hängt ___ der Wand.",
+     "c": [
+      "an",
+      "auf",
+      "in"
+     ],
+     "f": "uhr",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "Contre une surface verticale : <b>an</b> + datif."
+    },
+    {
+     "q": "Frau Weber, möchten Sie noch ___ Tasse Kaffee?",
+     "c": [
+      "eine",
+      "einen",
+      "ein"
+     ],
+     "f": "tasse-weber",
+     "r": "frau-weber",
+     "phrase": "Frau Weber, möchten Sie noch eine Tasse Kaffee?",
+     "sens": "Madame Weber, voulez-vous encore une tasse de café ?",
+     "n": "die Tasse, à l'accusatif : <b>eine</b> Tasse."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Raconter une vie au passé",
+   "qs": [
+    {
+     "q": "Herr Schulze ___ vierzig Jahre Straßenbahn gefahren.",
+     "c": [
+      "ist",
+      "hat",
+      "wird"
+     ],
+     "f": "fotoalbum",
+     "r": "herr-schulze",
+     "phrase": "Herr Schulze ist vierzig Jahre Straßenbahn gefahren.",
+     "sens": "M. Schulze a conduit le tramway pendant quarante ans.",
+     "n": "<b>fahren</b> → Perfekt avec <b>sein</b>.",
+     "revise": "fahren"
+    },
+    {
+     "q": "Frau Weber ___ früher als Schneiderin gearbeitet.",
+     "c": [
+      "hat",
+      "ist",
+      "wird"
+     ],
+     "f": "frau-weber",
+     "phrase": "Frau Weber hat früher als Schneiderin gearbeitet.",
+     "sens": "Mme Weber a été couturière autrefois.",
+     "n": "<b>arbeiten</b> → Perfekt avec <b>haben</b>.",
+     "revise": "arbeiten"
+    },
+    {
+     "q": "Herr Schulze ___ mit zwanzig nach Berlin gezogen.",
+     "c": [
+      "ist",
+      "hat",
+      "wird"
+     ],
+     "f": "herr-schulze",
+     "phrase": "Herr Schulze ist mit zwanzig nach Berlin gezogen.",
+     "sens": "M. Schulze s'est installé à Berlin à vingt ans.",
+     "n": "<b>ziehen</b> (déménager, changer de lieu) → <b>sein</b>."
+    },
+    {
+     "q": "Als junger Mann ___ er eine Uniform.",
+     "c": [
+      "trug",
+      "tragte",
+      "getragen"
+     ],
+     "f": "fotoalbum",
+     "phrase": "Als junger Mann trug er eine Uniform.",
+     "sens": "Jeune homme, il portait un uniforme.",
+     "n": "Une biographie écrite se raconte au Präteritum : tragen → <b>trug</b> (verbe fort)."
+    },
+    {
+     "q": "Frau Weber ___ heute viel gelacht.",
+     "c": [
+      "hat",
+      "ist",
+      "wird"
+     ],
+     "f": "frau-weber",
+     "phrase": "Frau Weber hat heute viel gelacht.",
+     "sens": "Mme Weber a beaucoup ri aujourd'hui.",
+     "n": "<b>lachen</b> → <b>haben</b>."
+    },
+    {
+     "q": "Die Bewohnerin im Rollstuhl ___ nach dem Mittagessen eingeschlafen.",
+     "c": [
+      "ist",
+      "hat",
+      "wird"
+     ],
+     "f": "bewohnerin",
+     "phrase": "Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.",
+     "sens": "La résidente en fauteuil s'est endormie après le déjeuner.",
+     "n": "<b>einschlafen</b> : un changement d'état → <b>sein</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Parler avec douceur, sans contredire",
+   "qs": [
+    {
+     "q": "Herr Schulze sagt: „Ich muss los, meine Bahn fährt gleich.“ Was sagen Sie?",
+     "c": [
+      "Sie waren gern Straßenbahnfahrer, nicht wahr?",
+      "Herr Schulze, Sie sind doch schon lange in Rente.",
+      "Das stimmt nicht, Sie wohnen jetzt hier."
+     ],
+     "f": "herr-schulze",
+     "phrase": "Sie waren gern Straßenbahnfahrer, nicht wahr?",
+     "sens": "Vous aimiez conduire le tramway, n'est-ce pas ?",
+     "n": "La validation : on accueille ce qu'il ressent et son histoire, on ne lui oppose pas la réalité ⚕️."
+    },
+    {
+     "q": "Wie ___ es, wenn wir zusammen das Album anschauen?",
+     "c": [
+      "wäre",
+      "ist",
+      "war"
+     ],
+     "f": "fotoalbum",
+     "phrase": "Wie wäre es, wenn wir zusammen das Album anschauen?",
+     "sens": "Et si nous regardions l'album ensemble ?",
+     "n": "<b>Wie wäre es, wenn …?</b> : proposer avec douceur (Konjunktiv II)."
+    },
+    {
+     "q": "___ Sie mir erzählen, wo diese Straßenbahn gefahren ist?",
+     "c": [
+      "Würden",
+      "Werden",
+      "Wären"
+     ],
+     "f": "fotoalbum",
+     "r": "herr-schulze",
+     "phrase": "Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?",
+     "sens": "Voudriez-vous me raconter où roulait ce tramway ?",
+     "n": "<b>Würden Sie …?</b> : une demande polie, qui laisse le choix."
+    },
+    {
+     "q": "Die Bewohnerin im Rollstuhl wirkt müde. Was sagen Sie?",
+     "c": [
+      "Möchten Sie sich ein bisschen ausruhen?",
+      "Sie müssen jetzt wach bleiben.",
+      "Warum schlafen Sie schon wieder?"
+     ],
+     "f": "bewohnerin",
+     "phrase": "Möchten Sie sich ein bisschen ausruhen?",
+     "sens": "Voulez-vous vous reposer un peu ?",
+     "n": "On propose (<b>Möchten Sie …?</b>), on n'impose pas."
+    },
+    {
+     "q": "Frau Weber fragt zum dritten Mal, wann ihr Mann kommt. Was sagen Sie?",
+     "c": [
+      "Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?",
+      "Das haben Sie mich schon dreimal gefragt.",
+      "Ihr Mann kommt nicht mehr, das wissen Sie doch."
+     ],
+     "f": "frau-weber",
+     "phrase": "Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?",
+     "sens": "Vous pensez beaucoup à votre mari en ce moment. Vous me parlez de lui ?",
+     "n": "Nommer le sentiment, puis inviter à raconter : la validation, sans mensonge ni confrontation ⚕️."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Nuancer une observation",
+   "qs": [
+    {
+     "q": "Herr Schulze erinnert sich ___ an früher als an gestern.",
+     "c": [
+      "eher",
+      "kaum",
+      "zunehmend"
+     ],
+     "f": "herr-schulze",
+     "phrase": "Herr Schulze erinnert sich eher an früher als an gestern.",
+     "sens": "M. Schulze se souvient plutôt d'autrefois que d'hier.",
+     "n": "<b>eher … als …</b> = plutôt … que …"
+    },
+    {
+     "q": "Die Bewohnerin im Rollstuhl isst in letzter Zeit ___ etwas.",
+     "c": [
+      "kaum",
+      "eher",
+      "ziemlich"
+     ],
+     "f": "bewohnerin",
+     "phrase": "Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.",
+     "sens": "Ces derniers temps, la résidente en fauteuil ne mange presque rien.",
+     "n": "<b>kaum</b> = presque pas : une observation à transmettre ⚕️."
+    },
+    {
+     "q": "Seine Orientierung lässt ___ nach.",
+     "c": [
+      "zunehmend",
+      "ziemlich",
+      "eher"
+     ],
+     "f": "herr-schulze",
+     "phrase": "Seine Orientierung lässt zunehmend nach.",
+     "sens": "Son orientation diminue de plus en plus.",
+     "n": "<b>zunehmend</b> = de plus en plus : une évolution, pas un état."
+    },
+    {
+     "q": "Frau Weber war heute ___ gut gelaunt.",
+     "c": [
+      "ziemlich",
+      "kaum",
+      "zunehmend"
+     ],
+     "f": "frau-weber",
+     "phrase": "Frau Weber war heute ziemlich gut gelaunt.",
+     "sens": "Mme Weber était plutôt de bonne humeur aujourd'hui.",
+     "n": "<b>ziemlich</b> = assez, plutôt."
+    },
+    {
+     "q": "Er wirkte beim Erzählen ___ als sonst.",
+     "c": [
+      "ruhiger",
+      "ruhig",
+      "am ruhigsten"
+     ],
+     "f": "herr-schulze",
+     "phrase": "Er wirkte beim Erzählen ruhiger als sonst.",
+     "sens": "En racontant, il paraissait plus calme que d'habitude.",
+     "n": "Comparer à son état habituel (<b>als sonst</b>) : la base d'une observation utile."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
+   "qs": [
+    {
+     "q": "Sie finden Frau Weber neben ihrem Bett auf dem Boden. Sie sagt: „Ach je … ich wollte doch nur zur Toilette.“",
+     "c": [
+      "Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+      "Kommen Sie, ich ziehe Sie schnell hoch!",
+      "Bewegen Sie die Hand ganz fest, bitte."
+     ],
+     "f": "frau-weber",
+     "type": "situation",
+     "phrase": "Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.",
+     "sens": "madame Weber, je suis là. Restez assise pour l'instant, je vais vous aider.",
+     "n": "<b>Ne relève jamais tout de suite une personne tombée.</b> D'abord rassurer et vérifier : une fracture ou un choc à la tête peut passer inaperçu. « Bleiben Sie bitte erst mal sitzen. » ⚕️",
+     "source": "d08-sturz/finden"
+    },
+    {
+     "q": "Sie fragen Frau Weber, ob sie mit dem Kopf aufgeschlagen ist. Sie sagt: „Nein, ich glaube nicht. Ich bin auf den Po gefallen.“",
+     "c": [
+      "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+      "Warten Sie hier, ich bin in zehn Minuten wieder da.",
+      "Stehen Sie jetzt auf. Wir müssen laufen."
+     ],
+     "f": "frau-weber",
+     "type": "situation",
+     "phrase": "Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.",
+     "sens": "J'appuie sur la sonnette et j'appelle ma collègue. Je reste avec vous.",
+     "n": "<b>On ne laisse pas seule une personne tombée.</b> Appelle de l'aide depuis la chambre : la sonnette, le téléphone. « Ich rufe meine Kollegin. Ich bleibe bei Ihnen. » ⚕️",
+     "source": "d08-sturz/hilfe"
+    },
+    {
+     "q": "Beim Mittagessen sagt Herr Schulze: „Die Suppe. Aber nicht so heiß!“",
+     "c": [
+      "Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.",
+      "Ich probiere mal mit Ihrem Löffel, ob sie zu heiß ist.",
+      "Bleiben Sie ruhig so halb liegen, das ist bequemer."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.",
+     "sens": "Ne vous inquiétez pas, je remue un peu, comme ça elle sera moins chaude. Prenez votre temps.",
+     "n": "<b>On ne goûte jamais avec la cuillère du résident : c'est une faute d'hygiène.</b> Pour la température, on remue, on attend, ou on vérifie sur le bord de l'assiette. ⚕️",
+     "source": "d09-essen-anreichen/heiss"
+    },
+    {
+     "q": "Herr Schulze sagt: „Ich hab mich … verschluckt …“",
+     "c": [
+      "Husten Sie kräftig, das ist gut so. Ich bin da.",
+      "Schnell, trinken Sie einen großen Schluck Wasser!",
+      "Sie essen jetzt zuerst die Suppe."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Husten Sie kräftig, das ist gut so. Ich bin da.",
+     "sens": "Toussez fort, c'est bien. Je suis là.",
+     "n": "<b>Pendant la toux, rien à boire ni à manger : la toux nettoie elle-même.</b> Laisse tousser, buste un peu en avant, reste près de lui. S'il ne peut plus respirer ni tousser, c'est une urgence : appeler à l'aide. ⚕️",
+     "source": "d09-essen-anreichen/verschluckt"
+    },
+    {
+     "q": "Nachts steht Herr Schulze angezogen im Flur: „Lassen Sie mich durch, junger Mann. Ich muss zum Depot, meine Schicht fängt gleich an.“",
+     "c": [
+      "Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?",
+      "Herr Schulze, Sie arbeiten doch seit über zwanzig Jahren nicht mehr! Sie sind in Rente.",
+      "Die Straßenbahn kommt gleich. Warten Sie hier im Flur."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?",
+     "sens": "monsieur Schulze, vous êtes déjà réveillé. Vous voulez aller au travail ?",
+     "n": "<b>Ne contredis pas une personne désorientée : pour elle, c'est vrai maintenant.</b> La corriger l'inquiète et la met en colère. Entre dans son monde : « Sie wollen zur Arbeit? » ⚕️",
+     "source": "d12-nachts-demenz/flur"
+    },
+    {
+     "q": "Nachts im Flur sagt Herr Schulze: „Meinen Sie? Hm … ich bin auch ein bisschen müde.“",
+     "c": [
+      "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.",
+      "Sie gehen jetzt sofort ins Bett. Es ist drei Uhr!",
+      "Aber das ist doch wichtig! Sie müssen das machen."
+     ],
+     "f": "herr-schulze",
+     "type": "situation",
+     "phrase": "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.",
+     "sens": "Je peux vous accompagner un bout de chemin ? On pourrait déjà suspendre votre veste dans votre chambre.",
+     "n": "<b>Un ordre déclenche la résistance.</b> Propose et accompagne : « Darf ich Sie ein Stück begleiten? » La personne garde le sentiment de choisir.",
+     "source": "d12-nachts-demenz/begleiten"
+    }
+   ]
+  }
  },
  "points": [
-  {"id": "fenster-l", "mot": "Fenster", "boite": [0, 2.5, 16.1, 35.7], "rigide": "rectangle"},
-  {"id": "fenster-m", "mot": "Fenster", "boite": [36.3, 2.2, 32.6, 34.9], "rigide": "rectangle"},
-  {"id": "uhr", "mot": "Uhr", "boite": [71.8, 8.2, 14.0, 8.5]},
-  {"id": "kalender", "mot": "Kalender", "boite": [20.5, 9.7, 11.2, 10.6], "rigide": "rectangle"},
-  {"id": "pflanze", "mot": "Pflanze", "boite": [14.6, 21.5, 23.8, 17.8]},
-  {"id": "trinkstation", "mot": "Trinkstation", "boite": [66.4, 29.7, 19.1, 10.4]},
-  {"id": "wasser", "mot": "Wasser", "boite": [70.1, 26.4, 4.6, 4.4], "sur": "trinkstation"},
-  {"id": "saft", "mot": "Saft", "boite": [75.2, 26.7, 4.4, 4.3], "sur": "trinkstation"},
-  {"id": "becher", "mot": "Becher", "boite": [80.1, 26.2, 3.3, 4.9], "sur": "trinkstation"},
-  {"id": "handlauf", "mot": "Handlauf", "boite": [84.2, 27.0, 15.8, 12.0]},
-  {"id": "rollstuhl", "mot": "Rollstuhl", "boite": [41.8, 23.9, 22.2, 13.2]},
-  {"id": "bewohnerin", "mot": "Bewohnerin", "aussi": ["Frau", "Rentnerin"], "boite": [42.6, 24.8, 19.9, 11.8], "sur": "rollstuhl"},
-  {"id": "decke", "mot": "Decke", "boite": [43.5, 32.2, 18.9, 4.4], "sur": "bewohnerin"},
-  {"id": "herr-schulze", "mot": "Bewohner", "aussi": ["Mann", "Rentner"], "boite": [7.3, 30.3, 34.7, 33.2], "sur": "stuhl-l"},
-  {"id": "hoergeraet", "mot": "Hörgerät", "ellipses": [[15.6, 34.7, 1.3, 1.2]], "sur": "herr-schulze"},
-  {"id": "frau-weber", "mot": "Bewohnerin", "aussi": ["Frau", "Rentnerin"], "boite": [55.7, 35.2, 36.6, 31.0], "sur": "stuhl-r"},
-  {"id": "stuhl-l", "mot": "Stuhl", "boite": [2.9, 40.6, 27.4, 17.2]},
-  {"id": "stuhl-r", "mot": "Stuhl", "boite": [71.8, 42.5, 26.4, 26.2]},
-  {"id": "tisch", "mot": "Tisch", "boite": [26.4, 37.1, 47.8, 34.9]},
-  {"id": "kanne", "mot": "Kanne", "boite": [45.4, 35.7, 7.3, 6.0], "sur": "tisch"},
-  {"id": "tasse-1", "mot": "Tasse", "boite": [41.0, 36.9, 4.1, 2.0], "sur": "tisch"},
-  {"id": "tasse-2", "mot": "Tasse", "boite": [58.1, 38.6, 5.4, 2.4], "sur": "tisch"},
-  {"id": "tasse-3", "mot": "Tasse", "boite": [42.0, 45.5, 6.8, 2.9], "sur": "tisch"},
-  {"id": "tasse-weber", "mot": "Tasse", "boite": [60.4, 45.1, 6.7, 2.8], "sur": "tisch"},
-  {"id": "kuchen", "mot": "Kuchen", "boite": [44.9, 42.0, 13.2, 3.3], "sur": "tisch"},
-  {"id": "fotoalbum", "mot": "Fotoalbum", "boite": [31.4, 39.1, 11.5, 7.6], "sur": "tisch"},
-  {"id": "brille", "mot": "Brille", "boite": [33.2, 46.8, 7.0, 1.3], "sur": "tisch"},
-  {"id": "puzzle", "mot": "Puzzle", "boite": [28.3, 47.7, 16.9, 6.3], "sur": "tisch"},
-  {"id": "zeitung", "mot": "Zeitung", "boite": [50.3, 48.0, 16.9, 5.4], "sur": "tisch"},
-  {"id": "rollator", "mot": "Rollator", "boite": [0, 49.3, 29.8, 29.8]},
-  {"id": "ball", "mot": "Ball", "boite": [55.0, 78.5, 13.4, 8.1]}
+  {
+   "id": "fenster-l",
+   "mot": "Fenster",
+   "boite": [
+    0,
+    2.5,
+    16.1,
+    35.7
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "fenster-m",
+   "mot": "Fenster",
+   "boite": [
+    36.3,
+    2.2,
+    32.6,
+    34.9
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    71.8,
+    8.2,
+    14.0,
+    8.5
+   ]
+  },
+  {
+   "id": "kalender",
+   "mot": "Kalender",
+   "boite": [
+    20.5,
+    9.7,
+    11.2,
+    10.6
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    14.6,
+    21.5,
+    23.8,
+    17.8
+   ]
+  },
+  {
+   "id": "trinkstation",
+   "mot": "Trinkstation",
+   "boite": [
+    66.4,
+    29.7,
+    19.1,
+    10.4
+   ]
+  },
+  {
+   "id": "wasser",
+   "mot": "Wasser",
+   "boite": [
+    70.1,
+    26.4,
+    4.6,
+    4.4
+   ],
+   "sur": "trinkstation"
+  },
+  {
+   "id": "saft",
+   "mot": "Saft",
+   "boite": [
+    75.2,
+    26.7,
+    4.4,
+    4.3
+   ],
+   "sur": "trinkstation"
+  },
+  {
+   "id": "becher",
+   "mot": "Becher",
+   "boite": [
+    80.1,
+    26.2,
+    3.3,
+    4.9
+   ],
+   "sur": "trinkstation"
+  },
+  {
+   "id": "handlauf",
+   "mot": "Handlauf",
+   "boite": [
+    84.2,
+    27.0,
+    15.8,
+    12.0
+   ]
+  },
+  {
+   "id": "rollstuhl",
+   "mot": "Rollstuhl",
+   "boite": [
+    41.8,
+    23.9,
+    22.2,
+    13.2
+   ],
+   "points_sam": [
+    [
+     44.6,
+     27.0,
+     1
+    ],
+    [
+     57.6,
+     27.0,
+     1
+    ],
+    [
+     47.6,
+     25.0,
+     1
+    ],
+    [
+     56.4,
+     25.4,
+     1
+    ],
+    [
+     42.5,
+     35.5,
+     1
+    ],
+    [
+     50.5,
+     28.5,
+     0
+    ],
+    [
+     61.5,
+     28.0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "bewohnerin",
+   "mot": "Bewohnerin",
+   "aussi": [
+    "Frau",
+    "Rentnerin"
+   ],
+   "boite": [
+    42.6,
+    24.8,
+    19.9,
+    11.8
+   ],
+   "sur": "rollstuhl",
+   "devant_de": [
+    "rollstuhl"
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "boite": [
+    43.5,
+    32.2,
+    18.9,
+    4.4
+   ],
+   "sur": "bewohnerin"
+  },
+  {
+   "id": "herr-schulze",
+   "mot": "Bewohner",
+   "aussi": [
+    "Mann",
+    "Rentner"
+   ],
+   "boite": [
+    7.3,
+    30.3,
+    34.7,
+    33.2
+   ],
+   "sur": "stuhl-l"
+  },
+  {
+   "id": "hoergeraet",
+   "mot": "Hörgerät",
+   "ellipses": [
+    [
+     15.6,
+     34.7,
+     1.3,
+     1.2
+    ]
+   ],
+   "sur": "herr-schulze"
+  },
+  {
+   "id": "frau-weber",
+   "mot": "Bewohnerin",
+   "aussi": [
+    "Frau",
+    "Rentnerin"
+   ],
+   "boite": [
+    55.7,
+    35.2,
+    36.6,
+    31.0
+   ],
+   "sur": "stuhl-r"
+  },
+  {
+   "id": "stuhl-l",
+   "mot": "Stuhl",
+   "boite": [
+    2.9,
+    40.6,
+    27.4,
+    17.2
+   ]
+  },
+  {
+   "id": "stuhl-r",
+   "mot": "Stuhl",
+   "boite": [
+    71.8,
+    42.5,
+    26.4,
+    26.2
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    26.4,
+    37.1,
+    47.8,
+    34.9
+   ]
+  },
+  {
+   "id": "kanne",
+   "mot": "Kanne",
+   "boite": [
+    45.4,
+    35.7,
+    7.3,
+    6.0
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-1",
+   "mot": "Tasse",
+   "boite": [
+    41.0,
+    36.9,
+    4.1,
+    2.0
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-2",
+   "mot": "Tasse",
+   "boite": [
+    58.1,
+    38.6,
+    5.4,
+    2.4
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-3",
+   "mot": "Tasse",
+   "boite": [
+    42.0,
+    45.5,
+    6.8,
+    2.9
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-weber",
+   "mot": "Tasse",
+   "boite": [
+    60.4,
+    45.1,
+    6.7,
+    2.8
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "kuchen",
+   "mot": "Kuchen",
+   "boite": [
+    44.9,
+    42.0,
+    13.2,
+    3.3
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "fotoalbum",
+   "mot": "Fotoalbum",
+   "boite": [
+    31.4,
+    39.1,
+    11.5,
+    7.6
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    33.2,
+    46.8,
+    7.0,
+    1.3
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "puzzle",
+   "mot": "Puzzle",
+   "boite": [
+    28.3,
+    47.7,
+    16.9,
+    6.3
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "boite": [
+    50.3,
+    48.0,
+    16.9,
+    5.4
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "rollator",
+   "mot": "Rollator",
+   "boite": [
+    0,
+    49.3,
+    29.8,
+    29.8
+   ]
+  },
+  {
+   "id": "ball",
+   "mot": "Ball",
+   "boite": [
+    55.0,
+    78.5,
+    13.4,
+    8.1
+   ]
+  }
  ]
 }

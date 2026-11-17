@@ -1,0 +1,105 @@
+{
+ "id": "a2-coiffeur",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Chez la coiffeuse"},
+ "intro": {"fr": "Un samedi de juin, tu as rendez-vous dans un petit salon de coiffure de ton quartier, à Madrid. Tu expliques ce que tu veux, tu bavardes un peu, puis tu paies."},
+ "personnes": ["friseurin-ines"],
+ "debut": "llegada",
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, onze heures. Tu pousses la porte du salon de coiffure."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "¡Buenos días! ¿Tiene cita?", "fr": "Bonjour ! Vous avez rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Sí, tengo cita a las once.", "fr": "Bonjour. Oui, j'ai rendez-vous à onze heures.", "va": "lavar",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Ah, sí. Pase y siéntese aquí, por favor.", "fr": "Ah, oui. Entrez et asseyez-vous ici, s'il vous plaît."}]},
+    {"t": "Buenos días. Sí, a las once. Quería cortarme el pelo.", "fr": "Bonjour. Oui, à onze heures. Je voulais me faire couper les cheveux.", "va": "lavar",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Muy bien. Pase y siéntese aquí, por favor.", "fr": "Très bien. Entrez et asseyez-vous ici, s'il vous plaît."}]},
+    {"faux": true, "t": "Buenos días. ¿Me puede cortar los pelos?", "fr": "Bonjour. Vous pouvez me couper les cheveux ?",
+     "puis": [{"qui": "friseurin-ines", "air": "amuse", "t": "¿Los pelos? ¿Cuáles? ¡Yo corto el pelo!", "fr": "Les poils ? Lesquels ? Moi, je coupe les cheveux !"}],
+     "aide": {"fr": "<b>« el pelo »</b>, au singulier, ce sont les cheveux. « Los pelos », ce sont des poils. Dis : « Quería cortarme el pelo »."}}
+   ]
+  },
+  "lavar": {
+   "dit": [{"qui": "friseurin-ines", "air": "question", "t": "¿Le lavo el pelo primero?", "fr": "Je vous lave les cheveux d'abord ?"}],
+   "choix": [
+    {"t": "Sí, por favor.", "fr": "Oui, s'il vous plaît.", "pose": {"lavar": "si"}, "va": "corte",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Muy bien. Venga conmigo.", "fr": "Très bien. Venez avec moi."}]},
+    {"t": "No, gracias. Me lo he lavado esta mañana.", "fr": "Non, merci. Je les ai lavés ce matin.", "pose": {"lavar": "no"}, "va": "corte",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Perfecto. Entonces, solo cortar.", "fr": "Parfait. Alors, seulement la coupe."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "lavar",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Claro. ¿Quiere lavar el pelo antes de cortar?", "fr": "Bien sûr. Vous voulez un shampooing avant la coupe ?"}]}
+   ]
+  },
+  "corte": {
+   "dit": [
+    {"si": {"lavar": "si"}, "recit": {"fr": "Cinq minutes plus tard, les cheveux lavés, tu es devant le miroir."}},
+    {"si": {"lavar": "no"}, "recit": {"fr": "Tu t'installes devant le miroir."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "Bueno, ¿cómo lo quiere?", "fr": "Bon, vous les voulez comment ?"}
+   ],
+   "choix": [
+    {"t": "Solo las puntas, por favor.", "fr": "Seulement les pointes, s'il vous plaît.", "va": "largo",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Solo las puntas. Muy bien.", "fr": "Seulement les pointes. Très bien."}]},
+    {"t": "Lo quiero más corto. Hace mucho calor.", "fr": "Je les veux plus courts. Il fait très chaud.", "va": "largo",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Más corto. ¡Buena idea, con este calor!", "fr": "Plus courts. Bonne idée, avec cette chaleur !"}]}
+   ]
+  },
+  "largo": {
+   "dit": [{"qui": "friseurin-ines", "air": "question", "t": "Mire: corto hasta aquí. ¿Así está bien?", "fr": "Regardez : je coupe jusqu'ici. Comme ça, ça va ?"}],
+   "choix": [
+    {"t": "Sí, así está bien.", "fr": "Oui, comme ça, c'est bien.", "va": "charla",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Pues empezamos.", "fr": "Alors on commence."}]},
+    {"t": "Un poco más corto, por favor.", "fr": "Un peu plus court, s'il vous plaît.", "va": "charla",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Un poco más. De acuerdo, empezamos.", "fr": "Un peu plus. D'accord, on commence."}]},
+    {"faux": true, "t": "Sí, es bien así.", "fr": "Oui, c'est bien comme ça.",
+     "puis": [{"qui": "friseurin-ines", "air": "perplexe", "t": "¿Cómo? Ah, ¡que está bien así!", "fr": "Comment ? Ah, c'est bien comme ça !"}],
+     "aide": {"fr": "<b>« bien » va avec « estar »</b> : « Está bien ». « Es bien » ne se dit pas. Dis : « Sí, así está bien »."}}
+   ]
+  },
+  "charla": {
+   "dit": [
+    {"recit": {"fr": "Les ciseaux travaillent. La coiffeuse bavarde."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "¿Vive usted en el barrio?", "fr": "Vous habitez le quartier ?"}
+   ],
+   "choix": [
+    {"t": "Sí, vivo aquí al lado desde hace dos meses.", "fr": "Oui, j'habite juste à côté depuis deux mois.", "va": "espejo",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "¡Qué bien! Es un barrio muy bonito.", "fr": "C'est bien ! C'est un très joli quartier."}]},
+    {"t": "Sí, vivo muy cerca. Me gusta mucho el barrio.", "fr": "Oui, j'habite tout près. J'aime beaucoup le quartier.", "va": "espejo",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "A mí también. Llevo veinte años aquí.", "fr": "Moi aussi. Je suis ici depuis vingt ans."}]},
+    {"faux": true, "t": "Sí, vivo aquí desde dos meses.", "fr": "Oui, j'habite ici depuis deux mois.",
+     "puis": [{"qui": "friseurin-ines", "air": "perplexe", "t": "¿Desde … hace dos meses, quiere decir?", "fr": "Depuis… deux mois, vous voulez dire ?"}],
+     "aide": {"fr": "Avec une durée, on dit <b>« desde hace »</b> : « desde hace dos meses ». « Desde » seul va avec une date : « desde abril »."}}
+   ]
+  },
+  "espejo": {
+   "dit": [
+    {"recit": {"fr": "Elle te montre le résultat avec un petit miroir."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "Ya está. ¿Qué le parece? ¿Le gusta?", "fr": "Voilà. Qu'en pensez-vous ? Ça vous plaît ?"}
+   ],
+   "choix": [
+    {"t": "Sí, me gusta mucho. Gracias.", "fr": "Oui, ça me plaît beaucoup. Merci.", "va": "pagar",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "¡Me alegro! Le queda muy bien.", "fr": "Tant mieux ! Ça vous va très bien."}]},
+    {"t": "Está muy bien. Es perfecto para el verano.", "fr": "C'est très bien. C'est parfait pour l'été.", "va": "pagar",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "¡Me alegro! Así va más fresco.", "fr": "Tant mieux ! Comme ça, vous aurez moins chaud."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "espejo",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Sí: mire el espejo. ¿Le gusta el corte?", "fr": "Oui : regardez le miroir. La coupe vous plaît ?"}]}
+   ]
+  },
+  "pagar": {
+   "dit": [
+    {"recit": {"fr": "Tu passes à la caisse."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "Son 18 euros, por favor.", "dit": "Son dieciocho euros, por favor.", "fr": "Ça fait 18 euros, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Tome, veinte euros. Está bien así.", "fr": "Tenez, vingt euros. Gardez la monnaie.", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "¡Muchas gracias! ¡Hasta la próxima!", "fr": "Merci beaucoup ! À la prochaine !"}]},
+    {"t": "¿Puedo pagar con tarjeta?", "fr": "Je peux payer par carte ?", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Sí, claro. Ya está. ¡Gracias y hasta pronto!", "fr": "Oui, bien sûr. Voilà. Merci et à bientôt !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué la coupe que tu voulais, bavardé avec la coiffeuse et payé 18 euros."}
+}

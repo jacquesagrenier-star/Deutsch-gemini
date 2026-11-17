@@ -1,0 +1,155 @@
+{
+ "id": "b1-horaires",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Changer d'horaires au restaurant"},
+ "intro": {"fr": "Tu es aide de cuisine dans un restaurant de Cambridge. Tu commences un cours d'anglais le soir, le mardi et le jeudi : il faut demander à la cheffe de changer tes horaires."},
+ "personnes": ["kuechenchefin"],
+ "debut": "ask",
+ "textes": {
+  "option_fr": {"cle": "option", "matin": "le service du matin, de sept heures à trois heures", "weekend": "le brunch du samedi et du dimanche à la place de tes deux soirs", "swap": "un échange de services avec un collègue du matin"},
+  "debut_fr": {"cle": "quand", "lundi": "dès lundi (et tu dépannes samedi soir)", "mois": "à partir du mois prochain"}
+ },
+ "noeuds": {
+  "ask": {
+   "dit": [
+    {"recit": {"fr": "Trois heures de l'après-midi, avant le service. Tu frappes à la porte du petit bureau de la cheffe."}},
+    {"qui": "kuechenchefin", "air": "sourire", "t": "Come on in. You wanted to talk to me?", "fr": "Entrez. Vous vouliez me parler ?"}
+   ],
+   "choix": [
+    {"t": "Yes, thank you. I'd like to ask you about my schedule.", "t_gb": "Yes, thank you. I'd like to ask you about my rota.", "fr": "Oui, merci. J'aimerais vous parler de mon horaire.", "va": "reason"},
+    {"t": "Yes. Would it be possible to change my hours?", "fr": "Oui. Serait-il possible de changer mes heures ?", "va": "reason"},
+    {"faux": true, "t": "Yes. I want that you change my schedule.", "fr": "Oui. Je veux que vous changiez mon horaire.",
+     "puis": [{"qui": "kuechenchefin", "air": "surprise", "t": "You want … excuse me? That's quite a way to start.", "fr": "Vous voulez… pardon ? Drôle de façon de commencer."}],
+     "aide": {"fr": "<b>« vouloir que » = « want » + personne + « to » :</b> « I want you to change… » — mais à sa cheffe, on demande poliment : « Would it be possible to change my hours? »"}}
+   ]
+  },
+  "reason": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "Your schedule? What's the problem?", "t_gb": "Your rota? What's the problem?", "fr": "Votre horaire ? Quel est le problème ?"}
+   ],
+   "choix": [
+    {"t": "I've signed up for an evening English class on Tuesdays and Thursdays.", "fr": "Je me suis inscrit(e) à un cours d'anglais du soir, le mardi et le jeudi.", "va": "rush"},
+    {"t": "I'm starting an English class. It's two evenings a week, Tuesday and Thursday.", "fr": "Je commence un cours d'anglais. C'est deux soirs par semaine, le mardi et le jeudi.", "va": "rush"},
+    {"faux": true, "t": "I am inscribed to an English course.", "fr": "Je suis inscrit(e) à un cours d'anglais.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Inscribed? Like a name on a ring?", "fr": "Gravé(e) ? Comme un nom sur une bague ?"}],
+     "aide": {"fr": "<b>« s'inscrire » = « sign up for »</b> (ou « enroll in ») : « I've signed up for an English class. » « Inscribe », c'est graver."}},
+    {"faux": true, "t": "I will assist to an English class on Tuesday and Thursday.", "fr": "J'assisterai à un cours d'anglais le mardi et le jeudi.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "You're going to assist the teacher? I thought you were the student.", "fr": "Vous allez aider le professeur ? Je croyais que c'était vous, l'élève."}],
+     "aide": {"fr": "<b>« assister à » = « attend » ou « go to » :</b> « I'm going to an English class. » « Assist », c'est aider."}}
+   ]
+  },
+  "rush": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "perplexe", "t": "Hmm. Tuesday and Thursday nights … You know dinner is our busiest time. I really need people on the line. What time does the class start?", "fr": "Hum. Les mardis et jeudis soir… Vous savez que le dîner est notre moment le plus chargé. J'ai vraiment besoin de monde en cuisine. Le cours commence à quelle heure ?"}
+   ],
+   "choix": [
+    {"t": "It starts at six thirty, so I'd have to leave by five thirty.", "t_gb": "It starts at half past six, so I'd have to leave by half past five.", "fr": "Il commence à six heures et demie, donc je devrais partir à cinq heures et demie au plus tard.", "va": "options"},
+    {"t": "At six thirty, at the adult education center in Central Square.", "t_gb": "At half past six, at the adult education centre in Central Square.", "fr": "À six heures et demie, au centre d'éducation des adultes de Central Square.", "va": "options"},
+    {"repete": true, "t": "I'm sorry, I didn't catch that. Could you repeat the question?", "fr": "Pardon, je n'ai pas compris. Pourriez-vous répéter la question ?", "va": "rush",
+     "puis": [{"qui": "kuechenchefin", "air": "attentive", "t": "Sure. Evenings are very busy here. What time does your class start?", "fr": "Bien sûr. Les soirs sont très chargés ici. Votre cours commence à quelle heure ?"}]}
+   ]
+  },
+  "options": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "attentive", "t": "OK. I don't want to lose you, so let's find a solution. You could work mornings: prep starts at seven. Or you could work weekends instead. Or you could swap shifts with someone.", "fr": "D'accord. Je ne veux pas vous perdre, alors trouvons une solution. Vous pourriez travailler le matin : la mise en place commence à sept heures. Ou travailler le week-end à la place. Ou échanger des services avec quelqu'un."}
+   ],
+   "choix": [
+    {"t": "I'd prefer the morning shift, if that's possible.", "fr": "Je préférerais le service du matin, si c'est possible.", "pose": {"option": "matin"}, "va": "morning"},
+    {"t": "I could work weekends instead of those two evenings.", "fr": "Je pourrais travailler le week-end à la place de ces deux soirs.", "pose": {"option": "weekend"}, "va": "weekend"},
+    {"t": "Maybe I could swap shifts with a coworker.", "t_gb": "Maybe I could swap shifts with a colleague.", "fr": "Je pourrais peut-être échanger des services avec un collègue.", "pose": {"option": "swap"}, "va": "swap"},
+    {"faux": true, "t": "I can to work in the morning.", "fr": "Je peux travailler le matin.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "You can … work mornings? Is that what you'd like?", "fr": "Vous pouvez… travailler le matin ? C'est ce que vous aimeriez ?"}],
+     "aide": {"fr": "<b>Après « can », « could », « must », jamais de « to » :</b> « I can work in the morning », « I could work weekends »."}}
+   ]
+  },
+  "morning": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "attentive", "t": "Mornings, then. That means seven to three: you receive the deliveries, chop the vegetables and make the stocks. It's an early start. Are you sure?", "fr": "Le matin, alors. Ça veut dire de sept heures à trois heures : vous recevez les livraisons, vous coupez les légumes et vous préparez les fonds. Ça commence tôt. Vous êtes sûr(e) ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I'm sure. I'm used to getting up early.", "fr": "Oui, j'en suis sûr(e). J'ai l'habitude de me lever tôt.", "va": "start"},
+    {"t": "That's fine. I'd rather get up early than miss my class.", "fr": "Ça me va. J'aime mieux me lever tôt que manquer mon cours.", "va": "start"},
+    {"faux": true, "t": "Yes, I am used to get up early.", "fr": "Oui, j'ai l'habitude de me lever tôt.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "You used to get up early? And now you don't?", "fr": "Vous vous leviez tôt, avant ? Et plus maintenant ?"}],
+     "aide": {"fr": "<b>« avoir l'habitude de » = « be used to » + -ing :</b> « I'm used to getting up early. » « I used to get up early » veut dire « avant, je me levais tôt »."}}
+   ]
+  },
+  "weekend": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "t": "Weekends would really help me. That's Saturday and Sunday brunch, nine to five. But you'd lose your free weekends. Is that all right with you?", "fr": "Le week-end, ça m'aiderait vraiment. C'est le brunch du samedi et du dimanche, de neuf heures à cinq heures. Mais vous perdriez vos week-ends libres. Ça vous va ?"}
+   ],
+   "choix": [
+    {"t": "Yes, that's fine. I'd have Tuesday and Thursday off instead.", "fr": "Oui, ça me va. J'aurais le mardi et le jeudi libres à la place.", "va": "start",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Exactly.", "fr": "Exactement."}]},
+    {"t": "It's OK for a few months, until the class ends in December.", "fr": "Ça ira pour quelques mois, jusqu'à la fin du cours en décembre.", "va": "start",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Fair enough. We'll look at it again in December.", "fr": "Entendu. On en reparlera en décembre."}]},
+    {"faux": true, "t": "Yes, I will work the weekend during three months.", "fr": "Oui, je travaillerai le week-end pendant trois mois.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "During … ? For three months, you mean?", "fr": "Pendant… ? Trois mois durant, vous voulez dire ?"}],
+     "aide": {"fr": "<b>Une durée se dit avec « for » :</b> « for three months ». « During » va avec un événement (« during the class », « during dinner »)."}}
+   ]
+  },
+  "swap": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "A swap could work. Who do you have in mind? It has to be someone who knows the prep station.", "fr": "Un échange, ça pourrait marcher. Vous pensez à qui ? Il faut quelqu'un qui connaît le poste de mise en place."}
+   ],
+   "choix": [
+    {"t": "I haven't asked anyone yet, but I'll talk to the morning team today.", "fr": "Je n'ai encore demandé à personne, mais je parlerai à l'équipe du matin aujourd'hui.", "va": "start",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Good. If someone agrees, come and see me together.", "fr": "Bien. Si quelqu'un est d'accord, venez me voir ensemble."}]},
+    {"t": "Nobody yet. Could you suggest someone?", "fr": "Personne pour l'instant. Pourriez-vous me suggérer quelqu'un ?", "va": "start",
+     "puis": [{"qui": "kuechenchefin", "air": "attentive", "t": "Try the morning team. One of them has been asking for more evening shifts.", "fr": "Essayez l'équipe du matin. L'un d'eux me demande plus de services du soir."}]},
+    {"faux": true, "t": "I haven't asked to anybody yet.", "fr": "Je n'ai encore demandé à personne.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "You haven't asked … anybody? All right, then ask.", "fr": "Vous n'avez demandé… à personne ? Bon, alors demandez."}],
+     "aide": {"fr": "<b>« ask » se construit sans préposition :</b> « ask someone », « I haven't asked anybody yet », jamais « ask to someone »."}}
+   ]
+  },
+  "start": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "And when does your class begin?", "fr": "Et votre cours commence quand ?"}
+   ],
+   "choix": [
+    {"t": "Next week. Could the new schedule start on Monday?", "t_gb": "Next week. Could the new rota start on Monday?", "fr": "La semaine prochaine. Le nouvel horaire pourrait-il commencer lundi ?", "pose": {"quand": "lundi"}, "va": "cover"},
+    {"t": "It begins on the first Tuesday of next month.", "fr": "Il commence le premier mardi du mois prochain.", "pose": {"quand": "mois"}, "va": "posted",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Good, that gives me time to plan.", "fr": "Bien, ça me laisse le temps de m'organiser."}]},
+    {"faux": true, "t": "It begins the next week.", "fr": "Il commence la semaine prochaine.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "The next week … after what? Oh, next week!", "fr": "La semaine d'après… d'après quoi ? Ah, la semaine prochaine !"}],
+     "aide": {"fr": "<b>« la semaine prochaine » = « next week », sans article.</b> De même : « next month », « last year »."}}
+   ]
+  },
+  "cover": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "attentive", "t": "Monday is soon. I can do it, but then I'd need you this Saturday night for a private party. Could you help me out?", "fr": "Lundi, c'est bientôt. Je peux le faire, mais alors j'aurais besoin de vous ce samedi soir pour une soirée privée. Vous pourriez me dépanner ?"}
+   ],
+   "choix": [
+    {"t": "Sure, I can work this Saturday night.", "fr": "Bien sûr, je peux travailler ce samedi soir.", "va": "posted",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Thank you. Then we have a deal.", "fr": "Merci. Alors marché conclu."}]},
+    {"t": "Yes, no problem. What time should I come in?", "fr": "Oui, pas de problème. À quelle heure dois-je arriver ?", "va": "posted",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "At four. Thank you, that really helps.", "fr": "À quatre heures. Merci, ça m'aide vraiment."}]}
+   ]
+  },
+  "posted": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "attentive", "t": "All right. The new schedule will be posted on Friday, on the board next to the walk-in. Check it, and tell me if something is wrong.", "t_gb": "All right. The new rota will be posted on Friday, on the board next to the walk-in. Check it, and tell me if something is wrong.", "fr": "Très bien. Le nouvel horaire sera affiché vendredi, sur le tableau à côté de la chambre froide. Vérifiez-le, et dites-moi si quelque chose ne va pas."},
+    {"si": {"option": "swap"}, "qui": "kuechenchefin", "air": "attentive", "t": "And remember: a swap only counts once I've written it down.", "fr": "Et n'oubliez pas : un échange ne compte que lorsque je l'ai noté."}
+   ],
+   "choix": [
+    {"t": "Thank you so much. I really appreciate your help.", "fr": "Merci beaucoup. J'apprécie vraiment votre aide.", "va": "bye"},
+    {"t": "Great, I'll check it on Friday. Thank you for being so flexible.", "fr": "Parfait, je le vérifierai vendredi. Merci d'être si souple.", "va": "bye"}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "t": "No problem. Honestly, I think it's great that you're taking this class. My parents learned English at night school too. Good luck with it!", "fr": "Pas de problème. Franchement, je trouve ça très bien que vous suiviez ce cours. Mes parents aussi ont appris l'anglais en cours du soir. Bonne chance !"}
+   ],
+   "choix": [
+    {"t": "Thank you! I'll work hard, in the kitchen and in class.", "fr": "Merci ! Je travaillerai dur, en cuisine comme en classe.", "va": null},
+    {"t": "Thanks, Chef. That means a lot to me.", "fr": "Merci, cheffe. Ça me touche beaucoup.", "va": null},
+    {"faux": true, "t": "Thank you, I will make my best.", "fr": "Merci, je ferai de mon mieux.",
+     "puis": [{"qui": "kuechenchefin", "air": "amuse", "t": "Do your best, and make the stocks. That's the deal!", "fr": "Faites de votre mieux, et préparez les fonds. C'est ça, le marché !"}],
+     "aide": {"fr": "<b>« faire de son mieux » = « do my best »,</b> avec « do » et non « make » : « I'll do my best. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ton cours du soir et obtenu {option_fr}, {debut_fr}. Le nouvel horaire sera affiché vendredi."}
+}

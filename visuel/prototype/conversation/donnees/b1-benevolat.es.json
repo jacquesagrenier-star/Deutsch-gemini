@@ -1,0 +1,166 @@
+{
+ "id": "b1-benevolat",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Devenir bénévole"},
+ "intro": {"fr": "Tu entres dans le local d'une association de quartier à Lavapiés, à Madrid : tu veux donner un peu de ton temps. Nerea, une bénévole qui s'occupe des nouveaux, t'accueille."},
+ "personnes": ["b13_koordinatorin"],
+ "debut": "llegada",
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {"recit": {"fr": "Dans le local de l'association, une jeune femme colle une affiche. Elle se retourne."}},
+    {"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Hola! ¿Vienes por lo del voluntariado?", "fr": "Salut ! Tu viens pour le bénévolat ?"}
+   ],
+   "choix": [
+    {"t": "Sí, me gustaría hacer voluntariado aquí.", "fr": "Oui, j'aimerais faire du bénévolat ici.", "va": "conocer",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Qué bien! Yo soy Nerea, voluntaria también: llevo el equipo de los sábados.", "fr": "Super ! Moi, c'est Nerea, bénévole aussi : je m'occupe de l'équipe du samedi."}]},
+    {"t": "Sí. Tengo tiempo libre y quiero ayudar en el barrio.", "fr": "Oui. J'ai du temps libre et je veux aider dans le quartier.", "va": "conocer",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Pues has venido al sitio perfecto! Yo soy Nerea, voluntaria también: llevo el equipo de los sábados.", "fr": "Alors tu es au bon endroit ! Moi, c'est Nerea, bénévole aussi : je m'occupe de l'équipe du samedi."}]},
+    {"faux": true, "t": "Sí, quiero hacer voluntario.", "fr": "Oui, je veux « faire bénévole ».",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Hacer… voluntario? Ah, ¡que quieres hacer voluntariado!", "fr": "« Faire… bénévole » ? Ah, tu veux faire du bénévolat !"}],
+     "aide": {"fr": "<b>« el voluntario »</b> est la personne, <b>« el voluntariado »</b> l'activité. On dit « ser voluntario » ou « hacer voluntariado » : « Me gustaría hacer voluntariado aquí »."}}
+   ]
+  },
+  "conocer": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Y cómo nos has conocido?", "fr": "Et comment nous as-tu connus ?"}],
+   "choix": [
+    {"t": "Por una vecina. Me habló muy bien de la asociación.", "fr": "Par une voisine. Elle m'a dit beaucoup de bien de l'association.", "va": "tarea",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Ay, qué bien! El boca a boca es lo que mejor funciona.", "fr": "Oh, super ! Le bouche-à-oreille, c'est ce qui marche le mieux."}]},
+    {"t": "Vi un cartel en el portal de mi casa.", "fr": "J'ai vu une affiche dans l'entrée de mon immeuble.", "va": "tarea",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "¡Entonces sirven para algo! Los pegué yo misma.", "fr": "Alors elles servent à quelque chose ! C'est moi qui les ai collées."}]},
+    {"faux": true, "t": "Lo vi sobre internet.", "fr": "Je l'ai vu « sur » internet.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Sobre internet? Ah, en internet, en nuestra web.", "fr": "« Sobre » internet ? Ah, sur internet, sur notre site."}],
+     "aide": {"fr": "<b>« sur internet » se dit « en internet »</b>. « sobre » veut dire au-dessus de, ou au sujet de. Dis : « Lo vi en internet »."}}
+   ]
+  },
+  "tarea": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Pues mira, necesitamos gente para tres cosas: la recogida de alimentos en los supermercados, el reparto de los sábados y las clases de apoyo para niños. ¿Qué te apetece más?", "fr": "Alors écoute, on a besoin de monde pour trois choses : la collecte d'aliments dans les supermarchés, la distribution du samedi et le soutien scolaire pour les enfants. Qu'est-ce qui te tente le plus ?"}],
+   "choix": [
+    {"t": "La recogida en los supermercados. Me gusta moverme.", "fr": "La collecte dans les supermarchés. J'aime bouger.", "pose": {"tarea": "recogida"}, "va": "recogida",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Genial! Para la recogida siempre falta gente.", "fr": "Génial ! Pour la collecte, on manque toujours de monde."}]},
+    {"t": "Me gustaría ayudar en el reparto de los sábados.", "fr": "J'aimerais aider à la distribution du samedi.", "pose": {"tarea": "reparto"}, "va": "reparto",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Estupendo! Los sábados necesitamos muchas manos.", "fr": "Formidable ! Le samedi, il nous faut beaucoup de bras."}]},
+    {"t": "Las clases de apoyo. Me gusta trabajar con niños.", "fr": "Le soutien scolaire. J'aime travailler avec les enfants.", "pose": {"tarea": "apoyo"}, "va": "apoyo",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Qué bien! Los niños se alegran con cada cara nueva.", "fr": "Super ! Les enfants sont contents de chaque nouveau visage."}]},
+    {"faux": true, "t": "Me gustaría de ayudar a los niños.", "fr": "J'aimerais « d'aider » les enfants.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Cómo? Ah, que te gustaría ayudar a los niños, con las clases.", "fr": "Comment ? Ah, tu aimerais aider les enfants, avec les cours."}],
+     "aide": {"fr": "<b>Après « me gustaría », l'infinitif vient directement</b>, sans « de » : « Me gustaría ayudar a los niños »."}},
+    {"repete": true, "t": "Perdona, hablas un poco rápido. ¿Puedes repetirlo?", "fr": "Pardon, tu parles un peu vite. Tu peux répéter ?", "va": "tarea",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Claro! Tres opciones: recoger comida en los supermercados, repartirla los sábados o ayudar a niños con los deberes.", "fr": "Bien sûr ! Trois options : aller chercher la nourriture dans les supermarchés, la distribuer le samedi ou aider des enfants à faire leurs devoirs."}]}
+   ]
+  },
+  "recogida": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Vamos a los supermercados del barrio los viernes por la tarde y recogemos lo que nos dan. Hay que cargar cajas. ¿Tienes carné de conducir?", "fr": "On va dans les supermarchés du quartier le vendredi après-midi et on récupère ce qu'on nous donne. Il faut porter des caisses. Tu as le permis de conduire ?"}],
+   "choix": [
+    {"t": "Sí, tengo carné, pero no tengo coche.", "fr": "Oui, j'ai le permis, mais je n'ai pas de voiture.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "No pasa nada, tenemos una furgoneta.", "fr": "Ce n'est pas grave, on a une camionnette."}]},
+    {"t": "No, no conduzco, pero puedo cargar cajas sin problema.", "fr": "Non, je ne conduis pas, mais je peux porter des caisses sans problème.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Perfecto, eso también hace mucha falta.", "fr": "Parfait, on en a bien besoin aussi."}]},
+    {"faux": true, "t": "Sí, conduzco desde diez años.", "fr": "Oui, je conduis « depuis dix ans » (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "¿Desde los diez años? ¡Qué pronto empezaste!", "fr": "Depuis l'âge de dix ans ? Tu as commencé tôt !"}],
+     "aide": {"fr": "<b>Pour une durée, « depuis » se dit « desde hace »</b> : « Conduzco desde hace diez años ». « Desde » seul donne un point de départ (« desde 2015 », « desde los diez años »)."}}
+   ]
+  },
+  "reparto": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "El reparto es los sábados de diez a una, y vienen unas ochenta familias. Puedes atender a la gente o preparar las bolsas detrás. ¿Qué prefieres?", "fr": "La distribution a lieu le samedi de dix heures à une heure, et environ quatre-vingts familles viennent. Tu peux accueillir les gens ou préparer les sacs à l'arrière. Qu'est-ce que tu préfères ?"}],
+   "choix": [
+    {"t": "Prefiero atender a la gente. Me gusta hablar.", "fr": "Je préfère accueillir les gens. J'aime parler.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Pues aquí vas a hablar mucho, ya verás.", "fr": "Alors ici tu vas beaucoup parler, tu verras."}]},
+    {"t": "Mejor preparar las bolsas, al menos al principio.", "fr": "Plutôt préparer les sacs, au moins au début.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Me parece muy bien. Así conoces primero al equipo.", "fr": "Très bonne idée. Comme ça, tu fais d'abord connaissance avec l'équipe."}]}
+   ]
+  },
+  "apoyo": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Las clases son los martes y los jueves a las cinco y media, con niños de primaria. ¿En qué asignaturas podrías ayudar?", "fr": "Les cours ont lieu le mardi et le jeudi à cinq heures et demie, avec des enfants du primaire. Dans quelles matières pourrais-tu aider ?"}],
+   "choix": [
+    {"t": "En matemáticas y en inglés. Y en francés, claro.", "fr": "En maths et en anglais. Et en français, bien sûr.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Matemáticas! Nos salvas la vida.", "fr": "Les maths ! Tu nous sauves la vie."}]},
+    {"t": "Puedo ayudarles a leer y con los deberes en general.", "fr": "Je peux les aider à lire et pour les devoirs en général.", "va": "disponibilidad",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Perfecto, es justo lo que más piden.", "fr": "Parfait, c'est exactement ce qu'ils demandent le plus."}]},
+    {"faux": true, "t": "Estoy bueno en matemáticas.", "fr": "Je suis « bon » en maths (avec estar).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "¡Ja, ja! Querrás decir que se te dan bien las matemáticas, ¿no?", "fr": "Ha ha ! Tu veux dire que tu es doué en maths, non ?"}],
+     "aide": {"fr": "<b>« estar bueno »</b> se dit de quelqu'un de physiquement séduisant. Pour une matière : « Soy bueno en matemáticas » ou « Se me dan bien las matemáticas »."}}
+   ]
+  },
+  "disponibilidad": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Y cada cuánto podrías venir? Hay quien viene todas las semanas y quien viene una vez al mes.", "fr": "Et tu pourrais venir tous les combien ? Certains viennent toutes les semaines, d'autres une fois par mois."}],
+   "choix": [
+    {"t": "Podría venir todas las semanas, dos o tres horas.", "fr": "Je pourrais venir toutes les semaines, deux ou trois heures.", "pose": {"ritmo": "semana"}, "va": "idiomas",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¿Todas las semanas? ¡Eso nos ayuda muchísimo!", "fr": "Toutes les semaines ? Ça nous aide énormément !"}]},
+    {"t": "Trabajo mucho. Cada quince días sería mejor para mí.", "fr": "Je travaille beaucoup. Tous les quinze jours, ce serait mieux pour moi.", "pose": {"ritmo": "quince"}, "va": "idiomas",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Te entiendo: yo soy policía entre semana y solo puedo venir los sábados. Cada quince días está muy bien.", "fr": "Je te comprends : je suis policière en semaine et je ne peux venir que le samedi. Tous les quinze jours, c'est très bien."}]},
+    {"faux": true, "t": "Puedo venir todos los quince días.", "fr": "Je peux venir « tous les quinze jours » (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Todos los días? ¿O cada quince días?", "fr": "Tous les jours ? Ou tous les quinze jours ?"}],
+     "aide": {"fr": "<b>« tous les quinze jours » se dit « cada quince días »</b>. « Todos los… » ne marche pas avec un nombre : « cada dos semanas », « cada quince días »."}}
+   ]
+  },
+  "idiomas": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Oye, por el acento… hablas francés, ¿verdad?", "fr": "Dis, à ton accent… tu parles français, non ?"}],
+   "choix": [
+    {"t": "Sí, el francés es mi lengua materna. También hablo inglés.", "fr": "Oui, le français est ma langue maternelle. Je parle aussi anglais.", "va": "preguntas",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Qué suerte! Aquí vienen muchas familias de Senegal y de Marruecos que hablan francés.", "fr": "Quelle chance ! Beaucoup de familles du Sénégal et du Maroc qui parlent français viennent ici."}]},
+    {"t": "Sí, se nota, ¿no? Hablo francés e inglés, y sigo aprendiendo español.", "fr": "Oui, ça s'entend, hein ? Je parle français et anglais, et je continue d'apprendre l'espagnol.", "va": "preguntas",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Pero si hablas muy bien! Y el francés nos viene genial con las familias de Senegal y de Marruecos.", "fr": "Mais tu parles très bien ! Et le français nous sera très utile avec les familles du Sénégal et du Maroc."}]},
+    {"faux": true, "t": "Sí, hablo francés y inglés.", "fr": "Oui, je parle français « y » anglais.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Francés e inglés, ¡qué bien!", "fr": "Français et anglais, super !"}],
+     "aide": {"fr": "<b>« y » devient « e » devant un mot qui commence par le son « i »</b> : « francés e inglés », « padres e hijos »."}}
+   ]
+  },
+  "preguntas": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Tienes alguna pregunta?", "fr": "Tu as une question ?"}],
+   "choix": [
+    {"t": "Sí. ¿Hace falta tener experiencia?", "fr": "Oui. Il faut avoir de l'expérience ?", "va": "formacion",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Buena pregunta!", "fr": "Bonne question !"}]},
+    {"t": "Sí. ¿Puedo venir con un amigo? Él también quiere ayudar.", "fr": "Oui. Je peux venir avec un ami ? Lui aussi veut aider.", "va": "amigo",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Claro que sí! Cuantos más, mejor.", "fr": "Bien sûr ! Plus on est nombreux, mieux c'est."}]}
+   ]
+  },
+  "formacion": {
+   "dit": [
+    {"qui": "b13_koordinatorin", "air": "attentive", "t": "No, experiencia no hace falta.", "fr": "Non, pas besoin d'expérience."},
+    {"si": {"tarea": "recogida"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Solo hay un curso corto de manipulación de alimentos, por internet. Es gratis. ¿Te parece bien?", "fr": "Il y a juste une courte formation à la manipulation des aliments, en ligne. C'est gratuit. Ça te va ?"},
+    {"si": {"tarea": "reparto"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Solo hay un curso corto de manipulación de alimentos, por internet. Es gratis. ¿Te parece bien?", "fr": "Il y a juste une courte formation à la manipulation des aliments, en ligne. C'est gratuit. Ça te va ?"},
+    {"si": {"tarea": "apoyo"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Solo pedimos un certificado para trabajar con menores. Se pide por internet y es gratis. ¿Te parece bien?", "fr": "On demande juste un certificat pour travailler avec des mineurs. Il se demande en ligne et il est gratuit. Ça te va ?"}
+   ],
+   "choix": [
+    {"t": "Sí, claro. Lo hago esta semana.", "fr": "Oui, bien sûr. Je le fais cette semaine.", "va": "primerdia",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Perfecto! Pues ya está todo claro.", "fr": "Parfait ! Alors tout est clair."}]},
+    {"t": "Sin problema. ¿Me mandas la información por correo?", "fr": "Pas de problème. Tu m'envoies les informations par e-mail ?", "va": "primerdia",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Ahora mismo te la mando.", "fr": "Je te les envoie tout de suite."}]}
+   ]
+  },
+  "amigo": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "¿Tu amigo también vive en el barrio?", "fr": "Ton ami habite aussi dans le quartier ?"}],
+   "choix": [
+    {"t": "Sí, vivimos en la misma calle.", "fr": "Oui, nous habitons dans la même rue.", "va": "primerdia",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "¡Qué bien, dos vecinos de golpe! Dile que se pase a verme.", "fr": "Super, deux voisins d'un coup ! Dis-lui de passer me voir."}]},
+    {"t": "No, vive en Vallecas, pero viene en metro.", "fr": "Non, il habite à Vallecas, mais il vient en métro.", "va": "primerdia",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Vallecas no está tan lejos. Dile que se pase a verme.", "fr": "Vallecas, ce n'est pas si loin. Dis-lui de passer me voir."}]},
+    {"faux": true, "t": "Sí, él habita cerca de aquí.", "fr": "Oui, il « habite » près d'ici.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "¿Habita? ¡Qué formal! Vive cerca, vale.", "fr": "« Habita » ? Que c'est solennel ! Il habite près d'ici, d'accord."}],
+     "aide": {"fr": "<b>« habiter » se dit « vivir »</b> dans la langue de tous les jours. « habitar » existe, mais sonne très administratif. Dis : « Vive cerca de aquí »."}}
+   ]
+  },
+  "primerdia": {
+   "dit": [
+    {"si": {"tarea": "recogida"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Entonces ven el viernes a las cinco aquí, al local. Yo aviso al equipo de los viernes. Trae ropa cómoda.", "fr": "Alors viens vendredi à cinq heures ici, au local. Je préviens l'équipe du vendredi. Viens avec des vêtements confortables."},
+    {"si": {"tarea": "reparto"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Entonces te espero el sábado a las nueve y media, para prepararlo todo antes de abrir.", "fr": "Alors je t'attends samedi à neuf heures et demie, pour tout préparer avant d'ouvrir."},
+    {"si": {"tarea": "apoyo"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Entonces ven el martes a las cinco. Yo aviso a los profes, y ellos te presentan a los niños.", "fr": "Alors viens mardi à cinq heures. Je préviens les profs, et ils te présenteront aux enfants."},
+    {"si": {"ritmo": "quince"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Y luego vienes cada quince días, como hemos dicho.", "fr": "Et ensuite tu viens tous les quinze jours, comme on a dit."},
+    {"qui": "b13_koordinatorin", "air": "question", "t": "¿Te viene bien?", "fr": "Ça te convient ?"}
+   ],
+   "choix": [
+    {"t": "Sí, me viene muy bien. ¿Tengo que traer algo?", "fr": "Oui, ça me convient très bien. Je dois apporter quelque chose ?", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Solo ganas. ¡Hasta pronto!", "fr": "Seulement ta bonne volonté. À bientôt !"}]},
+    {"t": "Perfecto. ¡Muchas gracias, Nerea, hasta pronto!", "fr": "Parfait. Merci beaucoup, Nerea, à bientôt !", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Gracias a ti. ¡Nos vemos!", "fr": "Merci à toi. À bientôt !"}]},
+    {"faux": true, "t": "Perfecto. ¡Estoy muy excitado!", "fr": "Parfait. Je suis très « excité » !",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "¡Uy! Querrás decir que te hace ilusión, ¿no?", "fr": "Oh là ! Tu veux dire que tu as hâte, non ?"}],
+     "aide": {"fr": "<b>« excitado »</b> est un faux ami : le mot a une connotation sexuelle. Pour dire qu'on a hâte : « Me hace mucha ilusión » ou « Tengo muchas ganas »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté à l'association, tu as choisi ta tâche de bénévole, dit à quel rythme tu peux venir et fixé ton premier jour avec Nerea."}
+}

@@ -41,7 +41,8 @@ window.SCENE = {
    "pt": "nuvem",
    "ar": "غيمة، سحابة",
    "pl": "chmura",
-   "ru": "облако, туча"
+   "ru": "облако, туча",
+   "es": "la nube"
   },
   {
    "id": "himmel",
@@ -76,7 +77,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "vogel",
@@ -111,7 +113,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "turm",
@@ -140,7 +143,8 @@ window.SCENE = {
    "pt": "torre",
    "ar": "برج",
    "pl": "wieża",
-   "ru": "башня"
+   "ru": "башня",
+   "es": "la torre"
   },
   {
    "id": "uhr",
@@ -175,7 +179,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "kirche",
@@ -204,7 +209,8 @@ window.SCENE = {
    "pt": "igreja",
    "ar": "كنيسة",
    "pl": "kościół",
-   "ru": "церковь"
+   "ru": "церковь",
+   "es": "la iglesia"
   },
   {
    "id": "baum-2",
@@ -233,7 +239,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "blume",
@@ -304,7 +311,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "haus",
@@ -328,7 +336,8 @@ window.SCENE = {
      "pt": "prédio, edifício",
      "ar": "مبنى",
      "pl": "budynek",
-     "ru": "здание"
+     "ru": "здание",
+     "es": "el edificio"
     }
    ],
    "sur": null,
@@ -355,7 +364,8 @@ window.SCENE = {
    "pt": "casa",
    "ar": "بيت، منزل",
    "pl": "dom",
-   "ru": "дом"
+   "ru": "дом",
+   "es": "la casa"
   },
   {
    "id": "denkmal",
@@ -384,7 +394,8 @@ window.SCENE = {
    "pt": "monumento",
    "ar": "نُصب تذكاري",
    "pl": "pomnik",
-   "ru": "памятник"
+   "ru": "памятник",
+   "es": "el monumento"
   },
   {
    "id": "strassenbahn",
@@ -413,7 +424,8 @@ window.SCENE = {
    "pt": "bonde",
    "ar": "ترام",
    "pl": "tramwaj",
-   "ru": "трамвай"
+   "ru": "трамвай",
+   "es": "el tranvía"
   },
   {
    "id": "schild",
@@ -442,7 +454,8 @@ window.SCENE = {
    "pt": "placa",
    "ar": "لافتة",
    "pl": "tabliczka, szyld",
-   "ru": "табличка, вывеска"
+   "ru": "табличка, вывеска",
+   "es": "el letrero"
   },
   {
    "id": "ampel",
@@ -471,7 +484,8 @@ window.SCENE = {
    "pt": "semáforo, farol",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
-   "ru": "светофор"
+   "ru": "светофор",
+   "es": "el semáforo"
   },
   {
    "id": "laterne",
@@ -500,7 +514,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "fahrrad",
@@ -529,7 +544,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "fahrrad-2",
@@ -558,7 +574,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "briefkasten",
@@ -587,7 +604,8 @@ window.SCENE = {
    "pt": "caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
-   "ru": "почтовый ящик"
+   "ru": "почтовый ящик",
+   "es": "el buzón"
   },
   {
    "id": "schirm",
@@ -608,15 +626,19 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "parapluie",
-   "en": "umbrella",
-   "tr": "şemsiye",
-   "uk": "парасолька",
-   "fa": "چتر",
-   "pt": "guarda-chuva, sombrinha",
-   "ar": "مظلّة",
+   "fr": "parasol",
+   "en": "umbrella, parasol",
+   "tr": "güneş şemsiyesi",
+   "uk": "парасоля від сонця",
+   "fa": "چتر آفتابی",
+   "pt": "guarda-sol",
+   "ar": "مظلّة شمسية",
    "pl": "parasol",
-   "ru": "зонт"
+   "ru": "зонт от солнца",
+   "es": "la sombrilla",
+   "zone": {
+    "pt_mot": "o guarda-sol|pl=guarda-sóis"
+   }
   },
   {
    "id": "baum",
@@ -645,7 +667,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "strasse",
@@ -680,7 +703,8 @@ window.SCENE = {
    "pt": "rua",
    "ar": "شارع",
    "pl": "ulica",
-   "ru": "улица"
+   "ru": "улица",
+   "es": "la calle"
   },
   {
    "id": "mann",
@@ -709,7 +733,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "muetze",
@@ -730,15 +755,20 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "bonnet",
-   "en": "cap, hat",
-   "tr": "bere",
-   "uk": "шапка",
-   "fa": "کلاه بافتنی",
-   "pt": "gorro",
-   "ar": "قبعة صوفية",
-   "pl": "czapka",
-   "ru": "шапка"
+   "fr": "casquette",
+   "en": "cap",
+   "tr": "kasket",
+   "uk": "кепка",
+   "fa": "کلاه کپ",
+   "pt": "boné",
+   "ar": "قبعة",
+   "pl": "czapka z daszkiem",
+   "ru": "кепка",
+   "es": "la gorra",
+   "zone": {
+    "pt_mot": "o boné",
+    "es_mot": "la gorra"
+   }
   },
   {
    "id": "brille",
@@ -773,7 +803,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "zeitung",
@@ -802,7 +833,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "jacke",
@@ -831,7 +863,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-2",
@@ -860,7 +893,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "tasse",
@@ -884,7 +918,8 @@ window.SCENE = {
      "pt": "café",
      "ar": "قهوة",
      "pl": "kawa",
-     "ru": "кофе"
+     "ru": "кофе",
+     "es": "el café"
     }
    ],
    "sur": "tisch",
@@ -905,7 +940,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tisch",
@@ -934,7 +970,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "stuhl",
@@ -963,7 +1000,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "wasser",
@@ -998,7 +1036,8 @@ window.SCENE = {
    "pt": "água",
    "ar": "ماء",
    "pl": "woda",
-   "ru": "вода"
+   "ru": "вода",
+   "es": "el agua"
   },
   {
    "id": "brunnen",
@@ -1033,7 +1072,8 @@ window.SCENE = {
    "pt": "fonte, chafariz",
    "ar": "نافورة",
    "pl": "fontanna, studnia",
-   "ru": "фонтан, колодец"
+   "ru": "фонтан, колодец",
+   "es": "la fuente, el pozo"
   },
   {
    "id": "anna",
@@ -1062,7 +1102,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "eis",
@@ -1091,7 +1132,8 @@ window.SCENE = {
    "pt": "gelo",
    "ar": "جليد",
    "pl": "lód",
-   "ru": "лёд"
+   "ru": "лёд",
+   "es": "el hielo"
   },
   {
    "id": "t-shirt",
@@ -1120,7 +1162,8 @@ window.SCENE = {
    "pt": "camiseta",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
-   "ru": "футболка"
+   "ru": "футболка",
+   "es": "la camiseta"
   },
   {
    "id": "mantel",
@@ -1149,7 +1192,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "tasche",
@@ -1178,7 +1222,8 @@ window.SCENE = {
    "pt": "bolsa",
    "ar": "حقيبة",
    "pl": "torba, torebka",
-   "ru": "сумка"
+   "ru": "сумка",
+   "es": "la bolsa, el bolso"
   },
   {
    "id": "hose",
@@ -1207,7 +1252,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "turnschuh",
@@ -1231,7 +1277,8 @@ window.SCENE = {
      "pt": "sapato",
      "ar": "حذاء",
      "pl": "but",
-     "ru": "ботинок, туфля"
+     "ru": "ботинок, туфля",
+     "es": "el zapato"
     }
    ],
    "sur": "anna",
@@ -1258,7 +1305,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis (zapato deportivo)"
   },
   {
    "id": "kaffee",
@@ -1287,7 +1335,8 @@ window.SCENE = {
    "pt": "café",
    "ar": "قهوة",
    "pl": "kawa",
-   "ru": "кофе"
+   "ru": "кофе",
+   "es": "el café"
   },
   {
    "id": "hund",
@@ -1316,7 +1365,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "vogel-2",
@@ -1345,7 +1395,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "muelleimer",
@@ -1374,7 +1425,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "bank",
@@ -1395,15 +1447,26 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "platz",
@@ -1432,7 +1495,8 @@ window.SCENE = {
    "pt": "praça",
    "ar": "ساحة",
    "pl": "plac",
-   "ru": "площадь"
+   "ru": "площадь",
+   "es": "la plaza"
   }
  ],
  "grosPlans": [],
@@ -2390,6 +2454,75 @@ window.SCENE = {
     "C1 | Der Hund könnte ein Stück Eis bekommen.": "Возможно, пёс получит кусочек мороженого.",
     "C1 | Der Mann dürfte jeden Samstag hier sitzen.": "Господин, наверное, сидит здесь каждую субботу.",
     "C1 | Der Brunnen soll über hundert Jahre alt sein.": "Говорят, фонтану больше ста лет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna en una plaza de Berlín, un sábado de primavera por la tarde: sentada en el borde de una fuente de piedra, come un helado y se ríe frente a un perrito marrón que la mira; su café para llevar está a su lado, su bolso de cuero al hombro; una paloma camina sobre los adoquines, un basurero verde, una banca de madera; en medio de la plaza, la estatua de bronce de un hombre sobre un pedestal alto, un farol, bicicletas, la terraza de un café bajo una gran sombrilla blanca donde un señor mayor con gorra lee el periódico frente a una taza; al fondo, la iglesia de ladrillo y su torre puntiaguda con su reloj, una hilera de casas antiguas con geranios rojos, un tranvía amarillo, un semáforo, una señal, un buzón amarillo y un árbol joven; en el cielo azul, nubes blancas y dos palomas.",
+    "consigne": "Anna come un helado en la plaza. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El verbo en segunda posición: Heute isst Anna ein Eis",
+    "B2": "Como si: als ob + Konjunktiv II",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Anna sitzt am Brunnen.": "<b>am</b> = an + <b>dem</b>: der Brunnen → am Brunnen.",
+    "A2 | Der Mülleimer steht neben dem Brunnen.": "<b>neben</b> = al lado de. der Brunnen → neben <b>dem</b> Brunnen.",
+    "A2 | Der Mann sitzt unter dem Schirm.": "<b>unter</b> = debajo de. der Schirm → unter <b>dem</b> Schirm.",
+    "A2 | Die Tasse steht auf dem Tisch.": "der Tisch → auf <b>dem</b> Tisch.",
+    "A2 | Die Uhr ist am Turm.": "<b>am</b> = an + <b>dem</b>: der Turm → am Turm.",
+    "A2 | Die Straßenbahn fährt auf der Straße.": "die Straße → auf <b>der</b> Straße: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Briefkasten hängt am Haus.": "<b>am</b> = an + <b>dem</b>: das Haus → am Haus.",
+    "A2 | Der Hund sitzt vor dem Brunnen.": "<b>vor</b> + dativo (Wo?): der Brunnen → vor <b>dem</b> Brunnen.",
+    "B1 | Heute isst Anna ein Eis.": "El verbo conjugado se queda en <b>2.ª posición</b>: si otro elemento abre la oración, el sujeto pasa <b>después</b> del verbo. El español puede decir «Hoy Anna come»; el alemán no.",
+    "B1 | Am Brunnen sitzt Anna.": "Un lugar al principio → primero el <b>verbo</b>, luego el sujeto: am Brunnen <b>sitzt</b> Anna.",
+    "B1 | Vor Anna sitzt ein Hund.": "Inversión: <b>sitzt</b> ein Hund; el sujeto sigue en nominativo (ein Hund).",
+    "B1 | Unter dem Schirm liest ein Mann die Zeitung.": "El verbo en 2.ª posición, luego el sujeto: <b>liest</b> ein Mann.",
+    "B1 | Am Samstag kommen viele Leute auf den Platz.": "Después de «Am Samstag», primero el verbo: <b>kommen</b> viele Leute; concuerda con el sujeto plural.",
+    "B1 | Auf dem Denkmal steht ein Mann aus Bronze.": "El lugar al principio, el <b>verbo</b> en 2.ª posición, el sujeto después.",
+    "B1 | Dann trinkt Anna einen Kaffee.": "<b>dann</b> cuenta como un elemento: dann <b>trinkt</b> Anna.",
+    "B1 | Hinter dem Platz fährt eine Straßenbahn.": "Inversión: <b>fährt</b> eine Straßenbahn; fahren toma Umlaut: er <b>fährt</b>.",
+    "B2 | Der Hund schaut, als ob er Hunger hätte.": "<b>als ob</b> + Konjunktiv II, verbo al final, como «como si tuviera»: als ob er Hunger <b>hätte</b>.",
+    "B2 | Anna lacht, als ob der Hund ihr einen Witz erzählt hätte.": "Para el pasado: als ob + <b>hätte/wäre</b> + participio II, como «como si hubiera contado».",
+    "B2 | Der Mann liest, als ob er allein auf dem Platz wäre.": "«como si» = <b>als ob</b>; als dass, als weil no significan nada aquí.",
+    "B2 | Die Statue sieht aus, als würde sie gleich losgehen.": "<b>als</b> + Konjunktiv II sin ob: el verbo va justo después de als: als <b>würde</b> sie losgehen.",
+    "B2 | Es ist so warm, als ob schon Sommer wäre.": "<b>als ob</b> + <b>wäre</b> (Konjunktiv II de sein).",
+    "B2 | Die Tauben laufen herum, als ob ihnen der Platz gehörte.": "Konjunktiv II de un verbo regular = forma del Präteritum: als ob ihnen der Platz <b>gehörte</b>.",
+    "C1 | Sie muss den Hund lustig finden.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Der Hund könnte ein Stück Eis bekommen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Mann dürfte jeden Samstag hier sitzen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Der Brunnen soll über hundert Jahre alt sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Anna sitzt am Brunnen.": "Anna está sentada junto a la fuente.",
+    "A2 | Der Mülleimer steht neben dem Brunnen.": "El basurero está al lado de la fuente.",
+    "A2 | Der Mann sitzt unter dem Schirm.": "El señor está sentado bajo la sombrilla.",
+    "A2 | Die Tasse steht auf dem Tisch.": "La taza está sobre la mesa.",
+    "A2 | Die Uhr ist am Turm.": "El reloj está en la torre.",
+    "A2 | Die Straßenbahn fährt auf der Straße.": "El tranvía va por la calle.",
+    "A2 | Der Briefkasten hängt am Haus.": "El buzón está colgado en la casa.",
+    "A2 | Der Hund sitzt vor dem Brunnen.": "El perro está sentado delante de la fuente.",
+    "B1 | Heute isst Anna ein Eis.": "Hoy Anna come un helado.",
+    "B1 | Am Brunnen sitzt Anna.": "Junto a la fuente está sentada Anna.",
+    "B1 | Vor Anna sitzt ein Hund.": "Delante de Anna está sentado un perro.",
+    "B1 | Unter dem Schirm liest ein Mann die Zeitung.": "Bajo la sombrilla, un hombre lee el periódico.",
+    "B1 | Am Samstag kommen viele Leute auf den Platz.": "El sábado viene mucha gente a la plaza.",
+    "B1 | Auf dem Denkmal steht ein Mann aus Bronze.": "Sobre el monumento hay un hombre de bronce, de pie.",
+    "B1 | Dann trinkt Anna einen Kaffee.": "Luego Anna toma un café.",
+    "B1 | Hinter dem Platz fährt eine Straßenbahn.": "Detrás de la plaza pasa un tranvía.",
+    "B2 | Der Hund schaut, als ob er Hunger hätte.": "El perro mira como si tuviera hambre.",
+    "B2 | Anna lacht, als ob der Hund ihr einen Witz erzählt hätte.": "Anna se ríe como si el perro le hubiera contado un chiste.",
+    "B2 | Der Mann liest, als ob er allein auf dem Platz wäre.": "El señor lee como si estuviera solo en la plaza.",
+    "B2 | Die Statue sieht aus, als würde sie gleich losgehen.": "La estatua se ve como si estuviera a punto de echar a andar.",
+    "B2 | Es ist so warm, als ob schon Sommer wäre.": "Hace tanto calor como si ya fuera verano.",
+    "B2 | Die Tauben laufen herum, als ob ihnen der Platz gehörte.": "Las palomas andan por ahí como si la plaza fuera suya.",
+    "C1 | Sie muss den Hund lustig finden.": "El perro debe de parecerle gracioso.",
+    "C1 | Der Hund könnte ein Stück Eis bekommen.": "El perro podría recibir un pedazo de helado.",
+    "C1 | Der Mann dürfte jeden Samstag hier sitzen.": "El señor probablemente se sienta aquí todos los sábados.",
+    "C1 | Der Brunnen soll über hundert Jahre alt sein.": "Dicen que la fuente tiene más de cien años."
    }
   }
  }

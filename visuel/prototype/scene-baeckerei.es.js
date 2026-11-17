@@ -878,7 +878,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1035,7 +1035,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le voisin",
-   "en": "the neighbour",
+   "en": "the neighbor",
    "pt": "o vizinho",
    "ar": "جار",
    "pl": "sąsiad",
@@ -1336,82 +1336,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     82.35000000000001,
-     74.85000000000001,
-     1.1,
-     2.1
-    ],
-    [
-     83.38000000000001,
-     72.92,
-     1.1,
-     2.1
-    ],
-    [
-     84.42,
-     70.98,
-     1.1,
-     2.1
-    ],
-    [
-     85.45,
-     69.05,
-     1.1,
-     2.1
-    ],
-    [
-     86.48,
-     67.12,
-     1.1,
-     2.1
-    ],
-    [
-     87.52,
-     65.18,
-     1.1,
-     2.1
-    ],
-    [
-     88.55,
-     63.25,
-     1.1,
-     2.1
-    ],
-    [
-     89.58,
-     61.32,
-     1.1,
-     2.1
-    ],
-    [
-     90.62,
-     59.38,
-     1.1,
-     2.1
-    ],
-    [
-     91.65,
-     57.45,
-     1.1,
-     2.1
-    ],
-    [
-     92.5,
-     56.449999999999996,
-     1.8,
-     0.9
-    ],
-    [
-     94.10000000000001,
-     56.0,
-     2.2,
-     0.7
-    ],
-    [
-     96.64999999999999,
-     56.550000000000004,
-     0.9,
-     1.3
+     82.5,
+     55.5,
+     15.5,
+     21.5
     ]
    ],
    "fr": "la canne",
@@ -1822,8 +1750,8 @@ window.SCENE = {
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
    "ar": "مكتب، منضدة",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
    "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },
@@ -2362,31 +2290,31 @@ window.SCENE = {
    "sens": {
     "A2 | El reloj está en la pared.": "The clock is on the wall.",
     "A2 | La leche está en la estantería.": "The milk is on the shelf.",
-    "A2 | El perro está al lado del vecino.": "The dog is next to the neighbour.",
+    "A2 | El perro está al lado del vecino.": "The dog is next to the neighbor.",
     "A2 | La bicicleta está delante de la ventana.": "The bicycle is in front of the window.",
     "A2 | Hay una caja en el mostrador.": "There is a till on the counter.",
     "A2 | La tarta está en el plato.": "The cake is on the plate.",
-    "A2 | El vecino está al lado de la ventana.": "The neighbour is next to the window.",
+    "A2 | El vecino está al lado de la ventana.": "The neighbor is next to the window.",
     "A2 | La planta está en el piso.": "The plant is on the floor.",
     "A2 | La planta está en el suelo.": "The plant is on the floor.",
     "B1 | La panadera acaba de sacar el pan del horno.": "The baker has just taken the bread out of the oven.",
-    "B1 | El vecino sigue leyendo el periódico.": "The neighbour keeps reading the newspaper.",
+    "B1 | El vecino sigue leyendo el periódico.": "The neighbor keeps reading the newspaper.",
     "B1 | Anna está pagando los panecillos.": "Anna is paying for the bread rolls.",
     "B1 | Anna va a comer un panecillo en casa.": "Anna is going to eat a bread roll at home.",
-    "B1 | El vecino vuelve a pedir un café.": "The neighbour orders another coffee.",
+    "B1 | El vecino vuelve a pedir un café.": "The neighbor orders another coffee.",
     "B1 | El perro acaba de dormirse.": "The dog has just fallen asleep.",
     "B1 | La panadera lleva diez años haciendo pan.": "The baker has been making bread for ten years.",
     "B1 | Anna tiene que volver a casa antes de las ocho.": "Anna has to get back home before eight.",
     "B2 | La panadera dice que el pan está recién hecho.": "The baker says the bread is freshly made.",
     "B2 | Anna pregunta cuánto cuestan los panecillos.": "Anna asks how much the bread rolls cost.",
-    "B2 | El vecino dijo que el café estaba muy bueno.": "The neighbour said the coffee was very good.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "The neighbor said the coffee was very good.",
     "B2 | La panadera le pide a Anna que vuelva mañana.": "The baker asks Anna to come back tomorrow.",
     "B2 | Anna dijo que volvería al día siguiente.": "Anna said she would come back the next day.",
-    "B2 | El vecino pregunta si hay tarta de fresa.": "The neighbour asks if there is strawberry cake.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "The neighbor asks if there is strawberry cake.",
     "C1 | Los panecillos deben de estar recién hechos.": "The bread rolls must be freshly made.",
-    "C1 | Puede que el perro sea del vecino.": "The dog may belong to the neighbour.",
+    "C1 | Puede que el perro sea del vecino.": "The dog may belong to the neighbor.",
     "C1 | Será de esta mañana.": "It is probably from this morning.",
-    "C1 | Dicen que esta panadería es la mejor del barrio.": "They say this bakery is the best in the neighbourhood."
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "They say this bakery is the best in the neighborhood."
    }
   },
   "tr": {

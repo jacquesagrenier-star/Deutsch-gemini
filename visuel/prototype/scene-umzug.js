@@ -21,15 +21,20 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "lampe",
@@ -58,7 +63,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "gluehbirne",
@@ -87,7 +93,8 @@ window.SCENE = {
    "pt": "lâmpada",
    "ar": "مصباح كهربائي (لمبة)",
    "pl": "żarówka",
-   "ru": "лампочка"
+   "ru": "лампочка",
+   "es": "el foco, el bombillo"
   },
   {
    "id": "tuer",
@@ -122,7 +129,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "wand",
@@ -157,7 +165,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "baum",
@@ -186,7 +195,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "fenster",
@@ -215,7 +225,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "bruder",
@@ -239,7 +250,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -260,7 +272,8 @@ window.SCENE = {
    "pt": "irmão",
    "ar": "أخ",
    "pl": "brat",
-   "ru": "брат"
+   "ru": "брат",
+   "es": "el hermano"
   },
   {
    "id": "pullover",
@@ -289,7 +302,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "hose-2",
@@ -318,7 +332,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -347,7 +362,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "leiter",
@@ -376,7 +392,8 @@ window.SCENE = {
    "pt": "escada (de mão)",
    "ar": "سُلّم",
    "pl": "drabina",
-   "ru": "лестница (стремянка)"
+   "ru": "лестница (стремянка)",
+   "es": "la escalera (de mano)"
   },
   {
    "id": "regal",
@@ -405,7 +422,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "bild",
@@ -429,7 +447,8 @@ window.SCENE = {
      "pt": "pintura, quadro",
      "ar": "لوحة زيتية",
      "pl": "obraz (malowany)",
-     "ru": "картина (живопись)"
+     "ru": "картина (живопись)",
+     "es": "el cuadro, la pintura"
     }
    ],
    "sur": null,
@@ -450,7 +469,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "pflanze",
@@ -479,7 +499,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "karton",
@@ -508,7 +529,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "anna",
@@ -537,7 +559,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "hemd",
@@ -566,7 +589,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "t-shirt",
@@ -595,7 +619,8 @@ window.SCENE = {
    "pt": "camiseta",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
-   "ru": "футболка"
+   "ru": "футболка",
+   "es": "la camiseta"
   },
   {
    "id": "schluessel",
@@ -624,7 +649,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "hose",
@@ -653,7 +679,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "turnschuh",
@@ -677,7 +704,8 @@ window.SCENE = {
      "pt": "sapato",
      "ar": "حذاء",
      "pl": "but",
-     "ru": "ботинок, туфля"
+     "ru": "ботинок, туфля",
+     "es": "el zapato"
     }
    ],
    "sur": "anna",
@@ -704,7 +732,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis (zapato deportivo)"
   },
   {
    "id": "spiegel",
@@ -733,7 +762,8 @@ window.SCENE = {
    "pt": "espelho",
    "ar": "مرآة",
    "pl": "lustro",
-   "ru": "зеркало"
+   "ru": "зеркало",
+   "es": "el espejo"
   },
   {
    "id": "lampe-2",
@@ -762,7 +792,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "gitarre",
@@ -791,7 +822,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "kissen",
@@ -826,7 +858,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "sofa",
@@ -855,7 +888,8 @@ window.SCENE = {
    "pt": "sofá",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
-   "ru": "диван"
+   "ru": "диван",
+   "es": "el sofá"
   },
   {
    "id": "heizkoerper",
@@ -890,7 +924,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "uhr",
@@ -919,7 +954,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "stuhl",
@@ -948,7 +984,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "tisch",
@@ -977,7 +1014,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "dose",
@@ -1006,7 +1044,8 @@ window.SCENE = {
    "pt": "lata",
    "ar": "علبة معدنية",
    "pl": "puszka",
-   "ru": "банка (консервная)"
+   "ru": "банка (консервная)",
+   "es": "la lata"
   },
   {
    "id": "werkzeug",
@@ -1035,7 +1074,8 @@ window.SCENE = {
    "pt": "ferramenta",
    "ar": "أدوات، عُدّة",
    "pl": "narzędzie, narzędzia",
-   "ru": "инструмент"
+   "ru": "инструмент",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -1064,7 +1104,8 @@ window.SCENE = {
    "pt": "martelo",
    "ar": "مطرقة",
    "pl": "młotek",
-   "ru": "молоток"
+   "ru": "молоток",
+   "es": "el martillo"
   },
   {
    "id": "bohrmaschine",
@@ -1093,7 +1134,8 @@ window.SCENE = {
    "pt": "furadeira",
    "ar": "مثقاب",
    "pl": "wiertarka",
-   "ru": "дрель"
+   "ru": "дрель",
+   "es": "el taladro"
   },
   {
    "id": "pizza",
@@ -1122,7 +1164,8 @@ window.SCENE = {
    "pt": "pizza",
    "ar": "بيتزا",
    "pl": "pizza",
-   "ru": "пицца"
+   "ru": "пицца",
+   "es": "la pizza"
   },
   {
    "id": "karton-3",
@@ -1151,7 +1194,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "karton-4",
@@ -1186,7 +1230,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "karton-2",
@@ -1221,7 +1266,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "teppich",
@@ -1250,7 +1296,8 @@ window.SCENE = {
    "pt": "tapete",
    "ar": "سجّادة",
    "pl": "dywan",
-   "ru": "ковёр"
+   "ru": "ковёр",
+   "es": "la alfombra, el tapete"
   },
   {
    "id": "klebeband",
@@ -1279,7 +1326,8 @@ window.SCENE = {
    "pt": "fita adesiva",
    "ar": "شريط لاصق",
    "pl": "taśma klejąca",
-   "ru": "скотч"
+   "ru": "скотч",
+   "es": "la cinta adhesiva"
   },
   {
    "id": "schere",
@@ -1308,7 +1356,8 @@ window.SCENE = {
    "pt": "tesoura",
    "ar": "مقصّ",
    "pl": "nożyczki",
-   "ru": "ножницы"
+   "ru": "ножницы",
+   "es": "las tijeras"
   },
   {
    "id": "buch",
@@ -1337,7 +1386,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "koffer",
@@ -1366,7 +1416,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "boden",
@@ -1401,7 +1452,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2328,6 +2380,73 @@ window.SCENE = {
     "C1 | Die Bücher könnten ins weiße Regal kommen.": "Возможно, книги встанут на белый стеллаж.",
     "C1 | Die Pizza dürfte für Anna und ihren Bruder sein.": "Пицца, наверное, для Анны и её брата.",
     "C1 | Die Wohnung soll sehr ruhig sein.": "Говорят, квартира очень тихая."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna se muda a un apartamento antiguo de Berlín, un sábado por la tarde: carga una caja grande de cartón de la que sobresale una planta verde y le sonríe a su hermano menor, de pie en una escalera, que enrosca un foco en la lámpara del techo; sus llaves cuelgan de su cinturón; en el suelo, una pila de cajas, un rollo de cinta adhesiva, unas tijeras, una alfombra roja enrollada, una pila de libros, una maleta roja, una caja de herramientas roja con un martillo y un taladro, una pizza en su caja y dos latas rojas; a la izquierda, el sofá todavía envuelto en plástico con sus cojines amarillos, un espejo grande apoyado contra la pared, una guitarra y una lámpara de pie; al fondo, una ventana alta en arco que da a un árbol, un radiador, un estante blanco vacío con un cuadro del mar, una mesa de madera con una silla volteada encima y un reloj en el suelo.",
+    "consigne": "Anna se muda a su nuevo apartamento. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los adverbios pronominales: darauf, darin, damit, worauf",
+    "B2": "El futuro perfecto: Futur II",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Der Bruder steht auf der Leiter.": "die Leiter → auf <b>der</b> Leiter: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Kissen liegen auf dem Sofa.": "das Sofa → auf <b>dem</b> Sofa.",
+    "A2 | Der Stuhl steht auf dem Tisch.": "der Tisch → auf <b>dem</b> Tisch.",
+    "A2 | Die Pizza liegt im Karton.": "<b>im</b> = in + <b>dem</b>: der Karton → im Karton.",
+    "A2 | Die Uhr steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "<b>unter</b> + dativo: das Fenster → unter <b>dem</b> Fenster.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "<b>neben</b> = al lado de. das Sofa → neben <b>dem</b> Sofa.",
+    "A2 | Die Lampe hängt an der Decke.": "die Decke → an <b>der</b> Decke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "B1 | Da ist der Tisch. Darauf steht ein Stuhl.": "Para una cosa, <b>da-</b> + preposición reemplaza «preposición + pronombre»: auf dem Tisch → <b>darauf</b>.",
+    "B1 | Das ist Annas Karton. Darin ist eine Pflanze.": "in + cosa → <b>darin</b>.",
+    "B1 | Der Bruder hat einen Hammer. Damit arbeitet er später.": "mit + cosa → <b>damit</b>; mit ihm se referiría a una persona.",
+    "B1 | Worauf freut sich Anna? Auf die neue Wohnung.": "Una pregunta sobre una cosa: <b>wo-</b> + preposición → <b>worauf</b> (wor- delante de una vocal).",
+    "B1 | Anna mag die Wohnung. Sie spricht gern darüber.": "sprechen über + cosa → <b>darüber</b>.",
+    "B1 | Woran denkt der Bruder? An die Pizza!": "denken an + cosa, en una pregunta → <b>woran</b>.",
+    "B1 | Die Bücher liegen auf dem Boden. Der Koffer steht daneben.": "neben + cosa → <b>daneben</b> (al lado).",
+    "B2 | Bis heute Abend wird Anna alle Kartons ausgepackt haben.": "Futur II: <b>werden</b> + participio II + <b>haben/sein</b> = lo que estará terminado en un momento futuro, como «habrá desempacado».",
+    "B2 | Gleich wird der Bruder die Glühbirne eingeschraubt haben.": "Futur II: el participio II (eingeschraubt), luego el infinitivo <b>haben</b> al final.",
+    "B2 | In einer Stunde wird der Bruder schon nach Hause gegangen sein.": "Un verbo de movimiento toma <b>sein</b>: gegangen <b>sein</b>. El español siempre usa «haber».",
+    "B2 | Anna ist müde. Sie wird viel getragen haben.": "Futur II de suposición sobre el pasado, como en español: sie <b>wird</b> viel <b>getragen haben</b> (habrá cargado mucho).",
+    "B2 | Wer hat die Pizza bestellt? Der Bruder wird sie bestellt haben.": "bestellen se conjuga con <b>haben</b>: bestellt <b>haben</b>.",
+    "B2 | Nächste Woche wird Anna sich an die neue Wohnung gewöhnt haben.": "Futur II: <b>wird</b> en segunda posición, <b>gewöhnt haben</b> al final.",
+    "C1 | Sie muss sich auf die neue Wohnung freuen.": "<b>müssen</b> = deducción casi segura, como «debe de estar».",
+    "C1 | Die Bücher könnten ins weiße Regal kommen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Die Pizza dürfte für Anna und ihren Bruder sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Die Wohnung soll sehr ruhig sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Bruder steht auf der Leiter.": "El hermano está de pie en la escalera.",
+    "A2 | Die Kissen liegen auf dem Sofa.": "Los cojines están sobre el sofá.",
+    "A2 | Der Stuhl steht auf dem Tisch.": "La silla está sobre la mesa.",
+    "A2 | Die Pizza liegt im Karton.": "La pizza está en la caja.",
+    "A2 | Die Uhr steht auf dem Boden.": "El reloj está en el suelo.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "El radiador está debajo de la ventana.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "La guitarra está al lado del sofá.",
+    "A2 | Die Lampe hängt an der Decke.": "La lámpara cuelga del techo.",
+    "B1 | Da ist der Tisch. Darauf steht ein Stuhl.": "Ahí está la mesa. Encima hay una silla.",
+    "B1 | Das ist Annas Karton. Darin ist eine Pflanze.": "Esta es la caja de Anna. Adentro hay una planta.",
+    "B1 | Der Bruder hat einen Hammer. Damit arbeitet er später.": "El hermano tiene un martillo. Con él va a trabajar más tarde.",
+    "B1 | Worauf freut sich Anna? Auf die neue Wohnung.": "¿Qué espera Anna con ilusión? El nuevo apartamento.",
+    "B1 | Anna mag die Wohnung. Sie spricht gern darüber.": "A Anna le gusta el apartamento. Le gusta hablar de él.",
+    "B1 | Woran denkt der Bruder? An die Pizza!": "¿En qué piensa el hermano? ¡En la pizza!",
+    "B1 | Die Bücher liegen auf dem Boden. Der Koffer steht daneben.": "Los libros están en el suelo. La maleta está al lado.",
+    "B2 | Bis heute Abend wird Anna alle Kartons ausgepackt haben.": "Para esta noche, Anna habrá desempacado todas las cajas.",
+    "B2 | Gleich wird der Bruder die Glühbirne eingeschraubt haben.": "En un momento, el hermano habrá enroscado el foco.",
+    "B2 | In einer Stunde wird der Bruder schon nach Hause gegangen sein.": "En una hora, el hermano ya se habrá ido a casa.",
+    "B2 | Anna ist müde. Sie wird viel getragen haben.": "Anna está cansada. Habrá cargado mucho.",
+    "B2 | Wer hat die Pizza bestellt? Der Bruder wird sie bestellt haben.": "¿Quién pidió la pizza? La habrá pedido el hermano.",
+    "B2 | Nächste Woche wird Anna sich an die neue Wohnung gewöhnt haben.": "La próxima semana, Anna ya se habrá acostumbrado al nuevo apartamento.",
+    "C1 | Sie muss sich auf die neue Wohnung freuen.": "Debe de estar ilusionada con el nuevo apartamento.",
+    "C1 | Die Bücher könnten ins weiße Regal kommen.": "Los libros podrían ir en el estante blanco.",
+    "C1 | Die Pizza dürfte für Anna und ihren Bruder sein.": "La pizza probablemente es para Anna y su hermano.",
+    "C1 | Die Wohnung soll sehr ruhig sein.": "Dicen que el apartamento es muy tranquilo."
    }
   }
  }

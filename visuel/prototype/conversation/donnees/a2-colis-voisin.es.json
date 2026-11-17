@@ -1,0 +1,99 @@
+{
+ "id": "a2-colis-voisin",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Un colis chez le voisin"},
+ "intro": {"fr": "Un avis dans ta boîte aux lettres : ton colis est chez le voisin du rez-de-chaussée. Tu ne le connais pas encore. Tu sonnes chez lui en fin d'après-midi."},
+ "personnes": ["nachbar-pablo"],
+ "debut": "puerta",
+ "textes": {
+  "cosa_fr": {"cle": "cosa", "libros": "tes livres", "alfombra": "ton tapis"}
+ },
+ "noeuds": {
+  "puerta": {
+   "dit": [
+    {"recit": {"fr": "Six heures du soir. Tu sonnes à la porte du rez-de-chaussée. Un homme ouvre en bâillant."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "¿Sí …? Buenas tardes.", "fr": "Oui… ? Bonsoir."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Perdone la molestia.", "fr": "Bonsoir. Excusez-moi de vous déranger.", "va": "presentar",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "No pasa nada.", "fr": "Ce n'est rien."}]},
+    {"t": "Hola, buenas tardes. ¿Tiene un momento?", "fr": "Bonsoir. Vous avez un instant ?", "va": "presentar",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Sí, claro.", "fr": "Oui, bien sûr."}]}
+   ]
+  },
+  "presentar": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "Perdone, ¿nos conocemos?", "fr": "Excusez-moi, nous nous connaissons ?"}],
+   "choix": [
+    {"t": "No. Vivo en el tercero desde hace poco.", "fr": "Non. J'habite au troisième depuis peu.", "va": "paquete",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "¡Ah, el piso de arriba! Encantado. Yo llevo diez años aquí.", "fr": "Ah, l'appartement du haut ! Enchanté. Moi, je suis ici depuis dix ans."}]},
+    {"t": "Todavía no. Vivo arriba, en el tercero.", "fr": "Pas encore. J'habite en haut, au troisième.", "va": "paquete",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "¡Ah, el piso de arriba! Encantado. Yo llevo diez años aquí.", "fr": "Ah, l'appartement du haut ! Enchanté. Moi, je suis ici depuis dix ans."}]}
+   ]
+  },
+  "paquete": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "¿Y en qué puedo ayudarle?", "fr": "Et en quoi puis-je vous aider ?"}],
+   "choix": [
+    {"t": "Creo que usted tiene un paquete para mí.", "fr": "Je crois que vous avez un colis pour moi.", "va": "piso",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "¡Ah, sí! Esta mañana ha venido el cartero.", "fr": "Ah, oui ! Le facteur est passé ce matin."}]},
+    {"t": "Busco mi paquete. Tengo este papel del cartero.", "fr": "Je cherche mon colis. J'ai ce papier du facteur.", "va": "piso",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "¡Ah, sí! Esta mañana ha venido el cartero.", "fr": "Ah, oui ! Le facteur est passé ce matin."}]},
+    {"faux": true, "t": "Creo que usted ha prendido mi paquete.", "fr": "Je crois que vous avez pris mon colis.",
+     "puis": [{"qui": "nachbar-pablo", "air": "perplexe", "t": "¿Prendido? ¡Yo no he quemado nada! Ah, que tengo su paquete …", "fr": "Allumé ? Je n'ai rien brûlé ! Ah, vous voulez dire que j'ai votre colis…"}],
+     "aide": {"fr": "<b>« prender »</b> veut dire allumer, mettre le feu. Pour un colis que le voisin a reçu pour toi : « Creo que usted tiene un paquete para mí »."}}
+   ]
+  },
+  "piso": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "Tengo dos paquetes aquí. ¿Cuál es su piso?", "fr": "J'ai deux colis ici. Quel est votre appartement ?"}],
+   "choix": [
+    {"t": "Vivo en el tercero A.", "fr": "J'habite au troisième A.", "va": "pesado",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Tercero A … ¡Aquí está!", "fr": "Troisième A… Le voilà !"}]},
+    {"t": "El tercero, la puerta A.", "fr": "Le troisième, porte A.", "va": "pesado",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Tercero A … ¡Aquí está!", "fr": "Troisième A… Le voilà !"}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "piso",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Sí. Hay dos paquetes. ¿En qué piso vive usted?", "fr": "Oui. Il y a deux colis. À quel étage habitez-vous ?"}]}
+   ]
+  },
+  "pesado": {
+   "dit": [
+    {"recit": {"fr": "Il te tend un gros carton."}},
+    {"qui": "nachbar-pablo", "air": "amuse", "t": "Tome. ¡Cómo pesa! ¿Qué hay dentro?", "fr": "Tenez. Qu'est-ce que c'est lourd ! Qu'est-ce qu'il y a dedans ?"}
+   ],
+   "choix": [
+    {"t": "Son libros. Leo mucho.", "fr": "Ce sont des livres. Je lis beaucoup.", "pose": {"cosa": "libros"}, "va": "perdon",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "¡Veinte kilos de libros, por lo menos!", "fr": "Vingt kilos de livres, au moins !"}]},
+    {"t": "Es una alfombra para el salón.", "fr": "C'est un tapis pour le salon.", "pose": {"cosa": "alfombra"}, "va": "perdon",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "¡Pues es una alfombra muy grande!", "fr": "Eh bien, c'est un très grand tapis !"}]},
+    {"faux": true, "t": "Es una carpeta para el salón.", "fr": "C'est un tapis pour le salon.",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "¿Una carpeta de veinte kilos? ¡Cuántos papeles!", "fr": "Une chemise à documents de vingt kilos ? Que de papiers !"}],
+     "aide": {"fr": "<b>« una carpeta »</b>, c'est une chemise pour ranger des papiers. Le tapis se dit « una alfombra » : « Es una alfombra para el salón »."}}
+   ]
+  },
+  "perdon": {
+   "dit": [
+    {"recit": {"fr": "Il bâille encore."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "Perdone … Soy panadero. Trabajo de noche y duermo de día.", "fr": "Excusez-moi… Je suis boulanger. Je travaille la nuit et je dors le jour."}
+   ],
+   "choix": [
+    {"t": "¡Ay, lo siento mucho! Le he despertado.", "fr": "Oh, je suis vraiment désolé(e) ! Je vous ai réveillé.", "va": "proxima",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "No se preocupe. Ya era hora de levantarme.", "fr": "Ne vous inquiétez pas. Il était temps que je me lève."}]},
+    {"t": "Perdone, no lo sabía. Muchas gracias por el paquete.", "fr": "Pardon, je ne le savais pas. Merci beaucoup pour le colis.", "va": "proxima",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "No se preocupe. Ya era hora de levantarme.", "fr": "Ne vous inquiétez pas. Il était temps que je me lève."}]},
+    {"faux": true, "t": "Perdone, estoy muy embarazada.", "fr": "Pardon, je suis très embarrassé(e).",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "¿Embarazada? Eso es esperar un bebé … ¡Quiere decir que lo siente!", "fr": "Enceinte ? Ça, c'est attendre un bébé… Vous voulez dire que vous êtes désolé(e) !"}],
+     "aide": {"fr": "<b>« embarazada »</b> veut dire enceinte. Pour t'excuser, dis : « Lo siento mucho » ; pour dire ta gêne : « ¡Qué vergüenza! »."}}
+   ]
+  },
+  "proxima": {
+   "dit": [{"qui": "nachbar-pablo", "air": "sourire", "t": "La próxima vez, el cartero puede dejar sus paquetes aquí. Por el día siempre estoy en casa.", "fr": "La prochaine fois, le facteur peut laisser vos colis ici. Dans la journée, je suis toujours à la maison."}],
+   "choix": [
+    {"t": "¡Qué amable! Muchas gracias. ¡Hasta luego!", "fr": "Comme c'est gentil ! Merci beaucoup. À bientôt !", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "¡Hasta luego! Y mañana le dejo pan en la puerta.", "fr": "À bientôt ! Et demain, je vous laisse du pain devant la porte."}]},
+    {"t": "Muchas gracias por todo. ¡Que descanse!", "fr": "Merci beaucoup pour tout. Reposez-vous bien !", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "¡Gracias! Y mañana le dejo pan en la puerta.", "fr": "Merci ! Et demain, je vous laisse du pain devant la porte."}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté(e) à ton voisin, tu as récupéré {cosa_fr} et tu t'es excusé(e) de l'avoir réveillé."}
+}

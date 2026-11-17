@@ -1,0 +1,158 @@
+{
+ "id": "b1-demenageurs",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Organiser son déménagement au téléphone"},
+ "intro": {"fr": "Tu changes d'appartement à Madrid. Tu appelles une entreprise de déménagement : fixe la date, décris ton logement et tes meubles, et règle l'emballage, le stationnement et le prix."},
+ "bilan": {"fr": "Tu as organisé ton déménagement de Lavapiés à Chamberí : {dia_fr}, arrivée du camion à huit heures. {embala_fr} Le devis t'arrive par courriel."},
+ "personnes": ["umzugschef"],
+ "debut": "llamada",
+ "textes": {
+  "dia_fr": {"cle": "dia", "sabado": "le samedi 21, avec un supplément", "lunes": "le lundi 23, au prix normal"},
+  "embala_fr": {"cle": "embala", "yo": "Tu emballes tout toi-même, avec les cartons livrés une semaine avant.", "ellos": "Les déménageurs emballent tout la veille."}
+ },
+ "noeuds": {
+  "llamada": {
+   "dit": [
+    {"recit": {"fr": "Tu déménages le mois prochain. Tu composes le numéro d'une entreprise de déménagement recommandée par une collègue."}},
+    {"qui": "umzugschef", "air": "sourire", "t": "Mudanzas Castilla, buenos días. ¿Dígame?", "fr": "Déménagements Castilla, bonjour. Je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenos días. Me mudo el mes que viene y quería pedir un presupuesto para el viernes veinte.", "fr": "Bonjour. Je déménage le mois prochain et je voulais demander un devis pour le vendredi vingt.", "va": "ocupado"},
+    {"t": "Buenos días. Necesito una empresa de mudanzas para el viernes veinte. ¿Tienen sitio?", "fr": "Bonjour. J'ai besoin d'une entreprise de déménagement pour le vendredi vingt. Avez-vous de la place ?", "va": "ocupado"},
+    {"faux": true, "t": "Buenos días. Me muevo el viernes veinte.", "fr": "Bonjour. Je « bouge » le vendredi vingt.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "¿Se mueve? Bueno, todos nos movemos un poco… ¿Quiere decir que se muda?", "fr": "Vous bougez ? Bon, nous bougeons tous un peu… Voulez-vous dire que vous déménagez ?"}],
+     "aide": {"fr": "<b>Déménager = mudarse.</b> « Moverse », c'est bouger. « Me mudo el viernes veinte. »"}}
+   ]
+  },
+  "ocupado": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "El viernes 20 lo tengo completo, lo siento. Puedo el sábado 21, pero los sábados cuestan un 15 % más. O el lunes 23, a precio normal.", "dit": "El viernes veinte lo tengo completo, lo siento. Puedo el sábado veintiuno, pero los sábados cuestan un quince por ciento más. O el lunes veintitrés, a precio normal.", "fr": "Le vendredi 20, je suis complet, je regrette. Je peux le samedi 21, mais le samedi coûte 15 % de plus. Ou le lundi 23, au prix normal."}
+   ],
+   "choix": [
+    {"t": "Entonces prefiero el sábado, aunque sea más caro: el lunes trabajo.", "fr": "Alors je préfère le samedi, même si c'est plus cher : le lundi, je travaille.", "pose": {"dia": "sabado"}, "va": "recargo"},
+    {"t": "Mejor el lunes veintitrés. Pediré el día libre en el trabajo.", "fr": "Plutôt le lundi vingt-trois. Je demanderai ma journée au travail.", "pose": {"dia": "lunes"}, "va": "direccion",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "El lunes 23, apuntado.", "dit": "El lunes veintitrés, apuntado.", "fr": "Le lundi 23, c'est noté."}]},
+    {"faux": true, "t": "El lunes, porque el sábado es demasiado caro por mí.", "fr": "Le lundi, parce que le samedi est trop cher pour moi.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Demasiado caro «para» usted, quiere decir. Entonces, ¿le apunto el lunes?", "fr": "Trop cher « para » vous, voulez-vous dire. Alors, je vous note le lundi ?"}],
+     "aide": {"fr": "<b>« Pour moi » (à mon avis, dans mon cas) = para mí.</b> « Por mí » voudrait dire « à cause de moi » ou « en ce qui me concerne, peu importe »."}},
+    {"repete": true, "t": "Perdone, se oye un poco mal. ¿Puede repetirme las dos fechas?", "fr": "Excusez-moi, on entend un peu mal. Pouvez-vous me répéter les deux dates ?", "va": "ocupado",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Claro. El sábado 21, un poco más caro, o el lunes 23, a precio normal.", "dit": "Claro. El sábado veintiuno, un poco más caro, o el lunes veintitrés, a precio normal.", "fr": "Bien sûr. Le samedi 21, un peu plus cher, ou le lundi 23, au prix normal."}]}
+   ]
+  },
+  "recargo": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Muy bien, el sábado 21. Con el recargo, serán unos 60 euros más. ¿Le parece bien?", "dit": "Muy bien, el sábado veintiuno. Con el recargo, serán unos sesenta euros más. ¿Le parece bien?", "fr": "Très bien, le samedi 21. Avec le supplément, cela fera environ 60 euros de plus. Cela vous convient-il ?"}
+   ],
+   "choix": [
+    {"t": "Sí, de acuerdo. Prefiero pagar un poco más y no perder un día de trabajo.", "fr": "Oui, d'accord. Je préfère payer un peu plus et ne pas perdre une journée de travail.", "va": "direccion"},
+    {"t": "Está bien. Así tengo todo el domingo para ordenar el piso nuevo.", "fr": "C'est bon. Comme ça, j'ai tout le dimanche pour ranger le nouvel appartement.", "va": "direccion"}
+   ]
+  },
+  "direccion": {
+   "dit": [
+    {"qui": "umzugschef", "air": "question", "t": "¿De dónde a dónde es la mudanza? ¿Hay ascensor?", "fr": "Le déménagement va d'où à où ? Y a-t-il un ascenseur ?"}
+   ],
+   "choix": [
+    {"t": "Salgo de un tercero sin ascensor en Lavapiés y voy a un primero en Chamberí.", "fr": "Je pars d'un troisième sans ascenseur à Lavapiés et je vais dans un premier à Chamberí.", "va": "cosas"},
+    {"t": "Vivo en un tercer piso sin ascensor, en Lavapiés. El piso nuevo está en Chamberí y tiene ascensor.", "fr": "J'habite au troisième étage sans ascenseur, à Lavapiés. Le nouvel appartement est à Chamberí et il a un ascenseur.", "va": "cosas"},
+    {"faux": true, "t": "Vivo al tercer piso, en Lavapiés.", "fr": "J'habite au troisième étage, à Lavapiés.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "«En» el tercer piso, se dice. ¿Y hay ascensor? ¿Adónde va?", "fr": "On dit « en el tercer piso ». Et y a-t-il un ascenseur ? Où allez-vous ?"}],
+     "aide": {"fr": "<b>Pour dire où l'on habite : « en ».</b> « Vivo en el tercer piso », « en un tercero ». « Al » indique un mouvement : « subo al tercero »."}}
+   ]
+  },
+  "cosas": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Un tercero sin ascensor… Vale, mis chicos están acostumbrados. ¿Cuántas habitaciones son y qué muebles grandes tiene?", "fr": "Un troisième sans ascenseur… Bon, mes gars ont l'habitude. Combien de pièces y a-t-il et quels gros meubles avez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Es un piso de dos habitaciones. Hay un armario grande que hay que desmontar y una lavadora.", "fr": "C'est un appartement de deux pièces. Il y a une grande armoire qu'il faut démonter et une machine à laver.", "va": "fragil"},
+    {"t": "Dos habitaciones. Lo más difícil es un armario muy ancho y la lavadora.", "fr": "Deux pièces. Le plus difficile, c'est une armoire très large et la machine à laver.", "va": "fragil"},
+    {"faux": true, "t": "Mi piso tiene dos piezas, con un armario grande.", "fr": "Mon appartement a deux pièces, avec une grande armoire.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "¿Dos piezas? ¿Piezas de qué? Ah, dos habitaciones. ¿Y qué más hay, aparte del armario?", "fr": "Deux « piezas » ? Des pièces de quoi ? Ah, deux pièces d'habitation. Et qu'y a-t-il d'autre, à part l'armoire ?"}],
+     "aide": {"fr": "<b>Une pièce (d'un logement) = una habitación.</b> En Espagne, « una pieza » est un morceau, une pièce de puzzle ou de moteur."}},
+    {"faux": true, "t": "Dos habitaciones, y tengo un armario muy largo.", "fr": "Deux pièces, et j'ai une armoire très large.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "¿Largo? ¿Un armario de tres metros? ¿O quiere decir ancho?", "fr": "Long ? Une armoire de trois mètres ? Ou voulez-vous dire large ?"}],
+     "aide": {"fr": "<b>Large = ancho ; « largo » veut dire long.</b> « Un armario muy ancho. »"}}
+   ]
+  },
+  "fragil": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Apuntado: desmontamos el armario y lo volvemos a montar en el piso nuevo. ¿Hay cosas frágiles? ¿Y quién embala: usted o nosotros?", "fr": "C'est noté : nous démontons l'armoire et nous la remontons dans le nouvel appartement. Y a-t-il des objets fragiles ? Et qui emballe : vous ou nous ?"}
+   ],
+   "choix": [
+    {"t": "Tengo un espejo antiguo y la vajilla, pero prefiero embalarlo todo yo.", "fr": "J'ai un miroir ancien et la vaisselle, mais je préfère tout emballer moi-même.", "pose": {"embala": "yo"}, "va": "cajas"},
+    {"t": "Sí, un espejo antiguo y la vajilla. Prefiero que lo embalen ustedes.", "fr": "Oui, un miroir ancien et la vaisselle. Je préfère que ce soit vous qui emballiez.", "pose": {"embala": "ellos"}, "va": "embalaje"},
+    {"faux": true, "t": "Sí, un espejo y la vajilla. Prefiero que ustedes embalan todo.", "fr": "Oui, un miroir et la vaisselle. Je préfère que vous emballiez tout.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Que lo «embalemos» nosotros, con subjuntivo… ¿Es eso lo que prefiere?", "fr": "Que nous l'« embalemos », au subjonctif… C'est bien ce que vous préférez ?"}],
+     "aide": {"fr": "<b>« Prefiero que » demande le subjonctif.</b> « Prefiero que lo embalen ustedes. »"}}
+   ]
+  },
+  "cajas": {
+   "dit": [
+    {"qui": "umzugschef", "air": "sourire", "t": "Muy bien. Entonces le llevamos a casa 30 cajas vacías y papel de embalar una semana antes, sin coste. ¿Le bastan?", "dit": "Muy bien. Entonces le llevamos a casa treinta cajas vacías y papel de embalar una semana antes, sin coste. ¿Le bastan?", "fr": "Très bien. Alors nous vous livrons 30 cartons vides et du papier d'emballage une semaine avant, sans frais. Cela vous suffit-il ?"}
+   ],
+   "choix": [
+    {"t": "Creo que sí. Si me faltan, ¿puedo pedirles más?", "fr": "Je crois que oui. S'il m'en manque, puis-je vous en demander d'autres ?", "va": "aparcar",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Claro, llámenos y le llevamos las que necesite.", "fr": "Bien sûr, appelez-nous et nous vous en apportons autant qu'il vous en faut."}]},
+    {"t": "Mejor cuarenta, por favor: tengo muchísimos libros.", "fr": "Plutôt quarante, s'il vous plaît : j'ai énormément de livres.", "va": "aparcar",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Cuarenta, apuntado. Y no llene demasiado las de libros, que pesan mucho.", "fr": "Quarante, c'est noté. Et ne remplissez pas trop celles de livres, elles pèsent lourd."}]},
+    {"faux": true, "t": "Sí, treinta cartones son suficientes.", "fr": "Oui, trente cartons suffisent.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "¿Cartones? ¿De leche o de huevos? Cajas, querrá decir. ¿Treinta, entonces?", "fr": "Des « cartones » ? De lait ou d'œufs ? Des « cajas », voulez-vous dire. Trente, alors ?"}],
+     "aide": {"fr": "<b>Un carton de déménagement = una caja.</b> « El cartón » est la matière ; « un cartón de leche », une brique de lait."}}
+   ]
+  },
+  "embalaje": {
+   "dit": [
+    {"qui": "umzugschef", "air": "sourire", "t": "Sin problema. El embalaje son 90 euros más: vamos la víspera por la tarde y lo dejamos todo en cajas. ¿Habrá alguien en casa?", "dit": "Sin problema. El embalaje son noventa euros más: vamos la víspera por la tarde y lo dejamos todo en cajas. ¿Habrá alguien en casa?", "fr": "Sans problème. L'emballage, c'est 90 euros de plus : nous venons la veille en fin de journée et nous mettons tout en cartons. Y aura-t-il quelqu'un à la maison ?"}
+   ],
+   "choix": [
+    {"t": "Sí, ese día salgo de trabajar a las cinco. Pueden venir a las seis.", "fr": "Oui, ce jour-là, je sors du travail à cinq heures. Vous pouvez venir à six heures.", "va": "aparcar",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "A las seis, apuntado.", "fr": "À six heures, c'est noté."}]},
+    {"t": "Yo no podré, pero una amiga les abrirá la puerta.", "fr": "Moi, je ne pourrai pas, mais une amie vous ouvrira la porte.", "va": "aparcar",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Perfecto. Déjele dicho qué cosas son las más delicadas.", "fr": "Parfait. Dites-lui bien quels objets sont les plus fragiles."}]},
+    {"faux": true, "t": "Sí, estaré a la casa toda la tarde.", "fr": "Oui, je serai à la maison tout l'après-midi.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "«En casa», se dice. Muy bien. ¿Y a qué hora podemos ir?", "fr": "On dit « en casa ». Très bien. Et à quelle heure pouvons-nous venir ?"}],
+     "aide": {"fr": "<b>À la maison = en casa</b>, sans article, quand on y est. « Estaré en casa toda la tarde. »"}}
+   ]
+  },
+  "aparcar": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Una cosa importante: el camión tiene que aparcar delante del portal. Hay que pedir al Ayuntamiento una reserva de espacio, con dos semanas de antelación.", "fr": "Une chose importante : le camion doit se garer devant l'immeuble. Il faut demander à la mairie une réservation d'emplacement, deux semaines à l'avance."},
+    {"qui": "umzugschef", "air": "question", "t": "¿La pide usted o lo hacemos nosotros, por 40 euros?", "dit": "¿La pide usted o lo hacemos nosotros, por cuarenta euros?", "fr": "La demandez-vous, ou nous en chargeons-nous, pour 40 euros ?"}
+   ],
+   "choix": [
+    {"t": "Prefiero que la pidan ustedes; así no hay errores.", "fr": "Je préfère que vous la demandiez ; comme ça, il n'y a pas d'erreur.", "va": "precio",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Hecho. Nosotros nos encargamos de las señales.", "fr": "Entendu. Nous nous chargeons des panneaux."}]},
+    {"t": "La pido yo por internet. ¿Qué datos necesito?", "fr": "Je la demande moi-même en ligne. De quelles informations ai-je besoin ?", "va": "precio",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "La matrícula del camión y el horario. Se lo mando todo por correo electrónico.", "fr": "L'immatriculation du camion et l'horaire. Je vous envoie tout par courriel."}]},
+    {"faux": true, "t": "No hace falta: en mi calle hay siempre de la plaza.", "fr": "Ce n'est pas nécessaire : dans ma rue, il y a toujours de la place.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "¿«De la plaza»? Que siempre hay sitio, quiere decir. Para un coche, quizá; para un camión de ocho metros, no.", "fr": "« De la plaza » ? Qu'il y a toujours de la place, voulez-vous dire. Pour une voiture, peut-être ; pour un camion de huit mètres, non."}],
+     "aide": {"fr": "<b>Il y a de la place = hay sitio.</b> « Una plaza » est une place publique (ou une place de parking précise), et l'espagnol n'a pas d'article partitif. Sans réservation, le camion ne pourra pas se garer."}}
+   ]
+  },
+  "precio": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Trabajamos con precio cerrado, no por horas: la mudanza son 400 euros, IVA incluido.", "dit": "Trabajamos con precio cerrado, no por horas: la mudanza son cuatrocientos euros, IVA incluido.", "fr": "Nous travaillons au forfait, pas à l'heure : le déménagement coûte 400 euros, TVA comprise."},
+    {"si": {"dia": "sabado"}, "qui": "umzugschef", "air": "attentive", "t": "Más los 60 del sábado.", "dit": "Más los sesenta del sábado.", "fr": "Plus les 60 du samedi."},
+    {"si": {"embala": "ellos"}, "qui": "umzugschef", "air": "attentive", "t": "Más los 90 del embalaje.", "dit": "Más los noventa del embalaje.", "fr": "Plus les 90 de l'emballage."},
+    {"qui": "umzugschef", "air": "sourire", "t": "Le envío el presupuesto detallado por correo electrónico. Si lo acepta, llegamos a las 8 de la mañana. ¿De acuerdo?", "dit": "Le envío el presupuesto detallado por correo electrónico. Si lo acepta, llegamos a las ocho de la mañana. ¿De acuerdo?", "fr": "Je vous envoie le devis détaillé par courriel. Si vous l'acceptez, nous arrivons à 8 heures du matin. D'accord ?"}
+   ],
+   "choix": [
+    {"t": "De acuerdo. Espero su correo y se lo confirmo hoy mismo.", "fr": "D'accord. J'attends votre courriel et je vous le confirme aujourd'hui même.", "va": null,
+     "puis": [
+      {"si": {"dia": "sabado"}, "qui": "umzugschef", "air": "sourire", "t": "Perfecto. Pues hasta el sábado veintiuno, a las ocho en punto.", "fr": "Parfait. Alors à samedi vingt et un, à huit heures pile."},
+      {"si": {"dia": "lunes"}, "qui": "umzugschef", "air": "sourire", "t": "Perfecto. Pues hasta el lunes veintitrés, a las ocho en punto.", "fr": "Parfait. Alors à lundi vingt-trois, à huit heures pile."}]},
+    {"t": "Muy bien. ¿Hay que pagar algo por adelantado?", "fr": "Très bien. Faut-il payer quelque chose à l'avance ?", "va": null,
+     "puis": [
+      {"qui": "umzugschef", "air": "sourire", "t": "No, se paga al terminar, cuando todo esté en su sitio.", "fr": "Non, on paie à la fin, quand tout est à sa place."},
+      {"si": {"dia": "sabado"}, "qui": "umzugschef", "air": "sourire", "t": "Pues hasta el sábado veintiuno, a las ocho en punto.", "fr": "Alors à samedi vingt et un, à huit heures pile."},
+      {"si": {"dia": "lunes"}, "qui": "umzugschef", "air": "sourire", "t": "Pues hasta el lunes veintitrés, a las ocho en punto.", "fr": "Alors à lundi vingt-trois, à huit heures pile."}]},
+    {"faux": true, "t": "De acuerdo. Envíeme el devís, por favor.", "fr": "D'accord. Envoyez-moi le devis, s'il vous plaît.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "¿El «devís»? Eso no lo conozco… El presupuesto, querrá decir.", "fr": "Le « devís » ? Je ne connais pas… Le « presupuesto », voulez-vous dire."}],
+     "aide": {"fr": "<b>Un devis = un presupuesto.</b> « Envíeme el presupuesto, por favor. »"}}
+   ]
+  }
+ }
+}

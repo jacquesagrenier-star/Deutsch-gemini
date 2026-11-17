@@ -1897,8 +1897,8 @@ window.SCENE = {
     "B1 | El gato ha subido a la silla.": "The cat has climbed onto the chair.",
     "B1 | Mark la ha puesto en la mesa.": "Mark has put it on the table.",
     "B1 | Mark ha colgado la toalla del horno.": "Mark has hung the towel on the oven.",
-    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "Today Mark has cooked for his flatmates.",
-    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "Today Mark has cooked for his flatmates.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "Today Mark has cooked for his roommates.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "Today Mark has cooked for his roommates.",
     "B2 | Aquí se cortan las verduras antes de cocinarlas.": "Here the vegetables are cut before cooking.",
     "B2 | La mesa en la que están las verduras es de madera.": "The table the vegetables are on is made of wood.",
     "B2 | El gato, que está sentado en la silla, mira la mesa.": "The cat, which is sitting on the chair, is looking at the table.",
@@ -1908,8 +1908,8 @@ window.SCENE = {
     "C1 | La sopa debe de oler bien.": "The soup must smell good.",
     "C1 | Puede que el gato espere un trozo de zanahoria.": "The cat may be waiting for a piece of carrot.",
     "C1 | Tendrá invitados esta noche.": "He probably has guests tonight.",
-    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "They say Mark makes the best soup in the flat.",
-    "C1 | Dicen que Mark hace la mejor sopa del piso.": "They say Mark makes the best soup in the flat."
+    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "They say Mark makes the best soup in the apartment.",
+    "C1 | Dicen que Mark hace la mejor sopa del piso.": "They say Mark makes the best soup in the apartment."
    }
   },
   "tr": {

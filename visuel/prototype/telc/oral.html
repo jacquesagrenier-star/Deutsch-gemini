@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="../themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>L’oral du telc A2·B1</title>
 <!--
@@ -164,7 +165,7 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 // (outils/langues.js), lu ci-dessous par u(), tr(), trRep() et trModele().
 (() => {
   const l = ((new URLSearchParams(location.search).get("lang")) || "fr").toLowerCase().split(/[-_]/)[0];
-  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l)) document.write('<script src="langues/' + l + '.js?v=2"><\/script>');
+  if (["tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"].includes(l)) document.write('<script src="langues/' + l + '.js?v=2"><\/script>');
 })();
 </script>
 <script>
@@ -174,7 +175,7 @@ if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 // L'interface : francais et anglais dans la page (une testeuse anglophone B1 l'essaie la premiere, 6 nov.) ; les
 // autres langues d'interface (7 nov.) par le dictionnaire anglais -> langue de langues/<langue>.js (TELC_DICO), le
 // francais pour ce qui y manquerait.
-const LANG = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]);
+const LANG = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"].includes(l) ? l : "fr")((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]);
 const DICO = (LANG !== "fr" && LANG !== "en" && window.TELC_DICO) || null;
 function dico(en){
   if (!DICO || en == null) return null;

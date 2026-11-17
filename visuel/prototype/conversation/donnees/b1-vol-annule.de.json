@@ -1,0 +1,130 @@
+{
+ "id": "b1-vol-annule",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Mon vol est annulé"},
+ "intro": {"fr": "Fin d'un séjour de quelques jours à Berlin. À l'aéroport, ton vol pour Paris vient d'être annulé. Au comptoir de la compagnie, tu te fais réacheminer et tu demandes à quoi tu as droit."},
+ "personnes": ["b13_fluggesellschaft"],
+ "debut": "schalter",
+ "noeuds": {
+  "schalter": {
+   "dit": [
+    {"recit": {"fr": "Aéroport BER, en fin d'après-midi. Sur l'écran, à côté de ton vol pour Paris : « annulliert ». Tu fais la queue au comptoir de la compagnie."}},
+    {"qui": "b13_fluggesellschaft", "air": "question", "t": "Guten Abend. Was kann ich für Sie tun?", "fr": "Bonsoir. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Abend. Mein Flug nach Paris ist gestrichen worden. Was kann ich jetzt tun?", "fr": "Bonsoir. Mon vol pour Paris a été annulé. Qu'est-ce que je peux faire maintenant ?", "va": "grund"},
+    {"t": "Guten Abend. Mein Flug nach Paris fällt aus. Können Sie mich auf einen anderen Flug umbuchen?", "fr": "Bonsoir. Mon vol pour Paris est annulé. Pouvez-vous me mettre sur un autre vol ?", "va": "grund"},
+    {"faux": true, "t": "Guten Abend. Ich habe meinen Flug nach Paris verpasst.", "fr": "Bonsoir. J'ai raté mon vol pour Paris.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "surprise", "t": "Verpasst? Der Flug nach Paris ist doch gestrichen worden. Den hat heute niemand verpasst.", "fr": "Raté ? Mais le vol pour Paris a été annulé. Personne ne l'a raté aujourd'hui."}],
+     "aide": {"fr": "<b>« verpassen »</b>, c'est rater (arriver trop tard). Un vol annulé : « Mein Flug ist gestrichen worden » ou « Mein Flug fällt aus »."}}
+   ]
+  },
+  "grund": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Ja, das tut mir sehr leid. Das Flugzeug hat ein technisches Problem, und wir haben heute Abend keine andere Maschine. Darf ich Ihre Bordkarte oder Ihre Buchungsnummer sehen?", "fr": "Oui, je suis vraiment désolée. L'avion a un problème technique et nous n'avons pas d'autre appareil ce soir. Puis-je voir votre carte d'embarquement ou votre numéro de réservation ?"}],
+   "choix": [
+    {"t": "Natürlich, hier ist meine Bordkarte.", "fr": "Bien sûr, voici ma carte d'embarquement.", "va": "optionen"},
+    {"t": "Das ist ärgerlich, aber da kann man nichts machen. Hier ist meine Buchungsnummer.", "fr": "C'est embêtant, mais on n'y peut rien. Voici mon numéro de réservation.", "va": "optionen"},
+    {"repete": true, "t": "Entschuldigung, können Sie das bitte etwas langsamer sagen?", "fr": "Excusez-moi, pouvez-vous le dire un peu plus lentement ?", "va": "grund",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Gern. Das Flugzeug ist kaputt, deshalb fliegt es heute nicht. Ich brauche bitte Ihre Bordkarte.", "fr": "Volontiers. L'avion est en panne, donc il ne vole pas aujourd'hui. J'ai besoin de votre carte d'embarquement, s'il vous plaît."}]}
+   ]
+  },
+  "optionen": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Danke. Ich kann Ihnen zwei Möglichkeiten anbieten: heute Abend um 19:40 Uhr mit Umsteigen in Frankfurt oder morgen früh um 7:15 Uhr direkt.", "dit": "Danke. Ich kann Ihnen zwei Möglichkeiten anbieten: heute Abend um neunzehn Uhr vierzig mit Umsteigen in Frankfurt oder morgen früh um sieben Uhr fünfzehn direkt.", "fr": "Merci. Je peux vous proposer deux possibilités : ce soir à 19 h 40 avec une correspondance à Francfort, ou demain matin à 7 h 15 en direct."}],
+   "choix": [
+    {"t": "Ich nehme lieber den Direktflug morgen früh.", "fr": "Je préfère prendre le vol direct demain matin.", "pose": {"flug": "morgen"}, "va": "hotel"},
+    {"t": "Ich möchte heute noch ankommen. Bitte buchen Sie mich auf den Flug über Frankfurt um.", "fr": "Je voudrais arriver aujourd'hui encore. Mettez-moi sur le vol par Francfort, s'il vous plaît.", "pose": {"flug": "heute"}, "va": "umsteigen"},
+    {"faux": true, "t": "Dann möchte ich meinen Flug stornieren und morgen früh fliegen.", "fr": "Alors je voudrais annuler mon vol et partir demain matin.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Stornieren? Dann bekommen Sie Ihr Geld zurück, aber Sie fliegen nicht. Möchten Sie nicht lieber umbuchen?", "fr": "Annuler ? Alors vous êtes remboursé(e), mais vous ne partez pas. Vous ne préférez pas changer de vol ?"}],
+     "aide": {"fr": "<b>« stornieren »</b>, c'est annuler sa réservation pour de bon. Changer de vol : « umbuchen ». Dis : « Bitte buchen Sie mich auf morgen früh um » ou « Ich nehme den Flug morgen früh »."}}
+   ]
+  },
+  "hotel": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Gut, ich buche Sie auf morgen früh um. Brauchen Sie ein Hotelzimmer für heute Nacht? Die Kosten übernehmen wir.", "fr": "Bien, je vous mets sur le vol de demain matin. Avez-vous besoin d'une chambre d'hôtel pour cette nuit ? C'est nous qui payons."}],
+   "choix": [
+    {"t": "Ja, gern. Ich kenne in Berlin niemanden.", "fr": "Oui, volontiers. Je ne connais personne à Berlin.", "pose": {"hotel": "ja"}, "va": "gepaeck",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Dann bekommen Sie einen Hotelgutschein für das Flughafenhotel und einen Essensgutschein über 15 Euro. Der Bus zum Hotel fährt vor Terminal 1 ab.", "dit": "Dann bekommen Sie einen Hotelgutschein für das Flughafenhotel und einen Essensgutschein über fünfzehn Euro. Der Bus zum Hotel fährt vor Terminal eins ab.", "fr": "Alors vous recevez un bon pour l'hôtel de l'aéroport et un bon de repas de 15 euros. Le bus de l'hôtel part devant le terminal 1."}]},
+    {"t": "Nein, danke. Ich kann bei Freunden in Berlin übernachten.", "fr": "Non, merci. Je peux dormir chez des amis à Berlin.", "pose": {"hotel": "nein"}, "va": "gepaeck",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Sehr gut. Dann bekommen Sie nur den Essensgutschein über 15 Euro. Und heben Sie bitte die Quittung für das Taxi auf.", "dit": "Sehr gut. Dann bekommen Sie nur den Essensgutschein über fünfzehn Euro. Und heben Sie bitte die Quittung für das Taxi auf.", "fr": "Très bien. Alors vous recevez seulement le bon de repas de 15 euros. Et gardez bien le reçu du taxi."}]},
+    {"faux": true, "t": "Ja, bitte. Ich weiß nicht, wo kann ich heute schlafen.", "fr": "Oui, s'il vous plaît. Je ne sais pas où je peux dormir ce soir.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Sie wissen nicht, wo Sie heute schlafen können? Keine Sorge. Möchten Sie also ein Hotelzimmer?", "fr": "Vous ne savez pas où vous pouvez dormir ce soir ? Ne vous inquiétez pas. Vous voulez donc une chambre d'hôtel ?"}],
+     "aide": {"fr": "<b>Dans une question indirecte, le verbe conjugué va à la fin :</b> « Ich weiß nicht, wo ich heute schlafen kann. »"}}
+   ]
+  },
+  "umsteigen": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "In Ordnung. In Frankfurt haben Sie 50 Minuten zum Umsteigen. Das ist knapp, aber es reicht normalerweise. Ist das für Sie in Ordnung?", "dit": "In Ordnung. In Frankfurt haben Sie fünfzig Minuten zum Umsteigen. Das ist knapp, aber es reicht normalerweise. Ist das für Sie in Ordnung?", "fr": "D'accord. À Francfort, vous avez 50 minutes pour changer d'avion. C'est juste, mais d'habitude ça suffit. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Ja, das schaffe ich. Aber was passiert, wenn ich den zweiten Flug verpasse?", "fr": "Oui, j'y arriverai. Mais que se passe-t-il si je rate le deuxième vol ?", "va": "gepaeck",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Dann buchen wir Sie kostenlos auf den nächsten Flug um, und Sie bekommen ein Hotel in Frankfurt.", "fr": "Alors nous vous mettons gratuitement sur le vol suivant, et vous avez un hôtel à Francfort."}]},
+    {"t": "Ja, das reicht mir. Das Wichtigste ist, dass ich heute noch ankomme.", "fr": "Oui, ça me suffit. L'essentiel, c'est que j'arrive aujourd'hui.", "va": "gepaeck",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Das verstehe ich gut. Ich buche Sie sofort um.", "fr": "Je comprends bien. Je change votre vol tout de suite."}]},
+    {"faux": true, "t": "Ja, fünfzig Minuten sind genug für die Korrespondenz.", "fr": "Oui, cinquante minutes suffisent pour la correspondance.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Für die Korrespondenz? Möchten Sie in Frankfurt Briefe schreiben? Ach so, Sie meinen das Umsteigen!", "fr": "Pour la correspondance ? Vous voulez écrire des lettres à Francfort ? Ah, vous voulez dire le changement d'avion !"}],
+     "aide": {"fr": "<b>« die Korrespondenz »</b>, c'est le courrier. La correspondance entre deux vols ou deux trains : « der Anschluss » ou « das Umsteigen ». « Fünfzig Minuten reichen zum Umsteigen. »"}}
+   ]
+  },
+  "gepaeck": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "So, das ist erledigt. Haben Sie Gepäck aufgegeben?", "fr": "Voilà, c'est fait. Avez-vous enregistré des bagages ?"}],
+   "choix": [
+    {"t": "Ja, einen Koffer. Was passiert jetzt mit ihm?", "fr": "Oui, une valise. Qu'est-ce qu'elle devient ?", "va": "frage",
+     "puis": [
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"flug": "morgen"}, "t": "Der Koffer bleibt hier und kommt morgen früh automatisch in Ihr neues Flugzeug. Sie müssen nichts tun.", "fr": "La valise reste ici et sera chargée automatiquement dans votre nouvel avion demain matin. Vous n'avez rien à faire."},
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"flug": "heute"}, "t": "Er wird automatisch umgeladen. Sie bekommen ihn in Paris zurück.", "fr": "Elle est transférée automatiquement. Vous la récupérez à Paris."}
+     ]},
+    {"si": {"flug": "morgen"}, "t": "Ja, einen Koffer, und ich brauche ihn heute Abend. Kann ich ihn zurückbekommen?", "fr": "Oui, une valise, et j'en ai besoin ce soir. Est-ce que je peux la récupérer ?", "va": "koffer"},
+    {"t": "Nein, ich habe nur Handgepäck.", "fr": "Non, je n'ai qu'un bagage à main.", "va": "frage",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Umso besser, dann ist alles ganz einfach.", "fr": "Tant mieux, alors tout est très simple."}]},
+    {"faux": true, "t": "Ja, ich habe einen Koffer registriert.", "fr": "Oui, j'ai enregistré une valise.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Registriert? Ach so, Sie meinen, Sie haben einen Koffer aufgegeben?", "fr": "Enregistré ? Ah, vous voulez dire que vous avez déposé une valise ?"}],
+     "aide": {"fr": "<b>Enregistrer un bagage : « Gepäck aufgeben ».</b> « registrieren » sert pour une inscription ou des données. « Ja, ich habe einen Koffer aufgegeben. »"}}
+   ]
+  },
+  "koffer": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Das ist möglich, aber es dauert ungefähr eine Stunde. Sie holen ihn an der Gepäckausgabe ab und geben ihn morgen früh wieder auf. Soll ich das für Sie organisieren?", "fr": "C'est possible, mais cela prend environ une heure. Vous la récupérez à la livraison des bagages et vous l'enregistrez de nouveau demain matin. Voulez-vous que je m'en occupe ?"}],
+   "choix": [
+    {"t": "Ja, bitte. Meine Medikamente sind im Koffer.", "fr": "Oui, s'il vous plaît. Mes médicaments sont dans la valise.", "va": "frage",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Verstehe. Ich sage den Kollegen Bescheid. Gehen Sie bitte in einer Stunde zur Gepäckausgabe, Band 3.", "dit": "Verstehe. Ich sage den Kollegen Bescheid. Gehen Sie bitte in einer Stunde zur Gepäckausgabe, Band drei.", "fr": "Je comprends. Je préviens mes collègues. Allez dans une heure à la livraison des bagages, tapis 3."}]},
+    {"t": "Nein, eine Stunde ist mir zu lang. Dann lasse ich ihn lieber hier.", "fr": "Non, une heure, c'est trop long pour moi. Alors je préfère la laisser ici.", "va": "frage",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Wie Sie möchten. Hier ist er sicher.", "fr": "Comme vous voulez. Ici, elle est en sécurité."}]}
+   ]
+  },
+  "frage": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Hier ist Ihre neue Bordkarte. Haben Sie noch eine Frage?", "fr": "Voici votre nouvelle carte d'embarquement. Avez-vous encore une question ?"}],
+   "choix": [
+    {"t": "Ja. Habe ich ein Recht auf eine Entschädigung?", "fr": "Oui. Est-ce que j'ai droit à une indemnisation ?", "va": "recht"},
+    {"t": "Ja. Bekomme ich Geld zurück, weil der Flug gestrichen wurde?", "fr": "Oui. Est-ce qu'on me rend de l'argent, puisque le vol a été annulé ?", "va": "recht"},
+    {"t": "Nein, danke, das war alles.", "fr": "Non, merci, c'était tout.", "va": "abschied"},
+    {"faux": true, "t": "Ja. Kann ich eine Entschädigung fragen?", "fr": "Oui. Puis-je demander une indemnisation ?",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Eine Entschädigung … fragen? Sie möchten wissen, ob Sie eine Entschädigung bekommen?", "fr": "Demander… une indemnisation ? Vous voulez savoir si vous recevez une indemnisation ?"}],
+     "aide": {"fr": "<b>« fragen »</b>, c'est poser une question. Demander quelque chose : « um etwas bitten » ; pour un droit : « Habe ich ein Recht auf eine Entschädigung? » ou « Kann ich eine Entschädigung beantragen? »."}}
+   ]
+  },
+  "recht": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Ja, bei einem technischen Problem haben Sie nach europäischem Recht Anspruch auf bis zu 250 Euro. Dafür müssen Sie ein Formular auf unserer Internetseite ausfüllen.", "dit": "Ja, bei einem technischen Problem haben Sie nach europäischem Recht Anspruch auf bis zu zweihundertfünfzig Euro. Dafür müssen Sie ein Formular auf unserer Internetseite ausfüllen.", "fr": "Oui, pour un problème technique, le droit européen vous donne droit à une somme allant jusqu'à 250 euros. Pour cela, vous devez remplir un formulaire sur notre site."}],
+   "choix": [
+    {"t": "Wo finde ich dieses Formular genau?", "fr": "Où est-ce que je trouve ce formulaire, exactement ?", "va": "abschied",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Auf unserer Internetseite unter „Fluggastrechte“. Sie brauchen nur Ihre Buchungsnummer. Ich gebe Ihnen auch dieses Blatt mit Ihren Rechten.", "fr": "Sur notre site, à la rubrique « Fluggastrechte » (droits des passagers). Il vous faut seulement votre numéro de réservation. Je vous donne aussi cette feuille avec vos droits."}]},
+    {"t": "Wie lange dauert es, bis ich das Geld bekomme?", "fr": "Combien de temps faut-il pour que je reçoive l'argent ?", "va": "abschied",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Normalerweise etwa sechs Wochen. Heben Sie bitte Ihre Bordkarte und alle Quittungen auf.", "fr": "En général, environ six semaines. Gardez bien votre carte d'embarquement et tous vos reçus."}]},
+    {"faux": true, "t": "Muss ich das Formular heute erfüllen?", "fr": "Dois-je remplir le formulaire aujourd'hui ?",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Erfüllen? Sie meinen ausfüllen. Nein, das können Sie in Ruhe zu Hause machen.", "fr": "« Erfüllen » ? Vous voulez dire « ausfüllen ». Non, vous pouvez le faire tranquillement à la maison."}],
+     "aide": {"fr": "<b>Remplir un formulaire : « ein Formular ausfüllen ».</b> « erfüllen » veut dire remplir une condition ou exaucer un souhait."}}
+   ]
+  },
+  "abschied": {
+   "dit": [
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"flug": "morgen"}, "t": "Dann sind Sie für morgen früh gebucht. Seien Sie bitte spätestens um 6:15 Uhr am Gate.", "dit": "Dann sind Sie für morgen früh gebucht. Seien Sie bitte spätestens um sechs Uhr fünfzehn am Gate.", "fr": "Alors vous êtes inscrit(e) sur le vol de demain matin. Soyez à la porte d'embarquement à 6 h 15 au plus tard."},
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"flug": "heute"}, "t": "Ihr Flug geht von Gate B 12. Das Boarding beginnt um 19:10 Uhr.", "dit": "Ihr Flug geht von Gate B zwölf. Das Boarding beginnt um neunzehn Uhr zehn.", "fr": "Votre vol part de la porte B 12. L'embarquement commence à 19 h 10."},
+    {"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Und noch einmal: Entschuldigen Sie bitte den Ärger.", "fr": "Et encore une fois : veuillez nous excuser pour ce désagrément."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für Ihre Hilfe. Einen schönen Abend noch!", "fr": "Merci beaucoup pour votre aide. Bonne soirée !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Danke, Ihnen auch. Und guten Flug!", "fr": "Merci, à vous aussi. Et bon vol !"}]},
+    {"t": "Danke, Sie haben mir sehr geholfen. Auf Wiedersehen!", "fr": "Merci, vous m'avez beaucoup aidé(e). Au revoir !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Gern geschehen. Guten Flug!", "fr": "Je vous en prie. Bon vol !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait changer ton vol annulé, réglé la nuit et les bagages, et demandé à quoi tu avais droit."}
+}

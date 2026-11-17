@@ -1,0 +1,64 @@
+{
+ "id": "a1-chemin",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "ville",
+ "registre": "Sie",
+ "titre": {"fr": "Demander son chemin"},
+ "intro": {"fr": "Tu cherches l'Alexanderplatz et ton téléphone n'a plus de batterie. Une policière t'aide : à pied ou en métro, tu comprends le chemin et tu vérifies."},
+ "personnes": ["polizistin"],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Berlin, en fin de matinée. Ton téléphone n'a plus de batterie et tu cherches l'Alexanderplatz. Une policière te voit hésiter."}},
+    {"qui": "polizistin", "air": "sourire", "t": "Guten Tag! Kann ich Ihnen helfen?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte. Wie komme ich zum Alexanderplatz?", "fr": "Oui, s'il vous plaît. Comment je vais à l'Alexanderplatz ?", "va": "wie"},
+    {"t": "Ja, danke. Wo ist der Alexanderplatz, bitte?", "fr": "Oui, merci. Où est l'Alexanderplatz, s'il vous plaît ?", "va": "wie"},
+    {"faux": true, "t": "Ja, bitte. Ich bin verloren.", "fr": "Oui, s'il vous plaît. Je suis perdu(e) (mot à mot).",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "Verloren? … Ach so, Sie haben sich verlaufen! Wohin möchten Sie denn?", "fr": "Perdu(e) ? … Ah, vous vous êtes égaré(e) ! Où voulez-vous aller ?"}],
+     "aide": {"fr": "<b>« verloren » se dit d'un objet perdu</b> (« Ich habe meinen Schlüssel verloren »). Pour toi, demande plutôt le chemin : « Wie komme ich zum Alexanderplatz? »."}}
+   ]
+  },
+  "wie": {
+   "dit": [{"qui": "polizistin", "air": "question", "t": "Zum Alexanderplatz? Möchten Sie zu Fuß gehen oder mit der U-Bahn fahren?", "fr": "À l'Alexanderplatz ? Vous voulez y aller à pied ou en métro ?"}],
+   "choix": [
+    {"t": "Zu Fuß. Ist es weit?", "fr": "À pied. C'est loin ?", "va": "fuss"},
+    {"t": "Mit der U-Bahn, bitte.", "fr": "En métro, s'il vous plaît.", "va": "ubahn"},
+    {"repete": true, "t": "Wie bitte? Langsam, bitte.", "fr": "Pardon ? Lentement, s'il vous plaît.", "va": "wie",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Natürlich. Zu Fuß … oder mit der U-Bahn?", "fr": "Bien sûr. À pied… ou en métro ?"}]}
+   ]
+  },
+  "fuss": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "Nein, nicht weit: zehn Minuten. Gehen Sie hier geradeaus bis zur Ampel. Dann nach links.", "fr": "Non, pas loin : dix minutes. Allez tout droit jusqu'au feu. Ensuite à gauche."}],
+   "choix": [
+    {"t": "Also geradeaus bis zur Ampel und dann links?", "fr": "Donc tout droit jusqu'au feu, et ensuite à gauche ?", "va": "danke",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Genau! Dann sehen Sie schon den Fernsehturm.", "fr": "Exactement ! Ensuite, vous voyez déjà la tour de la télévision."}]},
+    {"faux": true, "t": "Also geradeaus und dann rechts?", "fr": "Donc tout droit, et ensuite à droite ?",
+     "puis": [{"qui": "polizistin", "air": "perplexe", "t": "Nein, nein: nach links!", "fr": "Non, non : à gauche !"}],
+     "aide": {"fr": "<b>« links » = à gauche, « rechts » = à droite.</b> Redire le chemin pour vérifier, c'est une très bonne habitude."}},
+    {"repete": true, "t": "Können Sie das bitte wiederholen?", "fr": "Vous pouvez répéter, s'il vous plaît ?", "va": "fuss",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Gern: geradeaus bis zur Ampel, dann nach links.", "fr": "Volontiers : tout droit jusqu'au feu, puis à gauche."}]}
+   ]
+  },
+  "ubahn": {
+   "dit": [{"qui": "polizistin", "air": "attentive", "t": "Die U-Bahn ist gleich da vorne. Es sind nur zwei Stationen.", "fr": "Le métro est juste là, devant. Ce n'est qu'à deux stations."}],
+   "choix": [
+    {"t": "Zwei Stationen. Und wo kann ich ein Ticket kaufen?", "fr": "Deux stations. Et où est-ce que je peux acheter un ticket ?", "va": "danke",
+     "puis": [{"qui": "polizistin", "air": "sourire", "t": "Am Automaten, unten im Bahnhof.", "fr": "Au distributeur, en bas dans la station."}]},
+    {"t": "Gut, nur zwei Stationen. Danke!", "fr": "Bien, seulement deux stations. Merci !", "va": "danke"}
+   ]
+  },
+  "danke": {
+   "dit": [{"qui": "polizistin", "air": "sourire", "t": "Gern geschehen! Schönen Tag noch!", "fr": "Je vous en prie ! Bonne journée !"}],
+   "choix": [
+    {"t": "Vielen Dank! Auf Wiedersehen!", "fr": "Merci beaucoup ! Au revoir !", "va": null},
+    {"t": "Danke, Ihnen auch!", "fr": "Merci, à vous aussi !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ton chemin à une policière, compris la réponse et vérifié le chemin."}
+}

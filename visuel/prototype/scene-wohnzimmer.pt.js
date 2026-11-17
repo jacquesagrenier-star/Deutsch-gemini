@@ -4,9 +4,9 @@ window.SCENE = {
  "points": [
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -21,7 +21,7 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "wand",

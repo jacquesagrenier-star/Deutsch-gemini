@@ -1,0 +1,128 @@
+{
+ "id": "a2-conseil-vendeur",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Demander conseil au magasin de vélos"},
+ "intro": {"fr": "Tu veux un vélo pour circuler dans Boston. Dans un magasin de Cambridge, la vendeuse te pose des questions, te propose deux vélos et te conseille des accessoires."},
+ "personnes": ["rad_verkaeuferin"],
+ "debut": "help",
+ "textes": {
+  "velo_fr": {"cle": "velo", "new": "le vélo neuf", "used": "le vélo d'occasion révisé"},
+  "extra_fr": {"cle": "extra", "lights": "un antivol et des lumières", "helmet": "un antivol et un casque"}
+ },
+ "noeuds": {
+  "help": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, dans un petit magasin de vélos de Cambridge. Une vendeuse lève la tête de son atelier."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Hi there! Can I help you find something?", "fr": "Bonjour ! Je peux vous aider à trouver quelque chose ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. I'm looking for a bike for the city.", "fr": "Oui, s'il vous plaît. Je cherche un vélo pour la ville.", "va": "use",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "You're in the right place!", "fr": "Vous êtes au bon endroit !"}]},
+    {"t": "Hi. I need a bike to get to work.", "fr": "Bonjour. J'ai besoin d'un vélo pour aller au travail.", "va": "use",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Good idea. It's faster than the T!", "fr": "Bonne idée. C'est plus rapide que le métro !"}]},
+    {"faux": true, "t": "Yes, I search a bike for the city.", "fr": "Oui, je cherche un vélo pour la ville (mauvais verbe).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "You … search a bike? Oh, you're looking for a bike!", "fr": "Vous… fouillez un vélo ? Ah, vous cherchez un vélo !"}],
+     "aide": {"fr": "<b>« chercher » quelque chose se dit « look for ».</b> « I'm looking for a bike ». « Search » veut dire fouiller un endroit (« search the house »)."}}
+   ]
+  },
+  "use": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "How far do you ride, and how often?", "fr": "Vous roulez sur quelle distance, et tous les combien ?"}],
+   "choix": [
+    {"t": "About three miles, every day.", "fr": "Environ trois miles (cinq kilomètres), tous les jours.", "va": "budget",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Every day, even in the winter? You're brave!", "fr": "Tous les jours, même en hiver ? Vous êtes courageux (courageuse) !"}]},
+    {"t": "Not far. Twenty minutes, five days a week.", "fr": "Pas loin. Vingt minutes, cinq jours par semaine.", "va": "budget",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Perfect. You don't need anything fancy, then.", "fr": "Parfait. Vous n'avez besoin de rien de sophistiqué, alors."}]},
+    {"faux": true, "t": "About three miles, all the days.", "fr": "Environ trois miles, tous les jours (mot à mot).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "All the days …? Oh, every day!", "fr": "« All the days »… ? Ah, tous les jours !"}],
+     "aide": {"fr": "<b>« tous les jours » se dit « every day »</b>, au singulier et sans article. De même : « every week », « every morning »."}}
+   ]
+  },
+  "budget": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Okay. And what's your budget?", "fr": "D'accord. Et quel est votre budget ?"}],
+   "choix": [
+    {"t": "Not more than four hundred dollars.", "fr": "Pas plus de quatre cents dollars.", "va": "choose"},
+    {"t": "Around four hundred dollars, if possible.", "fr": "Autour de quatre cents dollars, si possible.", "va": "choose"},
+    {"faux": true, "t": "Four hundreds dollars maximum.", "fr": "Quatre cents dollars maximum (un « s » en trop).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "Four hundreds …? Oh, four hundred dollars. Got it.", "fr": "« Four hundreds »… ? Ah, quatre cents dollars. Compris."}],
+     "aide": {"fr": "<b>« hundred » ne prend jamais de « s » après un nombre</b> : « four hundred dollars », « two hundred people »."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "budget",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "No problem. How much do you want to spend on the bike?", "fr": "Pas de problème. Combien voulez-vous dépenser pour le vélo ?"}]}
+   ]
+  },
+  "choose": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Then I have two good options. This blue one is new and simple, with seven gears: $390. And this green one is used, but I tuned it up myself: $260.", "dit": "Then I have two good options. This blue one is new and simple, with seven gears: three hundred and ninety dollars. And this green one is used, but I tuned it up myself: two hundred and sixty dollars.", "t_gb": "Then I have two good options. This blue one is new and simple, with seven gears: $390. And this green one is second-hand, but I serviced it myself: $260.", "dit_gb": "Then I have two good options. This blue one is new and simple, with seven gears: three hundred and ninety dollars. And this green one is second-hand, but I serviced it myself: two hundred and sixty dollars.", "fr": "Alors j'ai deux bonnes options. Le bleu est neuf et simple, avec sept vitesses : 390 $. Et le vert est d'occasion, mais je l'ai révisé moi-même : 260 $."}],
+   "choix": [
+    {"t": "I like the new one.", "fr": "J'aime bien le neuf.", "pose": {"velo": "new"}, "va": "questions",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "It's a great bike. Very easy to ride.", "fr": "C'est un très bon vélo. Très facile à conduire."}]},
+    {"t": "The used one is cheaper. I like it.", "t_gb": "The second-hand one is cheaper. I like it.", "fr": "Celui d'occasion est moins cher. Il me plaît.", "pose": {"velo": "used"}, "va": "questions",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Good choice. It rides like new, I promise.", "fr": "Bon choix. Il roule comme un neuf, promis."}]},
+    {"faux": true, "t": "I prefer the bike of occasion.", "fr": "Je préfère le vélo d'occasion (faux ami).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "A bike for … a special occasion? Like a birthday? Oh, the used one!", "t_gb": "A bike for … a special occasion? Like a birthday? Oh, the second-hand one!", "fr": "Un vélo pour… une grande occasion ? Comme un anniversaire ? Ah, celui d'occasion !"}],
+     "aide": {"fr": "<b>« occasion » est un faux ami</b> : en anglais, c'est un événement (« a special occasion »). « D'occasion » se dit « used » (ou « second-hand », surtout en anglais britannique) : « the used one »."}}
+   ]
+  },
+  "questions": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Do you have any questions about it?", "fr": "Vous avez des questions sur ce vélo ?"}],
+   "choix": [
+    {"t": "Yes. Can I try it?", "fr": "Oui. Je peux l'essayer ?", "va": "ride",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Of course! Take it around the block.", "fr": "Bien sûr ! Faites le tour du pâté de maisons."}]},
+    {"t": "Yes. Is it the right size for me?", "fr": "Oui. C'est la bonne taille pour moi ?", "va": "extras",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Let me see … how tall are you? About five seven? Then yes, this medium frame is perfect.", "fr": "Voyons… vous mesurez combien ? Environ un mètre soixante-dix ? Alors oui, ce cadre moyen est parfait."}]},
+    {"faux": true, "t": "Yes. Is it the good size for me?", "fr": "Oui. C'est la bonne taille pour moi ? (mauvais adjectif)",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "A good size …? Oh, the right size for you! Let's check.", "fr": "Une taille… bien ? Ah, la bonne taille pour vous ! Vérifions."}],
+     "aide": {"fr": "<b>« le bon » au sens de « celui qu'il faut » se dit « the right »</b> : « the right size », « the right bus ». « Good » veut dire « de bonne qualité »."}}
+   ]
+  },
+  "ride": {
+   "dit": [
+    {"recit": {"fr": "Tu fais le tour du pâté de maisons, puis tu reviens au magasin."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "So, how does it feel?", "fr": "Alors, comment vous le sentez ?"}
+   ],
+   "choix": [
+    {"t": "Great! It's very comfortable.", "fr": "Super ! Il est très confortable.", "va": "extras",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "I thought so. It's the right size for you.", "fr": "C'est ce que je pensais. C'est la bonne taille pour vous."}]},
+    {"t": "I like it, but the seat is a little high.", "fr": "Il me plaît, mais la selle est un peu haute.", "va": "extras",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Easy fix. One second … there you go.", "fr": "Facile à régler. Une seconde… voilà."}]},
+    {"faux": true, "t": "Great! It rolls very well.", "fr": "Super ! Il roule très bien (mot à mot).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "It rolls? Like a ball? Oh, it rides well! Good.", "fr": "Il « rolls » ? Comme un ballon ? Ah, il roule bien ! Tant mieux."}],
+     "aide": {"fr": "<b>Pour un vélo, « rouler » se dit « ride »</b> : « It rides very well ». « Roll » se dit d'une balle ou d'une roue qui tourne toute seule."}}
+   ]
+  },
+  "extras": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "One more thing: in this city, you really need a good lock. This one is $45. I also have lights for $25, or a helmet for $50.", "dit": "One more thing: in this city, you really need a good lock. This one is forty-five dollars. I also have lights for twenty-five dollars, or a helmet for fifty dollars.", "fr": "Encore une chose : dans cette ville, il vous faut vraiment un bon antivol. Celui-ci est à 45 $. J'ai aussi des lumières à 25 $, ou un casque à 50 $."}],
+   "choix": [
+    {"t": "I'll take the lock and the lights, please.", "fr": "Je prends l'antivol et les lumières, s'il vous plaît.", "pose": {"extra": "lights"}, "va": "pay",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Smart. It gets dark early here in the winter.", "fr": "Malin. Il fait nuit tôt ici en hiver."}]},
+    {"t": "I'll take the lock and a helmet, please.", "fr": "Je prends l'antivol et un casque, s'il vous plaît.", "pose": {"extra": "helmet"}, "va": "pay",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Good. Boston drivers are … well, you'll see.", "fr": "Bien. Les conducteurs de Boston sont… enfin, vous verrez."}]},
+    {"faux": true, "t": "I have already a helmet, so just the lock, please.", "fr": "J'ai déjà un casque, donc juste l'antivol, s'il vous plaît (ordre des mots).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "You have … already? Oh, you already have a helmet. Then how about lights?", "fr": "Vous avez… « already » ? Ah, vous avez déjà un casque. Et des lumières, alors ?"}],
+     "aide": {"fr": "<b>« already » se place avant le verbe</b>, pas après comme « déjà » : « I already have a helmet »."}}
+   ]
+  },
+  "pay": {
+   "dit": [
+    {"si": {"velo": "new", "extra": "lights"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "So, the bike, the lock and the lights: that comes to $460.", "dit": "So, the bike, the lock and the lights: that comes to four hundred and sixty dollars.", "fr": "Donc le vélo, l'antivol et les lumières : ça fait 460 $."},
+    {"si": {"velo": "new", "extra": "helmet"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "So, the bike, the lock and the helmet: that comes to $485.", "dit": "So, the bike, the lock and the helmet: that comes to four hundred and eighty-five dollars.", "fr": "Donc le vélo, l'antivol et le casque : ça fait 485 $."},
+    {"si": {"velo": "used", "extra": "lights"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "So, the bike, the lock and the lights: that comes to $330.", "dit": "So, the bike, the lock and the lights: that comes to three hundred and thirty dollars.", "fr": "Donc le vélo, l'antivol et les lumières : ça fait 330 $."},
+    {"si": {"velo": "used", "extra": "helmet"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "So, the bike, the lock and the helmet: that comes to $355.", "dit": "So, the bike, the lock and the helmet: that comes to three hundred and fifty-five dollars.", "fr": "Donc le vélo, l'antivol et le casque : ça fait 355 $."}
+   ],
+   "choix": [
+    {"t": "Okay. Is there a warranty on the bike?", "t_gb": "Okay. Is there a guarantee on the bike?", "fr": "D'accord. Il y a une garantie sur le vélo ?", "va": null,
+     "puis": [
+      {"si": {"velo": "new"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "Yes, one year. And the first tune-up is free: come back in a month. Enjoy the ride!", "t_gb": "Yes, one year. And the first service is free: come back in a month. Enjoy the ride!", "fr": "Oui, un an. Et la première révision est gratuite : revenez dans un mois. Bonne route !"},
+      {"si": {"velo": "used"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "Yes, three months. And the first tune-up is free: come back in a month. Enjoy the ride!", "t_gb": "Yes, three months. And the first service is free: come back in a month. Enjoy the ride!", "fr": "Oui, trois mois. Et la première révision est gratuite : revenez dans un mois. Bonne route !"}
+     ]},
+    {"t": "Great, I'll pay by card. Do you repair bikes here, too?", "fr": "Très bien, je paie par carte. Vous réparez aussi les vélos ici ?", "va": null,
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "I do, right here in the back. And your first tune-up is free: come back in a month. Enjoy the ride!", "t_gb": "I do, right here in the back. And your first service is free: come back in a month. Enjoy the ride!", "fr": "Oui, juste ici, au fond. Et votre première révision est gratuite : revenez dans un mois. Bonne route !"}]},
+    {"faux": true, "t": "Okay. I can pay with the card?", "fr": "D'accord. Je peux payer avec la carte ? (ordre des mots)",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "You can pay …? Oh, that's a question! Yes, you can pay by card.", "fr": "Vous pouvez payer… ? Ah, c'est une question ! Oui, vous pouvez payer par carte."}],
+     "aide": {"fr": "<b>Dans une question, l'auxiliaire passe devant le sujet</b> : « Can I pay by card? », pas « I can pay…? ». Et « par carte » se dit « by card », sans article."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ce qu'il te fallait, donné ton budget et choisi {velo_fr}, avec {extra_fr}. La première révision est gratuite."}
+}

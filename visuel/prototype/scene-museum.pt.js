@@ -29,9 +29,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -46,7 +46,7 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "lampe-2",
@@ -828,7 +828,7 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "rucksack",

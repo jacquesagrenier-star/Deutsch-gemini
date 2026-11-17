@@ -1,0 +1,136 @@
+{
+ "id": "b1-resilier",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Résilier son abonnement à la salle de sport"},
+ "intro": {"fr": "Tu déménages à Hambourg pour un nouveau travail. Tu veux résilier ton abonnement à la salle de sport, mais l'employée essaie de te garder : tu refuses poliment et tu insistes."},
+ "personnes": ["fitness_beraterin"],
+ "debut": "kuendigen",
+ "textes": {
+  "nachweis_fr": {"cle": "nachweis", "dabei": "ton nouveau bail, que tu avais avec toi", "mail": "ton attestation de domicile, que tu enverras par courriel après le déménagement"},
+  "datum_fr": {"cle": "datum", "monatsende": "à la fin de ce mois, sans autre prélèvement", "fuenfzehnter": "le quinze du mois prochain, avec un dernier prélèvement d'un demi-mois"}
+ },
+ "noeuds": {
+  "kuendigen": {
+   "dit": [
+    {"recit": {"fr": "L'accueil de ta salle de sport, à Prenzlauer Berg. L'employée lève les yeux de son écran et te reconnaît."}},
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Hallo! Schön, Sie zu sehen. Möchten Sie trainieren, oder kann ich etwas für Sie tun?", "fr": "Bonjour ! Ça fait plaisir de vous voir. Vous venez vous entraîner, ou je peux faire quelque chose pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich möchte leider meinen Vertrag kündigen.", "fr": "Bonjour. Je voudrais malheureusement résilier mon contrat.", "va": "grund"},
+    {"t": "Guten Tag. Ich würde gern meine Mitgliedschaft kündigen.", "fr": "Bonjour. J'aimerais résilier mon abonnement.", "va": "grund"},
+    {"faux": true, "t": "Guten Tag. Ich möchte mich kündigen.", "fr": "Bonjour. Je voudrais « me » résilier.",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "Sich selbst kündigen? Das geht leider nicht! Ach, Sie möchten Ihren Vertrag kündigen?", "fr": "Vous résilier vous-même ? Ce n'est malheureusement pas possible ! Ah, vous voulez résilier votre contrat ?"}],
+     "aide": {"fr": "<b>« kündigen » n'est pas pronominal</b> : on résilie un contrat, « Ich möchte meinen Vertrag kündigen ». Pas de « mich »."}}
+   ]
+  },
+  "grund": {
+   "dit": [{"qui": "fitness_beraterin", "air": "surprise", "t": "Oh, das ist aber schade! Darf ich fragen, warum? Sind Sie mit uns nicht zufrieden?", "fr": "Oh, c'est vraiment dommage ! Puis-je vous demander pourquoi ? Vous n'êtes pas satisfait(e) de nous ?"}],
+   "choix": [
+    {"t": "Doch, sehr. Aber ich ziehe nächsten Monat nach Hamburg, weil ich dort eine neue Stelle habe.", "fr": "Si, très. Mais je déménage à Hambourg le mois prochain, parce que j'y ai un nouveau poste.", "va": "pause"},
+    {"t": "Doch, es hat mir hier gut gefallen. Aber ich habe eine neue Arbeit in Hamburg gefunden und ziehe um.", "fr": "Si, je me suis bien plu ici. Mais j'ai trouvé un nouveau travail à Hambourg et je déménage.", "va": "pause"},
+    {"faux": true, "t": "Doch, aber ich habe eine neue Arbeit zu Hamburg gefunden.", "fr": "Si, mais j'ai trouvé un nouveau travail à Hambourg.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Zu Hamburg? In Hamburg, meinen Sie! Und Sie ziehen dorthin?", "fr": "« Zu » Hambourg ? À Hambourg, vous voulez dire ! Et vous y déménagez ?"}],
+     "aide": {"fr": "<b>Devant une ville : « in »</b> (où l'on est) ou « nach » (où l'on va), jamais « zu » : « eine Arbeit in Hamburg », « Ich ziehe nach Hamburg »."}}
+   ]
+  },
+  "pause": {
+   "dit": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Hamburg, wie schön! Aber wissen Sie, Ihr Vertrag läuft noch sieben Monate. Sie könnten ihn einfach pausieren, bis zu sechs Monate lang. Wäre das nichts für Sie?", "fr": "Hambourg, c'est chouette ! Mais vous savez, votre contrat court encore sept mois. Vous pourriez simplement le suspendre, jusqu'à six mois. Ça ne vous dirait pas ?"}],
+   "choix": [
+    {"t": "Nein, danke. Eine Pause hilft mir nicht, weil ich nicht nach Berlin zurückkomme.", "fr": "Non, merci. Une suspension ne m'aide pas, parce que je ne reviens pas à Berlin.", "va": "partner"},
+    {"t": "Das ist nett von Ihnen, aber ich bleibe in Hamburg. Deshalb möchte ich wirklich kündigen.", "fr": "C'est gentil de votre part, mais je reste à Hambourg. C'est pourquoi je veux vraiment résilier.", "va": "partner"},
+    {"repete": true, "t": "Entschuldigung, was bedeutet „pausieren“?", "fr": "Excusez-moi, que veut dire « pausieren » ?", "va": "pause",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Der Vertrag macht eine Pause: Sie zahlen ein paar Monate nichts und trainieren nicht. Danach geht er normal weiter. Wäre das etwas für Sie?", "fr": "Le contrat fait une pause : pendant quelques mois, vous ne payez rien et vous ne vous entraînez pas. Ensuite, il reprend normalement. Ça vous irait ?"}]},
+    {"faux": true, "t": "Nein! Ich habe gesagt: kündigen!", "fr": "Non ! J'ai dit : résilier !",
+     "puis": [{"qui": "fitness_beraterin", "air": "surprise", "t": "Schon gut, schon gut! Ich muss das fragen, das ist meine Arbeit.", "fr": "D'accord, d'accord ! Je suis obligée de poser la question, c'est mon travail."}],
+     "aide": {"fr": "<b>Reste ferme, mais poli(e)</b> : « Nein, danke. Eine Pause hilft mir leider nicht. » Elle fait son travail, et la suite se passera mieux."}}
+   ]
+  },
+  "partner": {
+   "dit": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Verstehe. Aber vielleicht interessiert Sie das: Wir haben ein Partnerstudio in Hamburg-Altona. Dort könnten Sie weitertrainieren, und zwar für 19,90 Euro im Monat statt 29,90.", "dit": "Verstehe. Aber vielleicht interessiert Sie das: Wir haben ein Partnerstudio in Hamburg-Altona. Dort könnten Sie weitertrainieren, und zwar für neunzehn Euro neunzig im Monat statt neunundzwanzig neunzig.", "fr": "Je comprends. Mais ceci vous intéressera peut-être : nous avons une salle partenaire à Hambourg-Altona. Vous pourriez continuer à vous y entraîner, pour 19,90 euros par mois au lieu de 29,90."}],
+   "choix": [
+    {"t": "Danke für das Angebot, aber Altona ist zu weit von meiner neuen Wohnung.", "fr": "Merci pour l'offre, mais Altona est trop loin de mon nouvel appartement.", "va": "nachweis"},
+    {"t": "Das klingt gut, aber ich möchte in Hamburg etwas Neues ausprobieren. Ich bleibe bei der Kündigung.", "fr": "C'est tentant, mais j'aimerais essayer quelque chose de nouveau à Hambourg. Je maintiens la résiliation.", "va": "nachweis"},
+    {"faux": true, "t": "Nein, danke, ich bin nicht interessant.", "fr": "Non, merci, je ne suis pas intéressant(e).",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "Oh, das würde ich so nicht sagen! Aber Sie sind nicht interessiert, das habe ich verstanden.", "fr": "Oh, je ne dirais pas ça ! Mais vous n'êtes pas intéressé(e), j'ai compris."}],
+     "aide": {"fr": "<b>« interessiert » = intéressé ; « interessant » = intéressant.</b> Dis : « Ich bin nicht interessiert » ou « Danke, aber ich bleibe bei der Kündigung »."}}
+   ]
+  },
+  "nachweis": {
+   "dit": [{"qui": "fitness_beraterin", "air": "attentive", "t": "Na gut, ich habe es versucht! In Ihrem Vertrag steht: Bei einem Umzug in eine andere Stadt können Sie früher kündigen. Dafür brauche ich einen Nachweis, normalerweise die neue Meldebescheinigung. Haben Sie die schon?", "fr": "Bon, j'aurai essayé ! Votre contrat le dit : en cas de déménagement dans une autre ville, vous pouvez résilier plus tôt. Pour cela, il me faut un justificatif, normalement la nouvelle attestation de domicile. Vous l'avez déjà ?"}],
+   "choix": [
+    {"t": "Noch nicht, aber ich habe meinen neuen Mietvertrag dabei. Reicht das?", "fr": "Pas encore, mais j'ai mon nouveau bail avec moi. Est-ce que ça suffit ?", "pose": {"nachweis": "dabei"}, "va": "mietvertrag"},
+    {"t": "Noch nicht, ich melde mich erst nach dem Umzug an. Kann ich sie Ihnen dann per E-Mail schicken?", "fr": "Pas encore, je ne m'inscris qu'après le déménagement. Est-ce que je peux vous l'envoyer par courriel à ce moment-là ?", "pose": {"nachweis": "mail"}, "va": "mail"},
+    {"faux": true, "t": "Nein, ich habe nicht noch die Bescheinigung.", "fr": "Non, je n'ai pas encore l'attestation.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Nicht noch? Ach, Sie haben sie noch nicht. Kein Problem.", "fr": "« Pas encore » à l'envers ? Ah, vous ne l'avez pas encore. Pas de problème."}],
+     "aide": {"fr": "<b>« Pas encore » se dit « noch nicht »</b>, dans cet ordre : « Ich habe die Bescheinigung noch nicht »."}}
+   ]
+  },
+  "mietvertrag": {
+   "dit": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Der Mietvertrag reicht mir, ich mache schnell eine Kopie. Dann brauche ich noch die Kündigung in Textform: Sie können das Formular hier ausfüllen oder mir eine E-Mail schreiben.", "fr": "Le bail me suffit, j'en fais vite une copie. Il me faut ensuite la résiliation par écrit : vous pouvez remplir le formulaire ici ou m'écrire un courriel."}],
+   "choix": [
+    {"t": "Dann fülle ich das Formular gleich hier aus.", "fr": "Alors je remplis le formulaire tout de suite, ici.", "va": "datum",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Bitte schön, hier ist ein Stift.", "fr": "Tenez, voici un stylo."},
+              {"recit": {"fr": "Tu remplis le formulaire : ton nom, ton numéro de membre, le motif."}}]},
+    {"t": "Ich schreibe Ihnen lieber eine E-Mail. Dann habe ich selbst auch eine Kopie.", "fr": "Je préfère vous écrire un courriel. Comme ça, j'en garde une copie moi aussi.", "va": "datum",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Auch gut. Schreiben Sie sie am besten gleich hier am Handy, dann können wir alles heute klären.", "fr": "Très bien aussi. Le mieux, c'est de l'écrire tout de suite ici, sur votre téléphone, comme ça on règle tout aujourd'hui."},
+              {"recit": {"fr": "Tu écris trois lignes sur ton téléphone et tu les envoies."}}]},
+    {"faux": true, "t": "Ich erfülle das Formular hier.", "fr": "Je remplis le formulaire ici.",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "Erfüllen? Wünsche erfüllt man. Ein Formular füllt man aus!", "fr": "« Erfüllen » ? Ce sont les souhaits qu'on exauce. Un formulaire, on le remplit !"}],
+     "aide": {"fr": "<b>Remplir un formulaire : « ausfüllen »</b>, séparable : « Ich fülle das Formular aus ». « erfüllen », c'est exaucer un souhait ou remplir une condition."}}
+   ]
+  },
+  "mail": {
+   "dit": [{"qui": "fitness_beraterin", "air": "attentive", "t": "Ja, das geht. Schicken Sie mir die Bescheinigung, sobald Sie sie haben. Die Kündigung selbst brauche ich aber schon jetzt in Textform. Füllen Sie bitte dieses Formular aus.", "fr": "Oui, c'est possible. Envoyez-moi l'attestation dès que vous l'aurez. Mais la résiliation elle-même, il me la faut dès maintenant par écrit. Remplissez ce formulaire, s'il vous plaît."}],
+   "choix": [
+    {"t": "Gern. Soll ich als Grund „Umzug nach Hamburg“ schreiben?", "fr": "Volontiers. Je dois écrire « déménagement à Hambourg » comme motif ?", "va": "datum",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Genau, und dazu das Datum des Umzugs.", "fr": "Exactement, avec la date du déménagement."},
+              {"recit": {"fr": "Tu remplis le formulaire : ton nom, ton numéro de membre, le motif."}}]},
+    {"t": "In Ordnung. Könnten Sie mir danach eine Kopie davon geben?", "fr": "D'accord. Vous pourriez m'en donner une copie ensuite ?", "va": "datum",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Natürlich, die Kopie bekommen Sie sofort.", "fr": "Bien sûr, vous aurez la copie tout de suite."},
+              {"recit": {"fr": "Tu remplis le formulaire : ton nom, ton numéro de membre, le motif."}}]},
+    {"faux": true, "t": "Ja. Haben Sie einen Stift für mir?", "fr": "Oui. Vous avez un stylo pour moi ?",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Für Sie? Für mich, sagt man. Ja, hier, bitte.", "fr": "Pour vous ? On dit « für mich ». Oui, tenez."}],
+     "aide": {"fr": "<b>« für » demande l'accusatif</b> : « für mich », pas « für mir »."}}
+   ]
+  },
+  "datum": {
+   "dit": [{"qui": "fitness_beraterin", "air": "question", "t": "So, danke. Und wann soll der Vertrag enden? Zum Ende dieses Monats, oder möchten Sie bis zum Umzug noch trainieren?", "fr": "Voilà, merci. Et quand le contrat doit-il prendre fin ? À la fin de ce mois, ou voulez-vous encore vous entraîner jusqu'au déménagement ?"}],
+   "choix": [
+    {"t": "Zum Ende dieses Monats, bitte. Vor dem Umzug habe ich keine Zeit mehr für Sport.", "fr": "À la fin de ce mois, s'il vous plaît. Avant le déménagement, je n'ai plus le temps de faire du sport.", "pose": {"datum": "monatsende"}, "va": "bestaetigung"},
+    {"t": "Ich würde gern noch bis zum fünfzehnten nächsten Monats trainieren. Ist das möglich?", "fr": "J'aimerais encore m'entraîner jusqu'au quinze du mois prochain. C'est possible ?", "pose": {"datum": "fuenfzehnter"}, "va": "halb"},
+    {"faux": true, "t": "Ende des Monats. Ich habe keine Zeit mehr für Sport machen.", "fr": "Fin du mois. Je n'ai plus le temps pour faire du sport.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Keine Zeit mehr, um Sport zu machen? Das höre ich hier leider oft!", "fr": "Plus le temps de faire du sport ? Je l'entends souvent ici, hélas !"}],
+     "aide": {"fr": "<b>« Pour » + verbe : « um … zu »</b> ou un nom : « keine Zeit mehr für Sport » ou « keine Zeit mehr, um Sport zu machen ». Jamais « für » + verbe."}}
+   ]
+  },
+  "halb": {
+   "dit": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Bis zum 15.? Ja, das geht. Dann zahlen Sie für den nächsten Monat nur die Hälfte.", "dit": "Bis zum Fünfzehnten? Ja, das geht. Dann zahlen Sie für den nächsten Monat nur die Hälfte.", "fr": "Jusqu'au 15 ? Oui, c'est possible. Dans ce cas, vous ne payez que la moitié du mois prochain."}],
+   "choix": [
+    {"t": "Sehr gut, die Hälfte ist fair. So machen wir das.", "fr": "Très bien, la moitié, c'est honnête. On fait comme ça.", "va": "bestaetigung"},
+    {"t": "Prima. Kann ich bis zum letzten Tag auch die Kurse besuchen?", "fr": "Parfait. Est-ce que je peux aussi suivre les cours jusqu'au dernier jour ?", "va": "bestaetigung",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Ja, alles wie immer, bis zum letzten Tag.", "fr": "Oui, tout comme d'habitude, jusqu'au dernier jour."}]},
+    {"faux": true, "t": "Super, ich bezahle nur die Mitte.", "fr": "Super, je ne paie que le milieu.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Die Mitte? Die Mitte vom Monat? Ach, Sie zahlen die Hälfte!", "fr": "Le milieu ? Le milieu du mois ? Ah, vous payez la moitié !"}],
+     "aide": {"fr": "<b>La moitié : « die Hälfte »</b>. « die Mitte », c'est le milieu, le centre."}}
+   ]
+  },
+  "bestaetigung": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "attentive", "si": {"datum": "monatsende"}, "t": "Gut. Dann wird ab nächstem Monat nichts mehr von Ihrem Konto abgebucht. Haben Sie sonst noch eine Frage?", "fr": "Bien. À partir du mois prochain, plus rien ne sera prélevé sur votre compte. Vous avez encore une question ?"},
+    {"qui": "fitness_beraterin", "air": "attentive", "si": {"datum": "fuenfzehnter"}, "t": "Gut. Am Ersten werden dann zum letzten Mal 14,95 Euro abgebucht. Haben Sie sonst noch eine Frage?", "dit": "Gut. Am Ersten werden dann zum letzten Mal vierzehn Euro fünfundneunzig abgebucht. Haben Sie sonst noch eine Frage?", "fr": "Bien. Le premier du mois, 14,95 euros seront prélevés pour la dernière fois. Vous avez encore une question ?"}
+   ],
+   "choix": [
+    {"t": "Ja: Bekomme ich eine schriftliche Bestätigung der Kündigung?", "fr": "Oui : est-ce que je reçois une confirmation écrite de la résiliation ?", "va": null,
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Selbstverständlich, die schicke ich Ihnen heute noch per E-Mail. Schade, dass Sie gehen. Viel Erfolg in Hamburg, und bleiben Sie sportlich!", "fr": "Évidemment, je vous l'envoie par courriel aujourd'hui même. Dommage que vous partiez. Bonne chance à Hambourg, et restez en forme !"}]},
+    {"t": "Könnten Sie mir die Kündigung bitte schriftlich bestätigen?", "fr": "Pourriez-vous me confirmer la résiliation par écrit, s'il vous plaît ?", "va": null,
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Natürlich, Sie bekommen die Bestätigung heute noch per E-Mail. Schade, dass Sie gehen. Viel Erfolg in Hamburg, und bleiben Sie sportlich!", "fr": "Bien sûr, vous recevrez la confirmation par courriel aujourd'hui même. Dommage que vous partiez. Bonne chance à Hambourg, et restez en forme !"}]},
+    {"faux": true, "t": "Ja, ich möchte eine Konfirmation, bitte.", "fr": "Oui, je voudrais une confirmation, s'il vous plaît.",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "Eine Konfirmation? Die gibt es in der Kirche! Sie möchten eine Bestätigung, oder?", "fr": "Une « Konfirmation » ? Ça, c'est à l'église ! Vous voulez une confirmation écrite, non ?"}],
+     "aide": {"fr": "<b>Une confirmation : « eine Bestätigung »</b> (« bestätigen », confirmer). « die Konfirmation » est une cérémonie religieuse protestante."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as refusé poliment la suspension et la salle partenaire, et tu as résilié ton contrat pour cause de déménagement. Justificatif : {nachweis_fr}. Le contrat se termine {datum_fr}. La confirmation écrite arrive par courriel."}
+}

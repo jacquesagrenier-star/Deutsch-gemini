@@ -596,7 +596,7 @@ window.SCENE = {
    "pt": "o guarda-sol",
    "ar": "شمسية",
    "pl": "parasol",
-   "ru": "зонт",
+   "ru": "зонт от солнца",
    "de": "der Sonnenschirm",
    "latam": null
   },
@@ -713,8 +713,8 @@ window.SCENE = {
    "en": "the cap",
    "pt": "o boné",
    "ar": "قبّعة رياضية، كاسكيت",
-   "pl": "czapka",
-   "ru": "шапка",
+   "pl": "czapka z daszkiem",
+   "ru": "кепка",
    "de": "die Kappe (Schirmmütze)",
    "latam": null
   },
@@ -1357,12 +1357,12 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -1840,8 +1840,8 @@ window.SCENE = {
    },
    "sens": {
     "A2 | Anna está sentada en el borde de la fuente.": "Anna is sitting on the edge of the fountain.",
-    "A2 | El bote de basura está al lado de la fuente.": "The bin is next to the fountain.",
-    "A2 | La papelera está al lado de la fuente.": "The bin is next to the fountain.",
+    "A2 | El bote de basura está al lado de la fuente.": "The trash can is next to the fountain.",
+    "A2 | La papelera está al lado de la fuente.": "The trash can is next to the fountain.",
     "A2 | El señor está debajo de la sombrilla.": "The man is under the umbrella.",
     "A2 | La taza está en la mesa.": "The cup is on the table.",
     "A2 | El reloj está en la torre.": "The clock is on the tower.",

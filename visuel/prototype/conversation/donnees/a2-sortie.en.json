@@ -1,0 +1,464 @@
+{
+ "id": "a2-sortie",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "familier",
+ "titre": {
+  "fr": "Préparer une fête à deux"
+ },
+ "intro": {
+  "fr": "Vendredi, c'est le dernier cours de Ms. Carter, votre professeure d'anglais. Avec Rosa, ta camarade, organise une petite fête : propose, accepte ou fais une autre proposition, comme à un oral d'examen."
+ },
+ "personnes": [
+  "a22_rosa"
+ ],
+ "debut": "when",
+ "textes": {
+  "lieu_fr": {
+   "cle": "lieu",
+   "classe": "dans la salle de classe",
+   "cafe": "au café d'à côté"
+  },
+  "cadeau_fr": {
+   "cle": "cadeau",
+   "fleurs": "des fleurs et une carte signée par tous",
+   "livre": "un livre et une carte de tout le groupe"
+  }
+ },
+ "noeuds": {
+  "when": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Après le cours d'anglais, au centre communautaire du quartier. Rosa range ses affaires."
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "Friday is Ms. Carter's last class. We should do something for her! A little party, maybe? But when?",
+     "fr": "Vendredi, c'est le dernier cours de Ms. Carter. On devrait faire quelque chose pour elle ! Une petite fête, peut-être ? Mais quand ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Good idea! Let's do it on Friday, after class.",
+     "fr": "Bonne idée ! Faisons-la vendredi, après le cours.",
+     "va": "where",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Yes! Everybody will be there anyway.",
+       "fr": "Oui ! Tout le monde sera là de toute façon."
+      }
+     ]
+    },
+    {
+     "t": "Why don't we do it on Friday, at the end of class?",
+     "fr": "Et si on la faisait vendredi, à la fin du cours ?",
+     "va": "where",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Perfect. That's easy for everybody.",
+       "fr": "Parfait. C'est simple pour tout le monde."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Let's to do it on Friday.",
+     "fr": "Faisons-la vendredi. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "Let's … what? Oh, let's do it on Friday!",
+       "fr": "On… quoi ? Ah, faisons-la vendredi !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Après « let's », le verbe vient sans « to »</b> : « Let's do it on Friday. »"
+     }
+    }
+   ]
+  },
+  "where": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "And where? We could stay in the classroom.",
+     "fr": "Et où ? On pourrait rester dans la salle de classe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "The classroom is fine. It's easy for everybody.",
+     "fr": "La salle de classe, c'est très bien. C'est simple pour tout le monde.",
+     "pose": {
+      "lieu": "classe"
+     },
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Great. I'll ask the front desk if it's OK.",
+       "fr": "Super. Je demanderai à l'accueil si c'est possible.",
+       "t_gb": "Great. I'll ask at reception if it's OK."
+      }
+     ]
+    },
+    {
+     "t": "What about the café next door? It's nicer.",
+     "fr": "Et le café d'à côté ? C'est plus agréable.",
+     "pose": {
+      "lieu": "cafe"
+     },
+     "va": "food",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Hmm, good point. I'll call them and book a big table.",
+       "fr": "Hmm, pas faux. Je les appelle et je réserve une grande table."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No.",
+     "fr": "Non.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "surprise",
+       "t": "No? OK … so what do you want to do?",
+       "fr": "Non ? Bon… alors qu'est-ce que tu veux faire ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Un « No » seul ferme la discussion.</b> Quand on organise à deux (et à un oral d'examen), on propose autre chose : « What about the café next door? »"
+     }
+    }
+   ]
+  },
+  "food": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "What about food and drinks? Everybody could bring something.",
+     "fr": "Et pour manger et boire ? Chacun pourrait apporter quelque chose.",
+     "si": {
+      "lieu": "classe"
+     }
+    },
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "At the café, everybody pays for their own drink. But what about a cake?",
+     "fr": "Au café, chacun paie sa boisson. Mais pour le gâteau ?",
+     "si": {
+      "lieu": "cafe"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Good idea. I can bring cookies.",
+     "t_gb": "Good idea. I can bring biscuits.",
+     "fr": "Bonne idée. Je peux apporter des biscuits.",
+     "si": {
+      "lieu": "classe"
+     },
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Perfect. I'll bring juice and some fruit.",
+       "fr": "Parfait. J'apporterai du jus et des fruits."
+      }
+     ]
+    },
+    {
+     "t": "Yes. I'll make a big salad.",
+     "fr": "Oui. Je ferai une grande salade.",
+     "si": {
+      "lieu": "classe"
+     },
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Great. And I'll bring the drinks.",
+       "fr": "Super. Et moi, j'apporte les boissons."
+      }
+     ]
+    },
+    {
+     "t": "I can make a chocolate cake.",
+     "fr": "Je peux faire un gâteau au chocolat.",
+     "si": {
+      "lieu": "cafe"
+     },
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Wonderful! I'll ask the café if that's OK.",
+       "fr": "Merveilleux ! Je demanderai au café si c'est possible."
+      }
+     ]
+    },
+    {
+     "t": "Let's buy a cake at the bakery.",
+     "fr": "Achetons un gâteau à la boulangerie.",
+     "si": {
+      "lieu": "cafe"
+     },
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Good idea. There's a good one near the school.",
+       "fr": "Bonne idée. Il y en a une bonne près de l'école."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I can do a cake.",
+     "fr": "Je peux « effectuer » un gâteau.",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "amuse",
+       "t": "Do a cake? You mean make a cake!",
+       "fr": "« Do » un gâteau ? Tu veux dire « make » un gâteau !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« make » pour ce qu'on fabrique</b> (make a cake, make a salad) ; « do » pour une activité (do homework). Dis : « I can make a cake. »"
+     }
+    }
+   ]
+  },
+  "gift": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "And the present? Flowers? A book?",
+     "fr": "Et le cadeau ? Des fleurs ? Un livre ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Flowers, and a card that everybody signs.",
+     "fr": "Des fleurs, et une carte que tout le monde signe.",
+     "pose": {
+      "cadeau": "fleurs"
+     },
+     "va": "money",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Oh, I love the card idea!",
+       "fr": "Oh, j'adore l'idée de la carte !"
+      }
+     ]
+    },
+    {
+     "t": "Let's give her a book, and a card from everybody.",
+     "fr": "Offrons-lui un livre, et une carte de la part de tous.",
+     "pose": {
+      "cadeau": "livre"
+     },
+     "va": "money",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Yes! She loves reading.",
+       "fr": "Oui ! Elle adore lire."
+      }
+     ]
+    },
+    {
+     "t": "Sorry, what did you say?",
+     "fr": "Pardon, qu'est-ce que tu as dit ?",
+     "va": "gift",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "The present for Ms. Carter. Flowers, or a book?",
+       "fr": "Le cadeau pour Ms. Carter. Des fleurs, ou un livre ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "money": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "question",
+     "t": "How much should everybody give? There are twelve of us.",
+     "fr": "Combien chacun doit donner ? On est douze."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Five dollars each is enough.",
+     "fr": "Cinq dollars chacun, ça suffit.",
+     "va": "tasks",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Right. That's $60 in total. Perfect.",
+       "fr": "Oui. Ça fait 60 dollars en tout. Parfait.",
+       "dit": "Right. That's sixty dollars in total. Perfect."
+      }
+     ]
+    },
+    {
+     "t": "Maybe five dollars? Not everybody has a lot of money.",
+     "fr": "Peut-être cinq dollars ? Tout le monde n'a pas beaucoup d'argent.",
+     "va": "tasks",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "You're right. Five dollars each, so $60.",
+       "fr": "Tu as raison. Cinq dollars chacun, donc 60 dollars.",
+       "dit": "You're right. Five dollars each, so sixty dollars."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Five dollars by person.",
+     "fr": "Cinq dollars « par » personne. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "By person? Ah, five dollars per person!",
+       "fr": "« By person » ? Ah, cinq dollars par personne !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Par personne » se dit « per person » ou « each »</b>, jamais « by person » : « Five dollars each. »"
+     }
+    }
+   ]
+  },
+  "tasks": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "attentive",
+     "t": "OK. Who does what? I can buy the present on Thursday.",
+     "fr": "Bon. Qui fait quoi ? Je peux acheter le cadeau jeudi."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Then I'll write to everybody tonight.",
+     "fr": "Alors j'écris à tout le monde ce soir.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Great. Tell them to bring the money on Wednesday.",
+       "fr": "Super. Dis-leur d'apporter l'argent mercredi."
+      }
+     ]
+    },
+    {
+     "t": "Good. I'll send a message to the group.",
+     "fr": "Bien. J'envoie un message au groupe.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Perfect. Ask them to bring the money on Wednesday.",
+       "fr": "Parfait. Demande-leur d'apporter l'argent mercredi."
+      }
+     ]
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_rosa",
+     "air": "sourire",
+     "t": "I think we have a plan! Ms. Carter is going to be so surprised.",
+     "fr": "Je crois qu'on a un plan ! Ms. Carter va être tellement surprise."
+    }
+   ],
+   "choix": [
+    {
+     "t": "I hope so! See you tomorrow, Rosa.",
+     "fr": "J'espère ! À demain, Rosa.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "See you tomorrow!",
+       "fr": "À demain !"
+      }
+     ]
+    },
+    {
+     "t": "Me too. Bye, see you in class!",
+     "fr": "Moi aussi. Salut, on se voit en cours !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "sourire",
+       "t": "Bye!",
+       "fr": "Salut !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I hope it!",
+     "fr": "Je « l' » espère ! (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_rosa",
+       "air": "perplexe",
+       "t": "You hope … what?",
+       "fr": "Tu espères… quoi ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Je l'espère » se dit « I hope so »</b>, jamais « I hope it »."
+     }
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as tout organisé avec Rosa : la fête vendredi après le cours, {lieu_fr}, {cadeau_fr}, cinq dollars chacun ; tu écris aux autres et Rosa achète le cadeau."
+ }
+}

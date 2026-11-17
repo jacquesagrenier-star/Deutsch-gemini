@@ -1,0 +1,145 @@
+{
+ "id": "b1-aide-emploi",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Au bureau de la Social Security"},
+ "intro": {"fr": "Aux États-Unis, il faut un numéro de Social Security pour travailler. Tu vas le demander au bureau de la Social Security, à Boston ; la conseillère te parle aussi du MassHire Career Center, le service public d'aide à l'emploi."},
+ "personnes": ["b11_conseillere"],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Le bureau de la Social Security, un matin. Après une heure d'attente, on t'appelle au guichet. Une conseillère te fait signe de t'asseoir."}},
+    {"qui": "b11_conseillere", "air": "sourire", "t": "Good morning. Have a seat. How can I help you today?", "fr": "Bonjour. Asseyez-vous. Que puis-je faire pour vous aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Good morning. I'd like to apply for a Social Security number.", "fr": "Bonjour. Je voudrais demander un numéro de Social Security.", "va": "status"},
+    {"t": "Hello. I need a Social Security number so I can start working.", "fr": "Bonjour. J'ai besoin d'un numéro de Social Security pour pouvoir commencer à travailler.", "va": "status"},
+    {"faux": true, "t": "Good morning. I come for demand a Social Security number.", "fr": "Bonjour. Je viens demander un numéro de Social Security.",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "You demand one? Well … let's say you're applying for one.", "fr": "Vous en exigez un ? Eh bien… disons que vous en faites la demande."}],
+     "aide": {"fr": "<b>« demand »</b>, c'est exiger. Faire une demande officielle se dit <b>apply for</b>. Dis plutôt : « I'd like to apply for a Social Security number. »"}}
+   ]
+  },
+  "status": {
+   "dit": [{"qui": "b11_conseillere", "air": "question", "t": "Sure. What's your immigration status? Are you here on a work visa, or are you a permanent resident?", "fr": "Bien sûr. Quel est votre statut ? Vous êtes ici avec un visa de travail, ou vous êtes résident(e) permanent(e) ?"}],
+   "choix": [
+    {"t": "I'm here on a work visa. My job starts next month.", "fr": "Je suis ici avec un visa de travail. Mon emploi commence le mois prochain.", "pose": {"statut": "visa"}, "va": "visa"},
+    {"t": "I'm a permanent resident. I got my green card a few weeks ago.", "fr": "J'ai le statut de résident permanent. J'ai reçu ma carte verte il y a quelques semaines.", "pose": {"statut": "resident"}, "va": "resident"},
+    {"repete": true, "t": "Sorry, could you say that more slowly, please?", "fr": "Pardon, pourriez-vous le dire plus lentement, s'il vous plaît ?", "va": "status",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Of course. Do you have a work visa? Or do you have a green card?", "fr": "Bien sûr. Avez-vous un visa de travail ? Ou avez-vous une carte verte ?"}]},
+    {"faux": true, "t": "I have a visa of work.", "fr": "J'ai un visa de travail.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "A visa of …? Oh, a work visa. Okay.", "fr": "Un visa de… ? Ah, un visa de travail. D'accord."}],
+     "aide": {"fr": "En anglais, on colle les deux noms, le plus précis en premier : <b>a work visa</b>, jamais « a visa of work ». Dis plutôt : « I'm here on a work visa. »"}}
+   ]
+  },
+  "visa": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Okay. Then I need your passport with the visa, and your I-94 — that's your arrival record. Do you have a printed copy?", "dit": "Okay. Then I need your passport with the visa, and your I ninety-four — that's your arrival record. Do you have a printed copy?", "fr": "D'accord. Il me faut donc votre passeport avec le visa, et votre I-94 : c'est le document qui atteste votre entrée dans le pays. En avez-vous une copie imprimée ?"}],
+   "choix": [
+    {"t": "Yes, I printed it at home. Here you go.", "fr": "Oui, je l'ai imprimé chez moi. Tenez.", "va": "form",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Thank you. That makes my morning easier.", "fr": "Merci. Voilà qui me simplifie la matinée."}]},
+    {"t": "No, I'm sorry. I only have it on my phone.", "fr": "Non, je suis désolé(e). Je ne l'ai que sur mon téléphone.", "va": "form",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "That's all right. I can look it up myself with your passport.", "fr": "Ce n'est pas grave. Je peux le retrouver moi-même avec votre passeport."}]},
+    {"faux": true, "t": "Yes, here is it.", "fr": "Oui, le voici.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Here is …? Ah, here it is. Thank you.", "fr": "« Here is »… ? Ah, le voici. Merci."}],
+     "aide": {"fr": "L'ordre des mots : <b>Here it is.</b> (le pronom avant le verbe). Pour tendre un papier, on dit aussi « Here you go. »"}}
+   ]
+  },
+  "resident": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Congratulations! Then I just need your green card and your passport. Do you have them with you?", "fr": "Félicitations ! Il me faut donc seulement votre carte verte et votre passeport. Vous les avez sur vous ?"}],
+   "choix": [
+    {"t": "Yes, here they are. The green card came in the mail last week.", "t_gb": "Yes, here they are. The green card came in the post last week.", "fr": "Oui, les voici. La carte verte est arrivée par la poste la semaine dernière.", "va": "form",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Brand new! Thank you.", "fr": "Toute neuve ! Merci."}]},
+    {"t": "Yes, I brought both, and my birth certificate too.", "fr": "Oui, j'ai apporté les deux, et aussi mon acte de naissance.", "va": "form",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "I don't need the birth certificate today, but thank you for being so organized.", "t_gb": "I don't need the birth certificate today, but thank you for being so organised.", "fr": "Je n'ai pas besoin de l'acte de naissance aujourd'hui, mais merci d'être aussi bien organisé(e)."}]},
+    {"faux": true, "t": "Yes, I have took them.", "fr": "Oui, je les ai pris.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "You took them … from where? Oh, you brought them with you. Good.", "fr": "Vous les avez pris… où ? Ah, vous les avez apportés. Bien."}],
+     "aide": {"fr": "Deux soucis : le participe de « take » est <b>taken</b>, et pour dire qu'on a apporté quelque chose avec soi, on dit <b>bring</b>. Dis plutôt : « Yes, I brought them with me. »"}}
+   ]
+  },
+  "form": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Now, your application form. You left the mailing address empty. Where should we send the card?", "t_gb": "Now, your application form. You left the postal address empty. Where should we send the card?", "fr": "Passons à votre formulaire de demande. Vous avez laissé vide la case de l'adresse postale. Où devons-nous envoyer la carte ?"}],
+   "choix": [
+    {"t": "Oh, sorry. I just moved, so I wasn't sure. Can I fill it in now?", "t_gb": "Oh, sorry. I've just moved, so I wasn't sure. Can I fill it in now?", "fr": "Oh, pardon. Je viens de déménager, alors j'hésitais. Puis-je la remplir maintenant ?", "va": "career",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Go ahead. Use the address where you really get your mail.", "t_gb": "Go ahead. Use the address where you really get your post.", "fr": "Allez-y. Mettez l'adresse où vous recevez vraiment votre courrier."}]},
+    {"t": "To my apartment in Dorchester. I'll write the address down right now.", "t_gb": "To my flat in Dorchester. I'll write the address down right now.", "fr": "À mon appartement de Dorchester. J'écris l'adresse tout de suite.", "va": "career",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Thank you. Don't forget the apartment number.", "t_gb": "Thank you. Don't forget the flat number.", "fr": "Merci. N'oubliez pas le numéro de l'appartement."}]},
+    {"faux": true, "t": "Sorry. I will fulfill it now.", "fr": "Pardon. Je vais le remplir maintenant.",
+     "puis": [{"qui": "b11_conseillere", "air": "amuse", "t": "Fulfill it? It's a form, not a dream! You can fill it in right here.", "fr": "« Fulfill » ? C'est un formulaire, pas un rêve ! Vous pouvez le remplir ici même."}],
+     "aide": {"fr": "<b>« fulfill »</b>, c'est réaliser (un rêve, une promesse). Remplir un formulaire se dit <b>fill in</b> ou <b>fill out</b>. Dis plutôt : « Can I fill it in now? »"}}
+   ]
+  },
+  "career": {
+   "dit": [
+    {"si": {"statut": "visa"}, "qui": "b11_conseillere", "air": "sourire", "t": "That's all for the application. While you're waiting for your job to start, do you know the MassHire Career Center? It's not only for people without a job.", "fr": "C'est tout pour la demande. En attendant le début de votre emploi, connaissez-vous le MassHire Career Center ? Il n'est pas réservé aux personnes sans emploi."},
+    {"si": {"statut": "resident"}, "qui": "b11_conseillere", "air": "sourire", "t": "That's all for the application. If you're looking for a job, you should know about the MassHire Career Center.", "fr": "C'est tout pour la demande. Si vous cherchez un emploi, il faut que vous connaissiez le MassHire Career Center."},
+    {"qui": "b11_conseillere", "air": "question", "t": "Everything there is free. Which would help you more: a résumé workshop, or English classes for the workplace?", "t_gb": "Everything there is free. Which would help you more: a CV workshop, or English classes for the workplace?", "fr": "Tout y est gratuit. Qu'est-ce qui vous aiderait le plus : un atelier pour le CV, ou des cours d'anglais pour le travail ?"}
+   ],
+   "choix": [
+    {"t": "The résumé workshop, please. Mine isn't in the American style yet.", "t_gb": "The CV workshop, please. Mine isn't in the American style yet.", "fr": "L'atelier pour le CV, s'il vous plaît. Le mien n'est pas encore à l'américaine.", "pose": {"piste": "cv"}, "va": "problem",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Good choice. American résumés are short: one page, no photo, no date of birth.", "t_gb": "Good choice. American CVs are short: one page, no photo, no date of birth.", "fr": "Bon choix. Les CV américains sont courts : une page, pas de photo, pas de date de naissance."}]},
+    {"t": "English classes for work would help me the most.", "fr": "Ce sont les cours d'anglais pour le travail qui m'aideraient le plus.", "pose": {"piste": "anglais"}, "va": "problem",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Good choice. There are evening classes too, so you can work during the day.", "fr": "Bon choix. Il y a aussi des cours du soir : vous pouvez donc travailler dans la journée."}]},
+    {"faux": true, "t": "I prefer the formation in English.", "fr": "Je préfère la formation en anglais.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "A formation? Like soldiers or airplanes? Oh — you mean the classes!", "t_gb": "A formation? Like soldiers or aeroplanes? Oh — you mean the classes!", "fr": "Une « formation » ? Comme des soldats ou des avions ? Ah, vous parlez des cours !"}],
+     "aide": {"fr": "<b>« formation »</b>, en anglais, c'est une formation d'avions ou de soldats. Une formation, ce sont des <b>classes</b> ou du <b>training</b>. Dis plutôt : « English classes would help me the most. »"}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "And is there anything that makes working difficult for you right now?", "fr": "Et y a-t-il quelque chose qui vous complique le travail en ce moment ?"}],
+   "choix": [
+    {"t": "Yes, childcare. My son is three, and I don't have anyone to watch him.", "t_gb": "Yes, childcare. My son is three, and I don't have anyone to look after him.", "fr": "Oui, la garde d'enfant. Mon fils a trois ans, et je n'ai personne pour le garder.", "va": "child"},
+    {"t": "Yes. I have a degree from my country, and I don't know if it counts here.", "fr": "Oui. J'ai un diplôme de mon pays, et je ne sais pas s'il compte ici.", "va": "degree"},
+    {"faux": true, "t": "Yes, I have a problem of guard for my son.", "fr": "Oui, j'ai un problème de garde pour mon fils.",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "A guard? Is your son in danger? Oh — you need childcare!", "fr": "Un garde ? Votre fils est en danger ? Ah, vous avez besoin de le faire garder !"}],
+     "aide": {"fr": "<b>« guard »</b>, c'est un gardien, un vigile. La garde d'enfant se dit <b>childcare</b>. Dis plutôt : « I have a childcare problem. » ou « I don't have anyone to watch my son. »"}}
+   ]
+  },
+  "child": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "That's very common. Massachusetts has financial assistance for childcare for working parents, and the career center can help you apply. There's often a waiting list, so apply early.", "fr": "C'est très courant. Le Massachusetts propose une aide financière pour la garde d'enfants aux parents qui travaillent, et le Career Center peut vous aider à la demander. Il y a souvent une liste d'attente : faites la demande tôt."}],
+   "choix": [
+    {"t": "Thank you, I didn't know that. I'll ask them about it.", "fr": "Merci, je ne le savais pas. Je leur poserai la question.", "va": "bring"},
+    {"t": "That would help a lot. Do I apply at the career center?", "t_gb": "That would help a lot. Do I apply at the career centre?", "fr": "Cela m'aiderait beaucoup. C'est au Career Center que je fais la demande ?", "va": "bring",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "They'll give you the right phone number and help you with the form.", "fr": "Ils vous donneront le bon numéro de téléphone et vous aideront à remplir le formulaire."}]},
+    {"faux": true, "t": "Thank you, it's a good new.", "fr": "Merci, c'est une bonne nouvelle.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "A good new … what? Oh, good news! Yes, it is.", "fr": "Une bonne… quoi ? Ah, une bonne nouvelle ! Oui, en effet."}],
+     "aide": {"fr": "<b>news</b> garde toujours son « s » et ne prend pas « a ». Dis plutôt : « Thank you, that's good news. »"}}
+   ]
+  },
+  "degree": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Good question. You can have your degree evaluated by a special service. It costs some money and takes a few weeks, but then employers know what it's worth. The career center can explain the steps.", "t_gb": "Good question. You can have your degree evaluated by a special service. It costs some money and takes a few weeks, but then employers know what it's worth. The career centre can explain the steps.", "fr": "Bonne question. Vous pouvez faire évaluer votre diplôme par un service spécialisé. C'est payant et cela prend quelques semaines, mais les employeurs savent ensuite ce qu'il vaut. Le Career Center peut vous expliquer les étapes."}],
+   "choix": [
+    {"t": "I see. I'll ask them how to get my degree evaluated.", "fr": "Je vois. Je leur demanderai comment faire évaluer mon diplôme.", "va": "bring"},
+    {"t": "Thank you. Is it the same for every kind of job?", "fr": "Merci. Est-ce pareil pour tous les métiers ?", "va": "bring",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "No. For some jobs, like nursing or teaching, you also need a state license. They'll tell you.", "t_gb": "No. For some jobs, like nursing or teaching, you also need a state licence. They'll tell you.", "fr": "Non. Pour certains métiers, comme infirmier ou enseignant, il faut aussi une autorisation de l'État. Ils vous le diront."}]},
+    {"faux": true, "t": "I see. I want to make recognize my diploma.", "fr": "Je vois. Je veux faire reconnaître mon diplôme.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Make … recognize? Oh, you want to get your degree recognized. Yes, exactly.", "t_gb": "Make … recognise? Oh, you want to get your degree recognised. Yes, exactly.", "fr": "« Make recognize »… ? Ah, vous voulez faire reconnaître votre diplôme. Oui, exactement."}],
+     "aide": {"fr": "<b>« faire faire »</b> quelque chose se dit <b>get</b> (ou have) + le nom + le participe passé. Dis plutôt : « I'd like to get my degree recognized. »"}}
+   ]
+  },
+  "bring": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "For your first visit to the career center, bring a photo ID and, if you have one, your résumé. You start with a short information session.", "t_gb": "For your first visit to the career centre, bring a photo ID and, if you have one, your CV. You start with a short information session.", "fr": "Pour votre première visite au Career Center, apportez une pièce d'identité avec photo et, si vous en avez un, votre CV. On commence par une courte séance d'information."}],
+   "choix": [
+    {"t": "Okay. A photo ID and my résumé. I'll go this week.", "t_gb": "Okay. A photo ID and my CV. I'll go this week.", "fr": "D'accord. Une pièce d'identité avec photo et mon CV. J'irai cette semaine.", "va": "card"},
+    {"t": "Got it. Is my passport okay as a photo ID?", "fr": "Compris. Mon passeport convient-il comme pièce d'identité ?", "va": "card",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Yes, a passport is fine.", "fr": "Oui, un passeport convient très bien."}]},
+    {"faux": true, "t": "Okay. I must bring a piece of identity?", "fr": "D'accord. Je dois apporter une pièce d'identité ?",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "A piece of …? Oh, an ID. Yes, with a photo.", "fr": "Une pièce de… ? Ah, une pièce d'identité. Oui, avec photo."}],
+     "aide": {"fr": "Une <b>pièce d'identité</b> se dit <b>an ID</b> (ou « a photo ID »), et la question se forme avec « do » : « Do I need to bring an ID? »"}}
+   ]
+  },
+  "card": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Good. Your Social Security card will come in the mail in about two weeks — 7 to 14 business days. Keep it in a safe place at home, not in your wallet. Any other questions?", "t_gb": "Good. Your Social Security card will come in the post in about two weeks — 7 to 14 working days. Keep it in a safe place at home, not in your wallet. Any other questions?", "dit": "Good. Your Social Security card will come in the mail in about two weeks — seven to fourteen business days. Keep it in a safe place at home, not in your wallet. Any other questions?", "dit_gb": "Good. Your Social Security card will come in the post in about two weeks — seven to fourteen working days. Keep it in a safe place at home, not in your wallet. Any other questions?", "fr": "Bien. Votre carte de Social Security arrivera par la poste dans deux semaines environ : 7 à 14 jours ouvrables. Gardez-la en lieu sûr chez vous, pas dans votre portefeuille. D'autres questions ?"}],
+   "choix": [
+    {"t": "Yes. Can I start working before I receive the card?", "fr": "Oui. Puis-je commencer à travailler avant de recevoir la carte ?", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Yes, you can. Show your employer this receipt, and give them the number as soon as you have it. Good luck with everything!", "fr": "Oui. Montrez ce reçu à votre employeur, et donnez-lui le numéro dès que vous l'aurez. Bonne chance pour la suite !"}]},
+    {"t": "Just one. What should I do if the card doesn't arrive?", "fr": "Une seule. Que dois-je faire si la carte n'arrive pas ?", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Wait three weeks, then call us or come back with this receipt. Good luck with everything!", "fr": "Attendez trois semaines, puis appelez-nous ou revenez avec ce reçu. Bonne chance pour la suite !"}]},
+    {"faux": true, "t": "I can work before to receive the card?", "fr": "Je peux travailler avant de recevoir la carte ?",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Before … receiving it? Is that your question?", "fr": "Avant… de la recevoir ? C'est votre question ?"}],
+     "aide": {"fr": "Après <b>before</b>, pas de « to » : on met un verbe en -ing ou une phrase. Et la question commence par « Can I » : « Can I start working before I receive the card? »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait ta demande de numéro de Social Security, et tu sais maintenant où trouver de l'aide pour la suite : le MassHire Career Center."}
+}

@@ -309,12 +309,12 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -910,7 +910,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -1502,8 +1502,8 @@ window.SCENE = {
     "A2 | La cesta está encima de la manta.": "The basket is on top of the blanket.",
     "A2 | El celular está al lado de la mochila.": "The phone is next to the backpack.",
     "A2 | El móvil está al lado de la mochila.": "The phone is next to the backpack.",
-    "A2 | Hay un farol al lado del bote de basura.": "There is a lamppost next to the bin.",
-    "A2 | Hay una farola al lado de la papelera.": "There is a lamppost next to the bin.",
+    "A2 | Hay un farol al lado del bote de basura.": "There is a lamppost next to the trash can.",
+    "A2 | Hay una farola al lado de la papelera.": "There is a lamppost next to the trash can.",
     "A2 | La pelota está por encima de la hierba.": "The ball is above the grass.",
     "B1 | Hace un momento, Anna lanzó la pelota.": "A moment ago, Anna threw the ball.",
     "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "While Anna was on the blanket, the dog was playing.",
@@ -1522,12 +1522,12 @@ window.SCENE = {
     "C1 | Debe de conocer al perro.": "She must know the dog.",
     "C1 | Puede que el perro atrape la pelota enseguida.": "The dog may catch the ball right away.",
     "C1 | Vendrá aquí todos los domingos.": "He probably comes here every Sunday.",
-    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "In the neighbourhood they say there are huge fish in the lake."
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "In the neighborhood they say there are huge fish in the lake."
    }
   },
   "tr": {
    "champs": {
-    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta gazete okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
+    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
     "consigne": "Anna parkta piknik yapıyor. Bir nesneye dokun."
    },
    "couches": {

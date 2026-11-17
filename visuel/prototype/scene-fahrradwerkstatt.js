@@ -21,15 +21,20 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "lampe",
@@ -58,7 +63,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -99,7 +105,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "karton",
@@ -134,7 +141,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "kiste",
@@ -163,7 +171,8 @@ window.SCENE = {
    "pt": "caixote",
    "ar": "صندوق",
    "pl": "skrzynia, skrzynka",
-   "ru": "ящик"
+   "ru": "ящик",
+   "es": "la caja (grande)"
   },
   {
    "id": "regal",
@@ -192,7 +201,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "kabel",
@@ -221,7 +231,8 @@ window.SCENE = {
    "pt": "cabo",
    "ar": "كابل، سلك",
    "pl": "kabel",
-   "ru": "кабель"
+   "ru": "кабель",
+   "es": "el cable"
   },
   {
    "id": "lampe-2",
@@ -250,7 +261,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "leiter",
@@ -279,7 +291,8 @@ window.SCENE = {
    "pt": "escada (de mão)",
    "ar": "سُلّم",
    "pl": "drabina",
-   "ru": "лестница (стремянка)"
+   "ru": "лестница (стремянка)",
+   "es": "la escalera (de mano)"
   },
   {
    "id": "fahrrad-2",
@@ -308,7 +321,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "korb",
@@ -337,7 +351,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "rad-2",
@@ -372,7 +387,8 @@ window.SCENE = {
    "pt": "roda, bicicleta",
    "ar": "عجلة، درّاجة",
    "pl": "rower, koło",
-   "ru": "колесо, велосипед"
+   "ru": "колесо, велосипед",
+   "es": "la rueda, la bici"
   },
   {
    "id": "uhr",
@@ -401,7 +417,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "plakat",
@@ -425,7 +442,8 @@ window.SCENE = {
      "pt": "pôster",
      "ar": "ملصق، بوستر",
      "pl": "plakat",
-     "ru": "постер, плакат"
+     "ru": "постер, плакат",
+     "es": "el póster"
     }
    ],
    "sur": null,
@@ -446,7 +464,8 @@ window.SCENE = {
    "pt": "cartaz",
    "ar": "ملصق إعلاني",
    "pl": "plakat, afisz",
-   "ru": "плакат, афиша"
+   "ru": "плакат, афиша",
+   "es": "el cartel, el afiche"
   },
   {
    "id": "kalender",
@@ -475,7 +494,8 @@ window.SCENE = {
    "pt": "calendário",
    "ar": "تقويم، رزنامة",
    "pl": "kalendarz",
-   "ru": "календарь"
+   "ru": "календарь",
+   "es": "el calendario"
   },
   {
    "id": "plakat-2",
@@ -499,7 +519,8 @@ window.SCENE = {
      "pt": "pôster",
      "ar": "ملصق، بوستر",
      "pl": "plakat",
-     "ru": "постер, плакат"
+     "ru": "постер, плакат",
+     "es": "el póster"
     }
    ],
    "sur": null,
@@ -520,7 +541,8 @@ window.SCENE = {
    "pt": "cartaz",
    "ar": "ملصق إعلاني",
    "pl": "plakat, afisz",
-   "ru": "плакат, афиша"
+   "ru": "плакат, афиша",
+   "es": "el cartel, el afiche"
   },
   {
    "id": "steckdose",
@@ -555,7 +577,8 @@ window.SCENE = {
    "pt": "tomada (na parede)",
    "ar": "مقبس كهربائي (في الحائط)",
    "pl": "gniazdko (elektryczne)",
-   "ru": "розетка"
+   "ru": "розетка",
+   "es": "el tomacorriente"
   },
   {
    "id": "tuer",
@@ -584,7 +607,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "hocker",
@@ -613,7 +637,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "mark",
@@ -642,7 +667,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "jacke",
@@ -671,7 +697,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "t-shirt",
@@ -700,7 +727,8 @@ window.SCENE = {
    "pt": "camiseta",
    "ar": "قميص قصير الأكمام (تي شيرت)",
    "pl": "T-shirt, koszulka",
-   "ru": "футболка"
+   "ru": "футболка",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -729,7 +757,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -753,7 +782,8 @@ window.SCENE = {
      "pt": "tênis (calçado)",
      "ar": "حذاء رياضي",
      "pl": "trampek, but sportowy",
-     "ru": "кроссовки, кеды"
+     "ru": "кроссовки, кеды",
+     "es": "el tenis (zapato deportivo)"
     }
    ],
    "sur": "mark",
@@ -780,7 +810,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "rucksack",
@@ -809,7 +840,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "rad",
@@ -838,7 +870,8 @@ window.SCENE = {
    "pt": "roda, bicicleta",
    "ar": "عجلة، درّاجة",
    "pl": "rower, koło",
-   "ru": "колесо, велосипед"
+   "ru": "колесо, велосипед",
+   "es": "la rueda, la bici"
   },
   {
    "id": "fahrrad",
@@ -867,7 +900,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "kette",
@@ -896,7 +930,8 @@ window.SCENE = {
    "pt": "corrente",
    "ar": "سلسلة",
    "pl": "łańcuch",
-   "ru": "цепь, цепочка"
+   "ru": "цепь, цепочка",
+   "es": "la cadena"
   },
   {
    "id": "zange",
@@ -925,7 +960,8 @@ window.SCENE = {
    "pt": "alicate",
    "ar": "كمّاشة",
    "pl": "kombinerki, obcęgi",
-   "ru": "плоскогубцы, клещи"
+   "ru": "плоскогубцы, клещи",
+   "es": "los alicates, las pinzas"
   },
   {
    "id": "mann",
@@ -954,7 +990,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "muetze",
@@ -983,7 +1020,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "brille",
@@ -1018,7 +1056,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "jacke-2",
@@ -1047,7 +1086,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-2",
@@ -1076,7 +1116,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh-2",
@@ -1111,7 +1152,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "heizkoerper",
@@ -1140,7 +1182,8 @@ window.SCENE = {
    "pt": "aquecedor (radiador)",
    "ar": "مشعاع التدفئة",
    "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "ru": "батарея (отопления)",
+   "es": "el radiador"
   },
   {
    "id": "haus",
@@ -1164,7 +1207,8 @@ window.SCENE = {
      "pt": "prédio, edifício",
      "ar": "مبنى",
      "pl": "budynek",
-     "ru": "здание"
+     "ru": "здание",
+     "es": "el edificio"
     }
    ],
    "sur": null,
@@ -1185,7 +1229,8 @@ window.SCENE = {
    "pt": "casa",
    "ar": "بيت، منزل",
    "pl": "dom",
-   "ru": "дом"
+   "ru": "дом",
+   "es": "la casa"
   },
   {
    "id": "baum",
@@ -1214,7 +1259,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "auto",
@@ -1243,7 +1289,8 @@ window.SCENE = {
    "pt": "carro",
    "ar": "سيارة",
    "pl": "samochód",
-   "ru": "машина, автомобиль"
+   "ru": "машина, автомобиль",
+   "es": "el carro"
   },
   {
    "id": "helm",
@@ -1272,7 +1319,8 @@ window.SCENE = {
    "pt": "capacete",
    "ar": "خوذة",
    "pl": "kask",
-   "ru": "шлем"
+   "ru": "шлем",
+   "es": "el casco"
   },
   {
    "id": "radfahrer",
@@ -1296,7 +1344,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -1317,7 +1366,8 @@ window.SCENE = {
    "pt": "ciclista",
    "ar": "راكب دراجة",
    "pl": "rowerzysta",
-   "ru": "велосипедист"
+   "ru": "велосипедист",
+   "es": "el ciclista"
   },
   {
    "id": "fahrrad-3",
@@ -1346,7 +1396,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "strasse",
@@ -1375,7 +1426,8 @@ window.SCENE = {
    "pt": "rua",
    "ar": "شارع",
    "pl": "ulica",
-   "ru": "улица"
+   "ru": "улица",
+   "es": "la calle"
   },
   {
    "id": "fenster",
@@ -1399,7 +1451,8 @@ window.SCENE = {
      "pt": "vitrine",
      "ar": "واجهة المحلّ",
      "pl": "wystawa sklepowa, witryna",
-     "ru": "витрина"
+     "ru": "витрина",
+     "es": "la vitrina, el aparador"
     }
    ],
    "sur": null,
@@ -1420,7 +1473,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "hund",
@@ -1449,7 +1503,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "kasse",
@@ -1478,7 +1533,8 @@ window.SCENE = {
    "pt": "caixa",
    "ar": "صندوق الدفع",
    "pl": "kasa",
-   "ru": "касса"
+   "ru": "касса",
+   "es": "la caja"
   },
   {
    "id": "theke",
@@ -1507,7 +1563,8 @@ window.SCENE = {
    "pt": "balcão",
    "ar": "منضدة",
    "pl": "lada",
-   "ru": "стойка"
+   "ru": "стойка",
+   "es": "la barra, el mostrador"
   },
   {
    "id": "flasche",
@@ -1531,7 +1588,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -1552,7 +1610,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "tasse",
@@ -1576,7 +1635,8 @@ window.SCENE = {
      "pt": "café",
      "ar": "قهوة",
      "pl": "kawa",
-     "ru": "кофе"
+     "ru": "кофе",
+     "es": "el café"
     }
    ],
    "sur": "tisch",
@@ -1597,7 +1657,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "klingel",
@@ -1626,7 +1687,8 @@ window.SCENE = {
    "pt": "campainha",
    "ar": "جرس",
    "pl": "dzwonek",
-   "ru": "звонок"
+   "ru": "звонок",
+   "es": "el timbre"
   },
   {
    "id": "zollstock",
@@ -1655,7 +1717,8 @@ window.SCENE = {
    "pt": "metro dobrável",
    "ar": "مسطرة قابلة للطيّ",
    "pl": "miarka składana",
-   "ru": "складной метр"
+   "ru": "складной метр",
+   "es": "el metro plegable"
   },
   {
    "id": "handschuh",
@@ -1684,7 +1747,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "zollstock-2",
@@ -1713,7 +1777,8 @@ window.SCENE = {
    "pt": "metro dobrável",
    "ar": "مسطرة قابلة للطيّ",
    "pl": "miarka składana",
-   "ru": "складной метр"
+   "ru": "складной метр",
+   "es": "el metro plegable"
   },
   {
    "id": "tisch",
@@ -1742,7 +1807,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "karton-2",
@@ -1777,7 +1843,8 @@ window.SCENE = {
    "pt": "caixa de papelão",
    "ar": "صندوق كرتون",
    "pl": "karton",
-   "ru": "картонная коробка"
+   "ru": "картонная коробка",
+   "es": "la caja de cartón"
   },
   {
    "id": "rad-3",
@@ -1806,7 +1873,8 @@ window.SCENE = {
    "pt": "roda, bicicleta",
    "ar": "عجلة، درّاجة",
    "pl": "rower, koło",
-   "ru": "колесо, велосипед"
+   "ru": "колесо, велосипед",
+   "es": "la rueda, la bici"
   },
   {
    "id": "werkzeug",
@@ -1835,7 +1903,8 @@ window.SCENE = {
    "pt": "ferramenta",
    "ar": "أدوات، عُدّة",
    "pl": "narzędzie, narzędzia",
-   "ru": "инструмент"
+   "ru": "инструмент",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -1864,7 +1933,8 @@ window.SCENE = {
    "pt": "martelo",
    "ar": "مطرقة",
    "pl": "młotek",
-   "ru": "молоток"
+   "ru": "молоток",
+   "es": "el martillo"
   },
   {
    "id": "oel",
@@ -1893,7 +1963,8 @@ window.SCENE = {
    "pt": "óleo, azeite",
    "ar": "زيت",
    "pl": "olej",
-   "ru": "масло (растительное)"
+   "ru": "масло (растительное)",
+   "es": "el aceite"
   },
   {
    "id": "eimer",
@@ -1922,7 +1993,8 @@ window.SCENE = {
    "pt": "balde",
    "ar": "دلو",
    "pl": "wiadro",
-   "ru": "ведро"
+   "ru": "ведро",
+   "es": "el balde"
   },
   {
    "id": "boden",
@@ -1957,7 +2029,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2517,7 +2590,7 @@ window.SCENE = {
     "A2 | Das Plakat hängt neben der Tür.": "<b>neben</b> = поруч із. die Tür → neben <b>der</b> Tür.",
     "A2 | Der Hocker steht hinter dem Fahrrad.": "<b>hinter</b> = позаду. das Fahrrad → hinter <b>dem</b> Fahrrad.",
     "B1 | Kann mir jemand helfen?": "<b>jemand</b> = хтось.",
-    "B1 | Man braucht eine Zange für die Kette.": "<b>man</b> = безособове «люди»; завжди 3-я особа однини.",
+    "B1 | Man braucht eine Zange für die Kette.": "<b>man</b> = безособове «люди»; завжди 3-тя особа однини.",
     "B1 | Etwas ist kaputt: die Kette!": "<b>etwas</b> = щось.",
     "B1 | Das Rad ist in Ordnung, nichts fehlt.": "<b>nichts</b> = нічого; у реченні лише одне заперечення.",
     "B1 | Im Laden ist niemand außer Mark und dem Mechaniker.": "<b>niemand</b> = ніхто; у німецькій лише одне заперечення.",
@@ -2907,6 +2980,75 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Mechaniker gehören.": "Возможно, пёс принадлежит механику.",
     "C1 | Die Reparatur dürfte eine Stunde dauern.": "Ремонт, наверное, займёт час.",
     "C1 | Diese Werkstatt soll die beste im Kiez sein.": "Говорят, эта мастерская — лучшая в квартале."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark en el taller de bicicletas de su barrio, una tarde: sostiene la rueda delantera desmontada de su bicicleta verde, puesta al revés sobre el sillín, y mira al mecánico en cuclillas que sujeta la cadena con unos alicates; en el piso, una caja de herramientas roja con un martillo, una lata de aceite y un balde; a la izquierda, el banco de trabajo con guantes de trabajo, dos metros plegables, un timbre, una botella y un café, una escalera, un estante con cajas de cartón y una caja, un cable y un foco; en la pared de ladrillos blancos, una bicicleta roja con canasta, dos ruedas, un reloj, un cartel de bicicleta, un calendario, una puerta de madera y un taburete; a la derecha, la vitrina que da a la calle con un ciclista con casco y un carro azul, un radiador, una vieja caja registradora sobre el mostrador y un perro acostado en el alféizar.",
+    "consigne": "Mark lleva su bicicleta a reparar al taller del barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los pronombres indefinidos: man, jemand, niemand, etwas, nichts",
+    "B2": "Los equivalentes de la pasiva: sich lassen, sein + zu, man",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se convierte en <b>der</b>.",
+    "A2 | Die Flasche steht auf dem Tisch.": "der Tisch → auf <b>dem</b> Tisch.",
+    "A2 | Die Kartons stehen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Der Eimer steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Der Hund liegt am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "A2 | Das Auto steht auf der Straße.": "die Straße → auf <b>der</b> Straße: en dativo, el femenino <b>die</b> se convierte en <b>der</b>.",
+    "A2 | Das Plakat hängt neben der Tür.": "<b>neben</b> = al lado de. die Tür → neben <b>der</b> Tür.",
+    "A2 | Der Hocker steht hinter dem Fahrrad.": "<b>hinter</b> = detrás de. das Fahrrad → hinter <b>dem</b> Fahrrad.",
+    "B1 | Kann mir jemand helfen?": "<b>jemand</b> = alguien.",
+    "B1 | Man braucht eine Zange für die Kette.": "<b>man</b> = «se» impersonal o «uno», siempre en 3.ª persona del singular.",
+    "B1 | Etwas ist kaputt: die Kette!": "<b>etwas</b> = algo.",
+    "B1 | Das Rad ist in Ordnung, nichts fehlt.": "<b>nichts</b> = nada; una sola negación en la frase, sin el «no» del español («no falta nada»).",
+    "B1 | Im Laden ist niemand außer Mark und dem Mechaniker.": "<b>niemand</b> = nadie; una sola negación en alemán, donde el español dice «no hay nadie».",
+    "B1 | In Berlin fährt man gern Fahrrad.": "<b>man</b>: una generalidad, la gente.",
+    "B1 | Hat jemand mein Werkzeug gesehen?": "En una pregunta: <b>jemand</b> (alguien).",
+    "B1 | Möchtest du etwas trinken? Es gibt Kaffee.": "<b>etwas</b> trinken, etwas essen: algo.",
+    "B2 | Die Kette lässt sich leicht reparieren.": "<b>sich lassen</b> + infinitivo = poder ser + participio: la cadena se puede reparar.",
+    "B2 | Das Rad ist noch heute zu reparieren.": "<b>sein + zu</b> + infinitivo = debe o puede hacerse: das Rad ist zu reparieren.",
+    "B2 | Hier repariert man Fahrräder.": "<b>man</b> + verbo activo reemplaza la pasiva, como «se» en español: hier werden Fahrräder repariert.",
+    "B2 | Die Kette muss geölt werden.": "Pasiva con verbo modal: <b>muss</b> + participio II + <b>werden</b>.",
+    "B2 | Das rote Fahrrad lässt sich nicht mehr verkaufen.": "<b>sich lassen</b> en negativo = no poder ser + participio.",
+    "B2 | Die Werkstatt wird um achtzehn Uhr geschlossen.": "La pasiva con <b>werden</b> expresa la acción: se cierra a las 18 h.",
+    "C1 | Es muss kaputt sein.": "<b>müssen</b> = deducción casi segura.",
+    "C1 | Der Hund könnte dem Mechaniker gehören.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Die Reparatur dürfte eine Stunde dauern.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Diese Werkstatt soll die beste im Kiez sein.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "El reloj cuelga en la pared.",
+    "A2 | Die Flasche steht auf dem Tisch.": "La botella está sobre la mesa.",
+    "A2 | Die Kartons stehen im Regal.": "Las cajas de cartón están en el estante.",
+    "A2 | Der Eimer steht auf dem Boden.": "El balde está en el piso.",
+    "A2 | Der Hund liegt am Fenster.": "El perro está acostado junto a la ventana.",
+    "A2 | Das Auto steht auf der Straße.": "El carro está en la calle.",
+    "A2 | Das Plakat hängt neben der Tür.": "El cartel cuelga al lado de la puerta.",
+    "A2 | Der Hocker steht hinter dem Fahrrad.": "El taburete está detrás de la bicicleta.",
+    "B1 | Kann mir jemand helfen?": "«¿Alguien me puede ayudar?», pregunta Mark.",
+    "B1 | Man braucht eine Zange für die Kette.": "Se necesitan unos alicates para la cadena.",
+    "B1 | Etwas ist kaputt: die Kette!": "Algo está roto: ¡la cadena!",
+    "B1 | Das Rad ist in Ordnung, nichts fehlt.": "La rueda está bien, no falta nada.",
+    "B1 | Im Laden ist niemand außer Mark und dem Mechaniker.": "En la tienda no hay nadie aparte de Mark y el mecánico.",
+    "B1 | In Berlin fährt man gern Fahrrad.": "En Berlín, a la gente le gusta andar en bicicleta.",
+    "B1 | Hat jemand mein Werkzeug gesehen?": "«¿Alguien ha visto mis herramientas?», pregunta el mecánico.",
+    "B1 | Möchtest du etwas trinken? Es gibt Kaffee.": "¿Quieres tomar algo? Hay café.",
+    "B2 | Die Kette lässt sich leicht reparieren.": "La cadena se puede reparar fácilmente.",
+    "B2 | Das Rad ist noch heute zu reparieren.": "La rueda debe repararse hoy mismo.",
+    "B2 | Hier repariert man Fahrräder.": "Aquí se reparan bicicletas.",
+    "B2 | Die Kette muss geölt werden.": "La cadena debe ser aceitada.",
+    "B2 | Das rote Fahrrad lässt sich nicht mehr verkaufen.": "La bicicleta roja ya no se puede vender.",
+    "B2 | Die Werkstatt wird um achtzehn Uhr geschlossen.": "El taller se cierra a las dieciocho horas.",
+    "C1 | Es muss kaputt sein.": "Debe de estar rota.",
+    "C1 | Der Hund könnte dem Mechaniker gehören.": "El perro podría ser del mecánico.",
+    "C1 | Die Reparatur dürfte eine Stunde dauern.": "La reparación probablemente dure una hora.",
+    "C1 | Diese Werkstatt soll die beste im Kiez sein.": "Dicen que este taller es el mejor del barrio."
    }
   }
  }

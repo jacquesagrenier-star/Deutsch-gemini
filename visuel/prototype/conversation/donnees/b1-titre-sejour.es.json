@@ -1,0 +1,128 @@
+{
+ "id": "b1-titre-sejour",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Renouveler sa carte de séjour"},
+ "intro": {"fr": "Ta carte de séjour (la TIE) arrive à expiration. Tu as pris rendez-vous (« cita previa ») à l'oficina de extranjería de Madrid pour la renouveler."},
+ "bilan": {"fr": "Tu as fait une démarche administrative en espagnol : dire pourquoi tu viens, présenter tes papiers, régler un imprévu et poser tes questions sur les délais."},
+ "personnes": ["b11_guichet"],
+ "debut": "turno",
+ "noeuds": {
+  "turno": {
+   "dit": [
+    {"recit": {"fr": "Huit heures et demie, à l'oficina de extranjería. Tu attends avec ton dossier sur les genoux. Ton numéro s'affiche enfin."}},
+    {"qui": "b11_guichet", "air": "sourire", "t": "Número B-47, mesa 5. Buenos días, dígame.", "dit": "Número be cuarenta y siete, mesa cinco. Buenos días, dígame.", "fr": "Numéro B-47, guichet 5. Bonjour, je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenos días. Tengo cita para renovar mi tarjeta de residencia.", "fr": "Bonjour. J'ai rendez-vous pour renouveler ma carte de séjour.", "va": "papeles",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Muy bien. Veo que la renovación ya está aprobada, así que hoy le tomamos las huellas.", "fr": "Très bien. Je vois que le renouvellement est déjà approuvé, donc aujourd'hui nous prenons vos empreintes."}]},
+    {"t": "Buenos días. Vengo a poner las huellas para la tarjeta nueva.", "fr": "Bonjour. Je viens donner mes empreintes pour la nouvelle carte.", "va": "papeles",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Muy bien. Veo que la renovación ya está aprobada. Vamos a ello.", "fr": "Très bien. Je vois que le renouvellement est déjà approuvé. Allons-y."}]},
+    {"faux": true, "t": "Buenos días. Vengo para renovar mi carta de estancia.", "fr": "Bonjour. Je viens pour renouveler ma carte de séjour.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Una carta? Ah, la tarjeta de residencia, la TIE.", "fr": "Une lettre ? Ah, la carte de séjour, la TIE."}],
+     "aide": {"fr": "<b>« Carta »</b>, c'est une lettre. La carte de séjour est « la tarjeta de residencia » (la TIE). Dis plutôt : « Tengo cita para renovar mi tarjeta de residencia »."}}
+   ]
+  },
+  "papeles": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Necesito el pasaporte, la tarjeta antigua, una foto de carné y el justificante de la tasa. ¿Lo trae todo?", "fr": "J'ai besoin du passeport, de l'ancienne carte, d'une photo d'identité et du justificatif de paiement de la taxe. Vous avez tout ?"}],
+   "choix": [
+    {"t": "Sí, creo que lo tengo todo. Aquí tiene.", "fr": "Oui, je crois que j'ai tout. Tenez.", "pose": {"papeles": "todo"}, "va": "situacion",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "A ver… pasaporte, tarjeta, tasa pagada. Muy bien.", "fr": "Voyons… passeport, carte, taxe payée. Très bien."}]},
+    {"t": "Traigo casi todo, pero todavía no he pagado la tasa.", "fr": "J'ai presque tout, mais je n'ai pas encore payé la taxe.", "pose": {"papeles": "falta"}, "va": "tasa"},
+    {"faux": true, "t": "Sí, lo he todo. Aquí tiene.", "fr": "Oui, j'ai tout. Tenez.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Cómo dice? ¿Que lo tiene todo?", "fr": "Comment ? Vous avez tout ?"}],
+     "aide": {"fr": "<b>« He »</b> ne sert qu'à former le passé composé (« he pagado »). « J'ai » quelque chose se dit « tengo ». Dis plutôt : « Creo que lo tengo todo »."}}
+   ]
+  },
+  "tasa": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "No pasa nada, tiene solución. Es el modelo 790, código 012: se rellena por internet y se paga en cualquier banco. Hay uno justo enfrente.", "dit": "No pasa nada, tiene solución. Es el modelo setecientos noventa, código cero doce: se rellena por internet y se paga en cualquier banco. Hay uno justo enfrente.", "fr": "Ce n'est pas grave, il y a une solution. C'est le formulaire 790, code 012 : on le remplit sur internet et on le paie dans n'importe quelle banque. Il y en a une juste en face."}],
+   "choix": [
+    {"t": "Entonces voy a pagarla ahora. ¿Tengo que pedir otra cita después?", "fr": "Alors je vais la payer maintenant. Dois-je reprendre rendez-vous ensuite ?", "va": "situacion",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "No hace falta. Vuelva antes de las dos y pase directamente a mi mesa.", "fr": "Ce n'est pas nécessaire. Revenez avant deux heures et venez directement à mon guichet."}]},
+    {"t": "De acuerdo. ¿Puedo volver hoy mismo con el justificante?", "fr": "D'accord. Puis-je revenir aujourd'hui même avec le justificatif ?", "va": "situacion",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sí, claro. Vuelva antes de las dos y pase directamente a mi mesa, sin coger número.", "fr": "Oui, bien sûr. Revenez avant deux heures et venez directement à mon guichet, sans prendre de numéro."}]},
+    {"faux": true, "t": "Vale. ¿Puedo pagarla aquí, con tarjeta?", "fr": "D'accord. Je peux la payer ici, par carte ?",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "No, aquí no se puede pagar, lo siento. Solo en el banco.", "fr": "Non, ici on ne peut pas payer, je regrette. Seulement à la banque."}],
+     "aide": {"fr": "Elle vient de le dire : la taxe <b>se paie à la banque</b> (« se paga en cualquier banco »), pas au guichet. Demande plutôt : « ¿Puedo volver hoy mismo con el justificante? »."}}
+   ]
+  },
+  "situacion": {
+   "dit": [
+    {"si": {"papeles": "falta"}, "qui": "b11_guichet", "air": "sourire", "t": "¡Qué rápido ha vuelto! Muy bien, con el justificante del banco ya está todo.", "fr": "Vous avez fait vite ! Très bien, avec le justificatif de la banque, tout y est."},
+    {"qui": "b11_guichet", "air": "question", "t": "Una pregunta: ¿sigue viviendo en la misma dirección?", "fr": "Une question : vous habitez toujours à la même adresse ?"}
+   ],
+   "choix": [
+    {"t": "Sí, sigo viviendo en el mismo piso, en Lavapiés.", "fr": "Oui, j'habite toujours dans le même appartement, à Lavapiés.", "va": "foto",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Perfecto, entonces no hay que cambiar nada.", "fr": "Parfait, alors il n'y a rien à changer."}]},
+    {"t": "Sí, no ha cambiado nada: ni la dirección ni el trabajo.", "fr": "Oui, rien n'a changé : ni l'adresse ni le travail.", "va": "foto",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Perfecto, así es todo más fácil.", "fr": "Parfait, comme ça tout est plus simple."}]},
+    {"faux": true, "t": "Sí, vivo siempre en la misma dirección.", "fr": "Oui, j'habite toujours à la même adresse.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Siempre? Quiere decir que sigue viviendo allí, ¿no?", "fr": "Depuis toujours ? Vous voulez dire que vous y habitez encore, c'est ça ?"}],
+     "aide": {"fr": "<b>« Siempre »</b> veut dire « à chaque fois, depuis toujours ». « Toujours » au sens de « encore » se dit « seguir » + gérondif. Dis plutôt : « Sigo viviendo en el mismo piso »."}}
+   ]
+  },
+  "foto": {
+   "dit": [{"qui": "b11_guichet", "air": "perplexe", "t": "A ver la foto… Uy, esta no vale: tiene que ser reciente y con el fondo blanco.", "fr": "Voyons la photo… Aïe, celle-ci ne va pas : elle doit être récente et sur fond blanc."}],
+   "choix": [
+    {"t": "Vaya. ¿Sabe dónde puedo hacerme una foto cerca de aquí?", "fr": "Zut. Savez-vous où je peux faire une photo près d'ici ?", "va": "plazo",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sí, hay un fotomatón en la entrada, al lado de la cafetería. Vaya tranquilamente, que le espero.", "fr": "Oui, il y a un photomaton à l'entrée, à côté de la cafétéria. Allez-y tranquillement, je vous attends."}]},
+    {"t": "Lo siento, no lo sabía. ¿Hay alguna tienda de fotos por aquí?", "fr": "Désolé(e), je ne le savais pas. Y a-t-il un magasin de photos par ici ?", "va": "plazo",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "No hace falta salir: hay un fotomatón en la entrada. Vaya, que le espero.", "fr": "Pas besoin de sortir : il y a un photomaton à l'entrée. Allez-y, je vous attends."}]},
+    {"faux": true, "t": "Lo siento. ¿Puedo hacerme una foto acerca de aquí?", "fr": "Désolé. Je peux faire une photo près d'ici ?",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Acerca de…? Ah, cerca de aquí. Sí, en la entrada.", "fr": "Au sujet de… ? Ah, près d'ici. Oui, à l'entrée."}],
+     "aide": {"fr": "<b>« Acerca de »</b> veut dire « au sujet de ». « Près de » se dit « cerca de ». Dis plutôt : « ¿Dónde puedo hacerme una foto cerca de aquí? »."}}
+   ]
+  },
+  "plazo": {
+   "dit": [
+    {"recit": {"fr": "Cinq minutes plus tard, tu reviens avec quatre photos toutes neuves."}},
+    {"qui": "b11_guichet", "air": "sourire", "t": "Esta sí. Ahora ponga el dedo índice derecho aquí… y ahora el izquierdo. Ya está. Aquí tiene el resguardo.", "fr": "Celle-ci, oui. Maintenant posez l'index droit ici… puis le gauche. Voilà. Tenez, votre récépissé."}
+   ],
+   "choix": [
+    {"t": "Gracias. ¿Cuánto tarda en llegar la tarjeta nueva?", "fr": "Merci. Combien de temps met la nouvelle carte à arriver ?", "va": "ultima",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Un mes, más o menos. Para recogerla tiene que pedir cita y traer este resguardo y el pasaporte.", "fr": "Un mois, à peu près. Pour la retirer, il faut prendre rendez-vous et apporter ce récépissé et le passeport."}]},
+    {"t": "¿Cuándo podré venir a recoger la tarjeta?", "fr": "Quand pourrai-je venir retirer la carte ?", "va": "ultima",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Dentro de un mes, más o menos. Tiene que pedir cita y traer este resguardo y el pasaporte.", "fr": "Dans un mois, à peu près. Il faut prendre rendez-vous et apporter ce récépissé et le passeport."}]},
+    {"faux": true, "t": "Gracias. ¿Cuánto tiempo toma la tarjeta?", "fr": "Merci. Combien de temps prend la carte ?",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Que cuánto tarda, quiere decir?", "fr": "Combien de temps elle met, vous voulez dire ?"}],
+     "aide": {"fr": "« Prendre du temps » se dit <b>« tardar »</b> : « ¿Cuánto tarda? ». Dis plutôt : « ¿Cuánto tarda en llegar la tarjeta nueva? »."}}
+   ]
+  },
+  "ultima": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "¿Tiene alguna otra duda?", "fr": "Avez-vous une autre question ?"}],
+   "choix": [
+    {"t": "Sí. ¿Puedo viajar fuera de España mientras espero la tarjeta?", "fr": "Oui. Puis-je voyager hors d'Espagne pendant que j'attends la carte ?", "va": "viaje"},
+    {"t": "Sí. ¿Puedo seguir trabajando con este resguardo?", "fr": "Oui. Puis-je continuer à travailler avec ce récépissé ?", "va": "despedida",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sí, puede trabajar con normalidad. El resguardo demuestra que la tarjeta está en trámite.", "fr": "Oui, vous pouvez travailler normalement. Le récépissé prouve que la carte est en cours de fabrication."}]},
+    {"faux": true, "t": "Sí. ¿Puedo viajar durante que espero la tarjeta?", "fr": "Oui. Je peux voyager pendant que j'attends la carte ?",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "¿Mientras espera la tarjeta, quiere decir?", "fr": "Pendant que vous attendez la carte, vous voulez dire ?"}],
+     "aide": {"fr": "« Pendant que » se dit <b>« mientras »</b> ; « durante » ne va que devant un nom (« durante un mes »). Dis plutôt : « ¿Puedo viajar mientras espero la tarjeta? »."}}
+   ]
+  },
+  "viaje": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "Depende. Si su tarjeta antigua ya está caducada, para volver a entrar en España necesita una autorización de regreso. ¿Tiene pensado viajar pronto?", "fr": "Cela dépend. Si votre ancienne carte est déjà périmée, pour rentrer en Espagne il vous faut une autorisation de retour. Vous pensez voyager bientôt ?"}],
+   "choix": [
+    {"t": "Sí, quiero ir a ver a mi familia en Navidad.", "fr": "Oui, je veux aller voir ma famille à Noël.", "va": "despedida",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Entonces pídala con tiempo. Se solicita con cita previa, igual que hoy.", "fr": "Alors demandez-la à l'avance. Elle se demande sur rendez-vous, comme aujourd'hui."}]},
+    {"t": "Todavía no lo sé, pero es posible que tenga que viajar por trabajo.", "fr": "Je ne sais pas encore, mais il est possible que je doive voyager pour le travail.", "va": "despedida",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "En ese caso, pídala con tiempo. Se solicita con cita previa, igual que hoy.", "fr": "Dans ce cas, demandez-la à l'avance. Elle se demande sur rendez-vous, comme aujourd'hui."}]},
+    {"faux": true, "t": "Sí, voy a ir en mi país en diciembre.", "fr": "Oui, je vais aller dans mon pays en décembre.",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "¿Va a ir a su país? Entonces, escuche bien.", "fr": "Vous allez dans votre pays ? Alors, écoutez bien."}],
+     "aide": {"fr": "Avec un verbe de mouvement, la destination prend <b>« a »</b>, pas « en » : « ir a mi país ». Dis plutôt : « Quiero ir a ver a mi familia en Navidad »."}}
+   ]
+  },
+  "despedida": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Pues ya está todo. Que tenga un buen día.", "fr": "Eh bien, tout est en ordre. Bonne journée."}],
+   "choix": [
+    {"t": "Muchas gracias por su ayuda. Ha sido muy amable.", "fr": "Merci beaucoup pour votre aide. Vous avez été très aimable.", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "No hay de qué. ¡Hasta luego!", "fr": "Il n'y a pas de quoi. Au revoir !"}]},
+    {"t": "Gracias por explicármelo todo tan claro. Hasta luego.", "fr": "Merci de m'avoir tout expliqué si clairement. Au revoir.", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Para eso estamos. ¡Hasta luego!", "fr": "Nous sommes là pour ça. Au revoir !"}]},
+    {"faux": true, "t": "Muchas gracias por tu ayuda.", "fr": "Merci beaucoup pour ton aide.",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "De nada, de nada…", "fr": "De rien, de rien…"}],
+     "aide": {"fr": "<b>« tu ayuda »</b> tutoie l'employée. Dans une administration, on reste au usted : « su ayuda ». Dis plutôt : « Muchas gracias por su ayuda »."}}
+   ]
+  }
+ }
+}

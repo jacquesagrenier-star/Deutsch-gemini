@@ -1,0 +1,147 @@
+{
+ "id": "b1-pret",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Demander un prêt à la banque"},
+ "intro": {"fr": "Tu as rendez-vous avec la conseillère de ta banque, à Madrid. Tu veux un prêt personnel de 5 000 euros. Explique ton projet, réponds à ses questions et choisis la durée du remboursement."},
+ "bilan": {"fr": "Tu as demandé un prêt personnel de 5 000 € pour {uso_fr}, remboursé sur {plazo_fr}. {docs_fr} La banque répond dans trois ou quatre jours, puis tu viendras signer."},
+ "personnes": ["bankberaterin"],
+ "debut": "motivo",
+ "textes": {
+  "uso_fr": {"cle": "uso", "piso": "la caution et les meubles de ton nouvel appartement", "coche": "une voiture d'occasion"},
+  "plazo_fr": {"cle": "plazo", "corto": "24 mois (environ 224 € par mois)", "largo": "48 mois (environ 120 € par mois)"},
+  "docs_fr": {"cle": "docs", "aqui": "Tu avais tous les papiers avec toi.", "enviar": "Il te reste à envoyer ton relevé de carrière (la « vida laboral ») par courriel."}
+ },
+ "noeuds": {
+  "motivo": {
+   "dit": [
+    {"recit": {"fr": "Une agence bancaire, rue d'Alcalá. La conseillère te fait entrer dans son bureau."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Buenos días, siéntese, por favor. ¿En qué puedo ayudarle?", "fr": "Bonjour, asseyez-vous, je vous en prie. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Quería pedir un préstamo personal de unos cinco mil euros.", "fr": "Bonjour. Je voulais demander un prêt personnel d'environ cinq mille euros.", "va": "para"},
+    {"t": "Buenos días. Necesito un préstamo de cinco mil euros y me gustaría saber las condiciones.", "fr": "Bonjour. J'ai besoin d'un prêt de cinq mille euros et j'aimerais connaître les conditions.", "va": "para"},
+    {"faux": true, "t": "Buenos días. Quiero prestar cinco mil euros.", "fr": "Bonjour. Je veux prêter cinq mille euros.",
+     "puis": [{"qui": "bankberaterin", "air": "surprise", "t": "¿Quiere prestarnos cinco mil euros? ¡Qué generosidad! ¿O prefiere que se los prestemos nosotros?", "fr": "Vous voulez nous prêter cinq mille euros ? Quelle générosité ! Ou préférez-vous que ce soit nous qui vous les prêtions ?"}],
+     "aide": {"fr": "<b>Prestar = prêter ; emprunter = pedir prestado.</b> À la banque : « Quería pedir un préstamo de cinco mil euros »."}}
+   ]
+  },
+  "para": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Muy bien. ¿Y para qué necesita el dinero?", "fr": "Très bien. Et pour quoi avez-vous besoin de cet argent ?"}
+   ],
+   "choix": [
+    {"t": "Me mudo a un piso nuevo y tengo que pagar la fianza y los muebles.", "fr": "J'emménage dans un nouvel appartement et je dois payer la caution et les meubles.", "pose": {"uso": "piso"}, "va": "trabajo"},
+    {"t": "Quiero comprar un coche de segunda mano para ir a trabajar.", "fr": "Je veux acheter une voiture d'occasion pour aller travailler.", "pose": {"uso": "coche"}, "va": "trabajo"},
+    {"faux": true, "t": "Es para la caución de mi nuevo piso.", "fr": "C'est pour la caution de mon nouvel appartement.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿La caución? Ah, la fianza: los dos meses que se le dejan al propietario.", "fr": "La « caución » ? Ah, la « fianza » : les deux mois qu'on laisse au propriétaire."}],
+     "aide": {"fr": "<b>La caution d'un logement = la fianza.</b> « Caución » est un terme de juriste, qu'on n'emploie pas pour un appartement."}}
+   ]
+  },
+  "trabajo": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "De acuerdo. ¿Cuál es su situación laboral? ¿Tiene contrato indefinido?", "fr": "D'accord. Quelle est votre situation professionnelle ? Avez-vous un CDI ?"}
+   ],
+   "choix": [
+    {"t": "Sí, tengo un contrato indefinido desde hace un año y ya he pasado el periodo de prueba.", "fr": "Oui, j'ai un CDI depuis un an et j'ai déjà passé la période d'essai.", "va": "ingresos"},
+    {"t": "Sí, trabajo en un restaurante con contrato indefinido desde marzo del año pasado.", "fr": "Oui, je travaille dans un restaurant en CDI depuis mars de l'année dernière.", "va": "ingresos"},
+    {"faux": true, "t": "Sí, tengo un contrato a duración indeterminada.", "fr": "Oui, j'ai un contrat à durée indéterminée.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿A duración indeterminada? Aquí lo llamamos contrato indefinido. ¿Y desde cuándo lo tiene?", "fr": "« A duración indeterminada » ? Ici, nous l'appelons « contrato indefinido ». Et depuis quand l'avez-vous ?"}],
+     "aide": {"fr": "<b>Un CDI = un contrato indefinido.</b> Le CDD : « un contrato temporal ». Ajoute depuis quand : « desde hace un año »."}}
+   ]
+  },
+  "ingresos": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Perfecto. ¿Y cuánto cobra al mes, aproximadamente?", "fr": "Parfait. Et combien gagnez-vous par mois, à peu près ?"}
+   ],
+   "choix": [
+    {"t": "Cobro unos mil seiscientos euros netos al mes.", "fr": "Je touche environ mille six cents euros nets par mois.", "va": "plazo"},
+    {"t": "Gano mil seiscientos euros al mes, más las propinas.", "fr": "Je gagne mille six cents euros par mois, plus les pourboires.", "va": "plazo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Las propinas no cuentan para el banco, lo siento. Pero con la nómina es suficiente.", "fr": "Les pourboires ne comptent pas pour la banque, je regrette. Mais la fiche de paie suffit."}]}
+   ]
+  },
+  "plazo": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "Con esos ingresos, puedo ofrecerle 5.000 euros al 6,9 %.", "dit": "Con esos ingresos, puedo ofrecerle cinco mil euros al seis coma nueve por ciento.", "fr": "Avec ces revenus, je peux vous proposer 5 000 euros à 6,9 %."},
+    {"qui": "bankberaterin", "air": "question", "t": "A 24 meses, la cuota sería de unos 224 euros al mes. A 48 meses, de unos 120, pero pagaría más intereses en total. ¿Qué prefiere?", "dit": "A veinticuatro meses, la cuota sería de unos doscientos veinticuatro euros al mes. A cuarenta y ocho meses, de unos ciento veinte, pero pagaría más intereses en total. ¿Qué prefiere?", "fr": "Sur 24 mois, la mensualité serait d'environ 224 euros. Sur 48 mois, d'environ 120, mais vous paieriez plus d'intérêts au total. Que préférez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Prefiero veinticuatro meses: la cuota es más alta, pero termino antes.", "fr": "Je préfère vingt-quatre mois : la mensualité est plus élevée, mais je finis plus tôt.", "pose": {"plazo": "corto"}, "va": "corto"},
+    {"t": "Prefiero cuarenta y ocho meses, para que la cuota sea más baja.", "fr": "Je préfère quarante-huit mois, pour que la mensualité soit plus basse.", "pose": {"plazo": "largo"}, "va": "largo"},
+    {"repete": true, "t": "Perdone, son muchos números. ¿Puede repetírmelo más despacio?", "fr": "Excusez-moi, cela fait beaucoup de chiffres. Pouvez-vous me le répéter plus lentement ?", "va": "plazo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Por supuesto. Dos años: 224 euros al mes. Cuatro años: 120 euros al mes, pero el préstamo sale más caro.", "dit": "Por supuesto. Dos años: doscientos veinticuatro euros al mes. Cuatro años: ciento veinte euros al mes, pero el préstamo sale más caro.", "fr": "Bien sûr. Deux ans : 224 euros par mois. Quatre ans : 120 euros par mois, mais le prêt revient plus cher."}]}
+   ]
+  },
+  "corto": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "Buena elección: pagará menos intereses. ¿Podrá pagar 224 euros todos los meses? Piense también en el alquiler.", "dit": "Buena elección: pagará menos intereses. ¿Podrá pagar doscientos veinticuatro euros todos los meses? Piense también en el alquiler.", "fr": "Bon choix : vous paierez moins d'intérêts. Pourrez-vous payer 224 euros tous les mois ? Pensez aussi au loyer."}
+   ],
+   "choix": [
+    {"t": "Sí. Mi alquiler es de setecientos euros, así que puedo pagarlo.", "fr": "Oui. Mon loyer est de sept cents euros, donc je peux le payer.", "va": "papeles"},
+    {"t": "Creo que sí. ¿Y qué pasa si un mes tengo un problema para pagar?", "fr": "Je crois que oui. Et que se passe-t-il si, un mois, j'ai un problème pour payer ?", "va": "papeles",
+     "puis": [{"qui": "bankberaterin", "air": "attentive", "t": "Llámenos antes de la fecha y buscamos una solución. Lo importante es avisar.", "fr": "Appelez-nous avant l'échéance et nous cherchons une solution. L'important, c'est de prévenir."}]},
+    {"faux": true, "t": "Sí, mi renta es de setecientos euros.", "fr": "Oui, mon loyer est de sept cents euros.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿Su renta? ¿No me ha dicho que cobraba mil seiscientos? Ah, se refiere al alquiler…", "fr": "Vos revenus ? Ne m'avez-vous pas dit que vous gagniez mille six cents ? Ah, vous parlez du loyer…"}],
+     "aide": {"fr": "<b>Le loyer = el alquiler.</b> En Espagne, « la renta » désigne plutôt les revenus (la « declaración de la renta » est la déclaration d'impôts)."}}
+   ]
+  },
+  "largo": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "De acuerdo: 120 euros al mes durante cuatro años. Y si algún día quiere devolverlo todo antes, puede hacerlo. ¿Quiere que le explique cómo?", "dit": "De acuerdo: ciento veinte euros al mes durante cuatro años. Y si algún día quiere devolverlo todo antes, puede hacerlo. ¿Quiere que le explique cómo?", "fr": "D'accord : 120 euros par mois pendant quatre ans. Et si un jour vous voulez tout rembourser plus tôt, c'est possible. Voulez-vous que je vous explique comment ?"}
+   ],
+   "choix": [
+    {"t": "Sí, por favor. ¿Hay que pagar una comisión por devolverlo antes?", "fr": "Oui, s'il vous plaît. Faut-il payer une commission pour rembourser plus tôt ?", "va": "papeles",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Muy pequeña: el 0,5 % de lo que devuelva antes de tiempo.", "dit": "Muy pequeña: el cero coma cinco por ciento de lo que devuelva antes de tiempo.", "fr": "Très petite : 0,5 % de ce que vous remboursez par anticipation."}]},
+    {"t": "No hace falta, gracias. Ciento veinte euros al mes me parece razonable.", "fr": "Ce n'est pas nécessaire, merci. Cent vingt euros par mois, cela me paraît raisonnable.", "va": "papeles"},
+    {"faux": true, "t": "Sí: ¿puedo rendir el dinero antes sin pagar más?", "fr": "Oui : puis-je rendre l'argent plus tôt sans payer plus ?",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿Rendir el dinero? El dinero no se rinde… Devolverlo, quiere decir.", "fr": "« Rendir » l'argent ? L'argent ne se rend pas comme une armée… Le rembourser, voulez-vous dire."}],
+     "aide": {"fr": "<b>Rendre (de l'argent, un objet) = devolver.</b> « Rendirse », c'est se rendre, capituler. « ¿Puedo devolver el dinero antes? »"}}
+   ]
+  },
+  "papeles": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "Para estudiar la solicitud, necesito las tres últimas nóminas, el NIE o el DNI, y el informe de vida laboral. ¿Lo ha traído todo?", "fr": "Pour étudier la demande, j'ai besoin des trois dernières fiches de paie, du NIE ou du DNI, et du relevé de carrière. Avez-vous tout apporté ?"}
+   ],
+   "choix": [
+    {"t": "Sí, lo tengo todo aquí, en esta carpeta.", "fr": "Oui, j'ai tout ici, dans cette chemise.", "pose": {"docs": "aqui"}, "va": "firma"},
+    {"t": "Tengo las nóminas y el NIE, pero me falta la vida laboral. ¿Puedo enviársela?", "fr": "J'ai les fiches de paie et le NIE, mais il me manque le relevé de carrière. Puis-je vous l'envoyer ?", "pose": {"docs": "enviar"}, "va": "enviar"},
+    {"faux": true, "t": "Sí, tengo mis fichas de paga.", "fr": "Oui, j'ai mes fiches de paie.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿Fichas de paga? Las nóminas, querrá decir. ¿Y el resto de los papeles?", "fr": "Des « fichas de paga » ? Les « nóminas », voulez-vous dire. Et le reste des papiers ?"}],
+     "aide": {"fr": "<b>Une fiche de paie = una nómina.</b> « Tengo las tres últimas nóminas. »"}}
+   ]
+  },
+  "enviar": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "Claro. Puede pedirla por internet en la Seguridad Social y enviármela por correo electrónico. ¿Cuándo cree que la tendrá?", "fr": "Bien sûr. Vous pouvez le demander en ligne à la Sécurité sociale et me l'envoyer par courriel. Quand pensez-vous l'avoir ?"}
+   ],
+   "choix": [
+    {"t": "La pido esta tarde y se la envío mañana por la mañana.", "fr": "Je le demande cet après-midi et je vous l'envoie demain matin.", "va": "firma"},
+    {"t": "En cuanto la reciba, se la mando. Espero que sea esta semana.", "fr": "Dès que je le reçois, je vous l'envoie. J'espère que ce sera cette semaine.", "va": "firma"},
+    {"faux": true, "t": "Mañana se la envío por la posta.", "fr": "Demain, je vous l'envoie par la poste.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿Por la posta? Por correo, dirá. Pero mejor por correo electrónico, que es más rápido.", "fr": "« Por la posta » ? Par courrier, voulez-vous dire. Mais plutôt par courriel, c'est plus rapide."}],
+     "aide": {"fr": "<b>Par la poste = por correo</b> (la Poste : « Correos ») ; par courriel = por correo electrónico. « La posta » ne se dit pas."}}
+   ]
+  },
+  "firma": {
+   "dit": [
+    {"si": {"docs": "aqui"}, "qui": "bankberaterin", "air": "sourire", "t": "Perfecto, está todo. Con esto puedo enviar la solicitud hoy mismo.", "fr": "Parfait, tout y est. Avec cela, je peux envoyer la demande aujourd'hui même."},
+    {"si": {"docs": "enviar"}, "qui": "bankberaterin", "air": "sourire", "t": "Muy bien. En cuanto reciba el informe, envío la solicitud.", "fr": "Très bien. Dès que je reçois le relevé, j'envoie la demande."},
+    {"qui": "bankberaterin", "air": "sourire", "t": "La respuesta suele llegar en 3 o 4 días. Si se aprueba, le llamo para que venga a firmar. ¿Le parece bien?", "dit": "La respuesta suele llegar en tres o cuatro días. Si se aprueba, le llamo para que venga a firmar. ¿Le parece bien?", "fr": "La réponse arrive d'habitude en 3 ou 4 jours. Si elle est positive, je vous appelle pour que vous veniez signer. Cela vous convient-il ?"}
+   ],
+   "choix": [
+    {"t": "Perfecto. Puede llamarme por la tarde, después de las cinco.", "fr": "Parfait. Vous pouvez m'appeler l'après-midi, après cinq heures.", "va": null,
+     "puis": [
+      {"si": {"uso": "piso"}, "qui": "bankberaterin", "air": "sourire", "t": "Apuntado. Muchas gracias por su confianza, ¡y suerte con la mudanza!", "fr": "C'est noté. Merci beaucoup de votre confiance, et bonne chance pour le déménagement !"},
+      {"si": {"uso": "coche"}, "qui": "bankberaterin", "air": "sourire", "t": "Apuntado. Muchas gracias por su confianza, ¡y suerte con el coche!", "fr": "C'est noté. Merci beaucoup de votre confiance, et bonne chance pour la voiture !"}]},
+    {"t": "Muy bien, muchas gracias por su ayuda. Espero su llamada.", "fr": "Très bien, merci beaucoup de votre aide. J'attends votre appel.", "va": null,
+     "puis": [
+      {"si": {"uso": "piso"}, "qui": "bankberaterin", "air": "sourire", "t": "Gracias a usted. ¡Y suerte con la mudanza!", "fr": "Merci à vous. Et bonne chance pour le déménagement !"},
+      {"si": {"uso": "coche"}, "qui": "bankberaterin", "air": "sourire", "t": "Gracias a usted. ¡Y suerte con el coche!", "fr": "Merci à vous. Et bonne chance pour la voiture !"}]},
+    {"faux": true, "t": "Gracias. Espero su golpe de teléfono.", "fr": "Merci. J'attends votre coup de téléphone.",
+     "puis": [{"qui": "bankberaterin", "air": "surprise", "t": "¿Un golpe? Espero no hacerle daño… Mi llamada, quiere decir.", "fr": "Un coup ? J'espère ne pas vous faire mal… Mon appel, voulez-vous dire."}],
+     "aide": {"fr": "<b>Un coup de téléphone = una llamada.</b> « Un golpe » est un coup qu'on reçoit. « Espero su llamada. »"}}
+   ]
+  }
+ }
+}

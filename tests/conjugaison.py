@@ -41,7 +41,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FICHIERS = {
     "de": {"chemin": "conjugaison.json",
-           "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
+           "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"],
            "exercices": "exercices.json",
            "verbes": "verbe.json",
            "temps": {"perfekt": "perfekt", "praeteritum": "praeteritum", "konjunktiv2": "konjunktiv2"},
@@ -49,7 +49,7 @@ FICHIERS = {
            "series_ecrites": ["passivExercises", "konjunktiv2VergangenheitExercises", "konjunktiv1Exercises",
                               "werdenExercises", "partizipExercises", "funktionsverbExercises"]},
     "es": {"chemin": os.path.join("espanol", "datos", "conjugaison.json"),
-           "langues": ["fr", "en", "pt", "ar"],
+           "langues": ["fr", "en", "pt", "ar", "de"],
            "exercices": os.path.join("espanol", "datos", "ejercicios.json"),
            "verbes": os.path.join("espanol", "datos", "verbos.json"),
            "temps": {t: "exemple_" + t for t in ("preterito", "imperfecto", "perfecto", "futuro", "condicional", "subjuntivo")},

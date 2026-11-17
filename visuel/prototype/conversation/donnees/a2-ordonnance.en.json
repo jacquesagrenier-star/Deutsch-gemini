@@ -1,0 +1,481 @@
+{
+ "id": "a2-ordonnance",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "À la pharmacie, avec une ordonnance"
+ },
+ "intro": {
+  "fr": "Ton médecin a envoyé une ordonnance à la pharmacie de ton quartier. Va la chercher : donne ta date de naissance, ta carte d'assurance, et vérifie comment prendre le médicament."
+ },
+ "personnes": [
+  "a22_apothekerin"
+ ],
+ "debut": "hello",
+ "textes": {
+  "retrait_fr": {
+   "cle": "attente",
+   "attends": "Tu as attendu vingt minutes et retiré tes deux médicaments.",
+   "demain": "Tu as retiré un médicament et tu reviens demain matin chercher l'autre."
+  }
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La pharmacie du quartier, en fin d'après-midi. Tu vas au comptoir des ordonnances."
+     }
+    },
+    {
+     "qui": "a22_apothekerin",
+     "air": "sourire",
+     "t": "Hi! How can I help you?",
+     "fr": "Bonjour ! Que puis-je faire pour vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hello. I'm here to pick up a prescription.",
+     "fr": "Bonjour. Je viens chercher une ordonnance.",
+     "va": "dob",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Sure. Let me look it up.",
+       "fr": "Bien sûr. Je regarde."
+      }
+     ]
+    },
+    {
+     "t": "Hi. My doctor sent a prescription here this morning.",
+     "fr": "Bonjour. Mon médecin a envoyé une ordonnance ici ce matin.",
+     "va": "dob",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "OK. Let me find it for you.",
+       "fr": "D'accord. Je vous la cherche."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Hello. I want drugs.",
+     "fr": "Bonjour. Je veux de la drogue.",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "surprise",
+       "t": "Drugs? Um … you mean your medicine? Do you have a prescription?",
+       "fr": "De la drogue ? Euh… vous voulez dire votre médicament ? Vous avez une ordonnance ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« drugs »</b>, dit ainsi, fait penser à la drogue, et « I want » est sec. Dis : « I'm here to pick up a prescription. » ; un médicament : « medicine »."
+     }
+    }
+   ]
+  },
+  "dob": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Tu donnes ton nom. Elle le tape sur son clavier."
+     }
+    },
+    {
+     "qui": "a22_apothekerin",
+     "air": "question",
+     "t": "And your date of birth, please?",
+     "fr": "Et votre date de naissance, s'il vous plaît ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "May third, nineteen ninety.",
+     "t_gb": "The third of May, nineteen ninety.",
+     "fr": "Le trois mai mille neuf cent quatre-vingt-dix.",
+     "va": "card",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Thank you. I have it: two medications from your doctor.",
+       "fr": "Merci. Je l'ai : deux médicaments de votre médecin.",
+       "t_gb": "Thank you. I have it: two medicines from your doctor."
+      }
+     ]
+    },
+    {
+     "t": "It's March twelfth, nineteen eighty-five.",
+     "t_gb": "It's the twelfth of March, nineteen eighty-five.",
+     "fr": "C'est le douze mars mille neuf cent quatre-vingt-cinq.",
+     "va": "card",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Thanks. Here it is: two medications from your doctor.",
+       "fr": "Merci. La voilà : deux médicaments de votre médecin.",
+       "t_gb": "Thanks. Here it is: two medicines from your doctor."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "The three May nineteen ninety.",
+     "fr": "Le trois mai mille neuf cent quatre-vingt-dix. (mot à mot)",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "perplexe",
+       "t": "Sorry? May … third?",
+       "fr": "Pardon ? Le… trois mai ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une date se dit avec le mois puis un ordinal</b> : « May third » (en anglais britannique, « the third of May »), pas « the three May »."
+     }
+    }
+   ]
+  },
+  "card": {
+   "dit": [
+    {
+     "qui": "a22_apothekerin",
+     "air": "question",
+     "t": "Do you have your insurance card with you?",
+     "fr": "Vous avez votre carte d'assurance sur vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, here it is.",
+     "fr": "Oui, la voici.",
+     "va": "ready",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Thank you. OK, you're all set.",
+       "fr": "Merci. Voilà, tout est en ordre."
+      }
+     ]
+    },
+    {
+     "t": "Yes. Do you need my ID too?",
+     "fr": "Oui. Vous avez besoin aussi de ma pièce d'identité ?",
+     "va": "ready",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "No, just the insurance card. Thanks.",
+       "fr": "Non, juste la carte d'assurance. Merci."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, here is my assurance card.",
+     "fr": "Oui, voici ma carte de « confiance ».",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "perplexe",
+       "t": "Your … oh, your insurance card. Thank you!",
+       "fr": "Votre… ah, votre carte d'assurance. Merci !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>L'assurance (santé, voiture) se dit « insurance »</b> ; « assurance » existe en anglais mais veut dire promesse, confiance. Dis : « Yes, here it is. »"
+     }
+    }
+   ]
+  },
+  "ready": {
+   "dit": [
+    {
+     "qui": "a22_apothekerin",
+     "air": "attentive",
+     "t": "One is ready now. The other one will be ready in twenty minutes. Do you want to wait, or come back later?",
+     "fr": "L'un est prêt maintenant. L'autre sera prêt dans vingt minutes. Vous voulez attendre, ou revenir plus tard ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I'll wait. No problem.",
+     "fr": "Je vais attendre. Pas de problème.",
+     "pose": {
+      "attente": "attends"
+     },
+     "va": "how",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Great. You can have a seat over there.",
+       "fr": "Très bien. Vous pouvez vous asseoir là-bas."
+      }
+     ]
+    },
+    {
+     "t": "I'll come back tomorrow morning.",
+     "fr": "Je reviendrai demain matin.",
+     "pose": {
+      "attente": "demain"
+     },
+     "va": "how",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "That's fine. We open at 8.",
+       "fr": "Très bien. Nous ouvrons à 8 h.",
+       "dit": "That's fine. We open at eight."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I attend here.",
+     "fr": "J'« assiste » ici.",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "perplexe",
+       "t": "Attend? … Oh, you'll wait here!",
+       "fr": "« Attend » ? … Ah, vous allez attendre ici !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« attend »</b> veut dire assister à (un cours, une réunion). Attendre se dit « wait » : « I'll wait. »"
+     }
+    }
+   ]
+  },
+  "how": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Vingt minutes plus tard, elle t'appelle au comptoir avec deux petits sacs."
+     },
+     "si": {
+      "attente": "attends"
+     }
+    },
+    {
+     "recit": {
+      "fr": "Elle pose un petit sac sur le comptoir."
+     },
+     "si": {
+      "attente": "demain"
+     }
+    },
+    {
+     "qui": "a22_apothekerin",
+     "air": "attentive",
+     "t": "Here you go. Take one pill twice a day, with food.",
+     "fr": "Voilà. Prenez un comprimé deux fois par jour, en mangeant.",
+     "t_gb": "Here you go. Take one tablet twice a day, with food."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Twice a day, with food. In the morning and in the evening?",
+     "fr": "Deux fois par jour, en mangeant. Le matin et le soir ?",
+     "va": "throat",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Exactly. With breakfast and with dinner.",
+       "fr": "Exactement. Au petit-déjeuner et au dîner."
+      }
+     ]
+    },
+    {
+     "t": "So I can't take it before I eat?",
+     "fr": "Donc je ne peux pas le prendre avant de manger ?",
+     "va": "throat",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Right. Always with a meal. Breakfast and dinner are best.",
+       "fr": "C'est ça. Toujours avec un repas. Le petit-déjeuner et le dîner, c'est le mieux."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Two times a day, without food?",
+     "fr": "Deux fois par jour, sans manger ?",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "surprise",
+       "t": "No, with food. Take it when you eat.",
+       "fr": "Non, en mangeant. Prenez-le quand vous mangez."
+      }
+     ],
+     "aide": {
+      "fr": "Elle a dit <b>« with food »</b> : avec un repas, pas à jeun. Et « deux fois » se dit plutôt « twice ». Vérifie : « Twice a day, with food? »"
+     }
+    },
+    {
+     "t": "Sorry, can you say that again, slowly?",
+     "fr": "Pardon, vous pouvez répéter, lentement ?",
+     "va": "how",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Of course. One pill, two times a day. Take it with food.",
+       "fr": "Bien sûr. Un comprimé, deux fois par jour. Prenez-le en mangeant.",
+       "t_gb": "Of course. One tablet, two times a day. Take it with food."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "throat": {
+   "dit": [
+    {
+     "qui": "a22_apothekerin",
+     "air": "question",
+     "t": "Do you have any other questions? Anything else I can help you with?",
+     "fr": "Avez-vous d'autres questions ? Je peux faire autre chose pour vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. Do you have something for a sore throat?",
+     "fr": "Oui. Vous avez quelque chose contre le mal de gorge ?",
+     "va": "pay",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Sure. These cough drops are very good. No prescription needed.",
+       "fr": "Bien sûr. Ces pastilles sont très bien. Pas besoin d'ordonnance.",
+       "t_gb": "Sure. These throat lozenges are very good. No prescription needed."
+      }
+     ]
+    },
+    {
+     "t": "I need something for my throat, without a prescription.",
+     "fr": "Il me faut quelque chose pour la gorge, sans ordonnance.",
+     "va": "pay",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "Try these cough drops. They really help.",
+       "fr": "Essayez ces pastilles. Elles soulagent vraiment.",
+       "t_gb": "Try these throat lozenges. They really help."
+      }
+     ]
+    }
+   ]
+  },
+  "pay": {
+   "dit": [
+    {
+     "qui": "a22_apothekerin",
+     "air": "attentive",
+     "t": "So, your copay is $10, and the cough drops are $4.50. That's $14.50 in total. Cash or card?",
+     "fr": "Alors, votre copay (la part que vous payez) est de 10 $, et les pastilles coûtent 4,50 $. Ça fait 14,50 $ en tout. En espèces ou par carte ?",
+     "t_gb": "So, your copay is $10, and the lozenges are $4.50. That's $14.50 in total. Cash or card?",
+     "dit": "So, your copay is ten dollars, and the cough drops are four fifty. That's fourteen fifty in total. Cash or card?",
+     "dit_gb": "So, your copay is ten dollars, and the lozenges are four fifty. That's fourteen fifty in total. Cash or card?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "By card, please. Thank you, goodbye!",
+     "fr": "Par carte, s'il vous plaît. Merci, au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "You're all set. Feel better soon!",
+       "fr": "C'est tout bon. Bon rétablissement !",
+       "t_gb": "You're all set. Get well soon!",
+       "si": {
+        "attente": "attends"
+       }
+      },
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "You're all set. See you tomorrow morning for the other one. Feel better soon!",
+       "fr": "C'est tout bon. À demain matin pour l'autre. Bon rétablissement !",
+       "t_gb": "You're all set. See you tomorrow morning for the other one. Get well soon!",
+       "si": {
+        "attente": "demain"
+       }
+      }
+     ]
+    },
+    {
+     "t": "Cash. Here's twenty dollars. Thanks a lot!",
+     "fr": "En espèces. Voici vingt dollars. Merci beaucoup !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "And $5.50 is your change. Feel better soon!",
+       "fr": "Et voici 5,50 $ de monnaie. Bon rétablissement !",
+       "t_gb": "And $5.50 is your change. Get well soon!",
+       "dit": "And five fifty is your change. Feel better soon!",
+       "dit_gb": "And five fifty is your change. Get well soon!",
+       "si": {
+        "attente": "attends"
+       }
+      },
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "And $5.50 is your change. See you tomorrow morning. Feel better soon!",
+       "fr": "Et voici 5,50 $ de monnaie. À demain matin. Bon rétablissement !",
+       "t_gb": "And $5.50 is your change. See you tomorrow morning. Get well soon!",
+       "dit": "And five fifty is your change. See you tomorrow morning. Feel better soon!",
+       "dit_gb": "And five fifty is your change. See you tomorrow morning. Get well soon!",
+       "si": {
+        "attente": "demain"
+       }
+      }
+     ]
+    },
+    {
+     "t": "Sorry, how much is it in total?",
+     "fr": "Pardon, ça fait combien en tout ?",
+     "va": "pay",
+     "puis": [
+      {
+       "qui": "a22_apothekerin",
+       "air": "sourire",
+       "t": "$14.50. Ten for the prescription, and four fifty for the cough drops.",
+       "fr": "14,50 $. Dix pour l'ordonnance, et quatre cinquante pour les pastilles.",
+       "t_gb": "$14.50. Ten for the prescription, and four fifty for the lozenges.",
+       "dit": "Fourteen fifty. Ten for the prescription, and four fifty for the cough drops.",
+       "dit_gb": "Fourteen fifty. Ten for the prescription, and four fifty for the lozenges."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "{retrait_fr} Tu sais comment prendre le médicament (deux fois par jour, en mangeant), tu as acheté des pastilles pour la gorge et payé 14,50 $, dont 10 $ de copay."
+ }
+}
