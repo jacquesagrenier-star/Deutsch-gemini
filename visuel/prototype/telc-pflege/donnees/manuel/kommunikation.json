@@ -1,5 +1,3065 @@
 {
-  "_note": "Le chapitre « kommunikation » du manuel (pflege/examen/FORMAT-MANUEL.md, § 5). Vide = « a venir ». Ecrit par : pflege-examen (source des Redemittel a fixer avec l'architecture).",
   "id": "kommunikation",
-  "rubriques": []
+  "_note": "Le chapitre 6 du manuel (pflege/examen/FORMAT-MANUEL.md, § 5), session manuel-sprechen, 15 nov. 2026. Les Redemittel sont lus dans la source unique pflege/datos/redemittel.json (blocs « redemittel » a « ref ») : les cartes des dialogues d01-d26 et les cartes sans dialogue de pflege/sources/redemittel/<groupe>.json.",
+  "rubriques": [
+    {
+      "id": "principes",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Au travail, on ne te note pas : on attend de toi des phrases sûres, polies et claires, que tu peux dire même fatiguée. Ce chapitre les range par situation. Chaque carte a sa traduction, son niveau et sa voix ; dis-la à voix haute, plusieurs fois.",
+          "texte_en": "At work, nobody marks you: people expect safe, polite, clear sentences you can say even when you're tired. This chapter sorts them by situation. Each card has its translation, its level and its voice; say it out loud, several times.",
+          "texte_tr": "İş yerinde sana not verilmez: senden güvenli, nazik ve net, yorgun olsan bile söyleyebileceğin cümleler beklenir. Bu bölüm onları duruma göre sıralar. Her kartın çevirisi, seviyesi ve sesi vardır; yüksek sesle, birkaç kez söyle.",
+          "texte_uk": "На роботі тебе не оцінюють: від тебе чекають упевнених, ввічливих і чітких фраз, які ти можеш сказати навіть утомленою. Цей розділ розподіляє їх за ситуаціями. Кожна картка має переклад, рівень і озвучення; кажи її вголос, кілька разів.",
+          "texte_fa": "سر کار، کسی به تو نمره نمی‌دهد: از تو جمله‌های مطمئن، مؤدبانه و روشن انتظار می‌رود که حتی خسته هم بتوانی بگویی. این فصل آن‌ها را بر اساس موقعیت دسته‌بندی می‌کند. هر کارت ترجمه، سطح و صدای خودش را دارد؛ آن را چند بار با صدای بلند بگو.",
+          "texte_pt": "No trabalho, ninguém dá nota a você: esperam de você frases seguras, educadas e claras, que você consiga dizer mesmo cansada. Este capítulo as organiza por situação. Cada cartão tem a sua tradução, o seu nível e a sua voz; diga-o em voz alta, várias vezes.",
+          "texte_ar": "في العمل لا يقيّمك أحد: المنتظر منك جمل مضمونة ومهذبة وواضحة، تستطيع قولها حتى وأنت متعب. يرتبها هذا الفصل بحسب الموقف. لكل بطاقة ترجمتها ومستواها وصوتها؛ قلها بصوت عالٍ، عدة مرات.",
+          "texte_pl": "W pracy nikt cię nie ocenia: oczekuje się od ciebie zdań pewnych, uprzejmych i jasnych, które potrafisz powiedzieć nawet zmęczona. Ten rozdział porządkuje je według sytuacji. Każda karta ma swoje tłumaczenie, poziom i głos; mów ją na głos, kilka razy.",
+          "texte_ru": "На работе тебя не оценивают: от тебя ждут уверенных, вежливых и ясных фраз, которые ты можешь сказать, даже устав. В этой главе они разложены по ситуациям. У каждой карточки есть перевод, уровень и голос; произноси её вслух несколько раз.",
+          "texte_es": "En el trabajo no te ponen nota: se espera de ti frases seguras, corteses y claras, que puedas decir incluso cansada. Este capítulo las ordena por situación. Cada tarjeta tiene su traducción, su nivel y su voz; dila en voz alta, varias veces."
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Sie ou du ?",
+          "texte_en": "Sie or du?",
+          "texte_tr": "Sie mi, du mu?",
+          "texte_uk": "Sie чи du?",
+          "texte_fa": "Sie یا du؟",
+          "texte_pt": "Sie ou du?",
+          "texte_ar": "Sie أم du؟",
+          "texte_pl": "Sie czy du?",
+          "texte_ru": "Sie или du?",
+          "texte_es": "¿Sie o du?"
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Avec qui",
+              "texte_en": "With whom",
+              "texte_tr": "Kiminle",
+              "texte_uk": "З ким",
+              "texte_fa": "با چه کسی",
+              "texte_pt": "Com quem",
+              "texte_ar": "مع من",
+              "texte_pl": "Z kim",
+              "texte_ru": "С кем",
+              "texte_es": "Con quién"
+            },
+            {
+              "texte_fr": "Registre",
+              "texte_en": "Register",
+              "texte_tr": "Hitap biçimi",
+              "texte_uk": "Регістр",
+              "texte_fa": "لحن",
+              "texte_pt": "Registro",
+              "texte_ar": "مستوى الخطاب",
+              "texte_pl": "Rejestr",
+              "texte_ru": "Обращение",
+              "texte_es": "Registro"
+            },
+            {
+              "texte_fr": "Remarque",
+              "texte_en": "Note",
+              "texte_tr": "Not",
+              "texte_uk": "Зауваження",
+              "texte_fa": "نکته",
+              "texte_pt": "Observação",
+              "texte_ar": "ملاحظة",
+              "texte_pl": "Uwaga",
+              "texte_ru": "Примечание",
+              "texte_es": "Observación"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "texte_fr": "Patients, résidents, familles",
+                "texte_en": "Patients, residents, families",
+                "texte_tr": "Hastalar, bakım evi sakinleri, aileler",
+                "texte_uk": "Пацієнти, мешканці, родини",
+                "texte_fa": "بیماران، ساکنان، خانواده‌ها",
+                "texte_pt": "Pacientes, residentes, famílias",
+                "texte_ar": "المرضى والمقيمون والأسر",
+                "texte_pl": "Pacjenci, mieszkańcy, rodziny",
+                "texte_ru": "Пациенты, жители, родственники",
+                "texte_es": "Pacientes, residentes, familias"
+              },
+              {
+                "de": "Sie"
+              },
+              {
+                "texte_fr": "Toujours, sauf si la personne te propose le du (et c'est noté dans le dossier).",
+                "texte_en": "Always, unless the person offers du (and it's noted in the file).",
+                "texte_tr": "Her zaman; kişi sana “du” demeyi önermedikçe (ve bu dosyaya not edilir).",
+                "texte_uk": "Завжди, якщо тільки людина сама не запропонує du (і це записано в документації).",
+                "texte_fa": "همیشه، مگر اینکه خود آن شخص du را به تو پیشنهاد کند (و در پرونده یادداشت شود).",
+                "texte_pt": "Sempre, a não ser que a pessoa lhe ofereça o du (e isso fica anotado no prontuário).",
+                "texte_ar": "دائمًا، إلا إذا اقترح عليك الشخص du (ويُدوَّن ذلك في الملف).",
+                "texte_pl": "Zawsze, chyba że osoba zaproponuje ci du (i jest to odnotowane w dokumentacji).",
+                "texte_ru": "Всегда, если человек сам не предложит du (и это записано в карте).",
+                "texte_es": "Siempre, salvo que la persona te proponga el du (y se anota en el historial)."
+              }
+            ],
+            [
+              {
+                "texte_fr": "Médecins, laboratoire, pharmacie",
+                "texte_en": "Doctors, lab, pharmacy",
+                "texte_tr": "Hekimler, laboratuvar, eczane",
+                "texte_uk": "Лікарі, лабораторія, аптека",
+                "texte_fa": "پزشکان، آزمایشگاه، داروخانه",
+                "texte_pt": "Médicos, laboratório, farmácia",
+                "texte_ar": "الأطباء والمختبر والصيدلية",
+                "texte_pl": "Lekarze, laboratorium, apteka",
+                "texte_ru": "Врачи, лаборатория, аптека",
+                "texte_es": "Médicos, laboratorio, farmacia"
+              },
+              {
+                "de": "Sie"
+              },
+              {
+                "texte_fr": "Même si un médecin te tutoie : attends qu'il te le propose.",
+                "texte_en": "Even if a doctor says du to you: wait until it's offered.",
+                "texte_tr": "Bir hekim sana “sen” dese bile: o size bunu önerene kadar bekle.",
+                "texte_uk": "Навіть якщо лікар говорить тобі «ти»: зачекай, поки він запропонує це тобі.",
+                "texte_fa": "حتی اگر پزشکی تو را تو خطاب کند: صبر کن تا خودش به تو پیشنهاد دهد.",
+                "texte_pt": "Mesmo que um médico trate você por você: espere que ele ofereça.",
+                "texte_ar": "حتى لو خاطبك طبيب بصيغة du: انتظر حتى يعرضها عليك.",
+                "texte_pl": "Nawet jeśli lekarz mówi do ciebie na „ty”: poczekaj, aż sam ci to zaproponuje.",
+                "texte_ru": "Даже если врач говорит тебе «ты»: подожди, пока он сам предложит.",
+                "texte_es": "Aunque un médico te tutee: espera a que te lo proponga."
+              }
+            ],
+            [
+              {
+                "texte_fr": "La cadre du service",
+                "texte_en": "The ward manager",
+                "texte_tr": "Servis sorumlu hemşiresi",
+                "texte_uk": "Старша медсестра відділення",
+                "texte_fa": "سرپرستار بخش",
+                "texte_pt": "A enfermeira-chefe do setor",
+                "texte_ar": "رئيسة القسم",
+                "texte_pl": "Przełożona oddziału",
+                "texte_ru": "Старшая медсестра отделения",
+                "texte_es": "La supervisora del servicio"
+              },
+              {
+                "de": "Sie"
+              },
+              {
+                "texte_fr": "Dans beaucoup d'équipes ; fais comme tes collègues.",
+                "texte_en": "In many teams; do as your colleagues do.",
+                "texte_tr": "Birçok ekipte öyle; iş arkadaşlarının yaptığı gibi yap.",
+                "texte_uk": "У багатьох командах; роби так, як колеги.",
+                "texte_fa": "در بسیاری از تیم‌ها؛ مثل همکارانت رفتار کن.",
+                "texte_pt": "Em muitas equipes; faça como os seus colegas.",
+                "texte_ar": "في كثير من الفرق؛ افعل مثل زملائك.",
+                "texte_pl": "W wielu zespołach; rób tak jak koleżanki i koledzy.",
+                "texte_ru": "Во многих коллективах; поступай, как твои коллеги.",
+                "texte_es": "En muchos equipos; haz como tus compañeros."
+              }
+            ],
+            [
+              {
+                "texte_fr": "Les collègues soignants",
+                "texte_en": "Nursing colleagues",
+                "texte_tr": "Bakım çalışanı iş arkadaşları",
+                "texte_uk": "Колеги-медпрацівники",
+                "texte_fa": "همکاران پرستار",
+                "texte_pt": "Os colegas da enfermagem",
+                "texte_ar": "الزملاء من الطاقم التمريضي",
+                "texte_pl": "Współpracownicy z opieki",
+                "texte_ru": "Коллеги-медработники",
+                "texte_es": "Los compañeros de enfermería"
+              },
+              {
+                "de": "du"
+              },
+              {
+                "texte_fr": "Le plus souvent ; à la relève, le pluriel est [[ihr]].",
+                "texte_en": "Usually; at handover, the plural is [[ihr]].",
+                "texte_tr": "Çoğunlukla; vardiya devrinde çoğul [[ihr]] olur.",
+                "texte_uk": "Здебільшого; під час передачі зміни множина — [[ihr]].",
+                "texte_fa": "بیشتر اوقات؛ در تحویل شیفت، جمع [[ihr]] است.",
+                "texte_pt": "Na maioria das vezes; na passagem de plantão, o plural é [[ihr]].",
+                "texte_ar": "في الغالب؛ وعند تسليم المناوبة تكون صيغة الجمع [[ihr]].",
+                "texte_pl": "Najczęściej; podczas przekazania zmiany liczba mnoga to [[ihr]].",
+                "texte_ru": "Чаще всего; на передаче смены во множественном числе — [[ihr]].",
+                "texte_es": "Lo más habitual; en el relevo, el plural es [[ihr]]."
+              }
+            ]
+          ]
+        },
+        {
+          "t": "titre",
+          "texte_fr": "La politesse au Konjunktiv II",
+          "texte_en": "Politeness with the Konjunktiv II",
+          "texte_tr": "Konjunktiv II ile nezaket",
+          "texte_uk": "Ввічливість у Konjunktiv II",
+          "texte_fa": "ادب با Konjunktiv II",
+          "texte_pt": "A educação com o Konjunktiv II",
+          "texte_ar": "اللباقة بصيغة Konjunktiv II",
+          "texte_pl": "Uprzejmość w Konjunktiv II",
+          "texte_ru": "Вежливость в Konjunktiv II",
+          "texte_es": "La cortesía con el Konjunktiv II"
+        },
+        {
+          "t": "p",
+          "texte_fr": "Une demande directe sonne vite comme un ordre. Le Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) adoucit sans rien changer au sens.",
+          "texte_en": "A direct request quickly sounds like an order. The Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) softens it without changing the meaning.",
+          "texte_tr": "Doğrudan bir istek çabuk emir gibi duyulur. Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) anlamı değiştirmeden yumuşatır.",
+          "texte_uk": "Пряме прохання швидко звучить як наказ. Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) пом'якшує, нічого не змінюючи в змісті.",
+          "texte_fa": "درخواست مستقیم زود شبیه دستور به نظر می‌رسد. Konjunktiv II ([[könnten]]، [[würden]]، [[wäre]]، [[hätten]]) بی‌آنکه معنا را عوض کند، آن را نرم‌تر می‌کند.",
+          "texte_pt": "Um pedido direto soa logo como uma ordem. O Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) suaviza sem mudar nada no sentido.",
+          "texte_ar": "الطلب المباشر يبدو بسرعة كأنه أمر. وصيغة Konjunktiv II ([[könnten]]، [[würden]]، [[wäre]]، [[hätten]]) تلطّفه دون أن تغيّر المعنى.",
+          "texte_pl": "Bezpośrednia prośba łatwo brzmi jak rozkaz. Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) łagodzi, nie zmieniając sensu.",
+          "texte_ru": "Прямая просьба быстро звучит как приказ. Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) смягчает, не меняя смысла.",
+          "texte_es": "Una petición directa suena enseguida como una orden. El Konjunktiv II ([[könnten]], [[würden]], [[wäre]], [[hätten]]) la suaviza sin cambiar el sentido."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Direct",
+              "texte_en": "Direct",
+              "texte_tr": "Doğrudan",
+              "texte_uk": "Прямо",
+              "texte_fa": "مستقیم",
+              "texte_pt": "Direto",
+              "texte_ar": "مباشر",
+              "texte_pl": "Bezpośrednio",
+              "texte_ru": "Прямо",
+              "texte_es": "Directo"
+            },
+            {
+              "texte_fr": "Poli",
+              "texte_en": "Polite",
+              "texte_tr": "Nazik",
+              "texte_uk": "Ввічливо",
+              "texte_fa": "مؤدبانه",
+              "texte_pt": "Educado",
+              "texte_ar": "مهذب",
+              "texte_pl": "Uprzejmie",
+              "texte_ru": "Вежливо",
+              "texte_es": "Cortés"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "Kommen Sie!"
+              },
+              {
+                "de": "Könnten Sie bitte kommen?"
+              }
+            ],
+            [
+              {
+                "de": "Ich will Urlaub im Juli."
+              },
+              {
+                "de": "Ich würde gern im Juli Urlaub nehmen."
+              }
+            ],
+            [
+              {
+                "de": "Geben Sie mir die Dosis."
+              },
+              {
+                "de": "Wären Sie so nett, mir die Dosis zu nennen?"
+              }
+            ],
+            [
+              {
+                "de": "Haben Sie Zeit?"
+              },
+              {
+                "de": "Hätten Sie kurz Zeit für mich?"
+              }
+            ]
+          ]
+        },
+        {
+          "t": "titre",
+          "texte_fr": "Les nombres",
+          "texte_en": "Numbers",
+          "texte_tr": "Sayılar",
+          "texte_uk": "Числа",
+          "texte_fa": "اعداد",
+          "texte_pt": "Os números",
+          "texte_ar": "الأرقام",
+          "texte_pl": "Liczby",
+          "texte_ru": "Числа",
+          "texte_es": "Los números"
+        },
+        {
+          "t": "p",
+          "texte_fr": "Une erreur de chiffre peut être grave. Dis les valeurs en entier, sans raccourci ([[hundertsechzig zu fünfundneunzig]]), dis l'unité ([[Milligramm]], [[Einheiten]]), et fais toujours répéter ou relis : [[Ich wiederhole …]]. Attention aux paires [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_en": "A mistake with a number can be serious. Say values in full, without shortcuts ([[hundertsechzig zu fünfundneunzig]]), say the unit ([[Milligramm]], [[Einheiten]]), and always have it repeated or read it back: [[Ich wiederhole …]]. Watch the pairs [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_tr": "Bir rakam hatası ciddi olabilir. Değerleri kısaltmadan, tam söyle ([[hundertsechzig zu fünfundneunzig]]), birimi söyle ([[Milligramm]], [[Einheiten]]) ve her zaman tekrarlat ya da kendin tekrar et: [[Ich wiederhole …]]. [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]] çiftlerine dikkat.",
+          "texte_uk": "Помилка в цифрі може бути серйозною. Називай значення повністю, без скорочень ([[hundertsechzig zu fünfundneunzig]]), називай одиницю ([[Milligramm]], [[Einheiten]]) і завжди проси повторити або перечитуй: [[Ich wiederhole …]]. Стережися пар [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_fa": "اشتباه در یک عدد می‌تواند جدی باشد. مقدارها را کامل بگو، بدون خلاصه‌گویی ([[hundertsechzig zu fünfundneunzig]])، واحد را بگو ([[Milligramm]]، [[Einheiten]]) و همیشه بخواه تکرار شود یا خودت دوباره بخوان: [[Ich wiederhole …]]. مواظب جفت‌های [[fünfzehn]] / [[fünfzig]] و [[siebzehn]] / [[siebzig]] باش.",
+          "texte_pt": "Um erro de número pode ser grave. Diga os valores por inteiro, sem atalhos ([[hundertsechzig zu fünfundneunzig]]), diga a unidade ([[Milligramm]], [[Einheiten]]) e sempre peça para repetir ou releia: [[Ich wiederhole …]]. Atenção aos pares [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_ar": "الخطأ في رقم قد يكون خطيرًا. قل القيم كاملة دون اختصار ([[hundertsechzig zu fünfundneunzig]])، وقل الوحدة ([[Milligramm]]، [[Einheiten]])، واطلب التكرار دائمًا أو أعد القراءة: [[Ich wiederhole …]]. انتبه إلى الأزواج [[fünfzehn]] / [[fünfzig]]، [[siebzehn]] / [[siebzig]].",
+          "texte_pl": "Pomyłka w liczbie może być poważna. Podawaj wartości w całości, bez skrótów ([[hundertsechzig zu fünfundneunzig]]), podawaj jednostkę ([[Milligramm]], [[Einheiten]]) i zawsze proś o powtórzenie albo powtarzaj sama: [[Ich wiederhole …]]. Uważaj na pary [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_ru": "Ошибка в цифре может быть серьёзной. Называй значения полностью, без сокращений ([[hundertsechzig zu fünfundneunzig]]), называй единицу измерения ([[Milligramm]], [[Einheiten]]) и всегда проси повторить или перечитывай сама: [[Ich wiederhole …]]. Осторожно с парами [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]].",
+          "texte_es": "Un error de cifra puede ser grave. Di los valores enteros, sin atajos ([[hundertsechzig zu fünfundneunzig]]), di la unidad ([[Milligramm]], [[Einheiten]]) y pide siempre que repitan o relee tú los valores: [[Ich wiederhole …]]. Cuidado con los pares [[fünfzehn]] / [[fünfzig]], [[siebzehn]] / [[siebzig]]."
+        },
+        {
+          "t": "piege",
+          "de": "Machen Sie mal den Arm frei.",
+          "titre_fr": "Le « Sie » qui disparaît",
+          "titre_en": "The disappearing “Sie”",
+          "titre_tr": "Kaybolan “Sie”",
+          "titre_uk": "«Sie», що зникає",
+          "titre_fa": "«Sie»ای که ناپدید می‌شود",
+          "titre_pt": "O « Sie » que desaparece",
+          "titre_ar": "«Sie» التي تختفي",
+          "titre_pl": "„Sie”, które znika",
+          "titre_ru": "«Sie», которое исчезает",
+          "titre_es": "El «Sie» que desaparece",
+          "texte_fr": "[[mal]] rend la phrase familière, presque brusque, avec un patient. Mieux : [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_en": "[[mal]] makes the sentence casual, almost abrupt, with a patient. Better: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_tr": "[[mal]] cümleyi hastayla samimi, neredeyse sert yapar. Daha iyisi: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_uk": "[[mal]] робить речення розмовним, майже різким, у розмові з пацієнтом. Краще: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_fa": "[[mal]] جمله را با بیمار خودمانی و تقریباً تند می‌کند. بهتر: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_pt": "[[mal]] deixa a frase familiar, quase brusca, com um paciente. Melhor: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_ar": "[[mal]] تجعل الجملة عامية، وتكاد تكون فظّة، مع مريض. الأفضل: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_pl": "[[mal]] sprawia, że zdanie brzmi potocznie, prawie szorstko, w rozmowie z pacjentem. Lepiej: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_ru": "[[mal]] делает фразу разговорной, почти резкой для пациента. Лучше: [[Könnten Sie bitte den Arm frei machen?]]",
+          "texte_es": "[[mal]] vuelve la frase coloquial, casi brusca, con un paciente. Mejor: [[Könnten Sie bitte den Arm frei machen?]]"
+        }
+      ],
+      "titre_fr": "Les règles de base",
+      "titre_en": "The basic rules",
+      "titre_tr": "Temel kurallar",
+      "titre_uk": "Основні правила",
+      "titre_fa": "قواعد پایه",
+      "titre_pt": "As regras básicas",
+      "titre_ar": "القواعد الأساسية",
+      "titre_pl": "Podstawowe zasady",
+      "titre_ru": "Основные правила",
+      "titre_es": "Las reglas básicas"
+    },
+    {
+      "id": "patient",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Se présenter, annoncer chaque geste avant de le faire, demander l'accord, évaluer la douleur, rassurer, accepter un refus. Avec un patient, tu dis toujours ce que tu vas faire, et pourquoi.",
+          "texte_en": "Introduce yourself, announce each step before doing it, ask for consent, assess pain, reassure, accept a refusal. With a patient, you always say what you're going to do, and why.",
+          "texte_tr": "Kendini tanıtmak, her hareketi yapmadan önce duyurmak, onay istemek, ağrıyı değerlendirmek, yatıştırmak, reddi kabul etmek. Hastayla her zaman ne yapacağını ve nedenini söylersin.",
+          "texte_uk": "Представитися, оголошувати кожну дію перед її виконанням, питати згоду, оцінювати біль, заспокоювати, приймати відмову. З пацієнтом ти завжди кажеш, що збираєшся робити і навіщо.",
+          "texte_fa": "معرفی خود، اعلام هر کار پیش از انجام دادنش، گرفتن رضایت، ارزیابی درد، آرام کردن، پذیرفتن امتناع. با بیمار همیشه می‌گویی چه می‌خواهی بکنی و چرا.",
+          "texte_pt": "Apresentar-se, anunciar cada gesto antes de fazê-lo, pedir o consentimento, avaliar a dor, tranquilizar, aceitar uma recusa. Com um paciente, você sempre diz o que vai fazer e por quê.",
+          "texte_ar": "التعريف بنفسك، وإعلان كل إجراء قبل القيام به، وطلب الموافقة، وتقييم الألم، والطمأنة، وقبول الرفض. مع المريض، تقول دائمًا ما ستفعله، ولماذا.",
+          "texte_pl": "Przedstawić się, zapowiadać każdą czynność przed jej wykonaniem, zapytać o zgodę, ocenić ból, uspokoić, przyjąć odmowę. Przy pacjencie zawsze mówisz, co zamierzasz zrobić i dlaczego.",
+          "texte_ru": "Представиться, объявлять каждое действие перед тем, как его сделать, спросить согласие, оценить боль, успокоить, принять отказ. С пациентом ты всегда говоришь, что собираешься делать, и зачем.",
+          "texte_es": "Presentarse, anunciar cada gesto antes de hacerlo, pedir el consentimiento, evaluar el dolor, tranquilizar, aceptar una negativa. Con un paciente, siempre dices lo que vas a hacer y por qué."
+        },
+        {
+          "t": "liste",
+          "ordre": false,
+          "items": [
+            {
+              "texte_fr": "Annoncer : [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_en": "Announce: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_tr": "Duyurmak: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_uk": "Оголосити: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_fa": "اعلام کردن: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_pt": "Anunciar: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_ar": "الإعلان: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_pl": "Zapowiedzieć: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_ru": "Объявить: [[Ich messe jetzt Ihren Blutdruck.]]",
+              "texte_es": "Anunciar: [[Ich messe jetzt Ihren Blutdruck.]]"
+            },
+            {
+              "texte_fr": "Demander l'accord : [[Ist das in Ordnung für Sie?]]",
+              "texte_en": "Ask for consent: [[Ist das in Ordnung für Sie?]]",
+              "texte_tr": "Onay istemek: [[Ist das in Ordnung für Sie?]]",
+              "texte_uk": "Спитати згоду: [[Ist das in Ordnung für Sie?]]",
+              "texte_fa": "گرفتن رضایت: [[Ist das in Ordnung für Sie?]]",
+              "texte_pt": "Pedir o consentimento: [[Ist das in Ordnung für Sie?]]",
+              "texte_ar": "طلب الموافقة: [[Ist das in Ordnung für Sie?]]",
+              "texte_pl": "Zapytać o zgodę: [[Ist das in Ordnung für Sie?]]",
+              "texte_ru": "Спросить согласие: [[Ist das in Ordnung für Sie?]]",
+              "texte_es": "Pedir el consentimiento: [[Ist das in Ordnung für Sie?]]"
+            },
+            {
+              "texte_fr": "La douleur de zéro à dix : [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_en": "Pain from zero to ten: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_tr": "Sıfırdan ona kadar ağrı:[[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_uk": "Біль від нуля до десяти: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_fa": "درد از صفر تا ده: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_pt": "A dor de zero a dez: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_ar": "الألم من صفر إلى عشرة: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_pl": "Ból w skali od zera do dziesięciu: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_ru": "Боль от нуля до десяти: [[Wie stark sind die Schmerzen, von null bis zehn?]]",
+              "texte_es": "El dolor de cero a diez: [[Wie stark sind die Schmerzen, von null bis zehn?]]"
+            },
+            {
+              "texte_fr": "Accepter un refus : [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_en": "Accept a refusal: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_tr": "Reddi kabul etmek: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_uk": "Прийняти відмову: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_fa": "پذیرفتن امتناع: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_pt": "Aceitar uma recusa: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_ar": "قبول الرفض: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_pl": "Przyjąć odmowę: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_ru": "Принять отказ: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]",
+              "texte_es": "Aceptar una negativa: [[Das ist Ihre Entscheidung. Darf ich später noch einmal fragen?]]"
+            }
+          ]
+        },
+        {
+          "t": "redemittel",
+          "ref": "patient"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-patient",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Sie kommen morgens ins Zimmer eines neuen Patienten.",
+              "o": [
+                "Hallo, ich bin Elif. Aufstehen!",
+                "Guten Morgen, ich bin Elif, Ihre Pflegekraft heute.",
+                "Guten Morgen, ich muss jetzt arbeiten."
+              ],
+              "bon": 1,
+              "erkl_fr": "On se présente avec son nom et son rôle.",
+              "erkl_en": "You introduce yourself with your name and role.",
+              "erkl_tr": "Adın ve görevinle kendini tanıtırsın.",
+              "erkl_uk": "Представляються, називаючи своє ім'я й роль.",
+              "erkl_fa": "با نام و نقشت خودت را معرفی می‌کنی.",
+              "erkl_pt": "A pessoa se apresenta com o nome e a função.",
+              "erkl_ar": "تقدّم نفسك بالاسم والدور.",
+              "erkl_pl": "Przedstawiamy się imieniem i rolą.",
+              "erkl_ru": "Представляются, называя имя и должность.",
+              "erkl_es": "Uno se presenta con su nombre y su función."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Sie möchten den Blutdruck messen.",
+              "o": [
+                "Ich messe jetzt Ihren Blutdruck, ist das in Ordnung?",
+                "Blutdruck!",
+                "Geben Sie mir den Arm."
+              ],
+              "bon": 0,
+              "erkl_fr": "On annonce le geste, puis on demande l'accord.",
+              "erkl_en": "You announce the step, then ask for consent.",
+              "erkl_tr": "Hareketi duyurur, sonra onay istersin.",
+              "erkl_uk": "Оголошують дію, потім питають згоду.",
+              "erkl_fa": "کار را اعلام می‌کنی، سپس رضایت می‌گیری.",
+              "erkl_pt": "Anuncia-se o gesto e depois pede-se o consentimento.",
+              "erkl_ar": "تعلن الإجراء، ثم تطلب الموافقة.",
+              "erkl_pl": "Zapowiadamy czynność, a potem pytamy o zgodę.",
+              "erkl_ru": "Сначала объявляют действие, потом спрашивают согласие.",
+              "erkl_es": "Se anuncia el gesto y luego se pide el consentimiento."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Sie fragen nach den Schmerzen.",
+              "o": [
+                "Tut es weh oder nicht?",
+                "Haben Sie wirklich Schmerzen?",
+                "Wie stark sind die Schmerzen, von null bis zehn?"
+              ],
+              "bon": 2,
+              "relire": true,
+              "erkl_fr": "L'échelle de zéro à dix permet de comparer d'un service à l'autre.",
+              "erkl_en": "The zero-to-ten scale lets you compare from one shift to the next.",
+              "erkl_tr": "Sıfırdan ona kadar ölçek, servisler arasında karşılaştırma yapmayı sağlar.",
+              "erkl_uk": "Шкала від нуля до десяти дозволяє порівнювати між відділеннями.",
+              "erkl_fa": "مقیاس صفر تا ده امکان مقایسه بین بخش‌های مختلف را می‌دهد.",
+              "erkl_pt": "A escala de zero a dez permite comparar de um setor para outro.",
+              "erkl_ar": "مقياس الصفر إلى العشرة يتيح المقارنة من مناوبة إلى أخرى.",
+              "erkl_pl": "Skala od zera do dziesięciu pozwala porównywać między oddziałami.",
+              "erkl_ru": "Шкала от нуля до десяти позволяет сравнивать между отделениями.",
+              "erkl_es": "La escala de cero a diez permite comparar de un turno a otro."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Der Patient sagt: „Ich habe Angst vor der Spritze.“",
+              "o": [
+                "Das ist nicht schlimm.",
+                "Das verstehe ich. Ich erkläre Ihnen genau, was ich mache.",
+                "Andere Patienten haben keine Angst."
+              ],
+              "bon": 1,
+              "erkl_fr": "On reconnaît la peur avant d'expliquer.",
+              "erkl_en": "You acknowledge the fear before explaining.",
+              "erkl_tr": "Açıklamadan önce korkuyu kabul edersin.",
+              "erkl_uk": "Спершу визнають страх, потім пояснюють.",
+              "erkl_fa": "پیش از توضیح دادن، ترس را به رسمیت می‌شناسی.",
+              "erkl_pt": "Reconhece-se o medo antes de explicar.",
+              "erkl_ar": "تعترف بالخوف قبل أن تشرح.",
+              "erkl_pl": "Najpierw uznajemy strach, potem tłumaczymy.",
+              "erkl_ru": "Сначала признают страх, потом объясняют.",
+              "erkl_es": "Se reconoce el miedo antes de explicar."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Die Patientin möchte heute nicht aufstehen.",
+              "o": [
+                "Sie müssen aber aufstehen.",
+                "Dann eben nicht.",
+                "Darf ich fragen, warum? Vielleicht reicht heute die Bettkante."
+              ],
+              "bon": 2,
+              "erkl_fr": "On cherche la raison et on propose un petit pas.",
+              "erkl_en": "You look for the reason and suggest a small step.",
+              "erkl_tr": "Nedeni araştırır ve küçük bir adım önerirsin.",
+              "erkl_uk": "Шукають причину й пропонують маленький крок.",
+              "erkl_fa": "دلیل را می‌پرسی و یک گام کوچک پیشنهاد می‌کنی.",
+              "erkl_pt": "Procura-se a razão e propõe-se um pequeno passo.",
+              "erkl_ar": "تبحث عن السبب وتقترح خطوة صغيرة.",
+              "erkl_pl": "Szukamy powodu i proponujemy mały krok.",
+              "erkl_ru": "Ищут причину и предлагают маленький шаг.",
+              "erkl_es": "Se busca la razón y se propone un pequeño paso."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Welches Wort fehlt? „Ich lege jetzt den Verband ___, das dauert fünf Minuten.“",
+              "o": [
+                "an",
+                "auf",
+                "ab"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On dit [[einen Verband anlegen]].",
+              "erkl_en": "The phrase is [[einen Verband anlegen]].",
+              "erkl_tr": "[[einen Verband anlegen]] denir.",
+              "erkl_uk": "Кажуть [[einen Verband anlegen]].",
+              "erkl_fa": "می‌گویی [[einen Verband anlegen]].",
+              "erkl_pt": "Diz-se [[einen Verband anlegen]].",
+              "erkl_ar": "يُقال [[einen Verband anlegen]].",
+              "erkl_pl": "Mówi się [[einen Verband anlegen]].",
+              "erkl_ru": "Говорят [[einen Verband anlegen]].",
+              "erkl_es": "Se dice [[einen Verband anlegen]]."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Was sagen Sie, bevor Sie die Bettdecke wegnehmen?",
+              "o": [
+                "Ich decke Sie jetzt kurz auf, damit ich die Wunde sehe.",
+                "Weg mit der Decke.",
+                "Sie brauchen die Decke nicht."
+              ],
+              "bon": 0,
+              "erkl_fr": "On annonce et on explique pourquoi : l'intimité compte.",
+              "erkl_en": "You announce it and say why: privacy matters.",
+              "erkl_tr": "Duyurur ve nedenini açıklarsın: mahremiyet önemlidir.",
+              "erkl_uk": "Оголошують і пояснюють навіщо: приватність важлива.",
+              "erkl_fa": "اعلام می‌کنی و توضیح می‌دهی چرا: حریم خصوصی اهمیت دارد.",
+              "erkl_pt": "Anuncia-se e explica-se o porquê: a privacidade importa.",
+              "erkl_ar": "تعلن ذلك وتذكر السبب: الخصوصية مهمة.",
+              "erkl_pl": "Zapowiadamy i wyjaśniamy dlaczego: liczy się intymność.",
+              "erkl_ru": "Объявляют и объясняют зачем: личное пространство важно.",
+              "erkl_es": "Se anuncia y se explica por qué: la intimidad importa."
+            },
+            {
+              "nr": 8,
+              "typ": "rf",
+              "frage": "„Machen Sie mal schnell den Mund auf“ ist höflich genug für einen Patienten.",
+              "bon": 1,
+              "erkl_fr": "Faux : [[mal schnell]] sonne brusque. Mieux : [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_en": "False: [[mal schnell]] sounds abrupt. Better: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_tr": "Yanlış: [[mal schnell]] sert duyulur. Daha iyisi: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_uk": "Неправильно: [[mal schnell]] звучить різко. Краще: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_fa": "نادرست: [[mal schnell]] تند به نظر می‌رسد. بهتر: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_pt": "Falso: [[mal schnell]] soa brusco. Melhor: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_ar": "خطأ: [[mal schnell]] تبدو فظّة. الأفضل: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_pl": "Fałsz: [[mal schnell]] brzmi szorstko. Lepiej: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_ru": "Неверно: [[mal schnell]] звучит резко. Лучше: [[Könnten Sie bitte den Mund öffnen?]]",
+              "erkl_es": "Falso: [[mal schnell]] suena brusco. Mejor: [[Könnten Sie bitte den Mund öffnen?]]"
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Der Patient versteht ein Wort nicht.",
+              "o": [
+                "Das ist ein Fachwort, das müssen Sie nicht wissen.",
+                "Ich erkläre es anders: Das ist eine Spritze gegen Thrombose.",
+                "Das steht in Ihren Unterlagen."
+              ],
+              "bon": 1,
+              "erkl_fr": "On reformule avec des mots simples.",
+              "erkl_en": "You rephrase in simple words.",
+              "erkl_tr": "Basit kelimelerle yeniden ifade edersin.",
+              "erkl_uk": "Перефразовують простими словами.",
+              "erkl_fa": "با کلمات ساده دوباره می‌گویی.",
+              "erkl_pt": "Reformula-se com palavras simples.",
+              "erkl_ar": "تعيد الصياغة بكلمات بسيطة.",
+              "erkl_pl": "Powtarzamy prostymi słowami.",
+              "erkl_ru": "Переформулируют простыми словами.",
+              "erkl_es": "Se reformula con palabras sencillas."
+            },
+            {
+              "nr": 10,
+              "typ": "abc",
+              "frage": "Sie verlassen das Zimmer.",
+              "o": [
+                "Tschüss.",
+                "So, fertig.",
+                "Die Klingel liegt hier. Wenn Sie etwas brauchen, klingeln Sie bitte."
+              ],
+              "bon": 2,
+              "erkl_fr": "On laisse la sonnette à portée et on le dit.",
+              "erkl_en": "You leave the call bell within reach and say so.",
+              "erkl_tr": "Çağrı zilini erişilebilir bırakır ve bunu söylersin.",
+              "erkl_uk": "Залишають дзвінок у межах досяжності й кажуть про це.",
+              "erkl_fa": "زنگ را در دسترس می‌گذاری و این را هم می‌گویی.",
+              "erkl_pt": "Deixa-se a campainha ao alcance e diz-se isso.",
+              "erkl_ar": "تترك جرس الاستدعاء في متناوله وتقول ذلك.",
+              "erkl_pl": "Zostawiamy przycisk wzywania w zasięgu ręki i mówimy o tym.",
+              "erkl_ru": "Оставляют кнопку вызова в пределах досягаемости и говорят об этом.",
+              "erkl_es": "Se deja el timbre al alcance y se dice."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d01",
+          "titre_fr": "Le dialogue « Se présenter »",
+          "titre_en": "The dialogue “Introducing yourself”",
+          "titre_tr": "“Kendini tanıtmak” diyaloğu",
+          "titre_uk": "Діалог «Представитися»",
+          "titre_fa": "گفتگوی «معرفی خود»",
+          "titre_pt": "O diálogo « Apresentar-se »",
+          "titre_ar": "الحوار «التعريف بنفسك»",
+          "titre_pl": "Dialog „Przedstawienie się”",
+          "titre_ru": "Диалог «Представиться»",
+          "titre_es": "El diálogo «Presentarse»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d02",
+          "titre_fr": "Le dialogue « La douleur »",
+          "titre_en": "The dialogue “Pain”",
+          "titre_tr": "“Ağrı” diyaloğu",
+          "titre_uk": "Діалог «Біль»",
+          "titre_fa": "گفتگوی «درد»",
+          "titre_pt": "O diálogo « A dor »",
+          "titre_ar": "الحوار «الألم»",
+          "titre_pl": "Dialog „Ból”",
+          "titre_ru": "Диалог «Боль»",
+          "titre_es": "El diálogo «El dolor»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d04",
+          "titre_fr": "Le dialogue « Un refus »",
+          "titre_en": "The dialogue “A refusal”",
+          "titre_tr": "“Bir ret” diyaloğu",
+          "titre_uk": "Діалог «Відмова»",
+          "titre_fa": "گفتگوی «امتناع»",
+          "titre_pt": "O diálogo « Uma recusa »",
+          "titre_ar": "الحوار «الرفض»",
+          "titre_pl": "Dialog „Odmowa”",
+          "titre_ru": "Диалог «Отказ»",
+          "titre_es": "El diálogo «Una negativa»"
+        }
+      ],
+      "titre_fr": "1 · Avec le patient",
+      "titre_en": "1 · With the patient",
+      "titre_tr": "1 · Hastayla",
+      "titre_uk": "1 · З пацієнтом",
+      "titre_fa": "1 · با بیمار",
+      "titre_pt": "1 · Com o paciente",
+      "titre_ar": "1 · مع المريض",
+      "titre_pl": "1 · Z pacjentem",
+      "titre_ru": "1 · С пациентом",
+      "titre_es": "1 · Con el paciente"
+    },
+    {
+      "id": "famille",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Les proches veulent savoir, et ils ont souvent peur. Tu donnes ce qui relève des soins (le repas, la nuit, le moral), tu renvoies au médecin pour le diagnostic, et tu vérifies à qui tu parles avant de dire quoi que ce soit au téléphone.",
+          "texte_en": "Relatives want to know, and they are often afraid. You share what belongs to care (meals, the night, morale), refer them to the doctor for the diagnosis, and check who you are speaking to before saying anything on the phone.",
+          "texte_tr": "Yakınlar bilmek ister ve çoğunlukla korkarlar. Bakıma ait olanı (yemek, gece, moral) verirsin, tanı için hekime yönlendirirsin ve telefonda herhangi bir şey söylemeden önce kiminle konuştuğunu kontrol edersin.",
+          "texte_uk": "Рідні хочуть знати, і їм часто страшно. Ти даєш те, що стосується догляду (їжа, ніч, настрій), для діагнозу відсилаєш до лікаря, а перш ніж щось сказати по телефону, перевіряєш, з ким говориш.",
+          "texte_fa": "بستگان می‌خواهند بدانند و اغلب می‌ترسند. آنچه به مراقبت مربوط است (غذا، شب، روحیه) را می‌گویی، برای تشخیص به پزشک ارجاع می‌دهی و پیش از گفتن هر چیزی پشت تلفن، مطمئن می‌شوی با چه کسی صحبت می‌کنی.",
+          "texte_pt": "Os familiares querem saber, e muitas vezes têm medo. Você dá o que é da área dos cuidados (a refeição, a noite, o ânimo), encaminha ao médico para o diagnóstico e verifica com quem está falando antes de dizer qualquer coisa ao telefone.",
+          "texte_ar": "يريد الأقارب أن يعرفوا، وغالبًا ما يكونون خائفين. تعطي ما يدخل في الرعاية (الوجبة، الليل، المعنويات)، وتحيلهم إلى الطبيب في ما يخص التشخيص، وتتحقق ممن تكلّمه قبل أن تقول أي شيء على الهاتف.",
+          "texte_pl": "Bliscy chcą wiedzieć i często się boją. Podajesz to, co dotyczy opieki (posiłek, noc, samopoczucie), w sprawie diagnozy odsyłasz do lekarza i sprawdzasz, z kim rozmawiasz, zanim cokolwiek powiesz przez telefon.",
+          "texte_ru": "Родственники хотят знать, и им часто страшно. Ты говоришь о том, что относится к уходу (еда, ночь, настроение), по поводу диагноза отсылаешь к врачу, и по телефону сначала проверяешь, с кем говоришь, прежде чем что-либо сообщать.",
+          "texte_es": "Los allegados quieren saber, y a menudo tienen miedo. Das lo que corresponde a los cuidados (la comida, la noche, el ánimo), los remites al médico para el diagnóstico y compruebas con quién hablas antes de decir nada por teléfono."
+        },
+        {
+          "t": "piege",
+          "de": "Ja, Ihr Vater hat Krebs, die Ärztin sagt es ihm morgen.",
+          "relire": true,
+          "titre_fr": "Le secret professionnel au téléphone",
+          "titre_en": "Confidentiality on the phone",
+          "titre_tr": "Telefonda meslek sırrı",
+          "titre_uk": "Службова таємниця по телефону",
+          "titre_fa": "رازداری حرفه‌ای پشت تلفن",
+          "titre_pt": "O sigilo profissional ao telefone",
+          "titre_ar": "السرية المهنية على الهاتف",
+          "titre_pl": "Tajemnica zawodowa przez telefon",
+          "titre_ru": "Врачебная тайна по телефону",
+          "titre_es": "El secreto profesional por teléfono",
+          "texte_fr": "Une soignante ne donne ni diagnostic ni résultat, et jamais à quelqu'un dont elle n'est pas sûre. Ici, tout est faux : la personne, le contenu, le moment. Dis plutôt : [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_en": "A nurse gives neither a diagnosis nor results, and never to someone she isn't sure of. Here everything is wrong: the person, the content, the timing. Say instead: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_tr": "Bir bakım çalışanı tanı ya da sonuç vermez ve emin olmadığı birine asla. Burada her şey yanlış: kişi, içerik, zaman. Bunun yerine şunu söyle: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_uk": "Медсестра не повідомляє ні діагнозу, ні результатів, і ніколи тому, у кому не впевнена. Тут усе неправильно: особа, зміст, момент. Скажи краще: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_fa": "یک پرستار نه تشخیص می‌دهد و نه نتیجه، و هرگز به کسی که از او مطمئن نیست. اینجا همه‌چیز نادرست است: شخص، محتوا، زمان. در عوض بگو: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_pt": "Uma profissional de enfermagem não dá diagnóstico nem resultado, e nunca a alguém de quem não tenha certeza. Aqui, tudo está errado: a pessoa, o conteúdo, o momento. Diga antes: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_ar": "الممرضة لا تعطي تشخيصًا ولا نتيجة، ولا تعطيهما أبدًا لشخص لا تتأكد من هويته. هنا كل شيء خاطئ: الشخص، والمضمون، والتوقيت. قل بدلًا من ذلك: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_pl": "Opiekunka nie podaje ani diagnozy, ani wyniku, i nigdy komuś, kogo nie jest pewna. Tutaj wszystko jest błędne: osoba, treść, moment. Powiedz raczej: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_ru": "Медсестра не сообщает ни диагноза, ни результатов, и никогда тому, в ком не уверена. Здесь неверно всё: человек, содержание, момент. Скажи лучше: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]",
+          "texte_es": "Una enfermera no da ni diagnóstico ni resultados, y nunca a alguien de quien no está segura. Aquí todo es incorrecto: la persona, el contenido, el momento. Di más bien: [[Dazu kann Ihnen die Ärztin mehr sagen. Soll sie Sie zurückrufen?]]"
+        },
+        {
+          "t": "redemittel",
+          "ref": "famille"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-famille",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Die Tochter fragt: „Hat meine Mutter Krebs?“",
+              "o": [
+                "Ja, leider.",
+                "Dazu kann Ihnen die Ärztin mehr sagen. Ich frage, wann sie Zeit hat.",
+                "Das weiß ich nicht, fragen Sie jemand anders."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Le diagnostic revient au médecin ; on organise l'entretien.",
+              "erkl_en": "The diagnosis is the doctor's job; you arrange the talk.",
+              "erkl_tr": "Tanı hekime aittir; görüşmeyi biz ayarlarız.",
+              "erkl_uk": "Діагноз — справа лікаря; ми організовуємо розмову.",
+              "erkl_fa": "تشخیص با پزشک است؛ ما گفتگو را ترتیب می‌دهیم.",
+              "erkl_pt": "O diagnóstico cabe ao médico; organiza-se a conversa.",
+              "erkl_ar": "التشخيص من اختصاص الطبيب؛ وتنظّم أنت المقابلة.",
+              "erkl_pl": "Diagnoza należy do lekarza; my organizujemy rozmowę.",
+              "erkl_ru": "Диагноз — дело врача; мы организуем разговор.",
+              "erkl_es": "El diagnóstico corresponde al médico; tú organizas la entrevista."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Am Telefon: Ein Mann sagt, er ist der Neffe, und fragt nach den Laborwerten.",
+              "o": [
+                "Die Werte sind gut.",
+                "Am Telefon darf ich leider keine Auskunft geben.",
+                "Moment, ich lese sie vor."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Au téléphone, on ne sait pas qui parle : pas de renseignement.",
+              "erkl_en": "On the phone you can't tell who is speaking: no information.",
+              "erkl_tr": "Telefonda kimin konuştuğunu bilemeyiz: bilgi verilmez.",
+              "erkl_uk": "По телефону не знаєш, хто говорить: жодної інформації.",
+              "erkl_fa": "پشت تلفن نمی‌دانیم چه کسی صحبت می‌کند: اطلاعاتی داده نمی‌شود.",
+              "erkl_pt": "Ao telefone, não se sabe quem está falando: nenhuma informação.",
+              "erkl_ar": "على الهاتف لا تعرف من يتكلم: لا معلومات.",
+              "erkl_pl": "Przez telefon nie wiadomo, kto mówi: żadnych informacji.",
+              "erkl_ru": "По телефону неизвестно, кто говорит: сведений не даём.",
+              "erkl_es": "Por teléfono no se sabe quién habla: no se da información."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Der Sohn ist sehr nervös.",
+              "o": [
+                "Beruhigen Sie sich.",
+                "Ich kann gut verstehen, dass Sie sich Sorgen machen.",
+                "Das ist nicht so schlimm."
+              ],
+              "bon": 1,
+              "erkl_fr": "On nomme l'émotion avant tout le reste.",
+              "erkl_en": "You name the emotion before anything else.",
+              "erkl_tr": "Her şeyden önce duyguyu adlandırırız.",
+              "erkl_uk": "Спершу називають емоцію, потім усе інше.",
+              "erkl_fa": "پیش از هر چیز دیگر، احساس را نام می‌بریم.",
+              "erkl_pt": "Nomeia-se a emoção antes de tudo.",
+              "erkl_ar": "تسمّي الشعور قبل أي شيء آخر.",
+              "erkl_pl": "Najpierw nazywamy emocję, potem resztę.",
+              "erkl_ru": "Сначала называют эмоцию, потом всё остальное.",
+              "erkl_es": "Se nombra la emoción antes que todo lo demás."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Was dürfen Sie der Familie selbst sagen?",
+              "o": [
+                "Ihre Mutter hat heute gut gegessen und war spazieren.",
+                "Die Operation ist schiefgegangen.",
+                "Der Tumor ist größer geworden."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Le repas, la marche, le moral : c'est le domaine des soins.",
+              "erkl_en": "Meals, walking, mood: that is nursing territory.",
+              "erkl_tr": "Yemek, yürüyüş, moral: bunlar bakımın alanıdır.",
+              "erkl_uk": "Їжа, ходьба, настрій: це сфера догляду.",
+              "erkl_fa": "غذا، راه رفتن، روحیه: این‌ها حوزهٔ مراقبت است.",
+              "erkl_pt": "A refeição, a caminhada, o ânimo: é o domínio dos cuidados.",
+              "erkl_ar": "الوجبة والمشي والمعنويات: هذا من مجال الرعاية.",
+              "erkl_pl": "Posiłek, chodzenie, samopoczucie: to dziedzina opieki.",
+              "erkl_ru": "Еда, ходьба, настроение: это область ухода.",
+              "erkl_es": "La comida, el paseo, el ánimo: es el ámbito de los cuidados."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Die Tochter möchte beim Waschen helfen.",
+              "o": [
+                "Nein, das ist verboten.",
+                "Gern, wenn Ihre Mutter einverstanden ist. Ich zeige Ihnen, wie wir es machen.",
+                "Machen Sie es allein, ich habe keine Zeit."
+              ],
+              "bon": 1,
+              "erkl_fr": "On demande l'accord du patient et on guide le proche.",
+              "erkl_en": "You ask the patient's consent and guide the relative.",
+              "erkl_tr": "Hastanın onayını alır ve yakını yönlendiririz.",
+              "erkl_uk": "Питають згоди пацієнта й скеровують рідного.",
+              "erkl_fa": "از بیمار رضایت می‌گیریم و به همراه راهنمایی می‌کنیم.",
+              "erkl_pt": "Pede-se o consentimento do paciente e orienta-se o familiar.",
+              "erkl_ar": "تطلب موافقة المريض وترشد القريب.",
+              "erkl_pl": "Prosimy o zgodę pacjenta i prowadzimy bliskiego.",
+              "erkl_ru": "Спрашивают согласие пациента и направляют родственника.",
+              "erkl_es": "Se pide el consentimiento del paciente y se guía al allegado."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Eine Angehörige beschwert sich laut über das Essen.",
+              "o": [
+                "Das ist nicht meine Schuld.",
+                "Ich höre Sie. Was genau ist passiert?",
+                "Sprechen Sie leiser!"
+              ],
+              "bon": 1,
+              "erkl_fr": "On écoute d'abord, on fait raconter.",
+              "erkl_en": "You listen first, you let them explain.",
+              "erkl_tr": "Önce dinler, anlattırırız.",
+              "erkl_uk": "Спершу слухають, дають розповісти.",
+              "erkl_fa": "اول گوش می‌دهیم و می‌گذاریم تعریف کند.",
+              "erkl_pt": "Primeiro se escuta, deixa-se a pessoa contar.",
+              "erkl_ar": "تصغي أولًا، وتدعه يحكي.",
+              "erkl_pl": "Najpierw słuchamy, zachęcamy do opowiadania.",
+              "erkl_ru": "Сначала слушают, дают рассказать.",
+              "erkl_es": "Primero se escucha, se deja que cuenten."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Welcher Satz passt nach einem Todesfall?",
+              "o": [
+                "Das Leben geht weiter.",
+                "Nehmen Sie sich so viel Zeit, wie Sie brauchen.",
+                "Wir brauchen das Zimmer bald."
+              ],
+              "bon": 1,
+              "erkl_fr": "On laisse le temps du deuil.",
+              "erkl_en": "You leave time for grief.",
+              "erkl_tr": "Yas için zaman tanırız.",
+              "erkl_uk": "Залишають час на жалобу.",
+              "erkl_fa": "به سوگ فرصت می‌دهیم.",
+              "erkl_pt": "Dá-se tempo para o luto.",
+              "erkl_ar": "تترك وقتًا للحداد.",
+              "erkl_pl": "Zostawiamy czas na żałobę.",
+              "erkl_ru": "Оставляют время на скорбь.",
+              "erkl_es": "Se deja tiempo para el duelo."
+            },
+            {
+              "nr": 8,
+              "typ": "rf",
+              "frage": "Eine Pflegekraft darf Angehörigen am Telefon das Ergebnis einer Blutuntersuchung sagen, wenn sie freundlich fragen.",
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Faux : les résultats passent par le médecin, quelle que soit la politesse.",
+              "erkl_en": "False: results go through the doctor, however politely they ask.",
+              "erkl_tr": "Yanlış: sonuçlar, ne kadar nazik olursa olsun, hekim üzerinden verilir.",
+              "erkl_uk": "Неправильно: результати передає лікар, хоч яка ввічлива форма.",
+              "erkl_fa": "نادرست: نتایج از طریق پزشک می‌رسد، هرقدر هم مؤدبانه بپرسند.",
+              "erkl_pt": "Falso: os resultados passam pelo médico, por mais educada que seja a pessoa.",
+              "erkl_ar": "خطأ: النتائج تمرّ عبر الطبيب، مهما كان الطلب مهذبًا.",
+              "erkl_pl": "Fałsz: wyniki przekazuje lekarz, niezależnie od uprzejmości.",
+              "erkl_ru": "Неверно: результаты передаёт врач, как бы вежливо ни просили.",
+              "erkl_es": "Falso: los resultados pasan por el médico, por muy cortés que sea la petición."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Sie möchten die Bitte der Familie prüfen.",
+              "o": [
+                "Sie möchten also, dass wir Sie anrufen, wenn sich etwas ändert. Richtig?",
+                "Okay.",
+                "Das geht nicht."
+              ],
+              "bon": 0,
+              "erkl_fr": "On reformule pour être sûr d'avoir compris.",
+              "erkl_en": "You rephrase to be sure you understood.",
+              "erkl_tr": "Doğru anladığımızdan emin olmak için yeniden ifade ederiz.",
+              "erkl_uk": "Перефразовують, щоб бути певною, що зрозуміла.",
+              "erkl_fa": "دوباره می‌گوییم تا مطمئن شویم فهمیده‌ایم.",
+              "erkl_pt": "Reformula-se para ter certeza de ter entendido.",
+              "erkl_ar": "تعيد الصياغة لتتأكد أنك فهمت.",
+              "erkl_pl": "Powtarzamy własnymi słowami, żeby mieć pewność, że zrozumieliśmy.",
+              "erkl_ru": "Переформулируют, чтобы убедиться, что поняли.",
+              "erkl_es": "Se reformula para asegurarse de haber entendido."
+            },
+            {
+              "nr": 10,
+              "typ": "abc",
+              "frage": "Wer kann der Familie bei der Pflege zu Hause helfen?",
+              "o": [
+                "Der Sozialdienst.",
+                "Der Hausmeister.",
+                "Die Apotheke."
+              ],
+              "bon": 0,
+              "erkl_fr": "Le service social organise l'aide à domicile.",
+              "erkl_en": "The social services team organises help at home.",
+              "erkl_tr": "Sosyal hizmet evde yardımı organize eder.",
+              "erkl_uk": "Соціальна служба організовує допомогу вдома.",
+              "erkl_fa": "خدمات اجتماعی کمک در منزل را سازمان می‌دهد.",
+              "erkl_pt": "O serviço social organiza a ajuda em domicílio.",
+              "erkl_ar": "الخدمة الاجتماعية تنظّم المساعدة في المنزل.",
+              "erkl_pl": "Opiekę w domu organizuje pomoc społeczna.",
+              "erkl_ru": "Социальная служба организует помощь на дому.",
+              "erkl_es": "El servicio social organiza la ayuda a domicilio."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d05",
+          "titre_fr": "Le dialogue « Les proches »",
+          "titre_en": "The dialogue “The relatives”",
+          "titre_tr": "“Yakınlar” diyaloğu",
+          "titre_uk": "Діалог «Рідні»",
+          "titre_fa": "گفتگوی «بستگان»",
+          "titre_pt": "O diálogo « Os familiares »",
+          "titre_ar": "الحوار «الأقارب»",
+          "titre_pl": "Dialog „Bliscy”",
+          "titre_ru": "Диалог «Родственники»",
+          "titre_es": "El diálogo «Los allegados»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d23",
+          "titre_fr": "Le dialogue « Le secret professionnel »",
+          "titre_en": "The dialogue “Confidentiality”",
+          "titre_tr": "“Meslek sırrı” diyaloğu",
+          "titre_uk": "Діалог «Службова таємниця»",
+          "titre_fa": "گفتگوی «رازداری حرفه‌ای»",
+          "titre_pt": "O diálogo « O sigilo profissional »",
+          "titre_ar": "الحوار «السرية المهنية»",
+          "titre_pl": "Dialog „Tajemnica zawodowa”",
+          "titre_ru": "Диалог «Врачебная тайна»",
+          "titre_es": "El diálogo «El secreto profesional»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d26",
+          "titre_fr": "Le dialogue « La fin de vie »",
+          "titre_en": "The dialogue “End of life”",
+          "titre_tr": "“Yaşamın sonu” diyaloğu",
+          "titre_uk": "Діалог «Кінець життя»",
+          "titre_fa": "گفتگوی «پایان زندگی»",
+          "titre_pt": "O diálogo « O fim da vida »",
+          "titre_ar": "الحوار «نهاية الحياة»",
+          "titre_pl": "Dialog „Koniec życia”",
+          "titre_ru": "Диалог «Конец жизни»",
+          "titre_es": "El diálogo «El final de la vida»"
+        }
+      ],
+      "titre_fr": "2 · Avec la famille",
+      "titre_en": "2 · With the family",
+      "titre_tr": "2 · Aileyle",
+      "titre_uk": "2 · З родиною",
+      "titre_fa": "2 · با خانواده",
+      "titre_pt": "2 · Com a família",
+      "titre_ar": "2 · مع الأسرة",
+      "titre_pl": "2 · Z rodziną",
+      "titre_ru": "2 · С семьёй",
+      "titre_es": "2 · Con la familia"
+    },
+    {
+      "id": "collegues",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Demander de l'aide n'est pas un aveu de faiblesse : c'est une règle de sécurité. Dis ce dont tu as besoin, quand et pour combien de temps. Pour un désaccord, parle de la situation, pas de la personne, et à deux, pas devant les patients.",
+          "texte_en": "Asking for help is not a sign of weakness: it is a safety rule. Say what you need, when and for how long. For a disagreement, talk about the situation, not the person, and in private, not in front of patients.",
+          "texte_tr": "Yardım istemek bir zayıflık itirafı değildir: bir güvenlik kuralıdır. Neye ihtiyacın olduğunu, ne zaman ve ne kadar süreyle söyle. Bir anlaşmazlıkta kişiden değil durumdan söz et, ve iki kişi, hastaların önünde değil.",
+          "texte_uk": "Попросити допомоги — не ознака слабкості: це правило безпеки. Скажи, що тобі потрібно, коли і на скільки часу. У разі розбіжності говори про ситуацію, а не про людину, і вдвох, а не при пацієнтах.",
+          "texte_fa": "کمک خواستن نشانهٔ ضعف نیست: یک قاعدهٔ ایمنی است. بگو چه لازم داری، کی و برای چه مدت. برای اختلاف‌نظر، دربارهٔ موقعیت صحبت کن نه دربارهٔ شخص، و دونفره، نه جلوی بیماران.",
+          "texte_pt": "Pedir ajuda não é sinal de fraqueza: é uma regra de segurança. Diga do que você precisa, quando e por quanto tempo. Em caso de desacordo, fale da situação, não da pessoa, e a dois, não na frente dos pacientes.",
+          "texte_ar": "طلب المساعدة ليس اعترافًا بالضعف: بل هو قاعدة سلامة. قل ما تحتاج إليه، ومتى، ولكم من الوقت. وعند الخلاف، تحدّث عن الموقف لا عن الشخص، وبينكما لا أمام المرضى.",
+          "texte_pl": "Poproszenie o pomoc nie jest oznaką słabości: to zasada bezpieczeństwa. Powiedz, czego potrzebujesz, kiedy i na jak długo. Przy niezgodzie mów o sytuacji, nie o osobie, i we dwoje, nie przy pacjentach.",
+          "texte_ru": "Попросить о помощи — не признак слабости: это правило безопасности. Скажи, что тебе нужно, когда и на сколько времени. При разногласии говори о ситуации, а не о человеке, и вдвоём, а не при пациентах.",
+          "texte_es": "Pedir ayuda no es admitir una debilidad: es una norma de seguridad. Di lo que necesitas, cuándo y por cuánto tiempo. Si hay un desacuerdo, habla de la situación, no de la persona, y entre dos, no delante de los pacientes."
+        },
+        {
+          "t": "redemittel",
+          "ref": "collegues"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-collegues",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Sie brauchen Hilfe beim Umlagern.",
+              "o": [
+                "Hilf mir!",
+                "Kannst du mir kurz beim Umlagern helfen? Es dauert zwei Minuten.",
+                "Ich kann das nicht."
+              ],
+              "bon": 1,
+              "erkl_fr": "On dit quoi et combien de temps.",
+              "erkl_en": "You say what and for how long.",
+              "erkl_tr": "Ne ve ne kadar süreyle olduğunu söylersin.",
+              "erkl_uk": "Кажуть, що саме й на який час.",
+              "erkl_fa": "می‌گوییم چه چیزی و برای چه مدت.",
+              "erkl_pt": "Diz-se o quê e por quanto tempo.",
+              "erkl_ar": "تقول ماذا ولكم من الوقت.",
+              "erkl_pl": "Mówimy, co i na jak długo.",
+              "erkl_ru": "Говорят, что именно и на сколько времени.",
+              "erkl_es": "Se dice qué y por cuánto tiempo."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Ein Kollege bittet Sie um Hilfe, aber Sie geben gerade Medikamente.",
+              "o": [
+                "Nein.",
+                "Das kann ich gerade nicht, ich bin mitten in der Medikamentenrunde. In zehn Minuten?",
+                "Frag jemand anderen."
+              ],
+              "bon": 1,
+              "erkl_fr": "On refuse en donnant la raison, et on propose un moment.",
+              "erkl_en": "You decline with a reason and suggest a time.",
+              "erkl_tr": "Gerekçe vererek reddeder ve bir zaman önerirsin.",
+              "erkl_uk": "Відмовляють, називаючи причину, і пропонують інший час.",
+              "erkl_fa": "با گفتن دلیل رد می‌کنیم و زمانی پیشنهاد می‌دهیم.",
+              "erkl_pt": "Recusa-se dando a razão e propõe-se um momento.",
+              "erkl_ar": "ترفض مع ذكر السبب، وتقترح موعدًا.",
+              "erkl_pl": "Odmawiamy, podając powód, i proponujemy inny moment.",
+              "erkl_ru": "Отказывают, называя причину, и предлагают другое время.",
+              "erkl_es": "Se rechaza dando la razón y se propone un momento."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Sie sind nicht einverstanden.",
+              "o": [
+                "Das ist falsch, was du machst.",
+                "Ich sehe das anders: Wir sollten zuerst die Ärztin fragen.",
+                "Mach doch, was du willst."
+              ],
+              "bon": 1,
+              "erkl_fr": "On parle de la décision, pas de la personne.",
+              "erkl_en": "You talk about the decision, not the person.",
+              "erkl_tr": "Kişiden değil karardan söz edersin.",
+              "erkl_uk": "Говорять про рішення, а не про людину.",
+              "erkl_fa": "دربارهٔ تصمیم صحبت می‌کنیم، نه دربارهٔ شخص.",
+              "erkl_pt": "Fala-se da decisão, não da pessoa.",
+              "erkl_ar": "تتحدث عن القرار لا عن الشخص.",
+              "erkl_pl": "Mówimy o decyzji, nie o osobie.",
+              "erkl_ru": "Говорят о решении, а не о человеке.",
+              "erkl_es": "Se habla de la decisión, no de la persona."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Sie möchten eine Kollegin auf einen Fehler ansprechen.",
+              "o": [
+                "Vor dem Patienten sofort.",
+                "Hast du kurz fünf Minuten? Ich möchte etwas mit dir besprechen.",
+                "Ich sage es der Leitung."
+              ],
+              "bon": 1,
+              "erkl_fr": "À deux, et d'abord avec elle.",
+              "erkl_en": "In private, and with her first.",
+              "erkl_tr": "İki kişi ve önce onunla.",
+              "erkl_uk": "Вдвох, і спершу з нею.",
+              "erkl_fa": "دونفره، و اول با خودش.",
+              "erkl_pt": "A dois, e primeiro com ela.",
+              "erkl_ar": "بينكما، ومعها أولًا.",
+              "erkl_pl": "We dwoje, i najpierw z nią.",
+              "erkl_ru": "Вдвоём, и сначала с ней.",
+              "erkl_es": "Entre dos, y primero con ella."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Sie teilen die Arbeit auf.",
+              "o": [
+                "Ich übernehme die Zimmer zehn bis zwölf, und du die anderen?",
+                "Mach du alles, ich mache Pause.",
+                "Wer macht was? Egal."
+              ],
+              "bon": 0,
+              "erkl_fr": "Une répartition claire, sous forme de proposition.",
+              "erkl_en": "A clear split, put as a suggestion.",
+              "erkl_tr": "Bir öneri biçiminde net bir iş bölümü.",
+              "erkl_uk": "Чіткий розподіл у формі пропозиції.",
+              "erkl_fa": "تقسیم کار روشن، به شکل یک پیشنهاد.",
+              "erkl_pt": "Uma divisão clara, em forma de proposta.",
+              "erkl_ar": "توزيع واضح، يُعرض على شكل اقتراح.",
+              "erkl_pl": "Jasny podział, w formie propozycji.",
+              "erkl_ru": "Чёткое распределение в форме предложения.",
+              "erkl_es": "Un reparto claro, en forma de propuesta."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Eine Kollegin hat Ihnen geholfen.",
+              "o": [
+                "Danke dir, das war echt eine große Hilfe!",
+                "Das war deine Aufgabe.",
+                "Endlich."
+              ],
+              "bon": 0,
+              "erkl_fr": "Un merci précis renforce l'équipe.",
+              "erkl_en": "A specific thank-you strengthens the team.",
+              "erkl_tr": "Özel bir teşekkür ekibi güçlendirir.",
+              "erkl_uk": "Конкретне «дякую» зміцнює команду.",
+              "erkl_fa": "یک تشکر مشخص تیم را تقویت می‌کند.",
+              "erkl_pt": "Um agradecimento preciso fortalece a equipe.",
+              "erkl_ar": "شكر محدد يقوّي الفريق.",
+              "erkl_pl": "Konkretne podziękowanie wzmacnia zespół.",
+              "erkl_ru": "Конкретное спасибо укрепляет коллектив.",
+              "erkl_es": "Un agradecimiento concreto refuerza el equipo."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Sie haben einen Beinahe-Fehler gemacht. Was ist richtig?",
+              "o": [
+                "Nichts sagen, es ist ja nichts passiert.",
+                "Es dem Team und der Leitung sagen und im Meldesystem eintragen.",
+                "Nur einer Freundin erzählen."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Un presque-incident se signale : c'est ainsi qu'on évite le vrai.",
+              "erkl_en": "A near miss is reported: that's how the real one is avoided.",
+              "erkl_tr": "Ramak kala bir olay bildirilir: gerçeğinden bu şekilde kaçınılır.",
+              "erkl_uk": "Про інцидент, якого вдалося уникнути, повідомляють: так запобігають справжньому.",
+              "erkl_fa": "یک شبه‌حادثه گزارش داده می‌شود: این‌طور از حادثهٔ واقعی جلوگیری می‌کنیم.",
+              "erkl_pt": "Um quase-incidente se comunica: é assim que se evita o incidente de verdade.",
+              "erkl_ar": "الحادث الوشيك يُبلَّغ عنه: بهذه الطريقة يُتجنَّب الحادث الحقيقي.",
+              "erkl_pl": "Sytuację, która o włos nie skończyła się incydentem, się zgłasza: tak unika się prawdziwego.",
+              "erkl_ru": "О почти-инциденте сообщают: так предотвращают настоящий.",
+              "erkl_es": "Un casi incidente se notifica: así se evita el de verdad."
+            },
+            {
+              "nr": 8,
+              "typ": "rf",
+              "frage": "In Deutschland duzen sich Pflegekräfte im Team meistens.",
+              "bon": 0,
+              "erkl_fr": "Vrai, dans la plupart des équipes. Avec la cadre, regarde ce que font les autres.",
+              "erkl_en": "True, in most teams. With the ward manager, watch what the others do.",
+              "erkl_tr": "Doğru, çoğu ekipte. Sorumlu hemşireyle birlikte, diğerlerinin ne yaptığına bak.",
+              "erkl_uk": "Правильно, у більшості команд. Зі старшою медсестрою дивися, як роблять інші.",
+              "erkl_fa": "درست، در بیشتر تیم‌ها. با سرپرستار ببین دیگران چه می‌کنند.",
+              "erkl_pt": "Verdade, na maioria das equipes. Com a enfermeira-chefe, observe o que os outros fazem.",
+              "erkl_ar": "صحيح، في معظم الفرق. مع رئيسة القسم، انظر ماذا يفعل الآخرون.",
+              "erkl_pl": "Prawda, w większości zespołów. Przy przełożonej obserwuj, co robią inni.",
+              "erkl_ru": "Верно, в большинстве коллективов. Со старшей медсестрой смотри, как поступают другие.",
+              "erkl_es": "Verdadero, en la mayoría de los equipos. Con la supervisora, observa lo que hacen los demás."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Ihr Praxisanleiter erklärt etwas zu schnell.",
+              "o": [
+                "Ich nicke einfach.",
+                "Darf ich kurz nachfragen? Was bedeutet das genau?",
+                "Ich frage später im Internet."
+              ],
+              "bon": 1,
+              "erkl_fr": "Faire répéter est professionnel.",
+              "erkl_en": "Asking again is professional.",
+              "erkl_tr": "Tekrar istemek profesyonelce bir davranıştır.",
+              "erkl_uk": "Попросити повторити — це професійно.",
+              "erkl_fa": "خواستن تکرار حرفه‌ای است.",
+              "erkl_pt": "Pedir para repetir é profissional.",
+              "erkl_ar": "طلب التكرار تصرّف مهني.",
+              "erkl_pl": "Proszenie o powtórzenie jest profesjonalne.",
+              "erkl_ru": "Просить повторить — профессионально.",
+              "erkl_es": "Pedir que repitan es profesional."
+            },
+            {
+              "nr": 10,
+              "typ": "abc",
+              "frage": "Sie bestätigen die Aufteilung.",
+              "o": [
+                "Also, du machst den Verband und ich die Aufnahme, okay?",
+                "Gut gut.",
+                "Mal sehen."
+              ],
+              "bon": 0,
+              "erkl_fr": "On reformule pour éviter les doublons et les oublis.",
+              "erkl_en": "You rephrase to avoid duplicates and gaps.",
+              "erkl_tr": "Çift işi ve unutulanları önlemek için yeniden ifade ederiz.",
+              "erkl_uk": "Перефразовують, щоб уникнути дублювання й упущень.",
+              "erkl_fa": "دوباره می‌گوییم تا از تکرار و فراموشی جلوگیری کنیم.",
+              "erkl_pt": "Reformula-se para evitar duplicidades e esquecimentos.",
+              "erkl_ar": "تعيد الصياغة لتجنّب التكرار والنسيان.",
+              "erkl_pl": "Powtarzamy własnymi słowami, żeby uniknąć dublowania i pominięć.",
+              "erkl_ru": "Переформулируют, чтобы избежать дублей и упущений.",
+              "erkl_es": "Se reformula para evitar duplicados y olvidos."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d20",
+          "titre_fr": "Le dialogue « La Praxisanleitung »",
+          "titre_en": "The dialogue “Practical training”",
+          "titre_tr": "“Praxisanleitung” diyaloğu",
+          "titre_uk": "Діалог «Praxisanleitung»",
+          "titre_fa": "گفتگوی «Praxisanleitung»",
+          "titre_pt": "O diálogo « A Praxisanleitung »",
+          "titre_ar": "الحوار «التدريب العملي (Praxisanleitung)»",
+          "titre_pl": "Dialog „Praxisanleitung”",
+          "titre_ru": "Диалог «Praxisanleitung»",
+          "titre_es": "El diálogo «La Praxisanleitung»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d21",
+          "titre_fr": "Le dialogue « Un presque-incident »",
+          "titre_en": "The dialogue “A near miss”",
+          "titre_tr": "“Ramak kala bir olay” diyaloğu",
+          "titre_uk": "Діалог «Інцидент, якого вдалося уникнути»",
+          "titre_fa": "گفتگوی «یک شبه‌حادثه»",
+          "titre_pt": "O diálogo « Um quase-incidente »",
+          "titre_ar": "الحوار «حادث وشيك»",
+          "titre_pl": "Dialog „Prawie incydent”",
+          "titre_ru": "Диалог «Почти-инцидент»",
+          "titre_es": "El diálogo «Un casi incidente»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d22",
+          "titre_fr": "Le dialogue « Une critique dans l'équipe »",
+          "titre_en": "The dialogue “Criticism in the team”",
+          "titre_tr": "“Ekipte bir eleştiri” diyaloğu",
+          "titre_uk": "Діалог «Критика в команді»",
+          "titre_fa": "گفتگوی «یک انتقاد در تیم»",
+          "titre_pt": "O diálogo « Uma crítica na equipe »",
+          "titre_ar": "الحوار «انتقاد داخل الفريق»",
+          "titre_pl": "Dialog „Krytyka w zespole”",
+          "titre_ru": "Диалог «Критика в коллективе»",
+          "titre_es": "El diálogo «Una crítica en el equipo»"
+        }
+      ],
+      "titre_fr": "3 · Avec les collègues",
+      "titre_en": "3 · With colleagues",
+      "titre_tr": "3 · İş arkadaşlarıyla",
+      "titre_uk": "3 · З колегами",
+      "titre_fa": "3 · با همکاران",
+      "titre_pt": "3 · Com os colegas",
+      "titre_ar": "3 · مع الزملاء",
+      "titre_pl": "3 · Ze współpracownikami",
+      "titre_ru": "3 · С коллегами",
+      "titre_es": "3 · Con los compañeros"
+    },
+    {
+      "id": "releve",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "La relève suit toujours le même ordre, patient par patient : qui, pourquoi il est là, comment il va, ce qui s'est passé, ce qui reste à faire. Phrases courtes, au présent et au Perfekt, sans détours.",
+          "texte_en": "The handover always follows the same order, patient by patient: who, why they are here, how they are, what happened, what is left to do. Short sentences, in the present and the Perfekt, straight to the point.",
+          "texte_tr": "Vardiya devri hep aynı sırayı izler, hasta hasta: kim, neden burada, durumu nasıl, ne oldu, geriye ne kaldı. Kısa cümleler, şimdiki zaman ve Perfekt, dolambaçsız.",
+          "texte_uk": "Передача зміни завжди йде в тому самому порядку, пацієнт за пацієнтом: хто, чому він тут, як він почувається, що сталося, що лишилося зробити. Короткі речення, у теперішньому часі й Perfekt, без обхідних шляхів.",
+          "texte_fa": "تحویل شیفت همیشه همان ترتیب را دارد، بیمار به بیمار: کیست، چرا اینجاست، حالش چطور است، چه اتفاقی افتاده، چه کارهایی مانده. جمله‌های کوتاه، در زمان حال و Perfekt، بدون حاشیه.",
+          "texte_pt": "A passagem de plantão segue sempre a mesma ordem, paciente por paciente: quem, por que está ali, como está, o que aconteceu, o que falta fazer. Frases curtas, no presente e no Perfekt, sem rodeios.",
+          "texte_ar": "يتبع تسليم المناوبة دائمًا الترتيب نفسه، مريضًا بعد مريض: من هو، ولماذا هو هنا، وكيف حاله، وماذا حدث، وما الذي بقي لفعله. جمل قصيرة، بصيغة المضارع وPerfekt، دون التفاف.",
+          "texte_pl": "Przekazanie zmiany zawsze ma ten sam porządek, pacjent po pacjencie: kto, dlaczego tu jest, jak się czuje, co się wydarzyło, co zostało do zrobienia. Krótkie zdania, w czasie teraźniejszym i Perfekt, bez zbędnych ozdobników.",
+          "texte_ru": "Передача смены всегда идёт в одном порядке, пациент за пациентом: кто, почему он здесь, как он себя чувствует, что произошло, что осталось сделать. Короткие фразы, в настоящем времени и в Perfekt, без обиняков.",
+          "texte_es": "El relevo sigue siempre el mismo orden, paciente por paciente: quién, por qué está aquí, cómo está, qué ha pasado, qué queda por hacer. Frases cortas, en presente y en Perfekt, sin rodeos."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Étape",
+              "texte_en": "Step",
+              "texte_tr": "Adım",
+              "texte_uk": "Крок",
+              "texte_fa": "مرحله",
+              "texte_pt": "Etapa",
+              "texte_ar": "الخطوة",
+              "texte_pl": "Krok",
+              "texte_ru": "Шаг",
+              "texte_es": "Paso"
+            },
+            {
+              "texte_fr": "Exemple",
+              "texte_en": "Example",
+              "texte_tr": "Örnek",
+              "texte_uk": "Приклад",
+              "texte_fa": "مثال",
+              "texte_pt": "Exemplo",
+              "texte_ar": "مثال",
+              "texte_pl": "Przykład",
+              "texte_ru": "Пример",
+              "texte_es": "Ejemplo"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "texte_fr": "1. Qui",
+                "texte_en": "1. Who",
+                "texte_tr": "1. Kim",
+                "texte_uk": "1. Хто",
+                "texte_fa": "1. کیست",
+                "texte_pt": "1. Quem",
+                "texte_ar": "1. من",
+                "texte_pl": "1. Kto",
+                "texte_ru": "1. Кто",
+                "texte_es": "1. Quién"
+              },
+              {
+                "de": "In Zimmer drei liegt eine neue Patientin, zweiundachtzig Jahre."
+              }
+            ],
+            [
+              {
+                "texte_fr": "2. Pourquoi",
+                "texte_en": "2. Why",
+                "texte_tr": "2. Neden",
+                "texte_uk": "2. Чому",
+                "texte_fa": "2. چرا",
+                "texte_pt": "2. Por quê",
+                "texte_ar": "2. لماذا",
+                "texte_pl": "2. Dlaczego",
+                "texte_ru": "2. Почему",
+                "texte_es": "2. Por qué"
+              },
+              {
+                "de": "Aufgenommen wegen einer Lungenentzündung."
+              }
+            ],
+            [
+              {
+                "texte_fr": "3. État et valeurs",
+                "texte_en": "3. Condition and values",
+                "texte_tr": "3. Durum ve değerler",
+                "texte_uk": "3. Стан і показники",
+                "texte_fa": "3. وضعیت و مقدارها",
+                "texte_pt": "3. Estado e valores",
+                "texte_ar": "3. الحالة والقيم",
+                "texte_pl": "3. Stan i wartości",
+                "texte_ru": "3. Состояние и показатели",
+                "texte_es": "3. Estado y valores"
+              },
+              {
+                "de": "Orientiert, Vitalwerte stabil, kein Fieber."
+              }
+            ],
+            [
+              {
+                "texte_fr": "4. Ce qui s'est passé",
+                "texte_en": "4. What happened",
+                "texte_tr": "4. Ne oldu",
+                "texte_uk": "4. Що сталося",
+                "texte_fa": "4. چه اتفاقی افتاده",
+                "texte_pt": "4. O que aconteceu",
+                "texte_ar": "4. ما حدث",
+                "texte_pl": "4. Co się wydarzyło",
+                "texte_ru": "4. Что произошло",
+                "texte_es": "4. Qué ha pasado"
+              },
+              {
+                "de": "Heute Nacht unruhig, Schmerzmittel um acht."
+              }
+            ],
+            [
+              {
+                "texte_fr": "5. Ce qui reste à faire",
+                "texte_en": "5. What's left",
+                "texte_tr": "5. Yapılacaklar",
+                "texte_uk": "5. Що лишилося зробити",
+                "texte_fa": "5. چه کارهایی مانده",
+                "texte_pt": "5. O que falta fazer",
+                "texte_ar": "5. ما بقي لفعله",
+                "texte_pl": "5. Co zostało do zrobienia",
+                "texte_ru": "5. Что осталось сделать",
+                "texte_es": "5. Qué queda por hacer"
+              },
+              {
+                "de": "Offen ist noch der Verbandswechsel."
+              }
+            ]
+          ],
+          "relire": true
+        },
+        {
+          "t": "redemittel",
+          "ref": "releve"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-releve",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Womit beginnt die Übergabe eines Patienten?",
+              "o": [
+                "Mit den offenen Aufgaben.",
+                "Mit Zimmer, Name und Alter.",
+                "Mit dem Essen."
+              ],
+              "bon": 1,
+              "erkl_fr": "On commence par qui.",
+              "erkl_en": "You start with who.",
+              "erkl_tr": "Önce kimin olduğuyla başlanır.",
+              "erkl_uk": "Починають із того, хто.",
+              "erkl_fa": "با «کیست» شروع می‌کنیم.",
+              "erkl_pt": "Começa-se por quem.",
+              "erkl_ar": "تبدأ بـ«من».",
+              "erkl_pl": "Zaczynamy od tego, kto.",
+              "erkl_ru": "Начинают с того, кто.",
+              "erkl_es": "Se empieza por quién."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Welche Reihenfolge ist richtig?",
+              "o": [
+                "Diagnose – Zustand – offene Aufgaben",
+                "Offene Aufgaben – Diagnose – Zustand",
+                "Zustand – offene Aufgaben – Diagnose"
+              ],
+              "bon": 0,
+              "erkl_fr": "Pourquoi il est là, comment il va, ce qui reste à faire.",
+              "erkl_en": "Why they're here, how they are, what's left to do.",
+              "erkl_tr": "Neden burada, durumu nasıl, yapılacaklar.",
+              "erkl_uk": "Чому він тут, як він почувається, що лишилося зробити.",
+              "erkl_fa": "چرا اینجاست، حالش چطور است، چه کارهایی مانده.",
+              "erkl_pt": "Por que está ali, como está, o que falta fazer.",
+              "erkl_ar": "لماذا هو هنا، وكيف حاله، وما بقي لفعله.",
+              "erkl_pl": "Dlaczego tu jest, jak się czuje, co zostało do zrobienia.",
+              "erkl_ru": "Почему он здесь, как он себя чувствует, что осталось сделать.",
+              "erkl_es": "Por qué está aquí, cómo está, qué queda por hacer."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "„Er ist wach und ___.“",
+              "o": [
+                "ansprechbar",
+                "ansprechend",
+                "angesprochen"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "[[ansprechbar]] : il répond quand on lui parle. [[ansprechend]] veut dire « attrayant ».",
+              "erkl_en": "[[ansprechbar]]: he responds when spoken to. [[ansprechend]] means “attractive”.",
+              "erkl_tr": "[[ansprechbar]]: kendisiyle konuşulunca yanıt verir. [[ansprechend]] “çekici” demektir.",
+              "erkl_uk": "[[ansprechbar]]: він відповідає, коли до нього звертаються. [[ansprechend]] означає «привабливий».",
+              "erkl_fa": "[[ansprechbar]]: وقتی با او صحبت می‌کنند جواب می‌دهد. [[ansprechend]] یعنی «جذاب».",
+              "erkl_pt": "[[ansprechbar]]: responde quando se fala com ele. [[ansprechend]] significa « atraente ».",
+              "erkl_ar": "[[ansprechbar]]: يستجيب حين يُكلَّم. أما [[ansprechend]] فتعني «جذاب».",
+              "erkl_pl": "[[ansprechbar]]: odpowiada, gdy się do niego mówi. [[ansprechend]] znaczy „atrakcyjny”.",
+              "erkl_ru": "[[ansprechbar]]: он отвечает, когда к нему обращаются. [[ansprechend]] означает «привлекательный».",
+              "erkl_es": "[[ansprechbar]]: responde cuando se le habla. [[ansprechend]] significa «atractivo»."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Wie sagt man den Blutdruck?",
+              "o": [
+                "hundertsechzig zu fünfundneunzig",
+                "eins sechs null neun fünf",
+                "sechzehn neun"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "En allemand, on dit les deux valeurs entières, reliées par [[zu]].",
+              "erkl_en": "In German you say both full values, joined by [[zu]].",
+              "erkl_tr": "Almancada iki değer tam olarak söylenir, [[zu]] ile bağlanarak.",
+              "erkl_uk": "Німецькою називають обидва значення повністю, поєднані словом [[zu]].",
+              "erkl_fa": "در آلمانی هر دو مقدار را کامل می‌گویند و با [[zu]] به هم وصل می‌کنند.",
+              "erkl_pt": "Em alemão, dizem-se os dois valores por inteiro, ligados por [[zu]].",
+              "erkl_ar": "بالألمانية، تُقال القيمتان كاملتين، ويربط بينهما [[zu]].",
+              "erkl_pl": "Po niemiecku mówi się obie wartości w całości, połączone przez [[zu]].",
+              "erkl_ru": "По-немецки называют оба значения полностью, соединяя их через [[zu]].",
+              "erkl_es": "En alemán se dicen los dos valores enteros, unidos por [[zu]]."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "„Die Infusion ___ noch bis vierzehn Uhr.“",
+              "o": [
+                "läuft",
+                "geht weg",
+                "fährt"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Une perfusion [[läuft]].",
+              "erkl_en": "An infusion [[läuft]] (runs).",
+              "erkl_tr": "Bir infüzyon [[läuft]] (akar).",
+              "erkl_uk": "Інфузія [[läuft]].",
+              "erkl_fa": "یک سرم [[läuft]].",
+              "erkl_pt": "Um soro [[läuft]].",
+              "erkl_ar": "المحلول الوريدي [[läuft]] (يجري).",
+              "erkl_pl": "Kroplówka [[läuft]].",
+              "erkl_ru": "Капельница [[läuft]].",
+              "erkl_es": "Una perfusión [[läuft]] (corre)."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Was gehört NICHT in die Übergabe?",
+              "o": [
+                "Die Schmerzen und das Schmerzmittel.",
+                "Dass die Patientin unsympathisch ist.",
+                "Ein Termin morgen früh."
+              ],
+              "bon": 1,
+              "erkl_fr": "Des faits observés, pas des jugements.",
+              "erkl_en": "Observed facts, not judgements.",
+              "erkl_tr": "Gözlenen olgular, yargılar değil.",
+              "erkl_uk": "Спостережені факти, а не судження.",
+              "erkl_fa": "واقعیت‌های مشاهده‌شده، نه قضاوت.",
+              "erkl_pt": "Fatos observados, não julgamentos.",
+              "erkl_ar": "وقائع مرصودة، لا أحكام.",
+              "erkl_pl": "Fakty zaobserwowane, nie oceny.",
+              "erkl_ru": "Наблюдаемые факты, а не оценки.",
+              "erkl_es": "Hechos observados, no juicios."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Sie haben den Verbandswechsel nicht geschafft.",
+              "o": [
+                "Ich sage nichts.",
+                "Offen ist noch der Verbandswechsel, den habe ich nicht mehr geschafft.",
+                "Der Verband ist gemacht."
+              ],
+              "bon": 1,
+              "erkl_fr": "Ce qui reste à faire se dit clairement.",
+              "erkl_en": "What's left to do is said clearly.",
+              "erkl_tr": "Yapılacaklar açıkça söylenir.",
+              "erkl_uk": "Те, що лишилося зробити, кажуть чітко.",
+              "erkl_fa": "آنچه مانده، روشن گفته می‌شود.",
+              "erkl_pt": "O que falta fazer se diz com clareza.",
+              "erkl_ar": "ما بقي لفعله يُقال بوضوح.",
+              "erkl_pl": "To, co zostało do zrobienia, mówi się jasno.",
+              "erkl_ru": "Что осталось сделать, говорят ясно.",
+              "erkl_es": "Lo que queda por hacer se dice con claridad."
+            },
+            {
+              "nr": 8,
+              "typ": "abc",
+              "frage": "„Ab Mitternacht bleibt er ___.“",
+              "o": [
+                "nüchtern",
+                "hungrig",
+                "leer"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "[[nüchtern]] : à jeun, avant un examen.",
+              "erkl_en": "[[nüchtern]]: nil by mouth, before a test.",
+              "erkl_tr": "[[nüchtern]]: aç karnına, bir muayeneden önce.",
+              "erkl_uk": "[[nüchtern]]: натщесерце, перед обстеженням.",
+              "erkl_fa": "[[nüchtern]]: ناشتا، پیش از یک معاینه.",
+              "erkl_pt": "[[nüchtern]]: em jejum, antes de um exame.",
+              "erkl_ar": "[[nüchtern]]: صائم، قبل فحص.",
+              "erkl_pl": "[[nüchtern]]: na czczo, przed badaniem.",
+              "erkl_ru": "[[nüchtern]]: натощак, перед обследованием.",
+              "erkl_es": "[[nüchtern]]: en ayunas, antes de una prueba."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Sie übernehmen den Dienst und haben eine Frage.",
+              "o": [
+                "Wann genau hat er das Schmerzmittel bekommen?",
+                "Warum hast du das so gemacht?",
+                "Das ist mir egal."
+              ],
+              "bon": 0,
+              "erkl_fr": "Une question précise, utile pour la suite.",
+              "erkl_en": "A precise question, useful for what comes next.",
+              "erkl_tr": "Devamı için yararlı, kesin bir soru.",
+              "erkl_uk": "Точне запитання, корисне для подальшого.",
+              "erkl_fa": "یک سؤال دقیق، مفید برای ادامه.",
+              "erkl_pt": "Uma pergunta precisa, útil para o que vem a seguir.",
+              "erkl_ar": "سؤال دقيق، مفيد لما سيأتي.",
+              "erkl_pl": "Precyzyjne pytanie, przydatne na dalszy ciąg.",
+              "erkl_ru": "Точный вопрос, полезный для дальнейшего.",
+              "erkl_es": "Una pregunta precisa, útil para lo que sigue."
+            },
+            {
+              "nr": 10,
+              "typ": "rf",
+              "frage": "Die Übergabe am Bett ist gut, aber Diagnosen, die der Zimmernachbar nicht hören soll, sagt man draußen.",
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Vrai : le secret vaut aussi dans une chambre double.",
+              "erkl_en": "True: confidentiality applies in a shared room too.",
+              "erkl_tr": "Doğru: gizlilik iki kişilik odada da geçerlidir.",
+              "erkl_uk": "Правильно: таємниця діє й у палаті на двох.",
+              "erkl_fa": "درست: رازداری در اتاق دونفره هم صادق است.",
+              "erkl_pt": "Verdade: o sigilo vale também num quarto duplo.",
+              "erkl_ar": "صحيح: السرية تسري في الغرفة المزدوجة أيضًا.",
+              "erkl_pl": "Prawda: tajemnica obowiązuje także w pokoju dwuosobowym.",
+              "erkl_ru": "Верно: тайна действует и в двухместной палате.",
+              "erkl_es": "Verdadero: el secreto profesional también vale en una habitación doble."
+            }
+          ],
+          "consigne_de": "Was passt?",
+          "consigne_fr": "Remets la relève dans l'ordre, ou choisis la bonne phrase.",
+          "consigne_en": "Put the handover in order, or choose the right sentence.",
+          "consigne_tr": "Vardiya devrini sıraya koy ya da doğru cümleyi seç.",
+          "consigne_uk": "Розстав передачу зміни в правильному порядку або обери правильну фразу.",
+          "consigne_fa": "تحویل شیفت را به ترتیب درست بچین یا جملهٔ درست را انتخاب کن.",
+          "consigne_pt": "Coloque a passagem de plantão em ordem, ou escolha a frase certa.",
+          "consigne_ar": "رتّب تسليم المناوبة، أو اختر الجملة الصحيحة.",
+          "consigne_pl": "Ułóż przekazanie zmiany w kolejności albo wybierz właściwe zdanie.",
+          "consigne_ru": "Расположи передачу смены по порядку или выбери верную фразу.",
+          "consigne_es": "Pon el relevo en orden o elige la frase correcta."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d06",
+          "titre_fr": "Le dialogue « La relève »",
+          "titre_en": "The dialogue “The handover”",
+          "titre_tr": "“Vardiya devri” diyaloğu",
+          "titre_uk": "Діалог «Передача зміни»",
+          "titre_fa": "گفتگوی «تحویل شیفت»",
+          "titre_pt": "O diálogo « A passagem de plantão »",
+          "titre_ar": "الحوار «تسليم المناوبة»",
+          "titre_pl": "Dialog „Przekazanie zmiany”",
+          "titre_ru": "Диалог «Передача смены»",
+          "titre_es": "El diálogo «El relevo»"
+        }
+      ],
+      "titre_fr": "4 · La relève orale",
+      "titre_en": "4 · The verbal handover",
+      "titre_tr": "4 · Sözlü vardiya devri",
+      "titre_uk": "4 · Усна передача зміни",
+      "titre_fa": "4 · تحویل شیفت شفاهی",
+      "titre_pt": "4 · A passagem de plantão oral",
+      "titre_ar": "4 · تسليم المناوبة الشفهي",
+      "titre_pl": "4 · Ustne przekazanie zmiany",
+      "titre_ru": "4 · Устная передача смены",
+      "titre_es": "4 · El relevo oral"
+    },
+    {
+      "id": "sbar",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "La nuit, le médecin ne connaît pas ton patient. SBAR range ton appel en quatre temps, pour qu'il comprenne en trente secondes et décide. Prépare-toi avant d'appeler : les valeurs mesurées, le dossier, une feuille pour écrire.",
+          "texte_en": "At night, the doctor doesn't know your patient. SBAR puts your call in four steps, so they understand in thirty seconds and decide. Prepare before calling: the measured values, the file, a sheet to write on.",
+          "texte_tr": "Gece hekim hastanı tanımaz. SBAR aramanı dört adıma dizer; böylece otuz saniyede anlar ve karar verir. Aramadan önce hazırlan: ölçülen değerler, dosya, yazmak için bir kâğıt.",
+          "texte_uk": "Уночі лікар не знає твого пацієнта. SBAR упорядковує твій дзвінок у чотири кроки, щоб він зрозумів за тридцять секунд і ухвалив рішення. Підготуйся перед дзвінком: виміряні показники, документація, аркуш, щоб записувати.",
+          "texte_fa": "شب، پزشک بیمار تو را نمی‌شناسد. SBAR تماس تو را در چهار مرحله مرتب می‌کند تا در سی ثانیه بفهمد و تصمیم بگیرد. پیش از تماس آماده شو: مقدارهای اندازه‌گیری‌شده، پرونده، یک برگه برای نوشتن.",
+          "texte_pt": "À noite, o médico não conhece o seu paciente. O SBAR organiza a sua ligação em quatro tempos, para que ele entenda em trinta segundos e decida. Prepare-se antes de ligar: os valores medidos, o prontuário, uma folha para escrever.",
+          "texte_ar": "في الليل لا يعرف الطبيب مريضك. يرتّب SBAR اتصالك في أربع خطوات، ليفهم في ثلاثين ثانية ويقرّر. استعد قبل الاتصال: القيم المقاسة، والملف، وورقة للكتابة.",
+          "texte_pl": "W nocy lekarz nie zna twojego pacjenta. SBAR porządkuje twoje wezwanie w czterech krokach, żeby zrozumiał w trzydzieści sekund i zdecydował. Przygotuj się przed telefonem: zmierzone wartości, dokumentacja, kartka do notowania.",
+          "texte_ru": "Ночью врач не знает твоего пациента. SBAR выстраивает звонок в четыре шага, чтобы он понял за тридцать секунд и принял решение. Подготовься перед звонком: измеренные показатели, карта, лист для записи.",
+          "texte_es": "De noche, el médico no conoce a tu paciente. SBAR ordena tu llamada en cuatro pasos, para que entienda en treinta segundos y decida. Prepárate antes de llamar: los valores medidos, el historial, una hoja para escribir."
+        },
+        {
+          "t": "tableau",
+          "entetes": [
+            {
+              "texte_fr": "Lettre",
+              "texte_en": "Letter",
+              "texte_tr": "Harf",
+              "texte_uk": "Літера",
+              "texte_fa": "حرف",
+              "texte_pt": "Letra",
+              "texte_ar": "الحرف",
+              "texte_pl": "Litera",
+              "texte_ru": "Буква",
+              "texte_es": "Letra"
+            },
+            {
+              "texte_fr": "Ce que tu dis",
+              "texte_en": "What you say",
+              "texte_tr": "Ne söylüyorsun",
+              "texte_uk": "Що ти кажеш",
+              "texte_fa": "آنچه می‌گویی",
+              "texte_pt": "O que você diz",
+              "texte_ar": "ما تقوله",
+              "texte_pl": "Co mówisz",
+              "texte_ru": "Что ты говоришь",
+              "texte_es": "Lo que dices"
+            },
+            {
+              "texte_fr": "Exemple",
+              "texte_en": "Example",
+              "texte_tr": "Örnek",
+              "texte_uk": "Приклад",
+              "texte_fa": "مثال",
+              "texte_pt": "Exemplo",
+              "texte_ar": "مثال",
+              "texte_pl": "Przykład",
+              "texte_ru": "Пример",
+              "texte_es": "Ejemplo"
+            }
+          ],
+          "lignes": [
+            [
+              {
+                "de": "S – Situation"
+              },
+              {
+                "texte_fr": "Qui tu es, quel patient, quel problème",
+                "texte_en": "Who you are, which patient, what problem",
+                "texte_tr": "Kim olduğun, hangi hasta, hangi sorun",
+                "texte_uk": "Хто ти, який пацієнт, яка проблема",
+                "texte_fa": "تو که هستی، کدام بیمار، چه مشکلی",
+                "texte_pt": "Quem é você, qual paciente, qual problema",
+                "texte_ar": "من أنت، وأي مريض، وما المشكلة",
+                "texte_pl": "Kim jesteś, który pacjent, jaki problem",
+                "texte_ru": "Кто ты, какой пациент, какая проблема",
+                "texte_es": "Quién eres, qué paciente, qué problema"
+              },
+              {
+                "de": "Ich rufe wegen der Patientin in Zimmer neun an. Sie hat starke Schmerzen in der Brust."
+              }
+            ],
+            [
+              {
+                "de": "B – Background"
+              },
+              {
+                "texte_fr": "Le diagnostic, l'opération, les antécédents utiles",
+                "texte_en": "The diagnosis, the surgery, the relevant history",
+                "texte_tr": "Tanı, ameliyat, yararlı öyküsü",
+                "texte_uk": "Діагноз, операція, важливі попередні відомості",
+                "texte_fa": "تشخیص، عمل جراحی، سوابق مفید",
+                "texte_pt": "O diagnóstico, a cirurgia, os antecedentes úteis",
+                "texte_ar": "التشخيص، والعملية، والسوابق المفيدة",
+                "texte_pl": "Diagnoza, operacja, istotne choroby w przeszłości",
+                "texte_ru": "Диагноз, операция, важный анамнез",
+                "texte_es": "El diagnóstico, la operación, los antecedentes útiles"
+              },
+              {
+                "de": "Sie wurde gestern an der Galle operiert und nimmt einen Blutverdünner."
+              }
+            ],
+            [
+              {
+                "de": "A – Assessment"
+              },
+              {
+                "texte_fr": "Les valeurs, ce que tu vois, ton évaluation",
+                "texte_en": "The values, what you see, your assessment",
+                "texte_tr": "Değerler, gördüklerin, değerlendirmen",
+                "texte_uk": "Показники, що ти бачиш, твоя оцінка",
+                "texte_fa": "مقدارها، آنچه می‌بینی، ارزیابی تو",
+                "texte_pt": "Os valores, o que você vê, a sua avaliação",
+                "texte_ar": "القيم، وما تراه، وتقييمك",
+                "texte_pl": "Wartości, to, co widzisz, twoja ocena",
+                "texte_ru": "Показатели, что ты видишь, твоя оценка",
+                "texte_es": "Los valores, lo que ves, tu evaluación"
+              },
+              {
+                "de": "Blutdruck neunzig zu fünfzig, Puls hundertzwanzig. Ich mache mir Sorgen."
+              }
+            ],
+            [
+              {
+                "de": "R – Recommendation"
+              },
+              {
+                "texte_fr": "Ce que tu demandes",
+                "texte_en": "What you are asking for",
+                "texte_tr": "İstediğin şey",
+                "texte_uk": "Про що ти просиш",
+                "texte_fa": "آنچه درخواست می‌کنی",
+                "texte_pt": "O que você pede",
+                "texte_ar": "ما تطلبه",
+                "texte_pl": "O co prosisz",
+                "texte_ru": "О чём ты просишь",
+                "texte_es": "Lo que pides"
+              },
+              {
+                "de": "Ich möchte, dass Sie sie sich jetzt ansehen."
+              }
+            ]
+          ],
+          "relire": true
+        },
+        {
+          "t": "p",
+          "texte_fr": "À la fin, relis la prescription ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), note l'heure et l'appel dans le dossier.",
+          "texte_en": "At the end, read the order back ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), note the time and the call in the file.",
+          "texte_tr": "Sonunda hekim istemini tekrar oku ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), saati ve aramayı dosyaya not et.",
+          "texte_uk": "Наприкінці перечитай призначення ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), запиши час і дзвінок у документацію.",
+          "texte_fa": "در پایان، دستور را دوباره بخوان ([[Ich lese Ihnen die Anordnung noch einmal vor.]])، ساعت و تماس را در پرونده یادداشت کن.",
+          "texte_pt": "No final, releia a prescrição ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), anote a hora e a ligação no prontuário.",
+          "texte_ar": "في النهاية، أعد قراءة الأمر الطبي ([[Ich lese Ihnen die Anordnung noch einmal vor.]])، ودوّن الساعة والاتصال في الملف.",
+          "texte_pl": "Na końcu przeczytaj zlecenie ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), zapisz godzinę i rozmowę w dokumentacji.",
+          "texte_ru": "В конце перечитай назначение ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), запиши время и звонок в карту.",
+          "texte_es": "Al final, relee la prescripción ([[Ich lese Ihnen die Anordnung noch einmal vor.]]), anota la hora y la llamada en el historial."
+        },
+        {
+          "t": "redemittel",
+          "ref": "sbar"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-sbar",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "„Sie wurde gestern an der Galle operiert.“ – Welcher Teil?",
+              "o": [
+                "S – Situation",
+                "B – Background",
+                "R – Recommendation"
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "L'opération d'hier est un antécédent : B.",
+              "erkl_en": "Yesterday's surgery is background: B.",
+              "erkl_tr": "Dünkü ameliyat bir öyküdür: B.",
+              "erkl_uk": "Учорашня операція — це анамнез: B.",
+              "erkl_fa": "عمل جراحی دیروز یک سابقه است: B.",
+              "erkl_pt": "A cirurgia de ontem é um antecedente: B.",
+              "erkl_ar": "عملية الأمس سابقة مرضية: B.",
+              "erkl_pl": "Wczorajsza operacja to wywiad: B.",
+              "erkl_ru": "Вчерашняя операция — это анамнез: B.",
+              "erkl_es": "La operación de ayer es un antecedente: B."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "„Ich möchte, dass Sie sie sich jetzt ansehen.“ – Welcher Teil?",
+              "o": [
+                "A – Assessment",
+                "B – Background",
+                "R – Recommendation"
+              ],
+              "bon": 2,
+              "erkl_fr": "C'est ce que tu demandes : R.",
+              "erkl_en": "It's what you ask for: R.",
+              "erkl_tr": "Bu, senin istediğin şeydir: R.",
+              "erkl_uk": "Це те, про що ти просиш: R.",
+              "erkl_fa": "این همان چیزی است که درخواست می‌کنی: R.",
+              "erkl_pt": "É o que você pede: R.",
+              "erkl_ar": "هذا ما تطلبه: R.",
+              "erkl_pl": "To jest to, o co prosisz: R.",
+              "erkl_ru": "Это то, о чём ты просишь: R.",
+              "erkl_es": "Es lo que pides: R."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "„Der Puls liegt bei hundertzwanzig.“ – Welcher Teil?",
+              "o": [
+                "A – Assessment",
+                "S – Situation",
+                "R – Recommendation"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Une valeur mesurée : A.",
+              "erkl_en": "A measured value: A.",
+              "erkl_tr": "Ölçülmüş bir değer: A.",
+              "erkl_uk": "Виміряний показник: A.",
+              "erkl_fa": "یک مقدار اندازه‌گیری‌شده: A.",
+              "erkl_pt": "Um valor medido: A.",
+              "erkl_ar": "قيمة مقاسة: A.",
+              "erkl_pl": "Zmierzona wartość: A.",
+              "erkl_ru": "Измеренное значение: A.",
+              "erkl_es": "Un valor medido: A."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Womit beginnt das Telefonat?",
+              "o": [
+                "Mit den Laborwerten von gestern.",
+                "Mit Ihrem Namen, der Station und dem Patienten.",
+                "Mit einer Entschuldigung für die Störung."
+              ],
+              "bon": 1,
+              "erkl_fr": "S : qui appelle, pour qui.",
+              "erkl_en": "S: who is calling, about whom.",
+              "erkl_tr": "S: kim arıyor, kimin için.",
+              "erkl_uk": "S: хто дзвонить, щодо кого.",
+              "erkl_fa": "S: چه کسی تماس می‌گیرد، برای چه کسی.",
+              "erkl_pt": "S: quem liga, para quem.",
+              "erkl_ar": "S: من يتصل، وبشأن من.",
+              "erkl_pl": "S: kto dzwoni, w sprawie kogo.",
+              "erkl_ru": "S: кто звонит, о ком.",
+              "erkl_es": "S: quién llama, por quién."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Wie sagen Sie neununddreißig Komma fünf Grad?",
+              "o": [
+                "Die Temperatur ist auf neununddreißig Komma fünf gestiegen.",
+                "Sie hat drei neun fünf.",
+                "Sie hat fast vierzig."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "La valeur exacte, en entier.",
+              "erkl_en": "The exact value, in full.",
+              "erkl_tr": "Tam değer, eksiksiz.",
+              "erkl_uk": "Точний показник, повністю.",
+              "erkl_fa": "مقدار دقیق، کامل.",
+              "erkl_pt": "O valor exato, por inteiro.",
+              "erkl_ar": "القيمة الدقيقة، كاملة.",
+              "erkl_pl": "Dokładna wartość, w całości.",
+              "erkl_ru": "Точное значение, полностью.",
+              "erkl_es": "El valor exacto, entero."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Sie wissen nicht genau, was los ist, aber Sie haben ein schlechtes Gefühl.",
+              "o": [
+                "Ich sage nichts, ich bin nicht sicher.",
+                "Mein Eindruck ist, dass sich ihr Zustand schnell verschlechtert.",
+                "Vielleicht ist alles okay."
+              ],
+              "bon": 1,
+              "erkl_fr": "Ton impression fait partie de l'évaluation : dis-la.",
+              "erkl_en": "Your impression is part of the assessment: say it.",
+              "erkl_tr": "İzlenimin değerlendirmenin bir parçasıdır: söyle.",
+              "erkl_uk": "Твоє враження входить в оцінку: скажи його.",
+              "erkl_fa": "برداشتت بخشی از ارزیابی است: آن را بگو.",
+              "erkl_pt": "A sua impressão faz parte da avaliação: diga-a.",
+              "erkl_ar": "انطباعك جزء من التقييم: قله.",
+              "erkl_pl": "Twoje wrażenie jest częścią oceny: powiedz je.",
+              "erkl_ru": "Твоё впечатление входит в оценку: скажи о нём.",
+              "erkl_es": "Tu impresión forma parte de la evaluación: dila."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Die Ärztin gibt eine Anordnung am Telefon.",
+              "o": [
+                "Ich merke sie mir.",
+                "Ich lese Ihnen die Anordnung zur Kontrolle noch einmal vor.",
+                "Okay, danke, tschüss."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "On relit toujours une prescription orale.",
+              "erkl_en": "You always read back a verbal order.",
+              "erkl_tr": "Sözlü bir istem her zaman tekrar okunur.",
+              "erkl_uk": "Усне призначення завжди перечитують.",
+              "erkl_fa": "یک دستور شفاهی را همیشه دوباره می‌خوانیم.",
+              "erkl_pt": "Uma prescrição oral sempre se relê.",
+              "erkl_ar": "يُعاد دائمًا قراءة الأمر الطبي الشفهي.",
+              "erkl_pl": "Zlecenie ustne zawsze się powtarza.",
+              "erkl_ru": "Устное назначение всегда перечитывают.",
+              "erkl_es": "Una prescripción oral siempre se relee."
+            },
+            {
+              "nr": 8,
+              "typ": "abc",
+              "frage": "Sie haben eine Dosis nicht verstanden.",
+              "o": [
+                "Wie viel Milligramm genau, bitte?",
+                "Ich gebe einfach eine Tablette.",
+                "Ich frage morgen."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On fait répéter le chiffre et l'unité.",
+              "erkl_en": "You have the number and the unit repeated.",
+              "erkl_tr": "Rakamı ve birimi tekrarlatırız.",
+              "erkl_uk": "Просять повторити цифру й одиницю.",
+              "erkl_fa": "عدد و واحد را می‌خواهیم تکرار شود.",
+              "erkl_pt": "Pede-se para repetir o número e a unidade.",
+              "erkl_ar": "تطلب تكرار الرقم والوحدة.",
+              "erkl_pl": "Prosimy o powtórzenie liczby i jednostki.",
+              "erkl_ru": "Просят повторить цифру и единицу измерения.",
+              "erkl_es": "Se hace repetir la cifra y la unidad."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Was tun Sie nach dem Gespräch?",
+              "o": [
+                "Ich dokumentiere das Gespräch mit der Uhrzeit.",
+                "Ich vergesse es.",
+                "Ich erzähle es dem Patienten nebenan."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Tout appel se note, avec l'heure.",
+              "erkl_en": "Every call is documented, with the time.",
+              "erkl_tr": "Her arama, saatiyle birlikte not edilir.",
+              "erkl_uk": "Кожен дзвінок записують, із часом.",
+              "erkl_fa": "هر تماس ثبت می‌شود، همراه با ساعت.",
+              "erkl_pt": "Toda ligação se anota, com a hora.",
+              "erkl_ar": "كل اتصال يُدوَّن، مع الساعة.",
+              "erkl_pl": "Każdą rozmowę się notuje, z godziną.",
+              "erkl_ru": "Каждый звонок записывают, с указанием времени.",
+              "erkl_es": "Toda llamada se anota, con la hora."
+            },
+            {
+              "nr": 10,
+              "typ": "rf",
+              "frage": "Bei SBAR sagt man zuerst alle Vorerkrankungen und erst am Ende, warum man anruft.",
+              "bon": 1,
+              "erkl_fr": "Faux : on commence par la situation, le problème d'aujourd'hui.",
+              "erkl_en": "False: you start with the situation, today's problem.",
+              "erkl_tr": "Yanlış: durumla, bugünkü sorunla başlanır.",
+              "erkl_uk": "Неправильно: починають із ситуації, із сьогоднішньої проблеми.",
+              "erkl_fa": "نادرست: با موقعیت شروع می‌کنیم، یعنی مشکل امروز.",
+              "erkl_pt": "Falso: começa-se pela situação, o problema de hoje.",
+              "erkl_ar": "خطأ: نبدأ بالموقف، أي مشكلة اليوم.",
+              "erkl_pl": "Fałsz: zaczynamy od sytuacji, od dzisiejszego problemu.",
+              "erkl_ru": "Неверно: начинают с ситуации, с сегодняшней проблемы.",
+              "erkl_es": "Falso: se empieza por la situación, el problema de hoy."
+            }
+          ],
+          "consigne_de": "Was passt?",
+          "consigne_fr": "À quelle lettre de SBAR la phrase appartient-elle, ou quelle est la bonne phrase ?",
+          "consigne_en": "Which SBAR letter does the sentence belong to, or which is the right sentence?",
+          "consigne_tr": "Cümle SBAR'ın hangi harfine ait, ya da doğru cümle hangisi?",
+          "consigne_uk": "До якої літери SBAR належить фраза, або яка фраза правильна?",
+          "consigne_fa": "جمله به کدام حرف SBAR تعلق دارد، یا جملهٔ درست کدام است؟",
+          "consigne_pt": "A que letra do SBAR pertence a frase, ou qual é a frase certa?",
+          "consigne_ar": "إلى أي حرف من SBAR تنتمي الجملة، أو أيّ جملة هي الصحيحة؟",
+          "consigne_pl": "Do której litery SBAR należy zdanie, albo które zdanie jest właściwe?",
+          "consigne_ru": "К какой букве SBAR относится фраза, или какая фраза верная?",
+          "consigne_es": "¿A qué letra de SBAR pertenece la frase, o cuál es la frase correcta?"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d07",
+          "titre_fr": "Le dialogue « L'appel au médecin (SBAR) »",
+          "titre_en": "The dialogue “Calling the doctor (SBAR)”",
+          "titre_tr": "“Hekimi aramak (SBAR)” diyaloğu",
+          "titre_uk": "Діалог «Дзвінок лікареві (SBAR)»",
+          "titre_fa": "گفتگوی «تماس با پزشک (SBAR)»",
+          "titre_pt": "O diálogo « A ligação para o médico (SBAR) »",
+          "titre_ar": "الحوار «الاتصال بالطبيب (SBAR)»",
+          "titre_pl": "Dialog „Wezwanie lekarza (SBAR)”",
+          "titre_ru": "Диалог «Звонок врачу (SBAR)»",
+          "titre_es": "El diálogo «La llamada al médico (SBAR)»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d16",
+          "titre_fr": "Le dialogue « L'urgence »",
+          "titre_en": "The dialogue “The emergency”",
+          "titre_tr": "“Acil durum” diyaloğu",
+          "titre_uk": "Діалог «Невідкладний випадок»",
+          "titre_fa": "گفتگوی «اورژانس»",
+          "titre_pt": "O diálogo « A emergência »",
+          "titre_ar": "الحوار «الحالة الطارئة»",
+          "titre_pl": "Dialog „Nagły przypadek”",
+          "titre_ru": "Диалог «Экстренный случай»",
+          "titre_es": "El diálogo «La urgencia»"
+        }
+      ],
+      "titre_fr": "5 · Appeler le médecin : SBAR",
+      "titre_en": "5 · Calling the doctor: SBAR",
+      "titre_tr": "5 · Hekimi aramak: SBAR",
+      "titre_uk": "5 · Викликати лікаря: SBAR",
+      "titre_fa": "5 · تماس با پزشک: SBAR",
+      "titre_pt": "5 · Ligar para o médico: SBAR",
+      "titre_ar": "5 · الاتصال بالطبيب: SBAR",
+      "titre_pl": "5 · Wezwanie lekarza: SBAR",
+      "titre_ru": "5 · Звонок врачу: SBAR",
+      "titre_es": "5 · Llamar al médico: SBAR"
+    },
+    {
+      "id": "visite",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Pendant la visite, tu es la voix de ce que tu as vu : la nuit, la douleur, ce que le patient mange et boit. Tu poses tes questions, tu reformules chaque prescription, et après la visite tu réexpliques au patient ce qu'il n'a pas compris.",
+          "texte_en": "On the ward round you speak for what you have seen: the night, the pain, what the patient eats and drinks. You ask your questions, rephrase each order, and after the round you re-explain to the patient what they didn't understand.",
+          "texte_tr": "Vizitte gördüklerinin sesi sensin: gece, ağrı, hastanın yediği ve içtiği. Sorularını sorarsın, her istemi yeniden ifade edersin ve vizitten sonra hastaya anlamadığı şeyi yeniden açıklarsın.",
+          "texte_uk": "Під час обходу ти — голос того, що ти бачила: ніч, біль, що пацієнт їсть і п'є. Ти ставиш свої запитання, перефразовуєш кожне призначення, а після обходу ще раз пояснюєш пацієнтові те, чого він не зрозумів.",
+          "texte_fa": "در ویزیت، تو صدای چیزی هستی که دیده‌ای: شب، درد، آنچه بیمار می‌خورد و می‌نوشد. سؤال‌هایت را می‌پرسی، هر دستور را دوباره می‌گویی و بعد از ویزیت آنچه را بیمار نفهمیده برایش دوباره توضیح می‌دهی.",
+          "texte_pt": "Durante a visita, você é a voz do que viu: a noite, a dor, o que o paciente come e bebe. Você faz as suas perguntas, reformula cada prescrição e, depois da visita, explica de novo ao paciente o que ele não entendeu.",
+          "texte_ar": "أثناء الجولة الطبية، أنت صوت ما رأيته: الليل، والألم، وما يأكله المريض ويشربه. تطرح أسئلتك، وتعيد صياغة كل أمر طبي، وبعد الجولة تعيد شرح ما لم يفهمه المريض.",
+          "texte_pl": "Podczas wizyty jesteś głosem tego, co zobaczyłaś: noc, ból, to, co pacjent je i pije. Zadajesz swoje pytania, powtarzasz każde zlecenie własnymi słowami, a po wizycie wyjaśniasz pacjentowi jeszcze raz to, czego nie zrozumiał.",
+          "texte_ru": "Во время обхода ты — голос того, что видела: ночь, боль, что пациент ест и пьёт. Ты задаёшь свои вопросы, переформулируешь каждое назначение, а после обхода заново объясняешь пациенту то, что он не понял.",
+          "texte_es": "Durante la visita, eres la voz de lo que has visto: la noche, el dolor, lo que el paciente come y bebe. Haces tus preguntas, reformulas cada prescripción y, después de la visita, vuelves a explicar al paciente lo que no ha entendido."
+        },
+        {
+          "t": "piege",
+          "de": "Ja, ja, alles klar.",
+          "relire": true,
+          "titre_fr": "Hocher la tête sans avoir compris",
+          "titre_en": "Nodding without understanding",
+          "titre_tr": "Anlamadan başını sallamak",
+          "titre_uk": "Кивати головою, не зрозумівши",
+          "titre_fa": "سر تکان دادن بدون فهمیدن",
+          "titre_pt": "Balançar a cabeça sem ter entendido",
+          "titre_ar": "هزّ الرأس دون أن تفهم",
+          "titre_pl": "Kiwanie głową bez zrozumienia",
+          "titre_ru": "Кивать, не поняв",
+          "titre_es": "Asentir sin haber entendido",
+          "texte_fr": "Une prescription mal comprise devient une erreur de soin. Fais répéter ou reformule : [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_en": "A misunderstood order becomes a care error. Ask again or rephrase: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_tr": "Yanlış anlaşılan bir istem bakım hatasına dönüşür. Tekrarlat ya da yeniden ifade et: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_uk": "Погано зрозуміле призначення стає помилкою в догляді. Проси повторити або перефразуй: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_fa": "دستوری که اشتباه فهمیده شود به خطای مراقبتی تبدیل می‌شود. تکرار بخواه یا دوباره بگو: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_pt": "Uma prescrição mal compreendida vira um erro de cuidado. Peça para repetir ou reformule: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_ar": "الأمر الطبي المفهوم خطأً يصير خطأً في الرعاية. اطلب التكرار أو أعد الصياغة: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_pl": "Źle zrozumiane zlecenie staje się błędem w opiece. Poproś o powtórzenie albo powtórz własnymi słowami: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_ru": "Неправильно понятое назначение становится ошибкой в уходе. Проси повторить или переформулируй: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]",
+          "texte_es": "Una prescripción mal entendida se convierte en un error asistencial. Pide que repitan o reformula: [[Habe ich richtig verstanden: Das Antibiotikum wird abgesetzt?]]"
+        },
+        {
+          "t": "redemittel",
+          "ref": "visite"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-visite",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Sie möchten etwas zur Nacht sagen.",
+              "o": [
+                "Darf ich kurz etwas zur Nacht sagen?",
+                "Hören Sie mal!",
+                "Die Nacht war schlimm, Sie müssen etwas tun."
+              ],
+              "bon": 0,
+              "erkl_fr": "On demande la parole poliment.",
+              "erkl_en": "You ask politely for the floor.",
+              "erkl_tr": "Nezaketle söz isteriz.",
+              "erkl_uk": "Ввічливо просять слова.",
+              "erkl_fa": "مؤدبانه اجازهٔ صحبت می‌خواهیم.",
+              "erkl_pt": "Pede-se a palavra com educação.",
+              "erkl_ar": "تطلب الكلمة بأدب.",
+              "erkl_pl": "Uprzejmie prosimy o głos.",
+              "erkl_ru": "Вежливо просят слова.",
+              "erkl_es": "Se pide la palabra con cortesía."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Was ist eine gute Beobachtung für die Visite?",
+              "o": [
+                "Er ist komisch.",
+                "Er hustet oft beim Essen.",
+                "Er mag mich nicht."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Un fait précis et utile : la toux en mangeant peut signaler un trouble de la déglutition.",
+              "erkl_en": "A precise, useful fact: coughing when eating may signal a swallowing problem.",
+              "erkl_tr": "Kesin ve yararlı bir olgu: yemek yerken öksürmek yutma bozukluğuna işaret edebilir.",
+              "erkl_uk": "Точний і корисний факт: кашель під час їжі може свідчити про порушення ковтання.",
+              "erkl_fa": "یک واقعیت دقیق و مفید: سرفه هنگام غذا خوردن می‌تواند نشانهٔ اختلال بلع باشد.",
+              "erkl_pt": "Um fato preciso e útil: tossir ao comer pode indicar um distúrbio de deglutição.",
+              "erkl_ar": "واقعة دقيقة ومفيدة: السعال أثناء الأكل قد يدل على اضطراب في البلع.",
+              "erkl_pl": "Konkretny, przydatny fakt: kaszel przy jedzeniu może wskazywać na zaburzenie połykania.",
+              "erkl_ru": "Точный и полезный факт: кашель во время еды может указывать на расстройство глотания.",
+              "erkl_es": "Un hecho preciso y útil: toser al comer puede indicar un trastorno de la deglución."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Sie sind nicht sicher, ob das Schmerzmittel fest oder bei Bedarf gegeben wird.",
+              "o": [
+                "Ich gebe es einfach immer.",
+                "Soll das Schmerzmittel fest oder bei Bedarf gegeben werden?",
+                "Das entscheide ich selbst."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "On pose la question pendant la visite.",
+              "erkl_en": "You ask during the round.",
+              "erkl_tr": "Soruyu vizit sırasında sorarız.",
+              "erkl_uk": "Запитання ставлять під час обходу.",
+              "erkl_fa": "سؤال را در حین ویزیت می‌پرسیم.",
+              "erkl_pt": "Faz-se a pergunta durante a visita.",
+              "erkl_ar": "تطرح السؤال أثناء الجولة.",
+              "erkl_pl": "Pytanie zadajemy w trakcie wizyty.",
+              "erkl_ru": "Вопрос задают во время обхода.",
+              "erkl_es": "Se hace la pregunta durante la visita."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Die Ärztin sagt: „Antibiotikum ab morgen absetzen.“",
+              "o": [
+                "Habe ich richtig verstanden: Ab morgen kein Antibiotikum mehr?",
+                "Gut.",
+                "Warum?"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On reformule pour vérifier.",
+              "erkl_en": "You rephrase to check.",
+              "erkl_tr": "Doğrulamak için yeniden ifade ederiz.",
+              "erkl_uk": "Перефразовують, щоб перевірити.",
+              "erkl_fa": "دوباره می‌گوییم تا مطمئن شویم.",
+              "erkl_pt": "Reformula-se para verificar.",
+              "erkl_ar": "تعيد الصياغة للتحقق.",
+              "erkl_pl": "Powtarzamy własnymi słowami, żeby sprawdzić.",
+              "erkl_ru": "Переформулируют, чтобы проверить.",
+              "erkl_es": "Se reformula para comprobar."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "„Darf er das Bein schon voll ___?“",
+              "o": [
+                "belasten",
+                "laden",
+                "tragen"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "[[das Bein belasten]] : mettre du poids sur la jambe.",
+              "erkl_en": "[[das Bein belasten]]: to put weight on the leg.",
+              "erkl_tr": "[[das Bein belasten]]: bacağa ağırlık vermek.",
+              "erkl_uk": "[[das Bein belasten]]: ставати на ногу з навантаженням.",
+              "erkl_fa": "[[das Bein belasten]]: وزن انداختن روی پا.",
+              "erkl_pt": "[[das Bein belasten]]: apoiar o peso na perna.",
+              "erkl_ar": "[[das Bein belasten]]: وضع الثقل على الساق.",
+              "erkl_pl": "[[das Bein belasten]]: obciążać nogę.",
+              "erkl_ru": "[[das Bein belasten]]: переносить вес на ногу.",
+              "erkl_es": "[[das Bein belasten]]: apoyar peso en la pierna."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Sie haben ein Wort nicht verstanden.",
+              "o": [
+                "Ich frage den Patienten.",
+                "Könnten Sie mir das Wort bitte buchstabieren?",
+                "Ich schreibe irgendwas."
+              ],
+              "bon": 1,
+              "erkl_fr": "Faire épeler, c'est sûr et poli.",
+              "erkl_en": "Having it spelled is safe and polite.",
+              "erkl_tr": "Harf harf söyletmek güvenli ve naziktir.",
+              "erkl_uk": "Попросити продиктувати по літерах — це надійно й ввічливо.",
+              "erkl_fa": "خواستن هجی کردن، مطمئن و مؤدبانه است.",
+              "erkl_pt": "Pedir para soletrar é seguro e educado.",
+              "erkl_ar": "طلب التهجئة آمن ومهذب.",
+              "erkl_pl": "Poproszenie o przeliterowanie jest bezpieczne i uprzejme.",
+              "erkl_ru": "Попросить произнести по буквам — надёжно и вежливо.",
+              "erkl_es": "Pedir que deletreen es seguro y cortés."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Eine Anordnung wird nur mündlich gegeben.",
+              "o": [
+                "Könnten Sie das bitte noch schriftlich anordnen?",
+                "Kein Problem, ich mache das.",
+                "Das ist verboten, ich mache nichts."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On demande poliment la prescription écrite.",
+              "erkl_en": "You politely ask for the written order.",
+              "erkl_tr": "Yazılı istemi nezaketle isteriz.",
+              "erkl_uk": "Ввічливо просять письмове призначення.",
+              "erkl_fa": "مؤدبانه دستور نوشته را می‌خواهیم.",
+              "erkl_pt": "Pede-se com educação a prescrição por escrito.",
+              "erkl_ar": "تطلب الأمر الطبي المكتوب بأدب.",
+              "erkl_pl": "Uprzejmie prosimy o zlecenie na piśmie.",
+              "erkl_ru": "Вежливо просят письменное назначение.",
+              "erkl_es": "Se pide con cortesía la prescripción por escrito."
+            },
+            {
+              "nr": 8,
+              "typ": "abc",
+              "frage": "Nach der Visite fragen Sie den Patienten:",
+              "o": [
+                "Haben Sie alles verstanden, was die Ärztin gesagt hat?",
+                "Alles klar, oder?",
+                "Die Ärztin hat keine Zeit."
+              ],
+              "bon": 0,
+              "erkl_fr": "On vérifie, puis on réexplique.",
+              "erkl_en": "You check, then re-explain.",
+              "erkl_tr": "Kontrol eder, sonra yeniden açıklarız.",
+              "erkl_uk": "Перевіряють, потім пояснюють ще раз.",
+              "erkl_fa": "بررسی می‌کنیم، سپس دوباره توضیح می‌دهیم.",
+              "erkl_pt": "Verifica-se e depois explica-se de novo.",
+              "erkl_ar": "تتحقق، ثم تعيد الشرح.",
+              "erkl_pl": "Sprawdzamy, potem wyjaśniamy jeszcze raz.",
+              "erkl_ru": "Проверяют, затем объясняют заново.",
+              "erkl_es": "Se comprueba y luego se vuelve a explicar."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Der Patient kann schlecht schlucken.",
+              "o": [
+                "Wäre es möglich, die Tabletten als Saft zu geben?",
+                "Er muss die Tabletten nehmen.",
+                "Ich zerdrücke einfach alle Tabletten."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On propose une autre forme au médecin ; on n'écrase pas un comprimé sans avis.",
+              "erkl_en": "You suggest another form to the doctor; you don't crush a tablet without advice.",
+              "erkl_tr": "Hekime başka bir form öneririz; hekime danışmadan bir hapı ezmeyiz.",
+              "erkl_uk": "Пропонують лікареві іншу форму; таблетку без поради не подрібнюють.",
+              "erkl_fa": "شکل دیگری را به پزشک پیشنهاد می‌کنیم؛ بدون نظر پزشک قرص را نمی‌کوبیم.",
+              "erkl_pt": "Propõe-se outra forma ao médico; não se tritura um comprimido sem orientação.",
+              "erkl_ar": "تقترح شكلًا آخر على الطبيب؛ ولا تُسحق حبة دون استشارة.",
+              "erkl_pl": "Proponujemy lekarzowi inną formę; nie kruszy się tabletki bez jego zgody.",
+              "erkl_ru": "Предлагают врачу другую форму; таблетку без согласования не измельчают.",
+              "erkl_es": "Se propone otra forma al médico; no se tritura un comprimido sin su consentimiento."
+            },
+            {
+              "nr": 10,
+              "typ": "rf",
+              "frage": "Bei der Visite spricht nur der Arzt, die Pflege hört zu.",
+              "bon": 1,
+              "erkl_fr": "Faux : la soignante transmet ses observations et pose ses questions.",
+              "erkl_en": "False: the nurse passes on observations and asks questions.",
+              "erkl_tr": "Yanlış: bakım çalışanı gözlemlerini aktarır ve sorularını sorar.",
+              "erkl_uk": "Неправильно: медсестра передає свої спостереження й ставить свої запитання.",
+              "erkl_fa": "نادرست: پرستار مشاهداتش را منتقل می‌کند و سؤال‌هایش را می‌پرسد.",
+              "erkl_pt": "Falso: a profissional de enfermagem transmite as suas observações e faz as suas perguntas.",
+              "erkl_ar": "خطأ: الممرضة تنقل ملاحظاتها وتطرح أسئلتها.",
+              "erkl_pl": "Fałsz: opiekunka przekazuje swoje obserwacje i zadaje swoje pytania.",
+              "erkl_ru": "Неверно: медсестра передаёт свои наблюдения и задаёт свои вопросы.",
+              "erkl_es": "Falso: la enfermera transmite sus observaciones y hace sus preguntas."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d17",
+          "titre_fr": "Le dialogue « La visite »",
+          "titre_en": "The dialogue “The ward round”",
+          "titre_tr": "“Vizit” diyaloğu",
+          "titre_uk": "Діалог «Обхід»",
+          "titre_fa": "گفتگوی «ویزیت»",
+          "titre_pt": "O diálogo « A visita »",
+          "titre_ar": "الحوار «الجولة الطبية»",
+          "titre_pl": "Dialog „Wizyta”",
+          "titre_ru": "Диалог «Обход»",
+          "titre_es": "El diálogo «La visita»"
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d18",
+          "titre_fr": "Le dialogue « Une prescription floue »",
+          "titre_en": "The dialogue “An unclear order”",
+          "titre_tr": "“Belirsiz bir istem” diyaloğu",
+          "titre_uk": "Діалог «Нечітке призначення»",
+          "titre_fa": "گفتگوی «یک دستور مبهم»",
+          "titre_pt": "O diálogo « Uma prescrição vaga »",
+          "titre_ar": "الحوار «أمر طبي غير واضح»",
+          "titre_pl": "Dialog „Niejasne zlecenie”",
+          "titre_ru": "Диалог «Нечёткое назначение»",
+          "titre_es": "El diálogo «Una prescripción poco clara»"
+        }
+      ],
+      "titre_fr": "6 · La visite médicale",
+      "titre_en": "6 · The ward round",
+      "titre_tr": "6 · Hekim vizit",
+      "titre_uk": "6 · Обхід лікаря",
+      "titre_fa": "6 · ویزیت پزشک",
+      "titre_pt": "6 · A visita médica",
+      "titre_ar": "6 · الجولة الطبية",
+      "titre_pl": "6 · Wizyta lekarska",
+      "titre_ru": "6 · Врачебный обход",
+      "titre_es": "6 · La visita médica"
+    },
+    {
+      "id": "negociation",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Échanger un poste, demander des congés, dire que la charge est trop lourde : on prépare sa demande, on vient avec une solution, et on reste au Konjunktiv II. Un refus se motive en une phrase, sans s'excuser trois fois.",
+          "texte_en": "Swapping a shift, asking for leave, saying the workload is too heavy: you prepare your request, come with a solution, and stay in the Konjunktiv II. A refusal gets one sentence of reason, without apologising three times.",
+          "texte_tr": "Bir vardiya değiştirmek, izin istemek, iş yükünün çok ağır olduğunu söylemek: talebini hazırlarsın, bir çözümle gelirsin ve Konjunktiv II'de kalırsın. Bir ret tek cümleyle gerekçelendirilir, üç kez özür dilemeden.",
+          "texte_uk": "Помінятися зміною, попросити відпустку, сказати, що навантаження надто велике: готуєш своє прохання, приходиш із рішенням і тримаєшся Konjunktiv II. Відмову мотивують одним реченням, не вибачаючись тричі.",
+          "texte_fa": "عوض کردن شیفت، درخواست مرخصی، گفتن اینکه حجم کار زیاد است: درخواست را آماده می‌کنیم، با یک راه‌حل می‌آییم و در Konjunktiv II می‌مانیم. یک امتناع را در یک جمله توجیه می‌کنیم، بدون سه بار عذرخواهی.",
+          "texte_pt": "Trocar um plantão, pedir folga, dizer que a carga é pesada demais: prepara-se o pedido, chega-se com uma solução e permanece-se no Konjunktiv II. Uma recusa se justifica numa frase, sem pedir desculpas três vezes.",
+          "texte_ar": "تبديل مناوبة، وطلب إجازة، والقول إن عبء العمل ثقيل جدًا: تُعدّ طلبك، وتأتي بحل، وتبقى في صيغة Konjunktiv II. الرفض يُعلَّل بجملة واحدة، دون أن تعتذر ثلاث مرات.",
+          "texte_pl": "Zamiana dyżuru, prośba o urlop, zgłoszenie, że obciążenie jest zbyt duże: przygotowujesz prośbę, przychodzisz z rozwiązaniem i pozostajesz przy Konjunktiv II. Odmowę uzasadnia się jednym zdaniem, bez trzykrotnych przeprosin.",
+          "texte_ru": "Поменяться сменой, попросить отпуск, сказать, что нагрузка слишком большая: готовишь свою просьбу, приходишь с решением и остаёшься в Konjunktiv II. Отказ объясняют одной фразой, не извиняясь три раза.",
+          "texte_es": "Cambiar un turno, pedir vacaciones, decir que la carga es demasiado pesada: se prepara la petición, se llega con una solución y se permanece en el Konjunktiv II. Una negativa se motiva en una frase, sin disculparse tres veces."
+        },
+        {
+          "t": "liste",
+          "ordre": true,
+          "items": [
+            {
+              "texte_fr": "Ouvrir : [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_en": "Open: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_tr": "Açmak: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_uk": "Почати: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_fa": "شروع کردن: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_pt": "Abrir: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_ar": "الافتتاح: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_pl": "Rozpocząć: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_ru": "Начать: [[Hätten Sie kurz Zeit für mich?]]",
+              "texte_es": "Abrir: [[Hätten Sie kurz Zeit für mich?]]"
+            },
+            {
+              "texte_fr": "Demander : [[Wäre es möglich, dass …?]]",
+              "texte_en": "Ask: [[Wäre es möglich, dass …?]]",
+              "texte_tr": "İstemek: [[Wäre es möglich, dass …?]]",
+              "texte_uk": "Попросити: [[Wäre es möglich, dass …?]]",
+              "texte_fa": "درخواست کردن: [[Wäre es möglich, dass …?]]",
+              "texte_pt": "Pedir: [[Wäre es möglich, dass …?]]",
+              "texte_ar": "الطلب: [[Wäre es möglich, dass …?]]",
+              "texte_pl": "Poprosić: [[Wäre es möglich, dass …?]]",
+              "texte_ru": "Попросить: [[Wäre es möglich, dass …?]]",
+              "texte_es": "Pedir: [[Wäre es möglich, dass …?]]"
+            },
+            {
+              "texte_fr": "Proposer une contrepartie : [[Dafür würde ich …]]",
+              "texte_en": "Offer something in return: [[Dafür würde ich …]]",
+              "texte_tr": "Karşılığında bir şey önermek: [[Dafür würde ich …]]",
+              "texte_uk": "Запропонувати щось натомість: [[Dafür würde ich …]]",
+              "texte_fa": "پیشنهاد جبران: [[Dafür würde ich …]]",
+              "texte_pt": "Propor uma contrapartida: [[Dafür würde ich …]]",
+              "texte_ar": "عرض مقابل: [[Dafür würde ich …]]",
+              "texte_pl": "Zaproponować coś w zamian: [[Dafür würde ich …]]",
+              "texte_ru": "Предложить взамен: [[Dafür würde ich …]]",
+              "texte_es": "Proponer algo a cambio: [[Dafür würde ich …]]"
+            },
+            {
+              "texte_fr": "Conclure : [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_en": "Close: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_tr": "Bitirmek: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_uk": "Завершити: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_fa": "پایان دادن: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_pt": "Concluir: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_ar": "الختام: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_pl": "Zakończyć: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_ru": "Завершить: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]",
+              "texte_es": "Concluir: [[Ich überlege es mir und sage Ihnen morgen Bescheid.]]"
+            }
+          ]
+        },
+        {
+          "t": "redemittel",
+          "ref": "negociation"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-negociation",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Sie möchten mit der Stationsleitung sprechen.",
+              "o": [
+                "Ich muss mit Ihnen reden, sofort.",
+                "Hätten Sie kurz Zeit für mich? Ich möchte etwas mit Ihnen besprechen.",
+                "Haben Sie Zeit oder nicht?"
+              ],
+              "bon": 1,
+              "erkl_fr": "Le Konjunktiv II ouvre l'entretien poliment.",
+              "erkl_en": "The Konjunktiv II opens the talk politely.",
+              "erkl_tr": "Konjunktiv II görüşmeyi nezaketle açar.",
+              "erkl_uk": "Konjunktiv II ввічливо відкриває розмову.",
+              "erkl_fa": "Konjunktiv II گفتگو را مؤدبانه شروع می‌کند.",
+              "erkl_pt": "O Konjunktiv II abre a conversa com educação.",
+              "erkl_ar": "صيغة Konjunktiv II تفتتح الحديث بأدب.",
+              "erkl_pl": "Konjunktiv II uprzejmie otwiera rozmowę.",
+              "erkl_ru": "Konjunktiv II вежливо открывает разговор.",
+              "erkl_es": "El Konjunktiv II abre la conversación con cortesía."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Sie möchten am Zwölften frei haben.",
+              "o": [
+                "Ich will am Zwölften frei.",
+                "Wäre es möglich, dass ich am Zwölften frei bekomme?",
+                "Am Zwölften komme ich nicht."
+              ],
+              "bon": 1,
+              "erkl_fr": "Une demande, pas une annonce.",
+              "erkl_en": "A request, not an announcement.",
+              "erkl_tr": "Bir istek, duyuru değil.",
+              "erkl_uk": "Прохання, а не оголошення.",
+              "erkl_fa": "یک درخواست، نه یک اعلام.",
+              "erkl_pt": "Um pedido, não um anúncio.",
+              "erkl_ar": "طلب، لا إعلان.",
+              "erkl_pl": "Prośba, a nie ogłoszenie.",
+              "erkl_ru": "Просьба, а не объявление.",
+              "erkl_es": "Una petición, no un anuncio."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Was macht Ihre Bitte stärker?",
+              "o": [
+                "Ich habe schon mit einer Kollegin gesprochen, sie würde meinen Dienst übernehmen.",
+                "Alle anderen bekommen auch frei.",
+                "Sonst werde ich krank."
+              ],
+              "bon": 0,
+              "erkl_fr": "Venir avec la solution facilite le oui.",
+              "erkl_en": "Coming with the solution makes a yes easier.",
+              "erkl_tr": "Çözümle gelmek evet demeyi kolaylaştırır.",
+              "erkl_uk": "Прийти з рішенням полегшує «так».",
+              "erkl_fa": "آمدن با راه‌حل، «بله» را آسان‌تر می‌کند.",
+              "erkl_pt": "Chegar com a solução facilita o sim.",
+              "erkl_ar": "الإتيان بالحل يسهّل الموافقة.",
+              "erkl_pl": "Przyjście z rozwiązaniem ułatwia „tak”.",
+              "erkl_ru": "Прийти с решением — значит облегчить согласие.",
+              "erkl_es": "Llegar con la solución facilita el sí."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Sie können einen zusätzlichen Dienst nicht übernehmen.",
+              "o": [
+                "Nein.",
+                "Diesen Dienst kann ich leider nicht übernehmen, ich habe einen Termin bei der Behörde.",
+                "Entschuldigung, Entschuldigung, es tut mir so leid, wirklich…"
+              ],
+              "bon": 1,
+              "erkl_fr": "Un refus clair, avec une raison, sans excuses à répétition.",
+              "erkl_en": "A clear refusal with a reason, without repeated apologies.",
+              "erkl_tr": "Gerekçeli net bir ret, tekrarlanan özürler olmadan.",
+              "erkl_uk": "Чітка відмова, з причиною, без повторних вибачень.",
+              "erkl_fa": "یک امتناع روشن، با دلیل، بدون عذرخواهی‌های پیاپی.",
+              "erkl_pt": "Uma recusa clara, com uma razão, sem pedidos de desculpa repetidos.",
+              "erkl_ar": "رفض واضح مع سبب، دون اعتذارات متكررة.",
+              "erkl_pl": "Jasna odmowa, z powodem, bez powtarzanych przeprosin.",
+              "erkl_ru": "Ясный отказ с причиной, без бесконечных извинений.",
+              "erkl_es": "Una negativa clara, con una razón, sin disculpas repetidas."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Sie sprechen über die Arbeitsbelastung.",
+              "o": [
+                "Die Station ist eine Katastrophe.",
+                "Ich schaffe meine Aufgaben nicht mehr in der Zeit, und ich habe Angst, Fehler zu machen.",
+                "Die anderen arbeiten zu langsam."
+              ],
+              "bon": 1,
+              "erkl_fr": "On parle de faits et de sécurité, pas d'accusations.",
+              "erkl_en": "You talk about facts and safety, not accusations.",
+              "erkl_tr": "Olgulardan ve güvenlikten söz edilir, suçlamalardan değil.",
+              "erkl_uk": "Говорять про факти й безпеку, а не про звинувачення.",
+              "erkl_fa": "دربارهٔ واقعیت‌ها و ایمنی صحبت می‌کنیم، نه اتهام.",
+              "erkl_pt": "Fala-se de fatos e de segurança, não de acusações.",
+              "erkl_ar": "تتحدث عن الوقائع والسلامة، لا عن اتهامات.",
+              "erkl_pl": "Mówimy o faktach i bezpieczeństwie, nie o oskarżeniach.",
+              "erkl_ru": "Говорят о фактах и безопасности, а не обвиняют.",
+              "erkl_es": "Se habla de hechos y de seguridad, no de acusaciones."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Mit einer Kollegin den Dienst tauschen:",
+              "o": [
+                "Würdest du mit mir den Frühdienst am Sonntag tauschen?",
+                "Du musst am Sonntag für mich arbeiten.",
+                "Sonntag arbeitest du."
+              ],
+              "bon": 0,
+              "erkl_fr": "Entre collègues, du et Konjunktiv II.",
+              "erkl_en": "Between colleagues, du and Konjunktiv II.",
+              "erkl_tr": "İş arkadaşları arasında du ve Konjunktiv II.",
+              "erkl_uk": "Між колегами: du і Konjunktiv II.",
+              "erkl_fa": "بین همکاران، du و Konjunktiv II.",
+              "erkl_pt": "Entre colegas, du e Konjunktiv II.",
+              "erkl_ar": "بين الزملاء، du وKonjunktiv II.",
+              "erkl_pl": "Między współpracownikami: du i Konjunktiv II.",
+              "erkl_ru": "Между коллегами: du и Konjunktiv II.",
+              "erkl_es": "Entre compañeros, du y Konjunktiv II."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "„Dafür ___ ich gern an Weihnachten arbeiten.“",
+              "o": [
+                "würde",
+                "werde",
+                "wurde"
+              ],
+              "bon": 0,
+              "erkl_fr": "[[würde]] : une offre au Konjunktiv II.",
+              "erkl_en": "[[würde]]: an offer in the Konjunktiv II.",
+              "erkl_tr": "[[würde]]: Konjunktiv II'de bir teklif.",
+              "erkl_uk": "[[würde]]: пропозиція в Konjunktiv II.",
+              "erkl_fa": "[[würde]]: یک پیشنهاد در Konjunktiv II.",
+              "erkl_pt": "[[würde]]: uma oferta no Konjunktiv II.",
+              "erkl_ar": "[[würde]]: عرض بصيغة Konjunktiv II.",
+              "erkl_pl": "[[würde]]: oferta w Konjunktiv II.",
+              "erkl_ru": "[[würde]]: предложение в Konjunktiv II.",
+              "erkl_es": "[[würde]]: una oferta en Konjunktiv II."
+            },
+            {
+              "nr": 8,
+              "typ": "abc",
+              "frage": "Die Leitung sagt: „Das geht nur, wenn jemand tauscht.“ Sie prüfen das.",
+              "o": [
+                "Wenn ich Sie richtig verstehe, geht es nur, wenn jemand tauscht?",
+                "Das ist unfair.",
+                "Dann kündige ich."
+              ],
+              "bon": 0,
+              "erkl_fr": "On reformule avant de répondre.",
+              "erkl_en": "You rephrase before answering.",
+              "erkl_tr": "Yanıt vermeden önce yeniden ifade ederiz.",
+              "erkl_uk": "Перефразовують, перш ніж відповісти.",
+              "erkl_fa": "پیش از جواب دادن، دوباره می‌گوییم.",
+              "erkl_pt": "Reformula-se antes de responder.",
+              "erkl_ar": "تعيد الصياغة قبل أن تجيب.",
+              "erkl_pl": "Powtarzamy własnymi słowami, zanim odpowiemy.",
+              "erkl_ru": "Переформулируют, прежде чем ответить.",
+              "erkl_es": "Se reformula antes de responder."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "Sie brauchen Bedenkzeit.",
+              "o": [
+                "Ich überlege es mir und sage Ihnen morgen Bescheid.",
+                "Weiß nicht.",
+                "Später, später."
+              ],
+              "bon": 0,
+              "erkl_fr": "On fixe un délai.",
+              "erkl_en": "You set a deadline.",
+              "erkl_tr": "Bir süre belirleriz.",
+              "erkl_uk": "Установлюють термін.",
+              "erkl_fa": "مهلتی تعیین می‌کنیم.",
+              "erkl_pt": "Fixa-se um prazo.",
+              "erkl_ar": "تحدّد مهلة.",
+              "erkl_pl": "Ustalamy termin.",
+              "erkl_ru": "Назначают срок.",
+              "erkl_es": "Se fija un plazo."
+            },
+            {
+              "nr": 10,
+              "typ": "rf",
+              "frage": "In einem Gespräch mit der Leitung ist es klug, schon eine Lösung vorzuschlagen.",
+              "bon": 0,
+              "erkl_fr": "Vrai : une solution prête rend le oui plus facile.",
+              "erkl_en": "True: a ready solution makes a yes easier.",
+              "erkl_tr": "Doğru: hazır bir çözüm evet demeyi kolaylaştırır.",
+              "erkl_uk": "Правильно: готове рішення полегшує «так».",
+              "erkl_fa": "درست: یک راه‌حل آماده «بله» را آسان‌تر می‌کند.",
+              "erkl_pt": "Verdade: uma solução pronta facilita o sim.",
+              "erkl_ar": "صحيح: الحل الجاهز يسهّل الموافقة.",
+              "erkl_pl": "Prawda: gotowe rozwiązanie ułatwia „tak”.",
+              "erkl_ru": "Верно: готовое решение облегчает согласие.",
+              "erkl_es": "Verdadero: una solución preparada facilita el sí."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d11",
+          "titre_fr": "Le dialogue « Échanger un poste »",
+          "titre_en": "The dialogue “Swapping a shift”",
+          "titre_tr": "“Bir vardiya değiştirmek” diyaloğu",
+          "titre_uk": "Діалог «Помінятися зміною»",
+          "titre_fa": "گفتگوی «عوض کردن شیفت»",
+          "titre_pt": "O diálogo « Trocar um plantão »",
+          "titre_ar": "الحوار «تبديل مناوبة»",
+          "titre_pl": "Dialog „Zamiana dyżuru”",
+          "titre_ru": "Диалог «Поменяться сменой»",
+          "titre_es": "El diálogo «Cambiar un turno»"
+        }
+      ],
+      "titre_fr": "7 · Négocier avec la cadre",
+      "titre_en": "7 · Negotiating with the ward manager",
+      "titre_tr": "7 · Sorumlu hemşireyle pazarlık",
+      "titre_uk": "7 · Домовлятися зі старшою медсестрою",
+      "titre_fa": "7 · مذاکره با سرپرستار",
+      "titre_pt": "7 · Negociar com a enfermeira-chefe",
+      "titre_ar": "7 · التفاوض مع رئيسة القسم",
+      "titre_pl": "7 · Negocjacje z przełożoną",
+      "titre_ru": "7 · Договариваться со старшей медсестрой",
+      "titre_es": "7 · Negociar con la supervisora"
+    },
+    {
+      "id": "telephone",
+      "blocs": [
+        {
+          "t": "p",
+          "texte_fr": "Au téléphone, on ne voit ni le visage ni les gestes. Annonce le service et ton rôle, note tout, épelle et fais épeler, relis les chiffres. Si tu ne comprends pas, dis-le tout de suite : la ligne, la vitesse, l'accent.",
+          "texte_en": "On the phone you see neither face nor gestures. Say the ward and your role, write everything down, spell and have things spelled, read numbers back. If you don't understand, say so straight away: the line, the speed, the accent.",
+          "texte_tr": "Telefonda ne yüz görünür ne el kol hareketleri. Servisi ve görevini söyle, her şeyi not et, harf harf söyle ve söylet, rakamları tekrar oku. Anlamazsan hemen söyle: hattı, hızı, aksanı.",
+          "texte_uk": "По телефону не видно ні обличчя, ні жестів. Назви відділення й свою роль, усе записуй, диктуй по літерах і проси продиктувати, перечитуй цифри. Якщо не зрозуміла, скажи про це відразу: лінія, швидкість, акцент.",
+          "texte_fa": "پشت تلفن نه صورت دیده می‌شود نه حرکات. بخش و نقشت را اعلام کن، همه‌چیز را یادداشت کن، هجی کن و بخواه هجی کنند، عددها را دوباره بخوان. اگر نفهمیدی، همان لحظه بگو: خط، سرعت، لهجه.",
+          "texte_pt": "Ao telefone, não se veem o rosto nem os gestos. Anuncie o setor e a sua função, anote tudo, soletre e peça para soletrar, releia os números. Se você não entender, diga na hora: a linha, a velocidade, o sotaque.",
+          "texte_ar": "على الهاتف لا ترى الوجه ولا الإيماءات. أعلن القسم ودورك، ودوّن كل شيء، واطلب التهجئة وهجِّ بنفسك، وأعد قراءة الأرقام. إن لم تفهم، فقل ذلك فورًا: الخط، أو السرعة، أو اللهجة.",
+          "texte_pl": "Przez telefon nie widać ani twarzy, ani gestów. Podaj oddział i swoją rolę, wszystko notuj, przeliteruj i poproś o przeliterowanie, powtarzaj liczby. Jeśli nie rozumiesz, powiedz to od razu: łącze, tempo, akcent.",
+          "texte_ru": "По телефону не видно ни лица, ни жестов. Назови отделение и свою роль, записывай всё, называй по буквам и проси называть по буквам, перечитывай цифры. Если не поняла, скажи сразу: связь, скорость, акцент.",
+          "texte_es": "Por teléfono no se ven ni el rostro ni los gestos. Anuncia el servicio y tu función, anota todo, deletrea y pide que deletreen, relee las cifras. Si no entiendes, dilo enseguida: la línea, la velocidad, el acento."
+        },
+        {
+          "t": "piege",
+          "de": "fünfzehn – fünfzig, siebzehn – siebzig",
+          "titre_fr": "Les chiffres qui se ressemblent",
+          "titre_en": "Numbers that sound alike",
+          "titre_tr": "Birbirine benzeyen rakamlar",
+          "titre_uk": "Цифри, що схожі між собою",
+          "titre_fa": "عددهایی که شبیه هم‌اند",
+          "titre_pt": "Os números parecidos",
+          "titre_ar": "الأرقام المتشابهة",
+          "titre_pl": "Liczby, które brzmią podobnie",
+          "titre_ru": "Цифры, которые похожи",
+          "titre_es": "Las cifras que se parecen",
+          "texte_fr": "Au téléphone, [[fünfzehn]] et [[fünfzig]] se confondent. Relis toujours : [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_en": "On the phone, [[fünfzehn]] and [[fünfzig]] are easily confused. Always read back: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_tr": "Telefonda [[fünfzehn]] ile [[fünfzig]] karışır. Her zaman tekrar oku: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_uk": "По телефону [[fünfzehn]] і [[fünfzig]] плутаються. Завжди перечитуй: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_fa": "پشت تلفن، [[fünfzehn]] و [[fünfzig]] با هم اشتباه می‌شوند. همیشه دوباره بخوان: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_pt": "Ao telefone, [[fünfzehn]] e [[fünfzig]] se confundem. Releia sempre: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_ar": "على الهاتف، يختلط [[fünfzehn]] و[[fünfzig]]. أعد القراءة دائمًا: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_pl": "Przez telefon [[fünfzehn]] i [[fünfzig]] łatwo pomylić. Zawsze powtarzaj: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_ru": "По телефону [[fünfzehn]] и [[fünfzig]] легко перепутать. Всегда перечитывай: [[Ich wiederhole: fünf, null, also fünfzig.]]",
+          "texte_es": "Por teléfono, [[fünfzehn]] y [[fünfzig]] se confunden. Relee siempre: [[Ich wiederhole: fünf, null, also fünfzig.]]"
+        },
+        {
+          "t": "redemittel",
+          "ref": "telephone"
+        },
+        {
+          "t": "exercice",
+          "cle": "ex-kom-telephone",
+          "items": [
+            {
+              "nr": 1,
+              "typ": "abc",
+              "frage": "Das Telefon klingelt auf der Station.",
+              "o": [
+                "Ja?",
+                "Station vier B, Pflege, was kann ich für Sie tun?",
+                "Hallo, wer ist da?"
+              ],
+              "bon": 1,
+              "erkl_fr": "Le service et ton rôle, puis une offre d'aide.",
+              "erkl_en": "The ward and your role, then an offer to help.",
+              "erkl_tr": "Servis ve görevin, sonra bir yardım teklifi.",
+              "erkl_uk": "Відділення й твоя роль, потім пропозиція допомоги.",
+              "erkl_fa": "بخش و نقشت، سپس پیشنهاد کمک.",
+              "erkl_pt": "O setor e a sua função, depois uma oferta de ajuda.",
+              "erkl_ar": "القسم ودورك، ثم عرض المساعدة.",
+              "erkl_pl": "Oddział i twoja rola, potem propozycja pomocy.",
+              "erkl_ru": "Отделение и твоя роль, затем предложение помощи.",
+              "erkl_es": "El servicio y tu función, y luego una oferta de ayuda."
+            },
+            {
+              "nr": 2,
+              "typ": "abc",
+              "frage": "Sie verstehen den Anrufer schlecht.",
+              "o": [
+                "Was?",
+                "Die Verbindung ist schlecht, könnten Sie bitte etwas langsamer sprechen?",
+                "Ich lege auf."
+              ],
+              "bon": 1,
+              "erkl_fr": "On nomme le problème et on demande poliment.",
+              "erkl_en": "You name the problem and ask politely.",
+              "erkl_tr": "Sorunu adlandırır ve nezaketle isteriz.",
+              "erkl_uk": "Називають проблему й ввічливо просять.",
+              "erkl_fa": "مشکل را نام می‌بریم و مؤدبانه می‌پرسیم.",
+              "erkl_pt": "Nomeia-se o problema e pede-se com educação.",
+              "erkl_ar": "تسمّي المشكلة وتطلب بأدب.",
+              "erkl_pl": "Nazywamy problem i uprzejmie prosimy.",
+              "erkl_ru": "Называют проблему и вежливо просят.",
+              "erkl_es": "Se nombra el problema y se pide con cortesía."
+            },
+            {
+              "nr": 3,
+              "typ": "abc",
+              "frage": "Der Name ist schwierig.",
+              "o": [
+                "Können Sie den Namen bitte buchstabieren?",
+                "Ich schreibe ihn irgendwie.",
+                "Egal."
+              ],
+              "bon": 0,
+              "erkl_fr": "On fait épeler.",
+              "erkl_en": "You have it spelled.",
+              "erkl_tr": "Harf harf söyletiriz.",
+              "erkl_uk": "Просять продиктувати по літерах.",
+              "erkl_fa": "می‌خواهیم هجی کنند.",
+              "erkl_pt": "Pede-se para soletrar.",
+              "erkl_ar": "تطلب التهجئة.",
+              "erkl_pl": "Prosimy o przeliterowanie.",
+              "erkl_ru": "Просят произнести по буквам.",
+              "erkl_es": "Se pide que deletreen."
+            },
+            {
+              "nr": 4,
+              "typ": "abc",
+              "frage": "Das Labor meldet einen kritischen Wert.",
+              "o": [
+                "Danke, tschüss.",
+                "Ich wiederhole: Kalium sechs Komma fünf. Ich gebe es sofort an die Ärztin weiter.",
+                "Das ist nicht so wichtig."
+              ],
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "On relit la valeur et on transmet tout de suite.",
+              "erkl_en": "You read the value back and pass it on at once.",
+              "erkl_tr": "Değeri tekrar okur ve hemen iletiriz.",
+              "erkl_uk": "Перечитують показник і відразу передають.",
+              "erkl_fa": "مقدار را دوباره می‌خوانیم و بلافاصله منتقل می‌کنیم.",
+              "erkl_pt": "Relê-se o valor e transmite-se na hora.",
+              "erkl_ar": "تعيد قراءة القيمة وتبلّغها فورًا.",
+              "erkl_pl": "Powtarzamy wartość i od razu przekazujemy dalej.",
+              "erkl_ru": "Перечитывают значение и сразу передают.",
+              "erkl_es": "Se relee el valor y se transmite de inmediato."
+            },
+            {
+              "nr": 5,
+              "typ": "abc",
+              "frage": "Sie fragen die Apotheke nach einem Ersatz.",
+              "o": [
+                "Gibt es ein anderes Präparat mit demselben Wirkstoff?",
+                "Geben Sie mir irgendwas.",
+                "Haben Sie Tabletten?"
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "On demande le même principe actif.",
+              "erkl_en": "You ask for the same active ingredient.",
+              "erkl_tr": "Aynı etkin maddeyi isteriz.",
+              "erkl_uk": "Просять той самий діючий компонент.",
+              "erkl_fa": "همان ماده مؤثر را می‌خواهیم.",
+              "erkl_pt": "Pede-se o mesmo princípio ativo.",
+              "erkl_ar": "تطلب المادة الفعالة نفسها.",
+              "erkl_pl": "Pytamy o tę samą substancję czynną.",
+              "erkl_ru": "Просят то же действующее вещество.",
+              "erkl_es": "Se pide el mismo principio activo."
+            },
+            {
+              "nr": 6,
+              "typ": "abc",
+              "frage": "Für einen Krankentransport müssen Sie sagen …",
+              "o": [
+                "ob die Patientin sitzen kann oder liegen muss.",
+                "welche Farbe ihr Koffer hat.",
+                "wie alt der Fahrer ist."
+              ],
+              "bon": 0,
+              "relire": true,
+              "erkl_fr": "Le mode de transport dépend de l'état du patient.",
+              "erkl_en": "The type of transport depends on the patient's condition.",
+              "erkl_tr": "Nakil şekli hastanın durumuna bağlıdır.",
+              "erkl_uk": "Спосіб транспортування залежить від стану пацієнта.",
+              "erkl_fa": "نوع حمل‌ونقل به وضعیت بیمار بستگی دارد.",
+              "erkl_pt": "O meio de transporte depende do estado do paciente.",
+              "erkl_ar": "وسيلة النقل تتوقف على حالة المريض.",
+              "erkl_pl": "Rodzaj transportu zależy od stanu pacjenta.",
+              "erkl_ru": "Способ транспортировки зависит от состояния пациента.",
+              "erkl_es": "El tipo de transporte depende del estado del paciente."
+            },
+            {
+              "nr": 7,
+              "typ": "abc",
+              "frage": "Die Kollegin ist gerade beschäftigt.",
+              "o": [
+                "Sie ist nicht da.",
+                "Die Kollegin ist gerade bei einem Patienten. Kann sie Sie zurückrufen?",
+                "Rufen Sie nie wieder an."
+              ],
+              "bon": 1,
+              "erkl_fr": "On propose un rappel.",
+              "erkl_en": "You offer a call-back.",
+              "erkl_tr": "Geri arama öneririz.",
+              "erkl_uk": "Пропонують передзвонити.",
+              "erkl_fa": "پیشنهاد می‌کنیم تماس بگیرند.",
+              "erkl_pt": "Oferece-se um retorno de ligação.",
+              "erkl_ar": "تعرض معاودة الاتصال.",
+              "erkl_pl": "Proponujemy oddzwonienie.",
+              "erkl_ru": "Предлагают перезвонить.",
+              "erkl_es": "Se ofrece devolver la llamada."
+            },
+            {
+              "nr": 8,
+              "typ": "abc",
+              "frage": "Sie rufen die Tochter an. Was sagen Sie zuerst?",
+              "o": [
+                "Keine Sorge, es ist nichts Schlimmes passiert. Ihr Vater wird heute verlegt.",
+                "Ihr Vater…",
+                "Es gibt ein Problem."
+              ],
+              "bon": 0,
+              "erkl_fr": "On rassure d'abord, on informe ensuite.",
+              "erkl_en": "You reassure first, then inform.",
+              "erkl_tr": "Önce yatıştırır, sonra bilgilendiririz.",
+              "erkl_uk": "Спершу заспокоюють, потім інформують.",
+              "erkl_fa": "اول آرام می‌کنیم، بعد اطلاع می‌دهیم.",
+              "erkl_pt": "Primeiro tranquiliza-se, depois informa-se.",
+              "erkl_ar": "تطمئن أولًا، ثم تُبلغ.",
+              "erkl_pl": "Najpierw uspokajamy, potem informujemy.",
+              "erkl_ru": "Сначала успокаивают, потом информируют.",
+              "erkl_es": "Primero se tranquiliza, luego se informa."
+            },
+            {
+              "nr": 9,
+              "typ": "abc",
+              "frage": "„Bleiben Sie bitte kurz ___.“",
+              "o": [
+                "dran",
+                "da",
+                "drin"
+              ],
+              "bon": 0,
+              "erkl_fr": "[[dranbleiben]] : rester en ligne.",
+              "erkl_en": "[[dranbleiben]]: to hold the line.",
+              "erkl_tr": "[[dranbleiben]]: hatta kalmak.",
+              "erkl_uk": "[[dranbleiben]]: залишатися на лінії.",
+              "erkl_fa": "[[dranbleiben]]: پشت خط ماندن.",
+              "erkl_pt": "[[dranbleiben]]: continuar na linha.",
+              "erkl_ar": "[[dranbleiben]]: البقاء على الخط.",
+              "erkl_pl": "[[dranbleiben]]: pozostać na linii.",
+              "erkl_ru": "[[dranbleiben]]: оставаться на линии.",
+              "erkl_es": "[[dranbleiben]]: seguir en la línea."
+            },
+            {
+              "nr": 10,
+              "typ": "rf",
+              "frage": "Am Telefon darf man einer Person, die sagt, sie sei die Tochter, sofort alle Befunde sagen.",
+              "bon": 1,
+              "relire": true,
+              "erkl_fr": "Faux : on vérifie d'abord l'identité, et les résultats passent par le médecin.",
+              "erkl_en": "False: you check identity first, and results go through the doctor.",
+              "erkl_tr": "Yanlış: önce kimlik kontrol edilir ve sonuçlar hekim üzerinden verilir.",
+              "erkl_uk": "Неправильно: спершу перевіряють особу, а результати передає лікар.",
+              "erkl_fa": "نادرست: اول هویت را بررسی می‌کنیم و نتایج از طریق پزشک می‌رسد.",
+              "erkl_pt": "Falso: verifica-se primeiro a identidade, e os resultados passam pelo médico.",
+              "erkl_ar": "خطأ: تتحقق من الهوية أولًا، والنتائج تمرّ عبر الطبيب.",
+              "erkl_pl": "Fałsz: najpierw sprawdza się tożsamość, a wyniki przekazuje lekarz.",
+              "erkl_ru": "Неверно: сначала проверяют личность, а результаты передаёт врач.",
+              "erkl_es": "Falso: primero se comprueba la identidad, y los resultados pasan por el médico."
+            }
+          ],
+          "consigne_de": "Was passt am besten?",
+          "consigne_fr": "Choisis la phrase qui convient le mieux.",
+          "consigne_en": "Choose the sentence that fits best.",
+          "consigne_tr": "En uygun cümleyi seç.",
+          "consigne_uk": "Обери фразу, яка найкраще підходить.",
+          "consigne_fa": "جمله‌ای را انتخاب کن که از همه مناسب‌تر است.",
+          "consigne_pt": "Escolha a frase mais adequada.",
+          "consigne_ar": "اختر الجملة الأنسب.",
+          "consigne_pl": "Wybierz zdanie, które pasuje najlepiej.",
+          "consigne_ru": "Выбери самую подходящую фразу.",
+          "consigne_es": "Elige la frase más adecuada."
+        },
+        {
+          "t": "renvoi",
+          "vers": "dialogue:d19",
+          "titre_fr": "Le dialogue « Le téléphone »",
+          "titre_en": "The dialogue “The phone”",
+          "titre_tr": "“Telefon” diyaloğu",
+          "titre_uk": "Діалог «Телефон»",
+          "titre_fa": "گفتگوی «تلفن»",
+          "titre_pt": "O diálogo « O telefone »",
+          "titre_ar": "الحوار «الهاتف»",
+          "titre_pl": "Dialog „Telefon”",
+          "titre_ru": "Диалог «Телефон»",
+          "titre_es": "El diálogo «El teléfono»"
+        }
+      ],
+      "titre_fr": "8 · Au téléphone",
+      "titre_en": "8 · On the phone",
+      "titre_tr": "8 · Telefonda",
+      "titre_uk": "8 · По телефону",
+      "titre_fa": "8 · پشت تلفن",
+      "titre_pt": "8 · Ao telefone",
+      "titre_ar": "8 · على الهاتف",
+      "titre_pl": "8 · Przez telefon",
+      "titre_ru": "8 · По телефону",
+      "titre_es": "8 · Por teléfono"
+    }
+  ]
 }
