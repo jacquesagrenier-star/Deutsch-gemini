@@ -61,7 +61,13 @@ def entree_mot(ligne):
         #    rangsDuMotDeTheme comme au corpus (rang 8) ;
         #  - lecture_mot : le MOT dit en lettres quand il porte des chiffres (« die 112 ») ;
         #  - sens_distinct, source_corpus : pour l'integration (homographe du corpus, fiche reprise).
-        for cle in ("feminin", "masculin", "lecture_mot", "sens_distinct", "source_corpus"):
+        # L'espagnol, 10e langue d'interface (16 nov.) : seulement la ou la source le donne.
+        if trad.get("es"):
+            e["traduction_es"] = trad["es"][0]
+            e["exemple_es"] = trad["es"][1]
+        # chapitre : le chapitre de « Ma journee au service » (pflege/sources/chapitres.py), lu par
+        # pflege/outils/chapitres.py ; sans lui, le chapitre par defaut du theme.
+        for cle in ("feminin", "masculin", "lecture_mot", "sens_distinct", "source_corpus", "chapitre"):
             if ligne.get(cle):
                 e[cle] = ligne[cle]
         # La paire « dit le patient / dit le service » (FORMAT-DONNEES.md, § 1 bis, 15 nov.) : le cote du
@@ -72,7 +78,7 @@ def entree_mot(ligne):
             e["traduction_patient"] = tp["fr"][0]
             e["exemple_patient"] = ligne["exemple_patient"]
             e["exemple_patient_fr"] = tp["fr"][1]
-            for l in LANGUES[1:]:
+            for l in LANGUES[1:] + (["es"] if tp.get("es") else []):
                 e["traduction_patient_" + l] = tp[l][0]
                 e["exemple_patient_" + l] = tp[l][1]
             for cle in ("lecture_patient", "lecture_mot_patient"):

@@ -31,6 +31,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(ICI)), "outils")
 import corpus  # noqa: E402
 from commun import LANGUES as ORDRE_SOURCE  # noqa: E402  fr en tr uk fa ar pt pl ru
 from personnages import PERSONNAGES, LANGUES_EX  # noqa: E402
+try:
+    from chapitres_mots import CHAPITRES_MOTS  # noqa: E402  {module: {mot: chapitre}}
+except ImportError:
+    CHAPITRES_MOTS = {}
 
 LANGUES_APP = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
 SORTE = {"nom": "nom", "verbe": "verbe", "adjectif": "adjectif", "adverbe": "adjectif",
@@ -83,9 +87,19 @@ def _article(fr):
 
 
 def _trad(traductions, exemples):
-    """traductions : {langue: texte} ; exemples : liste source (de, fr, en, ...)."""
+    """traductions : {langue: texte} ; exemples : liste source (de, fr, en, ..., [es]).
+    L'espagnol (16 nov.) n'est rendu que s'il est la, dans les deux listes."""
     ex = dict(zip(LANGUES_EX, exemples))
-    return {l: (traductions[l], noms(ex[l], l)) for l in LANGUES_APP}
+    langues = LANGUES_APP + (["es"] if traductions.get("es") and ex.get("es") else [])
+    return {l: (traductions[l], noms(ex[l], l)) for l in langues}
+
+
+def _avec_es(liste):
+    """{langue: texte} d'une liste source de 9 ou 10 champs (l'espagnol en dernier)."""
+    d = dict(zip(ORDRE_SOURCE, liste))
+    if len(liste) == len(ORDRE_SOURCE) + 1:
+        d["es"] = liste[-1]
+    return d
 
 
 def source_reprise(e):
@@ -161,12 +175,12 @@ def convertir(e, lectures):
                 if f.get(k):
                     d[k] = f[k]
         if e.get("precision"):
-            tr = dict(zip(ORDRE_SOURCE, e["precision"]))
+            tr = _avec_es(e["precision"])
             if sorte == "nom":
                 art, tr["fr"] = _article(tr["fr"])
                 d["article_fr"] = art or d.get("article_fr", "")
         else:
-            tr = {l: f.get("traduction" if l == "fr" else "traduction_" + l) for l in LANGUES_APP}
+            tr = {l: f.get("traduction" if l == "fr" else "traduction_" + l) for l in LANGUES_APP + ["es"]}
             if sorte == "nom" and not d.get("article_fr"):
                 art, tr["fr"] = _article(tr["fr"] or "")
                 d["article_fr"] = art
@@ -175,12 +189,12 @@ def convertir(e, lectures):
     elif typ == "paire":
         sorte = "paire"
         d.update({"sorte": sorte, "mot": e["mot"], "patient": e["patient"]})
-        tr = dict(zip(ORDRE_SOURCE, e["trad"]))
+        tr = _avec_es(e["trad"])
         d["corpus"] = False
     else:
         sorte = {"nom": "nom", "verbe": "verbe", "adjectif": "adjectif", "expression": "expression"}[typ]
         d.update({"sorte": sorte, "mot": e["mot"]})
-        tr = dict(zip(ORDRE_SOURCE, e["trad"]))
+        tr = _avec_es(e["trad"])
         if sorte == "nom":
             art, tr["fr"] = _article(tr["fr"])
             g = e["genre"]
@@ -204,17 +218,29 @@ def convertir(e, lectures):
     if sorte == "paire":
         ex_p = noms(e["ex_patient"][0], "de")
         d["exemple_patient"] = ex_p
-        d["trad_patient"] = _trad(dict(zip(ORDRE_SOURCE, e["trad_patient"])), e["ex_patient"])
+        d["trad_patient"] = _trad(_avec_es(e["trad_patient"]), e["ex_patient"])
         if ex_p in lectures:
             d["lecture_patient"] = lectures[ex_p]
         if d["patient"] in lectures:
             d["lecture_mot_patient"] = lectures[d["patient"]]
+    if e.get("chapitre"):
+        d["chapitre"] = e["chapitre"]
     d["relire"] = ("⚕️ " + e["note"]) if (e.get("relire") and e.get("note")) else ("⚕️ à valider" if e.get("relire") else "")
     return d
 
 
 def _lectures(m):
     return {noms(k, "de"): noms(v, "de") for k, v in getattr(m, "LECTURES", {}).items()}
+
+
+def _chapitre(d, nom_module):
+    """Le chapitre de « Ma journee au service » : celui de la source (chapitre=), sinon celui de la table
+    chapitres_mots.py ; sans les deux, le chapitre du theme (pflege/sources/chapitres.py, THEME_DEFAUT)."""
+    if not d.get("chapitre"):
+        ch = CHAPITRES_MOTS.get(nom_module, {}).get(d["mot"])
+        if ch:
+            d["chapitre"] = ch
+    return d
 
 
 def theme_soins(nom_module):
@@ -231,7 +257,7 @@ def theme_soins(nom_module):
         "svg": ICONES[T["cle"]],
     }
     lect = _lectures(m)
-    return theme, [convertir(e, lect) for e in m.MOTS]
+    return theme, [_chapitre(convertir(e, lect), nom_module) for e in m.MOTS]
 
 
 def mots_ajoutes(nom_module, deja):
@@ -243,7 +269,7 @@ def mots_ajoutes(nom_module, deja):
     lect = _lectures(m)
     out = []
     for e in m.MOTS:
-        d = convertir(e, lect)
+        d = _chapitre(convertir(e, lect), nom_module)
         if corpus.cle(d["mot"], garder_sich=True) not in vus:
             out.append(d)
     return out
