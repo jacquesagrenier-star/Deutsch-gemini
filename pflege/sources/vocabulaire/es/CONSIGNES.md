@@ -22,13 +22,16 @@ Sans toucher aux autres clés, ni à l'ordre, ni aux `id`. Puis `python pflege/o
 - **Le public** : des soignantes et des soignants d'Amérique latine (Mexique, Colombie, Pérou…) qui apprennent
   l'allemand pour travailler en Allemagne. **Espagnol neutre d'Amérique latine** ; avec un patient, **usted**
   (« ¿Le duele? », « Siéntese, por favor ») ; entre collègues, **tú**, comme le « du » allemand (mais « ustedes »
-  au pluriel, jamais « vosotros »).
+  au pluriel, jamais « vosotros » ni le voseo) ; l'apprenant est tutoyé, sans genre supposé.
 - **Traduire le sens de l'allemand**, le français guidant. L'exemple traduit doit être naturel dans la bouche d'un
   soignant hispanophone.
 - **Le terme du métier**, celui d'une formation d'enfermería en Amérique latine, jamais du mot à mot :
-  *Dekubitus* = la úlcera por presión (lesión por presión), *Übergabe* = la entrega de turno, *Visite* = la visita
-  médica / el pase de visita, *Sturz* = la caída, *Pflegekraft* = el personal de enfermería, *bei Bedarf* = según
-  necesidad (PRN), *nüchtern* = en ayunas, *Blutzucker* = la glucosa (glucemia capilar)… Quand l'Espagne et
+  *Dekubitus* = la úlcera por presión, *Übergabe* = la entrega de turno, *Visite* = la visita médica / el pase de
+  visita, *Sturz* = la caída, *Pflegekraft* = el personal de enfermería, *bei Bedarf* = si es necesario, *Akte* /
+  *Kurve* = el expediente, *Station* = el área (le service), *Stationsleitung* = la jefa de enfermería,
+  *diensthabender Arzt* = el médico de guardia, *nüchtern* = en ayunas, *Blutzucker* = la glucosa (glucemia
+  capilar)… Les mêmes termes que les dialogues des Soins (pflege/sources/traductions/es/), pour qu'un mot ne change
+  pas d'une partie de l'app à l'autre. Quand l'Espagne et
   l'Amérique latine diffèrent, prendre l'Amérique latine (« el celular », « la computadora », « manejar »).
 - **Les noms** : avec leur article (« la úlcera por presión », « el pañal »), comme le français.
 - **Les termes propres au système allemand** (Pflegegrad, Vorsorgevollmacht, Medizinischer Dienst,
@@ -40,9 +43,9 @@ Sans toucher aux autres clés, ni à l'ordre, ni aux `id`. Puis `python pflege/o
 - **Les abréviations** (`mot` = « RR (= Blutdruck) ») : le sens, avec l'abréviation hispanophone du métier si elle
   existe (« la presión arterial (PA, TA) »).
 - **Les noms de personnes** restent des gabarits entre accolades, exactement ceux de l'allemand : `{Herr Brandt}`,
-  `{Frau Hoffmann}`, `{Elif}`… Jamais écrits en toutes lettres. Ils deviennent « el señor Brandt », « la señora
-  Hoffmann », « la Dra. Sommer » à la construction : la phrase doit donc accepter « el señor Brandt » à leur place
-  (pas de « el {Herr Brandt} »). En tête de phrase, la majuscule est mise automatiquement.
+  `{Frau Hoffmann}`, `{Elif}`… Jamais écrits en toutes lettres. Ils deviennent « el Sr. Brandt », « la Sra. Hoffmann »,
+  « la Dra. Sommer » à la construction (la forme des dialogues) : la phrase doit donc accepter « el Sr. Brandt » à
+  leur place (pas de « el {Herr Brandt} »). En tête de phrase, la majuscule est mise automatiquement.
 - **Ponctuation espagnole** : « ¿ … ? », « ¡ … ! », guillemets « » ou “ ”.
 - **Interdits** (refusés par l'importation) : le guillemet droit `"`, l'antislash, la barre `|`, un saut de ligne.
 - **Aucun chiffre** dans une phrase d'exemple : les nombres en lettres, comme dans l'allemand.
