@@ -1,0 +1,131 @@
+{
+ "id": "d05-angehoerige",
+ "numero": 5,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 5,
+ "role": "elif",
+ "personnes": ["lehmann_tochter"],
+ "titre": {"t": "Gespräch mit Angehörigen", "fr": "Parler à la famille"},
+ "intro": {"fr": "Dans le couloir, la fille de {lehmann}, {lehmann_tochter}, arrête {elif}. Elle est inquiète. {lehmann} a donné son accord pour qu'on informe sa fille (c'est noté au dossier). Tu joues {elif} : accueille son inquiétude, dis ce que tu peux dire sur les soins, renvoie au médecin pour le diagnostic et propose un rendez-vous."},
+ "but": {"fr": "Accueillir une inquiétude ; dire ce qu'un soignant peut dire (le soin, le confort, le repas) ; renvoyer au médecin pour les résultats et le pronostic sans fermer la porte ; organiser un entretien."},
+ "grammaire": ["g07", "g08", "g13"],
+ "telc": ["oral-3", "hoeren"],
+ "relire_notes": {"fr": "Secret professionnel (Schweigepflicht) : ce qu'une soignante peut dire à une proche autorisée par la patiente, ce qui revient au médecin (résultats, diagnostic, opération, pronostic) ; une confusion nouvelle se signale au médecin."},
+ "redemittel": [
+  {"t": "Ich kann gut verstehen, dass Sie sich Sorgen machen.", "fr": "Je comprends très bien que vous vous fassiez du souci.", "fonction": "rassurer"},
+  {"t": "Ihre Mutter hat heute gut gegessen und war ein bisschen spazieren.", "fr": "Votre mère a bien mangé aujourd'hui, et elle a fait une petite promenade.", "fonction": "transmettre"},
+  {"t": "Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.", "fr": "Pour les résultats des examens, le médecin pourra vous en dire plus.", "fonction": "refuser"},
+  {"t": "Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?", "fr": "Voulez-vous que je vous organise un entretien avec le médecin ?", "fonction": "demander"},
+  {"t": "Ich gebe das gern weiter.", "fr": "Je transmets volontiers.", "fonction": "transmettre"},
+  {"t": "Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.", "fr": "Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.", "fonction": "rassurer"}
+ ],
+ "debut": "flur",
+ "noeuds": {
+  "flur": {
+   "dit": [
+    {"recit": {"fr": "Treize heures, le couloir du service. Une femme d'une cinquantaine d'années s'approche de {elif}."}},
+    {"qui": "lehmann_tochter", "air": "attentive", "t": "Entschuldigung! Ich bin die Tochter von {lehmann}. Wie geht es meiner Mutter?", "fr": "Excusez-moi ! Je suis la fille de {lehmann}. Comment va ma mère ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag, {lehmann_tochter}. Ich bin {elif}, ich betreue Ihre Mutter heute.", "fr": "Bonjour, {lehmann_tochter:voc}. Je suis {elif}, je m'occupe de votre mère aujourd'hui.", "va": "sorgen",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.", "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue."}]},
+    {"t": "Guten Tag. Mein Name ist {elif}, ich bin heute die Pflegekraft Ihrer Mutter.", "fr": "Bonjour. Je m'appelle {elif}, c'est moi qui soigne votre mère aujourd'hui.", "va": "sorgen",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.", "fr": "Je me fais tellement de souci. Hier, au téléphone, elle était complètement perdue."}]},
+    {"faux": true, "t": "Das darf ich Ihnen nicht sagen.", "fr": "Je n'ai pas le droit de vous le dire.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Wie bitte? Ich bin ihre Tochter!", "fr": "Pardon ? Je suis sa fille !"}],
+     "aide": {"fr": "<b>Présente-toi d'abord.</b> Le secret professionnel ne veut pas dire ne rien dire : ici, la patiente a autorisé sa fille, tu peux parler des soins. Les résultats et le diagnostic, eux, reviennent au médecin."},
+     "relire": true, "relire_note": "Secret professionnel : vérifier l'aide."}
+   ]
+  },
+  "sorgen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.", "fr": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée.", "va": "essen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Gott sei Dank. Und isst sie denn genug?", "fr": "Dieu merci. Et elle mange assez ?"}]},
+    {"t": "Das verstehe ich. Ich kann Sie beruhigen: Heute Morgen war sie ganz klar und hat sich lange mit mir unterhalten.", "fr": "Je comprends. Je peux vous rassurer : ce matin, elle avait toute sa tête et elle a longuement discuté avec moi.", "va": "essen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Gott sei Dank. Und isst sie denn genug?", "fr": "Dieu merci. Et elle mange assez ?"}]},
+    {"faux": true, "t": "Keine Sorge, das ist normal bei alten Leuten.", "fr": "Ne vous inquiétez pas, c'est normal chez les personnes âgées.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Normal? Meine Mutter war noch nie verwirrt!", "fr": "Normal ? Ma mère n'a jamais été confuse !"}],
+     "aide": {"fr": "<b>Ne généralise pas (« bei alten Leuten ») et prends l'inquiétude au sérieux.</b> Une confusion nouvelle n'est pas « normale » : c'est un signe à transmettre au médecin. Dis plutôt ce que tu as observé aujourd'hui."},
+     "relire": true, "relire_note": "Confusion nouvelle : à signaler."}
+   ]
+  },
+  "essen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, sie hat heute gut gegessen, und nach dem Mittagessen war sie mit mir ein bisschen auf dem Flur spazieren.", "fr": "Oui, elle a bien mangé aujourd'hui, et après le déjeuner, elle a fait quelques pas avec moi dans le couloir.", "va": "befund",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …", "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…"}]},
+    {"t": "Sie hat fast das ganze Mittagessen gegessen und viel getrunken. Danach sind wir ein paar Schritte gegangen.", "fr": "Elle a mangé presque tout son déjeuner et elle a beaucoup bu. Après, nous avons fait quelques pas.", "va": "befund",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …", "fr": "C'est bien. Et le pied ? Elle doit être opérée ? J'ai lu qu'avec le diabète, parfois…"}]}
+   ]
+  },
+  "befund": {
+   "dit": [],
+   "choix": [
+    {"t": "Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.", "fr": "Pour les résultats des examens et le traitement, le médecin pourra vous en dire plus. Ce que je peux vous dire, c'est que nous soignons la plaie tous les jours.", "va": "wunde",
+     "relire": true, "relire_note": "Limite : renvoi au médecin.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Aber Sie sehen die Wunde doch jeden Tag!", "fr": "Mais vous voyez la plaie tous les jours !"}]},
+    {"t": "Das ist eine Frage für {sommer}. Sie kennt die Befunde und kann Ihnen alles genau erklären.", "fr": "C'est une question pour {sommer}. Elle connaît les résultats et peut tout vous expliquer en détail.", "va": "wunde",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Aber Sie sehen die Wunde doch jeden Tag!", "fr": "Mais vous voyez la plaie tous les jours !"}]},
+    {"faux": true, "t": "Nein, keine Sorge, sie wird bestimmt nicht operiert.", "fr": "Non, ne vous inquiétez pas, elle ne sera sûrement pas opérée.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Wirklich? Hat die Ärztin das gesagt?", "fr": "C'est vrai ? Le médecin l'a dit ?"}],
+     "aide": {"fr": "<b>Ne promets rien sur le diagnostic ni sur une opération.</b> Ce n'est pas ton rôle, et une promesse fausse détruit la confiance. Renvoie au médecin : « Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen. »"},
+     "relire": true, "relire_note": "Limite de compétence : vérifier l'aide."}
+   ]
+  },
+  "wunde": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, und ich dokumentiere alles genau. Aber was das für die Behandlung bedeutet, muss die Ärztin beurteilen.", "fr": "Oui, et je note tout avec précision. Mais ce que cela signifie pour le traitement, c'est au médecin de l'évaluer.", "va": "termin",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Hm. Und wann kann ich mit ihr sprechen?", "fr": "Hum. Et quand est-ce que je peux lui parler ?"}]},
+    {"t": "Das stimmt. Aber eine Einschätzung kann Ihnen nur die Ärztin geben. Dann bekommen Sie auch eine sichere Antwort.", "fr": "C'est vrai. Mais seul le médecin peut vous donner une évaluation. Comme ça, vous aurez une réponse sûre.", "va": "termin",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Hm. Und wann kann ich mit ihr sprechen?", "fr": "Hum. Et quand est-ce que je peux lui parler ?"}]}
+   ]
+  },
+  "termin": {
+   "dit": [],
+   "choix": [
+    {"t": "Soll ich ein Gespräch mit {sommer} für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.", "fr": "Voulez-vous que je vous organise un entretien avec {sommer} ? Après la visite, elle a souvent du temps.", "va": "rueckruf",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, bitte. Morgen bin ich ab zehn Uhr hier.", "fr": "Oui, s'il vous plaît. Demain, je suis là à partir de dix heures."}]},
+    {"t": "Ich kann {sommer} fragen, wann sie Zeit für Sie hat. Wann sind Sie morgen hier?", "fr": "Je peux demander à {sommer} quand elle aura du temps pour vous. Vous êtes là à quelle heure, demain ?", "va": "rueckruf",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Morgen bin ich ab zehn Uhr hier.", "fr": "Demain, je suis là à partir de dix heures."}]},
+    {"faux": true, "t": "Rufen Sie einfach die Ärztin an. Die Nummer steht im Internet.", "fr": "Appelez le médecin, tout simplement. Le numéro est sur Internet.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Im Internet? Da erreiche ich doch nur die Zentrale.", "fr": "Sur Internet ? Je n'aurai que le standard."}],
+     "aide": {"fr": "<b>Propose ton aide pour organiser l'entretien.</b> « Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren? » : « Soll ich …? » propose un service, poliment."}}
+   ]
+  },
+  "rueckruf": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut, ich gebe das weiter. Darf ich mir Ihre Telefonnummer notieren, falls sich die Zeit ändert?", "fr": "Bien, je transmets. Je peux noter votre numéro de téléphone, au cas où l'heure changerait ?", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Natürlich. Ich schreibe sie Ihnen auf.", "fr": "Bien sûr. Je vous l'écris."}]},
+    {"t": "Ich sage {sommer} Bescheid, dass Sie morgen ab zehn kommen. Wenn es nicht passt, ruft die Station Sie an.", "fr": "Je préviens {sommer} que vous venez demain à partir de dix heures. Si ça ne convient pas, le service vous appelle.", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Danke. Meine Nummer hat die Station schon.", "fr": "Merci. Le service a déjà mon numéro."}]}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "lehmann_tochter", "air": "sourire", "t": "Vielen Dank. Sie haben mir wirklich geholfen.", "fr": "Merci beaucoup. Vous m'avez vraiment aidée."}
+   ],
+   "choix": [
+    {"t": "Gern. Ihre Mutter freut sich bestimmt, dass Sie da sind. Gehen Sie ruhig zu ihr.", "fr": "Avec plaisir. Votre mère sera sûrement contente que vous soyez là. Allez la voir.", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, das mache ich.", "fr": "Oui, j'y vais."}]},
+    {"t": "Das freut mich. Wenn Sie Fragen zur Pflege haben, können Sie mich jederzeit fragen.", "fr": "Ça me fait plaisir. Si vous avez des questions sur les soins, vous pouvez me demander à tout moment.", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Das ist gut zu wissen. Danke.", "fr": "C'est bon à savoir. Merci."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum macht sich {lehmann_tochter} Sorgen?", "fr": "Pourquoi {lehmann_tochter} s'inquiète-t-elle ?"},
+   "options": [{"t": "Ihre Mutter isst nichts.", "fr": "Sa mère ne mange rien."}, {"t": "Ihre Mutter war gestern am Telefon durcheinander.", "fr": "Sa mère était perdue au téléphone hier."}, {"t": "Ihre Mutter ist gestürzt.", "fr": "Sa mère est tombée."}],
+   "juste": 1},
+  {"q": {"t": "Was möchte {lehmann_tochter} über den Fuß wissen?", "fr": "Que veut savoir {lehmann_tochter} sur le pied ?"},
+   "options": [{"t": "Ob ihre Mutter operiert werden muss.", "fr": "Si sa mère doit être opérée."}, {"t": "Wann der Verband gewechselt wird.", "fr": "Quand le pansement est changé."}, {"t": "Ob ihre Mutter laufen darf.", "fr": "Si sa mère a le droit de marcher."}],
+   "juste": 0},
+  {"q": {"t": "Wann ist {lehmann_tochter} morgen im Krankenhaus?", "fr": "À quelle heure {lehmann_tochter} est-elle à l'hôpital demain ?"},
+   "options": [{"t": "Ab acht Uhr.", "fr": "À partir de huit heures."}, {"t": "Erst am Abend.", "fr": "Seulement le soir."}, {"t": "Ab zehn Uhr.", "fr": "À partir de dix heures."}],
+   "juste": 2}
+ ]
+}

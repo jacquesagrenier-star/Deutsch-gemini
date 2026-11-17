@@ -1,0 +1,135 @@
+{
+ "id": "b1-sinistre",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Le dégât des eaux"},
+ "intro": {"fr": "Un dimanche matin, de l'eau coule de ton plafond. Tu montes sonner chez le voisin du dessus, que tu ne connais pas encore."},
+ "bilan": {"fr": "Tu as réglé un dégât des eaux avec ton voisin : expliquer le problème, décrire les dégâts, parler d'assurance et vous organiser pour prévenir le syndic."},
+ "personnes": ["b11_voisin"],
+ "debut": "puerta",
+ "noeuds": {
+  "puerta": {
+   "dit": [
+    {"recit": {"fr": "Dimanche, neuf heures. Des gouttes tombent de ton plafond. Tu montes un étage et tu sonnes. La porte s'ouvre sur un voisin en pyjama."}},
+    {"qui": "b11_voisin", "air": "surprise", "t": "¿Sí? Buenos días… ¿Pasa algo?", "fr": "Oui ? Bonjour… Il se passe quelque chose ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días, perdone que le moleste. Vivo en el piso de abajo.", "fr": "Bonjour, excusez-moi de vous déranger. J'habite l'appartement du dessous.", "va": "problema",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Ah, encantado. No me molesta, dígame.", "fr": "Ah, enchanté. Vous ne me dérangez pas, dites-moi."}]},
+    {"t": "Hola, buenos días. Siento molestarle un domingo tan temprano, pero es urgente.", "fr": "Bonjour. Je suis désolé(e) de vous déranger si tôt un dimanche, mais c'est urgent.", "va": "problema",
+     "puis": [{"qui": "b11_voisin", "air": "surprise", "t": "¿Urgente? Dígame, dígame.", "fr": "Urgent ? Dites-moi, dites-moi."}]},
+    {"faux": true, "t": "Buenos días. Excúseme de molestarle.", "fr": "Bonjour. Excusez-moi de vous déranger.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "No, no, no es molestia. ¿Qué pasa?", "fr": "Non, non, vous ne me dérangez pas. Que se passe-t-il ?"}],
+     "aide": {"fr": "<b>« Excúseme de »</b> calque le français. On dit « perdone que le moleste » ou « siento molestarle ». Dis plutôt : « Buenos días, perdone que le moleste »."}}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "¿Qué ha pasado?", "fr": "Que s'est-il passé ?"}],
+   "choix": [
+    {"t": "Está cayendo agua del techo de mi cuarto de baño.", "fr": "De l'eau tombe du plafond de ma salle de bains.", "pose": {"lugar": "bano"}, "va": "fuga",
+     "puis": [{"qui": "b11_voisin", "air": "surprise", "t": "¡No me diga! Espere, que voy a mirar ahora mismo.", "fr": "Ce n'est pas vrai ! Attendez, je vais voir tout de suite."}]},
+    {"t": "Hay una mancha de humedad en el techo de mi cocina, y es cada vez más grande.", "fr": "Il y a une tache d'humidité au plafond de ma cuisine, et elle grandit de plus en plus.", "pose": {"lugar": "cocina"}, "va": "fuga",
+     "puis": [{"qui": "b11_voisin", "air": "surprise", "t": "¡No me diga! Espere, que voy a mirar ahora mismo.", "fr": "Ce n'est pas vrai ! Attendez, je vais voir tout de suite."}]},
+    {"faux": true, "t": "Hay agua que cae del plafón de mi baño.", "fr": "Il y a de l'eau qui tombe du plafond de ma salle de bains.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿Del plafón? ¿De la lámpara? Ah, del techo.", "fr": "Du plafonnier ? De la lampe ? Ah, du plafond."}],
+     "aide": {"fr": "<b>« Plafón »</b> désigne une lampe fixée au plafond. Le plafond se dit « el techo ». Dis plutôt : « Está cayendo agua del techo de mi cuarto de baño »."}}
+   ]
+  },
+  "fuga": {
+   "dit": [
+    {"recit": {"fr": "Il disparaît dans l'appartement. On entend un juron, puis un robinet qu'on ferme. Il revient, l'air désolé."}},
+    {"qui": "b11_voisin", "air": "perplexe", "t": "¡Madre mía! Es el tubo de la lavadora, que pierde agua. Ya he cerrado la llave de paso. Lo siento muchísimo, de verdad.", "fr": "Mon Dieu ! C'est le tuyau de la machine à laver qui fuit. J'ai fermé l'arrivée d'eau. Je suis vraiment, vraiment désolé."}
+   ],
+   "choix": [
+    {"t": "No se preocupe, son cosas que pasan. Lo importante es que ya no sale agua.", "fr": "Ne vous inquiétez pas, ce sont des choses qui arrivent. L'important, c'est que l'eau ne coule plus.", "va": "danos"},
+    {"t": "Gracias por cerrar el agua tan rápido. Ahora hay que ver los daños.", "fr": "Merci d'avoir fermé l'eau si vite. Maintenant, il faut voir les dégâts.", "va": "danos"},
+    {"faux": true, "t": "No es grave. No se inquiete.", "fr": "Ce n'est pas grave. Ne vous inquiétez pas.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Gracias por decirme que no me preocupe, pero me sabe fatal.", "fr": "Merci de me dire de ne pas m'inquiéter, mais je m'en veux terriblement."}],
+     "aide": {"fr": "« Ne vous inquiétez pas » se dit <b>« no se preocupe »</b> ; « inquietarse » existe, mais on ne l'emploie presque jamais ainsi. Dis plutôt : « No se preocupe, son cosas que pasan »."}}
+   ]
+  },
+  "danos": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "¿Y en su casa? ¿Hay muchos daños?", "fr": "Et chez vous ? Il y a beaucoup de dégâts ?"}],
+   "choix": [
+    {"t": "El techo está muy mojado y la lámpara ya no funciona.", "fr": "Le plafond est très mouillé et la lampe ne marche plus.", "va": "luz"},
+    {"t": "Se han mojado una alfombra y varias toallas, nada más.", "fr": "Un tapis et plusieurs serviettes sont mouillés, rien de plus.", "va": "seguro",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Menos mal que no es más grave. Aun así, la alfombra se la pago yo.", "fr": "Heureusement que ce n'est pas plus grave. Quand même, le tapis, c'est moi qui vous le paie."}]},
+    {"faux": true, "t": "El techo está mojado y la lámpara no marcha más.", "fr": "Le plafond est mouillé et la lampe ne marche plus.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿Que ya no funciona la lámpara, dice?", "fr": "La lampe ne fonctionne plus, vous dites ?"}],
+     "aide": {"fr": "Un appareil « marche » avec <b>« funcionar »</b>, et « ne… plus » se dit « ya no ». Dis plutôt : « La lámpara ya no funciona »."}}
+   ]
+  },
+  "luz": {
+   "dit": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿La lámpara? Eso es peligroso. ¿Ha cortado la luz de esa habitación?", "fr": "La lampe ? C'est dangereux. Vous avez coupé le courant dans cette pièce ?"}],
+   "choix": [
+    {"t": "Sí, he cortado la luz de esa parte de la casa, por si acaso.", "fr": "Oui, j'ai coupé le courant dans cette partie de l'appartement, au cas où.", "va": "seguro",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Bien hecho. Con el agua y la electricidad, mejor no arriesgarse.", "fr": "Bien joué. Avec l'eau et l'électricité, mieux vaut ne pas prendre de risques."}]},
+    {"t": "Todavía no. Bajo ahora mismo y la corto.", "fr": "Pas encore. Je descends tout de suite et je le coupe.", "va": "seguro",
+     "puis": [{"qui": "b11_voisin", "air": "attentive", "t": "Sí, mejor. Con el agua y la electricidad, mejor no arriesgarse. Le acompaño.", "fr": "Oui, c'est mieux. Avec l'eau et l'électricité, mieux vaut ne pas prendre de risques. Je vous accompagne."}]},
+    {"faux": true, "t": "Sí, he cerrado la luz.", "fr": "Oui, j'ai fermé la lumière.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿Que la ha apagado? ¿O la ha cortado en el cuadro?", "fr": "Vous l'avez éteinte ? Ou vous l'avez coupée au tableau ?"}],
+     "aide": {"fr": "La lumière ne se « ferme » pas : on dit <b>« apagar la luz »</b> (éteindre) ou « cortar la luz » (couper le courant). Dis plutôt : « He cortado la luz de esa parte de la casa »."}}
+   ]
+  },
+  "seguro": {
+   "dit": [{"qui": "b11_voisin", "air": "attentive", "t": "Por los gastos no se preocupe: tengo seguro del hogar y cubre estas cosas. ¿Usted también tiene seguro?", "fr": "Pour les frais, ne vous inquiétez pas : j'ai une assurance habitation et elle couvre ces choses-là. Vous avez une assurance, vous aussi ?"}],
+   "choix": [
+    {"t": "Sí, tengo un seguro del hogar. Voy a llamar mañana a primera hora.", "fr": "Oui, j'ai une assurance habitation. Je vais appeler demain à la première heure.", "va": "datos",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Perfecto. Entonces damos parte los dos, y que se arreglen entre ellos.", "fr": "Parfait. Alors nous déclarons le sinistre tous les deux, et qu'ils s'arrangent entre eux."}]},
+    {"t": "No lo sé, tengo que preguntárselo al dueño del piso.", "fr": "Je ne sais pas, je dois le demander au propriétaire de l'appartement.", "va": "datos",
+     "puis": [{"qui": "b11_voisin", "air": "attentive", "t": "Pregúnteselo, sí. De todas formas, yo doy parte a mi seguro mañana mismo.", "fr": "Demandez-le-lui, oui. De toute façon, je déclare le sinistre à mon assurance dès demain."}]},
+    {"faux": true, "t": "Sí, tengo una seguridad para la casa.", "fr": "Oui, j'ai une assurance pour la maison.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿Una alarma, quiere decir? Ah, un seguro.", "fr": "Une alarme, vous voulez dire ? Ah, une assurance."}],
+     "aide": {"fr": "<b>« La seguridad »</b>, c'est la sécurité. L'assurance se dit « el seguro ». Dis plutôt : « Sí, tengo un seguro del hogar »."}}
+   ]
+  },
+  "datos": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "¿Le parece que nos demos los datos? Le dejo mi teléfono y el número de mi póliza.", "fr": "Que diriez-vous d'échanger nos coordonnées ? Je vous laisse mon téléphone et mon numéro de contrat d'assurance."}],
+   "choix": [
+    {"t": "Sí, claro. Yo le apunto mi teléfono y mi nombre completo.", "fr": "Oui, bien sûr. Je vous note mon téléphone et mon nom complet.", "va": "aviso",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Gracias. Y haga fotos antes de limpiar nada: el perito del seguro las va a pedir.", "fr": "Merci. Et prenez des photos avant de nettoyer quoi que ce soit : l'expert de l'assurance va les demander."}]},
+    {"t": "Buena idea. Y voy a hacer fotos de todo para el seguro.", "fr": "Bonne idée. Et je vais tout prendre en photo pour l'assurance.", "va": "aviso",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Muy bien pensado: el perito las va a pedir. Yo también hago fotos del tubo.", "fr": "Très bonne idée : l'expert va les demander. Moi aussi, je prends le tuyau en photo."}]},
+    {"faux": true, "t": "Sí. Dígame su número, lo voy a notar.", "fr": "Oui. Dites-moi votre numéro, je vais le noter.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "¿Notar? Ah, apuntar. Sí, apunte.", "fr": "Le remarquer ? Ah, le noter. Oui, notez."}],
+     "aide": {"fr": "<b>« Notar »</b> veut dire « remarquer, sentir ». Noter par écrit se dit « apuntar » (ou « anotar »). Dis plutôt : « Yo le apunto mi teléfono »."}}
+   ]
+  },
+  "aviso": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Habría que avisar también al administrador de la finca. Pero un domingo… ¿Cómo lo hacemos?", "fr": "Il faudrait aussi prévenir le syndic de l'immeuble. Mais un dimanche… Comment faisons-nous ?"}],
+   "choix": [
+    {"t": "Puedo llamar yo al teléfono de urgencias que hay en el portal.", "fr": "Je peux appeler moi-même le numéro d'urgence affiché dans l'entrée de l'immeuble.", "va": "cafe",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Vale. Y yo le escribo un correo ahora mismo, para que quede constancia.", "fr": "D'accord. Et moi, je lui écris un courriel tout de suite, pour qu'il y ait une trace."}]},
+    {"t": "¿Podría avisarle usted? Yo tengo que bajar a secar el suelo.", "fr": "Pourriez-vous le prévenir vous-même ? Moi, je dois descendre sécher le sol.", "va": "ayuda"},
+    {"faux": true, "t": "Es mejor que usted llama, porque es su lavadora.", "fr": "Il vaut mieux que vous appelez, parce que c'est votre machine à laver.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "¿Que llame yo? Sí, tiene razón, es lo justo.", "fr": "Que j'appelle, moi ? Oui, vous avez raison, c'est normal."}],
+     "aide": {"fr": "Après <b>« es mejor que »</b>, il faut le subjonctif : « que llame usted ». Plus aimable : « ¿Podría avisarle usted? »."}}
+   ]
+  },
+  "ayuda": {
+   "dit": [{"qui": "b11_voisin", "air": "sourire", "t": "Claro, es lo mínimo. Llamo al administrador y aviso también al presidente de la comunidad. ¿Necesita ayuda para secar?", "fr": "Bien sûr, c'est la moindre des choses. J'appelle le syndic et je préviens aussi le président de la copropriété. Vous avez besoin d'aide pour sécher ?"}],
+   "choix": [
+    {"t": "No hace falta, gracias. Pero si tiene un cubo, me vendría bien.", "fr": "Ce n'est pas la peine, merci. Mais si vous avez un seau, cela m'arrangerait.", "va": "cafe",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Ahora mismo se lo bajo.", "fr": "Je vous le descends tout de suite."}]},
+    {"t": "Se lo agradezco. Con unas toallas viejas sería suficiente.", "fr": "Je vous en remercie. Quelques vieilles serviettes suffiraient.", "va": "cafe",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Tengo un montón. Ahora mismo se las bajo.", "fr": "J'en ai plein. Je vous les descends tout de suite."}]},
+    {"faux": true, "t": "No, gracias, no tengo necesidad.", "fr": "Non, merci, je n'ai pas besoin.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "¿Seguro que no hace falta? Como quiera.", "fr": "Vraiment, ce n'est pas la peine ? Comme vous voudrez."}],
+     "aide": {"fr": "<b>« No tengo necesidad »</b> calque « je n'ai pas besoin ». On dit « no hace falta » ou « no lo necesito ». Dis plutôt : « No hace falta, gracias »."}}
+   ]
+  },
+  "cafe": {
+   "dit": [{"qui": "b11_voisin", "air": "sourire", "t": "Oiga, y perdone otra vez el susto. Cuando esté todo seco, suba y le invito a un café. Es lo menos que puedo hacer.", "fr": "Dites, et pardon encore pour la frayeur. Quand tout sera sec, montez, je vous offre un café. C'est le moins que je puisse faire."}],
+   "choix": [
+    {"t": "Con mucho gusto. Así nos conocemos en mejores condiciones.", "fr": "Avec grand plaisir. Comme ça, nous ferons connaissance dans de meilleures conditions.", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "¡Eso! Y la próxima vez, sin inundación. ¡Hasta luego!", "fr": "Voilà ! Et la prochaine fois, sans inondation. À tout à l'heure !"}]},
+    {"t": "Acepto la invitación. Al final, hasta vamos a hacernos amigos.", "fr": "J'accepte l'invitation. Finalement, nous allons même devenir amis.", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "¡Gracias a la lavadora! Venga, hasta luego.", "fr": "Grâce à la machine à laver ! Allez, à tout à l'heure."}]},
+    {"faux": true, "t": "Gracias, es muy gentil.", "fr": "Merci, c'est très gentil.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "¿Gentil? ¡Qué fino! Entonces, ¿sube luego?", "fr": "« Gentil » ? Comme c'est distingué ! Alors, vous montez tout à l'heure ?"}],
+     "aide": {"fr": "<b>« Gentil »</b> existe en espagnol, mais c'est un mot rare et soutenu. « C'est gentil » se dit « es usted muy amable ». Tu peux répondre : « Con mucho gusto »."}}
+   ]
+  }
+ }
+}

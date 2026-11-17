@@ -249,10 +249,37 @@ def suites(mots, sens, tailles):
     out, i = [], 0
     for n in tailles:
         morceau = list(range(i, i + n))
+        # la virgule arabe en persan et en arabe (revue des traductions du 15 nov. 2026)
         out.append([", ".join(mots[k] for k in morceau),
-                    {lg: ", ".join(sens[k][j] for k in morceau) for j, lg in enumerate(LANGUES)}])
+                    {lg: ("، " if lg in ("fa", "ar") else ", ").join(sens[k][j] for k in morceau) for j, lg in enumerate(LANGUES)}])
         i += n
     return out
+
+def poser_allemand(o, manque=None):
+    """Chaque objet de langue (fr ... ar) recoit « de » juste apres « ar »,
+    traduit par tests/reperes_de.py. Un texte francais sans sa ligne arrete tout."""
+    import reperes_de
+    racine = manque is None
+    manque = [] if racine else manque
+    if isinstance(o, dict):
+        if isinstance(o.get("fr"), str) and "ar" in o:
+            de = reperes_de.ALLEMAND_ES.get(o["fr"])
+            if de is None:
+                manque.append(o["fr"])
+            out = {}
+            for k, v in o.items():
+                out[k] = v
+                if k == "ar":
+                    out["de"] = de
+            o = out
+        else:
+            o = {k: poser_allemand(v, manque) for k, v in o.items()}
+    elif isinstance(o, list):
+        o = [poser_allemand(v, manque) for v in o]
+    if racine and manque:
+        raise SystemExit("reperes espagnols : %d texte(s) sans allemand dans tests/reperes_de.py :\n  %s"
+                         % (len(manque), "\n  ".join(manque)))
+    return o
 
 def construire(langue):
     N = NOMBRES[langue]
@@ -293,6 +320,10 @@ def construire(langue):
                         "l": [list(e) for e in l], "x": [list(e) for e in x]})
     reperes.append({"id": "pluriel", "type": "pluriel", "t": rs.TITRES["pluriel"], "a": rs.ASTUCES[langue]["pluriel"],
                     "l": [list(e) for e in rs.PLURIEL[langue][0]], "x": [list(e) for e in rs.PLURIEL[langue][1]]})
+    # L'allemand, langue d'interface de l'espagnol seulement (1er nov. 2026) :
+    # tests/reperes_de.py, par texte francais, pose juste apres « ar ».
+    if langue == "es":
+        reperes = poser_allemand(reperes)
     return {
         "_lisez_moi": [
             "Les repères (v879-v880, v904) : nombres, jours, couleurs, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
@@ -308,7 +339,31 @@ def ecrire(chemin, d):
         json.dump(d, f, ensure_ascii=False, indent=1)
         f.write("\n")
 
+# L'ESPAGNOL, LANGUE D'INTERFACE DE L'ALLEMAND (15 nov. 2026, interface-es/). Plutot que d'allonger
+# chaque tuple de par_langue (qui sert aussi a l'espagnol APPRIS), une table {francais: espagnol} :
+# tout objet par langue qui porte « fr » et « ru » recoit « es » s'il est dans la table. L'allemand
+# seulement : l'espagnol appris n'a pas l'espagnol pour langue d'interface.
+def ajouter_espagnol(d):
+    # Une COPIE : construire() partage ses tables (TITRES...) entre l'allemand et l'espagnol appris ;
+    # les modifier sur place mettrait « es » dans espanol/datos/reperes.json.
+    import copy
+    d = copy.deepcopy(d)
+    with io.open(os.path.join(RACINE, "tests", "reperes_es.json"), encoding="utf-8") as f:
+        table = json.load(f)
+    def v(o):
+        if isinstance(o, dict):
+            if isinstance(o.get("fr"), str) and "ru" in o and o["fr"] in table:
+                o["es"] = table[o["fr"]]
+            for x in o.values():
+                v(x)
+        elif isinstance(o, list):
+            for x in o:
+                v(x)
+    v(d)
+    return d
+
+
 if __name__ == "__main__":
-    ecrire(os.path.join(RACINE, "reperes.json"), construire("de"))
+    ecrire(os.path.join(RACINE, "reperes.json"), ajouter_espagnol(construire("de")))
     ecrire(os.path.join(RACINE, "espanol", "datos", "reperes.json"), construire("es"))
     print("reperes.json et espanol/datos/reperes.json ecrits")

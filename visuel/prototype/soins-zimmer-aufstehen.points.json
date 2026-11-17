@@ -1,0 +1,377 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 1, la chambre du patient (14 nov. 2026). Memes regles que les scenes generales (klassenzimmer.points.json, arztpraxis.points.json) ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Zones mesurees sur une grille de 5 % de l'image REELLE. Les couches sont un BROUILLON non relu : ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-zimmer-aufstehen.webp",
+ "source": "~/.wortando/pflege/scenes/soins-zimmer-aufstehen.png",
+ "titre": "Im Patientenzimmer",
+ "alt": "La même chambre : Herr Brandt s'est assis au bord du lit, en pyjama et en chaussons, les deux mains sur son déambulateur, prêt à se lever seul ; la sonnette est restée sur le lit, derrière lui.",
+ "consigne": "Touche un objet de la chambre, ou Herr Brandt.",
+ "vues": [
+  "soins-zimmer",
+  "soins-zimmer-nachttisch",
+  "soins-zimmer-aufstehen"
+ ],
+ "nom_vue": "Herr Brandt se lève",
+ "couches": {
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
+   "qs": [
+    {
+     "q": "Sie helfen Herrn Brandt, sich aufzusetzen. Er sagt: „Ja, allein schaff ich das noch nicht.“",
+     "c": [
+      "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+      "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
+      "Stehen Sie jetzt auf. Wir müssen laufen."
+     ],
+     "f": "patient",
+     "type": "situation",
+     "phrase": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+     "sens": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+     "n": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé. ⚕️",
+     "source": "d01-vorstellung/klingel",
+     "r": "klingel"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    15.4,
+    14.8,
+    9.7,
+    6.1
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    52.5,
+    7.2,
+    28.7,
+    32.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "spender",
+   "mot": "Desinfektionsmittelspender",
+   "boite": [
+    87.4,
+    31.4,
+    5.7,
+    5.8
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "infusionsstaender",
+   "mot": "Infusionsständer",
+   "boite": [
+    34.0,
+    23.3,
+    8.2,
+    22.5
+   ]
+  },
+  {
+   "id": "infusion",
+   "mot": "Infusion",
+   "boite": [
+    39.6,
+    24.3,
+    3.8,
+    5.8
+   ],
+   "sur": "infusionsstaender"
+  },
+  {
+   "id": "sichtschutz",
+   "mot": "Sichtschutz",
+   "boite": [
+    9.3,
+    25.0,
+    14.8,
+    32.2
+   ]
+  },
+  {
+   "id": "bett",
+   "mot": "Bett",
+   "boite": [
+    0,
+    40.0,
+    13.6,
+    17.5
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    20.6,
+    42.9,
+    18.6,
+    13.7
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    27.3,
+    40.9,
+    3.3,
+    3.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    32.4,
+    40.7,
+    4.8,
+    3.3
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    32.9,
+    42.9,
+    5.7,
+    2.0
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "hoergeraet",
+   "mot": "Hörgerät",
+   "boite": [
+    24.4,
+    42.8,
+    3.2,
+    2.0
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Zahnprothese",
+   "boite": [
+    30.0,
+    47.7,
+    4.7,
+    2.5
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "bettgitter",
+   "mot": "Bettgitter",
+   "boite": [
+    72.3,
+    42.6,
+    3.2,
+    6.6
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "fernbedienung",
+   "mot": "Fernbedienung",
+   "boite": [
+    25.7,
+    58.6,
+    4.6,
+    6.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "urinbeutel",
+   "mot": "Urinbeutel",
+   "boite": [
+    13.7,
+    71.7,
+    14.2,
+    7.5
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "rollstuhl",
+   "mot": "Rollstuhl",
+   "boite": [
+    81.1,
+    42.5,
+    18.9,
+    21.2
+   ]
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "boite": [
+    3.6,
+    37.5,
+    71.8,
+    42.2
+   ],
+   "aussi": [
+    "Bett"
+   ],
+   "points_sam": [
+    [
+     20,
+     68,
+     1
+    ],
+    [
+     40,
+     70,
+     1
+    ],
+    [
+     30,
+     52,
+     1
+    ],
+    [
+     60,
+     60,
+     0
+    ]
+   ],
+   "sam": [
+    [
+     4,
+     61,
+     52,
+     19.5
+    ],
+    [
+     8,
+     37.5,
+     67,
+     27
+    ]
+   ]
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "boite": [
+    44.4,
+    37.6,
+    28.9,
+    8.0
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "patient",
+   "mot": "Patient",
+   "boite": [
+    45.6,
+    35.6,
+    33.6,
+    43.2
+   ],
+   "aussi": [
+    "Mann"
+   ]
+  },
+  {
+   "id": "schlafanzug",
+   "mot": "Schlafanzug",
+   "boite": [
+    45.6,
+    40.5,
+    30.5,
+    34.5
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "nasenbrille",
+   "mot": "Nasenbrille",
+   "ellipses": [
+    [
+     66.0,
+     40.8,
+     2.6,
+     0.8
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "armband-l",
+   "mot": "Patientenarmband",
+   "ellipses": [
+    [
+     68.3,
+     50.1,
+     1.4,
+     0.9
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "armband-r",
+   "mot": "Patientenarmband",
+   "ellipses": [
+    [
+     70.6,
+     47.0,
+     1.1,
+     0.7
+    ]
+   ],
+   "sur": "patient"
+  },
+  {
+   "id": "klingel",
+   "mot": "Klingel",
+   "boite": [
+    38.2,
+    53.8,
+    5.0,
+    2.2
+   ],
+   "sur": "pflegebett"
+  },
+  {
+   "id": "rollator",
+   "mot": "Rollator",
+   "boite": [
+    68.8,
+    47.3,
+    25.6,
+    25.0
+   ]
+  },
+  {
+   "id": "hausschuhe",
+   "mot": "Hausschuh",
+   "boite": [
+    64.4,
+    70.6,
+    18.8,
+    8.2
+   ]
+  }
+ ]
+}

@@ -50,7 +50,8 @@ ARTICLES = {"el", "la", "los", "las", "un", "una", "unos", "unas",
             "the", "a", "an"}      # l'anglais (29 oct. 2026)
 
 # « dtz » : les pistes de l'ecoute du DTZ (visuel/prototype/dtz/outils/voix.py), dans audio/mp3/dtz/
-DOSSIERS = {"es": ["es-es", "es-419"], "de": [""], "en": ["en-us"], "dtz": ["dtz"]}
+# « pflege » : les phrases de Wortando Pflege (pflege/outils/voix.py), dans audio/mp3/pflege/
+DOSSIERS = {"es": ["es-es", "es-419"], "de": [""], "en": ["en-us"], "dtz": ["dtz"], "pflege": ["pflege"]}
 
 
 def pcm(chemin):

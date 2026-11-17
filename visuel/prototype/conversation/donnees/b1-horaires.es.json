@@ -1,0 +1,149 @@
+{
+ "id": "b1-horaires",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Changer d'horaires au restaurant"},
+ "intro": {"fr": "Tu travailles comme aide de cuisine dans un restaurant de Madrid. Tu commences un cours d'espagnol le mardi et le jeudi soir : demande à la cheffe de changer tes horaires et trouve un arrangement avec elle."},
+ "bilan": {"fr": "Tu as demandé à changer d'horaires pour ton cours d'espagnol, et vous avez trouvé un arrangement : {op_fr}. Le nouveau planning sera affiché vendredi."},
+ "personnes": ["kuechenchefin"],
+ "debut": "pedir",
+ "textes": {
+  "op_fr": {"cle": "op", "manana": "le mardi et le jeudi, tu feras le service du matin", "finde": "tu travailleras le week-end à la place de ces deux soirs", "cambio": "tu échangeras tes soirs avec un collègue du matin"}
+ },
+ "noeuds": {
+  "pedir": {
+   "dit": [
+    {"recit": {"fr": "La fin du service de midi. Dans la cuisine, la cheffe range ses couteaux. C'est le moment de lui parler."}},
+    {"qui": "kuechenchefin", "air": "sourire", "t": "¿Querías hablar conmigo? Dime, que tengo cinco minutos antes de que lleguen los proveedores.", "fr": "Tu voulais me parler ? Dis-moi, j'ai cinq minutes avant que les fournisseurs arrivent."}
+   ],
+   "choix": [
+    {"t": "Sí, quería pedirte un cambio de horario, si es posible.", "fr": "Oui, je voulais te demander un changement d'horaire, si c'est possible.", "va": "motivo"},
+    {"t": "Sí, gracias. Me gustaría cambiar mis turnos de los martes y los jueves.", "fr": "Oui, merci. J'aimerais changer mes services du mardi et du jeudi.", "va": "motivo"},
+    {"faux": true, "t": "Sí, quiero demandarte un cambio de horario.", "fr": "Oui, je veux te « demander » un changement d'horaire.",
+     "puis": [{"qui": "kuechenchefin", "air": "surprise", "t": "¿Demandarme? ¿Me vas a llevar a juicio por un horario?", "fr": "Me poursuivre ? Tu vas m'emmener au tribunal pour un horaire ?"}],
+     "aide": {"fr": "<b>Demander quelque chose = pedir.</b> « Demandar » veut dire poursuivre en justice. « Quería pedirte un cambio de horario. »"}}
+   ]
+  },
+  "motivo": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "¿Un cambio? ¿Y eso por qué?", "fr": "Un changement ? Et pourquoi donc ?"}
+   ],
+   "choix": [
+    {"t": "Es que empiezo un curso de español los martes y los jueves por la tarde.", "fr": "C'est que je commence un cours d'espagnol le mardi et le jeudi en fin de journée.", "va": "rush"},
+    {"t": "Me he apuntado a clases de español: son dos tardes a la semana, a las siete.", "fr": "J'ai commencé des cours d'espagnol : deux soirs par semaine, à sept heures.", "va": "rush"},
+    {"faux": true, "t": "Porque los martes y los jueves por la tarde ya no vengo.", "fr": "Parce que le mardi et le jeudi soir, je ne viens plus.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "¿Cómo que ya no vienes? Oye, así no se piden las cosas…", "fr": "Comment ça, tu ne viens plus ? Dis donc, ce n'est pas comme ça qu'on demande les choses…"}],
+     "aide": {"fr": "<b>Trop brusque : tu demandes, tu n'annonces pas.</b> Donne ta raison : « Es que empiezo un curso de español… »"}}
+   ]
+  },
+  "rush": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "perplexe", "t": "¡Qué bien lo del curso! Pero las cenas son el peor momento: a las nueve esto se llena y te necesito.", "fr": "C'est bien, ce cours ! Mais le dîner, c'est le pire moment : à neuf heures, c'est plein et j'ai besoin de toi."},
+    {"qui": "kuechenchefin", "air": "sourire", "t": "A ver, se me ocurren tres cosas: el turno de mañana, desde las 7; los fines de semana; o que cambies el turno con un compañero.", "dit": "A ver, se me ocurren tres cosas: el turno de mañana, desde las siete; los fines de semana; o que cambies el turno con un compañero.", "fr": "Voyons, je vois trois possibilités : le service du matin, dès 7 heures ; les week-ends ; ou que tu échanges ton service avec un collègue."}
+   ],
+   "choix": [
+    {"t": "Prefiero el turno de mañana esos dos días. Madrugar no me importa.", "fr": "Je préfère le service du matin ces deux jours-là. Me lever tôt ne me dérange pas.", "pose": {"op": "manana"}, "va": "manana"},
+    {"t": "Podría trabajar los sábados y los domingos a cambio de esas dos tardes.", "fr": "Je pourrais travailler le samedi et le dimanche en échange de ces deux soirs.", "pose": {"op": "finde"}, "va": "finde"},
+    {"t": "Creo que lo mejor es cambiar el turno con alguien. ¿Con quién podría hablar?", "fr": "Je crois que le mieux est d'échanger le service avec quelqu'un. À qui pourrais-je parler ?", "pose": {"op": "cambio"}, "va": "cambio"},
+    {"faux": true, "t": "Puedo trabajar la mañana.", "fr": "Je peux travailler le matin.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "¿Trabajar la mañana? Por la mañana, querrás decir. ¿Eso es lo que prefieres?", "fr": "« Trabajar la mañana » ? Le matin, tu veux dire. C'est ce que tu préfères ?"}],
+     "aide": {"fr": "<b>Le matin = por la mañana.</b> En espagnol, il faut « por » : « Puedo trabajar por la mañana », ou « Prefiero el turno de mañana »."}},
+    {"repete": true, "t": "Perdona, ¿me repites las tres opciones, más despacio?", "fr": "Excuse-moi, tu me répètes les trois possibilités, plus lentement ?", "va": "rush",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Claro. Una: vienes por la mañana, a las siete. Dos: trabajas el fin de semana. Tres: le cambias el turno a un compañero.", "fr": "Bien sûr. Un : tu viens le matin, à sept heures. Deux : tu travailles le week-end. Trois : tu échanges ton service avec un collègue."}]}
+   ]
+  },
+  "manana": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "El turno de mañana es de 7 a 3: pelar, cortar, preparar las salsas… ¿Podrás estar aquí a las siete en punto?", "dit": "El turno de mañana es de siete a tres: pelar, cortar, preparar las salsas… ¿Podrás estar aquí a las siete en punto?", "fr": "Le service du matin, c'est de 7 h à 15 h : éplucher, couper, préparer les sauces… Tu pourras être ici à sept heures pile ?"}
+   ],
+   "choix": [
+    {"t": "Sí, sin problema. Vivo cerca y el metro abre a las seis.", "fr": "Oui, sans problème. J'habite tout près et le métro ouvre à six heures.", "va": "desde"},
+    {"t": "Sí. Aunque tenga que levantarme a las cinco y media, estaré aquí.", "fr": "Oui. Même si je dois me lever à cinq heures et demie, je serai là.", "va": "desde"},
+    {"faux": true, "t": "Sí, voy a me levantar temprano.", "fr": "Oui, je vais me lever tôt.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "«Voy a levantarme», se dice. Pero dime: ¿a las siete en punto, seguro?", "fr": "On dit « voy a levantarme ». Mais dis-moi : à sept heures pile, c'est sûr ?"}],
+     "aide": {"fr": "<b>Le pronom se colle à l'infinitif</b> (ou se place avant le verbe conjugué) : « voy a levantarme » ou « me voy a levantar », jamais « voy a me levantar »."}}
+   ]
+  },
+  "finde": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "surprise", "t": "¿Los fines de semana? ¡Casi nadie me los pide! Los sábados hay comidas y cenas. ¿Vendrías los dos días enteros?", "fr": "Les week-ends ? Presque personne ne me les demande ! Le samedi, il y a le déjeuner et le dîner. Tu viendrais les deux jours entiers ?"}
+   ],
+   "choix": [
+    {"t": "El sábado entero, sí. El domingo preferiría hacer solo las comidas.", "fr": "Le samedi entier, oui. Le dimanche, je préférerais ne faire que le déjeuner.", "va": "desde",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Me parece justo. El domingo por la tarde, a descansar.", "fr": "Ça me paraît juste. Le dimanche après-midi, repos."}]},
+    {"t": "Sí, los dos días. Así recupero las horas del martes y del jueves.", "fr": "Oui, les deux jours. Comme ça, je rattrape les heures du mardi et du jeudi.", "va": "desde",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Pues me salvas la vida, que los domingos siempre me falta gente.", "fr": "Alors tu me sauves la vie : le dimanche, il me manque toujours du monde."}]},
+    {"faux": true, "t": "Sí, puedo trabajar todo el weekend.", "fr": "Oui, je peux travailler tout le week-end.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "¿El «weekend»? Aquí decimos «el fin de semana», o «el finde». ¿Los dos días, entonces?", "fr": "Le « weekend » ? Ici, on dit « el fin de semana », ou « el finde ». Les deux jours, alors ?"}],
+     "aide": {"fr": "<b>Le week-end = el fin de semana.</b> L'espagnol n'a pas emprunté le mot anglais comme le français."}}
+   ]
+  },
+  "cambio": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "t": "Habla con tu compañero del turno de mañana: creo que a él le interesan las cenas. ¿Quieres que se lo comente yo?", "fr": "Parle à ton collègue du service du matin : je crois que les dîners l'intéressent. Tu veux que je lui en parle ?"}
+   ],
+   "choix": [
+    {"t": "Prefiero hablar yo primero con él, y luego te lo confirmamos.", "fr": "Je préfère lui parler d'abord moi-même, et ensuite nous te le confirmons.", "va": "desde",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Mejor así: entre vosotros os entendéis.", "fr": "C'est mieux comme ça : entre vous, vous vous comprenez."}]},
+    {"t": "Sí, por favor. Si se lo pides tú, seguro que acepta.", "fr": "Oui, s'il te plaît. Si c'est toi qui le lui demandes, il acceptera sûrement.", "va": "desde",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Vale, esta tarde hablo con él.", "fr": "D'accord, je lui parle ce soir."}]},
+    {"faux": true, "t": "Sí, voy a hablar con mi colega.", "fr": "Oui, je vais parler à mon collègue.",
+     "puis": [{"qui": "kuechenchefin", "air": "surprise", "t": "¿Tu colega? ¿Ya sois tan amigos? En el trabajo decimos «compañero».", "fr": "Ton « colega » ? Vous êtes déjà si copains ? Au travail, on dit « compañero »."}],
+     "aide": {"fr": "<b>Un collègue de travail = un compañero (de trabajo).</b> En Espagne, « colega » veut surtout dire « pote »."}}
+   ]
+  },
+  "desde": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "question", "t": "¿Y desde cuándo lo necesitas?", "fr": "Et à partir de quand en as-tu besoin ?"}
+   ],
+   "choix": [
+    {"t": "El curso empieza el día dos, así que a partir de la semana que viene.", "fr": "Le cours commence le deux, donc à partir de la semaine prochaine.", "va": "cuadrante"},
+    {"t": "Desde la semana que viene, cuando empiecen las clases.", "fr": "À partir de la semaine prochaine, quand les cours commenceront.", "va": "cuadrante"},
+    {"faux": true, "t": "Cuando empezará el curso, la semana próxima.", "fr": "Quand le cours commencera, la semaine prochaine.",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "«Cuando empiece», no «cuando empezará»… ¡Ya ves que ese curso hace falta! ¿Desde cuándo, entonces?", "fr": "« Cuando empiece », pas « cuando empezará »… Tu vois que ce cours est nécessaire ! À partir de quand, alors ?"}],
+     "aide": {"fr": "<b>Après « cuando », pour le futur : le subjonctif.</b> « Cuando empiece el curso », jamais « cuando empezará »."}}
+   ]
+  },
+  "cuadrante": {
+   "dit": [
+    {"si": {"op": "manana"}, "qui": "kuechenchefin", "air": "sourire", "t": "Pues la semana que viene, martes y jueves entras a las 7 y sales a las 3. El resto, como siempre.", "dit": "Pues la semana que viene, martes y jueves entras a las siete y sales a las tres. El resto, como siempre.", "fr": "Alors la semaine prochaine, mardi et jeudi, tu commences à 7 h et tu finis à 15 h. Le reste, comme d'habitude."},
+    {"si": {"op": "finde"}, "qui": "kuechenchefin", "air": "sourire", "t": "Pues la semana que viene libras martes y jueves por la tarde, y vienes el fin de semana.", "fr": "Alors la semaine prochaine, tu es libre mardi et jeudi soir, et tu viens le week-end."},
+    {"si": {"op": "cambio"}, "qui": "kuechenchefin", "air": "sourire", "t": "Pues si tu compañero está de acuerdo, la semana que viene tú haces sus mañanas y él tus tardes.", "fr": "Alors, si ton collègue est d'accord, la semaine prochaine tu fais ses matins et lui tes soirs."},
+    {"qui": "kuechenchefin", "air": "question", "t": "¿Alguna duda?", "fr": "Une question ?"}
+   ],
+   "choix": [
+    {"t": "Solo una: ¿voy a cobrar lo mismo que ahora?", "fr": "Une seule : est-ce que je vais toucher la même chose que maintenant ?", "va": "sueldo"},
+    {"t": "No, está todo claro. ¿Dónde podré ver el nuevo horario?", "fr": "Non, tout est clair. Où pourrai-je voir le nouvel horaire ?", "va": "final"},
+    {"faux": true, "t": "Sí: ¿cuánto voy a tocar al mes?", "fr": "Oui : combien vais-je toucher par mois ?",
+     "puis": [{"qui": "kuechenchefin", "air": "surprise", "t": "¿Tocar? ¿El qué, la guitarra? Ah, cuánto vas a cobrar…", "fr": "« Tocar » ? Quoi donc, la guitare ? Ah, combien tu vas gagner…"}],
+     "aide": {"fr": "<b>Toucher un salaire = cobrar.</b> « Tocar », c'est toucher avec la main ou jouer d'un instrument. « ¿Voy a cobrar lo mismo? »"}}
+   ]
+  },
+  "sueldo": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "t": "Las mismas horas, el mismo sueldo. Eso no cambia.", "fr": "Les mêmes heures, le même salaire. Ça ne change pas."},
+    {"si": {"op": "finde"}, "qui": "kuechenchefin", "air": "sourire", "t": "Y los domingos se pagan un poco más, así que sales ganando.", "fr": "Et le dimanche est un peu mieux payé, donc tu y gagnes."}
+   ],
+   "choix": [
+    {"t": "Perfecto, entonces no tengo más preguntas. ¿Cuándo sale el cuadrante?", "fr": "Parfait, alors je n'ai plus de questions. Quand le planning sort-il ?", "va": "final"},
+    {"t": "Me parece muy bien. ¿Dónde podré ver el nuevo horario?", "fr": "Ça me va très bien. Où pourrai-je voir le nouvel horaire ?", "va": "final"}
+   ]
+  },
+  "final": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "t": "El viernes cuelgo el cuadrante nuevo al lado de la cámara frigorífica, como siempre.", "fr": "Vendredi, j'affiche le nouveau planning à côté de la chambre froide, comme d'habitude."},
+    {"qui": "kuechenchefin", "air": "sourire", "t": "Y mucho ánimo con el curso. ¡Dentro de un año me discutes las recetas en un español perfecto!", "fr": "Et bon courage pour le cours. Dans un an, tu contesteras mes recettes dans un espagnol parfait !"}
+   ],
+   "choix": [
+    {"t": "Muchas gracias por tu comprensión. Te prometo que no llegaré tarde ni un día.", "fr": "Merci beaucoup de ta compréhension. Je te promets que je n'arriverai pas en retard un seul jour.", "va": null,
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Eso espero. ¡Venga, que nos quedan las cenas de hoy!", "fr": "J'espère bien. Allez, il nous reste le dîner de ce soir !"}]},
+    {"t": "Gracias, de verdad. En cuanto sepa un poco más, te lo cuento todo en español.", "fr": "Merci, vraiment. Dès que j'en saurai un peu plus, je te raconte tout en espagnol.", "va": null,
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "¡Pero si ya lo haces! Venga, que nos quedan las cenas de hoy.", "fr": "Mais tu le fais déjà ! Allez, il nous reste le dîner de ce soir."}]},
+    {"faux": true, "t": "Gracias. Espero que el curso va a ser bien.", "fr": "Merci. J'espère que le cours va bien se passer.",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "«Espero que vaya bien», se dice. Y sí, irá muy bien, ya verás.", "fr": "On dit « espero que vaya bien ». Et oui, il se passera très bien, tu verras."}],
+     "aide": {"fr": "<b>« Espero que » demande le subjonctif</b>, et « bien se passer » se dit « ir bien » : « Espero que el curso vaya bien »."}}
+   ]
+  }
+ }
+}

@@ -1,0 +1,150 @@
+{
+ "id": "b1-urgences",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Appeler les urgences"},
+ "intro": {"fr": "Ta voisine âgée est tombée dans l'escalier de ton immeuble, à Berlin. Tu appelles le 112 et tu réponds aux questions du standard."},
+ "personnes": ["b13_notruf"],
+ "debut": "ort",
+ "noeuds": {
+  "ort": {
+   "dit": [
+    {"recit": {"fr": "Dans l'escalier de ton immeuble, ta voisine, Frau Krüger, est tombée. Elle ne peut pas se relever. Tu composes le 112."}},
+    {"qui": "b13_notruf", "air": "attentive", "t": "Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Notfallort?", "fr": "Urgences, pompiers et secours. Où se trouve exactement l'urgence ?"}
+   ],
+   "choix": [
+    {"t": "Weserstraße zweiundvierzig in Neukölln. Wir sind im Treppenhaus, im dritten Stock.", "fr": "Weserstraße quarante-deux, à Neukölln. Nous sommes dans la cage d'escalier, au troisième étage.", "va": "was",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Weserstraße 42 in Neukölln, Treppenhaus, dritter Stock. Verstanden.", "dit": "Weserstraße zweiundvierzig in Neukölln, Treppenhaus, dritter Stock. Verstanden.", "fr": "Weserstraße 42 à Neukölln, cage d'escalier, troisième étage. Compris."}]},
+    {"t": "In Berlin-Neukölln, Weserstraße zweiundvierzig. Meine Nachbarin liegt im Treppenhaus, im dritten Stock.", "fr": "À Berlin-Neukölln, Weserstraße quarante-deux. Ma voisine est étendue dans la cage d'escalier, au troisième étage.", "va": "was",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Weserstraße 42, dritter Stock, im Treppenhaus. Danke.", "dit": "Weserstraße zweiundvierzig, dritter Stock, im Treppenhaus. Danke.", "fr": "Weserstraße 42, troisième étage, dans la cage d'escalier. Merci."}]},
+    {"faux": true, "t": "Ich brauche ein Krankenhaus!", "fr": "J'ai besoin d'un hôpital !",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "Ein Krankenhaus? Sie brauchen einen Rettungswagen, richtig? Sagen Sie mir bitte zuerst, wo Sie sind.", "fr": "Un hôpital ? Vous avez besoin d'une ambulance, c'est ça ? Dites-moi d'abord où vous êtes, s'il vous plaît."}],
+     "aide": {"fr": "<b>« das Krankenhaus »</b>, c'est l'hôpital. Ce qu'on demande, c'est « einen Krankenwagen » ou « einen Rettungswagen ». Et au 112, on commence par l'adresse : la rue, le numéro, l'étage."}},
+    {"repete": true, "t": "Entschuldigung, können Sie das bitte wiederholen?", "fr": "Excusez-moi, vous pouvez répéter, s'il vous plaît ?", "va": "ort",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Natürlich. Wo sind Sie? Straße und Hausnummer, bitte.", "fr": "Bien sûr. Où êtes-vous ? La rue et le numéro, s'il vous plaît."}]}
+   ]
+  },
+  "was": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Was ist passiert?", "fr": "Que s'est-il passé ?"}],
+   "choix": [
+    {"t": "Meine Nachbarin ist auf der Treppe gestürzt. Sie kann nicht mehr aufstehen.", "fr": "Ma voisine est tombée dans l'escalier. Elle n'arrive plus à se relever.", "va": "wach",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Gut, dass Sie anrufen. Ich schicke sofort einen Rettungswagen los. Bleiben Sie bitte am Telefon.", "fr": "Vous avez bien fait d'appeler. J'envoie tout de suite une ambulance. Restez en ligne, s'il vous plaît."}]},
+    {"t": "Eine ältere Frau aus meinem Haus ist die Treppe hinuntergefallen. Sie liegt auf dem Boden.", "fr": "Une dame âgée de mon immeuble est tombée dans l'escalier. Elle est étendue par terre.", "va": "wach",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "In Ordnung. Der Rettungswagen fährt gleich los. Bleiben Sie bitte am Telefon.", "fr": "D'accord. L'ambulance part tout de suite. Restez en ligne, s'il vous plaît."}]},
+    {"faux": true, "t": "Meine Nachbarin hat auf der Treppe gefallen.", "fr": "Ma voisine « a tombé » dans l'escalier.",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "Sie ist gestürzt, meinen Sie? Auf der Treppe?", "fr": "Elle est tombée, vous voulez dire ? Dans l'escalier ?"}],
+     "aide": {"fr": "<b>« fallen » et « stürzen » forment le Perfekt avec « sein »</b>, comme en français : « Sie ist gefallen », « Sie ist gestürzt »."}}
+   ]
+  },
+  "wach": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Ist sie bei Bewusstsein? Spricht sie mit Ihnen?", "fr": "Est-elle consciente ? Est-ce qu'elle vous parle ?"}],
+   "choix": [
+    {"t": "Ja, sie ist wach und spricht mit mir. Aber sie hat starke Schmerzen im Bein.", "fr": "Oui, elle est éveillée et elle me parle. Mais elle a très mal à la jambe.", "pose": {"wo": "bein"}, "va": "blutung",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Dass sie spricht, ist ein gutes Zeichen.", "fr": "Qu'elle parle, c'est bon signe."}]},
+    {"t": "Ja, sie antwortet mir. Sie sagt, dass ihr die Hüfte sehr wehtut.", "fr": "Oui, elle me répond. Elle dit qu'elle a très mal à la hanche.", "pose": {"wo": "huefte"}, "va": "blutung",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Gut, dass sie antwortet. Das ist ein gutes Zeichen.", "fr": "C'est bien qu'elle réponde. C'est bon signe."}]},
+    {"faux": true, "t": "Ja, sie ist bewusst.", "fr": "Oui, elle est « consciente » (mot mal choisi).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "Sie meinen, sie ist bei Bewusstsein? Sie antwortet Ihnen also?", "fr": "Vous voulez dire qu'elle est consciente ? Elle vous répond, donc ?"}],
+     "aide": {"fr": "<b>« bewusst »</b> veut dire « conscient de quelque chose » ou « exprès ». Pour une personne qui n'a pas perdu connaissance : « Sie ist bei Bewusstsein », ou tout simplement « Sie ist wach »."}},
+    {"faux": true, "t": "Ja, aber sie hat Schmerzen auf dem Bein.", "fr": "Oui, mais elle a mal « sur la jambe ».",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Schmerzen im Bein, verstehe. Und sie ist wach?", "fr": "Mal à la jambe, je comprends. Et elle est éveillée ?"}],
+     "aide": {"fr": "<b>La douleur se dit avec « in » :</b> « Schmerzen im Bein », « im Rücken ». On dit aussi : « Ihr tut das Bein weh. »"}}
+   ]
+  },
+  "blutung": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Atmet sie normal? Und blutet sie irgendwo?", "fr": "Respire-t-elle normalement ? Et est-ce qu'elle saigne quelque part ?"}],
+   "choix": [
+    {"t": "Sie atmet normal. Aber sie blutet ein bisschen am Kopf.", "fr": "Elle respire normalement. Mais elle saigne un peu à la tête.", "pose": {"blut": "ja"}, "va": "druck"},
+    {"t": "Ja, sie atmet ruhig. Und nein, ich sehe kein Blut.", "fr": "Oui, elle respire calmement. Et non, je ne vois pas de sang.", "pose": {"blut": "nein"}, "va": "alter",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Sehr gut.", "fr": "Très bien."}]},
+    {"t": "Sie atmet normal, aber ihr Knie blutet.", "fr": "Elle respire normalement, mais son genou saigne.", "pose": {"blut": "ja"}, "va": "druck"}
+   ]
+  },
+  "druck": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "Nehmen Sie ein sauberes Tuch und drücken Sie es fest auf die Wunde. Haben Sie so etwas in der Nähe?", "fr": "Prenez un linge propre et appuyez-le fermement sur la plaie. Avez-vous quelque chose comme ça à portée de main ?"}],
+   "choix": [
+    {"t": "Ja, ich habe ein sauberes Handtuch. Ich drücke es jetzt auf die Wunde.", "fr": "Oui, j'ai une serviette propre. Je l'appuie sur la plaie maintenant.", "va": "alter",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Genau so. Drücken Sie weiter und lassen Sie nicht los.", "fr": "C'est exactement ça. Continuez d'appuyer et ne relâchez pas."}]},
+    {"t": "Ich habe nur meinen Schal. Geht das auch?", "fr": "Je n'ai que mon écharpe. Ça va aussi ?", "va": "alter",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Ja, das geht. Fest drücken und nicht loslassen.", "fr": "Oui, ça va. Appuyez fort et ne relâchez pas."}]},
+    {"faux": true, "t": "Ja, ich habe eine Serviette.", "fr": "Oui, j'ai une serviette (de table).",
+     "puis": [{"qui": "b13_notruf", "air": "surprise", "t": "Eine Serviette? Die ist zu klein. Haben Sie ein Handtuch oder ein sauberes T-Shirt?", "fr": "Une serviette de table ? C'est trop petit. Avez-vous une serviette de toilette ou un tee-shirt propre ?"}],
+     "aide": {"fr": "<b>« die Serviette »</b>, en allemand, c'est seulement la serviette de table, en papier ou en tissu. La serviette de toilette se dit « das Handtuch »."}}
+   ]
+  },
+  "alter": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Wie alt ist Ihre Nachbarin ungefähr? Und wissen Sie, ob sie Medikamente nimmt?", "fr": "Quel âge a votre voisine, à peu près ? Et savez-vous si elle prend des médicaments ?"}],
+   "choix": [
+    {"t": "Sie ist ungefähr achtzig. Ich glaube, sie hat Diabetes.", "fr": "Elle a environ quatre-vingts ans. Je crois qu'elle est diabétique.", "pose": {"medik": "ja"}, "va": "decke",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Danke, das ist wichtig. Ich gebe es an die Sanitäter weiter.", "fr": "Merci, c'est important. Je le transmets aux secouristes."}]},
+    {"t": "Etwa achtzig Jahre alt. Welche Medikamente sie nimmt, weiß ich leider nicht.", "fr": "Environ quatre-vingts ans. Quels médicaments elle prend, je ne le sais malheureusement pas.", "pose": {"medik": "nein"}, "va": "decke",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Kein Problem. Das klären die Kollegen vor Ort.", "fr": "Pas de problème. Les collègues verront ça sur place."}]},
+    {"t": "Über achtzig, glaube ich. Sie nimmt Tabletten für das Herz, das hat sie mir einmal erzählt.", "fr": "Plus de quatre-vingts ans, je crois. Elle prend des comprimés pour le cœur, elle me l'a raconté un jour.", "pose": {"medik": "ja"}, "va": "decke",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Danke, das ist wichtig. Ich gebe es an die Sanitäter weiter.", "fr": "Merci, c'est important. Je le transmets aux secouristes."}]},
+    {"faux": true, "t": "Sie hat ungefähr achtzig Jahre.", "fr": "Elle « a » environ quatre-vingts ans.",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Sie ist ungefähr achtzig, gut. Und nimmt sie Medikamente?", "fr": "Elle a environ quatre-vingts ans, bien. Et prend-elle des médicaments ?"}],
+     "aide": {"fr": "<b>L'âge se dit avec « sein »</b>, jamais avec « haben » : « Sie ist achtzig » ou « Sie ist achtzig Jahre alt »."}}
+   ]
+  },
+  "decke": {
+   "dit": [
+    {"qui": "b13_notruf", "air": "attentive", "t": "Jetzt ist eines wichtig: Bewegen Sie sie nicht, auch wenn sie aufstehen möchte. Und decken Sie sie zu, damit ihr nicht kalt wird.", "fr": "Maintenant, une chose est importante : ne la déplacez pas, même si elle veut se lever. Et couvrez-la pour qu'elle n'ait pas froid."},
+    {"si": {"wo": "bein"}, "qui": "b13_notruf", "air": "attentive", "t": "Das Bein soll ganz ruhig liegen bleiben.", "fr": "La jambe doit rester parfaitement immobile."},
+    {"si": {"wo": "huefte"}, "qui": "b13_notruf", "air": "attentive", "t": "Bei Schmerzen in der Hüfte ist das besonders wichtig.", "fr": "Avec une douleur à la hanche, c'est particulièrement important."}
+   ],
+   "choix": [
+    {"t": "In Ordnung, ich bewege sie nicht. Ich hole schnell eine Decke aus meiner Wohnung.", "fr": "D'accord, je ne la déplace pas. Je vais vite chercher une couverture chez moi.", "va": "tuer",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Gut. Machen Sie das und gehen Sie gleich wieder zu ihr.", "fr": "Bien. Faites-le et retournez tout de suite auprès d'elle."}]},
+    {"t": "Verstanden. Ich lege meine Jacke über sie. Darf ich ihr etwas zu trinken geben?", "fr": "Compris. Je mets ma veste sur elle. Est-ce que je peux lui donner quelque chose à boire ?", "va": "tuer",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Nein, bitte nichts zu essen und nichts zu trinken. Die Jacke ist gut.", "fr": "Non, rien à manger ni à boire, s'il vous plaît. La veste, c'est bien."}]},
+    {"faux": true, "t": "Gut, ich bringe sie in ihr Bett. Dort ist es wärmer.", "fr": "Bien, je la mets dans son lit. Il y fait plus chaud.",
+     "puis": [{"qui": "b13_notruf", "air": "surprise", "t": "Nein, bitte nicht! Lassen Sie sie liegen, wo sie ist. Nur zudecken.", "fr": "Non, surtout pas ! Laissez-la étendue là où elle est. Couvrez-la seulement."}],
+     "aide": {"fr": "<b>« Bewegen Sie sie nicht »</b> veut dire « ne la déplacez pas », et « zudecken », c'est couvrir. Réponds que tu la laisses où elle est : « Ich bewege sie nicht. »"}}
+   ]
+  },
+  "tuer": {
+   "dit": [
+    {"si": {"blut": "ja"}, "qui": "b13_notruf", "air": "attentive", "t": "Und drücken Sie weiter auf die Wunde.", "fr": "Et continuez d'appuyer sur la plaie."},
+    {"qui": "b13_notruf", "air": "question", "t": "Der Rettungswagen ist unterwegs. Kann jemand unten die Haustür aufmachen?", "fr": "L'ambulance est en route. Quelqu'un peut-il ouvrir la porte de l'immeuble, en bas ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ein Nachbar aus dem ersten Stock ist gerade gekommen. Er geht runter und wartet an der Tür.", "fr": "Oui, un voisin du premier étage vient d'arriver. Il descend et attend à la porte.", "va": "ende",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Sehr gut. Er soll den Kollegen den Weg zeigen.", "fr": "Très bien. Qu'il montre le chemin aux collègues."}]},
+    {"t": "Nein, ich bin mit ihr allein. Und die Haustür ist abgeschlossen.", "fr": "Non, il n'y a qu'elle et moi. Et la porte de l'immeuble est fermée à clé.", "va": "klingel"},
+    {"faux": true, "t": "Ja, ich warte Sie unten.", "fr": "Oui, je vous attends en bas.",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "Sie warten auf uns? Bleiben Sie lieber bei Ihrer Nachbarin. Ist noch jemand im Haus?", "fr": "Vous nous attendez ? Restez plutôt près de votre voisine. Y a-t-il quelqu'un d'autre dans l'immeuble ?"}],
+     "aide": {"fr": "<b>« attendre quelqu'un » se dit « auf jemanden warten »</b> : « Ich warte auf Sie. » Et ici, mieux vaut rester près d'elle : dis qui peut ouvrir, ou que la porte est fermée."}}
+   ]
+  },
+  "klingel": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "Kein Problem. Bei wem sollen die Kollegen klingeln? Und können Sie die Tür von oben öffnen?", "fr": "Pas de problème. Chez qui les collègues doivent-ils sonner ? Et pouvez-vous ouvrir la porte d'en haut ?"}],
+   "choix": [
+    {"t": "Sie können bei Krüger klingeln, im dritten Stock. Ihre Wohnungstür ist offen, ich mache dann von dort auf.", "fr": "Ils peuvent sonner chez Krüger, au troisième étage. La porte de son appartement est ouverte, j'ouvrirai de là.", "va": "ende",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Gut, bei Krüger klingeln. Ich gebe das weiter.", "fr": "Bien, sonner chez Krüger. Je transmets."}]},
+    {"t": "Bei mir, im dritten Stock. Mein Name steht an der Klingel. Ich mache sofort auf, wenn es klingelt.", "fr": "Chez moi, au troisième étage. Mon nom est sur la sonnette. J'ouvre tout de suite quand ça sonne.", "va": "ende",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Gut, bei Ihnen im dritten Stock. Ich gebe das weiter.", "fr": "Bien, chez vous au troisième étage. Je transmets."}]}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "L'opérateur reste en ligne avec toi. Quelques minutes plus tard, tu entends une sirène dans la rue."}},
+    {"qui": "b13_notruf", "air": "sourire", "t": "Die Kollegen müssten jetzt bei Ihnen sein. Hören Sie den Wagen schon?", "fr": "Les collègues devraient être chez vous maintenant. Vous entendez déjà le véhicule ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich höre ihn. Die Sanitäter kommen gerade die Treppe hoch. Vielen Dank für Ihre Hilfe!", "fr": "Oui, je l'entends. Les secouristes montent l'escalier en ce moment. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [
+      {"si": {"medik": "ja"}, "qui": "b13_notruf", "air": "attentive", "t": "Sagen Sie den Kollegen bitte gleich, welche Medikamente sie nimmt.", "fr": "Dites tout de suite aux collègues quels médicaments elle prend, s'il vous plaît."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "Sie haben das sehr gut gemacht. Alles Gute für Ihre Nachbarin!", "fr": "Vous avez très bien réagi. Bon rétablissement à votre voisine !"}]},
+    {"t": "Ja, sie sind da. Danke, dass Sie am Telefon geblieben sind.", "fr": "Oui, ils sont là. Merci d'être resté en ligne.", "va": null,
+     "puis": [
+      {"si": {"medik": "ja"}, "qui": "b13_notruf", "air": "attentive", "t": "Sagen Sie den Kollegen bitte gleich, welche Medikamente sie nimmt.", "fr": "Dites tout de suite aux collègues quels médicaments elle prend, s'il vous plaît."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "Sehr gern. Sie haben das sehr gut gemacht. Alles Gute für Ihre Nachbarin!", "fr": "Avec plaisir. Vous avez très bien réagi. Bon rétablissement à votre voisine !"}]},
+    {"faux": true, "t": "Ja, die Ambulanz ist angekommen. Danke für Ihre Hilfe!", "fr": "Oui, « l'ambulance » est arrivée. Merci pour votre aide !",
+     "puis": [{"qui": "b13_notruf", "air": "amuse", "t": "Die Ambulanz? Ach so, Sie meinen den Rettungswagen. Gut, dass er da ist!", "fr": "« Die Ambulanz » ? Ah, vous voulez dire l'ambulance. Tant mieux, elle est là !"}],
+     "aide": {"fr": "<b>En Allemagne, « die Ambulanz »</b> est un service de consultation dans un hôpital. Le véhicule se dit « der Krankenwagen » ou « der Rettungswagen »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné l'adresse, décrit l'état de ta voisine et suivi les consignes jusqu'à l'arrivée des secours."}
+}

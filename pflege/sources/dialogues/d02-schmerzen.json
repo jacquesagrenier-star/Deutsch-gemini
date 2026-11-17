@@ -1,0 +1,151 @@
+{
+ "id": "d02-schmerzen",
+ "numero": 2,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["brandt"],
+ "titre": {"t": "Schmerzen erfragen", "fr": "La douleur, de 0 à 10"},
+ "intro": {"fr": "Dix heures. {brandt} sonne : sa hanche lui fait mal. Tu joues {elif} : fais-lui dire où il a mal, combien sur l'échelle de 0 à 10, comment et depuis quand, propose ce qui est prescrit et dis quand tu reviens."},
+ "but": {"fr": "Localiser, chiffrer et décrire une douleur ; proposer l'antalgique prescrit « si besoin » ; installer le patient ; prévoir la réévaluation et la noter."},
+ "grammaire": ["g05", "g06", "g09"],
+ "telc": ["oral-1", "oral-3", "hoeren", "schreiben"],
+ "relire_notes": {"fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit, dans le cadre de compétence d'une assistante de soins en cours de reconnaissance ; délai de réévaluation (30 min après une prise orale ici)."},
+ "redemittel": [
+  {"t": "Haben Sie Schmerzen?", "fr": "Avez-vous mal ?", "fonction": "demander"},
+  {"t": "Wo genau tut es weh?", "fr": "Où avez-vous mal, exactement ?", "fonction": "demander"},
+  {"t": "Können Sie mir zeigen, wo es wehtut?", "fr": "Pouvez-vous me montrer où vous avez mal ?", "fonction": "demander"},
+  {"t": "Auf einer Skala von 0 bis 10: Wie stark sind Ihre Schmerzen jetzt?", "dit": "Auf einer Skala von null bis zehn: Wie stark sind Ihre Schmerzen jetzt?", "fr": "Sur une échelle de 0 à 10, quelle est l'intensité de votre douleur maintenant ?", "fonction": "demander"},
+  {"t": "Ist der Schmerz eher stechend oder eher dumpf?", "fr": "La douleur est-elle plutôt lancinante (en coups de couteau) ou plutôt sourde ?", "fonction": "demander"},
+  {"t": "Seit wann haben Sie die Schmerzen?", "fr": "Depuis quand avez-vous mal ?", "fonction": "demander"},
+  {"t": "Der Arzt hat Ihnen ein Schmerzmittel bei Bedarf verordnet.", "fr": "Le médecin vous a prescrit un antidouleur si besoin.", "relire": true, "relire_note": "Formule courante ; vérifier qu'elle convient pour une prescription « bei Bedarf ».", "fonction": "annoncer"},
+  {"t": "Ich komme in einer halben Stunde wieder und frage noch einmal nach.", "fr": "Je reviens dans une demi-heure et je vous redemande.", "relire": true, "relire_note": "Délai de réévaluation après un antalgique oral.", "fonction": "annoncer"}
+ ],
+ "debut": "klingel",
+ "noeuds": {
+  "klingel": {
+   "dit": [
+    {"recit": {"fr": "Dix heures. Au-dessus de la chambre douze, la lampe de la sonnette s'allume. {elif} entre."}},
+    {"qui": "brandt", "air": "attentive", "t": "Ach, {elif}, gut, dass Sie kommen. Es tut wieder so weh.", "fr": "Ah, {elif}, heureusement que vous venez. Ça fait de nouveau si mal."}
+   ],
+   "choix": [
+    {"t": "Das tut mir leid, {brandt}. Wo genau tut es weh?", "fr": "Je suis désolée, {brandt:voc}. Où avez-vous mal, exactement ?", "va": "skala",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.", "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou."}]},
+    {"t": "Sie haben Schmerzen? Können Sie mir zeigen, wo es wehtut?", "fr": "Vous avez mal ? Pouvez-vous me montrer où ?", "va": "skala",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.", "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou."}]},
+    {"faux": true, "t": "Wo haben Sie weh?", "fr": "Où « avez-vous mal » ? (mal dit)",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Wo ich … was habe?", "fr": "Où j'ai… quoi ?"}],
+     "aide": {"fr": "<b>« weh » n'est pas un nom : on dit « Wo tut es weh? » ou « Wo haben Sie Schmerzen? ».</b> « wehtun » est un verbe (es tut weh) ; « der Schmerz, die Schmerzen » est le nom."}}
+   ]
+  },
+  "skala": {
+   "dit": [
+    {"recit": {"fr": "{elif} veut un chiffre pour le dossier."}}
+   ],
+   "choix": [
+    {"t": "Auf einer Skala von 0 bis 10: 0 heißt keine Schmerzen, 10 die stärksten Schmerzen, die Sie sich vorstellen können. Wie stark sind die Schmerzen jetzt?", "dit": "Auf einer Skala von null bis zehn: null heißt keine Schmerzen, zehn die stärksten Schmerzen, die Sie sich vorstellen können. Wie stark sind die Schmerzen jetzt?", "fr": "Sur une échelle de 0 à 10 : 0, c'est pas de douleur, 10, la pire douleur que vous puissiez imaginer. Quelle est l'intensité de la douleur maintenant ?", "va": "art",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.", "fr": "Hum… un sept. Et quand je bouge, un huit."}]},
+    {"t": "Wie stark sind die Schmerzen, von 0 bis 10? 0 ist kein Schmerz, 10 ist der schlimmste Schmerz.", "dit": "Wie stark sind die Schmerzen, von null bis zehn? Null ist kein Schmerz, zehn ist der schlimmste Schmerz.", "fr": "Quelle est l'intensité de la douleur, de 0 à 10 ? 0, c'est pas de douleur, 10, la pire douleur.", "va": "art",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.", "fr": "Hum… un sept. Et quand je bouge, un huit."}]},
+    {"faux": true, "t": "Wie viel Schmerzen haben Sie?", "fr": "Vous avez combien de douleur ?",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Viel! Sehr viel!", "fr": "Beaucoup ! Énormément !"}],
+     "aide": {"fr": "<b>Pour le dossier, il faut un chiffre : demande avec l'échelle.</b> « Auf einer Skala von 0 bis 10 … » : explique ce que veulent dire 0 et 10, puis demande « Wie stark sind die Schmerzen jetzt? »."}}
+   ]
+  },
+  "art": {
+   "dit": [],
+   "choix": [
+    {"t": "Ist der Schmerz eher stechend oder eher dumpf?", "fr": "La douleur est-elle plutôt lancinante, en coups de couteau, ou plutôt sourde ?", "va": "seit",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Stechend. Wie ein Messer, wenn ich das Bein bewege.", "fr": "Lancinante. Comme un couteau, quand je bouge la jambe."}]},
+    {"t": "Wie fühlt sich der Schmerz an? Sticht er, brennt er, oder drückt er?", "fr": "Comment est la douleur ? Elle pique, elle brûle, ou elle appuie ?", "va": "seit",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Er sticht. Wie ein Messer, wenn ich das Bein bewege.", "fr": "Elle pique. Comme un couteau, quand je bouge la jambe."}]},
+    {"repete": true, "t": "Entschuldigung, können Sie das bitte noch einmal sagen?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "art",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Eine Sieben, hab ich gesagt. Und wenn ich mich bewege, eine Acht.", "fr": "Un sept, j'ai dit. Et quand je bouge, un huit."}]}
+   ]
+  },
+  "seit": {
+   "dit": [],
+   "choix": [
+    {"t": "Seit wann sind die Schmerzen so stark?", "fr": "Depuis quand la douleur est-elle aussi forte ?", "va": "mittel",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Seit dem Frühstück. Heute Morgen ging's noch.", "fr": "Depuis le petit-déjeuner. Ce matin, ça allait encore."}]},
+    {"t": "Wann haben die starken Schmerzen angefangen?", "fr": "Quand la forte douleur a-t-elle commencé ?", "va": "mittel",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Nach dem Frühstück. Heute Morgen ging's noch.", "fr": "Après le petit-déjeuner. Ce matin, ça allait encore."}]},
+    {"faux": true, "t": "Seit wie lange haben Sie die Schmerzen?", "fr": "« Depuis combien longtemps » avez-vous mal ? (mal dit)",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Seit wie … ? Ach, Sie meinen, seit wann.", "fr": "Depuis comb… ? Ah, vous voulez dire depuis quand."}],
+     "aide": {"fr": "<b>On dit « Seit wann …? » ou « Wie lange schon …? ».</b> « Seit wie lange » est un mélange des deux, que les Allemands remarquent tout de suite."}}
+   ]
+  },
+  "mittel": {
+   "dit": [
+    {"recit": {"fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin »."}, "relire": true, "relire_note": "Une assistante de soins en attente de reconnaissance peut-elle préparer et donner un antalgique prescrit « si besoin » ? Sinon, prévoir qu'elle prévienne Jonas."}
+   ],
+   "choix": [
+    {"t": "{sommer} hat Ihnen ein Schmerzmittel bei Bedarf verordnet. Möchten Sie es haben?", "fr": "{sommer} vous a prescrit un antidouleur si besoin. Vous voulez le prendre ?", "va": "spritze",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ja, bitte. Aber keine Spritze, die mag ich nicht.", "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça."}]},
+    {"t": "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?", "fr": "Vous avez droit à un antidouleur si besoin. Voulez-vous que j'aille le chercher ?", "va": "spritze",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ja, bitte. Aber keine Spritze, die mag ich nicht.", "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça."}]},
+    {"faux": true, "t": "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen.", "fr": "J'ai encore un comprimé d'hier, ici. Vous pouvez le prendre.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Von gestern? Ist die denn überhaupt für mich?", "fr": "D'hier ? Il est seulement pour moi, ce comprimé ?"}],
+     "aide": {"fr": "<b>C'est une faute de soin, pas de langue.</b> On ne donne que ce qui est prescrit à ce patient, préparé pour lui. Dis ce que le médecin a prescrit : « Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet. »"}, "relire": true, "relire_note": "Règle des médicaments : vérifier la formulation de l'aide."}
+   ]
+  },
+  "spritze": {
+   "dit": [],
+   "choix": [
+    {"t": "Keine Sorge, es ist eine Tablette. Ich hole sie Ihnen gleich, mit einem Glas Wasser.", "fr": "Ne vous inquiétez pas, c'est un comprimé. Je vais vous le chercher tout de suite, avec un verre d'eau.", "va": "lage",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na, dann ist ja gut.", "fr": "Bon, alors ça va."}]},
+    {"t": "Das ist keine Spritze, das ist eine Tablette. Ich bringe sie Ihnen sofort.", "fr": "Ce n'est pas une piqûre, c'est un comprimé. Je vous l'apporte tout de suite.", "va": "lage",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na, dann ist ja gut.", "fr": "Bon, alors ça va."}]}
+   ]
+  },
+  "lage": {
+   "dit": [
+    {"recit": {"fr": "{elif} revient avec le comprimé. {brandt} l'avale et soupire. Il est mal installé, de travers dans son lit."}}
+   ],
+   "choix": [
+    {"t": "Soll ich Ihr Kissen anders hinlegen? Vielleicht liegen Sie dann bequemer.", "fr": "Voulez-vous que je remette votre oreiller autrement ? Vous serez peut-être mieux installé.", "va": "zurueck",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Ja, das wäre gut. Aber vorsichtig, bitte.", "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît."}]},
+    {"t": "Darf ich Ihnen helfen, sich ein bisschen anders hinzulegen?", "fr": "Je peux vous aider à vous installer un peu autrement ?", "va": "zurueck",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Ja, das wäre gut. Aber vorsichtig, bitte.", "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît."}]},
+    {"faux": true, "t": "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg.", "fr": "Bougez beaucoup la jambe, et la douleur va partir.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Viel bewegen? Jetzt, wo es so wehtut?", "fr": "Bouger beaucoup ? Maintenant que ça fait si mal ?"}],
+     "aide": {"fr": "<b>Ne promets pas que la douleur va partir, et ne donne pas de consigne de rééducation.</b> Les mouvements après l'opération sont décidés avec la kinésithérapie. Propose plutôt de l'installer confortablement."}, "relire": true, "relire_note": "Mobilisation après prothèse de hanche : vérifier que l'aide est juste."}
+   ]
+  },
+  "zurueck": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich komme in einer halben Stunde wieder und frage Sie noch einmal nach den Schmerzen.", "fr": "Je reviens dans une demi-heure et je vous redemande pour la douleur.", "va": "doku",
+     "relire": true, "relire_note": "Réévaluation 30 min après une prise orale.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut. Und wenn es schlimmer wird, klingle ich.", "fr": "Bien. Et si ça empire, je sonne."}]},
+    {"t": "In 30 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "dit": "In dreißig Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "fr": "Dans 30 minutes, je repasse vous voir. Vous me redonnerez un chiffre.", "va": "doku",
+     "relire": true, "relire_note": "Réévaluation 30 min après une prise orale.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut. Und wenn es schlimmer wird, klingle ich.", "fr": "Bien. Et si ça empire, je sonne."}]}
+   ]
+  },
+  "doku": {
+   "dit": [
+    {"qui": "brandt", "air": "question", "t": "Schreiben Sie das eigentlich alles auf?", "fr": "Au fait, vous notez tout ça ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich trage die Sieben und das Schmerzmittel in Ihre Kurve ein. So weiß auch die Ärztin Bescheid.", "fr": "Oui, je note le sept et l'antidouleur dans votre dossier. Comme ça, le médecin est au courant aussi.", "va": null,
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Ordentlich sind Sie ja, das muss man Ihnen lassen.", "fr": "Vous êtes consciencieuse, il faut bien le reconnaître."}]},
+    {"t": "Ja, alles wird dokumentiert: wo es wehtut, wie stark und welches Medikament Sie bekommen haben.", "fr": "Oui, tout est noté : où vous avez mal, à quelle intensité et quel médicament vous avez reçu.", "va": null,
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Ordentlich sind Sie ja, das muss man Ihnen lassen.", "fr": "Vous êtes consciencieuse, il faut bien le reconnaître."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wo hat {brandt} Schmerzen?", "fr": "Où {brandt} a-t-il mal ?"},
+   "options": [{"t": "An der rechten Hüfte.", "fr": "À la hanche droite."}, {"t": "Am linken Knie.", "fr": "Au genou gauche."}, {"t": "Im Rücken.", "fr": "Dans le dos."}],
+   "juste": 0},
+  {"q": {"t": "Wie stark sind die Schmerzen, wenn er sich bewegt?", "fr": "Quelle est l'intensité de la douleur quand il bouge ?"},
+   "options": [{"t": "Eine Sieben.", "fr": "Sept."}, {"t": "Eine Acht.", "fr": "Huit."}, {"t": "Eine Zehn.", "fr": "Dix."}],
+   "juste": 1},
+  {"q": {"t": "Was möchte {brandt} nicht?", "fr": "Qu'est-ce que {brandt} ne veut pas ?"},
+   "options": [{"t": "Eine Tablette.", "fr": "Un comprimé."}, {"t": "Ein Glas Wasser.", "fr": "Un verre d'eau."}, {"t": "Eine Spritze.", "fr": "Une piqûre."}],
+   "juste": 2}
+ ]
+}

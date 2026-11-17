@@ -1,0 +1,154 @@
+{
+ "id": "b1-orientation",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "L'orientation de ma fille"},
+ "intro": {"fr": "Ta fille Carla est en 4º de la ESO, la dernière année du collège, à Madrid. Tu rencontres sa tutrice pour parler de ce qu'elle fera l'an prochain."},
+ "personnes": ["b13_lehrerin"],
+ "debut": "saludo",
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Un après-midi de février, à l'institut de Carla. La tutrice te reçoit dans une petite salle, un dossier devant elle."}},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Buenas tardes. Pase y siéntese, por favor. Gracias por venir.", "fr": "Bonjour. Entrez et asseyez-vous, je vous en prie. Merci d'être venu (venue)."},
+    {"qui": "b13_lehrerin", "air": "question", "t": "Quería hablar con usted del futuro de Carla, porque este año termina la ESO. ¿Cómo la ve usted en casa?", "fr": "Je voulais vous parler de l'avenir de Carla, parce qu'elle termine la ESO cette année. Comment la trouvez-vous à la maison ?"}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. La veo bien, aunque últimamente estudia hasta muy tarde.", "fr": "Bonjour. Je la trouve bien, même si ces derniers temps elle étudie jusqu'à très tard.", "va": "notas",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Sí, es un curso con mucho trabajo.", "fr": "Oui, c'est une année très chargée."}]},
+    {"t": "Buenas tardes, gracias por recibirme. Está contenta, pero un poco nerviosa por el año que viene.", "fr": "Bonjour, merci de me recevoir. Elle est contente, mais un peu inquiète pour l'année prochaine.", "va": "notas",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Es normal. Les pasa a casi todos en cuarto.", "fr": "C'est normal. Ça arrive à presque tous en quatrième année."}]},
+    {"faux": true, "t": "¡Hola! ¿Qué tal estás?", "fr": "Salut ! Comment vas-tu ?",
+     "puis": [{"qui": "b13_lehrerin", "air": "surprise", "t": "Ah… bien, gracias. ¿Y usted?", "fr": "Ah… bien, merci. Et vous ?"}],
+     "aide": {"fr": "<b>Lors d'un entretien avec la tutrice, on commence par « usted »</b> : « Buenas tardes, ¿cómo está? ». Le tutoiement vient vite en Espagne, mais c'est à elle de le proposer."}}
+   ]
+  },
+  "notas": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Carla va muy bien en Biología: tiene un nueve. En Lengua le cuesta más, sobre todo escribir textos largos. ¿Lo ha notado usted?", "fr": "Carla réussit très bien en biologie : elle a un neuf. En langue espagnole, c'est plus difficile pour elle, surtout écrire de longs textes. L'avez-vous remarqué ?"}],
+   "choix": [
+    {"t": "Sí, escribir le cuesta mucho. En casa hablamos francés.", "fr": "Oui, écrire lui est très difficile. À la maison, nous parlons français.", "va": "opciones",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Eso lo explica en parte. Pero va mejorando poco a poco.", "fr": "Cela l'explique en partie. Mais elle s'améliore peu à peu."}]},
+    {"t": "Sí. Le encanta la biología, pero lee muy poco en español.", "fr": "Oui. Elle adore la biologie, mais elle lit très peu en espagnol.", "va": "opciones",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Pues leer más la ayudaría mucho.", "fr": "Eh bien, lire davantage l'aiderait beaucoup."}]},
+    {"faux": true, "t": "Sí, lo he remarcado.", "fr": "Oui, je l'ai « souligné ».",
+     "puis": [{"qui": "b13_lehrerin", "air": "perplexe", "t": "¿Remarcado? Ah, quiere decir que lo ha notado.", "fr": "« Remarcado » ? Ah, vous voulez dire que vous l'avez remarqué."}],
+     "aide": {"fr": "<b>« remarcar » est un faux ami</b> : il veut dire souligner, insister sur quelque chose. « Remarquer » se dit « notar » ou « darse cuenta » : « Sí, lo he notado. »"}}
+   ]
+  },
+  "opciones": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "El año que viene Carla tiene dos caminos: el Bachillerato o un ciclo de Formación Profesional de grado medio. ¿Conoce la diferencia?", "fr": "L'année prochaine, Carla a deux voies : le Bachillerato ou un cycle de Formación Profesional de niveau moyen. Connaissez-vous la différence ?"}],
+   "choix": [
+    {"t": "No muy bien. ¿Me la puede explicar, por favor?", "fr": "Pas très bien. Pouvez-vous me l'expliquer, s'il vous plaît ?", "va": "deseo",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Claro. El Bachillerato son dos años y prepara para la universidad. La FP también son dos años, pero es más práctica: se aprende un oficio y se hacen prácticas en una empresa.", "fr": "Bien sûr. Le Bachillerato dure deux ans et prépare à l'université. La FP dure aussi deux ans, mais elle est plus pratique : on apprend un métier et on fait un stage en entreprise."}]},
+    {"t": "Más o menos. El Bachillerato prepara para la universidad y la FP para un trabajo, ¿no?", "fr": "Plus ou moins. Le Bachillerato prépare à l'université et la FP à un emploi, non ?", "va": "deseo",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Exacto. Y después de la FP también se puede seguir estudiando.", "fr": "Exactement. Et après la FP, on peut aussi continuer ses études."}]},
+    {"repete": true, "t": "Perdone, ¿qué significa «FP»?", "fr": "Excusez-moi, que veut dire « FP » ?", "va": "opciones",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Formación Profesional: son estudios prácticos para aprender un oficio. ¿Conoce la diferencia con el Bachillerato?", "fr": "Formación Profesional : ce sont des études pratiques pour apprendre un métier. Connaissez-vous la différence avec le Bachillerato ?"}]}
+   ]
+  },
+  "deseo": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "¿Y qué les gustaría a ustedes para Carla?", "fr": "Et vous, qu'aimeriez-vous pour Carla ?"}],
+   "choix": [
+    {"t": "Queremos que haga el Bachillerato de Ciencias. Quiere ser veterinaria.", "fr": "Nous voulons qu'elle fasse le Bachillerato de sciences. Elle veut être vétérinaire.", "pose": {"voie": "bach"}, "va": "bach",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Me parece una buena idea.", "fr": "Cela me semble une bonne idée."}]},
+    {"t": "Yo pienso más en una FP. A Carla le gusta aprender haciendo cosas.", "fr": "Moi, je pense plutôt à une FP. Carla aime apprendre en faisant.", "pose": {"voie": "fp"}, "va": "fp",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Es una opción muy buena, y poca gente lo sabe.", "fr": "C'est une très bonne option, et peu de gens le savent."}]},
+    {"t": "Todavía no lo sabemos. ¿Usted qué nos aconseja?", "fr": "Nous ne le savons pas encore. Que nous conseillez-vous ?", "va": "consejo",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Vamos a verlo con calma.", "fr": "Voyons cela tranquillement."}]},
+    {"faux": true, "t": "Queremos que hace el Bachillerato.", "fr": "Nous voulons qu'elle fait le Bachillerato.",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Quieren que haga el Bachillerato. Muy bien, ¿y cuál?", "fr": "Vous voulez « que haga » le Bachillerato. Très bien, et lequel ?"}],
+     "aide": {"fr": "<b>Après « querer que », le verbe est au subjonctif</b>, comme en français : « Queremos que haga el Bachillerato. »"}}
+   ]
+  },
+  "bach": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "En Bachillerato hay mucho que estudiar, y al final está la PAU, el examen para entrar en la universidad. En Lengua tendrá que esforzarse. ¿Está dispuesta?", "fr": "Au Bachillerato, il y a beaucoup à étudier, et à la fin il y a la PAU, l'examen d'entrée à l'université. En langue, elle devra faire des efforts. Y est-elle prête ?"}],
+   "choix": [
+    {"t": "Sí, es muy trabajadora. Y vamos a buscar clases particulares de Lengua.", "fr": "Oui, elle est très travailleuse. Et nous allons chercher des cours particuliers de langue.", "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Buena idea. Con ayuda, puede conseguirlo.", "fr": "Bonne idée. Avec de l'aide, elle peut y arriver."}]},
+    {"t": "Creo que sí. Pero ¿qué pasa si luego no tiene nota suficiente para Veterinaria?", "fr": "Je crois que oui. Mais que se passe-t-il si ensuite elle n'a pas la note suffisante pour vétérinaire ?", "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Hay otras carreras de ciencias, y también la FP de grado superior. Siempre hay un camino.", "fr": "Il y a d'autres filières scientifiques à l'université, et aussi la FP de niveau supérieur. Il y a toujours un chemin."}]}
+   ]
+  },
+  "fp": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Después del grado medio se puede hacer un grado superior y, desde ahí, entrar en la universidad. Hay ciclos de laboratorio, de enfermería, de cuidado de animales… ¿Qué le interesaría a Carla?", "fr": "Après le niveau moyen, on peut faire un niveau supérieur et, de là, entrer à l'université. Il y a des cycles de laboratoire, de soins infirmiers, de soins aux animaux… Qu'est-ce qui intéresserait Carla ?"}],
+   "choix": [
+    {"t": "Algo con animales o en un laboratorio. Le encanta la biología.", "fr": "Quelque chose avec les animaux ou dans un laboratoire. Elle adore la biologie.", "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Entonces hay varios ciclos que le pueden gustar.", "fr": "Alors il y a plusieurs cycles qui peuvent lui plaire."}]},
+    {"t": "No lo sé todavía. ¿Puede darme información sobre esos ciclos?", "fr": "Je ne sais pas encore. Pouvez-vous me donner des informations sur ces cycles ?", "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Por supuesto. Luego le doy un folleto con todos los ciclos de Madrid.", "fr": "Bien sûr. Tout à l'heure, je vous donnerai une brochure avec tous les cycles de Madrid."}]}
+   ]
+  },
+  "consejo": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Con sus notas de ciencias, Carla puede hacer el Bachillerato sin problema. Pero si prefiere algo más práctico, hay una FP de laboratorio muy buena. ¿Qué cree que le va mejor a ella?", "fr": "Avec ses notes en sciences, Carla peut faire le Bachillerato sans problème. Mais si elle préfère quelque chose de plus pratique, il y a une très bonne FP de laboratoire. Qu'est-ce qui lui convient le mieux, à votre avis ?"}],
+   "choix": [
+    {"t": "Creo que el Bachillerato. Le gusta estudiar y quiere ir a la universidad.", "fr": "Je crois que c'est le Bachillerato. Elle aime étudier et veut aller à l'université.", "pose": {"voie": "bach"}, "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Yo también la veo en Bachillerato. En Lengua necesitará un poco de ayuda.", "fr": "Moi aussi, je la vois au Bachillerato. En langue, elle aura besoin d'un peu d'aide."}]},
+    {"t": "Quizá la FP. Aprende mejor con las manos que con los libros.", "fr": "Peut-être la FP. Elle apprend mieux avec ses mains qu'avec les livres.", "pose": {"voie": "fp"}, "va": "preocupacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Entonces la FP puede ser un buen camino. Y no cierra ninguna puerta.", "fr": "Alors la FP peut être une bonne voie. Et elle ne ferme aucune porte."}]}
+   ]
+  },
+  "preocupacion": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "¿Hay algo que le preocupe?", "fr": "Y a-t-il quelque chose qui vous inquiète ?"}],
+   "choix": [
+    {"t": "Sí, el estrés. Carla ya duerme mal antes de los exámenes.", "fr": "Oui, le stress. Carla dort déjà mal avant les examens.", "pose": {"souci": "estres"}, "va": "pasos",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Es importante. Que no deje el deporte ni a sus amigos. Y si sigue durmiendo mal, hablamos con la orientadora.", "fr": "C'est important. Qu'elle n'abandonne ni le sport ni ses amis. Et si elle continue à mal dormir, nous en parlerons à la conseillère d'orientation."}]},
+    {"t": "En casa solo hablamos francés. ¿Es un problema para su español?", "fr": "À la maison, nous ne parlons que français. Est-ce un problème pour son espagnol ?", "pose": {"souci": "lengua"}, "va": "pasos",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Al contrario: hablar dos idiomas es una ventaja. Lo importante es que lea mucho en español.", "fr": "Au contraire : parler deux langues est un avantage. L'important est qu'elle lise beaucoup en espagnol."}]},
+    {"t": "No puedo ayudarla con los deberes de Lengua. ¿Hay clases de apoyo en el instituto?", "fr": "Je ne peux pas l'aider pour ses devoirs de langue. Y a-t-il des cours de soutien à l'institut ?", "pose": {"souci": "apoyo"}, "va": "pasos",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Sí, hay clases de refuerzo gratuitas dos tardes por semana. Si quiere, la apunto.", "fr": "Oui, il y a des cours de renforcement gratuits deux après-midi par semaine. Si vous voulez, je l'inscris."}]},
+    {"faux": true, "t": "Sí, estoy preocupado para Carla.", "fr": "Oui, je suis inquiet « para » Carla.",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Está preocupado por Carla, claro. ¿Qué le preocupa exactamente?", "fr": "Vous êtes inquiet « por Carla », bien sûr. Qu'est-ce qui vous inquiète exactement ?"}],
+     "aide": {"fr": "<b>« preocupado » se construit avec « por »</b>, pas avec « para » : « Estoy preocupado (preocupada) por Carla. »"}}
+   ]
+  },
+  "pasos": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Bien. En marzo y abril hay jornadas de puertas abiertas en los institutos y en los centros de FP. ¿Han pensado ya en algún centro?", "fr": "Bien. En mars et avril, il y a des journées portes ouvertes dans les instituts et dans les centres de FP. Avez-vous déjà pensé à un établissement ?"}],
+   "choix": [
+    {"t": "Sí, en uno que está cerca de casa. Iremos a verlo con Carla.", "fr": "Oui, à un qui est près de la maison. Nous irons le voir avec Carla.", "va": "matricula",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Muy bien. Es ella quien tiene que sentirse a gusto allí.", "fr": "Très bien. C'est elle qui doit s'y sentir bien."}]},
+    {"t": "Todavía no. ¿Nos puede recomendar alguno?", "fr": "Pas encore. Pouvez-vous nous en recommander un ?", "va": "recomendacion",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Claro que sí.", "fr": "Bien sûr."}]},
+    {"faux": true, "t": "Sí, hemos visto un liceo cerca de casa.", "fr": "Oui, nous avons vu un « liceo » près de la maison.",
+     "puis": [{"qui": "b13_lehrerin", "air": "amuse", "t": "¿Un liceo? ¿Como el teatro de Barcelona? Ah, un instituto.", "fr": "Un « liceo » ? Comme le théâtre de Barcelone ? Ah, un institut."}],
+     "aide": {"fr": "<b>En Espagne, le lycée s'appelle « el instituto »</b>. « Liceo » ne s'y emploie presque pas pour une école (le Liceo est l'opéra de Barcelone). « Hemos visto un instituto cerca de casa. »"}}
+   ]
+  },
+  "recomendacion": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "En el barrio hay dos institutos públicos con un buen Bachillerato de Ciencias y un centro de FP con ciclos de sanidad. ¿Le apunto los nombres?", "fr": "Dans le quartier, il y a deux instituts publics avec un bon Bachillerato de sciences et un centre de FP avec des cycles de santé. Je vous note les noms ?"}],
+   "choix": [
+    {"t": "Sí, por favor. Iremos a las puertas abiertas de los tres.", "fr": "Oui, s'il vous plaît. Nous irons aux portes ouvertes des trois.", "va": "matricula",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Es lo mejor. Así Carla puede comparar.", "fr": "C'est le mieux. Comme ça, Carla pourra comparer."}]},
+    {"t": "Sí, gracias. ¿Carla puede venir con nosotros a las visitas?", "fr": "Oui, merci. Carla peut-elle venir avec nous aux visites ?", "va": "matricula",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Por supuesto. Es ella quien tiene que verlo.", "fr": "Bien sûr. C'est elle qui doit voir."}]}
+   ]
+  },
+  "matricula": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "En junio les daremos el consejo orientador, con nuestra recomendación. Si Carla se queda aquí para el Bachillerato, la matrícula es en julio; para la FP hay que pedir plaza antes. ¿Tiene alguna duda?", "fr": "En juin, nous vous remettrons le « consejo orientador », avec notre recommandation. Si Carla reste ici pour le Bachillerato, l'inscription se fait en juillet ; pour la FP, il faut demander une place avant. Avez-vous une question ?"}],
+   "choix": [
+    {"t": "Sí: ¿qué pasa si no hay plaza en el ciclo que quiere?", "fr": "Oui : que se passe-t-il s'il n'y a pas de place dans le cycle qu'elle veut ?", "va": "despedida",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Se pueden pedir varios ciclos, por orden de preferencia. Por eso conviene tener un plan B.", "fr": "On peut demander plusieurs cycles, par ordre de préférence. C'est pourquoi il vaut mieux avoir un plan B."}]},
+    {"t": "No, está claro. ¿La matrícula se hace por internet?", "fr": "Non, c'est clair. L'inscription se fait-elle par internet ?", "va": "despedida",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Sí, por internet o en la secretaría. Les avisaremos por correo.", "fr": "Oui, par internet ou au secrétariat. Nous vous préviendrons par courriel."}]}
+   ]
+  },
+  "despedida": {
+   "dit": [
+    {"si": {"voie": "bach"}, "qui": "b13_lehrerin", "air": "sourire", "t": "Entonces, Bachillerato de Ciencias, con un poco de ayuda en Lengua. Carla puede con ello.", "fr": "Alors, Bachillerato de sciences, avec un peu d'aide en langue. Carla en est capable."},
+    {"si": {"voie": "fp"}, "qui": "b13_lehrerin", "air": "sourire", "t": "Entonces, miren los ciclos con calma. Carla va a encontrar su camino.", "fr": "Alors, regardez les cycles tranquillement. Carla trouvera son chemin."},
+    {"si": {"souci": "estres"}, "qui": "b13_lehrerin", "air": "attentive", "t": "Y si el estrés va a más, llámeme, por favor.", "fr": "Et si le stress augmente, appelez-moi, s'il vous plaît."},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Dele recuerdos a Carla de mi parte.", "fr": "Saluez Carla de ma part."}
+   ],
+   "choix": [
+    {"t": "Muchas gracias por su tiempo y por sus consejos. ¡Hasta luego!", "fr": "Merci beaucoup pour votre temps et pour vos conseils. À bientôt !", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "A usted. ¡Hasta luego!", "fr": "Merci à vous. À bientôt !"}]},
+    {"t": "Gracias, me ha ayudado mucho. Esta noche hablo con Carla.", "fr": "Merci, vous m'avez beaucoup aidé (aidée). Ce soir, je parle à Carla.", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Me parece muy bien. ¡Que vaya bien!", "fr": "Très bien. Bonne continuation !"}]},
+    {"faux": true, "t": "Muchas gracias por sus avisos.", "fr": "Merci beaucoup pour vos « avertissements ».",
+     "puis": [{"qui": "b13_lehrerin", "air": "amuse", "t": "¿Mis avisos? Ah, mis consejos. ¡De nada!", "fr": "Mes « avisos » ? Ah, mes conseils. De rien !"}],
+     "aide": {"fr": "<b>« aviso » est un faux ami</b> : c'est un avertissement, une annonce. Un avis, un conseil se dit « consejo » : « Gracias por sus consejos. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as parlé avec la tutrice de Carla de ses notes, du choix entre le Bachillerato et la Formación Profesional, de ce qui t'inquiète et des prochaines étapes."}
+}

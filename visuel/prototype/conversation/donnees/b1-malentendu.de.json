@@ -1,0 +1,128 @@
+{
+ "id": "b1-malentendu",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "Un malentendu avec un collègue"},
+ "intro": {"fr": "Ton collègue de cuisine est vexé : il croit que tu as demandé « son » service du matin à la cheffe, et tu n'as pas répondu à son message. Tu t'expliques et vous cherchez une solution."},
+ "personnes": ["kuechenkollege"],
+ "debut": "vorwurf",
+ "textes": {
+  "weg_fr": {"cle": "weg", "erklaert": "Tu as d'abord expliqué le malentendu", "vorschlag": "Tu as d'abord proposé de chercher une solution, puis expliqué le malentendu"},
+  "loes_fr": {"cle": "loes", "chefin": "vous allez parler ensemble à la cheffe", "wir": "vous vous êtes arrangés entre vous, contre un samedi par mois"}
+ },
+ "noeuds": {
+  "vorwurf": {
+   "dit": [
+    {"recit": {"fr": "Fin du service de midi. Ton collègue range les casseroles en faisant beaucoup de bruit. Il ne te regarde pas."}},
+    {"qui": "kuechenkollege", "air": "perplexe", "t": "Na toll. Ich habe gehört, du hast die Chefin nach meiner Frühschicht gefragt. Schön, dass ich das von den anderen erfahre.", "fr": "Super. J'ai entendu dire que tu avais demandé mon service du matin à la cheffe. Sympa de l'apprendre par les autres."}
+   ],
+   "choix": [
+    {"t": "Moment, das ist ein Missverständnis. Lass mich das bitte kurz erklären.", "fr": "Attends, c'est un malentendu. Laisse-moi t'expliquer rapidement, s'il te plaît.", "pose": {"weg": "erklaert"}, "va": "erklaeren"},
+    {"t": "Das stimmt so nicht. Komm, wir suchen zusammen eine Lösung.", "fr": "Ce n'est pas tout à fait ça. Viens, on cherche une solution ensemble.", "pose": {"weg": "vorschlag"}, "va": "skeptisch"},
+    {"faux": true, "t": "Du hast falsch, das ist nicht wahr!", "fr": "Tu as tort, ce n'est pas vrai !",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Ich habe falsch? Was habe ich denn falsch gemacht?", "fr": "« J'ai faux » ? Qu'est-ce que j'ai fait de travers, moi ?"}],
+     "aide": {"fr": "<b>« Tu as tort » ne se dit pas « Du hast falsch »</b> mais « Das stimmt nicht » ou « Du irrst dich ». Avec un collègue vexé, mieux vaut : « Das ist ein Missverständnis »."}}
+   ]
+  },
+  "erklaeren": {
+   "dit": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Ein Missverständnis? Da bin ich aber gespannt.", "fr": "Un malentendu ? Je suis curieux d'entendre ça."}],
+   "choix": [
+    {"t": "Ich habe nur nach dienstags und donnerstags gefragt, weil ich dann abends Deutschkurs habe.", "fr": "J'ai seulement demandé pour le mardi et le jeudi, parce que j'ai cours d'allemand ces soirs-là.", "va": "nachricht",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Nur dienstags und donnerstags? Mir hat man gesagt, du willst die ganze Frühschicht.", "fr": "Seulement le mardi et le jeudi ? On m'a dit que tu voulais tout le service du matin."}]},
+    {"t": "Ich brauche nur zwei Vormittage pro Woche, wegen meines Deutschkurses. Ich wollte dir nichts wegnehmen.", "fr": "J'ai seulement besoin de deux matinées par semaine, à cause de mon cours d'allemand. Je ne voulais rien te prendre.", "va": "nachricht",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Nur zwei Vormittage? Mir hat man gesagt, du willst die ganze Frühschicht.", "fr": "Seulement deux matinées ? On m'a dit que tu voulais tout le service du matin."}]},
+    {"faux": true, "t": "Ich habe nur für zwei Morgen gefragt.", "fr": "J'ai seulement demandé pour deux matins.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Für zwei Morgen? Meinst du morgen und übermorgen?", "fr": "Pour deux « demains » ? Tu veux dire demain et après-demain ?"}],
+     "aide": {"fr": "<b>« Demander quelque chose » : « nach etwas fragen »</b>, et pour les matinées de travail, dis « Vormittage » : « Ich habe nur nach zwei Vormittagen gefragt ». « Morgen » s'entend comme « demain »."}}
+   ]
+  },
+  "skeptisch": {
+   "dit": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Eine Lösung? Du bekommst meine Frühschicht, und ich darf abends arbeiten. Wo ist da bitte die Lösung?", "fr": "Une solution ? Tu récupères mon service du matin et moi, j'ai le droit de travailler le soir. Elle est où, la solution ?"}],
+   "choix": [
+    {"t": "Nein, ich brauche nur dienstags und donnerstags den Vormittag. Sonst ändert sich für dich nichts.", "fr": "Non, j'ai seulement besoin de la matinée du mardi et du jeudi. Sinon, rien ne change pour toi.", "va": "nachricht",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Nur dienstags und donnerstags? Mir hat man gesagt, du willst die ganze Frühschicht.", "fr": "Seulement le mardi et le jeudi ? On m'a dit que tu voulais tout le service du matin."}]},
+    {"t": "Ich möchte dir nichts wegnehmen. Es geht nur um zwei Tage, weil ich abends Deutschkurs habe.", "fr": "Je ne veux rien te prendre. Il s'agit seulement de deux jours, parce que j'ai cours d'allemand le soir.", "va": "nachricht",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Nur zwei Tage? Mir hat man gesagt, du willst die ganze Frühschicht.", "fr": "Seulement deux jours ? On m'a dit que tu voulais tout le service du matin."}]},
+    {"faux": true, "t": "Ich will dich nichts wegnehmen!", "fr": "Je ne veux rien te prendre !",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Mich wegnehmen? Wohin denn? Du meinst: mir nichts wegnehmen.", "fr": "M'emporter, moi ? Où ça ? Tu veux dire : ne rien me prendre."}],
+     "aide": {"fr": "<b>« Prendre quelque chose à quelqu'un » : « jemandem etwas wegnehmen »</b>, avec le datif : « Ich will dir nichts wegnehmen ». « dich wegnehmen », ce serait t'emporter, toi."}}
+   ]
+  },
+  "nachricht": {
+   "dit": [{"qui": "kuechenkollege", "air": "attentive", "t": "Okay … Aber warum hast du mir das nicht selbst gesagt? Ich habe dir vorgestern in der Küchengruppe geschrieben, und du hast nicht einmal geantwortet.", "fr": "D'accord… Mais pourquoi tu ne me l'as pas dit toi-même ? Je t'ai écrit avant-hier dans le groupe de la cuisine, et tu n'as même pas répondu."}],
+   "choix": [
+    {"t": "Tut mir leid, mein Handy ist seit Sonntag kaputt. Ich habe deine Nachricht gar nicht gesehen.", "fr": "Désolé(e), mon téléphone est en panne depuis dimanche. Je n'ai pas du tout vu ton message.", "pose": {"handy": "kaputt"}, "va": "tochter",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Ach so, kaputt. Und ich dachte schon, du redest nicht mehr mit mir.", "fr": "Ah, en panne. Et moi qui croyais que tu ne me parlais plus."}]},
+    {"t": "Entschuldige! Ich hatte so viel zu tun, dass ich die Gruppe nicht gelesen habe.", "fr": "Excuse-moi ! J'avais tellement à faire que je n'ai pas lu le groupe.", "va": "tochter",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "Na gut, das passiert. Und ich dachte schon, du redest nicht mehr mit mir.", "fr": "Bon, ça arrive. Et moi qui croyais que tu ne me parlais plus."}]},
+    {"repete": true, "t": "Wie bitte? Wo hast du mir geschrieben?", "fr": "Pardon ? Tu m'as écrit où ?", "va": "nachricht",
+     "puis": [{"qui": "kuechenkollege", "air": "attentive", "t": "In unserer Gruppe auf dem Handy, vorgestern Abend. Du hast nicht geantwortet.", "fr": "Dans notre groupe, sur le téléphone, avant-hier soir. Tu n'as pas répondu."}]},
+    {"faux": true, "t": "Entschuldige, mein Handy ist in Panne.", "fr": "Excuse-moi, mon téléphone est en panne.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "In Panne? Eine Panne hat mein Auto. Ist dein Handy kaputt?", "fr": "« En panne » ? C'est ma voiture qui tombe en panne. Ton téléphone est cassé ?"}],
+     "aide": {"fr": "<b>Un appareil « en panne » est « kaputt »</b> : « Mein Handy ist kaputt ». « Eine Panne », c'est pour une voiture sur la route."}}
+   ]
+  },
+  "tochter": {
+   "dit": [{"qui": "kuechenkollege", "air": "attentive", "t": "Weißt du, ich brauche die Frühschicht wirklich. Ich hole nachmittags meine Tochter von der Kita ab.", "fr": "Tu sais, j'ai vraiment besoin du service du matin. L'après-midi, je vais chercher ma fille à la crèche."}],
+   "choix": [
+    {"t": "Das wusste ich nicht. Jetzt verstehe ich, warum du so sauer warst.", "fr": "Je ne le savais pas. Maintenant je comprends pourquoi tu étais si fâché.", "va": "loesung"},
+    {"t": "Das verstehe ich gut. Ich hätte zuerst mit dir sprechen sollen.", "fr": "Je comprends très bien. J'aurais dû t'en parler d'abord.", "va": "loesung",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Ja, das wäre besser gewesen. Aber gut, vergessen wir das.", "fr": "Oui, ça aurait été mieux. Mais bon, oublions ça."}]},
+    {"faux": true, "t": "Ich verstehe, du warst böse gegen mich.", "fr": "Je comprends, tu étais fâché contre moi.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Gegen dich? Böse auf dich, ja. Ein bisschen.", "fr": "« Contre » toi ? Fâché contre toi, oui. Un peu."}],
+     "aide": {"fr": "<b>« Fâché contre quelqu'un » : « böse auf jemanden »</b> ou « sauer auf » : « Du warst sauer auf mich ». Pas « gegen »."}}
+   ]
+  },
+  "loesung": {
+   "dit": [{"qui": "kuechenkollege", "air": "question", "t": "Und was machen wir jetzt? Dienstags und donnerstags habe ich nämlich auch Frühschicht.", "fr": "Et maintenant, on fait quoi ? Parce que le mardi et le jeudi, je suis du matin moi aussi."}],
+   "choix": [
+    {"t": "Lass uns zusammen zur Chefin gehen und in Ruhe darüber sprechen.", "fr": "Allons voir la cheffe ensemble et parlons-en tranquillement.", "pose": {"loes": "chefin"}, "va": "chefin"},
+    {"t": "Vielleicht können wir das unter uns regeln. Hast du eine Idee?", "fr": "On peut peut-être régler ça entre nous. Tu as une idée ?", "pose": {"loes": "wir"}, "va": "tausch"},
+    {"faux": true, "t": "Wir gehen zusammen die Chefin sprechen.", "fr": "On va ensemble parler la cheffe.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Die Chefin sprechen? Du meinst, wir sprechen mit der Chefin?", "fr": "« Parler la cheffe » ? Tu veux dire qu'on parle avec la cheffe ?"}],
+     "aide": {"fr": "<b>« Parler à quelqu'un » : « mit jemandem sprechen »</b>. Pour proposer : « Lass uns zusammen mit der Chefin sprechen »."}}
+   ]
+  },
+  "chefin": {
+   "dit": [{"qui": "kuechenkollege", "air": "sourire", "t": "Zusammen? Gute Idee. Morgens gibt es sowieso genug zu tun, vielleicht nimmt sie uns beide. Wann gehen wir zu ihr?", "fr": "Ensemble ? Bonne idée. De toute façon, il y a assez à faire le matin, elle nous prendra peut-être tous les deux. On va la voir quand ?"}],
+   "choix": [
+    {"t": "Am besten gleich nach der Schicht, bevor sie den neuen Dienstplan schreibt.", "fr": "Le mieux, c'est juste après le service, avant qu'elle écrive le nouveau planning.", "va": "feierabend",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Stimmt, der Plan kommt am Freitag. Also heute noch!", "fr": "C'est vrai, le planning sort vendredi. Donc aujourd'hui même !"}]},
+    {"t": "Morgen früh, wenn sie im Büro ist. Dann hat sie mehr Zeit für uns.", "fr": "Demain matin, quand elle sera au bureau. Elle aura plus de temps pour nous.", "va": "feierabend",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Morgen früh, abgemacht. Ich bin ja sowieso ab sieben da.", "fr": "Demain matin, entendu. De toute façon, je suis là dès sept heures."}]},
+    {"faux": true, "t": "Wir gehen in halb vier, nach dem Dienst.", "fr": "On y va « dans » trois heures et demie, après le service.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "In halb vier? Um halb vier, meinst du. Also um drei Uhr dreißig?", "fr": "« Dans » trois heures et demie ? À trois heures et demie, tu veux dire. Donc à 15 h 30 ?"}],
+     "aide": {"fr": "<b>Devant une heure, c'est « um »</b> : « um halb vier ». Et « halb vier », c'est 3 h 30, pas 4 h 30."}}
+   ]
+  },
+  "tausch": {
+   "dit": [{"qui": "kuechenkollege", "air": "attentive", "t": "Ja, vielleicht. Morgens gibt es genug Arbeit für zwei, da sagt die Chefin bestimmt nicht Nein. Aber dafür übernimmst du einmal im Monat meinen Samstag. Einverstanden?", "fr": "Oui, peut-être. Le matin, il y a du travail pour deux, la cheffe ne dira sûrement pas non. Mais en échange, tu prends mon samedi une fois par mois. D'accord ?"}],
+   "choix": [
+    {"t": "Einverstanden. Ein Samstag im Monat ist für mich in Ordnung.", "fr": "D'accord. Un samedi par mois, ça me va.", "va": "feierabend",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Super. Dann sagen wir es morgen kurz der Chefin.", "fr": "Super. Alors on le dit rapidement à la cheffe demain."}]},
+    {"t": "Das klingt fair. Sag mir nur früh genug, welcher Samstag es ist.", "fr": "Ça me paraît honnête. Dis-moi seulement assez tôt de quel samedi il s'agit.", "va": "feierabend",
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Klar, zwei Wochen vorher. Dann sagen wir es morgen kurz der Chefin.", "fr": "Bien sûr, deux semaines avant. Alors on le dit rapidement à la cheffe demain."}]},
+    {"faux": true, "t": "Okay, ich nehme deinen Samstag über.", "fr": "D'accord, je prends ton samedi.",
+     "puis": [{"qui": "kuechenkollege", "air": "perplexe", "t": "Du nimmst ihn … über? Du übernimmst ihn, okay!", "fr": "Tu le prends… « par-dessus » ? Tu le prends en charge, d'accord !"}],
+     "aide": {"fr": "<b>« übernehmen » ne se sépare pas</b> : « Ich übernehme deinen Samstag ». Tous les verbes en « über- » ne sont pas séparables."}}
+   ]
+  },
+  "feierabend": {
+   "dit": [
+    {"qui": "kuechenkollege", "air": "sourire", "t": "Gut, dann ist ja alles geklärt. Sorry, dass ich vorhin so unfreundlich war. Gehen wir nach der Schicht noch ein Feierabendbier trinken?", "fr": "Bon, alors tout est réglé. Désolé d'avoir été si désagréable tout à l'heure. On va boire une bière après le service ?"},
+    {"qui": "kuechenkollege", "air": "amuse", "si": {"handy": "kaputt"}, "t": "Und lass endlich dein Handy reparieren!", "fr": "Et fais enfin réparer ton téléphone !"}
+   ],
+   "choix": [
+    {"t": "Sehr gern! Ich lade dich ein, als Entschuldigung.", "fr": "Avec grand plaisir ! Je t'invite, pour me faire pardonner.", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Da sage ich nicht Nein. Bis später!", "fr": "Je ne dis pas non. À tout à l'heure !"}]},
+    {"t": "Heute lieber einen Kaffee, ich muss noch lernen. Aber ich komme gern mit.", "fr": "Aujourd'hui plutôt un café, je dois encore réviser. Mais je viens volontiers.", "va": null,
+     "puis": [{"qui": "kuechenkollege", "air": "sourire", "t": "Kaffee geht auch. Ich kenne ein gutes Café gleich um die Ecke. Bis später!", "fr": "Un café, ça marche aussi. Je connais un bon café juste au coin. À tout à l'heure !"}]},
+    {"faux": true, "t": "Ja, ich bin heiß für ein Bier!", "fr": "Oui, je suis chaud(e) pour une bière !",
+     "puis": [{"qui": "kuechenkollege", "air": "amuse", "t": "Äh … du hast Lust auf ein Bier, hoffe ich?", "fr": "Euh… tu as envie d'une bière, j'espère ?"}],
+     "aide": {"fr": "<b>« Être chaud pour » ne se traduit pas</b> : « Ich bin heiß » s'entend tout autrement, et pas pour une bière. Dis « Ich habe Lust auf ein Bier » ou simplement « Sehr gern! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "{weg_fr} : tu n'avais demandé que deux matinées. Tu t'es excusé(e) pour le message resté sans réponse, et {loes_fr}. Vous êtes réconciliés, et vous sortez ensemble après le service."}
+}

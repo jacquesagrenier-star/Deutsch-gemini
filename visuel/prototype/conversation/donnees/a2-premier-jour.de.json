@@ -1,0 +1,431 @@
+{
+ "id": "a2-premier-jour",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "du",
+ "titre": {
+  "fr": "Le premier jour de travail"
+ },
+ "intro": {
+  "fr": "C'est ton premier jour comme aide de cuisine dans un restaurant de Berlin. Carmen, la cheffe, t'accueille et te montre tout ; en cuisine, on se tutoie."
+ },
+ "personnes": [
+  "a22_carmen",
+  "a22_javier"
+ ],
+ "debut": "empfang",
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Mardi, neuf heures et demie. Tu entres par la porte de service du restaurant. Une femme en veste de cuisinière vient vers toi."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Hallo, herzlich willkommen! Ich bin Carmen, die Küchenchefin. Bei uns in der Küche duzen sich alle – okay?",
+     "fr": "Bonjour, bienvenue ! Je suis Carmen, la cheffe de cuisine. Chez nous, en cuisine, tout le monde se tutoie – d'accord ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, klar! Heute ist mein erster Tag.",
+     "fr": "Oui, bien sûr ! Aujourd'hui, c'est mon premier jour.",
+     "va": "kleidung",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Schön, dass du da bist!",
+       "fr": "Ça me fait plaisir que tu sois là !"
+      }
+     ]
+    },
+    {
+     "t": "Gern! Ich bin ein bisschen nervös.",
+     "fr": "Volontiers ! Je suis un peu nerveux (nerveuse).",
+     "va": "kleidung",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "Das ist normal. Keine Angst, wir beißen nicht!",
+       "fr": "C'est normal. N'aie pas peur, on ne mord pas !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, gern. Freut mich, Frau Carmen.",
+     "fr": "Oui, volontiers. Enchanté(e), Madame Carmen.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "„Frau Carmen“? Nein, nein – einfach Carmen!",
+       "fr": "« Madame Carmen » ? Non, non – Carmen, tout simplement !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Frau » va avec le nom de famille</b> (Frau Krüger), jamais avec le prénom. Quand on se tutoie, le prénom seul : « Freut mich, Carmen. »"
+     }
+    }
+   ]
+  },
+  "kleidung": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Elle t'emmène dans le vestiaire du personnel."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "question",
+     "t": "Das ist dein Spind. Jacke und Schürze bekommst du von uns. Hast du Arbeitsschuhe dabei?",
+     "fr": "Voici ton casier. La veste et le tablier, c'est nous qui te les donnons. Tu as des chaussures de travail ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, die Schuhe habe ich hier in der Tasche.",
+     "fr": "Oui, j'ai les chaussures ici, dans mon sac.",
+     "va": "hygiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Prima.",
+       "fr": "Parfait."
+      }
+     ]
+    },
+    {
+     "t": "Nein, noch nicht. Wo kann ich welche kaufen?",
+     "fr": "Non, pas encore. Où est-ce que je peux en acheter ?",
+     "va": "hygiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Ich schicke dir nachher einen Link. Heute geht es mit deinen Turnschuhen.",
+       "fr": "Je t'envoie un lien tout à l'heure. Aujourd'hui, ça ira avec tes baskets."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich habe die Schuhe mitgebringt.",
+     "fr": "Oui, j'ai apporté les chaussures.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "Du hast sie mitgebracht? Prima.",
+       "fr": "Tu les as apportées ? Parfait."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« bringen » est irrégulier</b> : « ich habe … mitgebracht », pas « mitgebringt »."
+     }
+    }
+   ]
+  },
+  "hygiene": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Ganz wichtig in der Küche: Vor der Arbeit Hände waschen, die Haare zusammen, und keine Ringe und keine Uhr.",
+     "fr": "Très important en cuisine : se laver les mains avant le travail, les cheveux attachés, et pas de bague ni de montre."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Okay. Wo kann ich mir die Hände waschen?",
+     "fr": "D'accord. Où est-ce que je peux me laver les mains ?",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Da hinten, links neben der Tür.",
+       "fr": "Là-bas au fond, à gauche de la porte."
+      }
+     ]
+    },
+    {
+     "t": "Alles klar. Die Uhr lege ich in den Spind.",
+     "fr": "Compris. Je mets la montre dans le casier.",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Sehr gut.",
+       "fr": "Très bien."
+      }
+     ]
+    }
+   ]
+  },
+  "zeiten": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Wir arbeiten von 10 bis 15 Uhr und von 17 bis 22 Uhr. Montag ist Ruhetag. Hast du Fragen?",
+     "fr": "On travaille de 10 h à 15 h et de 17 h à 22 h. Le lundi, c'est le jour de fermeture. Tu as des questions ?",
+     "dit": "Wir arbeiten von zehn bis fünfzehn Uhr und von siebzehn bis zweiundzwanzig Uhr. Montag ist Ruhetag. Hast du Fragen?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja: Wann essen wir?",
+     "fr": "Oui : on mange quand ?",
+     "va": "morgen",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Um halb fünf essen wir alle zusammen, vor dem Abendservice.",
+       "fr": "À quatre heures et demie, on mange tous ensemble, avant le service du soir."
+      }
+     ]
+    },
+    {
+     "t": "Arbeiten wir auch am Wochenende?",
+     "fr": "On travaille aussi le week-end ?",
+     "va": "morgen",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Ja, aber du hast jede Woche zwei Tage frei: den Montag und noch einen Tag.",
+       "fr": "Oui, mais tu as deux jours de libre par semaine : le lundi et un autre jour."
+      }
+     ]
+    },
+    {
+     "t": "Entschuldigung, kannst du das bitte langsamer sagen?",
+     "fr": "Pardon, tu peux le dire plus lentement, s'il te plaît ?",
+     "va": "zeiten",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Klar. Von zehn bis drei, Pause, dann von fünf bis zehn. Am Montag ist zu.",
+       "fr": "Bien sûr. De dix heures à trois heures, une pause, puis de cinq heures à dix heures. Le lundi, c'est fermé."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "morgen": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Morgen kommt der Lieferant schon früh. Kannst du um Viertel vor zehn hier sein?",
+     "fr": "Demain, le fournisseur vient tôt. Tu peux être là à dix heures moins le quart ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, klar. Um Viertel vor zehn, kein Problem.",
+     "fr": "Oui, bien sûr. À dix heures moins le quart, pas de problème.",
+     "va": "kollege",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Super, danke!",
+       "fr": "Super, merci !"
+      }
+     ]
+    },
+    {
+     "t": "Ja. Muss ich dann gleich die Jacke anziehen?",
+     "fr": "Oui. Je dois mettre la veste tout de suite, alors ?",
+     "va": "kollege",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Genau, erst umziehen, dann Hände waschen.",
+       "fr": "C'est ça : d'abord se changer, puis se laver les mains."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Gut, dann komme ich morgen um Viertel nach zehn.",
+     "fr": "Bien, alors je viens demain à dix heures et quart.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "Nein, um Viertel vor zehn – also neun Uhr fünfundvierzig.",
+       "fr": "Non, à dix heures moins le quart – donc neuf heures quarante-cinq."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Viertel vor zehn », c'est 9 h 45</b> : un quart d'heure AVANT dix heures. « Viertel nach zehn », c'est 10 h 15."
+     }
+    }
+   ]
+  },
+  "kollege": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un homme à moustache arrive, un couteau et une planche à la main."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Ah, das ist Javier, unser Koch. Heute hilfst du ihm.",
+     "fr": "Ah, voilà Javier, notre cuisinier. Aujourd'hui, tu l'aides."
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Hallo und willkommen! Schneidest du gern Gemüse? Heute gibt es viel davon!",
+     "fr": "Salut et bienvenue ! Tu aimes couper des légumes ? Aujourd'hui, il y en a beaucoup !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hallo, Javier! Ja, das mache ich gern.",
+     "fr": "Salut, Javier ! Oui, j'aime bien faire ça.",
+     "va": "arbeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Super, dann sind wir ein gutes Team!",
+       "fr": "Super, alors on fait une bonne équipe !"
+      }
+     ]
+    },
+    {
+     "t": "Freut mich! Aber ich bin nicht sehr schnell.",
+     "fr": "Enchanté(e) ! Mais je ne suis pas très rapide.",
+     "va": "arbeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Kein Problem. Schnell wird man mit der Zeit.",
+       "fr": "Pas de problème. La vitesse vient avec le temps."
+      }
+     ]
+    }
+   ]
+  },
+  "arbeit": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Kannst du zuerst die Zwiebeln klein schneiden? Dann die Karotten.",
+     "fr": "Tu peux d'abord couper les oignons en petits morceaux ? Ensuite les carottes."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Klar. Wie klein, so?",
+     "fr": "Bien sûr. Petits comment, comme ça ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Genau so. Perfekt!",
+       "fr": "Exactement comme ça. Parfait !"
+      }
+     ]
+    },
+    {
+     "t": "Okay, mache ich sofort. Wo ist ein Messer?",
+     "fr": "D'accord, je le fais tout de suite. Où il y a un couteau ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Hier, nimm meins. Pass auf, es ist sehr scharf!",
+       "fr": "Tiens, prends le mien. Attention, il coupe très bien !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Okay, aber ich habe noch nie Zwiebeln geschneidet.",
+     "fr": "D'accord, mais je n'ai encore jamais coupé d'oignons.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Noch nie Zwiebeln geschnitten? Dann zeige ich es dir!",
+       "fr": "Jamais coupé d'oignons ? Alors je te montre !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« schneiden » est irrégulier</b> : « ich habe … geschnitten », pas « geschneidet »."
+     }
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Quinze heures. Le service du midi est fini. Carmen passe près de toi."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Gut gemacht für den ersten Tag! Jetzt hast du Pause. Bis später – und morgen um Viertel vor zehn!",
+     "fr": "Bon travail pour un premier jour ! Maintenant, tu as ta pause. À tout à l'heure – et demain à dix heures moins le quart !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke, Carmen! Bis später.",
+     "fr": "Merci, Carmen ! À tout à l'heure.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Bis später!",
+       "fr": "À tout à l'heure !"
+      }
+     ]
+    },
+    {
+     "t": "Danke für alles! Der Tag war super.",
+     "fr": "Merci pour tout ! La journée était super.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Das freut mich!",
+       "fr": "Ça me fait plaisir !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as trouvé ton casier et ta tenue, appris les règles d'hygiène et les horaires, rendez-vous demain à dix heures moins le quart, et tu as coupé tes premiers oignons avec Javier."
+ }
+}

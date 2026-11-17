@@ -26,10 +26,10 @@ PORT = int(os.environ.get("THEMES_PORT", "8808"))
 # Les 22 themes (7 nov. 2026 ; avant, une liste partielle -- et main() REECRIVAIT sons.json avec elle seule : les
 # fichiers des themes absents de la liste en sortaient, et leurs phrases passaient a la voix du telephone).
 THEMES = ["familia", "descripcion", "emociones", "contrarios", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "transportes",
-          "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes"]
+          "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes", "heure"]
 # les themes ouverts a l'anglais (`en: true` dans THEMES_ILLUSTRES d'index.html) : les autres ne sont jamais lus en anglais
 ANGLAIS = ["familia", "descripcion", "contrarios", "emociones", "gato", "ropa", "cuerpo", "journee", "manger", "metiers", "loisirs",
-           "animales", "meteo", "logement", "demarches"]
+           "animales", "meteo", "logement", "demarches", "heure"]
 SANS_EN = [t for t in THEMES if t not in ANGLAIS]
 THEMES_EN = []                                   # (ancien : l'anglais seul pour quelques themes ; tout est enumere desormais)
 # L'ENUMERATION (7 nov. 2026, la session des emotions : les 150 parties tirees au hasard laissaient passer des phrases

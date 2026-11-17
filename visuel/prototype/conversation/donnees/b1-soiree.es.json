@@ -1,0 +1,623 @@
+{
+ "id": "b1-soiree",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {
+  "fr": "À une soirée, faire connaissance"
+ },
+ "intro": {
+  "fr": "Ton amie Lucía t'a invité à dîner chez elle, à Lavapiés. Sur la terrasse, un invité que tu ne connais pas vient te parler."
+ },
+ "personnes": [
+  "b13_gast"
+ ],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Madrid, un vendredi, dix heures du soir. Sur la terrasse de Lucía, on grignote debout et les invités arrivent encore. Un homme à lunettes s'approche, une assiette d'olives à la main."
+     }
+    },
+    {
+     "qui": "b13_gast",
+     "air": "sourire",
+     "t": "¡Hola! Creo que no nos conocemos. Soy Dani.",
+     "fr": "Salut ! Je crois qu'on ne se connaît pas. Moi, c'est Dani."
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Hola, Dani! Mucho gusto.",
+     "fr": "Salut, Dani ! Enchanté.",
+     "va": "conoces"
+    },
+    {
+     "t": "¡Hola! No, creo que no. ¿Qué tal?",
+     "fr": "Salut ! Non, je ne crois pas. Ça va ?",
+     "va": "conoces"
+    }
+   ]
+  },
+  "conoces": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Y de qué conoces a Lucía?",
+     "fr": "Et tu connais Lucía d'où ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Trabajo con ella, en la misma oficina.",
+     "fr": "Je travaille avec elle, dans le même bureau.",
+     "va": "curro"
+    },
+    {
+     "t": "Vivo en el piso de al lado. Nos conocimos en la escalera.",
+     "fr": "J'habite l'appartement d'à côté. On s'est rencontrés dans l'escalier.",
+     "va": "trabajo",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "¡Qué suerte! Así esta noche vuelves a casa en un minuto.",
+       "fr": "Quelle chance ! Comme ça, ce soir, tu rentres chez toi en une minute."
+      }
+     ]
+    },
+    {
+     "t": "De un intercambio de idiomas. Ella practica francés conmigo.",
+     "fr": "D'un échange de langues. Elle pratique le français avec moi.",
+     "va": "trabajo",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "¡Ah, eres tú! Lucía me ha hablado de ti.",
+       "fr": "Ah, c'est toi ! Lucía m'a parlé de toi."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Conozco Lucía del trabajo.",
+     "fr": "Je connais Lucía du travail (sans « a »).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "attentive",
+       "t": "Ah, conoces a Lucía del trabajo. ¡Qué bien!",
+       "fr": "Ah, tu connais Lucía du travail. Super !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Devant une personne, le complément direct prend « a » :</b> « Conozco a Lucía del trabajo. »"
+     }
+    },
+    {
+     "repete": true,
+     "t": "Perdona, con la música no te he oído. ¿Puedes repetir?",
+     "fr": "Pardon, avec la musique je ne t'ai pas entendu. Tu peux répéter ?",
+     "va": "conoces",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Que de qué conoces a Lucía. ¿Sois amigos?",
+       "fr": "Je te demandais d'où tu connais Lucía. Vous êtes amis ?"
+      }
+     ]
+    }
+   ]
+  },
+  "curro": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¡Ah, entonces trabajas en la agencia! Lucía dice que allí no os aburrís nunca. ¿Y tú qué haces exactamente?",
+     "fr": "Ah, alors tu travailles à l'agence ! Lucía dit que vous ne vous y ennuyez jamais. Et toi, tu fais quoi exactement ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Estoy en atención al cliente. Hablo por teléfono todo el día. ¿Y tú?",
+     "fr": "Je suis au service client. Je suis au téléphone toute la journée. Et toi ?",
+     "va": "madrid",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Yo soy médico, en un hospital del centro. Esta semana he tenido guardias de noche, así que hoy toca fiesta.",
+       "fr": "Moi, je suis médecin, dans un hôpital du centre. Cette semaine j'ai fait des gardes de nuit, alors ce soir, c'est la fête."
+      }
+     ]
+    },
+    {
+     "t": "Hago las páginas web para los clientes. ¿Y tú a qué te dedicas?",
+     "fr": "Je fais les sites web des clients. Et toi, tu fais quoi dans la vie ?",
+     "va": "madrid",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Yo soy médico, en un hospital del centro. Con los ordenadores soy un desastre.",
+       "fr": "Moi, je suis médecin, dans un hôpital du centre. Avec les ordinateurs, je suis une catastrophe."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Soy en atención al cliente.",
+     "fr": "Je suis (ser) au service client.",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "attentive",
+       "t": "Ah, que estás en atención al cliente. ¡Menuda paciencia hay que tener!",
+       "fr": "Ah, tu es au service client. Il en faut, de la patience !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« ser » ou « estar » ?</b> Pour dire où l'on se trouve ou dans quel service on travaille, c'est « estar » : « Estoy en atención al cliente. »"
+     }
+    }
+   ]
+  },
+  "trabajo": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Y tú a qué te dedicas?",
+     "fr": "Et toi, tu fais quoi dans la vie ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Trabajo en un hotel, en la recepción. ¿Y tú?",
+     "fr": "Je travaille dans un hôtel, à la réception. Et toi ?",
+     "va": "madrid",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Yo soy médico, en un hospital del centro. Lo de trabajar de noche lo conocerás también.",
+       "fr": "Moi, je suis médecin, dans un hôpital du centre. Travailler la nuit, tu dois connaître aussi."
+      }
+     ]
+    },
+    {
+     "t": "Todavía estoy estudiando. Hago un máster de arquitectura. ¿Y tú?",
+     "fr": "Je fais encore des études. Je fais un master d'architecture. Et toi ?",
+     "va": "madrid",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Yo soy médico, en un hospital del centro. ¡A veces echo de menos la universidad!",
+       "fr": "Moi, je suis médecin, dans un hôpital du centre. La fac me manque, parfois !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Trabajo en un hotel. ¿Y usted, a qué se dedica?",
+     "fr": "Je travaille dans un hôtel. Et vous, que faites-vous dans la vie ?",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "¿De usted? ¡Que no soy tan mayor! Trátame de tú.",
+       "fr": "Tu me vouvoies ? Je ne suis pas si vieux ! Tutoie-moi, voyons."
+      }
+     ],
+     "aide": {
+      "fr": "<b>En Espagne, on se tutoie tout de suite entre adultes, surtout à une soirée.</b> « Usted » met de la distance. Dis : « ¿Y tú a qué te dedicas? »"
+     }
+    }
+   ]
+  },
+  "madrid": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Y cuánto tiempo llevas en Madrid?",
+     "fr": "Et ça fait combien de temps que tu es à Madrid ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Llevo un año aquí. Al principio fue difícil, pero ahora estoy muy a gusto.",
+     "fr": "Ça fait un an que je suis ici. Au début c'était difficile, mais maintenant je m'y sens très bien.",
+     "va": "sorpresa"
+    },
+    {
+     "t": "Solo tres meses. Todavía me pierdo en el metro.",
+     "fr": "Trois mois seulement. Je me perds encore dans le métro.",
+     "va": "sorpresa"
+    },
+    {
+     "faux": true,
+     "t": "Estoy aquí desde un año.",
+     "fr": "Je suis ici depuis un an (sans « hace »).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "attentive",
+       "t": "Desde hace un año, ¿no? ¡Pues ya eres casi de aquí!",
+       "fr": "Depuis un an, c'est ça ? Alors tu es déjà presque d'ici !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« depuis » + une durée = « desde hace »</b> : « Estoy aquí desde hace un año », ou mieux : « Llevo un año aquí. » « Desde » seul va avec une date : « desde enero ». "
+     }
+    }
+   ]
+  },
+  "sorpresa": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Y qué es lo que más te ha sorprendido de aquí?",
+     "fr": "Et qu'est-ce qui t'a le plus surpris, ici ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Los horarios. Aquí se cena a las diez, ¡y yo tengo hambre a las siete!",
+     "fr": "Les horaires. Ici on dîne à dix heures, et moi j'ai faim à sept heures !",
+     "va": "rastro",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "Ya te acostumbrarás. Y los domingos todo empieza todavía más tarde… menos el Rastro.",
+       "fr": "Tu t'y feras. Et le dimanche, tout commence encore plus tard… sauf le Rastro."
+      }
+     ]
+    },
+    {
+     "t": "Que la gente habla muy alto y todos a la vez. Pero me gusta, hay mucha vida.",
+     "fr": "Que les gens parlent très fort et tous en même temps. Mais ça me plaît, c'est très vivant.",
+     "va": "aficiones",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "¿Alto, nosotros? ¡Qué va! Bueno… un poco.",
+       "fr": "Fort, nous ? Pas du tout ! Bon… un peu."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Me ha sorprendido que la gente sale tan tarde.",
+     "fr": "Ça m'a surpris que les gens sortent si tard (indicatif).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "attentive",
+       "t": "¿Que la gente salga tan tarde? Sí, antes de las once no hay nadie en la calle.",
+       "fr": "Que les gens sortent si tard ? Oui, avant onze heures il n'y a personne dans la rue."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Après « me sorprende que », le subjonctif</b>, comme en français : « Me ha sorprendido que la gente salga tan tarde. »"
+     }
+    }
+   ]
+  },
+  "aficiones": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Y qué te gusta hacer los fines de semana?",
+     "fr": "Et qu'est-ce que tu aimes faire le week-end ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Me encanta la música en directo. Voy a muchos conciertos.",
+     "fr": "J'adore la musique en direct. Je vais à beaucoup de concerts.",
+     "va": "concierto"
+    },
+    {
+     "t": "Me gusta pasear por la ciudad y mirar los mercados.",
+     "fr": "J'aime me promener en ville et regarder les marchés.",
+     "va": "rastro",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "¿Mercados? Entonces tengo un plan para ti.",
+       "fr": "Les marchés ? Alors j'ai un plan pour toi."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Me gusta mucho los conciertos.",
+     "fr": "J'aime beaucoup les concerts (verbe au singulier).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "¡A mí también me gustan los conciertos!",
+       "fr": "Moi aussi, j'aime les concerts !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« gustar » s'accorde avec ce qui plaît :</b> « Me gustan mucho los conciertos » (pluriel), « Me gusta la música » (singulier)."
+     }
+    }
+   ]
+  },
+  "rastro": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Conoces el Rastro? Yo voy este domingo por la mañana.",
+     "fr": "Tu connais le Rastro ? Moi, j'y vais ce dimanche matin."
+    }
+   ],
+   "choix": [
+    {
+     "t": "No, todavía no he ido. Pero me han hablado mucho de él.",
+     "fr": "Non, je n'y suis pas encore allé. Mais on m'en a beaucoup parlé.",
+     "pose": {
+      "plan": "rastro"
+     },
+     "va": "plan",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Pues vente conmigo. Hay de todo: muebles viejos, discos, ropa… Y luego, unas cañas en La Latina.",
+       "fr": "Eh bien, viens avec moi. Il y a de tout : des vieux meubles, des disques, des vêtements… Et après, quelques bières à La Latina."
+      }
+     ]
+    },
+    {
+     "t": "Sí, fui una vez. Había muchísima gente, pero me encantó.",
+     "fr": "Oui, j'y suis allé une fois. Il y avait un monde fou, mais j'ai adoré.",
+     "pose": {
+      "plan": "rastro"
+     },
+     "va": "plan",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Gente hay siempre. ¡Vente conmigo el domingo, y luego unas cañas en La Latina!",
+       "fr": "Du monde, il y en a toujours. Viens avec moi dimanche, et après, quelques bières à La Latina !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No, no soy ido nunca.",
+     "fr": "Non, je n'y suis jamais allé (avec « ser »).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "perplexe",
+       "t": "¿Que no has ido nunca? ¡Pues eso hay que arreglarlo!",
+       "fr": "Tu n'y es jamais allé ? Il faut arranger ça !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>En espagnol, le passé composé se fait toujours avec « haber »</b>, jamais avec « ser » : « No he ido nunca. »"
+     }
+    }
+   ]
+  },
+  "concierto": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "sourire",
+     "t": "¡No me digas! Mañana toca el grupo de un amigo en una sala de Malasaña. ¿Te apetece venir?",
+     "fr": "Sans blague ! Demain, le groupe d'un ami joue dans une salle de Malasaña. Ça te dit de venir ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Claro que sí! ¿Qué tipo de música tocan?",
+     "fr": "Bien sûr ! Ils jouent quel genre de musique ?",
+     "pose": {
+      "plan": "concierto"
+     },
+     "va": "plan",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Rock, con mucho ruido. La entrada cuesta ocho euros, con una bebida.",
+       "fr": "Du rock, très bruyant. L'entrée coûte huit euros, avec une boisson."
+      }
+     ]
+    },
+    {
+     "t": "Mañana no puedo, qué pena. Pero la próxima vez voy seguro.",
+     "fr": "Demain je ne peux pas, quel dommage. Mais la prochaine fois, je viens, c'est sûr.",
+     "va": "numero",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "¡Qué lástima! Te aviso cuando vuelvan a tocar.",
+       "fr": "Dommage ! Je te préviens quand ils rejoueront."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¡Sí, me apetece mucho de ir!",
+     "fr": "Oui, j'ai très envie d'y aller (avec « de », comme en français).",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "¿Te apetece ir? ¡Genial, pues vente!",
+       "fr": "Ça te dit de venir ? Génial, alors viens !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« apetecer » se construit sans « de » :</b> « Me apetece ir », comme « me gusta ir ». Dis : « ¡Sí, me apetece mucho! »"
+     }
+    }
+   ]
+  },
+  "plan": {
+   "dit": [
+    {
+     "si": {
+      "plan": "rastro"
+     },
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "¿Quedamos el domingo a las once en la salida del metro de La Latina?",
+     "fr": "On se retrouve dimanche à onze heures à la sortie du métro La Latina ?"
+    },
+    {
+     "si": {
+      "plan": "concierto"
+     },
+     "qui": "b13_gast",
+     "air": "question",
+     "t": "Empieza a las diez. ¿Quedamos a las nueve y media en la puerta?",
+     "fr": "Ça commence à dix heures. On se retrouve à neuf heures et demie devant l'entrée ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Perfecto, me viene muy bien. ¡Qué ganas!",
+     "fr": "Parfait, ça m'arrange très bien. J'ai hâte !",
+     "va": "numero"
+    },
+    {
+     "t": "¿Puede ser media hora más tarde? Los fines de semana voy siempre con retraso.",
+     "fr": "Une demi-heure plus tard, c'est possible ? Le week-end, je suis toujours en retard.",
+     "va": "numero",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "Hecho. Media hora más tarde, sin problema.",
+       "fr": "Entendu. Une demi-heure plus tard, sans problème."
+      }
+     ]
+    }
+   ]
+  },
+  "numero": {
+   "dit": [
+    {
+     "qui": "b13_gast",
+     "air": "sourire",
+     "t": "Oye, dame tu número y te escribo.",
+     "fr": "Dis, donne-moi ton numéro et je t'écris."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Claro. Déjame tu móvil y te lo apunto.",
+     "fr": "Bien sûr. Passe-moi ton portable et je te le note.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Perfecto. Ahora te mando un mensaje y ya tienes el mío.",
+       "fr": "Parfait. Je t'envoie un message tout de suite et tu auras le mien."
+      }
+     ]
+    },
+    {
+     "t": "Mejor dame el tuyo y te llamo ahora mismo. Así tienes el mío.",
+     "fr": "Donne-moi plutôt le tien et je t'appelle tout de suite. Comme ça tu as le mien.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Buena idea. A ver… ¡sí, está sonando!",
+       "fr": "Bonne idée. Voyons… oui, ça sonne !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Claro. Te doy mi nombre de teléfono.",
+     "fr": "Bien sûr. Je te donne mon nom de téléphone.",
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "amuse",
+       "t": "¿Tu nombre? Ese ya lo sé. ¡Tu número!",
+       "fr": "Ton nom ? Je le connais déjà. Ton numéro !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« nombre » est un faux ami :</b> c'est le prénom, le nom. Le numéro se dit « número » : « Te doy mi número de teléfono. »"
+     }
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Lucía sort sur la terrasse avec une énorme tortilla. Tout le monde applaudit."
+     }
+    },
+    {
+     "qui": "b13_gast",
+     "air": "sourire",
+     "t": "¡Hombre, la tortilla de Lucía! ¿Vienes a por un trozo?",
+     "fr": "Ah, la tortilla de Lucía ! Tu viens en prendre un morceau ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, voy contigo. Además, todavía no he saludado bien a Lucía.",
+     "fr": "Oui, je viens avec toi. En plus, je n'ai pas encore vraiment salué Lucía.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "¡Vamos! Me alegro de haberte conocido.",
+       "fr": "Allons-y ! Je suis content d'avoir fait ta connaissance."
+      }
+     ]
+    },
+    {
+     "t": "Ve tú primero, voy a por algo de beber y ahora te busco.",
+     "fr": "Vas-y d'abord, je vais chercher quelque chose à boire et je te retrouve.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "b13_gast",
+       "air": "sourire",
+       "t": "Vale. Encantado, ¿eh? ¡Ahora nos vemos!",
+       "fr": "D'accord. Enchanté, hein ? À tout de suite !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as fait la conversation avec un inconnu à une soirée madrilène : tu t'es présenté, tu as parlé de ta vie à Madrid et vous avez échangé vos numéros."
+ }
+}

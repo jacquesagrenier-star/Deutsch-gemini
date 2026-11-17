@@ -1,0 +1,141 @@
+{
+ "id": "b1-candidature-tel",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Appeler pour une offre d'emploi"},
+ "intro": {"fr": "Un garage de Madrid cherche quelqu'un pour l'accueil et le bureau. Tu appelles pour te renseigner et proposer ta candidature."},
+ "bilan": {"fr": "Tu as appelé pour une offre d'emploi : dire pourquoi tu appelles, parler de ton expérience, noter une adresse de courriel et fixer un entretien."},
+ "personnes": ["b11_garagiste"],
+ "debut": "motivo",
+ "noeuds": {
+  "motivo": {
+   "dit": [
+    {"recit": {"fr": "Tu as l'annonce sous les yeux : un garage cherche quelqu'un pour l'accueil et le bureau. Tu composes le numéro. Ça sonne."}},
+    {"qui": "b11_garagiste", "air": "sourire", "t": "Talleres Morales, buenos días. Le atiende Rosa.", "fr": "Garage Morales, bonjour. Rosa à l'appareil."}
+   ],
+   "choix": [
+    {"t": "Buenos días. Llamo por el anuncio que he visto en internet.", "fr": "Bonjour. J'appelle pour l'annonce que j'ai vue sur internet.", "pose": {"origen": "anuncio"}, "va": "libre",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Ah, sí, el anuncio del puesto de recepción.", "fr": "Ah oui, l'annonce pour le poste à l'accueil."}]},
+    {"t": "Buenos días. Un amigo me ha dicho que buscan a alguien para la oficina.", "fr": "Bonjour. Un ami m'a dit que vous cherchiez quelqu'un pour le bureau.", "pose": {"origen": "amigo"}, "va": "libre",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "¡Anda, qué rápido corren las noticias! Sí, sí, buscamos a alguien.", "fr": "Tiens, les nouvelles vont vite ! Oui, oui, nous cherchons quelqu'un."}]},
+    {"faux": true, "t": "Buenos días. Llamo para el anuncio.", "fr": "Bonjour. J'appelle pour l'annonce.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "¿Para poner un anuncio? Ah, por el anuncio del puesto.", "fr": "Pour passer une annonce ? Ah, au sujet de l'annonce pour le poste."}],
+     "aide": {"fr": "La raison de l'appel se dit avec <b>« por »</b> ; « para » annonce un but. Dis plutôt : « Llamo por el anuncio que he visto en internet »."}}
+   ]
+  },
+  "libre": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Dígame, ¿qué quería saber?", "fr": "Dites-moi, que vouliez-vous savoir ?"}],
+   "choix": [
+    {"t": "Quería saber si el puesto sigue libre.", "fr": "Je voulais savoir si le poste est toujours libre.", "va": "oficina",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sí, sí, todavía no hemos cogido a nadie.", "fr": "Oui, oui, nous n'avons encore pris personne."}]},
+    {"t": "¿Podría decirme si todavía buscan a alguien?", "fr": "Pourriez-vous me dire si vous cherchez encore quelqu'un ?", "va": "oficina",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sí, seguimos buscando. Llama usted a tiempo.", "fr": "Oui, nous cherchons toujours. Vous appelez à temps."}]},
+    {"faux": true, "t": "Quiero saber si el puesto es todavía libre.", "fr": "Je veux savoir si le poste est encore libre.",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "¿Si sigue libre? Sí, sí, lo está.", "fr": "S'il est toujours libre ? Oui, oui, il l'est."}],
+     "aide": {"fr": "Un état du moment se dit avec « estar » : <b>« está libre »</b>, et « encore » se rend très bien par « seguir ». Dis plutôt : « Quería saber si el puesto sigue libre »."}}
+   ]
+  },
+  "oficina": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Es para atender el teléfono, dar las citas y preparar las facturas. ¿Ha trabajado antes en una oficina?", "fr": "Il s'agit de répondre au téléphone, de donner les rendez-vous et de préparer les factures. Vous avez déjà travaillé dans un bureau ?"}],
+   "choix": [
+    {"t": "Sí, he trabajado tres años en la oficina de una empresa de transportes.", "fr": "Oui, j'ai travaillé trois ans dans le bureau d'une entreprise de transport.", "va": "telefono",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "¡Qué bien! Entonces lo de las facturas ya lo conoce.", "fr": "Très bien ! Alors les factures, vous connaissez déjà."}]},
+    {"t": "En una oficina no, pero he trabajado en la recepción de un hotel.", "fr": "Dans un bureau, non, mais j'ai travaillé à la réception d'un hôtel.", "va": "detalle"},
+    {"t": "No exactamente, pero he atendido a clientes en una tienda.", "fr": "Pas exactement, mais je me suis occupé(e) de clients dans un magasin.", "va": "detalle"},
+    {"faux": true, "t": "Sí, he asistido a los clientes en una oficina.", "fr": "Oui, j'ai assisté les clients dans un bureau.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "¿Cómo? Ah, que atendía a los clientes.", "fr": "Comment ? Ah, vous vous occupiez des clients."}],
+     "aide": {"fr": "<b>« Asistir »</b> veut surtout dire « être présent » (asistir a una reunión). S'occuper des clients se dit « atender ». Dis plutôt : « He atendido a clientes en una tienda »."}}
+   ]
+  },
+  "detalle": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "Bueno, eso también sirve. ¿Y qué hacía allí exactamente?", "fr": "Bon, ça compte aussi. Et qu'est-ce que vous y faisiez exactement ?"}],
+   "choix": [
+    {"t": "Atendía a los clientes y contestaba al teléfono todo el día.", "fr": "Je m'occupais des clients et je répondais au téléphone toute la journée.", "va": "telefono",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Pues eso es justo lo que necesitamos aquí.", "fr": "Eh bien, c'est exactement ce qu'il nous faut ici."}]},
+    {"t": "Me ocupaba de la caja y resolvía los problemas de los clientes.", "fr": "Je m'occupais de la caisse et je réglais les problèmes des clients.", "va": "telefono",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Muy bien. Aquí problemas no faltan, ya lo verá.", "fr": "Très bien. Ici, les problèmes ne manquent pas, vous verrez."}]},
+    {"faux": true, "t": "Recibía los clientes y respondía el teléfono.", "fr": "Je recevais les clients et je répondais au téléphone.",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Recibía a los clientes, vale. ¿Y algo más?", "fr": "Vous receviez les clients, d'accord. Et autre chose ?"}],
+     "aide": {"fr": "Devant une personne complément d'objet, l'espagnol met <b>« a »</b> : « recibía a los clientes ». Et on dit « contestar al teléfono ». Dis plutôt : « Atendía a los clientes y contestaba al teléfono »."}}
+   ]
+  },
+  "telefono": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Se lo aviso: aquí el teléfono no para de sonar. ¿Lo lleva bien?", "fr": "Je vous préviens : ici, le téléphone n'arrête pas de sonner. Ça ne vous pose pas de problème ?"}],
+   "choix": [
+    {"t": "Sí, no me importa. Me gusta hablar con la gente.", "fr": "Oui, ça ne me dérange pas. J'aime parler avec les gens.", "va": "horario",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "¡Así me gusta!", "fr": "Voilà qui me plaît !"}]},
+    {"t": "Sin problema. Hablar por teléfono en español ya no me da miedo.", "fr": "Sans problème. Parler au téléphone en espagnol ne me fait plus peur.", "va": "horario",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "Ya lo oigo, ya. Se defiende usted muy bien.", "fr": "Je l'entends bien. Vous vous débrouillez très bien."}]},
+    {"faux": true, "t": "Sí, no me hace nada.", "fr": "Oui, ça ne me fait rien.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "¿No le hace nada… el teléfono? Quiere decir que no le importa, ¿no?", "fr": "Il ne vous fait rien… le téléphone ? Vous voulez dire que ça ne vous dérange pas, c'est ça ?"}],
+     "aide": {"fr": "<b>« No me hace nada »</b> calque « ça ne me fait rien ». Dis plutôt : « No me importa »."}}
+   ]
+  },
+  "horario": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "¿Tiene alguna pregunta sobre el puesto?", "fr": "Vous avez des questions sur le poste ?"}],
+   "choix": [
+    {"t": "Sí. ¿Es un trabajo a jornada completa o a media jornada?", "fr": "Oui. C'est un travail à temps plein ou à mi-temps ?", "va": "correo",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "A jornada completa: de nueve a dos y de cuatro a siete, de lunes a viernes.", "fr": "À temps plein : de neuf heures à deux heures et de quatre heures à sept heures, du lundi au vendredi."}]},
+    {"t": "Me gustaría saber cuál es el horario.", "fr": "J'aimerais connaître les horaires.", "va": "correo",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "De nueve a dos y de cuatro a siete, de lunes a viernes. Es jornada completa.", "fr": "De neuf heures à deux heures et de quatre heures à sept heures, du lundi au vendredi. C'est un temps plein."}]},
+    {"faux": true, "t": "Sí. ¿Es un trabajo a tiempo lleno?", "fr": "Oui. C'est un travail à temps plein ?",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "¿A tiempo lleno? Ah, a jornada completa. Sí, sí.", "fr": "« A tiempo lleno » ? Ah, à temps plein. Oui, oui."}],
+     "aide": {"fr": "« À temps plein » ne se traduit pas mot à mot : on dit <b>« a jornada completa »</b> (ou « a tiempo completo »), et « a media jornada » pour le mi-temps."}}
+   ]
+  },
+  "correo": {
+   "dit": [{"qui": "b11_garagiste", "air": "sourire", "t": "Si le interesa, mándeme el currículum por correo electrónico.", "fr": "Si ça vous intéresse, envoyez-moi votre CV par courriel."}],
+   "choix": [
+    {"t": "De acuerdo. ¿Me podría dar la dirección de correo?", "fr": "D'accord. Pourriez-vous me donner l'adresse ?", "va": "verificar",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Apunte: taller-morales@correo.es", "dit": "Apunte: taller, guion, morales, arroba, correo, punto, es.", "fr": "Notez : taller, tiret, morales, arobase, correo, point, es."}]},
+    {"t": "Claro, se lo envío hoy mismo. ¿A qué dirección?", "fr": "Bien sûr, je vous l'envoie aujourd'hui même. À quelle adresse ?", "va": "verificar",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Apunte: taller-morales@correo.es", "dit": "Apunte: taller, guion, morales, arroba, correo, punto, es.", "fr": "Notez : taller, tiret, morales, arobase, correo, point, es."}]},
+    {"faux": true, "t": "De acuerdo. ¿Cuál es tu correo?", "fr": "D'accord. C'est quoi, ton adresse ?",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "Eh… sí, claro. ¿Tiene para apuntar?", "fr": "Euh… oui, bien sûr. Vous avez de quoi noter ?"}],
+     "aide": {"fr": "<b>« tu correo »</b> tutoie une future patronne que tu ne connais pas. Dis plutôt : « ¿Me podría dar la dirección de correo? »."}}
+   ]
+  },
+  "verificar": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "¿Lo ha apuntado? Es que se oye un poco mal.", "fr": "Vous l'avez noté ? C'est qu'on entend un peu mal."}],
+   "choix": [
+    {"t": "A ver si lo he entendido: taller, guion, morales, arroba, correo, punto, es.", "fr": "Voyons si j'ai bien compris : taller, tiret, morales, arobase, correo, point, es.", "va": "cita",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Eso es, perfecto.", "fr": "C'est ça, parfait."}]},
+    {"t": "Se lo repito para comprobar: taller, guion, morales, arroba, correo, punto, es.", "fr": "Je vous la répète pour vérifier : taller, tiret, morales, arobase, correo, point, es.", "va": "cita",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Exacto, todo junto y en minúsculas.", "fr": "Exact, tout attaché et en minuscules."}]},
+    {"repete": true, "t": "Perdone, se ha cortado. ¿Me lo puede repetir más despacio?", "fr": "Excusez-moi, ça a coupé. Vous pouvez me la répéter plus lentement ?", "va": "verificar",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Claro. Taller… guion… morales… arroba… correo… punto… es.", "dit": "Claro. Taller… guion… morales… arroba… correo… punto… es.", "fr": "Bien sûr. Taller… tiret… morales… arobase… correo… point… es."}]},
+    {"faux": true, "t": "Entonces es taller, guion, morales, arobase, correo, punto, es.", "fr": "Alors c'est taller, tiret, morales, arobase, correo, point, es.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "¿Aro… qué? Ah, la arroba.", "fr": "Aro… quoi ? Ah, l'arobase."}],
+     "aide": {"fr": "Le signe @ se dit <b>« arroba »</b> en espagnol ; le tiret, « guion » ; le point, « punto »."}}
+   ]
+  },
+  "cita": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Mire, lo mejor es que nos veamos en persona. ¿Puede pasarse por el taller el miércoles a las diez?", "fr": "Écoutez, le mieux est de nous voir en personne. Vous pouvez passer au garage mercredi à dix heures ?"}],
+   "choix": [
+    {"t": "Sí, el miércoles a las diez me viene bien. Allí estaré.", "fr": "Oui, mercredi à dix heures me convient. J'y serai.", "va": null,
+     "puis": [
+      {"qui": "b11_garagiste", "air": "sourire", "t": "Estupendo. Pregunte por Rosa cuando llegue.", "fr": "Parfait. Demandez Rosa en arrivant."},
+      {"si": {"origen": "amigo"}, "qui": "b11_garagiste", "air": "amuse", "t": "Y dele las gracias a su amigo de mi parte. ¡Hasta el miércoles!", "fr": "Et remerciez votre ami de ma part. À mercredi !"},
+      {"si": {"origen": "anuncio"}, "qui": "b11_garagiste", "air": "sourire", "t": "¡Hasta el miércoles!", "fr": "À mercredi !"}
+     ]},
+    {"t": "Lo siento, el miércoles por la mañana no puedo. ¿Sería posible el jueves?", "fr": "Je suis désolé(e), mercredi matin je ne peux pas. Ce serait possible jeudi ?", "va": "otro_dia"},
+    {"faux": true, "t": "El miércoles no puedo. ¿Es posible que vengo el jueves?", "fr": "Mercredi je ne peux pas. Est-il possible que je viens jeudi ?",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "¿Que venga el jueves, dice? A ver…", "fr": "Que vous veniez jeudi, vous dites ? Voyons…"}],
+     "aide": {"fr": "Après <b>« es posible que »</b>, il faut le subjonctif : « que venga ». Plus simple et plus poli : « ¿Sería posible el jueves? »."}}
+   ]
+  },
+  "otro_dia": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "El jueves… Por la mañana tengo el taller lleno. ¿Y por la tarde, a las cinco?", "fr": "Jeudi… Le matin, le garage est plein. Et l'après-midi, à cinq heures ?"}],
+   "choix": [
+    {"t": "A las cinco me va perfecto. Muchas gracias por su tiempo.", "fr": "À cinq heures, c'est parfait pour moi. Merci beaucoup pour votre temps.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "A usted. Pregunte por Rosa cuando llegue. ¡Hasta el jueves!", "fr": "Merci à vous. Demandez Rosa en arrivant. À jeudi !"}]},
+    {"t": "Sí, por la tarde puedo. Hasta el jueves, entonces.", "fr": "Oui, l'après-midi je peux. À jeudi, alors.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Hecho. Pregunte por Rosa cuando llegue. ¡Hasta el jueves!", "fr": "C'est entendu. Demandez Rosa en arrivant. À jeudi !"}]},
+    {"faux": true, "t": "Sí, vendré el jueves a cinco horas.", "fr": "Oui, je viendrai jeudi à cinq heures.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "¿A las cinco, quiere decir?", "fr": "À cinq heures, vous voulez dire ?"}],
+     "aide": {"fr": "L'heure se dit avec l'article et sans « horas » : <b>« a las cinco »</b>. Dis plutôt : « A las cinco me va perfecto »."}}
+   ]
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "id": "b1-resilier",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Résilier son abonnement à la salle de sport"},
+ "intro": {"fr": "Tu quittes Madrid pour un nouveau travail à Valence. Tu passes à ta salle de sport pour résilier ton abonnement de douze mois. L'employée va essayer de te garder : refuse poliment, insiste, et règle les détails."},
+ "bilan": {"fr": "Tu as résilié ton abonnement malgré les offres de la salle. {prueba_fr} {fin_fr} La confirmation t'arrive par écrit."},
+ "personnes": ["fitness_beraterin"],
+ "debut": "baja",
+ "textes": {
+  "prueba_fr": {"cle": "prueba", "aqui": "Tu avais ton nouveau contrat de travail comme justificatif.", "correo": "Tu enverras le justificatif par courriel."},
+  "fin_fr": {"cle": "fin", "mes": "Le contrat s'arrête à la fin du mois, sans autre prélèvement.", "dia": "Le contrat s'arrête le quinze, et tu ne paies qu'un demi-mois."}
+ },
+ "noeuds": {
+  "baja": {
+   "dit": [
+    {"recit": {"fr": "L'accueil de ta salle de sport, en fin d'après-midi. L'employée lève les yeux de son écran."}},
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "¡Hola, buenas tardes! ¿Viene a entrenar o puedo ayudarle en algo?", "fr": "Bonjour ! Vous venez vous entraîner ou puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Vengo a darme de baja: me mudo a otra ciudad.", "fr": "Bonjour. Je viens résilier mon abonnement : je déménage dans une autre ville.", "va": "porque"},
+    {"t": "Buenas tardes. Quería cancelar mi contrato, porque dejo Madrid el mes que viene.", "fr": "Bonjour. Je voulais résilier mon contrat, parce que je quitte Madrid le mois prochain.", "va": "porque"},
+    {"faux": true, "t": "Buenas tardes. Quiero dimitir.", "fr": "Bonjour. Je veux démissionner.",
+     "puis": [{"qui": "fitness_beraterin", "air": "surprise", "t": "¿Dimitir? Pero si usted no trabaja aquí… ¿Quiere darse de baja del gimnasio?", "fr": "Démissionner ? Mais vous ne travaillez pas ici… Voulez-vous résilier votre abonnement ?"}],
+     "aide": {"fr": "<b>Résilier un abonnement = darse de baja, cancelar el contrato.</b> « Dimitir », c'est démissionner d'un poste."}},
+    {"faux": true, "t": "Buenas tardes. Quiero resiliar mi abonamiento.", "fr": "Bonjour. Je veux « résilier » mon « abonnement ».",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Perdone, no le entiendo… ¿«Resiliar»? ¿Quiere cancelar su contrato?", "fr": "Excusez-moi, je ne vous comprends pas… « Resiliar » ? Voulez-vous annuler votre contrat ?"}],
+     "aide": {"fr": "<b>Ni « resiliar » ni « abonamiento » n'existent.</b> On dit « darse de baja » ou « cancelar el contrato » ; l'abonnement est « la cuota » ou « el abono »."}}
+   ]
+  },
+  "porque": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "surprise", "t": "¡Vaya, qué pena! ¿Y adónde se va, si no es indiscreción?", "fr": "Oh, quel dommage ! Et où partez-vous, si ce n'est pas indiscret ?"}
+   ],
+   "choix": [
+    {"t": "A Valencia. He encontrado un trabajo nuevo y empiezo el día uno.", "fr": "À Valence. J'ai trouvé un nouveau travail et je commence le premier.", "va": "retener"},
+    {"t": "Me voy a Valencia por trabajo, así que ya no podré venir.", "fr": "Je pars à Valence pour le travail, donc je ne pourrai plus venir.", "va": "retener"},
+    {"faux": true, "t": "Voy a habitar en Valencia.", "fr": "Je vais habiter à Valence.",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "¿«Habitar»? ¡Qué formal! Va a vivir en Valencia, entonces. ¿Y eso?", "fr": "« Habitar » ? Comme c'est solennel ! Vous allez vivre à Valence, donc. Et pourquoi ?"}],
+     "aide": {"fr": "<b>Habiter = vivir.</b> « Habitar » existe, mais seulement dans les textes administratifs ou littéraires. « Voy a vivir en Valencia. »"}}
+   ]
+  },
+  "retener": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "¡Valencia, qué suerte! Pero mire: su contrato es de 12 meses y todavía le quedan 5. ¿Por qué no lo suspende? No paga nada y, si vuelve, lo recupera.", "dit": "¡Valencia, qué suerte! Pero mire: su contrato es de doce meses y todavía le quedan cinco. ¿Por qué no lo suspende? No paga nada y, si vuelve, lo recupera.", "fr": "Valence, quelle chance ! Mais écoutez : votre contrat est de 12 mois et il vous en reste encore 5. Pourquoi ne pas le suspendre ? Vous ne payez rien et, si vous revenez, vous le récupérez."}
+   ],
+   "choix": [
+    {"t": "Se lo agradezco, pero no pienso volver a Madrid. Prefiero darme de baja.", "fr": "Je vous remercie, mais je ne compte pas revenir à Madrid. Je préfère résilier.", "va": "oferta"},
+    {"t": "Gracias, pero una pausa no me sirve: me voy para quedarme.", "fr": "Merci, mais une pause ne me sert à rien : je pars pour de bon.", "va": "oferta"},
+    {"faux": true, "t": "No, gracias, no tengo envidia.", "fr": "Non, merci, je n'ai pas envie.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "¿Envidia? ¿De quién? Ah, que no tiene ganas…", "fr": "De la jalousie ? Envers qui ? Ah, que vous n'avez pas envie…"}],
+     "aide": {"fr": "<b>Avoir envie = tener ganas.</b> « La envidia », c'est la jalousie. Et ici, mieux vaut donner ta raison : « No pienso volver a Madrid »."}}
+   ]
+  },
+  "oferta": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Entiendo. ¿Y sabe que tenemos un club asociado en Valencia? Podría seguir allí con la misma cuota. O puedo ofrecerle una tarifa más barata: 19 euros al mes.", "dit": "Entiendo. ¿Y sabe que tenemos un club asociado en Valencia? Podría seguir allí con la misma cuota. O puedo ofrecerle una tarifa más barata: diecinueve euros al mes.", "fr": "Je comprends. Et savez-vous que nous avons un club partenaire à Valence ? Vous pourriez continuer là-bas au même tarif. Ou je peux vous proposer un tarif moins cher : 19 euros par mois."}
+   ],
+   "choix": [
+    {"t": "Es muy amable, pero ya lo he decidido. Por favor, tramite la baja.", "fr": "C'est très aimable, mais ma décision est prise. S'il vous plaît, enregistrez la résiliation.", "va": "justificante"},
+    {"t": "Gracias, pero ese club está lejos de mi nuevo barrio. Insisto en darme de baja.", "fr": "Merci, mais ce club est loin de mon nouveau quartier. J'insiste pour résilier.", "va": "justificante"},
+    {"faux": true, "t": "¡Ya le he dicho que no! Deme la baja y punto.", "fr": "Je vous ai déjà dit non ! Donnez-moi la résiliation, un point c'est tout.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "Bueno, bueno… Yo solo intentaba ayudarle.", "fr": "Allons, allons… J'essayais seulement de vous aider."}],
+     "aide": {"fr": "<b>Trop brusque.</b> On peut insister en restant poli : « Es muy amable, pero ya lo he decidido » ou « Insisto en darme de baja »."}},
+    {"repete": true, "t": "Perdone, ¿qué me propone exactamente? No lo he entendido bien.", "fr": "Excusez-moi, que me proposez-vous exactement ? Je n'ai pas bien compris.", "va": "oferta",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Dos cosas: seguir en nuestro club de Valencia, o pagar menos, 19 euros al mes.", "dit": "Dos cosas: seguir en nuestro club de Valencia, o pagar menos, diecinueve euros al mes.", "fr": "Deux choses : continuer dans notre club de Valence, ou payer moins, 19 euros par mois."}]}
+   ]
+  },
+  "justificante": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "attentive", "t": "De acuerdo, no insisto más. Según su contrato, si se muda a otra ciudad, puede darse de baja antes de tiempo, pero necesito un justificante: el certificado de empadronamiento en Valencia o su nuevo contrato de trabajo. ¿Lo tiene aquí?", "fr": "D'accord, je n'insiste plus. D'après votre contrat, si vous déménagez dans une autre ville, vous pouvez résilier avant la fin, mais il me faut un justificatif : l'attestation de domicile à Valence ou votre nouveau contrat de travail. L'avez-vous sur vous ?"}
+   ],
+   "choix": [
+    {"t": "Sí, he traído una copia de mi nuevo contrato de trabajo.", "fr": "Oui, j'ai apporté une copie de mon nouveau contrat de travail.", "pose": {"prueba": "aqui"}, "va": "fecha",
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Perfecto, con esto es suficiente. Le hago una fotocopia.", "fr": "Parfait, cela suffit. Je vous en fais une photocopie."}]},
+    {"t": "Todavía no lo tengo aquí. ¿Puedo enviárselo por correo electrónico?", "fr": "Je ne l'ai pas encore sur moi. Puis-je vous l'envoyer par courriel ?", "pose": {"prueba": "correo"}, "va": "correo"},
+    {"faux": true, "t": "Sí, lo tengo en mi saco.", "fr": "Oui, je l'ai dans mon sac.",
+     "puis": [{"qui": "fitness_beraterin", "air": "amuse", "t": "¿En su saco? ¿Un saco de patatas? En la mochila o en el bolso, querrá decir.", "fr": "Dans votre « saco » ? Un sac de pommes de terre ? Dans le sac à dos ou le sac à main, voulez-vous dire."}],
+     "aide": {"fr": "<b>Un sac = una bolsa (de courses), un bolso (à main), una mochila (à dos).</b> « Un saco » est un grand sac de toile, comme pour les pommes de terre."}}
+   ]
+  },
+  "correo": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "sourire", "t": "Claro. Envíelo a la dirección que aparece en su contrato y, en cuanto lo recibamos, tramitamos la baja. ¿Cuándo podrá enviarlo?", "fr": "Bien sûr. Envoyez-le à l'adresse qui figure sur votre contrat et, dès que nous le recevons, nous enregistrons la résiliation. Quand pourrez-vous l'envoyer ?"}
+   ],
+   "choix": [
+    {"t": "Mañana mismo. Solo tengo que escanear el contrato de trabajo.", "fr": "Dès demain. Je n'ai qu'à scanner le contrat de travail.", "va": "fecha"},
+    {"t": "Me empadrono la semana que viene; se lo envío en cuanto tenga el certificado.", "fr": "Je m'inscris à la mairie la semaine prochaine ; je vous l'envoie dès que j'ai l'attestation.", "va": "fecha"},
+    {"faux": true, "t": "Se lo envío en seguida que lo tengo.", "fr": "Je vous l'envoie aussitôt que je l'ai.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "En cuanto lo tenga, quiere decir. Muy bien. ¿Y cuándo será eso?", "fr": "Dès que vous l'aurez, voulez-vous dire. Très bien. Et ce sera quand ?"}],
+     "aide": {"fr": "<b>Dès que / aussitôt que = en cuanto + subjonctif.</b> « Se lo envío en cuanto lo tenga. »"}}
+   ]
+  },
+  "fecha": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "question", "t": "¿Y desde cuándo quiere la baja: a final de este mes o en una fecha concreta?", "fr": "Et à partir de quand voulez-vous résilier : à la fin de ce mois ou à une date précise ?"}
+   ],
+   "choix": [
+    {"t": "A final de este mes, por favor.", "fr": "À la fin de ce mois, s'il vous plaît.", "pose": {"fin": "mes"}, "va": "cobro"},
+    {"t": "Preferiría una fecha concreta, porque me voy antes de final de mes.", "fr": "Je préférerais une date précise, parce que je pars avant la fin du mois.", "pose": {"fin": "dia"}, "va": "dia"},
+    {"faux": true, "t": "A la fin del mes.", "fr": "À la fin du mois.",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "¿A «la fin»? A final de mes, quiere decir. ¿De este mes?", "fr": "« A la fin » ? À la fin du mois, voulez-vous dire. De ce mois-ci ?"}],
+     "aide": {"fr": "<b>À la fin du mois = a final de mes, a finales de mes.</b> « El fin » est masculin en espagnol, et l'expression se dit sans article."}}
+   ]
+  },
+  "dia": {
+   "dit": [
+    {"qui": "fitness_beraterin", "air": "question", "t": "Sin problema. ¿Qué día le pongo?", "fr": "Sans problème. Quel jour dois-je noter ?"}
+   ],
+   "choix": [
+    {"t": "El día quince: es el último día que estaré en Madrid.", "fr": "Le quinze : c'est le dernier jour où je serai à Madrid.", "va": "cobro"},
+    {"t": "El quince de este mes, si es posible.", "fr": "Le quinze de ce mois, si c'est possible.", "va": "cobro"}
+   ]
+  },
+  "cobro": {
+   "dit": [
+    {"si": {"fin": "mes"}, "qui": "fitness_beraterin", "air": "attentive", "t": "Entonces, la baja será efectiva el último día del mes. Ya no le cobraremos ningún recibo más: el de este mes está pagado.", "fr": "Donc, la résiliation prendra effet le dernier jour du mois. Nous ne vous prélèverons plus rien : ce mois-ci est déjà payé."},
+    {"si": {"fin": "dia"}, "qui": "fitness_beraterin", "air": "attentive", "t": "Entonces, la baja será efectiva el día 15. Le devolvemos medio mes: 19,50 euros.", "dit": "Entonces, la baja será efectiva el día quince. Le devolvemos medio mes: diecinueve euros con cincuenta.", "fr": "Donc, la résiliation prendra effet le 15. Nous vous remboursons un demi-mois : 19,50 euros."},
+    {"si": {"prueba": "aqui"}, "qui": "fitness_beraterin", "air": "sourire", "t": "Le envío la confirmación por escrito hoy mismo. ¿A qué correo se la mando?", "fr": "Je vous envoie la confirmation écrite aujourd'hui même. À quelle adresse dois-je l'envoyer ?"},
+    {"si": {"prueba": "correo"}, "qui": "fitness_beraterin", "air": "sourire", "t": "En cuanto llegue su justificante, le envío la confirmación por escrito. ¿A qué correo se la mando?", "fr": "Dès que votre justificatif arrive, je vous envoie la confirmation écrite. À quelle adresse dois-je l'envoyer ?"}
+   ],
+   "choix": [
+    {"t": "Al correo que tienen en mi ficha. Muchas gracias por su ayuda.", "fr": "À l'adresse qui est dans mon dossier. Merci beaucoup de votre aide.", "va": null,
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Gracias a usted. ¡Y mucha suerte en Valencia!", "fr": "Merci à vous. Et bonne chance à Valence !"}]},
+    {"t": "Al de siempre. ¿Podría darme también un resguardo en papel de mi solicitud?", "fr": "À la même que d'habitude. Pourriez-vous aussi me donner un reçu papier de ma demande ?", "va": null,
+     "puis": [{"qui": "fitness_beraterin", "air": "sourire", "t": "Claro, aquí tiene, con fecha y sello. ¡Mucha suerte en Valencia!", "fr": "Bien sûr, le voici, daté et tamponné. Bonne chance à Valence !"}]},
+    {"faux": true, "t": "Al de siempre. ¿Puede darme también una copia sobre papel?", "fr": "À la même que d'habitude. Pouvez-vous aussi me donner une copie sur papier ?",
+     "puis": [{"qui": "fitness_beraterin", "air": "perplexe", "t": "¿«Sobre» papel? En papel, quiere decir. Sí, claro que puedo.", "fr": "« Sobre » papel ? Sur papier, voulez-vous dire. Oui, bien sûr."}],
+     "aide": {"fr": "<b>Sur papier = en papel.</b> « Sobre » veut dire « posé sur ». « Una copia en papel », « por escrito »."}}
+   ]
+  }
+ }
+}

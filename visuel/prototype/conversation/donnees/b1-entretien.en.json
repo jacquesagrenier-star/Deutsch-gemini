@@ -1,0 +1,159 @@
+{
+ "id": "b1-entretien",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "L'entretien d'embauche à la boulangerie"},
+ "intro": {"fr": "Une boulangerie de quartier, à Jamaica Plain, cherche quelqu'un pour la vente, à temps partiel. Tu as envoyé ta candidature ; le patron, Pablo, te reçoit en entretien."},
+ "personnes": ["b11_patron"],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Jamaica Plain, en début d'après-midi. La boulangerie est calme. Le patron sort de l'arrière-boutique en s'essuyant les mains."}},
+    {"qui": "b11_patron", "air": "sourire", "t": "Hi! You must be here about the job. I'm Pablo. Did you find us okay?", "fr": "Bonjour ! Vous venez pour le poste, j'imagine. Moi, c'est Pablo. Vous nous avez trouvés facilement ?"}
+   ],
+   "choix": [
+    {"t": "Yes, no problem. I live just a few blocks from here.", "t_gb": "Yes, no problem. I live just a few streets from here.", "fr": "Oui, sans problème. J'habite à quelques rues d'ici.", "va": "about",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Oh, a neighbor! Even better. Come on, have a seat.", "t_gb": "Oh, a neighbour! Even better. Come on, have a seat.", "fr": "Oh, quelqu'un du quartier ! Encore mieux. Venez, asseyez-vous."}]},
+    {"t": "Yes, thanks. I took the Orange Line and walked from the station.", "fr": "Oui, merci. J'ai pris la ligne orange et j'ai marché depuis la station.", "va": "about",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Good, so it's an easy trip for you. Come on, have a seat.", "t_gb": "Good, so it's an easy journey for you. Come on, have a seat.", "fr": "Bien, le trajet est donc facile pour vous. Venez, asseyez-vous."}]},
+    {"faux": true, "t": "Yes, I found easily.", "fr": "Oui, j'ai trouvé facilement.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "You found … the bakery? Well, good!", "fr": "Vous avez trouvé… la boulangerie ? Bon, tant mieux !"}],
+     "aide": {"fr": "<b>« find »</b> ne s'emploie pas seul : il lui faut un complément. Dis plutôt : « Yes, I found it easily. » ou simplement « Yes, no problem. »"}}
+   ]
+  },
+  "about": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "So, tell me a little bit about yourself.", "fr": "Alors, parlez-moi un peu de vous."}],
+   "choix": [
+    {"t": "I moved to Boston a year ago, and I've been studying English ever since.", "fr": "Je me suis installé(e) à Boston il y a un an, et j'étudie l'anglais depuis.", "va": "experience",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Only a year? Your English is really good.", "fr": "Un an seulement ? Votre anglais est vraiment bon."}]},
+    {"t": "I've lived in Boston for a year. Now I'm looking for a part-time job.", "fr": "J'habite à Boston depuis un an. Maintenant, je cherche un travail à temps partiel.", "va": "experience",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Well, part-time is exactly what we have.", "fr": "Eh bien, un temps partiel, c'est exactement ce que nous avons."}]},
+    {"faux": true, "t": "I live in Boston since one year.", "fr": "J'habite à Boston depuis un an.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Since … a year ago, you mean?", "fr": "Depuis… il y a un an, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« I live … since one year »</b> est un calque du français. Pour une action qui dure encore : present perfect + <b>for</b> (une durée). Dis plutôt : « I've lived in Boston for a year. »"}}
+   ]
+  },
+  "experience": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Have you ever worked with customers before?", "fr": "Vous avez déjà travaillé avec des clients ?"}],
+   "choix": [
+    {"t": "Yes, I worked in a clothing store for three years.", "t_gb": "Yes, I worked in a clothes shop for three years.", "fr": "Oui, j'ai travaillé trois ans dans un magasin de vêtements.", "pose": {"exp": "store"}, "va": "exp_store"},
+    {"t": "Yes, I worked in a café for two years, serving customers.", "fr": "Oui, j'ai travaillé deux ans dans un café, au service.", "pose": {"exp": "cafe"}, "va": "exp_cafe"},
+    {"t": "Not yet, but I learn fast and I really like working with people.", "fr": "Pas encore, mais j'apprends vite et j'aime vraiment travailler avec les gens.", "pose": {"exp": "none"}, "va": "exp_none"},
+    {"faux": true, "t": "Yes, I have worked in a shop last year.", "fr": "Oui, j'ai travaillé dans un magasin l'an dernier.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Last year? So you worked there … and then you left?", "fr": "L'an dernier ? Donc vous y avez travaillé… et vous êtes parti(e) ?"}],
+     "aide": {"fr": "Avec un moment terminé (<b>last year</b>), l'anglais veut le prétérit, pas le present perfect. Dis plutôt : « Yes, I worked in a store last year. »"}}
+   ]
+  },
+  "exp_store": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "A clothing store — so you know what a long line of customers looks like. What did you like most about that job?", "t_gb": "A clothes shop — so you know what a long queue of customers looks like. What did you like most about that job?", "fr": "Un magasin de vêtements : vous savez donc ce que c'est, une longue file de clients. Qu'est-ce qui vous plaisait le plus dans ce travail ?"}],
+   "choix": [
+    {"t": "I liked helping people find what they were looking for.", "fr": "J'aimais aider les gens à trouver ce qu'ils cherchaient.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Here they're mostly looking for a warm croissant. Easy!", "fr": "Ici, ils cherchent surtout un croissant chaud. Facile !"}]},
+    {"t": "I enjoyed talking with the regular customers.", "fr": "J'aimais discuter avec les habitués.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Then you'll like it here. Half the neighborhood comes in every morning.", "t_gb": "Then you'll like it here. Half the neighbourhood comes in every morning.", "fr": "Alors vous vous plairez ici. La moitié du quartier passe chaque matin."}]},
+    {"faux": true, "t": "I liked to speak with the clients.", "fr": "J'aimais parler avec les clients.",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Clients? We're not a law firm! But I know what you mean.", "fr": "Des « clients » ? On n'est pas un cabinet d'avocats ! Mais je vois ce que vous voulez dire."}],
+     "aide": {"fr": "<b>« client »</b> se dit chez un avocat ou dans une agence. Dans un magasin, ce sont des <b>customers</b>. Dis plutôt : « I enjoyed talking with the customers. »"}}
+   ]
+  },
+  "exp_cafe": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "A café! So you know what a morning rush is like. Can you make lattes and cappuccinos?", "fr": "Un café ! Vous savez donc ce que c'est, le coup de feu du matin. Vous savez préparer les lattes, les cappuccinos ?"}],
+   "choix": [
+    {"t": "Yes, I used to make them every day.", "fr": "Oui, j'en préparais tous les jours.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Perfect. Our coffee machine will be happy to meet you.", "fr": "Parfait. Notre machine à café sera ravie de faire votre connaissance."}]},
+    {"t": "Yes, I can, and I'm used to working fast.", "fr": "Oui, et j'ai l'habitude de travailler vite.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Good. Between seven and nine, fast is all that matters.", "fr": "Bien. Entre sept et neuf heures, il n'y a que la vitesse qui compte."}]},
+    {"faux": true, "t": "Yes, I am used to make coffee.", "fr": "Oui, j'ai l'habitude de faire le café.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "You're used to making it — or you used to make it?", "fr": "Vous en avez l'habitude, ou vous en faisiez autrefois ?"}],
+     "aide": {"fr": "Deux tournures à ne pas mélanger : <b>be used to + -ing</b> (avoir l'habitude de) et <b>used to + verbe</b> (faisais autrefois). Dis plutôt : « I'm used to making coffee. » ou « I used to make them every day. »"}}
+   ]
+  },
+  "exp_none": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "That's okay, everybody starts somewhere. So, why a bakery?", "fr": "Ce n'est pas grave, tout le monde commence quelque part. Alors, pourquoi une boulangerie ?"}],
+   "choix": [
+    {"t": "I love good bread, and I'd like to learn how a bakery works.", "fr": "J'adore le bon pain, et j'aimerais apprendre comment fonctionne une boulangerie.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Good answer. You'll learn a lot here, I promise.", "fr": "Bonne réponse. Vous apprendrez beaucoup ici, promis."}]},
+    {"t": "I like getting up early, and I enjoy talking to people.", "fr": "J'aime me lever tôt, et j'aime parler avec les gens.", "va": "strengths",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Someone who likes getting up early? I don't hear that very often!", "fr": "Quelqu'un qui aime se lever tôt ? Je n'entends pas ça souvent !"}]},
+    {"faux": true, "t": "Because I am interested by this job.", "fr": "Parce que ce travail m'intéresse.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Interested … in the job, right? Okay. But why?", "fr": "Intéressé(e)… par le poste, c'est ça ? D'accord. Mais pourquoi ?"}],
+     "aide": {"fr": "On dit <b>interested in</b>, jamais « interested by ». Et donne une vraie raison : « I'm interested in this job because I'd like to learn how a bakery works. »"}}
+   ]
+  },
+  "strengths": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "And what would you say your strengths are?", "fr": "Et quels sont vos points forts, d'après vous ?"}],
+   "choix": [
+    {"t": "I'm reliable, and I'm always on time.", "fr": "On peut compter sur moi, et je suis toujours à l'heure.", "va": "customer",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "On time — in a bakery, that's half the job.", "fr": "À l'heure : dans une boulangerie, c'est la moitié du travail."}]},
+    {"t": "I stay calm, even when it gets very busy.", "fr": "Je garde mon calme, même quand il y a beaucoup de monde.", "va": "customer",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Good. On Saturday mornings, you'll need that.", "fr": "Bien. Le samedi matin, vous en aurez besoin."}]},
+    {"t": "I'm friendly, and I remember people's names.", "fr": "Je suis aimable, et je retiens le nom des gens.", "va": "customer",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "The regulars love that. So do I.", "fr": "Les habitués adorent ça. Moi aussi."}]},
+    {"faux": true, "t": "I am always at the hour.", "fr": "Je suis toujours à l'heure.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "At the hour? Which hour?", "fr": "À l'heure ? Quelle heure ?"}],
+     "aide": {"fr": "<b>« à l'heure »</b> se dit <b>on time</b>. Dis plutôt : « I'm always on time. »"}}
+   ]
+  },
+  "customer": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Now, a real-life question. What do you do if a customer is rude to you?", "fr": "Maintenant, une question concrète. Que faites-vous si un client est désagréable avec vous ?"}],
+   "choix": [
+    {"t": "I stay polite, I listen, and I try to solve the problem.", "fr": "Je reste poli(e), j'écoute et j'essaie de régler le problème.", "va": "schedule"},
+    {"t": "I stay calm. If that doesn't work, I ask a coworker for help.", "t_gb": "I stay calm. If that doesn't work, I ask a colleague for help.", "fr": "Je reste calme. Si ça ne suffit pas, je demande de l'aide à un collègue.", "va": "schedule"},
+    {"faux": true, "t": "I say him to calm down.", "fr": "Je lui dis de se calmer.",
+     "puis": [{"qui": "b11_patron", "air": "surprise", "t": "You'd tell him to calm down? Hmm. That usually makes things worse.", "fr": "Vous lui diriez de se calmer ? Hmm. En général, ça ne fait qu'empirer les choses."}],
+     "aide": {"fr": "Deux soucis. La langue : <b>say</b> ne prend pas de personne sans « to », on dit <b>tell him</b>. Et le fond : mieux vaut rester poli. Dis plutôt : « I stay polite, I listen, and I try to solve the problem. »"}}
+   ]
+  },
+  "schedule": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "That's what I like to hear. Now, the hours: we open at 6:30, so the morning shift starts at 6. And weekends are our busiest days. Is that okay with you?", "dit": "That's what I like to hear. Now, the hours: we open at six thirty, so the morning shift starts at six. And weekends are our busiest days. Is that okay with you?", "fr": "Voilà ce que j'aime entendre. Maintenant, les horaires : on ouvre à 6 h 30, donc l'équipe du matin commence à 6 h. Et c'est le week-end qu'il y a le plus de monde. Ça vous convient ?"}],
+   "choix": [
+    {"t": "Yes, that's fine. I'm available every morning, including weekends.", "fr": "Oui, ça me va. Je suis disponible tous les matins, week-end compris.", "pose": {"dispo": "all"}, "va": "questions",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Every morning? You're hired! Just kidding … almost.", "fr": "Tous les matins ? Vous êtes embauché(e) ! Je plaisante… enfin, presque."}]},
+    {"t": "Mornings are fine, but I can't work on Sundays. I have my kids.", "fr": "Le matin, ça va, mais je ne peux pas travailler le dimanche. J'ai mes enfants.", "pose": {"dispo": "nosunday"}, "va": "questions",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "That's no problem. My nephew helps out on Sundays. Saturdays are what I really need.", "fr": "Ce n'est pas un problème. Le dimanche, mon neveu vient donner un coup de main. C'est surtout le samedi qu'il me faut quelqu'un."}]},
+    {"faux": true, "t": "No problem, I am disponible all the days.", "fr": "Pas de problème, je suis disponible tous les jours.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Dis… what? Oh, you mean you're available?", "fr": "Dis… quoi ? Ah, vous voulez dire que vous êtes libre ?"}],
+     "aide": {"fr": "<b>« disponible »</b> se dit <b>available</b>, et « tous les jours », <b>every day</b>. Dis plutôt : « I'm available every morning, including weekends. »"}}
+   ]
+  },
+  "questions": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Do you have any questions for me?", "fr": "Vous avez des questions à me poser ?"}],
+   "choix": [
+    {"t": "Yes. Could you tell me how much the job pays?", "fr": "Oui. Pourriez-vous me dire combien le poste est payé ?", "va": "pay"},
+    {"t": "Yes. Would I get some training at the beginning?", "fr": "Oui. Est-ce que je serais formé(e) au début ?", "va": "trial",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Of course. For the first two weeks, you'd work next to me at the counter. I'll show you everything, from the register to the bread slicer.", "t_gb": "Of course. For the first two weeks, you'd work next to me at the counter. I'll show you everything, from the till to the bread slicer.", "fr": "Bien sûr. Les deux premières semaines, vous travailleriez à côté de moi au comptoir. Je vous montrerai tout, de la caisse à la trancheuse à pain."}]},
+    {"t": "Yes. How many people work here?", "fr": "Oui. Combien de personnes travaillent ici ?", "va": "trial",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "We're a small team: two bakers, and three people at the counter. Everybody helps everybody.", "fr": "Nous sommes une petite équipe : deux boulangers et trois personnes au comptoir. Tout le monde s'entraide."}]},
+    {"faux": true, "t": "Yes. How much I will win?", "fr": "Oui. Combien je vais gagner ?",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Win? This isn't the lottery! You mean the pay?", "fr": "« Win » ? Ce n'est pas la loterie ! Vous parlez du salaire ?"}],
+     "aide": {"fr": "<b>« win »</b>, c'est gagner un match ou au loto. Pour un salaire, on dit <b>earn</b> ou <b>pay</b>, et la question se pose poliment : « Could you tell me how much the job pays? »"}}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "It's $17 an hour to start, plus tips — usually another $3 or so an hour. And it's about 25 hours a week. How does that sound?", "dit": "It's seventeen dollars an hour to start, plus tips — usually another three dollars or so an hour. And it's about twenty-five hours a week. How does that sound?", "fr": "C'est 17 dollars de l'heure pour commencer, plus les pourboires : en général 3 dollars de plus par heure, à peu près. Et c'est environ 25 heures par semaine. Qu'en dites-vous ?"}],
+   "choix": [
+    {"t": "That sounds good to me. Thank you.", "fr": "Ça me convient. Merci.", "va": "trial"},
+    {"t": "That sounds fair. Are the tips shared between everyone?", "fr": "Ça me paraît correct. Les pourboires sont-ils partagés entre tous ?", "va": "trial",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Yes, we split them equally at the end of each week.", "fr": "Oui, on les partage à parts égales à la fin de chaque semaine."}]},
+    {"faux": true, "t": "It's correct for me.", "fr": "C'est correct pour moi.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Correct? Well, yes, the numbers are correct … You mean it's okay for you?", "fr": "« Correct » ? Eh bien oui, les chiffres sont exacts… Vous voulez dire que ça vous va ?"}],
+     "aide": {"fr": "<b>« correct »</b> veut dire exact, sans erreur. Pour dire que quelque chose te convient : « That sounds good to me. » ou « That sounds fair. »"}}
+   ]
+  },
+  "trial": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "Okay. I'd like you to come in for a trial shift — three hours, paid, so we can both see how it goes. Could you do Thursday or Saturday morning?", "fr": "Bon. J'aimerais que vous veniez faire un essai : trois heures, payées, pour qu'on voie tous les deux comment ça se passe. Jeudi ou samedi matin, c'est possible ?"}],
+   "choix": [
+    {"t": "Thursday morning works for me.", "fr": "Jeudi matin, ça me va.", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Great. Thursday at six, then. Wear comfortable shoes — and welcome, well, almost!", "fr": "Parfait. Jeudi à six heures, donc. Mettez des chaussures confortables… et bienvenue, enfin, presque !"}]},
+    {"t": "Saturday would be better for me, if that's okay.", "fr": "Samedi m'arrangerait mieux, si c'est possible.", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Saturday it is. Six o'clock, comfortable shoes. You'll see the bakery at its busiest!", "fr": "Va pour samedi. Six heures, chaussures confortables. Vous verrez la boulangerie en pleine activité !"}]},
+    {"faux": true, "t": "I prefer the Saturday.", "fr": "Je préfère le samedi.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "The Saturday … this Saturday, you mean?", "fr": "« The Saturday »… ce samedi, vous voulez dire ?"}],
+     "aide": {"fr": "Pas d'article devant les jours de la semaine, et <b>I'd prefer</b> est plus poli que « I prefer ». Dis plutôt : « Saturday would be better for me. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as parlé de toi et de ton expérience, répondu aux questions de Pablo, posé les tiennes, et décroché un essai à la boulangerie."}
+}

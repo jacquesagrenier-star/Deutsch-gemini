@@ -1,0 +1,116 @@
+{
+ "id": "a2-puces",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Marchander aux puces"},
+ "intro": {"fr": "Dimanche matin au marché aux puces du Mauerpark, à Berlin. Une vieille lampe te plaît. Tu demandes le prix, puis tu marchandes, poliment."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "preis",
+ "prix": {"paket30": 3000, "paket35": 3500, "lampe23": 2300},
+ "panier": ["deal"],
+ "textes": {
+  "gebot_fr": {"cle": "gebot", "zwanzig": "vingt", "fuenfzehn": "quinze"},
+  "deal_fr": {"cle": "deal", "paket30": "la lampe et les six tasses", "paket35": "la lampe et les six tasses", "lampe23": "la lampe"}
+ },
+ "noeuds": {
+  "preis": {
+   "dit": [
+    {"recit": {"fr": "Le Flohmarkt du Mauerpark, un dimanche de soleil. Sur un stand, entre des disques et de la vaisselle, tu vois une vieille lampe de bureau verte."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "Guten Morgen! Schauen Sie ruhig, alles schöne alte Sachen.", "fr": "Bonjour ! Regardez tranquillement, ce ne sont que de belles choses anciennes."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen! Was kostet die Lampe hier?", "fr": "Bonjour ! Combien coûte cette lampe-ci ?", "va": "handeln",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Die Lampe? Dreißig Euro. Die ist aus den Sechzigerjahren, ein schönes Stück!", "fr": "La lampe ? Trente euros. Elle date des années soixante, une belle pièce !"}]},
+    {"t": "Entschuldigung, wie viel kostet diese Lampe?", "fr": "Excusez-moi, combien coûte cette lampe ?", "va": "handeln",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Die Lampe? Dreißig Euro. Die ist aus den Sechzigerjahren, ein schönes Stück!", "fr": "La lampe ? Trente euros. Elle date des années soixante, une belle pièce !"}]},
+    {"faux": true, "t": "Guten Morgen! Wie viel die Lampe kostet?", "fr": "Bonjour ! Combien la lampe coûte ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Wie bitte? Ach so: Was kostet die Lampe? Dreißig Euro.", "fr": "Pardon ? Ah : combien coûte la lampe ? Trente euros."}],
+     "aide": {"fr": "<b>Dans une question, le verbe vient juste après le mot interrogatif.</b> « Wie viel <b>kostet</b> die Lampe? » ou « Was kostet die Lampe? »."}}
+   ]
+  },
+  "handeln": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Na, gefällt sie Ihnen?", "fr": "Alors, elle vous plaît ?"}],
+   "choix": [
+    {"t": "Ja, aber das ist ein bisschen teuer. Geht es auch für zwanzig Euro?", "fr": "Oui, mais c'est un peu cher. Ça irait aussi pour vingt euros ?", "pose": {"gebot": "zwanzig"}, "va": "defekt",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Zwanzig? Hm … Sagen wir fünfundzwanzig.", "fr": "Vingt ? Hum… Disons vingt-cinq."}]},
+    {"t": "Sie ist schön, aber dreißig ist viel. Vielleicht fünfzehn Euro?", "fr": "Elle est belle, mais trente, c'est beaucoup. Peut-être quinze euros ?", "pose": {"gebot": "fuenfzehn"}, "va": "defekt",
+     "puis": [{"qui": "marktverkaeufer", "air": "surprise", "t": "Fünfzehn? Nein, nein, das ist zu wenig. Fünfundzwanzig, das ist ein guter Preis.", "fr": "Quinze ? Non, non, c'est trop peu. Vingt-cinq, c'est un bon prix."}]},
+    {"faux": true, "t": "Das ist zu teuer. Zehn Euro.", "fr": "C'est trop cher. Dix euros.",
+     "puis": [{"qui": "marktverkaeufer", "air": "surprise", "t": "Zehn Euro? Na hören Sie mal! Das ist doch kein Müll.", "fr": "Dix euros ? Non mais dites donc ! Ce n'est quand même pas de la camelote."}],
+     "aide": {"fr": "<b>On marchande, mais poliment.</b> Trop sec, le vendeur se vexe. Adoucis et pose une question : « Das ist ein bisschen teuer. Geht es auch für zwanzig Euro? »."}}
+   ]
+  },
+  "defekt": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Na, was sagen Sie?", "fr": "Alors, qu'en dites-vous ?"}],
+   "choix": [
+    {"t": "Funktioniert die Lampe noch?", "fr": "La lampe marche encore ?", "va": "zweites",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Klar! Schauen Sie, ich mache sie an. Sehen Sie? Und das Kabel ist neu.", "fr": "Bien sûr ! Regardez, je l'allume. Vous voyez ? Et le câble est neuf."}]},
+    {"t": "Hm. Ist etwas kaputt?", "fr": "Hum. Il y a quelque chose de cassé ?", "va": "zweites",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Nein, alles in Ordnung. Nur hier ist ein kleiner Kratzer. Und das Kabel ist neu.", "fr": "Non, tout va bien. Il y a juste une petite rayure ici. Et le câble est neuf."}]},
+    {"faux": true, "t": "Marschiert die Lampe gut?", "fr": "La lampe marche (au pas) bien ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "Marschieren? Die Lampe hat doch keine Beine! Aber sie funktioniert, ja.", "fr": "Marcher au pas ? Mais la lampe n'a pas de jambes ! Mais elle fonctionne, oui."}],
+     "aide": {"fr": "<b>Pour un appareil, « marcher » se dit « funktionieren ».</b> « Funktioniert die Lampe? » (ou, plus familier, « Geht die Lampe? »). « marschieren », c'est marcher au pas, comme des soldats."}}
+   ]
+  },
+  "zweites": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Und schauen Sie mal: Die sechs Kaffeetassen hier passen gut dazu. Zwölf Euro.", "fr": "Et regardez donc : les six tasses à café, là, vont bien avec. Douze euros."}],
+   "choix": [
+    {"t": "Die Tassen sind schön. Was kostet alles zusammen?", "fr": "Les tasses sont jolies. Combien coûte le tout ?", "va": "paket"},
+    {"t": "Nein danke, nur die Lampe. Zweiundzwanzig Euro, okay?", "fr": "Non merci, seulement la lampe. Vingt-deux euros, d'accord ?", "va": "nur_lampe"},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "zweites",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Gern: Die sechs Tassen kosten zwölf Euro. Möchten Sie die auch?", "fr": "Volontiers : les six tasses coûtent douze euros. Vous les voulez aussi ?"}]}
+   ]
+  },
+  "paket": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Die Lampe und die Tassen … Für Sie: fünfunddreißig Euro zusammen.", "fr": "La lampe et les tasses… Pour vous : trente-cinq euros le tout."}],
+   "choix": [
+    {"t": "Dreißig Euro für beides, und ich nehme alles.", "fr": "Trente euros pour les deux, et je prends tout.", "pose": {"deal": "paket30"}, "va": "zahlen",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Na gut, weil heute die Sonne scheint. Dreißig Euro!", "fr": "Bon, d'accord, parce qu'il fait soleil aujourd'hui. Trente euros !"}]},
+    {"t": "Fünfunddreißig ist in Ordnung. Ich nehme beides.", "fr": "Trente-cinq, ça me va. Je prends les deux.", "pose": {"deal": "paket35"}, "va": "zahlen",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Prima! Das ist ein guter Kauf.", "fr": "Parfait ! C'est un bon achat."}]},
+    {"faux": true, "t": "Für dreißig Euro, ich nehme alles.", "fr": "Pour trente euros, je prends tout.",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Wie bitte? Ach so: Für dreißig Euro nehmen Sie alles?", "fr": "Pardon ? Ah : pour trente euros, vous prenez tout ?"}],
+     "aide": {"fr": "<b>Le verbe reste en deuxième position.</b> Si la phrase commence par « Für dreißig Euro », le verbe suit, puis le sujet : « Für dreißig Euro <b>nehme ich</b> alles »."}}
+   ]
+  },
+  "nur_lampe": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Zweiundzwanzig? Hm … Dreiundzwanzig, das ist mein letztes Wort.", "fr": "Vingt-deux ? Hum… Vingt-trois, c'est mon dernier mot."}],
+   "choix": [
+    {"t": "Gut, dreiundzwanzig. Ich nehme sie.", "fr": "Bien, vingt-trois. Je la prends.", "pose": {"deal": "lampe23"}, "va": "zahlen",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Prima! Das ist ein guter Kauf.", "fr": "Parfait ! C'est un bon achat."}]},
+    {"t": "Einverstanden, dreiundzwanzig Euro.", "fr": "D'accord, vingt-trois euros.", "pose": {"deal": "lampe23"}, "va": "zahlen",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Prima! Das ist ein guter Kauf.", "fr": "Parfait ! C'est un bon achat."}]},
+    {"faux": true, "t": "Gut, dreiundzwanzig. Ich sie nehme.", "fr": "Bien, vingt-trois. Je la prends.",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Wie bitte? Ach so, Sie nehmen sie! Sehr gut.", "fr": "Pardon ? Ah, vous la prenez ! Très bien."}],
+     "aide": {"fr": "<b>Le pronom vient APRÈS le verbe.</b> En français : « je la prends » ; en allemand : « Ich nehme <b>sie</b> ». Le verbe reste en deuxième position."}}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Das macht dann {a_payer}.", "dit": "Das macht dann {a_payer:mots}.", "fr": "Ça fait donc {a_payer}."}],
+   "choix": [
+    {"t": "Ich habe leider nur fünfzig Euro. Können Sie wechseln?", "fr": "Je n'ai malheureusement qu'un billet de cinquante euros. Vous pouvez rendre la monnaie ?", "va": "abschied",
+     "puis": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Fünfzig? Moment … Ja, das geht. Hier ist Ihr Wechselgeld.", "fr": "Cinquante ? Un instant… Oui, ça va. Voici votre monnaie."}]},
+    {"t": "Hier, bitte. Ich habe es passend.", "fr": "Tenez. J'ai la somme exacte.", "va": "abschied",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Perfekt, danke schön!", "fr": "Parfait, merci bien !"}]},
+    {"faux": true, "t": "Ich habe nur fünfzig Euro. Haben Sie die Münze?", "fr": "Je n'ai que cinquante euros. Vous avez la pièce ?",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Welche Münze? Ach so, Sie meinen Wechselgeld! Ja, ich kann wechseln.", "fr": "Quelle pièce ? Ah, vous voulez dire de la monnaie ! Oui, je peux vous la rendre."}],
+     "aide": {"fr": "<b>« die Münze », c'est une pièce.</b> La monnaie qu'on rend : « das Wechselgeld » ; la petite monnaie : « das Kleingeld ». Le plus simple : « Können Sie wechseln? »."}}
+   ]
+  },
+  "abschied": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Möchten Sie eine Tüte?", "fr": "Vous voulez un sac ?"}],
+   "choix": [
+    {"t": "Ja, gern. Vielen Dank und einen schönen Sonntag!", "fr": "Oui, volontiers. Merci beaucoup et bon dimanche !", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Danke, gleichfalls! Viel Freude damit!", "fr": "Merci, à vous aussi ! Profitez-en bien !"}]},
+    {"t": "Nein danke, ich habe eine Tasche. Schönen Sonntag noch!", "fr": "Non merci, j'ai un sac. Bon dimanche !", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Danke, gleichfalls! Viel Freude damit!", "fr": "Merci, à vous aussi ! Profitez-en bien !"}]},
+    {"faux": true, "t": "Ja, einen Sack, bitte.", "fr": "Oui, un (gros) sac, s'il vous plaît.",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "Einen Sack? So groß ist das doch nicht! Eine Tüte reicht, oder?", "fr": "Un gros sac ? Ce n'est quand même pas si grand ! Un sachet suffit, non ?"}],
+     "aide": {"fr": "<b>Le sac qu'on donne au magasin est « die Tüte ».</b> En Allemagne, « der Sack » est un grand sac (de pommes de terre, de ciment). Un sac à main : « die Tasche »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as marchandé poliment : tu as proposé {gebot_fr} euros pour la lampe à trente euros, et tu repars avec {deal_fr} pour {a_payer}."}
+}

@@ -1,0 +1,130 @@
+{
+ "id": "d12-nachts-demenz",
+ "numero": 12,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "arun",
+ "personnes": ["schulze"],
+ "titre": {"t": "Nachts bei Demenz", "fr": "Un résident désorienté, la nuit"},
+ "intro": {"fr": "Trois heures du matin, au {heim}. {schulze}, ancien conducteur de tramway, est dans le couloir, en veste, sa casquette à la main : il veut partir « au dépôt ». Tu joues {arun} : ne le contredis pas, entre dans son monde, rassure-le, réoriente-le doucement et raccompagne-le dans sa chambre."},
+ "but": {"fr": "Accompagner une personne désorientée (validation) : accueillir, faire raconter au Präteritum, reconnaître le sentiment (le devoir, la ponctualité), réorienter sans mentir ni contraindre, raccompagner."},
+ "grammaire": ["g13", "g12", "g07"],
+ "telc": ["oral-3", "hoeren"],
+ "relire_notes": {"fr": "Méthode de la validation (Naomi Feil) et ce qu'on ne fait pas : contredire, raisonner, mentir, contraindre ; réorientation douce (l'heure, la nuit) ; boisson et lumière ; surveiller la nuit ; noter l'épisode."},
+ "redemittel": [
+  {"t": "{schulze}, Sie sind ja schon wach.", "fr": "{schulze:voc}, vous êtes déjà réveillé.", "fonction": "rassurer"},
+  {"t": "Sie wollen zur Arbeit?", "fr": "Vous voulez aller au travail ?", "fonction": "reformuler"},
+  {"t": "Sie waren gern Straßenbahnfahrer, nicht wahr?", "fr": "Vous aimiez être conducteur de tramway, n'est-ce pas ?", "fonction": "demander"},
+  {"t": "Erzählen Sie mal: Was war das Schönste an Ihrer Arbeit?", "fr": "Racontez-moi : qu'est-ce qui était le plus beau dans votre travail ?", "fonction": "demander"},
+  {"t": "Es ist noch Nacht. Die erste Bahn fährt erst morgen früh.", "fr": "Il fait encore nuit. Le premier tram ne part que demain matin.", "fonction": "rassurer"},
+  {"t": "Darf ich Sie ein Stück begleiten?", "fr": "Je peux vous accompagner un bout de chemin ?", "fonction": "demander"},
+  {"t": "Ich bin die ganze Nacht da.", "fr": "Je suis là toute la nuit.", "fonction": "rassurer"}
+ ],
+ "debut": "flur",
+ "noeuds": {
+  "flur": {
+   "dit": [
+    {"recit": {"fr": "Trois heures du matin. Dans le couloir faiblement éclairé, {arun} voit {schulze}, en veste, sa vieille casquette de conducteur à la main."}},
+    {"qui": "schulze", "air": "attentive", "t": "Lassen Sie mich durch, junger Mann. Ich muss zum Depot, meine Schicht fängt gleich an.", "fr": "Laissez-moi passer, jeune homme. Je dois aller au dépôt, mon service commence bientôt."}
+   ],
+   "choix": [
+    {"t": "{schulze}, Sie sind ja schon wach. Sie wollen zur Arbeit?", "fr": "{schulze:voc}, vous êtes déjà réveillé. Vous voulez aller au travail ?", "va": "beruf",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Natürlich! Die Linie vier wartet nicht. Ich bin schon spät dran.", "fr": "Bien sûr ! La ligne quatre n'attend pas. Je suis déjà en retard."}]},
+    {"t": "Guten Morgen, {schulze}. Sie haben ja schon Ihre Jacke an. Wo möchten Sie denn hin?", "fr": "Bonjour, {schulze:voc}. Vous avez déjà mis votre veste. Où voulez-vous aller ?", "va": "beruf",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Zum Depot! Die Linie vier wartet nicht. Ich bin schon spät dran.", "fr": "Au dépôt ! La ligne quatre n'attend pas. Je suis déjà en retard."}]},
+    {"faux": true, "t": "{schulze}, Sie arbeiten doch seit über zwanzig Jahren nicht mehr! Sie sind in Rente.", "fr": "{schulze:voc}, vous ne travaillez plus depuis plus de vingt ans ! Vous êtes à la retraite.",
+     "puis": [{"qui": "schulze", "air": "surprise", "t": "Was reden Sie denn da? Lassen Sie mich sofort durch!", "fr": "Qu'est-ce que vous racontez ? Laissez-moi passer tout de suite !"}],
+     "aide": {"fr": "<b>Ne contredis pas une personne désorientée : pour elle, c'est vrai maintenant.</b> La corriger l'inquiète et la met en colère. Entre dans son monde : « Sie wollen zur Arbeit? »"},
+     "relire": true, "relire_note": "Validation : vérifier l'aide."}
+   ]
+  },
+  "beruf": {
+   "dit": [],
+   "choix": [
+    {"t": "Sie waren gern Straßenbahnfahrer, nicht wahr?", "fr": "Vous aimiez être conducteur de tramway, n'est-ce pas ?", "va": "erzaehlen",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Vierzig Jahre lang. Ich kannte jede Haltestelle in der Stadt.", "fr": "Pendant quarante ans. Je connaissais chaque arrêt de la ville."}]},
+    {"t": "Die Linie vier! Wie lange sind Sie die denn gefahren?", "fr": "La ligne quatre ! Vous l'avez conduite pendant combien de temps ?", "va": "erzaehlen",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Vierzig Jahre lang. Ich kannte jede Haltestelle in der Stadt.", "fr": "Pendant quarante ans. Je connaissais chaque arrêt de la ville."}]}
+   ]
+  },
+  "erzaehlen": {
+   "dit": [],
+   "choix": [
+    {"t": "Das ist eine lange Zeit. Welche Strecke sind Sie am liebsten gefahren?", "fr": "C'est long. Quel trajet préfériez-vous conduire ?", "va": "nacht",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Morgens am Fluss entlang, wenn die Sonne aufging. Da waren alle noch ganz still.", "fr": "Le matin, le long du fleuve, quand le soleil se levait. Tout le monde était encore silencieux."}]},
+    {"t": "Erzählen Sie mal: Was war das Schönste an Ihrer Arbeit?", "fr": "Racontez-moi : qu'est-ce qui était le plus beau dans votre travail ?", "va": "nacht",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Morgens am Fluss entlang, wenn die Sonne aufging. Da waren alle noch ganz still.", "fr": "Le matin, le long du fleuve, quand le soleil se levait. Tout le monde était encore silencieux."}]}
+   ]
+  },
+  "nacht": {
+   "dit": [],
+   "choix": [
+    {"t": "Das klingt schön. Wissen Sie, jetzt ist noch mitten in der Nacht. Die erste Bahn fährt erst morgen früh.", "fr": "Ça a l'air beau. Vous savez, là, on est encore en pleine nuit. Le premier tram ne part que demain matin.", "va": "angst",
+     "relire": true, "relire_note": "Réorientation douce (l'heure).",
+     "puis": [{"qui": "schulze", "air": "perplexe", "t": "Noch Nacht? … Aber ich darf doch nicht zu spät kommen.", "fr": "Encore la nuit ? … Mais je ne dois pas arriver en retard."}]},
+    {"t": "Schauen Sie mal aus dem Fenster: Es ist noch ganz dunkel. Draußen fährt noch keine Bahn.", "fr": "Regardez par la fenêtre : il fait encore tout noir. Dehors, aucun tram ne roule encore.", "va": "angst",
+     "puis": [{"qui": "schulze", "air": "perplexe", "t": "Noch Nacht? … Aber ich darf doch nicht zu spät kommen.", "fr": "Encore la nuit ? … Mais je ne dois pas arriver en retard."}]},
+    {"faux": true, "t": "Die Straßenbahn kommt gleich. Warten Sie hier im Flur.", "fr": "Le tram arrive tout de suite. Attendez ici, dans le couloir.",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Gut, ich warte. Aber nicht zu lange!", "fr": "Bien, j'attends. Mais pas trop longtemps !"}],
+     "aide": {"fr": "<b>Même pour calmer, on ne ment pas.</b> Il attendrait un tram qui ne vient pas, puis perdrait confiance en toi. Réoriente avec douceur et avec du vrai : « Es ist noch Nacht. Die erste Bahn fährt erst morgen früh. »"},
+     "relire": true, "relire_note": "Validation : vérifier l'aide."}
+   ]
+  },
+  "angst": {
+   "dit": [],
+   "choix": [
+    {"t": "Pünktlichkeit war Ihnen immer wichtig, das merkt man. Aber jetzt dürfen Sie sich noch ausruhen.", "fr": "La ponctualité a toujours compté pour vous, ça se voit. Mais maintenant, vous pouvez encore vous reposer.", "va": "begleiten",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Meinen Sie? Hm … ich bin auch ein bisschen müde.", "fr": "Vous croyez ? Hum… je suis aussi un peu fatigué."}]},
+    {"t": "Sie sind ein sehr pflichtbewusster Mann. Niemand wird Ihnen böse sein, Sie haben noch viel Zeit.", "fr": "Vous êtes un homme qui a le sens du devoir. Personne ne vous en voudra, vous avez encore beaucoup de temps.", "va": "begleiten",
+     "puis": [{"qui": "schulze", "air": "attentive", "t": "Meinen Sie? Hm … ich bin auch ein bisschen müde.", "fr": "Vous croyez ? Hum… je suis aussi un peu fatigué."}]}
+   ]
+  },
+  "begleiten": {
+   "dit": [],
+   "choix": [
+    {"t": "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.", "fr": "Je peux vous accompagner un bout de chemin ? On pourrait déjà suspendre votre veste dans votre chambre.", "va": "zimmer",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Hm … aber die Mütze behalte ich.", "fr": "Hum… mais je garde la casquette."}]},
+    {"t": "Kommen Sie, ich begleite Sie. Wir gehen zusammen ein Stück, zu Ihrem Zimmer.", "fr": "Venez, je vous accompagne. On fait un bout de chemin ensemble, jusqu'à votre chambre.", "va": "zimmer",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Hm … aber die Mütze behalte ich.", "fr": "Hum… mais je garde la casquette."}]},
+    {"faux": true, "t": "Sie gehen jetzt sofort ins Bett. Es ist drei Uhr!", "fr": "Vous allez au lit tout de suite. Il est trois heures !",
+     "puis": [{"qui": "schulze", "air": "surprise", "t": "Sie haben mir gar nichts zu befehlen!", "fr": "Vous n'avez pas d'ordres à me donner !"}],
+     "aide": {"fr": "<b>Un ordre déclenche la résistance.</b> Propose et accompagne : « Darf ich Sie ein Stück begleiten? » La personne garde le sentiment de choisir."}}
+   ]
+  },
+  "zimmer": {
+   "dit": [
+    {"recit": {"fr": "Dans la chambre, {schulze} regarde la photo encadrée au-dessus de son fauteuil : un vieux tram jaune."}},
+    {"qui": "schulze", "air": "sourire", "t": "Das ist ja mein Sessel. Und das Foto … das ist meine Bahn.", "fr": "C'est mon fauteuil. Et la photo… c'est mon tram."}
+   ],
+   "choix": [
+    {"t": "Ja, das ist Ihre Bahn. Möchten Sie sich in den Sessel setzen? Ich bringe Ihnen einen warmen Tee.", "fr": "Oui, c'est votre tram. Voulez-vous vous asseoir dans le fauteuil ? Je vous apporte un thé chaud.", "va": "ende",
+     "relire": true, "relire_note": "Boisson la nuit (selon le plan de soins).",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Ein Tee wäre gut. Kamille.", "fr": "Un thé, ce serait bien. À la camomille."}]},
+    {"t": "Eine schöne Bahn. Erzählen Sie mir morgen mehr davon? Jetzt mache ich Ihnen ein kleines Licht an und bringe Ihnen einen Tee.", "fr": "Un beau tram. Vous m'en raconterez plus demain ? Là, je vous allume une petite lumière et je vous apporte un thé.", "va": "ende",
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Ein Tee wäre gut. Kamille.", "fr": "Un thé, ce serait bien. À la camomille."}]}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Gern. Und wenn Sie müde werden, helfe ich Ihnen ins Bett. Ich bin die ganze Nacht da.", "fr": "Volontiers. Et quand vous serez fatigué, je vous aiderai à vous coucher. Je suis là toute la nuit.", "va": null,
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Sie sind ein guter Kollege.", "fr": "Vous êtes un bon collègue."}]},
+    {"t": "Ich bin gleich wieder da. Und wenn Sie etwas brauchen, klingeln Sie einfach.", "fr": "Je reviens tout de suite. Et si vous avez besoin de quelque chose, sonnez, tout simplement.", "va": null,
+     "puis": [{"qui": "schulze", "air": "sourire", "t": "Danke, Kollege.", "fr": "Merci, collègue."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wohin will {schulze} am Anfang?", "fr": "Où veut aller {schulze} au début ?"},
+   "options": [{"t": "Zu seiner Tochter.", "fr": "Chez sa fille."}, {"t": "Zum Depot, zur Arbeit.", "fr": "Au dépôt, au travail."}, {"t": "Zum Arzt.", "fr": "Chez le médecin."}],
+   "juste": 1},
+  {"q": {"t": "Wie lange war er Straßenbahnfahrer?", "fr": "Pendant combien de temps a-t-il été conducteur de tramway ?"},
+   "options": [{"t": "Vierzig Jahre.", "fr": "Quarante ans."}, {"t": "Zwanzig Jahre.", "fr": "Vingt ans."}, {"t": "Zehn Jahre.", "fr": "Dix ans."}],
+   "juste": 0},
+  {"q": {"t": "Was möchte er am Ende trinken?", "fr": "Que veut-il boire à la fin ?"},
+   "options": [{"t": "Einen Kaffee.", "fr": "Un café."}, {"t": "Ein Glas Wasser.", "fr": "Un verre d'eau."}, {"t": "Kamillentee.", "fr": "Une camomille."}],
+   "juste": 2}
+ ]
+}

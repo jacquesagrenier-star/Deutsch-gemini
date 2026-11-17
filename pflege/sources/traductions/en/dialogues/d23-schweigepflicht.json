@@ -1,0 +1,366 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d23-schweigepflicht.json",
+ "cles": {
+  "titre": {
+   "fr": "La famille au téléphone : le secret professionnel",
+   "de": "Angehörige am Telefon: die Schweigepflicht",
+   "en": "A relative on the phone: patient confidentiality"
+  },
+  "intro": {
+   "fr": "Le soir, au poste de soins. Le téléphone sonne : c'est {lehmann_tochter}, la fille de {lehmann}. Elle a une levée du secret professionnel au dossier, mais au téléphone, {elif} ne voit pas qui appelle. Demain à dix heures, {lehmann_tochter} a déjà un entretien avec {sommer}. Tu joues {elif} : vérifier l'identité, dire ce qu'une soignante peut dire, renvoyer les résultats à la médecin, et ne rien dire des autres patients.",
+   "en": "Evening, at the nurses' station. The phone rings: it's {lehmann_tochter}, {lehmann}'s daughter. There is a confidentiality waiver in the file, but on the phone {elif} can't see who is calling. Tomorrow at ten, {lehmann_tochter} already has a meeting with {sommer}. You play {elif}: check the caller's identity, say what a nurse is allowed to say, leave the test results to the doctor, and say nothing about other patients."
+  },
+  "but": {
+   "fr": "Répondre à un proche au téléphone en respectant le secret professionnel (Schweigepflicht) : vérifier l'identité (le mot de passe convenu), donner des nouvelles qui relèvent des soins, ne pas interpréter un résultat (Die Laborwerte bespricht die Ärztin mit Ihnen), refuser poliment toute information sur un autre patient, rassurer sans promettre.",
+   "en": "Answer a relative on the phone while respecting patient confidentiality (Schweigepflicht): check the caller's identity (the agreed password), give news that falls within nursing care, don't interpret a result (Die Laborwerte bespricht die Ärztin mit Ihnen), politely refuse any information about another patient, reassure without making promises."
+  },
+  "relire_notes": {
+   "fr": "Secret professionnel (§ 203 StGB) et levée du secret (Schweigepflichtentbindung) au dossier ; vérifier l'identité au téléphone : mot de passe convenu à l'admission, ou rappel au numéro du dossier (selon la maison) ; ce qu'une assistante de soins peut dire (soins, repas, mobilité, humeur) et ce qui revient à la médecin (résultats, diagnostic) ; aucune information sur les autres patients.",
+   "en": "Professional confidentiality (§ 203 StGB) and the confidentiality waiver (Schweigepflichtentbindung) in the file; checking identity on the phone: a password agreed on admission, or calling back on the number in the file (depending on the hospital); what nursing staff may say (care, meals, mobility, mood) and what is for the doctor (results, diagnosis); no information about other patients."
+  },
+  "redemittel.0": {
+   "fr": "Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu, s'il vous plaît ?",
+   "de": "Bevor ich Ihnen etwas sage: Können Sie mir bitte das vereinbarte Kennwort nennen?",
+   "en": "Before I tell you anything: could you give me the agreed password, please?"
+  },
+  "redemittel.1": {
+   "fr": "Au téléphone, je ne peux donner des informations que si je sais à qui je parle.",
+   "de": "Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche.",
+   "en": "On the phone, I can only give out information if I know who I'm speaking to."
+  },
+  "redemittel.2": {
+   "fr": "Votre mère va plutôt bien aujourd'hui. Elle a bien mangé.",
+   "de": "Ihrer Mutter geht es heute ganz gut. Sie hat gut gegessen.",
+   "en": "Your mother is doing quite well today. She ate well."
+  },
+  "redemittel.3": {
+   "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous.",
+   "de": "Die Laborwerte bespricht die Ärztin mit Ihnen.",
+   "en": "The doctor will go through the lab results with you."
+  },
+  "redemittel.4": {
+   "fr": "Je comprends que vous soyez inquiète.",
+   "de": "Ich verstehe, dass Sie sich Sorgen machen.",
+   "en": "I understand that you're worried."
+  },
+  "redemittel.5": {
+   "fr": "Je ne peux malheureusement rien vous dire sur les autres patients.",
+   "de": "Über andere Patienten darf ich Ihnen leider nichts sagen.",
+   "en": "I'm afraid I can't tell you anything about other patients."
+  },
+  "redemittel.6": {
+   "fr": "Je dirai à votre mère que vous avez appelé.",
+   "de": "Ich sage Ihrer Mutter, dass Sie angerufen haben.",
+   "en": "I'll tell your mother that you called."
+  },
+  "noeuds.anruf.dit.0.recit": {
+   "fr": "Dix-neuf heures, au poste de soins. Le téléphone sonne.",
+   "en": "Seven p.m., at the nurses' station. The phone rings."
+  },
+  "noeuds.anruf.dit.1": {
+   "fr": "Bonsoir, ici {lehmann_tochter}, la fille de {lehmann}. Je suis passée un moment ce midi, mais je suis inquiète. Comment va ma mère ?",
+   "de": "Guten Abend, hier ist {lehmann_tochter}, die Tochter von {lehmann}. Ich war heute Mittag kurz da, aber ich mache mir Sorgen. Wie geht es meiner Mutter?",
+   "en": "Good evening, this is {lehmann_tochter}, {lehmann}'s daughter. I popped in briefly at lunchtime, but I'm worried. How is my mother?"
+  },
+  "noeuds.anruf.choix.0": {
+   "fr": "Bonsoir, {lehmann_tochter:voc}. Ici {elif}, du {station}. Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu à l'admission, s'il vous plaît ?",
+   "de": "Guten Abend, {lehmann_tochter}. Hier ist {elif} von der {station}. Bevor ich Ihnen etwas sage: Können Sie mir bitte das Kennwort nennen, das bei der Aufnahme vereinbart wurde?",
+   "en": "Good evening, {lehmann_tochter:voc}. This is {elif} from {station}. Before I tell you anything: could you give me the password that was agreed on admission, please?"
+  },
+  "noeuds.anruf.choix.0.puis.0": {
+   "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !",
+   "de": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!",
+   "en": "A password? Oh yes… “Sonnenblume”. But you know me!"
+  },
+  "noeuds.anruf.choix.1": {
+   "fr": "Bonsoir. {elif} à l'appareil, du {station}. Au téléphone, je ne peux donner des informations que si je sais à qui je parle. Quel est votre mot de passe, s'il vous plaît ?",
+   "de": "Guten Abend. Hier spricht {elif} von der {station}. Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche. Wie lautet bitte Ihr Kennwort?",
+   "en": "Good evening. {elif} speaking, from {station}. On the phone, I can only give out information if I know who I'm speaking to. What is your password, please?"
+  },
+  "noeuds.anruf.choix.1.puis.0": {
+   "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !",
+   "de": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!",
+   "en": "A password? Oh yes… “Sonnenblume”. But you know me!"
+  },
+  "noeuds.anruf.choix.2": {
+   "fr": "Bonsoir ! Votre mère va bien. Seul son potassium était trop élevé aujourd'hui, sinon tout va bien.",
+   "de": "Guten Abend! Ihrer Mutter geht es gut. Nur ihr Kalium war heute zu hoch, sonst ist alles okay.",
+   "en": "Good evening! Your mother is fine. It's just that her potassium was too high today, otherwise everything's okay."
+  },
+  "noeuds.anruf.choix.2.puis.0": {
+   "fr": "Le potassium ? Qu'est-ce que ça veut dire ? C'est dangereux ?",
+   "de": "Kalium? Was heißt das? Ist das gefährlich?",
+   "en": "Potassium? What does that mean? Is it dangerous?"
+  },
+  "noeuds.anruf.choix.2.aide": {
+   "fr": "<b>Au téléphone, savoir d'abord qui appelle.</b> Même avec une levée du secret au dossier, on vérifie l'identité (le mot de passe convenu, ou on rappelle au numéro du dossier). Et un résultat de laboratoire, c'est la médecin qui l'explique.",
+   "en": "<b>On the phone, first find out who is calling.</b> Even with a confidentiality waiver in the file, you check the caller's identity (the agreed password, or you call back on the number in the file). And a lab result is for the doctor to explain."
+  },
+  "noeuds.kennwort.choix.0": {
+   "fr": "Oui, je reconnais votre voix. Mais au téléphone, n'importe qui peut appeler, et le mot de passe protège votre mère. Merci de votre compréhension.",
+   "de": "Ja, ich erkenne Ihre Stimme. Aber am Telefon kann jeder anrufen, und das Kennwort schützt Ihre Mutter. Danke für Ihr Verständnis.",
+   "en": "Yes, I recognise your voice. But anyone can call on the phone, and the password protects your mother. Thank you for understanding."
+  },
+  "noeuds.kennwort.choix.0.puis.0": {
+   "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?",
+   "de": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?",
+   "en": "Well, actually, that's quite right. So, how is she?"
+  },
+  "noeuds.kennwort.choix.1": {
+   "fr": "Le mot de passe est juste, merci. Nous faisons ainsi pour tous les appels, pour qu'aucun inconnu n'obtienne d'informations.",
+   "de": "Das Kennwort stimmt, danke. Wir machen das bei allen Anrufen so, damit keine Fremden Auskunft bekommen.",
+   "en": "The password is correct, thank you. We do this for every call, so that no strangers get information."
+  },
+  "noeuds.kennwort.choix.1.puis.0": {
+   "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?",
+   "de": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?",
+   "en": "Well, actually, that's quite right. So, how is she?"
+  },
+  "noeuds.kennwort.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Pouvez-vous répéter le mot de passe, s'il vous plaît ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Können Sie das Kennwort bitte noch einmal sagen?",
+   "en": "Sorry, the line is bad. Could you say the password again, please?"
+  },
+  "noeuds.kennwort.choix.2.puis.0": {
+   "fr": "« Sonnenblume », comme la fleur (le tournesol).",
+   "de": "„Sonnenblume“. Wie die Blume.",
+   "en": "“Sonnenblume”. Like the flower (the sunflower)."
+  },
+  "noeuds.befinden.choix.0": {
+   "fr": "Votre mère va plutôt bien aujourd'hui. Elle a mangé presque tout son dîner et elle a marché dans le couloir avec sa canne cet après-midi.",
+   "de": "Ihrer Mutter geht es heute ganz gut. Sie hat zu Abend fast alles gegessen und war am Nachmittag mit dem Gehstock auf dem Flur.",
+   "en": "Your mother is doing quite well today. She ate almost all of her dinner, and this afternoon she walked in the corridor with her walking stick."
+  },
+  "noeuds.befinden.choix.0.puis.0": {
+   "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin.",
+   "de": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.",
+   "en": "I'm glad to hear it. And the blood tests? The doctor took blood this morning."
+  },
+  "noeuds.befinden.choix.1": {
+   "fr": "Elle a bien participé aujourd'hui. Le pansement a été refait, et elle avait bon appétit au dîner.",
+   "de": "Sie hat heute gut mitgemacht. Der Verband wurde gewechselt, und beim Abendessen hatte sie guten Appetit.",
+   "en": "She joined in well today. Her dressing was changed, and she had a good appetite at dinner."
+  },
+  "noeuds.befinden.choix.1.puis.0": {
+   "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin.",
+   "de": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.",
+   "en": "I'm glad to hear it. And the blood tests? The doctor took blood this morning."
+  },
+  "noeuds.befinden.choix.2": {
+   "fr": "Votre mère a une hyperkaliémie sur fond de polyneuropathie et de pied diabétique.",
+   "de": "Ihre Mutter hat eine Hyperkaliämie bei Polyneuropathie und diabetischem Fußsyndrom.",
+   "en": "Your mother has hyperkalaemia in the context of polyneuropathy and diabetic foot syndrome."
+  },
+  "noeuds.befinden.choix.2.puis.0": {
+   "fr": "Une quoi ? S'il vous plaît, dites-le de façon que je comprenne.",
+   "de": "Eine was? Bitte so, dass ich es auch verstehe.",
+   "en": "A what? Please say it in a way I can understand."
+  },
+  "noeuds.befinden.choix.2.aide": {
+   "fr": "<b>Avec la famille : des mots simples, et ce qui relève des soins.</b> Ce qu'elle a mangé, si elle a marché, comment elle se sent : « Sie hat gut gegessen und war auf dem Flur. » Les diagnostics, c'est la médecin qui les explique.",
+   "en": "<b>With relatives: simple words, and what falls within nursing care.</b> What she ate, whether she walked, how she feels: “Sie hat gut gegessen und war auf dem Flur.” Diagnoses are for the doctor to explain."
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous. Vous avez justement demain à dix heures votre entretien avec {sommer}. Elle pourra tout vous expliquer en détail.",
+   "de": "Die Laborwerte bespricht die Ärztin mit Ihnen. Sie haben ja morgen um zehn das Gespräch mit {sommer}. Da kann sie Ihnen alles genau erklären.",
+   "en": "The doctor will go through the lab results with you. You have your meeting with {sommer} tomorrow at ten anyway. She can explain everything to you in detail."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?",
+   "de": "Ja, schon … Aber ist denn etwas nicht in Ordnung?",
+   "en": "Yes, of course… But is something wrong, then?"
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Là-dessus, je ne peux malheureusement rien vous dire, c'est du ressort de la médecin. Demain à dix heures, vous voyez {sommer} ; elle vous expliquera les résultats.",
+   "de": "Dazu darf ich Ihnen leider nichts sagen, das ist Sache der Ärztin. Morgen um zehn sehen Sie ja {sommer}; sie erklärt Ihnen die Werte.",
+   "en": "I'm afraid I can't tell you anything about that, it's a matter for the doctor. Tomorrow at ten you're seeing {sommer}; she'll explain the results to you."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?",
+   "de": "Ja, schon … Aber ist denn etwas nicht in Ordnung?",
+   "en": "Yes, of course… But is something wrong, then?"
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Ils sont plutôt corrects, je crois.",
+   "de": "Die sind, glaube ich, ganz okay.",
+   "en": "They're pretty much okay, I think."
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "« Je crois » ? Alors, ils sont bons ou pas ?",
+   "de": "„Glaube ich“? Sind sie nun in Ordnung oder nicht?",
+   "en": "“I think”? So are they fine or not?"
+  },
+  "noeuds.werte.choix.2.aide": {
+   "fr": "<b>Ne pas deviner, ne pas interpréter un résultat.</b> « Die Laborwerte bespricht die Ärztin mit Ihnen. » Puis proposer quelque chose de concret : l'entretien avec elle, demain.",
+   "en": "<b>Don't guess, and don't interpret a result.</b> “Die Laborwerte bespricht die Ärztin mit Ihnen.” Then offer something concrete: the meeting with her, tomorrow."
+  },
+  "noeuds.sorge.choix.0": {
+   "fr": "Je comprends que vous soyez inquiète. La médecin a vu les résultats et elle s'en occupe. Demain, elle pourra répondre à toutes vos questions.",
+   "de": "Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin hat die Werte gesehen und kümmert sich darum. Morgen kann sie Ihnen alle Fragen beantworten.",
+   "en": "I understand that you're worried. The doctor has seen the results and is looking into it. Tomorrow she can answer all your questions."
+  },
+  "noeuds.sorge.choix.0.puis.0": {
+   "fr": "Bien. Ça me rassure un peu.",
+   "de": "Gut. Das beruhigt mich ein bisschen.",
+   "en": "Good. That reassures me a little."
+  },
+  "noeuds.sorge.choix.1": {
+   "fr": "Votre mère est bien prise en charge, et la médecin est au courant. Notez vos questions pour demain, comme ça vous n'oublierez rien.",
+   "de": "Ihre Mutter ist gut versorgt, und die Ärztin weiß Bescheid. Schreiben Sie sich Ihre Fragen für morgen auf, dann vergessen Sie nichts.",
+   "en": "Your mother is being well looked after, and the doctor knows about it. Write down your questions for tomorrow, then you won't forget anything."
+  },
+  "noeuds.sorge.choix.1.puis.0": {
+   "fr": "Bonne idée. Ça me rassure un peu.",
+   "de": "Gute Idee. Das beruhigt mich ein bisschen.",
+   "en": "Good idea. That reassures me a little."
+  },
+  "noeuds.sorge.choix.2": {
+   "fr": "Non, non, tout va très bien. Ne vous inquiétez pas !",
+   "de": "Nein, nein, es ist alles bestens. Keine Sorge!",
+   "en": "No, no, everything's absolutely fine. Don't worry!"
+  },
+  "noeuds.sorge.choix.2.puis.0": {
+   "fr": "Vraiment ? Alors pourquoi je dois parler à la médecin ?",
+   "de": "Wirklich? Warum soll ich dann mit der Ärztin sprechen?",
+   "en": "Really? Then why do I need to talk to the doctor?"
+  },
+  "noeuds.sorge.choix.2.aide": {
+   "fr": "<b>Rassurer sans promettre.</b> Tu ne peux pas dire « alles bestens » sans le savoir. « Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin kümmert sich darum » rassure et reste vrai.",
+   "en": "<b>Reassure without making promises.</b> You can't say “alles bestens” without knowing it. “Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin kümmert sich darum” reassures and stays true."
+  },
+  "noeuds.nachbar.dit.0": {
+   "fr": "Ah, et encore une chose : comment va le gentil monsieur d'à côté, {brandt} ? Ma mère dit qu'il a été très malade l'autre nuit.",
+   "de": "Ach, und noch etwas: Wie geht es eigentlich dem netten Herrn von nebenan, {brandt:dat}? Meine Mutter sagt, er war neulich nachts so krank.",
+   "en": "Oh, and one more thing: how is the nice gentleman next door, {brandt}? My mother says he was so ill the other night."
+  },
+  "noeuds.nachbar.choix.0": {
+   "fr": "C'est gentil de demander. Mais je ne peux malheureusement rien vous dire sur les autres patients. C'est valable pour tout le monde, pour votre mère aussi.",
+   "de": "Das ist nett, dass Sie fragen. Aber über andere Patienten darf ich Ihnen leider nichts sagen. Das gilt für alle, auch für Ihre Mutter.",
+   "en": "It's kind of you to ask. But I'm afraid I can't tell you anything about other patients. That applies to everyone, to your mother too."
+  },
+  "noeuds.nachbar.choix.0.puis.0": {
+   "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère.",
+   "de": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.",
+   "en": "Of course, you're right. I wouldn't want people talking about my mother either."
+  },
+  "noeuds.nachbar.choix.1": {
+   "fr": "Là-dessus, je ne peux malheureusement pas vous renseigner, je suis tenue au secret professionnel. Vous non plus, vous ne voudriez pas que je parle de votre mère à d'autres personnes.",
+   "de": "Dazu darf ich Ihnen leider keine Auskunft geben, ich habe Schweigepflicht. Sie möchten ja auch nicht, dass ich mit anderen über Ihre Mutter spreche.",
+   "en": "I'm afraid I can't give you any information about that, I'm bound by patient confidentiality. You wouldn't want me to talk to other people about your mother either."
+  },
+  "noeuds.nachbar.choix.1.puis.0": {
+   "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère.",
+   "de": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.",
+   "en": "Of course, you're right. I wouldn't want people talking about my mother either."
+  },
+  "noeuds.nachbar.choix.2": {
+   "fr": "Oh, il va déjà mieux. Il a eu une pneumonie.",
+   "de": "Ach, dem geht es schon besser. Er hatte eine Lungenentzündung.",
+   "en": "Oh, he's already better. He had pneumonia."
+  },
+  "noeuds.nachbar.choix.2.puis.0": {
+   "fr": "Une pneumonie ? C'est contagieux ? Ma mère est en danger ?",
+   "de": "Eine Lungenentzündung? Ist das ansteckend? Ist meine Mutter in Gefahr?",
+   "en": "Pneumonia? Is that contagious? Is my mother in danger?"
+  },
+  "noeuds.nachbar.choix.2.aide": {
+   "fr": "<b>Jamais d'information sur un autre patient, même demandée gentiment.</b> « Über andere Patienten darf ich Ihnen leider nichts sagen. » Le secret professionnel protège chaque patient, la mère de l'appelante aussi.",
+   "en": "<b>Never give information about another patient, even when asked kindly.</b> “Über andere Patienten darf ich Ihnen leider nichts sagen.” Confidentiality protects every patient, including the caller's mother."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Alors à demain, dix heures. Je dirai à votre mère que vous avez appelé. Bonne soirée !",
+   "de": "Dann sehen wir uns morgen um zehn. Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch!",
+   "en": "So, see you tomorrow at ten. I'll tell your mother that you called. Have a nice evening!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, vous êtes très aimable. Bonne nuit !",
+   "de": "Danke, Sie sind sehr freundlich. Gute Nacht!",
+   "en": "Thank you, that's very kind of you. Good night!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je transmettrai vos amitiés à votre mère. À demain, et au revoir, {lehmann_tochter:voc}.",
+   "de": "Ich richte Ihrer Mutter liebe Grüße aus. Bis morgen, und auf Wiederhören, {lehmann_tochter}.",
+   "en": "I'll pass on your love to your mother. Until tomorrow, and goodbye, {lehmann_tochter:voc}."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Au revoir, et merci beaucoup !",
+   "de": "Auf Wiederhören, und vielen Dank!",
+   "en": "Goodbye, and thank you very much!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "OK, salut !",
+   "de": "Okay, tschüss!",
+   "en": "Okay, see ya!"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Euh… au revoir.",
+   "de": "Äh … tschüss.",
+   "en": "Er… bye."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Finir l'appel comme on l'a commencé : poliment, avec la suite.</b> « Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch! » Au téléphone, on dit « Auf Wiederhören ».",
+   "en": "<b>End the call the way you started it: politely, with what happens next.</b> “Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch!” On the phone, you say “Auf Wiederhören”."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {elif} demande-t-elle le mot de passe ?",
+   "de": "Warum fragt {elif} nach dem Kennwort?",
+   "en": "Why does {elif} ask for the password?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Parce qu'elle ne connaît pas la voix.",
+   "de": "Weil sie die Stimme nicht kennt.",
+   "en": "Because she doesn't know the voice."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Parce qu'au téléphone, elle ne peut pas être sûre de qui appelle.",
+   "de": "Weil sie am Telefon nicht sicher wissen kann, wer anruft.",
+   "en": "Because on the phone she can't be sure who is calling."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Parce que la fille n'a pas de levée du secret.",
+   "de": "Weil die Tochter keine Schweigepflichtentbindung hat.",
+   "en": "Because the daughter has no confidentiality waiver."
+  },
+  "ecouter.1.q": {
+   "fr": "Qui explique les résultats sanguins de {lehmann} ?",
+   "de": "Wer erklärt die Blutwerte von {lehmann}?",
+   "en": "Who will explain {lehmann}'s blood results?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "La médecin, demain à dix heures.",
+   "de": "Die Ärztin, morgen um zehn Uhr.",
+   "en": "The doctor, tomorrow at ten."
+  },
+  "ecouter.1.options.1": {
+   "fr": "{elif}, tout de suite au téléphone.",
+   "de": "{elif}, gleich am Telefon.",
+   "en": "{elif}, right away on the phone."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Le laboratoire, par une lettre.",
+   "de": "Das Labor, mit einem Brief.",
+   "en": "The lab, in a letter."
+  },
+  "ecouter.2.q": {
+   "fr": "Que répond {elif} quand on lui demande des nouvelles de {brandt} ?",
+   "de": "Was antwortet {elif} auf die Frage nach {brandt:dat}?",
+   "en": "What does {elif} answer when asked about {brandt}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Qu'il va déjà mieux.",
+   "de": "Dass es ihm schon besser geht.",
+   "en": "That he's already better."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Qu'il a eu une pneumonie.",
+   "de": "Dass er eine Lungenentzündung hatte.",
+   "en": "That he had pneumonia."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Qu'elle ne peut rien dire sur les autres patients.",
+   "de": "Dass sie über andere Patienten nichts sagen darf.",
+   "en": "That she can't say anything about other patients."
+  }
+ }
+}

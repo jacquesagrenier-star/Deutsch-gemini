@@ -1,0 +1,121 @@
+{
+ "id": "a2-conseil-vendeur",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Demander conseil au magasin de vélos"},
+ "intro": {"fr": "Tu veux un vélo pour circuler dans Madrid. Dans un magasin de Chamberí, la vendeuse te pose des questions, te montre deux vélos, et tu demandes à essayer."},
+ "personnes": ["rad_verkaeuferin"],
+ "debut": "hola",
+ "textes": {
+  "bici_fr": {"cle": "bici", "nueva": "le vélo neuf", "usada": "le vélo d'occasion révisé"},
+  "extra_fr": {"cle": "extra", "candado": "un antivol", "dos": "un antivol et un casque"}
+ },
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, dans un magasin de vélos de Chamberí. La vendeuse pose sa clé et vient vers toi."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "¡Hola, buenos días! ¿Le puedo ayudar?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Sí, busco una bici para ir al trabajo.", "fr": "Oui, je cherche un vélo pour aller au travail.", "pose": {"uso": "trabajo"}, "va": "uso"},
+    {"t": "Sí, quería una bicicleta para pasear el fin de semana.", "fr": "Oui, je voudrais un vélo pour me promener le week-end.", "pose": {"uso": "finde"}, "va": "uso"},
+    {"faux": true, "t": "Sí, busco un velo para la ciudad.", "fr": "Oui, je cherche un voile pour la ville.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "¿Un velo? Aquí solo vendemos bicicletas… Ah, ¡una bici!", "fr": "Un voile ? Ici, nous ne vendons que des vélos… Ah, un vélo !"}],
+     "aide": {"fr": "<b>Le vélo, c'est « la bicicleta », ou « la bici ».</b> « Un velo » est un voile. Dis : « Busco una bici »."}}
+   ]
+  },
+  "uso": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "Muy bien. ¿Y va a usarla mucho?", "fr": "Très bien. Et vous allez beaucoup vous en servir ?"}],
+   "choix": [
+    {"t": "Todos los días, unos cinco kilómetros.", "fr": "Tous les jours, environ cinq kilomètres.", "va": "presupuesto",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Entonces necesita una bici cómoda. Y Madrid tiene cuestas, ya lo sabe.", "fr": "Alors il vous faut un vélo confortable. Et Madrid a des côtes, vous le savez."}]},
+    {"t": "Dos o tres veces por semana, no muy lejos.", "fr": "Deux ou trois fois par semaine, pas très loin.", "va": "presupuesto",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Vale. Entonces una bici sencilla es suficiente.", "fr": "D'accord. Alors un vélo simple suffit."}]},
+    {"faux": true, "t": "Cada días, cinco kilómetros.", "fr": "Chaque jours, cinq kilomètres.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "¿Cada día? ¿Todos los días? Vale, vale.", "fr": "Chaque jour ? Tous les jours ? D'accord, d'accord."}],
+     "aide": {"fr": "<b>« Cada » reste au singulier : « cada día ».</b> Au pluriel, on dit « todos los días » (tous les jours)."}}
+   ]
+  },
+  "presupuesto": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "¿Y qué presupuesto tiene, más o menos?", "fr": "Et quel budget avez-vous, à peu près ?"}],
+   "choix": [
+    {"t": "No más de cuatrocientos euros.", "fr": "Pas plus de quatre cents euros.", "va": "dos"},
+    {"t": "Unos cuatrocientos euros, como máximo.", "fr": "Environ quatre cents euros, au maximum.", "va": "dos"},
+    {"faux": true, "t": "No más que cuatrocientos euros.", "fr": "Pas plus que quatre cents euros.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "¿No más de cuatrocientos? Vale, perfecto.", "fr": "Pas plus de quatre cents ? D'accord, parfait."}],
+     "aide": {"fr": "<b>Devant un nombre : « más de », pas « más que ».</b> « No más de cuatrocientos euros », « más de cien personas ». « Más que » sert à comparer : « más caro que el otro »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "presupuesto",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Sí, claro. ¿Cuánto dinero quiere gastar?", "fr": "Oui, bien sûr. Combien d'argent voulez-vous dépenser ?"}]}
+   ]
+  },
+  "dos": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Pues mire, tengo dos. Esta es nueva, sencilla, y cuesta trescientos cuarenta euros. Y esta es de segunda mano, revisada aquí, por doscientos veinte.", "fr": "Eh bien, regardez, j'en ai deux. Celui-ci est neuf, simple, et coûte trois cent quarante euros. Et celui-ci est d'occasion, révisé ici, pour deux cent vingt."}],
+   "choix": [
+    {"t": "Me gusta la nueva. ¿Puedo probarla?", "fr": "Le neuf me plaît. Je peux l'essayer ?", "pose": {"bici": "nueva"}, "va": "talla"},
+    {"t": "Prefiero la de segunda mano. ¿Puedo probarla?", "fr": "Je préfère celui d'occasion. Je peux l'essayer ?", "pose": {"bici": "usada"}, "va": "talla"},
+    {"faux": true, "t": "Me gusta la nueva. ¿Puedo ensayarla?", "fr": "Le neuf me plaît. Je peux le « répéter » ?",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "¿Ensayarla? ¿Como en el teatro? Ah, ¡probarla!", "fr": "Le répéter ? Comme au théâtre ? Ah, l'essayer !"}],
+     "aide": {"fr": "<b>Essayer un objet : « probar ».</b> « ¿Puedo probarla? ». « Ensayar », c'est répéter une pièce de théâtre ou un concert."}}
+   ]
+  },
+  "talla": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "Claro que sí. ¿Cuánto mide usted? Es para la talla de la bici.", "fr": "Bien sûr. Combien mesurez-vous ? C'est pour la taille du vélo."}],
+   "choix": [
+    {"t": "Mido un metro sesenta y cinco.", "fr": "Je mesure un mètre soixante-cinq.", "va": "accesorios",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Entonces la talla pequeña le va bien. Pruébela en la calle, sin prisa.", "fr": "Alors la petite taille vous va bien. Essayez-le dans la rue, sans vous presser."}]},
+    {"t": "Mido un metro ochenta.", "fr": "Je mesure un mètre quatre-vingts.", "va": "accesorios",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Entonces la talla grande le va bien. Pruébela en la calle, sin prisa.", "fr": "Alors la grande taille vous va bien. Essayez-le dans la rue, sans vous presser."}]},
+    {"faux": true, "t": "Hago un metro ochenta.", "fr": "Je fais un mètre quatre-vingts.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "¿Hace…? Ah, mide un metro ochenta.", "fr": "Vous faites… ? Ah, vous mesurez un mètre quatre-vingts."}],
+     "aide": {"fr": "<b>Pour sa taille, l'espagnol dit « medir ».</b> « Mido un metro ochenta », « ¿cuánto mide usted? ». « Hacer » ne s'emploie pas ici."}}
+   ]
+  },
+  "accesorios": {
+   "dit": [
+    {"recit": {"fr": "Tu fais le tour du pâté de maisons. Le vélo roule bien, les freins répondent. Tu reviens au magasin."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Va muy bien, ¿verdad? ¿Necesita algo más? ¿Un candado, un casco?", "fr": "Il roule très bien, n'est-ce pas ? Il vous faut autre chose ? Un antivol, un casque ?"}
+   ],
+   "choix": [
+    {"t": "Sí, un buen candado, por favor.", "fr": "Oui, un bon antivol, s'il vous plaît.", "pose": {"extra": "candado"}, "va": "total",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Hace bien. En Madrid, sin candado, la bici no dura ni un día. Este cuesta treinta euros.", "fr": "Vous faites bien. À Madrid, sans antivol, le vélo ne tient même pas une journée. Celui-ci coûte trente euros."}]},
+    {"t": "Un candado y un casco, por favor.", "fr": "Un antivol et un casque, s'il vous plaît.", "pose": {"extra": "dos"}, "va": "total",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Muy bien. El candado son treinta euros y el casco, otros treinta.", "fr": "Très bien. L'antivol, c'est trente euros, et le casque, trente de plus."}]},
+    {"faux": true, "t": "Sí, necesito un antivol.", "fr": "Oui, j'ai besoin d'un « antivol » (mot français).",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "perplexe", "t": "¿Un qué? Ah, ¿un candado, para atar la bici en la calle?", "fr": "Un quoi ? Ah, un antivol, pour attacher le vélo dans la rue ?"}],
+     "aide": {"fr": "<b>L'antivol du vélo, c'est « el candado ».</b> « Antivol » n'existe pas en espagnol. Dis : « Necesito un candado »."}}
+   ]
+  },
+  "total": {
+   "dit": [
+    {"qui": "rad_verkaeuferin", "air": "attentive", "si": {"bici": "nueva", "extra": "candado"}, "t": "Entonces, la bici nueva y el candado: son trescientos setenta euros en total.", "fr": "Alors, le vélo neuf et l'antivol : ça fait trois cent soixante-dix euros en tout."},
+    {"qui": "rad_verkaeuferin", "air": "attentive", "si": {"bici": "nueva", "extra": "dos"}, "t": "Entonces, la bici nueva, el candado y el casco: son cuatrocientos euros justos.", "fr": "Alors, le vélo neuf, l'antivol et le casque : ça fait quatre cents euros tout rond."},
+    {"qui": "rad_verkaeuferin", "air": "attentive", "si": {"bici": "usada", "extra": "candado"}, "t": "Entonces, la bici de segunda mano y el candado: son doscientos cincuenta euros en total.", "fr": "Alors, le vélo d'occasion et l'antivol : ça fait deux cent cinquante euros en tout."},
+    {"qui": "rad_verkaeuferin", "air": "attentive", "si": {"bici": "usada", "extra": "dos"}, "t": "Entonces, la bici de segunda mano, el candado y el casco: son doscientos ochenta euros en total.", "fr": "Alors, le vélo d'occasion, l'antivol et le casque : ça fait deux cent quatre-vingts euros en tout."}
+   ],
+   "choix": [
+    {"t": "Muy bien. ¿La bici tiene garantía?", "fr": "Très bien. Le vélo a une garantie ?", "va": "pagar",
+     "puis": [
+      {"qui": "rad_verkaeuferin", "air": "sourire", "si": {"bici": "nueva"}, "t": "Sí, tres años. Y la primera revisión es gratis.", "fr": "Oui, trois ans. Et la première révision est gratuite."},
+      {"qui": "rad_verkaeuferin", "air": "sourire", "si": {"bici": "usada"}, "t": "Sí, un año. Y la primera revisión es gratis.", "fr": "Oui, un an. Et la première révision est gratuite."}
+     ]},
+    {"t": "Perfecto, me la llevo. ¿Puedo pagar con tarjeta?", "fr": "Parfait, je le prends. Je peux payer par carte ?", "va": null,
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Claro. Y la primera revisión es gratis: vuelva dentro de un mes. ¡Que la disfrute!", "fr": "Bien sûr. Et la première révision est gratuite : revenez dans un mois. Profitez-en bien !"}]},
+    {"faux": true, "t": "Perfecto. ¿Puedo pagar por carta?", "fr": "Parfait. Je peux payer par lettre ?",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "¿Por carta? ¿Por correo? Ah, ¡con tarjeta! Sí, claro.", "fr": "Par lettre ? Par la poste ? Ah, par carte ! Oui, bien sûr."}],
+     "aide": {"fr": "<b>La carte bancaire, c'est « la tarjeta ».</b> « Pagar con tarjeta ». « Una carta » est une lettre, ou la carte d'un restaurant."}}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "¿Se la lleva, entonces?", "fr": "Vous le prenez, alors ?"}],
+   "choix": [
+    {"t": "Sí, me la llevo. Pago con tarjeta.", "fr": "Oui, je le prends. Je paie par carte.", "va": null,
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Perfecto. Aquí tiene el recibo. ¡Que la disfrute!", "fr": "Parfait. Voici le reçu. Profitez-en bien !"}]},
+    {"t": "Sí. ¿Puedo pagar en efectivo?", "fr": "Oui. Je peux payer en espèces ?", "va": null,
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Sí, claro. Aquí tiene el recibo. ¡Que la disfrute!", "fr": "Oui, bien sûr. Voici le reçu. Profitez-en bien !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ce que tu cherchais, donné ton budget, essayé le vélo et acheté {bici_fr} avec {extra_fr}. La première révision est gratuite."}
+}

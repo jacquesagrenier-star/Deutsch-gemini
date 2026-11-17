@@ -1,0 +1,409 @@
+{
+ "_langue": "pl",
+ "_source": "pflege/sources/dialogues/d02-schmerzen.json",
+ "cles": {
+  "titre": {
+   "fr": "La douleur, de 0 à 10",
+   "de": "Schmerzen erfragen",
+   "pl": "Ból w skali od 0 do 10"
+  },
+  "intro": {
+   "fr": "Dix heures. {brandt} sonne : sa hanche lui fait mal. Tu joues {elif} : fais-lui dire où il a mal, combien sur l'échelle de 0 à 10, comment et depuis quand, propose ce qui est prescrit et dis quand tu reviens.",
+   "pl": "Dziesiąta. Dzwoni {brandt}: boli go biodro. Grasz jako {elif}: dowiedz się, gdzie go boli, ile w skali od 0 do 10, jak i od kiedy, zaproponuj to, co zostało zlecone, i powiedz, kiedy wrócisz."
+  },
+  "but": {
+   "fr": "Localiser, chiffrer et décrire une douleur ; proposer l'antalgique prescrit « si besoin » ; installer le patient ; prévoir la réévaluation et la noter.",
+   "pl": "Ustalić, gdzie boli, ocenić natężenie bólu w skali i opisać jego charakter; zaproponować lek przeciwbólowy zlecony doraźnie („w razie potrzeby”); wygodnie ułożyć pacjenta; zaplanować ponowną ocenę bólu i ją udokumentować."
+  },
+  "relire_notes": {
+   "fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit, dans le cadre de compétence d'une assistante de soins en cours de reconnaissance ; délai de réévaluation (30 min après une prise orale ici).",
+   "pl": "Skala numeryczna 0-10 (NRS); lek przeciwbólowy „bei Bedarf” podawany tylko wtedy, gdy jest zlecony, w granicach kompetencji asystentki pielęgniarskiej w trakcie uznawania kwalifikacji; czas ponownej oceny (tu 30 min po podaniu doustnym)."
+  },
+  "redemittel.0": {
+   "fr": "Avez-vous mal ?",
+   "de": "Haben Sie Schmerzen?",
+   "pl": "Czy coś pana boli?"
+  },
+  "redemittel.1": {
+   "fr": "Où avez-vous mal, exactement ?",
+   "de": "Wo genau tut es weh?",
+   "pl": "Gdzie dokładnie pana boli?"
+  },
+  "redemittel.2": {
+   "fr": "Pouvez-vous me montrer où vous avez mal ?",
+   "de": "Können Sie mir zeigen, wo es wehtut?",
+   "pl": "Czy może mi pan pokazać, gdzie boli?"
+  },
+  "redemittel.3": {
+   "fr": "Sur une échelle de 0 à 10, quelle est l'intensité de votre douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: Wie stark sind Ihre Schmerzen jetzt?",
+   "pl": "W skali od 0 do 10: jak silny jest teraz pana ból?"
+  },
+  "redemittel.4": {
+   "fr": "La douleur est-elle plutôt lancinante (en coups de couteau) ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "pl": "Czy ból jest raczej kłujący (jak ukłucie nożem), czy raczej tępy?"
+  },
+  "redemittel.5": {
+   "fr": "Depuis quand avez-vous mal ?",
+   "de": "Seit wann haben Sie die Schmerzen?",
+   "pl": "Od kiedy pana boli?"
+  },
+  "redemittel.6": {
+   "fr": "Le médecin vous a prescrit un antidouleur si besoin.",
+   "de": "Der Arzt hat Ihnen ein Schmerzmittel bei Bedarf verordnet.",
+   "pl": "Lekarz zlecił panu lek przeciwbólowy w razie potrzeby."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande.",
+   "de": "Ich komme in einer halben Stunde wieder und frage noch einmal nach.",
+   "pl": "Wrócę za pół godziny i jeszcze raz zapytam."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "Dix heures. Au-dessus de la chambre douze, la lampe de la sonnette s'allume. {elif} entre.",
+   "pl": "Dziesiąta. Nad salą numer dwanaście zapala się lampka dzwonka. {elif} wchodzi."
+  },
+  "noeuds.klingel.dit.1": {
+   "fr": "Ah, {elif}, heureusement que vous venez. Ça fait de nouveau si mal.",
+   "de": "Ach, {elif}, gut, dass Sie kommen. Es tut wieder so weh.",
+   "pl": "Ach, {elif}, dobrze, że pani przyszła. Znowu tak boli."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Je suis désolée, {brandt:voc}. Où avez-vous mal, exactement ?",
+   "de": "Das tut mir leid, {brandt}. Wo genau tut es weh?",
+   "pl": "Przykro mi, {brandt:voc}. Gdzie dokładnie pana boli?"
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "pl": "Tutaj, w prawym biodrze. I ciągnie aż do kolana."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Vous avez mal ? Pouvez-vous me montrer où ?",
+   "de": "Sie haben Schmerzen? Können Sie mir zeigen, wo es wehtut?",
+   "pl": "Boli pana? Może mi pan pokazać, gdzie?"
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "pl": "Tutaj, w prawym biodrze. I ciągnie aż do kolana."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Où « avez-vous mal » ? (mal dit)",
+   "de": "Wo haben Sie weh?",
+   "pl": "Gdzie pan „ma boli”? (źle powiedziane)"
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Où j'ai… quoi ?",
+   "de": "Wo ich … was habe?",
+   "pl": "Gdzie mam… co?"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>« weh » n'est pas un nom : on dit « Wo tut es weh? » ou « Wo haben Sie Schmerzen? ».</b> « wehtun » est un verbe (es tut weh) ; « der Schmerz, die Schmerzen » est le nom.",
+   "pl": "<b>„weh” nie jest rzeczownikiem: mówi się „Wo tut es weh?” albo „Wo haben Sie Schmerzen?”.</b> „wehtun” to czasownik (es tut weh); „der Schmerz, die Schmerzen” to rzeczownik."
+  },
+  "noeuds.skala.dit.0.recit": {
+   "fr": "{elif} veut un chiffre pour le dossier.",
+   "pl": "{elif} potrzebuje liczby do dokumentacji."
+  },
+  "noeuds.skala.choix.0": {
+   "fr": "Sur une échelle de 0 à 10 : 0, c'est pas de douleur, 10, la pire douleur que vous puissiez imaginer. Quelle est l'intensité de la douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: 0 heißt keine Schmerzen, 10 die stärksten Schmerzen, die Sie sich vorstellen können. Wie stark sind die Schmerzen jetzt?",
+   "pl": "W skali od 0 do 10: 0 oznacza brak bólu, 10 najsilniejszy ból, jaki może pan sobie wyobrazić. Jak silny jest teraz ból?"
+  },
+  "noeuds.skala.choix.0.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "pl": "Hm… siedem. A jak się ruszam, osiem."
+  },
+  "noeuds.skala.choix.1": {
+   "fr": "Quelle est l'intensité de la douleur, de 0 à 10 ? 0, c'est pas de douleur, 10, la pire douleur.",
+   "de": "Wie stark sind die Schmerzen, von 0 bis 10? 0 ist kein Schmerz, 10 ist der schlimmste Schmerz.",
+   "pl": "Jak silny jest ból, od 0 do 10? 0 to brak bólu, 10 to najgorszy ból."
+  },
+  "noeuds.skala.choix.1.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "pl": "Hm… siedem. A jak się ruszam, osiem."
+  },
+  "noeuds.skala.choix.2": {
+   "fr": "Vous avez combien de douleur ?",
+   "de": "Wie viel Schmerzen haben Sie?",
+   "pl": "Ile pan ma bólu?"
+  },
+  "noeuds.skala.choix.2.puis.0": {
+   "fr": "Beaucoup ! Énormément !",
+   "de": "Viel! Sehr viel!",
+   "pl": "Dużo! Bardzo dużo!"
+  },
+  "noeuds.skala.choix.2.aide": {
+   "fr": "<b>Pour le dossier, il faut un chiffre : demande avec l'échelle.</b> « Auf einer Skala von 0 bis 10 … » : explique ce que veulent dire 0 et 10, puis demande « Wie stark sind die Schmerzen jetzt? ».",
+   "pl": "<b>Do dokumentacji potrzebna jest liczba: zapytaj, posługując się skalą.</b> „Auf einer Skala von 0 bis 10 …”: wyjaśnij, co oznaczają 0 i 10, a potem zapytaj „Wie stark sind die Schmerzen jetzt?”."
+  },
+  "noeuds.art.choix.0": {
+   "fr": "La douleur est-elle plutôt lancinante, en coups de couteau, ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "pl": "Czy ból jest raczej kłujący, jak ukłucie nożem, czy raczej tępy?"
+  },
+  "noeuds.art.choix.0.puis.0": {
+   "fr": "Lancinante. Comme un couteau, quand je bouge la jambe.",
+   "de": "Stechend. Wie ein Messer, wenn ich das Bein bewege.",
+   "pl": "Kłujący. Jak nóż, kiedy ruszam nogą."
+  },
+  "noeuds.art.choix.1": {
+   "fr": "Comment est la douleur ? Elle pique, elle brûle, ou elle appuie ?",
+   "de": "Wie fühlt sich der Schmerz an? Sticht er, brennt er, oder drückt er?",
+   "pl": "Jaki jest ten ból? Kłuje, pali czy uciska?"
+  },
+  "noeuds.art.choix.1.puis.0": {
+   "fr": "Elle pique. Comme un couteau, quand je bouge la jambe.",
+   "de": "Er sticht. Wie ein Messer, wenn ich das Bein bewege.",
+   "pl": "Kłuje. Jak nóż, kiedy ruszam nogą."
+  },
+  "noeuds.art.choix.2": {
+   "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?",
+   "de": "Entschuldigung, können Sie das bitte noch einmal sagen?",
+   "pl": "Przepraszam, czy może pan powtórzyć?"
+  },
+  "noeuds.art.choix.2.puis.0": {
+   "fr": "Un sept, j'ai dit. Et quand je bouge, un huit.",
+   "de": "Eine Sieben, hab ich gesagt. Und wenn ich mich bewege, eine Acht.",
+   "pl": "Siedem, mówiłem. A jak się ruszam, osiem."
+  },
+  "noeuds.seit.choix.0": {
+   "fr": "Depuis quand la douleur est-elle aussi forte ?",
+   "de": "Seit wann sind die Schmerzen so stark?",
+   "pl": "Od kiedy ból jest taki silny?"
+  },
+  "noeuds.seit.choix.0.puis.0": {
+   "fr": "Depuis le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Seit dem Frühstück. Heute Morgen ging's noch.",
+   "pl": "Od śniadania. Rano jeszcze było dobrze."
+  },
+  "noeuds.seit.choix.1": {
+   "fr": "Quand la forte douleur a-t-elle commencé ?",
+   "de": "Wann haben die starken Schmerzen angefangen?",
+   "pl": "Kiedy zaczął się ten silny ból?"
+  },
+  "noeuds.seit.choix.1.puis.0": {
+   "fr": "Après le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Nach dem Frühstück. Heute Morgen ging's noch.",
+   "pl": "Po śniadaniu. Rano jeszcze było dobrze."
+  },
+  "noeuds.seit.choix.2": {
+   "fr": "« Depuis combien longtemps » avez-vous mal ? (mal dit)",
+   "de": "Seit wie lange haben Sie die Schmerzen?",
+   "pl": "„Od jak długo” pana boli? (źle powiedziane)"
+  },
+  "noeuds.seit.choix.2.puis.0": {
+   "fr": "Depuis comb… ? Ah, vous voulez dire depuis quand.",
+   "de": "Seit wie … ? Ach, Sie meinen, seit wann.",
+   "pl": "Od jak dłu…? Aha, chodzi pani o to, od kiedy."
+  },
+  "noeuds.seit.choix.2.aide": {
+   "fr": "<b>On dit « Seit wann …? » ou « Wie lange schon …? ».</b> « Seit wie lange » est un mélange des deux, que les Allemands remarquent tout de suite.",
+   "pl": "<b>Mówi się „Seit wann …?” albo „Wie lange schon …?”.</b> „Seit wie lange” to pomieszanie obu, które Niemcy od razu zauważają."
+  },
+  "noeuds.mittel.dit.0.recit": {
+   "fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin ».",
+   "pl": "{elif} zagląda do karty zleceń: {sommer} zleciła lek przeciwbólowy w tabletkach, „w razie potrzeby”."
+  },
+  "noeuds.mittel.choix.0": {
+   "fr": "{sommer} vous a prescrit un antidouleur si besoin. Vous voulez le prendre ?",
+   "de": "{sommer} hat Ihnen ein Schmerzmittel bei Bedarf verordnet. Möchten Sie es haben?",
+   "pl": "{sommer:maj} zleciła panu lek przeciwbólowy w razie potrzeby. Chce go pan przyjąć?"
+  },
+  "noeuds.mittel.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "pl": "Tak, poproszę. Ale bez zastrzyku, nie lubię tego."
+  },
+  "noeuds.mittel.choix.1": {
+   "fr": "Vous avez droit à un antidouleur si besoin. Voulez-vous que j'aille le chercher ?",
+   "de": "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?",
+   "pl": "Może pan dostać lek przeciwbólowy w razie potrzeby. Mam go panu przynieść?"
+  },
+  "noeuds.mittel.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "pl": "Tak, poproszę. Ale bez zastrzyku, nie lubię tego."
+  },
+  "noeuds.mittel.choix.2": {
+   "fr": "J'ai encore un comprimé d'hier, ici. Vous pouvez le prendre.",
+   "de": "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen.",
+   "pl": "Mam tu jeszcze tabletkę z wczoraj. Może ją pan wziąć."
+  },
+  "noeuds.mittel.choix.2.puis.0": {
+   "fr": "D'hier ? Il est seulement pour moi, ce comprimé ?",
+   "de": "Von gestern? Ist die denn überhaupt für mich?",
+   "pl": "Z wczoraj? A ona w ogóle jest dla mnie?"
+  },
+  "noeuds.mittel.choix.2.aide": {
+   "fr": "<b>C'est une faute de soin, pas de langue.</b> On ne donne que ce qui est prescrit à ce patient, préparé pour lui. Dis ce que le médecin a prescrit : « Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet. »",
+   "pl": "<b>To błąd w opiece, nie błąd językowy.</b> Podaje się tylko to, co zostało zlecone temu pacjentowi i dla niego przygotowane. Powiedz, co zlecił lekarz: „Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.”"
+  },
+  "noeuds.spritze.choix.0": {
+   "fr": "Ne vous inquiétez pas, c'est un comprimé. Je vais vous le chercher tout de suite, avec un verre d'eau.",
+   "de": "Keine Sorge, es ist eine Tablette. Ich hole sie Ihnen gleich, mit einem Glas Wasser.",
+   "pl": "Proszę się nie martwić, to tabletka. Zaraz ją panu przyniosę, ze szklanką wody."
+  },
+  "noeuds.spritze.choix.0.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "pl": "No, to w porządku."
+  },
+  "noeuds.spritze.choix.1": {
+   "fr": "Ce n'est pas une piqûre, c'est un comprimé. Je vous l'apporte tout de suite.",
+   "de": "Das ist keine Spritze, das ist eine Tablette. Ich bringe sie Ihnen sofort.",
+   "pl": "To nie zastrzyk, to tabletka. Zaraz ją panu przyniosę."
+  },
+  "noeuds.spritze.choix.1.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "pl": "No, to w porządku."
+  },
+  "noeuds.lage.dit.0.recit": {
+   "fr": "{elif} revient avec le comprimé. {brandt} l'avale et soupire. Il est mal installé, de travers dans son lit.",
+   "pl": "{elif} wraca z tabletką. {brandt:maj} połyka ją i wzdycha. Leży niewygodnie, krzywo w łóżku."
+  },
+  "noeuds.lage.choix.0": {
+   "fr": "Voulez-vous que je remette votre oreiller autrement ? Vous serez peut-être mieux installé.",
+   "de": "Soll ich Ihr Kissen anders hinlegen? Vielleicht liegen Sie dann bequemer.",
+   "pl": "Czy ułożyć panu poduszkę inaczej? Może będzie panu wygodniej."
+  },
+  "noeuds.lage.choix.0.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "pl": "Tak, to by było dobrze. Ale ostrożnie, proszę."
+  },
+  "noeuds.lage.choix.1": {
+   "fr": "Je peux vous aider à vous installer un peu autrement ?",
+   "de": "Darf ich Ihnen helfen, sich ein bisschen anders hinzulegen?",
+   "pl": "Czy mogę pomóc panu ułożyć się trochę inaczej?"
+  },
+  "noeuds.lage.choix.1.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "pl": "Tak, to by było dobrze. Ale ostrożnie, proszę."
+  },
+  "noeuds.lage.choix.2": {
+   "fr": "Bougez beaucoup la jambe, et la douleur va partir.",
+   "de": "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg.",
+   "pl": "Niech pan dużo rusza nogą, to ból przejdzie."
+  },
+  "noeuds.lage.choix.2.puis.0": {
+   "fr": "Bouger beaucoup ? Maintenant que ça fait si mal ?",
+   "de": "Viel bewegen? Jetzt, wo es so wehtut?",
+   "pl": "Dużo ruszać? Teraz, kiedy tak boli?"
+  },
+  "noeuds.lage.choix.2.aide": {
+   "fr": "<b>Ne promets pas que la douleur va partir, et ne donne pas de consigne de rééducation.</b> Les mouvements après l'opération sont décidés avec la kinésithérapie. Propose plutôt de l'installer confortablement.",
+   "pl": "<b>Nie obiecuj, że ból minie, i nie wydawaj zaleceń rehabilitacyjnych.</b> O ruchu po operacji decyduje się razem z fizjoterapeutą. Zaproponuj raczej wygodne ułożenie pacjenta."
+  },
+  "noeuds.zurueck.choix.0": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande pour la douleur.",
+   "de": "Ich komme in einer halben Stunde wieder und frage Sie noch einmal nach den Schmerzen.",
+   "pl": "Wrócę za pół godziny i jeszcze raz zapytam pana o ból."
+  },
+  "noeuds.zurueck.choix.0.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "pl": "Dobrze. A jak będzie gorzej, zadzwonię."
+  },
+  "noeuds.zurueck.choix.1": {
+   "fr": "Dans 30 minutes, je repasse vous voir. Vous me redonnerez un chiffre.",
+   "de": "In 30 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.",
+   "pl": "Za 30 minut znowu do pana zajrzę. Wtedy znowu poda mi pan liczbę."
+  },
+  "noeuds.zurueck.choix.1.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "pl": "Dobrze. A jak będzie gorzej, zadzwonię."
+  },
+  "noeuds.doku.dit.0": {
+   "fr": "Au fait, vous notez tout ça ?",
+   "de": "Schreiben Sie das eigentlich alles auf?",
+   "pl": "A właściwie, czy pani to wszystko zapisuje?"
+  },
+  "noeuds.doku.choix.0": {
+   "fr": "Oui, je note le sept et l'antidouleur dans votre dossier. Comme ça, le médecin est au courant aussi.",
+   "de": "Ja, ich trage die Sieben und das Schmerzmittel in Ihre Kurve ein. So weiß auch die Ärztin Bescheid.",
+   "pl": "Tak, wpisuję siódemkę i lek przeciwbólowy do pana karty obserwacji. Dzięki temu pani doktor też będzie wiedziała."
+  },
+  "noeuds.doku.choix.0.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "pl": "Dokładna z pani osoba, trzeba to przyznać."
+  },
+  "noeuds.doku.choix.1": {
+   "fr": "Oui, tout est noté : où vous avez mal, à quelle intensité et quel médicament vous avez reçu.",
+   "de": "Ja, alles wird dokumentiert: wo es wehtut, wie stark und welches Medikament Sie bekommen haben.",
+   "pl": "Tak, wszystko jest dokumentowane: gdzie boli, jak mocno i jaki lek pan dostał."
+  },
+  "noeuds.doku.choix.1.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "pl": "Dokładna z pani osoba, trzeba to przyznać."
+  },
+  "ecouter.0.q": {
+   "fr": "Où {brandt} a-t-il mal ?",
+   "de": "Wo hat {brandt} Schmerzen?",
+   "pl": "Gdzie boli {brandt:acc}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À la hanche droite.",
+   "de": "An der rechten Hüfte.",
+   "pl": "W prawym biodrze."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Au genou gauche.",
+   "de": "Am linken Knie.",
+   "pl": "W lewym kolanie."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Dans le dos.",
+   "de": "Im Rücken.",
+   "pl": "W plecach."
+  },
+  "ecouter.1.q": {
+   "fr": "Quelle est l'intensité de la douleur quand il bouge ?",
+   "de": "Wie stark sind die Schmerzen, wenn er sich bewegt?",
+   "pl": "Jak silny jest ból, kiedy się rusza?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Sept.",
+   "de": "Eine Sieben.",
+   "pl": "Siedem."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Huit.",
+   "de": "Eine Acht.",
+   "pl": "Osiem."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Dix.",
+   "de": "Eine Zehn.",
+   "pl": "Dziesięć."
+  },
+  "ecouter.2.q": {
+   "fr": "Qu'est-ce que {brandt} ne veut pas ?",
+   "de": "Was möchte {brandt} nicht?",
+   "pl": "Czego {brandt} nie chce?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un comprimé.",
+   "de": "Eine Tablette.",
+   "pl": "Tabletki."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un verre d'eau.",
+   "de": "Ein Glas Wasser.",
+   "pl": "Szklanki wody."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Une piqûre.",
+   "de": "Eine Spritze.",
+   "pl": "Zastrzyku."
+  }
+ }
+}

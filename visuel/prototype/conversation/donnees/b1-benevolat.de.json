@@ -1,0 +1,170 @@
+{
+ "id": "b1-benevolat",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "Devenir bénévole"},
+ "intro": {"fr": "Tu pousses la porte d'une maison de quartier à Berlin-Neukölln : tu veux donner un peu de ton temps. Jule, une bénévole qui s'occupe des nouveaux, t'accueille."},
+ "personnes": ["b13_koordinatorin"],
+ "debut": "ankunft",
+ "noeuds": {
+  "ankunft": {
+   "dit": [
+    {"recit": {"fr": "Dans l'entrée du Nachbarschaftshaus, une jeune femme range des cartons. Elle lève la tête."}},
+    {"qui": "b13_koordinatorin", "air": "sourire", "t": "Hallo! Kann ich helfen?", "fr": "Bonjour ! Je peux aider ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag! Ich möchte hier gern ehrenamtlich helfen. Sind Sie Frau Hofmann?", "fr": "Bonjour ! J'aimerais aider ici comme bénévole. Vous êtes Mme Hofmann ?", "va": "duzen",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Ja, das bin ich. Aber wir duzen uns hier alle, okay? Ich bin Jule, ich kümmere mich um das Samstagsteam.", "fr": "Oui, c'est moi. Mais ici, on se tutoie tous, d'accord ? Moi, c'est Jule, je m'occupe de l'équipe du samedi."}]},
+    {"t": "Guten Tag! Ich habe Ihre Anzeige gesehen. Sie suchen Ehrenamtliche, oder?", "fr": "Bonjour ! J'ai vu votre annonce. Vous cherchez des bénévoles, n'est-ce pas ?", "va": "duzen",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Ja, immer! Aber wir duzen uns hier alle, okay? Ich bin Jule, ich kümmere mich um das Samstagsteam.", "fr": "Oui, toujours ! Mais ici, on se tutoie tous, d'accord ? Moi, c'est Jule, je m'occupe de l'équipe du samedi."}]},
+    {"faux": true, "t": "Guten Tag! Ich bin Volontär.", "fr": "Bonjour ! Je suis « Volontär ».",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "Volontär? Bei einer Zeitung? Oder möchtest du hier ehrenamtlich helfen?", "fr": "« Volontär » ? Dans un journal ? Ou tu voudrais aider ici comme bénévole ?"}],
+     "aide": {"fr": "<b>« Volontär »</b> est un faux ami : c'est un journaliste stagiaire. Le bénévole est « ein Ehrenamtlicher » ou « ein Freiwilliger ». Dis : « Ich möchte hier ehrenamtlich helfen »."}}
+   ]
+  },
+  "duzen": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Wohnst du hier im Viertel?", "fr": "Tu habites dans le quartier ?"}],
+   "choix": [
+    {"t": "Gern, dann sage ich du! Ja, ich wohne seit einem Jahr gleich um die Ecke.", "fr": "Volontiers, alors je te dis tu ! Oui, j'habite juste au coin de la rue depuis un an.", "va": "aufgabe",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Schön, eine Nachbarin oder ein Nachbar mehr!", "fr": "Super, une voisine ou un voisin de plus !"}]},
+    {"t": "Okay, gern! Nein, ich wohne in Kreuzberg, aber mit dem Fahrrad bin ich in zehn Minuten hier.", "fr": "D'accord, volontiers ! Non, j'habite à Kreuzberg, mais à vélo je suis ici en dix minutes.", "va": "aufgabe",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Kreuzberg, das ist ja fast nebenan.", "fr": "Kreuzberg, c'est presque à côté."}]},
+    {"faux": true, "t": "Ja, Frau Hofmann. Und Sie, wohnen Sie auch hier?", "fr": "Oui, madame Hofmann. Et vous, vous habitez ici aussi ?",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Jule, bitte! Und «du». Sonst fühle ich mich so alt.", "fr": "Jule, s'il te plaît ! Et « du ». Sinon je me sens vieille."}],
+     "aide": {"fr": "<b>Quand on te propose le « du », on l'accepte tout de suite</b> : continuer au « Sie » met de la distance. Dans les associations, tout le monde se tutoie. Réponds : « Gern, dann sage ich du! »."}}
+   ]
+  },
+  "aufgabe": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Wir brauchen überall Hilfe: bei der Lebensmittelausgabe, bei der Hausaufgabenhilfe für Kinder oder beim Besuchsdienst für ältere Leute. Was würde dich interessieren?", "fr": "On a besoin d'aide partout : à la distribution alimentaire, à l'aide aux devoirs pour les enfants ou aux visites chez les personnes âgées. Qu'est-ce qui t'intéresserait ?"}],
+   "choix": [
+    {"t": "Ich würde gern bei der Lebensmittelausgabe helfen.", "fr": "J'aimerais aider à la distribution alimentaire.", "pose": {"tache": "ausgabe"}, "va": "ausgabe",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Super, da fehlen uns immer Leute.", "fr": "Super, il nous manque toujours du monde là-bas."}]},
+    {"t": "Ich arbeite gern mit Kindern. Die Hausaufgabenhilfe interessiert mich.", "fr": "J'aime travailler avec les enfants. L'aide aux devoirs m'intéresse.", "pose": {"tache": "kinder", "tag": "dienstag"}, "va": "kinder",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Schön! Die Kinder freuen sich über jedes neue Gesicht.", "fr": "Chouette ! Les enfants sont contents de chaque nouveau visage."}]},
+    {"t": "Ich würde gern ältere Menschen besuchen.", "fr": "J'aimerais rendre visite à des personnes âgées.", "pose": {"tache": "senioren", "tag": "mittwoch"}, "va": "senioren",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Das freut mich. Viele ältere Nachbarn sind sehr allein.", "fr": "Ça me fait plaisir. Beaucoup de voisins âgés sont très seuls."}]},
+    {"faux": true, "t": "Ich bin interessiert in der Hausaufgabenhilfe.", "fr": "Je suis intéressé dans l'aide aux devoirs.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "In der Hausaufgabenhilfe? Du meinst, du interessierst dich dafür?", "fr": "« Dans » l'aide aux devoirs ? Tu veux dire qu'elle t'intéresse ?"}],
+     "aide": {"fr": "<b>« sich interessieren für »</b> : en allemand, on s'intéresse « pour » quelque chose. Dis : « Ich interessiere mich für die Hausaufgabenhilfe » ou « Die Hausaufgabenhilfe interessiert mich »."}},
+    {"repete": true, "t": "Entschuldigung, das war ein bisschen schnell. Kannst du das bitte wiederholen?", "fr": "Pardon, c'était un peu rapide. Tu peux répéter, s'il te plaît ?", "va": "aufgabe",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Klar! Drei Möglichkeiten: Lebensmittel verteilen, Kindern bei den Hausaufgaben helfen oder ältere Leute besuchen.", "fr": "Bien sûr ! Trois possibilités : distribuer de la nourriture, aider des enfants à faire leurs devoirs ou rendre visite à des personnes âgées."}]}
+   ]
+  },
+  "ausgabe": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Am Freitagabend sortieren wir die Spenden aus den Supermärkten, am Samstagvormittag geben wir sie aus. Was liegt dir mehr: sortieren oder ausgeben?", "fr": "Le vendredi soir, on trie les dons des supermarchés ; le samedi matin, on les distribue. Qu'est-ce qui te convient le mieux : trier ou distribuer ?"}],
+   "choix": [
+    {"t": "Lieber sortieren. Ich arbeite gern in Ruhe.", "fr": "Plutôt trier. J'aime travailler au calme.", "pose": {"tag": "freitag"}, "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Gut! Am Freitag ist es ruhig, und es gibt immer Kuchen.", "fr": "Bien ! Le vendredi, c'est calme, et il y a toujours du gâteau."}]},
+    {"t": "Lieber die Ausgabe am Samstag. Ich habe gern Kontakt mit Menschen.", "fr": "Plutôt la distribution du samedi. J'aime le contact avec les gens.", "pose": {"tag": "samstag"}, "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Dann bist du am Samstag genau richtig. Da ist viel los!", "fr": "Alors le samedi est fait pour toi. Il y a du monde !"}]},
+    {"faux": true, "t": "Die Ausgabe, weil ich mag den Kontakt mit Menschen.", "fr": "La distribution, parce que j'aime le contact avec les gens (verbe mal placé).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Weil du den Kontakt mit Menschen magst? Das merkt man!", "fr": "Parce que tu aimes le contact avec les gens ? Ça se voit !"}],
+     "aide": {"fr": "<b>Après « weil », le verbe va à la fin</b> : « …, weil ich den Kontakt mit Menschen mag ». Ou, sans « weil » : « Ich habe gern Kontakt mit Menschen »."}}
+   ]
+  },
+  "kinder": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Die Kinder kommen dienstags und donnerstags nach der Schule, erste bis sechste Klasse. In welchen Fächern könntest du helfen?", "fr": "Les enfants viennent le mardi et le jeudi après l'école, de la première à la sixième classe. Dans quelles matières pourrais-tu aider ?"}],
+   "choix": [
+    {"t": "In Mathe und Englisch. Und natürlich in Französisch!", "fr": "En maths et en anglais. Et en français, bien sûr !", "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Mathe! Du bist unsere Rettung.", "fr": "Les maths ! Tu nous sauves."}]},
+    {"t": "Ich kann beim Lesen und Schreiben helfen, auch wenn mein Deutsch nicht perfekt ist.", "fr": "Je peux aider en lecture et en écriture, même si mon allemand n'est pas parfait.", "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Das macht nichts. Die Kinder verbessern dich gern!", "fr": "Ça ne fait rien. Les enfants te corrigeront avec plaisir !"}]},
+    {"faux": true, "t": "Ich kann den Kindern Mathe lernen.", "fr": "Je peux « apprendre » les maths aux enfants.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "Du willst Mathe lernen? Oder den Kindern Mathe beibringen?", "fr": "Tu veux apprendre les maths ? Ou les enseigner aux enfants ?"}],
+     "aide": {"fr": "<b>« lernen »</b>, c'est apprendre pour soi. Apprendre quelque chose à quelqu'un : « beibringen » ou, plus simple, « helfen ». Dis : « Ich kann den Kindern in Mathe helfen »."}}
+   ]
+  },
+  "senioren": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Du besuchst eine Person einmal pro Woche: spazieren gehen, einkaufen oder einfach reden. Hast du so etwas schon einmal gemacht?", "fr": "Tu rends visite à une personne une fois par semaine : se promener, faire les courses ou simplement parler. Tu as déjà fait ça ?"}],
+   "choix": [
+    {"t": "Ja, ich habe mich früher oft um meine Großmutter gekümmert.", "fr": "Oui, autrefois je me suis souvent occupé de ma grand-mère.", "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Dann weißt du ja, wie wichtig so ein Besuch ist.", "fr": "Alors tu sais combien une visite compte."}]},
+    {"t": "Nein, noch nie. Aber ich höre gern zu und habe viel Geduld.", "fr": "Non, jamais. Mais j'aime écouter et j'ai beaucoup de patience.", "va": "zeit",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Zuhören und Geduld: Mehr braucht man nicht.", "fr": "Écouter et être patient : il n'en faut pas plus."}]}
+   ]
+  },
+  "zeit": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Und wie oft könntest du kommen? Manche kommen jede Woche, andere nur alle zwei Wochen.", "fr": "Et tu pourrais venir à quel rythme ? Certains viennent chaque semaine, d'autres seulement une semaine sur deux."}],
+   "choix": [
+    {"t": "Ich könnte jede Woche kommen, ungefähr drei Stunden.", "fr": "Je pourrais venir chaque semaine, environ trois heures.", "pose": {"rythme": "woche"}, "va": "sprachen",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Jede Woche? Das hilft uns sehr.", "fr": "Chaque semaine ? Ça nous aide beaucoup."}]},
+    {"t": "Ich arbeite viel. Alle zwei Wochen wäre besser für mich.", "fr": "Je travaille beaucoup. Une semaine sur deux, ce serait mieux pour moi.", "pose": {"rythme": "zwei"}, "va": "sprachen",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Das kenne ich: In der Woche bin ich Polizistin, ich schaffe auch nur den Samstag. Alle zwei Wochen ist völlig okay.", "fr": "Je connais ça : la semaine, je suis policière, moi aussi je n'arrive à venir que le samedi. Une semaine sur deux, c'est très bien."}]},
+    {"faux": true, "t": "Jede Woche ich kann drei Stunden kommen.", "fr": "Chaque semaine je peux venir trois heures (verbe mal placé).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Jede Woche kannst du kommen, drei Stunden? Habe ich das richtig verstanden?", "fr": "Tu peux venir chaque semaine, trois heures ? J'ai bien compris ?"}],
+     "aide": {"fr": "<b>Le verbe reste en deuxième position.</b> Si la phrase commence par « Jede Woche », le verbe suit tout de suite : « Jede Woche kann ich drei Stunden kommen »."}}
+   ]
+  },
+  "sprachen": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Noch etwas: Welche Sprachen sprichst du eigentlich?", "fr": "Autre chose : quelles langues parles-tu, au fait ?"}],
+   "choix": [
+    {"t": "Französisch ist meine Muttersprache. Außerdem spreche ich Englisch und, wie du hörst, ein bisschen Deutsch.", "fr": "Le français est ma langue maternelle. Je parle aussi anglais et, comme tu l'entends, un peu allemand.", "va": "frage",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Französisch? Perfekt! Zu uns kommen mehrere Familien aus Westafrika, die besser Französisch als Deutsch sprechen.", "fr": "Le français ? Parfait ! Plusieurs familles d'Afrique de l'Ouest viennent chez nous et parlent mieux français qu'allemand."}]},
+    {"t": "Französisch und Englisch. Deutsch lerne ich noch.", "fr": "Français et anglais. L'allemand, je l'apprends encore.", "va": "frage",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Dein Deutsch ist doch gut! Und Französisch können wir hier sehr gut gebrauchen.", "fr": "Mais ton allemand est bon ! Et le français nous sera très utile ici."}]},
+    {"faux": true, "t": "Französisch ist meine mütterliche Sprache.", "fr": "Le français est ma langue « maternelle » (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Deine … Muttersprache, meinst du?", "fr": "Ta… langue maternelle, tu veux dire ?"}],
+     "aide": {"fr": "<b>« die Muttersprache »</b>, en un seul mot. « mütterlich » veut dire maternel au sens d'une mère tendre. Dis : « Französisch ist meine Muttersprache »."}}
+   ]
+  },
+  "frage": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Hast du noch Fragen an mich?", "fr": "Tu as encore des questions pour moi ?"}],
+   "choix": [
+    {"t": "Ja. Brauche ich Erfahrung oder eine Ausbildung?", "fr": "Oui. Il me faut de l'expérience ou une formation ?", "va": "schulung",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Gute Frage!", "fr": "Bonne question !"}]},
+    {"t": "Ja. Darf ich eine Freundin mitbringen? Sie möchte auch helfen.", "fr": "Oui. Je peux amener une amie ? Elle voudrait aider aussi.", "va": "freundin",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Natürlich, sehr gern! Zu zweit macht es mehr Spaß.", "fr": "Bien sûr, avec plaisir ! À deux, c'est plus amusant."}]},
+    {"faux": true, "t": "Ja. Bin ich bezahlt für das?", "fr": "Oui. Je suis payé pour ça ?",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Bezahlt? Nein, das ist ein Ehrenamt. Ich bekomme hier auch nichts! Aber es gibt Kaffee, Kuchen und nette Leute.", "fr": "Payé ? Non, c'est du bénévolat. Moi non plus, je ne touche rien ici ! Mais il y a du café, du gâteau et des gens sympas."}],
+     "aide": {"fr": "<b>« Ehrenamt »</b> veut dire bénévolat : on n'est pas payé. Et la question se dirait « Werde ich dafür bezahlt? ». Pose plutôt une autre question : « Brauche ich Erfahrung? »."}}
+   ]
+  },
+  "schulung": {
+   "dit": [
+    {"qui": "b13_koordinatorin", "air": "attentive", "t": "Nein, Erfahrung brauchst du nicht.", "fr": "Non, tu n'as pas besoin d'expérience."},
+    {"si": {"tache": "ausgabe"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Aber wer mit Lebensmitteln arbeitet, macht vorher eine kleine Hygieneschulung. Sie dauert eine Stunde und ist online. Ist das okay für dich?", "fr": "Mais quand on travaille avec des aliments, on suit d'abord une petite formation à l'hygiène. Elle dure une heure et se fait en ligne. Ça te va ?"},
+    {"si": {"tache": "kinder"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Aber für die Arbeit mit Kindern brauchen wir ein Führungszeugnis. Das bekommst du beim Bürgeramt, für Ehrenamtliche ist es kostenlos. Ist das okay für dich?", "fr": "Mais pour travailler avec des enfants, il nous faut un extrait de casier judiciaire. Tu l'obtiens au Bürgeramt, c'est gratuit pour les bénévoles. Ça te va ?"},
+    {"si": {"tache": "senioren"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "Aber vor dem ersten Besuch gibt es einen Einführungsabend mit unserer Sozialarbeiterin. Ist das okay für dich?", "fr": "Mais avant la première visite, il y a une soirée d'introduction avec notre assistante sociale. Ça te va ?"}
+   ],
+   "choix": [
+    {"t": "Ja, natürlich. Das mache ich gern.", "fr": "Oui, bien sûr. Je le ferai volontiers.", "va": "erstertag",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Prima, dann ist ja alles klar.", "fr": "Parfait, alors tout est clair."}]},
+    {"t": "Kein Problem. Kannst du mir die Informationen per E-Mail schicken?", "fr": "Pas de problème. Tu peux m'envoyer les informations par e-mail ?", "va": "erstertag",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Klar, die schicke ich dir heute Abend.", "fr": "Bien sûr, je te les envoie ce soir."}]}
+   ]
+  },
+  "freundin": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Spricht deine Freundin auch Deutsch?", "fr": "Ton amie parle allemand aussi ?"}],
+   "choix": [
+    {"t": "Ja, sie spricht sogar besser Deutsch als ich.", "fr": "Oui, elle parle même mieux allemand que moi.", "va": "erstertag",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Dann seid ihr ein gutes Team. Sie soll sich einfach bei mir melden.", "fr": "Alors vous faites une bonne équipe. Qu'elle me contacte, tout simplement."}]},
+    {"t": "Noch nicht so gut, aber sie versteht fast alles.", "fr": "Pas encore très bien, mais elle comprend presque tout.", "va": "erstertag",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Das reicht völlig. Hier lernt man schnell. Sie soll sich einfach bei mir melden.", "fr": "Ça suffit largement. Ici, on apprend vite. Qu'elle me contacte, tout simplement."}]},
+    {"faux": true, "t": "Ja, sie spricht besser Deutsch dass ich.", "fr": "Oui, elle parle mieux allemand « que » moi (mauvais « que »).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "Besser … als du, meinst du?", "fr": "Mieux… que toi, tu veux dire ?"}],
+     "aide": {"fr": "<b>Dans une comparaison, « que » se dit « als »</b>, jamais « dass » : « Sie spricht besser Deutsch als ich »."}}
+   ]
+  },
+  "erstertag": {
+   "dit": [
+    {"si": {"tag": "freitag"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Dann komm doch am Freitag um sechs. Ich sage dem Freitagsteam Bescheid. Zieh etwas Bequemes an, man trägt viele Kisten.", "fr": "Alors viens vendredi à six heures. Je préviens l'équipe du vendredi. Mets quelque chose de confortable, on porte beaucoup de caisses."},
+    {"si": {"tag": "samstag"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Dann komm doch am Samstag um neun. Zieh bequeme Schuhe an, wir stehen den ganzen Vormittag.", "fr": "Alors viens samedi à neuf heures. Mets des chaussures confortables, on reste debout toute la matinée."},
+    {"si": {"tag": "dienstag"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Dann komm doch am Dienstag um halb vier. Ich sage dem Team Bescheid, sie stellen dich den Kindern vor.", "fr": "Alors viens mardi à trois heures et demie. Je préviens l'équipe, elle te présentera aux enfants."},
+    {"si": {"tag": "mittwoch"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Dann komm doch am Mittwoch um sechs. Das Team stellt dir Frau Schäfer vor: Sie ist über achtzig und freut sich schon.", "fr": "Alors viens mercredi à six heures. L'équipe te présentera Mme Schäfer : elle a plus de quatre-vingts ans et se réjouit déjà."},
+    {"si": {"rythme": "zwei"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "Und danach kommst du alle zwei Wochen, wie besprochen.", "fr": "Et ensuite tu viens une semaine sur deux, comme convenu."},
+    {"qui": "b13_koordinatorin", "air": "question", "t": "Passt das?", "fr": "Ça te convient ?"}
+   ],
+   "choix": [
+    {"t": "Ja, das passt gut. Soll ich etwas mitbringen?", "fr": "Oui, ça me convient. Je dois apporter quelque chose ?", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Nur gute Laune! Bis bald, ich freue mich.", "fr": "Seulement ta bonne humeur ! À bientôt, je m'en réjouis."}]},
+    {"t": "Perfekt, ich freue mich darauf. Bis bald, Jule!", "fr": "Parfait, je m'en réjouis. À bientôt, Jule !", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Ich mich auch. Schön, dass du dabei bist!", "fr": "Moi aussi. C'est bien que tu sois des nôtres !"}]},
+    {"faux": true, "t": "Perfekt, ich freue mich über den ersten Tag!", "fr": "Parfait, je me réjouis « du » premier jour (comme s'il était déjà là).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Auf den ersten Tag, meinst du? Er kommt ja erst noch!", "fr": "« Auf » le premier jour, tu veux dire ? Il n'est pas encore arrivé !"}],
+     "aide": {"fr": "<b>« sich freuen auf »</b> : se réjouir d'une chose à venir. « sich freuen über » : être content d'une chose qui est déjà là. Dis : « Ich freue mich auf den ersten Tag » ou « Ich freue mich darauf »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu es passé au « du » avec Jule, tu as choisi ta tâche de bénévole, dit quand tu es libre et fixé ton premier jour."}
+}

@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>L'heure et les dates</title>
+<!--
+  « L'HEURE ET LES DATES » (theme illustre, 16 nov. 2026 ; decision de Jacques : « Oui, fais [...] le theme de l'heure »),
+  en allemand, en espagnol et en anglais (americain, et britannique en variante), A1-A2. Ce qu'il enseigne :
+    - lire une horloge : l'heure courante (halb drei = 2 h 30, le piege du francophone ; Viertel nach / vor, kurz vor ;
+      y cuarto, y media, menos cuarto, es la una / son las ; half past, quarter to / past) ;
+    - l'heure officielle sur 24 heures (vierzehn Uhr dreissig ; las catorce treinta) et, en anglais, a.m. / p.m. et la
+      lecture numerique americaine (six forty-five), avec le piege 12 a.m. / 12 p.m. ;
+    - le moment (morgens, abends ; de la manana, de la tarde ; in the morning, at night) ;
+    - les jours (am Montag ; el lunes ; on Monday), les mois (im Mai ; en mayo ; in May), demain, hier, le week-end ;
+    - la date et les ordinaux (der dritte Mai, am dritten Mai ; el tres de mayo ; May third / the third of May) ;
+    - l'agenda : um, von ... bis, la duree d'un rendez-vous, l'anniversaire.
+  IMAGES DESSINEES (aucune generation payante) : horloges, reveils numeriques, feuilles de calendrier, un mois et un
+  agenda, en SVG, aux couleurs du jour et de la nuit. Aucune personne : rien a tenir dans la regle des visages.
+  TOUTES LES PHRASES SONT FABRIQUEES par heure/dire.js depuis une heure, une date ou un rendez-vous (et leur
+  traduction, dans les dix langues d'interface, par la meme regle) ; les mots du theme et leur sens viennent du corpus
+  (heure/heure.json, fait par visuel/heure/heure.py). Le banc hors navigateur : node tests/heure_banc.js.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
+  chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de|en, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=gb (l'anglais britannique), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js). Aucune voix
+  enregistree : la voix du telephone (themes/voix.js).
+-->
+<style>
+:root{--fond1:#F1E4CC;--fond3:#FBF5EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;
+  --cadran:#FFFFFF;--minute:#2F6DB0;--boitier:#E9EDF2;--papier:#FFFFFF;--calrouge:#C8473A;--calgris:#8A94A6;--weekend:#FBE9E6;--ligne:#DCE1E8;
+  --evt1:#DDEFE5;--evt2:#E3ECF8;--evt3:#FBEBD3;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#151B26;--fond3:#222B3A;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(24,34,48,.9);--bord:rgba(255,255,255,.14);--carte:#22384A;
+  --cadran:#1E3042;--minute:#7DB4F0;--boitier:#2C3E52;--papier:#22384A;--calrouge:#B5483D;--calgris:#8FA0B2;--weekend:#3A3440;--ligne:#36506A;
+  --evt1:#1F4A39;--evt2:#24405F;--evt3:#4E3A1E}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (regle commune, 3 nov. 2026) */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* LES DESSINS : une horloge, un reveil, une feuille de calendrier, un mois, un agenda ; la gauche reste a gauche en RTL */
+.dessin{display:flex;justify-content:center;align-items:center;gap:14px;background:var(--carte);border-radius:16px;padding:10px;direction:ltr}
+.dessin svg{display:block;width:100%;height:auto}
+.dessin .horloge{max-width:220px}
+.dessin .montre{max-width:280px}
+.dessin .feuille{max-width:190px}
+.dessin .grille{max-width:340px}
+.dessin .agenda{max-width:380px}
+.dessin.paire .horloge{max-width:170px} .dessin.paire .montre{max-width:190px}
+svg text{font-family:var(--police)}
+.rangee{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;direction:ltr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:6px;cursor:pointer;display:block}
+.rangee button svg{display:block;width:100%;height:auto}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.colonne{flex-direction:column;align-items:stretch}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix.colonne button{border-radius:14px;text-align:left}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+.trad.faux{color:var(--rouge);font-style:italic}
+/* la decouverte : trois onglets (l'heure, les jours et les mois, les dates et les rendez-vous) */
+.onglets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 13px var(--police);padding:9px 4px;cursor:pointer;line-height:1.15}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lignes{display:flex;flex-direction:column;gap:8px}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:17px;line-height:1.4}
+.dit .etiquette{display:block;font-size:12px;font-weight:800;color:var(--gris);text-transform:uppercase;letter-spacing:.04em}
+.curseur{width:100%}
+.puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
+.puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
+.puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.grille g[data-d]{cursor:pointer}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite{z-index:5000}
+.suite[hidden]{display:none}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="heure/dire.js?v=1"></script>
+<script src="themes/tirage.js?v=4"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/fin.js?v=2"></script>
+<script src="themes/verre.js?v=8"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const EN_APP = APPRENDRE === "en", GB = EN_APP && Q.get("variante") === "gb", DE_APP = APPRENDRE === "de", ES_APP = APPRENDRE === "es";
+// la cle de la fabrique (dire.js) : de, es, us, gb ; celle des mots (heure.json) : de, es, en
+const V = EN_APP ? (GB ? "gb" : "us") : APPRENDRE, ML = APPRENDRE;
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb"), 10) || 6)) : 20;   // nb : le reglage « Questions par scene et par theme » de la seance du jour
+
+const TEXTES = {
+  titre:      {fr:"L'heure et les dates", en:"Time and dates", tr:"Saat ve tarihler", uk:"Час і дати", fa:"ساعت و تاریخ", ar:"الوقت والتواريخ", pt:"As horas e as datas", pl:"Godzina i daty", ru:"Время и даты", de:"Uhrzeit und Datum"},
+  intro:      {fr:"Touche une heure, un jour ou une date : tu vois la phrase et tu l'entends.", en:"Tap a time, a day or a date: you see the sentence and hear it.", tr:"Bir saate, bir güne ya da bir tarihe dokun: cümleyi görür ve duyarsın.", uk:"Торкнися години, дня чи дати: ти бачиш речення й чуєш його.", fa:"روی یک ساعت، یک روز یا یک تاریخ بزن: جمله را می‌بینی و می‌شنوی.", ar:"المس ساعةً أو يومًا أو تاريخًا: ترى الجملة وتسمعها.", pt:"Toque em uma hora, um dia ou uma data: você vê a frase e a ouve.", pl:"Dotknij godziny, dnia albo daty: widzisz zdanie i je słyszysz.", ru:"Нажми на время, день или дату: ты видишь фразу и слышишь её.", de:"Tippe auf eine Uhrzeit, einen Tag oder ein Datum: Du siehst den Satz und hörst ihn."},
+  ongletHeure:{fr:"L'heure", en:"Time", tr:"Saat", uk:"Час", fa:"ساعت", ar:"الساعة", pt:"As horas", pl:"Godzina", ru:"Время", de:"Uhrzeit"},
+  ongletJours:{fr:"Jours et mois", en:"Days and months", tr:"Günler ve aylar", uk:"Дні й місяці", fa:"روزها و ماه‌ها", ar:"الأيام والشهور", pt:"Dias e meses", pl:"Dni i miesiące", ru:"Дни и месяцы", de:"Tage und Monate"},
+  ongletDates:{fr:"Dates et rendez-vous", en:"Dates and appointments", tr:"Tarihler ve randevular", uk:"Дати й зустрічі", fa:"تاریخ‌ها و قرارها", ar:"التواريخ والمواعيد", pt:"Datas e compromissos", pl:"Daty i spotkania", ru:"Даты и встречи", de:"Daten und Termine"},
+  courante:   {fr:"Dans la conversation", en:"In conversation", tr:"Konuşmada", uk:"У розмові", fa:"در گفت‌وگو", ar:"في الكلام", pt:"Na conversa", pl:"W rozmowie", ru:"В разговоре", de:"Im Alltag"},
+  officielle: {fr:"L'heure officielle", en:"Official time", tr:"Resmî saat", uk:"Офіційний час", fa:"ساعت رسمی", ar:"الوقت الرسمي", pt:"A hora oficial", pl:"Godzina oficjalna", ru:"Официальное время", de:"Offizielle Uhrzeit"},
+  avecMoment: {fr:"Avec le moment de la journée", en:"With the time of day", tr:"Günün bölümüyle", uk:"З порою доби", fa:"با بخش روز", ar:"مع وقت اليوم", pt:"Com o período do dia", pl:"Z porą dnia", ru:"С временем суток", de:"Mit der Tageszeit"},
+  ecrit:      {fr:"À l'écrit", en:"In writing", tr:"Yazıda", uk:"На письмі", fa:"در نوشتار", ar:"كتابةً", pt:"Por escrito", pl:"W piśmie", ru:"На письме", de:"Geschrieben"},
+  touche:     {fr:"Touche un jour du calendrier.", en:"Tap a day on the calendar.", tr:"Takvimde bir güne dokun.", uk:"Торкнися дня в календарі.", fa:"روی یک روز در تقویم بزن.", ar:"المس يومًا في التقويم.", pt:"Toque em um dia do calendário.", pl:"Dotknij dnia w kalendarzu.", ru:"Нажми на день в календаре.", de:"Tippe auf einen Tag im Kalender."},
+  horloge:    {fr:"Lis l'horloge : quelle heure est-il ?", en:"Read the clock: what time is it?", tr:"Saate bak: saat kaç?", uk:"Подивися на годинник: котра година?", fa:"به ساعت نگاه کن: ساعت چند است؟", ar:"اقرأ الساعة: كم الساعة؟", pt:"Leia o relógio: que horas são?", pl:"Odczytaj zegar: która jest godzina?", ru:"Посмотри на часы: который час?", de:"Lies die Uhr ab: Wie spät ist es?"},
+  numerique:  {fr:"L'heure officielle (gare, radio) : lis le réveil.", en:"Official time (station, radio): read the alarm clock.", tr:"Resmî saat (istasyon, radyo): çalar saate bak.", uk:"Офіційний час (вокзал, радіо): подивися на будильник.", fa:"ساعت رسمی (ایستگاه، رادیو): ساعت دیجیتال را بخوان.", ar:"الوقت الرسمي (المحطة، الراديو): اقرأ المنبّه.", pt:"A hora oficial (estação, rádio): leia o despertador.", pl:"Godzina oficjalna (dworzec, radio): odczytaj budzik.", ru:"Официальное время (вокзал, радио): посмотри на будильник.", de:"Die offizielle Uhrzeit (Bahnhof, Radio): Lies den Wecker ab."},
+  conversion: {fr:"Dans la conversation, comment dit-on cette heure ?", en:"In everyday speech, how do you say this time?", tr:"Günlük konuşmada bu saat nasıl söylenir?", uk:"Як сказати цей час у розмові?", fa:"در گفت‌وگوی روزمره این ساعت را چطور می‌گویند؟", ar:"كيف نقول هذا الوقت في الكلام اليومي؟", pt:"Na conversa do dia a dia, como se diz essa hora?", pl:"Jak powiedzieć tę godzinę w codziennej rozmowie?", ru:"Как сказать это время в разговоре?", de:"Wie sagt man diese Uhrzeit im Alltag?"},
+  entendre:   {fr:"Écoute l'heure et touche la bonne horloge.", en:"Listen to the time and tap the right clock.", tr:"Saati dinle ve doğru saate dokun.", uk:"Послухай час і торкнися правильного годинника.", fa:"ساعت را گوش کن و روی ساعت درست بزن.", ar:"استمع إلى الوقت والمس الساعة الصحيحة.", pt:"Ouça a hora e toque no relógio certo.", pl:"Posłuchaj godziny i dotknij właściwego zegara.", ru:"Послушай время и нажми на нужные часы.", de:"Hör dir die Uhrzeit an und tippe auf die richtige Uhr."},
+  cual:       {fr:"Lis la phrase et touche la bonne horloge.", en:"Read the sentence and tap the right clock.", tr:"Cümleyi oku ve doğru saate dokun.", uk:"Прочитай речення й торкнися правильного годинника.", fa:"جمله را بخوان و روی ساعت درست بزن.", ar:"اقرأ الجملة والمس الساعة الصحيحة.", pt:"Leia a frase e toque no relógio certo.", pl:"Przeczytaj zdanie i dotknij właściwego zegara.", ru:"Прочитай фразу и нажми на нужные часы.", de:"Lies den Satz und tippe auf die richtige Uhr."},
+  vraifaux:   {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  moment:     {fr:"Le matin, l'après-midi, le soir ou la nuit ? Complète.", en:"Morning, afternoon, evening or night? Fill in the gap.", tr:"Sabah mı, öğleden sonra mı, akşam mı, gece mi? Boşluğu doldur.", uk:"Ранок, день, вечір чи ніч? Доповни.", fa:"صبح، بعدازظهر، عصر یا شب؟ جای خالی را پر کن.", ar:"صباحًا أم بعد الظهر أم مساءً أم ليلًا؟ أكمل.", pt:"Manhã, tarde ou noite? Complete.", pl:"Rano, po południu, wieczorem czy w nocy? Uzupełnij.", ru:"Утро, день, вечер или ночь? Дополни.", de:"Morgens, nachmittags, abends oder nachts? Ergänze."},
+  prep:       {fr:"Choisis le bon petit mot.", en:"Choose the right little word.", tr:"Doğru küçük kelimeyi seç.", uk:"Обери правильне коротке слово.", fa:"کلمهٔ کوچک درست را انتخاب کن.", ar:"اختر الكلمة الصغيرة الصحيحة.", pt:"Escolha a palavrinha certa.", pl:"Wybierz właściwe krótkie słowo.", ru:"Выбери правильное короткое слово.", de:"Wähle das richtige kleine Wort."},
+  jour:       {fr:"Regarde le calendrier : aujourd'hui, c'est le jour entouré. Quel jour est-ce ?", en:"Look at the calendar: today is the circled day. What day is it?", tr:"Takvime bak: bugün daire içindeki gün. Hangi gün?", uk:"Подивися на календар: сьогодні — обведений день. Який це день?", fa:"به تقویم نگاه کن: امروز روزِ دورگرفته است. چه روزی است؟", ar:"انظر إلى التقويم: اليوم هو اليوم المحاط بدائرة. أيّ يوم هو؟", pt:"Olhe o calendário: hoje é o dia circulado. Que dia é?", pl:"Spójrz na kalendarz: dziś jest zakreślony dzień. Jaki to dzień?", ru:"Посмотри на календарь: сегодня — обведённый день. Какой это день?", de:"Sieh dir den Kalender an: Heute ist der eingekreiste Tag. Welcher Tag ist das?"},
+  suite:      {fr:"Complète la phrase.", en:"Complete the sentence.", tr:"Cümleyi tamamla.", uk:"Доповни речення.", fa:"جمله را کامل کن.", ar:"أكمل الجملة.", pt:"Complete a frase.", pl:"Uzupełnij zdanie.", ru:"Дополни фразу.", de:"Ergänze den Satz."},
+  date:       {fr:"Regarde la feuille du calendrier : complète la date.", en:"Look at the calendar page: complete the date.", tr:"Takvim yaprağına bak: tarihi tamamla.", uk:"Подивися на аркуш календаря: доповни дату.", fa:"به برگهٔ تقویم نگاه کن: تاریخ را کامل کن.", ar:"انظر إلى ورقة التقويم: أكمل التاريخ.", pt:"Olhe a folha do calendário: complete a data.", pl:"Spójrz na kartkę z kalendarza: uzupełnij datę.", ru:"Посмотри на листок календаря: дополни дату.", de:"Sieh dir das Kalenderblatt an: Ergänze das Datum."},
+  anniv:      {fr:"Le gâteau marque ton anniversaire : complète la phrase.", en:"The cake marks your birthday: complete the sentence.", tr:"Pasta doğum gününü gösteriyor: cümleyi tamamla.", uk:"Торт позначає твій день народження: доповни речення.", fa:"کیک روز تولدت را نشان می‌دهد: جمله را کامل کن.", ar:"الكعكة تشير إلى عيد ميلادك: أكمل الجملة.", pt:"O bolo marca o seu aniversário: complete a frase.", pl:"Tort oznacza twoje urodziny: uzupełnij zdanie.", ru:"Торт отмечает твой день рождения: дополни фразу.", de:"Der Kuchen markiert deinen Geburtstag: Ergänze den Satz."},
+  agenda:     {fr:"Regarde l'agenda et réponds.", en:"Look at the planner and answer.", tr:"Ajandaya bak ve cevap ver.", uk:"Подивися в щоденник і дай відповідь.", fa:"به سررسید نگاه کن و جواب بده.", ar:"انظر إلى المفكرة وأجب.", pt:"Olhe a agenda e responda.", pl:"Spójrz do kalendarza i odpowiedz.", ru:"Посмотри в ежедневник и ответь.", de:"Sieh in den Kalender und antworte."},
+  duree:      {fr:"Regarde l'agenda : combien de temps ?", en:"Look at the planner: how long?", tr:"Ajandaya bak: ne kadar sürüyor?", uk:"Подивися в щоденник: скільки часу?", fa:"به سررسید نگاه کن: چقدر طول می‌کشد؟", ar:"انظر إلى المفكرة: كم يستغرق؟", pt:"Olhe a agenda: quanto tempo?", pl:"Spójrz do kalendarza: ile to trwa?", ru:"Посмотри в ежедневник: сколько времени?", de:"Sieh in den Kalender: Wie lange?"},
+  ser:        {fr:"Es ou son ? Complète.", en:"Es or son? Fill in the gap.", pt:"Es ou son? Complete.", ar:"es أم son؟ أكمل.", de:"Es oder son? Ergänze."},
+  // l'anglais seulement (son interface est en francais)
+  ampm:       {fr:"a.m. ou p.m. ? Lis le réveil (sur 24 heures) et choisis l'heure en anglais."},
+  digital:    {fr:"Lis l'horloge comme une montre numérique (two thirty, six forty-five)."},
+  choix:      {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  ecouter:    {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer:  {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
+  reecouter:  {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  // pour avancer, « Continuer », jamais « Suivant » (Jacques, 3 nov.)
+  suivant:    {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:   {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:      {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:      {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria: {fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"},
+
+  // ---------- LES REGLES DE L'ALLEMAND (neuf langues d'interface) ----------
+  halbDe:     {fr:"<b>halb drei</b> = 2 h 30 : la demi-heure qui va <b>vers</b> trois heures. C'est le piège du francophone, qui entend « trois heures et demie ». De même : halb acht = 7 h 30, halb eins = 12 h 30.",
+               en:"<b>halb drei</b> = 2:30: the half hour on the way <b>to</b> three. Not 3:30! Likewise: halb acht = 7:30, halb eins = 12:30.",
+               tr:"<b>halb drei</b> = 2.30: üçe <b>doğru</b> giden yarım saat. 3.30 değil! Aynı şekilde: halb acht = 7.30, halb eins = 12.30.",
+               uk:"<b>halb drei</b> = 2:30: половина <b>до</b> третьої, як «пів на третю». Не 3:30! Так само: halb acht = 7:30, halb eins = 12:30.",
+               fa:"<b>halb drei</b> = ۲:۳۰: نیم‌ساعتی که <b>به سوی</b> ساعت سه می‌رود. نه ۳:۳۰! همین‌طور: halb acht = ۷:۳۰، halb eins = ۱۲:۳۰.",
+               ar:"<b>halb drei</b> = 2:30: نصف الساعة <b>نحو</b> الثالثة، وليست 3:30! وكذلك: halb acht = 7:30، halb eins = 12:30.",
+               pt:"<b>halb drei</b> = 2h30: a meia hora <b>rumo às</b> três. Não é 3h30! Do mesmo jeito: halb acht = 7h30, halb eins = 12h30.",
+               pl:"<b>halb drei</b> = 2:30: pół godziny <b>do</b> trzeciej, jak „wpół do trzeciej”. Nie 3:30! Tak samo: halb acht = 7:30, halb eins = 12:30.",
+               ru:"<b>halb drei</b> = 2:30: половина <b>до</b> трёх, как «половина третьего». Не 3:30! Так же: halb acht = 7:30, halb eins = 12:30."},
+  viertelDe:  {fr:"<b>Viertel nach</b> zwei = 2 h 15 · <b>Viertel vor</b> drei = 2 h 45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2 h 25 · <b>kurz vor</b> drei = presque 3 h. On dit <b>ein Uhr</b>, mais halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               en:"<b>Viertel nach</b> zwei = 2:15 · <b>Viertel vor</b> drei = 2:45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2:25 · <b>kurz vor</b> drei = almost 3:00. You say <b>ein Uhr</b>, but halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               tr:"<b>Viertel nach</b> zwei = 2.15 · <b>Viertel vor</b> drei = 2.45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2.25 · <b>kurz vor</b> drei = neredeyse 3.00. <b>ein Uhr</b> denir, ama halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               uk:"<b>Viertel nach</b> zwei = 2:15 · <b>Viertel vor</b> drei = 2:45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2:25 · <b>kurz vor</b> drei = майже 3:00. Кажуть <b>ein Uhr</b>, але halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               fa:"<b>Viertel nach</b> zwei = ۲:۱۵ · <b>Viertel vor</b> drei = ۲:۴۵ · zehn <b>nach</b> zwei، zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = ۲:۲۵ · <b>kurz vor</b> drei = تقریباً ۳:۰۰. می‌گویند <b>ein Uhr</b>، اما halb <b>eins</b> و Viertel nach <b>eins</b>.",
+               ar:"<b>Viertel nach</b> zwei = 2:15 · <b>Viertel vor</b> drei = 2:45 · zehn <b>nach</b> zwei، zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2:25 · <b>kurz vor</b> drei = تقريبًا 3:00. نقول <b>ein Uhr</b>، لكن halb <b>eins</b> وViertel nach <b>eins</b>.",
+               pt:"<b>Viertel nach</b> zwei = 2h15 · <b>Viertel vor</b> drei = 2h45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2h25 · <b>kurz vor</b> drei = quase 3h. Diz-se <b>ein Uhr</b>, mas halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               pl:"<b>Viertel nach</b> zwei = 2:15 · <b>Viertel vor</b> drei = 2:45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2:25 · <b>kurz vor</b> drei = prawie 3:00. Mówi się <b>ein Uhr</b>, ale halb <b>eins</b>, Viertel nach <b>eins</b>.",
+               ru:"<b>Viertel nach</b> zwei = 2:15 · <b>Viertel vor</b> drei = 2:45 · zehn <b>nach</b> zwei, zehn <b>vor</b> drei · <b>fünf vor halb</b> drei = 2:25 · <b>kurz vor</b> drei = почти 3:00. Говорят <b>ein Uhr</b>, но halb <b>eins</b>, Viertel nach <b>eins</b>."},
+  offDe:      {fr:"L'heure officielle (gare, radio, agenda) compte jusqu'à 24 : <b>vierzehn Uhr dreißig</b> (14:30), <b>null Uhr fünf</b> (0:05). Dans les nombres, l'unité vient avant la dizaine : fünf<b>und</b>vierzig = 45. Dans la conversation, on dit « halb drei », avec au besoin <b>morgens</b>, <b>nachmittags</b>, <b>abends</b>, <b>nachts</b>.",
+               en:"Official time (station, radio, planner) counts up to 24: <b>vierzehn Uhr dreißig</b> (14:30), <b>null Uhr fünf</b> (0:05). In numbers the unit comes before the ten: fünf<b>und</b>vierzig = 45. In conversation people say “halb drei”, adding <b>morgens</b>, <b>nachmittags</b>, <b>abends</b> or <b>nachts</b> if needed.",
+               tr:"Resmî saat (istasyon, radyo, ajanda) 24'e kadar sayar: <b>vierzehn Uhr dreißig</b> (14.30), <b>null Uhr fünf</b> (0.05). Sayılarda birler onlardan önce gelir: fünf<b>und</b>vierzig = 45. Konuşmada “halb drei” denir; gerekirse <b>morgens</b>, <b>nachmittags</b>, <b>abends</b>, <b>nachts</b> eklenir.",
+               uk:"Офіційний час (вокзал, радіо, щоденник) рахують до 24: <b>vierzehn Uhr dreißig</b> (14:30), <b>null Uhr fünf</b> (0:05). У числах одиниці стоять перед десятками: fünf<b>und</b>vierzig = 45. У розмові кажуть «halb drei», за потреби додаючи <b>morgens</b>, <b>nachmittags</b>, <b>abends</b>, <b>nachts</b>.",
+               fa:"ساعت رسمی (ایستگاه، رادیو، سررسید) تا ۲۴ شمرده می‌شود: <b>vierzehn Uhr dreißig</b> (۱۴:۳۰)، <b>null Uhr fünf</b> (۰:۰۵). در عددها یکان پیش از دهگان می‌آید: fünf<b>und</b>vierzig = ۴۵. در گفت‌وگو «halb drei» می‌گویند و در صورت نیاز <b>morgens</b>، <b>nachmittags</b>، <b>abends</b> یا <b>nachts</b> را اضافه می‌کنند.",
+               ar:"الوقت الرسمي (المحطة، الراديو، المفكرة) يُعدّ حتى 24: <b>vierzehn Uhr dreißig</b> (14:30)، <b>null Uhr fünf</b> (0:05). في الأعداد تأتي الآحاد قبل العشرات: fünf<b>und</b>vierzig = 45. وفي الكلام نقول «halb drei» ونضيف عند الحاجة <b>morgens</b> أو <b>nachmittags</b> أو <b>abends</b> أو <b>nachts</b>.",
+               pt:"A hora oficial (estação, rádio, agenda) vai até 24: <b>vierzehn Uhr dreißig</b> (14h30), <b>null Uhr fünf</b> (0h05). Nos números, a unidade vem antes da dezena: fünf<b>und</b>vierzig = 45. Na conversa, diz-se “halb drei”, com <b>morgens</b>, <b>nachmittags</b>, <b>abends</b> ou <b>nachts</b> se precisar.",
+               pl:"Godzinę oficjalną (dworzec, radio, kalendarz) liczy się do 24: <b>vierzehn Uhr dreißig</b> (14:30), <b>null Uhr fünf</b> (0:05). W liczbach jedności są przed dziesiątkami: fünf<b>und</b>vierzig = 45. W rozmowie mówi się „halb drei”, w razie potrzeby z <b>morgens</b>, <b>nachmittags</b>, <b>abends</b>, <b>nachts</b>.",
+               ru:"Официальное время (вокзал, радио, ежедневник) считают до 24: <b>vierzehn Uhr dreißig</b> (14:30), <b>null Uhr fünf</b> (0:05). В числах единицы стоят перед десятками: fünf<b>und</b>vierzig = 45. В разговоре говорят «halb drei», при необходимости добавляя <b>morgens</b>, <b>nachmittags</b>, <b>abends</b>, <b>nachts</b>."},
+  umDe:       {fr:"<b>Wie spät ist es?</b> — Es ist halb drei. <b>Um wie viel Uhr …?</b> — <b>Um</b> halb drei. Un horaire : <b>von</b> neun <b>bis</b> elf Uhr. Une durée : eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               en:"<b>Wie spät ist es?</b> — Es ist halb drei. <b>Um wie viel Uhr …?</b> — <b>Um</b> halb drei. Opening hours: <b>von</b> neun <b>bis</b> elf Uhr. A duration: eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               tr:"<b>Wie spät ist es?</b> (Saat kaç?) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (Saat kaçta?) — <b>Um</b> halb drei. Bir zaman aralığı: <b>von</b> neun <b>bis</b> elf Uhr. Bir süre: eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               uk:"<b>Wie spät ist es?</b> (Котра година?) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (О котрій?) — <b>Um</b> halb drei. Проміжок часу: <b>von</b> neun <b>bis</b> elf Uhr. Тривалість: eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               fa:"<b>Wie spät ist es?</b> (ساعت چند است؟) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (ساعت چند …؟) — <b>Um</b> halb drei. یک بازه: <b>von</b> neun <b>bis</b> elf Uhr. یک مدت: eine Stunde، eine halbe Stunde، anderthalb Stunden.",
+               ar:"<b>Wie spät ist es?</b> (كم الساعة؟) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (في أيّ ساعة …؟) — <b>Um</b> halb drei. فترة: <b>von</b> neun <b>bis</b> elf Uhr. مدة: eine Stunde، eine halbe Stunde، anderthalb Stunden.",
+               pt:"<b>Wie spät ist es?</b> (Que horas são?) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (A que horas …?) — <b>Um</b> halb drei. Um horário: <b>von</b> neun <b>bis</b> elf Uhr. Uma duração: eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               pl:"<b>Wie spät ist es?</b> (Która godzina?) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (O której?) — <b>Um</b> halb drei. Przedział czasu: <b>von</b> neun <b>bis</b> elf Uhr. Czas trwania: eine Stunde, eine halbe Stunde, anderthalb Stunden.",
+               ru:"<b>Wie spät ist es?</b> (Который час?) — Es ist halb drei. <b>Um wie viel Uhr …?</b> (Во сколько?) — <b>Um</b> halb drei. Промежуток: <b>von</b> neun <b>bis</b> elf Uhr. Продолжительность: eine Stunde, eine halbe Stunde, anderthalb Stunden."},
+  amDe:       {fr:"<b>am</b> + un jour : am Montag, am Wochenende · <b>im</b> + un mois : im Mai · <b>um</b> + une heure : um acht Uhr. Les jours et les mois sont masculins : der Montag, der Mai. <b>Welcher Tag ist heute?</b> — Heute ist Montag.",
+               en:"<b>am</b> + a day: am Montag, am Wochenende · <b>im</b> + a month: im Mai · <b>um</b> + a time: um acht Uhr. Days and months are masculine: der Montag, der Mai. <b>Welcher Tag ist heute?</b> — Heute ist Montag.",
+               tr:"Bir günle <b>am</b>: am Montag, am Wochenende · bir ayla <b>im</b>: im Mai · bir saatle <b>um</b>: um acht Uhr. Günler ve aylar erildir: der Montag, der Mai. <b>Welcher Tag ist heute?</b> (Bugün günlerden ne?) — Heute ist Montag.",
+               uk:"<b>am</b> + день: am Montag, am Wochenende · <b>im</b> + місяць: im Mai · <b>um</b> + година: um acht Uhr. Дні й місяці — чоловічого роду: der Montag, der Mai. <b>Welcher Tag ist heute?</b> (Який сьогодні день?) — Heute ist Montag.",
+               fa:"<b>am</b> + روز: am Montag، am Wochenende · <b>im</b> + ماه: im Mai · <b>um</b> + ساعت: um acht Uhr. روزها و ماه‌ها مذکرند: der Montag، der Mai. <b>Welcher Tag ist heute?</b> (امروز چه روزی است؟) — Heute ist Montag.",
+               ar:"<b>am</b> + يوم: am Montag، am Wochenende · <b>im</b> + شهر: im Mai · <b>um</b> + ساعة: um acht Uhr. الأيام والشهور مذكّرة: der Montag، der Mai. <b>Welcher Tag ist heute?</b> (ما اليوم؟) — Heute ist Montag.",
+               pt:"<b>am</b> + um dia: am Montag, am Wochenende · <b>im</b> + um mês: im Mai · <b>um</b> + uma hora: um acht Uhr. Os dias e os meses são masculinos: der Montag, der Mai. <b>Welcher Tag ist heute?</b> (Que dia é hoje?) — Heute ist Montag.",
+               pl:"<b>am</b> + dzień: am Montag, am Wochenende · <b>im</b> + miesiąc: im Mai · <b>um</b> + godzina: um acht Uhr. Dni i miesiące są rodzaju męskiego: der Montag, der Mai. <b>Welcher Tag ist heute?</b> (Jaki dziś dzień?) — Heute ist Montag.",
+               ru:"<b>am</b> + день: am Montag, am Wochenende · <b>im</b> + месяц: im Mai · <b>um</b> + время: um acht Uhr. Дни и месяцы — мужского рода: der Montag, der Mai. <b>Welcher Tag ist heute?</b> (Какой сегодня день?) — Heute ist Montag."},
+  datumDe:    {fr:"La date se dit avec un ordinal : <b>der dritte Mai</b> ; après <b>am</b>, il prend -n : <b>am dritten Mai</b>. On l'écrit avec un point : am 3. Mai. <b>-te</b> jusqu'à 19 (zweite, vierte ; irréguliers : erste, dritte, siebte, achte), <b>-ste</b> à partir de 20 (zwanzigste, einunddreißigste). Pour demander : <b>Der Wievielte ist heute?</b>",
+               en:"Dates use an ordinal: <b>der dritte Mai</b>; after <b>am</b> it takes -n: <b>am dritten Mai</b>. Written with a dot: am 3. Mai. <b>-te</b> up to 19 (zweite, vierte; irregular: erste, dritte, siebte, achte), <b>-ste</b> from 20 (zwanzigste, einunddreißigste). To ask: <b>Der Wievielte ist heute?</b>",
+               tr:"Tarih sıra sayısıyla söylenir: <b>der dritte Mai</b>; <b>am</b>'dan sonra -n alır: <b>am dritten Mai</b>. Noktayla yazılır: am 3. Mai. 19'a kadar <b>-te</b> (zweite, vierte; düzensiz: erste, dritte, siebte, achte), 20'den itibaren <b>-ste</b> (zwanzigste, einunddreißigste). Sormak için: <b>Der Wievielte ist heute?</b>",
+               uk:"Дату кажуть порядковим числівником: <b>der dritte Mai</b>; після <b>am</b> він отримує -n: <b>am dritten Mai</b>. Пишуть із крапкою: am 3. Mai. <b>-te</b> до 19 (zweite, vierte; неправильні: erste, dritte, siebte, achte), <b>-ste</b> від 20 (zwanzigste, einunddreißigste). Щоб запитати: <b>Der Wievielte ist heute?</b>",
+               fa:"تاریخ را با عدد ترتیبی می‌گویند: <b>der dritte Mai</b>؛ بعد از <b>am</b> پسوند ‎-n می‌گیرد: <b>am dritten Mai</b>. با نقطه نوشته می‌شود: am 3. Mai. تا ۱۹ <b>-te</b> (zweite، vierte؛ بی‌قاعده: erste، dritte، siebte، achte)، از ۲۰ به بعد <b>-ste</b> (zwanzigste، einunddreißigste). برای پرسیدن: <b>Der Wievielte ist heute?</b>",
+               ar:"يُقال التاريخ بالعدد الترتيبي: <b>der dritte Mai</b>؛ وبعد <b>am</b> يأخذ ‎-n: <b>am dritten Mai</b>. ويُكتب بنقطة: am 3. Mai. ‏<b>-te</b> حتى 19 (zweite، vierte؛ والشاذة: erste، dritte، siebte، achte)، و<b>-ste</b> من 20 (zwanzigste، einunddreißigste). وللسؤال: <b>Der Wievielte ist heute?</b>",
+               pt:"A data se diz com um ordinal: <b>der dritte Mai</b>; depois de <b>am</b>, ganha -n: <b>am dritten Mai</b>. Escreve-se com ponto: am 3. Mai. <b>-te</b> até 19 (zweite, vierte; irregulares: erste, dritte, siebte, achte), <b>-ste</b> a partir de 20 (zwanzigste, einunddreißigste). Para perguntar: <b>Der Wievielte ist heute?</b>",
+               pl:"Datę mówi się liczebnikiem porządkowym: <b>der dritte Mai</b>; po <b>am</b> dostaje -n: <b>am dritten Mai</b>. Pisze się z kropką: am 3. Mai. <b>-te</b> do 19 (zweite, vierte; nieregularne: erste, dritte, siebte, achte), <b>-ste</b> od 20 (zwanzigste, einunddreißigste). Żeby zapytać: <b>Der Wievielte ist heute?</b>",
+               ru:"Дату называют порядковым числительным: <b>der dritte Mai</b>; после <b>am</b> оно получает -n: <b>am dritten Mai</b>. Пишут с точкой: am 3. Mai. <b>-te</b> до 19 (zweite, vierte; неправильные: erste, dritte, siebte, achte), <b>-ste</b> с 20 (zwanzigste, einunddreißigste). Чтобы спросить: <b>Der Wievielte ist heute?</b>"},
+
+  // ---------- LES REGLES DE L'ESPAGNOL (ses langues d'interface : fr, en, pt, ar, de) ----------
+  serEs:      {fr:"<b>Es la una</b> (une heure : singulier), mais <b>son las dos</b>, son las tres… Pour demander : <b>¿Qué hora es?</b> L'heure d'un rendez-vous : <b>a las</b> nueve, <b>a la</b> una — <b>¿A qué hora…?</b>",
+               en:"<b>Es la una</b> (one o'clock: singular), but <b>son las dos</b>, son las tres… To ask: <b>¿Qué hora es?</b> The time of an appointment: <b>a las</b> nueve, <b>a la</b> una — <b>¿A qué hora…?</b>",
+               pt:"<b>Es la una</b> (uma hora: singular), mas <b>son las dos</b>, son las tres… Para perguntar: <b>¿Qué hora es?</b> A hora de um compromisso: <b>a las</b> nueve, <b>a la</b> una — <b>¿A qué hora…?</b>",
+               ar:"<b>Es la una</b> (الواحدة: مفرد)، لكن <b>son las dos</b>، son las tres… وللسؤال: <b>¿Qué hora es?</b> ووقت الموعد: <b>a las</b> nueve، <b>a la</b> una — <b>¿A qué hora…?</b>",
+               de:"<b>Es la una</b> (ein Uhr: Singular), aber <b>son las dos</b>, son las tres … Fragen: <b>¿Qué hora es?</b> Die Uhrzeit eines Termins: <b>a las</b> nueve, <b>a la</b> una — <b>¿A qué hora …?</b>"},
+  cuartoEs:   {fr:"Jusqu'à la demie : <b>y cuarto</b> (et quart), <b>y media</b> (et demie), y diez… Ensuite on part de l'heure suivante avec <b>menos</b> : las tres <b>menos cuarto</b> = 2 h 45, las tres menos diez = 2 h 50. À 12 h 45 : <b>es la una</b> menos cuarto.",
+               en:"Up to half past: <b>y cuarto</b> (quarter past), <b>y media</b> (half past), y diez… After that, count from the next hour with <b>menos</b>: las tres <b>menos cuarto</b> = 2:45, las tres menos diez = 2:50. At 12:45: <b>es la una</b> menos cuarto.",
+               pt:"Até a meia: <b>y cuarto</b> (e quinze), <b>y media</b> (e meia), y diez… Depois, parte-se da hora seguinte com <b>menos</b>: las tres <b>menos cuarto</b> = 2h45, las tres menos diez = 2h50. Às 12h45: <b>es la una</b> menos cuarto.",
+               ar:"حتى النصف: <b>y cuarto</b> (والربع)، <b>y media</b> (والنصف)، y diez… وبعدها نبدأ من الساعة التالية مع <b>menos</b>: las tres <b>menos cuarto</b> = 2:45، las tres menos diez = 2:50. وفي 12:45: <b>es la una</b> menos cuarto.",
+               de:"Bis zur halben Stunde: <b>y cuarto</b> (Viertel nach), <b>y media</b> (halb), y diez … Danach zählt man von der nächsten Stunde mit <b>menos</b>: las tres <b>menos cuarto</b> = 2:45, las tres menos diez = 2:50. Um 12:45: <b>es la una</b> menos cuarto."},
+  momEs:      {fr:"<b>de la mañana</b> (le matin), <b>de la tarde</b> (l'après-midi, jusque vers 20 h), <b>de la noche</b> (le soir, la nuit), <b>de la madrugada</b> (après minuit). L'horaire officiel compte jusqu'à 24 : <b>las catorce treinta</b> (14:30), <b>las veintiuna horas</b>.",
+               en:"<b>de la mañana</b> (in the morning), <b>de la tarde</b> (afternoon, until about 8 p.m.), <b>de la noche</b> (evening, night), <b>de la madrugada</b> (after midnight). Official time counts up to 24: <b>las catorce treinta</b> (14:30), <b>las veintiuna horas</b>.",
+               pt:"<b>de la mañana</b> (da manhã), <b>de la tarde</b> (da tarde, até umas 20h), <b>de la noche</b> (da noite), <b>de la madrugada</b> (depois da meia-noite). O horário oficial vai até 24: <b>las catorce treinta</b> (14h30), <b>las veintiuna horas</b>.",
+               ar:"<b>de la mañana</b> (صباحًا)، <b>de la tarde</b> (بعد الظهر، حتى نحو الثامنة مساءً)، <b>de la noche</b> (مساءً، ليلًا)، <b>de la madrugada</b> (بعد منتصف الليل). والوقت الرسمي يُعدّ حتى 24: <b>las catorce treinta</b> (14:30)، <b>las veintiuna horas</b>.",
+               de:"<b>de la mañana</b> (morgens), <b>de la tarde</b> (nachmittags, bis etwa 20 Uhr), <b>de la noche</b> (abends, nachts), <b>de la madrugada</b> (nach Mitternacht). Die offizielle Uhrzeit zählt bis 24: <b>las catorce treinta</b> (14:30), <b>las veintiuna horas</b>."},
+  diasEs:     {fr:"Devant un jour, pas de préposition : <b>el lunes</b> (lundi), <b>los lunes</b> (le lundi, chaque semaine). Devant un mois : <b>en mayo</b>. Jours et mois s'écrivent en minuscules. <b>¿Qué día es hoy?</b> — Hoy es lunes.",
+               en:"No preposition before a day: <b>el lunes</b> (on Monday), <b>los lunes</b> (on Mondays). Before a month: <b>en mayo</b>. Days and months are written in lower case. <b>¿Qué día es hoy?</b> — Hoy es lunes.",
+               pt:"Antes de um dia, nenhuma preposição: <b>el lunes</b> (na segunda), <b>los lunes</b> (às segundas). Antes de um mês: <b>en mayo</b>. Dias e meses com letra minúscula. <b>¿Qué día es hoy?</b> — Hoy es lunes.",
+               ar:"لا حرف جرّ قبل اليوم: <b>el lunes</b> (يوم الاثنين)، <b>los lunes</b> (أيام الاثنين). وقبل الشهر: <b>en mayo</b>. وتُكتب الأيام والشهور بحروف صغيرة. <b>¿Qué día es hoy?</b> — Hoy es lunes.",
+               de:"Vor einem Tag keine Präposition: <b>el lunes</b> (am Montag), <b>los lunes</b> (montags). Vor einem Monat: <b>en mayo</b>. Tage und Monate werden kleingeschrieben. <b>¿Qué día es hoy?</b> — Hoy es lunes."},
+  fechaEs:    {fr:"La date se dit avec le nombre simple : <b>el tres de mayo</b>, el treinta y uno de diciembre. Le premier jour : <b>el uno</b> (en Amérique latine, souvent <b>el primero</b>). Pour demander : <b>¿Qué fecha es hoy?</b> ou <b>¿A cuántos estamos?</b> — Estamos a tres de mayo.",
+               en:"Dates use the plain number: <b>el tres de mayo</b>, el treinta y uno de diciembre. The first: <b>el uno</b> (in Latin America, often <b>el primero</b>). To ask: <b>¿Qué fecha es hoy?</b> or <b>¿A cuántos estamos?</b> — Estamos a tres de mayo.",
+               pt:"A data se diz com o número simples: <b>el tres de mayo</b>, el treinta y uno de diciembre. O primeiro dia: <b>el uno</b> (na América Latina, muitas vezes <b>el primero</b>). Para perguntar: <b>¿Qué fecha es hoy?</b> ou <b>¿A cuántos estamos?</b> — Estamos a tres de mayo.",
+               ar:"يُقال التاريخ بالعدد البسيط: <b>el tres de mayo</b>، el treinta y uno de diciembre. واليوم الأول: <b>el uno</b> (وفي أمريكا اللاتينية غالبًا <b>el primero</b>). وللسؤال: <b>¿Qué fecha es hoy?</b> أو <b>¿A cuántos estamos?</b> — Estamos a tres de mayo.",
+               de:"Das Datum mit der Grundzahl: <b>el tres de mayo</b>, el treinta y uno de diciembre. Der Erste: <b>el uno</b> (in Lateinamerika oft <b>el primero</b>). Fragen: <b>¿Qué fecha es hoy?</b> oder <b>¿A cuántos estamos?</b> — Estamos a tres de mayo."},
+
+  // ---------- LES REGLES DE L'ANGLAIS (interface en francais) ----------
+  pastEn:     {fr:"Sur l'horloge : <b>o'clock</b> à l'heure pile (two o'clock) · <b>past</b> jusqu'à la demie : five past two, <b>quarter past</b> two, <b>half past</b> two · puis <b>to</b> et l'heure suivante : twenty to three, <b>quarter to</b> three. Les Américains disent volontiers <b>a</b> quarter past, <b>a</b> quarter to."},
+  digitalEn:  {fr:"Comme sur une montre numérique : <b>two thirty</b>, <b>six forty-five</b>, et « oh » devant une minute de 1 à 9 : <b>six oh five</b>. C'est la façon la plus courante aux États-Unis ; half past et quarter to restent très usités en Grande-Bretagne."},
+  ampmEn:     {fr:"L'anglais n'utilise pas les 24 heures au quotidien : <b>a.m.</b> de minuit à midi, <b>p.m.</b> de midi à minuit. 14:30, c'est two thirty <b>p.m.</b> Le piège : <b>12 p.m.</b> = midi (<b>noon</b>), <b>12 a.m.</b> = minuit (<b>midnight</b>). Pour demander : <b>What time is it?</b>"},
+  prepEnUs:   {fr:"<b>on</b> + un jour ou une date : on Monday, on May third · <b>in</b> + un mois : in May, in the morning · <b>at</b> + une heure : at seven, at noon, at night. Jours et mois prennent une majuscule : Monday, May. Le week-end : <b>on</b> the weekend (en Grande-Bretagne : at the weekend)."},
+  prepEnGb:   {fr:"<b>on</b> + un jour ou une date : on Monday, on the third of May · <b>in</b> + un mois : in May, in the morning · <b>at</b> + une heure : at seven, at noon, at night. Jours et mois prennent une majuscule : Monday, May. Le week-end : <b>at</b> the weekend (aux États-Unis : on the weekend)."},
+  dateEnUs:   {fr:"Aux États-Unis, on écrit <b>May 3</b> (ou May 3rd) et on dit <b>May third</b> : à l'oral, toujours l'ordinal. Les ordinaux : first, second, third, puis -th (fourth, twelfth, twentieth) ; twenty-<b>first</b>, thirty-<b>first</b>. Pour demander : <b>What's the date today?</b> En Grande-Bretagne : 3 May, the third of May."},
+  dateEnGb:   {fr:"En Grande-Bretagne, on écrit <b>3 May</b> (ou 3rd May) et on dit <b>the third of May</b>. Les ordinaux : first, second, third, puis -th (fourth, twelfth, twentieth) ; twenty-<b>first</b>, thirty-<b>first</b>. Pour demander : <b>What's the date today?</b> Aux États-Unis : May 3, May third."}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- les enonces dans la langue apprise ----------
+const ENONCES = {
+  de: {heure: "Wie spät ist es?", jour: "Welcher Tag ist heute?", date: "Der Wievielte ist heute?", quand: "Wann ist {e}?", combien: "Wie lange dauert {e}?", debutFin: "Von wann bis wann ist {e}?", bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+       autres: ["das Wochenende", "der Monat", "das Datum"], agenda: "Termine"},
+  es: {heure: "¿Qué hora es?", jour: "¿Qué día es hoy?", date: "¿Qué fecha es hoy?", quand: "¿Cuándo es {e}?", combien: "¿Cuánto dura {e}?", debutFin: "¿De qué hora a qué hora es {e}?", bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+       autres: ["el fin de semana", "el mes", "la fecha"], agenda: "Citas"},
+  en: {heure: "What time is it?", jour: "What day is it today?", date: "What's the date today?", quand: "When is {e}?", combien: "How long is {e}?", debutFin: "What time is {e}?", bravo: "Well done!", vrai: "True", faux: "False",
+       autres: ["the weekend", "the month", "the date"], agenda: "Appointments"}
+};
+const E = (cle, e) => ENONCES[ML][cle].replace("{e}", e || "");
+
+// ---------- la fabrique (heure/dire.js) et le corpus (heure/heure.json) ----------
+let D = null;
+const P = (s, p) => Dire.phrase(V, s, p);
+const TROU = (s, p) => Dire.trou(V, s, p);
+// LA TRADUCTION SOUS LA PHRASE : dans toute langue d'interface autre que la langue apprise, la phrase entiere,
+// fabriquee par la meme regle avec les memes choix (dire.js) -- le chemin natif des lots des six langues
+const TR = (s, p) => LANGUE === APPRENDRE ? null : Dire.trad(LANGUE, s, p);
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+const glose = k => { const g = ((D && D.gloses[ML]) || {})[k] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };
+
+// ---------- la voix : aucun fichier enregistre pour ce theme, la voix du telephone (themes/voix.js) ----------
+let dire = t => Voix.dire(t);
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function textesAVoix(){ return []; }
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const entre = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const cible = t => '<span lang="' + (EN_APP ? "en" : APPRENDRE) + '" dir="ltr">' + t + '</span>';
+const deux = Dire.deux;
+// en persan et en arabe, chaque passage en lettres latines s'isole, sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.split(/(<[^>]+>)/).map(x => x.charAt(0) === "<" ? x
+  : x.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿«»„“?0-9:]+(?:[ +=,.:–—-]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ¡¿«»„“?0-9:]+)*/g, m => '<span dir="ltr">' + m + '</span>')).join("");
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+
+// ---------- LES DESSINS (SVG, aux couleurs de la page : jour et nuit) ----------
+const ANNEE = 2027;
+const rad = d => d * Math.PI / 180;
+// L'HORLOGE : le cadran, ses soixante traits, les douze chiffres ; la petite aiguille (encre) et la grande (bleue)
+function horloge(h, m){
+  const ah = rad(((h % 12) + m / 60) * 30), am = rad(m * 6);
+  let s = '<svg class="horloge" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="93" fill="var(--cadran)" stroke="var(--encre)" stroke-width="6"/>';
+  for (let i = 0; i < 60; i++){
+    const a = rad(i * 6), r1 = i % 5 ? 84 : 77;
+    s += '<line x1="' + (100 + r1 * Math.sin(a)).toFixed(1) + '" y1="' + (100 - r1 * Math.cos(a)).toFixed(1) + '" x2="' + (100 + 88 * Math.sin(a)).toFixed(1) + '" y2="' + (100 - 88 * Math.cos(a)).toFixed(1)
+      + '" stroke="var(--encre)" stroke-width="' + (i % 5 ? 1.4 : 3.4) + '" stroke-linecap="round"/>';
+  }
+  for (let n = 1; n <= 12; n++){ const a = rad(n * 30);
+    s += '<text x="' + (100 + 64 * Math.sin(a)).toFixed(1) + '" y="' + (100 - 64 * Math.cos(a) + 6.5).toFixed(1) + '" font-size="18" font-weight="800" fill="var(--encre)" text-anchor="middle">' + n + '</text>'; }
+  s += '<line x1="100" y1="100" x2="' + (100 + 46 * Math.sin(ah)).toFixed(1) + '" y2="' + (100 - 46 * Math.cos(ah)).toFixed(1) + '" stroke="var(--encre)" stroke-width="9" stroke-linecap="round"/>';
+  s += '<line x1="100" y1="100" x2="' + (100 + 72 * Math.sin(am)).toFixed(1) + '" y2="' + (100 - 72 * Math.cos(am)).toFixed(1) + '" stroke="var(--minute)" stroke-width="5" stroke-linecap="round"/>';
+  return s + '<circle cx="100" cy="100" r="7" fill="var(--ambre)" stroke="var(--encre)" stroke-width="2"/></svg>';
+}
+// LE REVEIL NUMERIQUE : sur 24 heures (14:30) ; en americain avec AM / PM quand on le demande
+function montre(h, m, ampm){
+  const t = ampm ? Dire.h12(h) + ":" + deux(m) : deux(h) + ":" + deux(m);
+  return '<svg class="montre" viewBox="0 0 260 160" aria-hidden="true">'
+    + '<rect x="70" y="8" width="34" height="10" rx="4" fill="var(--ambre)"/><rect x="156" y="8" width="34" height="10" rx="4" fill="var(--gris)"/>'
+    + '<rect x="12" y="16" width="236" height="118" rx="26" fill="var(--boitier)" stroke="var(--encre)" stroke-width="5"/>'
+    + '<rect x="32" y="34" width="196" height="82" rx="12" fill="#121A24"/>'
+    + '<text x="' + (ampm ? 120 : 130) + '" y="96" font-size="56" font-weight="900" fill="#7CF2B0" text-anchor="middle" letter-spacing="2" font-family="Consolas,Menlo,monospace">' + t + '</text>'
+    + (ampm ? '<text x="212" y="66" font-size="17" font-weight="900" fill="#7CF2B0" text-anchor="middle" font-family="Consolas,Menlo,monospace">' + (h < 12 ? "AM" : "PM") + '</text>' : "")
+    + '<rect x="40" y="134" width="26" height="14" rx="5" fill="var(--encre)"/><rect x="194" y="134" width="26" height="14" rx="5" fill="var(--encre)"/></svg>';
+}
+// les mois et les jours tels qu'on les ecrit dans la langue apprise (majuscule en tete de calendrier)
+const moisEcrit = mo => Dire.MOIS[EN_APP ? "en" : ML][mo];
+const majus = s => s.charAt(0).toUpperCase() + s.slice(1);
+// LA FEUILLE DU CALENDRIER A EFFEUILLER : le mois en haut, le grand chiffre du jour
+function feuille(d, mo){
+  return '<svg class="feuille" viewBox="0 0 200 214" aria-hidden="true">'
+    + '<rect x="14" y="20" width="172" height="184" rx="16" fill="var(--papier)" stroke="var(--encre)" stroke-width="4"/>'
+    + '<path d="M14 36a16 16 0 0 1 16-16h140a16 16 0 0 1 16 16v34H14z" fill="var(--calrouge)"/>'
+    + '<circle cx="62" cy="20" r="8" fill="var(--encre)"/><circle cx="138" cy="20" r="8" fill="var(--encre)"/>'
+    + '<text x="100" y="58" font-size="24" font-weight="900" fill="#fff" text-anchor="middle" letter-spacing="1">' + moisEcrit(mo).toUpperCase() + '</text>'
+    + '<text x="100" y="168" font-size="92" font-weight="900" fill="var(--encre)" text-anchor="middle">' + d + '</text></svg>';
+}
+// LE MOIS EN GRILLE : l'americain commence au dimanche ; un jour entoure (aujourd'hui) ou un gateau (l'anniversaire)
+function grille(mo, sel, gateau){
+  const us = V === "us", noms = Dire.JOURS_COURTS[EN_APP ? "en" : ML], ordre = us ? [6, 0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6];
+  const premier = Dire.jourSemaine(ANNEE, mo, 1), nb = Dire.joursDuMois(ANNEE, mo), dec = ordre.indexOf(premier);
+  const lignes = Math.ceil((dec + nb) / 7), Hh = 74 + lignes * 34 + 8, W = 42;
+  let s = '<svg class="grille" viewBox="0 0 312 ' + Hh + '" aria-hidden="true"><rect x="2" y="2" width="308" height="' + (Hh - 4) + '" rx="16" fill="var(--papier)" stroke="var(--encre)" stroke-width="3"/>'
+    + '<path d="M2 18a16 16 0 0 1 16-16h276a16 16 0 0 1 16 16v20H2z" fill="var(--calrouge)"/>'
+    + '<text x="156" y="30" font-size="18" font-weight="900" fill="#fff" text-anchor="middle">' + majus(moisEcrit(mo)) + ' ' + ANNEE + '</text>';
+  ordre.forEach((j, c) => { s += '<text x="' + (9 + c * W + W / 2) + '" y="62" font-size="14" font-weight="900" fill="' + (j >= 5 ? "var(--rouge)" : "var(--gris)") + '" text-anchor="middle">' + noms[j] + '</text>'; });
+  for (let d = 1; d <= nb; d++){
+    const k = dec + d - 1, c = k % 7, l = Math.floor(k / 7), x = 9 + c * W, y = 74 + l * 34, j = ordre[c];
+    s += '<g data-d="' + d + '">' + (j >= 5 ? '<rect x="' + (x + 2) + '" y="' + (y + 1) + '" width="' + (W - 4) + '" height="31" rx="7" fill="var(--weekend)"/>' : '<rect x="' + (x + 2) + '" y="' + (y + 1) + '" width="' + (W - 4) + '" height="31" rx="7" fill="transparent"/>');
+    if (d === sel) s += '<circle cx="' + (x + W / 2) + '" cy="' + (y + 16) + '" r="16" fill="none" stroke="var(--ambre)" stroke-width="4"/>';
+    s += '<text x="' + (x + W / 2) + '" y="' + (y + 22) + '" font-size="16" font-weight="' + (d === sel ? 900 : 700) + '" fill="var(--encre)" text-anchor="middle">' + d + '</text>';
+    if (d === sel && gateau) s += gateauSvg(x + W - 9, y + 3);
+    s += '</g>';
+  }
+  return s + '</svg>';
+}
+// un petit gateau dessine (jamais un emoji : il change d'un telephone a l'autre)
+const gateauSvg = (x, y) => '<g transform="translate(' + (x - 9) + ' ' + (y - 9) + ')"><rect x="1" y="8" width="18" height="11" rx="3" fill="#F2A0B4" stroke="var(--encre)" stroke-width="1.5"/>'
+  + '<rect x="1" y="11" width="18" height="2.5" fill="#fff"/><rect x="9" y="2" width="2.5" height="6" fill="#4C9AD6"/><path d="M10.2 0c2 2 1.6 3.4 0 3.6-1.6-.2-2-1.6 0-3.6z" fill="var(--ambre)"/></g>';
+// l'heure ecrite dans l'agenda : 9:00, 16:30 ; en americain 9:00 AM, 4:30 PM
+const heureEcrite = (h, m) => V === "us" ? Dire.h12(h) + ":" + deux(m) + (h < 12 ? " AM" : " PM") : h + ":" + deux(m);
+function plage(x){ return heureEcrite(x.h, x.m) + "–" + heureEcrite(x.h2, x.m2); }
+// L'AGENDA DE LA SEMAINE : sept lignes (lundi d'abord), les rendez-vous ecrits a la main dans la langue apprise
+function agenda(rdv){
+  const noms = Dire.JOURS_COURTS[EN_APP ? "en" : ML], fonds = ["var(--evt1)", "var(--evt2)", "var(--evt3)"];
+  let s = '<svg class="agenda" viewBox="0 0 340 262" aria-hidden="true"><rect x="2" y="2" width="336" height="258" rx="14" fill="var(--papier)" stroke="var(--encre)" stroke-width="3"/>'
+    + '<rect x="2" y="2" width="14" height="258" rx="6" fill="var(--calrouge)"/>';
+  for (let j = 0; j < 7; j++){
+    const y = 10 + j * 35, x = rdv.find(r => r.j === j);
+    s += '<line x1="24" x2="330" y1="' + (y + 34) + '" y2="' + (y + 34) + '" stroke="var(--ligne)" stroke-width="1.5"/>'
+      + '<text x="44" y="' + (y + 23) + '" font-size="15" font-weight="900" fill="' + (j >= 5 ? "var(--rouge)" : "var(--gris)") + '" text-anchor="middle">' + noms[j] + '</text>';
+    if (x) s += '<rect x="68" y="' + (y + 4) + '" width="262" height="27" rx="8" fill="' + fonds[rdv.indexOf(x) % 3] + '"/>'
+      + '<text x="78" y="' + (y + 23) + '" font-size="14" font-weight="800" fill="var(--encre)">' + plage(x) + '</text>'
+      + '<text x="322" y="' + (y + 23) + '" font-size="15" font-weight="900" fill="var(--encre)" text-anchor="end">' + Dire.EVT_COURT[V][x.e] + '</text>';
+  }
+  return s + '</svg>';
+}
+// chaque dessin dans son cadre ; data-id dit ce qu'il montre (la cle d'une question, les controles)
+const cadre = (svg, id, paire) => '<div class="dessin' + (paire ? " paire" : "") + '" data-id="' + id + '">' + svg + '</div>';
+
+// ---------- LES MOTS DU THEME (regle 3 : un mot appris compte partout) ----------
+let file = [], rang = 0, bons = 0, repondu = false;
+let motQ = null, tradQ = null, choixQ = null, CHOIX = new Map();
+function motsDuTheme(){ return D.mots[ML]; }
+const cleDe = m => m.cle || m.mot;
+const motDe = k => motsDuTheme().find(m => cleDe(m) === k) || {mot: k};
+const motObj = m => Object.assign({mot: m.mot, genre: m.genre === undefined ? null : m.genre, cat: m.cat || null}, m.cle ? {cle: m.cle} : {});
+function viser(w, ks){ motQ = motObj(w || motDe(ks[0])); }
+const accepte = (w, ks) => !w || ks.includes(cleDe(w));
+// les mots de chaque langue, par role
+const MOTS_ROLE = {
+  de: {heute: "heute", demain: "morgen", hier: "gestern", date: "Datum", agenda: "Termin", anniv: "Geburtstag", cal: "Kalender", we: "Wochenende",
+       heureW: "Stunde", minW: "Minute", midi: "Mittag", minuit: "Mitternacht", montre: ["Uhr", "Uhrzeit"]},
+  es: {heute: "hoy", demain: "mañana~adv", hier: "ayer", date: "fecha", agenda: "cita", anniv: "cumpleaños", cal: "calendario", we: "fin de semana",
+       heureW: "hora", minW: "minuto", midi: "mediodía", minuit: "medianoche", montre: ["hora", "minuto"]},
+  en: {heute: "today", demain: "tomorrow", hier: "yesterday", date: "date", agenda: "appointment", anniv: "birthday", cal: "calendar", we: "weekend",
+       heureW: "hour", minW: "minute", midi: "noon", minuit: "midnight", montre: ["watch"]}
+}[ML];
+const jourMot = j => Dire.JOURS[EN_APP ? "en" : ML][j];
+const moisMot = mo => Dire.MOIS[EN_APP ? "en" : ML][mo];
+// les mots que fait travailler la lecture d'une horloge, selon la minute
+function motsHorloge(m){
+  if (DE_APP) return m === 0 ? ["Uhr"] : (m === 15 || m === 45) ? ["Viertel"] : (m === 25 || m === 30 || m === 35) ? ["halb"] : ["Uhrzeit"];
+  if (ES_APP) return m === 0 ? ["hora", "reloj"] : (m % 15 === 0) ? ["reloj", "hora"] : ["minuto", "reloj"];
+  return m === 0 ? ["clock", "hour"] : (m === 15 || m === 45) ? ["quarter", "clock"] : m === 30 ? ["half", "clock"] : ["clock"];
+}
+// le mot montre sous la reponse : « die Uhr », « halb », « el lunes », et son sens (le corpus)
+function montreDe(m){ if (!m) return null; return {aff: m.genre ? m.genre + " " + m.mot : m.mot, sens: glose(m.cle || m.mot)}; }
+// LE MAUVAIS CHOIX TRADUIT (regle commune, 3 nov.) : chaque choix de la question garde sa traduction (CHOIX) ; une
+// forme fausse (der dritten Mai, *dreite) n'en a pas
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  const x = CHOIX.get(c);
+  return x && x.sens ? x : null;
+}
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = montreDe(motQ);
+  m.innerHTML = (ok ? cible(E("bravo")) : T("bonne", {r: cible(bonneTexte)}))
+    + ((ok || (phrase && phrase !== bonneTexte)) ? '<span class="phrase">' + cible(phrase || bonneTexte) + '</span>' : "")
+    + traduction(tradQ)
+    + (!ok && (c => c ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
+  dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// des boutons de texte ; o : {t, aff?, sens?} ou une chaine ; la bonne est « bonne »
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const t = typeof o === "string" ? o : o.t;
+    if (typeof o !== "string") CHOIX.set(t, {aff: o.aff || t, sens: o.sens || ""});
+    const b = document.createElement("button"); b.type = "button"; b.lang = EN_APP ? "en" : APPRENDRE; b.dir = "ltr"; b.textContent = t; if (t === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = t; apres(t === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des horloges a toucher : la bonne est « bonne » ; data-id « h:mm » pour les controles (tests/themes_illustres.py)
+function horloges(conteneur, heures, bonne, apres){
+  let bon;
+  conteneur.className = "rangee";
+  heures.forEach(([h, m]) => {
+    const id = h + ":" + deux(m), b = document.createElement("button"); b.type = "button"; b.dataset.id = id;
+    b.innerHTML = horloge(h, m); if (id === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = id; apres(id === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+function ecran(consigne, image, enonce, centre, colonne){
+  $("zone").innerHTML = '<p class="consigne">' + consigne + '</p>' + (image || "")
+    + (enonce ? '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div>' : "")
+    + '<div class="choix' + (colonne ? " colonne" : centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+function ecranTrou(consigne, image, phrase, colonne){
+  $("zone").innerHTML = '<p class="consigne">' + consigne + '</p>' + (image || "") + '<div class="enonce">' + cible(phrase).replace("___", trou()) + '</div><div class="choix' + (colonne ? " colonne" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const remplir = rep => { const t = $("trou"); if (t) t.textContent = rep; };
+
+// ---------- LES HEURES DES QUESTIONS ----------
+// toutes les minutes de cinq en cinq, et « kurz nach / kurz vor » (h:02, h:58) plus rarement
+const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+const minuteAuHasard = () => Math.random() < 0.08 ? hasard([2, 58]) : hasard(MINUTES);
+// une heure dont la lecture fait travailler le mot w (sans w : n'importe laquelle)
+function heurePour(w){
+  const ms = MINUTES.concat([2, 58]).filter(m => accepte(w, motsHorloge(m)));
+  if (!ms.length) return null;
+  const m = (w ? hasard(ms) : minuteAuHasard());
+  return [entre(0, 23), m];
+}
+// DES HEURES QU'ON CONFOND, sur un cadran de douze heures : une heure plus tot (halb zwei pour halb drei : le piege
+// du francophone), le miroir (Viertel vor / Viertel nach), une heure plus tard, une demi-heure de part et d'autre
+function leurresHeure(h, m){
+  const t = h * 60 + m, c = [], vu = new Set([(h % 12) + ":" + m]);
+  const pose = x => { x = ((x % 1440) + 1440) % 1440; const hh = Math.floor(x / 60), mm = x % 60, k = (hh % 12) + ":" + mm;
+    if (vu.has(k)) return; vu.add(k); c.push([hh, mm]); };
+  const piege = t - 60;
+  pose(piege);
+  if (m !== 0 && m !== 30) pose(m < 30 ? t - 2 * m : t + 2 * (60 - m));
+  pose(t + 60); pose(t + 30); pose(t - 30);
+  // l'allemand : halb, fünf vor / nach halb -- le piege toujours la ; ailleurs, deux au hasard
+  if (DE_APP && (m === 25 || m === 30 || m === 35)) return [c[0], hasard(c.slice(1))];
+  return melanger(c).slice(0, 2);
+}
+// DES HEURES OFFICIELLES QU'ON CONFOND (sur 24 heures) : les chiffres inverses (fünfundvierzig / vierundfünfzig),
+// 13 et 30, l'heure a dix pres, une heure de plus ou de moins ; jamais la meme heure lue sur douze heures
+function leurresOff(h, m, memeDouze){
+  const c = [], vu = new Set([h + ":" + m]);
+  const pose = (hh, mm) => { if (hh < 0 || hh > 23 || mm < 0 || mm > 59) return; const k = hh + ":" + mm;
+    if (vu.has(k) || (!memeDouze && hh % 12 === h % 12 && mm === m)) return; vu.add(k); c.push([hh, mm]); };
+  const md = deux(m); pose(h, Number(md[1] + md[0]));
+  const tt = {13: 30, 30: 13, 14: 40, 40: 14, 15: 50, 50: 15}; if (tt[m] !== undefined) pose(h, tt[m]);
+  if (memeDouze) pose((h + 12) % 24, m);   // a.m. / p.m. : le piege de l'anglais
+  pose(h >= 10 ? h - 10 : h + 10, m); pose(h + 1, m); pose(h - 1, m);
+  return (DE_APP || memeDouze) ? [c[0], hasard(c.slice(1))] : melanger(c).slice(0, 2);
+}
+const opt = (s, p) => ({t: P(s, p), sens: TR(s, p) || ""});
+
+// ---------- LES MOMENTS DE LA JOURNEE ----------
+// seulement les heures ou un seul moment est juste (19 h : abends ; jamais 22 h, abends ou nachts) ; les leurres sont
+// les moments clairement faux a cette heure-la
+const MOMENTS = {
+  de: {morgens: {h: [6, 7, 8], faux: ["nachmittags", "abends"], k: "morgens"}, mittags: {h: [12], faux: ["abends", "nachts"], k: "mittags"},
+       nachmittags: {h: [15, 16], faux: ["morgens", "nachts"], k: "Uhrzeit"}, abends: {h: [19, 20, 21], faux: ["morgens", "mittags"], k: "abends"},
+       nachts: {h: [1, 2, 3], faux: ["mittags", "nachmittags"], k: "nachts"}},
+  es: {"mañana": {h: [7, 8, 9, 10], faux: ["tarde", "noche"], k: "mañana"}, tarde: {h: [16, 17, 18], faux: ["mañana", "noche"], k: "tarde"},
+       noche: {h: [22, 23], faux: ["mañana", "tarde"], k: "noche"}},
+  en: {"in the morning": {h: [7, 8, 9, 10], faux: ["in the afternoon", "in the evening"], k: "morning"}, "in the afternoon": {h: [14, 15, 16], faux: ["in the morning", "at night"], k: "afternoon"},
+       "in the evening": {h: [19, 20, 21], faux: ["in the morning", "in the afternoon"], k: "evening"}, "at night": {h: [23], faux: ["in the morning", "in the afternoon"], k: "night"}}
+}[ML];
+
+// ---------- LES PETITS MOTS : am / im / um ; el / en / a las ; on / in / at ----------
+const AGENDA_HEURES = [[9, 0], [9, 30], [10, 0], [10, 30], [11, 0], [15, 0], [15, 30], [16, 0], [16, 30], [17, 0], [18, 0], [18, 30], [19, 0], [19, 30], [20, 0]];
+function itemsPrep(){
+  const out = [];
+  Dire.EVTS.forEach(e => {
+    for (let j = 0; j < 7; j++) out.push({s: "evtJour", p: {e, j}, ks: [jourMot(j)]});
+    AGENDA_HEURES.forEach(([h, m]) => out.push({s: "evtDebut", p: {e, h, m}, ks: motsHorloge(m)}));
+  });
+  for (let mo = 0; mo < 12; mo++) out.push({s: "annivMois", p: {mo}, ks: [moisMot(mo), MOTS_ROLE.anniv]});
+  out.push({s: "midi", p: {}, ks: [MOTS_ROLE.midi]}, {s: "minuit", p: {}, ks: [MOTS_ROLE.minuit]}, {s: "finde", p: {}, ks: [MOTS_ROLE.we]});
+  if (EN_APP) out.push({s: "matin", p: {}, ks: ["morning"]}, {s: "aprem", p: {}, ks: ["afternoon"]}, {s: "soir", p: {}, ks: ["evening"]}, {s: "nuit", p: {}, ks: ["night"]});
+  return out;
+}
+// les trois choix d'un trou, dans la casse de la reponse (« Am Mittag »)
+function choixPrep(rep){
+  const cap = rep.charAt(0) !== rep.charAt(0).toLowerCase(), f = x => cap ? majus(x) : x;
+  if (DE_APP) return ["am", "im", "um"].map(f);
+  if (EN_APP) return ["on", "in", "at"].map(f);
+  const r = rep.toLowerCase();
+  return (r.startsWith("a l") ? [r, "el", "en"] : r === "el" ? ["el", "en", "a"] : r === "en" ? ["en", "el", "a"] : ["a", "el", "en"]).map(f);
+}
+
+// ---------- LES DATES ----------
+const dateAuHasard = () => { const mo = entre(0, 11); return {mo, d: entre(1, Dire.joursDuMois(ANNEE, mo))}; };
+// un nombre qu'on confond : 3 et 13, 13 et 30, 23 et 13
+const confondu = d => d === 13 ? 30 : d === 30 ? 13 : d <= 9 ? d + 10 : d - 10;
+// les formes fausses d'une date, toujours CLAIREMENT fausses : un autre nombre, la mauvaise terminaison, le nombre
+// au lieu de l'ordinal (*der drei Mai), une forme fabriquee (*dreite, *threeth)
+function leurresDate(d, mo, sorte){
+  const nb = Dire.joursDuMois(ANNEE, mo), autre = confondu(d) <= nb ? confondu(d) : (d > 1 ? d - 1 : d + 1);
+  const voisin = d < nb ? d + 1 : d - 1, autreMois = (mo + (Math.random() < 0.5 ? 1 : 11)) % 12;
+  let forme = [], nombre = [];
+  if (DE_APP){
+    const fin = sorte === "date" ? "e" : "en", mois = sorte === "date" ? "" : " " + moisMot(mo);
+    forme = [Dire.ordDe(d, sorte === "date" ? "en" : "e") + mois, (d === 1 ? "eins" : Dire.nDe(d)) + mois].concat(Dire.ORD_FAUX_DE[d] ? [Dire.ORD_FAUX_DE[d] + fin + mois] : []);
+    nombre = [Dire.ordDe(autre, fin) + mois].concat(sorte === "date" ? [] : [Dire.ordDe(d, fin) + " " + moisMot(autreMois)]);
+  } else if (ES_APP){
+    const mois = sorte === "date" ? "" : " de " + moisMot(mo);
+    forme = (Dire.ORD_ES[d] ? [Dire.ORD_ES[d] + mois] : []).concat(d === 1 ? ["primer" + mois, "una" + mois] : []);
+    nombre = [Dire.nEs(autre) + mois, Dire.nEs(voisin) + mois].concat(sorte === "date" ? [] : [Dire.nEs(d) + " de " + moisMot(autreMois)]);
+  } else {
+    const dit = x => sorte === "date" ? Dire.ordEn(x) : Dire.dateEn(V, x, mo);
+    forme = Dire.ORD_FAUX_EN[d] ? [sorte === "date" ? Dire.ORD_FAUX_EN[d] : (V === "us" ? moisMot(mo) + " " + Dire.ORD_FAUX_EN[d] : "the " + Dire.ORD_FAUX_EN[d] + " of " + moisMot(mo))] : [];
+    nombre = [dit(autre), dit(voisin)].concat(sorte === "date" ? [] : [Dire.dateEn(V, d, autreMois)]);
+  }
+  forme = melanger(forme); nombre = melanger(nombre);
+  return uniques(forme.length ? [forme[0], nombre[0]] : nombre.slice(0, 2));
+}
+
+// ---------- L'AGENDA DE LA SEMAINE ----------
+// trois rendez-vous, trois jours, trois heures et trois durees differentes ; le premier tombe le jour « jour » et dure
+// « duree » quand on les donne (la question vise alors ce jour ou cette duree)
+function agendaAuHasard(jour, duree){
+  const ev = melanger(Dire.EVTS).slice(0, 3), hs = melanger(AGENDA_HEURES).slice(0, 3);
+  const js = (jour >= 0 ? [jour] : []).concat(melanger([0, 1, 2, 3, 4, 5, 6].filter(j => j !== jour))).slice(0, 3);
+  const ds = (duree ? [duree] : []).concat(melanger([30, 45, 60, 90, 120].filter(d => d !== duree))).slice(0, 3);
+  return ev.map((e, i) => { const fin = hs[i][0] * 60 + hs[i][1] + ds[i];
+    return {e, j: js[i], h: hs[i][0], m: hs[i][1], h2: Math.floor(fin / 60), m2: fin % 60, min: ds[i]}; });
+}
+const idAgenda = rdv => "a" + rdv.map(r => r.e + r.j + "-" + r.h + ":" + r.m + "-" + r.min).join("|");
+const evtEcrit = e => EN_APP ? Dire.EVT[V][e] : Dire.EVT[ML][e];
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // l'horloge : la lecture courante parmi deux heures qu'on confond (halb drei / halb zwei)
+  horloge(w){
+    const hm = heurePour(w); if (!hm) return false;
+    const [h, m] = hm, lr = leurresHeure(h, m);
+    viser(w, motsHorloge(m));
+    const p = {h, m, style: "c"}, juste = P("heure", p);
+    tradQ = TR("heure", p);
+    ecran(T("horloge"), cadre(horloge(h, m), "c" + h % 12 + ":" + m), E("heure"), true, true);
+    boutons($("choix"), melanger([opt("heure", p)].concat(lr.map(([a, b]) => opt("heure", {h: a, m: b, style: "c"})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // l'heure officielle sur un reveil (24 h) : vierzehn Uhr dreissig / las catorce treinta
+  numerique(w){
+    if (EN_APP || !accepte(w, MOTS_ROLE.montre)) return false;
+    const h = entre(0, 23), m = hasard(MINUTES), lr = leurresOff(h, m, false);
+    viser(w, MOTS_ROLE.montre);
+    const p = {h, m, style: "o"}, juste = P("heure", p);
+    tradQ = TR("heure", p);
+    ecran(T("numerique"), cadre(montre(h, m), "n" + h + ":" + m), E("heure"), true, true);
+    boutons($("choix"), melanger([opt("heure", p)].concat(lr.map(([a, b]) => opt("heure", {h: a, m: b, style: "o"})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // le reveil sur 24 h, l'heure de la conversation : 14:30 -> halb drei (et non halb zwei) ; en espagnol avec le moment
+  conversion(w){
+    if (EN_APP) return false;
+    const ms = MINUTES.filter(m => accepte(w, motsHorloge(m).concat(DE_APP ? ["Uhrzeit"] : [])));
+    if (!ms.length) return false;
+    const h = entre(13, 23), m = hasard(ms), lr = leurresHeure(h, m), st = DE_APP ? "c" : "m";
+    viser(w, w ? [w.cle || w.mot] : motsHorloge(m));
+    const p = {h, m, style: st}, juste = P("heure", p);
+    tradQ = TR("heure", p);
+    ecran(T("conversion"), cadre(montre(h, m), "n" + h + ":" + m), "", true, true);
+    boutons($("choix"), melanger([opt("heure", p)].concat(lr.map(([a, b]) => opt("heure", {h: a, m: b, style: st})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // l'ecoute : l'heure dite, trois horloges
+  entendre(w){
+    const hm = heurePour(w); if (!hm) return false;
+    const [h, m] = hm, lr = leurresHeure(h, m);
+    viser(w, motsHorloge(m));
+    const p = {h, m, style: "c"}, juste = P("heure", p), id = h + ":" + deux(m);
+    tradQ = TR("heure", p);
+    lr.forEach(([a, b]) => CHOIX.set(a + ":" + deux(b), {aff: P("heure", {h: a, m: b, style: "c"}), sens: TR("heure", {h: a, m: b, style: "c"}) || ""}));
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(juste));
+    horloges($("rang"), melanger([[h, m]].concat(lr)), id, ok => juger(ok, juste, juste));
+    dire(juste);
+    return true;
+  },
+  // la phrase, trois horloges
+  cual(w){
+    const hm = heurePour(w); if (!hm) return false;
+    const [h, m] = hm, lr = leurresHeure(h, m);
+    viser(w, motsHorloge(m));
+    const p = {h, m, style: "c"}, juste = P("heure", p), id = h + ":" + deux(m);
+    tradQ = TR("heure", p);
+    lr.forEach(([a, b]) => CHOIX.set(a + ":" + deux(b), {aff: P("heure", {h: a, m: b, style: "c"}), sens: TR("heure", {h: a, m: b, style: "c"}) || ""}));
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(juste) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    horloges($("rang"), melanger([[h, m]].concat(lr)), id, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // vrai ou faux : une horloge, un reveil, un mois ou une feuille, et une phrase vraie ou clairement fausse
+  vraifaux(w){
+    const c = [];
+    const hm = heurePour(w);
+    if (hm) c.push("horloge");
+    if (!EN_APP && accepte(w, MOTS_ROLE.montre)) c.push("montre");
+    if (EN_APP && accepte(w, ["watch"])) c.push("montre");
+    if (!w || Dire.JOURS[EN_APP ? "en" : ML].includes(w.mot) || accepte(w, [MOTS_ROLE.heute, MOTS_ROLE.cal])) c.push("jour");
+    if (!w || Dire.MOIS[EN_APP ? "en" : ML].includes(w.mot) || accepte(w, [MOTS_ROLE.date])) c.push("date");
+    if (Object.keys(MOMENTS).some(k => accepte(w, [MOMENTS[k].k]))) c.push("moment");
+    if (accepte(w, [MOTS_ROLE.heureW, MOTS_ROLE.minW])) c.push("duree");
+    if (!w || Dire.JOURS[EN_APP ? "en" : ML].includes(w.mot) || accepte(w, [MOTS_ROLE.agenda])) c.push("agenda");
+    if (accepte(w, [MOTS_ROLE.demain, MOTS_ROLE.hier])) c.push("veille");
+    if (!c.length) return false;
+    const sorte = hasard(c), v = Math.random() < 0.5;
+    let image, p, pf, s, ks;
+    if (sorte === "horloge"){
+      const [h, m] = hm, f = hasard(leurresHeure(h, m));
+      p = {h, m, style: "c"}; pf = {h: f[0], m: f[1], style: "c"}; s = "heure"; ks = motsHorloge(m);
+      image = cadre(horloge(h, m), "c" + h % 12 + ":" + m);
+    } else if (sorte === "montre"){
+      const h = entre(0, 23), m = hasard(MINUTES), st = EN_APP ? "p" : "o", f = hasard(leurresOff(h, m, EN_APP));
+      p = {h, m, style: st}; pf = {h: f[0], m: f[1], style: st}; s = "heure"; ks = MOTS_ROLE.montre;
+      image = cadre(montre(h, m), "n" + h + ":" + m);
+    } else if (sorte === "jour"){
+      // le mot vise est le jour DIT : le jour entoure (vrai) ou un autre (faux)
+      const wj = w ? Dire.JOURS[EN_APP ? "en" : ML].indexOf(w.mot) : -1, mo = entre(0, 11), nb = Dire.joursDuMois(ANNEE, mo);
+      const dit = wj >= 0 ? wj : entre(0, 6), ok = d => (Dire.jourSemaine(ANNEE, mo, d) === dit) === v;
+      const ds = []; for (let d = 1; d <= nb; d++) if (ok(d)) ds.push(d);
+      const dd = hasard(ds), j = Dire.jourSemaine(ANNEE, mo, dd);
+      p = {j}; pf = {j: dit}; s = "jour"; ks = [jourMot(dit), MOTS_ROLE.heute, MOTS_ROLE.cal];
+      image = cadre(grille(mo, dd, false), "g" + mo + "-" + dd);
+    } else if (sorte === "moment"){
+      // le reveil sur 24 h et le moment : « Es ist sieben Uhr abends. » (faux : morgens)
+      const ks0 = Object.keys(MOMENTS).filter(k => accepte(w, [MOMENTS[k].k])), k = hasard(ks0), x = MOMENTS[k], h = hasard(x.h), m = hasard([0, 15, 30, 45]);
+      const t = TROU("heure", {h, m, style: "m"}), faux = hasard(x.faux);
+      p = {h, m, style: "m"}; s = "heure"; ks = [x.k];
+      image = cadre(montre(h, m), "n" + h + ":" + m);
+      const vraie = P("heure", p), fausse = t.texte.replace("___", faux);
+      if (!accepte(w, ks)) return false;
+      viser(w, ks); tradQ = TR(s, p); CHOIX.clear();
+      ecran(T("vraifaux"), image, v ? vraie : fausse, true);
+      const VR = E("vrai"), FX = E("faux"), rep = v ? VR : FX;
+      boutons($("choix"), [VR, FX], rep, ok => juger(ok, rep, vraie));
+      return true;
+    } else if (sorte === "duree" || sorte === "agenda"){
+      // l'agenda : « Der Yogakurs dauert zwei Stunden. » ; « Die Party ist am Samstag um acht Uhr abends. »
+      const wj = w ? Dire.JOURS[EN_APP ? "en" : ML].indexOf(w.mot) : -1;
+      const force = sorte === "duree" && w ? (cleDe(w) === MOTS_ROLE.minW ? 45 : hasard([30, 60, 90, 120])) : 0;
+      const rdv = agendaAuHasard(sorte === "agenda" ? wj : -1, force), x = (wj >= 0 || force) ? rdv[0] : hasard(rdv), autre = rdv.find(r => r !== x);
+      if (sorte === "duree"){
+        p = x; s = "duree"; ks = [x.min === 45 ? MOTS_ROLE.minW : MOTS_ROLE.heureW];
+        pf = Object.assign({}, x, {min: hasard(Dire.DUREES.filter(d => d !== x.min && d !== 20))});
+      } else {
+        p = x; s = "agenda"; ks = [jourMot(x.j), MOTS_ROLE.agenda];
+        pf = Object.assign({}, x, Math.random() < 0.5 ? {j: autre.j} : {h: autre.h, m: autre.m});
+      }
+      image = cadre(agenda(rdv), idAgenda(rdv));
+    } else if (sorte === "veille"){
+      // demain, hier : le jour entoure est aujourd'hui ; « Heute ist Montag. Morgen ist Dienstag. »
+      const mo = entre(0, 11), d = entre(1, Dire.joursDuMois(ANNEE, mo)), j = Dire.jourSemaine(ANNEE, mo, d);
+      const sd = accepte(w, [MOTS_ROLE.demain]) && (!w || cleDe(w) === MOTS_ROLE.demain || Math.random() < 0.5) ? "demain" : "hier";
+      const vise = sd === "demain" ? (j + 1) % 7 : (j + 6) % 7, faux = sd === "demain" ? (j + 2) % 7 : (j + 5) % 7;
+      // « Heute ist Montag. Gestern war Samstag. » : faux par le second jour seulement (le premier reste juste)
+      const phr = jj => P(sd, {j: jj}).replace(/^[^.]+\./, P("jour", {j}));
+      p = {j: vise}; s = sd; ks = [sd === "demain" ? MOTS_ROLE.demain : MOTS_ROLE.hier];
+      if (!accepte(w, ks)) return false;
+      viser(w, ks); tradQ = TR(s, p); CHOIX.clear();
+      ecran(T("vraifaux"), cadre(grille(mo, d, false), "g" + mo + "-" + d), phr(v ? vise : faux), true);
+      const VR = E("vrai"), FX = E("faux"), rep = v ? VR : FX;
+      boutons($("choix"), [VR, FX], rep, ok => juger(ok, rep, P(s, p)));
+      return true;
+    } else {
+      const wm = w ? Dire.MOIS[EN_APP ? "en" : ML].indexOf(w.mot) : -1, mo = wm >= 0 ? wm : entre(0, 11), d = entre(1, Dire.joursDuMois(ANNEE, mo)), fd = confondu(d) <= Dire.joursDuMois(ANNEE, mo) ? confondu(d) : (d > 1 ? d - 1 : d + 1);
+      p = {d, mo}; pf = {d: fd, mo}; s = "date"; ks = [moisMot(mo), MOTS_ROLE.date];
+      image = cadre(feuille(d, mo), "f" + mo + "-" + d);
+    }
+    if (!accepte(w, ks)) return false;
+    viser(w, ks);
+    const dite = v ? p : pf, phrase = P(s, dite), juste = P(s, p);
+    tradQ = TR(s, p);
+    CHOIX.clear();
+    ecran(T("vraifaux"), image, phrase, true);
+    const VR = E("vrai"), FX = E("faux"), rep = v ? VR : FX;
+    boutons($("choix"), [VR, FX], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // le moment : « Es ist sieben Uhr ___. » morgens / abends / mittags ; « de la ___ » ; « in the ___ »
+  moment(w){
+    const c = Object.keys(MOMENTS).filter(k => accepte(w, [MOMENTS[k].k]));
+    if (!c.length) return false;
+    const k = hasard(c), x = MOMENTS[k], h = hasard(x.h), m = hasard([0, 0, 15, 30, 45]);
+    viser(w, [x.k]);
+    const p = {h, m, style: "m"}, t = TROU("heure", p);
+    tradQ = TR("heure", p);
+    ecranTrou(T("moment"), cadre(montre(h, m), "n" + h + ":" + m), t.texte);
+    const opts = [{t: t.rep, sens: TR("heure", p) || ""}].concat(x.faux.map(f => ({t: f})));
+    boutons($("choix"), melanger(opts), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P("heure", p)); });
+    return true;
+  },
+  // les petits mots : am Montag, im Mai, um acht Uhr ; el lunes, en mayo, a las ocho ; on Monday, in May, at eight
+  prep(w){
+    const c = itemsPrep().filter(it => accepte(w, it.ks));
+    if (!c.length) return false;
+    const it = hasard(c), t = TROU(it.s, it.p);
+    viser(w, it.ks);
+    tradQ = TR(it.s, it.p);
+    ecranTrou(T("prep"), "", t.texte);
+    // le week-end anglais : on (americain) ou at (britannique) -- l'autre n'est jamais propose, il n'est pas faux
+    const choix = (EN_APP && it.s === "finde") ? [t.rep, "in", "to"] : choixPrep(t.rep);
+    boutons($("choix"), melanger(choix), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P(it.s, it.p)); });
+    return true;
+  },
+  // le mois en grille, un jour entoure : « Heute ist Dienstag. »
+  jour(w){
+    const wj = w ? Dire.JOURS[EN_APP ? "en" : ML].indexOf(w.mot) : -1;
+    if (w && wj < 0 && !accepte(w, [MOTS_ROLE.heute, MOTS_ROLE.cal])) return false;
+    let dt = dateAuHasard();
+    if (wj >= 0) for (let n = 0; n < 50 && Dire.jourSemaine(ANNEE, dt.mo, dt.d) !== wj; n++) dt = dateAuHasard();
+    const j = Dire.jourSemaine(ANNEE, dt.mo, dt.d);
+    if (wj >= 0 && j !== wj) return false;
+    viser(w, [jourMot(j), MOTS_ROLE.heute, MOTS_ROLE.cal]);
+    const p = {j}, juste = P("jour", p), autres = melanger([1, 2, 3, 4, 5, 6]).slice(0, 2).map(k => (j + k) % 7);
+    tradQ = TR("jour", p);
+    ecran(T("jour"), cadre(grille(dt.mo, dt.d, false), "g" + dt.mo + "-" + dt.d), E("jour"), true, true);
+    boutons($("choix"), melanger([opt("jour", p)].concat(autres.map(k => opt("jour", {j: k})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // la suite : demain, hier, le mois d'apres, d'avant, le week-end
+  suite(w){
+    const c = [];
+    for (let j = 0; j < 7; j++){ c.push({s: "demain", p: {j}, ks: [jourMot(j), MOTS_ROLE.demain], lr: [(j + 6) % 7, (j + 1) % 7].map(jourMot)});
+                                 c.push({s: "hier", p: {j}, ks: [jourMot(j), MOTS_ROLE.hier], lr: [(j + 1) % 7, (j + 6) % 7].map(jourMot)}); }
+    for (let mo = 0; mo < 12; mo++){ c.push({s: "moisApres", p: {mo}, ks: [moisMot(mo)], lr: [(mo + 11) % 12, (mo + 1) % 12].map(moisMot)});
+                                     c.push({s: "moisAvant", p: {mo}, ks: [moisMot(mo)], lr: [(mo + 1) % 12, (mo + 11) % 12].map(moisMot)}); }
+    c.push({s: "weekend", p: {}, ks: [MOTS_ROLE.we], lr: ENONCES[ML].autres.slice(1)});
+    const cc = c.filter(it => accepte(w, it.ks));
+    if (!cc.length) return false;
+    const it = hasard(cc), t = TROU(it.s, it.p);
+    viser(w, it.ks);
+    tradQ = TR(it.s, it.p);
+    ecranTrou(T("suite"), "", t.texte);
+    boutons($("choix"), melanger([t.rep].concat(it.lr)), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P(it.s, it.p)); });
+    return true;
+  },
+  // la feuille du calendrier : der ___ Mai (dritte / dritten / dreite) ; el ___ de mayo ; May ___
+  date(w){
+    const wm = w ? Dire.MOIS[EN_APP ? "en" : ML].indexOf(w.mot) : -1;
+    if (w && wm < 0 && !accepte(w, [MOTS_ROLE.date])) return false;
+    const mo = wm >= 0 ? wm : entre(0, 11), d = entre(1, Dire.joursDuMois(ANNEE, mo));
+    viser(w, [moisMot(mo), MOTS_ROLE.date]);
+    const p = {d, mo}, t = TROU("date", p);
+    tradQ = TR("date", p);
+    ecranTrou(T("date"), cadre(feuille(d, mo), "f" + mo + "-" + d), t.texte);
+    boutons($("choix"), melanger([t.rep].concat(leurresDate(d, mo, "date"))), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P("date", p)); });
+    return true;
+  },
+  // l'anniversaire : le mois en grille, un gateau : « Ich habe am ___ Geburtstag. »
+  anniv(w){
+    const wm = w ? Dire.MOIS[EN_APP ? "en" : ML].indexOf(w.mot) : -1;
+    if (w && wm < 0 && !accepte(w, [MOTS_ROLE.anniv])) return false;
+    const mo = wm >= 0 ? wm : entre(0, 11), d = entre(1, Dire.joursDuMois(ANNEE, mo));
+    viser(w, [MOTS_ROLE.anniv, moisMot(mo)]);
+    const p = {d, mo}, t = TROU("anniv", p);
+    tradQ = TR("anniv", p);
+    ecranTrou(T("anniv"), cadre(grille(mo, d, true), "k" + mo + "-" + d), t.texte, true);
+    boutons($("choix"), melanger([t.rep].concat(leurresDate(d, mo, "anniv"))), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P("anniv", p)); });
+    return true;
+  },
+  // l'agenda : « Wann ist der Yogakurs? » -- le bon jour et la bonne heure, parmi un autre rendez-vous et un melange
+  agenda(w){
+    const wj = w ? Dire.JOURS[EN_APP ? "en" : ML].indexOf(w.mot) : -1;
+    if (w && wj < 0 && !accepte(w, [MOTS_ROLE.agenda])) return false;
+    const rdv = agendaAuHasard(wj), x = wj >= 0 ? rdv[0] : hasard(rdv), autres = rdv.filter(r => r !== x);
+    viser(w, [jourMot(x.j), MOTS_ROLE.agenda]);
+    const juste = P("agendaRep", x);
+    tradQ = TR("agenda", x);
+    const melange = {j: x.j, h: autres[1].h, m: autres[1].m};
+    ecran(T("agenda"), cadre(agenda(rdv), idAgenda(rdv)), E("quand", evtEcrit(x.e)), true, true);
+    const opts = [opt("agendaRep", x), opt("agendaRep", autres[0]), opt("agendaRep", melange)];
+    if (uniques(opts.map(o => o.t)).length < 3) return false;
+    boutons($("choix"), melanger(opts), juste, ok => juger(ok, juste, P("agenda", x)));
+    return true;
+  },
+  // combien de temps (dauert zwei Stunden) ou de quand a quand (von neun bis elf Uhr)
+  duree(w){
+    const veutDuree = accepte(w, [MOTS_ROLE.heureW, MOTS_ROLE.minW]), veutPlage = accepte(w, motsHorloge(0));
+    if (!veutDuree && !veutPlage) return false;
+    const plage = !veutDuree || (veutPlage && Math.random() < 0.4);
+    // la minute : un rendez-vous de quarante-cinq minutes ; l'heure : une demi-heure, une heure, une heure et demie, deux
+    const force = !plage && w ? (cleDe(w) === MOTS_ROLE.minW ? 45 : hasard([30, 60, 90, 120])) : 0;
+    const rdv = agendaAuHasard(-1, force), x = force ? rdv[0] : hasard(rdv), autres = rdv.filter(r => r !== x);
+    if (plage){
+      viser(w, motsHorloge(0));
+      const juste = P("vonBisRep", x);
+      tradQ = TR("vonBis", x);
+      const decale = Object.assign({}, x, {h: x.h + 1, h2: x.h2 + 1});
+      ecran(T("agenda"), cadre(agenda(rdv), idAgenda(rdv)), E("debutFin", evtEcrit(x.e)), true, true);
+      const opts = uniques([juste, P("vonBisRep", autres[0]), P("vonBisRep", decale)]);
+      if (opts.length < 3) return false;
+      boutons($("choix"), melanger([opt("vonBisRep", x), opt("vonBisRep", autres[0]), opt("vonBisRep", decale)]), juste, ok => juger(ok, juste, P("vonBis", x)));
+      return true;
+    }
+    const mw = x.min === 45 ? MOTS_ROLE.minW : MOTS_ROLE.heureW;
+    if (!accepte(w, [mw])) return false;
+    viser(w, [mw]);
+    const juste = P("dureeRep", x);
+    tradQ = TR("duree", x);
+    const lr = melanger(Dire.DUREES.filter(d => d !== x.min && d !== 20)).slice(0, 2);
+    ecran(T("duree"), cadre(agenda(rdv), idAgenda(rdv)), E("combien", evtEcrit(x.e)), true, true);
+    boutons($("choix"), melanger([opt("dureeRep", x)].concat(lr.map(min => opt("dureeRep", {min})))), juste, ok => juger(ok, juste, P("duree", x)));
+    return true;
+  },
+  // midi ou minuit, sur le reveil (12:00, 00:00) : Es ist Mittag / Mitternacht ; Es mediodía / medianoche
+  midi(w){
+    if (EN_APP) return false;
+    const c = [1, 0].filter(n => accepte(w, [n ? MOTS_ROLE.midi : MOTS_ROLE.minuit]));
+    if (!c.length) return false;
+    const n = hasard(c), h = n ? 12 : 0;
+    viser(w, [n ? MOTS_ROLE.midi : MOTS_ROLE.minuit]);
+    const juste = P("midiPile", {n});
+    tradQ = TR("midiPile", {n});
+    ecran(T("horloge"), cadre(montre(h, 0), "n" + h + ":0"), E("heure"), true, true);
+    boutons($("choix"), melanger([opt("midiPile", {n}), opt("midiPile", {n: 1 - n}), opt("heure", {h: n ? 13 : 1, m: 0, style: "o"})]), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // L'ESPAGNOL SEULEMENT : es / son -- « ___ la una y cuarto. »
+  ser(w){
+    if (!ES_APP || !accepte(w, ["hora"])) return false;
+    const h = entre(0, 23), m = Math.random() < 0.35 ? hasard([0, 15, 30]) : hasard(MINUTES);
+    const hh = Math.random() < 0.4 ? (m > 30 ? hasard([0, 12]) : hasard([1, 13])) : h;   // la una (et 12 h 45 : la una menos cuarto) assez souvent
+    viser(w, ["hora"]);
+    const p = {h: hh, m, style: "c"}, t = TROU("heure", p);
+    tradQ = TR("heure", p);
+    ecranTrou(T("ser"), cadre(horloge(hh, m), "c" + hh % 12 + ":" + m), t.texte);
+    boutons($("choix"), melanger(["Es", "Son", "Está"]), t.rep, ok => { remplir(t.rep); juger(ok, t.rep, P("heure", p)); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : a.m. / p.m. -- le reveil sur 24 h, la phrase anglaise (12 a.m. = minuit, le piege)
+  ampm(w){
+    if (!EN_APP) return false;
+    const ks = ["watch", "noon", "midnight"].filter(k => accepte(w, [k]));
+    if (!ks.length) return false;
+    // noon et midnight : a l'heure pile seulement (« twelve thirty p.m. » n'est ni l'un ni l'autre)
+    const mot = hasard(ks), h = mot === "noon" ? 12 : mot === "midnight" ? 0 : entre(0, 23), m = mot === "watch" ? (Math.random() < 0.15 ? 0 : hasard(MINUTES)) : 0;
+    viser(w, [mot]);
+    const p = {h, m, style: "p"}, juste = P("heure", p), lr = leurresOff(h, m, true);
+    tradQ = TR("heure", {h, m, style: "o"});
+    ecran(T("ampm"), cadre(montre(h, m), "n" + h + ":" + m), E("heure"), true, true);
+    boutons($("choix"), melanger([{t: juste, sens: tradQ || ""}].concat(lr.map(([a, b]) => ({t: P("heure", {h: a, m: b, style: "p"}), sens: TR("heure", {h: a, m: b, style: "o"}) || ""})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : l'horloge lue comme une montre numerique (two thirty, six forty-five, six oh five)
+  digital(w){
+    if (!EN_APP || !accepte(w, ["clock"])) return false;
+    const h = entre(0, 23), m = hasard(MINUTES.filter(x => x !== 0)), lr = leurresHeure(h, m);
+    viser(w, ["clock"]);
+    const p = {h, m, style: "d"}, juste = P("heure", p);
+    tradQ = TR("heure", {h, m, style: "c"});
+    ecran(T("digital"), cadre(horloge(h, m), "c" + h % 12 + ":" + m), E("heure"), true, true);
+    boutons($("choix"), melanger([{t: juste, sens: tradQ || ""}].concat(lr.map(([a, b]) => ({t: P("heure", {h: a, m: b, style: "d"}), sens: TR("heure", {h: a, m: b, style: "c"}) || ""})))), juste, ok => juger(ok, juste, juste));
+    return true;
+  }
+};
+// les sortes de la langue apprise
+const SORTES = DE_APP ? ["horloge", "numerique", "conversion", "entendre", "cual", "vraifaux", "moment", "prep", "jour", "suite", "date", "anniv", "agenda", "duree", "midi"]
+             : EN_APP ? ["horloge", "digital", "ampm", "entendre", "cual", "vraifaux", "moment", "prep", "jour", "suite", "date", "anniv", "agenda", "duree"]
+                      : ["horloge", "numerique", "conversion", "entendre", "cual", "vraifaux", "moment", "prep", "jour", "suite", "date", "anniv", "agenda", "duree", "midi", "ser"];
+
+// ---------- LA DECOUVERTE : l'heure, les jours et les mois, les dates et les rendez-vous ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p>'
+    + '<div class="onglets" role="tablist"><button type="button" id="o1" role="tab">' + T("ongletHeure") + '</button><button type="button" id="o2" role="tab">' + T("ongletJours")
+    + '</button><button type="button" id="o3" role="tab">' + T("ongletDates") + '</button></div><div id="vue"></div><div class="lignes" id="lignes"></div>'
+    + '<div class="puces" id="puces"></div><div id="regles"></div>';
+  const onglet = n => ["o1", "o2", "o3"].forEach((id, k) => $(id).classList.toggle("actif", k === n));
+  const regles = cles => { $("regles").innerHTML = cles.map(c => '<p class="regle">' + isoler(T(c)) + '</p>').join(""); };
+  // des lignes : [etiquette, sorte, params] ; chacune se dit en la touchant
+  const lignes = (ls, parle) => {
+    $("lignes").innerHTML = ls.map(([et, s, p], i) => '<div class="dit"><div class="texte">' + (et ? '<span class="etiquette">' + et + '</span>' : "") + cible(P(s, p))
+      + traduction(TR(s, p)) + '</div><button type="button" class="ecoute" data-i="' + i + '" aria-label="' + T("ecouter") + '">' + HP + '</button></div>').join("");
+    $("lignes").querySelectorAll(".ecoute").forEach(b => b.addEventListener("click", () => { const [, s, p] = ls[Number(b.dataset.i)]; dire(P(s, p)); }));
+    if (parle) dire(P(ls[0][1], ls[0][2]));
+  };
+  const ligneLibre = (et, texte) => '<div class="dit"><div class="texte"><span class="etiquette">' + et + '</span>' + cible(texte) + '</div></div>';
+  const puce = (texte, quoi) => { const b = document.createElement("button"); b.type = "button"; b.lang = EN_APP ? "en" : APPRENDRE; b.textContent = texte;
+    b.addEventListener("click", () => { $("puces").querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); quoi(); }); $("puces").appendChild(b); return b; };
+  // L'HEURE : l'horloge et le reveil cote a cote, un curseur de cinq en cinq minutes, et chaque facon de la dire
+  const heure = () => {
+    onglet(0); $("puces").innerHTML = "";
+    $("vue").innerHTML = '<div id="paire"></div><input type="range" class="curseur" id="curseur" min="0" max="287" step="1" value="174" aria-label="' + T("ongletHeure") + '" dir="ltr">';
+    const maj = parle => {
+      const v = Number($("curseur").value), h = Math.floor(v / 12), m = (v % 12) * 5;
+      $("paire").innerHTML = cadre(horloge(h, m) + montre(h, m, V === "us"), "d", true);
+      lignes(EN_APP ? [[T("courante"), "heure", {h, m, style: "c"}], ["", "heure", {h, m, style: "d"}], ["a.m. / p.m.", "heure", {h, m, style: "p"}], [T("avecMoment"), "heure", {h, m, style: "m"}]]
+                    : [[T("courante"), "heure", {h, m, style: "c"}], [T("avecMoment"), "heure", {h, m, style: "m"}], [T("officielle"), "heure", {h, m, style: "o"}]], parle);
+    };
+    $("curseur").addEventListener("input", () => maj(false));
+    $("curseur").addEventListener("change", () => maj(true));
+    [[14, 30], [9, 15], [6, 45], [12, 0], [19, 25], [0, 0], [10, 35]].forEach(([h, m]) => puce(heureEcrite(h, m), () => { $("curseur").value = h * 12 + m / 5; maj(true); }));
+    regles(DE_APP ? ["halbDe", "viertelDe", "offDe", "umDe"] : EN_APP ? ["pastEn", "digitalEn", "ampmEn"] : ["serEs", "cuartoEs", "momEs"]);
+    maj(false);
+  };
+  // LES JOURS ET LES MOIS : la semaine (demain, hier) et les douze mois (l'anniversaire)
+  const jours = () => {
+    onglet(1); $("puces").innerHTML = "";
+    let mo = 4;
+    const voirJour = (j, parle) => { $("vue").innerHTML = cadre(grille(mo, premierJour(mo, j), false), "d");
+      lignes([["", "jour", {j}], ["", "demain", {j: (j + 1) % 7}], ["", "hier", {j: (j + 6) % 7}], ["", "evtJour", {e: "yoga", j}]], parle); };
+    const premierJour = (m, j) => { for (let d = 1; d <= 7; d++) if (Dire.jourSemaine(ANNEE, m, d) === j) return d; return 1; };
+    for (let j = 0; j < 7; j++) puce(jourMot(j), () => voirJour(j, true));
+    for (let m = 0; m < 12; m++) puce(majus(moisMot(m)), () => { mo = m; $("vue").innerHTML = cadre(grille(m, 0, false), "d");
+      lignes([["", "annivMois", {mo: m}], ["", "moisApres", {mo: (m + 1) % 12}], ["", "moisAvant", {mo: (m + 11) % 12}]], true); });
+    regles(DE_APP ? ["amDe"] : EN_APP ? [GB ? "prepEnGb" : "prepEnUs"] : ["diasEs"]);
+    voirJour(0, false); $("puces").firstChild.classList.add("choisi");
+  };
+  // LES DATES ET LES RENDEZ-VOUS : un mois ou l'on touche un jour (la date dite, la date ecrite, l'anniversaire), un agenda
+  const dates = () => {
+    onglet(2); $("puces").innerHTML = "";
+    let mo = 4;
+    const ecrite = (d, m) => DE_APP ? d + ". " + Dire.MOIS.de[m] : ES_APP ? d + " de " + Dire.MOIS.es[m] : V === "us" ? Dire.MOIS.en[m] + " " + d + " · " + Dire.MOIS.en[m] + " " + Dire.ordEnEcrit(d) : d + " " + Dire.MOIS.en[m] + " · " + Dire.ordEnEcrit(d) + " " + Dire.MOIS.en[m];
+    const voirDate = (d, parle) => {
+      $("vue").innerHTML = cadre(grille(mo, d, true), "d");
+      $("vue").querySelectorAll("g[data-d]").forEach(g => g.addEventListener("click", () => voirDate(Number(g.dataset.d), true)));
+      lignes([["", "date", {d, mo}], ["", "anniv", {d, mo}], ["", "jour", {j: Dire.jourSemaine(ANNEE, mo, d)}]], parle);
+      $("lignes").insertAdjacentHTML("beforeend", ligneLibre(T("ecrit"), ecrite(d, mo)) + '<p class="consigne">' + T("touche") + '</p>');
+    };
+    for (let m = 0; m < 12; m++) puce(majus(moisMot(m)), () => { mo = m; voirDate(1, true); });
+    // un agenda d'exemple, toujours le meme : le cours de yoga, le medecin, la fete
+    const rdv = [{e: "yoga", j: 0, h: 9, m: 0, h2: 10, m2: 30, min: 90}, {e: "arzt", j: 3, h: 10, m: 0, h2: 10, m2: 30, min: 30}, {e: "party", j: 5, h: 20, m: 0, h2: 23, m2: 0, min: 180}];
+    puce(ENONCES[ML].agenda, () => {
+      $("vue").innerHTML = cadre(agenda(rdv), "d");
+      lignes(rdv.map(x => ["", "agenda", x]).concat([["", "vonBis", rdv[0]], ["", "duree", rdv[0]], ["", "duree", rdv[1]]]), true);
+    });
+    regles(DE_APP ? ["datumDe", "umDe"] : EN_APP ? [GB ? "dateEnGb" : "dateEnUs"] : ["fechaEs", "serEs"]);
+    voirDate(3, false);
+  };
+  $("o1").addEventListener("click", heure); $("o2").addEventListener("click", jours); $("o3").addEventListener("click", dates);
+  heure();
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : recopiee de meteo.html (visuel/THEMES-ILLUSTRES.md : ces
+// fonctions sont identiques d'un theme a l'autre). Les dessins n'ont pas de src : leur cle est leur data-id.
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  // la meme question avec d'autres leurres n'en est pas une nouvelle : les choix n'entrent pas dans la cle
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("[data-id]")).map(i => i.getAttribute("data-id")).sort().join(",");
+}
+function montrer(){
+  taire();   // la phrase de la reponse d'avant ne passe jamais sur la question suivante (Jacques, 5 nov.)
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; tradQ = null; choixQ = null; CHOIX = new Map(); sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = Fin.bilan(LANGUE, bons, file.length, T("score", {b: bons, n: file.length}));
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = Fin.revu(TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr, quand ? (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) : "");
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("heure/heure.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

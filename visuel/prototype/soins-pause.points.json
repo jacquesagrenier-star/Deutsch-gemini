@@ -1,0 +1,665 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 10, la salle de pause (15 nov. 2026, plan du 15 nov., D2, depense accordee par Jacques : c09917b). Memes regles que les scenes generales ; construite par visuel/prototype/construire.py. Controle : python pflege/outils/construire_scenes.py soins-pause.",
+  "Elif et Jonas a table avec un cafe, Frau Hoffmann (cadre) debout pres du planning : l'equipe, le planning, l'echange de poste (dialogue d11). Une prise ; faux texte du planning efface (pflege/scenes/soins-pause-effacer.json).",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recu : pflege/scenes/soins-pause.*). Les casiers (der Spind), la bouilloire (der Wasserkocher) et la boite bleue (die Brotdose) : mots livres par la session vocabulaire le 15 nov. (2f25253). Aucun chiffre dans l'allemand dit (contrat, regle 4).",
+  "Couches : BROUILLON non relu. La couche SIT vient des dialogues (pflege/outils/situations_scenes.py)."
+ ],
+ "image": "soins-pause.webp",
+ "source": "~/.wortando/pflege/scenes/soins-pause.png",
+ "titre": "Im Pausenraum",
+ "alt": "La salle de pause du service, en début d'après-midi : Elif et Jonas boivent un café à table, devant une coupe de fruits, une assiette de biscuits et une boîte bleue ; Frau Hoffmann, la cadre, est debout près du planning épinglé au tableau en liège, une feuille à la main ; derrière, les casiers et une veste de pluie, le coin cuisine avec la machine à café, la bouilloire, le micro-ondes et le réfrigérateur ; à droite, la fenêtre et une plante.",
+ "consigne": "Touche un objet de la salle de pause, Elif, Jonas ou Frau Hoffmann.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de la salle de pause"
+  },
+  "A2": {
+   "titre": "Du ou Sie dans l'équipe",
+   "qs": [
+    {
+     "q": "Jonas, hast ___ kurz Zeit?",
+     "c": [
+      "du",
+      "Sie",
+      "ihr"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Jonas, hast du kurz Zeit?",
+     "sens": "Jonas, tu as un moment ?",
+     "n": "Entre collègues soignants, on se dit presque toujours <b>du</b>, avec le prénom."
+    },
+    {
+     "q": "Frau Hoffmann, haben ___ einen Moment?",
+     "c": [
+      "Sie",
+      "du",
+      "ihr"
+     ],
+     "f": "stationsleitung",
+     "phrase": "Frau Hoffmann, haben Sie einen Moment?",
+     "sens": "Madame Hoffmann, vous avez un instant ?",
+     "n": "Avec la cadre, on dit souvent <b>Sie</b> et <b>Frau</b> + le nom, tant qu'elle ne propose pas le « du »."
+    },
+    {
+     "q": "Möchtest du auch einen ___? Er ist noch warm.",
+     "c": [
+      "Kaffee",
+      "Apfel",
+      "Saft"
+     ],
+     "f": "kaffeemaschine",
+     "phrase": "Möchtest du auch einen Kaffee? Er ist noch warm.",
+     "sens": "Tu veux un café aussi ? Il est encore chaud.",
+     "n": "Les trois sont masculins (<b>einen</b>), mais seul le café se boit encore chaud."
+    },
+    {
+     "q": "Ich mache jetzt eine kurze ___.",
+     "c": [
+      "Pause",
+      "Dienst",
+      "Feierabend"
+     ],
+     "f": "tisch",
+     "phrase": "Ich mache jetzt eine kurze Pause.",
+     "sens": "Je fais une petite pause.",
+     "n": "<b>eine Pause machen</b> : <b>die Pause</b> est féminin. Le <b>Feierabend</b>, c'est la fin du service."
+    },
+    {
+     "q": "Um halb drei habe ich ___. Dann gehe ich nach Hause.",
+     "c": [
+      "Feierabend",
+      "Frühstück",
+      "Nachtdienst"
+     ],
+     "f": "uhr",
+     "phrase": "Um halb drei habe ich Feierabend. Dann gehe ich nach Hause.",
+     "sens": "À deux heures et demie, j'ai fini ma journée. Ensuite, je rentre chez moi.",
+     "n": "<b>der Feierabend</b> = la fin de la journée de travail. <b>halb drei</b> = 2 h 30."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Demander un service : le Konjunktiv II",
+   "qs": [
+    {
+     "q": "___ du am Samstag meinen Frühdienst übernehmen?",
+     "c": [
+      "Könntest",
+      "Konntest",
+      "Kennst"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Könntest du am Samstag meinen Frühdienst übernehmen?",
+     "sens": "Tu pourrais prendre mon service du matin samedi ?",
+     "n": "<b>Könntest du …?</b> : le Konjunktiv II rend la demande polie, même au « du »."
+    },
+    {
+     "q": "Ich ___ dafür deinen Spätdienst am Mittwoch machen.",
+     "c": [
+      "würde",
+      "werde",
+      "wurde"
+     ],
+     "f": "dienstplan",
+     "phrase": "Ich würde dafür deinen Spätdienst am Mittwoch machen.",
+     "sens": "En échange, je ferais ton service d'après-midi mercredi.",
+     "n": "<b>Ich würde … machen</b> : une offre au Konjunktiv II, plus douce qu'une promesse."
+    },
+    {
+     "q": "Frau Hoffmann, ___ Sie den Tausch bitte in den Dienstplan eintragen?",
+     "c": [
+      "würden",
+      "werden",
+      "wurden"
+     ],
+     "f": "stationsleitung",
+     "phrase": "Frau Hoffmann, würden Sie den Tausch bitte in den Dienstplan eintragen?",
+     "sens": "Madame Hoffmann, pourriez-vous inscrire l'échange dans le planning ?",
+     "n": "<b>Würden Sie …?</b> : la demande polie à la cadre ; <b>eintragen</b> = inscrire."
+    },
+    {
+     "q": "Es ___ super, wenn du mir hilfst.",
+     "c": [
+      "wäre",
+      "würde",
+      "wurde"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Es wäre super, wenn du mir hilfst.",
+     "sens": "Ce serait super si tu m'aidais.",
+     "n": "<b>Es wäre super, wenn …</b> : on présente sa demande comme un souhait."
+    },
+    {
+     "q": "Ich ___ am Mittwoch gern frei.",
+     "c": [
+      "hätte",
+      "hatte",
+      "hat"
+     ],
+     "f": "dienstplan",
+     "phrase": "Ich hätte am Mittwoch gern frei.",
+     "sens": "J'aimerais bien avoir mercredi de libre.",
+     "n": "<b>Ich hätte gern …</b> : souhaiter poliment, avec le Konjunktiv II de <b>haben</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le planning : services, échanges, remplacements",
+   "qs": [
+    {
+     "q": "Yusuf ist krank. Kannst du heute Nacht für ihn ___?",
+     "c": [
+      "einspringen",
+      "springen",
+      "einsteigen"
+     ],
+     "f": "dienstplan",
+     "phrase": "Kannst du heute Nacht für ihn einspringen?",
+     "sens": "Tu peux le remplacer cette nuit ?",
+     "n": "<b>einspringen</b> = remplacer au pied levé un collègue absent ; <b>einsteigen</b> = monter (dans un bus)."
+    },
+    {
+     "q": "Diese Woche habe ich drei ___ hintereinander.",
+     "c": [
+      "Nachtdienste",
+      "Nachtdienst",
+      "Nachtdiensten"
+     ],
+     "f": "dienstplan",
+     "phrase": "Diese Woche habe ich drei Nachtdienste hintereinander.",
+     "sens": "Cette semaine, j'ai trois nuits d'affilée.",
+     "n": "Le pluriel de <b>der Dienst</b> : <b>die Dienste</b>."
+    },
+    {
+     "q": "Der Frühdienst fängt um sechs Uhr ___.",
+     "c": [
+      "an",
+      "auf",
+      "ab"
+     ],
+     "f": "uhr",
+     "phrase": "Der Frühdienst fängt um sechs Uhr an.",
+     "sens": "Le service du matin commence à six heures.",
+     "n": "<b>anfangen</b> est séparable : <b>Der Dienst fängt … an</b>."
+    },
+    {
+     "q": "Wir haben am Samstag den Dienst ___.",
+     "c": [
+      "getauscht",
+      "tauschen",
+      "getauschen"
+     ],
+     "f": "dienstplan",
+     "phrase": "Wir haben am Samstag den Dienst getauscht.",
+     "sens": "Nous avons échangé nos services samedi.",
+     "n": "<b>tauschen</b> est régulier : <b>getauscht</b>. Un échange se dit toujours à la cadre."
+    },
+    {
+     "q": "Wer ___ eigentlich den Dienstplan für Dezember?",
+     "c": [
+      "schreibt",
+      "schreiben",
+      "geschrieben"
+     ],
+     "f": "stationsleitung",
+     "phrase": "Wer schreibt eigentlich den Dienstplan für Dezember?",
+     "sens": "Qui fait le planning de décembre, au fait ?",
+     "n": "Le planning revient à la <b>Stationsleitung</b> : c'est à elle qu'on demande un échange."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Le désaccord poli, la critique constructive",
+   "qs": [
+    {
+     "q": "Ich ___ das ehrlich gesagt etwas anders.",
+     "c": [
+      "sehe",
+      "schaue",
+      "gucke"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Ich sehe das ehrlich gesagt etwas anders.",
+     "sens": "Pour être honnête, je vois les choses un peu autrement.",
+     "n": "<b>Ich sehe das anders</b> : on dit son désaccord sans attaquer la personne."
+    },
+    {
+     "q": "Darf ich dir ein kurzes Feedback ___?",
+     "c": [
+      "geben",
+      "machen",
+      "sagen"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Darf ich dir ein kurzes Feedback geben?",
+     "sens": "Je peux te faire un petit retour ?",
+     "n": "<b>Feedback geben</b> : on demande d'abord si l'autre est d'accord pour l'entendre."
+    },
+    {
+     "q": "Mir ist ___, dass du heute oft allein bei Herrn Brandt warst.",
+     "c": [
+      "aufgefallen",
+      "eingefallen",
+      "gefallen"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Mir ist aufgefallen, dass du heute oft allein bei Herrn Brandt warst.",
+     "sens": "J'ai remarqué que tu étais souvent seul chez M. Brandt aujourd'hui.",
+     "n": "<b>Mir ist aufgefallen, dass …</b> : une observation, pas un reproche. <b>Mir ist eingefallen</b> = ça m'est venu à l'esprit."
+    },
+    {
+     "q": "Könnten wir das vielleicht unter vier ___ besprechen?",
+     "c": [
+      "Augen",
+      "Ohren",
+      "Händen"
+     ],
+     "f": "stationsleitung",
+     "phrase": "Könnten wir das vielleicht unter vier Augen besprechen?",
+     "sens": "Pourrions-nous en parler en tête-à-tête ?",
+     "n": "<b>unter vier Augen</b> = en privé, sans les collègues."
+    },
+    {
+     "q": "Ich verstehe deinen Punkt. ___ sehe ich ein Risiko für den Patienten.",
+     "c": [
+      "Trotzdem",
+      "Deshalb",
+      "Obwohl"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Trotzdem sehe ich ein Risiko für den Patienten.",
+     "sens": "Je vois quand même un risque pour le patient.",
+     "n": "<b>Trotzdem</b> (quand même) nuance sans rejeter ; <b>obwohl</b> ouvrirait une subordonnée."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
+   "qs": [
+    {
+     "q": "In der Pause fragt Jonas: „Na, Elif, du siehst nachdenklich aus. Alles okay?“",
+     "c": [
+      "Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.",
+      "Ja. Könnten Sie am Samstag meinen Dienst übernehmen, Herr Jonas?",
+      "Hallo! Wie geht's dir?"
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Ja, alles gut. Sag mal, könntest du am Samstag meinen Frühdienst übernehmen? Meine Schwester kommt aus Izmir.",
+     "sens": "Oui, ça va. Dis-moi, tu pourrais prendre mon poste du matin samedi ? Ma sœur vient d'Izmir.",
+     "n": "<b>Entre collègues soignants, on se dit presque toujours « du », avec le prénom.</b> Le Konjunktiv reste poli au « du » : « Könntest du …? », « Würdest du …? ».",
+     "source": "d11-dienst-tauschen/fragen"
+    },
+    {
+     "q": "Jonas fragt: „Am Samstag? Hm, da hab ich eigentlich frei.“",
+     "c": [
+      "Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?",
+      "Du musst am Samstag arbeiten, bitte.",
+      "Hallo, ich bin's. Ich komm heute nicht, okay?"
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Ich würde dafür deinen Spätdienst am Mittwoch machen. Wäre das okay für dich?",
+     "sens": "En échange, je ferais ton poste de l'après-midi mercredi. Ça t'irait ?",
+     "n": "<b>« müssen » est une obligation, même avec « bitte ».</b> Pour proposer un échange : « Ich würde dafür … machen » ou « Dafür könnte ich … übernehmen ».",
+     "source": "d11-dienst-tauschen/angebot"
+    },
+    {
+     "q": "Mit einem Kaffee am Tisch fragt Jonas: „So, Elif, dann leg mal los. Wer ist neu, wer macht Probleme?“",
+     "c": [
+      "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+     "sens": "Je commence par la chambre 14. Mme Lehmann, 74 ans, admise pour une plaie au pied droit, sur un diabète.",
+     "n": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins.",
+     "source": "d06-uebergabe/start"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    10,
+    5.5,
+    10,
+    9.5
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    90,
+    20,
+    10,
+    28
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    84,
+    37.5,
+    12.5,
+    9.5
+   ]
+  },
+  {
+   "id": "kuehlschrank",
+   "mot": "Kühlschrank",
+   "boite": [
+    61,
+    32,
+    20.5,
+    18
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    49.5,
+    32.5,
+    7,
+    4
+   ]
+  },
+  {
+   "id": "pinnwand",
+   "mot": "Pinnwand",
+   "boite": [
+    28,
+    32,
+    18,
+    9.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "dienstplan",
+   "mot": "Dienstplan",
+   "boite": [
+    29,
+    32.5,
+    15,
+    5.8
+   ],
+   "sur": "pinnwand",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "kaffeemaschine",
+   "mot": "Kaffeemaschine",
+   "boite": [
+    39.5,
+    41.5,
+    8,
+    5.3
+   ]
+  },
+  {
+   "id": "wasserkocher",
+   "mot": "Wasserkocher",
+   "boite": [
+    47.5,
+    43.3,
+    4.5,
+    3.4
+   ]
+  },
+  {
+   "id": "mikrowelle",
+   "mot": "Mikrowelle",
+   "boite": [
+    51,
+    42.5,
+    4.5,
+    4
+   ]
+  },
+  {
+   "id": "spuele",
+   "mot": "Spüle",
+   "boite": [
+    31.5,
+    45.2,
+    9,
+    2.5
+   ]
+  },
+  {
+   "id": "wasserhahn",
+   "mot": "Wasserhahn",
+   "boite": [
+    34,
+    44.3,
+    2.5,
+    2.5
+   ],
+   "sur": "spuele"
+  },
+  {
+   "id": "spind",
+   "mot": "Spind",
+   "boite": [
+    2,
+    31.5,
+    26.5,
+    30.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "regenjacke",
+   "mot": "Regenjacke",
+   "boite": [
+    2.5,
+    34,
+    11,
+    16.5
+   ],
+   "sur": "spind"
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    2.5,
+    42,
+    4.5,
+    7
+   ],
+   "sur": "regenjacke"
+  },
+  {
+   "id": "pflegefachfrau",
+   "mot": "Pflegefachfrau",
+   "boite": [
+    16.5,
+    43,
+    25,
+    30
+   ]
+  },
+  {
+   "id": "pflegefachmann",
+   "mot": "Pflegefachmann",
+   "boite": [
+    56,
+    41,
+    34,
+    35.5
+   ]
+  },
+  {
+   "id": "stationsleitung",
+   "mot": "Stationsleitung",
+   "boite": [
+    54.5,
+    35.5,
+    14.5,
+    20
+   ]
+  },
+  {
+   "id": "papier",
+   "mot": "Papier",
+   "boite": [
+    56,
+    46,
+    10,
+    4.5
+   ],
+   "sur": "stationsleitung"
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    30,
+    53,
+    54,
+    32
+   ]
+  },
+  {
+   "id": "obst",
+   "mot": "Obst",
+   "boite": [
+    44,
+    52.5,
+    10,
+    4.5
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "apfel",
+   "mot": "Apfel",
+   "boite": [
+    46,
+    53,
+    4,
+    2
+   ],
+   "sur": "obst"
+  },
+  {
+   "id": "banane",
+   "mot": "Banane",
+   "boite": [
+    50,
+    52.5,
+    4.5,
+    3
+   ],
+   "sur": "obst"
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "boite": [
+    46,
+    56.3,
+    10,
+    2.5
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "keks",
+   "mot": "Keks",
+   "boite": [
+    47.5,
+    56.4,
+    7.5,
+    1.8
+   ],
+   "sur": "teller"
+  },
+  {
+   "id": "brotdose",
+   "mot": "Brotdose",
+   "boite": [
+    61,
+    56.5,
+    13,
+    4
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-l",
+   "mot": "Tasse",
+   "boite": [
+    37.5,
+    52.8,
+    3.5,
+    2
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tasse-r",
+   "mot": "Tasse",
+   "boite": [
+    58.5,
+    54.2,
+    3.5,
+    2
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "stuhl-v",
+   "mot": "Stuhl",
+   "boite": [
+    25,
+    59,
+    26,
+    24.5
+   ]
+  },
+  {
+   "id": "stuhl-l",
+   "mot": "Stuhl",
+   "boite": [
+    10,
+    53.5,
+    18,
+    21.5
+   ]
+  },
+  {
+   "id": "stuhl-r",
+   "mot": "Stuhl",
+   "boite": [
+    76,
+    54.5,
+    19,
+    21
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "boite": [
+    64,
+    71,
+    12,
+    5.5
+   ],
+   "sur": "pflegefachmann"
+  }
+ ]
+}

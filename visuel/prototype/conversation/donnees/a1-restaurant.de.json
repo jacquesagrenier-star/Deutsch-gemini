@@ -1,0 +1,94 @@
+{
+ "id": "a1-restaurant",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "Sie",
+ "titre": {"fr": "Au restaurant : la table et le plat du jour"},
+ "intro": {"fr": "Un vendredi soir, dans un restaurant de Berlin. Tu demandes ta table, tu commandes le plat du jour ou autre chose, puis tu paies."},
+ "personnes": ["kellnerin"],
+ "debut": "tisch",
+ "prix": {"wasser": 290, "wein": 550, "saft": 320, "tagesgericht": 1290, "suppe": 690},
+ "panier": ["getraenk", "essen"],
+ "textes": {
+  "essen_fr": {"cle": "essen", "tagesgericht": "le plat du jour", "suppe": "la soupe de pommes de terre"}
+ },
+ "noeuds": {
+  "tisch": {
+   "dit": [
+    {"recit": {"fr": "Vendredi soir, un petit restaurant de Kreuzberg. Presque toutes les tables sont prises."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Guten Abend! Haben Sie reserviert?", "fr": "Bonsoir ! Vous avez réservé ?"}
+   ],
+   "choix": [
+    {"t": "Ja, auf den Namen Martin.", "fr": "Oui, au nom de Martin.", "va": "trinken",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Martin … ja, genau. Ihr Tisch ist am Fenster. Kommen Sie, bitte!", "fr": "Martin… oui, voilà. Votre table est près de la fenêtre. Venez, je vous en prie !"}]},
+    {"t": "Nein. Haben Sie noch einen Tisch für eine Person?", "fr": "Non. Vous avez encore une table pour une personne ?", "va": "trinken",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Für eine Person … ja, da hinten ist noch ein Tisch frei.", "fr": "Pour une personne… oui, il y a encore une table libre, au fond."}]},
+    {"faux": true, "t": "Ja, ich habe reserviert einen Tisch.", "fr": "Oui, j'ai réservé une table (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Äh … Sie haben einen Tisch reserviert? Auf welchen Namen?", "fr": "Euh… vous avez réservé une table ? À quel nom ?"}],
+     "aide": {"fr": "<b>Au passé composé, le participe va à la fin :</b> « Ich habe einen Tisch <b>reserviert</b> ». Plus court et plus naturel : « Ja, auf den Namen Martin »."}}
+   ]
+  },
+  "trinken": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Hier ist die Karte. Was möchten Sie trinken?", "fr": "Voici la carte. Qu'est-ce que vous voulez boire ?"}],
+   "choix": [
+    {"t": "Ein Wasser, bitte.", "fr": "Une eau, s'il vous plaît.", "pose": {"getraenk": "wasser"}, "va": "tagesgericht",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern.", "fr": "Volontiers."}]},
+    {"t": "Ein Glas Wein, bitte.", "fr": "Un verre de vin, s'il vous plaît.", "pose": {"getraenk": "wein"}, "va": "tagesgericht",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sehr gern.", "fr": "Avec plaisir."}]},
+    {"t": "Einen Apfelsaft, bitte.", "fr": "Un jus de pomme, s'il vous plaît.", "pose": {"getraenk": "saft"}, "va": "tagesgericht",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Kommt sofort.", "fr": "Ça arrive tout de suite."}]}
+   ]
+  },
+  "tagesgericht": {
+   "dit": [
+    {"recit": {"fr": "La serveuse revient avec ta boisson."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Heute haben wir ein Tagesgericht: Fisch mit Kartoffeln und Salat.", "fr": "Aujourd'hui, nous avons un plat du jour : du poisson avec des pommes de terre et de la salade."}
+   ],
+   "choix": [
+    {"t": "Gut, ich nehme das Tagesgericht.", "fr": "Bien, je prends le plat du jour.", "pose": {"essen": "tagesgericht"}, "va": "lecker",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gute Wahl!", "fr": "Bon choix !"}]},
+    {"t": "Was kostet das Tagesgericht?", "fr": "Combien coûte le plat du jour ?", "va": "preis",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Zwölf Euro neunzig.", "fr": "Douze euros quatre-vingt-dix."}]},
+    {"t": "Ich esse keinen Fisch. Haben Sie auch eine Suppe?", "fr": "Je ne mange pas de poisson. Vous avez aussi une soupe ?", "pose": {"essen": "suppe"}, "va": "lecker",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ja, eine Kartoffelsuppe. Die ist sehr gut!", "fr": "Oui, une soupe de pommes de terre. Elle est très bonne !"}]}
+   ]
+  },
+  "preis": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut, das nehme ich.", "fr": "Bien, je le prends.", "pose": {"essen": "tagesgericht"}, "va": "lecker",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sehr gern!", "fr": "Avec plaisir !"}]},
+    {"t": "Hm … Haben Sie auch eine Suppe?", "fr": "Hum… vous avez aussi une soupe ?", "pose": {"essen": "suppe"}, "va": "lecker",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ja, eine Kartoffelsuppe, für sechs Euro neunzig.", "fr": "Oui, une soupe de pommes de terre, à six euros quatre-vingt-dix."}]}
+   ]
+  },
+  "lecker": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard. Ton assiette est vide."}},
+    {"qui": "kellnerin", "air": "question", "t": "Hat es Ihnen geschmeckt?", "fr": "Ça vous a plu ?"}
+   ],
+   "choix": [
+    {"t": "Ja, sehr lecker! Die Rechnung, bitte.", "fr": "Oui, très bon ! L'addition, s'il vous plaît.", "va": "betrag"},
+    {"t": "Ja, sehr gut, danke. Ich möchte zahlen, bitte.", "fr": "Oui, très bien, merci. Je voudrais payer, s'il vous plaît.", "va": "betrag"},
+    {"faux": true, "t": "Ja, ich habe sehr gut geschmeckt.", "fr": "Oui, j'ai eu très bon goût (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "Sie? Ha! Sie meinen: Es hat sehr gut geschmeckt!", "fr": "Vous ? Ha ! Vous voulez dire : c'était très bon !"}],
+     "aide": {"fr": "<b>C'est le plat qui « schmeckt », pas toi :</b> « Es hat sehr gut geschmeckt », ou simplement « Ja, sehr lecker! »."}},
+    {"faux": true, "t": "Ja, sehr lecker. Die Addition, bitte.", "fr": "Oui, très bon. L'addition (mot à mot), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Die Addition? … Ach so, die Rechnung!", "fr": "L'addition (le calcul) ? … Ah, la note !"}],
+     "aide": {"fr": "<b>L'addition du restaurant se dit « die Rechnung ».</b> « die Addition », en allemand, c'est seulement le calcul (deux plus deux)."}}
+   ]
+  },
+  "betrag": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Das macht {a_payer}. Bar oder mit Karte?", "fr": "Ça fait {a_payer}. En espèces ou par carte ?", "dit": "Das macht {a_payer:mots}. Bar oder mit Karte?"}],
+   "choix": [
+    {"t": "{arrondi:mots_maj} Euro. Stimmt so.", "fr": "{arrondi} euros. Gardez la monnaie.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, vielen Dank! Einen schönen Abend noch!", "fr": "Oh, merci beaucoup ! Bonne fin de soirée !"}]},
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern. Danke schön und einen schönen Abend!", "fr": "Volontiers. Merci, et bonne soirée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as eu ta table, mangé {essen_fr} et payé {a_payer}."}
+}

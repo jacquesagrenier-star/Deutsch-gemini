@@ -1,0 +1,150 @@
+{
+ "id": "b1-pret",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Demander un petit crédit à la banque"},
+ "intro": {"fr": "Tu as rendez-vous à ta banque pour un crédit de 5 000 euros. La conseillère te pose ses questions : pour quoi, ton travail, la durée, les documents."},
+ "personnes": ["bankberaterin"],
+ "debut": "anliegen",
+ "textes": {
+  "zweck_fr": {"cle": "zweck", "wohnung": "la caution et les meubles de ton nouvel appartement", "auto": "une voiture d'occasion"},
+  "laufzeit_fr": {"cle": "laufzeit", "kurz": "24 mois, environ 223 euros par mois", "lang": "48 mois, environ 119 euros par mois"},
+  "papiere_fr": {"cle": "papiere", "dabei": "Tu avais tous tes documents : la demande est déposée", "schicken": "Tu envoies tes fiches de paie ce soir, et la demande partira ensuite"}
+ },
+ "noeuds": {
+  "anliegen": {
+   "dit": [
+    {"recit": {"fr": "Ton agence bancaire, à Schöneberg. La conseillère t'invite dans un petit bureau vitré."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Guten Tag, nehmen Sie bitte Platz. Sie haben um einen Termin gebeten. Was kann ich für Sie tun?", "fr": "Bonjour, asseyez-vous, je vous en prie. Vous avez demandé un rendez-vous. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich möchte einen Kredit aufnehmen.", "fr": "Bonjour. Je voudrais prendre un crédit.", "va": "wofuer"},
+    {"t": "Guten Tag. Ich würde gern einen kleinen Kredit beantragen.", "fr": "Bonjour. J'aimerais demander un petit crédit.", "va": "wofuer"},
+    {"faux": true, "t": "Guten Tag. Ich möchte Ihnen Geld leihen.", "fr": "Bonjour. Je voudrais vous prêter de l'argent.",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "Mir? Das ist sehr freundlich, aber die Bank hat genug Geld! Oder möchten Sie sich etwas leihen?", "fr": "À moi ? C'est très aimable, mais la banque a assez d'argent ! Ou bien voulez-vous en emprunter ?"}],
+     "aide": {"fr": "<b>« jemandem Geld leihen », c'est prêter.</b> Emprunter à la banque : « einen Kredit aufnehmen » ou « Ich möchte mir Geld leihen »."}}
+   ]
+  },
+  "wofuer": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Sehr gern. Wofür brauchen Sie das Geld denn?", "fr": "Très volontiers. Pour quoi avez-vous besoin de cet argent ?"}],
+   "choix": [
+    {"t": "Ich ziehe bald um. Ich brauche das Geld für die Kaution und die Möbel.", "fr": "Je déménage bientôt. J'ai besoin de cet argent pour la caution et les meubles.", "pose": {"zweck": "wohnung"}, "va": "betrag"},
+    {"t": "Ich möchte ein gebrauchtes Auto kaufen, weil ich es für die Arbeit brauche.", "fr": "Je voudrais acheter une voiture d'occasion, parce que j'en ai besoin pour le travail.", "pose": {"zweck": "auto"}, "va": "betrag"},
+    {"faux": true, "t": "Ich möchte ein Auto von Okkasion kaufen.", "fr": "Je voudrais acheter une voiture d'occasion.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Von … Okkasion? Ach, Sie meinen ein gebrauchtes Auto, einen Gebrauchtwagen!", "fr": "« D'occasion » ? Ah, vous voulez dire une voiture qui a déjà servi !"}],
+     "aide": {"fr": "<b>« D'occasion » se dit « gebraucht »</b> : « ein gebrauchtes Auto » ou « ein Gebrauchtwagen »."}}
+   ]
+  },
+  "betrag": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Verstehe. Und an welchen Betrag haben Sie gedacht?", "fr": "Je comprends. Et à quel montant avez-vous pensé ?"}],
+   "choix": [
+    {"t": "Ich brauche ungefähr fünftausend Euro.", "fr": "J'ai besoin d'environ cinq mille euros.", "va": "arbeit"},
+    {"t": "An fünftausend Euro. Wäre das möglich?", "fr": "À cinq mille euros. Ce serait possible ?", "va": "arbeit",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Das sehen wir gleich zusammen.", "fr": "Nous allons voir ça ensemble tout de suite."}]},
+    {"repete": true, "t": "Entschuldigung, was bedeutet „Betrag“?", "fr": "Excusez-moi, que veut dire « Betrag » ?", "va": "betrag",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Der Betrag ist die Summe. Also: Wie viel Geld möchten Sie von der Bank?", "fr": "« Der Betrag », c'est la somme. Donc : combien d'argent voulez-vous de la banque ?"}]}
+   ]
+  },
+  "arbeit": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "5.000 Euro, gut. Dafür brauche ich ein paar Informationen. Sind Sie fest angestellt? Und seit wann?", "dit": "Fünftausend Euro, gut. Dafür brauche ich ein paar Informationen. Sind Sie fest angestellt? Und seit wann?", "fr": "5 000 euros, bien. Pour cela, j'ai besoin de quelques informations. Avez-vous un emploi fixe ? Et depuis quand ?"}],
+   "choix": [
+    {"t": "Ja, ich habe einen unbefristeten Vertrag. Ich arbeite seit zwei Jahren in derselben Firma.", "fr": "Oui, j'ai un contrat à durée indéterminée. Je travaille depuis deux ans dans la même entreprise.", "va": "laufzeit",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Zwei Jahre, unbefristet, das ist gut. Und Ihr Gehalt kommt regelmäßig auf Ihr Konto bei uns, das sehe ich hier.", "fr": "Deux ans, durée indéterminée, c'est bien. Et votre salaire arrive régulièrement sur votre compte chez nous, je le vois ici."}]},
+    {"t": "Ja, seit acht Monaten. Die Probezeit ist schon vorbei.", "fr": "Oui, depuis huit mois. La période d'essai est déjà terminée.", "va": "laufzeit",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Das ist wichtig: In der Probezeit geben wir keinen Kredit. Und Ihr Gehalt kommt regelmäßig auf Ihr Konto, das sehe ich hier.", "fr": "C'est important : pendant la période d'essai, nous n'accordons pas de crédit. Et votre salaire arrive régulièrement sur votre compte, je le vois ici."}]},
+    {"faux": true, "t": "Ja, ich habe einen unbestimmten Vertrag.", "fr": "Oui, j'ai un contrat indéterminé.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Unbestimmt? Das klingt nicht sehr sicher! Meinen Sie unbefristet, also ohne Enddatum?", "fr": "« Indéterminé » ? Ça ne fait pas très sûr ! Vous voulez dire sans limite de durée, sans date de fin ?"}],
+     "aide": {"fr": "<b>Le CDI est « ein unbefristeter Vertrag »</b> (sans « Frist », sans échéance). « unbestimmt » veut dire « vague, incertain »."}}
+   ]
+  },
+  "laufzeit": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "Jetzt zur Laufzeit. Der Zinssatz liegt bei 6,9 Prozent. Bei 24 Monaten zahlen Sie ungefähr 223 Euro im Monat, bei 48 Monaten ungefähr 119 Euro. Was passt besser zu Ihnen?", "dit": "Jetzt zur Laufzeit. Der Zinssatz liegt bei sechs Komma neun Prozent. Bei vierundzwanzig Monaten zahlen Sie ungefähr zweihundertdreiundzwanzig Euro im Monat, bei achtundvierzig Monaten ungefähr hundertneunzehn Euro. Was passt besser zu Ihnen?", "fr": "Passons à la durée. Le taux d'intérêt est de 6,9 %. Sur 24 mois, vous payez environ 223 euros par mois, sur 48 mois environ 119 euros. Qu'est-ce qui vous convient le mieux ?"}],
+   "choix": [
+    {"t": "Ich nehme lieber vierundzwanzig Monate. Dann bin ich schneller fertig.", "fr": "Je préfère prendre vingt-quatre mois. Comme ça, j'aurai fini plus vite.", "pose": {"laufzeit": "kurz"}, "va": "kurz"},
+    {"t": "Achtundvierzig Monate wären besser, weil die Rate niedriger ist.", "fr": "Quarante-huit mois, ce serait mieux, parce que la mensualité est plus basse.", "pose": {"laufzeit": "lang"}, "va": "lang"},
+    {"faux": true, "t": "Achtundvierzig Monate, weil die Rate ist mehr billig.", "fr": "Quarante-huit mois, parce que la mensualité est plus bon marché.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Sie meinen, weil die Rate niedriger ist? Im Monat ja, insgesamt aber nicht!", "fr": "Vous voulez dire parce que la mensualité est plus basse ? Par mois, oui, mais pas au total !"}],
+     "aide": {"fr": "<b>Le comparatif se fait avec « -er »</b>, jamais avec « mehr » : « billiger », « niedriger ». Et après « weil », le verbe va à la fin : « weil die Rate niedriger ist »."}}
+   ]
+  },
+  "kurz": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Eine gute Wahl, so zahlen Sie insgesamt weniger Zinsen. Aber 223 Euro jeden Monat: Schaffen Sie das neben der Miete?", "dit": "Eine gute Wahl, so zahlen Sie insgesamt weniger Zinsen. Aber zweihundertdreiundzwanzig Euro jeden Monat: Schaffen Sie das neben der Miete?", "fr": "Un bon choix, vous payez ainsi moins d'intérêts au total. Mais 223 euros chaque mois : vous y arriverez, en plus du loyer ?"}],
+   "choix": [
+    {"t": "Ja, ich habe das ausgerechnet. Nach der Miete bleibt genug übrig.", "fr": "Oui, j'ai fait le calcul. Après le loyer, il reste assez.", "va": "unterlagen",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sehr gut, Sie sind vorbereitet.", "fr": "Très bien, vous avez préparé votre dossier."}]},
+    {"t": "Ja. Und wenn ich einmal mehr Geld habe, kann ich dann früher zurückzahlen?", "fr": "Oui. Et si un jour j'ai plus d'argent, est-ce que je peux rembourser plus tôt ?", "va": "unterlagen",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ja, das ist jederzeit möglich und kostet bei uns nichts.", "fr": "Oui, c'est possible à tout moment et, chez nous, ça ne coûte rien."}]},
+    {"faux": true, "t": "Ja, ich gewinne genug Geld.", "fr": "Oui, je gagne assez d'argent.",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "Sie gewinnen? Im Lotto? Darauf kann die Bank leider nicht zählen!", "fr": "Vous gagnez ? Au loto ? La banque ne peut malheureusement pas compter là-dessus !"}],
+     "aide": {"fr": "<b>Gagner de l'argent en travaillant : « verdienen »</b> : « Ich verdiene genug ». « gewinnen », c'est gagner à un jeu."}}
+   ]
+  },
+  "lang": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Gut, also 119 Euro im Monat. Insgesamt zahlen Sie dann etwas mehr Zinsen. Haben Sie dazu noch eine Frage?", "dit": "Gut, also hundertneunzehn Euro im Monat. Insgesamt zahlen Sie dann etwas mehr Zinsen. Haben Sie dazu noch eine Frage?", "fr": "Bien, donc 119 euros par mois. Au total, vous payez alors un peu plus d'intérêts. Avez-vous encore une question là-dessus ?"}],
+   "choix": [
+    {"t": "Ja: Kann ich den Kredit früher zurückzahlen, wenn ich mehr verdiene?", "fr": "Oui : est-ce que je peux rembourser le crédit plus tôt, si je gagne plus ?", "va": "unterlagen",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ja, das ist jederzeit möglich und kostet bei uns nichts.", "fr": "Oui, c'est possible à tout moment et, chez nous, ça ne coûte rien."}]},
+    {"t": "Nein, das ist klar. Die niedrige Rate ist mir wichtiger.", "fr": "Non, c'est clair. La mensualité basse compte plus pour moi.", "va": "unterlagen",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Das verstehe ich gut, so bleibt Ihnen jeden Monat mehr.", "fr": "Je comprends très bien, il vous reste ainsi davantage chaque mois."}]},
+    {"faux": true, "t": "Ja: Kann ich früher zurückgeben den Kredit?", "fr": "Oui : est-ce que je peux rendre le crédit plus tôt ?",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Zurückgeben? Wie ein Buch? Ach, Sie möchten ihn früher zurückzahlen!", "fr": "Le « rendre » ? Comme un livre ? Ah, vous voulez le rembourser plus tôt !"}],
+     "aide": {"fr": "<b>Rembourser : « zurückzahlen »</b>, et l'infinitif va à la fin : « Kann ich den Kredit früher zurückzahlen? ». « zurückgeben », c'est rendre un objet."}}
+   ]
+  },
+  "unterlagen": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "Dann fehlen nur noch die Unterlagen: Ihr Ausweis und die letzten drei Gehaltsabrechnungen. Haben Sie die Papiere dabei?", "fr": "Il ne manque alors plus que les documents : votre pièce d'identité et les trois dernières fiches de paie. Vous avez ces papiers avec vous ?"}],
+   "choix": [
+    {"t": "Ja, ich habe alles mitgebracht. Hier, bitte.", "fr": "Oui, j'ai tout apporté. Tenez.", "pose": {"papiere": "dabei"}, "va": "schufa"},
+    {"t": "Nur meinen Ausweis. Die Gehaltsabrechnungen könnte ich Ihnen heute Abend schicken.", "fr": "Seulement ma pièce d'identité. Les fiches de paie, je pourrais vous les envoyer ce soir.", "pose": {"papiere": "schicken"}, "va": "schicken"},
+    {"faux": true, "t": "Ja, ich habe alles mit mir.", "fr": "Oui, j'ai tout avec moi.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Mit Ihnen? Ach, Sie haben alles dabei. Wunderbar!", "fr": "« Avec vous » ? Ah, vous avez tout sur vous. Parfait !"}],
+     "aide": {"fr": "<b>« Avoir quelque chose avec soi » : « dabeihaben »</b> : « Ich habe alles dabei » ou « Ich habe alles mitgebracht ». « mit mir » ne se dit pas ici."}}
+   ]
+  },
+  "schufa": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "Perfekt, alles da. Jetzt frage ich noch bei der SCHUFA nach, dafür brauche ich Ihre Unterschrift. Sind Sie einverstanden?", "fr": "Parfait, tout y est. Maintenant, je consulte encore la SCHUFA, et pour cela il me faut votre signature. Vous êtes d'accord ?"}],
+   "choix": [
+    {"t": "Ja, einverstanden. Wo soll ich unterschreiben?", "fr": "Oui, d'accord. Où dois-je signer ?", "va": "ende",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Hier unten, bitte. Danke schön.", "fr": "Ici, en bas, s'il vous plaît. Merci beaucoup."}]},
+    {"t": "Ja. Darf ich fragen, was die SCHUFA genau prüft?", "fr": "Oui. Puis-je demander ce que la SCHUFA vérifie exactement ?", "va": "ende",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Natürlich. Sie zeigt uns, ob Sie Ihre Rechnungen und Kredite bisher immer bezahlt haben. Unterschreiben Sie bitte hier unten.", "fr": "Bien sûr. Elle nous indique si vous avez toujours payé vos factures et vos crédits jusqu'ici. Signez ici, en bas, s'il vous plaît."}]},
+    {"faux": true, "t": "Ja, ich signiere hier.", "fr": "Oui, je signe ici.",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "Signieren? Das machen Autoren mit ihren Büchern. Bei uns unterschreiben Sie einfach!", "fr": "« Signieren » ? C'est ce que font les auteurs avec leurs livres. Chez nous, vous signez, tout simplement !"}],
+     "aide": {"fr": "<b>Signer un document : « unterschreiben »</b> (inséparable) : « Ich unterschreibe hier ». « signieren » se dit pour une dédicace."}}
+   ]
+  },
+  "schicken": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Kein Problem. Sie können sie in unserer App hochladen oder mir per E-Mail schicken. Was ist Ihnen lieber? Die SCHUFA frage ich danach.", "fr": "Pas de problème. Vous pouvez les déposer dans notre application ou me les envoyer par courriel. Que préférez-vous ? Je consulterai la SCHUFA ensuite."}],
+   "choix": [
+    {"t": "Ich schicke sie per E-Mail. Könnten Sie mir Ihre Adresse aufschreiben?", "fr": "Je les envoie par courriel. Vous pourriez me noter votre adresse ?", "va": "ende",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Gern, sie steht hier auf meiner Karte.", "fr": "Volontiers, elle est ici, sur ma carte."}]},
+    {"t": "Ich lade sie in der App hoch, das geht am schnellsten.", "fr": "Je les dépose dans l'application, c'est le plus rapide.", "va": "ende",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Stimmt, dann sehe ich sie morgen früh sofort.", "fr": "C'est vrai, comme ça je les verrai tout de suite demain matin."}]},
+    {"faux": true, "t": "Ich schicke sie bei E-Mail.", "fr": "Je les envoie par courriel.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Bei E-Mail? Per E-Mail, meinen Sie. Sehr gern!", "fr": "« Chez » courriel ? Par courriel, vous voulez dire. Très volontiers !"}],
+     "aide": {"fr": "<b>« Par courriel » se dit « per E-Mail »</b> (ou « mit einer E-Mail »), pas « bei »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "si": {"papiere": "dabei"}, "t": "So, der Antrag ist gestellt. In zwei bis drei Tagen bekommen Sie eine Antwort, und dann machen wir einen Termin für den Vertrag.", "fr": "Voilà, la demande est déposée. Vous aurez une réponse dans deux à trois jours, et nous prendrons alors rendez-vous pour le contrat."},
+    {"qui": "bankberaterin", "air": "sourire", "si": {"papiere": "schicken"}, "t": "Sobald ich Ihre Unterlagen habe, stelle ich den Antrag. Die Antwort kommt dann in zwei bis drei Tagen, und wir machen einen Termin für den Vertrag.", "fr": "Dès que j'aurai vos documents, je déposerai la demande. La réponse arrivera en deux à trois jours, et nous prendrons rendez-vous pour le contrat."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für die Beratung! Ich warte auf Ihre Nachricht.", "fr": "Merci beaucoup pour vos conseils ! J'attends votre message.", "va": null,
+     "puis": [
+      {"qui": "bankberaterin", "air": "sourire", "si": {"zweck": "wohnung"}, "t": "Sehr gern. Und viel Freude in der neuen Wohnung!", "fr": "Avec plaisir. Et profitez bien de votre nouvel appartement !"},
+      {"qui": "bankberaterin", "air": "sourire", "si": {"zweck": "auto"}, "t": "Sehr gern. Und viel Glück bei der Suche nach dem Auto!", "fr": "Avec plaisir. Et bonne chance pour trouver la voiture !"}]},
+    {"t": "Danke schön. Rufen Sie mich an, oder bekomme ich einen Brief?", "fr": "Merci beaucoup. Vous m'appelez, ou je reçois une lettre ?", "va": null,
+     "puis": [
+      {"qui": "bankberaterin", "air": "sourire", "si": {"zweck": "wohnung"}, "t": "Ich rufe Sie an, das geht schneller. Und viel Freude in der neuen Wohnung!", "fr": "Je vous appelle, c'est plus rapide. Et profitez bien de votre nouvel appartement !"},
+      {"qui": "bankberaterin", "air": "sourire", "si": {"zweck": "auto"}, "t": "Ich rufe Sie an, das geht schneller. Und viel Glück bei der Suche nach dem Auto!", "fr": "Je vous appelle, c'est plus rapide. Et bonne chance pour trouver la voiture !"}]},
+    {"faux": true, "t": "Danke, ich warte Ihre Antwort.", "fr": "Merci, j'attends votre réponse.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Sie warten auf meine Antwort, ja? Die kommt bald, versprochen.", "fr": "Vous attendez ma réponse, c'est ça ? Elle arrive bientôt, promis."}],
+     "aide": {"fr": "<b>« Attendre quelque chose » : « auf etwas warten »</b> : « Ich warte auf Ihre Antwort ». Sans « auf », la phrase est incomplète."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé un crédit de 5 000 euros pour {zweck_fr}, sur {laufzeit_fr}, au taux de 6,9 %. {papiere_fr}. Réponse dans deux à trois jours, puis rendez-vous pour signer le contrat."}
+}

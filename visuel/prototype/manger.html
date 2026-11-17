@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Comer y probar</title>
 <!--
@@ -122,11 +123,12 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
+<script src="manger/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : les memes images, ses phrases a lui ; variante=gb
@@ -154,10 +156,10 @@ const TEXTES = {
   introC:    {fr:"Touche un moment : tu entends ce qu'on dit au café.", en:"Tap a moment to hear what people say at the café.", tr:"Bir ana dokun: kafede ne söylendiğini dinle.", uk:"Торкнися моменту: почуєш, що кажуть у кавʼярні.", fa:"روی یک لحظه بزن تا بشنوی در کافه چه می‌گویند.", ar:"المس لحظة لتسمع ما يُقال في المقهى.", pt:"Toque em um momento para ouvir o que se diz no café.", pl:"Dotknij chwili, aby usłyszeć, co się mówi w kawiarni.", ru:"Нажми на момент, чтобы услышать, что говорят в кафе.", de:"Tippe auf einen Moment: Du hörst, was man im Café sagt."},
   regleGes:  {fr:"Me gusta el café : une seule chose, gusta. Me gustan las fresas : plusieurs, gustan. Me encanta : j'adore. No me gusta nada : je n'aime pas du tout.", en:"Me gusta el café: one thing, gusta. Me gustan las fresas: several, gustan. Me encanta: I love it. No me gusta nada: I don't like it at all.", tr:"Me gusta el café: tek bir şey, gusta. Me gustan las fresas: birden fazla, gustan. Me encanta: bayılırım. No me gusta nada: hiç sevmem.", uk:"Me gusta el café: одна річ — gusta. Me gustan las fresas: кілька — gustan. Me encanta: обожнюю. No me gusta nada: зовсім не подобається.", fa:"Me gusta el café: یک چیز، gusta. Me gustan las fresas: چند چیز، gustan. Me encanta: عاشقش هستم. No me gusta nada: اصلاً دوست ندارم.", ar:"Me gusta el café: شيء واحد، gusta. Me gustan las fresas: عدة أشياء، gustan. Me encanta: أعشقه. No me gusta nada: لا يعجبني أبدًا.", pt:"Me gusta el café: uma coisa só, gusta. Me gustan las fresas: várias, gustan. Me encanta: eu adoro. No me gusta nada: não gosto nada.", pl:"Me gusta el café: jedna rzecz — gusta. Me gustan las fresas: kilka — gustan. Me encanta: uwielbiam. No me gusta nada: wcale mi nie smakuje.", ru:"Me gusta el café: одна вещь — gusta. Me gustan las fresas: несколько — gustan. Me encanta: обожаю. No me gusta nada: совсем не нравится.", de:"Me gusta el café: eine Sache, gusta. Me gustan las fresas: mehrere, gustan. Me encanta: Ich liebe es. No me gusta nada: Das mag ich überhaupt nicht."},
   regleGde:  {fr:"Ich mag Kaffee : mögen, ce qu'on aime en général. Der Kaffee schmeckt mir : ce qu'on goûte maintenant. Ich trinke gern Kaffee : gern avec le verbe. Et la négation : Ich mag keinen Kaffee.", en:"Ich mag Kaffee: mögen, what you like in general. Der Kaffee schmeckt mir: what you are tasting now. Ich trinke gern Kaffee: gern with the verb. And the negative: Ich mag keinen Kaffee.", tr:"Ich mag Kaffee: mögen, genel olarak sevdiğin şey. Der Kaffee schmeckt mir: şu an tattığın şey. Ich trinke gern Kaffee: fiille birlikte gern. Olumsuzu: Ich mag keinen Kaffee.", uk:"Ich mag Kaffee: mögen — що подобається загалом. Der Kaffee schmeckt mir: що смакуєш зараз. Ich trinke gern Kaffee: gern з дієсловом. Заперечення: Ich mag keinen Kaffee.", fa:"Ich mag Kaffee: mögen، آنچه به‌طور کلی دوست داری. Der Kaffee schmeckt mir: آنچه الان می‌چشی. Ich trinke gern Kaffee: gern همراه فعل. و منفی: Ich mag keinen Kaffee.", ar:"Ich mag Kaffee: mögen، ما تحبه عمومًا. Der Kaffee schmeckt mir: ما تتذوقه الآن. Ich trinke gern Kaffee: gern مع الفعل. والنفي: Ich mag keinen Kaffee.", pt:"Ich mag Kaffee: mögen, o que você gosta em geral. Der Kaffee schmeckt mir: o que você está provando agora. Ich trinke gern Kaffee: gern com o verbo. E a negação: Ich mag keinen Kaffee.", pl:"Ich mag Kaffee: mögen — co lubisz ogólnie. Der Kaffee schmeckt mir: co smakujesz teraz. Ich trinke gern Kaffee: gern z czasownikiem. Przeczenie: Ich mag keinen Kaffee.", ru:"Ich mag Kaffee: mögen — что нравится вообще. Der Kaffee schmeckt mir: что пробуешь сейчас. Ich trinke gern Kaffee: gern с глаголом. Отрицание: Ich mag keinen Kaffee.", de:"Ich mag Kaffee: im Allgemeinen. Der Kaffee schmeckt mir: jetzt. Ich trinke gern Kaffee: gern mit dem Verb. Verneint: Ich mag keinen Kaffee."},
-  regleQes:  {fr:"En espagnol, la quantité prend « de » : un kilo de tomates, una botella de agua, un poco de azúcar.", en:"In Spanish, a quantity takes « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", tr:"İspanyolcada miktar « de » ile söylenir: un kilo de tomates, una botella de agua, un poco de azúcar.", uk:"В іспанській кількість кажуть із « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", fa:"در اسپانیایی، مقدار با « de » می‌آید: un kilo de tomates، una botella de agua، un poco de azúcar.", ar:"في الإسبانية تأتي الكمية مع « de »: un kilo de tomates، una botella de agua، un poco de azúcar.", pt:"Em espanhol, a quantidade leva « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", pl:"Po hiszpańsku ilość łączy się z « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", ru:"По-испански количество идёт с « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", de:"Auf Spanisch steht nach der Menge « de »: un kilo de tomates, una botella de agua, un poco de azúcar."},
-  regleQde:  {fr:"En allemand, pas de « de » : ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. L'article suit le contenant : eine Flasche, ein Glas.", en:"In German, no « of »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. The article goes with the container: eine Flasche, ein Glas.", tr:"Almancada « de » yoktur: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Artikel kaba göre değişir: eine Flasche, ein Glas.", uk:"У німецькій немає « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль залежить від тари: eine Flasche, ein Glas.", fa:"در آلمانی « de » نمی‌آید: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. حرف تعریف از ظرف پیروی می‌کند: eine Flasche، ein Glas.", ar:"في الألمانية لا توجد « de »: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. وأداة التعريف تتبع الوعاء: eine Flasche، ein Glas.", pt:"Em alemão, não há « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. O artigo acompanha o recipiente: eine Flasche, ein Glas.", pl:"Po niemiecku nie ma « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Rodzajnik zależy od opakowania: eine Flasche, ein Glas.", ru:"В немецком нет « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль зависит от тары: eine Flasche, ein Glas.", de:"Ohne Präposition: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker."},
-  regleCes:  {fr:"Pour commander, « Quisiera… » (je voudrais) est plus poli que « Quiero… ». Pour finir : « La cuenta, por favor ».", en:"To order, « Quisiera… » (I would like) is more polite than « Quiero… ». To finish: « La cuenta, por favor ».", tr:"Sipariş verirken « Quisiera… » (isterdim), « Quiero… »'dan daha kibardır. Sonunda: « La cuenta, por favor ».", uk:"Щоб замовити, « Quisiera… » (я хотів би) ввічливіше, ніж « Quiero… ». Наприкінці: « La cuenta, por favor ».", fa:"برای سفارش، « Quisiera… » (می‌خواستم) مؤدبانه‌تر از « Quiero… » است. در پایان: « La cuenta, por favor ».", ar:"عند الطلب، « Quisiera… » (أودّ) أكثر تهذيبًا من « Quiero… ». وفي النهاية: « La cuenta, por favor ».", pt:"Para pedir, « Quisiera… » (eu queria) é mais educado que « Quiero… ». Para terminar: « La cuenta, por favor ».", pl:"Zamawiając, « Quisiera… » (chciałbym) jest grzeczniejsze niż « Quiero… ». Na koniec: « La cuenta, por favor ».", ru:"При заказе « Quisiera… » (я бы хотел) вежливее, чем « Quiero… ». В конце: « La cuenta, por favor ».", de:"Zum Bestellen ist « Quisiera… » (ich hätte gern) höflicher als « Quiero… ». Zum Schluss: « La cuenta, por favor »."},
-  regleCde:  {fr:"Pour commander, « Ich hätte gern… » ou « Ich möchte… » : plus poli que « Ich will… ». Pour finir : « Die Rechnung, bitte ». En laissant le pourboire : « Stimmt so ».", en:"To order, « Ich hätte gern… » or « Ich möchte… »: more polite than « Ich will… ». To finish: « Die Rechnung, bitte ». Leaving the tip: « Stimmt so ».", tr:"Sipariş için « Ich hätte gern… » ya da « Ich möchte… », « Ich will… »'den daha kibardır. Sonunda: « Die Rechnung, bitte ». Bahşiş bırakırken: « Stimmt so ».", uk:"Щоб замовити: « Ich hätte gern… » або « Ich möchte… », ввічливіше, ніж « Ich will… ». Наприкінці: « Die Rechnung, bitte ». Залишаючи чайові: « Stimmt so ».", fa:"برای سفارش: « Ich hätte gern… » یا « Ich möchte… »، مؤدبانه‌تر از « Ich will… ». در پایان: « Die Rechnung, bitte ». هنگام انعام دادن: « Stimmt so ».", ar:"للطلب: « Ich hätte gern… » أو « Ich möchte… »، وهما أكثر تهذيبًا من « Ich will… ». وفي النهاية: « Die Rechnung, bitte ». وعند ترك البقشيش: « Stimmt so ».", pt:"Para pedir: « Ich hätte gern… » ou « Ich möchte… », mais educado que « Ich will… ». Para terminar: « Die Rechnung, bitte ». Ao deixar a gorjeta: « Stimmt so ».", pl:"Zamawiając: « Ich hätte gern… » albo « Ich möchte… », grzeczniej niż « Ich will… ». Na koniec: « Die Rechnung, bitte ». Zostawiając napiwek: « Stimmt so ».", ru:"Для заказа: « Ich hätte gern… » или « Ich möchte… », вежливее, чем « Ich will… ». В конце: « Die Rechnung, bitte ». Оставляя чаевые: « Stimmt so ».", de:"Höflich bestellen: « Ich hätte gern… ». Zum Schluss: « Die Rechnung, bitte »."},
+  regleQes:  {fr:"En espagnol, la quantité prend « de » : un kilo de tomates, una botella de agua, un poco de azúcar.", en:"In Spanish, a quantity takes “de”: un kilo de tomates, una botella de agua, un poco de azúcar.", tr:"İspanyolcada miktar « de » ile söylenir: un kilo de tomates, una botella de agua, un poco de azúcar.", uk:"В іспанській кількість кажуть із « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", fa:"در اسپانیایی، مقدار با « de » می‌آید: un kilo de tomates، una botella de agua، un poco de azúcar.", ar:"في الإسبانية تأتي الكمية مع « de »: un kilo de tomates، una botella de agua، un poco de azúcar.", pt:"Em espanhol, a quantidade leva « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", pl:"Po hiszpańsku ilość łączy się z « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", ru:"По-испански количество идёт с « de »: un kilo de tomates, una botella de agua, un poco de azúcar.", de:"Auf Spanisch steht nach der Menge « de »: un kilo de tomates, una botella de agua, un poco de azúcar."},
+  regleQde:  {fr:"En allemand, pas de « de » : ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. L'article suit le contenant : eine Flasche, ein Glas.", en:"In German, no “of”: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. The article goes with the container: eine Flasche, ein Glas.", tr:"Almancada « de » yoktur: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Artikel kaba göre değişir: eine Flasche, ein Glas.", uk:"У німецькій немає « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль залежить від тари: eine Flasche, ein Glas.", fa:"در آلمانی « de » نمی‌آید: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. حرف تعریف از ظرف پیروی می‌کند: eine Flasche، ein Glas.", ar:"في الألمانية لا توجد « de »: ein Kilo Tomaten، eine Flasche Wasser، ein bisschen Zucker. وأداة التعريف تتبع الوعاء: eine Flasche، ein Glas.", pt:"Em alemão, não há « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. O artigo acompanha o recipiente: eine Flasche, ein Glas.", pl:"Po niemiecku nie ma « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Rodzajnik zależy od opakowania: eine Flasche, ein Glas.", ru:"В немецком нет « de »: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker. Артикль зависит от тары: eine Flasche, ein Glas.", de:"Ohne Präposition: ein Kilo Tomaten, eine Flasche Wasser, ein bisschen Zucker."},
+  regleCes:  {fr:"Pour commander, « Quisiera… » (je voudrais) est plus poli que « Quiero… ». Pour finir : « La cuenta, por favor ».", en:"To order, “Quisiera…” (I would like) is more polite than “Quiero…”. To finish: “La cuenta, por favor”.", tr:"Sipariş verirken « Quisiera… » (isterdim), « Quiero… »'dan daha kibardır. Sonunda: « La cuenta, por favor ».", uk:"Щоб замовити, « Quisiera… » (я хотів би) ввічливіше, ніж « Quiero… ». Наприкінці: « La cuenta, por favor ».", fa:"برای سفارش، « Quisiera… » (می‌خواستم) مؤدبانه‌تر از « Quiero… » است. در پایان: « La cuenta, por favor ».", ar:"عند الطلب، « Quisiera… » (أودّ) أكثر تهذيبًا من « Quiero… ». وفي النهاية: « La cuenta, por favor ».", pt:"Para pedir, « Quisiera… » (eu queria) é mais educado que « Quiero… ». Para terminar: « La cuenta, por favor ».", pl:"Zamawiając, « Quisiera… » (chciałbym) jest grzeczniejsze niż « Quiero… ». Na koniec: « La cuenta, por favor ».", ru:"При заказе « Quisiera… » (я бы хотел) вежливее, чем « Quiero… ». В конце: « La cuenta, por favor ».", de:"Zum Bestellen ist « Quisiera… » (ich hätte gern) höflicher als « Quiero… ». Zum Schluss: « La cuenta, por favor »."},
+  regleCde:  {fr:"Pour commander, « Ich hätte gern… » ou « Ich möchte… » : plus poli que « Ich will… ». Pour finir : « Die Rechnung, bitte ». En laissant le pourboire : « Stimmt so ».", en:"To order, “Ich hätte gern…” or “Ich möchte…”: more polite than “Ich will…”. To finish: “Die Rechnung, bitte”. Leaving the tip: “Stimmt so”.", tr:"Sipariş için « Ich hätte gern… » ya da « Ich möchte… », « Ich will… »'den daha kibardır. Sonunda: « Die Rechnung, bitte ». Bahşiş bırakırken: « Stimmt so ».", uk:"Щоб замовити: « Ich hätte gern… » або « Ich möchte… », ввічливіше, ніж « Ich will… ». Наприкінці: « Die Rechnung, bitte ». Залишаючи чайові: « Stimmt so ».", fa:"برای سفارش: « Ich hätte gern… » یا « Ich möchte… »، مؤدبانه‌تر از « Ich will… ». در پایان: « Die Rechnung, bitte ». هنگام انعام دادن: « Stimmt so ».", ar:"للطلب: « Ich hätte gern… » أو « Ich möchte… »، وهما أكثر تهذيبًا من « Ich will… ». وفي النهاية: « Die Rechnung, bitte ». وعند ترك البقشيش: « Stimmt so ».", pt:"Para pedir: « Ich hätte gern… » ou « Ich möchte… », mais educado que « Ich will… ». Para terminar: « Die Rechnung, bitte ». Ao deixar a gorjeta: « Stimmt so ».", pl:"Zamawiając: « Ich hätte gern… » albo « Ich möchte… », grzeczniej niż « Ich will… ». Na koniec: « Die Rechnung, bitte ». Zostawiając napiwek: « Stimmt so ».", ru:"Для заказа: « Ich hätte gern… » или « Ich möchte… », вежливее, чем « Ich will… ». В конце: « Die Rechnung, bitte ». Оставляя чаевые: « Stimmt so ».", de:"Höflich bestellen: « Ich hätte gern… ». Zum Schluss: « Die Rechnung, bitte »."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
   commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   aime:      {fr:"Regarde le visage et choisis la bonne forme.", en:"Look at the face and choose the right form.", tr:"Yüze bak ve doğru biçimi seç.", uk:"Подивися на обличчя й обери правильну форму.", fa:"به چهره نگاه کن و شکل درست را انتخاب کن.", ar:"انظر إلى الوجه واختر الصيغة الصحيحة.", pt:"Olhe o rosto e escolha a forma certa.", pl:"Spójrz na twarz i wybierz właściwą formę.", ru:"Посмотри на лицо и выбери правильную форму.", de:"Sieh dir das Gesicht an und wähle die richtige Form."},
@@ -695,17 +697,23 @@ const TRADS = {
     prix: c => prix(c)
   }
 };
-const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : null);
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (manger/langues.js, lot 10 de l'alignement des themes, 16 nov. 2026) : LMA[langue].traduire()
+// a la meme forme que traduire() ; TR n'y sert que de drapeau (la phrase traduite existe)
+let LMA = {};
+const LMA_PREVU = (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es");
+const TR = (LANGUE === APPRENDRE) ? null : (TRADS[LANGUE] && (LANGUE !== "de" || APPRENDRE === "es") ? TRADS[LANGUE] : LMA_PREVU ? {} : null);
 // les articles de la carte dans la langue d'interface ; l'allemand appris a une Brezel a la place du bocadillo
 const trCarte = (cle, n) => { const t = (APPRENDRE === "de" && D.tradCarteDe[cle] && D.tradCarteDe[cle][LANGUE]) || D.tradCarte[cle][LANGUE]; return t[n > 1 ? 1 : 0]; };
 const trListe = (items) => { const t = items.map(([it, n]) => trCarte(it.cle, n)); return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + TR.et + t[t.length - 1]; };
-const trQte = (c, d) => { let a = D.tradContenants[c][LANGUE], x = D.contenus[d].tr[LANGUE];
+const trQte = (c, d) => { if (LMA[LANGUE]) return LMA[LANGUE].traduire({qte: {c, d}}); let a = D.tradContenants[c][LANGUE], x = D.contenus[d].tr[LANGUE];
   if (LANGUE === "de") return maj(DE.np(c, d)) + ".";
   return maj(LANGUE === "fr" ? deFr(a, x) : a + x) + "."; };
 // ce que la question montre, pour la traduire
 let sensQ = null;
 function traduire(q){
   if (!TR || !q) return null;
+  if (LMA[LANGUE]) return LMA[LANGUE].traduire(q, quiCafe);
   if (APPRENDRE === "en") return traduireEn(q);
   if (q.sabe) return LANGUE === "fr" ? PT_SABE[q.sabe].fr : null;          // le portugais seulement
   if (q.aime) return TR.aime(q.aime);
@@ -861,7 +869,7 @@ let motQ = null;
 function juger(ok, bonneTexte, phrase, lu){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -1008,7 +1016,7 @@ const DIT_TR = {fr: {pos: "C'est délicieux !", bon: "C'est très bon !", asco: 
                 de: {pos: "Lecker!", bon: "Sehr gut!", asco: "Igitt, das ist eklig!", trop: s => "Das ist zu " + D.saveurs[s].de + "!"}};
 // ce que dit la personne : la liste des leurres avec leur traduction (rien hors fr, en, pt, de)
 function tradLeurresDit(g){
-  const T_ = DIT_TR[LANGUE]; if (!T_ || LANGUE === APPRENDRE) return null;
+  const T_ = DIT_TR[LANGUE] || (LMA[LANGUE] && LMA[LANGUE].ditTr); if (!T_ || LANGUE === APPRENDRE) return null;
   const out = {}; out[L.dit(g.a, "gusta")] = T_.pos; out[L.bueno] = T_.bon; out[L.asco(g.a)] = T_.asco;
   Object.keys(D.saveurs).forEach(s => { out[L.trop(g.a, s)] = T_.trop(s); });
   return out;
@@ -1823,7 +1831,7 @@ function decouvrir(){
 // jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
 // Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus = new Set(), sorteCourante = null, derniereSorte = null;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
@@ -1891,14 +1899,14 @@ function boutonsBas(terminer){
 }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }
@@ -1909,6 +1917,7 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("manger/manger.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (typeof installerLanguesManger === "function") LMA = installerLanguesManger(D, APPRENDRE, nom) || {};
   if (APPRENDRE === "pt"){
     // les donnees portugaises a cote de l'espagnol et de l'allemand : les sortes communes les lisent par [APPRENDRE]
     Object.keys(PT_AL).forEach(k => { D.aliments[k].pt = PT_AL[k]; });

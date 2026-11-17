@@ -1,0 +1,114 @@
+{
+ "id": "a2-reclamation-resto",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Une réclamation au restaurant"},
+ "intro": {"fr": "Tu déjeunes dans un restaurant de Madrid : le menu du jour. Quelque chose ne va pas avec ton plat. Tu le dis poliment à la serveuse."},
+ "personnes": ["kellnerin"],
+ "debut": "todo",
+ "textes": {
+  "regalo_es": {"cle": "regalo", "cafe": "El café", "flan": "El flan"},
+  "regalo_fr": {"cle": "regalo", "cafe": "Le café", "flan": "Le flan"},
+  "problema_fr": {"cle": "problema", "sopa": "que ta soupe était froide", "plato": "qu'on t'avait apporté le mauvais plat"}
+ },
+ "noeuds": {
+  "todo": {
+   "dit": [
+    {"recit": {"fr": "Deux heures de l'après-midi. Tu as commandé le menu du jour. La serveuse vient d'apporter ton plat, puis elle repasse près de ta table."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "¿Qué tal? ¿Todo bien?", "fr": "Alors ? Tout va bien ?"}
+   ],
+   "choix": [
+    {"t": "Perdone, hay un pequeño problema.", "fr": "Excusez-moi, il y a un petit problème.", "va": "problema",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "¿Sí? Dígame.", "fr": "Oui ? Je vous écoute."}]},
+    {"t": "No muy bien, lo siento.", "fr": "Pas très bien, je suis désolé(e).", "va": "problema",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "¡Vaya! Dígame.", "fr": "Ah bon ! Je vous écoute."}]}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "¿Cuál es el problema?", "fr": "Quel est le problème ?"}],
+   "choix": [
+    {"t": "La sopa está fría.", "fr": "La soupe est froide.", "pose": {"problema": "sopa"}, "va": "solucion",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¡Ay, lo siento mucho!", "fr": "Oh, je suis vraiment désolée !"}]},
+    {"t": "He pedido pollo, pero esto es pescado.", "fr": "J'ai commandé du poulet, mais ceci est du poisson.", "pose": {"problema": "plato"}, "va": "solucion",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¡Ay, perdone! Me he equivocado de mesa.", "fr": "Oh, pardon ! Je me suis trompée de table."}]},
+    {"faux": true, "t": "La sopa es fría.", "fr": "La soupe est froide.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Es fría? ¿Como el gazpacho? No, esta sopa se toma caliente …", "fr": "C'est une soupe froide ? Comme le gaspacho ? Non, cette soupe est une soupe chaude…"}],
+     "aide": {"fr": "<b>« ser »</b> dit ce qu'une chose est toujours (le gaspacho « es » une soupe froide) ; <b>« estar »</b>, son état maintenant. Dis : « La sopa está fría »."}}
+   ]
+  },
+  "solucion": {
+   "dit": [
+    {"si": {"problema": "sopa"}, "qui": "kellnerin", "air": "attentive", "t": "Se la caliento ahora mismo. ¿O prefiere otra cosa?", "fr": "Je vous la réchauffe tout de suite. Ou vous préférez autre chose ?"},
+    {"si": {"problema": "plato"}, "qui": "kellnerin", "air": "attentive", "t": "Le traigo el pollo ahora mismo. ¿O prefiere el pescado?", "fr": "Je vous apporte le poulet tout de suite. Ou vous préférez garder le poisson ?"}
+   ],
+   "choix": [
+    {"si": {"problema": "sopa"}, "t": "La sopa caliente, por favor. Gracias.", "fr": "La soupe chaude, s'il vous plaît. Merci.", "va": "mejor",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ahora mismo. Dos minutos.", "fr": "Tout de suite. Deux minutes."}]},
+    {"si": {"problema": "sopa"}, "t": "Prefiero otra cosa. ¿Tiene ensalada?", "fr": "Je préfère autre chose. Vous avez de la salade ?", "va": "mejor",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sí, claro. Ahora mismo se la traigo.", "fr": "Oui, bien sûr. Je vous l'apporte tout de suite."}]},
+    {"si": {"problema": "plato"}, "t": "Prefiero el pollo, por favor. Gracias.", "fr": "Je préfère le poulet, s'il vous plaît. Merci.", "va": "mejor",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ahora mismo. Cinco minutos.", "fr": "Tout de suite. Cinq minutes."}]},
+    {"si": {"problema": "plato"}, "t": "No importa. El pescado también me gusta.", "fr": "Ce n'est pas grave. J'aime aussi le poisson.", "va": "mejor",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¿Seguro? ¡Muchas gracias por su paciencia!", "fr": "C'est sûr ? Merci beaucoup pour votre patience !"}]}
+   ]
+  },
+  "mejor": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes plus tard, la serveuse revient."}},
+    {"qui": "kellnerin", "air": "question", "t": "¿Y ahora? ¿Está todo mejor?", "fr": "Et maintenant ? Tout va mieux ?"}
+   ],
+   "choix": [
+    {"t": "Sí, ahora está muy bien. Gracias.", "fr": "Oui, maintenant c'est très bien. Merci.", "va": "postre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Menos mal!", "fr": "Heureusement !"}]},
+    {"t": "Sí, está muy rico.", "fr": "Oui, c'est très bon.", "va": "postre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Me alegro mucho!", "fr": "J'en suis ravie !"}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "mejor",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sí: ¿la comida está bien ahora?", "fr": "Oui : le repas est bon, maintenant ?"}]}
+   ]
+  },
+  "postre": {
+   "dit": [
+    {"recit": {"fr": "Tu as fini ton assiette. La serveuse débarrasse."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Por las molestias, le invito a un postre o a un café. ¿Qué prefiere?", "fr": "Pour le dérangement, je vous offre un dessert ou un café. Que préférez-vous ?"}
+   ],
+   "choix": [
+    {"t": "¡Qué amable! Un café con leche, por favor.", "fr": "Comme c'est gentil ! Un café au lait, s'il vous plaît.", "pose": {"regalo": "cafe"}, "va": "cuenta",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Un café con leche! Ahora mismo.", "fr": "Un café au lait ! Tout de suite."}]},
+    {"t": "Muchas gracias. Un flan, por favor.", "fr": "Merci beaucoup. Un flan, s'il vous plaît.", "pose": {"regalo": "flan"}, "va": "cuenta",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Un flan! Es casero, muy rico.", "fr": "Un flan ! Il est fait maison, très bon."}]},
+    {"faux": true, "t": "Gracias. Quiero un desierto, por favor.", "fr": "Merci. Je veux un dessert, s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¿Un desierto? ¿Con arena? ¡Ah, un postre!", "fr": "Un désert ? Avec du sable ? Ah, un dessert !"}],
+     "aide": {"fr": "<b>« el postre »</b>, c'est le dessert. « El desierto », c'est le désert, avec du sable. Dis : « Un flan, por favor » ou « Quiero un postre »."}}
+   ]
+  },
+  "cuenta": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard. La serveuse repasse."}},
+    {"qui": "kellnerin", "air": "question", "t": "¿Quiere algo más?", "fr": "Vous voulez autre chose ?"}
+   ],
+   "choix": [
+    {"t": "No, gracias. La cuenta, por favor.", "fr": "Non, merci. L'addition, s'il vous plaît.", "va": "adios",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Aquí tiene. Son 13,50 euros, el menú del día. {regalo_es} es de la casa.", "dit": "Aquí tiene. Son trece euros con cincuenta, el menú del día. {regalo_es} es de la casa.", "fr": "Voici. Ça fait 13,50 euros, le menu du jour. {regalo_fr} est offert par la maison."}]},
+    {"t": "No, nada más. ¿Me trae la cuenta, por favor?", "fr": "Non, rien d'autre. Vous m'apportez l'addition, s'il vous plaît ?", "va": "adios",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Aquí tiene. Son 13,50 euros, el menú del día. {regalo_es} es de la casa.", "dit": "Aquí tiene. Son trece euros con cincuenta, el menú del día. {regalo_es} es de la casa.", "fr": "Voici. Ça fait 13,50 euros, le menu du jour. {regalo_fr} est offert par la maison."}]},
+    {"faux": true, "t": "No, gracias. La adición, por favor.", "fr": "Non, merci. L'addition, s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿La adición? Ah, ¡la cuenta!", "fr": "« La adición » ? Ah, l'addition !"}],
+     "aide": {"fr": "L'addition du restaurant, c'est <b>« la cuenta »</b>. « La adición », c'est l'opération de calcul. Dis : « La cuenta, por favor »."}}
+   ]
+  },
+  "adios": {
+   "dit": [
+    {"recit": {"fr": "Tu paies par carte."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Muchas gracias. Y perdone otra vez por el error.", "fr": "Merci beaucoup. Et encore pardon pour l'erreur."}
+   ],
+   "choix": [
+    {"t": "No pasa nada. ¡Hasta luego!", "fr": "Ce n'est rien. Au revoir !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Hasta luego! ¡Vuelva pronto!", "fr": "Au revoir ! Revenez vite !"}]},
+    {"t": "No importa. Al final he comido muy bien. ¡Adiós!", "fr": "Ce n'est pas grave. Finalement, j'ai très bien mangé. Au revoir !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Me alegro! ¡Adiós, hasta pronto!", "fr": "Tant mieux ! Au revoir, à bientôt !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as dit poliment {problema_fr}, obtenu une solution et reçu un petit cadeau de la maison."}
+}

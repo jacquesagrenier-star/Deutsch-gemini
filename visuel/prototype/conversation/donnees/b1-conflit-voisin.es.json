@@ -1,0 +1,159 @@
+{
+ "id": "b1-conflit-voisin",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "La voisine du dessous n'est pas contente"},
+ "intro": {"fr": "Dimanche matin à Madrid. La voisine du dessous sonne chez toi : de l'eau coule de ton balcon sur le sien. Présente tes excuses, explique-toi et trouve une solution avec elle."},
+ "bilan": {"fr": "Tu as présenté tes excuses, {sol_fr}, {paz_fr}. Pour la machine à laver, vous avez trouvé un accord : {acuerdo_fr}. Entre voisins, tout s'arrange en parlant."},
+ "personnes": ["nachbarin_unten"],
+ "debut": "puerta",
+ "textes": {
+  "sol_fr": {"cle": "sol", "platos": "promis de mettre des soucoupes sous les pots", "noche": "promis d'arroser le soir", "avisar": "promis de prévenir avant de laver le balcon", "fregona": "promis d'utiliser moins d'eau"},
+  "paz_fr": {"cle": "paz", "tintoreria": "et proposé de payer le pressing du chemisier", "cafe": "et invité ta voisine à prendre un café"},
+  "acuerdo_fr": {"cle": "acuerdo", "manana": "elle tournera le matin", "nueve": "elle tournera au plus tard à neuf heures et demie du soir"}
+ },
+ "noeuds": {
+  "puerta": {
+   "dit": [
+    {"recit": {"fr": "Dimanche, dix heures du matin. On sonne. Tu ouvres : c'est ta voisine du dessous, un chemisier mouillé à la main."}},
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Buenos días. Soy su vecina de abajo. Mire, cada vez que hay agua en su balcón, me cae a mí encima de la ropa tendida.", "fr": "Bonjour. Je suis votre voisine du dessous. Écoutez, chaque fois qu'il y a de l'eau sur votre balcon, elle me tombe sur le linge qui sèche."},
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Y hoy me ha manchado esta blusa blanca.", "fr": "Et aujourd'hui, elle a taché ce chemisier blanc."}
+   ],
+   "choix": [
+    {"t": "¡Ay, lo siento muchísimo! No sabía que el agua caía en su balcón.", "fr": "Oh, je regrette vraiment ! Je ne savais pas que l'eau tombait sur votre balcon.", "va": "explicar"},
+    {"t": "Perdone, de verdad. No me había dado cuenta de que le caía agua.", "fr": "Excusez-moi, vraiment. Je ne m'étais pas rendu compte que l'eau vous tombait dessus.", "va": "explicar"},
+    {"faux": true, "t": "Bueno, es solo agua. No es para tanto.", "fr": "Bon, ce n'est que de l'eau. Il n'y a pas de quoi en faire une histoire.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Que no es para tanto? ¡Mire cómo está mi blusa!", "fr": "Pas de quoi en faire une histoire ? Regardez l'état de mon chemisier !"}],
+     "aide": {"fr": "<b>Trop brusque.</b> La voisine est contrariée et elle a raison : commence par des excuses, « Lo siento muchísimo » ou « Perdone, de verdad »."}},
+    {"faux": true, "t": "Me excuso, no lo sabía.", "fr": "Je m'excuse, je ne le savais pas.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Que se excusa? ¿De qué, de no venir a algo? Con un «lo siento» me basta.", "fr": "Vous vous excusez ? De quoi, de ne pas venir à quelque chose ? Un « lo siento » me suffit."}],
+     "aide": {"fr": "<b>« Je m'excuse » ne se dit pas « me excuso ».</b> « Excusarse », c'est plutôt se faire excuser (de ne pas venir, par exemple). Pour demander pardon : « Lo siento » ou « Perdone »."}}
+   ]
+  },
+  "explicar": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "Bueno… ¿Y qué ha pasado exactamente? Porque no es la primera vez.", "fr": "Bon… Et qu'est-ce qui s'est passé exactement ? Parce que ce n'est pas la première fois."}
+   ],
+   "choix": [
+    {"t": "He regado las plantas esta mañana y creo que he echado demasiada agua.", "fr": "J'ai arrosé les plantes ce matin et je crois que j'ai mis trop d'eau.", "pose": {"causa": "plantas"}, "va": "solucion",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Ya decía yo. Sus macetas están justo encima de mi tendedero.", "fr": "Je m'en doutais. Vos pots sont juste au-dessus de mon étendoir."}]},
+    {"t": "He fregado el suelo del balcón y el agua se ha escapado por un lado.", "fr": "J'ai lavé le sol du balcon et l'eau s'est échappée sur le côté.", "pose": {"causa": "suelo"}, "va": "solucion",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Claro, con un cubo entero de agua… Todo eso baja a mi balcón.", "fr": "Évidemment, avec un seau d'eau entier… Tout ça descend sur mon balcon."}]},
+    {"faux": true, "t": "He arrosado las plantas esta mañana.", "fr": "J'ai « arrosé » les plantes ce matin.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Arrosado? No le entiendo… ¿Quiere decir que las ha regado?", "fr": "« Arrosado » ? Je ne vous comprends pas… Vous voulez dire que vous les avez arrosées ?"}],
+     "aide": {"fr": "<b>Arroser = regar.</b> « Arrosar » n'existe pas en espagnol. On dit « He regado las plantas »."}}
+   ]
+  },
+  "solucion": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Pues algo hay que hacer, porque yo tiendo la ropa ahí todos los días.", "fr": "Eh bien, il faut faire quelque chose, parce que j'étends mon linge là tous les jours."}
+   ],
+   "choix": [
+    {"si": {"causa": "plantas"}, "t": "Voy a poner platos debajo de las macetas para que no caiga más agua.", "fr": "Je vais mettre des soucoupes sous les pots pour qu'il ne tombe plus d'eau.", "pose": {"sol": "platos"}, "va": "blusa"},
+    {"si": {"causa": "plantas"}, "t": "A partir de ahora regaré por la noche, cuando ya no haya ropa tendida.", "fr": "À partir de maintenant, j'arroserai le soir, quand il n'y aura plus de linge étendu.", "pose": {"sol": "noche"}, "va": "blusa"},
+    {"si": {"causa": "suelo"}, "t": "La próxima vez le avisaré antes de fregar, para que pueda recoger la ropa.", "fr": "La prochaine fois, je vous préviendrai avant de laver, pour que vous puissiez rentrer le linge.", "pose": {"sol": "avisar"}, "va": "blusa"},
+    {"si": {"causa": "suelo"}, "t": "Usaré mucha menos agua y secaré el suelo enseguida con la fregona.", "fr": "J'utiliserai beaucoup moins d'eau et je sécherai le sol tout de suite avec la serpillière.", "pose": {"sol": "fregona"}, "va": "blusa"},
+    {"faux": true, "t": "Voy a hacer atención.", "fr": "Je vais faire attention.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Hacer atención? Supongo que quiere decir que tendrá cuidado… Pero ¿qué va a hacer, en concreto?", "fr": "« Hacer atención » ? Je suppose que vous voulez dire que vous ferez attention… Mais qu'allez-vous faire, concrètement ?"}],
+     "aide": {"fr": "<b>Faire attention = tener cuidado.</b> « Hacer atención » est un calque du français. Et la voisine attend une solution concrète."}}
+   ]
+  },
+  "blusa": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "De acuerdo, eso me parece razonable.", "fr": "D'accord, cela me paraît raisonnable."},
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Pero mire cómo ha quedado la blusa… Y era nueva.", "fr": "Mais regardez dans quel état est le chemisier… Et il était neuf."}
+   ],
+   "choix": [
+    {"t": "Déjeme pagarle la tintorería, por favor. Es lo mínimo que puedo hacer.", "fr": "Laissez-moi vous payer le pressing, s'il vous plaît. C'est le moins que je puisse faire.", "pose": {"paz": "tintoreria"}, "va": "tintoreria"},
+    {"t": "¿Por qué no sube esta tarde a tomar un café? He hecho un bizcocho.", "fr": "Pourquoi ne montez-vous pas prendre un café cet après-midi ? J'ai fait un gâteau.", "pose": {"paz": "cafe"}, "va": "cafe"},
+    {"faux": true, "t": "No te preocupes, te pago la tintorería.", "fr": "T'inquiète pas, je te paie le pressing.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Cómo dice? No recuerdo que usted y yo nos tuteemos.", "fr": "Comment dites-vous ? Je ne me souviens pas que nous nous tutoyions, vous et moi."}],
+     "aide": {"fr": "<b>À une voisine qu'on connaît à peine, et qui est contrariée, on garde « usted ».</b> « No se preocupe, le pago la tintorería. »"}}
+   ]
+  },
+  "tintoreria": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "sourire", "t": "Se lo agradezco. Hay una tintorería en la esquina; no creo que cueste más de 8 euros.", "dit": "Se lo agradezco. Hay una tintorería en la esquina; no creo que cueste más de ocho euros.", "fr": "Je vous en remercie. Il y a un pressing au coin de la rue ; je ne crois pas que cela coûte plus de 8 euros."}
+   ],
+   "choix": [
+    {"t": "Perfecto. Tráigame el recibo cuando la recoja y se lo pago enseguida.", "fr": "Parfait. Apportez-moi le reçu quand vous le récupérerez et je vous le paie tout de suite.", "va": "lavadora",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Muy bien, así lo haremos.", "fr": "Très bien, nous ferons comme ça."}]},
+    {"t": "Si quiere, la llevo yo mañana antes de ir a trabajar.", "fr": "Si vous voulez, je l'y porte moi-même demain avant d'aller travailler.", "va": "lavadora",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Pues mire, me hace un favor. Mañana no tengo ni un minuto.", "fr": "Eh bien, vous me rendez service. Demain, je n'ai pas une minute."}]},
+    {"faux": true, "t": "Perfecto. Lléveme el recibo y se lo pago.", "fr": "Parfait. « Emportez-moi » le reçu et je vous le paie.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Que se lo lleve? ¿Adónde? Ah, que se lo traiga aquí, a su casa.", "fr": "Que je vous l'emporte ? Où ça ? Ah, que je vous l'apporte ici, chez vous."}],
+     "aide": {"fr": "<b>Traer = apporter ici ; llevar = emporter là-bas.</b> Le reçu vient vers toi : « Tráigame el recibo »."}}
+   ]
+  },
+  "cafe": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "surprise", "t": "¿Un café? Vaya… Hace años que nadie de esta casa me invita. ¿A qué hora le viene bien?", "fr": "Un café ? Ça alors… Cela fait des années que personne de cet immeuble ne m'invite. À quelle heure cela vous convient-il ?"}
+   ],
+   "choix": [
+    {"t": "¿Le parece bien a las cinco? Así probamos el bizcocho juntos.", "fr": "À cinq heures, ça vous va ? Comme ça, nous goûterons le gâteau ensemble.", "va": "lavadora",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "A las cinco, entonces. Y la blusa, ya la lavaré yo con un poco de limón.", "fr": "À cinq heures, alors. Et le chemisier, je le laverai moi-même avec un peu de citron."}]},
+    {"t": "Cuando usted quiera. Estaré en casa toda la tarde.", "fr": "Quand vous voudrez. Je serai à la maison tout l'après-midi.", "va": "lavadora",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Pues subo a las cinco. Y la blusa, ya la lavaré yo con un poco de limón.", "fr": "Alors je monte à cinq heures. Et le chemisier, je le laverai moi-même avec un peu de citron."}]},
+    {"faux": true, "t": "A las cinco horas, si quiere.", "fr": "« À cinq heures », si vous voulez.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Cinco horas? ¿Tanto va a durar el café?", "fr": "Cinq heures ? Le café va durer si longtemps ?"}],
+     "aide": {"fr": "<b>À cinq heures = a las cinco</b>, sans « horas ». « Cinco horas » est une durée : cinq heures de temps."}}
+   ]
+  },
+  "lavadora": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Ya que estamos, hay otra cosa: su lavadora. A veces centrifuga a las doce de la noche y no me deja dormir.", "fr": "Tant que nous y sommes, il y a autre chose : votre machine à laver. Parfois, elle essore à minuit et elle m'empêche de dormir."}
+   ],
+   "choix": [
+    {"t": "Tiene razón, perdone. Es que salgo tarde del trabajo y no tengo otro momento.", "fr": "Vous avez raison, excusez-moi. C'est que je sors tard du travail et je n'ai pas d'autre moment.", "va": "norma"},
+    {"t": "Lo siento. Vuelvo de trabajar a las diez y no pensaba que se oyera tanto.", "fr": "Je regrette. Je rentre du travail à dix heures et je ne pensais pas qu'on l'entendait autant.", "va": "norma"},
+    {"faux": true, "t": "Lo siento, pero soy en el trabajo hasta las diez.", "fr": "Je regrette, mais je suis au travail jusqu'à dix heures.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Cómo? Ah, que está en el trabajo hasta las diez.", "fr": "Comment ? Ah, que vous êtes au travail jusqu'à dix heures."}],
+     "aide": {"fr": "<b>Pour dire où l'on se trouve : estar.</b> « Estoy en el trabajo hasta las diez », jamais « soy »."}},
+    {"repete": true, "t": "Perdone, ¿puede repetirlo? No he entendido lo de la lavadora.", "fr": "Excusez-moi, pouvez-vous répéter ? Je n'ai pas compris, pour la machine à laver.", "va": "lavadora",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Que su lavadora hace mucho ruido por la noche, cuando da vueltas muy rápido. Y yo me acuesto pronto.", "fr": "Que votre machine à laver fait beaucoup de bruit la nuit, quand elle tourne très vite. Et moi, je me couche tôt."}]}
+   ]
+  },
+  "norma": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "Lo entiendo, pero las normas de la comunidad son claras: nada de ruido a partir de las 11 de la noche.", "dit": "Lo entiendo, pero las normas de la comunidad son claras: nada de ruido a partir de las once de la noche.", "fr": "Je comprends, mais le règlement de la copropriété est clair : pas de bruit à partir de 11 heures du soir."}
+   ],
+   "choix": [
+    {"t": "De acuerdo. Pondré la lavadora por la mañana, antes de salir de casa.", "fr": "D'accord. Je ferai tourner la machine le matin, avant de partir.", "pose": {"acuerdo": "manana"}, "va": "consejo",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Por la mañana no molesta a nadie. Muchas gracias.", "fr": "Le matin, elle ne dérange personne. Merci beaucoup."}]},
+    {"t": "¿Y si la pongo como muy tarde a las nueve y media?", "fr": "Et si je la lance au plus tard à neuf heures et demie ?", "pose": {"acuerdo": "nueve"}, "va": "negociar"},
+    {"faux": true, "t": "Pero es mi lavadora, y en mi casa hago lo que quiero.", "fr": "Mais c'est ma machine, et chez moi je fais ce que je veux.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "En su casa, sí. Pero mi dormitorio está justo debajo…", "fr": "Chez vous, oui. Mais ma chambre est juste en dessous…"}],
+     "aide": {"fr": "<b>Trop brusque : vous étiez en train de vous entendre.</b> Accepte la règle (« Pondré la lavadora por la mañana ») ou propose un horaire (« ¿Y si la pongo… ? »)."}}
+   ]
+  },
+  "negociar": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "A las nueve y media… Mientras termine antes de las once, por mí no hay problema.", "fr": "À neuf heures et demie… Tant qu'elle finit avant onze heures, pour moi, il n'y a pas de problème."}
+   ],
+   "choix": [
+    {"t": "Trato hecho. Y si algún día la oye más tarde, dígamelo, por favor.", "fr": "Marché conclu. Et si un jour vous l'entendez plus tard, dites-le-moi, s'il vous plaît.", "va": "consejo"},
+    {"t": "Muchas gracias por entenderlo. Le prometo que terminará antes de las once.", "fr": "Merci beaucoup de votre compréhension. Je vous promets qu'elle finira avant onze heures.", "va": "consejo"},
+    {"faux": true, "t": "Gracias, usted es muy gentil.", "fr": "Merci, vous êtes très gentille.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "¿Gentil? ¡Qué palabra tan de novela! Aquí decimos «amable».", "fr": "« Gentil » ? Quel mot de roman ! Ici, nous disons « amable »."}],
+     "aide": {"fr": "<b>Gentil = amable.</b> « Gentil » existe en espagnol, mais c'est un mot littéraire. « Es usted muy amable. »"}}
+   ]
+  },
+  "consejo": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "sourire", "t": "Así da gusto. Mire, un consejo: en esta casa todo se arregla hablando. Si necesita algo, llame a mi puerta.", "fr": "Voilà qui fait plaisir. Tenez, un conseil : dans cet immeuble, tout s'arrange en parlant. Si vous avez besoin de quelque chose, frappez à ma porte."},
+    {"si": {"paz": "cafe"}, "qui": "nachbarin_unten", "air": "sourire", "t": "Y a las cinco subo a probar ese bizcocho.", "fr": "Et à cinq heures, je monte goûter ce gâteau."},
+    {"si": {"paz": "tintoreria"}, "qui": "nachbarin_unten", "air": "sourire", "t": "Y gracias por lo de la blusa. No todo el mundo lo haría.", "fr": "Et merci pour le chemisier. Tout le monde ne le ferait pas."}
+   ],
+   "choix": [
+    {"t": "Lo mismo le digo. Si necesita ayuda con la compra, aquí me tiene.", "fr": "Je vous dis la même chose. Si vous avez besoin d'aide pour les courses, je suis là.", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "¡Qué amable! Pues hasta luego, y buen domingo.", "fr": "Comme c'est aimable ! Alors à plus tard, et bon dimanche."}]},
+    {"t": "Muchas gracias. Me alegro de que lo hayamos hablado.", "fr": "Merci beaucoup. Ça me fait plaisir que nous en ayons parlé.", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Yo también. Hasta luego, y buen domingo.", "fr": "Moi aussi. À plus tard, et bon dimanche."}]},
+    {"faux": true, "t": "Gracias para el consejo.", "fr": "Merci pour le conseil.",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Gracias por el consejo, querrá decir. De nada.", "fr": "« Gracias por el consejo », voulez-vous dire. De rien."}],
+     "aide": {"fr": "<b>Merci pour… = gracias por…</b>, jamais « para ». « Gracias por el consejo. »"}}
+   ]
+  }
+ }
+}

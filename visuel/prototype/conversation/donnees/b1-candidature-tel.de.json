@@ -1,0 +1,152 @@
+{
+ "id": "b1-candidature-tel",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Appeler pour une offre d'emploi"},
+ "intro": {"fr": "Un garage de Neukölln cherche quelqu'un pour l'accueil et le bureau. Tu appelles : renseigne-toi sur le poste, note l'adresse courriel et fixe un rendez-vous."},
+ "personnes": ["b11_garagiste"],
+ "debut": "anruf",
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Tu composes le numéro de l'annonce. Ça sonne deux fois, puis quelqu'un décroche."}},
+    {"qui": "b11_garagiste", "air": "sourire", "t": "Kfz-Werkstatt Morales, guten Tag! Was kann ich für Sie tun?", "dit": "Ka-eff-zett-Werkstatt Morales, guten Tag! Was kann ich für Sie tun?", "fr": "Garage Morales, bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich rufe wegen Ihrer Anzeige im Internet an.", "fr": "Bonjour. J'appelle au sujet de votre annonce sur internet.", "pose": {"quelle": "anzeige"}, "va": "frei",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Ach ja, die Stelle im Büro. Schön, dass Sie anrufen!", "fr": "Ah oui, le poste au bureau. C'est bien que vous appeliez !"}]},
+    {"t": "Guten Tag. Ein Freund hat mir erzählt, dass Sie jemanden fürs Büro suchen.", "fr": "Bonjour. Un ami m'a dit que vous cherchiez quelqu'un pour le bureau.", "pose": {"quelle": "freund"}, "va": "frei",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Das stimmt, das spricht sich ja schnell herum! Ich bin Frau Morales, die Chefin.", "fr": "C'est vrai, les nouvelles vont vite ! Je suis Mme Morales, la patronne."}]},
+    {"faux": true, "t": "Guten Tag. Ich rufe für Ihre Anzeige an.", "fr": "Bonjour. J'appelle pour votre annonce.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "Für unsere Anzeige? … Ach so, Sie rufen wegen der Stelle an!", "fr": "Pour notre annonce ?… Ah, vous appelez au sujet du poste !"}],
+     "aide": {"fr": "« J'appelle pour… » se dit avec <b>« wegen »</b> (à cause de, au sujet de), pas avec « für » : « Ich rufe <b>wegen</b> Ihrer Anzeige an. »"}}
+   ]
+  },
+  "frei": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Was möchten Sie denn wissen?", "fr": "Qu'est-ce que vous aimeriez savoir ?"}],
+   "choix": [
+    {"t": "Ist die Stelle denn noch frei?", "fr": "Le poste est-il encore libre ?", "va": "buero",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Ja, die ist noch frei. Wir suchen jemanden für den Empfang: Termine machen, ans Telefon gehen, Rechnungen schreiben.", "fr": "Oui, il est encore libre. Nous cherchons quelqu'un pour l'accueil : prendre les rendez-vous, répondre au téléphone, faire les factures."}]},
+    {"t": "Ich wollte fragen, ob Sie noch jemanden suchen.", "fr": "Je voulais vous demander si vous cherchiez encore quelqu'un.", "va": "buero",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Ja, wir suchen noch. Es geht um den Empfang: Termine machen, ans Telefon gehen, Rechnungen schreiben.", "fr": "Oui, nous cherchons toujours. Il s'agit de l'accueil : prendre les rendez-vous, répondre au téléphone, faire les factures."}]},
+    {"faux": true, "t": "Ich wollte fragen, wenn die Stelle noch frei ist.", "fr": "Je voulais demander si le poste est encore libre.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "Wenn sie frei ist …? Ach, Sie fragen, ob sie noch frei ist!", "fr": "Quand il sera libre… ? Ah, vous demandez s'il est encore libre !"}],
+     "aide": {"fr": "Le « si » d'une question indirecte se dit <b>« ob »</b>, pas « wenn » : « Ich wollte fragen, <b>ob</b> die Stelle noch frei ist. »"}}
+   ]
+  },
+  "buero": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Haben Sie denn schon einmal in einem Büro gearbeitet?", "fr": "Avez-vous déjà travaillé dans un bureau ?"}],
+   "choix": [
+    {"t": "Ja, ich habe drei Jahre im Büro einer kleinen Firma gearbeitet.", "fr": "Oui, j'ai travaillé trois ans dans le bureau d'une petite entreprise.", "va": "telefon",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sehr gut, dann kennen Sie die Arbeit ja schon.", "fr": "Très bien, alors vous connaissez déjà le travail."}]},
+    {"t": "Nein, aber ich habe an der Rezeption eines Hotels gearbeitet.", "fr": "Non, mais j'ai travaillé à la réception d'un hôtel.", "va": "computer",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "An der Rezeption? Das ist gar nicht so anders: Dort telefoniert man auch viel.", "fr": "À la réception ? Ce n'est pas si différent : là aussi, on téléphone beaucoup."}]},
+    {"t": "Im Büro nicht, aber ich habe in einem Geschäft Kunden beraten.", "fr": "Dans un bureau, non, mais j'ai conseillé des clients dans un magasin.", "va": "computer",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Erfahrung mit Kunden, das ist schon viel wert.", "fr": "L'expérience des clients, ça compte déjà beaucoup."}]},
+    {"faux": true, "t": "Ja, ich habe seit drei Jahren in einem Büro gearbeitet.", "fr": "Oui, j'ai travaillé depuis trois ans dans un bureau.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "Arbeiten Sie dort noch, oder ist das schon vorbei?", "fr": "Vous y travaillez encore, ou c'est déjà fini ?"}],
+     "aide": {"fr": "<b>« seit »</b> va avec le présent, pour ce qui dure encore : « Ich arbeite seit drei Jahren… ». Pour une période terminée, pas de « seit » : « Ich habe drei Jahre in einem Büro gearbeitet. »"}}
+   ]
+  },
+  "telefon": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "Bei uns klingelt das Telefon den ganzen Tag, und manche Kunden sind ziemlich ungeduldig. Ist das in Ordnung für Sie?", "fr": "Chez nous, le téléphone sonne toute la journée, et certains clients sont assez impatients. Ça vous va ?"}],
+   "choix": [
+    {"t": "Ja, das macht mir nichts aus. Ich telefoniere gern.", "fr": "Oui, ça ne me dérange pas. J'aime bien téléphoner.", "va": "zeiten",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Das hört man – Sie klingen sehr freundlich am Telefon.", "fr": "Ça s'entend : vous êtes très aimable au téléphone."}]},
+    {"t": "Kein Problem. Am Telefon bleibe ich immer ruhig und freundlich.", "fr": "Aucun problème. Au téléphone, je reste toujours calme et aimable.", "va": "zeiten",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Genau das brauchen wir hier.", "fr": "C'est exactement ce qu'il nous faut ici."}]},
+    {"faux": true, "t": "Das ist mir egal.", "fr": "Ça m'est égal.",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "Egal? Hm … Ein bisschen Freude am Telefonieren wäre schon gut.", "fr": "Égal ? Hum… Un peu de plaisir à téléphoner, ce serait quand même bien."}],
+     "aide": {"fr": "<b>« Das ist mir egal »</b> sonne indifférent, presque impoli. Pour dire que ça ne te dérange pas : « Das macht mir nichts aus. »"}}
+   ]
+  },
+  "computer": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Und wie gut kommen Sie mit dem Computer zurecht? Die Rechnungen und die Termine machen wir alle am PC.", "dit": "Und wie gut kommen Sie mit dem Computer zurecht? Die Rechnungen und die Termine machen wir alle am Pe-Ce.", "fr": "Et comment vous débrouillez-vous avec l'ordinateur ? Les factures et les rendez-vous, nous faisons tout sur ordinateur."}],
+   "choix": [
+    {"t": "Ganz gut. Ich schreibe oft Texte und E-Mails am Computer.", "fr": "Plutôt bien. J'écris souvent des textes et des courriels à l'ordinateur.", "va": "zeiten",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Das reicht völlig. Unser Programm ist einfach, das zeige ich Ihnen.", "fr": "C'est largement suffisant. Notre logiciel est simple, je vous le montrerai."}]},
+    {"t": "Ich kenne die normalen Programme und lerne neue schnell.", "fr": "Je connais les logiciels courants et j'apprends vite les nouveaux.", "va": "zeiten",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sehr schön. Unser Programm ist einfach, das zeige ich Ihnen.", "fr": "Très bien. Notre logiciel est simple, je vous le montrerai."}]},
+    {"faux": true, "t": "Ich bin gut in Informatik.", "fr": "Je suis bon(ne) en informatique.",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "In Informatik? Programmieren müssen Sie bei uns nicht, nur Rechnungen schreiben!", "fr": "En informatique ? Vous n'aurez pas à programmer chez nous, juste à faire des factures !"}],
+     "aide": {"fr": "<b>« Informatik »</b>, c'est la science (programmer, étudier l'informatique). Pour dire que tu te débrouilles : « Ich komme gut mit dem Computer zurecht » ou « Ich kenne die normalen Programme. »"}}
+   ]
+  },
+  "zeiten": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Haben Sie denn Fragen zur Stelle?", "fr": "Avez-vous des questions sur le poste ?"}],
+   "choix": [
+    {"t": "Ja. Ist das eine Vollzeitstelle oder Teilzeit?", "fr": "Oui. C'est un poste à temps plein ou à temps partiel ?", "va": "lebenslauf",
+     "puis": [{"qui": "b11_garagiste", "air": "attentive", "t": "Teilzeit, dreißig Stunden pro Woche: montags bis freitags von acht bis vierzehn Uhr. Samstags ist das Büro geschlossen.", "fr": "Temps partiel, trente heures par semaine : du lundi au vendredi, de huit heures à quatorze heures. Le samedi, le bureau est fermé."}]},
+    {"t": "Ja. Wie sind denn die Arbeitszeiten?", "fr": "Oui. Quels sont les horaires de travail ?", "va": "lebenslauf",
+     "puis": [{"qui": "b11_garagiste", "air": "attentive", "t": "Montags bis freitags von acht bis vierzehn Uhr, also dreißig Stunden pro Woche. Samstags ist das Büro geschlossen.", "fr": "Du lundi au vendredi, de huit heures à quatorze heures, donc trente heures par semaine. Le samedi, le bureau est fermé."}]},
+    {"faux": true, "t": "Ja. Zu welcher Uhr fange ich an?", "fr": "Oui. À quelle heure est-ce que je commence ?",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Um wie viel Uhr, meinen Sie? Morgens um acht.", "fr": "À quelle heure, vous voulez dire ? À huit heures du matin."}],
+     "aide": {"fr": "« À quelle heure ? » se dit <b>« Um wie viel Uhr? »</b>. Pour les horaires en général : « Wie sind die Arbeitszeiten? »"}}
+   ]
+  },
+  "lebenslauf": {
+   "dit": [{"qui": "b11_garagiste", "air": "sourire", "t": "Dann schicken Sie mir doch bitte Ihren Lebenslauf per E-Mail.", "fr": "Alors envoyez-moi votre CV par courriel, s'il vous plaît."}],
+   "choix": [
+    {"t": "Gern. An welche Adresse soll ich ihn schicken?", "fr": "Volontiers. À quelle adresse dois-je l'envoyer ?", "va": "adresse"},
+    {"t": "Sehr gern. Könnten Sie mir bitte Ihre E-Mail-Adresse geben?", "fr": "Très volontiers. Pourriez-vous me donner votre adresse courriel, s'il vous plaît ?", "va": "adresse"},
+    {"faux": true, "t": "Gern. Was ist deine E-Mail-Adresse?", "fr": "Volontiers. C'est quoi, ton adresse courriel ?",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "Oh … Wir kennen uns ja noch gar nicht. Meine Adresse sage ich Ihnen gern.", "fr": "Oh… Nous ne nous connaissons pas encore. Mon adresse, je vous la donne volontiers."}],
+     "aide": {"fr": "<b>« deine »</b>, c'est le tutoiement. On vouvoie une future patronne : « Könnten Sie mir bitte <b>Ihre</b> E-Mail-Adresse geben? »"}}
+   ]
+  },
+  "adresse": {
+   "dit": [
+    {"recit": {"fr": "Tu prends un stylo. La ligne grésille un peu."}},
+    {"qui": "b11_garagiste", "air": "attentive", "t": "Also: buero@werkstatt-morales.de. „buero“ schreibt man mit u-e.", "dit": "Also: buero, ät, werkstatt, Bindestrich, morales, Punkt d e. buero schreibt man mit u, e.", "fr": "Alors : buero@werkstatt-morales.de. « buero » s'écrit avec u-e."}
+   ],
+   "choix": [
+    {"t": "Ich wiederhole: buero, at, werkstatt, Bindestrich, morales, Punkt de. Stimmt das?", "dit": "Ich wiederhole: buero, ät, werkstatt, Bindestrich, morales, Punkt d e. Stimmt das?", "fr": "Je répète : buero, arobase, werkstatt, tiret, morales, point de. C'est bien ça ?", "va": "termin",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Genau richtig!", "fr": "Exactement !"}]},
+    {"t": "Schreibt man „buero“ mit u-e? Und dann werkstatt, Bindestrich, morales?", "dit": "Schreibt man buero mit u, e? Und dann werkstatt, Bindestrich, morales?", "fr": "« buero » s'écrit avec u-e ? Et ensuite werkstatt, tiret, morales ?", "va": "termin",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Ja, genau: mit u-e, und am Ende Punkt d-e.", "dit": "Ja, genau: mit u, e, und am Ende Punkt d e.", "fr": "Oui, c'est ça : avec u-e, et à la fin, point d-e."}]},
+    {"faux": true, "t": "Ich wiederhole: buero, at, werkstatt, Unterstrich, morales, Punkt de.", "dit": "Ich wiederhole: buero, ät, werkstatt, Unterstrich, morales, Punkt d e.", "fr": "Je répète : buero, arobase, werkstatt, tiret bas, morales, point de.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "Nein, nein: Bindestrich, nicht Unterstrich! Der kleine Strich in der Mitte.", "fr": "Non, non : tiret, pas tiret bas ! Le petit trait au milieu."}],
+     "aide": {"fr": "<b>« Bindestrich »</b>, c'est le tiret (-). <b>« Unterstrich »</b>, c'est le tiret bas (_). Et @ se dit « at » (prononcé « ät »), le point « Punkt »."}},
+    {"repete": true, "t": "Entschuldigung, die Verbindung ist schlecht. Könnten Sie das bitte wiederholen?", "fr": "Excusez-moi, la ligne est mauvaise. Pourriez-vous répéter, s'il vous plaît ?", "va": "adresse",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Natürlich, ganz langsam: buero … at … werkstatt … Bindestrich … morales … Punkt d-e.", "dit": "Natürlich, ganz langsam: buero, ät, werkstatt, Bindestrich, morales, Punkt d e.", "fr": "Bien sûr, tout doucement : buero… arobase… werkstatt… tiret… morales… point d-e."}]}
+   ]
+  },
+  "termin": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Ich würde Sie auch gern persönlich kennenlernen. Könnten Sie am Mittwoch um zehn Uhr vorbeikommen?", "fr": "J'aimerais aussi faire votre connaissance. Pourriez-vous passer mercredi à dix heures ?"}],
+   "choix": [
+    {"t": "Ja, Mittwoch um zehn passt mir gut.", "fr": "Oui, mercredi à dix heures, ça me convient.", "pose": {"tag": "mi"}, "va": "ende"},
+    {"t": "Am Mittwoch kann ich leider nicht. Ginge es auch am Donnerstag?", "fr": "Mercredi, malheureusement, je ne peux pas. Ce serait possible jeudi ?", "va": "donnerstag"},
+    {"faux": true, "t": "Mittwoch geht nicht, ich habe ein Rendezvous.", "fr": "Mercredi, ça ne va pas, j'ai un rendez-vous.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "Ein Rendezvous? Na, da will ich nicht stören! Oder meinen Sie einen Termin?", "fr": "Un rendez-vous galant ? Alors je ne veux pas déranger ! Ou vous voulez dire un rendez-vous tout court ?"}],
+     "aide": {"fr": "En allemand, <b>« ein Rendezvous »</b> est un rendez-vous amoureux. Chez le médecin, au travail : <b>« ein Termin »</b>. Dis plutôt : « Am Mittwoch kann ich leider nicht. »"}}
+   ]
+  },
+  "donnerstag": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "Donnerstag … Vormittags bin ich mit einem Auto beim TÜV, aber um fünfzehn Uhr hätte ich Zeit. Passt Ihnen das?", "fr": "Jeudi… Le matin, je suis au contrôle technique avec une voiture, mais à quinze heures, j'aurais le temps. Ça vous convient ?"}],
+   "choix": [
+    {"t": "Ja, Donnerstag um fünfzehn Uhr passt perfekt. Vielen Dank!", "fr": "Oui, jeudi à quinze heures, c'est parfait. Merci beaucoup !", "pose": {"tag": "do"}, "va": "ende"},
+    {"t": "Nachmittags ist gut. Dann komme ich am Donnerstag um drei.", "fr": "L'après-midi, c'est bien. Alors je viens jeudi à trois heures.", "pose": {"tag": "do"}, "va": "ende"},
+    {"faux": true, "t": "Ja, ich komme um fünfzehn Stunden.", "fr": "Oui, je viens à quinze heures.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "Fünfzehn Stunden? So lange dauert unser Gespräch nicht! Um fünfzehn Uhr, ja?", "fr": "Quinze heures de temps ? Notre entretien ne durera pas si longtemps ! À quinze heures, d'accord ?"}],
+     "aide": {"fr": "<b>« Stunden »</b>, c'est une durée (quinze heures de temps). L'heure qu'il est se dit avec <b>« Uhr »</b> : « um fünfzehn Uhr »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "b11_garagiste", "air": "sourire", "si": {"tag": "mi"}, "t": "Prima, dann bis Mittwoch um zehn. Die Werkstatt ist im Hof, das Büro gleich links.", "fr": "Parfait, alors à mercredi, dix heures. Le garage est dans la cour, le bureau tout de suite à gauche."},
+    {"qui": "b11_garagiste", "air": "sourire", "si": {"tag": "do"}, "t": "Prima, dann bis Donnerstag um fünfzehn Uhr. Die Werkstatt ist im Hof, das Büro gleich links.", "fr": "Parfait, alors à jeudi, quinze heures. Le garage est dans la cour, le bureau tout de suite à gauche."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank, Frau Morales. Ich schicke Ihnen den Lebenslauf noch heute.", "fr": "Merci beaucoup, madame Morales. Je vous envoie le CV aujourd'hui même.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sehr gut, ich freue mich darauf. Auf Wiederhören!", "fr": "Très bien, je l'attends avec plaisir. Au revoir !"}]},
+    {"t": "Danke für das nette Gespräch. Auf Wiederhören!", "fr": "Merci pour cette conversation agréable. Au revoir !", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Gern. Und vergessen Sie den Lebenslauf nicht. Auf Wiederhören!", "fr": "Avec plaisir. Et n'oubliez pas le CV. Au revoir !"}]},
+    {"faux": true, "t": "Danke. Ich schicke Ihnen den Lebenslauf heute Nacht.", "fr": "Merci. Je vous envoie le CV cette nuit.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "Heute Nacht? Schlafen Sie lieber! Heute Abend reicht völlig.", "fr": "Cette nuit ? Dormez plutôt ! Ce soir, ça suffit largement."}],
+     "aide": {"fr": "<b>« heute Nacht »</b>, c'est cette nuit, quand on dort. « Ce soir » se dit <b>« heute Abend »</b> ; « aujourd'hui même » : « noch heute »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as appelé pour une offre d'emploi : tu as dit pourquoi tu appelais, parlé de ton expérience, noté une adresse courriel épelée au téléphone et fixé un entretien."}
+}

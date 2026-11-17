@@ -25,8 +25,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -605,12 +605,12 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -712,7 +712,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le métro",
-   "en": "the underground",
+   "en": "the subway",
    "pt": "o metrô",
    "ar": "مترو",
    "pl": "metro",
@@ -824,7 +824,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",

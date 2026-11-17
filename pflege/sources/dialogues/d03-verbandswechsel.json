@@ -1,0 +1,147 @@
+{
+ "id": "d03-verbandswechsel",
+ "numero": 3,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["lehmann"],
+ "titre": {"t": "Eine Maßnahme erklären", "fr": "Expliquer un soin avant de le faire"},
+ "intro": {"fr": "{lehmann}, diabétique, a une plaie au pied droit. C'est l'heure du changement de pansement. Tu joues {elif} : annonce le soin, demande son accord, explique les étapes dans l'ordre, préviens de la gêne et rassure-la pendant."},
+ "but": {"fr": "Annoncer un soin et obtenir l'accord ; expliquer un déroulement (zuerst, dann, danach, zum Schluss) ; prévenir sans mentir ; décrire une plaie avec des mots neutres."},
+ "grammaire": ["g02", "g10", "g12"],
+ "telc": ["oral-2", "oral-1"],
+ "relire_notes": {"fr": "Ordre des gestes du changement de pansement (hygiène des mains, gants, retrait de l'ancien pansement, nettoyage, pansement stérile) ; fréquence quotidienne (selon le type de pansement) ; description de la plaie (« reizlos », non rouge)."},
+ "redemittel": [
+  {"t": "Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?", "fr": "Je voudrais changer votre pansement maintenant. Vous êtes d'accord ?", "fonction": "annoncer"},
+  {"t": "Zuerst desinfiziere ich mir die Hände, dann nehme ich den alten Verband ab.", "fr": "D'abord je me désinfecte les mains, ensuite j'enlève l'ancien pansement.", "relire": true, "relire_note": "Ordre des gestes.", "fonction": "annoncer"},
+  {"t": "Zum Schluss lege ich einen neuen, sterilen Verband an.", "fr": "Pour finir, je pose un nouveau pansement stérile.", "fonction": "annoncer"},
+  {"t": "Es kann ein bisschen ziehen.", "fr": "Ça peut tirer un peu.", "fonction": "annoncer"},
+  {"t": "Sagen Sie mir bitte sofort, wenn es wehtut.", "fr": "Dites-moi tout de suite si ça fait mal, s'il vous plaît.", "fonction": "demander"},
+  {"t": "Die Wunde sieht heute besser aus als gestern.", "fr": "La plaie a meilleur aspect qu'hier.", "fonction": "rassurer"},
+  {"t": "Der Verband wird jeden Tag gewechselt.", "fr": "Le pansement est changé tous les jours.", "fonction": "annoncer"}
+ ],
+ "debut": "ankuendigen",
+ "noeuds": {
+  "ankuendigen": {
+   "dit": [
+    {"recit": {"fr": "Neuf heures. {elif} entre dans la chambre quatorze avec le chariot de pansements."}},
+    {"qui": "lehmann", "air": "question", "t": "Guten Morgen. Was haben Sie denn da alles dabei?", "fr": "Bonjour. Qu'est-ce que vous apportez là ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {lehmann}. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?", "fr": "Bonjour, {lehmann:voc}. Je voudrais changer le pansement de votre pied maintenant. Vous êtes d'accord ?", "va": "warum",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Schon wieder? Na gut, wenn's sein muss.", "fr": "Encore ? Bon, s'il le faut."}]},
+    {"t": "Guten Morgen! Heute ist wieder der Verbandswechsel dran. Darf ich mir Ihren Fuß ansehen?", "fr": "Bonjour ! Aujourd'hui, c'est de nouveau le changement de pansement. Je peux regarder votre pied ?", "va": "warum",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Schon wieder? Na gut, wenn's sein muss.", "fr": "Encore ? Bon, s'il le faut."}]},
+    {"faux": true, "t": "Ich mache jetzt Ihren Fuß.", "fr": "Je vais « faire » votre pied.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Meinen Fuß machen? Was wollen Sie denn damit machen?", "fr": "« Faire » mon pied ? Qu'est-ce que vous voulez en faire ?"}],
+     "aide": {"fr": "<b>Dis exactement ce que tu vas faire, et demande l'accord.</b> « Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung? » « machen » tout seul ne dit rien au patient."}}
+   ]
+  },
+  "warum": {
+   "dit": [
+    {"qui": "lehmann", "air": "question", "t": "Warum muss das eigentlich jeden Tag sein?", "fr": "Pourquoi faut-il le faire tous les jours, au fait ?"}
+   ],
+   "choix": [
+    {"t": "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.", "fr": "Pour que la plaie reste propre et puisse bien guérir. Avec le diabète, une plaie guérit souvent plus lentement.", "va": "ablauf",
+     "relire": true, "relire_note": "Fréquence quotidienne : dépend du type de pansement prescrit.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, das hat die Ärztin auch gesagt.", "fr": "Oui, le médecin me l'a dit aussi."}]},
+    {"t": "Der Verband wird jeden Tag gewechselt, damit wir sehen, ob die Wunde gut heilt.", "fr": "Le pansement est changé tous les jours, pour qu'on voie si la plaie guérit bien.", "va": "ablauf",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, das hat die Ärztin auch gesagt.", "fr": "Oui, le médecin me l'a dit aussi."}]},
+    {"faux": true, "t": "Weil der Arzt das so will.", "fr": "Parce que le médecin le veut.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Ach so. Und warum will er das?", "fr": "Ah bon. Et pourquoi il le veut ?"}],
+     "aide": {"fr": "<b>Explique le but du soin, en mots simples : « damit … ».</b> « Damit die Wunde sauber bleibt und gut heilen kann. » Un patient qui comprend pourquoi coopère mieux."}}
+   ]
+  },
+  "ablauf": {
+   "dit": [
+    {"qui": "lehmann", "air": "attentive", "t": "Und was machen Sie da genau? Ich will lieber nicht hinschauen.", "fr": "Et qu'est-ce que vous faites, exactement ? Je préfère ne pas regarder."}
+   ],
+   "choix": [
+    {"t": "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.", "fr": "D'abord, je me désinfecte les mains et je mets des gants. Ensuite, j'enlève l'ancien pansement.", "va": "dann",
+     "relire": true, "relire_note": "Ordre des gestes.",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Gut. Und dann?", "fr": "Bien. Et ensuite ?"}]},
+    {"t": "Bevor ich anfange, desinfiziere ich mir die Hände und ziehe Handschuhe an. Danach nehme ich den alten Verband vorsichtig ab.", "fr": "Avant de commencer, je me désinfecte les mains et je mets des gants. Après, j'enlève doucement l'ancien pansement.", "va": "dann",
+     "relire": true, "relire_note": "Ordre des gestes.",
+     "puis": [{"qui": "lehmann", "air": "attentive", "t": "Gut. Und dann?", "fr": "Bien. Et ensuite ?"}]},
+    {"faux": true, "t": "Zuerst nehme ich den Verband ab, dann desinfiziere ich mir die Hände.", "fr": "D'abord j'enlève le pansement, ensuite je me désinfecte les mains.",
+     "puis": [{"qui": "lehmann", "air": "surprise", "t": "Erst danach die Hände? Ist das nicht andersrum?", "fr": "Les mains seulement après ? Ce n'est pas l'inverse ?"}],
+     "aide": {"fr": "<b>C'est une faute de soin : l'hygiène des mains vient avant tout geste.</b> « Zuerst desinfiziere ich mir die Hände, dann … ». La patiente l'a remarqué : à l'examen comme au travail, l'ordre compte."},
+     "relire": true, "relire_note": "Faute d'hygiène volontaire : vérifier l'aide."}
+   ]
+  },
+  "dann": {
+   "dit": [],
+   "choix": [
+    {"t": "Danach reinige ich die Wunde, und zum Schluss kommt ein neuer, steriler Verband drauf.", "fr": "Après, je nettoie la plaie, et pour finir, je mets un nouveau pansement stérile.", "va": "weh",
+     "relire": true, "relire_note": "Étapes : nettoyage puis pansement stérile.",
+     "puis": [{"qui": "lehmann", "air": "question", "t": "Und tut das weh?", "fr": "Et ça fait mal ?"}]},
+    {"t": "Dann wird die Wunde gereinigt und angeschaut. Zum Schluss lege ich einen neuen Verband an.", "fr": "Ensuite, la plaie est nettoyée et examinée. Pour finir, je pose un nouveau pansement.", "va": "weh",
+     "puis": [{"qui": "lehmann", "air": "question", "t": "Und tut das weh?", "fr": "Et ça fait mal ?"}]}
+   ]
+  },
+  "weh": {
+   "dit": [],
+   "choix": [
+    {"t": "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.", "fr": "Ça peut tirer un peu. Dites-moi tout de suite si ça fait mal, et je fais une pause.", "va": "waehrend",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Gut, das mache ich.", "fr": "D'accord, je vous le dirai."}]},
+    {"t": "Vielleicht ein bisschen. Wenn es wehtut, sagen Sie es mir, und ich höre kurz auf.", "fr": "Peut-être un peu. Si ça fait mal, dites-le-moi, et j'arrête un moment.", "va": "waehrend",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Gut, das mache ich.", "fr": "D'accord, je vous le dirai."}]},
+    {"faux": true, "t": "Nein, das tut überhaupt nicht weh.", "fr": "Non, ça ne fait pas mal du tout.",
+     "puis": [{"qui": "lehmann", "air": "perplexe", "t": "Das hat Ihre Kollegin gestern auch gesagt. Und dann hat es doch wehgetan!", "fr": "Votre collègue m'a dit ça hier aussi. Et puis ça a fait mal quand même !"}],
+     "aide": {"fr": "<b>Ne promets pas qu'un soin ne fera pas mal.</b> Préviens honnêtement (« Es kann ein bisschen ziehen ») et donne à la patiente un moyen d'agir : « Sagen Sie mir bitte sofort, wenn es wehtut. »"}}
+   ]
+  },
+  "waehrend": {
+   "dit": [
+    {"recit": {"fr": "{elif} se désinfecte les mains, met ses gants et décolle l'ancien pansement."}},
+    {"qui": "lehmann", "air": "surprise", "t": "Au! … Ach, das war nur der Kleber.", "fr": "Aïe ! … Ah, ce n'était que le sparadrap."}
+   ],
+   "choix": [
+    {"t": "Entschuldigung. Ich mache ganz langsam. Geht es wieder?", "fr": "Pardon. Je vais tout doucement. Ça va mieux ?", "va": "wunde",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, geht schon. Machen Sie ruhig weiter.", "fr": "Oui, ça va. Vous pouvez continuer."}]},
+    {"t": "Ich mache eine kurze Pause. Sagen Sie mir, wenn ich weitermachen darf.", "fr": "Je fais une petite pause. Dites-moi quand je peux continuer.", "va": "wunde",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Ja, geht schon. Machen Sie ruhig weiter.", "fr": "Oui, ça va. Vous pouvez continuer."}]}
+   ]
+  },
+  "wunde": {
+   "dit": [
+    {"qui": "lehmann", "air": "question", "t": "Und? Wie sieht es aus? Ich trau mich nicht hinzuschauen.", "fr": "Alors ? À quoi ça ressemble ? Je n'ose pas regarder."}
+   ],
+   "choix": [
+    {"t": "Die Wunde sieht heute besser aus als gestern. Sie ist kleiner geworden und nicht gerötet.", "fr": "La plaie a meilleur aspect qu'hier. Elle a rétréci et elle n'est pas rouge.", "va": "fertig",
+     "relire": true, "relire_note": "Description d'une plaie qui évolue bien.",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Wirklich? Da bin ich aber froh.", "fr": "C'est vrai ? Ça me fait plaisir."}]},
+    {"t": "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.", "fr": "Bien. La plaie est propre, et elle a déjà un peu rétréci.", "va": "fertig",
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Wirklich? Da bin ich aber froh.", "fr": "C'est vrai ? Ça me fait plaisir."}]},
+    {"faux": true, "t": "Die Wunde ist ziemlich eklig.", "fr": "La plaie est assez dégoûtante.",
+     "puis": [{"qui": "lehmann", "air": "surprise", "t": "Eklig?! Na, vielen Dank auch.", "fr": "Dégoûtante ?! Eh bien, merci beaucoup."}],
+     "aide": {"fr": "<b>Pour une plaie, des mots neutres et précis : sauber, gerötet, kleiner, größer.</b> « eklig » (dégoûtant) blesse la patiente et n'apprend rien au dossier."}}
+   ]
+  },
+  "fertig": {
+   "dit": [
+    {"recit": {"fr": "Le nouveau pansement est posé. {elif} enlève ses gants."}},
+    {"qui": "lehmann", "air": "question", "t": "Sind wir schon fertig?", "fr": "On a déjà fini ?"}
+   ],
+   "choix": [
+    {"t": "Ja, wir sind fertig. Ich schreibe auf, wie die Wunde aussieht, und sage es auch der Ärztin.", "fr": "Oui, on a fini. Je note l'aspect de la plaie, et je le dis aussi au médecin.", "va": null,
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Danke. Sie haben das sehr vorsichtig gemacht.", "fr": "Merci. Vous avez fait ça très délicatement."}]},
+    {"t": "Ja, fertig. Danke, dass Sie so gut mitgemacht haben. Morgen wird der Verband wieder gewechselt.", "fr": "Oui, c'est fini. Merci d'avoir si bien collaboré. Demain, le pansement sera de nouveau changé.", "va": null,
+     "puis": [{"qui": "lehmann", "air": "sourire", "t": "Danke. Sie haben das sehr vorsichtig gemacht.", "fr": "Merci. Vous avez fait ça très délicatement."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was möchte {lehmann} beim Verbandswechsel nicht?", "fr": "Qu'est-ce que {lehmann} ne veut pas pendant le changement de pansement ?"},
+   "options": [{"t": "Sie möchte nicht hinschauen.", "fr": "Elle ne veut pas regarder."}, {"t": "Sie möchte keine Handschuhe.", "fr": "Elle ne veut pas de gants."}, {"t": "Sie möchte keinen neuen Verband.", "fr": "Elle ne veut pas de nouveau pansement."}],
+   "juste": 0},
+  {"q": {"t": "Was hat beim Abnehmen kurz wehgetan?", "fr": "Qu'est-ce qui a fait mal un instant, quand on a enlevé le pansement ?"},
+   "options": [{"t": "Die Wunde.", "fr": "La plaie."}, {"t": "Der Kleber.", "fr": "Le sparadrap."}, {"t": "Die Desinfektion.", "fr": "La désinfection."}],
+   "juste": 1},
+  {"q": {"t": "Wie sieht die Wunde heute aus?", "fr": "Quel aspect a la plaie aujourd'hui ?"},
+   "options": [{"t": "Sie ist stark gerötet.", "fr": "Elle est très rouge."}, {"t": "Sie ist größer als gestern.", "fr": "Elle est plus grande qu'hier."}, {"t": "Sie ist kleiner geworden.", "fr": "Elle a rétréci."}],
+   "juste": 2}
+ ]
+}

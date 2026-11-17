@@ -1,0 +1,506 @@
+{
+ "id": "a2-vacances",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "tú",
+ "titre": {
+  "fr": "Raconter tes vacances"
+ },
+ "intro": {
+  "fr": "Tu rentres de vacances et tu retrouves ton ami Diego en terrasse. Il veut tout savoir. C'est la conversation du passé : fui, estuve, hice, comí… et « hacía calor » pour décrire."
+ },
+ "personnes": [
+  "freund_diego"
+ ],
+ "debut": "vuelta",
+ "textes": {
+  "lugar_fr": {
+   "cle": "lugar",
+   "cadiz": "à Cadix, au bord de la mer",
+   "asturias": "dans les Asturies, à la montagne"
+  },
+  "comida_es": {
+   "cle": "lugar",
+   "cadiz": "el pescado frito",
+   "asturias": "la fabada"
+  },
+  "comida_fr": {
+   "cle": "lugar",
+   "cadiz": "le poisson frit",
+   "asturias": "la fabada"
+  }
+ },
+ "noeuds": {
+  "vuelta": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Tu es rentré(e) hier à Madrid. Diego t'attend en terrasse, à Malasaña."
+     }
+    },
+    {
+     "qui": "freund_diego",
+     "air": "sourire",
+     "t": "¡Anda, ya has vuelto! ¿Qué tal las vacaciones?",
+     "fr": "Tiens, tu es déjà de retour ! Alors, ces vacances ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "¡Muy bien! Estuve dos semanas en la playa, en Cádiz.",
+     "fr": "Très bien ! J'ai passé deux semaines à la plage, à Cadix.",
+     "pose": {
+      "lugar": "cadiz"
+     },
+     "va": "viaje"
+    },
+    {
+     "t": "¡Genial! Estuve diez días en la montaña, en Asturias.",
+     "fr": "Génial ! J'ai passé dix jours à la montagne, dans les Asturies.",
+     "pose": {
+      "lugar": "asturias"
+     },
+     "va": "viaje"
+    },
+    {
+     "faux": true,
+     "t": "Muy bien. Fui dos semanas en Cádiz.",
+     "fr": "Très bien. Je suis allé(e) deux semaines « dans » Cadix.",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Fuiste… a Cádiz? ¿Estuviste dos semanas en Cádiz?",
+       "fr": "Tu es allé(e)… à Cadix ? Tu as passé deux semaines à Cadix ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Fui » (ir) va avec « a » ; pour un séjour, c'est « estuve en ».</b> « Fui a Cádiz » (j'y suis allé) ; « estuve dos semanas en Cádiz » (j'y ai passé deux semaines)."
+     }
+    }
+   ]
+  },
+  "viaje": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "sourire",
+     "t": "¡Qué envidia! ¿Y cómo fuiste?",
+     "fr": "Je suis jaloux ! Et tu y es allé(e) comment ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Fui en tren. Es muy cómodo.",
+     "fr": "J'y suis allé(e) en train. C'est très confortable.",
+     "va": "hacer",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "Bien hecho. Yo en tren siempre me duermo.",
+       "fr": "Tu as bien fait. Moi, dans le train, je m'endors toujours."
+      }
+     ]
+    },
+    {
+     "t": "Fui en coche con unos amigos.",
+     "fr": "J'y suis allé(e) en voiture avec des amis.",
+     "va": "amigos"
+    },
+    {
+     "faux": true,
+     "t": "Iba en tren.",
+     "fr": "J'allais en train (à l'imparfait).",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Ibas en tren… y qué pasó? Ah, ¡fuiste en tren!",
+       "fr": "Tu allais en train… et qu'est-ce qui s'est passé ? Ah, tu y es allé(e) en train !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une action faite une fois, terminée : l'indefinido.</b> « Fui en tren ». L'imperfecto (« iba ») décrit une habitude ou le décor d'une histoire, et laisse attendre la suite."
+     }
+    }
+   ]
+  },
+  "amigos": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "attentive",
+     "t": "¿Ah, sí? ¿Con quién fuiste?",
+     "fr": "Ah bon ? Tu y es allé(e) avec qui ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Con dos amigos del trabajo. Tú no los conoces.",
+     "fr": "Avec deux amis du travail. Tu ne les connais pas.",
+     "va": "hacer",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "Pues me los tienes que presentar.",
+       "fr": "Eh bien, il faut que tu me les présentes."
+      }
+     ]
+    },
+    {
+     "t": "Con mi hermana y su novio. Fue muy divertido.",
+     "fr": "Avec ma sœur et son copain. C'était très amusant.",
+     "va": "hacer",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Qué bien! Tu hermana es muy simpática.",
+       "fr": "Super ! Ta sœur est très sympa."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Con dos amigos del trabajo. Ellos conducieron todo el viaje.",
+     "fr": "Avec deux amis du travail. Ce sont eux qui ont conduit pendant tout le voyage.",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Conducieron? Ah, ¡condujeron ellos! Qué suerte.",
+       "fr": "« Conducieron » ? Ah, c'est eux qui ont conduit ! Quelle chance."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Conducir » est irrégulier au passé simple (pretérito) : conduje, condujiste, condujo, condujimos, condujeron.</b> Comme « traducir » (traduje) ou « decir » (dije) : pas de « i » après le « j ». « Ellos condujeron todo el viaje »."
+     }
+    }
+   ]
+  },
+  "hacer": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "attentive",
+     "t": "¿Y qué hiciste allí? Cuenta, cuenta.",
+     "fr": "Et qu'est-ce que tu as fait là-bas ? Raconte, raconte."
+    }
+   ],
+   "choix": [
+    {
+     "si": {
+      "lugar": "cadiz"
+     },
+     "t": "Nadé mucho y comí pescado todos los días.",
+     "fr": "J'ai beaucoup nagé et j'ai mangé du poisson tous les jours.",
+     "pose": {
+      "plan": "nadar"
+     },
+     "va": "tiempo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Eso sí que son vacaciones!",
+       "fr": "Ça, ce sont de vraies vacances !"
+      }
+     ]
+    },
+    {
+     "si": {
+      "lugar": "cadiz"
+     },
+     "t": "Visité la ciudad y descansé en la playa.",
+     "fr": "J'ai visité la ville et je me suis reposé(e) à la plage.",
+     "pose": {
+      "plan": "visitar"
+     },
+     "va": "tiempo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "Cádiz es preciosa, ¿verdad?",
+       "fr": "Cadix est magnifique, n'est-ce pas ?"
+      }
+     ]
+    },
+    {
+     "si": {
+      "lugar": "asturias"
+     },
+     "t": "Caminé mucho por la montaña y comí muy bien.",
+     "fr": "J'ai beaucoup marché en montagne et j'ai très bien mangé.",
+     "pose": {
+      "plan": "caminar"
+     },
+     "va": "tiempo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "En Asturias se come de maravilla.",
+       "fr": "Dans les Asturies, on mange merveilleusement bien."
+      }
+     ]
+    },
+    {
+     "si": {
+      "lugar": "asturias"
+     },
+     "t": "Visité pueblos muy bonitos y bebí sidra.",
+     "fr": "J'ai visité de très jolis villages et j'ai bu du cidre.",
+     "pose": {
+      "plan": "visitar"
+     },
+     "va": "tiempo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Sidra! ¿Y aprendiste a servirla?",
+       "fr": "Du cidre ! Et tu as appris à le servir ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Hací muchas cosas.",
+     "fr": "J'ai fait beaucoup de choses (forme inventée).",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Hací? Hiciste muchas cosas, vale. Pero ¿qué?",
+       "fr": "« Hací » ? Tu as fait beaucoup de choses, d'accord. Mais quoi ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Hacer » est irrégulier au passé : hice, hiciste, hizo.</b> « Hice muchas cosas ». Pareil pour « estar » (estuve) et « ir » (fui)."
+     }
+    }
+   ]
+  },
+  "tiempo": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "attentive",
+     "t": "¿Y qué tiempo hizo?",
+     "fr": "Et quel temps a-t-il fait ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hizo muy buen tiempo. Solo llovió un día.",
+     "fr": "Il a fait très beau. Il n'a plu qu'un jour.",
+     "va": "lluvia"
+    },
+    {
+     "t": "Hacía sol casi todos los días, pero un día llovió mucho.",
+     "fr": "Il y avait du soleil presque tous les jours, mais un jour, il a beaucoup plu.",
+     "va": "lluvia"
+    },
+    {
+     "faux": true,
+     "t": "Fue muy caliente.",
+     "fr": "C'était très chaud.",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Caliente? ¿El café? Ah, ¡hizo mucho calor!",
+       "fr": "Chaud ? Le café ? Ah, il a fait très chaud !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Le temps qu'il fait se dit avec « hacer ».</b> « Hizo mucho calor », « hacía sol », « hizo buen tiempo ». « Caliente » se dit d'un objet : « el café está caliente »."
+     }
+    }
+   ]
+  },
+  "lluvia": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "sourire",
+     "t": "¿Y el día de lluvia? ¿Qué hiciste?",
+     "fr": "Et le jour de pluie ? Qu'est-ce que tu as fait ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Me quedé en el hotel y dormí toda la tarde.",
+     "fr": "Je suis resté(e) à l'hôtel et j'ai dormi tout l'après-midi.",
+     "va": "consejo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Eso también son vacaciones!",
+       "fr": "Ça aussi, ce sont des vacances !"
+      }
+     ]
+    },
+    {
+     "t": "Fui a un museo… ¡y estaba cerrado!",
+     "fr": "Je suis allé(e) dans un musée… et il était fermé !",
+     "va": "consejo",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡No me digas! ¡Qué mala suerte!",
+       "fr": "Sans blague ! Quelle malchance !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Soy ido a un museo.",
+     "fr": "Je suis allé(e) dans un musée (mot à mot, avec « ser »).",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Eres… ido? ¡Fuiste a un museo, quieres decir!",
+       "fr": "Tu es… « ido » ? Tu es allé(e) dans un musée, tu veux dire !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>En espagnol, « ser » n'est jamais l'auxiliaire du passé.</b> « Je suis allé » : « fui » (ou « he ido », avec « haber », pour aujourd'hui). « Je suis resté » : « me quedé »."
+     }
+    },
+    {
+     "repete": true,
+     "t": "¿Cómo? ¿Puedes repetir?",
+     "fr": "Comment ? Tu peux répéter ?",
+     "va": "lluvia",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "Sí. Un día llovió, ¿no? ¿Qué hiciste ese día?",
+       "fr": "Oui. Un jour, il a plu, non ? Qu'est-ce que tu as fait ce jour-là ?"
+      }
+     ]
+    }
+   ]
+  },
+  "consejo": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "attentive",
+     "t": "Oye, yo quiero ir en septiembre. ¿Me lo recomiendas?",
+     "fr": "Dis donc, moi, je veux y aller en septembre. Tu me le recommandes ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, te va a encantar. Pero reserva el hotel pronto.",
+     "fr": "Oui, tu vas adorer. Mais réserve l'hôtel tôt.",
+     "va": "fotos",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "Vale, esta semana lo miro.",
+       "fr": "D'accord, je regarde ça cette semaine."
+      }
+     ]
+    },
+    {
+     "t": "¡Claro que sí! Y tienes que probar {comida_es}.",
+     "fr": "Bien sûr que oui ! Et il faut que tu goûtes {comida_fr}.",
+     "va": "fotos",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Uf, qué hambre me está dando!",
+       "fr": "Oh là là, ça me donne faim !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, me gusté mucho.",
+     "fr": "Oui, « je me suis beaucoup plu ».",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Te gustaste… tú? ¡Te gustó mucho, quieres decir!",
+       "fr": "Tu t'es plu… toi ? Ça t'a beaucoup plu, tu veux dire !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Avec « gustar », c'est la chose qui fait l'action.</b> « Me gustó mucho » (ça m'a beaucoup plu), « me gustaron las playas ». Jamais « me gusté »."
+     }
+    }
+   ]
+  },
+  "fotos": {
+   "dit": [
+    {
+     "qui": "freund_diego",
+     "air": "sourire",
+     "t": "¿Tienes fotos? ¡Enséñamelas!",
+     "fr": "Tu as des photos ? Montre-les-moi !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, mira. Hice muchas fotos con el móvil.",
+     "fr": "Oui, regarde. J'ai fait beaucoup de photos avec mon portable.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Qué bonito! Me has convencido. Oye, ¿otra caña?",
+       "fr": "Que c'est beau ! Tu m'as convaincu. Dis, une autre bière ?"
+      }
+     ]
+    },
+    {
+     "t": "Sí, saqué más de cien. Mira esta.",
+     "fr": "Oui, j'en ai pris plus de cent. Regarde celle-ci.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "sourire",
+       "t": "¡Qué pasada! El año que viene voy contigo. Oye, ¿otra caña?",
+       "fr": "Trop beau ! L'année prochaine, je viens avec toi. Dis, une autre bière ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, he prendido muchas fotos.",
+     "fr": "Oui, j'ai « pris » beaucoup de photos (calque de « prendre »).",
+     "puis": [
+      {
+       "qui": "freund_diego",
+       "air": "perplexe",
+       "t": "¿Prendido? ¿Hiciste muchas fotos? A ver, a ver…",
+       "fr": "« Prendido » ? Tu as fait beaucoup de photos ? Voyons, voyons…"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une photo, on la « fait » ou on la « sort » : « hacer fotos », « sacar fotos ».</b> « Hice muchas fotos ». « Prender » veut dire allumer ou accrocher, pas prendre."
+     }
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as raconté au passé tes vacances {lugar_fr} : le voyage, ce que tu as fait, le temps, le jour de pluie. Et Diego veut y aller à son tour."
+ }
+}

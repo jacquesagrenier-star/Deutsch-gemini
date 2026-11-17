@@ -1,0 +1,149 @@
+{
+ "id": "b1-conflit-voisin",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "La voisine du dessous n'est pas contente"},
+ "intro": {"fr": "Dimanche matin, dans ton triple-decker de Jamaica Plain. La voisine du dessous sonne : l'eau de ton balcon coule chez elle. À toi de t'excuser, d'expliquer et de trouver un compromis."},
+ "personnes": ["nachbarin_unten"],
+ "debut": "door",
+ "textes": {
+  "paix_fr": {"cle": "paix", "pressing": "proposé de payer le pressing du chemisier", "cafe": "invité ta voisine à prendre un café et du gâteau"},
+  "sol_fr": {"cle": "sol", "trays": "des soucoupes sous les pots", "evening": "arroser le soir"},
+  "compromis_fr": {"cle": "compromis", "regle": "plus de lessive après dix heures du soir", "horaire": "la machine jusqu'à dix heures et demie deux soirs par semaine, en cycle court et sur un tapis"}
+ },
+ "noeuds": {
+  "door": {
+   "dit": [
+    {"recit": {"fr": "Dimanche, neuf heures. On sonne. Tu ouvres : c'est ta voisine du dessous, l'air contrarié."}},
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Good morning. I'm sorry to bother you, but I live downstairs, and water has been dripping from your balcony onto mine. My laundry was drying out there.", "t_gb": "Good morning. I'm sorry to bother you, but I live downstairs, and water has been dripping from your balcony onto mine. My washing was drying out there.", "fr": "Bonjour. Désolée de vous déranger, mais j'habite en dessous, et de l'eau coule de votre balcon sur le mien. Mon linge y séchait."}
+   ],
+   "choix": [
+    {"t": "Oh no, I'm so sorry! I was watering my plants this morning.", "fr": "Oh non, je suis vraiment désolé(e) ! J'arrosais mes plantes ce matin.", "va": "blouse"},
+    {"t": "I'm really sorry. I didn't know the water was going down to your balcony.", "fr": "Je suis vraiment désolé(e). Je ne savais pas que l'eau descendait sur votre balcon.", "va": "blouse"},
+    {"faux": true, "t": "I'm sorry, I didn't knew that.", "fr": "Je suis désolé(e), je ne savais pas ça.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "You didn't … know, you mean? Well, now you do.", "fr": "Vous ne le… saviez pas, vous voulez dire ? Eh bien, maintenant vous le savez."}],
+     "aide": {"fr": "<b>Après « didn't », le verbe reste à la forme de base :</b> « I didn't know », jamais « I didn't knew »."}},
+    {"faux": true, "t": "It's not my fault. It's only water.", "fr": "Ce n'est pas ma faute. Ce n'est que de l'eau.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Only water? On my clean laundry?", "t_gb": "Only water? On my clean washing?", "fr": "Que de l'eau ? Sur mon linge propre ?"}],
+     "aide": {"fr": "<b>Trop brusque pour une voisine contrariée.</b> On commence par s'excuser : « I'm so sorry! » ou « I'm really sorry, I didn't know. »"}}
+   ]
+  },
+  "blouse": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Well, my white blouse has brown stains on it now. Dirt from your pots, I suppose.", "fr": "Eh bien, mon chemisier blanc a des taches brunes maintenant. La terre de vos pots, j'imagine."}
+   ],
+   "choix": [
+    {"t": "I'd be happy to pay for the dry cleaning.", "fr": "Je paierai volontiers le pressing.", "pose": {"paix": "pressing"}, "va": "solution",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "That's kind of you. The dry cleaner on Centre Street does good work.", "fr": "C'est gentil à vous. Le pressing de Centre Street travaille bien."}]},
+    {"t": "Let me make it up to you. Would you like to come up for coffee and cake this afternoon?", "fr": "Laissez-moi me faire pardonner. Voulez-vous monter prendre un café et du gâteau cet après-midi ?", "pose": {"paix": "cafe"}, "va": "solution",
+     "puis": [{"qui": "nachbarin_unten", "air": "surprise", "t": "Oh! Well … that's a nice idea. Around three, then. And the blouse will probably come clean in the wash.", "fr": "Oh ! Eh bien… c'est une bonne idée. Vers trois heures, alors. Et le chemisier partira sans doute au lavage."}]},
+    {"faux": true, "t": "I will pay you the cleaning.", "fr": "Je vous paierai le nettoyage.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Pay me the … ? Oh, you'll pay for it, you mean.", "fr": "Me payer le… ? Ah, vous le paierez, vous voulez dire."}],
+     "aide": {"fr": "<b>« pay for » + la chose qu'on paie :</b> « I'll pay for the dry cleaning. » Sans « for », « pay » se dit de la personne (« pay the cleaner »)."}},
+    {"repete": true, "t": "I'm sorry, could you say that again more slowly?", "fr": "Pardon, pourriez-vous répéter plus lentement ?", "va": "blouse",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "My white blouse. It has brown stains on it now, because of the water from your pots.", "fr": "Mon chemisier blanc. Il a des taches brunes maintenant, à cause de l'eau de vos pots."}]}
+   ]
+  },
+  "solution": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "question", "t": "All right. But how can we stop this from happening again?", "fr": "Bon. Mais comment éviter que ça recommence ?"}
+   ],
+   "choix": [
+    {"t": "I could put a tray under each pot.", "fr": "Je pourrais mettre une soucoupe sous chaque pot.", "pose": {"sol": "trays"}, "va": "trays"},
+    {"t": "I could water the plants in the evening, when your laundry is inside.", "t_gb": "I could water the plants in the evening, when your washing is inside.", "fr": "Je pourrais arroser les plantes le soir, quand votre linge est rentré.", "pose": {"sol": "evening"}, "va": "evening"},
+    {"faux": true, "t": "I will make attention.", "fr": "Je ferai attention.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "You'll make … what? I'd like something a little more concrete.", "fr": "Vous ferez… quoi ? J'aimerais quelque chose d'un peu plus concret."}],
+     "aide": {"fr": "<b>« faire attention » = « be careful »</b> (ou « pay attention » pour écouter). « Make attention » n'existe pas. Et propose une vraie solution : « I could put a tray under each pot. »"}}
+   ]
+  },
+  "trays": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "That would help. Do you have enough trays? I have some old ones in the basement if you need them.", "fr": "Ça aiderait. Vous avez assez de soucoupes ? J'en ai des vieilles à la cave, si vous en avez besoin."}
+   ],
+   "choix": [
+    {"t": "That's very kind of you. I'd love to borrow a few.", "fr": "C'est très gentil. J'en emprunterais volontiers quelques-unes.", "va": "washer",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "I'll leave them outside your door this afternoon.", "fr": "Je les poserai devant votre porte cet après-midi."}]},
+    {"t": "Thank you, but I'll buy some tomorrow at the hardware store.", "t_gb": "Thank you, but I'll buy some tomorrow at the DIY shop.", "fr": "Merci, mais j'en achèterai demain à la quincaillerie.", "va": "washer",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Good. Then my laundry is safe.", "t_gb": "Good. Then my washing is safe.", "fr": "Bien. Alors mon linge est en sécurité."}]},
+    {"faux": true, "t": "Yes, I want well.", "fr": "Oui, je veux bien.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "You want … a well? In the basement?", "fr": "Vous voulez… un puits ? À la cave ?"}],
+     "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> On dit « Yes, please » ou « I'd love to ». « A well », c'est un puits !"}}
+   ]
+  },
+  "evening": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "The evening would be better: I usually bring my laundry in around five. But what about hot days, when the plants need water in the morning?", "t_gb": "The evening would be better: I usually bring my washing in around five. But what about hot days, when the plants need water in the morning?", "fr": "Le soir, ce serait mieux : je rentre mon linge vers cinq heures, d'habitude. Mais les jours de chaleur, quand les plantes ont besoin d'eau le matin ?"}
+   ],
+   "choix": [
+    {"t": "Then I'll water them slowly and check that nothing drips.", "fr": "Alors je les arroserai doucement et je vérifierai que rien ne coule.", "va": "washer",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "That's all I'm asking.", "fr": "C'est tout ce que je demande."}]},
+    {"t": "On hot days, I'll knock on your door first to let you know.", "fr": "Les jours de chaleur, je frapperai d'abord à votre porte pour vous prévenir.", "va": "washer",
+     "puis": [{"qui": "nachbarin_unten", "air": "amuse", "t": "Oh, you don't have to knock every time! Just be careful.", "fr": "Oh, vous n'avez pas besoin de frapper à chaque fois ! Faites juste attention."}]},
+    {"faux": true, "t": "Since now, I will be careful.", "fr": "À partir de maintenant, je ferai attention.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Since … now? From now on, you mean?", "fr": "Depuis… maintenant ? À partir de maintenant, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« à partir de maintenant » = « from now on ».</b> « Since » regarde vers le passé (« since Monday »), jamais vers l'avenir."}}
+   ]
+  },
+  "washer": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "Now, since we're talking … there's one more thing. Your washing machine. I can hear it at eleven at night, right above my bedroom.", "fr": "Bon, puisqu'on se parle… il y a encore une chose. Votre machine à laver. Je l'entends à onze heures du soir, juste au-dessus de ma chambre."}
+   ],
+   "choix": [
+    {"t": "I'm sorry about that. I work late at a restaurant, so I get home around ten.", "fr": "Je suis désolé(e). Je travaille tard dans un restaurant, alors je rentre vers dix heures.", "va": "compromise"},
+    {"t": "I didn't realize it was so loud. I usually do my laundry after work, late at night.", "t_gb": "I didn't realise it was so loud. I usually do my washing after work, late at night.", "fr": "Je ne me rendais pas compte qu'elle faisait autant de bruit. Je fais ma lessive après le travail, tard le soir.", "va": "compromise"},
+    {"faux": true, "t": "Excuse me. I work late, so I do my laundry at the night.", "fr": "Excusez-moi. Je travaille tard, alors je fais ma lessive la nuit.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "At night, yes. That's exactly the problem!", "fr": "La nuit, oui. C'est exactement le problème !"}],
+     "aide": {"fr": "<b>« at night », sans article</b> (mais « in the morning », « in the evening »). Et pour s'excuser d'une gêne, on dit « I'm sorry », pas « Excuse me »."}}
+   ]
+  },
+  "compromise": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "I understand, you have to work. But these old houses have thin floors. After ten, I can hear everything.", "fr": "Je comprends, il faut bien travailler. Mais ces vieilles maisons ont des planchers minces. Après dix heures, j'entends tout."}
+   ],
+   "choix": [
+    {"t": "You're right. I won't run the machine after ten anymore.", "t_gb": "You're right. I won't run the machine after ten any more.", "fr": "Vous avez raison. Je ne ferai plus tourner la machine après dix heures.", "pose": {"compromis": "regle"}, "va": "rule"},
+    {"t": "Would it be possible to run it until ten thirty, just twice a week?", "t_gb": "Would it be possible to run it until half past ten, just twice a week?", "fr": "Serait-il possible de la faire tourner jusqu'à dix heures et demie, seulement deux fois par semaine ?", "pose": {"compromis": "horaire"}, "va": "deal"},
+    {"faux": true, "t": "OK, I'll stop to use the machine after ten.", "fr": "D'accord, j'arrêterai d'utiliser la machine après dix heures.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "You'll stop … in order to use it? I hope you mean the opposite.", "fr": "Vous vous arrêterez… pour l'utiliser ? J'espère que vous voulez dire le contraire."}],
+     "aide": {"fr": "<b>« arrêter de faire » = « stop » + -ing :</b> « I'll stop using the machine after ten. » « Stop to use » veut dire « s'arrêter pour utiliser »."}}
+   ]
+  },
+  "rule": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "sourire", "t": "Thank you, I really appreciate that. And on the weekend, you can run it any time during the day. It doesn't bother me at all.", "t_gb": "Thank you, I really appreciate that. And at the weekend, you can run it any time during the day. It doesn't bother me at all.", "fr": "Merci, j'apprécie beaucoup. Et le week-end, vous pouvez la faire tourner à n'importe quelle heure de la journée. Ça ne me dérange pas du tout."}
+   ],
+   "choix": [
+    {"t": "Perfect. I'll do my laundry on Saturday mornings from now on.", "t_gb": "Perfect. I'll do my washing on Saturday mornings from now on.", "fr": "Parfait. Je ferai ma lessive le samedi matin, désormais.", "va": "bye"},
+    {"t": "That works for me. Thank you for being so understanding.", "fr": "Ça me convient. Merci d'être si compréhensive.", "va": "bye"}
+   ]
+  },
+  "deal": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "attentive", "t": "Hmm. Ten thirty … All right, twice a week, but only a short cycle. And could you put a rubber mat under the machine? It helps with the vibrations.", "t_gb": "Hmm. Half past ten … All right, twice a week, but only a short cycle. And could you put a rubber mat under the machine? It helps with the vibrations.", "fr": "Hum. Dix heures et demie… D'accord, deux fois par semaine, mais seulement un cycle court. Et pourriez-vous mettre un tapis en caoutchouc sous la machine ? Ça réduit les vibrations."}
+   ],
+   "choix": [
+    {"t": "Of course. I'll buy a mat this week.", "fr": "Bien sûr. J'achèterai un tapis cette semaine.", "va": "bye"},
+    {"t": "That's a good idea. I'll get one, and I'll only use the short cycle.", "fr": "C'est une bonne idée. J'en prendrai un, et je n'utiliserai que le cycle court.", "va": "bye"},
+    {"faux": true, "t": "I am agree.", "fr": "Je suis d'accord.",
+     "puis": [{"qui": "nachbarin_unten", "air": "amuse", "t": "You agree? Good. So do I.", "fr": "Vous êtes d'accord ? Bien. Moi aussi."}],
+     "aide": {"fr": "<b>« agree » est un verbe :</b> « I agree », jamais « I am agree »."}}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"si": {"paix": "cafe"}, "qui": "nachbarin_unten", "air": "sourire", "t": "So, coffee at three, then? I'll bring my lemon squares.", "fr": "Alors, café à trois heures ? J'apporterai mes carrés au citron."},
+    {"si": {"paix": "pressing"}, "qui": "nachbarin_unten", "air": "sourire", "t": "I'll take the blouse to the dry cleaner tomorrow and bring you the receipt. It won't be much.", "t_gb": "I'll take the blouse to the dry cleaner's tomorrow and bring you the receipt. It won't be much.", "fr": "Je porterai le chemisier au pressing demain et je vous apporterai le reçu. Ce ne sera pas grand-chose."},
+    {"qui": "nachbarin_unten", "air": "sourire", "t": "And a little tip, since you're new in the building: the trash goes out on Thursday night, not before. The man on the first floor gets very upset!", "t_gb": "And a little tip, since you're new in the building: the rubbish goes out on Thursday night, not before. The man on the ground floor gets very upset!", "fr": "Et un petit conseil, puisque vous êtes nouveau (nouvelle) dans l'immeuble : les poubelles se sortent le jeudi soir, pas avant. Le monsieur du rez-de-chaussée se fâche vite !"}
+   ],
+   "choix": [
+    {"t": "Good to know, thank you! I'm glad we talked.", "fr": "C'est bon à savoir, merci ! Je suis content(e) qu'on se soit parlé.", "va": null},
+    {"t": "Thanks for the tip. Have a nice Sunday!", "fr": "Merci du conseil. Bon dimanche !", "va": null},
+    {"faux": true, "t": "Thank you for the advices.", "fr": "Merci pour les conseils.",
+     "puis": [{"qui": "nachbarin_unten", "air": "amuse", "t": "Just one piece of advice. But you're welcome.", "fr": "Un seul conseil. Mais je vous en prie."}],
+     "aide": {"fr": "<b>« advice » ne se compte pas :</b> « Thanks for the advice » ou « a piece of advice », jamais « advices »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es excusé(e), tu as {paix_fr} et tu as proposé {sol_fr}. Pour la machine à laver, le compromis : {compromis_fr}."}
+}

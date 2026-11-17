@@ -1,0 +1,123 @@
+{
+ "id": "a2-reserver-tel",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Réserver une table au téléphone"},
+ "intro": {"fr": "Tu appelles un restaurant du South End, à Boston, pour réserver une table samedi soir. Au téléphone, pas de gestes : il faut tout dire."},
+ "personnes": ["kellnerin"],
+ "debut": "hello",
+ "textes": {
+  "nb_en": {"cle": "nb", "four": "four", "six": "six"},
+  "nb_fr": {"cle": "nb", "four": "quatre", "six": "six"},
+  "heure_en": {"cle": "heure", "early": "six thirty", "late": "nine fifteen"},
+  "heure_fr": {"cle": "heure", "early": "18 h 30", "late": "21 h 15"},
+  "lieu_en": {"cle": "lieu", "inside": "inside", "patio": "on the patio"},
+  "lieu_gb": {"cle": "lieu", "inside": "inside", "patio": "on the terrace"},
+  "lieu_fr": {"cle": "lieu", "inside": "à l'intérieur", "patio": "en terrasse"}
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Jeudi après-midi. Tu veux inviter des amis au restaurant samedi soir. Tu appelles."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Thank you for calling Harborlight Bistro, this is Megan. How can I help you?", "fr": "Harborlight Bistro, merci de votre appel, Megan à l'appareil. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hi, I'd like to make a reservation for Saturday night, please.", "t_gb": "Hello, I'd like to book a table for Saturday evening, please.", "fr": "Bonjour, je voudrais réserver pour samedi soir, s'il vous plaît.", "va": "people",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure, this Saturday. Let me take a look.", "fr": "Bien sûr, ce samedi. Je regarde."}]},
+    {"t": "Hello. Can I reserve a table for Saturday night?", "t_gb": "Hello. Can I book a table for Saturday evening?", "fr": "Bonjour. Est-ce que je peux réserver une table pour samedi soir ?", "va": "people",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course! One moment, please.", "fr": "Bien sûr ! Un instant, s'il vous plaît."}]},
+    {"faux": true, "t": "Hello, I call for reserve a table.", "fr": "Bonjour, j'appelle pour réserver une table (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Sorry, you … call for a table? Oh, you'd like to make a reservation!", "t_gb": "Sorry, you … call for a table? Oh, you'd like to book a table!", "fr": "Pardon, vous… appelez pour une table ? Ah, vous voulez réserver !"}],
+     "aide": {"fr": "<b>« pour » + verbe se dit « to », jamais « for ».</b> Et au téléphone, on dit ce qu'on est en train de faire : « I'm calling to reserve a table ». Plus simple : « I'd like to make a reservation »."}}
+   ]
+  },
+  "people": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "How many people, and what time?", "fr": "Pour combien de personnes, et à quelle heure ?"}],
+   "choix": [
+    {"t": "A table for four, at eight o'clock, please.", "fr": "Une table pour quatre, à huit heures, s'il vous plaît.", "pose": {"nb": "four"}, "va": "time"},
+    {"t": "There are six of us. At eight, if possible.", "fr": "Nous sommes six. À huit heures, si possible.", "pose": {"nb": "six"}, "va": "time"},
+    {"faux": true, "t": "We are four, at eight o'clock.", "fr": "Nous sommes quatre, à huit heures (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "You are four …? Oh! A table for four people, you mean?", "fr": "Vous avez quatre… ? Ah ! Une table pour quatre personnes, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« We are four » ne se dit pas pour compter un groupe</b> (on comprend presque « nous avons quatre ans »). Dis : « A table for four » ou « There are four of us »."}}
+   ]
+  },
+  "time": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "I'm sorry, we're fully booked at eight on Saturday. I have a table for {nb_en} at six thirty or at nine fifteen.", "fr": "Je suis désolée, nous sommes complets à huit heures samedi. J'ai une table pour {nb_fr} à six heures et demie ou à neuf heures et quart."}],
+   "choix": [
+    {"t": "Six thirty is fine.", "fr": "Six heures et demie, ça me va.", "pose": {"heure": "early"}, "va": "where",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Great, six thirty.", "fr": "Parfait, six heures et demie."}]},
+    {"t": "Nine fifteen is better for us.", "fr": "Neuf heures et quart, c'est mieux pour nous.", "pose": {"heure": "late"}, "va": "where",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Perfect, nine fifteen.", "fr": "Parfait, neuf heures et quart."}]},
+    {"faux": true, "t": "At nine hours and a quarter, please.", "fr": "À neuf heures et quart, s'il vous plaît (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Nine hours …? Oh, nine fifteen! Is that right?", "fr": "Neuf « hours »… ? Ah, neuf heures et quart ! C'est bien ça ?"}],
+     "aide": {"fr": "<b>« hours » mesure une durée, pas l'heure qu'il est.</b> Pour l'heure : « nine fifteen », ou « a quarter after nine » (« a quarter past nine » en anglais britannique)."}},
+    {"repete": true, "t": "Sorry, could you say that again, please?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "time",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course. Eight o'clock is full. I have two times: six thirty … or nine fifteen.", "fr": "Bien sûr. Huit heures, c'est complet. J'ai deux horaires : six heures et demie… ou neuf heures et quart."}]}
+   ]
+  },
+  "where": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Would you like to sit inside or out on the patio?", "t_gb": "Would you like to sit inside or outside on the terrace?", "fr": "Vous préférez être à l'intérieur ou dehors, en terrasse ?"}],
+   "choix": [
+    {"t": "On the patio, please.", "t_gb": "On the terrace, please.", "fr": "En terrasse, s'il vous plaît.", "pose": {"lieu": "patio"}, "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Good choice. It's really nice out there at night.", "fr": "Bon choix. C'est vraiment agréable dehors, le soir."}]},
+    {"t": "Inside, please. It's cold at night.", "fr": "À l'intérieur, s'il vous plaît. Il fait froid le soir.", "pose": {"lieu": "inside"}, "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "No problem. I have a nice table by the window.", "fr": "Pas de problème. J'ai une belle table près de la fenêtre."}]},
+    {"faux": true, "t": "In the exterior, please.", "fr": "À l'extérieur, s'il vous plaît (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "In the …? Sorry — inside, or outside?", "fr": "Dans le… ? Pardon : à l'intérieur ou dehors ?"}],
+     "aide": {"fr": "<b>« à l'extérieur » se dit « outside »</b>, sans article ni préposition ; « exterior » ne sert qu'à décrire un bâtiment. Et la terrasse : « on the patio » (« on the terrace » en anglais britannique), avec « on »."}}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Can I get a name for the reservation?", "t_gb": "Can I take a name for the booking?", "fr": "À quel nom, la réservation ?"}],
+   "choix": [
+    {"t": "Yes, it's Martin. M, A, R, T, I, N.", "fr": "Oui, c'est Martin. M, A, R, T, I, N.", "va": "phone",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Martin. Got it.", "fr": "Martin. C'est noté."}]},
+    {"t": "It's Martin, and my number is six one seven, five five five, oh one four two.", "fr": "C'est Martin, et mon numéro est le six un sept, cinq cinq cinq, zéro un quatre deux.", "va": "request",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Martin … and the number … perfect, thank you.", "fr": "Martin… et le numéro… parfait, merci."}]},
+    {"faux": true, "t": "It's at the name of Martin.", "fr": "C'est au nom de Martin (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "At the name …? Oh, it's under Martin. Okay!", "fr": "« At the name »… ? Ah, c'est au nom de Martin. D'accord !"}],
+     "aide": {"fr": "<b>« au nom de » se dit « under »</b> : « It's under Martin » ou « The name is Martin ». Le plus simple : « It's Martin »."}}
+   ]
+  },
+  "phone": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "And a phone number, in case we need to reach you?", "fr": "Et un numéro de téléphone, au cas où nous devrions vous joindre ?"}],
+   "choix": [
+    {"t": "Sure. It's six one seven, five five five, oh one four two.", "fr": "Bien sûr. C'est le six un sept, cinq cinq cinq, zéro un quatre deux.", "va": "request",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Perfect, thank you.", "fr": "Parfait, merci."}]},
+    {"t": "Yes. My cell is six one seven, five five five, oh one four two.", "t_gb": "Yes. My mobile is six one seven, five five five, oh one four two.", "fr": "Oui. Mon portable, c'est le six un sept, cinq cinq cinq, zéro un quatre deux.", "va": "request",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Great, thanks.", "fr": "Très bien, merci."}]},
+    {"repete": true, "t": "Sorry, could you repeat that, please?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "phone",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure. Can I have your phone number, please?", "fr": "Bien sûr. Je peux avoir votre numéro de téléphone, s'il vous plaît ?"}]}
+   ]
+  },
+  "request": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Is there anything else we should know? Any special requests?", "fr": "Y a-t-il autre chose que nous devrions savoir ? Une demande particulière ?"}],
+   "choix": [
+    {"t": "Yes, one person is vegetarian.", "fr": "Oui, une personne est végétarienne.", "va": "confirm",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "No problem at all. We have several vegetarian dishes.", "fr": "Aucun problème. Nous avons plusieurs plats végétariens."}]},
+    {"t": "Yes, we need a high chair for a baby.", "fr": "Oui, il nous faut une chaise haute pour un bébé.", "va": "confirm",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Aww, of course. One high chair.", "fr": "Oh, bien sûr. Une chaise haute."}]},
+    {"t": "Yes, it's my friend's birthday.", "fr": "Oui, c'est l'anniversaire de mon ami(e).", "va": "confirm",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Oh, how nice! We'll bring a candle with dessert.", "fr": "Oh, c'est sympa ! Nous apporterons une bougie avec le dessert."}]},
+    {"faux": true, "t": "Yes, it's the anniversary of my friend.", "fr": "Oui, c'est l'anniversaire de mon ami(e) (faux ami).",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "An anniversary? Oh, how many years have they been married?", "fr": "Un anniversaire de mariage ? Oh, ils sont mariés depuis combien d'années ?"}],
+     "aide": {"fr": "<b>« anniversary » est un faux ami</b> : c'est l'anniversaire de mariage. Le jour de la naissance, c'est « birthday ». Et on dit « my friend's birthday », pas « the birthday of my friend »."}}
+   ]
+  },
+  "confirm": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "So that's a table for {nb_en} this Saturday at {heure_en}, {lieu_en}, under Martin. Is that right?", "t_gb": "So that's a table for {nb_en} this Saturday at {heure_en}, {lieu_gb}, under Martin. Is that right?", "fr": "Donc une table pour {nb_fr} ce samedi à {heure_fr}, {lieu_fr}, au nom de Martin. C'est bien ça ?"}],
+   "choix": [
+    {"t": "Yes, that's right. Thank you very much!", "fr": "Oui, c'est ça. Merci beaucoup !", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "You're welcome! See you Saturday.", "fr": "Je vous en prie ! À samedi."}]},
+    {"t": "Perfect. Thank you! See you on Saturday.", "fr": "Parfait. Merci ! À samedi.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "See you then! Have a great day.", "fr": "À samedi ! Bonne journée."}]},
+    {"faux": true, "t": "Perfect. Thank you! At Saturday!", "fr": "Parfait. Merci ! À samedi ! (mot à mot)",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "At …? Oh — see you on Saturday!", "fr": "« At »… ? Ah : à samedi !"}],
+     "aide": {"fr": "<b>« À samedi ! » ne se traduit pas mot à mot.</b> On dit « See you on Saturday! » ou « See you Saturday! ». Et devant un jour, la préposition est « on », jamais « at »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as réservé au téléphone une table pour {nb_fr}, samedi à {heure_fr}, {lieu_fr}, au nom de Martin."}
+}

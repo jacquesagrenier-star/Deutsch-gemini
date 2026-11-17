@@ -1,0 +1,457 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d01-vorstellung.json",
+ "cles": {
+  "titre": {
+   "fr": "Se présenter à un patient",
+   "de": "Begrüßung und Vorstellung",
+   "en": "Introducing yourself to a patient"
+  },
+  "intro": {
+   "fr": "Un matin dans le service. Aujourd'hui, {elif} s'occupe de {brandt}, qu'elle ne connaît pas encore, opéré de la hanche il y a trois jours. Tu joues {elif} : présente-toi, demande comment il a dormi, dis ce que tu vas faire et montre-lui la sonnette.",
+   "en": "One morning on the ward. Today {elif} is looking after {brandt}, whom she hasn't met yet; he had hip surgery three days ago. You play {elif}: introduce yourself, ask how he slept, say what you are going to do and show him the call button."
+  },
+  "but": {
+   "fr": "Se présenter (nom, fonction, expérience), poser les premières questions, annoncer un soin, montrer la sonnette.",
+   "en": "Introduce yourself (name, role, experience), ask the first questions, announce a care task, show the call button."
+  },
+  "redemittel.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "en": "Good morning, {brandt:voc}. My name is {elif}, and I'll be looking after you today."
+  },
+  "redemittel.1": {
+   "fr": "Je travaille ici depuis quatre mois.",
+   "de": "Ich arbeite seit vier Monaten hier.",
+   "en": "I've been working here for four months."
+  },
+  "redemittel.2": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "en": "How did you sleep last night?"
+  },
+  "redemittel.3": {
+   "fr": "Je suis désolée.",
+   "de": "Das tut mir leid.",
+   "en": "I'm sorry to hear that."
+  },
+  "redemittel.4": {
+   "fr": "Je vais prendre votre tension. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck. Ist das in Ordnung?",
+   "en": "I'm going to take your blood pressure now. Is that all right?"
+  },
+  "redemittel.5": {
+   "fr": "Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Soll ich Ihnen helfen, sich aufzusetzen?",
+   "en": "Would you like me to help you sit up?"
+  },
+  "redemittel.6": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "en": "If you need anything, please press the call button here."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens tout de suite.",
+   "de": "Ich komme gleich wieder.",
+   "en": "I'll be right back."
+  },
+  "noeuds.tuer.dit.0.recit": {
+   "fr": "Sept heures, service du matin au {klinik}. {elif} frappe à la porte de la chambre douze.",
+   "en": "Seven o'clock, early shift at the {klinik}. {elif} knocks on the door of room twelve."
+  },
+  "noeuds.tuer.dit.1": {
+   "fr": "Oui ? Entrez !",
+   "de": "Ja? Herein!",
+   "en": "Yes? Come in!"
+  },
+  "noeuds.tuer.choix.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "en": "Good morning, {brandt:voc}. My name is {elif}, and I'll be looking after you today."
+  },
+  "noeuds.tuer.choix.0.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "en": "{elif}? I've never heard that name before."
+  },
+  "noeuds.tuer.choix.1": {
+   "fr": "Bonjour ! Je suis {elif}. Aujourd'hui, c'est moi qui m'occupe de vous.",
+   "de": "Guten Morgen! Ich bin {elif}. Ich kümmere mich heute um Sie.",
+   "en": "Good morning! I'm {elif}. I'm the one looking after you today."
+  },
+  "noeuds.tuer.choix.1.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "en": "{elif}? I've never heard that name before."
+  },
+  "noeuds.tuer.choix.2": {
+   "fr": "Salut ! Ça va, toi ?",
+   "de": "Hallo! Wie geht's dir?",
+   "en": "Hi! How's it going, buddy?"
+  },
+  "noeuds.tuer.choix.2.puis.0": {
+   "fr": "« Toi » ? On se connaît, peut-être ?",
+   "de": "Dir? Kennen wir uns etwa?",
+   "en": "“Buddy”? Do we know each other, then?"
+  },
+  "noeuds.tuer.choix.2.aide": {
+   "fr": "<b>Avec un patient, on dit toujours « Sie ».</b> « dir » et « Hallo », c'est pour un ami. Commence par « Guten Morgen, Herr Brandt », puis dis ton nom et ta fonction.",
+   "en": "<b>With a patient, you always say “Sie”.</b> “dir” and “Hallo” are for a friend. Start with “Guten Morgen, Herr Brandt”, then say your name and your role."
+  },
+  "noeuds.neu.dit.0": {
+   "fr": "Vous êtes nouvelle ici ?",
+   "de": "Sind Sie neu hier?",
+   "en": "Are you new here?"
+  },
+  "noeuds.neu.choix.0": {
+   "fr": "Oui, je travaille ici depuis quatre mois. Je viens de Turquie, d'Izmir.",
+   "de": "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.",
+   "en": "Yes, I've been working here for four months. I'm from Turkey, from Izmir."
+  },
+  "noeuds.neu.choix.0.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "en": "Izmir! I went there on vacation once, more than forty years ago. Lovely and warm, it was."
+  },
+  "noeuds.neu.choix.1": {
+   "fr": "Oui, je suis ici depuis quatre mois. En Turquie, j'étais infirmière, dans un hôpital d'Izmir.",
+   "de": "Ja, ich bin seit vier Monaten hier. In der Türkei war ich Krankenschwester, in einem Krankenhaus in Izmir.",
+   "en": "Yes, I've been here for four months. In Turkey I was a nurse, at a hospital in Izmir."
+  },
+  "noeuds.neu.choix.1.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "en": "Izmir! I went there on vacation once, more than forty years ago. Lovely and warm, it was."
+  },
+  "noeuds.neu.choix.2": {
+   "fr": "Oui, je suis nouvelle. Je viens « de Turquie » (mal dit).",
+   "de": "Ja, ich bin neu. Ich komme von Türkei.",
+   "en": "Yes, I'm new. I come “from Turkey” (said wrong in German)."
+  },
+  "noeuds.neu.choix.2.puis.0": {
+   "fr": "D'où, pardon ?",
+   "de": "Von wo, bitte?",
+   "en": "From where, sorry?"
+  },
+  "noeuds.neu.choix.2.aide": {
+   "fr": "<b>On dit « aus der Türkei ».</b> Pour le pays d'où l'on vient : « aus » + datif. Quelques pays ont un article : die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+   "en": "<b>You say “aus der Türkei”.</b> For the country you come from: “aus” + dative. A few countries take an article: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz."
+  },
+  "noeuds.schlaf.dit.0.recit": {
+   "fr": "{brandt} bâille et se frotte les yeux.",
+   "en": "{brandt} yawns and rubs his eyes."
+  },
+  "noeuds.schlaf.choix.0": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "en": "How did you sleep last night?"
+  },
+  "noeuds.schlaf.choix.0.puis.0": {
+   "fr": "Mal. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Schlecht. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "en": "Badly. My hip hurts, and there's a fellow next door who snores like a bear."
+  },
+  "noeuds.schlaf.choix.1": {
+   "fr": "Vous avez bien dormi ?",
+   "de": "Haben Sie gut geschlafen?",
+   "en": "Did you sleep well?"
+  },
+  "noeuds.schlaf.choix.1.puis.0": {
+   "fr": "Pas vraiment. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Nicht besonders. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "en": "Not really. My hip hurts, and there's a fellow next door who snores like a bear."
+  },
+  "noeuds.schlaf.choix.2": {
+   "fr": "Quand avez-vous dormi ?",
+   "de": "Wann haben Sie geschlafen?",
+   "en": "When did you sleep?"
+  },
+  "noeuds.schlaf.choix.2.puis.0": {
+   "fr": "Quand ? Eh bien, la nuit, comme tout le monde !",
+   "de": "Wann? Na, in der Nacht, wie jeder anständige Mensch!",
+   "en": "When? Well, at night, like any decent person!"
+  },
+  "noeuds.schlaf.choix.2.aide": {
+   "fr": "<b>« Wann ? » demande le moment, « Wie ? » la manière.</b> Pour savoir si la nuit a été bonne : « Wie haben Sie geschlafen? »",
+   "en": "<b>“Wann?” asks about the time, “Wie?” about the manner.</b> To find out whether the night went well: “Wie haben Sie geschlafen?”"
+  },
+  "noeuds.schmerz.dit.0.recit": {
+   "fr": "Il grimace en bougeant la jambe.",
+   "en": "He winces as he moves his leg."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Je suis désolée. Je le dis tout de suite {sommer:a}. Elle passe à neuf heures pour la visite.",
+   "de": "Das tut mir leid. Ich sage es gleich {sommer}. Sie kommt um neun zur Visite.",
+   "en": "I'm sorry to hear that. I'll tell {sommer} right away. She's coming at nine for the ward round."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Bon. Espérons que la doctoresse aura plus de temps qu'hier.",
+   "de": "Na gut. Hoffentlich hat die Frau Doktor heute mehr Zeit als gestern.",
+   "en": "Well, all right. Let's hope the lady doctor has more time today than yesterday."
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "Je suis désolée. Si la douleur devient forte, dites-le-moi tout de suite.",
+   "de": "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.",
+   "en": "I'm sorry to hear that. If the pain gets bad, please tell me straight away."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Pour l'instant, ça va. Mais dites-le aussi au médecin, s'il vous plaît.",
+   "de": "Im Moment geht's. Aber sagen Sie es bitte auch der Ärztin.",
+   "en": "For now it's all right. But please tell the doctor too."
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Ce n'est pas grave.",
+   "de": "Das ist nicht schlimm.",
+   "en": "That's not so bad."
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Pas grave ? Évidemment, ce n'est pas vous qui avez une hanche neuve !",
+   "de": "Nicht schlimm? Sie haben ja auch keine neue Hüfte!",
+   "en": "Not so bad? Well, you're not the one with a new hip!"
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>D'abord, montre que tu as entendu : « Das tut mir leid ».</b> Dire « ce n'est pas grave » à quelqu'un qui a mal le vexe, même avec une bonne intention.",
+   "en": "<b>First, show that you've heard: “Das tut mir leid”.</b> Telling someone in pain “that's not so bad” offends them, even with good intentions."
+  },
+  "noeuds.messen.dit.0": {
+   "fr": "Et maintenant, qu'est-ce que vous allez me faire ?",
+   "de": "Und was machen Sie jetzt mit mir?",
+   "en": "And what are you going to do to me now?"
+  },
+  "noeuds.messen.choix.0": {
+   "fr": "Je vais prendre votre tension et votre température. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck und Ihre Temperatur. Ist das in Ordnung?",
+   "en": "I'm going to take your blood pressure and your temperature now. Is that all right?"
+  },
+  "noeuds.messen.choix.0.puis.0": {
+   "fr": "Allez-y.",
+   "de": "Machen Sie nur.",
+   "en": "Go ahead."
+  },
+  "noeuds.messen.choix.1": {
+   "fr": "D'abord je prends votre tension, ensuite votre température. Je peux ?",
+   "de": "Zuerst messe ich Ihren Blutdruck, dann Ihre Temperatur. Darf ich?",
+   "en": "First I'll take your blood pressure, then your temperature. May I?"
+  },
+  "noeuds.messen.choix.1.puis.0": {
+   "fr": "S'il le faut.",
+   "de": "Wenn's sein muss.",
+   "en": "If I must."
+  },
+  "noeuds.messen.choix.2": {
+   "fr": "Je vais « mesurer votre sang ».",
+   "de": "Ich messe jetzt Ihr Blut.",
+   "en": "I'm going to “measure your blood” now."
+  },
+  "noeuds.messen.choix.2.puis.0": {
+   "fr": "Mon sang ? Vous voulez encore me faire une prise de sang ?",
+   "de": "Mein Blut? Wollen Sie mir etwa schon wieder Blut abnehmen?",
+   "en": "My blood? Don't tell me you're taking blood again?"
+  },
+  "noeuds.messen.choix.2.aide": {
+   "fr": "<b>Le mot juste est « der Blutdruck » (la tension).</b> « das Blut » est le sang ; « Blut abnehmen », c'est faire une prise de sang. Un mot de travers peut inquiéter un patient.",
+   "en": "<b>The right word is “der Blutdruck” (blood pressure).</b> “das Blut” is blood; “Blut abnehmen” means taking a blood sample. One wrong word can worry a patient."
+  },
+  "noeuds.werte.dit.0.recit": {
+   "fr": "{elif} pose le brassard, mesure, puis prend la température.",
+   "en": "{elif} puts on the cuff, takes the reading, then checks his temperature."
+  },
+  "noeuds.werte.dit.1": {
+   "fr": "Alors ? Je suis encore vivant ?",
+   "de": "Und? Lebe ich noch?",
+   "en": "Well? Am I still alive?"
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Oui, tout va bien. Votre tension est à 13/8 (130 sur 80), et vous n'avez pas de fièvre.",
+   "de": "Ja, alles in Ordnung. Ihr Blutdruck ist 130 zu 80, und Fieber haben Sie nicht.",
+   "en": "Yes, everything's fine. Your blood pressure is 130 over 80, and you don't have a fever."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "en": "Well, that's something at least."
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Et comment ! La tension est normale, la température aussi.",
+   "de": "Und wie! Der Blutdruck ist normal, und die Temperatur auch.",
+   "en": "You certainly are! Your blood pressure is normal, and so is your temperature."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "en": "Well, that's something at least."
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Pardon, comment ?",
+   "de": "Entschuldigung, wie bitte?",
+   "en": "Sorry, what did you say?"
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "Je vous ai demandé si j'étais encore vivant. C'était une blague !",
+   "de": "Ob ich noch lebe, hab ich gefragt. Das war ein Witz!",
+   "en": "I asked if I'm still alive. It was a joke!"
+  },
+  "noeuds.fruehstueck.dit.0": {
+   "fr": "Il y a le petit-déjeuner à quelle heure, ici ? J'ai faim.",
+   "de": "Wann gibt's denn hier Frühstück? Ich hab Hunger.",
+   "en": "So when is breakfast around here? I'm hungry."
+  },
+  "noeuds.fruehstueck.choix.0": {
+   "fr": "Le petit-déjeuner arrive à sept heures et demie. Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Das Frühstück kommt um halb acht. Soll ich Ihnen helfen, sich aufzusetzen?",
+   "en": "Breakfast comes at half past seven. Would you like me to help you sit up?"
+  },
+  "noeuds.fruehstueck.choix.0.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "en": "Yes, I can't manage on my own yet."
+  },
+  "noeuds.fruehstueck.choix.1": {
+   "fr": "À sept heures et demie, donc dans une demi-heure. Avant, je vous aide à vous asseoir.",
+   "de": "Um halb acht, also in einer halben Stunde. Vorher helfe ich Ihnen, sich aufzusetzen.",
+   "en": "At half past seven, so in half an hour. Before that, I'll help you sit up."
+  },
+  "noeuds.fruehstueck.choix.1.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "en": "Yes, I can't manage on my own yet."
+  },
+  "noeuds.fruehstueck.choix.2": {
+   "fr": "Le petit-déjeuner est à « sept heures trente minutes ».",
+   "de": "Das Frühstück ist um sieben Uhr dreißig Minuten.",
+   "en": "Breakfast is at “seven o'clock thirty minutes”."
+  },
+  "noeuds.fruehstueck.choix.2.puis.0": {
+   "fr": "Sept heures trente minutes ? Vous voulez dire sept heures et demie, non ?",
+   "de": "Sieben Uhr dreißig Minuten? Sie meinen halb acht, oder?",
+   "en": "Seven o'clock thirty minutes? You mean half past seven, don't you?"
+  },
+  "noeuds.fruehstueck.choix.2.aide": {
+   "fr": "<b>L'heure se dit « halb acht » ou « sieben Uhr dreißig », sans « Minuten ».</b> Attention : « halb acht » veut dire 7 h 30 (la moitié de l'heure qui mène à huit), pas 8 h 30.",
+   "en": "<b>You tell the time as “halb acht” or “sieben Uhr dreißig”, without “Minuten”.</b> Careful: “halb acht” means 7:30 (halfway to eight), not 8:30."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "{elif} aide {brandt} à s'asseoir dans son lit. Avant de partir, elle lui approche la sonnette.",
+   "en": "{elif} helps {brandt} sit up in bed. Before leaving, she puts the call button within his reach."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "en": "If you need anything, please press the call button here."
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Le bouton rouge ? D'accord.",
+   "de": "Der rote Knopf? Gut.",
+   "en": "The red button? All right."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+   "de": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+   "en": "Here's your call button. Please don't get up on your own yet; ring for us instead."
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Oui, oui. Le bouton rouge. Je ne suis pas né de la dernière pluie.",
+   "de": "Ja, ja. Der rote Knopf. Ich bin ja nicht von gestern.",
+   "en": "Yes, yes. The red button. I wasn't born yesterday."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Si vous avez besoin de quelque chose, appelez fort, tout simplement.",
+   "de": "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
+   "en": "If you need anything, just call out loudly."
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Appeler fort ? Personne ne m'entendra, avec le ronfleur d'à côté !",
+   "de": "Laut rufen? Da hört mich doch keiner, bei dem Schnarcher nebenan!",
+   "en": "Call out? Nobody's going to hear me, with that snorer next door!"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé.",
+   "en": "<b>In hospital, you show the patient the call button: “die Klingel”.</b> “Drücken Sie bitte hier”: please press here. A patient after surgery should not have to shout to get help."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci, ma sœur. (ancienne façon d'appeler une infirmière)",
+   "de": "Danke, Schwester.",
+   "en": "Thank you, Sister. (an old-fashioned way to address a nurse)"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Avec plaisir. Je reviens tout de suite avec le petit-déjeuner.",
+   "de": "Gern geschehen. Ich komme gleich mit dem Frühstück wieder.",
+   "en": "You're welcome. I'll be right back with your breakfast."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Vous êtes gentille, {elif}.",
+   "de": "Sie sind nett, {elif}.",
+   "en": "You're very kind, {elif}."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je vous en prie. Vous pouvez m'appeler {elif}. À tout de suite !",
+   "de": "Bitte schön. Sie können ruhig {elif} zu mir sagen. Bis gleich!",
+   "en": "My pleasure. You can call me {elif}. See you shortly!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "{elif}. Bien, je m'en souviendrai.",
+   "de": "{elif}. Gut, das merk ich mir.",
+   "en": "{elif}. Right, I'll remember that."
+  },
+  "ecouter.0.q": {
+   "fr": "D'où vient {elif} ?",
+   "de": "Woher kommt {elif}?",
+   "en": "Where is {elif} from?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "D'Izmir, en Turquie.",
+   "de": "Aus Izmir, in der Türkei.",
+   "en": "From Izmir, in Turkey."
+  },
+  "ecouter.0.options.1": {
+   "fr": "D'Istanbul.",
+   "de": "Aus Istanbul.",
+   "en": "From Istanbul."
+  },
+  "ecouter.0.options.2": {
+   "fr": "De Berlin.",
+   "de": "Aus Berlin.",
+   "en": "From Berlin."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {brandt} a-t-il mal dormi ?",
+   "de": "Warum hat {brandt} schlecht geschlafen?",
+   "en": "Why did {brandt} sleep badly?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Il avait faim.",
+   "de": "Er hatte Hunger.",
+   "en": "He was hungry."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Sa hanche lui fait mal, et son voisin ronfle.",
+   "de": "Die Hüfte tut weh, und der Nachbar schnarcht.",
+   "en": "His hip hurts, and his neighbor snores."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Il faisait trop chaud dans la chambre.",
+   "de": "Es war zu warm im Zimmer.",
+   "en": "It was too warm in the room."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand arrive le petit-déjeuner ?",
+   "de": "Wann kommt das Frühstück?",
+   "en": "When does breakfast come?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À huit heures et demie.",
+   "de": "Um halb neun.",
+   "en": "At half past eight."
+  },
+  "ecouter.2.options.1": {
+   "fr": "À sept heures.",
+   "de": "Um sieben.",
+   "en": "At seven."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À sept heures et demie.",
+   "de": "Um halb acht.",
+   "en": "At half past seven."
+  }
+ }
+}

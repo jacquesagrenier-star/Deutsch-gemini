@@ -1,0 +1,154 @@
+{
+ "id": "b1-soiree",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "À une soirée, faire connaissance"},
+ "intro": {"fr": "Tu es à l'anniversaire de ton amie Johanna, dans un vieil appartement de Neukölln. Dans la cuisine, un invité que tu ne connais pas t'adresse la parole."},
+ "personnes": ["b13_gast"],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Vendredi soir, à Berlin. Comme toujours, toute la fête s'est retrouvée dans la cuisine. Un homme à lunettes te tend un verre."}},
+    {"qui": "b13_gast", "air": "sourire", "t": "Hey, wir kennen uns noch nicht, oder? Ich bin Samuel.", "fr": "Salut, on ne se connaît pas encore, non ? Moi, c'est Samuel."}
+   ],
+   "choix": [
+    {"t": "Hallo Samuel! Nein, ich glaube nicht. Freut mich!", "fr": "Salut Samuel ! Non, je ne crois pas. Enchanté !", "va": "woher"},
+    {"t": "Hi! Ich bin zum ersten Mal hier. Schön, dich kennenzulernen.", "fr": "Salut ! C'est la première fois que je viens ici. Content de faire ta connaissance.", "va": "woher"}
+   ]
+  },
+  "woher": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Und woher kennst du Johanna?", "fr": "Et tu connais Johanna d'où ?"}],
+   "choix": [
+    {"t": "Wir arbeiten zusammen. Sie ist meine Kollegin.", "fr": "On travaille ensemble. C'est ma collègue.", "va": "beruf_kollege"},
+    {"t": "Wir sind Nachbarn. Ich wohne im selben Haus.", "fr": "On est voisins. J'habite dans le même immeuble.", "va": "beruf",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Praktisch! Dann hast du es heute nicht weit nach Hause.", "fr": "Pratique ! Alors tu n'as pas loin à rentrer ce soir."}]},
+    {"t": "Aus einem Sprachkurs. Sie lernt Französisch, und ich helfe ihr manchmal.", "fr": "D'un cours de langue. Elle apprend le français, et je l'aide de temps en temps.", "va": "beruf",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Ach, du bist das! Sie hat schon von dir erzählt.", "fr": "Ah, c'est toi ! Elle m'a déjà parlé de toi."}]},
+    {"faux": true, "t": "Ich weiß sie von der Arbeit.", "fr": "Je la sais du travail.",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "Du weißt sie …? Ach so, du kennst sie von der Arbeit!", "fr": "Tu la sais… ? Ah, tu la connais du travail !"}],
+     "aide": {"fr": "<b>« wissen » ou « kennen » ?</b> On « weiß » un fait, on « kennt » une personne ou un lieu. Dis : « Ich kenne sie von der Arbeit. »"}},
+    {"repete": true, "t": "Entschuldigung, die Musik ist so laut. Was hast du gesagt?", "fr": "Pardon, la musique est tellement forte. Qu'est-ce que tu as dit ?", "va": "woher",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Johanna – woher kennst du sie?", "fr": "Johanna : tu la connais d'où ?"}]}
+   ]
+  },
+  "beruf_kollege": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Ach, dann bist du auch in der Agentur! Johanna sagt immer, bei euch ist es nie langweilig. Was machst du da genau?", "fr": "Ah, alors tu es à l'agence, toi aussi ! Johanna dit toujours qu'on ne s'ennuie jamais chez vous. Tu y fais quoi, exactement ?"}],
+   "choix": [
+    {"t": "Ich bin im Kundenservice. Ich telefoniere den ganzen Tag. Und du?", "fr": "Je suis au service client. Je passe la journée au téléphone. Et toi ?", "va": "stadt",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Ich bin Arzt, in einem Krankenhaus in Mitte. Diese Woche hatte ich Nachtdienst – heute wird gefeiert!", "fr": "Je suis médecin, dans un hôpital de Mitte. Cette semaine j'étais de garde de nuit : ce soir, on fête ça !"}]},
+    {"t": "Ich mache die Webseiten für unsere Kunden. Und was machst du?", "fr": "Je fais les sites web de nos clients. Et toi, tu fais quoi ?", "va": "stadt",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Ich bin Arzt, in einem Krankenhaus in Mitte. Mit Computern kann ich leider gar nichts anfangen.", "fr": "Je suis médecin, dans un hôpital de Mitte. Les ordinateurs, hélas, ce n'est pas du tout mon truc."}]},
+    {"faux": true, "t": "Ich arbeite dort für zwei Jahre.", "fr": "J'y travaille pour deux ans.",
+     "puis": [{"qui": "b13_gast", "air": "question", "t": "Für zwei Jahre? Also hast du einen Vertrag nur für zwei Jahre?", "fr": "Pour deux ans ? Tu as donc un contrat de deux ans seulement ?"}],
+     "aide": {"fr": "<b>« depuis » se dit « seit »</b> (avec le présent et le datif) : « Ich arbeite dort seit zwei Jahren. » « Für zwei Jahre » annonce une durée prévue."}}
+   ]
+  },
+  "beruf": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Und was machst du so, wenn du nicht gerade in fremden Küchen stehst?", "fr": "Et tu fais quoi dans la vie, quand tu n'es pas dans la cuisine des autres ?"}],
+   "choix": [
+    {"t": "Ich arbeite in einem Hotel, an der Rezeption. Und du, was machst du beruflich?", "fr": "Je travaille dans un hôtel, à la réception. Et toi, tu fais quoi comme métier ?", "va": "stadt",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Ich bin Arzt, in einem Krankenhaus in Mitte. Nachtdienst kennst du im Hotel ja sicher auch.", "fr": "Je suis médecin, dans un hôpital de Mitte. Le service de nuit, à l'hôtel, tu dois connaître aussi."}]},
+    {"t": "Ich studiere noch. Ich mache gerade meinen Master in Architektur. Und du?", "fr": "Je suis encore étudiant. Je fais mon master d'architecture. Et toi ?", "va": "stadt",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Ich bin Arzt, in einem Krankenhaus in Mitte. Das Studium vermisse ich manchmal!", "fr": "Je suis médecin, dans un hôpital de Mitte. Les études me manquent, parfois !"}]},
+    {"faux": true, "t": "Ich arbeite in einem Hotel. Und was machen Sie beruflich?", "fr": "Je travaille dans un hôtel. Et vous, que faites-vous comme métier ?",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Sie? So alt bin ich noch nicht. Sag ruhig du!", "fr": "« Sie » ? Je ne suis pas encore si vieux. Dis-moi « du », va !"}],
+     "aide": {"fr": "<b>Entre jeunes adultes, à une fête, on se dit « du » d'emblée.</b> Le « Sie » met de la distance. Dis : « Und du, was machst du beruflich? »"}}
+   ]
+  },
+  "stadt": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Und wie lange bist du schon in Berlin?", "fr": "Et tu es à Berlin depuis combien de temps ?"}],
+   "choix": [
+    {"t": "Seit einem Jahr. Am Anfang war es schwer, aber jetzt fühle ich mich wohl.", "fr": "Depuis un an. Au début c'était dur, mais maintenant je m'y sens bien.", "va": "ueberrascht"},
+    {"t": "Erst seit drei Monaten. Alles ist noch neu für mich.", "fr": "Depuis trois mois seulement. Tout est encore nouveau pour moi.", "va": "ueberrascht"},
+    {"faux": true, "t": "Ich bin seit einem Jahr nach Berlin gekommen.", "fr": "Je suis venu à Berlin depuis un an.",
+     "puis": [{"qui": "b13_gast", "air": "attentive", "t": "Ah, du bist vor einem Jahr gekommen. Also bist du seit einem Jahr hier!", "fr": "Ah, tu es arrivé il y a un an. Donc tu es ici depuis un an !"}],
+     "aide": {"fr": "<b>« il y a un an » = « vor einem Jahr »</b> (un moment du passé) ; « seit einem Jahr » = depuis un an (ça dure encore). « Ich bin vor einem Jahr gekommen » ou « Ich bin seit einem Jahr hier ». "}}
+   ]
+  },
+  "ueberrascht": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Und was hat dich hier am meisten überrascht?", "fr": "Et qu'est-ce qui t'a le plus surpris, ici ?"}],
+   "choix": [
+    {"t": "Dass sonntags alle Geschäfte geschlossen sind. Das kannte ich so nicht.", "fr": "Que tous les magasins soient fermés le dimanche. Je ne connaissais pas ça.", "va": "flohmarkt",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Ja, daran gewöhnt man sich. Dafür gibt es sonntags die Flohmärkte!", "fr": "Oui, on s'y fait. En échange, le dimanche, il y a les marchés aux puces !"}]},
+    {"t": "Dass die Leute so direkt sind. Aber eigentlich finde ich das gut.", "fr": "Que les gens soient si directs. Mais au fond, je trouve ça bien.", "va": "hobby",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Stimmt, wir sagen, was wir denken. Das ist nie böse gemeint!", "fr": "C'est vrai, on dit ce qu'on pense. Ce n'est jamais méchant !"}]},
+    {"faux": true, "t": "Dass die Geschäfte sind geschlossen am Sonntag.", "fr": "Que les magasins sont fermés le dimanche (verbe mal placé).",
+     "puis": [{"qui": "b13_gast", "air": "attentive", "t": "Du meinst: dass die Geschäfte am Sonntag geschlossen sind? Ja, das überrascht alle!", "fr": "Tu veux dire : que les magasins sont fermés le dimanche ? Oui, ça surprend tout le monde !"}],
+     "aide": {"fr": "<b>Après « dass », le verbe conjugué va à la fin :</b> « Dass die Geschäfte am Sonntag geschlossen sind. »"}}
+   ]
+  },
+  "hobby": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Und was machst du so am Wochenende?", "fr": "Et tu fais quoi, le week-end ?"}],
+   "choix": [
+    {"t": "Ich gehe gern auf Konzerte. Ich liebe Livemusik.", "fr": "J'aime aller à des concerts. J'adore la musique en direct.", "va": "konzert"},
+    {"t": "Ich fahre viel Fahrrad und gehe gern auf Märkte.", "fr": "Je fais beaucoup de vélo et j'aime bien aller sur les marchés.", "va": "flohmarkt",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Märkte? Dann habe ich etwas für dich.", "fr": "Les marchés ? Alors j'ai quelque chose pour toi."}]},
+    {"faux": true, "t": "Ich mache gern Promenade in der Stadt.", "fr": "J'aime faire promenade en ville.",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "Promenade? Ach, du gehst gern spazieren!", "fr": "Promenade ? Ah, tu aimes te promener !"}],
+     "aide": {"fr": "<b>« se promener » = « spazieren gehen ».</b> « Die Promenade » est un lieu (un front de mer), pas une activité. Dis : « Ich gehe gern in der Stadt spazieren. »"}}
+   ]
+  },
+  "flohmarkt": {
+   "dit": [{"qui": "b13_gast", "air": "question", "t": "Am Sonntag gehe ich zum Flohmarkt am Mauerpark. Warst du schon mal da?", "fr": "Dimanche, je vais au marché aux puces du Mauerpark. Tu y es déjà allé ?"}],
+   "choix": [
+    {"t": "Nein, noch nie. Aber ich habe schon viel davon gehört.", "fr": "Non, jamais. Mais j'en ai déjà beaucoup entendu parler.", "pose": {"sortie": "floh"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Dann komm doch mit! Es gibt alte Platten, Möbel und nachmittags Karaoke.", "fr": "Alors viens avec moi ! Il y a des vieux disques, des meubles et, l'après-midi, du karaoké."}]},
+    {"t": "Ja, einmal. Es war total voll, aber die Stimmung war toll.", "fr": "Oui, une fois. C'était bondé, mais l'ambiance était super.", "pose": {"sortie": "floh"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Voll ist es immer! Ich gehe trotzdem wieder hin. Komm doch mit!", "fr": "C'est toujours bondé ! J'y retourne quand même. Viens donc avec moi !"}]},
+    {"faux": true, "t": "Nein, ich habe nie dort gegangen.", "fr": "Non, je n'y ai jamais allé.",
+     "puis": [{"qui": "b13_gast", "air": "attentive", "t": "Du bist noch nie hingegangen? Dann wird es aber Zeit!", "fr": "Tu n'y es encore jamais allé ? Alors il est grand temps !"}],
+     "aide": {"fr": "<b>« gehen » fait son Perfekt avec « sein » :</b> « Ich bin noch nie dort gewesen » ou « Ich bin noch nie hingegangen ». "}}
+   ]
+  },
+  "konzert": {
+   "dit": [{"qui": "b13_gast", "air": "sourire", "t": "Echt? Morgen spielt die Band von einem Freund in einer kleinen Bar in Kreuzberg. Hast du Lust mitzukommen?", "fr": "C'est vrai ? Demain, le groupe d'un ami joue dans un petit bar de Kreuzberg. Ça te dit de venir ?"}],
+   "choix": [
+    {"t": "Ja, gern! Was für Musik machen sie?", "fr": "Oui, volontiers ! Ils font quel genre de musique ?", "pose": {"sortie": "konzert"}, "va": "plan",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Indie-Rock. Ein bisschen laut, aber gut. Und der Eintritt ist frei.", "fr": "Du rock indé. Un peu fort, mais bon. Et l'entrée est gratuite."}]},
+    {"t": "Morgen kann ich leider nicht. Aber nächstes Mal komme ich gern mit.", "fr": "Demain, je ne peux pas, malheureusement. Mais la prochaine fois, je viens volontiers.", "va": "nummer",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Schade! Dann sage ich dir Bescheid, wenn sie wieder spielen.", "fr": "Dommage ! Alors je te préviens quand ils rejouent."}]},
+    {"faux": true, "t": "Ja, das sagt mir!", "fr": "Oui, ça me dit !",
+     "puis": [{"qui": "b13_gast", "air": "perplexe", "t": "Das sagt dir … was? Heißt das ja?", "fr": "Ça te dit… quoi ? Ça veut dire oui ?"}],
+     "aide": {"fr": "<b>« Ça me dit » ne se traduit pas mot à mot.</b> Dis : « Ja, ich habe Lust! » ou simplement « Ja, gern! »."}}
+   ]
+  },
+  "plan": {
+   "dit": [
+    {"si": {"sortie": "floh"}, "qui": "b13_gast", "air": "question", "t": "Sollen wir uns am Sonntag um elf am U-Bahnhof Eberswalder Straße treffen?", "fr": "On se retrouve dimanche à onze heures à la station de métro Eberswalder Straße ?"},
+    {"si": {"sortie": "konzert"}, "qui": "b13_gast", "air": "question", "t": "Es fängt um neun an. Sollen wir uns um halb neun vor der Bar treffen?", "fr": "Ça commence à neuf heures. On se retrouve à huit heures et demie devant le bar ?"}
+   ],
+   "choix": [
+    {"t": "Ja, das passt mir gut. Ich freue mich!", "fr": "Oui, ça me va très bien. Je me réjouis !", "va": "nummer"},
+    {"t": "Geht es auch eine halbe Stunde später? Ich brauche am Wochenende immer etwas länger.", "fr": "Une demi-heure plus tard, c'est possible ? Le week-end, il me faut toujours un peu plus de temps.", "va": "nummer",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Klar, kein Problem. Dann eine halbe Stunde später.", "fr": "Bien sûr, pas de problème. Une demi-heure plus tard, alors."}]}
+   ]
+  },
+  "nummer": {
+   "dit": [{"qui": "b13_gast", "air": "sourire", "t": "Gib mir doch deine Nummer, dann schreibe ich dir.", "fr": "Donne-moi ton numéro, je t'écrirai."}],
+   "choix": [
+    {"t": "Klar! Gib mir kurz dein Handy, ich schreibe sie dir auf.", "fr": "Bien sûr ! Passe-moi ton portable une seconde, je te le note.", "va": "ende",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Perfekt. Ich schicke dir gleich eine Nachricht, dann hast du meine auch.", "fr": "Parfait. Je t'envoie tout de suite un message, comme ça tu auras le mien aussi."}]},
+    {"t": "Gib mir lieber deine. Ich rufe dich kurz an, dann hast du meine auch.", "fr": "Donne-moi plutôt le tien. Je t'appelle une seconde, et tu auras le mien aussi.", "va": "ende",
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Gute Idee. Moment … ja, es klingelt!", "fr": "Bonne idée. Attends… oui, ça sonne !"}]},
+    {"faux": true, "t": "Klar! Ich gebe dir meine Nummer von Telefon.", "fr": "Bien sûr ! Je te donne mon numéro de téléphone (mot à mot).",
+     "puis": [{"qui": "b13_gast", "air": "amuse", "t": "Deine Telefonnummer, ja bitte!", "fr": "Ton numéro de téléphone, oui, s'il te plaît !"}],
+     "aide": {"fr": "<b>L'allemand colle les mots :</b> « numéro de téléphone » = « die Telefonnummer » (ou « die Handynummer »). Dis : « Ich gebe dir meine Telefonnummer. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "Dans le salon, quelqu'un éteint la lumière. Johanna appelle tout le monde : le gâteau arrive."}},
+    {"qui": "b13_gast", "air": "sourire", "t": "Oh, die Torte! Kommst du mit rüber?", "fr": "Oh, le gâteau ! Tu viens à côté ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich komme mit. Ich muss Johanna sowieso noch gratulieren.", "fr": "Oui, je viens. De toute façon, je dois encore souhaiter son anniversaire à Johanna.", "va": null,
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Dann los! Schön, dass wir uns kennengelernt haben.", "fr": "Alors on y va ! Content qu'on ait fait connaissance."}]},
+    {"t": "Geh schon vor, ich hole mir nur noch etwas zu trinken. Bis gleich!", "fr": "Vas-y, je vais juste me chercher quelque chose à boire. À tout de suite !", "va": null,
+     "puis": [{"qui": "b13_gast", "air": "sourire", "t": "Alles klar. Hat mich gefreut – bis gleich!", "fr": "Ça marche. Ravi d'avoir fait ta connaissance, à tout de suite !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait la conversation avec un inconnu à une soirée berlinoise : tu t'es présenté, tu as parlé de ta vie à Berlin et vous avez échangé vos numéros."}
+}

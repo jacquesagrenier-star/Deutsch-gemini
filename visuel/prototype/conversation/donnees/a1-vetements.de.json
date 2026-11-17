@@ -1,0 +1,92 @@
+{
+ "id": "a1-vetements",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "Sie",
+ "titre": {"fr": "Acheter une veste : essayer, la taille"},
+ "intro": {"fr": "Il fait froid à Berlin : il te faut une veste. Tu demandes ta taille, tu essaies, et tu achètes."},
+ "personnes": ["verkaeuferin"],
+ "debut": "hilfe",
+ "prix": {"jacke": 4000},
+ "panier": ["kauf"],
+ "noeuds": {
+  "hilfe": {
+   "dit": [
+    {"recit": {"fr": "Un après-midi d'automne. Il fait froid à Berlin et tu entres dans une boutique de vêtements."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Hallo! Kann ich Ihnen helfen?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Ja, ich suche eine Jacke.", "fr": "Oui, je cherche une veste.", "va": "groesse",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gern. Die Jacken sind hier.", "fr": "Volontiers. Les vestes sont ici."}]},
+    {"t": "Ja, bitte. Haben Sie warme Jacken?", "fr": "Oui, s'il vous plaît. Vous avez des vestes chaudes ?", "va": "groesse",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Ja, hier, zum Beispiel diese blaue Jacke.", "fr": "Oui, ici, par exemple cette veste bleue."}]},
+    {"t": "Nein, danke. Ich schaue nur.", "fr": "Non, merci. Je regarde seulement.", "va": "spaeter",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Kein Problem. Rufen Sie mich einfach!", "fr": "Pas de problème. Appelez-moi, tout simplement !"}]}
+   ]
+  },
+  "spaeter": {
+   "dit": [{"recit": {"fr": "Quelques minutes plus tard, tu trouves une veste bleue qui te plaît. Mais tu ne vois pas ta taille."}}],
+   "choix": [
+    {"t": "Entschuldigung! Haben Sie diese Jacke in Größe M?", "fr": "Excusez-moi ! Vous avez cette veste en taille M ?", "va": "anprobe",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Moment … ja, hier, in M.", "fr": "Un instant… oui, voilà, en M."}]},
+    {"t": "Entschuldigung! Gibt es die Jacke auch in M?", "fr": "Excusez-moi ! La veste existe aussi en M ?", "va": "anprobe",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Ja, natürlich. Hier, bitte.", "fr": "Oui, bien sûr. Voilà."}]}
+   ]
+  },
+  "groesse": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Welche Größe haben Sie?", "fr": "Quelle taille faites-vous ?"}],
+   "choix": [
+    {"t": "Größe M, bitte.", "fr": "Taille M, s'il vous plaît.", "va": "anprobe",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Hier, bitte: diese Jacke in M.", "fr": "Voilà : cette veste en M."}]},
+    {"t": "Ich glaube, M.", "fr": "Je crois que c'est M.", "va": "anprobe",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gut, hier ist eine M.", "fr": "Bien, voici une M."}]},
+    {"faux": true, "t": "Ich mache Größe M.", "fr": "Je fais du M (mot à mot).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "Sie machen …? Ach so, Sie haben Größe M!", "fr": "Vous faites… ? Ah, vous avez la taille M !"}],
+     "aide": {"fr": "<b>« Je fais du M » ne se traduit pas mot à mot :</b> on dit « Ich habe Größe M » ou, plus court, « Größe M, bitte »."}}
+   ]
+  },
+  "anprobe": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Möchten Sie die Jacke anprobieren?", "fr": "Vous voulez essayer la veste ?"}],
+   "choix": [
+    {"t": "Ja, gern. Wo ist die Kabine?", "fr": "Oui, volontiers. Où est la cabine ?", "va": "kabine",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Da hinten, links.", "fr": "Là-bas au fond, à gauche."}]},
+    {"t": "Nein, danke. Was kostet sie?", "fr": "Non, merci. Combien elle coûte ?", "va": "preis"}
+   ]
+  },
+  "kabine": {
+   "dit": [
+    {"recit": {"fr": "Tu essaies la veste dans la cabine, puis tu sors."}},
+    {"qui": "verkaeuferin", "air": "question", "t": "Und? Passt sie?", "fr": "Alors ? Elle vous va ?"}
+   ],
+   "choix": [
+    {"t": "Ja, sie passt sehr gut!", "fr": "Oui, elle me va très bien !", "va": "preis",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sie steht Ihnen wirklich gut!", "fr": "Elle vous va vraiment bien !"}]},
+    {"t": "Nein, sie ist mir zu klein. Haben Sie sie in L?", "fr": "Non, elle est trop petite pour moi. Vous l'avez en L ?", "va": "preis",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Moment … ja, hier, in L.", "fr": "Un instant… oui, voilà, en L."},
+              {"recit": {"fr": "Tu essaies la veste en L : elle est parfaite."}}]}
+   ]
+  },
+  "preis": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "Die Jacke kostet normalerweise neunundfünfzig Euro. Aber heute ist sie im Angebot: nur vierzig Euro!", "fr": "La veste coûte normalement cinquante-neuf euros. Mais aujourd'hui, elle est en promotion : seulement quarante euros !"}],
+   "choix": [
+    {"t": "Super, die nehme ich!", "fr": "Super, je la prends !", "pose": {"kauf": "jacke"}, "va": "kasse"},
+    {"t": "Vierzig Euro? Gut, ich nehme sie.", "fr": "Quarante euros ? Bien, je la prends.", "pose": {"kauf": "jacke"}, "va": "kasse"},
+    {"faux": true, "t": "Super, ich nehme!", "fr": "Super, je prends !",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "Sie nehmen …? Ach, die Jacke! Ja, gern!", "fr": "Vous prenez… ? Ah, la veste ! Oui, volontiers !"}],
+     "aide": {"fr": "<b>« nehmen » ne s'emploie pas seul :</b> il faut dire ce qu'on prend. « Ich nehme <b>sie</b> » ou « <b>Die</b> nehme ich » (die Jacke, féminin)."}}
+   ]
+  },
+  "kasse": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "Gern. Das macht {a_payer}. Zahlen Sie mit Karte?", "fr": "Volontiers. Ça fait {a_payer}. Vous payez par carte ?", "dit": "Gern. Das macht {a_payer:mots}. Zahlen Sie mit Karte?"}],
+   "choix": [
+    {"t": "Ja, mit Karte, bitte.", "fr": "Oui, par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Danke schön! Viel Spaß mit der Jacke!", "fr": "Merci beaucoup ! Profitez bien de la veste !"}]},
+    {"t": "Nein, bar. Hier, bitte.", "fr": "Non, en espèces. Voilà.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Danke schön! Viel Spaß mit der Jacke!", "fr": "Merci beaucoup ! Profitez bien de la veste !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ta taille, essayé la veste et l'as achetée {a_payer}."}
+}

@@ -1126,7 +1126,7 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "boden",

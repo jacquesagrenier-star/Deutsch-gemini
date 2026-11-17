@@ -1,0 +1,137 @@
+{
+ "id": "a2-diner-voisins",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "tú",
+ "titre": {"fr": "Dîner chez Carmen, ta voisine"},
+ "intro": {"fr": "Carmen, ta voisine du troisième, t'invite à dîner. À Madrid, entre voisins, on se tutoie tout de suite. Tu offres un petit cadeau, tu fais des compliments, tu remercies."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "llegada",
+ "textes": {
+  "regalo_fr": {"cle": "regalo", "vino": "une bouteille de vin", "flores": "des fleurs", "bombones": "des chocolats"}
+ },
+ "noeuds": {
+  "llegada": {
+   "dit": [
+    {"recit": {"fr": "Samedi, vingt et une heures trente : l'heure du dîner à Madrid. Tu sonnes chez Carmen, un petit cadeau à la main."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Hola! ¡Pasa, pasa! Estás en tu casa.", "fr": "Bonjour ! Entre, entre ! Fais comme chez toi."}
+   ],
+   "choix": [
+    {"t": "Hola, Carmen. Gracias por la invitación. He traído una botella de vino.", "fr": "Bonjour, Carmen. Merci pour l'invitation. J'ai apporté une bouteille de vin.", "pose": {"regalo": "vino"}, "va": "piso",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡Pero no hacía falta! Muchas gracias.", "fr": "Mais il ne fallait pas ! Merci beaucoup."}]},
+    {"t": "Hola, Carmen. Toma, estas flores son para ti.", "fr": "Bonjour, Carmen. Tiens, ces fleurs sont pour toi.", "pose": {"regalo": "flores"}, "va": "piso",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡Qué bonitas! No hacía falta, de verdad. Muchas gracias.", "fr": "Qu'elles sont jolies ! Il ne fallait pas, vraiment. Merci beaucoup."}]},
+    {"t": "Buenas noches, Carmen. He traído unos bombones.", "fr": "Bonsoir, Carmen. J'ai apporté des chocolats.", "pose": {"regalo": "bombones"}, "va": "piso",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "¡Bombones! ¡Con lo que me gustan! Muchas gracias.", "fr": "Des chocolats ! Moi qui les aime tant ! Merci beaucoup."}]},
+    {"faux": true, "t": "Hola, Carmen. He traído un regalo por ti.", "fr": "Bonjour, Carmen. J'ai apporté un cadeau pour toi (avec « por »).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿Por mí? Ah, ¡para mí! ¡Muchas gracias!", "fr": "À cause de moi ? Ah, pour moi ! Merci beaucoup !"}],
+     "aide": {"fr": "<b>Un cadeau destiné à quelqu'un : « para ».</b> « Un regalo para ti ». « Por » donne la cause ou la raison : « gracias por la invitación »."}}
+   ]
+  },
+  "piso": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Mira, este es el salón. Es pequeño, pero tiene balcón.", "fr": "Regarde, voici le salon. Il est petit, mais il a un balcon."}],
+   "choix": [
+    {"t": "¡Qué piso tan bonito! Me encanta el balcón.", "fr": "Quel bel appartement ! J'adore le balcon.", "va": "beber",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Gracias. En verano ceno ahí todas las noches.", "fr": "Merci. En été, j'y dîne tous les soirs."}]},
+    {"t": "Tu piso es precioso. ¡Y qué vistas!", "fr": "Ton appartement est magnifique. Et quelle vue !", "va": "beber",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¿A que sí? Se ven todos los tejados del barrio.", "fr": "N'est-ce pas ? On voit tous les toits du quartier."}]},
+    {"faux": true, "t": "Tu piso es muy bien.", "fr": "Ton appartement est très bien (avec « ser »).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿Es muy… bonito? ¿Está muy bien? ¡Gracias!", "fr": "Il est très… joli ? Il est très bien ? Merci !"}],
+     "aide": {"fr": "<b>« Bien » va avec « estar », jamais avec « ser ».</b> « Tu piso está muy bien », ou avec un adjectif : « tu piso es muy bonito »."}}
+   ]
+  },
+  "beber": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "¿Qué te pongo? ¿Una caña, un vino, un vermut?", "fr": "Qu'est-ce que je te sers ? Une bière pression, un vin, un vermouth ?"}],
+   "choix": [
+    {"t": "Un vino tinto, por favor.", "fr": "Un vin rouge, s'il te plaît.", "va": "mesa",
+     "puis": [
+      {"qui": "nachbarin_carmen", "air": "sourire", "si": {"regalo": "vino"}, "t": "¡Pues abrimos tu botella!", "fr": "Eh bien, on ouvre ta bouteille !"},
+      {"qui": "nachbarin_carmen", "air": "sourire", "si": {"regalo": "flores"}, "t": "Marchando. Tengo un rioja muy rico.", "fr": "Ça marche. J'ai un rioja très bon."},
+      {"qui": "nachbarin_carmen", "air": "sourire", "si": {"regalo": "bombones"}, "t": "Marchando. Tengo un rioja muy rico.", "fr": "Ça marche. J'ai un rioja très bon."}
+     ]},
+    {"t": "Una caña, gracias.", "fr": "Une bière pression, merci.", "va": "mesa",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Marchando una caña. Yo también quiero una.", "fr": "Et une bière, une ! Moi aussi, j'en veux une."}]},
+    {"t": "Solo agua, gracias. No bebo alcohol.", "fr": "Seulement de l'eau, merci. Je ne bois pas d'alcool.", "va": "mesa",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Muy bien. ¿Con gas o sin gas?… Sin gas, toma.", "fr": "Très bien. Gazeuse ou plate ?… Plate, tiens."}]},
+    {"faux": true, "t": "Quiero bien un vino.", "fr": "Je veux bien un vin (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿Quieres… bien? ¿Quieres un vino, entonces?", "fr": "Tu veux… bien ? Tu veux un vin, alors ?"}],
+     "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> Pour accepter : « Un vino, por favor », « Sí, gracias » ou « Vale, un vino »."}},
+    {"repete": true, "t": "¿Perdona? ¿Puedes repetir?", "fr": "Pardon ? Tu peux répéter ?", "va": "beber",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sí, claro. ¿Qué quieres beber? Tengo cerveza, vino y vermut.", "fr": "Oui, bien sûr. Qu'est-ce que tu veux boire ? J'ai de la bière, du vin et du vermouth."}]}
+   ]
+  },
+  "mesa": {
+   "dit": [
+    {"recit": {"fr": "Vous passez à table. Carmen pose une tortilla dorée et une assiette de croquettes."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "¡A la mesa! He hecho tortilla de patatas y croquetas de jamón. A ver qué te parece.", "fr": "À table ! J'ai fait une tortilla de pommes de terre et des croquettes au jambon. Tu me diras ce que tu en penses."}
+   ],
+   "choix": [
+    {"t": "¡Qué rica está la tortilla! ¿Lleva cebolla?", "fr": "Qu'elle est bonne, cette tortilla ! Il y a de l'oignon dedans ?", "va": "repetir",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Claro! La tortilla, con cebolla. Siempre.", "fr": "Bien sûr ! La tortilla, c'est avec de l'oignon. Toujours."}]},
+    {"t": "Las croquetas están buenísimas. ¿Me das la receta?", "fr": "Les croquettes sont délicieuses. Tu me donnes la recette ?", "va": "repetir",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Es la receta de mi abuela… Bueno, a ti te la doy.", "fr": "C'est la recette de ma grand-mère… Bon, à toi, je la donne."}]},
+    {"faux": true, "t": "¡La tortilla es muy rica!", "fr": "La tortilla est très bonne ! (avec « ser »)",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Está muy rica, querrás decir! Gracias.", "fr": "« Está muy rica », tu veux dire ! Merci."}],
+     "aide": {"fr": "<b>Un plat qu'on est en train de goûter : « estar ».</b> « La tortilla está muy rica », « las croquetas están buenísimas ». « Ser » parlerait de la tortilla en général."}}
+   ]
+  },
+  "repetir": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "¿Te pongo un poco más de tortilla?", "fr": "Je te ressers un peu de tortilla ?"}],
+   "choix": [
+    {"t": "Sí, por favor. ¡Está buenísima!", "fr": "Oui, s'il te plaît. Elle est délicieuse !", "va": "cocinera"},
+    {"t": "No, gracias, ya no puedo más. Pero estaba todo riquísimo.", "fr": "Non, merci, je n'en peux plus. Mais tout était délicieux.", "va": "postre",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Me alegro. Pero deja un sitio para el postre, ¿eh?", "fr": "Ça me fait plaisir. Mais garde une place pour le dessert, hein ?"}]},
+    {"faux": true, "t": "No, gracias, no tengo más hambre.", "fr": "Non, merci, je n'ai plus faim (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿No tienes más hambre… que quién? Ah, ¡ya no tienes hambre!", "fr": "Tu n'as pas plus faim… que qui ? Ah, tu n'as plus faim !"}],
+     "aide": {"fr": "<b>« Ne… plus » se dit « ya no ».</b> « Ya no tengo hambre », « ya no puedo más ». « No… más » veut dire « pas davantage »."}}
+   ]
+  },
+  "cocinera": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Así me gusta! Es que soy cocinera. Trabajo en un restaurante de La Latina.", "fr": "Voilà qui me plaît ! C'est que je suis cuisinière. Je travaille dans un restaurant de La Latina."}],
+   "choix": [
+    {"t": "¿Ah, sí? ¡Ahora lo entiendo todo!", "fr": "Ah bon ? Maintenant, je comprends tout !", "va": "postre",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Pero en casa cocino mejor, no se lo digas a mi jefe.", "fr": "Mais à la maison, je cuisine mieux, ne le dis pas à mon chef."}]},
+    {"t": "¡Qué suerte tengo con mi vecina!", "fr": "Quelle chance j'ai avec ma voisine !", "va": "postre",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Anda, anda! Me vas a poner colorada.", "fr": "Allons, allons ! Tu vas me faire rougir."}]},
+    {"faux": true, "t": "¿Ah, sí? ¡Eres una buena cocina!", "fr": "Ah bon ? Tu es une bonne cuisine !",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¿Una cocina? ¡Una cocinera! La cocina está ahí, al fondo.", "fr": "Une cuisine ? Une cuisinière ! La cuisine est là-bas, au fond."}],
+     "aide": {"fr": "<b>« La cocina » est la pièce (ou la cuisine qu'on fait) ; la personne est « la cocinera », « el cocinero ».</b> « Eres muy buena cocinera »."}}
+   ]
+  },
+  "postre": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "question", "t": "¿Quieres postre? Tengo flan casero. ¿O prefieres un café?", "fr": "Tu veux un dessert ? J'ai du flan maison. Ou tu préfères un café ?"}],
+   "choix": [
+    {"t": "Un poco de flan, por favor. ¡Me encanta!", "fr": "Un peu de flan, s'il te plaît. J'adore ça !", "va": "despedida",
+     "puis": [
+      {"qui": "nachbarin_carmen", "air": "sourire", "t": "Toma. Lo he hecho esta mañana.", "fr": "Tiens. Je l'ai fait ce matin."},
+      {"qui": "nachbarin_carmen", "air": "amuse", "si": {"regalo": "bombones"}, "t": "Y luego abrimos tus bombones.", "fr": "Et ensuite, on ouvre tes chocolats."}
+     ]},
+    {"t": "Solo un café, gracias. Un cortado, si puede ser.", "fr": "Seulement un café, merci. Un café avec un nuage de lait, si c'est possible.", "va": "despedida",
+     "puis": [
+      {"qui": "nachbarin_carmen", "air": "sourire", "t": "Un cortado, ahora mismo.", "fr": "Un cortado, tout de suite."},
+      {"qui": "nachbarin_carmen", "air": "amuse", "si": {"regalo": "bombones"}, "t": "Y con el café, tus bombones.", "fr": "Et avec le café, tes chocolats."}
+     ]},
+    {"faux": true, "t": "Sí, por favor. Me gusta mucho los postres.", "fr": "Oui, s'il te plaît. J'aime beaucoup les desserts (verbe au singulier).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Te gustan los postres! A mí también.", "fr": "« Te gustan » les desserts ! Moi aussi."}],
+     "aide": {"fr": "<b>« Gustar » s'accorde avec ce qu'on aime.</b> Une chose : « me gusta el flan ». Plusieurs : « me gustan los postres »."}}
+   ]
+  },
+  "despedida": {
+   "dit": [
+    {"recit": {"fr": "Vous bavardez longtemps. Il est presque minuit."}},
+    {"qui": "nachbarin_carmen", "air": "surprise", "t": "¡Uy, qué tarde es! Lo he pasado muy bien.", "fr": "Oh là là, qu'il est tard ! J'ai passé un très bon moment."}
+   ],
+   "choix": [
+    {"t": "Yo también. Muchas gracias por la cena, Carmen. La próxima vez, en mi casa.", "fr": "Moi aussi. Merci beaucoup pour le dîner, Carmen. La prochaine fois, chez moi.", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "¡Hecho! Yo llevo el postre. ¡Buenas noches!", "fr": "Marché conclu ! J'apporte le dessert. Bonne nuit !"}]},
+    {"t": "Gracias por todo, estaba todo buenísimo. ¿Vienes a cenar a mi casa el sábado que viene?", "fr": "Merci pour tout, tout était délicieux. Tu viens dîner chez moi samedi prochain ?", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "¡Encantada! Yo llevo el postre. ¡Buenas noches!", "fr": "Avec plaisir ! J'apporte le dessert. Bonne nuit !"}]},
+    {"faux": true, "t": "Gracias por la cena. La próxima vez, vienes en mi casa.", "fr": "Merci pour le dîner. La prochaine fois, tu viens chez moi (avec « en »).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "¿En tu casa? Ah, ¡que voy a tu casa! ¡Claro que sí!", "fr": "Dans ta maison ? Ah, je viens chez toi ! Bien sûr que oui !"}],
+     "aide": {"fr": "<b>Avec un verbe de mouvement (ir, venir), la destination prend « a ».</b> « Vienes a mi casa », « voy a Madrid ». « En mi casa » dit seulement où l'on est : « cenamos en mi casa »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as offert {regalo_fr} à Carmen, fait des compliments sur son appartement et sa cuisine, et tu l'as invitée à ton tour. Entre voisins, à Madrid, on se tutoie."}
+}

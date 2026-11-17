@@ -1,0 +1,259 @@
+{
+ "id": "g21",
+ "cle": "du-sie-team",
+ "numero": 21,
+ "niveau": "A2",
+ "titre": {
+  "fr": "Du et Sie dans l'équipe"
+ },
+ "resume": {
+  "fr": "du entre collègues, Sie avec la cadre et les patients"
+ },
+ "regle": {
+  "fr": "Entre soignants, on se dit presque toujours <b>du</b>, avec le prénom. Avec la cadre, le médecin et l'administration, souvent <b>Sie</b> + Frau / Herr + nom, selon la maison : on attend qu'on vous propose le « du ». Avec les patients, les résidents et leurs proches : <b>Sie</b>."
+ },
+ "tableau": [
+  [
+   {
+    "t": "Kollegin, Kollege",
+    "fr": "collègue"
+   },
+   {
+    "t": "du · {jonas}, kannst du …?",
+    "fr": "tu · {jonas}, tu peux … ?"
+   }
+  ],
+  [
+   {
+    "t": "Stationsleitung",
+    "fr": "cadre du service"
+   },
+   {
+    "t": "Sie · {hoffmann}, könnten Sie …?",
+    "fr": "vous · {hoffmann:voc}, pourriez-vous … ?"
+   }
+  ],
+  [
+   {
+    "t": "Ärztin, Arzt",
+    "fr": "médecin"
+   },
+   {
+    "t": "Sie · {sommer:voc}, …",
+    "fr": "vous · {sommer:voc}, …"
+   }
+  ],
+  [
+   {
+    "t": "Patient, Bewohnerin, Angehörige",
+    "fr": "patient, résidente, proches"
+   },
+   {
+    "t": "Sie · {brandt}, möchten Sie …?",
+    "fr": "vous · {brandt:voc}, voulez-vous … ?"
+   }
+  ]
+ ],
+ "exemples": [
+  {
+   "t": "{jonas}, kannst du mir kurz helfen?",
+   "fr": "{jonas}, tu peux m'aider un instant ?"
+  },
+  {
+   "t": "{hoffmann}, könnten Sie mir sagen, wann ich Spätdienst habe?",
+   "fr": "{hoffmann:voc}, pourriez-vous me dire quand je suis de l'après-midi ?"
+  },
+  {
+   "t": "Wollen wir uns duzen? Ich bin {jonas}.",
+   "fr": "On se tutoie ? Moi, c'est {jonas}."
+  },
+  {
+   "t": "{brandt}, möchten Sie noch einen Kaffee?",
+   "fr": "{brandt:voc}, vous voulez encore un café ?"
+  }
+ ],
+ "piege": {
+  "fr": "Le « du » se <b>propose</b> : c'est en général la personne plus âgée ou plus haut placée qui le propose (« Wollen wir uns duzen? »). Avec un patient ou un résident, on reste en principe au « Sie », avec chaleur."
+ },
+ "renvoi": null,
+ "dialogues": [
+  "d11",
+  "d06",
+  "d01"
+ ],
+ "serie": [
+  {
+   "type": "trou",
+   "t": "{jonas}, ___ du mir kurz beim Umlagern helfen?",
+   "options": [
+    "kannst",
+    "können",
+    "könnt"
+   ],
+   "juste": "kannst",
+   "phrase": {
+    "t": "{jonas}, kannst du mir kurz beim Umlagern helfen?",
+    "fr": "{jonas}, tu peux m'aider un instant à changer le patient de position ?"
+   },
+   "explication": {
+    "fr": "Entre collègues : du → kannst."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "{hoffmann}, ___ Sie mir sagen, wann ich nächste Woche arbeite?",
+   "options": [
+    "könnten",
+    "könntest",
+    "kannst"
+   ],
+   "juste": "könnten",
+   "phrase": {
+    "t": "{hoffmann}, könnten Sie mir sagen, wann ich nächste Woche arbeite?",
+    "fr": "{hoffmann:voc}, pourriez-vous me dire quand je travaille la semaine prochaine ?"
+   },
+   "explication": {
+    "fr": "Avec la cadre : Sie → könnten."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "À un résident âgé qui vous appelle par votre prénom :"
+   },
+   "options": [
+    "Willst du noch Tee, Opa?",
+    "Möchten Sie noch einen Tee, {schulze}?",
+    "Möchtest du noch Tee, {schulze}?"
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Möchten Sie noch einen Tee, {schulze}?",
+    "fr": "Vous voulez encore un thé, {schulze:voc} ?"
+   },
+   "explication": {
+    "fr": "Avec un résident : Sie et son nom. « Opa » (pépé) est déplacé."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Hast ___ morgen Frühdienst?",
+   "options": [
+    "du",
+    "Sie",
+    "dich"
+   ],
+   "juste": "du",
+   "phrase": {
+    "t": "Hast du morgen Frühdienst?",
+    "fr": "Tu es du matin demain ?"
+   },
+   "explication": {
+    "fr": "Entre collègues : du."
+   }
+  },
+  {
+   "type": "choix",
+   "consigne": {
+    "fr": "Avec la nouvelle cadre, le premier jour :"
+   },
+   "options": [
+    "Hallo, ich bin {elif}. Und du?",
+    "Guten Tag, {hoffmann}. Ich bin {elif}, die neue Kollegin.",
+    "Hi! Wie heißt du?"
+   ],
+   "juste": 1,
+   "phrase": {
+    "t": "Guten Tag, {hoffmann}. Ich bin {elif}, die neue Kollegin.",
+    "fr": "Bonjour, {hoffmann:voc}. Je suis {elif}, la nouvelle collègue."
+   },
+   "explication": {
+    "fr": "On commence au Sie, avec Frau + nom."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Danke ___, {jonas}!",
+   "options": [
+    "dir",
+    "Ihnen",
+    "dich"
+   ],
+   "juste": "dir",
+   "phrase": {
+    "t": "Danke dir, {jonas}!",
+    "fr": "Merci, {jonas} !"
+   },
+   "explication": {
+    "fr": "« danken » + datif ; au du : dir."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Vielen Dank, {sommer:voc}, ich gebe ___ gleich die Werte.",
+   "options": [
+    "Ihnen",
+    "dir",
+    "dich"
+   ],
+   "juste": "Ihnen",
+   "phrase": {
+    "t": "Vielen Dank, {sommer:voc}, ich gebe Ihnen gleich die Werte.",
+    "fr": "Merci beaucoup, {sommer:voc}, je vous donne les valeurs tout de suite."
+   },
+   "explication": {
+    "fr": "Avec le médecin : Sie, datif Ihnen."
+   }
+  },
+  {
+   "type": "ordre",
+   "morceaux": [
+    "Wollen",
+    "wir",
+    "uns",
+    "duzen?"
+   ],
+   "phrase": {
+    "t": "Wollen wir uns duzen?",
+    "fr": "On se tutoie ?"
+   },
+   "explication": {
+    "fr": "La phrase pour proposer le « du »."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "Wie geht es ___, {brandt}?",
+   "options": [
+    "Ihnen",
+    "dir",
+    "euch"
+   ],
+   "juste": "Ihnen",
+   "phrase": {
+    "t": "Wie geht es Ihnen, {brandt}?",
+    "fr": "Comment allez-vous, {brandt:voc} ?"
+   },
+   "explication": {
+    "fr": "Avec un patient : Ihnen."
+   }
+  },
+  {
+   "type": "trou",
+   "t": "{jonas}, ich habe ___ einen Kaffee hingestellt.",
+   "options": [
+    "dir",
+    "Ihnen",
+    "dich"
+   ],
+   "juste": "dir",
+   "phrase": {
+    "t": "{jonas}, ich habe dir einen Kaffee hingestellt.",
+    "fr": "{jonas}, je t'ai posé un café."
+   },
+   "explication": {
+    "fr": "Au du, datif : dir."
+   }
+  }
+ ]
+}

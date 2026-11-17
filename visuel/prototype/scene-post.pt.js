@@ -439,7 +439,7 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "br": {
     "mot": "guichê",
     "pluriel": "os guichês"
@@ -567,7 +567,7 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "boden",

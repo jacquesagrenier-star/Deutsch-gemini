@@ -1,0 +1,485 @@
+{
+ "id": "a2-location-voiture",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Au comptoir de location de voitures"
+ },
+ "intro": {
+  "fr": "Tu veux passer le week-end à Cape Cod, au bord de la mer. Tu loues une voiture à Boston : le permis, la taille de la voiture, l'assurance, l'essence et l'heure du retour."
+ },
+ "personnes": [
+  "vermietung_agentin"
+ ],
+ "debut": "welcome",
+ "prix": {
+  "small": 4900,
+  "big": 6900,
+  "oui": 2000
+ },
+ "panier": [
+  "voiture",
+  "assurance"
+ ],
+ "textes": {
+  "voiture_fr": {
+   "cle": "voiture",
+   "small": "une petite voiture",
+   "big": "une grande voiture"
+  },
+  "assurance_fr": {
+   "cle": "assurance",
+   "oui": ", avec l'assurance complète",
+   "non": ", sans l'assurance complète"
+  }
+ },
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Samedi matin. Tu pars pour le week-end à Cape Cod. Tu entres dans une agence de location de voitures, près de South Station."
+     }
+    },
+    {
+     "qui": "vermietung_agentin",
+     "air": "sourire",
+     "t": "Good morning, and welcome! Do you have a reservation?",
+     "fr": "Bonjour et bienvenue ! Vous avez une réservation ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I booked online. My name is Alex Martin.",
+     "fr": "Oui, j'ai réservé en ligne. Je m'appelle Alex Martin.",
+     "va": "license",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Let me see … Martin … Yes, here it is: two days, until Sunday.",
+       "fr": "Voyons… Martin… Oui, la voilà : deux jours, jusqu'à dimanche."
+      }
+     ]
+    },
+    {
+     "t": "No. I'd like to rent a car for two days.",
+     "t_gb": "No. I'd like to hire a car for two days.",
+     "fr": "Non. Je voudrais louer une voiture pour deux jours.",
+     "va": "walkin"
+    },
+    {
+     "faux": true,
+     "t": "Yes, I have booked online yesterday.",
+     "fr": "Oui, j'ai réservé en ligne hier (au present perfect).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "Sorry? Ah, you booked online yesterday. Great!",
+       "fr": "Pardon ? Ah, vous avez réservé en ligne hier. Parfait !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Avec un moment terminé (yesterday, last week), on emploie le simple past.</b> Pas « I have booked yesterday », mais « I booked online yesterday »."
+     }
+    }
+   ]
+  },
+  "walkin": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "sourire",
+     "t": "No problem, we have cars today. Where are you going?",
+     "fr": "Pas de problème, nous avons des voitures aujourd'hui. Où allez-vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "To Cape Cod, for the weekend.",
+     "fr": "À Cape Cod, pour le week-end.",
+     "va": "license",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Nice! The beaches are beautiful.",
+       "fr": "Super ! Les plages sont magnifiques."
+      }
+     ]
+    },
+    {
+     "t": "I'm going to Cape Cod with a friend.",
+     "fr": "Je vais à Cape Cod avec un ami.",
+     "va": "license",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Good choice! It's about an hour and a half from here.",
+       "fr": "Bon choix ! C'est à environ une heure et demie d'ici."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I go at Cape Cod.",
+     "fr": "Je vais « à » Cape Cod (avec « at »).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "Sorry? Oh, you're going to Cape Cod!",
+       "fr": "Pardon ? Ah, vous allez à Cape Cod !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Pour une destination, « à » se dit « to ».</b> « at » dit où l'on est, pas où l'on va. Et pour un projet : « I'm going to Cape Cod »."
+     }
+    }
+   ]
+  },
+  "license": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "question",
+     "t": "Can I see your driver's license and a credit card, please?",
+     "t_gb": "Can I see your driving licence and a credit card, please?",
+     "fr": "Je peux voir votre permis de conduire et une carte de crédit, s'il vous plaît ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Here is my license, and here is my credit card.",
+     "t_gb": "Here is my licence, and here is my credit card.",
+     "fr": "Voici mon permis, et voici ma carte de crédit.",
+     "va": "size",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Thank you. Everything looks good.",
+       "fr": "Merci. Tout est en ordre."
+      }
+     ]
+    },
+    {
+     "t": "Here you go. Is a license from another country OK?",
+     "t_gb": "Here you are. Is a licence from another country OK?",
+     "fr": "Tenez. Un permis d'un autre pays, ça va ?",
+     "va": "size",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Yes, that's fine. No problem.",
+       "fr": "Oui, c'est bon. Pas de problème."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Here is my permit of driving.",
+     "fr": "Voici mon « permis de conduire » (mot à mot).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "Your … permit? Oh, your driver's license! Thank you.",
+       "t_gb": "Your … permit? Oh, your driving licence! Thank you.",
+       "fr": "Votre… « permit » ? Ah, votre permis de conduire ! Merci."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Le permis de conduire se dit « driver's license »</b> (« driving licence » en anglais britannique). Aux États-Unis, un « permit » est le permis provisoire d'un élève conducteur."
+     }
+    }
+   ]
+  },
+  "size": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "question",
+     "t": "We have a small car for $49 a day, or a bigger one for $69 a day. Which one would you like?",
+     "dit": "We have a small car for forty-nine dollars a day, or a bigger one for sixty-nine dollars a day. Which one would you like?",
+     "fr": "Nous avons une petite voiture à 55 $ par jour, ou une plus grande à 80 $ par jour. Laquelle voulez-vous ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "The small car is fine for me.",
+     "fr": "La petite voiture me convient très bien.",
+     "pose": {
+      "voiture": "small"
+     },
+     "va": "insurance",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Good. It's easy to park, too.",
+       "fr": "Bien. Elle est facile à garer, en plus."
+      }
+     ]
+    },
+    {
+     "t": "I'd like the bigger one. We have a lot of bags.",
+     "fr": "Je voudrais la plus grande. Nous avons beaucoup de bagages.",
+     "pose": {
+      "voiture": "big"
+     },
+     "va": "insurance",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Sure. You'll have a lot of room.",
+       "fr": "Bien sûr. Vous aurez beaucoup de place."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I take the more small.",
+     "fr": "Je prends la « plus petite » (mot à mot).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "The more small …? Ah, the smaller one!",
+       "fr": "La « more small »… ? Ah, la plus petite !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Les adjectifs courts se comparent avec « -er ».</b> « small » → « smaller », jamais « more small ». Dis : « I'll take the smaller one »."
+     }
+    },
+    {
+     "repete": true,
+     "t": "Sorry, could you say that again?",
+     "fr": "Pardon, vous pouvez répéter ?",
+     "va": "size",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Of course. The small car is forty-nine dollars a day. The big car is sixty-nine dollars a day.",
+       "fr": "Bien sûr. La petite voiture coûte cinquante-cinq dollars par jour. La grande coûte quatre-vingts dollars par jour."
+      }
+     ]
+    }
+   ]
+  },
+  "insurance": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "question",
+     "t": "Would you like full insurance? It's $20 a day. With it, you pay nothing if there's an accident.",
+     "dit": "Would you like full insurance? It's twenty dollars a day. With it, you pay nothing if there's an accident.",
+     "fr": "Voulez-vous l'assurance complète ? C'est 20 $ par jour. Avec elle, vous ne payez rien en cas d'accident."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, please. I prefer to be safe.",
+     "fr": "Oui, s'il vous plaît. Je préfère être tranquille.",
+     "pose": {
+      "assurance": "oui"
+     },
+     "va": "gas",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Good idea.",
+       "fr": "Bonne idée."
+      }
+     ]
+    },
+    {
+     "t": "No, thank you. I already have insurance with my credit card.",
+     "fr": "Non, merci. J'ai déjà une assurance avec ma carte de crédit.",
+     "pose": {
+      "assurance": "non"
+     },
+     "va": "gas",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "That's fine.",
+       "fr": "Très bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I want well.",
+     "fr": "Oui, je veux bien (mot à mot).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "You want … well? Sorry, is that a yes?",
+       "fr": "Vous voulez… « well » ? Pardon, c'est un oui ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> Pour accepter, on dit « Yes, please » ou « Yes, I'd like that »."
+     }
+    }
+   ]
+  },
+  "gas": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "attentive",
+     "t": "OK. So that's {a_payer} a day. The car has a full tank of gas. Please bring it back full, by six p.m. on Sunday.",
+     "t_gb": "OK. So that's {a_payer} a day. The car has a full tank of petrol. Please bring it back full, by six p.m. on Sunday.",
+     "dit": "OK. So that's {a_payer:mots} a day. The car has a full tank of gas. Please bring it back full, by six p.m. on Sunday.",
+     "dit_gb": "OK. So that's {a_payer:mots} a day. The car has a full tank of petrol. Please bring it back full, by six p.m. on Sunday.",
+     "fr": "Bien. Ça fait donc {a_payer} par jour. Le réservoir est plein. Merci de la rendre avec le plein, dimanche avant dix-huit heures."
+    }
+   ],
+   "choix": [
+    {
+     "t": "OK. Is there a gas station near here?",
+     "t_gb": "OK. Is there a petrol station near here?",
+     "fr": "D'accord. Il y a une station-service près d'ici ?",
+     "va": "key",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Yes, there's one right across the street.",
+       "t_gb": "Yes, there's one just across the road.",
+       "fr": "Oui, il y en a une juste en face."
+      }
+     ]
+    },
+    {
+     "t": "All right. And what happens if I'm late on Sunday?",
+     "fr": "Entendu. Et que se passe-t-il si je suis en retard dimanche ?",
+     "va": "key",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Just call us. But after seven, you pay for one more day.",
+       "fr": "Appelez-nous, tout simplement. Mais après dix-neuf heures, vous payez une journée de plus."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, I bring it back with the full of gas.",
+     "t_gb": "OK, I bring it back with the full of petrol.",
+     "fr": "D'accord, je la rapporte avec « le plein d'essence » (mot à mot).",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "The full of gas …? Oh, with a full tank. Yes, please!",
+       "t_gb": "The full of petrol …? Oh, with a full tank. Yes, please!",
+       "fr": "« The full of gas »… ? Ah, avec le réservoir plein. Oui, s'il vous plaît !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« le plein » se dit « a full tank ».</b> « I'll bring it back with a full tank. » Faire le plein : « fill up the tank »."
+     }
+    }
+   ]
+  },
+  "key": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "sourire",
+     "t": "Here's your key. The car is in the parking lot behind the building, in space number twelve. It's the gray one.",
+     "t_gb": "Here's your key. The car is in the car park behind the building, in space number twelve. It's the grey one.",
+     "fr": "Voici votre clé. La voiture est sur le parking derrière le bâtiment, à la place numéro douze. C'est la grise."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you. Is the trunk big enough for two suitcases?",
+     "t_gb": "Thank you. Is the boot big enough for two suitcases?",
+     "fr": "Merci. Le coffre est-il assez grand pour deux valises ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "Yes, two suitcases fit, no problem.",
+       "fr": "Oui, deux valises y rentrent sans problème."
+      }
+     ]
+    },
+    {
+     "t": "Thanks. Space number twelve, the gray car. Got it.",
+     "t_gb": "Thanks. Space number twelve, the grey car. Got it.",
+     "fr": "Merci. Place numéro douze, la voiture grise. C'est compris.",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "sourire",
+       "t": "That's it. Go out this door and turn left.",
+       "fr": "C'est ça. Sortez par cette porte et tournez à gauche."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Thanks. Where is the parking?",
+     "fr": "Merci. Où est le « parking » ?",
+     "puis": [
+      {
+       "qui": "vermietung_agentin",
+       "air": "perplexe",
+       "t": "The parking …? Oh, the parking lot! It's right behind the building.",
+       "t_gb": "The parking …? Oh, the car park! It's just behind the building.",
+       "fr": "Le « parking »… ? Ah, le parking ! Il est juste derrière le bâtiment."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« parking » seul n'est pas un lieu en anglais.</b> Un parking se dit « a parking lot » aux États-Unis, « a car park » en Grande-Bretagne."
+     }
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "vermietung_agentin",
+     "air": "sourire",
+     "t": "Have a great trip, and drive safe!",
+     "t_gb": "Have a great trip, and drive safely!",
+     "fr": "Bon voyage, et soyez prudent(e) sur la route !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you! See you on Sunday.",
+     "fr": "Merci ! À dimanche.",
+     "va": null
+    },
+    {
+     "t": "Thanks a lot. Have a nice weekend!",
+     "fr": "Merci beaucoup. Bon week-end !",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as loué {voiture_fr} pour ton week-end à Cape Cod{assurance_fr} : {a_payer} par jour, pour deux jours. À rendre dimanche avant dix-huit heures, avec le plein."
+ }
+}

@@ -1,0 +1,556 @@
+{
+ "id": "d16-notfall",
+ "numero": 16,
+ "niveau": "B1",
+ "registre": "du+Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": [
+  "jonas",
+  "sommer"
+ ],
+ "titre": {
+  "t": "Notfall im Zimmer",
+  "fr": "L'urgence : appeler à l'aide, réanimer"
+ },
+ "intro": {
+  "fr": "10 h 12. {elif} entre dans la chambre 14 : le patient ne bouge pas. Tu joues {elif} : vérifie s'il réagit, appelle à l'aide depuis la chambre (le bouton d'appel d'urgence, sans quitter le patient), dis l'essentiel en phrases courtes à {jonas}, commence le massage cardiaque, puis transmets à {sommer} quand l'équipe de réanimation arrive. Après, {jonas} te demande ce que tu ferais dans la rue."
+ },
+ "but": {
+  "fr": "Agir et parler sous stress : vérifier la réaction, appeler à l'aide, dire l'essentiel en phrases courtes (style télégraphique), suivre la séquence de réanimation, se relayer ; transmettre au médecin (l'heure, l'état, ce qui a été fait) ; connaître les questions du 112 hors de l'hôpital."
+ },
+ "grammaire": [
+  "g01",
+  "g20",
+  "g13"
+ ],
+ "telc": [
+  "oral-1",
+  "hoeren"
+ ],
+ "relire_notes": {
+  "fr": "Séquence de réanimation de base (ERC 2021 : réaction, appel à l'aide, voies aériennes, respiration au plus 10 secondes, respiration anormale ou gasps = arrêt, 30 compressions pour 2 insufflations, défibrillateur au plus tôt, relais toutes les 2 minutes) ; à l'hôpital, le numéro d'urgence interne et non le 112 ; le contenu de la transmission à l'équipe ; les questions du 112 (les « W-Fragen ») ; ce qu'une assistante de soins fait et ne fait pas dans une réanimation."
+ },
+ "redemittel": [
+  {
+   "t": "Hallo! Hören Sie mich? Machen Sie die Augen auf!",
+   "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux !",
+   "fonction": "demander"
+  },
+  {
+   "t": "Hilfe! Notfall in Zimmer 14!",
+   "dit": "Hilfe! Notfall in Zimmer vierzehn!",
+   "fr": "À l'aide ! Urgence chambre 14 !",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Nicht ansprechbar, keine normale Atmung.",
+   "fr": "Inconscient, pas de respiration normale.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Ruf das Reanimationsteam und bring den Defi!",
+   "fr": "Appelle l'équipe de réanimation et apporte le défibrillateur !",
+   "fonction": "demander"
+  },
+  {
+   "t": "Ich drücke, du beatmest.",
+   "fr": "Je fais les compressions, tu ventiles.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Zwei Minuten sind um. Wir wechseln.",
+   "fr": "Deux minutes sont passées. On change.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+   "fr": "Réanimation depuis 10 h 13, un choc délivré.",
+   "fonction": "transmettre",
+   "relire": true,
+   "relire_note": "Transmission à l'équipe de réanimation."
+  },
+  {
+   "t": "Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten auf Rückfragen.",
+   "fr": "Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Attendre les questions.",
+   "fonction": "transmettre",
+   "relire": true,
+   "relire_note": "Les questions du 112."
+  }
+ ],
+ "debut": "finden",
+ "noeuds": {
+  "finden": {
+   "registre": "Sie",
+   "dit": [
+    {
+     "recit": {
+      "fr": "10 h 12. {elif} entre dans la chambre 14 avec le petit-déjeuner. Le patient est couché sur le dos, la tête sur le côté, les yeux fermés. Il ne bouge pas."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hallo! Hören Sie mich? Machen Sie bitte die Augen auf!",
+     "fr": "Allô ! Vous m'entendez ? Ouvrez les yeux, s'il vous plaît !",
+     "va": "rufen"
+    },
+    {
+     "t": "Können Sie mich hören? Drücken Sie meine Hand!",
+     "fr": "Vous pouvez m'entendre ? Serrez-moi la main !",
+     "va": "rufen"
+    }
+   ]
+  },
+  "rufen": {
+   "registre": "du",
+   "dit": [
+    {
+     "recit": {
+      "fr": "{elif} lui secoue doucement les épaules. Aucune réaction."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hilfe! Notfall in Zimmer 14! Ich brauche Hilfe!",
+     "dit": "Hilfe! Notfall in Zimmer vierzehn! Ich brauche Hilfe!",
+     "fr": "À l'aide ! Urgence chambre 14 ! J'ai besoin d'aide !",
+     "va": "melden",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "surprise",
+       "t": "Ich bin da! Was ist los?",
+       "fr": "Je suis là ! Qu'est-ce qui se passe ?"
+      }
+     ]
+    },
+    {
+     "t": "Notfall! Kommt bitte schnell in die Vierzehn!",
+     "fr": "Urgence ! Venez vite à la 14, s'il vous plaît !",
+     "va": "melden",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "surprise",
+       "t": "Ich bin da! Was ist los?",
+       "fr": "Je suis là ! Qu'est-ce qui se passe ?"
+      }
+     ]
+    }
+   ]
+  },
+  "melden": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {
+     "t": "Er reagiert nicht. Ich mache die Atemwege frei und prüfe die Atmung.",
+     "fr": "Il ne réagit pas. Je libère les voies aériennes et je vérifie la respiration.",
+     "va": "atmung"
+    },
+    {
+     "t": "Nicht ansprechbar. Ich prüfe jetzt die Atmung.",
+     "fr": "Inconscient. Je vérifie la respiration.",
+     "va": "atmung"
+    },
+    {
+     "faux": true,
+     "t": "Also, ich bin reingekommen, weil ich ihm das Frühstück bringen wollte, und da habe ich gesehen, dass er irgendwie komisch daliegt …",
+     "fr": "Alors, je suis entrée parce que je voulais lui apporter le petit-déjeuner, et là, j'ai vu qu'il était couché bizarrement…",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "surprise",
+       "t": "Kurz, {elif}! Reagiert er?",
+       "fr": "Bref, {elif} ! Il réagit ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Dans l'urgence, des phrases courtes : l'essentiel d'abord.</b> « Nicht ansprechbar. Ich prüfe die Atmung. » Le récit vient plus tard, dans la documentation."
+     }
+    }
+   ]
+  },
+  "atmung": {
+   "registre": "du",
+   "dit": [
+    {
+     "recit": {
+      "fr": "{elif} bascule la tête en arrière, soulève le menton. Elle regarde, écoute, sent : dix secondes. Seulement un hoquet irrégulier, de temps en temps."
+     }
+    },
+    {
+     "qui": "jonas",
+     "air": "question",
+     "t": "Und? Atmet er?",
+     "fr": "Alors ? Il respire ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nein, keine normale Atmung! Ruf das Reanimationsteam und bring den Defi!",
+     "fr": "Non, pas de respiration normale ! Appelle l'équipe de réanimation et apporte le défibrillateur !",
+     "va": "druecken",
+     "relire": true,
+     "relire_note": "Une respiration anormale (gasps) compte comme un arrêt.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "attentive",
+       "t": "Mach ich! Fang mit der Herzdruckmassage an!",
+       "fr": "J'y vais ! Commence le massage cardiaque !"
+      }
+     ]
+    },
+    {
+     "t": "Er atmet nicht richtig, nur Schnappatmung. Wir müssen reanimieren. Rufst du das Team?",
+     "fr": "Il ne respire pas normalement, ce sont des gasps. Il faut réanimer. Tu appelles l'équipe ?",
+     "va": "druecken",
+     "relire": true,
+     "relire_note": "Une respiration anormale (gasps) compte comme un arrêt.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "attentive",
+       "t": "Mach ich! Fang mit der Herzdruckmassage an!",
+       "fr": "J'y vais ! Commence le massage cardiaque !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich rufe sofort die 112 an!",
+     "dit": "Ich rufe sofort die Eins-Eins-Zwei an!",
+     "fr": "J'appelle tout de suite le 112 !",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "perplexe",
+       "t": "Die 112? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+       "dit": "Die Eins-Eins-Zwei? Wir sind im Krankenhaus! Ich rufe das Reanimationsteam.",
+       "fr": "Le 112 ? On est à l'hôpital ! J'appelle l'équipe de réanimation."
+      }
+     ],
+     "aide": {
+      "fr": "<b>À l'hôpital, on appelle le numéro d'urgence interne, l'équipe de réanimation.</b> Le 112, c'est pour l'extérieur. Retiens le numéro de ta clinique : il est souvent sur le téléphone du poste et sur le chariot d'urgence."
+     },
+     "relire": true,
+     "relire_note": "Numéro d'urgence interne."
+    }
+   ]
+  },
+  "druecken": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {
+     "t": "Ich fange an. Dreißig Kompressionen, zwei Beatmungen.",
+     "fr": "Je commence. Trente compressions, deux insufflations.",
+     "va": "wechsel",
+     "relire": true,
+     "relire_note": "Rythme 30:2, milieu du thorax, 5 à 6 cm, 100 à 120 par minute."
+    },
+    {
+     "t": "Okay. Ich drücke, du beatmest, sobald du mit dem Beutel da bist.",
+     "fr": "D'accord. Je fais les compressions, tu ventiles dès que tu es là avec le ballon.",
+     "va": "wechsel"
+    },
+    {
+     "faux": true,
+     "t": "Ich suche erst mal den Puls, ganz in Ruhe.",
+     "fr": "Je cherche d'abord le pouls, tranquillement.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "surprise",
+       "t": "Nein! Keine Zeit verlieren, drück!",
+       "fr": "Non ! Ne perds pas de temps, appuie !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Pas de recherche de pouls qui dure : on commence le massage.</b> Pas de réaction et pas de respiration normale, cela suffit. Chaque minute sans massage diminue les chances du patient."
+     },
+     "relire": true,
+     "relire_note": "Vérifier l'aide (recherche du pouls)."
+    }
+   ]
+  },
+  "wechsel": {
+   "registre": "du",
+   "dit": [
+    {
+     "recit": {
+      "fr": "{elif} pose ses mains au milieu du thorax et appuie, fort et vite. Une minute plus tard, {jonas} revient avec le chariot d'urgence et le défibrillateur."
+     }
+    },
+    {
+     "qui": "jonas",
+     "air": "attentive",
+     "t": "Das Team ist alarmiert. Ich beatme mit dem Beutel, du drückst weiter. Ich klebe die Elektroden.",
+     "fr": "L'équipe est alertée. Je ventile au ballon, tu continues les compressions. Je colle les électrodes."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Zwei Minuten sind um. Wir wechseln, ich werde müde.",
+     "fr": "Deux minutes sont passées. On change, je fatigue.",
+     "va": "uebergabe",
+     "relire": true,
+     "relire_note": "Relais toutes les 2 minutes, pendant l'analyse du défibrillateur.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "attentive",
+       "t": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+       "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !"
+      }
+     ]
+    },
+    {
+     "t": "Kannst du nach diesem Zyklus übernehmen? Dann beatme ich.",
+     "fr": "Tu peux prendre le relais après ce cycle ? Alors je ventile.",
+     "va": "uebergabe",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "attentive",
+       "t": "Okay, ich übernehme. Der Defi analysiert. Alle weg vom Patienten!",
+       "fr": "D'accord, je prends le relais. Le défibrillateur analyse. Tout le monde s'écarte du patient !"
+      }
+     ]
+    }
+   ]
+  },
+  "uebergabe": {
+   "registre": "Sie",
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le défibrillateur conseille un choc. {jonas} le délivre, puis reprend aussitôt les compressions. Des pas dans le couloir : l'équipe de réanimation arrive, avec {sommer}."
+     }
+    },
+    {
+     "qui": "sommer",
+     "air": "attentive",
+     "t": "Was haben wir?",
+     "fr": "Qu'est-ce qu'on a ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Patient aus Zimmer 14, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+     "dit": "Patient aus Zimmer vierzehn, um zehn Uhr zwölf nicht ansprechbar gefunden, keine normale Atmung. Reanimation seit zehn Uhr dreizehn, ein Schock abgegeben.",
+     "fr": "Patient de la chambre 14, trouvé inconscient à 10 h 12, pas de respiration normale. Réanimation depuis 10 h 13, un choc délivré.",
+     "va": "nachbesprechung",
+     "relire": true,
+     "relire_note": "Transmission à l'équipe de réanimation.",
+     "puis": [
+      {
+       "qui": "sommer",
+       "air": "attentive",
+       "t": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+       "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures."
+      }
+     ]
+    },
+    {
+     "t": "Bewusstlos aufgefunden um zehn Uhr zwölf. Seit zehn Uhr dreizehn Herzdruckmassage und Beatmung. Der Defi hat einmal geschockt.",
+     "fr": "Trouvé inconscient à 10 h 12. Massage et ventilation depuis 10 h 13. Le défibrillateur a choqué une fois.",
+     "va": "nachbesprechung",
+     "relire": true,
+     "relire_note": "Transmission à l'équipe de réanimation.",
+     "puis": [
+      {
+       "qui": "sommer",
+       "air": "attentive",
+       "t": "Danke. Wir übernehmen. Bleiben Sie bitte hier und schreiben Sie die Uhrzeiten mit.",
+       "fr": "Merci. Nous prenons le relais. Restez ici, s'il vous plaît, et notez les heures."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich weiß nicht genau, wann es angefangen hat. Vor ein paar Minuten, glaube ich.",
+     "fr": "Je ne sais pas exactement quand ça a commencé. Il y a quelques minutes, je crois.",
+     "puis": [
+      {
+       "qui": "sommer",
+       "air": "perplexe",
+       "t": "Wie viele Minuten genau? Wann haben Sie ihn gefunden?",
+       "fr": "Combien de minutes exactement ? Quand l'avez-vous trouvé ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>L'équipe a besoin des heures : quand trouvé, depuis quand le massage, combien de chocs.</b> « Um zehn Uhr zwölf nicht ansprechbar gefunden. Reanimation seit zehn Uhr dreizehn. » Regarde l'heure dès que tu trouves le patient."
+     }
+    }
+   ]
+  },
+  "nachbesprechung": {
+   "registre": "du",
+   "dit": [
+    {
+     "recit": {
+      "fr": "Vingt minutes plus tard, le cœur du patient bat de nouveau. Il part en soins intensifs. Dans le poste de soins, {jonas} tend un verre d'eau à {elif}."
+     }
+    },
+    {
+     "qui": "jonas",
+     "air": "sourire",
+     "t": "Du hast das richtig gut gemacht. Wie geht's dir?",
+     "fr": "Tu t'en es vraiment bien sortie. Comment tu vas ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich zittere noch ein bisschen. Aber es geht. Danke, dass du so schnell da warst.",
+     "fr": "Je tremble encore un peu. Mais ça va. Merci d'être arrivé si vite.",
+     "va": "notruf",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "question",
+       "t": "Das ist normal, das geht uns allen so. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+       "fr": "C'est normal, ça nous fait tous ça. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?"
+      }
+     ]
+    },
+    {
+     "t": "Ehrlich gesagt hatte ich Angst. Ich habe zum ersten Mal reanimiert. Können wir später noch einmal darüber sprechen?",
+     "fr": "Honnêtement, j'ai eu peur. C'était ma première réanimation. On peut en reparler plus tard ?",
+     "va": "notruf",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "question",
+       "t": "Klar, auf jeden Fall. Sag mal: Und wenn so was draußen passiert, auf der Straße? Was machst du dann?",
+       "fr": "Bien sûr, absolument. Dis-moi : et si ça arrive dehors, dans la rue ? Tu fais quoi ?"
+      }
+     ]
+    }
+   ]
+  },
+  "notruf": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {
+     "t": "Dann rufe ich die 112 an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+     "dit": "Dann rufe ich die Eins-Eins-Zwei an und sage: Wo ist es passiert, was ist passiert, wie viele Verletzte, welche Verletzungen. Und dann warte ich auf Rückfragen.",
+     "fr": "Alors j'appelle le 112 et je dis : où ça s'est passé, ce qui s'est passé, combien de blessés, quelles blessures. Et ensuite j'attends les questions.",
+     "va": null,
+     "relire": true,
+     "relire_note": "Les questions du 112.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "sourire",
+       "t": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+       "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi."
+      }
+     ]
+    },
+    {
+     "t": "Ich rufe die 112 an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+     "dit": "Ich rufe die Eins-Eins-Zwei an, sage, wo ich bin und was passiert ist, und fange mit der Herzdruckmassage an. Die Leitstelle hilft mir am Telefon.",
+     "fr": "J'appelle le 112, je dis où je suis et ce qui s'est passé, et je commence le massage cardiaque. Le centre d'appels m'aide au téléphone.",
+     "va": null,
+     "relire": true,
+     "relire_note": "Les questions du 112 ; la réanimation guidée par téléphone.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "sourire",
+       "t": "Genau. Und nie zuerst auflegen. Die Leitstelle legt auf, nicht du.",
+       "fr": "Exactement. Et ne raccroche jamais la première. C'est le centre d'appels qui raccroche, pas toi."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich rufe an, sage „Kommen Sie schnell!“ und lege auf.",
+     "fr": "J'appelle, je dis « Venez vite ! » et je raccroche.",
+     "puis": [
+      {
+       "qui": "jonas",
+       "air": "perplexe",
+       "t": "Und wohin sollen sie kommen? Woher weiß die Leitstelle, was los ist?",
+       "fr": "Et où doivent-ils venir ? Comment le centre d'appels sait ce qui se passe ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Au 112, on répond aux questions, et on ne raccroche pas.</b> Où ? Que s'est-il passé ? Combien de blessés ? Quelles blessures ? Puis on attend les questions de la Leitstelle, qui peut aussi te guider pour le massage."
+     }
+    }
+   ]
+  }
+ },
+ "ecouter": [
+  {
+   "q": {
+    "t": "Wen ruft {jonas} im Krankenhaus an?",
+    "fr": "Qui {jonas} appelle-t-il à l'hôpital ?"
+   },
+   "options": [
+    {
+     "t": "Das Reanimationsteam.",
+     "fr": "L'équipe de réanimation."
+    },
+    {
+     "t": "Die Polizei.",
+     "fr": "La police."
+    },
+    {
+     "t": "Die Familie des Patienten.",
+     "fr": "La famille du patient."
+    }
+   ],
+   "juste": 0
+  },
+  {
+   "q": {
+    "t": "Wie viele Kompressionen macht {elif}, bevor beatmet wird?",
+    "fr": "Combien de compressions {elif} fait-elle avant les insufflations ?"
+   },
+   "options": [
+    {
+     "t": "Zehn.",
+     "fr": "Dix."
+    },
+    {
+     "t": "Zwanzig.",
+     "fr": "Vingt."
+    },
+    {
+     "t": "Dreißig.",
+     "fr": "Trente."
+    }
+   ],
+   "juste": 2
+  },
+  {
+   "q": {
+    "t": "Was soll man beim Notruf auf der Straße nicht tun?",
+    "fr": "Que ne faut-il pas faire en appelant le 112 dans la rue ?"
+   },
+   "options": [
+    {
+     "t": "Sagen, wo man ist.",
+     "fr": "Dire où l'on est."
+    },
+    {
+     "t": "Zuerst auflegen.",
+     "fr": "Raccrocher le premier."
+    },
+    {
+     "t": "Auf Rückfragen warten.",
+     "fr": "Attendre les questions."
+    }
+   ],
+   "juste": 1
+  }
+ ]
+}

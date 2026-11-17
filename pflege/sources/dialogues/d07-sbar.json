@@ -1,0 +1,129 @@
+{
+ "id": "d07-sbar",
+ "numero": 7,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "yusuf",
+ "personnes": ["kraemer"],
+ "titre": {"t": "Den Arzt anrufen (SBAR)", "fr": "Appeler le médecin de garde"},
+ "intro": {"fr": "Trois heures du matin. {yusuf}, de garde de nuit, trouve {brandt} essoufflé. Il a pris les constantes et appelle le médecin de garde, {kraemer}. Tu joues {yusuf} : un appel structuré en quatre temps (SBAR) : la situation, le contexte, ton évaluation, ta demande. Puis répète la prescription orale."},
+ "but": {"fr": "Faire un appel SBAR : Situation, Hintergrund (contexte), Einschätzung (évaluation), Empfehlung (demande) ; donner des valeurs précises ; dire son inquiétude ; répéter une prescription orale (boucle fermée)."},
+ "grammaire": ["g14", "g06", "g09"],
+ "telc": ["hoeren", "oral-3"],
+ "relire_notes": {"fr": "Valeurs d'alerte (SpO2 88 % à l'air ambiant, pouls 112, TA 100/60, T 38,4 °C, FR 28) ; contenu de chaque rubrique SBAR ; mesure immédiate prescrite (2 l/min d'O2 aux lunettes, buste relevé) ; règle de la prescription orale (répéter, documenter, faire signer ensuite) ; une soignante peut-elle évoquer une embolie ?"},
+ "redemittel": [
+  {"t": "Hier ist {yusuf} von der {station}. Ich rufe wegen {brandt:dat} an, Zimmer 12.", "dit": "Hier ist {yusuf} von der {station:dit}. Ich rufe wegen {brandt:dat} an, Zimmer zwölf.", "fr": "Ici {yusuf}, du {station}. J'appelle pour {brandt}, chambre 12.", "fonction": "transmettre"},
+  {"t": "Er hat seit einer Stunde Atemnot.", "fr": "Il est essoufflé depuis une heure.", "fonction": "transmettre"},
+  {"t": "Die Sauerstoffsättigung liegt bei 88 Prozent.", "dit": "Die Sauerstoffsättigung liegt bei achtundachtzig Prozent.", "fr": "La saturation en oxygène est à 88 %.", "relire": true, "relire_note": "Valeur d'alerte.", "fonction": "transmettre"},
+  {"t": "Er ist am Dienstag an der Hüfte operiert worden.", "fr": "Il a été opéré de la hanche mardi.", "fonction": "transmettre"},
+  {"t": "Ich mache mir Sorgen. Ich glaube, er muss schnell untersucht werden.", "fr": "Je suis inquiet. Je pense qu'il doit être examiné rapidement.", "fonction": "transmettre"},
+  {"t": "Können Sie bitte kommen und ihn sich ansehen?", "fr": "Pouvez-vous venir l'examiner, s'il vous plaît ?", "fonction": "demander"},
+  {"t": "Ich wiederhole: …", "fr": "Je répète : …", "fonction": "reformuler"}
+ ],
+ "debut": "melden",
+ "noeuds": {
+  "melden": {
+   "dit": [
+    {"recit": {"fr": "Trois heures du matin. {brandt} respire vite et il est agité. {yusuf} a mesuré : saturation 88 % sans oxygène, pouls 112, tension 100/60, température 38,4 °C, 28 respirations par minute. Il appelle le médecin de garde."}, "relire": true, "relire_note": "Valeurs du cas."},
+    {"qui": "kraemer", "air": "attentive", "t": "{kraemer:famille}, Dienstarzt.", "fr": "{kraemer:famille}, médecin de garde."}
+   ],
+   "choix": [
+    {"t": "Hier ist {yusuf}, Pflegekraft von der {station}. Ich rufe wegen {brandt:dat} an, Zimmer 12.", "dit": "Hier ist {yusuf}, Pflegekraft von der {station:dit}. Ich rufe wegen {brandt:dat} an, Zimmer zwölf.", "fr": "Ici {yusuf}, soignant du {station}. J'appelle pour {brandt}, chambre 12.", "va": "situation",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ja, was ist los?", "fr": "Oui, qu'est-ce qui se passe ?"}]},
+    {"t": "Entschuldigen Sie die Störung, {kraemer:voc}. Hier ist {yusuf} von der {station}. Es geht um {brandt:akk}, Zimmer 12.", "dit": "Entschuldigen Sie die Störung, {kraemer:voc}. Hier ist {yusuf} von der {station:dit}. Es geht um {brandt:akk}, Zimmer zwölf.", "fr": "Excusez-moi de vous déranger, {kraemer:voc}. Ici {yusuf}, du {station}. C'est au sujet de {brandt}, chambre 12.", "va": "situation",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ja, was ist los?", "fr": "Oui, qu'est-ce qui se passe ?"}]},
+    {"faux": true, "t": "Hallo, hier ist {yusuf}. Dem Patienten geht's nicht gut.", "fr": "Allô, c'est {yusuf}. Le patient ne va pas bien.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Moment. Wer ist da? Welche Station, welcher Patient?", "fr": "Attendez. Qui est à l'appareil ? Quel service, quel patient ?"}],
+     "aide": {"fr": "<b>S comme Situation : qui tu es, d'où tu appelles, pour quel patient.</b> « Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12. » Le médecin ne connaît pas encore le patient."}}
+   ]
+  },
+  "situation": {
+   "dit": [],
+   "choix": [
+    {"t": "Er hat seit etwa einer Stunde Atemnot. Die Sauerstoffsättigung liegt bei 88 Prozent, ohne Sauerstoff.", "dit": "Er hat seit etwa einer Stunde Atemnot. Die Sauerstoffsättigung liegt bei achtundachtzig Prozent, ohne Sauerstoff.", "fr": "Il est essoufflé depuis environ une heure. La saturation est à 88 %, sans oxygène.", "va": "hintergrund",
+     "relire": true, "relire_note": "Valeur d'alerte.",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Verstehe. Was ist das für ein Patient?", "fr": "Je vois. Quel genre de patient est-ce ?"}]},
+    {"t": "Seit ungefähr einer Stunde bekommt er schlecht Luft. Sättigung 88 Prozent bei Raumluft.", "dit": "Seit ungefähr einer Stunde bekommt er schlecht Luft. Sättigung achtundachtzig Prozent bei Raumluft.", "fr": "Depuis environ une heure, il respire mal. Saturation 88 % à l'air ambiant.", "va": "hintergrund",
+     "relire": true, "relire_note": "« bei Raumluft ».",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Verstehe. Was ist das für ein Patient?", "fr": "Je vois. Quel genre de patient est-ce ?"}]}
+   ]
+  },
+  "hintergrund": {
+   "dit": [],
+   "choix": [
+    {"t": "{brandt} ist 82. Er ist am Dienstag an der rechten Hüfte operiert worden. Seitdem liegt er fast nur im Bett.", "dit": "{brandt} ist zweiundachtzig. Er ist am Dienstag an der rechten Hüfte operiert worden. Seitdem liegt er fast nur im Bett.", "fr": "{brandt} a 82 ans. Il a été opéré de la hanche droite mardi. Depuis, il reste presque tout le temps au lit.", "va": "vital",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Und die Vitalwerte?", "fr": "Et les constantes ?"}]},
+    {"t": "Er ist 82 Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.", "dit": "Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.", "fr": "Il a 82 ans et il a été opéré de la hanche mardi. Depuis, il ne s'est presque pas levé.", "va": "vital",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Und die Vitalwerte?", "fr": "Et les constantes ?"}]},
+    {"faux": true, "t": "Er hat am Dienstag eine Operation an der Hüfte gemacht.", "fr": "Mardi, il « a fait » une opération à la hanche.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Er hat operiert? Ach, Sie meinen, er ist operiert worden.", "fr": "Il a opéré ? Ah, vous voulez dire qu'il a été opéré."}],
+     "aide": {"fr": "<b>Le patient ne fait pas l'opération, il la subit : le passif.</b> « Er ist am Dienstag operiert worden » (Perfekt du passif) ou « Er wurde am Dienstag operiert » (Präteritum). C'est le B de SBAR (Background, Hintergrund) : le contexte."}}
+   ]
+  },
+  "vital": {
+   "dit": [],
+   "choix": [
+    {"t": "Puls 112, Blutdruck 100 zu 60, Temperatur 38,4. Er ist unruhig und hat beim Atmen Schmerzen in der Brust.", "dit": "Puls hundertzwölf, Blutdruck hundert zu sechzig, Temperatur achtunddreißig Komma vier. Er ist unruhig und hat beim Atmen Schmerzen in der Brust.", "fr": "Pouls 112, tension 10/6 (100 sur 60), température 38,4. Il est agité et il a mal à la poitrine quand il respire.", "va": "einschaetzung",
+     "relire": true, "relire_note": "Constantes du cas.",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Hm. Das gefällt mir nicht. Was denken Sie?", "fr": "Hum. Ça ne me plaît pas. Qu'est-ce que vous en pensez ?"}]},
+    {"t": "Die Werte: Puls 112, Blutdruck 100 zu 60, Temperatur 38,4 Grad, Atemfrequenz 28.", "dit": "Die Werte: Puls hundertzwölf, Blutdruck hundert zu sechzig, Temperatur achtunddreißig Komma vier Grad, Atemfrequenz achtundzwanzig.", "fr": "Les valeurs : pouls 112, tension 10/6, température 38,4 °C, fréquence respiratoire 28.", "va": "einschaetzung",
+     "relire": true, "relire_note": "Constantes du cas.",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Hm. Das gefällt mir nicht. Was denken Sie?", "fr": "Hum. Ça ne me plaît pas. Qu'est-ce que vous en pensez ?"}]}
+   ]
+  },
+  "einschaetzung": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.", "fr": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.", "va": "empfehlung",
+     "relire": true, "relire_note": "Évaluation infirmière (A de SBAR) : formulation sans poser de diagnostic.",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Gut, dass Sie anrufen.", "fr": "Vous avez bien fait d'appeler."}]},
+    {"t": "Ich finde, er hat sich deutlich verschlechtert. Ich glaube, dass er schnell ärztlich untersucht werden muss.", "fr": "Je trouve qu'il s'est nettement aggravé. Je pense qu'il doit être examiné rapidement par un médecin.", "va": "empfehlung",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Gut, dass Sie anrufen.", "fr": "Vous avez bien fait d'appeler."}]},
+    {"faux": true, "t": "Ich weiß nicht … vielleicht ist es auch nichts.", "fr": "Je ne sais pas… peut-être que ce n'est rien.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Und warum rufen Sie mich dann um drei Uhr nachts an?", "fr": "Et pourquoi vous m'appelez à trois heures du matin, alors ?"}],
+     "aide": {"fr": "<b>A comme Assessment (Einschätzung) : dis clairement ce que tu penses.</b> « Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss. » Ton inquiétude est une information pour le médecin."}}
+   ]
+  },
+  "empfehlung": {
+   "dit": [],
+   "choix": [
+    {"t": "Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?", "fr": "Pouvez-vous venir l'examiner, s'il vous plaît ? Et que dois-je faire en attendant ?", "va": "wiederholen",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.", "fr": "J'arrive dans dix minutes. Donnez-lui deux litres d'oxygène aux lunettes et relevez-lui le buste.", "relire": true, "relire_note": "Prescription orale du cas."}]},
+    {"t": "Ich bitte Sie, so schnell wie möglich zu kommen. Was soll ich in der Zwischenzeit machen?", "fr": "Je vous demande de venir le plus vite possible. Que dois-je faire en attendant ?", "va": "wiederholen",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.", "fr": "J'arrive dans dix minutes. Donnez-lui deux litres d'oxygène aux lunettes et relevez-lui le buste.", "relire": true, "relire_note": "Prescription orale du cas."}]},
+    {"faux": true, "t": "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht.", "fr": "Je lui ai déjà donné un antidouleur. Ça suffira peut-être.",
+     "puis": [{"qui": "kraemer", "air": "surprise", "t": "Was haben Sie ihm gegeben? Und wer hat das angeordnet?", "fr": "Vous lui avez donné quoi ? Et qui l'a prescrit ?"}],
+     "aide": {"fr": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "wiederholen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.", "fr": "Je répète : deux litres d'oxygène aux lunettes, buste relevé. Vous arrivez dans dix minutes.", "va": null,
+     "relire": true, "relire_note": "Boucle fermée de la prescription orale.",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Richtig. Ich bin gleich da.", "fr": "C'est ça. J'arrive tout de suite."}]},
+    {"t": "Also: zwei Liter Sauerstoff über die Nasenbrille und den Oberkörper hoch. Ich dokumentiere die Anordnung. Bis gleich.", "fr": "Donc : deux litres d'oxygène aux lunettes et le buste relevé. Je note la prescription. À tout de suite.", "va": null,
+     "relire": true, "relire_note": "Prescription orale : la noter, la faire signer ensuite.",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Genau. Ich bin unterwegs.", "fr": "Exactement. Je suis en route."}]},
+    {"faux": true, "t": "Okay, alles klar. Tschüss!", "fr": "OK, c'est bon. Salut !",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Moment! Wiederholen Sie bitte die Anordnung.", "fr": "Attendez ! Répétez la prescription, s'il vous plaît."}],
+     "aide": {"fr": "<b>Une prescription orale se répète au médecin, mot pour mot.</b> « Ich wiederhole: … » Puis on la note et on la fait signer plus tard. C'est ce qui évite les erreurs au téléphone."},
+     "relire": true, "relire_note": "Règle de la prescription orale."}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wie hoch ist die Sauerstoffsättigung von {brandt}?", "fr": "Quelle est la saturation en oxygène de {brandt} ?"},
+   "options": [{"t": "Achtundneunzig Prozent.", "fr": "Quatre-vingt-dix-huit pour cent."}, {"t": "Achtundachtzig Prozent.", "fr": "Quatre-vingt-huit pour cent."}, {"t": "Hundertzwölf Prozent.", "fr": "Cent douze pour cent."}],
+   "juste": 1},
+  {"q": {"t": "Was soll {yusuf} tun, bis der Arzt kommt?", "fr": "Que doit faire {yusuf} en attendant le médecin ?"},
+   "options": [{"t": "Ein Schmerzmittel geben.", "fr": "Donner un antidouleur."}, {"t": "Den Patienten mobilisieren.", "fr": "Faire marcher le patient."}, {"t": "Sauerstoff geben und den Oberkörper hochlagern.", "fr": "Donner de l'oxygène et relever le buste."}],
+   "juste": 2},
+  {"q": {"t": "Wann kommt {kraemer}?", "fr": "Quand arrive {kraemer} ?"},
+   "options": [{"t": "In zehn Minuten.", "fr": "Dans dix minutes."}, {"t": "In einer Stunde.", "fr": "Dans une heure."}, {"t": "Morgen früh.", "fr": "Demain matin."}],
+   "juste": 0}
+ ]
+}

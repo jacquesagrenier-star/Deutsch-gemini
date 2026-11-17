@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "rauch",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "fumaça",
    "ar": "دخان",
    "pl": "dym",
-   "ru": "дым"
+   "ru": "дым",
+   "es": "el humo"
   },
   {
    "id": "dach",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "telhado",
    "ar": "سقف",
    "pl": "dach",
-   "ru": "крыша"
+   "ru": "крыша",
+   "es": "el techo, el tejado"
   },
   {
    "id": "fenster",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "fenster-2",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "kerze",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "vela",
    "ar": "شمعة",
    "pl": "świeczka",
-   "ru": "свеча"
+   "ru": "свеча",
+   "es": "la vela"
   },
   {
    "id": "tuer",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "haus",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "casa",
    "ar": "بيت، منزل",
    "pl": "dom",
-   "ru": "дом"
+   "ru": "дом",
+   "es": "la casa"
   },
   {
    "id": "vogel",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "vogel-2",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "baum",
@@ -319,7 +329,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "baum-2",
@@ -348,7 +359,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "laterne",
@@ -377,7 +389,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "auto",
@@ -406,7 +419,8 @@ window.SCENE = {
    "pt": "carro",
    "ar": "سيارة",
    "pl": "samochód",
-   "ru": "машина, автомобиль"
+   "ru": "машина, автомобиль",
+   "es": "el carro"
   },
   {
    "id": "fahrrad",
@@ -435,7 +449,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "bank",
@@ -456,15 +471,26 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "hut",
@@ -493,7 +519,8 @@ window.SCENE = {
    "pt": "chapéu",
    "ar": "قبّعة",
    "pl": "kapelusz",
-   "ru": "шляпа"
+   "ru": "шляпа",
+   "es": "el sombrero"
   },
   {
    "id": "karotte",
@@ -522,7 +549,8 @@ window.SCENE = {
    "pt": "cenoura",
    "ar": "جزر",
    "pl": "marchewka",
-   "ru": "морковь"
+   "ru": "морковь",
+   "es": "la zanahoria"
   },
   {
    "id": "schal",
@@ -551,7 +579,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "knopf",
@@ -580,7 +609,8 @@ window.SCENE = {
    "pt": "botão",
    "ar": "زرّ",
    "pl": "guzik",
-   "ru": "пуговица"
+   "ru": "пуговица",
+   "es": "el botón"
   },
   {
    "id": "schneemann",
@@ -609,7 +639,8 @@ window.SCENE = {
    "pt": "boneco de neve",
    "ar": "رجل الثلج",
    "pl": "bałwan",
-   "ru": "снеговик"
+   "ru": "снеговик",
+   "es": "el muñeco de nieve"
   },
   {
    "id": "besen",
@@ -644,7 +675,8 @@ window.SCENE = {
    "pt": "vassoura",
    "ar": "مكنسة",
    "pl": "miotła",
-   "ru": "метла"
+   "ru": "метла",
+   "es": "la escoba"
   },
   {
    "id": "muetze",
@@ -673,7 +705,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "schal-anna",
@@ -702,7 +735,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "handschuh",
@@ -731,7 +765,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "stiefel",
@@ -760,7 +795,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "mantel",
@@ -789,7 +825,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "anna",
@@ -818,7 +855,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "hund",
@@ -847,7 +885,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "schnee",
@@ -876,7 +915,8 @@ window.SCENE = {
    "pt": "neve",
    "ar": "ثلج",
    "pl": "śnieg",
-   "ru": "снег"
+   "ru": "снег",
+   "es": "la nieve"
   }
  ],
  "grosPlans": [],
@@ -1492,7 +1532,7 @@ window.SCENE = {
     "B1 | Mit dem Besen macht sie den Weg frei.": "<b>mit</b> + Dativ: <span lang=\"de\">der Besen → mit <b>dem</b> Besen</span>.",
     "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "فاعلِ جملهٔ موصولی، مؤنث ← <b>die</b>.",
     "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "مالکیت، مرجعِ مذکر ← <b>dessen</b> (که پالتویش).",
-    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "<b>vor</b> + <span lang=\"de\">Wo?</span> ← Dativ, خنثی ← <b>dem</b>.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "<b>vor</b> + <span lang=\"de\">Wo?</span> ← Dativ، خنثی ← <b>dem</b>.",
     "B2 | Das Auto ist mit Schnee bedeckt.": "مجهولِ حالت: <b>sein</b> + صفت مفعولی (پوشیده).",
     "B2 | Der Weg muss noch gefegt werden.": "مجهول با فعل وجهی: صفت مفعولی + <b>werden</b> در آخر.",
     "B2 | Die brennende Kerze steht im Fenster.": "صفت فاعلی (<span lang=\"de\">Partizip I</span>) در نقش صفت: <span lang=\"de\">brennen + <b>d</b></span> + پسوند ← <b>brennende</b> (روشن).",
@@ -1804,6 +1844,75 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "Велосипед, возможно, стоит там со вчерашнего вечера.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "Снег, вероятно, пролежит до завтра.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Говорят, это будет самая холодная зима за десять лет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una mañana de nieve en Berlín: Anna, con abrigo, gorro, bufanda y guantes, termina un muñeco de nieve frente a una casa amarilla; un perrito con abrigo rojo olfatea la nieve; una bicicleta, una banca y un carro rojo están cubiertos de nieve.",
+    "consigne": "Nevó esta noche. Anna hace un muñeco de nieve. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El dativo: mir ist kalt",
+    "B2": "Relativas y pasiva",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Das Fahrrad steht an der Laterne.": "<b>an</b> = contra, apoyado en. die Laterne → an <b>der</b> Laterne.",
+    "A2 | Die Kerze ist im Fenster.": "<b>im</b> = in + <b>dem</b>: das Fenster → im Fenster.",
+    "A2 | Das Auto steht vor dem Haus.": "<b>vor</b> = delante de. das Haus → vor <b>dem</b> Haus.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "der Baum → auf <b>dem</b> Baum.",
+    "A2 | Der Hund steht im Schnee.": "<b>im</b> = in + <b>dem</b>: der Schnee → im Schnee.",
+    "A2 | Der Rauch ist über dem Dach.": "<b>über</b> = encima de. das Dach → über <b>dem</b> Dach.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "das Fahrrad → neben <b>dem</b> Fahrrad.",
+    "A2 | Der Hut ist auf dem Schneemann.": "der Schneemann → auf <b>dem</b> Schneemann.",
+    "B1 | Ihr ist kalt.": "«Tener frío» no lleva «haben»: la persona va en dativo: <b>mir</b>, <b>dir</b>, <b>ihm</b>, <b>ihr</b> ist kalt.",
+    "B1 | Die Mütze steht ihr gut.": "<b>stehen</b> (quedar bien) + dativo, como «le queda bien»: sie → <b>ihr</b>.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "¿A quién? → dativo: <b>dem</b> Schneemann.",
+    "B1 | Sie hat die Handschuhe angezogen.": "¿Qué? → acusativo plural: <b>die</b> Handschuhe.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "«Tener frío» → la persona en dativo: er → <b>ihm</b>.",
+    "B1 | Die Stiefel gehören ihr.": "<b>gehören</b> + dativo, como «pertenecerle»: sie → <b>ihr</b>.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "<b>geben</b>: la persona (aquí el muñeco) en dativo → <b>dem</b>.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "<b>mit</b> + dativo: der Besen → mit <b>dem</b> Besen.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "Sujeto de la relativa, femenino → <b>die</b>.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "Posesión, antecedente masculino → <b>dessen</b> (cuyo abrigo). Al revés que «cuyo», concuerda con el poseedor.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "<b>vor</b> + Wo? → dativo, neutro → <b>dem</b>.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "Pasiva de estado: <b>sein</b> + participio, como «estar cubierto».",
+    "B2 | Der Weg muss noch gefegt werden.": "Pasiva con un verbo modal: participio + <b>werden</b> al final.",
+    "B2 | Die brennende Kerze steht im Fenster.": "Participio presente (Partizip I) como adjetivo: brennen + <b>d</b> + terminación → <b>brennende</b>.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "La bicicleta está apoyada en el farol.",
+    "A2 | Die Kerze ist im Fenster.": "La vela está en la ventana.",
+    "A2 | Das Auto steht vor dem Haus.": "El carro está delante de la casa.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "El pájaro está posado en el árbol.",
+    "A2 | Der Hund steht im Schnee.": "El perro está en la nieve.",
+    "A2 | Der Rauch ist über dem Dach.": "El humo está encima del techo.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "La banca está al lado de la bicicleta.",
+    "A2 | Der Hut ist auf dem Schneemann.": "El sombrero está sobre el muñeco de nieve.",
+    "B1 | Ihr ist kalt.": "Ella tiene frío.",
+    "B1 | Die Mütze steht ihr gut.": "El gorro le queda bien.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Anna le amarró una bufanda al muñeco de nieve.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Se puso los guantes.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "El perro lleva un abrigo para no tener frío.",
+    "B1 | Die Stiefel gehören ihr.": "Las botas son de ella.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Anna le pone al muñeco de nieve una zanahoria como nariz.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Con la escoba despeja el camino.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "La mujer que hace un muñeco de nieve se llama Anna.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "El perro, cuyo abrigo es rojo, olfatea la nieve.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "La casa delante de la cual está el carro es amarilla.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "El carro está cubierto de nieve.",
+    "B2 | Der Weg muss noch gefegt werden.": "Todavía hay que barrer el camino.",
+    "B2 | Die brennende Kerze steht im Fenster.": "La vela encendida está en la ventana.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "El muñeco de nieve debe de gustarle mucho.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "La bicicleta podría estar ahí desde anoche.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "La nieve probablemente se quedará hasta mañana.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Dicen que va a ser el invierno más frío en diez años."
    }
   }
  }

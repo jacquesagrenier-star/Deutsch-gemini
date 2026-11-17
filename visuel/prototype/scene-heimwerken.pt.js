@@ -46,7 +46,7 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "couleur"
+   "fr": "peinture"
   },
   {
    "id": "wand",
@@ -486,11 +486,11 @@ window.SCENE = {
   },
   {
    "id": "nagel",
-   "mot": "unha",
-   "genre": "a",
-   "pluriel": "as unhas",
+   "mot": "prego",
+   "genre": "o",
+   "pluriel": "os pregos",
    "niveau": "A2",
-   "theme": "saude_a2_pt",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -503,7 +503,7 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ongle"
+   "fr": "clou"
   },
   {
    "id": "zollstock",

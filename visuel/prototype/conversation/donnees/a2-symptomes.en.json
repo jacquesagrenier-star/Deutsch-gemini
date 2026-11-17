@@ -1,0 +1,452 @@
+{
+ "id": "a2-symptomes",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Chez le médecin"
+ },
+ "intro": {
+  "fr": "Tu ne te sens pas bien et tu vas chez ton médecin de famille, à Boston. Explique ce que tu as, réponds à ses questions et vérifie comment prendre le médicament."
+ },
+ "personnes": [
+  "a22_diego"
+ ],
+ "debut": "what",
+ "textes": {
+  "symptome_fr": {
+   "cle": "mal",
+   "gorge": "ton mal de gorge et ta fièvre",
+   "ventre": "ton mal de ventre et tes nausées"
+  }
+ },
+ "noeuds": {
+  "what": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le cabinet de ton médecin de famille. Une infirmière t'a installé(e) dans une petite salle ; le médecin entre."
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Good morning! Sorry about the wait. So, what brings you in today?",
+     "fr": "Bonjour ! Désolé pour l'attente. Alors, qu'est-ce qui vous amène aujourd'hui ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "I have a sore throat and a fever.",
+     "t_gb": "I have a sore throat and a temperature.",
+     "fr": "J'ai mal à la gorge et de la fièvre.",
+     "pose": {
+      "mal": "gorge"
+     },
+     "va": "since",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "I see. Let's take a look.",
+       "fr": "Je vois. Regardons ça."
+      }
+     ]
+    },
+    {
+     "t": "My stomach hurts and I feel sick.",
+     "fr": "J'ai mal au ventre et j'ai la nausée.",
+     "pose": {
+      "mal": "ventre"
+     },
+     "va": "since",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "I'm sorry to hear that. Let's see what's going on.",
+       "fr": "J'en suis désolé. Voyons ce qui se passe."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "I'm very well, thank you.",
+     "fr": "Je vais très bien, merci.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "amuse",
+       "t": "Glad to hear it! But then, why are you here today?",
+       "fr": "Ravi de l'entendre ! Mais alors, pourquoi êtes-vous ici aujourd'hui ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« What brings you in? »</b> ne demande pas comment tu vas : c'est « qu'est-ce qui vous amène ? ». Dis ce que tu as : « I have a sore throat and a fever. »"
+     }
+    }
+   ]
+  },
+  "since": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "How long have you had this?",
+     "fr": "Depuis combien de temps avez-vous ça ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Since Monday.",
+     "fr": "Depuis lundi.",
+     "va": "fever",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "OK, so about three days.",
+       "fr": "D'accord, donc environ trois jours."
+      }
+     ]
+    },
+    {
+     "t": "For three days.",
+     "fr": "Depuis trois jours.",
+     "va": "fever",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Three days. All right.",
+       "fr": "Trois jours. Très bien."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Since three days.",
+     "fr": "Depuis trois jours. (mal formé)",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "Since … three days ago? So, for three days?",
+       "fr": "Depuis… il y a trois jours ? Donc, depuis trois jours ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« since » + un moment précis</b> (since Monday) ; <b>« for » + une durée</b> (for three days). Ici : « For three days. »"
+     }
+    },
+    {
+     "t": "Sorry, could you repeat that, please?",
+     "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?",
+     "va": "since",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Of course. When did it start?",
+       "fr": "Bien sûr. Quand est-ce que ça a commencé ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "fever": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Have you taken your temperature? And have you taken anything for it?",
+     "fr": "Avez-vous pris votre température ? Et avez-vous pris quelque chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I had a fever last night: a hundred and one.",
+     "t_gb": "Yes, I had a temperature last night: thirty-eight point five.",
+     "fr": "Oui, j'avais de la fièvre hier soir : 101 °F (38,5 °C).",
+     "va": "allergy",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "A hundred and one. That's a real fever.",
+       "fr": "101 (38,5 °C). C'est une vraie fièvre.",
+       "t_gb": "Thirty-eight point five. That's a real temperature."
+      }
+     ]
+    },
+    {
+     "t": "I took some medicine for the pain, but it didn't help much.",
+     "fr": "J'ai pris un médicament contre la douleur, mais ça n'a pas beaucoup aidé.",
+     "va": "allergy",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "OK. That's good to know.",
+       "fr": "D'accord. C'est bon à savoir."
+      }
+     ]
+    }
+   ]
+  },
+  "allergy": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "Are you allergic to any medications?",
+     "fr": "Êtes-vous allergique à des médicaments ?",
+     "t_gb": "Are you allergic to any medicines?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "No, I don't think so.",
+     "fr": "Non, je ne crois pas.",
+     "pose": {
+      "allergie": "non"
+     },
+     "va": "note",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Good.",
+       "fr": "Bien."
+      }
+     ]
+    },
+    {
+     "t": "Yes, I'm allergic to penicillin.",
+     "fr": "Oui, je suis allergique à la pénicilline.",
+     "pose": {
+      "allergie": "oui"
+     },
+     "va": "note",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Thanks for telling me. I'll make sure to give you something else.",
+       "fr": "Merci de me le dire. Je veillerai à vous donner autre chose."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I'm sensible to penicillin.",
+     "fr": "Oui, je suis « raisonnable » à la pénicilline.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "Sensible? Hm … you mean you're allergic to it?",
+       "fr": "« Sensible » ? Hum… vous voulez dire que vous y êtes allergique ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« sensible »</b> veut dire raisonnable. Pour un médicament qu'on ne supporte pas : « I'm allergic to penicillin. »"
+     }
+    }
+   ]
+  },
+  "note": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le médecin regarde ta gorge avec une petite lampe, puis écoute ta respiration."
+     },
+     "si": {
+      "mal": "gorge"
+     }
+    },
+    {
+     "recit": {
+      "fr": "Le médecin te fait allonger et appuie doucement sur ton ventre."
+     },
+     "si": {
+      "mal": "ventre"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Your throat is very red. It's an infection, but nothing serious. Do you need a doctor's note for work?",
+     "fr": "Votre gorge est très rouge. C'est une infection, mais rien de grave. Avez-vous besoin d'un mot du médecin pour le travail ?",
+     "si": {
+      "mal": "gorge"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "It looks like a stomach infection. Nothing serious, but you need rest. Do you need a doctor's note for work?",
+     "fr": "On dirait une infection de l'estomac. Rien de grave, mais il vous faut du repos. Avez-vous besoin d'un mot du médecin pour le travail ?",
+     "si": {
+      "mal": "ventre"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, please. How many days should I stay home?",
+     "t_gb": "Yes, please. How many days should I stay at home?",
+     "fr": "Oui, s'il vous plaît. Combien de jours dois-je rester à la maison ?",
+     "va": "medicine",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Stay home today and tomorrow. I'll write the note for two days.",
+       "fr": "Restez chez vous aujourd'hui et demain. Je fais le mot pour deux jours.",
+       "t_gb": "Stay at home today and tomorrow. I'll write the note for two days."
+      }
+     ]
+    },
+    {
+     "t": "Yes, I do. My boss asked for one.",
+     "fr": "Oui. Mon chef en a demandé un.",
+     "va": "medicine",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "No problem. I'll write it for two days: today and tomorrow.",
+       "fr": "Pas de problème. Je le fais pour deux jours : aujourd'hui et demain."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I need a stop of work.",
+     "fr": "Oui, j'ai besoin d'un « arrêt de travail ». (mot à mot)",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "A stop of … Oh, a note for your job! Sure.",
+       "fr": "Un « stop of »… Ah, un mot pour votre travail ! Bien sûr."
+      }
+     ],
+     "aide": {
+      "fr": "<b>L'arrêt de travail ne se traduit pas mot à mot</b> : aux États-Unis, on demande « a doctor's note ». Réponds : « Yes, please. »"
+     }
+    }
+   ]
+  },
+  "medicine": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Since you're allergic to penicillin, I'm choosing a different medicine.",
+     "fr": "Comme vous êtes allergique à la pénicilline, je choisis un autre médicament.",
+     "si": {
+      "allergie": "oui"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "I'm sending a prescription to your pharmacy. Take one pill three times a day, after meals, for five days.",
+     "fr": "J'envoie une ordonnance à votre pharmacie. Prenez un comprimé trois fois par jour, après les repas, pendant cinq jours.",
+     "t_gb": "I'm sending a prescription to your pharmacy. Take one tablet three times a day, after meals, for five days."
+    }
+   ],
+   "choix": [
+    {
+     "t": "So, one pill three times a day, after meals?",
+     "t_gb": "So, one tablet three times a day, after meals?",
+     "fr": "Donc, un comprimé trois fois par jour, après les repas ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Exactly. And for five days, even if you feel better.",
+       "fr": "Exactement. Et pendant cinq jours, même si vous vous sentez mieux."
+      }
+     ]
+    },
+    {
+     "t": "Three times a day for five days. Is that right?",
+     "fr": "Trois fois par jour pendant cinq jours. C'est bien ça ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "That's right. Always after you eat.",
+       "fr": "C'est ça. Toujours après avoir mangé."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Three times a week?",
+     "fr": "Trois fois par semaine ?",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "surprise",
+       "t": "No, no. Three times a day: morning, noon, and night.",
+       "fr": "Non, non. Trois fois par jour : matin, midi et soir.",
+       "t_gb": "No, no. Three times a day: morning, lunchtime and night."
+      }
+     ],
+     "aide": {
+      "fr": "Il a dit <b>« three times a day »</b> : trois fois par <b>jour</b>, pas par semaine. Vérifie : « Three times a day, after meals? »"
+     }
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Drink a lot of water and get some rest. If you don't feel better in a week, come back. Feel better soon!",
+     "fr": "Buvez beaucoup d'eau et reposez-vous. Si ça ne va pas mieux dans une semaine, revenez. Bon rétablissement !",
+     "t_gb": "Drink a lot of water and get some rest. If you don't feel better in a week, come back. Get well soon!"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you, Doctor. Goodbye!",
+     "fr": "Merci, docteur. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Goodbye. Take care!",
+       "fr": "Au revoir. Prenez soin de vous !"
+      }
+     ]
+    },
+    {
+     "t": "I will. Thanks a lot. Have a nice day!",
+     "fr": "Je le ferai. Merci beaucoup. Bonne journée !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "You too. Take care!",
+       "fr": "Vous aussi. Prenez soin de vous !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as décrit {symptome_fr}, obtenu un mot du médecin pour deux jours de repos et une ordonnance envoyée à ta pharmacie : un comprimé trois fois par jour, après les repas, pendant cinq jours."
+ }
+}

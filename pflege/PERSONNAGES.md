@@ -1,10 +1,14 @@
-# Wortando Pflege : les personnages (PROPOSITION, à valider par Jacques)
+# Wortando Pflege : les personnages (VALIDÉS par Jacques le 14 nov. 2026)
+
+> **Validés** : « je valide » (`decisions/DECISIONS.md`, « Pflege : les personnages validés »). Les cinq
+> soignants et l'équipe allemande ci-dessous sont définitifs ; leurs images et leurs voix peuvent se faire,
+> chaque lot annoncé au chef avec son coût.
 
 14 nov. 2026. Décision de Jacques : de nouveaux soignants, choisis d'après les pays qui recrutent
 **aujourd'hui**, avec **obligatoirement un personnage turc** ; Mark et Anna n'y sont pas. Chiffres
 transmis par le chef : reconnaissances de 2024, Turquie 9 200, Tunisie 5 300, Inde 4 900,
 Syrie 4 300 ; la Bosnie et les Philippines baissent, et la Bosnie a arrêté sa coopération en 2025.
-**Aucune image avant validation.**
+~~Aucune image avant validation.~~ Validé le 14 nov.
 
 Les noms sont inventés et courants dans leur pays, pour ne désigner personne. Ils remplacent la
 distribution de la phase 0 (Maricel, Arun, Amira, Mateo).
@@ -37,6 +41,7 @@ personnage (Philippines, anglais) reste possible si une agence philippine devien
 | **Herr Schulze**, 87 ans | Résident, démence modérée, ancien conducteur de tramway | |
 | **Frau Weber**, 81 ans | Résidente, la chute du dialogue 8 | |
 | **Frau Kowalski**, 79 ans | Cliente des soins à domicile, insuline, un chat | |
+| **Dr. Krämer** | Médecin de garde (un homme), la nuit : l'appel SBAR (dialogue 7) et l'examen blanc | rôle secondaire, nom retenu avec l'examen blanc le 14 nov. (le chef a écarté « Neumann ») ; hors de la liste validée par Jacques, comme les patients |
 
 **Enfants** : aucun n'est nécessaire. Si une scène en montre (des petits-enfants en visite), ils
 sont souriants ou neutres, jamais tristes ni apeurés (le filtre de fal les refuse, et la règle

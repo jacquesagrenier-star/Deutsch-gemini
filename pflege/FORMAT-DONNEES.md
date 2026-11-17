@@ -26,15 +26,11 @@ fichiers **à ce format**, et un changement de format se décide ici d'abord.
 7. **L'ordre des mots d'un thème est définitif dès la publication** : la progression d'un apprenant est
    rangée par (thème, niveau, rang du mot). On **ajoute en fin de liste** ; on ne réordonne ni ne retire
    un mot publié (le marquer `"retire": true` si besoin).
-8. **Les personnages** (`pflege/PERSONNAGES.md`) sont **une proposition** tant que Jacques ne les a pas
-   validés. Le texte peut les nommer (Elif, Amira, Arun, Yusuf, Olena, Jonas, Frau Hoffmann, Dr. Sommer,
-   Herr Brandt, Frau Lehmann, Herr Schulze, Frau Weber, Frau Kowalski). **Images** (règle du chef,
-   14 nov.) :
-   - **permis dès maintenant** : les **patients**, les **résidents** et les **proches** — Herr Brandt,
-     Frau Lehmann et sa fille, les résidents du Haus Lindenhof (Herr Schulze, Frau Weber…), Frau Kowalski ;
-   - **en attente de la validation de Jacques** : les **soignants** seuls — Elif, Amira, Arun, Yusuf, Olena,
-     Jonas, Frau Hoffmann, Dr. Sommer. Aucun d'eux dessiné avant.
-   - chaque lot reste annoncé au chef avec son coût (règle 9).
+8. **Les personnages** (`pflege/PERSONNAGES.md`) sont **validés par Jacques** (14 nov., « je valide ») :
+   Elif, Amira, Arun, Yusuf, Olena, Jonas, Frau Hoffmann, Dr. Sommer, et les patients, résidents et proches
+   (Herr Brandt, Frau Lehmann et sa fille, Herr Schulze, Frau Weber, Frau Kowalski). Leurs prénoms sont
+   **définitifs** dans les textes. **Images** : tous permis, soignants compris ; chaque lot annoncé au chef
+   avec son coût (règle 9).
 9. **Dépenses** (images fal, voix ElevenLabs v2, jamais Flash) : chaque lot annoncé au chef avec son coût
    avant d'être lancé ; hors plan ou au-delà de +20 % de l'estimation, nouvel accord.
 
@@ -91,6 +87,62 @@ MOTS = [ … ]   # une entrée par mot, au format ci-dessous
 genre, pluriel, perfekt, traduction (fr), traduction_<langue>, exemple, exemple_<langue>, article_fr,
 corpus, relire} ] } ] }`.
 
+### 1 bis. La paire « dit le patient / dit le service » (sorte `paire`, 15 nov.)
+
+Le plan du 15 nov. (§ C 1) relie deux registres : ce que dit le patient (« das Bauchweh », « Wasser in
+den Beinen », « groß machen ») et ce que la soignante dit ou écrit au médecin, à la relève, dans le
+dossier (« die Abdominalschmerzen », « die Beinödeme », « der Stuhlgang »). Une paire est **un lien**, pas
+un mot de plus : ses deux côtés peuvent être déjà au corpus chacun.
+
+**Où** : un thème à elles, `soins_sprache` (« Patientensprache und Fachsprache », *comprendre le patient,
+parler au médecin*), placé avant `soins_szenen` dans `THEMES`. Source : `pflege/sources/sprache.py`
+(→ `vocabulaire/t12_sprache.py`, constructeur `P`).
+
+**L'entrée** (le dictionnaire du § 1, avec `"sorte": "paire"`) :
+
+```python
+{
+    "niveau": "B1",
+    "sorte": "paire",
+    "mot": "die Abdominalschmerzen",        # le côté du SERVICE, avec son article, tel qu'on l'écrit ou le dit
+    "patient": "das Bauchweh",              # le côté du PATIENT, tel qu'il le dit (« groß machen », « Mir ist schlecht. »)
+    "exemple": "Herr Schulze klagt seit dem Morgen über Abdominalschmerzen.",   # la transmission, ou l'explication
+    "exemple_patient": "Ich hab so Bauchweh, schon seit heute früh.",          # ce que dit le patient, à l'oral
+    "trad": {"fr": ("les douleurs abdominales", "…"), …},          # registre MÉDICAL de la langue
+    "trad_patient": {"fr": ("le mal au ventre", "…"), …},          # registre de TOUS LES JOURS de la langue
+    "corpus": False,
+    "relire": "⚕️ …",                       # sur tout terme médical
+    "lecture": "…", "lecture_patient": "…", # si une phrase a des chiffres (règle 4)
+}
+```
+
+Ni `genre`, ni `pluriel`, ni `article_fr` : l'article est dans le texte, et les deux côtés n'ont pas
+toujours la même sorte (« groß machen » ↔ « der Stuhlgang »).
+
+**Sortie** (`construire.py`) : les champs du § 1 pour le côté du service (`mot`, `traduction`,
+`traduction_<langue>`, `exemple`, `exemple_<langue>`), et les mêmes suffixés `_patient` pour le côté du
+patient : `patient`, `traduction_patient`, `traduction_patient_<langue>`, `exemple_patient`,
+`exemple_patient_fr`, `exemple_patient_<langue>`, `lecture_patient`.
+
+**La carte**, proposition pour l'architecture, qui en décide :
+- **Sens 1, patient → service** (le premier appris : comprendre et transmettre). Recto : une bulle « le
+  patient dit », la phrase `exemple_patient` dite à voix haute, `patient` en évidence, et la question
+  « Et dans la transmission ? ». Verso : `mot`, la phrase `exemple`, les deux traductions côte à côte
+  (`traduction_patient` → `traduction`), la note ⚕️.
+- **Sens 2, service → patient** (expliquer avec des mots simples). Recto : une bulle « dans le dossier »
+  ou « le médecin dit », `mot` et `exemple`, et la question « Et au patient ? ». Verso : `patient` et
+  `exemple_patient`.
+- Une paire donne ainsi **deux cartes** ; le sens 2 vient quand le sens 1 est su (au deuxième point, par
+  exemple). La progression reste rangée par (thème, niveau, rang) : le rang de la paire, et un suffixe pour
+  le sens 2 (« r »), si l'app en a besoin.
+- Les deux phrases sont dites : celle du patient par une voix de patient, celle du service par une voix
+  de soignante, le jour où les voix sont produites.
+
+**Contrôles** : `tests/pflege.py` accepte la sorte et demande les deux côtés dans les 9 langues ;
+`tests/pflege_vocabulaire.py` y ajoute l'écriture de chaque langue, les chiffres, et refuse deux paires
+identiques (deux paires peuvent partager un côté : « Wasser lassen » est le service de « Pipi machen » et
+le patient de « die Miktion »).
+
 ---
 
 ## 2. Les dialogues — `pflege/datos/dialogues.json` (session « dialogues »)
@@ -125,10 +177,98 @@ corpus, relire} ] } ] }`.
 
 - `apprenant` : le personnage dont l'apprenant joue les répliques (« jouer son rôle »).
 - `qui` : un id de personnage en minuscules (`elif`, `jonas`, `hoffmann`, `sommer`, `brandt`, `lehmann`,
-  `lehmann_tochter`, `schulze`, `weber`, `kowalski`, `amira`, `arun`, `yusuf`, `olena`).
-- L'allemand **parlé** (*mal*, *genau*, *ne*), 12 à 20 répliques.
+  `lehmann_tochter`, `schulze`, `weber`, `kowalski`, `amira`, `arun`, `yusuf`, `olena`, `kraemer`).
+  `kraemer` = **Dr. Krämer**, médecin de garde (un homme), rôle secondaire retenu avec l'examen blanc
+  (14 nov. ; le chef a écarté « Neumann »). Trois rôles de l'examen blanc parlent aussi dans les dialogues
+  (accord de l'architecture, 15 nov.) : `aksoy` (Frau Aksoy, laboratoire) et `richter` (Herr Richter, pharmacie)
+  dans d19, `schulze_tochter` (Monika Schulze, la fille de Herr Schulze) dans d24 et d26.
+- L'allemand **parlé** (*mal*, *genau*, *ne*), 12 à 20 répliques en principe ; `repliques` est le **chemin
+  modèle** (jusqu'à 24, comme d01).
+- **Champs en plus, acceptés** (14 nov., session « dialogues ») : `source`, `registre`, `intro`, et l'arbre
+  des branches `debut` + `noeuds`, au format des conversations jouées (`visuel/prototype/conversation/` :
+  choix justes, fautes avec leur aide, répétitions). L'app lira l'arbre quand il existe, sinon `repliques`.
 - `prepare` : les parties du telc qu'il prépare (`hoeren_1`…`hoeren_4`, `lesen_1`…, `sprechen_1`…`sprechen_3`,
   `schreiben`).
+
+## 2 bis. Les cartes-phrases (« Redemittel » par fonction) — `pflege/datos/redemittel.json` (session « dialogues »)
+
+> **Accepté par l'architecture le 15 nov.** (proposition de la session « dialogues »), avec les groupes demandés
+> par le chef. **Cette sortie est la source unique des Redemittel** : le chapitre 6 du manuel B2 (session
+> pflege-examen) la lit au lieu d'avoir son propre fichier.
+
+**Deux sources, une sortie.**
+1. **Les cartes des dialogues** : le champ `redemittel` de chaque dialogue (5 à 10 par dialogue), déjà
+   traduit et déjà lu par la voix d'Aurora (`<id>/rm/<n>` dans `pflege/datos/sons.json`). On ne le recopie
+   pas : on lui ajoute une **fonction**.
+2. **Les cartes sans dialogue** : `pflege/sources/redemittel/<groupe>.json`, **écrites par pflege-examen,
+   dans ces fichiers-là seulement** ; la chaîne de la session « dialogues » les construit, les contrôle et
+   les fait lire.
+
+Les 7 fonctions et les 8 groupes (titre, conseil, 9 langues) sont dans `pflege/sources/redemittel-fonctions.json`,
+tenu par la session « dialogues » (hors du dossier des groupes, pour ne pas le gêner).
+
+**Une carte de dialogue** (`pflege/sources/dialogues/dNN-*.json`, dans `redemittel`) :
+
+```json
+{"t": "Ich mache mir Sorgen. Ich glaube, er muss schnell untersucht werden.", "fr": "…",
+ "fonction": "transmettre",
+ "situation": {"fr": "Tu appelles le médecin de garde la nuit et tu dis ton inquiétude."}}
+```
+
+- `fonction` (**obligatoire**) : `annoncer` · `demander` · `rassurer` · `refuser` · `reformuler` · `transmettre` ·
+  `redemander`. Une seule par carte : celle qu'on apprend en la disant.
+- `situation` (facultatif) : quand on la dit, en une phrase, traduite comme tout texte. **Absente, elle vaut le
+  titre du dialogue**, déjà traduit.
+- `groupe` (facultatif) : `patient` · `famille` · `collegues` · `releve` · `sbar` · `visite` · `negociation` ·
+  `telephone`. **Absent, il se déduit du dialogue** (`GROUPE_DIALOGUE` dans `pflege/outils/textes.py`).
+- Le registre vient du dialogue ; dans un dialogue « du+Sie », il se lit sur la phrase (du / dich / dir / dein).
+
+**Une carte sans dialogue** (`pflege/sources/redemittel/<groupe>.json`, le nom du fichier = le groupe) :
+
+```json
+{"groupe": "telephone",
+ "cartes": [
+  {"t": "Können Sie mir bitte Ihren Namen buchstabieren?", "fr": "Pouvez-vous m'épeler votre nom, s'il vous plaît ?",
+   "en": "…", "tr": "…", "uk": "…", "fa": "…", "pt": "…", "ar": "…", "pl": "…", "ru": "…",
+   "fonction": "redemander", "niveau": "B1", "registre": "Sie",
+   "situation": {"fr": "Au téléphone, tu n'as pas compris le nom.", "en": "…", …}}
+ ]}
+```
+
+- `t`, `fr`, `fonction`, `niveau` (A2 à C1), `registre` (`du` ou `Sie`) et `situation` **obligatoires** ; un chiffre dans `t`
+  demande un `dit` en lettres (règle 4) ; un nom de personnage passe par un gabarit (`{brandt:dat}`).
+- Les traductions peuvent être **écrites dans la source** (les 9 langues sur la carte), ou laissées à la
+  chaîne de traduction (`traductions/<langue>/redemittel/<groupe>.json`, préparé par `textes.py extraire`) ;
+  **une traduction écrite dans la source l'emporte toujours** (corriger une langue = corriger la source).
+- **On ajoute en fin de liste** ; on ne retire ni ne réordonne une carte publiée (`"retire": true`).
+
+**Sortie** (fabriquée par `textes.py construire`, ne pas écrire à la main) : `pflege/datos/redemittel.json`
+
+```json
+{"_note": "…", "langues": ["fr", …, "ru"],
+ "fonctions": [{"id": "annoncer", "titre": {"fr": "Annoncer ce qu'on va faire", …}, "conseil": {…}}, …],
+ "groupes": [{"id": "patient", "titre": {"fr": "Avec le patient", …}}, …],
+ "cartes": [{
+   "id": "soins_rm_07_4",              // dialogue : numéro + rang ; sans dialogue : soins_rm_<groupe>_<rang>
+   "fonction": "transmettre", "groupe": "sbar",
+   "niveau": "B2", "registre": "Sie",
+   "de": "Ich mache mir Sorgen. …", "lecture": "", "trad": {"fr": …, …, "ru": …},
+   "situation": {"fr": …, …},
+   "dialogue": "soins_dlg_07_sbar", "apprenant": "yusuf",   // "" pour une carte sans dialogue
+   "son": "soins_dlg_07_sbar/rm/4",    // la clé de sons.json ; une carte sans dialogue a son id pour clé
+   "relire": ""
+ }]}
+```
+
+- **L'id est stable** (règle 7) : la progression d'un apprenant sur une carte est rangée par `id`. Le rang part
+  de 0, comme les clés `rm`.
+- Les cartes sont rangées par fonction, puis par niveau, les cartes de dialogue avant les autres.
+- **Jamais deux fois le même `de`** dans toute la sortie (le contrôle le refuse) : c'est ce qui évite les
+  doublons entre le manuel et les dialogues. Une carte à trou (« Ich wiederhole die Dosierung: … ») reste une
+  carte : les points de suspension disent ce qu'on complète.
+- État au 15 nov. : **185 cartes**, toutes de dialogue (d01-d26) ; 82 ont déjà leur son (d01-d12), celles de
+  d13-d26 font partie du lot de voix des 14 dialogues, et les cartes sans dialogue y ajouteront le leur.
+- Contrôle : `python tests/pflege_dialogues.py` (fonction, groupe, niveau, registre, situation, id, doublons).
 
 ## 3. La grammaire du métier — `pflege/datos/grammaire.json` (session « dialogues »)
 
@@ -150,8 +290,11 @@ corpus, relire} ] } ] }`.
 
 - `type` : `choix` (trou à choix), `ordre` (remettre les mots dans l'ordre : `mots` au lieu de `choix`),
   `vrai_faux`. 10 questions par série.
-- `renvoi` : la fiche générale de l'app qui explique la règle, si elle existe (nom de la fonction ou de la
-  carte ; laisser vide sinon, l'intégration le complétera).
+- `renvoi` : l'**id de la `<section>`** d'`index.html` qui explique la règle générale (`praepInfo`,
+  `konjunktionenInfo`, `relativInfo`, `wortstellungInfo`, `verbenTempsInfo`, `adverbienInfo`,
+  `personalpronomenInfo`…), ou `""`. L'app l'ouvre par `showScreen(renvoi)`.
+- **Champs en plus, acceptés** : `resume`, `tableau`, `piege`, `dialogues` (les dialogues où le point sert).
+  Une question « choisir la bonne phrase » est un `choix` avec `"de": "___"` et une `consigne`.
 
 ## 4. L'écrit — `pflege/datos/ecrit.json` (session « dialogues »)
 
@@ -179,6 +322,13 @@ corpus, relire} ] } ] }`.
   `nachricht`.
 - `points_cles` : chaque information de la fiche qu'un bon texte reprend (sert à l'autocorrection :
   l'examen enlève des points pour chaque information oubliée).
+- `niveau` : `"B1"`, avec **`niveau_max`** `"B2"` pour les 8 sujets d'examen (aufnahme, biografie).
+- **Champs en plus, acceptés** : `titre`, `consigne_de`, la rubrique traduite, `briques_groupes`, `corrige`
+  (traduit), `corrige_b1_de` / `corrige_b1` (un texte modèle de niveau B1 à côté du B2), `points` (avec `id`
+  et traduction), `pieges`, `grille` ; et au niveau du fichier, **`grilles`** : la grille d'auto-évaluation
+  sur les quatre critères du telc (contenu, forme, correction, vocabulaire).
+- Ces trois fichiers sont fabriqués par **`pflege/outils/textes.py`** à partir de
+  `pflege/sources/{dialogues,grammaire,ecrit}/` ; contrôle : `python tests/pflege_dialogues.py`.
 
 ## 5. Les scènes — `visuel/prototype/soins-<nom>.points.json` (session « scènes »)
 

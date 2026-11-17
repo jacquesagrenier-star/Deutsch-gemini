@@ -1,0 +1,138 @@
+{
+ "id": "b1-location-vacances",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Louer un logement pour les vacances"},
+ "intro": {"fr": "Tu as vu l'annonce d'une petite maison à louer à Cape Cod, à deux heures de Boston. Tu appelles la propriétaire pour la réserver."},
+ "personnes": ["vermieterin"],
+ "debut": "call",
+ "noeuds": {
+  "call": {
+   "dit": [
+    {"recit": {"fr": "L'annonce : « Cottage in Wellfleet, Cape Cod, steps from the bay. Call Irene Carter ». Tu composes le numéro. Ça sonne."}},
+    {"qui": "vermieterin", "air": "question", "t": "Hello?", "fr": "Allô ?"}
+   ],
+   "choix": [
+    {"t": "Hi, is this Irene? I'm calling about your cottage in Wellfleet. Is it still available in July?", "fr": "Bonjour, c'est bien Irene ? J'appelle au sujet de votre maison à Wellfleet. Est-elle encore libre en juillet ?", "va": "dates"},
+    {"t": "Hello. I saw your ad online, and I'm interested in renting the cottage.", "fr": "Bonjour. J'ai vu votre annonce en ligne et j'aimerais louer la maison.", "va": "dates"},
+    {"faux": true, "t": "Hello. I call for the location of your cottage.", "fr": "Bonjour. J'appelle pour la location de votre maison.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "The location? It's in Wellfleet, on Cape Cod. Do you need directions?", "fr": "L'emplacement ? Elle est à Wellfleet, à Cape Cod. Vous avez besoin de l'itinéraire ?"}],
+     "aide": {"fr": "<b>« location »</b>, en anglais, c'est l'endroit. La location se dit « rental », louer « rent ». Et au téléphone : « I'm calling about your cottage » ou « I'm interested in renting the cottage »."}}
+   ]
+  },
+  "dates": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Oh, sure, the cottage by the bay. When were you thinking of coming, and how many of you are there?", "fr": "Ah oui, la maison près de la baie. Quand pensiez-vous venir, et combien êtes-vous ?"}],
+   "choix": [
+    {"t": "There are two of us. We'd like to come for the second week of July.", "fr": "Nous sommes deux. Nous aimerions venir la deuxième semaine de juillet.", "pose": {"with": "two"}, "va": "taken"},
+    {"t": "Two adults and a dog. We're hoping for a week in the middle of July.", "fr": "Deux adultes et un chien. Nous espérons une semaine à la mi-juillet.", "pose": {"with": "dog"}, "va": "taken"},
+    {"t": "We're a family of four, with two kids. The middle of July would be perfect.", "fr": "Nous sommes une famille de quatre, avec deux enfants. La mi-juillet serait parfaite.", "pose": {"with": "kids"}, "va": "taken"},
+    {"repete": true, "t": "Sorry, the connection is bad. Could you repeat that, please?", "fr": "Pardon, la ligne est mauvaise. Pourriez-vous répéter, s'il vous plaît ?", "va": "dates",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sure. When do you want to come? And how many people?", "fr": "Bien sûr. Quand voulez-vous venir ? Et combien de personnes ?"}]}
+   ]
+  },
+  "taken": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Let me check the calendar … I rent Saturday to Saturday, and July 10th to the 17th is already taken. I have July 3rd to the 10th, or the 17th to the 24th.", "dit": "Let me check the calendar … I rent Saturday to Saturday, and July tenth to the seventeenth is already taken. I have July third to the tenth, or the seventeenth to the twenty-fourth.", "fr": "Je regarde le calendrier… Je loue du samedi au samedi, et la semaine du 10 au 17 juillet est déjà prise. Il me reste du 3 au 10 juillet, ou du 17 au 24."}],
+   "choix": [
+    {"t": "Then we'll take the week of July third.", "t_gb": "Then we'll take the week of the third of July.", "fr": "Alors nous prenons la semaine du trois juillet.", "pose": {"week": "early"}, "va": "price"},
+    {"t": "The week starting on the seventeenth works better for us.", "fr": "La semaine qui commence le dix-sept nous convient mieux.", "pose": {"week": "late"}, "va": "price"},
+    {"faux": true, "t": "Then we take the week from the three to the ten July.", "fr": "Alors nous prenons la semaine du trois au dix juillet.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Sorry, the three to the ten …? Oh, July third to the tenth. Is that the week you want?", "fr": "Pardon, « the three to the ten »… ? Ah, du trois au dix juillet. C'est la semaine que vous voulez ?"}],
+     "aide": {"fr": "<b>Les dates se disent avec l'ordinal :</b> « July third », « the tenth ». Et une décision prise sur le moment se dit avec « we'll » : « Then we'll take the week of July third »."}}
+   ]
+  },
+  "price": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Wonderful. It's $2,400 for the week, plus a $150 cleaning fee. Linens and towels aren't included, but you can rent them for $60.", "dit": "Wonderful. It's twenty-four hundred dollars for the week, plus a hundred-and-fifty-dollar cleaning fee. Linens and towels aren't included, but you can rent them for sixty dollars.", "t_gb": "Wonderful. It's $2,400 for the week, plus a $150 cleaning fee. Bed linen and towels aren't included, but you can hire them for $60.", "dit_gb": "Wonderful. It's two thousand four hundred dollars for the week, plus a hundred-and-fifty-dollar cleaning fee. Bed linen and towels aren't included, but you can hire them for sixty dollars.", "fr": "Formidable. C'est 2 400 dollars la semaine, plus 150 dollars de frais de ménage. Les draps et les serviettes ne sont pas compris, mais vous pouvez les louer pour 60 dollars."}],
+   "choix": [
+    {"si": {"with": "dog"}, "t": "That sounds fine. Is it OK if we bring our dog?", "fr": "Ça me convient. Pouvons-nous amener notre chien ?", "va": "dog"},
+    {"si": {"with": "kids"}, "t": "That sounds fine. Is the cottage good for young children?", "fr": "Ça me convient. La maison est-elle adaptée aux jeunes enfants ?", "va": "kids"},
+    {"t": "OK. How far is it from the beach?", "fr": "D'accord. C'est à quelle distance de la plage ?", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Five minutes on foot. You can see the bay from the porch.", "fr": "Cinq minutes à pied. On voit la baie depuis la véranda."}]},
+    {"t": "All right. We'll bring our own sheets and towels. Is there Wi-Fi?", "fr": "Très bien. Nous apporterons nos draps et nos serviettes. Y a-t-il le wifi ?", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Yes, there's Wi-Fi, and a washer and dryer too.", "t_gb": "Yes, there's Wi-Fi, and a washing machine and tumble dryer too.", "fr": "Oui, il y a le wifi, et aussi un lave-linge et un sèche-linge."}]},
+    {"faux": true, "t": "Is the cleaning comprised in the price?", "fr": "Le ménage est-il compris dans le prix ?",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Comprised? Oh, included! No, the cleaning fee is extra, I'm afraid.", "fr": "« Comprised » ? Ah, compris ! Non, les frais de ménage sont en plus, malheureusement."}],
+     "aide": {"fr": "<b>« Compris dans le prix » se dit « included in the price ».</b> « comprised » ne s'emploie pas ainsi. « Is the cleaning included? »"}}
+   ]
+  },
+  "dog": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Sure, dogs are welcome. There's a $100 pet fee. Just so you know, in summer dogs aren't allowed on most beaches during the day, but early morning and evening are fine.", "dit": "Sure, dogs are welcome. There's a hundred-dollar pet fee. Just so you know, in summer dogs aren't allowed on most beaches during the day, but early morning and evening are fine.", "fr": "Bien sûr, les chiens sont les bienvenus. Il y a un supplément de 100 dollars pour l'animal. Sachez qu'en été, les chiens sont interdits sur la plupart des plages pendant la journée, mais tôt le matin et le soir, pas de problème."}],
+   "choix": [
+    {"t": "That's fine. We'll take him to the beach in the evening.", "fr": "C'est très bien. Nous l'emmènerons à la plage le soir.", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect. The sunsets over the bay are beautiful.", "fr": "Parfait. Les couchers de soleil sur la baie sont magnifiques."}]},
+    {"t": "No problem. He's small and very quiet.", "fr": "Pas de problème. Il est petit et très calme.", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Glad to hear it. He'll love it here.", "fr": "Ravie de l'entendre. Il va adorer cet endroit."}]},
+    {"faux": true, "t": "It's not grave. He prefers the garden.", "fr": "Ce n'est pas grave. Il préfère le jardin.",
+     "puis": [{"qui": "vermieterin", "air": "amuse", "t": "Not grave? Oh, you mean it's no big deal! So the beach rule is OK with you?", "fr": "« Not grave » ? Ah, vous voulez dire que ce n'est pas grave ! Donc la règle des plages vous convient ?"}],
+     "aide": {"fr": "<b>« Ce n'est pas grave » se dit « That's fine », « No problem » ou « It's no big deal ».</b> « grave », en anglais, est un mot rare et solennel. Et le jardin d'une maison se dit « yard » aux États-Unis (« garden » en anglais britannique)."}}
+   ]
+  },
+  "kids": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Absolutely. There's a room with bunk beds, and the bay beach is shallow and calm, great for little ones. How old are they?", "fr": "Tout à fait. Il y a une chambre avec des lits superposés, et la plage de la baie est peu profonde et calme, idéale pour les petits. Quel âge ont-ils ?"}],
+   "choix": [
+    {"t": "They're four and seven.", "fr": "Ils ont quatre et sept ans.", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect ages for the Cape!", "fr": "L'âge idéal pour Cape Cod !"}]},
+    {"t": "The little one is only two. Do you have a crib?", "t_gb": "The little one is only two. Do you have a cot?", "fr": "Le petit n'a que deux ans. Avez-vous un lit pour bébé ?", "va": "payment",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "I do. I'll set it up in the bedroom for you.", "fr": "Oui. Je vous l'installerai dans la chambre."}]},
+    {"faux": true, "t": "They have four and seven years.", "fr": "Ils ont quatre et sept ans.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "They have …? Oh, they're four and seven!", "fr": "Ils ont… ? Ah, ils ont quatre et sept ans !"}],
+     "aide": {"fr": "<b>L'âge se dit avec « be », pas avec « have » :</b> « They're four and seven » ou « They're four and seven years old »."}}
+   ]
+  },
+  "payment": {
+   "dit": [
+    {"qui": "vermieterin", "air": "attentive", "si": {"week": "early"}, "t": "So that's July 3rd to the 10th.", "dit": "So that's July third to the tenth.", "fr": "Donc du 3 au 10 juillet."},
+    {"qui": "vermieterin", "air": "attentive", "si": {"week": "late"}, "t": "So that's July 17th to the 24th.", "dit": "So that's July seventeenth to the twenty-fourth.", "fr": "Donc du 17 au 24 juillet."},
+    {"qui": "vermieterin", "air": "question", "t": "To hold the week, I need half the rent now. The rest is due a month before you arrive, along with a $300 security deposit, which you get back after your stay. How would you like to pay?", "dit": "To hold the week, I need half the rent now. The rest is due a month before you arrive, along with a three-hundred-dollar security deposit, which you get back after your stay. How would you like to pay?", "fr": "Pour bloquer la semaine, il me faut la moitié du loyer maintenant. Le reste est dû un mois avant votre arrivée, avec une caution de 300 dollars, qui vous est rendue après le séjour. Comment souhaitez-vous payer ?"}
+   ],
+   "choix": [
+    {"t": "I can send you a check this week.", "t_gb": "I can send you a cheque this week.", "fr": "Je peux vous envoyer un chèque cette semaine.", "va": "arrival",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect. I'll email you the rental agreement with my address.", "fr": "Parfait. Je vous envoie par courriel le contrat de location avec mon adresse."}]},
+    {"t": "Can I pay by bank transfer?", "fr": "Est-ce que je peux payer par virement bancaire ?", "va": "arrival",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "A bank transfer? People don't really do that here. If you have Venmo, that works. Otherwise, just mail me a check. I'll email you the details.", "t_gb": "A bank transfer? People don't really do that here. If you have Venmo, that works. Otherwise, just post me a cheque. I'll email you the details.", "fr": "Un virement ? Ça ne se fait pas vraiment ici. Si vous avez Venmo, ça marche. Sinon, envoyez-moi simplement un chèque par la poste. Je vous envoie les détails par courriel."}]},
+    {"t": "I'll pay with Venmo, if that's OK.", "fr": "Je paierai avec Venmo, si cela vous convient.", "va": "arrival",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Even better. I'll send you my username with the rental agreement.", "fr": "Encore mieux. Je vous envoie mon identifiant avec le contrat de location."}]},
+    {"faux": true, "t": "I will pay the caution now.", "fr": "Je vais payer la caution maintenant.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "The caution? Oh, the security deposit! No, that comes later. Right now it's just the first half of the rent.", "fr": "La « caution » ? Ah, le dépôt de garantie ! Non, ça vient plus tard. Pour l'instant, c'est seulement la première moitié du loyer."}],
+     "aide": {"fr": "<b>« caution »</b>, en anglais, c'est la prudence. La caution d'une location se dit « security deposit » (ou « deposit »)."}}
+   ]
+  },
+  "arrival": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "Check-in is at 4:00. I won't be there, but there's a lockbox by the front door, and I'll text you the code. Are you driving down?", "dit": "Check-in is at four. I won't be there, but there's a lockbox by the front door, and I'll text you the code. Are you driving down?", "t_gb": "Check-in is at 4:00. I won't be there, but there's a key safe by the front door, and I'll text you the code. Are you driving down?", "dit_gb": "Check-in is at four. I won't be there, but there's a key safe by the front door, and I'll text you the code. Are you driving down?", "fr": "L'arrivée se fait à 16 heures. Je ne serai pas là, mais il y a une boîte à clés près de la porte d'entrée, et je vous enverrai le code par texto. Vous venez en voiture ?"}],
+   "choix": [
+    {"t": "Yes, we're driving from Boston. We should be there around five.", "fr": "Oui, nous venons de Boston en voiture. Nous devrions arriver vers cinq heures.", "va": "bye",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Good. Leave early, though: the traffic at the bridge is terrible on Saturdays.", "fr": "Bien. Mais partez tôt : la circulation au pont est terrible le samedi."}]},
+    {"t": "No, we don't have a car. Is there a bus from Boston?", "fr": "Non, nous n'avons pas de voiture. Y a-t-il un bus depuis Boston ?", "va": "bus"},
+    {"faux": true, "t": "Yes, we arrive at five if there is no circulation.", "fr": "Oui, nous arrivons à cinq heures s'il n'y a pas de circulation.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "No circulation? Oh, traffic! On a Saturday in July, there's always traffic. So you're driving?", "fr": "Pas de « circulation » ? Ah, la circulation routière ! Un samedi de juillet, il y en a toujours. Donc vous venez en voiture ?"}],
+     "aide": {"fr": "<b>La circulation routière se dit « traffic ».</b> « circulation » parle du sang ou d'un journal. « We should be there around five if there's no traffic. »"}}
+   ]
+  },
+  "bus": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Yes, there's a bus from South Station that stops right in Wellfleet. The cottage is two miles from the stop, so I can pick you up if you'd like.", "fr": "Oui, il y a un bus depuis South Station qui s'arrête à Wellfleet même. La maison est à deux milles (trois kilomètres) de l'arrêt, alors je peux venir vous chercher si vous voulez."}],
+   "choix": [
+    {"t": "That's very kind of you. I'll text you when we know our arrival time.", "fr": "C'est très gentil de votre part. Je vous enverrai un texto quand nous connaîtrons notre heure d'arrivée.", "va": "bye",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect. It's no trouble at all.", "fr": "Parfait. Ça ne me dérange pas du tout."}]},
+    {"t": "That would be great, thank you. Is there a grocery store near the cottage?", "t_gb": "That would be great, thank you. Is there a food shop near the cottage?", "fr": "Ce serait formidable, merci. Y a-t-il une épicerie près de la maison ?", "va": "bye",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "There's a small market ten minutes away on foot. And you can borrow the two bikes in the shed.", "fr": "Il y a un petit marché à dix minutes à pied. Et vous pouvez emprunter les deux vélos qui sont dans la remise."}]},
+    {"faux": true, "t": "Thank you, you are very sympathetic.", "fr": "Merci, vous êtes très sympathique.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Sympathetic? Oh, I don't feel sorry for you, I'm just happy to help! So, shall I pick you up?", "fr": "« Sympathetic » ? Oh, je ne vous plains pas, je suis juste contente d'aider ! Alors, je viens vous chercher ?"}],
+     "aide": {"fr": "<b>« sympathetic »</b> veut dire compatissant. Sympathique se dit « nice » ou « kind » : « That's very kind of you »."}}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"qui": "vermieterin", "air": "sourire", "si": {"with": "dog"}, "t": "And I'll leave a water bowl on the porch for the dog.", "fr": "Et je laisserai une gamelle d'eau sur la véranda pour le chien."},
+    {"qui": "vermieterin", "air": "sourire", "si": {"with": "kids"}, "t": "And there are beach toys in the shed for the kids.", "fr": "Et il y a des jouets de plage dans la remise pour les enfants."},
+    {"qui": "vermieterin", "air": "question", "t": "All right, I'll email you everything tonight. Any other questions?", "fr": "Très bien, je vous envoie tout par courriel ce soir. D'autres questions ?"}
+   ],
+   "choix": [
+    {"t": "No, that's all clear. Thank you, we're really looking forward to it!", "fr": "Non, tout est clair. Merci, nous avons vraiment hâte !", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "You're going to love it. Take care!", "fr": "Vous allez adorer. Prenez soin de vous !"}]},
+    {"t": "Not right now. I'll wait for your email. Thanks, Irene. Bye!", "fr": "Pas pour l'instant. J'attends votre courriel. Merci, Irene. Au revoir !", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Talk to you soon. Bye now!", "fr": "À bientôt. Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as réservé une maison de vacances par téléphone : les dates, le prix, le paiement et l'arrivée."}
+}

@@ -1,0 +1,71 @@
+{
+ "id": "a1-gare",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "train",
+ "registre": "usted",
+ "titre": {"fr": "À la gare : l'aller-retour et le quai"},
+ "intro": {"fr": "À la gare d'Atocha, tu achètes au guichet un billet pour Tolède : aller simple ou aller-retour, l'heure du train, puis le quai."},
+ "personnes": ["bahnangestellter"],
+ "debut": "taquilla",
+ "prix": {"ida": 1430, "ida_vuelta": 2290},
+ "panier": ["billete"],
+ "textes": {
+  "billete_fr": {"cle": "billete", "ida": "un aller simple", "ida_vuelta": "un aller-retour"}
+ },
+ "noeuds": {
+  "taquilla": {
+   "dit": [
+    {"recit": {"fr": "Madrid, la gare d'Atocha. Tu veux passer la journée à Tolède. Au guichet, c'est ton tour."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Buenos días. ¿Adónde va?", "fr": "Bonjour. Vous allez où ?"}
+   ],
+   "choix": [
+    {"t": "A Toledo, por favor.", "fr": "À Tolède, s'il vous plaît.", "va": "vuelta"},
+    {"t": "Un billete para Toledo, por favor.", "fr": "Un billet pour Tolède, s'il vous plaît.", "va": "vuelta"}
+   ]
+  },
+  "vuelta": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "¿Solo ida, o ida y vuelta?", "fr": "Aller simple, ou aller-retour ?"}],
+   "choix": [
+    {"t": "Ida y vuelta, por favor.", "fr": "Aller-retour, s'il vous plaît.", "pose": {"billete": "ida_vuelta"}, "va": "hora"},
+    {"t": "Solo ida, por favor.", "fr": "Aller simple, s'il vous plaît.", "pose": {"billete": "ida"}, "va": "hora"},
+    {"faux": true, "t": "Un ir y volver, por favor.", "fr": "Un aller-retour (mot à mot, mais faux), s'il vous plaît.",
+     "puis": [{"qui": "bahnangestellter", "air": "amuse", "t": "¿Ir y volver? ¡Ja! Ida y vuelta, ¿no?", "fr": "« Aller et revenir » ? Ha ! Aller-retour, non ?"}],
+     "aide": {"fr": "<b>« aller-retour » se dit « ida y vuelta »</b> (avec les noms, pas les verbes). L'aller simple : « solo ida »."}}
+   ]
+  },
+  "hora": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "¿Para hoy? ¿A qué hora quiere salir?", "fr": "Pour aujourd'hui ? À quelle heure voulez-vous partir ?"}],
+   "choix": [
+    {"t": "Sí, para hoy. ¿A qué hora sale el próximo tren?", "fr": "Oui, pour aujourd'hui. À quelle heure part le prochain train ?", "va": "pagar",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "A las diez y veinte. Tarda solo media hora.", "fr": "À dix heures vingt. Il ne met qu'une demi-heure."}]},
+    {"t": "Por la mañana, a las nueve, por favor.", "fr": "Le matin, à neuf heures, s'il vous plaît.", "va": "pagar",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "Hay uno a las nueve y veinticinco.", "fr": "Il y en a un à neuf heures vingt-cinq."}]}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "bahnangestellter", "air": "attentive", "t": "Son {a_payer}. ¿Con tarjeta?", "fr": "Ça fait {a_payer}. Par carte ?", "dit": "Son {a_payer:mots}. ¿Con tarjeta?"}],
+   "choix": [
+    {"t": "Sí, con tarjeta.", "fr": "Oui, par carte.", "va": "anden"},
+    {"t": "No, en efectivo. Aquí tiene.", "fr": "Non, en espèces. Voilà.", "va": "anden"}
+   ]
+  },
+  "anden": {
+   "dit": [
+    {"recit": {"fr": "Il te tend ton billet."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Aquí tiene su billete. ¡Buen viaje!", "fr": "Voici votre billet. Bon voyage !"}
+   ],
+   "choix": [
+    {"t": "Gracias. ¿De qué andén sale el tren?", "fr": "Merci. De quel quai part le train ?", "va": null,
+     "puis": [{"qui": "bahnangestellter", "air": "sourire", "t": "Del andén cinco. Mire las pantallas, por si acaso.", "fr": "Du quai cinq. Regardez les écrans, au cas où."}]},
+    {"t": "Gracias. ¿De qué vía sale?", "fr": "Merci. Il part de quelle voie ?", "va": null,
+     "puis": [{"qui": "bahnangestellter", "air": "sourire", "t": "De la vía cinco. ¡Buen viaje!", "fr": "De la voie cinq. Bon voyage !"}]},
+    {"faux": true, "t": "Gracias. ¿De qué muelle sale el tren?", "fr": "Merci. De quel quai (de port) part le train ?",
+     "puis": [{"qui": "bahnangestellter", "air": "amuse", "t": "¿Muelle? ¡Eso es para los barcos! Del andén cinco.", "fr": "Un quai de port ? C'est pour les bateaux, ça ! Du quai cinq."}],
+     "aide": {"fr": "<b>Le quai de la gare se dit « el andén »</b> (ou « la vía », la voie). « el muelle », c'est le quai d'un port, pour les bateaux."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {billete_fr} pour Tolède, payé {a_payer} et demandé le quai."}
+}

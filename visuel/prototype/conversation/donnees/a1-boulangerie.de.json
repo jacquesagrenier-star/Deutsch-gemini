@@ -1,0 +1,72 @@
+{
+ "id": "a1-boulangerie",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "Sie",
+ "titre": {"fr": "À la boulangerie"},
+ "intro": {"fr": "Samedi matin, dans une boulangerie de Berlin. Tu achètes ton pain, peut-être un gâteau, et tu dis au revoir comme un Berlinois."},
+ "personnes": ["baecker"],
+ "debut": "theke",
+ "prix": {"broetchen": 180, "brezeln": 220, "brot": 390, "apfelkuchen": 290, "kaffee": 260},
+ "panier": ["ware", "kuchen", "kaffee"],
+ "textes": {
+  "ware_fr": {"cle": "ware", "broetchen": "quatre petits pains", "brezeln": "deux bretzels", "brot": "un pain complet"}
+ },
+ "noeuds": {
+  "theke": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, une boulangerie de quartier. Ça sent le pain chaud."}},
+    {"qui": "baecker", "air": "sourire", "t": "Guten Morgen! Was darf's sein?", "fr": "Bonjour ! Qu'est-ce que ce sera ?"}
+   ],
+   "choix": [
+    {"t": "Vier Brötchen, bitte.", "fr": "Quatre petits pains, s'il vous plaît.", "pose": {"ware": "broetchen"}, "va": "sonst",
+     "puis": [{"qui": "baecker", "air": "amuse", "t": "Vier Schrippen, gern! So sagen wir in Berlin.", "fr": "Quatre « Schrippen », volontiers ! C'est comme ça qu'on dit à Berlin."}]},
+    {"t": "Ich hätte gern zwei Brezeln, bitte.", "fr": "Je voudrais deux bretzels, s'il vous plaît.", "pose": {"ware": "brezeln"}, "va": "sonst",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Gern, die sind ganz frisch!", "fr": "Volontiers, ils sont tout frais !"}]},
+    {"t": "Ein Vollkornbrot, bitte.", "fr": "Un pain complet, s'il vous plaît.", "pose": {"ware": "brot"}, "va": "sonst",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Gern. Das ist noch warm!", "fr": "Volontiers. Il est encore chaud !"}]},
+    {"faux": true, "t": "Ich hätte gern vier Brot, bitte.", "fr": "Je voudrais quatre pains (entiers), s'il vous plaît.",
+     "puis": [{"qui": "baecker", "air": "surprise", "t": "Vier Brote? Das ist aber viel! Oder meinen Sie Brötchen?", "fr": "Quatre pains ? Ça fait beaucoup ! Ou bien vous voulez dire des petits pains ?"}],
+     "aide": {"fr": "<b>« das Brot », c'est un pain entier.</b> Les petits pains du matin, ce sont « die Brötchen » (à Berlin : « die Schrippen ») : « Vier Brötchen, bitte »."}}
+   ]
+  },
+  "sonst": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "Sonst noch etwas?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Ja, ein Stück Apfelkuchen, bitte.", "fr": "Oui, une part de gâteau aux pommes, s'il vous plaît.", "pose": {"kuchen": "apfelkuchen"}, "va": "hier"},
+    {"t": "Nein, danke. Das ist alles.", "fr": "Non, merci. C'est tout.", "va": "hier"},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "sonst",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Möchten Sie noch etwas? Ein Stück Kuchen vielleicht?", "fr": "Vous voulez encore quelque chose ? Une part de gâteau, peut-être ?"}]}
+   ]
+  },
+  "hier": {
+   "dit": [{"qui": "baecker", "air": "question", "t": "Für hier oder zum Mitnehmen?", "fr": "Sur place ou à emporter ?"}],
+   "choix": [
+    {"t": "Zum Mitnehmen, bitte.", "fr": "À emporter, s'il vous plaît.", "va": "zahlen"},
+    {"t": "Für hier, bitte. Und einen Kaffee, bitte.", "fr": "Sur place, s'il vous plaît. Et un café, s'il vous plaît.", "pose": {"kaffee": "kaffee"}, "va": "zahlen",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Gern. Setzen Sie sich, ich bringe den Kaffee.", "fr": "Volontiers. Asseyez-vous, j'apporte le café."}]}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "baecker", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "choix": [
+    {"t": "Hier, bitte. Danke schön!", "fr": "Voilà. Merci beaucoup !", "va": "tschuess"},
+    {"t": "Kann ich mit Karte bezahlen?", "fr": "Je peux payer par carte ?", "va": "tschuess",
+     "puis": [{"qui": "baecker", "air": "sourire", "t": "Ja, natürlich. Halten Sie die Karte hier dran.", "fr": "Oui, bien sûr. Approchez la carte ici."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [{"qui": "baecker", "air": "sourire", "t": "Danke! Schönes Wochenende!", "fr": "Merci ! Bon week-end !"}],
+   "choix": [
+    {"t": "Danke, gleichfalls!", "fr": "Merci, vous aussi !", "va": null},
+    {"t": "Danke, Ihnen auch! Auf Wiedersehen!", "fr": "Merci, à vous aussi ! Au revoir !", "va": null},
+    {"faux": true, "t": "Danke, für Sie auch!", "fr": "Merci, pour vous aussi (mot à mot) !",
+     "puis": [{"qui": "baecker", "air": "amuse", "t": "Für mich auch? … Ach so, Ihnen auch! Danke!", "fr": "Pour moi aussi ? … Ah, à vous aussi ! Merci !"}],
+     "aide": {"fr": "<b>« Vous aussi ! » se dit « Gleichfalls! » ou « Ihnen auch! ».</b> Pas de « für » : on souhaite quelque chose À quelqu'un (Ihnen)."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {ware_fr} à la boulangerie et payé {a_payer}."}
+}

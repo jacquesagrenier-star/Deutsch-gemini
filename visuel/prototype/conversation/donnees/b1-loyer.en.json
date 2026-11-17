@@ -1,0 +1,160 @@
+{
+ "id": "b1-loyer",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Négocier une hausse de loyer"},
+ "intro": {"fr": "Tu loues ton appartement de Boston depuis deux ans. Le bail se termine bientôt, et la propriétaire, Mme Carter, veut augmenter le loyer au renouvellement. Elle passe te voir pour en parler."},
+ "personnes": ["vermieterin"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Un soir de semaine. On sonne : c'est Mme Carter, un dossier sous le bras."}},
+    {"qui": "vermieterin", "air": "sourire", "t": "Hello! Thanks for making time for me. How's everything in the apartment?", "t_gb": "Hello! Thanks for making time for me. How's everything in the flat?", "fr": "Bonjour ! Merci de prendre le temps de me recevoir. Tout va bien dans l'appartement ?"}
+   ],
+   "choix": [
+    {"t": "Hello, Ms. Carter. Everything's fine, thank you. Please come in.", "fr": "Bonjour, madame Carter. Tout va bien, merci. Entrez, je vous en prie.", "va": "news"},
+    {"t": "Good evening, Ms. Carter. Pretty good, thanks. Have a seat.", "fr": "Bonsoir, madame Carter. Plutôt bien, merci. Asseyez-vous.", "va": "news"},
+    {"faux": true, "t": "Hello, Ms. Carter. It goes well, thank you.", "fr": "Bonjour, madame Carter. Ça va bien, merci.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "It goes …? Oh, things are going well. Good!", "fr": "« It goes »… ? Ah, tout va bien. Tant mieux !"}],
+     "aide": {"fr": "<b>« Ça va bien »</b> ne se traduit pas mot à mot. Dis plutôt : « Everything's fine, thank you. » ou « I'm doing well, thanks. »"}}
+   ]
+  },
+  "news": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "So, about the lease. As you know, it's up at the end of August. My costs have gone up a lot this year, so the new rent would be $2,650 a month instead of $2,400.", "dit": "So, about the lease. As you know, it's up at the end of August. My costs have gone up a lot this year, so the new rent would be twenty-six fifty a month instead of twenty-four hundred.", "dit_gb": "So, about the lease. As you know, it's up at the end of August. My costs have gone up a lot this year, so the new rent would be two thousand six hundred and fifty dollars a month instead of two thousand four hundred.", "fr": "Alors, à propos du bail. Comme vous le savez, il se termine fin août. Mes charges ont beaucoup augmenté cette année ; le nouveau loyer serait donc de 2 650 dollars par mois au lieu de 2 400."}],
+   "choix": [
+    {"t": "Oh. That's a big increase. It's a lot of money for me.", "fr": "Oh. C'est une grosse augmentation. C'est beaucoup d'argent pour moi.", "va": "argument",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "I know it isn't easy. Tell me what you're thinking.", "fr": "Je sais que ce n'est pas facile. Dites-moi ce que vous en pensez."}]},
+    {"t": "I understand that costs are going up, but that's more than I expected.", "fr": "Je comprends que les charges augmentent, mais c'est plus que ce que j'attendais.", "va": "argument",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "I understand. Tell me what you're thinking.", "fr": "Je comprends. Dites-moi ce que vous en pensez."}]},
+    {"faux": true, "t": "It's too much expensive!", "fr": "C'est trop cher !",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Too much … too expensive, you mean? Well, let's talk about it.", "fr": "« Too much »… trop cher, vous voulez dire ? Eh bien, parlons-en."}],
+     "aide": {"fr": "Devant un adjectif, « trop » se dit <b>too</b> tout seul : « too expensive ». Et pour rester poli : « That's a big increase. It's a lot of money for me. »"}}
+   ]
+  },
+  "argument": {
+   "dit": [{"recit": {"fr": "C'est le moment de donner ton meilleur argument."}}],
+   "choix": [
+    {"t": "The windows are old. In the winter, the cold air comes right in.", "fr": "Les fenêtres sont vieilles. L'hiver, l'air froid passe à travers.", "pose": {"argument": "windows"}, "va": "arg_windows"},
+    {"t": "The heat broke down twice last winter, and it took days to fix.", "t_gb": "The heating broke down twice last winter, and it took days to fix.", "fr": "Le chauffage est tombé deux fois en panne l'hiver dernier, et la réparation a pris des jours.", "pose": {"argument": "heat"}, "va": "arg_heat"},
+    {"t": "I've lived here for two years, and I've always paid the rent on time.", "fr": "J'habite ici depuis deux ans, et j'ai toujours payé le loyer à temps.", "pose": {"argument": "tenant"}, "va": "arg_tenant"},
+    {"faux": true, "t": "I pay always the rent at time.", "fr": "Je paie toujours le loyer à temps.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "At time …? Oh, on time. Yes, that's true, you do.", "fr": "« At time »… ? Ah, à temps. Oui, c'est vrai."}],
+     "aide": {"fr": "<b>always</b> se place avant le verbe, et « à temps » se dit <b>on time</b>. Dis plutôt : « I've always paid the rent on time. »"}}
+   ]
+  },
+  "arg_windows": {
+   "dit": [{"qui": "vermieterin", "air": "perplexe", "t": "The windows … yes, they're as old as the building. Is it all of them, or just some?", "fr": "Les fenêtres… oui, elles ont l'âge de l'immeuble. Toutes, ou seulement quelques-unes ?"}],
+   "choix": [
+    {"t": "Mostly the two in the living room. I can feel the wind when I sit on the couch.", "t_gb": "Mostly the two in the living room. I can feel the wind when I sit on the sofa.", "fr": "Surtout les deux du salon. Je sens le vent quand je suis sur le canapé.", "va": "offer"},
+    {"t": "The bedroom window is the worst. It doesn't close completely.", "fr": "Celle de la chambre est la pire. Elle ne ferme pas complètement.", "va": "offer"},
+    {"faux": true, "t": "The ones in the living room. It makes cold near them.", "fr": "Celles du salon. Il fait froid près d'elles.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "It makes …? Oh, it's cold near the windows. I see.", "fr": "« It makes »… ? Ah, il fait froid près des fenêtres. Je vois."}],
+     "aide": {"fr": "<b>« Il fait froid »</b> se dit <b>it is cold</b>, jamais « it makes cold ». Dis plutôt : « Mostly the two in the living room. It's cold near them. »"}}
+   ]
+  },
+  "arg_heat": {
+   "dit": [{"qui": "vermieterin", "air": "perplexe", "t": "You're right, I remember. The boiler is old. How long were you without heat?", "t_gb": "You're right, I remember. The boiler is old. How long were you without heating?", "fr": "Vous avez raison, je m'en souviens. La chaudière est vieille. Combien de temps êtes-vous resté(e) sans chauffage ?"}],
+   "choix": [
+    {"t": "Three days the first time, and almost a week in February.", "fr": "Trois jours la première fois, et presque une semaine en février.", "va": "offer"},
+    {"t": "Almost a week in February. I had to buy an electric heater.", "fr": "Presque une semaine en février. J'ai dû acheter un radiateur électrique.", "va": "offer"},
+    {"faux": true, "t": "I stayed without heat during one week.", "fr": "Je suis resté(e) sans chauffage pendant une semaine.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "During …? For a whole week? That's too long, I agree.", "fr": "« During »… ? Toute une semaine ? C'est trop long, je suis d'accord."}],
+     "aide": {"fr": "Devant une durée, « pendant » se dit <b>for</b>, et on dit plus simplement <b>I had no heat</b>. Dis plutôt : « I had no heat for a week. »"}}
+   ]
+  },
+  "arg_tenant": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "That's true, and I appreciate it. Good tenants are hard to find. So you're planning to stay?", "fr": "C'est vrai, et j'y suis sensible. Les bons locataires sont rares. Vous comptez donc rester ?"}],
+   "choix": [
+    {"t": "Yes, I'd like to stay. I really like the neighborhood.", "t_gb": "Yes, I'd like to stay. I really like the neighbourhood.", "fr": "Oui, j'aimerais rester. J'aime beaucoup le quartier.", "va": "offer"},
+    {"t": "I'd love to stay, if the rent stays reasonable.", "fr": "J'aimerais beaucoup rester, si le loyer reste raisonnable.", "va": "offer"},
+    {"faux": true, "t": "Yes, I want to rest here.", "fr": "Oui, je veux rester ici.",
+     "puis": [{"qui": "vermieterin", "air": "amuse", "t": "To rest? Well, it is a quiet building! You mean you want to stay?", "fr": "Vous reposer ? C'est vrai que l'immeuble est calme ! Vous voulez dire rester ?"}],
+     "aide": {"fr": "<b>« rest »</b>, c'est se reposer. « Rester » se dit <b>stay</b>. Dis plutôt : « Yes, I'd like to stay. »"}}
+   ]
+  },
+  "offer": {
+   "dit": [
+    {"si": {"argument": "windows"}, "qui": "vermieterin", "air": "attentive", "t": "All right. The windows are a fair point.", "fr": "Bon. Pour les fenêtres, vous marquez un point."},
+    {"si": {"argument": "heat"}, "qui": "vermieterin", "air": "attentive", "t": "All right. You shouldn't have to go through that again.", "fr": "Bon. Vous ne devriez pas avoir à revivre ça."},
+    {"si": {"argument": "tenant"}, "qui": "vermieterin", "air": "attentive", "t": "All right. I'd rather keep a good tenant than look for a new one.", "fr": "Bon. Je préfère garder un bon locataire plutôt que d'en chercher un nouveau."},
+    {"qui": "vermieterin", "air": "question", "t": "What if we said $2,575 instead?", "dit": "What if we said twenty-five seventy-five instead?", "dit_gb": "What if we said two thousand five hundred and seventy-five instead?", "fr": "Et si on disait plutôt 2 575 dollars ?"}
+   ],
+   "choix": [
+    {"t": "I could accept that if you fix a few things in the apartment first.", "t_gb": "I could accept that if you fix a few things in the flat first.", "fr": "Je pourrais accepter, si vous faites d'abord quelques réparations dans l'appartement.", "va": "repairs"},
+    {"t": "Thank you, but it's still high for me. Could we say twenty-five hundred?", "t_gb": "Thank you, but it's still high for me. Could we say two thousand five hundred?", "fr": "Merci, mais c'est encore élevé pour moi. Pourrait-on dire deux mille cinq cents ?", "va": "counter"},
+    {"faux": true, "t": "It's still too much. I propose you twenty-five hundred.", "fr": "C'est encore trop. Je vous propose deux mille cinq cents.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "You propose … me? Oh, you're suggesting a price!", "fr": "Vous me… proposez ? Ah, vous suggérez un prix !"}],
+     "aide": {"fr": "<b>« propose »</b> ne se construit pas comme en français (pas de « propose you »), et la demande passe mieux en question. Dis plutôt : « Could we say twenty-five hundred? »"}}
+   ]
+  },
+  "repairs": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "That's reasonable. What should I take care of first?", "fr": "C'est raisonnable. De quoi dois-je m'occuper en premier ?"}],
+   "choix": [
+    {"si": {"argument": "windows"}, "t": "The living room windows, please, before the cold weather comes.", "fr": "Les fenêtres du salon, s'il vous plaît, avant l'arrivée du froid.", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Fair enough. I'll have them replaced by the end of October. You have my word.", "fr": "D'accord. Je les ferai remplacer d'ici la fin octobre. Vous avez ma parole."}]},
+    {"si": {"argument": "heat"}, "t": "The boiler, please. I don't want another winter without heat.", "t_gb": "The boiler, please. I don't want another winter without heating.", "fr": "La chaudière, s'il vous plaît. Je ne veux pas d'un autre hiver sans chauffage.", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Fair enough. I'll have it checked in September, and replaced if necessary. You have my word.", "fr": "D'accord. Je la ferai vérifier en septembre, et remplacer s'il le faut. Vous avez ma parole."}]},
+    {"si": {"argument": "tenant"}, "t": "The kitchen faucet is broken, and the bathroom fan doesn't work.", "t_gb": "The kitchen tap is broken, and the bathroom fan doesn't work.", "fr": "Le robinet de la cuisine est cassé, et le ventilateur de la salle de bains ne marche pas.", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "That's easy. I'll send the plumber next week. You have my word.", "fr": "Ça, c'est facile. J'envoie le plombier la semaine prochaine. Vous avez ma parole."}]},
+    {"t": "Could you send someone to look at everything that needs fixing?", "fr": "Pourriez-vous envoyer quelqu'un voir tout ce qu'il y a à réparer ?", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Good idea. I'll send my handyman next week, and everything will be done by the end of October.", "fr": "Bonne idée. J'envoie mon homme à tout faire la semaine prochaine, et tout sera terminé d'ici la fin octobre."}]},
+    {"faux": true, "t": "You must repair all, it's your job.", "fr": "Vous devez tout réparer, c'est votre travail.",
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "Well … I'm trying to find a solution with you here.", "fr": "Eh bien… J'essaie justement de trouver une solution avec vous."}],
+     "aide": {"fr": "<b>Trop direct.</b> « You must » sonne comme un ordre, et « tout » se dit ici <b>everything</b>. Demande plutôt : « Could you send someone to look at everything that needs fixing? »"}}
+   ]
+  },
+  "counter": {
+   "dit": [{"qui": "vermieterin", "air": "perplexe", "t": "Twenty-five hundred is too low for me. Let's meet halfway: $2,540.", "t_gb": "Two thousand five hundred is too low for me. Let's meet halfway: $2,540.", "dit": "Twenty-five hundred is too low for me. Let's meet halfway: twenty-five forty.", "dit_gb": "Two thousand five hundred is too low for me. Let's meet halfway: two thousand five hundred and forty.", "fr": "Deux mille cinq cents, c'est trop bas pour moi. Coupons la poire en deux : 2 540 dollars."}],
+   "choix": [
+    {"t": "All right, twenty-five forty. That works for me.", "t_gb": "All right, two thousand five hundred and forty. That works for me.", "fr": "D'accord, deux mille cinq cent quarante. Ça me va.", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Good. Then we have a deal.", "fr": "Bien. Alors, marché conclu."}]},
+    {"t": "Okay, I can do that. Thank you for meeting me halfway.", "fr": "D'accord, c'est possible pour moi. Merci d'avoir fait la moitié du chemin.", "va": "written",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Good. Then we have a deal.", "fr": "Bien. Alors, marché conclu."}]},
+    {"faux": true, "t": "Okay, we cut the pear in two.", "fr": "D'accord, on coupe la poire en deux.",
+     "puis": [{"qui": "vermieterin", "air": "amuse", "t": "A pear? I'm sorry, I didn't bring any fruit!", "fr": "Une poire ? Désolée, je n'ai pas apporté de fruits !"}],
+     "aide": {"fr": "<b>« Couper la poire en deux »</b> n'existe pas en anglais : on dit <b>meet halfway</b>. Dis plutôt : « Thank you for meeting me halfway. »"}}
+   ]
+  },
+  "written": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "So — are we good?", "fr": "Alors, nous sommes d'accord ?"}],
+   "choix": [
+    {"t": "Yes. Could you put all of that in writing, please?", "fr": "Oui. Pourriez-vous mettre tout cela par écrit, s'il vous plaît ?", "va": "term",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Of course. It will all be in the new lease.", "fr": "Bien sûr. Tout figurera dans le nouveau bail."}]},
+    {"t": "Yes, thank you. Could we add what we agreed to the new lease?", "fr": "Oui, merci. Pourrait-on ajouter au nouveau bail ce que nous avons convenu ?", "va": "term",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Of course. I'll add it myself.", "fr": "Bien sûr. Je l'ajouterai moi-même."}]},
+    {"faux": true, "t": "Yes. Can you put it by written?", "fr": "Oui. Vous pouvez le mettre par écrit ?",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "By …? Oh, in writing. Yes, of course.", "fr": "« By »… ? Ah, par écrit. Oui, bien sûr."}],
+     "aide": {"fr": "<b>« par écrit »</b> se dit <b>in writing</b>. Dis plutôt : « Could you put all of that in writing, please? »"}}
+   ]
+  },
+  "term": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "One last thing: do you want a one-year lease again, or two years? With two years, the rent stays the same the whole time.", "fr": "Une dernière chose : voulez-vous de nouveau un bail d'un an, ou de deux ans ? Avec deux ans, le loyer ne bouge pas pendant toute la durée."}],
+   "choix": [
+    {"t": "One year, please. I'm not sure about my plans after that.", "fr": "Un an, s'il vous plaît. Je ne suis pas sûr(e) de mes projets pour la suite.", "va": "sign",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "One year it is.", "fr": "Va pour un an."}]},
+    {"t": "Two years sounds good, if the rent doesn't change.", "fr": "Deux ans, ça me plaît, si le loyer ne change pas.", "va": "sign",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "It won't. Two years, same rent.", "fr": "Il ne changera pas. Deux ans, même loyer."}]},
+    {"repete": true, "t": "Sorry, could you say that again, please?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "term",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sure. The new lease can be for one year or for two years. With two years, the rent doesn't go up. Which do you prefer?", "fr": "Bien sûr. Le nouveau bail peut durer un an ou deux ans. Avec deux ans, le loyer n'augmente pas. Que préférez-vous ?"}]},
+    {"faux": true, "t": "I will reflect.", "fr": "Je vais réfléchir.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "Reflect? Like a mirror? Oh — you want to think about it. I'm afraid I need an answer today.", "fr": "« Reflect » ? Comme un miroir ? Ah, vous voulez y réfléchir. Il me faut hélas une réponse aujourd'hui."}],
+     "aide": {"fr": "<b>« réfléchir »</b> se dit <b>think about it</b> ; « reflect », c'est ce que fait un miroir. Ici, choisis : « One year, please. » ou « Two years sounds good. »"}}
+   ]
+  },
+  "sign": {
+   "dit": [{"qui": "vermieterin", "air": "sourire", "t": "Perfect. I'll email you the lease by Friday. Sign it online, and we're all set.", "fr": "Parfait. Je vous envoie le bail par courriel d'ici vendredi. Vous le signez en ligne, et tout est réglé."}],
+   "choix": [
+    {"t": "Thank you, Ms. Carter. I'm glad we found a solution.", "fr": "Merci, madame Carter. Je suis content(e) que nous ayons trouvé une solution.", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "So am I. Have a good evening!", "fr": "Moi aussi. Bonne soirée !"}]},
+    {"t": "Thanks for coming by, and for listening to me.", "fr": "Merci d'être passée, et de m'avoir écouté(e).", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Thank you for being honest with me. Have a good evening!", "fr": "Merci de votre franchise. Bonne soirée !"}]},
+    {"faux": true, "t": "Thank you for your comprehension.", "fr": "Merci de votre compréhension.",
+     "puis": [{"qui": "vermieterin", "air": "amuse", "t": "My comprehension? That sounds like a reading test! But you're welcome.", "fr": "Ma « comprehension » ? On dirait un exercice de lecture ! Mais je vous en prie."}],
+     "aide": {"fr": "<b>« comprehension »</b>, en anglais, c'est la compréhension d'un texte. Pour remercier quelqu'un de sa compréhension : « Thank you for your understanding. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as défendu ton point de vue avec un bon argument, obtenu un loyer plus bas que celui annoncé, et demandé que tout soit écrit dans le nouveau bail."}
+}

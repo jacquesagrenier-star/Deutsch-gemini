@@ -35,7 +35,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -64,7 +65,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -93,7 +95,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -122,7 +125,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "tafel",
@@ -151,7 +155,8 @@ window.SCENE = {
    "pt": "quadro (lousa)",
    "ar": "سبّورة",
    "pl": "tablica",
-   "ru": "доска"
+   "ru": "доска",
+   "es": "la pizarra"
   },
   {
    "id": "ordner",
@@ -180,7 +185,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "مجلّد",
    "pl": "folder; segregator",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta"
   },
   {
    "id": "ordner-2",
@@ -209,7 +215,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "مجلّد",
    "pl": "folder; segregator",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta"
   },
   {
    "id": "regal",
@@ -238,7 +245,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "pflanze",
@@ -267,7 +275,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "drucker",
@@ -296,7 +305,8 @@ window.SCENE = {
    "pt": "impressora",
    "ar": "طابعة",
    "pl": "drukarka",
-   "ru": "принтер"
+   "ru": "принтер",
+   "es": "la impresora"
   },
   {
    "id": "frau",
@@ -325,7 +335,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "mark",
@@ -354,7 +365,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "telefon",
@@ -383,7 +395,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "bildschirm",
@@ -412,7 +425,8 @@ window.SCENE = {
    "pt": "tela",
    "ar": "شاشة",
    "pl": "ekran",
-   "ru": "экран"
+   "ru": "экран",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -441,7 +455,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -470,7 +485,8 @@ window.SCENE = {
    "pt": "rato",
    "ar": "فأر",
    "pl": "mysz",
-   "ru": "мышь"
+   "ru": "мышь",
+   "es": "el ratón"
   },
   {
    "id": "tasse",
@@ -499,7 +515,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "kugelschreiber",
@@ -528,7 +545,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "papier",
@@ -557,7 +575,8 @@ window.SCENE = {
    "pt": "papel",
    "ar": "ورق",
    "pl": "papier",
-   "ru": "бумага"
+   "ru": "бумага",
+   "es": "el papel"
   },
   {
    "id": "heft",
@@ -586,7 +605,8 @@ window.SCENE = {
    "pt": "caderno",
    "ar": "دفتر",
    "pl": "zeszyt",
-   "ru": "тетрадь"
+   "ru": "тетрадь",
+   "es": "el cuaderno"
   },
   {
    "id": "schere",
@@ -615,7 +635,8 @@ window.SCENE = {
    "pt": "tesoura",
    "ar": "مقصّ",
    "pl": "nożyczki",
-   "ru": "ножницы"
+   "ru": "ножницы",
+   "es": "las tijeras"
   },
   {
    "id": "pflanze-2",
@@ -644,7 +665,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "lampe-tisch",
@@ -673,7 +695,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "muelleimer",
@@ -702,7 +725,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "schreibtisch",
@@ -731,7 +755,8 @@ window.SCENE = {
    "pt": "escrivaninha",
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
-   "ru": "письменный стол"
+   "ru": "письменный стол",
+   "es": "el escritorio"
   },
   {
    "id": "wand",
@@ -760,7 +785,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -789,7 +815,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "schrank",
@@ -818,7 +845,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "klebeband",
@@ -847,7 +875,8 @@ window.SCENE = {
    "pt": "fita adesiva",
    "ar": "شريط لاصق",
    "pl": "taśma klejąca",
-   "ru": "скотч"
+   "ru": "скотч",
+   "es": "la cinta adhesiva"
   },
   {
    "id": "tuer",
@@ -876,7 +905,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   }
  ],
  "grosPlans": [],
@@ -1804,6 +1834,75 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "Коллега, возможно, его начальница.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Марк, вероятно, получит место после стажировки.",
     "C1 | Die Firma soll bald umziehen.": "Говорят, фирма скоро переедет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark hace prácticas en una oficina de Berlín: al teléfono, toma notas en un cuaderno; sobre el escritorio, una pantalla, un teclado, un mouse, una taza, papel y un bolígrafo; detrás de él, una colega lee unos papeles, una impresora, carpetas y una pizarra blanca.",
+    "consigne": "Mark hace prácticas en una oficina. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los verbos separables de la oficina",
+    "B2": "Relativas y pasiva",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Tasse steht neben der Tastatur.": "die Tastatur → neben <b>der</b> Tastatur: en dativo, el femenino <b>die</b> se convierte en <b>der</b>.",
+    "A2 | Die Uhr hängt über der Tafel.": "<b>über</b> = encima de. die Tafel → über <b>der</b> Tafel.",
+    "A2 | Der Drucker steht neben dem Regal.": "das Regal → neben <b>dem</b> Regal.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "das Papier → auf <b>dem</b> Papier.",
+    "A2 | Die große Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
+    "A2 | Die Ordner stehen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "der Schreibtisch → auf <b>dem</b> Schreibtisch.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "<b>hinter</b> = detrás de. der Schreibtisch → hinter <b>dem</b> Schreibtisch.",
+    "B1 | Mark ruft einen Kunden an.": "<b>anrufen</b> es separable: la partícula <b>an</b> va al final.",
+    "B1 | Er schreibt die Nummer auf.": "<b>aufschreiben</b> = anotar: la partícula <b>auf</b> va al final.",
+    "B1 | Mark hat den Kunden angerufen.": "Participio de un verbo separable: <b>ge</b> entre la partícula y el verbo → an<b>ge</b>rufen.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "<b>ausdrucken</b> = imprimir: la partícula <b>aus</b> va al final.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Con un verbo modal, el verbo separable queda entero, al final: <b>zurückrufen</b>.",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "<b>aufhören</b> = dejar de, terminar: la partícula <b>auf</b> va al final.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "<b>vorbereiten</b> = preparar: la partícula <b>vor</b> va al final.",
+    "B1 | Mark legt den Hörer gleich auf.": "<b>auflegen</b> = colgar (el teléfono): la partícula <b>auf</b> va al final.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Sujeto de la relativa, masculino → <b>der</b>.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "Posesión, antecedente femenino → <b>deren</b> (cuyo cabello). Se elige según el poseedor, no según lo poseído como «cuyo».",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "<b>in</b> + Wo? → dativo, neutro → <b>dem</b>.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "Pasiva de acción: <b>werden</b> + participio; separable: aus<b>ge</b>druckt.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "Pasiva de estado: <b>sein</b> + participio, como «estar» + participio. schreiben → geschrieben.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "<b>auf</b> + Wo? → dativo, femenino → <b>der</b>.",
+    "C1 | Das Gespräch muss wichtig sein.": "<b>müssen</b> = deducción casi segura.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "La taza está al lado del teclado.",
+    "A2 | Die Uhr hängt über der Tafel.": "El reloj cuelga encima de la pizarra.",
+    "A2 | Der Drucker steht neben dem Regal.": "La impresora está al lado del estante.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "El bolígrafo está sobre el papel.",
+    "A2 | Die große Pflanze steht am Fenster.": "La planta grande está junto a la ventana.",
+    "A2 | Die Ordner stehen im Regal.": "Las carpetas están en el estante.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "El cuaderno está sobre el escritorio.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "El basurero está detrás del escritorio.",
+    "B1 | Mark ruft einen Kunden an.": "Mark llama a un cliente.",
+    "B1 | Er schreibt die Nummer auf.": "Anota el número.",
+    "B1 | Mark hat den Kunden angerufen.": "Mark llamó al cliente.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "La colega imprime una carta.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "¿Puedes devolverme la llamada mañana, por favor?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "A las cinco, Mark deja de trabajar.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "La colega prepara una reunión.",
+    "B1 | Mark legt den Hörer gleich auf.": "Mark cuelga el teléfono enseguida.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "El hombre que está hablando por teléfono se llama Mark.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "La colega, cuyo cabello es gris, lee una carta.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "El estante en el que están las carpetas es de metal.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "La carta se está imprimiendo.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "El cuaderno ya está escrito hasta la mitad.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "La pizarra, en la que hay flechas dibujadas, cuelga en la pared.",
+    "C1 | Das Gespräch muss wichtig sein.": "La conversación debe de ser importante.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "La colega podría ser su jefa.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Mark probablemente consiga un puesto después de las prácticas.",
+    "C1 | Die Firma soll bald umziehen.": "Dicen que la empresa se va a mudar pronto."
    }
   }
  }

@@ -1,0 +1,101 @@
+{
+ "id": "a2-panne",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Le chauffage en panne"},
+ "intro": {"fr": "Novembre à Madrid. Chez toi, le chauffage ne marche plus et les radiateurs sont froids. Tu appelles ta propriétaire, la señora García."},
+ "personnes": ["vermieterin"],
+ "debut": "llamada",
+ "textes": {
+  "cita_fr": {"cle": "cita", "manana": "demain matin, entre huit et dix heures", "tarde": "demain à cinq heures de l'après-midi"}
+ },
+ "noeuds": {
+  "llamada": {
+   "dit": [
+    {"recit": {"fr": "Neuf heures du matin. Il fait froid dans l'appartement. Tu composes le numéro de ta propriétaire."}},
+    {"qui": "vermieterin", "air": "question", "t": "¿Sí? ¿Dígame?", "fr": "Allô ? J'écoute."}
+   ],
+   "choix": [
+    {"t": "Buenos días, señora García. ¿Tiene un momento?", "fr": "Bonjour, madame García. Vous avez un instant ?", "va": "quien",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Buenos días. Sí, claro.", "fr": "Bonjour. Oui, bien sûr."}]},
+    {"t": "Buenos días. ¿Es usted la señora García?", "fr": "Bonjour. Vous êtes bien madame García ?", "va": "quien",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Buenos días. Sí, soy yo.", "fr": "Bonjour. Oui, c'est moi."}]}
+   ]
+  },
+  "quien": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "¿Con quién hablo?", "fr": "Qui est à l'appareil ?"}],
+   "choix": [
+    {"t": "Vivo en su piso de la calle Embajadores.", "fr": "J'habite dans votre appartement de la rue Embajadores.", "va": "problema",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Ah, sí, claro! ¿Qué tal todo?", "fr": "Ah, oui, bien sûr ! Comment ça va ?"}]},
+    {"t": "Le llamo por el piso de la calle Embajadores. Vivo allí.", "fr": "Je vous appelle pour l'appartement de la rue Embajadores. J'y habite.", "va": "problema",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Ah, sí, claro! ¿Qué tal todo?", "fr": "Ah, oui, bien sûr ! Comment ça va ?"}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "quien",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí. ¿Quién es usted, por favor?", "fr": "Oui. Qui êtes-vous, s'il vous plaît ?"}]}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "¿Hay algún problema en el piso?", "fr": "Il y a un problème dans l'appartement ?"}],
+   "choix": [
+    {"t": "Sí. La calefacción no funciona.", "fr": "Oui. Le chauffage ne marche pas.", "va": "cuando",
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "¡Vaya! ¡Con este frío!", "fr": "Oh non ! Avec ce froid !"}]},
+    {"t": "Sí. Los radiadores están fríos y tengo frío en casa.", "fr": "Oui. Les radiateurs sont froids et j'ai froid chez moi.", "va": "cuando",
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "¡Vaya! ¡Con este frío!", "fr": "Oh non ! Avec ce froid !"}]},
+    {"faux": true, "t": "Sí. La calefacción no funciona y estoy frío.", "fr": "Oui. Le chauffage ne marche pas et j'ai froid.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Usted está frío? ¿Como un radiador? Ah, ¡que tiene frío!", "fr": "Vous êtes froid ? Comme un radiateur ? Ah, vous avez froid !"}],
+     "aide": {"fr": "Avoir froid, c'est <b>« tener frío »</b>. « Estar frío » se dit d'une chose : un radiateur, une soupe. Dis : « Tengo frío »."}}
+   ]
+  },
+  "cuando": {
+   "dit": [{"qui": "vermieterin", "air": "question", "t": "¿Desde cuándo no funciona?", "fr": "Depuis quand est-ce qu'il ne marche plus ?"}],
+   "choix": [
+    {"t": "Desde ayer por la noche.", "fr": "Depuis hier soir.", "va": "tecnico",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Entiendo. Voy a llamar al técnico ahora mismo.", "fr": "Je comprends. J'appelle le technicien tout de suite."}]},
+    {"t": "Desde esta mañana.", "fr": "Depuis ce matin.", "va": "tecnico",
+     "puis": [{"qui": "vermieterin", "air": "attentive", "t": "Entiendo. Voy a llamar al técnico ahora mismo.", "fr": "Je comprends. J'appelle le technicien tout de suite."}]},
+    {"faux": true, "t": "Después de ayer por la noche.", "fr": "Depuis hier soir.",
+     "puis": [{"qui": "vermieterin", "air": "perplexe", "t": "¿Después de ayer? ¿Desde ayer, quiere decir?", "fr": "Après hier ? Depuis hier, vous voulez dire ?"}],
+     "aide": {"fr": "Depuis, c'est <b>« desde »</b> : « Desde ayer por la noche ». « Después de » veut dire « après »."}}
+   ]
+  },
+  "tecnico": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes plus tard, elle te rappelle."}},
+    {"qui": "vermieterin", "air": "question", "t": "El técnico puede ir mañana, entre las ocho y las diez. ¿Va a estar usted en casa?", "fr": "Le technicien peut passer demain, entre huit et dix heures. Vous serez chez vous ?"}
+   ],
+   "choix": [
+    {"t": "Sí, mañana por la mañana estoy en casa.", "fr": "Oui, demain matin, je suis chez moi.", "pose": {"cita": "manana"}, "va": "frio",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Perfecto. Entonces, mañana entre las ocho y las diez.", "fr": "Parfait. Alors, demain entre huit et dix heures."}]},
+    {"t": "No, por la mañana trabajo. ¿Puede venir por la tarde?", "fr": "Non, le matin je travaille. Il peut venir l'après-midi ?", "pose": {"cita": "tarde"}, "va": "frio",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Un momento … Sí, puede ir a las cinco de la tarde.", "fr": "Un instant… Oui, il peut passer à cinq heures de l'après-midi."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "tecnico",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Sí. El técnico va mañana por la mañana, de ocho a diez. ¿Está usted en casa?", "fr": "Oui. Le technicien passe demain matin, de huit à dix heures. Vous êtes chez vous ?"}]}
+   ]
+  },
+  "frio": {
+   "dit": [{"qui": "vermieterin", "air": "attentive", "t": "Y esta noche va a hacer frío. Tengo un radiador eléctrico. ¿Se lo llevo?", "fr": "Et cette nuit, il va faire froid. J'ai un radiateur électrique. Je vous l'apporte ?"}],
+   "choix": [
+    {"t": "Sí, por favor. Muchas gracias.", "fr": "Oui, s'il vous plaît. Merci beaucoup.", "va": "adios",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Paso esta tarde a las siete y se lo dejo.", "fr": "Je passe ce soir à sept heures et je vous le laisse."}]},
+    {"t": "No, gracias. Tengo muchas mantas.", "fr": "Non, merci. J'ai beaucoup de couvertures.", "va": "adios",
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "Vale. Y una sopa caliente también ayuda.", "fr": "D'accord. Et une soupe chaude, ça aide aussi."}]},
+    {"faux": true, "t": "No, gracias. Tengo muchas cubiertas.", "fr": "Non, merci. J'ai beaucoup de couvertures.",
+     "puis": [{"qui": "vermieterin", "air": "surprise", "t": "¿Cubiertas? ¿Las de un barco? Ah, ¡mantas!", "fr": "Des ponts ? Ceux d'un bateau ? Ah, des couvertures !"}],
+     "aide": {"fr": "La couverture du lit, c'est <b>« la manta »</b>. « La cubierta », c'est le pont d'un bateau ou la couverture d'un livre. Dis : « Tengo muchas mantas »."}}
+   ]
+  },
+  "adios": {
+   "dit": [
+    {"si": {"cita": "manana"}, "qui": "vermieterin", "air": "sourire", "t": "Entonces, el técnico va mañana por la mañana. Si hay otro problema, me llama.", "fr": "Donc, le technicien passe demain matin. S'il y a un autre problème, vous m'appelez."},
+    {"si": {"cita": "tarde"}, "qui": "vermieterin", "air": "sourire", "t": "Entonces, el técnico va mañana a las cinco. Si hay otro problema, me llama.", "fr": "Donc, le technicien passe demain à cinq heures. S'il y a un autre problème, vous m'appelez."}
+   ],
+   "choix": [
+    {"t": "De acuerdo. Muchas gracias por su ayuda.", "fr": "D'accord. Merci beaucoup pour votre aide.", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "De nada. ¡Hasta luego!", "fr": "Je vous en prie. À bientôt !"}]},
+    {"t": "Perfecto. Gracias, señora García. ¡Hasta luego!", "fr": "Parfait. Merci, madame García. À bientôt !", "va": null,
+     "puis": [{"qui": "vermieterin", "air": "sourire", "t": "¡Hasta luego! ¡Y abríguese bien!", "fr": "À bientôt ! Et couvrez-vous bien !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué la panne à ta propriétaire. Le technicien passe {cita_fr}."}
+}

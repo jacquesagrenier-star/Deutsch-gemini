@@ -7,7 +7,7 @@ le jour ou une etape se termine ; une carte ratee revient dans sa propre partie.
   ordinaire : un compte A1 hors Premiers pas ;
   pp-jour1  : Premiers pas, premiere seance ;
   pp-etape  : Premiers pas, la seance qui finit l'etape 1 (la conversation des passeports).
-Ce qui doit tenir : la meme suite de parties du debut a la fin, toutes parmi cartes / grammaire / images / conv, dans cet
+Ce qui doit tenir : la meme suite de parties du debut a la fin, toutes parmi cartes (Mots) / phrases / grammaire / images / conv, dans cet
 ordre, les noms sous la barre dans la langue d'interface ; pp-etape a ses Conversations ; captures jour et nuit.
 Usage : python tests/barre_trois_parties.py [--racine DOSSIER] [--port 8813] [--captures DOSSIER]
 Sous le verrou du navigateur (~/.wortando/verrou-parcours).
@@ -93,7 +93,7 @@ def main():
         os.makedirs(a.captures, exist_ok=True)
     from playwright.sync_api import sync_playwright
     fautes = 0
-    PERMIS = ["cartes", "grammaire", "images", "conv"]
+    PERMIS = ["cartes", "phrases", "grammaire", "images", "conv"]   # ligne 98 (14 nov.) : Mots, Phrases, Grammaire, Images, Conversation
     with sync_playwright() as p:
         nav = p.chromium.launch()
         for appris in ("de", "es"):

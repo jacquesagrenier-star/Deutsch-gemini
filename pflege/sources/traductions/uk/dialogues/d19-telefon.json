@@ -1,0 +1,410 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d19-telefon.json",
+ "cles": {
+  "titre": {
+   "fr": "Au téléphone : le laboratoire et la pharmacie",
+   "de": "Am Telefon: Labor und Apotheke",
+   "uk": "Телефоном: лабораторія та аптека"
+  },
+  "intro": {
+   "fr": "Fin de matinée au poste de soins. Le téléphone sonne : c'est {aksoy}, du laboratoire, avec une valeur critique pour {lehmann}. Tu joues {elif} : tu notes, tu vérifies l'identité de la patiente, tu relis la valeur et tu demandes le nom de ton interlocutrice. Puis tu appelles toi-même la pharmacie de l'hôpital, {richter}, pour commander de l'insuline et poser une question sur un comprimé.",
+   "uk": "Кінець ранку на сестринському посту. Дзвонить телефон: це {aksoy} з лабораторії, з критичним показником для {lehmann}. Ти в ролі {elif}: ти записуєш, перевіряєш особу пацієнтки, повторюєш показник уголос і питаєш імʼя співрозмовниці. Потім ти телефонуєш до лікарняної аптеки — {richter:dat}, щоб замовити інсулін і поставити запитання про таблетку."
+  },
+  "but": {
+   "fr": "Répondre au téléphone d'un service (nom du service, son nom) ; recevoir une valeur critique : identifier la patiente (nom, date de naissance), relire la valeur, demander le nom de la personne, dire ce qu'on fait ; appeler un service : se présenter, dire ce qu'on veut avec précision (produit, dosage), poser une question ; résumer avant de raccrocher.",
+   "uk": "Відповідати на дзвінок у відділенні (назва відділення, своє імʼя); приймати критичний показник: ідентифікувати пацієнтку (прізвище, дата народження), повторити показник, спитати імʼя співрозмовника, сказати, що робитимеш; телефонувати в іншу службу: представитися, точно сказати, що потрібно (препарат, дозування), поставити запитання; підсумувати, перш ніж покласти слухавку."
+  },
+  "relire_notes": {
+   "fr": "Valeur critique : potassium 6,2 mmol/l (seuil d'appel du laboratoire), échantillon non hémolysé, conduite (relire, noter l'heure et le nom, informer la médecin tout de suite) ; insuline lispro 100 UI/ml en stylo prérempli (cohérence avec le schéma de Frau Lehmann) ; un comprimé à libération prolongée (métoprolol retard) ne s'écrase pas : demander une autre forme à la médecin.",
+   "uk": "Критичний показник: калій 6,2 ммоль/л (поріг, за якого лабораторія телефонує), зразок без гемолізу, що робити (повторити, записати час та імʼя, негайно повідомити лікарку); інсулін лізпро 100 ОД/мл у попередньо заповненій шприц-ручці (узгоджено зі схемою інсулінотерапії пацієнтки); таблетку пролонгованої дії (метопролол ретард) не подрібнюють: попросити в лікарки іншу лікарську форму."
+  },
+  "redemittel.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "uk": "Добрий день, {station}, {elif} слухає."
+  },
+  "redemittel.1": {
+   "fr": "Un instant, je prends de quoi écrire.",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben.",
+   "uk": "Хвилинку, візьму, чим записати."
+  },
+  "redemittel.2": {
+   "fr": "C'est pour quel patient ? Pouvez-vous me donner la date de naissance, s'il vous plaît ?",
+   "de": "Um welchen Patienten geht es? Können Sie mir bitte das Geburtsdatum sagen?",
+   "uk": "Про якого пацієнта йдеться? Назвіть, будь ласка, дату народження."
+  },
+  "redemittel.3": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre.",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter.",
+   "uk": "Повторюю: калій шість цілих дві десятих мілімоля на літр."
+  },
+  "redemittel.4": {
+   "fr": "Quel est votre nom, s'il vous plaît ?",
+   "de": "Wie war Ihr Name, bitte?",
+   "uk": "Як вас звати, будь ласка?"
+  },
+  "redemittel.5": {
+   "fr": "Je transmets tout de suite la valeur à la médecin.",
+   "de": "Ich gebe den Wert sofort an die Ärztin weiter.",
+   "uk": "Я негайно передам цей показник лікарці."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Könnten Sie uns heute noch welche liefern?",
+   "uk": "Чи не могли б ви доставити нам їх ще сьогодні?"
+  },
+  "redemittel.7": {
+   "fr": "A-t-on le droit d'écraser ce comprimé ?",
+   "de": "Darf man diese Tablette mörsern?",
+   "uk": "Чи можна подрібнювати цю таблетку?"
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "11 h 20, au poste de soins. {elif} est seule, ses collègues sont dans les chambres. Le téléphone sonne.",
+   "uk": "11:20, сестринський пост. {elif} сама, колеги в палатах. Дзвонить телефон."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "uk": "Добрий день, {station}, {elif} слухає."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "uk": "Добрий день, це {aksoy} з центральної лабораторії. У мене для вас критичний показник."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Bonjour, {station}, vous parlez à {elif}.",
+   "de": "Guten Tag, {station}, Sie sprechen mit {elif}.",
+   "uk": "Добрий день, {station}, з вами говорить {elif}."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "uk": "Добрий день, це {aksoy} з центральної лабораторії. У мене для вас критичний показник."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Allô ?",
+   "de": "Hallo?",
+   "uk": "Алло?"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Euh… je suis bien au service 4B ?",
+   "de": "Äh … bin ich auf der Station vier B?",
+   "uk": "Е-е… я потрапила у відділення 4B?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Au téléphone de l'hôpital, on répond avec le service et son nom.</b> « Station 4B, Elif am Apparat, guten Tag. » La personne sait tout de suite qu'elle a le bon service et à qui elle parle.",
+   "uk": "<b>На лікарняний дзвінок відповідають, називаючи відділення та своє імʼя.</b> «Station 4B, Elif am Apparat, guten Tag.» Людина одразу знає, що потрапила куди треба і з ким говорить."
+  },
+  "noeuds.patient.choix.0": {
+   "fr": "Un instant, je prends de quoi écrire. Voilà, c'est pour quel patient ?",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben. So, um welchen Patienten geht es?",
+   "uk": "Хвилинку, візьму, чим записати. Отже, про якого пацієнта йдеться?"
+  },
+  "noeuds.patient.choix.0.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "uk": "Про {lehmann}, дата народження — 21 серпня 1952 року."
+  },
+  "noeuds.patient.choix.1": {
+   "fr": "Un instant, s'il vous plaît, je note. Pouvez-vous me donner le nom et la date de naissance ?",
+   "de": "Moment bitte, ich schreibe mit. Können Sie mir den Namen und das Geburtsdatum sagen?",
+   "uk": "Хвилинку, будь ласка, я записую. Назвіть, будь ласка, прізвище й дату народження."
+  },
+  "noeuds.patient.choix.1.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "uk": "Про {lehmann}, дата народження — 21 серпня 1952 року."
+  },
+  "noeuds.patient.choix.2": {
+   "fr": "Oui, allez-y.",
+   "de": "Ja, sagen Sie.",
+   "uk": "Так, кажіть."
+  },
+  "noeuds.patient.choix.2.puis.0": {
+   "fr": "Vous avez de quoi écrire ? C'est important.",
+   "de": "Haben Sie etwas zum Schreiben? Es ist wichtig.",
+   "uk": "У вас є чим записати? Це важливо."
+  },
+  "noeuds.patient.choix.2.aide": {
+   "fr": "<b>Une valeur critique ne se retient pas de tête : prends de quoi écrire, puis fais-toi dire le patient.</b> « Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es? »",
+   "uk": "<b>Критичний показник не тримають у голові: візьми, чим записати, а потім попроси назвати пацієнта.</b> «Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es?»"
+  },
+  "noeuds.identitaet.choix.0": {
+   "fr": "{lehmann}, née le 21 août 1952. Oui, c'est notre patiente. Quelle valeur ?",
+   "de": "{lehmann}, geboren am 21. August 1952. Ja, das ist unsere Patientin. Welcher Wert ist es?",
+   "uk": "{lehmann}, дата народження 21 серпня 1952 року. Так, це наша пацієнтка. Який показник?"
+  },
+  "noeuds.identitaet.choix.0.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "uk": "Калій: 6,2 мілімоля на літр."
+  },
+  "noeuds.identitaet.choix.1": {
+   "fr": "J'ai {lehmann}, 21 août 52. C'est ça, elle est chez nous. Qu'est-ce qui est anormal ?",
+   "de": "Ich habe {lehmann}, einundzwanzigster August zweiundfünfzig. Stimmt, sie liegt bei uns. Was ist auffällig?",
+   "uk": "У мене {lehmann}, 21 серпня 52-го. Так, вона лежить у нас. Що відхиляється від норми?"
+  },
+  "noeuds.identitaet.choix.1.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "uk": "Калій: 6,2 мілімоля на літр."
+  },
+  "noeuds.identitaet.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Quelle était la date de naissance ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Wie war das Geburtsdatum?",
+   "uk": "Перепрошую, погано чути. Яка була дата народження?"
+  },
+  "noeuds.identitaet.choix.2.puis.0": {
+   "fr": "Vingt et un août mille neuf cent cinquante-deux.",
+   "de": "Einundzwanzigster August neunzehnhundertzweiundfünfzig.",
+   "uk": "Двадцять перше серпня тисяча девʼятсот пʼятдесят другого року."
+  },
+  "noeuds.wert.choix.0": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre. Quel est votre nom, s'il vous plaît ?",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?",
+   "uk": "Повторюю: калій шість цілих дві десятих мілімоля на літр. Як вас звати, будь ласка?"
+  },
+  "noeuds.wert.choix.0.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "uk": "Правильно. {aksoy}, центральна лабораторія. Зразок без гемолізу, тож показник достовірний."
+  },
+  "noeuds.wert.choix.1": {
+   "fr": "Potassium six virgule deux, c'est noté. Et à qui ai-je parlé ?",
+   "de": "Kalium sechs Komma zwei, habe ich notiert. Und mit wem habe ich gesprochen?",
+   "uk": "Калій шість цілих дві десятих, записала. А з ким я розмовляла?"
+  },
+  "noeuds.wert.choix.1.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur est donc fiable.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, der Wert ist also echt.",
+   "uk": "Правильно. {aksoy}, центральна лабораторія. Зразок без гемолізу, тож показник достовірний."
+  },
+  "noeuds.wert.choix.2": {
+   "fr": "Oui oui, d'accord, je transmets. Salut !",
+   "de": "Ja ja, okay, ich sage es weiter. Tschüss!",
+   "uk": "Так-так, окей, передам. Бувайте!"
+  },
+  "noeuds.wert.choix.2.puis.0": {
+   "fr": "Attendez ! Répétez la valeur, s'il vous plaît, et notez mon nom.",
+   "de": "Moment! Wiederholen Sie bitte den Wert, und notieren Sie meinen Namen.",
+   "uk": "Стривайте! Повторіть, будь ласка, показник і запишіть моє прізвище."
+  },
+  "noeuds.wert.choix.2.aide": {
+   "fr": "<b>Une valeur critique se relit à voix haute, et on note qui l'a donnée et à quelle heure.</b> « Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte? » Au téléphone, c'est la seule façon de voir une erreur.",
+   "uk": "<b>Критичний показник повторюють уголос і записують, хто його повідомив і о котрій.</b> «Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?» Телефоном це єдиний спосіб помітити помилку."
+  },
+  "noeuds.weiter.choix.0": {
+   "fr": "Merci, {aksoy}. Je transmets tout de suite la valeur à la médecin.",
+   "de": "Danke, {aksoy}. Ich gebe den Wert sofort an die Ärztin weiter.",
+   "uk": "Дякую, {aksoy:voc}. Я негайно передам цей показник лікарці."
+  },
+  "noeuds.weiter.choix.0.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "uk": "Дякую. До побачення."
+  },
+  "noeuds.weiter.choix.1": {
+   "fr": "Merci beaucoup. Je préviens tout de suite la médecin du service et je note l'appel avec l'heure.",
+   "de": "Vielen Dank. Ich informiere gleich die Stationsärztin und dokumentiere den Anruf mit der Uhrzeit.",
+   "uk": "Щиро дякую. Я зараз же повідомлю лікарку відділення й задокументую дзвінок із зазначенням часу."
+  },
+  "noeuds.weiter.choix.1.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "uk": "Дякую. До побачення."
+  },
+  "noeuds.apotheke.dit.0.recit": {
+   "fr": "{elif} prévient tout de suite {sommer}, qui va voir {lehmann}. Puis elle prépare la commande : il ne reste qu'un stylo d'insuline pour {lehmann}. Elle appelle la pharmacie de l'hôpital.",
+   "uk": "{elif} одразу повідомляє {sommer:dat}, і та йде до {lehmann}. Потім вона готує замовлення: для {lehmann} залишилася лише одна шприц-ручка з інсуліном. Вона телефонує до лікарняної аптеки."
+  },
+  "noeuds.apotheke.dit.1": {
+   "fr": "Pharmacie de l'hôpital, {richter:famille}, bonjour.",
+   "de": "Krankenhausapotheke, {richter:famille}, guten Tag.",
+   "uk": "Лікарняна аптека, {richter:famille}, добрий день."
+  },
+  "noeuds.apotheke.choix.0": {
+   "fr": "Bonjour, {richter:voc}, ici {elif}, du {station}. Nous n'avons presque plus de stylos d'insuline pour une patiente. Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Guten Tag, {richter}, hier ist {elif} von der {station}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?",
+   "uk": "Добрий день, {richter:voc}, це {elif} з {station:gen}. У нас закінчуються шприц-ручки з інсуліном для однієї пацієнтки. Чи не могли б ви доставити нам їх ще сьогодні?"
+  },
+  "noeuds.apotheke.choix.0.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "uk": "Це можливо. Який саме інсулін і в якій концентрації?"
+  },
+  "noeuds.apotheke.choix.1": {
+   "fr": "Ici {elif}, {station}. J'appelle pour une commande : nous avons besoin d'urgence de stylos d'insuline.",
+   "de": "Hier ist {elif}, {station}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.",
+   "uk": "Це {elif}, {station}. Я телефоную щодо замовлення: нам терміново потрібні шприц-ручки з інсуліном."
+  },
+  "noeuds.apotheke.choix.1.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "uk": "Це можливо. Який саме інсулін і в якій концентрації?"
+  },
+  "noeuds.apotheke.choix.2": {
+   "fr": "Oui, allô, on a besoin d'insuline.",
+   "de": "Ja, hallo, wir brauchen Insulin.",
+   "uk": "Так, алло, нам потрібен інсулін."
+  },
+  "noeuds.apotheke.choix.2.puis.0": {
+   "fr": "Et qui est « on » ? Vous appelez de quel service ?",
+   "de": "Und wer sind „wir“? Von welcher Station rufen Sie an?",
+   "uk": "А хто такі «нам»? З якого ви відділення?"
+  },
+  "noeuds.apotheke.choix.2.aide": {
+   "fr": "<b>Quand c'est toi qui appelles, dis d'abord qui tu es et d'où tu appelles, puis ce que tu veux.</b> « Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern? »",
+   "uk": "<b>Коли телефонуєш ти, спершу скажи, хто ти і звідки дзвониш, а потім — що тобі потрібно.</b> «Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern?»"
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "De l'insuline lispro, 100 unités par millilitre, en stylo prérempli. Nous en voudrions cinq.",
+   "de": "Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. Wir hätten gern fünf Stück.",
+   "uk": "Інсулін лізпро, 100 одиниць на мілілітр, у попередньо заповненій шприц-ручці. Нам потрібно пʼять штук."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "uk": "Є в наявності. Надішлю вам пʼять шприц-ручок із доставкою до 14 години. Ще щось?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "C'est de l'insuline lispro en stylo prérempli, 100 unités par millilitre. Cinq stylos, ce serait bien.",
+   "de": "Es ist Insulin lispro im Fertigpen, hundert Einheiten pro Milliliter. Fünf Pens wären gut.",
+   "uk": "Це інсулін лізпро в попередньо заповненій шприц-ручці, 100 одиниць на мілілітр. Пʼять шприц-ручок було б добре."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "uk": "Є в наявності. Надішлю вам пʼять шприц-ручок із доставкою до 14 години. Ще щось?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "L'insuline normale, celle qu'elle a toujours.",
+   "de": "Das normale Insulin, das sie immer bekommt.",
+   "uk": "Звичайний інсулін, той, що вона завжди отримує."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "« La normale », ça n'existe pas chez nous. J'ai besoin du nom et de la concentration.",
+   "de": "„Das normale“ gibt es bei uns nicht. Ich brauche den Namen und die Konzentration.",
+   "uk": "«Звичайного» в нас немає. Мені потрібні назва й концентрація."
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Un médicament se commande avec son nom exact, sa concentration et sa forme.</b> « Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. » Lis-le sur l'emballage ou dans le dossier avant d'appeler.",
+   "uk": "<b>Ліки замовляють із точною назвою, концентрацією та лікарською формою.</b> «Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen.» Прочитай це на упаковці або в листі призначень, перш ніж телефонувати."
+  },
+  "noeuds.moerser.choix.0": {
+   "fr": "Oui, encore une question : peut-on écraser des comprimés de métoprolol à libération prolongée ? Un patient avale mal depuis un AVC.",
+   "de": "Ja, eine Frage noch: Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann nach einem Schlaganfall schlecht schlucken.",
+   "uk": "Так, ще одне запитання: чи можна подрібнювати таблетки метопрололу пролонгованої дії? Пацієнтові після інсульту важко ковтати."
+  },
+  "noeuds.moerser.choix.0.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "uk": "Ні, таблетку пролонгованої дії, будь ласка, не подрібнюйте, інакше все подіє одразу. Попросіть у лікарки іншу лікарську форму. Я надішлю вам електронною поштою список альтернатив."
+  },
+  "noeuds.moerser.choix.1": {
+   "fr": "J'aurais encore une question : puis-je écraser un comprimé de métoprolol à libération prolongée ? Le patient a des troubles de la déglutition.",
+   "de": "Ich hätte noch eine Frage: Kann ich eine Retardtablette von Metoprolol zerkleinern? Der Patient hat Schluckstörungen.",
+   "uk": "У мене було б ще одне запитання: чи можу я подрібнити таблетку метопрололу пролонгованої дії? У пацієнта порушення ковтання."
+  },
+  "noeuds.moerser.choix.1.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "uk": "Ні, таблетку пролонгованої дії, будь ласка, не подрібнюйте, інакше все подіє одразу. Попросіть у лікарки іншу лікарську форму. Я надішлю вам електронною поштою список альтернатив."
+  },
+  "noeuds.moerser.choix.2": {
+   "fr": "Non, merci. Ah, au fait, on peut toujours écraser les comprimés, non ?",
+   "de": "Nein, danke. Ach so, Tabletten kann man doch immer mörsern, oder?",
+   "uk": "Ні, дякую. А, до речі, таблетки ж завжди можна подрібнювати, так?"
+  },
+  "noeuds.moerser.choix.2.puis.0": {
+   "fr": "Surtout pas toujours ! Quel comprimé voulez-vous dire ?",
+   "de": "Auf keinen Fall immer! Welche Tablette meinen Sie?",
+   "uk": "У жодному разі не завжди! Яку таблетку ви маєте на увазі?"
+  },
+  "noeuds.moerser.choix.2.aide": {
+   "fr": "<b>Pose une question précise : quel médicament, quelle forme, pourquoi.</b> « Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken. » Un comprimé « retard » ne s'écrase pas : c'est la pharmacie ou la médecin qui donne une autre forme.",
+   "uk": "<b>Став точне запитання: які ліки, яка форма, чому.</b> «Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken.» Таблетку «ретард» не подрібнюють: іншу форму дає аптека або лікарка."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Donc : cinq stylos d'insuline lispro avant 14 heures, et on n'écrase pas les comprimés retard, j'en parle à la médecin. Merci beaucoup !",
+   "de": "Also: fünf Pens Insulin lispro vor vierzehn Uhr, und die Retardtabletten nicht mörsern, ich spreche mit der Ärztin. Vielen Dank!",
+   "uk": "Отже: пʼять шприц-ручок інсуліну лізпро до 14 години, а таблетки ретард не подрібнювати, я поговорю з лікаркою. Щиро дякую!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Exactement. Avec plaisir, au revoir.",
+   "de": "Genau. Gern geschehen, auf Wiederhören.",
+   "uk": "Саме так. Нема за що, до побачення."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci, ça m'aide beaucoup. J'attends les stylos et la liste. Au revoir !",
+   "de": "Danke, das hilft mir sehr. Ich warte auf die Pens und die Liste. Auf Wiederhören!",
+   "uk": "Дякую, це мені дуже допомагає. Чекаю на шприц-ручки та список. До побачення!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Avec plaisir, au revoir.",
+   "de": "Gern geschehen, auf Wiederhören.",
+   "uk": "Нема за що, до побачення."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle valeur est critique chez {lehmann} ?",
+   "de": "Welcher Wert ist bei {lehmann} kritisch?",
+   "uk": "Який показник критичний у {lehmann}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "La glycémie.",
+   "de": "Der Blutzucker.",
+   "uk": "Цукор у крові."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Le potassium.",
+   "de": "Das Kalium.",
+   "uk": "Калій."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La tension.",
+   "de": "Der Blutdruck.",
+   "uk": "Тиск."
+  },
+  "ecouter.1.q": {
+   "fr": "Que fait {elif} tout de suite après l'appel du laboratoire ?",
+   "de": "Was macht {elif} sofort nach dem Anruf des Labors?",
+   "uk": "Що робить {elif} одразу після дзвінка з лабораторії?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle prévient la médecin.",
+   "de": "Sie informiert die Ärztin.",
+   "uk": "Вона повідомляє лікарку."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle appelle la fille.",
+   "de": "Sie ruft die Tochter an.",
+   "uk": "Вона телефонує доньці пацієнтки."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle attend la visite.",
+   "de": "Sie wartet bis zur Visite.",
+   "uk": "Вона чекає до обходу."
+  },
+  "ecouter.2.q": {
+   "fr": "Que dit {richter} des comprimés à libération prolongée ?",
+   "de": "Was sagt {richter} über die Retardtabletten?",
+   "uk": "Що {richter} каже про таблетки пролонгованої дії?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "On peut toujours les écraser.",
+   "de": "Man kann sie immer mörsern.",
+   "uk": "Їх завжди можна подрібнювати."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Il faut les dissoudre dans l'eau.",
+   "de": "Man soll sie in Wasser auflösen.",
+   "uk": "Їх треба розчиняти у воді."
+  },
+  "ecouter.2.options.2": {
+   "fr": "On ne doit pas les écraser.",
+   "de": "Man darf sie nicht mörsern.",
+   "uk": "Їх не можна подрібнювати."
+  }
+ }
+}

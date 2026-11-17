@@ -1,0 +1,101 @@
+{
+ "id": "a2-echanger",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Rapporter un article"},
+ "intro": {"fr": "Hier, tu as acheté un pull dans une boutique de la rue de Fuencarral, à Madrid. Chez toi, tu l'essaies : trop petit. Tu retournes au magasin avec le ticket."},
+ "personnes": ["verkaeuferin"],
+ "debut": "ayuda",
+ "textes": {
+  "final_fr": {"cle": "eleccion", "cambio": "échangé ton pull contre la bonne taille", "dinero": "obtenu le remboursement de ton pull"}
+ },
+ "noeuds": {
+  "ayuda": {
+   "dit": [
+    {"recit": {"fr": "Cinq heures de l'après-midi. Tu entres dans la boutique, le pull dans son sac."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "¡Hola, buenas tardes! ¿Puedo ayudarle?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Sí, tengo un problema con este jersey.", "fr": "Bonjour. Oui, j'ai un problème avec ce pull.", "va": "explicar",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Vaya. Vamos a ver.", "fr": "Ah. Voyons ça."}]},
+    {"t": "Buenas tardes. Quería devolver este jersey.", "fr": "Bonjour. Je voulais rendre ce pull.", "va": "explicar",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Vale. Vamos a ver.", "fr": "D'accord. Voyons ça."}]},
+    {"faux": true, "t": "Buenas tardes. Quería rendir este jersey.", "fr": "Bonjour. Je voulais rendre ce pull.",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "¿Rendir? ¿Quiere … devolver el jersey?", "fr": "« Rendir » ? Vous voulez… rendre le pull ?"}],
+     "aide": {"fr": "Rendre un article, c'est <b>« devolver »</b>. « Rendir » veut dire autre chose (épuiser, soumettre). Dis : « Quería devolver este jersey »."}}
+   ]
+  },
+  "explicar": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "¿Qué le pasa al jersey?", "fr": "Qu'est-ce qu'il a, ce pull ?"}],
+   "choix": [
+    {"t": "Me queda pequeño.", "fr": "Il est trop petit pour moi.", "va": "tique",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Ah, sí, esta marca talla un poco pequeño.", "fr": "Ah, oui, cette marque taille un peu petit."}]},
+    {"t": "Es demasiado pequeño. Necesito una talla más grande.", "fr": "Il est trop petit. J'ai besoin d'une taille plus grande.", "va": "tique",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Entiendo. No hay problema.", "fr": "Je comprends. Il n'y a pas de problème."}]},
+    {"faux": true, "t": "Necesito un jersey más largo.", "fr": "J'ai besoin d'un pull plus large.",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "¿Más largo? ¿Las mangas son cortas?", "fr": "Plus long ? Les manches sont courtes ?"}],
+     "aide": {"fr": "<b>« largo »</b> veut dire long, pas large (« ancho »). Pour un vêtement trop petit, dis : « Me queda pequeño » ou « Necesito una talla más grande »."}}
+   ]
+  },
+  "tique": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "¿Tiene el ticket de compra?", "fr": "Vous avez le ticket de caisse ?"}],
+   "choix": [
+    {"t": "Sí, aquí tiene.", "fr": "Oui, le voici.", "va": "elegir",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gracias. Es de ayer. Perfecto.", "fr": "Merci. Il est d'hier. Parfait."}]},
+    {"t": "Sí, un momento … Aquí está.", "fr": "Oui, un instant… Le voilà.", "va": "elegir",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gracias. Es de ayer. Perfecto.", "fr": "Merci. Il est d'hier. Parfait."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "tique",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Claro. El ticket, el papel de la caja. ¿Lo tiene?", "fr": "Bien sûr. Le ticket, le papier de la caisse. Vous l'avez ?"}]}
+   ]
+  },
+  "elegir": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "¿Quiere cambiarlo por otra talla o prefiere el dinero?", "fr": "Vous voulez l'échanger contre une autre taille, ou vous préférez être remboursé(e) ?"}],
+   "choix": [
+    {"t": "Prefiero otra talla. ¿Tiene una más grande?", "fr": "Je préfère une autre taille. Vous en avez une plus grande ?", "pose": {"eleccion": "cambio"}, "va": "despues",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sí, mire, aquí está la talla grande. El probador está al fondo.", "fr": "Oui, regardez, voici la taille au-dessus. La cabine d'essayage est au fond."}]},
+    {"t": "Prefiero el dinero, por favor.", "fr": "Je préfère être remboursé(e), s'il vous plaît.", "pose": {"eleccion": "dinero"}, "va": "despues",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Muy bien. Se lo devuelvo en la tarjeta.", "fr": "Très bien. Je vous rembourse sur la carte."}]}
+   ]
+  },
+  "despues": {
+   "dit": [
+    {"si": {"eleccion": "cambio"}, "recit": {"fr": "Tu essaies la taille au-dessus dans la cabine, puis tu reviens."}},
+    {"si": {"eleccion": "cambio"}, "qui": "verkaeuferin", "air": "question", "t": "¿Qué tal le queda?", "fr": "Alors, il vous va comment ?"},
+    {"si": {"eleccion": "dinero"}, "qui": "verkaeuferin", "air": "question", "t": "Son 35 euros. ¿Me deja la tarjeta, por favor?", "dit": "Son treinta y cinco euros. ¿Me deja la tarjeta, por favor?", "fr": "Ça fait 35 euros. Vous me donnez votre carte, s'il vous plaît ?"}
+   ],
+   "choix": [
+    {"si": {"eleccion": "cambio"}, "t": "Me queda muy bien. Me lo llevo.", "fr": "Il me va très bien. Je le prends.", "va": "algo",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "¡Estupendo! Es el mismo precio.", "fr": "Formidable ! C'est le même prix."}]},
+    {"si": {"eleccion": "cambio"}, "t": "Esta talla es perfecta. Gracias.", "fr": "Cette taille est parfaite. Merci.", "va": "algo",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "¡Estupendo! Es el mismo precio.", "fr": "Formidable ! C'est le même prix."}]},
+    {"si": {"eleccion": "dinero"}, "t": "Claro. Tome.", "fr": "Bien sûr. Tenez.", "va": "algo",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gracias. Ya está. Aquí tiene su tarjeta.", "fr": "Merci. Voilà. Je vous rends votre carte."}]},
+    {"si": {"eleccion": "dinero"}, "t": "Sí, aquí está. ¿Cuándo llega el dinero?", "fr": "Oui, la voici. Quand est-ce que l'argent arrive ?", "va": "algo",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "En dos o tres días lo tiene en su cuenta.", "fr": "Dans deux ou trois jours, il sera sur votre compte."}]}
+   ]
+  },
+  "algo": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "¿Necesita algo más?", "fr": "Vous avez besoin d'autre chose ?"}],
+   "choix": [
+    {"t": "No, gracias. Eso es todo.", "fr": "Non, merci. C'est tout.", "va": "adios",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Muy bien.", "fr": "Très bien."}]},
+    {"t": "Sí, una pregunta: ¿hasta cuándo puedo cambiar la ropa?", "fr": "Oui, une question : jusqu'à quand est-ce que je peux échanger les vêtements ?", "va": "adios",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Tiene treinta días, siempre con el ticket.", "fr": "Vous avez trente jours, toujours avec le ticket."}]}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "verkaeuferin", "air": "sourire", "t": "Pues ya está todo. Gracias por venir.", "fr": "Eh bien, tout est réglé. Merci d'être venu(e)."}],
+   "choix": [
+    {"t": "Muchas gracias por su ayuda. ¡Adiós!", "fr": "Merci beaucoup pour votre aide. Au revoir !", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "¡Adiós! ¡Buenas tardes!", "fr": "Au revoir ! Bonne fin de journée !"}]},
+    {"t": "Gracias. ¡Que tenga una buena tarde!", "fr": "Merci. Bonne fin de journée !", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "¡Igualmente! ¡Hasta pronto!", "fr": "À vous aussi ! À bientôt !"}]},
+    {"faux": true, "t": "Gracias. ¡Buena jornada!", "fr": "Merci. Bonne journée !",
+     "puis": [{"qui": "verkaeuferin", "air": "surprise", "t": "¿Buena jornada? Sí, hoy trabajo hasta las nueve …", "fr": "Bonne journée de travail ? Oui, aujourd'hui je travaille jusqu'à neuf heures…"}],
+     "aide": {"fr": "<b>« la jornada »</b>, c'est la journée de travail. Pour souhaiter une bonne journée : « ¡Que tenga un buen día! » ou, l'après-midi, « ¡Que tenga una buena tarde! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué le problème, montré ton ticket et {final_fr}."}
+}

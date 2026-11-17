@@ -1,0 +1,679 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 4, la releve au lit (14 nov. 2026). Memes regles que les scenes generales ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Controle : python pflege/outils/construire_scenes.py soins-uebergabe.",
+  "La releve de treize heures trente, comme le dialogue d06 : Elif (service du matin) transmet a Jonas (apres-midi), au lit de Frau Lehmann, devant sa fille, Frau Kruger. Annexe B, scene 4 : Maricel y est devenue Elif. Meme chambre que l'admission (soins-aufnahme).",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recu : pflege/scenes/soins-uebergabe.*). Ni horloge ni calendrier (chiffres). Le stylo a insuline et la sonnette ne se voient pas : pas de zone.",
+  "Couches : BROUILLON non relu ; ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-uebergabe.webp",
+ "source": "~/.wortando/pflege/scenes/soins-uebergabe.png",
+ "titre": "Die Übergabe",
+ "alt": "Une chambre d'hôpital, en début d'après-midi : Frau Lehmann est assise dans son lit, le pied bandé posé sur un coussin ; Elif, l'infirmière du matin, tient la tablette et fait la relève à Jonas, qui prend le service de l'après-midi avec son porte-bloc ; la fille de Frau Lehmann écoute, assise près de la fenêtre ; sur la tablette du lit, le gobelet à bec, le verre d'eau, la feuille des boissons et l'oxymètre ; au pied du lit, la feuille de surveillance.",
+ "consigne": "Touche un objet de la chambre, Frau Lehmann, sa fille, Elif ou Jonas.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de la relève"
+  },
+  "A2": {
+   "titre": "Le passé composé",
+   "qs": [
+    {
+     "q": "Frau Lehmann ___ gut geschlafen.",
+     "c": [
+      "hat",
+      "ist",
+      "war"
+     ],
+     "f": "patientin",
+     "phrase": "Frau Lehmann hat gut geschlafen.",
+     "sens": "Frau Lehmann a bien dormi.",
+     "n": "<b>schlafen</b> fait son Perfekt avec <b>haben</b> : sie <b>hat</b> geschlafen."
+    },
+    {
+     "q": "Sie ___ heute Morgen zweimal aufgestanden.",
+     "c": [
+      "ist",
+      "hat",
+      "wird"
+     ],
+     "f": "patientin",
+     "phrase": "Sie ist heute Morgen zweimal aufgestanden.",
+     "sens": "Elle s'est levée deux fois ce matin.",
+     "n": "Un changement de lieu ou de position : <b>sein</b> → sie <b>ist</b> aufgestanden."
+    },
+    {
+     "q": "Sie hat den ganzen Tee ___.",
+     "c": [
+      "getrunken",
+      "getrinkt",
+      "trinkt"
+     ],
+     "f": "schnabelbecher",
+     "phrase": "Sie hat den ganzen Tee getrunken.",
+     "sens": "Elle a bu tout le thé.",
+     "n": "<b>trinken</b> est un verbe fort : <b>getrunken</b>."
+    },
+    {
+     "q": "Elif hat den Verband um acht Uhr ___.",
+     "c": [
+      "gewechselt",
+      "wechselt",
+      "gewechselte"
+     ],
+     "f": "verband",
+     "phrase": "Elif hat den Verband um acht Uhr gewechselt.",
+     "sens": "Elif a changé le pansement à huit heures.",
+     "n": "Un verbe faible : <b>ge</b>…<b>t</b> → <b>gewechselt</b>."
+    },
+    {
+     "q": "Die Tochter ___ um elf Uhr gekommen.",
+     "c": [
+      "ist",
+      "hat",
+      "war"
+     ],
+     "f": "tochter",
+     "phrase": "Die Tochter ist um elf Uhr gekommen.",
+     "sens": "Sa fille est arrivée à onze heures.",
+     "n": "<b>kommen</b> → <b>sein</b> : sie <b>ist</b> gekommen."
+    },
+    {
+     "q": "Haben Sie heute Mittag schon etwas ___?",
+     "c": [
+      "gegessen",
+      "geessen",
+      "essen"
+     ],
+     "f": "tisch",
+     "phrase": "Haben Sie heute Mittag schon etwas gegessen?",
+     "sens": "Avez-vous déjà mangé quelque chose ce midi ?",
+     "n": "<b>essen</b> → <b>gegessen</b>, avec un g de plus au milieu."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Perfekt et Präteritum de la relève",
+   "qs": [
+    {
+     "q": "Heute Nacht ___ sie keine Schmerzen.",
+     "c": [
+      "hatte",
+      "habte",
+      "hätte"
+     ],
+     "f": "patientin",
+     "phrase": "Heute Nacht hatte sie keine Schmerzen.",
+     "sens": "Cette nuit, elle n'a pas eu mal.",
+     "n": "Pour <b>haben</b> et <b>sein</b>, même à l'oral, on préfère le Präteritum : sie <b>hatte</b>, sie <b>war</b>."
+    },
+    {
+     "q": "Der Blutzucker ___ heute Morgen zu hoch.",
+     "c": [
+      "war",
+      "wäre",
+      "wird"
+     ],
+     "f": "patientin",
+     "phrase": "Der Blutzucker war heute Morgen zu hoch.",
+     "sens": "La glycémie était trop haute ce matin.",
+     "n": "<b>war</b> : le Präteritum de sein, la forme normale d'une relève. <b>wäre</b> voudrait dire « serait »."
+    },
+    {
+     "q": "Bis jetzt ___ sie anderthalb Liter getrunken.",
+     "c": [
+      "hat",
+      "ist",
+      "war"
+     ],
+     "f": "trinkprotokoll",
+     "phrase": "Bis jetzt hat sie anderthalb Liter getrunken.",
+     "sens": "Jusqu'ici, elle a bu un litre et demi.",
+     "n": "Ce qu'elle a bu s'inscrit dans le <b>Trinkprotokoll</b>. <b>trinken</b> → haben."
+    },
+    {
+     "q": "Sie ___ allein zur Toilette gehen.",
+     "c": [
+      "konnte",
+      "könnte",
+      "kann gegangen"
+     ],
+     "f": "patientin",
+     "phrase": "Sie konnte allein zur Toilette gehen.",
+     "sens": "Elle a pu aller seule aux toilettes.",
+     "n": "Les modaux aussi se disent au Präteritum : sie <b>konnte</b>, sie <b>wollte</b>, sie <b>musste</b>."
+    },
+    {
+     "q": "Der Verband ___ heute um acht Uhr gewechselt.",
+     "c": [
+      "wurde",
+      "war",
+      "hat"
+     ],
+     "f": "verband",
+     "phrase": "Der Verband wurde heute um acht Uhr gewechselt.",
+     "sens": "Le pansement a été changé aujourd'hui à huit heures.",
+     "n": "Le passif au passé : <b>wurde</b> + participe. La relève dit ce qui a été fait, pas forcément qui l'a fait."
+    },
+    {
+     "q": "Um zehn Uhr ___ die Tochter angerufen.",
+     "c": [
+      "hat",
+      "ist",
+      "war"
+     ],
+     "f": "tochter",
+     "phrase": "Um zehn Uhr hat die Tochter angerufen.",
+     "sens": "À dix heures, sa fille a appelé.",
+     "n": "<b>anrufen</b> → <b>haben</b> : hat an<b>ge</b>rufen (le ge entre la particule et le verbe)."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les relatives de la relève",
+   "qs": [
+    {
+     "q": "Die Patientin, ___ Wunde heute verbunden wurde, hat keine Schmerzen.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "verband",
+     "phrase": "Die Patientin, deren Wunde heute verbunden wurde, hat keine Schmerzen.",
+     "sens": "La patiente, dont la plaie a été pansée aujourd'hui, n'a pas mal.",
+     "n": "<b>deren</b> = dont le, dont la…, pour une femme ou un pluriel ; <b>dessen</b> pour un homme ou un neutre."
+    },
+    {
+     "q": "Der Herr, ___ Hüfte operiert wurde, liegt in Zimmer zwölf.",
+     "c": [
+      "dessen",
+      "deren",
+      "der"
+     ],
+     "f": "uebergabeliste",
+     "phrase": "Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.",
+     "sens": "Le monsieur, dont la hanche a été opérée, est dans la chambre douze.",
+     "n": "<b>dessen</b> : pour un homme (der Herr), même si le nom qui suit est féminin (die Hüfte)."
+    },
+    {
+     "q": "Das ist das Trinkprotokoll, ___ du bitte weiterführst.",
+     "c": [
+      "das",
+      "dem",
+      "den"
+     ],
+     "f": "trinkprotokoll",
+     "phrase": "Das ist das Trinkprotokoll, das du bitte weiterführst.",
+     "sens": "Voici la feuille des boissons, que tu continues à remplir, s'il te plaît.",
+     "n": "Le relatif prend le genre du nom (das Protokoll) et le cas de sa fonction : <b>das</b>, complément de weiterführen. Entre collègues : <b>du</b>."
+    },
+    {
+     "q": "Die Tochter, ___ ich vorhin gesprochen habe, kommt um drei wieder.",
+     "c": [
+      "mit der",
+      "mit die",
+      "der"
+     ],
+     "f": "tochter",
+     "phrase": "Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.",
+     "sens": "La fille, à qui j'ai parlé tout à l'heure, revient à trois heures.",
+     "n": "Préposition + relatif : <b>mit der</b> (mit + datif ; die Tochter → <b>der</b>)."
+    },
+    {
+     "q": "Das Kissen, ___ der Fuß liegt, soll so bleiben.",
+     "c": [
+      "auf dem",
+      "auf das",
+      "das"
+     ],
+     "f": "kissen",
+     "phrase": "Das Kissen, auf dem der Fuß liegt, soll so bleiben.",
+     "sens": "Le coussin sur lequel repose le pied doit rester comme ça.",
+     "n": "<b>liegen auf</b> + datif (où ? sans mouvement) : auf <b>dem</b>. Le pied surélevé fait partie de la consigne ⚕️."
+    },
+    {
+     "q": "Alles, ___ du wissen musst, steht in der Akte.",
+     "c": [
+      "was",
+      "das",
+      "dem"
+     ],
+     "f": "tablet",
+     "phrase": "Alles, was du wissen musst, steht in der Akte.",
+     "sens": "Tout ce que tu dois savoir est dans le dossier.",
+     "n": "Après <b>alles</b>, <b>etwas</b>, <b>nichts</b>, le relatif est <b>was</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "La relève dans l'ordre SBAR",
+   "qs": [
+    {
+     "q": "SBAR: Zuerst kommt die ___: wer, wo, was ist jetzt los.",
+     "c": [
+      "Situation",
+      "Empfehlung",
+      "Einschätzung"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Zuerst kommt die Situation: wer, wo, was ist jetzt los.",
+     "sens": "D'abord vient la situation : qui, où, ce qui se passe maintenant.",
+     "n": "<b>S</b> = <b>Situation</b> : qui est la personne, et pourquoi on en parle maintenant."
+    },
+    {
+     "q": "Danach kommt der ___: Diagnose, Vorgeschichte, was schon gemacht wurde.",
+     "c": [
+      "Hintergrund",
+      "Vorschlag",
+      "Befehl"
+     ],
+     "f": "tablet",
+     "phrase": "Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.",
+     "sens": "Ensuite vient le contexte : diagnostic, antécédents, ce qui a déjà été fait.",
+     "n": "<b>B</b> = Background, en allemand <b>Hintergrund</b>."
+    },
+    {
+     "q": "Dann folgt die ___: Wie schätze ich die Lage ein?",
+     "c": [
+      "Einschätzung",
+      "Entlassung",
+      "Einweisung"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Dann folgt die Einschätzung: Wie schätze ich die Lage ein?",
+     "sens": "Puis vient l'évaluation : comment est-ce que je juge la situation ?",
+     "n": "<b>A</b> = Assessment, en allemand <b>Einschätzung</b> (de <b>einschätzen</b>, évaluer)."
+    },
+    {
+     "q": "Zum Schluss die ___: Was soll als Nächstes passieren?",
+     "c": [
+      "Empfehlung",
+      "Entschuldigung",
+      "Erklärung"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Zum Schluss die Empfehlung: Was soll als Nächstes passieren?",
+     "sens": "Pour finir, la recommandation : que doit-il se passer ensuite ?",
+     "n": "<b>R</b> = Recommendation, en allemand <b>Empfehlung</b> : ce que la collègue doit faire."
+    },
+    {
+     "q": "„Die Wunde ist reizlos, sie hat keine Schmerzen.“ Das gehört zur ___.",
+     "c": [
+      "Einschätzung",
+      "Situation",
+      "Empfehlung"
+     ],
+     "f": "verband",
+     "phrase": "Das gehört zur Einschätzung.",
+     "sens": "Cela fait partie de l'évaluation.",
+     "n": "Ce qu'on a observé et ce qu'on en pense : l'<b>Einschätzung</b>. <b>reizlos</b> = sans signe d'inflammation ⚕️."
+    },
+    {
+     "q": "„Bitte kontrolliere den Blutzucker um zwei noch einmal.“ Das gehört zur ___.",
+     "c": [
+      "Empfehlung",
+      "Hintergrund",
+      "Situation"
+     ],
+     "f": "pflegefachmann",
+     "phrase": "Das gehört zur Empfehlung.",
+     "sens": "Cela fait partie de la recommandation.",
+     "n": "Ce qui reste à faire : l'<b>Empfehlung</b>, avec une heure précise ⚕️."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "Jonas fragt: „So, Elif, dann leg mal los. Wer ist neu, wer macht Probleme?“",
+     "c": [
+      "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.",
+     "sens": "Je commence par la chambre 14. Mme Lehmann, 74 ans, admise pour une plaie au pied droit, sur un diabète.",
+     "n": "<b>Une relève a un ordre : qui, pourquoi, ce qui s'est passé, ce qui reste à faire.</b> Commence par la chambre, le nom, l'âge et le motif d'admission. Le reste vient après, s'il compte pour les soins.",
+     "source": "d06-uebergabe/start"
+    },
+    {
+     "q": "Jonas fragt: „Gut. Und der Zucker?“",
+     "c": [
+      "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+      "Der Zucker war ziemlich hoch, aber ich weiß nicht mehr genau, wie hoch.",
+      "Frau Lehmann ist sehr nett, und ihre Tochter kommt jeden Tag."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.",
+     "sens": "Glycémie à 7 h : 180. Elle a eu son insuline selon le schéma. À midi, elle était à 140.",
+     "n": "<b>Une valeur se transmet avec son chiffre et son heure.</b> « Blutzucker um 7 Uhr: 180 ». Si tu ne t'en souviens pas, relis le dossier avant la relève. ⚕️",
+     "source": "d06-uebergabe/zucker",
+     "r": "fieberkurve"
+    },
+    {
+     "q": "Jonas fragt nach Herrn Brandt, Zimmer zwölf: „Gut. Und die Mobilisation?“",
+     "c": [
+      "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+      "Er wollte nicht laufen, er ist halt ein bisschen faul.",
+      "Wenn Sie nicht laufen, werden Sie nie wieder gesund."
+     ],
+     "f": "pflegefachmann",
+     "type": "situation",
+     "phrase": "Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.",
+     "sens": "Mobilisation refusée aujourd'hui, par peur d'une nouvelle chute. C'est noté, et le médecin est au courant.",
+     "n": "<b>Une relève est objective : des faits, pas de jugement.</b> Dis ce qui s'est passé et la raison donnée par le patient : « Mobilisation abgelehnt, wegen Angst vor einem Sturz ».",
+     "source": "d06-uebergabe/mobi"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    15.0,
+    5.0,
+    29.2,
+    31.8
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "boite": [
+    71.0,
+    16.4,
+    29.0,
+    39.4
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boite": [
+    0.0,
+    36.6,
+    10.8,
+    7.0
+   ]
+  },
+  {
+   "id": "vase",
+   "mot": "Vase",
+   "boite": [
+    1.4,
+    42.2,
+    5.8,
+    4.2
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    0.0,
+    44.8,
+    12.6,
+    21.2
+   ]
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Prothesendose",
+   "boite": [
+    4.0,
+    51.0,
+    5.6,
+    2.3
+   ]
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    4.5,
+    54.1,
+    9.4,
+    5.8
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    16.6,
+    54.1,
+    6.2,
+    5.2
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "trinkprotokoll",
+   "mot": "Trinkprotokoll",
+   "boite": [
+    5.8,
+    58.3,
+    31.4,
+    7.5
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "boite": [
+    18.0,
+    59.9,
+    7.4,
+    3.0
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "pulsoximeter",
+   "mot": "Pulsoximeter",
+   "boite": [
+    27.4,
+    63.2,
+    7.2,
+    3.2
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    0.0,
+    54.6,
+    48.8,
+    44.6
+   ]
+  },
+  {
+   "id": "patientin",
+   "mot": "Patientin",
+   "boite": [
+    28.0,
+    37.0,
+    40.6,
+    26.6
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    37.0,
+    39.2,
+    5.6,
+    1.6
+   ]
+  },
+  {
+   "id": "patientenarmband",
+   "mot": "Patientenarmband",
+   "boite": [
+    37.9,
+    48.7,
+    3.4,
+    1.9
+   ]
+  },
+  {
+   "id": "nachthemd",
+   "mot": "Nachthemd",
+   "boite": [
+    28.0,
+    45.4,
+    32.2,
+    15.8
+   ]
+  },
+  {
+   "id": "verband",
+   "mot": "Verband",
+   "boite": [
+    55.0,
+    57.8,
+    13.8,
+    5.8
+   ],
+   "sens_zone": {
+    "fr": "pansement",
+    "en": "bandage",
+    "tr": "sargı",
+    "uk": "повʼязка",
+    "fa": "باند زخم",
+    "ar": "ضمادة",
+    "pt": "curativo, atadura",
+    "pl": "opatrunek, bandaż",
+    "ru": "повязка",
+    "es": "el vendaje"
+   }
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "boite": [
+    44.6,
+    58.8,
+    37.8,
+    7.8
+   ]
+  },
+  {
+   "id": "bettdecke",
+   "mot": "Bettdecke",
+   "boite": [
+    26.0,
+    55.0,
+    30.0,
+    33.0
+   ]
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "boite": [
+    11.8,
+    39.5,
+    79.4,
+    50.9
+   ],
+   "sam": [
+    [
+     48.8,
+     63.6,
+     41.2,
+     27.0
+    ],
+    [
+     11.8,
+     39.5,
+     79.4,
+     50.9
+    ]
+   ]
+  },
+  {
+   "id": "fieberkurve",
+   "mot": "Fieberkurve",
+   "boite": [
+    71.8,
+    67.1,
+    15.8,
+    14.7
+   ]
+  },
+  {
+   "id": "pflegefachfrau",
+   "mot": "Pflegefachfrau",
+   "boite": [
+    52.3,
+    26.3,
+    21.6,
+    28.8
+   ]
+  },
+  {
+   "id": "tablet",
+   "mot": "Tablet",
+   "boite": [
+    55.2,
+    38.1,
+    9.7,
+    4.0
+   ]
+  },
+  {
+   "id": "pflegefachmann",
+   "mot": "Pflegefachmann",
+   "boite": [
+    74.2,
+    20.8,
+    23.2,
+    38.0
+   ]
+  },
+  {
+   "id": "uebergabeliste",
+   "mot": "Übergabeliste",
+   "boite": [
+    77.5,
+    31.9,
+    13.2,
+    10.6
+   ]
+  },
+  {
+   "id": "tochter",
+   "mot": "Tochter",
+   "boite": [
+    77.5,
+    36.4,
+    22.5,
+    26.2
+   ]
+  },
+  {
+   "id": "regenjacke",
+   "mot": "Regenjacke",
+   "boite": [
+    82.4,
+    61.4,
+    17.6,
+    18.8
+   ]
+  }
+ ]
+}

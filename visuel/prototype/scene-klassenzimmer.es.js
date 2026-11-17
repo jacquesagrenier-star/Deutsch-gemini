@@ -606,7 +606,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -717,7 +717,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1336,7 +1336,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1555,7 +1555,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -2217,7 +2217,7 @@ window.SCENE = {
     "B2 | En esta clase se enseña español.": "The passive with <b>se</b>: the verb agrees with what is taught (español, singular) → <b>se enseña</b>.",
     "C1 | Mark y Anna deben de conocerse: se sonríen.": "<b>deber de</b> + infinitive = a deduction: it's almost certain.",
     "C1 | La mujer del vestido habrá llegado tarde.": "The <b>future perfect</b> makes a guess about the past: habrá llegado = she has probably arrived.",
-    "C1 | El profesor tendrá unos cincuenta años.": "The <b>future</b> makes a guess about the present: tendrá = he's probably.",
+    "C1 | El profesor tendrá unos cincuenta años.": "The <b>future</b> makes a guess about the present: tendrá = he probably has.",
     "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "A hypothesis contrary to fact: <b>si</b> + imperfect subjunctive, then the conditional."
    },
    "sens": {

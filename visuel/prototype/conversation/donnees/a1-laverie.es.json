@@ -1,0 +1,69 @@
+{
+ "id": "a1-laverie",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "À la laverie"},
+ "intro": {"fr": "Pas encore de machine à laver chez toi : tu vas à la laverie libre-service du quartier, à Madrid. Un habitué t'explique comment ça marche."},
+ "personnes": ["waschsalon_kunde"],
+ "debut": "ayuda",
+ "noeuds": {
+  "ayuda": {
+   "dit": [
+    {"recit": {"fr": "Une laverie libre-service, avec ton gros sac de linge. Les machines ont l'air compliquées. Un homme plie son linge."}},
+    {"qui": "waschsalon_kunde", "air": "question", "t": "¿Necesita ayuda?", "fr": "Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Sí, por favor. ¿Cómo funciona la lavadora?", "fr": "Oui, s'il vous plaît. Comment fonctionne la machine à laver ?", "va": "detergente",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Es muy fácil. Mire.", "fr": "C'est très facile. Regardez."}]},
+    {"t": "Sí, gracias. Es la primera vez que vengo.", "fr": "Oui, merci. C'est la première fois que je viens.", "va": "detergente",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "No se preocupe, es muy fácil.", "fr": "Ne vous inquiétez pas, c'est très facile."}]},
+    {"faux": true, "t": "Sí, por favor. ¿Cómo funciona la máquina a lavar?", "fr": "Oui, s'il vous plaît. Comment fonctionne la machine à laver ?",
+     "puis": [{"qui": "waschsalon_kunde", "air": "perplexe", "t": "¿La máquina a lavar? Ah, la lavadora.", "fr": "La « machine à laver » ? Ah, la lavadora."}],
+     "aide": {"fr": "La machine à laver se dit <b>la lavadora</b>, en un seul mot. Et le sèche-linge : <b>la secadora</b>."}}
+   ]
+  },
+  "detergente": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "attentive", "t": "Primero: ¿tiene detergente?", "fr": "D'abord : vous avez de la lessive ?"}],
+   "choix": [
+    {"t": "No. ¿Dónde puedo comprar detergente?", "fr": "Non. Où est-ce que je peux acheter de la lessive ?", "va": "temperatura",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "No hace falta: aquí el detergente está incluido.", "fr": "Pas besoin : ici, la lessive est comprise."}]},
+    {"t": "Sí, aquí lo tengo.", "fr": "Oui, je l'ai ici.", "va": "temperatura",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Pues no hace falta: aquí está incluido. ¡Guárdelo para casa!", "fr": "Eh bien, pas besoin : ici, elle est comprise. Gardez-la pour la maison !"}]},
+    {"repete": true, "t": "Perdone, ¿qué es detergente?", "fr": "Pardon, c'est quoi, « detergente » ?", "va": "detergente",
+     "puis": [{"qui": "waschsalon_kunde", "air": "amuse", "t": "Esto: el jabón para la ropa. ¿Lo tiene?", "fr": "Ça : le savon pour le linge. Vous en avez ?"}]}
+   ]
+  },
+  "temperatura": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "question", "t": "¿Qué lava? ¿Ropa blanca o de color?", "fr": "Qu'est-ce que vous lavez ? Du blanc ou de la couleur ?"}],
+   "choix": [
+    {"t": "Ropa de color: camisetas y vaqueros.", "fr": "De la couleur : des t-shirts et des jeans.", "va": "pagar",
+     "puis": [{"qui": "waschsalon_kunde", "air": "attentive", "t": "Entonces, a treinta grados.", "fr": "Alors, à trente degrés."}]},
+    {"t": "Toallas y sábanas blancas.", "fr": "Des serviettes et des draps blancs.", "va": "pagar",
+     "puis": [{"qui": "waschsalon_kunde", "air": "attentive", "t": "Entonces, a sesenta grados.", "fr": "Alors, à soixante degrés."}]}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Ahora pague en esa máquina: cuatro euros. Luego pulse el botón verde. Tarda unos treinta minutos.", "fr": "Maintenant, payez à cette machine : quatre euros. Ensuite, appuyez sur le bouton vert. Ça prend une trentaine de minutes."}],
+   "choix": [
+    {"t": "¿Treinta minutos? ¿Hay un bar por aquí?", "fr": "Trente minutes ? Il y a un café par ici ?", "va": "gracias",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Sí, justo al lado. ¡Ponen un café muy bueno!", "fr": "Oui, juste à côté. Ils font un très bon café !"}]},
+    {"t": "Vale, entonces espero aquí.", "fr": "D'accord, alors j'attends ici.", "va": "gracias",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Yo también. Mi ropa está casi seca.", "fr": "Moi aussi. Mon linge est presque sec."}]}
+   ]
+  },
+  "gracias": {
+   "dit": [
+    {"recit": {"fr": "La machine démarre. Tu te tournes vers l'homme."}},
+    {"qui": "waschsalon_kunde", "air": "sourire", "t": "¿Ve? ¡No es difícil!", "fr": "Vous voyez ? Ce n'est pas difficile !"}
+   ],
+   "choix": [
+    {"t": "Muchas gracias por su ayuda. Es usted muy amable.", "fr": "Merci beaucoup pour votre aide. Vous êtes très aimable.", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "¡De nada! ¡Hasta otro día!", "fr": "De rien ! À un de ces jours !"}]},
+    {"t": "¡Gracias! ¡Que tenga un buen día!", "fr": "Merci ! Bonne journée !", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "¡Igualmente!", "fr": "Vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé comment marche la lavadora, appris que la lessive était comprise, choisi la température et remercié ton voisin."}
+}

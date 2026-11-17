@@ -577,3 +577,38 @@ Raconter au passé (`vacances.html`, `visuel/vacances/vacances.py`, la seule sou
 - **le temps qu'il fait renvoie à la météo sans la refaire** : cinq faits au passé seulement (die Sonne hat geschienen, es war warm,
   es hat geregnet ; hizo sol, llovió), avec les faits vrais et douteux de chaque photo, comme `meteo.py` ;
 - **la réservation se dessine** (la règle des papiers) : une confirmation en HTML, ses chiffres écrits, ses réponses dites en lettres.
+
+## Un thème dessiné et calculé : « L'heure et les dates » (16 nov. 2026)
+
+Décision de Jacques du 16 nov. (« fais [...] le thème de l'heure ») : `visuel/prototype/heure.html`, en allemand, en
+espagnol et en anglais (américain, britannique en variante), A1-A2. **Aucune image générée** : horloges, réveils
+numériques, feuilles de calendrier, mois en grille et agenda sont dessinés en SVG par la page, aux couleurs du jour et
+de la nuit ; aucune personne. La vignette (`heure_reveil()` de `vignettes_themes.py`) : un réveil à deux cloches sur
+deux heures et demie, l'écran « 14:30 », la feuille du 3.
+
+- **Les phrases** ne sont ni écrites ni rangées dans un JSON : elles sortent de `visuel/prototype/heure/dire.js`, une
+  fabrique pure (heure, date ou rendez-vous → phrase) partagée par la page et par le banc. Une sorte marque entre
+  ⟦ ⟧ ce qu'une question peut trouer (am / im / um, le moment, l'ordinal) : `Dire.phrase()` efface les marques,
+  `Dire.trou()` en fait un trou. Les nombres y sont toujours en lettres.
+- **La traduction** de chaque phrase vient de la même fabrique, dans les dix langues d'interface (`Dire.trad`) : le
+  français en lettres (« deux heures et demie » : le piège de « halb drei » se voit), l'anglais et l'allemand
+  d'interface par la fabrique de la langue apprise, le portugais du Brésil, le turc, l'ukrainien, le polonais, le
+  russe, le persan et l'arabe avec l'heure en chiffres et leurs cas (у середу, во вторник, we wtorek, 9.00'da).
+  Points à relire : `retours/A-RELIRE-THEMES-<LG>.md` (lot heure).
+- **Les mots** (39 en allemand, 35 en espagnol, 39 en anglais) viennent du corpus : `python visuel/heure/heure.py`
+  écrit `heure/heure.json` (les mots et leur sens) et s'arrête sur un mot absent. Faute de « cuarto » au corpus
+  espagnol et de « nachmittags » au corpus allemand, ces formes s'enseignent dans les phrases mais la question vise
+  « reloj » ou « Uhrzeit ».
+- **Les sortes** : l'horloge (lecture courante), le réveil (heure officielle), l'heure de la conversation depuis un
+  réveil sur 24 h, l'écoute et la phrase avec trois horloges, vrai ou faux, le moment de la journée, les petits mots,
+  le jour entouré d'un mois, demain / hier / le mois suivant, la feuille du calendrier, l'anniversaire, l'agenda,
+  la durée ; « es / son » en espagnol ; a.m. / p.m. et la lecture numérique (six forty-five) en anglais.
+- **Les leurres** sont des heures qu'on confond (une heure plus tôt : halb zwei pour halb drei, toujours présent en
+  allemand ; le miroir Viertel vor / nach ; les chiffres inversés fünfundvierzig / vierundfünfzig ; a.m. / p.m.) et
+  des formes fausses de date (*der dritten Mai au nominatif, *dreite, *threeth, el tercero de mayo). Un moment n'est
+  demandé qu'aux heures où un seul est juste (jamais 22 h, abends ou nachts) ; « on / at the weekend » ne s'oppose
+  jamais : l'américain et le britannique ont chacun le leur.
+- **Le banc hors navigateur** : `node tests/heure_banc.js` fait dire toutes les heures (0:00-23:55 par cinq minutes,
+  plus h:02 et h:58) dans chaque langue et chaque lecture, toutes les dates de 2027 et le 29 février 2028, l'agenda,
+  et leurs traductions ; il vérifie 107 cas pièges écrits à la main (halb, Viertel vor, es la una, la una menos
+  cuarto à 12 h 45, 12 a.m. / p.m., le 1er, le 31) et écrit `visuel/heure/banc.md`, à relire.

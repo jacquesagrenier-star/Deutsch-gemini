@@ -1,0 +1,113 @@
+{
+ "id": "a2-bagage-perdu",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Ta valise n'est pas arrivée"},
+ "intro": {"fr": "Tu atterris à l'aéroport Logan, à Boston. Ta valise n'est pas sur le tapis. Au comptoir des bagages, tu expliques, tu décris ta valise et tu dis où la livrer."},
+ "personnes": ["gepaeck_agent"],
+ "debut": "welcome",
+ "textes": {
+  "vol_en": {"cle": "vol", "paris": "Paris", "montreal": "Montreal"},
+  "couleur_fr": {"cle": "couleur", "black": "noire", "blue": "bleue"},
+  "lieu_fr": {"cle": "lieu", "hotel": "à ton hôtel", "home": "chez toi"}
+ },
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Tu viens d'atterrir à l'aéroport Logan. Le tapis des bagages s'arrête : ta valise n'est pas là. Tu vas au comptoir des bagages."}},
+    {"qui": "gepaeck_agent", "air": "sourire", "t": "Hi there. How can I help you?", "fr": "Bonjour. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hello. My suitcase didn't arrive.", "fr": "Bonjour. Ma valise n'est pas arrivée.", "va": "flight",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "I'm sorry about that. Let's find it.", "fr": "J'en suis désolé. Nous allons la retrouver."}]},
+    {"t": "Hi. I can't find my suitcase. I think it's lost.", "fr": "Bonjour. Je ne trouve pas ma valise. Je crois qu'elle est perdue.", "va": "flight",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Don't worry. Most bags come back in a day.", "fr": "Ne vous inquiétez pas. La plupart des bagages reviennent en une journée."}]},
+    {"faux": true, "t": "Hello. My suitcase is not arrived.", "fr": "Bonjour. Ma valise « est » pas arrivée (avec « is »).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Sorry? Ah, your suitcase didn't arrive.", "fr": "Pardon ? Ah, votre valise n'est pas arrivée."}],
+     "aide": {"fr": "<b>Au passé, l'anglais n'emploie jamais « être » comme auxiliaire.</b> « Elle n'est pas arrivée » se dit « It didn't arrive », pas « It is not arrived »."}}
+   ]
+  },
+  "flight": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Where did you fly in from?", "fr": "D'où arrivez-vous ?"}],
+   "choix": [
+    {"t": "From Paris. I arrived twenty minutes ago.", "fr": "De Paris. Je suis arrivé(e) il y a vingt minutes.", "pose": {"vol": "paris"}, "va": "tag",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "The evening flight from Paris. OK.", "fr": "Le vol du soir en provenance de Paris. D'accord."}]},
+    {"t": "I came from Montreal this evening.", "fr": "Je suis arrivé(e) de Montréal ce soir.", "pose": {"vol": "montreal"}, "va": "tag",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "The evening flight from Montreal. OK.", "fr": "Le vol du soir en provenance de Montréal. D'accord."}]},
+    {"faux": true, "t": "I arrived from Paris there is twenty minutes.", "fr": "Je suis arrivé(e) de Paris « il y a » vingt minutes (mot à mot).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "There is … twenty minutes? Oh, twenty minutes ago!", "fr": "« There is »… vingt minutes ? Ah, il y a vingt minutes !"}],
+     "aide": {"fr": "<b>« il y a » + une durée se dit « … ago », placé après.</b> « il y a vingt minutes » → « twenty minutes ago ». « There is » sert seulement à dire qu'une chose existe."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "flight",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Sure. Your flight. Which city did it come from?", "fr": "Bien sûr. Votre vol. De quelle ville venait-il ?"}]}
+   ]
+  },
+  "tag": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Do you have your baggage tag? It's a small sticker, usually on your boarding pass.", "fr": "Vous avez votre ticket de bagage ? C'est un petit autocollant, en général sur votre carte d'embarquement."}],
+   "choix": [
+    {"t": "Yes, here it is, on my boarding pass.", "fr": "Oui, le voici, sur ma carte d'embarquement.", "va": "describe",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Perfect, thanks.", "fr": "Parfait, merci."}]},
+    {"t": "I'm not sure. Is it this sticker?", "fr": "Je ne suis pas sûr(e). C'est cet autocollant ?", "va": "describe",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Yes, that's the one. Thanks.", "fr": "Oui, c'est bien ça. Merci."}]},
+    {"faux": true, "t": "Yes, here is the ticket of my baggage.", "fr": "Oui, voici le « ticket de mon bagage » (mot à mot).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Your plane ticket? No, I need the baggage tag. Oh, that's it, thanks!", "fr": "Votre billet d'avion ? Non, il me faut le ticket de bagage. Ah, c'est ça, merci !"}],
+     "aide": {"fr": "<b>« le ticket de bagage » se dit « baggage tag » : deux noms collés, sans « of ».</b> Et « ticket » fait penser au billet d'avion. Dis : « Here is my baggage tag »."}}
+   ]
+  },
+  "describe": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Now, what does your suitcase look like?", "fr": "Et maintenant, à quoi ressemble votre valise ?"}],
+   "choix": [
+    {"t": "It's a big black suitcase with wheels.", "fr": "C'est une grande valise noire à roulettes.", "pose": {"couleur": "black"}, "va": "inside",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Big, black, with wheels. OK.", "fr": "Grande, noire, à roulettes. D'accord."}]},
+    {"t": "It's blue and very big, with my name on it.", "fr": "Elle est bleue et très grande, avec mon nom dessus.", "pose": {"couleur": "blue"}, "va": "inside",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Blue, very big, with a name tag. OK.", "fr": "Bleue, très grande, avec une étiquette à votre nom. D'accord."}]},
+    {"faux": true, "t": "It's a suitcase black and big.", "fr": "C'est une valise noire et grande (dans l'ordre du français).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "A suitcase black …? OK, a big black suitcase.", "fr": "Une « suitcase black »… ? D'accord, une grande valise noire."}],
+     "aide": {"fr": "<b>En anglais, les adjectifs se placent avant le nom, la taille avant la couleur.</b> « une grande valise noire » → « a big black suitcase »."}}
+   ]
+  },
+  "inside": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Is there anything important inside? Medicine, keys?", "fr": "Y a-t-il quelque chose d'important à l'intérieur ? Des médicaments, des clés ?"}],
+   "choix": [
+    {"t": "No, only clothes and shoes.", "fr": "Non, seulement des vêtements et des chaussures.", "va": "address",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Good. That makes it easier.", "fr": "Bien. C'est plus simple comme ça."}]},
+    {"t": "Yes, my medicine is in the suitcase.", "fr": "Oui, mes médicaments sont dans la valise.", "va": "medicine"},
+    {"faux": true, "t": "No, nothing of important. Only clothes.", "fr": "Non, « rien d'important » (mot à mot). Seulement des vêtements.",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Nothing of …? Oh, nothing important. OK, good.", "fr": "« Nothing of »… ? Ah, rien d'important. D'accord, très bien."}],
+     "aide": {"fr": "<b>Après « nothing », « something », « anything », l'adjectif suit directement, sans « of ».</b> « rien d'important » → « nothing important »."}}
+   ]
+  },
+  "medicine": {
+   "dit": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Oh. Do you need it tonight?", "fr": "Ah. Vous en avez besoin ce soir ?"}],
+   "choix": [
+    {"t": "No, I have enough for two days in my bag.", "fr": "Non, j'en ai assez pour deux jours dans mon sac.", "va": "address",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Good. You should have your suitcase before then.", "fr": "Bien. Vous devriez avoir votre valise d'ici là."}]},
+    {"t": "Yes, I take it every morning.", "fr": "Oui, j'en prends tous les matins.", "va": "address",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "OK, I'll write \"urgent\" on the form. And there's a pharmacy here in the terminal.", "fr": "D'accord, j'écris « urgent » sur le formulaire. Et il y a une pharmacie ici, dans le terminal."}]}
+   ]
+  },
+  "address": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Where should we deliver it? I already have your cell number from your ticket.", "t_gb": "Where should we deliver it? I already have your mobile number from your ticket.", "fr": "Où devons-nous la livrer ? J'ai déjà votre numéro de portable grâce à votre billet."}],
+   "choix": [
+    {"t": "To my hotel, please. It's the Harbor Inn, on State Street.", "fr": "À mon hôtel, s'il vous plaît. C'est le Harbor Inn, dans State Street.", "pose": {"lieu": "hotel"}, "va": "when",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "The Harbor Inn, downtown. Got it.", "t_gb": "The Harbor Inn, in the city centre. Got it.", "fr": "Le Harbor Inn, au centre-ville. C'est noté."}]},
+    {"t": "To my apartment, please: twelve Elm Street, in Somerville.", "t_gb": "To my flat, please: twelve Elm Street, in Somerville.", "fr": "À mon appartement, s'il vous plaît : douze, Elm Street, à Somerville.", "pose": {"lieu": "home"}, "va": "when",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Twelve Elm Street, Somerville. Got it.", "fr": "Douze, Elm Street, Somerville. C'est noté."}]}
+   ]
+  },
+  "when": {
+   "dit": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Your suitcase will probably come on the next flight from {vol_en}. We'll deliver it tomorrow, before noon.", "fr": "Votre valise arrivera sans doute par le prochain vol de {vol_en}. Nous la livrerons demain, avant midi."}],
+   "choix": [
+    {"t": "Thank you. Can I buy a toothbrush and some clothes? Do you pay for that?", "fr": "Merci. Je peux acheter une brosse à dents et quelques vêtements ? Vous les remboursez ?", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Yes, up to a hundred dollars. Just keep your receipts. Have a good night!", "fr": "Oui, jusqu'à cent dollars. Gardez bien vos tickets de caisse. Bonne soirée !"}]},
+    {"t": "OK, thanks. And who pays if I need to buy things tonight?", "fr": "D'accord, merci. Et qui paie si je dois acheter des affaires ce soir ?", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "We do, up to a hundred dollars. Just keep your receipts. Have a good night!", "fr": "C'est nous, jusqu'à cent dollars. Gardez bien vos tickets de caisse. Bonne soirée !"}]},
+    {"faux": true, "t": "Thank you. Do you pay if I buy some affairs tonight?", "fr": "Merci. Vous payez si j'achète des « affaires » ce soir ?",
+     "puis": [{"qui": "gepaeck_agent", "air": "amuse", "t": "Affairs? Oh, you mean things: a toothbrush, clothes?", "fr": "Des « affairs » ? Ah, vous voulez dire des affaires : une brosse à dents, des vêtements ?"}],
+     "aide": {"fr": "<b>« des affaires » (des objets) se dit « things ».</b> En anglais, « an affair » est une liaison amoureuse ou une affaire publique. Dis : « if I buy some things »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as déclaré la perte de ta valise {couleur_fr} à l'aéroport Logan. Elle sera livrée demain {lieu_fr}, et tu sais qu'il faut garder les tickets de caisse pour être remboursé(e)."}
+}

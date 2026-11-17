@@ -1,0 +1,356 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d04-ablehnung.json",
+ "cles": {
+  "titre": {
+   "fr": "Quand le patient refuse",
+   "de": "Die Ablehnung",
+   "en": "When the patient refuses"
+  },
+  "intro": {
+   "fr": "Onze heures et demie. Selon le plan, {brandt} doit faire quelques pas avec le déambulateur. Il refuse. Tu joues {elif} : écoute sa raison, explique l'intérêt sans faire peur, propose un compromis, respecte sa décision, puis documente et informe.",
+   "en": "Half past eleven. According to the care plan, {brandt} is supposed to take a few steps with the walker. He refuses. You play {elif}: listen to his reason, explain the benefit without scaring him, suggest a compromise, respect his decision, then document it and pass it on."
+  },
+  "but": {
+   "fr": "Écouter un refus, en demander la raison, argumenter sans menacer (wenn … dann), proposer (Wie wäre es, wenn …?), respecter l'autonomie du patient, documenter et informer.",
+   "en": "Listen to a refusal and ask the reason for it; give arguments without threatening (wenn … dann); make a suggestion (Wie wäre es, wenn …?); respect the patient's autonomy; document and inform."
+  },
+  "relire_notes": {
+   "fr": "Autonomie du patient : aucun moyen de contrainte ; risques de l'immobilité (thrombose, pneumonie, perte musculaire, escarre) formulés justement ; compromis proposé (s'asseoir au bord du lit) ; qui informer (médecin, kinésithérapie) ; changement de position pour prévenir l'escarre.",
+   "en": "Patient autonomy: no coercion of any kind; risks of immobility (thrombosis, pneumonia, muscle loss, pressure ulcer) stated accurately; compromise offered (sitting on the edge of the bed); who to inform (doctor, physiotherapy); repositioning to prevent pressure ulcers."
+  },
+  "redemittel.0": {
+   "fr": "Je comprends que vous n'ayez pas envie aujourd'hui.",
+   "de": "Ich verstehe, dass Sie heute keine Lust haben.",
+   "en": "I understand that you don't feel like it today."
+  },
+  "redemittel.1": {
+   "fr": "Puis-je vous demander pourquoi ?",
+   "de": "Darf ich fragen, warum?",
+   "en": "May I ask why?"
+  },
+  "redemittel.2": {
+   "fr": "Si vous restez longtemps couché, le risque de thrombose augmente.",
+   "de": "Wenn Sie lange liegen bleiben, steigt das Risiko für eine Thrombose.",
+   "en": "If you stay in bed for a long time, the risk of thrombosis goes up."
+  },
+  "redemittel.3": {
+   "fr": "Et si, aujourd'hui, on s'asseyait seulement au bord du lit ?",
+   "de": "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen?",
+   "en": "How about we just sit on the edge of the bed today?"
+  },
+  "redemittel.4": {
+   "fr": "C'est votre décision.",
+   "de": "Das ist Ihre Entscheidung.",
+   "en": "It's your decision."
+  },
+  "redemittel.5": {
+   "fr": "J'informe le médecin et je le note.",
+   "de": "Ich informiere die Ärztin und schreibe es auf.",
+   "en": "I'll let the doctor know and write it down."
+  },
+  "redemittel.6": {
+   "fr": "Je peux vous redemander demain matin ?",
+   "de": "Darf ich Sie morgen früh noch einmal fragen?",
+   "en": "May I ask you again tomorrow morning?"
+  },
+  "noeuds.angebot.dit.0.recit": {
+   "fr": "Onze heures et demie. {elif} approche le déambulateur du lit de {brandt}.",
+   "en": "Half past eleven. {elif} moves the walker up to {brandt}'s bed."
+  },
+  "noeuds.angebot.choix.0": {
+   "fr": "{brandt:voc}, c'est l'heure de notre petite promenade avec le déambulateur. Vous êtes prêt ?",
+   "de": "{brandt}, jetzt ist Zeit für unseren kleinen Spaziergang mit dem Rollator. Sind Sie bereit?",
+   "en": "{brandt:voc}, it's time for our little walk with the walker. Are you ready?"
+  },
+  "noeuds.angebot.choix.0.puis.0": {
+   "fr": "Non. Pas aujourd'hui. Laissez-moi tranquille.",
+   "de": "Nein. Heute nicht. Lassen Sie mich in Ruhe.",
+   "en": "No. Not today. Leave me alone."
+  },
+  "noeuds.angebot.choix.1": {
+   "fr": "Comme prévu, je voudrais faire quelques pas avec vous maintenant. On y va ?",
+   "de": "Wie besprochen möchte ich jetzt mit Ihnen ein paar Schritte gehen. Wollen wir?",
+   "en": "As we planned, I'd like to take a few steps with you now. Shall we?"
+  },
+  "noeuds.angebot.choix.1.puis.0": {
+   "fr": "Non. Pas aujourd'hui. Laissez-moi tranquille.",
+   "de": "Nein. Heute nicht. Lassen Sie mich in Ruhe.",
+   "en": "No. Not today. Leave me alone."
+  },
+  "noeuds.angebot.choix.2": {
+   "fr": "Levez-vous maintenant. Il faut marcher.",
+   "de": "Stehen Sie jetzt auf. Wir müssen laufen.",
+   "en": "Get up now. We have to walk."
+  },
+  "noeuds.angebot.choix.2.puis.0": {
+   "fr": "On ne doit rien du tout. Je reste couché.",
+   "de": "Wir müssen gar nichts. Ich bleib liegen.",
+   "en": "We don't have to do anything. I'm staying in bed."
+  },
+  "noeuds.angebot.choix.2.aide": {
+   "fr": "<b>Un ordre appelle un refus.</b> Propose, sous forme de question : « Wollen wir? », « Sind Sie bereit? ». Le patient garde le choix, et il le sent.",
+   "en": "<b>An order invites a refusal.</b> Make a suggestion, as a question: “Wollen wir?”, “Sind Sie bereit?”. The patient keeps the choice, and he can feel it."
+  },
+  "noeuds.verstehen.choix.0": {
+   "fr": "Je comprends que vous n'ayez pas envie aujourd'hui. Puis-je vous demander pourquoi ?",
+   "de": "Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?",
+   "en": "I understand that you don't feel like it today. May I ask why?"
+  },
+  "noeuds.verstehen.choix.0.puis.0": {
+   "fr": "Je suis fatigué, et la hanche me fait mal. Et pour être honnête, j'ai peur de retomber.",
+   "de": "Ich bin müde, und die Hüfte tut weh. Und ehrlich gesagt hab ich Angst, dass ich wieder hinfalle.",
+   "en": "I'm tired, and my hip hurts. And to be honest, I'm afraid I'll fall again."
+  },
+  "noeuds.verstehen.choix.1": {
+   "fr": "C'est d'accord, je ne vous force à rien. Qu'est-ce qui se passe aujourd'hui ?",
+   "de": "Das ist in Ordnung, ich zwinge Sie zu nichts. Was ist denn heute los?",
+   "en": "That's all right, I'm not forcing you to do anything. What's the matter today?"
+  },
+  "noeuds.verstehen.choix.1.puis.0": {
+   "fr": "Je suis fatigué, et la hanche me fait mal. Et pour être honnête, j'ai peur de retomber.",
+   "de": "Ich bin müde, und die Hüfte tut weh. Und ehrlich gesagt hab ich Angst, dass ich wieder hinfalle.",
+   "en": "I'm tired, and my hip hurts. And to be honest, I'm afraid I'll fall again."
+  },
+  "noeuds.verstehen.choix.2": {
+   "fr": "Mais c'est important ! Vous devez le faire.",
+   "de": "Aber das ist doch wichtig! Sie müssen das machen.",
+   "en": "But it's important! You have to do it."
+  },
+  "noeuds.verstehen.choix.2.puis.0": {
+   "fr": "Je ne dois rien du tout. J'ai quatre-vingt-deux ans !",
+   "de": "Ich muss gar nichts. Ich bin zweiundachtzig!",
+   "en": "I don't have to do anything. I'm eighty-two!"
+  },
+  "noeuds.verstehen.choix.2.aide": {
+   "fr": "<b>D'abord écouter, ensuite expliquer.</b> Demande la raison du refus : « Darf ich fragen, warum? ». Sans la raison, tu ne peux pas trouver de solution.",
+   "en": "<b>Listen first, explain afterwards.</b> Ask the reason for the refusal: “Darf ich fragen, warum?”. Without the reason, you can't find a solution."
+  },
+  "noeuds.angst.choix.0": {
+   "fr": "Je le comprends très bien. Après une chute, beaucoup de gens ont peur. Je reste tout le temps à côté de vous.",
+   "de": "Das kann ich gut verstehen. Nach einem Sturz haben viele Menschen Angst. Ich bin die ganze Zeit neben Ihnen.",
+   "en": "I can really understand that. After a fall, a lot of people are afraid. I'll be right next to you the whole time."
+  },
+  "noeuds.angst.choix.0.puis.0": {
+   "fr": "Hum. Et pourquoi c'est si important, cette histoire de marcher ?",
+   "de": "Hm. Und warum ist das eigentlich so wichtig mit dem Laufen?",
+   "en": "Hmm. And why is all this walking so important, anyway?"
+  },
+  "noeuds.angst.choix.1": {
+   "fr": "Avoir peur après une chute, c'est tout à fait normal. Je vous tiens, et le déambulateur vous sécurise.",
+   "de": "Angst nach einem Sturz ist ganz normal. Ich halte Sie, und der Rollator gibt Ihnen Sicherheit.",
+   "en": "Being afraid after a fall is completely normal. I'll hold you, and the walker will keep you steady."
+  },
+  "noeuds.angst.choix.1.puis.0": {
+   "fr": "Hum. Et pourquoi c'est si important, cette histoire de marcher ?",
+   "de": "Hm. Und warum ist das eigentlich so wichtig mit dem Laufen?",
+   "en": "Hmm. And why is all this walking so important, anyway?"
+  },
+  "noeuds.erklaeren.choix.0": {
+   "fr": "Si vous restez longtemps couché, les muscles s'affaiblissent, et le risque de thrombose ou de pneumonie augmente.",
+   "de": "Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.",
+   "en": "If you stay in bed for a long time, your muscles get weak, and the risk of thrombosis or pneumonia goes up."
+  },
+  "noeuds.erklaeren.choix.0.puis.0": {
+   "fr": "Une thrombose… mon frère en a eu une. Mais aujourd'hui, je n'y arriverai pas, vraiment pas.",
+   "de": "Thrombose … das hatte mein Bruder. Aber heute schaff ich das nicht, wirklich nicht.",
+   "en": "Thrombosis… my brother had that. But today I can't manage it, I really can't."
+  },
+  "noeuds.erklaeren.choix.1": {
+   "fr": "Chaque pas renforce vos muscles. Si vous restez beaucoup couché, le risque de complications augmente, par exemple de thrombose.",
+   "de": "Jeder Schritt macht Ihre Muskeln stärker. Wenn Sie viel liegen, steigt das Risiko für Komplikationen, zum Beispiel für eine Thrombose.",
+   "en": "Every step makes your muscles stronger. If you lie in bed a lot, the risk of complications goes up, thrombosis, for example."
+  },
+  "noeuds.erklaeren.choix.1.puis.0": {
+   "fr": "Une thrombose… mon frère en a eu une. Mais aujourd'hui, je n'y arriverai pas, vraiment pas.",
+   "de": "Thrombose … das hatte mein Bruder. Aber heute schaff ich das nicht, wirklich nicht.",
+   "en": "Thrombosis… my brother had that. But today I can't manage it, I really can't."
+  },
+  "noeuds.erklaeren.choix.2": {
+   "fr": "Si vous ne marchez pas, vous ne guérirez jamais.",
+   "de": "Wenn Sie nicht laufen, werden Sie nie wieder gesund.",
+   "en": "If you don't walk, you'll never get better."
+  },
+  "noeuds.erklaeren.choix.2.puis.0": {
+   "fr": "Jamais ? Eh bien, vous savez remonter le moral.",
+   "de": "Nie wieder? Na, Sie machen einem ja Mut.",
+   "en": "Never? Well, you really know how to cheer a person up."
+  },
+  "noeuds.erklaeren.choix.2.aide": {
+   "fr": "<b>Pas de menace ni d'exagération : un risque, dit avec des faits.</b> « Wenn Sie lange liegen bleiben, steigt das Risiko für … ». La peur ne motive pas, elle bloque.",
+   "en": "<b>No threats and no exaggeration: state a risk, with facts.</b> “Wenn Sie lange liegen bleiben, steigt das Risiko für …”. Fear doesn't motivate, it blocks."
+  },
+  "noeuds.kompromiss.choix.0": {
+   "fr": "Et si, aujourd'hui, on s'asseyait seulement au bord du lit ? Juste quelques minutes.",
+   "de": "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.",
+   "en": "How about we just sit on the edge of the bed today? Just for a few minutes."
+  },
+  "noeuds.kompromiss.choix.0.puis.0": {
+   "fr": "Hum… Non. J'ai réfléchi. Aujourd'hui, je reste couché, un point c'est tout.",
+   "de": "Hm … Nein. Ich hab's mir überlegt. Heute bleib ich liegen, basta.",
+   "en": "Hmm… No. I've thought it over. Today I'm staying in bed, and that's that."
+  },
+  "noeuds.kompromiss.choix.1": {
+   "fr": "Que diriez-vous d'essayer d'abord seulement jusqu'à la chaise près de la fenêtre ?",
+   "de": "Was halten Sie davon, wenn wir es erst mal nur bis zum Stuhl am Fenster versuchen?",
+   "en": "What would you say to trying just as far as the chair by the window, to begin with?"
+  },
+  "noeuds.kompromiss.choix.1.puis.0": {
+   "fr": "Hum… Non. J'ai réfléchi. Aujourd'hui, je reste couché, un point c'est tout.",
+   "de": "Hm … Nein. Ich hab's mir überlegt. Heute bleib ich liegen, basta.",
+   "en": "Hmm… No. I've thought it over. Today I'm staying in bed, and that's that."
+  },
+  "noeuds.kompromiss.choix.2": {
+   "fr": "« Comment c'est », si on s'assoit au bord du lit ? (mal dit)",
+   "de": "Wie ist es, wenn wir uns an die Bettkante setzen?",
+   "en": "“How is it” if we sit on the edge of the bed? (said wrong)"
+  },
+  "noeuds.kompromiss.choix.2.puis.0": {
+   "fr": "Comment c'est ? C'est inconfortable !",
+   "de": "Wie es ist? Unbequem ist es!",
+   "en": "How is it? Uncomfortable, that's how it is!"
+  },
+  "noeuds.kompromiss.choix.2.aide": {
+   "fr": "<b>Pour proposer, le Konjunktiv II : « Wie wäre es, wenn …? »</b> « Wie ist es » demande comment est une chose, ce n'est pas une proposition. Autre tournure : « Was halten Sie davon, wenn …? »",
+   "en": "<b>To make a suggestion, use the Konjunktiv II: “Wie wäre es, wenn …?”</b> “Wie ist es” asks what something is like; it isn't a suggestion. Another way to say it: “Was halten Sie davon, wenn …?”"
+  },
+  "noeuds.entscheidung.choix.0": {
+   "fr": "D'accord, c'est votre décision. J'informe {sommer} et la kinésithérapie, et je le note.",
+   "de": "Gut, das ist Ihre Entscheidung. Ich informiere {sommer} und die Physiotherapie und schreibe es auf.",
+   "en": "All right, it's your decision. I'll let {sommer} and physiotherapy know, and I'll write it down."
+  },
+  "noeuds.entscheidung.choix.0.puis.0": {
+   "fr": "Et maintenant, vous m'en voulez ?",
+   "de": "Und jetzt sind Sie sauer auf mich?",
+   "en": "And now you're upset with me?"
+  },
+  "noeuds.entscheidung.choix.1": {
+   "fr": "D'accord, je le respecte. Je le note dans le dossier et je préviens {sommer}.",
+   "de": "In Ordnung, ich respektiere das. Ich dokumentiere es und sage {sommer} Bescheid.",
+   "en": "All right, I respect that. I'll document it and let {sommer} know."
+  },
+  "noeuds.entscheidung.choix.1.puis.0": {
+   "fr": "Et maintenant, vous m'en voulez ?",
+   "de": "Und jetzt sind Sie sauer auf mich?",
+   "en": "And now you're upset with me?"
+  },
+  "noeuds.entscheidung.choix.2": {
+   "fr": "Non, ce n'est pas possible. Je vais chercher {jonas}, et vous allez vous lever.",
+   "de": "Nein, das geht nicht. Ich hole jetzt {jonas}, und dann stehen Sie auf.",
+   "en": "No, that's not possible. I'm going to get {jonas}, and then you'll get up."
+  },
+  "noeuds.entscheidung.choix.2.puis.0": {
+   "fr": "Quoi ? Vous voulez me forcer ?",
+   "de": "Was? Wollen Sie mich etwa zwingen?",
+   "en": "What? Are you trying to force me?"
+  },
+  "noeuds.entscheidung.choix.2.aide": {
+   "fr": "<b>Un patient capable de décider a le droit de refuser un soin.</b> On ne le force pas : on respecte, on documente (« Ich dokumentiere es ») et on informe le médecin. On peut reproposer plus tard.",
+   "en": "<b>A patient who has decision-making capacity has the right to refuse care.</b> You don't force him: you respect it, you document it (“Ich dokumentiere es”) and you inform the doctor. You can offer again later."
+  },
+  "noeuds.sauer.choix.0": {
+   "fr": "Non, pas du tout. Ça ira peut-être mieux demain. Je peux vous redemander demain matin ?",
+   "de": "Nein, überhaupt nicht. Vielleicht geht es morgen besser. Darf ich Sie morgen früh noch einmal fragen?",
+   "en": "No, not at all. Maybe it'll go better tomorrow. May I ask you again tomorrow morning?"
+  },
+  "noeuds.sauer.choix.0.puis.0": {
+   "fr": "Demain matin… bon, d'accord. Demander ne coûte rien.",
+   "de": "Morgen früh … na gut. Fragen kostet nichts.",
+   "en": "Tomorrow morning… oh, all right. There's no harm in asking."
+  },
+  "noeuds.sauer.choix.1": {
+   "fr": "Pas du tout. C'est vous qui décidez. Si vous changez d'avis, sonnez, tout simplement.",
+   "de": "Gar nicht. Sie entscheiden. Wenn Sie es sich anders überlegen, klingeln Sie einfach.",
+   "en": "Not at all. It's your choice. If you change your mind, just ring."
+  },
+  "noeuds.sauer.choix.1.puis.0": {
+   "fr": "Vous êtes quelqu'un de bien, {elif}.",
+   "de": "Sie sind eine Gute, {elif}.",
+   "en": "You're a good one, {elif}."
+  },
+  "noeuds.lagern.dit.0.recit": {
+   "fr": "Avant de partir, {elif} remarque qu'il est couché sur le dos depuis le matin.",
+   "en": "Before leaving, {elif} notices that he has been lying on his back since the morning."
+  },
+  "noeuds.lagern.choix.0": {
+   "fr": "Je peux au moins vous tourner un peu sur le côté ? Comme ça, vous n'êtes pas toujours couché au même endroit.",
+   "de": "Darf ich Sie wenigstens ein bisschen auf die Seite drehen? Dann liegen Sie nicht immer auf derselben Stelle.",
+   "en": "May I at least turn you onto your side a little? That way you're not always lying on the same spot."
+  },
+  "noeuds.lagern.choix.0.puis.0": {
+   "fr": "Bon, d'accord. Mais doucement.",
+   "de": "Na gut. Aber vorsichtig.",
+   "en": "Oh, all right. But gently."
+  },
+  "noeuds.lagern.choix.1": {
+   "fr": "Voulez-vous que je vous aide à changer de position ? C'est bon pour la peau.",
+   "de": "Soll ich Ihnen helfen, anders zu liegen? Das ist gut für die Haut.",
+   "en": "Would you like me to help you change your position? It's good for your skin."
+  },
+  "noeuds.lagern.choix.1.puis.0": {
+   "fr": "Bon, d'accord. Mais doucement.",
+   "de": "Na gut. Aber vorsichtig.",
+   "en": "Oh, all right. But gently."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {brandt} ne veut-il pas marcher aujourd'hui ?",
+   "de": "Warum möchte {brandt} heute nicht laufen?",
+   "en": "Why doesn't {brandt} want to walk today?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Il est fatigué, il a mal et il a peur de tomber.",
+   "de": "Er ist müde, hat Schmerzen und Angst vor einem Sturz.",
+   "en": "He's tired, he's in pain and he's afraid of falling."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Il préfère regarder la télévision.",
+   "de": "Er möchte lieber fernsehen.",
+   "en": "He'd rather watch TV."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Il attend son frère.",
+   "de": "Er wartet auf seinen Bruder.",
+   "en": "He's waiting for his brother."
+  },
+  "ecouter.1.q": {
+   "fr": "Qui a déjà eu une thrombose ?",
+   "de": "Wer hatte schon einmal eine Thrombose?",
+   "en": "Who has had a thrombosis before?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Sa femme.",
+   "de": "Seine Frau.",
+   "en": "His wife."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Lui-même.",
+   "de": "Er selbst.",
+   "en": "He himself."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Son frère.",
+   "de": "Sein Bruder.",
+   "en": "His brother."
+  },
+  "ecouter.2.q": {
+   "fr": "Que fait {elif} quand {brandt} dit non pour de bon ?",
+   "de": "Was macht {elif}, als {brandt} endgültig Nein sagt?",
+   "en": "What does {elif} do when {brandt} finally says no?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Elle va chercher un collègue, et il doit se lever.",
+   "de": "Sie holt einen Kollegen, und er muss aufstehen.",
+   "en": "She gets a colleague, and he has to get up."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Elle le respecte, le note et informe le médecin.",
+   "de": "Sie respektiert es, dokumentiert es und informiert die Ärztin.",
+   "en": "She respects it, documents it and informs the doctor."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Elle ne dit rien et s'en va.",
+   "de": "Sie sagt nichts und geht.",
+   "en": "She says nothing and leaves."
+  }
+ }
+}

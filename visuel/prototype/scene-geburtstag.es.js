@@ -370,7 +370,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -1402,7 +1402,7 @@ window.SCENE = {
     "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "بعد حرف جرّ مركّب: <b>la cual</b>، بمطابقة la tarta.",
     "B2 | Las velas van a ser apagadas por Mark.": "مبني للمجهول للفعل مع الفاعل (<b>por Mark</b>): <b>ser</b> + اسم المفعول بالمطابقة (apagad<b>as</b>).",
     "B2 | El regalo rojo está bien envuelto.": "<b>envolver</b> ← اسم مفعول شاذّ <b>envuelto</b>.",
-    "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>، وإن كانت الصديقة مؤنثاً.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>، وإن كانت الصديقة مؤنثة.",
     "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | La fiesta durará hasta medianoche.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",

@@ -1,0 +1,62 @@
+{
+ "id": "a1-parc",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "Sur un banc, au Boston Common"},
+ "intro": {"fr": "Un après-midi au Boston Common, le grand parc du centre-ville. Un promeneur te demande l'heure, puis parle du temps qu'il fait."},
+ "personnes": ["park_spaziergaenger"],
+ "debut": "time",
+ "noeuds": {
+  "time": {
+   "dit": [
+    {"recit": {"fr": "Un après-midi de printemps sur le Boston Common. Tu es assis(e) sur un banc ; ton téléphone indique 14 h 30. Un homme s'approche."}},
+    {"qui": "park_spaziergaenger", "air": "attentive", "t": "Excuse me, do you know what time it is?", "fr": "Excusez-moi, vous savez quelle heure il est ?"}
+   ],
+   "choix": [
+    {"t": "Yes, it's two thirty.", "t_gb": "Yes, it's half past two.", "fr": "Oui, il est deux heures et demie.", "va": "weather",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Thanks!", "fr": "Merci !"}]},
+    {"t": "Sure, it's two thirty.", "t_gb": "Sure, it's half past two.", "fr": "Bien sûr, il est deux heures et demie.", "va": "weather",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Thank you!", "fr": "Merci !"}]},
+    {"faux": true, "t": "Yes, it's two hours and a half.", "fr": "Oui, il est deux heures et demie.",
+     "puis": [{"qui": "park_spaziergaenger", "air": "perplexe", "t": "Two hours and a half…? Oh, it's two thirty!", "fr": "Deux heures et demie… de quoi ? Ah, il est deux heures et demie !"}],
+     "aide": {"fr": "L'heure ne se dit pas avec « hours » : <b>it's two thirty</b> (ou <b>half past two</b>). « Two hours and a half », c'est une durée : deux heures et demie de route, par exemple."}}
+   ]
+  },
+  "weather": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Beautiful day, isn't it?", "fr": "Belle journée, n'est-ce pas ?"}],
+   "choix": [
+    {"t": "Yes, it's sunny and warm.", "fr": "Oui, il y a du soleil et il fait chaud.", "va": "tomorrow"},
+    {"t": "Yes, but it's a little cold.", "t_gb": "Yes, but it's a bit cold.", "fr": "Oui, mais il fait un peu froid.", "va": "tomorrow",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "True, the wind is still cold.", "fr": "C'est vrai, le vent est encore froid."}]},
+    {"repete": true, "t": "Sorry?", "fr": "Pardon ?", "va": "weather",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "The weather! It's really nice today.", "fr": "Le temps ! Il fait vraiment beau aujourd'hui."}]}
+   ]
+  },
+  "tomorrow": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "They say it's going to rain all day tomorrow.", "fr": "Il paraît qu'il va pleuvoir toute la journée demain."}],
+   "choix": [
+    {"t": "Oh no! Then I'll stay home.", "t_gb": "Oh no! Then I'll stay at home.", "fr": "Oh non ! Alors je reste à la maison.", "va": "around"},
+    {"t": "That's okay. I have an umbrella.", "t_gb": "That's okay. I've got an umbrella.", "fr": "Ce n'est pas grave. J'ai un parapluie.", "va": "around",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Good thinking!", "fr": "Bonne idée !"}]}
+   ]
+  },
+  "around": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "Do you live around here?", "fr": "Vous habitez dans le coin ?"}],
+   "choix": [
+    {"t": "Yes, I live near the Common.", "fr": "Oui, j'habite près du Common.", "va": "bye",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Me too! I walk my dog here every day.", "fr": "Moi aussi ! Je promène mon chien ici tous les jours."}]},
+    {"t": "Yes, but I'm new in Boston.", "fr": "Oui, mais je suis nouveau (nouvelle) à Boston.", "va": "bye",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Welcome! This is the best park in the city.", "fr": "Bienvenue ! C'est le plus beau parc de la ville."}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Well, I have to go. Enjoy the sunshine!", "fr": "Bon, je dois y aller. Profitez du soleil !"}],
+   "choix": [
+    {"t": "Thanks, you too! Goodbye!", "fr": "Merci, vous aussi ! Au revoir !", "va": null},
+    {"t": "Thank you! Have a nice day!", "fr": "Merci ! Bonne journée !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné l'heure (two thirty !), parlé du soleil et de la pluie de demain, et dit au revoir poliment."}
+}

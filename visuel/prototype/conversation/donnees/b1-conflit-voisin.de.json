@@ -1,0 +1,144 @@
+{
+ "id": "b1-conflit-voisin",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "La voisine du dessous n'est pas contente"},
+ "intro": {"fr": "Dimanche matin, la voisine du dessous sonne chez toi : l'eau de ton balcon coule sur son linge. Tu t'excuses, tu proposes une solution, et vous réglez aussi l'histoire de la machine à laver."},
+ "personnes": ["nachbarin_unten"],
+ "debut": "klingeln",
+ "textes": {
+  "geste_fr": {"cle": "geste", "reinigung": "de payer le nettoyage du chemisier", "kaffee": "un café et un gâteau pour faire la paix"},
+  "loesung_fr": {"cle": "loesung", "untersetzer": "des soucoupes sous tes pots", "abends": "d'arroser le soir"},
+  "komp_fr": {"cle": "komp", "samstag": "tu laves le samedi, en journée", "neun": "la machine a fini à neuf heures du soir au plus tard"}
+ },
+ "noeuds": {
+  "klingeln": {
+   "dit": [
+    {"recit": {"fr": "Dimanche matin, dix heures. On sonne. Tu ouvres : c'est ta voisine du dessous, les bras croisés."}},
+    {"qui": "nachbarin_unten", "air": "perplexe", "t": "Guten Morgen. Entschuldigen Sie die Störung, aber so geht das nicht weiter. Von Ihrem Balkon tropft Wasser auf meinen, direkt auf meine Wäsche!", "fr": "Bonjour. Excusez-moi de vous déranger, mais ça ne peut plus continuer comme ça. De l'eau coule de votre balcon sur le mien, en plein sur mon linge !"}
+   ],
+   "choix": [
+    {"t": "Oh, das tut mir wirklich leid! Das habe ich gar nicht gemerkt.", "fr": "Oh, je suis vraiment désolé(e) ! Je ne m'en suis pas du tout rendu compte.", "va": "erklaeren",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Meine weiße Bluse hat jetzt braune Flecken. Von der Erde in Ihren Blumentöpfen, nehme ich an.", "fr": "Mon chemisier blanc a maintenant des taches brunes. La terre de vos pots de fleurs, je suppose."}]},
+    {"t": "Entschuldigung, das wusste ich nicht. Was ist denn genau passiert?", "fr": "Excusez-moi, je ne le savais pas. Qu'est-ce qui s'est passé exactement ?", "va": "erklaeren",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Meine weiße Bluse hing draußen zum Trocknen. Jetzt hat sie braune Flecken, von der Erde in Ihren Blumentöpfen.", "fr": "Mon chemisier blanc séchait dehors. Maintenant il a des taches brunes, à cause de la terre de vos pots de fleurs."}]},
+    {"faux": true, "t": "Ich bin entschuldigt, das wusste ich nicht.", "fr": "Je suis excusé(e), je ne le savais pas.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Entschuldigt? Na, das entscheide ja wohl ich!", "fr": "Excusé(e) ? Ça, c'est quand même à moi d'en décider !"}],
+     "aide": {"fr": "<b>« Je suis désolé(e) » se dit « Es tut mir leid »</b> ou « Entschuldigung ». « Ich bin entschuldigt » veut dire « on m'a excusé(e) »."}}
+   ]
+  },
+  "erklaeren": {
+   "dit": [{"qui": "nachbarin_unten", "air": "question", "t": "Was machen Sie denn da oben jeden Morgen mit so viel Wasser?", "fr": "Mais qu'est-ce que vous faites là-haut tous les matins avec autant d'eau ?"}],
+   "choix": [
+    {"t": "Ich gieße morgens meine Pflanzen. Ich wusste nicht, dass das Wasser nach unten läuft.", "fr": "J'arrose mes plantes le matin. Je ne savais pas que l'eau coulait en bas.", "va": "bluse",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Leider ja. Der Balkon hat ein kleines Loch im Boden, da läuft alles durch.", "fr": "Hélas si. Le balcon a un petit trou dans le sol, tout passe par là."}]},
+    {"t": "Heute habe ich den Balkon geputzt. Ich habe nicht daran gedacht, dass bei Ihnen Wäsche hängt.", "fr": "Aujourd'hui, j'ai nettoyé le balcon. Je n'ai pas pensé que du linge séchait chez vous.", "va": "bluse",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Am Sonntagmorgen hängt bei mir immer Wäsche. Und Ihr Balkon hat ein Loch im Boden, da läuft alles durch.", "fr": "Le dimanche matin, il y a toujours du linge chez moi. Et votre balcon a un trou dans le sol, tout passe par là."}]},
+    {"faux": true, "t": "Ich gieße meine Pflanzen. Ich wusste nicht, dass das Wasser läuft nach unten.", "fr": "J'arrose mes plantes. Je ne savais pas que l'eau coule en bas.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "… dass es nach unten läuft, meinen Sie. Ja, leider läuft es nach unten!", "fr": "… qu'elle coule en bas, vous voulez dire. Oui, hélas, elle coule en bas !"}],
+     "aide": {"fr": "<b>Après « dass », le verbe va à la fin</b> : « …, dass das Wasser nach unten läuft »."}}
+   ]
+  },
+  "bluse": {
+   "dit": [{"qui": "nachbarin_unten", "air": "question", "t": "Und was machen wir jetzt mit meiner Bluse? Die war nicht billig.", "fr": "Et qu'est-ce qu'on fait maintenant pour mon chemisier ? Il n'était pas donné."}],
+   "choix": [
+    {"t": "Ich bezahle natürlich die Reinigung. Geben Sie mir einfach die Rechnung.", "fr": "Je paie le pressing, bien sûr. Donnez-moi simplement la facture.", "pose": {"geste": "reinigung"}, "va": "reinigung"},
+    {"t": "Darf ich Sie als Entschuldigung zu Kaffee und Kuchen einladen?", "fr": "Est-ce que je peux vous inviter à prendre un café et un gâteau pour m'excuser ?", "pose": {"geste": "kaffee"}, "va": "kaffee"},
+    {"faux": true, "t": "Das ist nicht schlimm, es ist nur Wasser.", "fr": "Ce n'est pas grave, ce n'est que de l'eau.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Nicht schlimm? Für Sie vielleicht, es ist ja nicht Ihre Bluse!", "fr": "Pas grave ? Pour vous peut-être, ce n'est pas votre chemisier !"}],
+     "aide": {"fr": "<b>« Das ist nicht schlimm », c'est à elle de le dire</b>, pas à toi. Propose plutôt quelque chose : « Ich bezahle die Reinigung » ou « Darf ich Sie einladen? »."}}
+   ]
+  },
+  "reinigung": {
+   "dit": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Das ist anständig von Ihnen. Die Reinigung an der Ecke nimmt ungefähr 8 Euro. Aber wie verhindern wir, dass das wieder passiert?", "dit": "Das ist anständig von Ihnen. Die Reinigung an der Ecke nimmt ungefähr acht Euro. Aber wie verhindern wir, dass das wieder passiert?", "fr": "C'est correct de votre part. Le pressing du coin prend environ 8 euros. Mais comment éviter que ça recommence ?"}],
+   "choix": [
+    {"t": "Ich stelle Untersetzer unter alle Töpfe. Dann tropft nichts mehr.", "fr": "Je mets des soucoupes sous tous les pots. Comme ça, plus rien ne gouttera.", "pose": {"loesung": "untersetzer"}, "va": "maschine",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Untersetzer, ja, das ist vernünftig.", "fr": "Des soucoupes, oui, c'est raisonnable."}]},
+    {"t": "Ich könnte abends gießen, wenn Ihre Wäsche nicht mehr draußen hängt.", "fr": "Je pourrais arroser le soir, quand votre linge n'est plus dehors.", "pose": {"loesung": "abends"}, "va": "maschine",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Abends, ja, das geht. Da ist meine Wäsche längst im Schrank.", "fr": "Le soir, oui, ça va. Mon linge est rangé depuis longtemps à cette heure-là."}]},
+    {"faux": true, "t": "Ich aufpasse in Zukunft besser.", "fr": "Je fais plus attention à l'avenir.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Sie passen besser auf? Schön, aber wie genau?", "fr": "Vous ferez plus attention ? Très bien, mais comment au juste ?"}],
+     "aide": {"fr": "<b>« aufpassen » est un verbe séparable</b> : « Ich passe in Zukunft besser auf ». Et dis-lui ce que tu vas faire, concrètement."}}
+   ]
+  },
+  "kaffee": {
+   "dit": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Kaffee und Kuchen? Na, da sage ich nicht Nein. Die Bluse wasche ich einfach noch einmal. Aber wie verhindern wir, dass das wieder passiert?", "fr": "Un café et un gâteau ? Ma foi, je ne dis pas non. Le chemisier, je le relaverai, tout simplement. Mais comment éviter que ça recommence ?"}],
+   "choix": [
+    {"t": "Ich kaufe morgen Untersetzer für alle Töpfe. Dann tropft nichts mehr.", "fr": "J'achète demain des soucoupes pour tous les pots. Comme ça, plus rien ne gouttera.", "pose": {"loesung": "untersetzer"}, "va": "maschine",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Untersetzer, ja, das ist vernünftig.", "fr": "Des soucoupes, oui, c'est raisonnable."}]},
+    {"t": "Ich könnte abends gießen, wenn Ihre Wäsche nicht mehr draußen hängt.", "fr": "Je pourrais arroser le soir, quand votre linge n'est plus dehors.", "pose": {"loesung": "abends"}, "va": "maschine",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Abends, ja, das geht. Da ist meine Wäsche längst im Schrank.", "fr": "Le soir, oui, ça va. Mon linge est rangé depuis longtemps à cette heure-là."}]},
+    {"faux": true, "t": "Ich werde Achtung machen.", "fr": "Je vais faire attention.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Achtung machen? Sie meinen, Sie passen auf? Schön, aber wie genau?", "fr": "« Faire attention » ? Vous voulez dire que vous ferez attention ? Très bien, mais comment au juste ?"}],
+     "aide": {"fr": "<b>« Faire attention » se dit « aufpassen »</b> : « Ich passe auf ». « Achtung! » est seulement un cri d'avertissement."}}
+   ]
+  },
+  "maschine": {
+   "dit": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Und wenn ich schon einmal hier bin: Ihre Waschmaschine läuft oft noch nach 22 Uhr. Mein Schlafzimmer liegt direkt darunter, ich kann dann nicht schlafen.", "dit": "Und wenn ich schon einmal hier bin: Ihre Waschmaschine läuft oft noch nach zweiundzwanzig Uhr. Mein Schlafzimmer liegt direkt darunter, ich kann dann nicht schlafen.", "fr": "Et puisque je suis là : votre machine à laver tourne souvent encore après 22 heures. Ma chambre est juste en dessous, je n'arrive pas à dormir."}],
+   "choix": [
+    {"t": "Das tut mir leid. Ich arbeite oft bis spät und wasche erst, wenn ich nach Hause komme.", "fr": "Je suis désolé(e). Je travaille souvent tard et je ne lave qu'en rentrant à la maison.", "va": "ruhezeit"},
+    {"t": "Oh, das wusste ich nicht. Ich komme meistens erst um neun von der Arbeit.", "fr": "Oh, je ne le savais pas. Je rentre du travail le plus souvent à neuf heures seulement.", "va": "ruhezeit"},
+    {"repete": true, "t": "Entschuldigung, könnten Sie das bitte noch einmal sagen?", "fr": "Excusez-moi, vous pourriez répéter, s'il vous plaît ?", "va": "maschine",
+     "puis": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Ihre Waschmaschine. Sie läuft spät am Abend, und das ist sehr laut bei mir im Schlafzimmer.", "fr": "Votre machine à laver. Elle tourne tard le soir, et ça fait beaucoup de bruit dans ma chambre."}]},
+    {"faux": true, "t": "Ich arbeite spät, also ich wasche in der Nacht.", "fr": "Je travaille tard, donc je lave la nuit.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Also waschen Sie nachts, ja, das höre ich!", "fr": "Donc vous lavez la nuit, oui, je l'entends bien !"}],
+     "aide": {"fr": "<b>Après « also », le verbe vient avant le sujet</b> : « …, also wasche ich abends ». Et commence par un mot d'excuse : « Das tut mir leid »."}}
+   ]
+  },
+  "ruhezeit": {
+   "dit": [{"qui": "nachbarin_unten", "air": "attentive", "t": "Das verstehe ich ja. Aber in der Hausordnung steht: Ab 22 Uhr ist Nachtruhe. Können wir da eine Lösung finden?", "dit": "Das verstehe ich ja. Aber in der Hausordnung steht: Ab zweiundzwanzig Uhr ist Nachtruhe. Können wir da eine Lösung finden?", "fr": "Je comprends bien. Mais le règlement de l'immeuble le dit : à partir de 22 heures, c'est le repos nocturne. Est-ce qu'on peut trouver une solution ?"}],
+   "choix": [
+    {"t": "Sie haben recht. Ab jetzt wasche ich nur noch am Wochenende, tagsüber.", "fr": "Vous avez raison. À partir de maintenant, je ne lave plus que le week-end, en journée.", "va": "sonntag"},
+    {"t": "Wäre es in Ordnung, wenn die Maschine spätestens um neun Uhr abends fertig ist?", "fr": "Est-ce que ça irait si la machine avait fini à neuf heures du soir au plus tard ?", "pose": {"komp": "neun"}, "va": "abmachung"},
+    {"faux": true, "t": "Ich bin einverstanden mit Sie, ich wasche früher.", "fr": "Je suis d'accord avec vous, je lave plus tôt.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Mit mir, meinen Sie? Schön. Und was heißt „früher“?", "fr": "Avec moi, vous voulez dire ? Bien. Et « plus tôt », ça veut dire quoi ?"}],
+     "aide": {"fr": "<b>« mit » demande le datif</b> : « mit Ihnen », pas « mit Sie ». Et propose une heure ou un jour précis."}}
+   ]
+  },
+  "sonntag": {
+   "dit": [{"qui": "nachbarin_unten", "air": "surprise", "t": "Am Wochenende? Aber bitte nicht am Sonntag! Sonntags ist den ganzen Tag Ruhezeit.", "fr": "Le week-end ? Mais pas le dimanche, s'il vous plaît ! Le dimanche, c'est repos toute la journée."}],
+   "choix": [
+    {"t": "Stimmt, das hatte ich vergessen. Dann wasche ich immer samstags.", "fr": "C'est vrai, je l'avais oublié. Alors je laverai toujours le samedi.", "pose": {"komp": "samstag"}, "va": "ende",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Samstags ist wunderbar. Da bin ich sowieso beim Sport.", "fr": "Le samedi, c'est parfait. De toute façon, je suis au sport."}]},
+    {"t": "Natürlich. Ich wasche am Samstagvormittag, das verspreche ich Ihnen.", "fr": "Bien sûr. Je laverai le samedi matin, je vous le promets.", "pose": {"komp": "samstag"}, "va": "ende",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Samstagvormittag ist wunderbar. Da bin ich sowieso beim Sport.", "fr": "Le samedi matin, c'est parfait. De toute façon, je suis au sport."}]},
+    {"faux": true, "t": "Aber am Sonntag bin ich frei, ich wasche in Sonntag.", "fr": "Mais le dimanche je suis libre, je lave « en » dimanche.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Am Sonntag? Nein, nein, das geht in Deutschland wirklich nicht!", "fr": "Le dimanche ? Non, non, en Allemagne ça ne se fait vraiment pas !"}],
+     "aide": {"fr": "<b>Avec un jour : « am Sonntag »</b>, jamais « in Sonntag ». Et en Allemagne, le dimanche est un jour de repos : pas de machine, pas de perceuse."}}
+   ]
+  },
+  "abmachung": {
+   "dit": [{"qui": "nachbarin_unten", "air": "question", "t": "Neun Uhr … ja, damit kann ich leben. Aber wie schaffen Sie das, wenn Sie so spät nach Hause kommen?", "fr": "Neuf heures… oui, je peux m'en accommoder. Mais comment allez-vous faire, si vous rentrez si tard ?"}],
+   "choix": [
+    {"t": "Ich stelle die Maschine morgens an, bevor ich zur Arbeit gehe.", "fr": "Je mets la machine en route le matin, avant d'aller au travail.", "va": "ende",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Morgens stört mich das überhaupt nicht. Da bin ich selbst schon im Büro.", "fr": "Le matin, ça ne me dérange pas du tout. Je suis déjà au bureau moi-même."}]},
+    {"t": "Die Maschine kann später starten. Ich stelle sie so ein, dass sie am Nachmittag läuft.", "fr": "La machine peut démarrer plus tard. Je la règle pour qu'elle tourne l'après-midi.", "va": "ende",
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Ach, das geht? Praktisch. Nachmittags stört mich das überhaupt nicht.", "fr": "Ah, c'est possible ? Pratique. L'après-midi, ça ne me dérange pas du tout."}]},
+    {"faux": true, "t": "Ich mache die Maschine am Morgen, bevor ich gehe zur Arbeit.", "fr": "Je fais la machine le matin, avant que je vais au travail.",
+     "puis": [{"qui": "nachbarin_unten", "air": "perplexe", "t": "Bevor Sie zur Arbeit gehen, ja? Gut, morgens stört es mich nicht.", "fr": "Avant d'aller au travail, c'est ça ? Bon, le matin, ça ne me dérange pas."}],
+     "aide": {"fr": "<b>Après « bevor », le verbe va à la fin</b> : « …, bevor ich zur Arbeit gehe ». Et on dit « die Maschine anstellen » (la mettre en route)."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "nachbarin_unten", "air": "sourire", "t": "Na sehen Sie, man muss nur miteinander reden. Ein Tipp noch: Wenn Sie einmal feiern, hängen Sie vorher einen Zettel ins Treppenhaus. Dann ist niemand böse.", "fr": "Vous voyez, il suffit de se parler. Encore un conseil : si vous faites une fête un jour, accrochez d'abord un mot dans la cage d'escalier. Comme ça, personne ne vous en voudra."},
+    {"qui": "nachbarin_unten", "air": "question", "si": {"geste": "kaffee"}, "t": "Und wann gibt es nun den Kuchen?", "fr": "Et ce gâteau, alors, c'est pour quand ?"}
+   ],
+   "choix": [
+    {"si": {"geste": "kaffee"}, "t": "Kommen Sie doch heute Nachmittag um vier, wenn Sie Zeit haben!", "fr": "Venez donc cet après-midi à quatre heures, si vous avez le temps !", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Um vier, sehr gern. Ich bringe die Sahne mit!", "fr": "À quatre heures, avec grand plaisir. J'apporte la crème fouettée !"}]},
+    {"si": {"geste": "kaffee"}, "t": "Danke für den Tipp! Passt es Ihnen morgen Nachmittag?", "fr": "Merci pour le conseil ! Demain après-midi, ça vous irait ?", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Morgen passt wunderbar. Schönen Sonntag noch!", "fr": "Demain, c'est parfait. Bon dimanche !"}]},
+    {"si": {"geste": "reinigung"}, "t": "Danke für den Tipp! Das Geld für die Reinigung bringe ich Ihnen morgen vorbei.", "fr": "Merci pour le conseil ! Je vous apporte demain l'argent du pressing.", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Das hat keine Eile. Schönen Sonntag noch!", "fr": "Ça ne presse pas. Bon dimanche !"}]},
+    {"si": {"geste": "reinigung"}, "t": "Das mache ich. Und noch einmal Entschuldigung wegen der Bluse!", "fr": "Je le ferai. Et encore pardon pour le chemisier !", "va": null,
+     "puis": [{"qui": "nachbarin_unten", "air": "sourire", "t": "Schon vergessen. Schönen Sonntag noch!", "fr": "C'est déjà oublié. Bon dimanche !"}]},
+    {"faux": true, "t": "Danke! Und du kannst immer bei mir klingeln.", "fr": "Merci ! Et tu peux toujours sonner chez moi.",
+     "puis": [{"qui": "nachbarin_unten", "air": "surprise", "t": "Oh, wir duzen uns schon? Das ging aber schnell!", "fr": "Oh, on se tutoie déjà ? Ça a été rapide !"}],
+     "aide": {"fr": "<b>À une voisine qu'on connaît à peine, on dit « Sie »</b> tant que personne n'a proposé le « du » : « Sie können immer bei mir klingeln »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as présenté tes excuses et proposé {geste_fr}, puis {loesung_fr}. Pour la machine à laver, vous avez trouvé un compromis : {komp_fr}."}
+}

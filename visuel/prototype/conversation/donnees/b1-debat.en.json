@@ -1,0 +1,136 @@
+{
+ "id": "b1-debat",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "Donner son avis : un smartphone à l'école primaire ?"},
+ "intro": {"fr": "Au cours d'anglais, l'enseignante vous donne un sujet à discuter à deux, comme à l'oral d'un examen : faut-il un smartphone aux enfants de l'école primaire ? Tu en parles avec ta camarade ; entre vous, le ton est familier."},
+ "personnes": ["b11_camarade"],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "L'enseignante distribue une carte à chaque table. Ta camarade la lit à voix haute et se tourne vers toi."}},
+    {"qui": "b11_camarade", "air": "question", "t": "Okay, here's ours: “Should elementary school kids have a smartphone?” Hmm. What do you think?", "t_gb": "Okay, here's ours: “Should primary school children have a smartphone?” Hmm. What do you think?", "fr": "Bon, voici le nôtre : « Les enfants de l'école primaire devraient-ils avoir un smartphone ? » Hmm. Qu'est-ce que tu en penses ?"}
+   ],
+   "choix": [
+    {"t": "I think it's a good idea. Parents can reach their kids at any time.", "fr": "Je trouve que c'est une bonne idée. Les parents peuvent joindre leurs enfants à tout moment.", "pose": {"avis": "pour"}, "va": "pour"},
+    {"t": "I don't think so. Kids that age are too young for a smartphone.", "fr": "Je ne crois pas. À cet âge, les enfants sont trop jeunes pour un smartphone.", "pose": {"avis": "contre"}, "va": "contre"},
+    {"t": "It depends. A simple phone, yes, but not a smartphone.", "fr": "Ça dépend. Un téléphone simple, oui, mais pas un smartphone.", "pose": {"avis": "depend"}, "va": "depend"},
+    {"faux": true, "t": "According to me, it's a bad idea.", "fr": "Selon moi, c'est une mauvaise idée.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "“According to me”? You sound like a newspaper! Just say what you think.", "fr": "« According to me » ? On dirait un journal ! Dis simplement ce que tu penses."}],
+     "aide": {"fr": "<b>« according to »</b> s'emploie pour l'avis des autres (according to the teacher), jamais pour le sien. Dis plutôt : « In my opinion, it's a bad idea. » ou « I don't think so. »"}}
+   ]
+  },
+  "pour": {
+   "dit": [{"qui": "b11_camarade", "air": "perplexe", "t": "Really? I'm not so sure. My nephew is nine, and he's on his tablet all day. With a phone, it would be even worse.", "fr": "Vraiment ? Je n'en suis pas si sûre. Mon neveu a neuf ans, et il passe ses journées sur sa tablette. Avec un téléphone, ce serait encore pire."}],
+   "choix": [
+    {"t": "That's true, but parents can set limits, like one hour a day.", "fr": "C'est vrai, mais les parents peuvent fixer des limites, par exemple une heure par jour.", "va": "country"},
+    {"t": "Maybe, but a phone also helps kids feel safe on the way to school.", "fr": "Peut-être, mais un téléphone aide aussi les enfants à se sentir en sécurité sur le chemin de l'école.", "va": "country"},
+    {"faux": true, "t": "I am not agree with you.", "fr": "Je ne suis pas d'accord avec toi.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "You “are not agree”? Careful, the teacher is listening! You don't agree — okay, but why?", "fr": "Tu « are not agree » ? Attention, l'enseignante écoute ! Tu n'es pas d'accord : bon, mais pourquoi ?"}],
+     "aide": {"fr": "<b>agree</b> est déjà un verbe : pas de « be » devant. On dit « I agree » et « I don't agree ». Et ajoute un argument : « I don't agree. Parents can set limits. »"}}
+   ]
+  },
+  "contre": {
+   "dit": [{"qui": "b11_camarade", "air": "perplexe", "t": "Hmm, but all their friends have one. Don't you think a kid without a phone feels left out?", "fr": "Hmm, mais tous leurs amis en ont un. Tu ne crois pas qu'un enfant sans téléphone se sent mis à l'écart ?"}],
+   "choix": [
+    {"t": "Maybe, but they can play together at school, without screens.", "fr": "Peut-être, mais ils peuvent jouer ensemble à l'école, sans écran.", "va": "country"},
+    {"t": "I see your point, but kids need to play outside, not look at a screen.", "fr": "Je comprends ce que tu veux dire, mais les enfants ont besoin de jouer dehors, pas de regarder un écran.", "va": "country"},
+    {"faux": true, "t": "Yes, but the childs must play outside.", "fr": "Oui, mais les enfants doivent jouer dehors.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "The “childs”? We did that one last week! Children.", "fr": "Les « childs » ? On a vu ça la semaine dernière ! « Children »."}],
+     "aide": {"fr": "Le pluriel de « child » est irrégulier : <b>children</b>. Et pour parler des enfants en général, pas d'article. Dis plutôt : « Yes, but children need to play outside. »"}}
+   ]
+  },
+  "depend": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "Okay. What does it depend on, for you?", "fr": "D'accord. Ça dépend de quoi, pour toi ?"}],
+   "choix": [
+    {"t": "On the age, and on what the child does with it.", "fr": "De l'âge, et de ce que l'enfant en fait.", "va": "country"},
+    {"t": "It depends on the parents. Some set rules, and some don't.", "fr": "Ça dépend des parents. Certains fixent des règles, d'autres non.", "va": "country"},
+    {"faux": true, "t": "It depends of the age.", "fr": "Ça dépend de l'âge.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Depends “of”? Oh, that's the French talking! It depends on the age.", "fr": "Depends « of » ? Ah, c'est le français qui parle ! « It depends on the age. »"}],
+     "aide": {"fr": "On dit toujours <b>depend on</b>, jamais « depend of ». Dis plutôt : « It depends on the age. »"}}
+   ]
+  },
+  "country": {
+   "dit": [{"qui": "b11_camarade", "air": "sourire", "t": "Good point. How is it in your country? Do kids there have phones?", "fr": "Bien vu. Et dans ton pays, c'est comment ? Les enfants ont des téléphones ?"}],
+   "choix": [
+    {"t": "Yes, most kids get one around eleven, when they start middle school.", "t_gb": "Yes, most kids get one around eleven, when they start secondary school.", "fr": "Oui, la plupart des enfants en reçoivent un vers onze ans, à l'entrée au collège.", "va": "first"},
+    {"t": "It's changing. In many schools, phones aren't allowed anymore.", "t_gb": "It's changing. In many schools, phones aren't allowed any more.", "fr": "Ça change. Dans beaucoup d'écoles, les téléphones ne sont plus autorisés.", "va": "first"},
+    {"faux": true, "t": "In my country, the most of children have a phone.", "fr": "Dans mon pays, la plupart des enfants ont un téléphone.",
+     "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "“The most of”? Hmm, I think it's just “most children.”", "fr": "« The most of » ? Hmm, je crois qu'on dit simplement « most children »."}],
+     "aide": {"fr": "<b>« la plupart des »</b> se dit <b>most</b> + nom, sans « the » ni « of ». Dis plutôt : « In my country, most children have a phone. »"}}
+   ]
+  },
+  "first": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "Interesting! And you — when did you get your first phone?", "fr": "Intéressant ! Et toi, tu as eu ton premier téléphone quand ?"}],
+   "choix": [
+    {"t": "I got my first phone when I was fifteen. It was very simple.", "fr": "J'ai eu mon premier téléphone à quinze ans. Il était très simple.", "va": "age",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Fifteen! Kids today would never believe that.", "fr": "Quinze ans ! Les enfants d'aujourd'hui ne le croiraient jamais."}]},
+    {"t": "Quite late! I was sixteen, and I only used it to call my parents.", "fr": "Assez tard ! J'avais seize ans, et je ne m'en servais que pour appeler mes parents.", "va": "age",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Same here. And we survived!", "fr": "Pareil pour moi. Et on a survécu !"}]},
+    {"faux": true, "t": "I have had my first phone at fifteen years.", "fr": "J'ai eu mon premier téléphone à quinze ans.",
+     "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "“I have had … at fifteen years”? That sounds strange. When you were fifteen?", "fr": "« I have had… at fifteen years » ? Ça sonne bizarre. Quand tu avais quinze ans ?"}],
+     "aide": {"fr": "Pour un moment précis du passé, on prend le prétérit, et l'âge se dit avec « when I was » : « I got my first phone when I was fifteen. »"}}
+   ]
+  },
+  "age": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "So what's the right age for a smartphone, in your opinion?", "fr": "Alors, c'est quoi, le bon âge pour un smartphone, à ton avis ?"}],
+   "choix": [
+    {"si": {"avis": "pour"}, "t": "I'd say nine or ten, if the parents set clear rules.", "fr": "Je dirais neuf ou dix ans, si les parents fixent des règles claires.", "va": "disagree"},
+    {"si": {"avis": "contre"}, "t": "I'd say twelve. At that age, kids start going out on their own.", "fr": "Je dirais douze ans. À cet âge, les enfants commencent à sortir seuls.", "va": "disagree"},
+    {"si": {"avis": "depend"}, "t": "A simple phone at ten, and a smartphone a few years later.", "fr": "Un téléphone simple à dix ans, et un smartphone quelques années plus tard.", "va": "disagree"},
+    {"t": "Honestly, it depends more on the child than on the age.", "fr": "Franchement, ça dépend plus de l'enfant que de l'âge.", "va": "disagree"},
+    {"faux": true, "t": "From twelve years.", "fr": "À partir de douze ans.",
+     "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "From twelve years … ago? Oh, from the age of twelve!", "fr": "Depuis douze ans… ? Ah, à partir de douze ans !"}],
+     "aide": {"fr": "<b>« à partir de douze ans »</b> se dit <b>from the age of twelve</b>, ou plus simplement « at twelve ». Dis plutôt : « I'd say twelve. »"}}
+   ]
+  },
+  "disagree": {
+   "dit": [
+    {"si": {"avis": "pour"}, "qui": "b11_camarade", "air": "perplexe", "t": "Hmm, I'm not sure I agree. A smartphone means the internet, too. I wouldn't want my nephew alone with that, even at ten.", "fr": "Hmm, je ne suis pas sûre d'être d'accord. Un smartphone, c'est aussi internet. Je ne voudrais pas que mon neveu soit seul avec ça, même à dix ans."},
+    {"si": {"avis": "contre"}, "qui": "b11_camarade", "air": "perplexe", "t": "Hmm, I'm not sure I agree. What about a kid who walks home alone? I'd want him to have a phone, even at eight.", "fr": "Hmm, je ne suis pas sûre d'être d'accord. Et un enfant qui rentre seul à pied ? Moi, je voudrais qu'il ait un téléphone, même à huit ans."},
+    {"si": {"avis": "depend"}, "qui": "b11_camarade", "air": "perplexe", "t": "Hmm, I'm not sure I agree. What about a kid who walks home alone? I'd want him to have a phone, even at eight.", "fr": "Hmm, je ne suis pas sûre d'être d'accord. Et un enfant qui rentre seul à pied ? Moi, je voudrais qu'il ait un téléphone, même à huit ans."}
+   ],
+   "choix": [
+    {"t": "That's a good point. I hadn't thought about that.", "fr": "C'est un bon argument. Je n'y avais pas pensé.", "va": "summary",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "See? We're not so far apart after all.", "fr": "Tu vois ? On n'est pas si loin l'une de l'autre, finalement."}]},
+    {"t": "I see what you mean, but I haven't changed my mind.", "fr": "Je vois ce que tu veux dire, mais je n'ai pas changé d'avis.", "va": "hold"},
+    {"faux": true, "t": "You have reason, I didn't think about that.", "fr": "Tu as raison, je n'y avais pas pensé.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "I have a reason? I have lots of reasons! Oh — you mean I'm right.", "fr": "J'ai une raison ? J'en ai plein ! Ah, tu veux dire que j'ai raison."}],
+     "aide": {"fr": "<b>« avoir raison »</b> se dit <b>be right</b>. Dis plutôt : « You're right. I hadn't thought about that. »"}}
+   ]
+  },
+  "hold": {
+   "dit": [
+    {"si": {"avis": "pour"}, "qui": "b11_camarade", "air": "amuse", "t": "Okay, okay! But you agree that parents need to set rules, right?", "fr": "D'accord, d'accord ! Mais tu es d'accord que les parents doivent fixer des règles, non ?"},
+    {"si": {"avis": "contre"}, "qui": "b11_camarade", "air": "amuse", "t": "Okay, okay! But you agree that a kid needs a way to call home, right?", "fr": "D'accord, d'accord ! Mais tu es d'accord qu'un enfant a besoin d'un moyen d'appeler à la maison, non ?"},
+    {"si": {"avis": "depend"}, "qui": "b11_camarade", "air": "amuse", "t": "Okay, okay! But you agree that a kid needs a way to call home, right?", "fr": "D'accord, d'accord ! Mais tu es d'accord qu'un enfant a besoin d'un moyen d'appeler à la maison, non ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I agree with you on that.", "fr": "Oui, là-dessus, je suis d'accord avec toi.", "va": "summary"},
+    {"t": "Of course. Nobody could say no to that.", "fr": "Bien sûr. Personne ne pourrait dire non à ça.", "va": "summary"},
+    {"faux": true, "t": "Yes, on this point we are the same opinion.", "fr": "Oui, sur ce point, on est du même avis.",
+     "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "We “are” the same opinion? I think we have the same opinion. Or just: we agree!", "fr": "On « are » le même avis ? Je crois qu'on a le même avis. Ou simplement : on est d'accord !"}],
+     "aide": {"fr": "<b>« être du même avis »</b> se dit <b>have the same opinion</b> ou, plus simplement, <b>agree</b>. Dis plutôt : « Yes, I agree with you on that. »"}}
+   ]
+  },
+  "summary": {
+   "dit": [{"qui": "b11_camarade", "air": "sourire", "t": "The teacher's coming. Quick, let's sum up! So, we agree that …", "fr": "L'enseignante arrive. Vite, on résume ! Donc, on est d'accord que…"}],
+   "choix": [
+    {"si": {"avis": "pour"}, "t": "… kids can have a phone, but parents need to set limits.", "fr": "… les enfants peuvent avoir un téléphone, mais les parents doivent fixer des limites.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Perfect. That's exactly what we'll say — and you do the talking!", "fr": "Parfait. C'est exactement ce qu'on va dire… et c'est toi qui parles !"}]},
+    {"si": {"avis": "contre"}, "t": "… kids need a way to call home, but not a smartphone too early.", "fr": "… les enfants ont besoin d'un moyen d'appeler à la maison, mais pas d'un smartphone trop tôt.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Perfect. That's exactly what we'll say — and you do the talking!", "fr": "Parfait. C'est exactement ce qu'on va dire… et c'est toi qui parles !"}]},
+    {"si": {"avis": "depend"}, "t": "… kids need a way to call home, but not a smartphone too early.", "fr": "… les enfants ont besoin d'un moyen d'appeler à la maison, mais pas d'un smartphone trop tôt.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Perfect. That's exactly what we'll say — and you do the talking!", "fr": "Parfait. C'est exactement ce qu'on va dire… et c'est toi qui parles !"}]},
+    {"t": "… parents should decide, and there should be clear rules.", "fr": "… c'est aux parents de décider, et il faut des règles claires.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Perfect. That's exactly what we'll say — and you do the talking!", "fr": "Parfait. C'est exactement ce qu'on va dire… et c'est toi qui parles !"}]},
+    {"faux": true, "t": "… the parents have the responsibility of decide.", "fr": "… les parents ont la responsabilité de décider.",
+     "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "“Of decide”? Hmm, no. Let's keep it simple: parents should decide.", "fr": "« Of decide » ? Hmm, non. Restons simples : « parents should decide »."}],
+     "aide": {"fr": "Après une préposition, le verbe prend <b>-ing</b> (« of deciding »). Mais le plus simple est <b>should</b> : « Parents should decide, and there should be clear rules. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné ton avis, répondu aux objections de ta camarade, parlé de ton pays, et vous avez trouvé ensemble une conclusion à présenter à la classe."}
+}

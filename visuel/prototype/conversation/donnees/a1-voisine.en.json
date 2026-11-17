@@ -1,0 +1,66 @@
+{
+ "id": "a1-voisine",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "Sur le palier, la voisine"},
+ "intro": {"fr": "Tu viens d'emménager à Boston. Sur le palier, tu rencontres ta voisine d'en face. Présente-toi."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "hi",
+ "noeuds": {
+  "hi": {
+   "dit": [
+    {"recit": {"fr": "Ton premier samedi dans ton nouvel immeuble. Sur le palier, la porte d'en face s'ouvre."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Hi! Did you just move in?", "fr": "Bonjour ! Vous venez d'emménager ?"}
+   ],
+   "choix": [
+    {"t": "Yes, on Monday. I'm your new neighbor.", "t_gb": "Yes, on Monday. I'm your new neighbour.", "fr": "Oui, lundi. Je suis votre nouveau voisin (nouvelle voisine).", "va": "name"},
+    {"t": "Yes, I live here now, in apartment four.", "t_gb": "Yes, I live here now, in flat four.", "fr": "Oui, j'habite ici maintenant, à l'appartement quatre.", "va": "name"}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Welcome! I'm Carmen.", "fr": "Bienvenue ! Moi, c'est Carmen."}],
+   "choix": [
+    {"t": "Nice to meet you, Carmen!", "fr": "Enchanté(e), Carmen !", "va": "from",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Nice to meet you too!", "fr": "Enchantée aussi !"}]},
+    {"t": "Thank you! Is this a nice building?", "fr": "Merci ! C'est un immeuble agréable ?", "va": "from",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Oh yes, it's very quiet. Well… usually!", "fr": "Oh oui, c'est très calme. Enfin… en général !"}]},
+    {"repete": true, "t": "Sorry, what's your name?", "fr": "Pardon, comment vous appelez-vous ?", "va": "name",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Carmen. Like the opera!", "fr": "Carmen. Comme l'opéra !"}]}
+   ]
+  },
+  "from": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "So, where are you from?", "fr": "Alors, vous venez d'où ?"}],
+   "choix": [
+    {"t": "I'm from France.", "fr": "Je viens de France.", "va": "howlong",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "France! I love Paris.", "fr": "La France ! J'adore Paris."}]},
+    {"t": "I'm from Canada.", "fr": "Je viens du Canada.", "va": "howlong",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Canada! Not too far, then.", "fr": "Le Canada ! Pas trop loin, alors."}]},
+    {"t": "I'm from Belgium.", "fr": "Je viens de Belgique.", "va": "howlong",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Belgium! The chocolate!", "fr": "La Belgique ! Le chocolat !"}]}
+   ]
+  },
+  "howlong": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "I'm from Spain, but I've been in Boston for ten years. And you? How long have you been here?", "fr": "Moi, je viens d'Espagne, mais je suis à Boston depuis dix ans. Et vous ? Vous êtes ici depuis combien de temps ?"}],
+   "choix": [
+    {"t": "Just one week.", "fr": "Seulement une semaine.", "va": "door",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Welcome to the neighborhood, then!", "t_gb": "Welcome to the neighbourhood, then!", "fr": "Alors bienvenue dans le quartier !"}]},
+    {"t": "Only a few days.", "fr": "Seulement quelques jours.", "va": "door",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Welcome to the neighborhood, then!", "t_gb": "Welcome to the neighbourhood, then!", "fr": "Alors bienvenue dans le quartier !"}]},
+    {"faux": true, "t": "I am here since one week.", "fr": "Je suis ici depuis une semaine.",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Since one week…? Oh, for a week!", "fr": "« Since » une semaine… ? Ah, depuis une semaine !"}],
+     "aide": {"fr": "Pour une durée, pas de « since » : <b>for a week</b> (« I've been here <b>for</b> a week »), ou simplement « <b>Just one week</b> ». <b>since</b> va avec un moment précis : since Monday."}}
+   ]
+  },
+  "door": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "If you need anything, just knock on my door. I'm a cook, so I always have salt and sugar!", "fr": "Si vous avez besoin de quoi que ce soit, frappez à ma porte. Je suis cuisinière, alors j'ai toujours du sel et du sucre !"}],
+   "choix": [
+    {"t": "Thank you, that's very kind! See you soon!", "fr": "Merci, c'est très gentil ! À bientôt !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "See you soon!", "fr": "À bientôt !"}]},
+    {"t": "Thanks! Have a nice weekend!", "fr": "Merci ! Bon week-end !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "You too!", "fr": "Vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté(e) à Carmen, ta voisine : d'où tu viens, depuis combien de temps tu es là (for, pas since). Elle est cuisinière, et tu peux frapper chez elle."}
+}

@@ -1,0 +1,74 @@
+{
+ "id": "a1-ticket",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "ville",
+ "registre": "usted",
+ "titre": {"fr": "Le ticket de métro"},
+ "intro": {"fr": "Dans le métro de Madrid, on n'achète pas un ticket en papier : on charge des trajets sur une carte. Un voyageur t'explique la machine."},
+ "personnes": ["fahrgast"],
+ "debut": "maquina",
+ "prix": {"multi": 250, "uno": 150, "diez": 1220},
+ "panier": ["tarjeta", "viajes"],
+ "textes": {
+  "viajes_fr": {"cle": "viajes", "uno": "un trajet", "diez": "dix trajets"}
+ },
+ "noeuds": {
+  "maquina": {
+   "dit": [
+    {"recit": {"fr": "Une station de métro, à Madrid. Devant la machine à billets, tu hésites. Un homme, derrière toi, te voit."}},
+    {"qui": "fahrgast", "air": "question", "t": "¿Necesita ayuda?", "fr": "Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Sí, por favor. Quería un billete de metro.", "fr": "Oui, s'il vous plaît. Je voudrais un billet de métro.", "va": "multi"},
+    {"t": "Sí, gracias. ¿Cómo funciona esta máquina?", "fr": "Oui, merci. Comment marche cette machine ?", "va": "multi"},
+    {"faux": true, "t": "Sí, quería un boleto, por favor.", "fr": "Oui, je voudrais un billet (mot d'Amérique latine), s'il vous plaît.",
+     "puis": [{"qui": "fahrgast", "air": "perplexe", "t": "¿Un boleto? Ah, un billete. Aquí decimos billete.", "fr": "Un « boleto » ? Ah, un billet. Ici, on dit « billete »."}],
+     "aide": {"fr": "<b>En Espagne, on dit « el billete ».</b> « el boleto » s'emploie en Amérique latine : on te comprend, mais à Madrid, c'est « billete »."}}
+   ]
+  },
+  "multi": {
+   "dit": [{"qui": "fahrgast", "air": "attentive", "t": "Mire: primero necesita una tarjeta Multi. Cuesta dos euros con cincuenta, y luego la puede recargar.", "fr": "Regardez : il vous faut d'abord une carte Multi. Elle coûte deux euros cinquante, et ensuite vous pouvez la recharger."}],
+   "choix": [
+    {"t": "Vale. ¿Y luego?", "fr": "D'accord. Et ensuite ?", "pose": {"tarjeta": "multi"}, "va": "viajes"},
+    {"t": "Muy bien, una tarjeta Multi, por favor.", "fr": "Très bien, une carte Multi, s'il vous plaît.", "pose": {"tarjeta": "multi"}, "va": "viajes"},
+    {"repete": true, "t": "¿Perdón? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "multi",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Claro: primero, la tarjeta. Dos euros con cincuenta.", "fr": "Bien sûr : d'abord, la carte. Deux euros cinquante."}]}
+   ]
+  },
+  "viajes": {
+   "dit": [{"qui": "fahrgast", "air": "question", "t": "Luego pone los viajes en la tarjeta. ¿Va a usar mucho el metro?", "fr": "Ensuite, vous mettez les trajets sur la carte. Vous allez beaucoup prendre le métro ?"}],
+   "choix": [
+    {"t": "Sí, toda la semana. ¿Hay billetes de diez viajes?", "fr": "Oui, toute la semaine. Il y a des billets de dix trajets ?", "pose": {"viajes": "diez"}, "va": "pagar",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Sí: el billete de diez viajes. Cuesta doce euros con veinte.", "fr": "Oui : le billet de dix trajets. Il coûte douze euros vingt."}]},
+    {"t": "No, solo un viaje, por favor.", "fr": "Non, un seul trajet, s'il vous plaît.", "pose": {"viajes": "uno"}, "va": "pagar",
+     "puis": [{"qui": "fahrgast", "air": "attentive", "t": "Entonces un billete sencillo: un euro con cincuenta.", "fr": "Alors un billet simple : un euro cinquante."}]}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "fahrgast", "air": "attentive", "t": "En total, {a_payer}. Puede pagar con tarjeta o en efectivo.", "fr": "En tout, {a_payer}. Vous pouvez payer par carte ou en espèces.", "dit": "En total, {a_payer:mots}. Puede pagar con tarjeta o en efectivo."}],
+   "choix": [
+    {"t": "Con tarjeta. ¡Ya está!", "fr": "Par carte. Voilà, c'est fait !", "va": "torno"},
+    {"t": "En efectivo. Aquí tengo un billete de veinte.", "fr": "En espèces. J'ai un billet de vingt.", "va": "torno",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Muy bien, la máquina le da la vuelta.", "fr": "Très bien, la machine vous rend la monnaie."}]}
+   ]
+  },
+  "torno": {
+   "dit": [
+    {"recit": {"fr": "La carte sort de la machine."}},
+    {"qui": "fahrgast", "air": "sourire", "t": "Muy bien. Ahora pase la tarjeta por el torno, ahí. ¡Y guárdela para la próxima vez!", "fr": "Très bien. Maintenant, passez la carte au tourniquet, là. Et gardez-la pour la prochaine fois !"}
+   ],
+   "choix": [
+    {"t": "¡Muchas gracias por su ayuda!", "fr": "Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "¡De nada! ¡Buen viaje!", "fr": "De rien ! Bon trajet !"}]},
+    {"t": "¿Y para volver uso la misma tarjeta?", "fr": "Et pour le retour, j'utilise la même carte ?", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Sí, sí, la misma. ¡Buen viaje!", "fr": "Oui, oui, la même. Bon trajet !"}]},
+    {"faux": true, "t": "¡Muchas gracias por tu ayuda!", "fr": "Merci beaucoup pour ton aide !",
+     "puis": [{"qui": "fahrgast", "air": "amuse", "t": "¡Ja! De nada, de nada.", "fr": "Ha ! De rien, de rien."}],
+     "aide": {"fr": "<b>Au « usted », c'est « su ayuda » :</b> « Muchas gracias por su ayuda ». « tu ayuda », c'est pour un ami."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté ta carte Multi, chargé {viajes_fr} et payé {a_payer}."}
+}

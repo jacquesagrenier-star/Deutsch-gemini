@@ -1,0 +1,93 @@
+{
+ "id": "a1-vetements",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "usted",
+ "titre": {"fr": "Acheter une veste : essayer, la taille"},
+ "intro": {"fr": "En janvier, à Madrid, c'est la saison des soldes, les « rebajas ». Tu cherches une veste : ta taille, la cabine, le prix soldé."},
+ "personnes": ["verkaeuferin"],
+ "debut": "ayuda",
+ "prix": {"chaqueta": 3995},
+ "panier": ["compra"],
+ "noeuds": {
+  "ayuda": {
+   "dit": [
+    {"recit": {"fr": "Janvier, une boutique de vêtements de la calle Fuencarral. Partout, des affiches : « REBAJAS »."}},
+    {"qui": "verkaeuferin", "air": "sourire", "t": "Hola, buenas tardes. ¿Puedo ayudarle?", "fr": "Bonjour. Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Sí, busco una chaqueta.", "fr": "Oui, je cherche une veste.", "va": "talla",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Muy bien. Las chaquetas están aquí.", "fr": "Très bien. Les vestes sont ici."}]},
+    {"t": "Sí, por favor. ¿Tiene chaquetas de invierno?", "fr": "Oui, s'il vous plaît. Vous avez des vestes d'hiver ?", "va": "talla",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sí, aquí tiene: están todas en rebajas.", "fr": "Oui, les voici : elles sont toutes en soldes."}]},
+    {"t": "No, gracias. Solo estoy mirando.", "fr": "Non, merci. Je regarde seulement.", "va": "luego",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Muy bien. Si necesita algo, me avisa.", "fr": "Très bien. Si vous avez besoin de quelque chose, dites-le-moi."}]}
+   ]
+  },
+  "luego": {
+   "dit": [{"recit": {"fr": "Quelques minutes plus tard, tu trouves une veste noire qui te plaît. Mais pas dans ta taille."}}],
+   "choix": [
+    {"t": "Perdone, ¿tiene esta chaqueta en la talla M?", "fr": "Excusez-moi, vous avez cette veste en taille M ?", "va": "probar",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Un momento… sí, aquí tiene, en M.", "fr": "Un instant… oui, la voici, en M."}]},
+    {"t": "Perdone, ¿hay una M de esta chaqueta?", "fr": "Excusez-moi, il y a un M de cette veste ?", "va": "probar",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Sí, claro. Tome.", "fr": "Oui, bien sûr. Tenez."}]}
+   ]
+  },
+  "talla": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "¿Qué talla usa?", "fr": "Quelle taille faites-vous ?"}],
+   "choix": [
+    {"t": "La M, por favor.", "fr": "Le M, s'il vous plaît.", "va": "probar"},
+    {"t": "Creo que una M.", "fr": "Je crois que c'est un M.", "va": "probar"},
+    {"faux": true, "t": "Hago la talla M.", "fr": "Je fais du M (mot à mot).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "¿Hace…? Ah, ¿usa la talla M?", "fr": "Vous faites… ? Ah, vous prenez du M ?"}],
+     "aide": {"fr": "<b>« Je fais du M » ne se traduit pas avec « hacer » :</b> on dit « Uso la talla M », ou plus court « La M, por favor »."}}
+   ]
+  },
+  "probar": {
+   "dit": [{"qui": "verkaeuferin", "air": "question", "t": "Aquí tiene. ¿Quiere probársela?", "fr": "Voilà. Vous voulez l'essayer ?"}],
+   "choix": [
+    {"t": "Sí, por favor. ¿Dónde está el probador?", "fr": "Oui, s'il vous plaît. Où est la cabine d'essayage ?", "va": "probador",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Allí, al fondo, a la izquierda.", "fr": "Là-bas, au fond, à gauche."}]},
+    {"t": "No, gracias. ¿Cuánto cuesta?", "fr": "Non, merci. Combien elle coûte ?", "va": "precio"}
+   ]
+  },
+  "probador": {
+   "dit": [
+    {"recit": {"fr": "Tu essaies la veste et tu sors de la cabine."}},
+    {"qui": "verkaeuferin", "air": "question", "t": "¿Qué tal le queda?", "fr": "Elle vous va comment ?"}
+   ],
+   "choix": [
+    {"t": "Me queda muy bien.", "fr": "Elle me va très bien.", "va": "precio",
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "¡Le queda genial!", "fr": "Elle vous va à merveille !"}]},
+    {"t": "Me queda pequeña. ¿Tiene una L?", "fr": "Elle est trop petite pour moi. Vous avez un L ?", "va": "precio",
+     "puis": [{"qui": "verkaeuferin", "air": "attentive", "t": "Sí, tome, una L.", "fr": "Oui, tenez, un L."},
+              {"recit": {"fr": "Tu essaies la veste en L : elle est parfaite."}}]},
+    {"faux": true, "t": "Es muy bien, gracias.", "fr": "C'est très bien, merci (avec le mauvais verbe).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "¿Es muy bien…? Ah, ¿le queda bien? ¡Qué bien!", "fr": "« Es muy bien » ? Ah, elle vous va bien ? Tant mieux !"}],
+     "aide": {"fr": "<b>Pour un vêtement, on dit « Me queda bien »</b> (il me va bien). Et « bien » ne va jamais avec « es » : on dit « está bien »."}}
+   ]
+  },
+  "precio": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "Antes costaba sesenta euros, pero ahora está rebajada: treinta y nueve con noventa y cinco.", "fr": "Avant, elle coûtait soixante euros, mais maintenant elle est soldée : trente-neuf euros quatre-vingt-quinze."}],
+   "choix": [
+    {"t": "¡Qué bien! Me la llevo.", "fr": "Super ! Je la prends.", "pose": {"compra": "chaqueta"}, "va": "caja"},
+    {"t": "Muy bien, me la llevo.", "fr": "Très bien, je la prends.", "pose": {"compra": "chaqueta"}, "va": "caja"},
+    {"faux": true, "t": "¡Qué bien! La tomo.", "fr": "Super ! Je la prends (mot à mot).",
+     "puis": [{"qui": "verkaeuferin", "air": "perplexe", "t": "¿La toma…? Ah, ¿se la lleva? ¡Muy bien!", "fr": "Vous la « prenez » ? Ah, vous l'emportez ? Très bien !"}],
+     "aide": {"fr": "<b>Pour un achat, on dit « Me la llevo »</b> (mot à mot : je l'emporte). « tomar » sert à boire, à manger ou à prendre un transport."}}
+   ]
+  },
+  "caja": {
+   "dit": [{"qui": "verkaeuferin", "air": "attentive", "t": "Muy bien. Son {a_payer}. ¿Tarjeta o efectivo?", "fr": "Très bien. Ça fait {a_payer}. Carte ou espèces ?", "dit": "Muy bien. Son {a_payer:mots}. ¿Tarjeta o efectivo?"}],
+   "choix": [
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gracias. ¡Que la disfrute!", "fr": "Merci. Profitez-en bien !"}]},
+    {"t": "En efectivo. Aquí tiene.", "fr": "En espèces. Voilà.", "va": null,
+     "puis": [{"qui": "verkaeuferin", "air": "sourire", "t": "Gracias. ¡Que la disfrute!", "fr": "Merci. Profitez-en bien !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé ta taille, essayé la veste et l'as achetée {a_payer}, en soldes."}
+}

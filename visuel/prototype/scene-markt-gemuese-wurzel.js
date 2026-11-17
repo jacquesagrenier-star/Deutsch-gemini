@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -39,7 +40,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -60,7 +62,8 @@ window.SCENE = {
    "pt": "beterraba",
    "ar": "شمندر",
    "pl": "burak ćwikłowy",
-   "ru": "свёкла"
+   "ru": "свёкла",
+   "es": "la remolacha, el betabel"
   },
   {
    "id": "blumenkohl",
@@ -84,7 +87,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -99,7 +103,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -120,7 +125,8 @@ window.SCENE = {
    "pt": "couve-flor",
    "ar": "قرنبيط",
    "pl": "kalafior",
-   "ru": "цветная капуста"
+   "ru": "цветная капуста",
+   "es": "la coliflor"
   },
   {
    "id": "sellerie",
@@ -144,7 +150,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -159,7 +166,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -180,7 +188,8 @@ window.SCENE = {
    "pt": "aipo, salsão",
    "ar": "كرفس",
    "pl": "seler",
-   "ru": "сельдерей"
+   "ru": "сельдерей",
+   "es": "el apio"
   },
   {
    "id": "kartoffel",
@@ -204,7 +213,8 @@ window.SCENE = {
      "pt": "batata (Áustria)",
      "ar": "بطاطس (نمساوية)",
      "pl": "ziemniak (Austria)",
-     "ru": "картофель (австр.)"
+     "ru": "картофель (австр.)",
+     "es": "la papa (Austria)"
     },
     {
      "mot": "Kiste",
@@ -219,7 +229,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -234,7 +245,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -255,7 +267,8 @@ window.SCENE = {
    "pt": "batata",
    "ar": "بطاطس",
    "pl": "ziemniak",
-   "ru": "картофель"
+   "ru": "картофель",
+   "es": "la papa"
   },
   {
    "id": "kohlrabi",
@@ -279,7 +292,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -294,7 +308,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -315,7 +330,8 @@ window.SCENE = {
    "pt": "couve-rábano",
    "ar": "كرنب أبو ركبة (كولرابي)",
    "pl": "kalarepa",
-   "ru": "кольраби"
+   "ru": "кольраби",
+   "es": "el colinabo"
   },
   {
    "id": "zwiebel",
@@ -339,7 +355,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -354,7 +371,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -375,7 +393,8 @@ window.SCENE = {
    "pt": "cebola",
    "ar": "بصل",
    "pl": "cebula",
-   "ru": "лук"
+   "ru": "лук",
+   "es": "la cebolla"
   },
   {
    "id": "kohl",
@@ -399,7 +418,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -414,7 +434,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -435,7 +456,8 @@ window.SCENE = {
    "pt": "repolho, couve",
    "ar": "ملفوف",
    "pl": "kapusta",
-   "ru": "капуста"
+   "ru": "капуста",
+   "es": "el repollo, la col"
   },
   {
    "id": "lauch",
@@ -459,7 +481,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -474,7 +497,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -495,7 +519,8 @@ window.SCENE = {
    "pt": "alho-poró",
    "ar": "كرّاث",
    "pl": "por",
-   "ru": "лук-порей"
+   "ru": "лук-порей",
+   "es": "el puerro"
   },
   {
    "id": "karotte",
@@ -519,7 +544,8 @@ window.SCENE = {
      "pt": "cenoura (Suíça)",
      "ar": "جزر (سويسرية)",
      "pl": "marchewka (Szwajcaria)",
-     "ru": "морковь (швейц.)"
+     "ru": "морковь (швейц.)",
+     "es": "la zanahoria (Suiza)"
     },
     {
      "mot": "Kiste",
@@ -534,7 +560,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -549,7 +576,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -570,7 +598,8 @@ window.SCENE = {
    "pt": "cenoura",
    "ar": "جزر",
    "pl": "marchewka",
-   "ru": "морковь"
+   "ru": "морковь",
+   "es": "la zanahoria"
   },
   {
    "id": "rosenkohl",
@@ -594,7 +623,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -609,7 +639,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -630,7 +661,8 @@ window.SCENE = {
    "pt": "couve-de-bruxelas",
    "ar": "كرنب بروكسل",
    "pl": "brukselka",
-   "ru": "брюссельская капуста"
+   "ru": "брюссельская капуста",
+   "es": "la col de Bruselas"
   },
   {
    "id": "fenchel",
@@ -654,7 +686,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -669,7 +702,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -690,7 +724,8 @@ window.SCENE = {
    "pt": "erva-doce (bulbo), funcho",
    "ar": "شمر",
    "pl": "koper włoski, fenkuł",
-   "ru": "фенхель"
+   "ru": "фенхель",
+   "es": "el hinojo"
   },
   {
    "id": "brokkoli",
@@ -714,7 +749,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -729,7 +765,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -750,7 +787,8 @@ window.SCENE = {
    "pt": "brócolis",
    "ar": "بروكلي",
    "pl": "brokuł",
-   "ru": "брокколи"
+   "ru": "брокколи",
+   "es": "el brócoli"
   },
   {
    "id": "knoblauch",
@@ -774,7 +812,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -789,7 +828,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -810,7 +850,8 @@ window.SCENE = {
    "pt": "alho",
    "ar": "ثوم",
    "pl": "czosnek",
-   "ru": "чеснок"
+   "ru": "чеснок",
+   "es": "el ajo"
   },
   {
    "id": "radieschen",
@@ -834,7 +875,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -849,7 +891,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -870,7 +913,8 @@ window.SCENE = {
    "pt": "rabanete",
    "ar": "فجل أحمر",
    "pl": "rzodkiewka",
-   "ru": "редиска"
+   "ru": "редиска",
+   "es": "el rábano"
   },
   {
    "id": "suesskartoffel",
@@ -894,7 +938,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -909,7 +954,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -930,7 +976,8 @@ window.SCENE = {
    "pt": "batata-doce",
    "ar": "بطاطا حلوة",
    "pl": "batat",
-   "ru": "батат, сладкий картофель"
+   "ru": "батат, сладкий картофель",
+   "es": "el camote, la batata"
   },
   {
    "id": "anna",
@@ -971,7 +1018,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "radieschen-main",
@@ -986,10 +1034,10 @@ window.SCENE = {
    "devant": 2,
    "boites": [
     [
-     39,
-     65.0,
-     6,
-     5.0
+     38.5,
+     69.9,
+     8.6,
+     4.6
     ]
    ],
    "fr": "radis",
@@ -1000,7 +1048,8 @@ window.SCENE = {
    "pt": "rabanete",
    "ar": "فجل أحمر",
    "pl": "rzodkiewka",
-   "ru": "редиска"
+   "ru": "редиска",
+   "es": "el rábano"
   }
  ],
  "grosPlans": [],
@@ -1776,6 +1825,65 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Если бы я знал, я не купил бы чеснок в супермаркете.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Морковь, похоже, недавно собрана.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Анна, вероятно, купила редиску для салата."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna toma un manojo de rábanos en el puesto de verduras: remolachas, coliflores, apio, papas, colinabos, cebollas, repollos, puerros, zanahorias, coles de Bruselas, hinojo, brócolis, ajo, rábanos y camotes.",
+    "consigne": "Toca una fruta, una verdura o una caja.",
+    "nom_vue": "Raíces y coles",
+    "autre_vue": "→ Otras verduras"
+   },
+   "couches": {
+    "A1": "En el mercado",
+    "A2": "Wo? — las preposiciones en el mercado",
+    "B1": "Hacer las compras: cantidades y precios",
+    "B2": "Pasiva, relativas y adjetivos",
+    "C1": "Hipótesis, je … desto, genitivo"
+   },
+   "questions": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "<b>zwischen</b> + dativo: der Kohl → <b>dem</b> Kohl.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "<b>das</b> Bund (el manojo) es neutro: en acusativo, <b>ein</b> Bund no cambia. (der Bund es la federación.)",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "die Radieschen (plural) → dativo <b>den</b> Radieschen.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "der Sellerie → dativo <b>dem</b> Sellerie.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "<b>rechts neben</b> + dativo: <b>dem</b> Kohl.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Las zanahorias con sus hojas se venden en manojo: <b>ein Bund</b> Karotten (das Bund, neutro).",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Después de una cantidad, el plural sin artículo: zwei Kilo <b>Kartoffeln</b>.",
+    "B1 | Was kostet der Blumenkohl?": "<b>der</b> Blumenkohl, como der Kohl: la última palabra del compuesto da el género.",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Comparativo: <b>größer</b> … <b>als</b>.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "<b>eine Knolle</b> Knoblauch = una cabeza de ajo; <b>eine Zehe</b> = un diente.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Pasiva en Präteritum: <b>wurden</b> + participio II.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Posesión, antecedente masculino → <b>dessen</b> (cuyas hojas). Al revés que «cuyo», concuerda con el poseedor.",
+    "B2 | Anna kauft frische Radieschen.": "Acusativo plural sin artículo → <b>-e</b>: frisch<b>e</b> Radieschen.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Sujeto de la relativa, neutro → <b>das</b>.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Pasiva con verbo modal: participio II + <b>werden</b> al final.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "<b>aufgrund</b> + genitivo = debido a.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "<b>je</b> …, <b>desto</b> …: cuanto más…, más…",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Irreal del pasado: <b>hätte</b> + participio II, en las dos partes.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + infinitivo pasado en pasiva: geerntet <b>worden zu</b> sein.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + infinitivo pasado = es probable (suposición)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "Las cebollas están entre el colinabo y el repollo.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna tiene un manojo de rábanos en la mano.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "El ajo está al lado de los rábanos.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "Las papas están al lado del apio.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "El puerro está a la derecha del repollo.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Quisiera un manojo de zanahorias.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Dos kilos de papas, por favor.",
+    "B1 | Was kostet der Blumenkohl?": "¿Cuánto cuesta la coliflor?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "El repollo es más grande que la col de Bruselas.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Todavía necesito una cabeza de ajo para la salsa.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Las papas se cosecharon la semana pasada.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "El puerro, cuyas hojas son verde oscuro, está al lado del repollo.",
+    "B2 | Anna kauft frische Radieschen.": "Anna compra rábanos frescos.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Las verduras que se venden aquí son de la región.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Las cebollas deben guardarse en un lugar seco.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Debido a la temporada, en octubre hay muchísimo repollo.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Cuanto más frescas son las verduras, más vitaminas contienen.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Si lo hubiera sabido, no habría comprado ajo en el supermercado.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Las zanahorias parecen recién cosechadas.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Probablemente Anna compró los rábanos para una ensalada."
    }
   }
  }

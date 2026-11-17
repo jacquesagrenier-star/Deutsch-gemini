@@ -1,0 +1,125 @@
+{
+ "id": "a2-diner-voisins",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "familier",
+ "titre": {"fr": "Dîner chez Carmen, ta voisine"},
+ "intro": {"fr": "Carmen, ta voisine du dessus, t'invite à dîner. Elle est cuisinière de métier : c'est le moment de faire des compliments… sans te tromper de mot."},
+ "personnes": ["nachbarin_carmen"],
+ "debut": "door",
+ "textes": {
+  "cadeau_fr": {"cle": "cadeau", "flowers": "des fleurs", "wine": "une bouteille de vin", "chocolates": "des chocolats"}
+ },
+ "noeuds": {
+  "door": {
+   "dit": [
+    {"recit": {"fr": "Samedi soir, sept heures. Tu montes un étage et tu sonnes chez Carmen, un petit cadeau à la main."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Hey, neighbor! Come in, come in!", "t_gb": "Hey, neighbour! Come in, come in!", "fr": "Salut, toi ! Entre, entre !"}
+   ],
+   "choix": [
+    {"t": "Hi, Carmen! These flowers are for you.", "fr": "Salut, Carmen ! Ces fleurs sont pour toi.", "pose": {"cadeau": "flowers"}, "va": "place",
+     "puis": [{"qui": "nachbarin_carmen", "air": "surprise", "t": "Oh, they're beautiful! You didn't have to do that.", "fr": "Oh, elles sont magnifiques ! Il ne fallait pas."}]},
+    {"t": "Thanks for inviting me! I brought a bottle of wine.", "fr": "Merci de m'avoir invité(e) ! J'ai apporté une bouteille de vin.", "pose": {"cadeau": "wine"}, "va": "place",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Oh, thank you! That's so nice of you.", "fr": "Oh, merci ! C'est vraiment gentil."}]},
+    {"t": "Hi! Here, I brought you some chocolates.", "fr": "Salut ! Tiens, je t'ai apporté des chocolats.", "pose": {"cadeau": "chocolates"}, "va": "place",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Chocolates! You know me already.", "fr": "Des chocolats ! Tu me connais déjà."}]},
+    {"faux": true, "t": "Hi, Carmen! Thanks to invite me.", "fr": "Salut, Carmen ! Merci de m'inviter (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "Thanks to …? Oh! Thanks for coming!", "fr": "« Thanks to »… ? Ah ! Merci d'être venu(e) !"}],
+     "aide": {"fr": "<b>Après « thanks », c'est « for » + verbe en -ing.</b> « Thanks for inviting me », « Thanks for coming ». « Thanks to » veut dire « grâce à »."}}
+   ]
+  },
+  "place": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "So, this is my place. It's small, but I love it.", "fr": "Alors, voilà chez moi. C'est petit, mais j'adore."}],
+   "choix": [
+    {"t": "It's beautiful! I love your balcony.", "fr": "C'est très beau ! J'adore ton balcon.", "va": "drink",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Thanks! I have breakfast out there every morning.", "fr": "Merci ! J'y prends mon petit-déjeuner tous les matins."}]},
+    {"t": "Wow, what a great view! You can see the river.", "fr": "Waouh, quelle belle vue ! On voit la rivière.", "va": "drink",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "I know! That view is why I took the apartment.", "t_gb": "I know! That view is why I took the flat.", "fr": "Je sais ! C'est pour cette vue que j'ai pris l'appartement."}]},
+    {"faux": true, "t": "Your apartment is very sympathetic.", "t_gb": "Your flat is very sympathetic.", "fr": "Ton appartement est très sympathique (faux ami).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Sympathetic? My apartment feels sorry for you? Oh — you mean it's nice!", "t_gb": "Sympathetic? My flat feels sorry for you? Oh — you mean it's nice!", "fr": "« Sympathetic » ? Mon appartement a de la peine pour toi ? Ah, tu veux dire qu'il est sympa !"}],
+     "aide": {"fr": "<b>« sympathetic » est un faux ami</b> : il veut dire « compatissant ». Pour un lieu sympathique : « nice », « lovely », « cozy » (« cosy » en anglais britannique)."}}
+   ]
+  },
+  "drink": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Can I get you something to drink? Wine, beer, sparkling water?", "fr": "Je te sers quelque chose à boire ? Du vin, une bière, de l'eau gazeuse ?"}],
+   "choix": [
+    {"t": "A glass of red wine, please.", "fr": "Un verre de vin rouge, s'il te plaît.", "va": "dish",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Good choice. Here you go. Cheers!", "fr": "Bon choix. Tiens. Santé !"}]},
+    {"t": "Just water for me, thanks.", "fr": "Juste de l'eau pour moi, merci.", "va": "dish",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sure. Here you go. Cheers!", "fr": "Bien sûr. Tiens. Santé !"}]},
+    {"faux": true, "t": "I take a beer.", "fr": "Je prends une bière (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "You take a beer … where? Oh, you'd like one!", "fr": "Tu emportes une bière… où ça ? Ah, tu en veux une !"}],
+     "aide": {"fr": "<b>Pour dire ce qu'on choisit, l'anglais emploie « I'll have »</b> : « I'll have a beer, please ». « I take » décrit une habitude ou le fait d'emporter quelque chose."}},
+    {"repete": true, "t": "Sorry, can you say that again?", "fr": "Pardon, tu peux répéter ?", "va": "drink",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Sure! What do you want to drink? I have wine … beer … or sparkling water.", "fr": "Bien sûr ! Qu'est-ce que tu veux boire ? J'ai du vin… de la bière… ou de l'eau gazeuse."}]}
+   ]
+  },
+  "dish": {
+   "dit": [
+    {"recit": {"fr": "Vous passez à table. Carmen pose une grande marmite fumante au milieu."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "Okay, dig in! Careful, it's hot.", "fr": "Allez, sers-toi ! Attention, c'est chaud."}
+   ],
+   "choix": [
+    {"t": "Mmm, this is delicious! What is it?", "fr": "Mmm, c'est délicieux ! Qu'est-ce que c'est ?", "va": "more",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "It's my seafood stew: fish, shrimp, tomatoes, and a lot of garlic. I cook all day at the restaurant, and then I come home and cook. Crazy, right?", "t_gb": "It's my seafood stew: fish, prawns, tomatoes and a lot of garlic. I cook all day at the restaurant, and then I come home and cook. Mad, isn't it?", "fr": "C'est ma marmite de la mer : du poisson, des crevettes, des tomates et beaucoup d'ail. Je cuisine toute la journée au restaurant, et puis je rentre et je cuisine. C'est fou, non ?"}]},
+    {"t": "Wow, it smells so good. What's in it?", "fr": "Waouh, ça sent tellement bon. Qu'est-ce qu'il y a dedans ?", "va": "more",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Fish, shrimp, tomatoes, and a lot of garlic. It's my seafood stew. I make it at the restaurant, too.", "t_gb": "Fish, prawns, tomatoes and a lot of garlic. It's my seafood stew. I make it at the restaurant, too.", "fr": "Du poisson, des crevettes, des tomates et beaucoup d'ail. C'est ma marmite de la mer. Je la fais aussi au restaurant."}]},
+    {"faux": true, "t": "It's very good! Can you give me the receipt?", "fr": "C'est très bon ! Tu peux me donner le ticket de caisse ? (faux ami)",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "The receipt? I didn't buy it, I made it! Oh — the recipe!", "fr": "Le ticket de caisse ? Je ne l'ai pas acheté, je l'ai fait ! Ah, la recette !"}],
+     "aide": {"fr": "<b>« receipt », c'est le ticket de caisse.</b> La recette de cuisine, c'est « recipe » : « Can you give me the recipe? »."}}
+   ]
+  },
+  "more": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Your plate is empty already! Do you want some more?", "fr": "Ton assiette est déjà vide ! Tu en reveux ?"}],
+   "choix": [
+    {"t": "Yes, please! Just a little.", "fr": "Oui, avec plaisir ! Juste un peu.", "va": "dessert",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "A little? No, no. In this house, you get a real plate.", "fr": "Un peu ? Non, non. Dans cette maison, on a une vraie assiette."}]},
+    {"t": "No, thanks. I'm full, but it was delicious.", "fr": "Non, merci. Je n'ai plus faim, mais c'était délicieux.", "va": "dessert",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Good. Save some room, because we're not done.", "fr": "Bien. Garde un peu de place, parce qu'on n'a pas fini."}]},
+    {"faux": true, "t": "No, thanks. I have no more hunger.", "fr": "Non, merci. Je n'ai plus faim (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "You have no more … hunger? Oh, you're full!", "fr": "Tu n'as plus de… « hunger » ? Ah, tu n'as plus faim !"}],
+     "aide": {"fr": "<b>En anglais, on « est » affamé, on n'« a » pas faim</b> : « I'm hungry », « I'm not hungry anymore ». À table, le plus naturel : « I'm full »."}}
+   ]
+  },
+  "dessert": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Now, coffee or dessert? I made a Boston cream pie.", "fr": "Bon, un café ou un dessert ? J'ai fait une Boston cream pie."}],
+   "choix": [
+    {"t": "Dessert, please! I'd love to try it.", "fr": "Un dessert, s'il te plaît ! J'aimerais beaucoup y goûter.", "va": "pie"},
+    {"t": "Just coffee for me, please.", "fr": "Juste un café pour moi, s'il te plaît.", "va": "leave",
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Coffee it is. And I'll give you some pie to take home.", "fr": "Va pour un café. Et je te donne une part de gâteau à emporter."}]},
+    {"faux": true, "t": "I want well a coffee.", "fr": "Je veux bien un café (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "You want … well? Is that a yes?", "fr": "Tu veux… « well » ? Ça veut dire oui ?"}],
+     "aide": {"fr": "<b>« Je veux bien » ne se traduit pas mot à mot.</b> Pour accepter : « Yes, please » ou « I'd love a coffee »."}}
+   ]
+  },
+  "pie": {
+   "dit": [
+    {"recit": {"fr": "Carmen te sert une belle part : de la génoise, de la crème à la vanille, du chocolat par-dessus."}},
+    {"qui": "nachbarin_carmen", "air": "sourire", "t": "So? Be honest. I'm a chef, I can take it.", "fr": "Alors ? Sois honnête. Je suis cheffe, je peux l'entendre."}
+   ],
+   "choix": [
+    {"t": "It's really good. You're a great cook!", "fr": "C'est vraiment bon. Tu es une excellente cuisinière !", "va": "leave",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Oh, stop it. No, wait — say it again.", "fr": "Oh, arrête. Non, attends : répète."}]},
+    {"t": "Wow, it's delicious! Can you teach me?", "fr": "Waouh, c'est délicieux ! Tu peux m'apprendre ?", "va": "leave",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "Sure! Come over one Sunday. But you do the dishes.", "t_gb": "Sure! Come round one Sunday. But you do the washing-up.", "fr": "Bien sûr ! Passe un dimanche. Mais c'est toi qui fais la vaisselle."}]},
+    {"faux": true, "t": "It's really good. You're a great cooker!", "fr": "C'est vraiment bon. Tu es une excellente cuisinière ! (faux ami)",
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "A cooker? That's a machine! I'm a cook. Or a chef, on a good day.", "fr": "Un « cooker » ? C'est un appareil ! Moi, je suis « cook ». Ou « chef », les bons jours."}],
+     "aide": {"fr": "<b>La personne qui cuisine est « a cook »</b>, sans -er. « A cooker » est un appareil (la cuisinière, en anglais britannique ; « rice cooker », le cuiseur à riz)."}}
+   ]
+  },
+  "leave": {
+   "dit": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Wow, it's late already! Thanks for coming.", "fr": "Oh là, il est déjà tard ! Merci d'être venu(e)."}],
+   "choix": [
+    {"t": "Thank you for a wonderful evening! Next time, dinner at my place.", "fr": "Merci pour cette merveilleuse soirée ! La prochaine fois, on dîne chez moi.", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "sourire", "t": "Deal! But I'm bringing dessert. Good night!", "fr": "Marché conclu ! Mais c'est moi qui apporte le dessert. Bonne nuit !"}]},
+    {"t": "Thanks, Carmen. I had a great time. Next time, come to my place!", "fr": "Merci, Carmen. J'ai passé un très bon moment. La prochaine fois, viens chez moi !", "va": null,
+     "puis": [{"qui": "nachbarin_carmen", "air": "amuse", "t": "I'd love to! Can you cook? No, don't answer. Good night!", "fr": "Avec plaisir ! Tu sais cuisiner ? Non, ne réponds pas. Bonne nuit !"}]},
+    {"faux": true, "t": "Thanks, Carmen. I passed a very good evening.", "fr": "Merci, Carmen. J'ai passé une très bonne soirée (mot à mot).",
+     "puis": [{"qui": "nachbarin_carmen", "air": "perplexe", "t": "You passed …? Oh, you had a good time. Me too!", "fr": "Tu as « passed »… ? Ah, tu as passé un bon moment. Moi aussi !"}],
+     "aide": {"fr": "<b>« passer une soirée » se dit avec « have »</b> : « I had a great evening », « I had a great time ». « To pass » veut dire « passer devant » ou « réussir un examen »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as offert {cadeau_fr} à Carmen, fait des compliments sur son appartement et sa cuisine, et tu l'as invitée chez toi la prochaine fois."}
+}

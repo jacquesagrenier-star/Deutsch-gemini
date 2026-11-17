@@ -1,0 +1,65 @@
+{
+ "id": "a1-supermarche",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "achats",
+ "registre": "Sie",
+ "titre": {"fr": "Au supermarché : la caisse et le sac"},
+ "intro": {"fr": "À la caisse d'un supermarché de Berlin : la carte de fidélité, la consigne des bouteilles, le sac, le paiement et le ticket."},
+ "personnes": ["kassiererin"],
+ "debut": "kasse",
+ "prix": {"einkauf": 1847, "tuete": 30, "bon": -75},
+ "panier": ["einkauf", "tuete", "pfand"],
+ "noeuds": {
+  "kasse": {
+   "dit": [
+    {"recit": {"fr": "Au supermarché, à la caisse. Tu poses tes courses sur le tapis : du lait, du pain, des pommes, du fromage et deux bouteilles d'eau."}},
+    {"qui": "kassiererin", "air": "sourire", "t": "Hallo! Haben Sie eine Kundenkarte?", "fr": "Bonjour ! Vous avez une carte de fidélité ?"}
+   ],
+   "choix": [
+    {"t": "Nein, leider nicht.", "fr": "Non, malheureusement.", "pose": {"einkauf": "einkauf"}, "va": "pfand"},
+    {"t": "Nein, ich habe keine Karte.", "fr": "Non, je n'ai pas de carte.", "pose": {"einkauf": "einkauf"}, "va": "pfand"},
+    {"repete": true, "t": "Wie bitte? Eine Karte?", "fr": "Pardon ? Une carte ?", "va": "kasse",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Eine Kundenkarte, vom Supermarkt. Für Punkte.", "fr": "Une carte de client, du supermarché. Pour les points."}]}
+   ]
+  },
+  "pfand": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Und haben Sie einen Pfandbon?", "fr": "Et vous avez un bon de consigne ?"}],
+   "choix": [
+    {"t": "Pfand? Was ist das?", "fr": "La consigne ? Qu'est-ce que c'est ?", "va": "tuete",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Für leere Flaschen bekommen Sie Geld zurück. Der Automat ist da vorne, am Eingang.", "fr": "Pour les bouteilles vides, on vous rend de l'argent. La machine est là-bas, à l'entrée."}]},
+    {"t": "Ja, hier, bitte.", "fr": "Oui, voilà.", "pose": {"pfand": "bon"}, "va": "tuete",
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Danke. Fünfundsiebzig Cent zurück.", "fr": "Merci. Soixante-quinze centimes en moins."}]}
+   ]
+  },
+  "tuete": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Brauchen Sie eine Tüte?", "fr": "Vous avez besoin d'un sac ?"}],
+   "choix": [
+    {"t": "Ja, bitte.", "fr": "Oui, s'il vous plaît.", "pose": {"tuete": "tuete"}, "va": "betrag",
+     "puis": [{"qui": "kassiererin", "air": "attentive", "t": "Die Tüte kostet dreißig Cent.", "fr": "Le sac coûte trente centimes."}]},
+    {"t": "Nein, danke. Ich habe eine Tasche.", "fr": "Non, merci. J'ai un sac.", "va": "betrag"},
+    {"faux": true, "t": "Ja, einen Sack, bitte.", "fr": "Oui, un sac (mot à mot), s'il vous plaît.",
+     "puis": [{"qui": "kassiererin", "air": "amuse", "t": "Einen Sack? So groß? Sie meinen eine Tüte, oder?", "fr": "Un « Sack » ? Si grand ? Vous voulez dire un sachet, non ?"}],
+     "aide": {"fr": "<b>Le sac de caisse se dit « die Tüte ».</b> « der Sack », c'est un gros sac de toile, pour les pommes de terre ou le charbon. Ton sac à toi : « die Tasche »."}}
+   ]
+  },
+  "betrag": {
+   "dit": [{"qui": "kassiererin", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}],
+   "choix": [
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": "bon"},
+    {"t": "Bar. Hier sind zwanzig Euro.", "fr": "En espèces. Voici vingt euros.", "va": "bon"}
+   ]
+  },
+  "bon": {
+   "dit": [{"qui": "kassiererin", "air": "question", "t": "Möchten Sie den Kassenbon?", "fr": "Vous voulez le ticket de caisse ?"}],
+   "choix": [
+    {"t": "Ja, bitte.", "fr": "Oui, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Bitte schön. Schönen Tag noch!", "fr": "Voilà. Bonne journée !"}]},
+    {"t": "Nein, danke. Schönen Tag noch!", "fr": "Non, merci. Bonne journée !", "va": null,
+     "puis": [{"qui": "kassiererin", "air": "sourire", "t": "Danke, Ihnen auch!", "fr": "Merci, à vous aussi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu es passé(e) à la caisse, tu as appris ce qu'est le « Pfand » et tu as payé {a_payer}."}
+}

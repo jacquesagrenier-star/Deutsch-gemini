@@ -1,0 +1,368 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d17-visite.json",
+ "cles": {
+  "titre": {
+   "fr": "La visite : présenter un patient",
+   "de": "Die Visite",
+   "uk": "Обхід: представити пацієнта"
+  },
+  "intro": {
+   "fr": "Vendredi 13 novembre, la visite du matin. Devant la chambre 12, {sommer} demande où en est {brandt}. Tu joues {elif} : tu présentes le patient en peu de mots, dans l'ordre, avec des valeurs précises. Puis tu notes les prescriptions, tu poses ta question et tu relis tout à la médecin.",
+   "uk": "Пʼятниця, 13 листопада, ранковий обхід. Перед палатою 12 {sommer} питає, як справи в {brandt:gen}. Ти в ролі {elif}: ти представляєш пацієнта кількома словами, по порядку, з точними показниками. Потім записуєш призначення, ставиш своє запитання й зачитуєш усе лікарці."
+  },
+  "but": {
+   "fr": "Présenter un patient à la visite (qui, pourquoi, quel jour après l'opération, ce qui a changé, les valeurs, la douleur, la mobilité, la plaie, l'alimentation) ; écouter et noter des prescriptions ; poser une question ; relire les prescriptions et les faire signer.",
+   "uk": "Представити пацієнта на обході (хто, чому, яка доба після операції, що змінилося, показники, біль, рухливість, рана, харчування); вислухати й записати призначення; поставити запитання; зачитати призначення й дати їх підписати."
+  },
+  "relire_notes": {
+   "fr": "Cohérence du cas : prothèse de hanche droite le 10 nov., scanner du 11 nov. (pas d'embolie, pneumonie droite), antibiotique depuis le 12 nov. (pas une pénicilline : allergie, voir d18) ; valeurs (T 37,6 °C, SpO2 94 % sous 2 l/min, douleur 3/10 au repos et 5/10 à la marche) ; prescriptions (prise de sang NFS et CRP, réduire l'O2 si SpO2 > 92 %, kiné deux fois par jour, ablation de la sonde urinaire, bilan entrées-sorties, douche avec pansement étanche) ; qui retire la sonde, qui signe.",
+   "uk": "Узгодженість випадку: ендопротезування правого кульшового суглоба 10 листоп., КТ 11 листоп. (емболії немає, правобічна пневмонія), антибіотик із 12 листоп. (не пеніцилін: алергія, див. d18); показники (T 37,6 °C, SpO2 94 % при O2 2 л/хв, біль 3/10 у спокої та 5/10 під час ходьби); призначення (аналіз крові: загальний аналіз і СРБ, зменшити O2, якщо SpO2 > 92 %, фізіотерапія двічі на день, видалення сечового катетера, облік введеної та виведеної рідини, душ із водонепроникною повʼязкою); хто видаляє катетер, хто підписує."
+  },
+  "redemittel.0": {
+   "fr": "Chambre 12, {brandt}, 82 ans, troisième jour après l'opération de la hanche droite.",
+   "de": "Zimmer 12, {brandt}, 82 Jahre, dritter Tag nach der Hüftoperation rechts.",
+   "uk": "Палата 12, {brandt}, 82 роки, третя доба після операції на правому кульшовому суглобі."
+  },
+  "redemittel.1": {
+   "fr": "Depuis hier, il reçoit un antibiotique.",
+   "de": "Seit gestern bekommt er ein Antibiotikum.",
+   "uk": "З учорашнього дня він отримує антибіотик."
+  },
+  "redemittel.2": {
+   "fr": "Hier, il a été levé au fauteuil.",
+   "de": "Er ist gestern in den Sessel mobilisiert worden.",
+   "uk": "Учора його мобілізували в крісло."
+  },
+  "redemittel.3": {
+   "fr": "Je peux encore poser une question ?",
+   "de": "Darf ich noch etwas fragen?",
+   "uk": "Можна я ще дещо запитаю?"
+  },
+  "redemittel.4": {
+   "fr": "Pardon, c'est allé un peu vite. Vous pouvez répéter, s'il vous plaît ?",
+   "de": "Entschuldigung, das ging etwas schnell. Können Sie das bitte wiederholen?",
+   "uk": "Перепрошую, це було трохи швидко. Чи можете ви, будь ласка, повторити?"
+  },
+  "redemittel.5": {
+   "fr": "Je résume rapidement les prescriptions : …",
+   "de": "Ich fasse die Anordnungen kurz zusammen: …",
+   "uk": "Коротко підсумую призначення: …"
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ?",
+   "de": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen?",
+   "uk": "Чи не могли б ви ще підписати призначення в листі призначень?"
+  },
+  "noeuds.anfang.dit.0.recit": {
+   "fr": "Vendredi 13 novembre, 9 heures. Le chariot de la visite s'arrête devant la chambre 12. {elif} a la feuille de transmission à la main.",
+   "uk": "Пʼятниця, 13 листопада, 9 година. Візок для обходу зупиняється перед палатою 12. У {elif} в руці листок передачі зміни."
+  },
+  "noeuds.anfang.dit.1": {
+   "fr": "Bonjour, {elif}. Qui est le suivant ?",
+   "de": "Guten Morgen, {elif}. Wer ist der Nächste?",
+   "uk": "Доброго ранку, {elif}. Хто наступний?"
+  },
+  "noeuds.anfang.choix.0": {
+   "fr": "Chambre 12, {brandt}, 82 ans. Il en est au troisième jour après l'opération de la hanche droite.",
+   "de": "Zimmer 12, {brandt}, 82 Jahre. Er ist am dritten Tag nach der Hüftoperation rechts.",
+   "uk": "Палата 12, {brandt}, 82 роки. У нього третя доба після операції на правому кульшовому суглобі."
+  },
+  "noeuds.anfang.choix.0.puis.0": {
+   "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?",
+   "de": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?",
+   "uk": "А, так, {brandt:acc} я знаю. Що нового?"
+  },
+  "noeuds.anfang.choix.1": {
+   "fr": "{brandt}, chambre 12. Il a 82 ans et il a été opéré de la hanche droite mardi ; aujourd'hui, c'est le troisième jour.",
+   "de": "{brandt}, Zimmer 12. Er ist 82 und am Dienstag an der rechten Hüfte operiert worden, heute ist der dritte Tag.",
+   "uk": "{brandt}, палата 12. Йому 82 роки, у вівторок його прооперували на правому кульшовому суглобі, сьогодні третя доба."
+  },
+  "noeuds.anfang.choix.1.puis.0": {
+   "fr": "Ah oui, {brandt}, je le connais. Quoi de neuf ?",
+   "de": "Ah ja, {brandt:akk} kenne ich. Was gibt's Neues?",
+   "uk": "А, так, {brandt:acc} я знаю. Що нового?"
+  },
+  "noeuds.anfang.choix.2": {
+   "fr": "Maintenant, c'est {brandt}. Il est un peu difficile, il râle tout le temps.",
+   "de": "Jetzt kommt {brandt}. Der ist ein bisschen schwierig, er meckert immer.",
+   "uk": "Тепер {brandt}. Він трохи важкий, постійно бурчить."
+  },
+  "noeuds.anfang.choix.2.puis.0": {
+   "fr": "Hum. Et sur le plan médical ? Pourquoi est-il chez nous ?",
+   "de": "Hm. Und medizinisch? Warum liegt er bei uns?",
+   "uk": "Гм. А з медичного погляду? Чому він у нас лежить?"
+  },
+  "noeuds.anfang.choix.2.aide": {
+   "fr": "<b>À la visite, on commence par les faits : la chambre, le nom, l'âge, le motif, le jour après l'opération.</b> « Zimmer 12, Herr Brandt, 82 Jahre, dritter Tag nach der Hüftoperation rechts. » Un jugement sur le caractère du patient n'a pas sa place ici.",
+   "uk": "<b>На обході починають із фактів: палата, імʼя, вік, причина госпіталізації, доба після операції.</b> «Zimmer 12, Herr Brandt, 82 Jahre, dritter Tag nach der Hüftoperation rechts.» Оцінкам характеру пацієнта тут не місце."
+  },
+  "noeuds.lunge.choix.0": {
+   "fr": "Le scanner n'a pas montré d'embolie pulmonaire, mais une pneumonie à droite. Depuis hier, il reçoit un antibiotique.",
+   "de": "Im CT ist keine Lungenembolie gefunden worden, aber eine Lungenentzündung rechts. Seit gestern bekommt er ein Antibiotikum.",
+   "uk": "На КТ тромбоемболії легеневої артерії не виявили, але виявили правобічну пневмонію. З учорашнього дня він отримує антибіотик."
+  },
+  "noeuds.lunge.choix.0.puis.0": {
+   "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?",
+   "de": "Richtig. Und wie sind die Werte heute?",
+   "uk": "Правильно. А які сьогодні показники?"
+  },
+  "noeuds.lunge.choix.1": {
+   "fr": "Au scanner, pas d'embolie ; il montre une pneumonie à droite. L'antibiotique est en cours depuis hier.",
+   "de": "Das CT war ohne Embolie, es zeigt eine Pneumonie rechts. Das Antibiotikum läuft seit gestern.",
+   "uk": "КТ без емболії, видно правобічну пневмонію. Антибіотик вводиться з учорашнього дня."
+  },
+  "noeuds.lunge.choix.1.puis.0": {
+   "fr": "C'est ça. Et comment sont les valeurs aujourd'hui ?",
+   "de": "Richtig. Und wie sind die Werte heute?",
+   "uk": "Правильно. А які сьогодні показники?"
+  },
+  "noeuds.lunge.choix.2": {
+   "fr": "Il a eu de la fièvre, je crois. Et quelque chose aux poumons.",
+   "de": "Er hat Fieber gehabt, glaube ich. Und irgendwas mit der Lunge.",
+   "uk": "У нього, здається, була температура. І щось із легенями."
+  },
+  "noeuds.lunge.choix.2.puis.0": {
+   "fr": "« Je crois » ? Vous n'avez pas le dossier avec vous ?",
+   "de": "„Glaube ich“? Haben Sie die Kurve nicht dabei?",
+   "uk": "«Здається»? У вас немає з собою картки?"
+  },
+  "noeuds.lunge.choix.2.aide": {
+   "fr": "<b>On ne dit pas « glaube ich » à la visite : on dit ce qui est écrit et mesuré.</b> « Im CT ist eine Lungenentzündung rechts gefunden worden. » Prépare la visite avec la feuille de transmission et le dossier.",
+   "uk": "<b>На обході не кажуть «glaube ich»: кажуть те, що записано й виміряно.</b> «Im CT ist eine Lungenentzündung rechts gefunden worden.» Готуйся до обходу з листком передачі зміни та карткою."
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "La température baisse : ce matin, 37,6. La saturation est à 94 % avec deux litres d'oxygène.",
+   "de": "Die Temperatur geht runter, heute früh 37,6. Die Sättigung liegt bei 94 Prozent mit zwei Litern Sauerstoff.",
+   "uk": "Температура знижується, сьогодні вранці 37,6. Сатурація — 94 відсотки при двох літрах кисню."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Ça va mieux. Et la douleur ?",
+   "de": "Das sieht besser aus. Und die Schmerzen?",
+   "uk": "Це вже краще. А біль?"
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Ce matin, 37,6 °C, donc moins qu'hier. Saturation 94 % sous deux litres d'oxygène.",
+   "de": "Heute früh 37,6 Grad, also weniger als gestern. Sättigung 94 Prozent unter zwei Litern Sauerstoff.",
+   "uk": "Сьогодні вранці 37,6 °C, тобто нижче, ніж учора. Сатурація 94 відсотки при двох літрах кисню."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Ça va mieux. Et la douleur ?",
+   "de": "Das sieht besser aus. Und die Schmerzen?",
+   "uk": "Це вже краще. А біль?"
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Un instant, s'il vous plaît, je regarde dans le dossier.",
+   "de": "Einen Moment bitte, ich schaue kurz in die Kurve.",
+   "uk": "Хвилинку, будь ласка, я гляну в картку."
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "Pas de problème.",
+   "de": "Kein Problem.",
+   "uk": "Без проблем."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Au repos, 3 sur 10 ; à la marche, 5. Hier, il a été levé au fauteuil et il a fait quelques pas avec le déambulateur.",
+   "de": "In Ruhe drei von zehn, beim Gehen fünf. Er ist gestern in den Sessel mobilisiert worden und ist ein paar Schritte mit dem Rollator gegangen.",
+   "uk": "У спокої три з десяти, під час ходьби пʼять. Учора його мобілізували в крісло, і він пройшов кілька кроків із ходунками."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Très bien. Comment est la plaie ?",
+   "de": "Sehr schön. Wie sieht die Wunde aus?",
+   "uk": "Дуже добре. Як виглядає рана?"
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "La douleur est bien contrôlée : 3 au repos, 5 à l'effort. Lever au fauteuil et quelques pas avec le déambulateur.",
+   "de": "Die Schmerzen sind gut eingestellt: drei in Ruhe, fünf bei Belastung. Mobilisation in den Sessel und ein paar Schritte mit dem Rollator.",
+   "uk": "Біль добре контрольований: три в спокої, пʼять при навантаженні. Мобілізація в крісло й кілька кроків із ходунками."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Très bien. Comment est la plaie ?",
+   "de": "Sehr schön. Wie sieht die Wunde aus?",
+   "uk": "Дуже добре. Як виглядає рана?"
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Hier, il « a levé » au fauteuil. (mal dit)",
+   "de": "Er hat gestern in den Sessel mobilisiert.",
+   "uk": "Учора він «мобілізував» у крісло. (неправильно сказано)"
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Il a levé qui ? Ah, vous voulez dire qu'on l'a levé.",
+   "de": "Er hat wen mobilisiert? Ach, Sie meinen, er ist mobilisiert worden.",
+   "uk": "Він кого мобілізував? А, ви маєте на увазі, що його мобілізували."
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>Le patient ne mobilise pas, on le mobilise : le passif.</b> « Er ist in den Sessel mobilisiert worden » (Perfekt du passif). Ou à l'actif, avec le soignant comme sujet : « Wir haben ihn in den Sessel mobilisiert. »",
+   "uk": "<b>Пацієнт не мобілізує, його мобілізують: пасив.</b> «Er ist in den Sessel mobilisiert worden» (Perfekt пасиву). Або в активі, де підмет — медпрацівник: «Wir haben ihn in den Sessel mobilisiert.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Le pansement est sec. Il mange peu et ne boit qu'environ un litre par jour. Et il demande chaque jour quand il pourra rentrer chez lui.",
+   "de": "Der Verband ist trocken. Er isst wenig und trinkt nur etwa einen Liter am Tag. Und er fragt jeden Tag, wann er nach Hause darf.",
+   "uk": "Повʼязка суха. Він мало їсть і пʼє лише близько літра на день. І щодня питає, коли йому можна буде додому."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social.",
+   "de": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.",
+   "uk": "Додому він, мабуть, піде лише через реабілітацію, це ми зʼясуємо із соціальною службою."
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "La plaie est calme, le pansement sec. Le problème, c'est la boisson : seulement un litre par jour environ. Il voudrait savoir quand il sortira.",
+   "de": "Die Wunde ist reizlos, der Verband trocken. Problem ist das Trinken: nur ungefähr ein Liter am Tag. Er möchte wissen, wann er entlassen wird.",
+   "uk": "Рана спокійна, без ознак запалення, повʼязка суха. Проблема з питтям: лише приблизно літр на день. Він хоче знати, коли його випишуть."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Il passera sûrement d'abord par la rééducation ; on voit ça avec le service social.",
+   "de": "Nach Hause geht es wohl erst über die Reha, das klären wir mit dem Sozialdienst.",
+   "uk": "Додому він, мабуть, піде лише через реабілітацію, це ми зʼясуємо із соціальною службою."
+  },
+  "noeuds.anordnungen.dit.0": {
+   "fr": "Bon, pour aujourd'hui : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire, on peut la retirer aujourd'hui. Et continuez le bilan entrées-sorties, s'il vous plaît.",
+   "de": "Also, für heute: Morgen früh Blutabnahme, kleines Blutbild und CRP. Den Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal am Tag. Den Blasenkatheter können wir heute ziehen. Und bitte weiter die Ein- und Ausfuhr bilanzieren.",
+   "uk": "Отже, на сьогодні: завтра вранці забір крові, загальний аналіз крові та СРБ. Зменшити кисень, якщо сатурація залишається вище 92 відсотків. Фізіотерапія двічі на день. Сечовий катетер сьогодні можна видалити. І, будь ласка, продовжуйте облік введеної та виведеної рідини."
+  },
+  "noeuds.anordnungen.choix.0": {
+   "fr": "Je note. Je peux poser une question : il peut déjà prendre une douche ?",
+   "de": "Ich schreibe mit. Darf ich noch etwas fragen: Darf er schon duschen?",
+   "uk": "Я записую. Можна ще дещо запитати: йому вже можна приймати душ?"
+  },
+  "noeuds.anordnungen.choix.0.puis.0": {
+   "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.",
+   "uk": "З завтрашнього дня, з водонепроникною повʼязкою. Рана не повинна намокати."
+  },
+  "noeuds.anordnungen.choix.1": {
+   "fr": "Merci, j'ai tout noté. Encore une question : à partir de quand peut-il prendre une douche ?",
+   "de": "Danke, ich habe alles notiert. Eine Frage noch: Ab wann darf er duschen?",
+   "uk": "Дякую, я все записала. Ще одне запитання: з якого дня йому можна приймати душ?"
+  },
+  "noeuds.anordnungen.choix.1.puis.0": {
+   "fr": "À partir de demain, avec un pansement étanche. La plaie ne doit pas être mouillée.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster. Die Wunde soll nicht nass werden.",
+   "uk": "З завтрашнього дня, з водонепроникною повʼязкою. Рана не повинна намокати."
+  },
+  "noeuds.anordnungen.choix.2": {
+   "fr": "Pardon, c'est allé un peu vite. Pouvez-vous redire les prescriptions, s'il vous plaît ?",
+   "de": "Entschuldigung, das ging etwas schnell. Können Sie die Anordnungen bitte noch einmal sagen?",
+   "uk": "Перепрошую, це було трохи швидко. Чи можете ви ще раз назвати призначення?"
+  },
+  "noeuds.anordnungen.choix.2.puis.0": {
+   "fr": "Bien sûr, lentement.",
+   "de": "Natürlich, langsam.",
+   "uk": "Звісно, повільно."
+  },
+  "noeuds.zusammenfassen.choix.0": {
+   "fr": "Je résume : prise de sang demain matin, numération et CRP. Réduire l'oxygène si la saturation reste au-dessus de 92 %. Kiné deux fois par jour. La sonde urinaire est retirée aujourd'hui. On continue le bilan, et la douche à partir de demain avec un pansement étanche.",
+   "de": "Ich fasse kurz zusammen: morgen früh Blutabnahme, kleines Blutbild und CRP. Sauerstoff reduzieren, wenn die Sättigung über 92 Prozent bleibt. Physiotherapie zweimal täglich. Der Blasenkatheter wird heute gezogen. Bilanz weiter, und duschen ab morgen mit wasserdichtem Pflaster.",
+   "uk": "Коротко підсумую: завтра вранці забір крові, загальний аналіз і СРБ. Зменшити кисень, якщо сатурація залишається вище 92 відсотків. Фізіотерапія двічі на день. Сечовий катетер сьогодні видаляємо. Облік рідини продовжуємо, а душ — із завтрашнього дня з водонепроникною повʼязкою."
+  },
+  "noeuds.zusammenfassen.choix.0.puis.0": {
+   "fr": "Parfait, c'est exactement ça.",
+   "de": "Perfekt, genau so.",
+   "uk": "Чудово, саме так."
+  },
+  "noeuds.zusammenfassen.choix.1": {
+   "fr": "Je peux répéter ? Prise de sang demain matin, numération et CRP ; baisser l'oxygène si la saturation reste au-dessus de 92 % ; kiné deux fois par jour ; sonde retirée aujourd'hui ; continuer le bilan ; douche à partir de demain.",
+   "de": "Darf ich wiederholen? Blutabnahme morgen früh, kleines Blutbild und CRP; Sauerstoff runter, wenn die Sättigung über 92 Prozent bleibt; zweimal am Tag Physio; Katheter heute ex; Bilanz weiterführen; Duschen ab morgen.",
+   "uk": "Можна я повторю? Забір крові завтра вранці, загальний аналіз і СРБ; знизити кисень, якщо сатурація залишається вище 92 відсотків; фізіотерапія двічі на день; катетер сьогодні видалити; облік рідини продовжувати; душ із завтрашнього дня."
+  },
+  "noeuds.zusammenfassen.choix.1.puis.0": {
+   "fr": "Parfait, c'est exactement ça.",
+   "de": "Perfekt, genau so.",
+   "uk": "Чудово, саме так."
+  },
+  "noeuds.zusammenfassen.choix.2": {
+   "fr": "C'est bon, je retiens tout ça.",
+   "de": "Alles klar, ich merke mir das.",
+   "uk": "Усе ясно, я запамʼятаю."
+  },
+  "noeuds.zusammenfassen.choix.2.puis.0": {
+   "fr": "Cinq prescriptions de tête ? Relisez-les-moi plutôt une fois.",
+   "de": "Fünf Anordnungen im Kopf? Lesen Sie sie mir lieber einmal vor.",
+   "uk": "Пʼять призначень у голові? Краще зачитайте мені їх один раз."
+  },
+  "noeuds.zusammenfassen.choix.2.aide": {
+   "fr": "<b>Les prescriptions de la visite se notent et se relisent à la médecin.</b> « Ich fasse kurz zusammen: … » C'est la boucle fermée : une erreur se voit tout de suite, pas trois heures plus tard.",
+   "uk": "<b>Призначення з обходу записують і зачитують лікарці.</b> «Ich fasse kurz zusammen: …» Це замкнений цикл: помилку видно одразу, а не через три години."
+  },
+  "noeuds.unterschrift.choix.0": {
+   "fr": "Pourriez-vous signer les prescriptions dans le dossier, s'il vous plaît ? Comme ça, je peux commencer tout de suite.",
+   "de": "Könnten Sie die Anordnungen bitte noch in der Kurve abzeichnen? Dann kann ich gleich anfangen.",
+   "uk": "Чи не могли б ви ще підписати призначення в листі призначень? Тоді я зможу одразу почати."
+  },
+  "noeuds.unterschrift.choix.0.puis.0": {
+   "fr": "Je le fais juste après la visite. Merci, {elif}, c'était une transmission très claire.",
+   "de": "Mache ich direkt nach der Visite. Danke, {elif}, das war eine sehr klare Übergabe.",
+   "uk": "Зроблю одразу після обходу. Дякую, {elif}, це була дуже чітка передача."
+  },
+  "noeuds.unterschrift.choix.1": {
+   "fr": "Et vous notez les prescriptions dans le dossier, s'il vous plaît ? Je dirai alors à {brandt} qu'il pourra prendre une douche à partir de demain.",
+   "de": "Und tragen Sie die Anordnungen bitte noch in die Kurve ein? Ich sage {brandt:dat} dann, dass er ab morgen duschen darf.",
+   "uk": "І внесіть, будь ласка, призначення в лист призначень. Тоді я скажу {brandt:dat}, що з завтрашнього дня йому можна приймати душ."
+  },
+  "noeuds.unterschrift.choix.1.puis.0": {
+   "fr": "Oui, juste après la visite. Ça lui fera sûrement plaisir.",
+   "de": "Ja, gleich nach der Visite. Das freut ihn bestimmt.",
+   "uk": "Так, одразу після обходу. Він, напевно, зрадіє."
+  },
+  "ecouter.0.q": {
+   "fr": "Qu'a montré le scanner de {brandt} ?",
+   "de": "Was hat das CT bei {brandt:dat} gezeigt?",
+   "uk": "Що показала КТ у {brandt:gen}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Une embolie pulmonaire.",
+   "de": "Eine Lungenembolie.",
+   "uk": "Тромбоемболію легеневої артерії."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Une pneumonie à droite.",
+   "de": "Eine Lungenentzündung rechts.",
+   "uk": "Правобічну пневмонію."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Rien, tout était normal.",
+   "de": "Nichts, alles war normal.",
+   "uk": "Нічого, усе було в нормі."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand faut-il réduire l'oxygène ?",
+   "de": "Wann soll der Sauerstoff reduziert werden?",
+   "uk": "Коли треба зменшити кисень?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Si la saturation reste au-dessus de 92 %.",
+   "de": "Wenn die Sättigung über zweiundneunzig Prozent bleibt.",
+   "uk": "Якщо сатурація залишається вище 92 відсотків."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Tout de suite après la visite.",
+   "de": "Sofort nach der Visite.",
+   "uk": "Одразу після обходу."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Si la fièvre monte.",
+   "de": "Wenn das Fieber steigt.",
+   "uk": "Якщо температура підвищиться."
+  },
+  "ecouter.2.q": {
+   "fr": "À partir de quand {brandt} peut-il prendre une douche ?",
+   "de": "Ab wann darf {brandt} duschen?",
+   "uk": "З якого дня {brandt:dat} можна приймати душ?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Aujourd'hui, après la visite.",
+   "de": "Heute nach der Visite.",
+   "uk": "Сьогодні, після обходу."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Seulement après la rééducation.",
+   "de": "Erst nach der Reha.",
+   "uk": "Лише після реабілітації."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À partir de demain, avec un pansement étanche.",
+   "de": "Ab morgen, mit einem wasserdichten Pflaster.",
+   "uk": "З завтрашнього дня, з водонепроникною повʼязкою."
+  }
+ }
+}

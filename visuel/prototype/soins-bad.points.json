@@ -1,0 +1,749 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 3, la salle de bain (14 nov. 2026). Memes regles que les scenes generales ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Controle : python pflege/outils/construire_scenes.py soins-bad.",
+  "Elif (portrait maitre ~/.wortando/pflege/personnages/elif.png) aide Frau Lehmann a faire sa toilette au lavabo, assise sur une chaise de douche. Pudeur : peignoir ferme et serviette sur les genoux (consigne du chef, 14 nov.). Annexe B, scene 3 : Maricel y est devenue Elif.",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recu : pflege/scenes/soins-bad.*). La Zahnpasta de l'annexe ne se voit pas : pas de zone. Le pied bande est dans une chaussure de decharge noire : zone « Schuh ».",
+  "Couches : BROUILLON non relu ; ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-bad.webp",
+ "source": "~/.wortando/pflege/scenes/soins-bad.png",
+ "titre": "Das Bad",
+ "alt": "La salle de bain d'une chambre d'hôpital, le matin : Frau Lehmann, en peignoir rose, une serviette sur les genoux, est assise sur une chaise de douche devant le lavabo et se lave le visage ; Elif, l'infirmière, en gants bleus, tient une serviette prête ; autour d'elles, le miroir et l'étagère, les toilettes avec la barre d'appui et le cordon d'appel rouge, la bassine sur un tabouret, le drap de bain et le sac à linge.",
+ "consigne": "Touche un objet de la salle de bain, Frau Lehmann ou Elif.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de la salle de bain"
+  },
+  "A2": {
+   "titre": "Les verbes réfléchis",
+   "qs": [
+    {
+     "q": "Frau Lehmann ___ sich das Gesicht.",
+     "c": [
+      "wäscht",
+      "waschen",
+      "wasche"
+     ],
+     "f": "waschlappen",
+     "phrase": "Frau Lehmann wäscht sich das Gesicht.",
+     "sens": "Frau Lehmann se lave le visage.",
+     "n": "<b>sich waschen</b> : à la 3e personne, le a devient ä — sie <b>wäscht</b> sich."
+    },
+    {
+     "q": "Möchten Sie ___ selbst kämmen?",
+     "c": [
+      "sich",
+      "Ihnen",
+      "Sie"
+     ],
+     "f": "kamm",
+     "phrase": "Möchten Sie sich selbst kämmen?",
+     "sens": "Voulez-vous vous peigner vous-même ?",
+     "n": "Avec <b>Sie</b>, le pronom réfléchi est <b>sich</b>, en minuscule : Sie kämmen <b>sich</b>."
+    },
+    {
+     "q": "Frau Lehmann trocknet ___ die Hände ab.",
+     "c": [
+      "sich",
+      "ihr",
+      "sie"
+     ],
+     "f": "handtuch",
+     "phrase": "Frau Lehmann trocknet sich die Hände ab.",
+     "sens": "Frau Lehmann s'essuie les mains.",
+     "n": "<b>sich abtrocknen</b> : à la 3e personne, accusatif et datif se disent tous deux <b>sich</b>. <b>ab</b> va à la fin."
+    },
+    {
+     "q": "Bitte setzen Sie ___ auf den Duschstuhl.",
+     "c": [
+      "sich",
+      "Ihnen",
+      "Sie"
+     ],
+     "f": "duschstuhl",
+     "phrase": "Bitte setzen Sie sich auf den Duschstuhl.",
+     "sens": "Asseyez-vous sur la chaise de douche, s'il vous plaît.",
+     "n": "<b>sich setzen</b> + <b>auf den</b> (accusatif : on va vers la chaise). Assise, on dit <b>auf dem</b> Duschstuhl."
+    },
+    {
+     "q": "Elif zieht ___ frische Handschuhe an.",
+     "c": [
+      "sich",
+      "ihr",
+      "sie"
+     ],
+     "f": "handschuh",
+     "phrase": "Elif zieht sich frische Handschuhe an.",
+     "sens": "Elif enfile des gants propres.",
+     "n": "<b>sich etwas anziehen</b> : sich au datif, l'objet à l'accusatif ; la particule <b>an</b> va à la fin."
+    },
+    {
+     "q": "Ich fühle ___ heute gut.",
+     "c": [
+      "mich",
+      "mir",
+      "sich"
+     ],
+     "f": "patientin",
+     "phrase": "Ich fühle mich heute gut.",
+     "sens": "Je me sens bien aujourd'hui.",
+     "n": "<b>sich fühlen</b> : ich fühle <b>mich</b>, Sie fühlen <b>sich</b>."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Annoncer et demander la permission",
+   "qs": [
+    {
+     "q": "Bevor Elif den Rücken wäscht, sagt sie: Ich wasche jetzt Ihren Rücken. ___",
+     "c": [
+      "Ist das in Ordnung?",
+      "Das muss jetzt sein.",
+      "Bleiben Sie ruhig."
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Ich wasche jetzt Ihren Rücken. Ist das in Ordnung?",
+     "sens": "Je vais vous laver le dos maintenant. Ça vous va ?",
+     "n": "On annonce chaque geste, puis on demande l'accord : <b>Ist das in Ordnung?</b> La pudeur de la personne passe avant le rythme du soin ⚕️."
+    },
+    {
+     "q": "___ ich Ihnen beim Abtrocknen helfen?",
+     "c": [
+      "Darf",
+      "Muss",
+      "Soll"
+     ],
+     "f": "handtuch",
+     "phrase": "Darf ich Ihnen beim Abtrocknen helfen?",
+     "sens": "Puis-je vous aider à vous essuyer ?",
+     "n": "<b>Darf ich …?</b> = puis-je … ? On demande avant d'aider. <b>helfen</b> + datif : <b>Ihnen</b>."
+    },
+    {
+     "q": "Ich lege Ihnen ein Handtuch über die Knie, ___ Sie nicht frieren.",
+     "c": [
+      "damit",
+      "weil",
+      "obwohl"
+     ],
+     "f": "handtuch",
+     "phrase": "Ich lege Ihnen ein Handtuch über die Knie, damit Sie nicht frieren.",
+     "sens": "Je vous mets une serviette sur les genoux, pour que vous n'ayez pas froid.",
+     "n": "<b>damit</b> = pour que (le but) ; le verbe va à la fin : … nicht <b>frieren</b>."
+    },
+    {
+     "q": "Möchten Sie das Gesicht ___ waschen, oder soll ich das machen?",
+     "c": [
+      "selbst",
+      "zusammen",
+      "gleich"
+     ],
+     "f": "waschlappen",
+     "phrase": "Möchten Sie das Gesicht selbst waschen, oder soll ich das machen?",
+     "sens": "Voulez-vous vous laver le visage vous-même, ou est-ce que je le fais ?",
+     "n": "<b>selbst</b> = soi-même. La personne fait ce qu'elle peut faire seule : c'est la <b>aktivierende Pflege</b>."
+    },
+    {
+     "q": "Ist das Wasser so ___ für Sie?",
+     "c": [
+      "angenehm",
+      "gefährlich",
+      "verboten"
+     ],
+     "f": "waschschuessel",
+     "phrase": "Ist das Wasser so angenehm für Sie?",
+     "sens": "L'eau est-elle agréable comme ça pour vous ?",
+     "n": "On vérifie la température avec la personne : <b>angenehm</b> = agréable. Une peau âgée ou diabétique sent mal le chaud ⚕️."
+    },
+    {
+     "q": "Sagen Sie mir bitte, ___ Ihnen etwas unangenehm ist.",
+     "c": [
+      "wenn",
+      "ob",
+      "dass"
+     ],
+     "f": "patientin",
+     "phrase": "Sagen Sie mir bitte, wenn Ihnen etwas unangenehm ist.",
+     "sens": "Dites-le-moi, s'il vous plaît, si quelque chose vous gêne.",
+     "n": "<b>wenn</b> = si, quand (une condition) ; le verbe à la fin. <b>unangenehm</b> = désagréable, gênant."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les subordonnées de temps",
+   "qs": [
+    {
+     "q": "___ die Haut abgetrocknet ist, cremt Elif sie ein.",
+     "c": [
+      "Nachdem",
+      "Bevor",
+      "Während"
+     ],
+     "f": "hautcreme",
+     "phrase": "Nachdem die Haut abgetrocknet ist, cremt Elif sie ein.",
+     "sens": "Une fois la peau séchée, Elif l'hydrate avec de la crème.",
+     "n": "<b>nachdem</b> = après que, avec un temps accompli (abgetrocknet <b>ist</b>) ; la principale commence par le verbe : <b>cremt</b> Elif …"
+    },
+    {
+     "q": "___ Elif die Waschschüssel füllt, zieht sie Handschuhe an.",
+     "c": [
+      "Bevor",
+      "Nachdem",
+      "Seitdem"
+     ],
+     "f": "handschuh",
+     "phrase": "Bevor Elif die Waschschüssel füllt, zieht sie Handschuhe an.",
+     "sens": "Avant de remplir la bassine, Elif enfile des gants.",
+     "n": "<b>bevor</b> = avant de, avant que. Même avec le même sujet, l'allemand fait une subordonnée, là où le français met un infinitif."
+    },
+    {
+     "q": "___ Frau Lehmann sich das Gesicht wäscht, hält Elif das Handtuch bereit.",
+     "c": [
+      "Während",
+      "Nachdem",
+      "Bis"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Während Frau Lehmann sich das Gesicht wäscht, hält Elif das Handtuch bereit.",
+     "sens": "Pendant que Frau Lehmann se lave le visage, Elif tient la serviette prête.",
+     "n": "<b>während</b> = pendant que : deux actions en même temps."
+    },
+    {
+     "q": "Sagen Sie Bescheid, ___ Sie fertig sind.",
+     "c": [
+      "sobald",
+      "seit",
+      "bevor"
+     ],
+     "f": "patientin",
+     "phrase": "Sagen Sie Bescheid, sobald Sie fertig sind.",
+     "sens": "Prévenez-moi dès que vous avez fini.",
+     "n": "<b>sobald</b> = dès que. <b>Bescheid sagen</b> = prévenir."
+    },
+    {
+     "q": "Der Verband darf nicht nass werden, ___ die Wunde verheilt ist.",
+     "c": [
+      "bis",
+      "seit",
+      "während"
+     ],
+     "f": "schuh",
+     "phrase": "Der Verband darf nicht nass werden, bis die Wunde verheilt ist.",
+     "sens": "Le pansement ne doit pas être mouillé tant que la plaie n'est pas guérie.",
+     "n": "<b>bis</b> = jusqu'à ce que. Le pansement d'une plaie de pied diabétique reste sec ⚕️."
+    },
+    {
+     "q": "___ Frau Lehmann im Krankenhaus ist, wäscht sie sich am Waschbecken.",
+     "c": [
+      "Seit",
+      "Bevor",
+      "Bis"
+     ],
+     "f": "waschbecken",
+     "phrase": "Seit Frau Lehmann im Krankenhaus ist, wäscht sie sich am Waschbecken.",
+     "sens": "Depuis que Frau Lehmann est à l'hôpital, elle fait sa toilette au lavabo.",
+     "n": "<b>seit</b> + présent : depuis que, et c'est toujours vrai (le français dit aussi le présent)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Le style nominal du rapport",
+   "qs": [
+    {
+     "q": "Sie hat sich am Waschbecken gewaschen, nicht unter der Dusche. Im Bericht: ___ am Waschbecken.",
+     "c": [
+      "Teilwäsche",
+      "Teilgewaschen",
+      "Wäscht teilweise"
+     ],
+     "f": "waschbecken",
+     "phrase": "Teilwäsche am Waschbecken.",
+     "sens": "Toilette partielle au lavabo.",
+     "n": "Le rapport de soins préfère le nom : <b>Teilwäsche</b> (toilette partielle), <b>Ganzkörperwäsche</b> (toilette complète)."
+    },
+    {
+     "q": "Gesicht und Oberkörper wäscht sie allein. Im Bericht: Gesicht und Oberkörper ___.",
+     "c": [
+      "selbstständig",
+      "Selbstständigkeit",
+      "selbstständige"
+     ],
+     "f": "patientin",
+     "phrase": "Gesicht und Oberkörper selbstständig.",
+     "sens": "Visage et haut du corps : seule.",
+     "n": "Pas de sujet, pas de verbe : l'adjectif sans terminaison suffit, <b>selbstständig</b>."
+    },
+    {
+     "q": "Beim Rücken und bei den Beinen hilft Elif. Im Bericht: Rücken und Beine ___ Unterstützung.",
+     "c": [
+      "mit",
+      "durch",
+      "von"
+     ],
+     "f": "pflegefachfrau",
+     "phrase": "Rücken und Beine mit Unterstützung.",
+     "sens": "Dos et jambes : avec aide.",
+     "n": "<b>mit Unterstützung</b> = avec aide. On écrit ce que la personne fait seule et ce qu'elle fait avec aide."
+    },
+    {
+     "q": "Die Haut ist nicht gerötet und nicht verletzt. Im Bericht: Haut ___.",
+     "c": [
+      "intakt",
+      "geheilt",
+      "gesund gemacht"
+     ],
+     "f": "hautcreme",
+     "phrase": "Haut intakt.",
+     "sens": "Peau intacte.",
+     "n": "<b>intakt</b> : le mot du rapport pour une peau sans rougeur ni lésion. Rouge : <b>gerötet</b>."
+    },
+    {
+     "q": "Der Verband ist trocken geblieben. Im Bericht: Verband trocken und ___.",
+     "c": [
+      "sauber",
+      "gesäubert",
+      "Sauberkeit"
+     ],
+     "f": "schuh",
+     "phrase": "Verband trocken und sauber.",
+     "sens": "Pansement sec et propre.",
+     "n": "Ni article ni verbe : <b>Verband trocken und sauber</b>. Le pied diabétique se surveille à chaque toilette ⚕️."
+    },
+    {
+     "q": "Beim Waschen war ihr kurz schwindelig. Im Bericht: Kurzzeitig ___ beim Waschen, Vitalzeichen kontrolliert.",
+     "c": [
+      "Schwindel",
+      "schwindelig",
+      "schwindeln"
+     ],
+     "f": "patientin",
+     "phrase": "Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.",
+     "sens": "Bref vertige pendant la toilette, signes vitaux contrôlés.",
+     "n": "Le nom <b>Schwindel</b> (vertige) remplace la phrase « elle avait le vertige » ; on note toujours ce qu'on a fait ⚕️."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B1",
+   "qs": [
+    {
+     "q": "Nach dem Waschen soll der Verband am Fuß gewechselt werden. Frau Lehmann fragt: „Guten Morgen. Was haben Sie denn da alles dabei?“",
+     "c": [
+      "Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?",
+      "Ich mache jetzt Ihren Fuß.",
+      "Ich messe jetzt Ihr Blut."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?",
+     "sens": "Bonjour, madame Lehmann. Je voudrais changer le pansement de votre pied maintenant. Vous êtes d'accord ?",
+     "n": "<b>Dis exactement ce que tu vas faire, et demande l'accord.</b> « Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung? » « machen » tout seul ne dit rien au patient.",
+     "source": "d03-verbandswechsel/ankuendigen"
+    },
+    {
+     "q": "Frau Lehmann fragt: „Warum muss das eigentlich jeden Tag sein?“",
+     "c": [
+      "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.",
+      "Weil der Arzt das so will.",
+      "Aber das ist doch wichtig! Sie müssen das machen."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.",
+     "sens": "Pour que la plaie reste propre et puisse bien guérir. Avec le diabète, une plaie guérit souvent plus lentement.",
+     "n": "<b>Explique le but du soin, en mots simples : « damit … ».</b> « Damit die Wunde sauber bleibt und gut heilen kann. » Un patient qui comprend pourquoi coopère mieux. ⚕️",
+     "source": "d03-verbandswechsel/warum"
+    },
+    {
+     "q": "Frau Lehmann fragt: „Und was machen Sie da genau? Ich will lieber nicht hinschauen.“",
+     "c": [
+      "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.",
+      "Zuerst nehme ich den Verband ab, dann desinfiziere ich mir die Hände.",
+      "Ich mache jetzt Ihren Fuß."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.",
+     "sens": "D'abord, je me désinfecte les mains et je mets des gants. Ensuite, j'enlève l'ancien pansement.",
+     "n": "<b>C'est une faute de soin : l'hygiène des mains vient avant tout geste.</b> « Zuerst desinfiziere ich mir die Hände, dann … ». La patiente l'a remarqué : à l'examen comme au travail, l'ordre compte. ⚕️",
+     "source": "d03-verbandswechsel/ablauf",
+     "r": "handschuh"
+    },
+    {
+     "q": "Frau Lehmann fragt: „Und tut das weh?“",
+     "c": [
+      "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.",
+      "Nein, das tut überhaupt nicht weh.",
+      "Das ist nicht schlimm."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.",
+     "sens": "Ça peut tirer un peu. Dites-moi tout de suite si ça fait mal, et je fais une pause.",
+     "n": "<b>Ne promets pas qu'un soin ne fera pas mal.</b> Préviens honnêtement (« Es kann ein bisschen ziehen ») et donne à la patiente un moyen d'agir : « Sagen Sie mir bitte sofort, wenn es wehtut. »",
+     "source": "d03-verbandswechsel/weh"
+    },
+    {
+     "q": "Frau Lehmann fragt: „Und? Wie sieht es aus? Ich trau mich nicht hinzuschauen.“",
+     "c": [
+      "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.",
+      "Die Wunde ist ziemlich eklig.",
+      "Keine Sorge, das ist normal bei alten Leuten."
+     ],
+     "f": "patientin",
+     "type": "situation",
+     "phrase": "Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.",
+     "sens": "Bien. La plaie est propre, et elle a déjà un peu rétréci.",
+     "n": "<b>Pour une plaie, des mots neutres et précis : sauber, gerötet, kleiner, größer.</b> « eklig » (dégoûtant) blesse la patiente et n'apprend rien au dossier.",
+     "source": "d03-verbandswechsel/wunde"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "notrufschnur",
+   "mot": "Notrufschnur",
+   "boite": [
+    29.0,
+    2.0,
+    6.5,
+    33.8
+   ]
+  },
+  {
+   "id": "spiegel",
+   "mot": "Spiegel",
+   "boite": [
+    45.4,
+    20.6,
+    21.8,
+    16.2
+   ],
+   "plein": true
+  },
+  {
+   "id": "haltegriff",
+   "mot": "Haltegriff",
+   "boite": [
+    1.2,
+    34.4,
+    6.4,
+    17.0
+   ]
+  },
+  {
+   "id": "toilettensitzerhoehung",
+   "mot": "Toilettensitzerhöhung",
+   "boite": [
+    0.6,
+    50.4,
+    21.0,
+    9.0
+   ],
+   "sam": [
+    0.8,
+    52.0,
+    19.2,
+    8.0
+   ],
+   "points_sam": [
+    [
+     2.6,
+     54.5,
+     1
+    ],
+    [
+     3.2,
+     58.2,
+     1
+    ],
+    [
+     8.0,
+     58.4,
+     1
+    ],
+    [
+     11.5,
+     58.9,
+     1
+    ],
+    [
+     17.6,
+     58.0,
+     1
+    ],
+    [
+     14.6,
+     53.5,
+     0
+    ],
+    [
+     19.3,
+     54.0,
+     0
+    ],
+    [
+     15.6,
+     57.6,
+     0
+    ],
+    [
+     6.0,
+     56.0,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "toilette",
+   "mot": "Toilette",
+   "boite": [
+    8.5,
+    46.0,
+    15.5,
+    19.6
+   ]
+  },
+  {
+   "id": "waschlotion",
+   "mot": "Waschlotion",
+   "boite": [
+    45.2,
+    35.3,
+    3.9,
+    4.7
+   ]
+  },
+  {
+   "id": "hautcreme",
+   "mot": "Hautcreme",
+   "boite": [
+    48.9,
+    36.2,
+    2.6,
+    3.8
+   ]
+  },
+  {
+   "id": "kamm",
+   "mot": "Kamm",
+   "boite": [
+    51.8,
+    39.1,
+    6.2,
+    1.3
+   ]
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Prothesendose",
+   "boite": [
+    58.4,
+    38.7,
+    4.4,
+    1.6
+   ]
+  },
+  {
+   "id": "rasierapparat",
+   "mot": "Rasierapparat",
+   "boite": [
+    63.2,
+    35.9,
+    2.9,
+    4.6
+   ]
+  },
+  {
+   "id": "zahnbuerste",
+   "mot": "Zahnbürste",
+   "boite": [
+    46.0,
+    43.4,
+    4.0,
+    4.6
+   ]
+  },
+  {
+   "id": "wasserhahn",
+   "mot": "Wasserhahn",
+   "boite": [
+    53.2,
+    44.7,
+    3.6,
+    3.5
+   ]
+  },
+  {
+   "id": "waschbecken",
+   "mot": "Waschbecken",
+   "boite": [
+    42.6,
+    46.6,
+    24.6,
+    10.6
+   ]
+  },
+  {
+   "id": "patientin",
+   "mot": "Patientin",
+   "boite": [
+    21.6,
+    36.2,
+    37.2,
+    40.6
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    36.8,
+    39.3,
+    4.6,
+    2.1
+   ]
+  },
+  {
+   "id": "waschlappen",
+   "mot": "Waschlappen",
+   "boite": [
+    36.6,
+    42.8,
+    7.8,
+    5.8
+   ]
+  },
+  {
+   "id": "bademantel",
+   "mot": "Bademantel",
+   "boite": [
+    21.6,
+    42.6,
+    37.0,
+    30.0
+   ]
+  },
+  {
+   "id": "handtuch",
+   "mot": "Handtuch",
+   "boite": [
+    34.0,
+    57.8,
+    19.4,
+    8.0
+   ]
+  },
+  {
+   "id": "duschstuhl",
+   "mot": "Duschstuhl",
+   "boite": [
+    17.0,
+    50.5,
+    30.0,
+    28.2
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    46.0,
+    72.4,
+    14.0,
+    4.8
+   ]
+  },
+  {
+   "id": "hausschuh",
+   "mot": "Hausschuh",
+   "boite": [
+    51.8,
+    71.4,
+    10.8,
+    3.4
+   ]
+  },
+  {
+   "id": "antirutschmatte",
+   "mot": "Antirutschmatte",
+   "boite": [
+    43.2,
+    70.3,
+    22.0,
+    9.6
+   ]
+  },
+  {
+   "id": "pflegefachfrau",
+   "mot": "Pflegefachfrau",
+   "boite": [
+    60.8,
+    28.5,
+    22.4,
+    44.4
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "boite": [
+    61.0,
+    42.0,
+    9.0,
+    3.4
+   ]
+  },
+  {
+   "id": "waschschuessel",
+   "mot": "Waschschüssel",
+   "boite": [
+    68.2,
+    57.8,
+    19.4,
+    4.8
+   ]
+  },
+  {
+   "id": "hocker",
+   "mot": "Hocker",
+   "boite": [
+    67.0,
+    62.2,
+    20.0,
+    16.8
+   ]
+  },
+  {
+   "id": "badetuch",
+   "mot": "Badetuch",
+   "boite": [
+    83.8,
+    37.8,
+    11.0,
+    22.8
+   ]
+  },
+  {
+   "id": "waeschesack",
+   "mot": "Wäschesack",
+   "boite": [
+    76.8,
+    63.0,
+    16.8,
+    30.8
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "boite": [
+    91.2,
+    20.0,
+    8.8,
+    80.0
+   ]
+  }
+ ]
+}

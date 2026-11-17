@@ -1,0 +1,95 @@
+{
+ "id": "cafe-voisin",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "usted",
+ "titre": {"fr": "Au bar, avec un voisin de table"},
+ "intro": {"fr": "Tu prends ton petit-déjeuner dans un bar de ton nouveau quartier, à Madrid. Tu commandes, un voisin de table te parle du Rastro, puis tu paies."},
+ "personnes": ["kellnerin", "nachbar"],
+ "debut": "pedir",
+ "prix": {"cafe": 160, "zumo": 250, "agua": 150, "tostada": 220},
+ "panier": ["bebida", "comida"],
+ "textes": {
+  "bebida_fr": {"cle": "bebida", "cafe": "ton café au lait", "zumo": "ton jus d'orange", "agua": "ton eau"},
+  "comida_fr": {"cle": "comida", "tostada": " et ta tartine à la tomate"}
+ },
+ "noeuds": {
+  "pedir": {
+   "dit": [
+    {"recit": {"fr": "Tu entres dans un petit bar de ton nouveau quartier. Tu t'assieds près de la fenêtre."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "¡Buenos días! ¿Qué le pongo?", "fr": "Bonjour ! Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "Un café con leche, por favor.", "fr": "Un café au lait, s'il vous plaît.", "pose": {"bebida": "cafe"}, "va": "libre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Marchando!", "fr": "Ça arrive !"}]},
+    {"t": "Quería un zumo de naranja, por favor.", "fr": "Je voudrais un jus d'orange, s'il vous plaît.", "pose": {"bebida": "zumo"}, "va": "libre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Muy bien, ahora mismo.", "fr": "Très bien, tout de suite."}]},
+    {"t": "Un agua y una tostada con tomate, por favor.", "fr": "Une eau et une tartine à la tomate, s'il vous plaît.", "pose": {"bebida": "agua", "comida": "tostada"}, "va": "libre",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Muy bien! Ahora mismo se lo traigo.", "fr": "Très bien ! Je vous apporte ça tout de suite."}]},
+    {"faux": true, "t": "Quería un jugo de naranja, por favor.", "fr": "Je voudrais un jus d'orange (mot d'Amérique latine), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "¿Un jugo? Ah, ¿un zumo de naranja? ¡Claro!", "fr": "Un « jugo » ? Ah, un jus d'orange ? Bien sûr !"}],
+     "aide": {"fr": "<b>En Espagne, le jus de fruits se dit « el zumo ».</b> « el jugo » est le mot d'Amérique latine : on te comprend, mais à Madrid, on dit « un zumo de naranja »."}}
+   ]
+  },
+  "libre": {
+   "dit": [
+    {"recit": {"fr": "La serveuse apporte {bebida_fr}{comida_fr}. Le bar se remplit. Un homme s'approche de ta table."}},
+    {"qui": "nachbar", "air": "question", "t": "Perdone, ¿está libre esta silla?", "fr": "Excusez-moi, cette chaise est libre ?"}
+   ],
+   "choix": [
+    {"t": "Sí, claro. Siéntese.", "fr": "Oui, bien sûr. Asseyez-vous.", "va": "rastro",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "¡Muchas gracias!", "fr": "Merci beaucoup !"}]},
+    {"t": "Sí, sí, está libre.", "fr": "Oui, oui, elle est libre.", "va": "rastro",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Gracias, muy amable.", "fr": "Merci, c'est très aimable."}]},
+    {"faux": true, "t": "Sí, es libre.", "fr": "Oui, elle est libre (avec le mauvais verbe).",
+     "puis": [{"qui": "nachbar", "air": "perplexe", "t": "¿Es libre…? Ah, ¿está libre? ¡Gracias!", "fr": "« Es libre » ? Ah, elle est libre ? Merci !"}],
+     "aide": {"fr": "<b>Pour un état (libre, occupé, fermé), on emploie « estar » :</b> « Sí, está libre ». Ou simplement : « Sí, claro. Siéntese »."}}
+   ]
+  },
+  "rastro": {
+   "dit": [{"qui": "nachbar", "air": "question", "t": "¿Vive usted en el barrio? ¿Conoce el Rastro?", "fr": "Vous habitez le quartier ? Vous connaissez le Rastro ?"}],
+   "choix": [
+    {"t": "No. ¿Qué es el Rastro?", "fr": "Non. Qu'est-ce que c'est, le Rastro ?", "va": "cuenta",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Es un mercado muy grande, los domingos por la mañana, en La Latina. ¡Hay de todo!", "fr": "C'est un très grand marché aux puces, le dimanche matin, à La Latina. On y trouve de tout !"}]},
+    {"t": "Sí, me gusta mucho el Rastro.", "fr": "Oui, j'aime beaucoup le Rastro.", "va": "cuenta",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "¡A mí también! Voy todos los domingos.", "fr": "Moi aussi ! J'y vais tous les dimanches."}]},
+    {"repete": true, "t": "¿Perdón? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "rastro",
+     "puis": [{"qui": "nachbar", "air": "sourire", "t": "Claro. ¿Conoce el Rastro, el mercado del domingo?", "fr": "Bien sûr. Vous connaissez le Rastro, le marché du dimanche ?"}]}
+   ]
+  },
+  "cuenta": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard. Tu fais signe à la serveuse."}},
+    {"qui": "kellnerin", "air": "question", "t": "¿Quiere algo más?", "fr": "Vous voulez autre chose ?"}
+   ],
+   "choix": [
+    {"t": "No, gracias. ¿Me cobra, por favor?", "fr": "Non, merci. Je peux payer, s'il vous plaît ?", "va": "importe"},
+    {"t": "No, gracias. La cuenta, por favor.", "fr": "Non, merci. L'addition, s'il vous plaît.", "va": "importe"},
+    {"faux": true, "t": "No, gracias. La carta, por favor.", "fr": "Non, merci. La carte (le menu), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "¿La carta? ¿Quiere pedir algo más?", "fr": "La carte ? Vous voulez commander autre chose ?"}],
+     "aide": {"fr": "<b>« la carta », c'est le menu.</b> Pour payer : « La cuenta, por favor » ou, très madrilène, « ¿Me cobra? »."}}
+   ]
+  },
+  "importe": {
+   "dit": [{"qui": "kellnerin", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "{arrondi:mots_maj} euros. Quédese con la vuelta.", "fr": "{arrondi} euros. Gardez la monnaie.", "va": "adios",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "¡Muchas gracias! ¡Que tenga un buen día!", "fr": "Merci beaucoup ! Bonne journée !"}]},
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": "adios",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Muy bien. ¡Gracias, que tenga un buen día!", "fr": "Très bien. Merci, bonne journée !"}]}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "nachbar", "air": "sourire", "t": "¡Adiós! ¡A lo mejor nos vemos el domingo en el Rastro!", "fr": "Au revoir ! On se verra peut-être dimanche au Rastro !"}],
+   "choix": [
+    {"t": "¡Hasta el domingo! ¡Adiós!", "fr": "À dimanche ! Au revoir !", "va": null},
+    {"faux": true, "t": "¡Hasta luego, tío!", "fr": "Salut, mec !",
+     "puis": [{"qui": "nachbar", "air": "amuse", "t": "¿Tío? ¡Ja, ja! Bueno… ¡hasta luego!", "fr": "« Mec » ? Ha ha ! Bon… à plus tard !"}],
+     "aide": {"fr": "<b>« tío »</b> (mot à mot « oncle ») veut dire « mec », entre amis. À un voisin que tu viens de rencontrer, au « usted » : « ¡Adiós! » ou « ¡Hasta el domingo! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commandé, parlé avec ton voisin de table (rendez-vous au Rastro dimanche) et payé {a_payer}."}
+}

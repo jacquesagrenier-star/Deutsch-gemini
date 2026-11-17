@@ -1,0 +1,78 @@
+{
+ "id": "a1-gare",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "train",
+ "registre": "Sie",
+ "titre": {"fr": "À la gare : l'aller-retour et le quai"},
+ "intro": {"fr": "À la gare centrale de Berlin, tu achètes au guichet un billet pour Hambourg : aller simple ou aller-retour, l'heure, la place réservée, puis le quai."},
+ "personnes": ["bahnangestellter"],
+ "debut": "schalter",
+ "prix": {"einfach": 3990, "hin_zurueck": 7980, "platz": 550},
+ "panier": ["fahrt", "platz"],
+ "textes": {
+  "fahrt_fr": {"cle": "fahrt", "einfach": "un aller simple", "hin_zurueck": "un aller-retour"}
+ },
+ "noeuds": {
+  "schalter": {
+   "dit": [
+    {"recit": {"fr": "Berlin, la gare centrale (Hauptbahnhof). Tu veux passer une journée à Hambourg. Au guichet, c'est ton tour."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Guten Tag! Wohin möchten Sie fahren?", "fr": "Bonjour ! Où voulez-vous aller ?"}
+   ],
+   "choix": [
+    {"t": "Nach Hamburg, bitte.", "fr": "À Hambourg, s'il vous plaît.", "va": "hin"},
+    {"t": "Ich möchte nach Hamburg fahren.", "fr": "Je voudrais aller à Hambourg.", "va": "hin"}
+   ]
+  },
+  "hin": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "Nach Hamburg. Nur hin, oder hin und zurück?", "fr": "Pour Hambourg. Aller simple, ou aller-retour ?"}],
+   "choix": [
+    {"t": "Hin und zurück, bitte.", "fr": "Aller-retour, s'il vous plaît.", "pose": {"fahrt": "hin_zurueck"}, "va": "wann"},
+    {"t": "Nur hin, bitte.", "fr": "Aller simple, s'il vous plaît.", "pose": {"fahrt": "einfach"}, "va": "wann"},
+    {"faux": true, "t": "Hin und her, bitte.", "fr": "Aller-retour (mot à mot, mais faux), s'il vous plaît.",
+     "puis": [{"qui": "bahnangestellter", "air": "amuse", "t": "Hin und her? Ha! Sie meinen: hin und zurück, oder?", "fr": "« Hin und her » ? Ha ! Vous voulez dire aller-retour, non ?"}],
+     "aide": {"fr": "<b>« aller-retour » se dit « hin und zurück ».</b> « hin und her » veut dire « dans tous les sens », comme quelqu'un qui fait les cent pas."}}
+   ]
+  },
+  "wann": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "Wann möchten Sie fahren?", "fr": "Quand voulez-vous partir ?"}],
+   "choix": [
+    {"t": "Heute. Wann fährt der nächste Zug?", "fr": "Aujourd'hui. Quand part le prochain train ?", "va": "platz",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "Um zehn Uhr sechs. Kurz vor zwölf sind Sie in Hamburg.", "fr": "À dix heures six. Vous êtes à Hambourg un peu avant midi."}]},
+    {"t": "Heute Mittag, bitte.", "fr": "Ce midi, s'il vous plaît.", "va": "platz",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "Gut. Um zwölf Uhr sechs fährt ein Zug.", "fr": "Bien. Il y a un train à midi six."}]}
+   ]
+  },
+  "platz": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "Möchten Sie einen Sitzplatz reservieren? Der Zug ist heute sehr voll.", "fr": "Vous voulez réserver une place assise ? Le train est très plein aujourd'hui."}],
+   "choix": [
+    {"t": "Ja, bitte. Am Fenster.", "fr": "Oui, s'il vous plaît. Côté fenêtre.", "pose": {"platz": "platz"}, "va": "betrag"},
+    {"t": "Nein, danke.", "fr": "Non, merci.", "va": "betrag"},
+    {"repete": true, "t": "Wie bitte? Was ist ein Sitzplatz?", "fr": "Pardon ? Qu'est-ce que c'est, un « Sitzplatz » ?", "va": "platz",
+     "puis": [{"qui": "bahnangestellter", "air": "sourire", "t": "Ein Platz im Zug, nur für Sie. Möchten Sie das?", "fr": "Une place dans le train, rien que pour vous. Vous voulez ça ?"}]}
+   ]
+  },
+  "betrag": {
+   "dit": [{"qui": "bahnangestellter", "air": "attentive", "t": "Das macht {a_payer}. Bar oder mit Karte?", "fr": "Ça fait {a_payer}. En espèces ou par carte ?", "dit": "Das macht {a_payer:mots}. Bar oder mit Karte?"}],
+   "choix": [
+    {"t": "Mit Karte, bitte.", "fr": "Par carte, s'il vous plaît.", "va": "gleis"},
+    {"t": "Bar. Hier, bitte.", "fr": "En espèces. Voilà.", "va": "gleis"}
+   ]
+  },
+  "gleis": {
+   "dit": [
+    {"recit": {"fr": "Il te tend ton billet."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Hier ist Ihre Fahrkarte. Gute Reise!", "fr": "Voici votre billet. Bon voyage !"}
+   ],
+   "choix": [
+    {"t": "Danke! Von welchem Gleis fährt der Zug?", "fr": "Merci ! De quel quai part le train ?", "va": null,
+     "puis": [{"qui": "bahnangestellter", "air": "sourire", "t": "Von Gleis vierzehn, oben.", "fr": "Du quai quatorze, en haut."}]},
+    {"faux": true, "t": "Danke! Von welchem Quai fährt der Zug?", "fr": "Merci ! De quel quai part le train ? (avec le mot français)",
+     "puis": [{"qui": "bahnangestellter", "air": "perplexe", "t": "Quai? … Ah, Sie meinen das Gleis! Gleis vierzehn.", "fr": "« Quai » ? … Ah, vous voulez dire la voie ! Voie quatorze."}],
+     "aide": {"fr": "<b>Le quai de la gare se dit « das Gleis »</b> (la voie, avec son numéro) ou « der Bahnsteig ». On demande : « Von welchem Gleis fährt der Zug? »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {fahrt_fr} pour Hambourg, payé {a_payer} et demandé le quai."}
+}

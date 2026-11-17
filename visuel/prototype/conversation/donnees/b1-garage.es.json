@@ -1,0 +1,142 @@
+{
+ "id": "b1-garage",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Au garage : les freins et la ITV"},
+ "intro": {"fr": "Ta voiture fait un bruit quand tu freines et un voyant s'est allumé. Tu vas dans un garage de ton quartier, à Madrid. Décris le problème, comprends le devis et organise la réparation : tu as besoin de la voiture demain."},
+ "bilan": {"fr": "Tu as décrit la panne et compris le devis. {plan_fr} {pago_fr}"},
+ "personnes": ["mechanikerin_werkstatt"],
+ "debut": "ruido",
+ "textes": {
+  "plan_fr": {"cle": "plan", "frenos": "Aujourd'hui, on ne change que les plaquettes de frein (140 €) ; tu rapporteras la voiture pour le phare avant la ITV.", "todo": "Le garage fait tout (320 €) et te prête un vélo électrique jusqu'à demain."},
+  "pago_fr": {"cle": "pago", "tarjeta": "Tu paies par carte, avec une facture.", "mitad": "Tu paies la moitié en reprenant la voiture et le reste avant la fin du mois."}
+ },
+ "noeuds": {
+  "ruido": {
+   "dit": [
+    {"recit": {"fr": "Un petit garage de Carabanchel. La mécanicienne sort de sous une voiture et s'essuie les mains."}},
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Buenos días. Dígame, ¿qué le pasa al coche?", "fr": "Bonjour. Dites-moi, qu'est-ce qu'elle a, cette voiture ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Hace un ruido raro cuando freno y se ha encendido una luz roja.", "fr": "Bonjour. Elle fait un bruit bizarre quand je freine et un voyant rouge s'est allumé.", "va": "desde"},
+    {"t": "Buenos días. Oigo un ruido al frenar y hay una luz encendida en el panel.", "fr": "Bonjour. J'entends un bruit en freinant et il y a un voyant allumé sur le tableau de bord.", "va": "desde"},
+    {"faux": true, "t": "Buenos días. He entendido un ruido cuando freno.", "fr": "Bonjour. J'ai entendu un bruit quand je freine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "surprise", "t": "¿Lo ha entendido? ¿Y qué le ha dicho el ruido? Lo ha oído, querrá decir.", "fr": "Vous l'avez compris ? Et qu'est-ce qu'il vous a dit, ce bruit ? Vous l'avez entendu, voulez-vous dire."}],
+     "aide": {"fr": "<b>Entendre = oír ; « entender » veut dire comprendre.</b> « Oigo un ruido cuando freno. »"}}
+   ]
+  },
+  "desde": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "¿Desde cuándo lo nota? ¿Y pasa siempre o solo a veces?", "fr": "Depuis quand le remarquez-vous ? Et cela arrive toujours ou seulement parfois ?"}
+   ],
+   "choix": [
+    {"t": "Desde hace tres días, y cada vez que freno fuerte.", "fr": "Depuis trois jours, et chaque fois que je freine fort.", "va": "mirar"},
+    {"t": "Empezó el lunes. Lo oigo sobre todo por la mañana, cuando el coche está frío.", "fr": "Ça a commencé lundi. Je l'entends surtout le matin, quand la voiture est froide.", "va": "mirar"},
+    {"faux": true, "t": "Desde tres días, cuando freno.", "fr": "Depuis trois jours, quand je freine.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "¿Desde hace tres días, quiere decir? Vale. ¿Y siempre que frena, o solo a veces?", "fr": "Depuis trois jours, voulez-vous dire ? D'accord. Et chaque fois que vous freinez, ou seulement parfois ?"}],
+     "aide": {"fr": "<b>Depuis + une durée = desde hace.</b> « Desde hace tres días ». « Desde » seul va avec un moment précis : « desde el lunes »."}}
+   ]
+  },
+  "mirar": {
+   "dit": [
+    {"recit": {"fr": "Elle lève la voiture sur le pont et inspecte les roues avec une lampe."}},
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Ya lo veo: las pastillas de freno están muy gastadas. Hay que cambiarlas ya.", "fr": "Je vois : les plaquettes de frein sont très usées. Il faut les changer tout de suite."},
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Y otra cosa: tiene un faro delantero roto, y según la pegatina, la ITV caduca a fin de mes. Así no la pasa.", "fr": "Et autre chose : vous avez un phare avant cassé, et d'après la vignette, le contrôle technique expire à la fin du mois. Comme ça, elle ne passera pas."}
+   ],
+   "choix": [
+    {"t": "¿Es peligroso conducir así? Necesito el coche todos los días.", "fr": "Est-ce dangereux de conduire comme ça ? J'ai besoin de la voiture tous les jours.", "va": "presupuesto",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Con esas pastillas, sí. Yo no esperaría ni un día más.", "fr": "Avec ces plaquettes, oui. Moi, je n'attendrais pas un jour de plus."}]},
+    {"t": "Vaya… ¿Y cuánto me costaría arreglarlo todo?", "fr": "Aïe… Et combien cela me coûterait-il de tout réparer ?", "va": "presupuesto"},
+    {"faux": true, "t": "¿Los frenos están usados?", "fr": "Les freins sont usés ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "Usados están, claro, como todo el coche… Gastados, quiere decir. Y mucho.", "fr": "Ils ont servi, bien sûr, comme toute la voiture… Usés, voulez-vous dire. Et beaucoup."}],
+     "aide": {"fr": "<b>Usé = gastado.</b> « Usado » veut dire « qui a déjà servi », d'occasion. « Las pastillas están gastadas. »"}},
+    {"repete": true, "t": "Perdone, ¿qué son las pastillas? No conozco esa palabra.", "fr": "Excusez-moi, que sont les « pastillas » ? Je ne connais pas ce mot.", "va": "mirar",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Las pastillas de freno son las piezas que aprietan la rueda para parar el coche. Las suyas ya casi no existen.", "fr": "Les plaquettes de frein sont les pièces qui serrent la roue pour arrêter la voiture. Les vôtres n'existent presque plus."}]}
+   ]
+  },
+  "presupuesto": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Le hago el presupuesto. Las pastillas, con la mano de obra: 140 euros. El faro y la revisión para la ITV: 180 más. En total, 320 euros, IVA incluido.", "dit": "Le hago el presupuesto. Las pastillas, con la mano de obra: ciento cuarenta euros. El faro y la revisión para la ITV: ciento ochenta más. En total, trescientos veinte euros, IVA incluido.", "fr": "Je vous fais le devis. Les plaquettes, main-d'œuvre comprise : 140 euros. Le phare et la révision pour le contrôle technique : 180 de plus. En tout, 320 euros, TVA comprise."},
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "Pero para hacerlo todo, necesito el coche hasta mañana por la tarde. ¿Qué hacemos?", "fr": "Mais pour tout faire, j'ai besoin de la voiture jusqu'à demain après-midi. Que faisons-nous ?"}
+   ],
+   "choix": [
+    {"t": "Mañana necesito el coche para trabajar. ¿Puede cambiar solo los frenos hoy?", "fr": "Demain, j'ai besoin de la voiture pour travailler. Pouvez-vous changer seulement les freins aujourd'hui ?", "pose": {"plan": "frenos"}, "va": "frenos"},
+    {"t": "Prefiero que lo arregle todo. ¿Tienen un coche de sustitución para mañana?", "fr": "Je préfère que vous répariez tout. Avez-vous une voiture de remplacement pour demain ?", "pose": {"plan": "todo"}, "va": "todo"},
+    {"faux": true, "t": "Es caro. ¿Puede hacerme una reducción?", "fr": "C'est cher. Pouvez-vous me faire une réduction ?",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "¿Una reducción? ¿De qué, del coche? Un descuento, querrá decir… Lo siento, los precios ya son muy ajustados.", "fr": "Une « reducción » ? De quoi, de la voiture ? Une remise, voulez-vous dire… Je regrette, les prix sont déjà très serrés."}],
+     "aide": {"fr": "<b>Une réduction de prix = un descuento, una rebaja.</b> « ¿Puede hacerme un descuento? »"}}
+   ]
+  },
+  "frenos": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Sí, las pastillas se las cambio en dos horas. Pero no deje lo demás para muy tarde: la ITV caduca el día 30.", "dit": "Sí, las pastillas se las cambio en dos horas. Pero no deje lo demás para muy tarde: la ITV caduca el día treinta.", "fr": "Oui, les plaquettes, je vous les change en deux heures. Mais ne remettez pas le reste à trop tard : le contrôle technique expire le 30."},
+    {"qui": "mechanikerin_werkstatt", "air": "question", "t": "¿Cuándo me trae el coche para el faro?", "fr": "Quand me ramenez-vous la voiture pour le phare ?"}
+   ],
+   "choix": [
+    {"t": "Se lo traigo el sábado por la mañana, que no trabajo.", "fr": "Je vous la ramène samedi matin, je ne travaille pas.", "va": "pago",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "El sábado abrimos hasta la una. Apuntado.", "fr": "Le samedi, nous ouvrons jusqu'à une heure. C'est noté."}]},
+    {"t": "La semana que viene, el martes. ¿Tiene hueco a primera hora?", "fr": "La semaine prochaine, mardi. Avez-vous une place en tout début de matinée ?", "va": "pago",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "El martes a las ocho. Apuntado.", "fr": "Mardi à huit heures. C'est noté."}]},
+    {"faux": true, "t": "Se lo traigo en ocho días.", "fr": "Je vous la ramène dans huit jours.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "¿En ocho días? ¿Dentro de una semana, quiere decir? ¿Y qué día es eso?", "fr": "« En ocho días » ? Dans une semaine, voulez-vous dire ? Et cela fait quel jour ?"}],
+     "aide": {"fr": "<b>Dans huit jours = dentro de una semana.</b> « En ocho días » voudrait dire « en l'espace de huit jours ». Le plus clair : donner le jour, « el sábado »."}}
+   ]
+  },
+  "todo": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Coche no, lo siento: somos un taller pequeño. Pero puedo dejarle una bicicleta eléctrica hasta mañana. ¿Le sirve?", "fr": "Une voiture, non, je regrette : nous sommes un petit garage. Mais je peux vous prêter un vélo électrique jusqu'à demain. Cela vous va ?"}
+   ],
+   "choix": [
+    {"t": "Sí, me sirve: trabajo a cuatro kilómetros de aquí.", "fr": "Oui, cela me va : je travaille à quatre kilomètres d'ici.", "va": "pago",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Pues en un cuarto de hora está en el trabajo. Y sin buscar aparcamiento.", "fr": "Alors vous serez au travail en un quart d'heure. Et sans chercher de place."}]},
+    {"t": "Bueno, mejor que nada. ¿Tiene también un casco?", "fr": "Bon, c'est mieux que rien. Avez-vous aussi un casque ?", "va": "pago",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Casco y candado, todo incluido.", "fr": "Casque et antivol, tout est compris."}]},
+    {"faux": true, "t": "Sí, puedo ir al trabajo a bicicleta.", "fr": "Oui, je peux aller au travail à vélo.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "«En» bicicleta, se dice. Entonces, ¿le sirve?", "fr": "On dit « en bicicleta ». Alors, cela vous va ?"}],
+     "aide": {"fr": "<b>À vélo = en bicicleta (en bici).</b> Les moyens de transport prennent « en » : en coche, en metro, en bici. Seule exception : « a pie », « a caballo »."}}
+   ]
+  },
+  "pago": {
+   "dit": [
+    {"si": {"plan": "frenos"}, "qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Entonces, hoy son 140 euros. ¿Cómo quiere pagar?", "dit": "Entonces, hoy son ciento cuarenta euros. ¿Cómo quiere pagar?", "fr": "Donc, aujourd'hui, cela fait 140 euros. Comment voulez-vous payer ?"},
+    {"si": {"plan": "todo"}, "qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Entonces, son 320 euros en total. ¿Cómo quiere pagar?", "dit": "Entonces, son trescientos veinte euros en total. ¿Cómo quiere pagar?", "fr": "Donc, cela fait 320 euros en tout. Comment voulez-vous payer ?"}
+   ],
+   "choix": [
+    {"t": "Con tarjeta, cuando recoja el coche. ¿Me dará una factura?", "fr": "Par carte, quand je reprendrai la voiture. Me donnerez-vous une facture ?", "pose": {"pago": "tarjeta"}, "va": "recoger",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Claro, con el IVA detallado.", "fr": "Bien sûr, avec la TVA détaillée."}]},
+    {"t": "¿Podría pagar la mitad al recoger el coche y el resto a fin de mes?", "fr": "Pourrais-je payer la moitié en reprenant la voiture et le reste à la fin du mois ?", "pose": {"pago": "mitad"}, "va": "mitad"},
+    {"faux": true, "t": "Con la carta, por favor.", "fr": "Par carte, s'il vous plaît.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "surprise", "t": "¿Con una carta? ¿Me va a escribir? Con tarjeta, querrá decir.", "fr": "Avec une lettre ? Vous allez m'écrire ? Par carte, voulez-vous dire."}],
+     "aide": {"fr": "<b>La carte bancaire = la tarjeta.</b> « Una carta » est une lettre (ou le menu du restaurant). « Con tarjeta, por favor. »"}}
+   ]
+  },
+  "mitad": {
+   "dit": [
+    {"qui": "mechanikerin_werkstatt", "air": "attentive", "t": "Bueno… A la gente del barrio se lo permito. La mitad al recoger el coche y el resto antes del día 30. ¿De acuerdo?", "dit": "Bueno… A la gente del barrio se lo permito. La mitad al recoger el coche y el resto antes del día treinta. ¿De acuerdo?", "fr": "Bon… Aux gens du quartier, je le permets. La moitié en reprenant la voiture et le reste avant le 30. D'accord ?"}
+   ],
+   "choix": [
+    {"t": "De acuerdo. Se lo agradezco de verdad.", "fr": "D'accord. Je vous en remercie vraiment.", "va": "recoger"},
+    {"t": "Trato hecho. Le pago el resto en cuanto cobre.", "fr": "Marché conclu. Je vous paie le reste dès que je touche mon salaire.", "va": "recoger"},
+    {"faux": true, "t": "De acuerdo. Le pago el resto cuando tendré mi salario.", "fr": "D'accord. Je vous paie le reste quand j'aurai mon salaire.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "«Cuando tenga», se dice. Pero sí, cuando cobre, me paga.", "fr": "On dit « cuando tenga ». Mais oui, quand vous toucherez votre salaire, vous me paierez."}],
+     "aide": {"fr": "<b>« Cuando » + futur en français = « cuando » + subjonctif en espagnol.</b> « Cuando tenga mi sueldo », « en cuanto cobre »."}}
+   ]
+  },
+  "recoger": {
+   "dit": [
+    {"si": {"plan": "frenos"}, "qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Pues el coche estará listo hoy a las 6 de la tarde. Cerramos a las 8. ¿Le viene bien?", "dit": "Pues el coche estará listo hoy a las seis de la tarde. Cerramos a las ocho. ¿Le viene bien?", "fr": "Alors la voiture sera prête aujourd'hui à 6 heures du soir. Nous fermons à 8 heures. Cela vous convient-il ?"},
+    {"si": {"plan": "todo"}, "qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Pues el coche estará listo mañana a las 5 de la tarde. Aquí tiene la llave de la bici. ¿Le viene bien?", "dit": "Pues el coche estará listo mañana a las cinco de la tarde. Aquí tiene la llave de la bici. ¿Le viene bien?", "fr": "Alors la voiture sera prête demain à 5 heures de l'après-midi. Voici la clé du vélo. Cela vous convient-il ?"}
+   ],
+   "choix": [
+    {"t": "Perfecto, vendré a esa hora. Muchas gracias por atenderme tan rápido.", "fr": "Parfait, je viendrai à cette heure-là. Merci beaucoup de vous être occupée de moi si vite.", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "A usted. ¡Hasta luego!", "fr": "Merci à vous. À tout à l'heure !"}]},
+    {"t": "Sí. Si encuentra algún otro problema, llámeme al móvil, por favor.", "fr": "Oui. Si vous trouvez un autre problème, appelez-moi sur mon portable, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "sourire", "t": "Descuide, no cambio nada sin avisarle. ¡Hasta luego!", "fr": "Soyez sans crainte, je ne change rien sans vous prévenir. À tout à l'heure !"}]},
+    {"faux": true, "t": "Perfecto. Atiendo su llamada si hay un problema.", "fr": "Parfait. J'attends votre appel s'il y a un problème.",
+     "puis": [{"qui": "mechanikerin_werkstatt", "air": "perplexe", "t": "¿Atender mi llamada? Esperarla, querrá decir. Descuide: si hay algún problema, le llamo.", "fr": "« Atender » mon appel ? L'attendre, voulez-vous dire. Soyez sans crainte : s'il y a un problème, je vous appelle."}],
+     "aide": {"fr": "<b>Attendre = esperar.</b> « Atender » veut dire s'occuper de quelqu'un, répondre (à un appel). « Espero su llamada. »"}}
+   ]
+  }
+ }
+}

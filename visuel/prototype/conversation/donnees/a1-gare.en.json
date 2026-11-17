@@ -1,0 +1,69 @@
+{
+ "id": "a1-gare",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "transports",
+ "registre": "poli",
+ "titre": {"fr": "À la gare : l'aller-retour et le quai"},
+ "intro": {"fr": "À North Station, à Boston, tu achètes au guichet un billet de train de banlieue pour Salem, la ville des sorcières : aller simple ou aller-retour, l'heure, puis le quai."},
+ "personnes": ["bahnangestellter"],
+ "debut": "window",
+ "prix": {"oneway": 700, "round": 1400},
+ "panier": ["fare"],
+ "textes": {
+  "fare_fr": {"cle": "fare", "oneway": "un aller simple", "round": "un aller-retour"}
+ },
+ "noeuds": {
+  "window": {
+   "dit": [
+    {"recit": {"fr": "North Station, à Boston. Tu veux passer la journée à Salem, la ville des sorcières. Au guichet, c'est ton tour."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Hi, where to?", "fr": "Bonjour, vous allez où ?"}
+   ],
+   "choix": [
+    {"t": "To Salem, please.", "fr": "À Salem, s'il vous plaît.", "va": "trip"},
+    {"t": "A ticket to Salem, please.", "fr": "Un billet pour Salem, s'il vous plaît.", "va": "trip"}
+   ]
+  },
+  "trip": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "One-way or round trip?", "t_gb": "Single or return?", "fr": "Aller simple ou aller-retour ?"}],
+   "choix": [
+    {"t": "Round trip, please.", "t_gb": "Return, please.", "fr": "Aller-retour, s'il vous plaît.", "pose": {"fare": "round"}, "va": "time"},
+    {"t": "One-way, please.", "t_gb": "Single, please.", "fr": "Aller simple, s'il vous plaît.", "pose": {"fare": "oneway"}, "va": "time"},
+    {"faux": true, "t": "A go-and-back, please.", "fr": "Un aller-retour (mot à mot, mais faux), s'il vous plaît.",
+     "puis": [{"qui": "bahnangestellter", "air": "amuse", "t": "A go-and-back? Ha! You mean a round trip?", "t_gb": "A go-and-back? Ha! You mean a return?", "fr": "Un « aller-et-revenir » ? Ha ! Vous voulez dire un aller-retour ?"}],
+     "aide": {"fr": "<b>« aller-retour » se dit « round trip »</b> en américain (« return » en britannique). L'aller simple : « one-way » (« single »)."}}
+   ]
+  },
+  "time": {
+   "dit": [{"qui": "bahnangestellter", "air": "question", "t": "When are you leaving?", "fr": "Vous partez quand ?"}],
+   "choix": [
+    {"t": "Today. When is the next train?", "fr": "Aujourd'hui. Quand part le prochain train ?", "va": "pay",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "At ten fifteen. It takes about thirty minutes.", "fr": "À dix heures quinze. Le trajet dure environ trente minutes."}]},
+    {"t": "This afternoon, please.", "fr": "Cet après-midi, s'il vous plaît.", "va": "pay",
+     "puis": [{"qui": "bahnangestellter", "air": "attentive", "t": "OK. There's one at one thirty.", "fr": "D'accord. Il y en a un à une heure trente."}]}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "bahnangestellter", "air": "attentive", "t": "That's {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "That's {a_payer:mots}."}],
+   "choix": [
+    {"t": "By card, please.", "fr": "Par carte, s'il vous plaît.", "va": "track"},
+    {"t": "Cash. Here you go.", "fr": "En espèces. Voilà.", "va": "track"}
+   ]
+  },
+  "track": {
+   "dit": [
+    {"recit": {"fr": "Il te tend ton billet."}},
+    {"qui": "bahnangestellter", "air": "sourire", "t": "Here's your ticket. Have a nice trip!", "fr": "Voici votre billet. Bon voyage !"}
+   ],
+   "choix": [
+    {"t": "Thanks. Which track does it leave from?", "t_gb": "Thanks. Which platform does it leave from?", "fr": "Merci. Il part de quel quai ?", "va": null,
+     "puis": [{"qui": "bahnangestellter", "air": "sourire", "t": "Track five. Check the big board, just in case.", "t_gb": "Platform five. Check the departures board, just in case.", "fr": "Quai cinq. Regardez le grand tableau, au cas où."}]},
+    {"faux": true, "t": "Thanks. Which quay does it leave from?", "fr": "Merci. Il part de quel quai ? (avec le mauvais mot)",
+     "puis": [{"qui": "bahnangestellter", "air": "perplexe", "t": "Quay? That's for boats! It's track five.", "t_gb": "Quay? That's for boats! It's platform five.", "fr": "« Quay » ? C'est pour les bateaux, ça ! C'est le quai cinq."}],
+     "aide": {"fr": "<b>Le quai de la gare se dit « track »</b> en américain (« platform » en britannique). « quay », c'est le quai d'un port."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {fare_fr} pour Salem, payé {a_payer} et demandé le quai."}
+}

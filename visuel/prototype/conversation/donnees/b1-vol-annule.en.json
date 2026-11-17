@@ -1,0 +1,130 @@
+{
+ "id": "b1-vol-annule",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Mon vol est annulé"},
+ "intro": {"fr": "Fin d'un séjour de quelques jours à Boston. À l'aéroport Logan, ton vol pour Montréal vient d'être annulé à cause d'une tempête de neige. Au comptoir de la compagnie, tu cherches un autre vol et tu demandes à quoi tu as droit."},
+ "personnes": ["b13_fluggesellschaft"],
+ "debut": "counter",
+ "noeuds": {
+  "counter": {
+   "dit": [
+    {"recit": {"fr": "Aéroport Logan, terminal B, en fin d'après-midi. Dehors, il neige fort. Sur l'écran, à côté de ton vol pour Montréal : « Canceled ». Tu fais la queue au comptoir de la compagnie."}},
+    {"qui": "b13_fluggesellschaft", "air": "question", "t": "Hi there. How can I help you?", "fr": "Bonjour. Comment puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Hi. My flight to Montreal was canceled. What are my options?", "t_gb": "Hi. My flight to Montreal was cancelled. What are my options?", "fr": "Bonjour. Mon vol pour Montréal a été annulé. Quelles sont mes options ?", "va": "reason"},
+    {"t": "Hello. My flight to Montreal just got canceled. Can you put me on another flight?", "t_gb": "Hello. My flight to Montreal has just been cancelled. Can you put me on another flight?", "fr": "Bonjour. Mon vol pour Montréal vient d'être annulé. Pouvez-vous me mettre sur un autre vol ?", "va": "reason"},
+    {"faux": true, "t": "Hello. My flight to Montreal is annulled.", "fr": "Bonjour. Mon vol pour Montréal est annulé.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Annulled? Oh, you mean your flight was canceled?", "t_gb": "Annulled? Oh, you mean your flight was cancelled?", "fr": "« Annulled » ? Ah, vous voulez dire que votre vol a été annulé ?"}],
+     "aide": {"fr": "<b>« annulled »</b> ne se dit que d'un mariage ou d'un contrat. Un vol annulé : « My flight was canceled » (« cancelled » en anglais britannique)."}}
+   ]
+  },
+  "reason": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "I'm so sorry about that. There's a big snowstorm coming in, and most flights are canceled tonight. Can I see your boarding pass or your confirmation number?", "t_gb": "I'm so sorry about that. There's a big snowstorm coming in, and most flights are cancelled tonight. Can I see your boarding pass or your booking reference?", "fr": "Je suis vraiment désolée. Une grosse tempête de neige arrive et la plupart des vols sont annulés ce soir. Puis-je voir votre carte d'embarquement ou votre numéro de réservation ?"}],
+   "choix": [
+    {"t": "Sure, here's my boarding pass.", "fr": "Bien sûr, voici ma carte d'embarquement.", "va": "options"},
+    {"t": "That's annoying, but it's nobody's fault. Here's my confirmation number.", "t_gb": "That's annoying, but it's nobody's fault. Here's my booking reference.", "fr": "C'est embêtant, mais ce n'est la faute de personne. Voici mon numéro de réservation.", "va": "options"},
+    {"repete": true, "t": "Sorry, could you say that again more slowly?", "fr": "Pardon, pourriez-vous répéter plus lentement ?", "va": "reason",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Of course. There's a snowstorm, so your flight can't leave tonight. Can I see your boarding pass, please?", "fr": "Bien sûr. Il y a une tempête de neige, donc votre vol ne peut pas partir ce soir. Puis-je voir votre carte d'embarquement, s'il vous plaît ?"}]}
+   ]
+  },
+  "options": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Thanks. I have two options for you. I can book you on the first flight tomorrow morning, at 6:45. Or there's one flight still leaving tonight at 9:30, but it's full: I can put you on standby, so you only get a seat if one opens up.", "dit": "Thanks. I have two options for you. I can book you on the first flight tomorrow morning, at six forty-five. Or there's one flight still leaving tonight at nine thirty, but it's full: I can put you on standby, so you only get a seat if one opens up.", "fr": "Merci. J'ai deux options pour vous. Je peux vous mettre sur le premier vol demain matin, à 6 h 45. Ou bien il reste un vol ce soir à 21 h 30, mais il est complet : je peux vous mettre en liste d'attente (standby), et vous n'aurez une place que si une se libère."}],
+   "choix": [
+    {"t": "I'll take the flight tomorrow morning, please.", "fr": "Je prends le vol de demain matin, s'il vous plaît.", "pose": {"flight": "tomorrow"}, "va": "hotel"},
+    {"t": "I'd like to try standby tonight. I really need to get home.", "fr": "J'aimerais essayer la liste d'attente ce soir. J'ai vraiment besoin de rentrer.", "pose": {"flight": "tonight"}, "va": "standby"},
+    {"faux": true, "t": "I take the flight of tomorrow morning.", "fr": "Je prends le vol de demain matin.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Sorry, tomorrow morning's flight? You'd like me to book that one?", "fr": "Pardon, le vol de demain matin ? Vous voulez que je vous réserve celui-là ?"}],
+     "aide": {"fr": "<b>Une décision prise sur le moment se dit avec « I'll »</b>, et on ne dit pas « the flight of tomorrow » : « I'll take the flight tomorrow morning, please »."}}
+   ]
+  },
+  "hotel": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "OK, you're confirmed on the 6:45 tomorrow. Do you have somewhere to stay tonight?", "dit": "OK, you're confirmed on the six forty-five tomorrow. Do you have somewhere to stay tonight?", "fr": "Voilà, vous êtes confirmé(e) sur le vol de 6 h 45 demain. Avez-vous un endroit où dormir ce soir ?"}],
+   "choix": [
+    {"t": "No, I don't. Does the airline pay for a hotel?", "fr": "Non. Est-ce que la compagnie paie l'hôtel ?", "pose": {"hotel": "yes"}, "va": "bag",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "I'm afraid not. Since it's weather-related, we don't cover hotels or meals. But here's a list of hotels near the airport with a discounted rate for our passengers.", "fr": "Malheureusement non. Comme c'est dû à la météo, nous ne payons ni l'hôtel ni les repas. Mais voici une liste d'hôtels près de l'aéroport, à tarif réduit pour nos passagers."}]},
+    {"t": "Yes, I can stay with a friend in Cambridge.", "fr": "Oui, je peux dormir chez un ami à Cambridge.", "pose": {"hotel": "no"}, "va": "bag",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Great. Then you're all set for tonight.", "fr": "Parfait. Alors tout est réglé pour ce soir."}]},
+    {"faux": true, "t": "No. I hope the company pays me the hotel.", "fr": "Non. J'espère que la compagnie me paie l'hôtel.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Sorry, pays you …? Oh, you're asking if the airline pays for a hotel?", "fr": "Pardon, vous paie… ? Ah, vous demandez si la compagnie paie l'hôtel ?"}],
+     "aide": {"fr": "<b>Payer quelque chose : « pay for something »</b>, et une compagnie aérienne est « the airline ». « Does the airline pay for a hotel? »"}}
+   ]
+  },
+  "standby": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "OK, you're on the standby list. If you don't get a seat, you're automatically booked on the 6:45 tomorrow. Go to gate B22 and listen for your name. Does that work for you?", "dit": "OK, you're on the standby list. If you don't get a seat, you're automatically booked on the six forty-five tomorrow. Go to gate B twenty-two and listen for your name. Does that work for you?", "fr": "Voilà, vous êtes sur la liste d'attente. Si vous n'avez pas de place, vous êtes automatiquement inscrit(e) sur le vol de 6 h 45 demain. Allez à la porte B22 et écoutez si on appelle votre nom. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Yes, that works. What are my chances of getting a seat?", "fr": "Oui, ça me va. Quelles sont mes chances d'avoir une place ?", "va": "bag",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Honestly, about fifty-fifty tonight. A lot of people are on the list.", "fr": "Franchement, une chance sur deux ce soir. Il y a beaucoup de monde sur la liste."}]},
+    {"t": "Yes, thank you. I'll wait at the gate.", "fr": "Oui, merci. J'attendrai à la porte.", "va": "bag",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Perfect. Fingers crossed!", "fr": "Parfait. Je croise les doigts pour vous !"}]},
+    {"faux": true, "t": "Yes. I will wait my name at the gate.", "fr": "Oui. J'attendrai mon nom à la porte.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "You'll wait for your name to be called? Right. So that works for you?", "fr": "Vous attendrez qu'on appelle votre nom ? D'accord. Donc cela vous convient ?"}],
+     "aide": {"fr": "<b>Attendre quelque chose : « wait for »</b>, toujours avec « for ». « I'll wait for my name at the gate » ou, plus simple, « I'll wait at the gate »."}}
+   ]
+  },
+  "bag": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "One more thing: did you check a bag?", "t_gb": "One more thing: did you check in a bag?", "fr": "Encore une chose : avez-vous enregistré un bagage ?"}],
+   "choix": [
+    {"t": "Yes, one suitcase. What happens to it?", "fr": "Oui, une valise. Qu'est-ce qu'elle devient ?", "va": "question",
+     "puis": [
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"flight": "tomorrow"}, "t": "It stays here tonight and goes on your flight tomorrow. You don't have to do anything.", "fr": "Elle reste ici cette nuit et part avec votre vol demain. Vous n'avez rien à faire."},
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"flight": "tonight"}, "t": "It travels on whichever flight you end up on. You'll pick it up in Montreal.", "fr": "Elle voyage avec le vol que vous prendrez finalement. Vous la récupérez à Montréal."}
+     ]},
+    {"si": {"flight": "tomorrow"}, "t": "Yes, one suitcase, and I need it tonight. Can I get it back?", "fr": "Oui, une valise, et j'en ai besoin ce soir. Est-ce que je peux la récupérer ?", "va": "suitcase"},
+    {"t": "No, I only have a carry-on.", "t_gb": "No, I only have hand luggage.", "fr": "Non, je n'ai qu'un bagage à main.", "va": "question",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Perfect, that makes it easy.", "fr": "Parfait, c'est plus simple comme ça."}]},
+    {"faux": true, "t": "Yes, I registered two baggages.", "fr": "Oui, j'ai enregistré deux bagages.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Registered …? Oh, you checked two bags?", "t_gb": "Registered …? Oh, you checked in two bags?", "fr": "« Registered »… ? Ah, vous avez enregistré deux bagages ?"}],
+     "aide": {"fr": "<b>« baggage » et « luggage » n'ont pas de pluriel</b> : on compte des « bags ». Et enregistrer un bagage se dit « check a bag » (« check in a bag » en anglais britannique). « Yes, I checked two bags. »"}}
+   ]
+  },
+  "suitcase": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "We can do that, but it'll take about an hour. You pick it up at baggage claim and check it again tomorrow morning. Do you want me to request it?", "t_gb": "We can do that, but it'll take about an hour. You pick it up at baggage reclaim and check it in again tomorrow morning. Do you want me to request it?", "fr": "C'est possible, mais il faut compter une heure environ. Vous la récupérez à la livraison des bagages et vous l'enregistrez de nouveau demain matin. Voulez-vous que j'en fasse la demande ?"}],
+   "choix": [
+    {"t": "Yes, please. My medication is in it.", "fr": "Oui, s'il vous plaît. Mes médicaments sont dedans.", "va": "question",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Got it. I'll call it in right now. It'll come out on carousel 4.", "dit": "Got it. I'll call it in right now. It'll come out on carousel four.", "fr": "Compris. Je fais la demande tout de suite. Elle arrivera sur le tapis 4."}]},
+    {"t": "No, an hour is too long. I'll leave it here.", "fr": "Non, une heure, c'est trop long. Je la laisse ici.", "va": "question",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "No problem. It'll be safe with us.", "fr": "Pas de problème. Elle sera en sécurité chez nous."}]}
+   ]
+  },
+  "question": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Here's your new boarding pass. Is there anything else I can help you with?", "fr": "Voici votre nouvelle carte d'embarquement. Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "Yes. Can I get compensation for the cancellation?", "fr": "Oui. Est-ce que je peux avoir une indemnisation pour l'annulation ?", "va": "comp"},
+    {"t": "Yes. Do I get any money back because of this?", "fr": "Oui. Est-ce qu'on me rend de l'argent à cause de ça ?", "va": "comp"},
+    {"t": "No, that's everything, thank you.", "fr": "Non, c'est tout, merci.", "va": "bye"},
+    {"faux": true, "t": "Yes. Can I ask a compensation?", "fr": "Oui. Puis-je demander une indemnisation ?",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "Sorry, ask …? Oh, you'd like to ask for compensation?", "fr": "Pardon, demander… ? Ah, vous aimeriez demander une indemnisation ?"}],
+     "aide": {"fr": "<b>Demander quelque chose : « ask for »</b>, et « compensation » ne prend pas d'article. « Can I ask for compensation? » ou « Can I get compensation? »."}}
+   ]
+  },
+  "comp": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Unfortunately not. In the US, airlines don't owe compensation when it's the weather. But if you decide not to travel at all, you can get a full refund for your ticket.", "fr": "Malheureusement non. Aux États-Unis, les compagnies ne doivent pas d'indemnisation quand c'est la météo. Mais si vous décidez de ne pas voyager du tout, votre billet peut être remboursé en entier."}],
+   "choix": [
+    {"t": "I see. No, I still want to fly. Thanks for explaining.", "fr": "Je vois. Non, je veux toujours partir. Merci pour l'explication.", "va": "bye",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "You're welcome. I wish I had better news.", "fr": "Je vous en prie. J'aurais aimé avoir de meilleures nouvelles."}]},
+    {"t": "That's good to know. And what if tomorrow's flight is canceled too?", "t_gb": "That's good to know. And what if tomorrow's flight is cancelled too?", "fr": "C'est bon à savoir. Et si le vol de demain est annulé aussi ?", "va": "bye",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Then we rebook you again for free, or you get your money back. Check our app before you leave for the airport.", "fr": "Alors nous changeons encore votre vol gratuitement, ou vous êtes remboursé(e). Regardez notre application avant de partir pour l'aéroport."}]},
+    {"faux": true, "t": "In Europe, the company must pay. It's not normal!", "fr": "En Europe, la compagnie doit payer. Ce n'est pas normal !",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "surprise", "t": "Not normal? I'm afraid it's completely normal here. I know it's frustrating, though.", "fr": "Pas normal ? J'ai bien peur que ce soit tout à fait normal ici. Mais je sais que c'est frustrant."}],
+     "aide": {"fr": "<b>« It's not normal » veut dire « c'est inhabituel »</b>, pas « c'est injuste ». Pour protester poliment : « That doesn't seem fair ». Et aux États-Unis, la règle est réellement différente : mieux vaut dire « I see » et demander ce qui est possible."}}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"flight": "tomorrow"}, "t": "Be at the gate by 6:00 tomorrow, and check the app tonight. The storm should be over by morning.", "dit": "Be at the gate by six tomorrow, and check the app tonight. The storm should be over by morning.", "fr": "Soyez à la porte à 6 h demain, et regardez l'application ce soir. La tempête devrait être finie demain matin."},
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"flight": "tonight"}, "t": "Gate B22 is down the hall on your left. Good luck with standby!", "dit": "Gate B twenty-two is down the hall on your left. Good luck with standby!", "fr": "La porte B22 est au bout du couloir, à gauche. Bonne chance pour la liste d'attente !"},
+    {"qui": "b13_fluggesellschaft", "air": "sourire", "t": "And again, I'm sorry for the trouble.", "fr": "Et encore une fois, désolée pour le dérangement."}
+   ],
+   "choix": [
+    {"t": "Thank you so much for your help. Have a good night!", "fr": "Merci beaucoup pour votre aide. Bonne soirée !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "You too. Safe travels!", "fr": "Vous aussi. Bon voyage !"}]},
+    {"t": "Thanks, you've been very helpful. Goodbye!", "fr": "Merci, vous m'avez beaucoup aidé(e). Au revoir !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "My pleasure. Safe travels!", "fr": "Avec plaisir. Bon voyage !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as trouvé un autre vol après l'annulation, réglé la nuit et les bagages, et compris ce que la compagnie doit ou ne doit pas quand c'est la météo."}
+}

@@ -1,0 +1,446 @@
+{
+ "_langue": "pt",
+ "_source": "pflege/sources/dialogues/d13-aufnahmegespraech.json",
+ "cles": {
+  "titre": {
+   "fr": "L'entretien d'admission",
+   "de": "Das Aufnahmegespräch",
+   "pt": "A entrevista de admissão"
+  },
+  "intro": {
+   "fr": "Lundi matin, 10 h 30. {lehmann} arrive au {station} avec sa canne et la lettre de sa médecin traitante : une plaie au pied qui ne guérit pas. Tu joues {elif} : tu fais l'entretien d'admission à l'oral, avant de remplir la fiche. Pose tes questions poliment, vérifie ce qui reste vague, puis résume et explique la suite.",
+   "pt": "Segunda-feira de manhã, 10h30. A {lehmann} chega à {station} com a bengala e a carta da sua médica de família: uma ferida no pé que não cicatriza. Você faz o papel de {elif}: você conduz a entrevista de admissão oralmente, antes de preencher a ficha. Faça as suas perguntas com educação, confirme o que ficar vago, depois resuma e explique o que vem a seguir."
+  },
+  "but": {
+   "fr": "Mener un entretien d'admission : se présenter et l'annoncer ; poser des questions polies et indirectes (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?) ; demander une précision quand une réponse est vague ; résumer ; expliquer ce qui va se passer.",
+   "pt": "Conduzir uma entrevista de admissão: apresentar-se e anunciá-la; fazer perguntas educadas e indiretas (Darf ich fragen, ob … ? Können Sie mir sagen, welche … ?); pedir um esclarecimento quando uma resposta for vaga; resumir; explicar o que vai acontecer."
+  },
+  "relire_notes": {
+   "fr": "Les rubriques de l'entretien d'admission infirmier et leur ordre ; la dose d'insuline : se fier au plan de médicaments, jamais à la mémoire ; la levée du secret pour la fille ; ce qui se passe après l'admission (glycémie, médecin, pansement).",
+   "pt": "Os itens da entrevista de admissão de enfermagem e a sua ordem; a dose de insulina: confiar na lista de medicamentos, nunca na memória; a autorização para passar informações à filha; o que acontece depois da admissão (glicemia, médica, curativo)."
+  },
+  "redemittel.0": {
+   "fr": "J'aimerais maintenant vous poser quelques questions. Cela dure environ un quart d'heure.",
+   "de": "Ich möchte Ihnen jetzt ein paar Fragen stellen. Das dauert ungefähr eine Viertelstunde.",
+   "pt": "Agora eu gostaria de fazer algumas perguntas à senhora. Leva mais ou menos quinze minutos."
+  },
+  "redemittel.1": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "pt": "A senhora pode me dizer por que veio até nós hoje?"
+  },
+  "redemittel.2": {
+   "fr": "Puis-je vous demander si vous avez des allergies ?",
+   "de": "Darf ich fragen, ob Sie Allergien haben?",
+   "pt": "Posso perguntar se a senhora tem alguma alergia?"
+  },
+  "redemittel.3": {
+   "fr": "Savez-vous combien d'unités d'insuline vous vous injectez le matin ?",
+   "de": "Wissen Sie, wie viele Einheiten Insulin Sie morgens spritzen?",
+   "pt": "A senhora sabe quantas unidades de insulina aplica de manhã?"
+  },
+  "redemittel.4": {
+   "fr": "Avez-vous peut-être votre plan de médicaments sur vous ?",
+   "de": "Haben Sie vielleicht Ihren Medikamentenplan dabei?",
+   "pt": "A senhora por acaso trouxe a sua lista de medicamentos?"
+  },
+  "redemittel.5": {
+   "fr": "Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Wen dürfen wir im Notfall anrufen?",
+   "pt": "Para quem podemos ligar em caso de emergência?"
+  },
+  "redemittel.6": {
+   "fr": "Je résume rapidement : …",
+   "de": "Ich fasse kurz zusammen: …",
+   "pt": "Vou resumir rapidinho: …"
+  },
+  "redemittel.7": {
+   "fr": "Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir.",
+   "de": "Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.",
+   "pt": "Daqui a pouco eu meço a sua glicemia, e depois a médica vem ver a senhora."
+  },
+  "noeuds.begruessen.dit.0.recit": {
+   "fr": "{lehmann} s'assoit dans la chambre, sa canne posée contre le lit. Elle tient une enveloppe : la lettre de sa médecin traitante.",
+   "pt": "A {lehmann} se senta no quarto, com a bengala encostada na cama. Ela segura um envelope: a carta da sua médica de família."
+  },
+  "noeuds.begruessen.dit.1": {
+   "fr": "Bonjour. On m'a dit en bas que je devais me présenter ici.",
+   "de": "Guten Morgen. Hier soll ich mich melden, hat man mir unten gesagt.",
+   "pt": "Bom dia. Lá embaixo me disseram que eu devia me apresentar aqui."
+  },
+  "noeuds.begruessen.choix.0": {
+   "fr": "Bonjour, {lehmann:voc}. Je suis {elif}, je travaille ici dans les soins. J'aimerais vous poser quelques questions, cela dure environ un quart d'heure.",
+   "de": "Guten Morgen, {lehmann}. Ich bin {elif}, ich arbeite hier in der Pflege. Ich möchte Ihnen ein paar Fragen stellen, das dauert ungefähr eine Viertelstunde.",
+   "pt": "Bom dia, {lehmann:voc}. Eu sou a {elif}, trabalho aqui na enfermagem. Eu gostaria de fazer algumas perguntas à senhora, leva mais ou menos quinze minutos."
+  },
+  "noeuds.begruessen.choix.0.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "pt": "Sim, claro. Pode perguntar."
+  },
+  "noeuds.begruessen.choix.1": {
+   "fr": "Bienvenue au {station}, {lehmann:voc}. Je m'appelle {elif}. Avant de tout vous montrer, j'aimerais parler un peu avec vous. Ça vous va ?",
+   "de": "Herzlich willkommen auf der {station}, {lehmann}. Mein Name ist {elif}. Bevor ich Ihnen alles zeige, würde ich gern kurz mit Ihnen sprechen. Ist das in Ordnung?",
+   "pt": "Seja bem-vinda à {station}, {lehmann:voc}. Meu nome é {elif}. Antes de mostrar tudo à senhora, eu gostaria de conversar um pouquinho. Tudo bem?"
+  },
+  "noeuds.begruessen.choix.1.puis.0": {
+   "fr": "Oui, bien sûr. Allez-y.",
+   "de": "Ja, natürlich. Fragen Sie nur.",
+   "pt": "Sim, claro. Pode perguntar."
+  },
+  "noeuds.begruessen.choix.2": {
+   "fr": "Salut ! Assieds-toi, j'ai quelques questions.",
+   "de": "Hallo! Setz dich, ich hab ein paar Fragen.",
+   "pt": "Oi! Senta aí, tenho umas perguntas pra você."
+  },
+  "noeuds.begruessen.choix.2.puis.0": {
+   "fr": "Mais on ne se connaît pas, jeune femme.",
+   "de": "Wir kennen uns doch gar nicht, junge Frau.",
+   "pt": "Mas a gente nem se conhece, mocinha."
+  },
+  "noeuds.begruessen.choix.2.aide": {
+   "fr": "<b>Avec une patiente, toujours « Sie », et on se présente.</b> « Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege. » Puis on annonce l'entretien et sa durée : « Ich möchte Ihnen ein paar Fragen stellen. »",
+   "pt": "<b>Com uma paciente, sempre “Sie”, e a gente se apresenta.</b> “Guten Morgen, Frau Lehmann. Ich bin Elif, ich arbeite hier in der Pflege.” Depois, anuncia-se a entrevista e a sua duração: “Ich möchte Ihnen ein paar Fragen stellen.”"
+  },
+  "noeuds.grund.choix.0": {
+   "fr": "Pouvez-vous me dire pourquoi vous venez chez nous aujourd'hui ?",
+   "de": "Können Sie mir sagen, warum Sie heute zu uns kommen?",
+   "pt": "A senhora pode me dizer por que veio até nós hoje?"
+  },
+  "noeuds.grund.choix.0.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "pt": "Por causa do meu pé. Tenho uma ferida aqui na frente que não quer sarar de jeito nenhum. Eu sou diabética, já faz quinze anos."
+  },
+  "noeuds.grund.choix.1": {
+   "fr": "Qu'a dit votre médecin traitante, pourquoi devez-vous venir à l'hôpital ?",
+   "de": "Was hat Ihre Hausärztin gesagt, warum Sie ins Krankenhaus sollen?",
+   "pt": "O que a sua médica de família disse, por que a senhora precisa vir para o hospital?"
+  },
+  "noeuds.grund.choix.1.puis.0": {
+   "fr": "À cause de mon pied. J'ai une plaie à l'avant, qui ne veut pas guérir. Je suis diabétique, depuis quinze ans déjà.",
+   "de": "Wegen meinem Fuß. Ich habe da vorne eine Wunde, die will einfach nicht heilen. Ich bin ja Diabetikerin, schon seit fünfzehn Jahren.",
+   "pt": "Por causa do meu pé. Tenho uma ferida aqui na frente que não quer sarar de jeito nenhum. Eu sou diabética, já faz quinze anos."
+  },
+  "noeuds.grund.choix.2": {
+   "fr": "Avez-vous un syndrome du pied diabétique avec polyneuropathie ?",
+   "de": "Haben Sie ein diabetisches Fußsyndrom mit Polyneuropathie?",
+   "pt": "A senhora tem síndrome do pé diabético com polineuropatia?"
+  },
+  "noeuds.grund.choix.2.puis.0": {
+   "fr": "Un quoi ? Je ne sais pas. J'ai une plaie au pied.",
+   "de": "Ein was? Das weiß ich nicht. Ich habe eine Wunde am Fuß.",
+   "pt": "Um o quê? Isso eu não sei. Tenho uma ferida no pé."
+  },
+  "noeuds.grund.choix.2.aide": {
+   "fr": "<b>Pose une question ouverte, avec les mots de tous les jours.</b> « Können Sie mir sagen, warum Sie heute zu uns kommen? » Les termes médicaux sont pour la fiche et pour l'équipe, pas pour la patiente.",
+   "pt": "<b>Faça uma pergunta aberta, com palavras do dia a dia.</b> “Können Sie mir sagen, warum Sie heute zu uns kommen?” Os termos médicos são para a ficha e para a equipe, não para a paciente."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Merci. Puis-je vous demander si vous avez des allergies ? À des médicaments, à des pansements ou à des aliments ?",
+   "de": "Danke. Darf ich fragen, ob Sie Allergien haben? Gegen Medikamente, Pflaster oder Lebensmittel?",
+   "pt": "Obrigada. Posso perguntar se a senhora tem alguma alergia? A medicamentos, a esparadrapo ou a alimentos?"
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "pt": "Não, que eu saiba, não."
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Est-ce que vous supportez tous les médicaments ? Ou est-ce que vous avez une allergie connue ?",
+   "de": "Vertragen Sie alle Medikamente? Oder wissen Sie von einer Allergie?",
+   "pt": "A senhora tolera todos os medicamentos? Ou sabe de alguma alergia?"
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Non, pas que je sache.",
+   "de": "Nein, da ist mir nichts bekannt.",
+   "pt": "Não, que eu saiba, não."
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Pardon, j'ai bien compris : vous avez du diabète depuis quinze ans ?",
+   "de": "Entschuldigung, habe ich das richtig verstanden: Sie haben seit fünfzehn Jahren Diabetes?",
+   "pt": "Desculpe, entendi bem: a senhora tem diabetes há quinze anos?"
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Oui, c'est ça. Depuis quinze ans. Et depuis quelques années avec de l'insuline.",
+   "de": "Ja, genau. Seit fünfzehn Jahren. Und seit ein paar Jahren mit Insulin.",
+   "pt": "Sim, isso mesmo. Há quinze anos. E há alguns anos com insulina."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Bien. Quels médicaments prenez-vous à la maison ? Et savez-vous combien d'unités d'insuline vous vous injectez ?",
+   "de": "Gut. Welche Medikamente nehmen Sie zu Hause? Und wissen Sie, wie viele Einheiten Insulin Sie spritzen?",
+   "pt": "Certo. Que medicamentos a senhora toma em casa? E a senhora sabe quantas unidades de insulina aplica?"
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "pt": "Insulina de manhã e à noite, e um comprimido para a pressão. Quanto exatamente… isso mudou na semana passada. Doze, eu acho. Ou catorze?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Pouvez-vous me dire quels médicaments vous prenez régulièrement, et quand ?",
+   "de": "Können Sie mir sagen, welche Medikamente Sie regelmäßig nehmen, und wann?",
+   "pt": "A senhora pode me dizer que medicamentos toma regularmente, e em que horário?"
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "De l'insuline le matin et le soir, et un comprimé pour la tension. Combien exactement… ça a changé la semaine dernière. Douze, je crois. Ou quatorze ?",
+   "de": "Insulin morgens und abends, und eine Tablette für den Blutdruck. Wie viel genau … das hat sich letzte Woche geändert. Ich glaube, zwölf. Oder vierzehn?",
+   "pt": "Insulina de manhã e à noite, e um comprimido para a pressão. Quanto exatamente… isso mudou na semana passada. Doze, eu acho. Ou catorze?"
+  },
+  "noeuds.plan.choix.0": {
+   "fr": "C'est important, je veux en être sûre. Avez-vous peut-être votre plan de médicaments sur vous ? Ou est-ce que c'est dans la lettre de votre médecin traitante ?",
+   "de": "Das ist wichtig, da möchte ich sicher sein. Haben Sie vielleicht Ihren Medikamentenplan dabei? Oder steht es im Brief Ihrer Hausärztin?",
+   "pt": "Isso é importante, quero ter certeza. A senhora por acaso trouxe a sua lista de medicamentos? Ou está na carta da sua médica de família?"
+  },
+  "noeuds.plan.choix.0.puis.0": {
+   "fr": "Ah oui, le plan ! Il est là, dans l'enveloppe, avec la lettre.",
+   "de": "Ach ja, der Plan! Der ist hier im Umschlag, bei dem Brief.",
+   "pt": "Ah, é, a lista! Está aqui no envelope, junto com a carta."
+  },
+  "noeuds.plan.choix.1": {
+   "fr": "Alors vérifions plutôt. Je peux regarder la lettre de votre médecin traitante ? La dose y est sûrement.",
+   "de": "Dann schauen wir lieber nach. Darf ich mir den Brief von Ihrer Hausärztin ansehen? Da steht die Dosis bestimmt drin.",
+   "pt": "Então é melhor a gente conferir. Posso dar uma olhada na carta da sua médica de família? A dose com certeza está lá."
+  },
+  "noeuds.plan.choix.1.puis.0": {
+   "fr": "Ah oui, bien sûr. Mon plan de médicaments est dedans aussi.",
+   "de": "Ach ja, natürlich. Da ist auch mein Medikamentenplan drin.",
+   "pt": "Ah, claro. A minha lista de medicamentos também está aí dentro."
+  },
+  "noeuds.plan.choix.2": {
+   "fr": "D'accord, alors je note douze unités.",
+   "de": "Okay, dann schreibe ich zwölf Einheiten auf.",
+   "pt": "Tá bom, então eu anoto doze unidades."
+  },
+  "noeuds.plan.choix.2.puis.0": {
+   "fr": "Mais je n'en suis pas du tout sûre…",
+   "de": "Aber ich bin mir doch gar nicht sicher …",
+   "pt": "Mas eu não tenho certeza nenhuma…"
+  },
+  "noeuds.plan.choix.2.aide": {
+   "fr": "<b>Une réponse vague sur une dose ne se note pas : on vérifie.</b> « Haben Sie Ihren Medikamentenplan dabei? » ou la lettre de la médecin. Une erreur de dose d'insuline peut être dangereuse.",
+   "pt": "<b>Uma resposta vaga sobre uma dose não se anota: confere-se.</b> “Haben Sie Ihren Medikamentenplan dabei?” ou a carta da médica. Um erro na dose de insulina pode ser perigoso."
+  },
+  "noeuds.hilfsmittel.choix.0": {
+   "fr": "Merci, je le mets tout de suite avec votre dossier. Avez-vous besoin de lunettes ou d'un appareil auditif ? Et marchez-vous toujours avec la canne ?",
+   "de": "Danke, den lege ich gleich zu Ihren Unterlagen. Brauchen Sie eine Brille oder ein Hörgerät? Und gehen Sie immer mit dem Stock?",
+   "pt": "Obrigada, já vou colocar junto com o seu prontuário. A senhora precisa de óculos ou de aparelho auditivo? E anda sempre com a bengala?"
+  },
+  "noeuds.hilfsmittel.choix.0.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "pt": "Óculos, sim. Ainda escuto bem. E a bengala eu uso desde esse problema no pé. Já não sinto muito bem os meus pés."
+  },
+  "noeuds.hilfsmittel.choix.1": {
+   "fr": "Merci beaucoup. Encore une petite question : portez-vous des lunettes ? Et marchez-vous bien toute seule ?",
+   "de": "Danke schön. Ich frage noch kurz: Tragen Sie eine Brille? Und wie gut können Sie allein gehen?",
+   "pt": "Muito obrigada. Só mais uma perguntinha: a senhora usa óculos? E consegue andar bem sozinha?"
+  },
+  "noeuds.hilfsmittel.choix.1.puis.0": {
+   "fr": "Des lunettes, oui. J'entends encore bien. Et la canne, je la prends depuis cette histoire de pied. Je ne sens plus très bien mes pieds.",
+   "de": "Eine Brille, ja. Hören tue ich noch gut. Und den Stock nehme ich, seit das mit dem Fuß ist. Ich spüre meine Füße nicht mehr so richtig.",
+   "pt": "Óculos, sim. Ainda escuto bem. E a bengala eu uso desde esse problema no pé. Já não sinto muito bem os meus pés."
+  },
+  "noeuds.nacht.choix.0": {
+   "fr": "C'est bon à savoir. Et la nuit : devez-vous aller aux toilettes ? Environ combien de fois ?",
+   "de": "Das ist gut zu wissen. Und nachts: Müssen Sie zur Toilette? Wie oft ungefähr?",
+   "pt": "Que bom saber. E à noite: a senhora precisa ir ao banheiro? Mais ou menos quantas vezes?"
+  },
+  "noeuds.nacht.choix.0.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "pt": "Duas vezes, geralmente. Mas depois volto a dormir bem."
+  },
+  "noeuds.nacht.choix.1": {
+   "fr": "Merci. Et comment dormez-vous ? Vous vous levez la nuit ?",
+   "de": "Danke. Wie schlafen Sie denn? Stehen Sie nachts auf?",
+   "pt": "Obrigada. E como a senhora dorme? Costuma se levantar à noite?"
+  },
+  "noeuds.nacht.choix.1.puis.0": {
+   "fr": "Deux fois, en général. Mais je me rendors bien après.",
+   "de": "Zweimal, meistens. Aber ich schlafe danach wieder gut ein.",
+   "pt": "Duas vezes, geralmente. Mas depois volto a dormir bem."
+  },
+  "noeuds.nacht.choix.2": {
+   "fr": "Vous êtes incontinente ?",
+   "de": "Sind Sie inkontinent?",
+   "pt": "A senhora é incontinente?"
+  },
+  "noeuds.nacht.choix.2.puis.0": {
+   "fr": "Pardon ? Non ! Qu'est-ce que c'est que cette question ?",
+   "de": "Wie bitte? Nein! Was ist denn das für eine Frage?",
+   "pt": "Como é que é? Não! Que pergunta é essa?"
+  },
+  "noeuds.nacht.choix.2.aide": {
+   "fr": "<b>Les questions intimes se posent avec tact, par la vie de tous les jours.</b> « Müssen Sie nachts zur Toilette? Wie oft? » La patiente répond, et tu notes ensuite « kontinent » sur la fiche.",
+   "pt": "<b>As perguntas íntimas se fazem com tato, pela vida do dia a dia.</b> “Müssen Sie nachts zur Toilette? Wie oft?” A paciente responde, e depois você anota “kontinent” na ficha."
+  },
+  "noeuds.essen.choix.0": {
+   "fr": "Et pour les repas : y a-t-il quelque chose que vous aimez manger, ou quelque chose que vous n'aimez pas du tout ?",
+   "de": "Und beim Essen: Gibt es etwas, das Sie gern essen, oder etwas, das Sie gar nicht mögen?",
+   "pt": "E quanto às refeições: tem alguma coisa que a senhora gosta de comer, ou alguma coisa de que não gosta nem um pouco?"
+  },
+  "noeuds.essen.choix.0.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "pt": "Para ser sincera, eu gosto de doce. Eu sei, eu sei, com a minha diabetes eu não devia."
+  },
+  "noeuds.essen.choix.1": {
+   "fr": "Qu'est-ce que vous mangez et buvez dans la journée ? Avez-vous des souhaits pour les repas ici ?",
+   "de": "Was essen und trinken Sie denn so am Tag? Haben Sie Wünsche für das Essen hier?",
+   "pt": "O que a senhora costuma comer e beber durante o dia? Tem alguma preferência para as refeições aqui?"
+  },
+  "noeuds.essen.choix.1.puis.0": {
+   "fr": "Pour être honnête, j'aime le sucré. Je sais, je sais, avec mon diabète, je ne devrais pas.",
+   "de": "Ehrlich gesagt esse ich gern Süßes. Ich weiß, ich weiß, beim Zucker soll ich das nicht.",
+   "pt": "Para ser sincera, eu gosto de doce. Eu sei, eu sei, com a minha diabetes eu não devia."
+  },
+  "noeuds.angehoerige.choix.0": {
+   "fr": "Merci pour votre franchise. Nous en parlerons avec le conseil en diabétologie. Qui pouvons-nous appeler en cas d'urgence ?",
+   "de": "Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. Wen dürfen wir im Notfall anrufen?",
+   "pt": "Obrigada pela sinceridade. Vamos conversar sobre isso com a orientação em diabetes. Para quem podemos ligar em caso de emergência?"
+  },
+  "noeuds.angehoerige.choix.0.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "pt": "Para a minha filha, a Sabine. Ela vem todo dia. Ela também pode saber de tudo, eu assinei isso no médico."
+  },
+  "noeuds.angehoerige.choix.1": {
+   "fr": "Je le note. Y a-t-il quelqu'un que nous devons informer ? Et cette personne peut-elle aussi recevoir des informations ?",
+   "de": "Das notiere ich. Gibt es jemanden, den wir informieren sollen? Und darf diese Person auch Auskunft bekommen?",
+   "pt": "Vou anotar. Tem alguém que devemos avisar? E essa pessoa também pode receber informações?"
+  },
+  "noeuds.angehoerige.choix.1.puis.0": {
+   "fr": "Ma fille, Sabine. Elle vient tous les jours. Elle peut tout savoir aussi, je l'ai signé chez le médecin.",
+   "de": "Meine Tochter, Sabine. Die kommt jeden Tag. Sie darf auch alles wissen, das habe ich beim Arzt unterschrieben.",
+   "pt": "Para a minha filha, a Sabine. Ela vem todo dia. Ela também pode saber de tudo, eu assinei isso no médico."
+  },
+  "noeuds.angehoerige.choix.2": {
+   "fr": "Vous n'avez pas le droit de manger des sucreries ici. C'est interdit.",
+   "de": "Sie dürfen hier keine Süßigkeiten essen. Das ist verboten.",
+   "pt": "A senhora não pode comer doce aqui. É proibido."
+  },
+  "noeuds.angehoerige.choix.2.puis.0": {
+   "fr": "Interdit ? Je ne suis pas une enfant.",
+   "de": "Verboten? Ich bin doch kein Kind.",
+   "pt": "Proibido? Eu não sou criança."
+  },
+  "noeuds.angehoerige.choix.2.aide": {
+   "fr": "<b>À l'admission, on écoute et on note ; on ne fait pas la leçon.</b> « Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber. » Puis on passe à la question suivante : « Wen dürfen wir im Notfall anrufen? »",
+   "pt": "<b>Na admissão, a gente escuta e anota; não dá sermão.</b> “Danke für Ihre Ehrlichkeit. Wir sprechen mit der Diabetesberatung darüber.” Depois, passa-se à pergunta seguinte: “Wen dürfen wir im Notfall anrufen?”"
+  },
+  "noeuds.zusammenfassen.choix.0": {
+   "fr": "Je résume rapidement : vous venez pour la plaie au pied droit, vous n'avez pas d'allergie, vous vous injectez l'insuline selon votre plan, vous avez besoin de lunettes et de la canne. C'est exact ?",
+   "de": "Ich fasse kurz zusammen: Sie kommen wegen der Wunde am rechten Fuß, Sie haben keine Allergien, Sie spritzen Insulin nach Plan, Sie brauchen eine Brille und den Stock. Ist das richtig?",
+   "pt": "Vou resumir rapidinho: a senhora veio por causa da ferida no pé direito, não tem alergias, aplica a insulina conforme a sua lista, precisa de óculos e da bengala. Está correto?"
+  },
+  "noeuds.zusammenfassen.choix.0.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "pt": "Sim, é isso mesmo."
+  },
+  "noeuds.zusammenfassen.choix.1": {
+   "fr": "Je peux répéter ce que j'ai noté ? Plaie à l'avant du pied droit, pas d'allergie, insuline selon le plan de votre médecin traitante, lunettes, canne, et votre fille comme contact.",
+   "de": "Darf ich noch einmal wiederholen, was ich notiert habe? Wunde am rechten Vorfuß, keine Allergien, Insulin nach dem Plan Ihrer Hausärztin, Brille, Gehstock, und Ihre Tochter als Kontakt.",
+   "pt": "Posso repetir o que anotei? Ferida na parte da frente do pé direito, sem alergias, insulina conforme a lista da sua médica de família, óculos, bengala, e a sua filha como contato."
+  },
+  "noeuds.zusammenfassen.choix.1.puis.0": {
+   "fr": "Oui, c'est tout à fait ça.",
+   "de": "Ja, das stimmt alles.",
+   "pt": "Sim, é isso mesmo."
+  },
+  "noeuds.naechste.choix.0": {
+   "fr": "Bien. Tout à l'heure, je mesure votre glycémie, et ensuite la médecin passe vous voir. Le pansement du pied, nous le regarderons ensemble cet après-midi.",
+   "de": "Gut. Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. Den Verband am Fuß sehen wir uns heute Nachmittag zusammen an.",
+   "pt": "Muito bem. Daqui a pouco eu meço a sua glicemia, e depois a médica vem ver a senhora. O curativo do pé, a gente olha juntas hoje à tarde."
+  },
+  "noeuds.naechste.choix.0.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "pt": "Obrigada, mocinha. A senhora foi muito gentil."
+  },
+  "noeuds.naechste.choix.1": {
+   "fr": "Merci, {lehmann:voc}. Je vais encore mesurer votre glycémie. La médecin passe ce matin, et si vous avez besoin de quelque chose, appuyez ici sur la sonnette.",
+   "de": "Danke, {lehmann}. Ich messe jetzt noch Ihren Blutzucker. Die Ärztin kommt heute Vormittag, und wenn Sie etwas brauchen, drücken Sie hier auf die Klingel.",
+   "pt": "Obrigada, {lehmann:voc}. Agora vou medir a sua glicemia. A médica passa hoje de manhã, e se a senhora precisar de alguma coisa, é só apertar a campainha aqui."
+  },
+  "noeuds.naechste.choix.1.puis.0": {
+   "fr": "Merci, jeune femme. Vous avez été très gentille.",
+   "de": "Danke, junge Frau. Sie haben das sehr nett gemacht.",
+   "pt": "Obrigada, mocinha. A senhora foi muito gentil."
+  },
+  "noeuds.naechste.choix.2": {
+   "fr": "Terminé. Salut !",
+   "de": "Fertig. Tschüss!",
+   "pt": "Pronto. Tchau!"
+  },
+  "noeuds.naechste.choix.2.puis.0": {
+   "fr": "Et qu'est-ce qui va se passer pour moi maintenant ?",
+   "de": "Und was passiert jetzt mit mir?",
+   "pt": "E o que vai acontecer comigo agora?"
+  },
+  "noeuds.naechste.choix.2.aide": {
+   "fr": "<b>À la fin, on dit ce qui va se passer.</b> « Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen. » Et on montre la sonnette.",
+   "pt": "<b>No final, a gente diz o que vai acontecer.</b> “Gleich messe ich Ihren Blutzucker, und danach kommt die Ärztin zu Ihnen.” E mostra a campainha."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {lehmann} vient-elle à l'hôpital ?",
+   "de": "Warum kommt {lehmann} ins Krankenhaus?",
+   "pt": "Por que a {lehmann} vem ao hospital?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À cause d'une plaie au pied.",
+   "de": "Wegen einer Wunde am Fuß.",
+   "pt": "Por causa de uma ferida no pé."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À cause d'une allergie.",
+   "de": "Wegen einer Allergie.",
+   "pt": "Por causa de uma alergia."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Parce qu'elle est tombée.",
+   "de": "Weil sie gestürzt ist.",
+   "pt": "Porque ela sofreu uma queda."
+  },
+  "ecouter.1.q": {
+   "fr": "Qu'est-ce que {lehmann} ne sait pas exactement ?",
+   "de": "Was weiß {lehmann} nicht genau?",
+   "pt": "O que a {lehmann} não sabe exatamente?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Combien de fois elle se lève la nuit.",
+   "de": "Wie oft sie nachts aufsteht.",
+   "pt": "Quantas vezes ela se levanta à noite."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Combien d'unités d'insuline elle s'injecte.",
+   "de": "Wie viele Einheiten Insulin sie spritzt.",
+   "pt": "Quantas unidades de insulina ela aplica."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Comment s'appelle sa fille.",
+   "de": "Wie ihre Tochter heißt.",
+   "pt": "Como a filha dela se chama."
+  },
+  "ecouter.2.q": {
+   "fr": "Qui l'hôpital peut-il appeler en cas d'urgence ?",
+   "de": "Wen darf das Krankenhaus im Notfall anrufen?",
+   "pt": "Para quem o hospital pode ligar em caso de emergência?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Sa médecin traitante.",
+   "de": "Ihre Hausärztin.",
+   "pt": "Para a médica de família dela."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Son voisin.",
+   "de": "Ihren Nachbarn.",
+   "pt": "Para o vizinho dela."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Sa fille.",
+   "de": "Ihre Tochter.",
+   "pt": "Para a filha dela."
+  }
+ }
+}

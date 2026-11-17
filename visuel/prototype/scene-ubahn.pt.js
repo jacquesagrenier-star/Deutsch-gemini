@@ -4,9 +4,9 @@ window.SCENE = {
  "points": [
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -21,7 +21,7 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "lampe",
@@ -472,7 +472,7 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "hund",

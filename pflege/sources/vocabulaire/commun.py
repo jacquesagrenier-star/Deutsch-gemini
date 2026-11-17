@@ -26,6 +26,10 @@ Les constructeurs :
   V(niveau, "lagern", trad, ex, aux="haben", p2="gelagert")   verbe
   A(niveau, "geschwollen", trad, ex)                adjectif (ou paire d'adjectifs)
   X(niveau, "Wie geht es Ihnen?", trad, ex)         expression, phrase, groupe de mots
+  P(niveau, "das Bauchweh", "die Abdominalschmerzen",   PAIRE (sorte « paire », 15 nov.) : ce que dit
+    trad_patient, trad_service, ex_patient, ex_service)  le PATIENT, puis ce que dit ou ecrit le
+                                                     SERVICE ; les deux traductions et les deux
+                                                     exemples (10 champs chacun) dans le meme ordre
   R(niveau, "Kopf", ex)                             REPRISE d'un mot du corpus general :
                                                      meme carte, une phrase de soins en
                                                      plus ; precision=trad si le corpus
@@ -93,6 +97,16 @@ def A(niveau, mot, trad, ex, **opts):
 
 def X(niveau, mot, trad, ex, **opts):
     return _base(niveau, "expression", mot, trad, ex, opts)
+
+
+def P(niveau, patient, service, trad_patient, trad_service, ex_patient, ex_service, **opts):
+    """Une paire « dit le patient / dit le service » (pflege/FORMAT-DONNEES.md, § 1 bis).
+    Les mots s'ecrivent avec leur article (« das Bauchweh ») : la carte les montre tels quels."""
+    e = _base(niveau, "paire", service, trad_service, ex_service, opts)
+    e["patient"] = patient
+    e["trad_patient"] = _champs(trad_patient, 9, "la traduction du patient", service)
+    e["ex_patient"] = _champs(ex_patient, 10, "l'exemple du patient", service)
+    return e
 
 
 def R(niveau, mot, ex, **opts):

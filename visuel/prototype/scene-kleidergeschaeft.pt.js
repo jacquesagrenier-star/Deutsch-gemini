@@ -1037,7 +1037,7 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "la banque"
+   "fr": "le banc"
   },
   {
    "id": "theke",

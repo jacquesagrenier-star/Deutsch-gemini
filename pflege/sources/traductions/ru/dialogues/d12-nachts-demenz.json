@@ -1,0 +1,338 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d12-nachts-demenz.json",
+ "cles": {
+  "titre": {
+   "fr": "Un résident désorienté, la nuit",
+   "de": "Nachts bei Demenz",
+   "ru": "Ночью с дезориентированным проживающим"
+  },
+  "intro": {
+   "fr": "Trois heures du matin, au {heim}. {schulze}, ancien conducteur de tramway, est dans le couloir, en veste, sa casquette à la main : il veut partir « au dépôt ». Tu joues {arun} : ne le contredis pas, entre dans son monde, rassure-le, réoriente-le doucement et raccompagne-le dans sa chambre.",
+   "ru": "Три часа ночи, дом престарелых «{heim}». {schulze}, бывший водитель трамвая, стоит в коридоре в куртке, с фуражкой в руке: он хочет уйти «в депо». Ты играешь роль {arun:gen}: не спорь с ним, войди в его мир, успокой его, мягко помоги ему сориентироваться и проводи обратно в комнату."
+  },
+  "but": {
+   "fr": "Accompagner une personne désorientée (validation) : accueillir, faire raconter au Präteritum, reconnaître le sentiment (le devoir, la ponctualité), réorienter sans mentir ni contraindre, raccompagner.",
+   "ru": "Сопровождать дезориентированного человека (валидация): принять, дать рассказать в Präteritum, признать чувство (долг, пунктуальность), мягко сориентировать, не обманывая и не принуждая, проводить обратно."
+  },
+  "relire_notes": {
+   "fr": "Méthode de la validation (Naomi Feil) et ce qu'on ne fait pas : contredire, raisonner, mentir, contraindre ; réorientation douce (l'heure, la nuit) ; boisson et lumière ; surveiller la nuit ; noter l'épisode.",
+   "ru": "Метод валидации (Наоми Фейл) и чего не делают: не спорят, не переубеждают, не обманывают, не принуждают; мягкая переориентация (время, ночь); питьё и свет; наблюдение ночью; записать эпизод."
+  },
+  "redemittel.0": {
+   "fr": "{schulze:voc}, vous êtes déjà réveillé.",
+   "de": "{schulze}, Sie sind ja schon wach.",
+   "ru": "{schulze:voc}, вы уже проснулись."
+  },
+  "redemittel.1": {
+   "fr": "Vous voulez aller au travail ?",
+   "de": "Sie wollen zur Arbeit?",
+   "ru": "Вы собрались на работу?"
+  },
+  "redemittel.2": {
+   "fr": "Vous aimiez être conducteur de tramway, n'est-ce pas ?",
+   "de": "Sie waren gern Straßenbahnfahrer, nicht wahr?",
+   "ru": "Вы любили свою работу водителя трамвая, правда?"
+  },
+  "redemittel.3": {
+   "fr": "Racontez-moi : qu'est-ce qui était le plus beau dans votre travail ?",
+   "de": "Erzählen Sie mal: Was war das Schönste an Ihrer Arbeit?",
+   "ru": "Расскажите-ка: что было самым прекрасным в вашей работе?"
+  },
+  "redemittel.4": {
+   "fr": "Il fait encore nuit. Le premier tram ne part que demain matin.",
+   "de": "Es ist noch Nacht. Die erste Bahn fährt erst morgen früh.",
+   "ru": "Сейчас ещё ночь. Первый трамвай пойдёт только завтра утром."
+  },
+  "redemittel.5": {
+   "fr": "Je peux vous accompagner un bout de chemin ?",
+   "de": "Darf ich Sie ein Stück begleiten?",
+   "ru": "Можно я вас немного провожу?"
+  },
+  "redemittel.6": {
+   "fr": "Je suis là toute la nuit.",
+   "de": "Ich bin die ganze Nacht da.",
+   "ru": "Я здесь всю ночь."
+  },
+  "noeuds.flur.dit.0.recit": {
+   "fr": "Trois heures du matin. Dans le couloir faiblement éclairé, {arun} voit {schulze}, en veste, sa vieille casquette de conducteur à la main.",
+   "ru": "Три часа ночи. В слабо освещённом коридоре {arun} видит {schulze:acc}, в куртке, со старой фуражкой водителя в руке."
+  },
+  "noeuds.flur.dit.1": {
+   "fr": "Laissez-moi passer, jeune homme. Je dois aller au dépôt, mon service commence bientôt.",
+   "de": "Lassen Sie mich durch, junger Mann. Ich muss zum Depot, meine Schicht fängt gleich an.",
+   "ru": "Пропустите меня, молодой человек. Мне надо в депо, моя смена вот-вот начнётся."
+  },
+  "noeuds.flur.choix.0": {
+   "fr": "{schulze:voc}, vous êtes déjà réveillé. Vous voulez aller au travail ?",
+   "de": "{schulze}, Sie sind ja schon wach. Sie wollen zur Arbeit?",
+   "ru": "{schulze:voc}, вы уже проснулись. Вы собрались на работу?"
+  },
+  "noeuds.flur.choix.0.puis.0": {
+   "fr": "Bien sûr ! La ligne quatre n'attend pas. Je suis déjà en retard.",
+   "de": "Natürlich! Die Linie vier wartet nicht. Ich bin schon spät dran.",
+   "ru": "Конечно! Четвёрка ждать не будет. Я уже опаздываю."
+  },
+  "noeuds.flur.choix.1": {
+   "fr": "Bonjour, {schulze:voc}. Vous avez déjà mis votre veste. Où voulez-vous aller ?",
+   "de": "Guten Morgen, {schulze}. Sie haben ja schon Ihre Jacke an. Wo möchten Sie denn hin?",
+   "ru": "Доброе утро, {schulze:voc}. Вы уже надели куртку. Куда же вы хотите пойти?"
+  },
+  "noeuds.flur.choix.1.puis.0": {
+   "fr": "Au dépôt ! La ligne quatre n'attend pas. Je suis déjà en retard.",
+   "de": "Zum Depot! Die Linie vier wartet nicht. Ich bin schon spät dran.",
+   "ru": "В депо! Четвёрка ждать не будет. Я уже опаздываю."
+  },
+  "noeuds.flur.choix.2": {
+   "fr": "{schulze:voc}, vous ne travaillez plus depuis plus de vingt ans ! Vous êtes à la retraite.",
+   "de": "{schulze}, Sie arbeiten doch seit über zwanzig Jahren nicht mehr! Sie sind in Rente.",
+   "ru": "{schulze:voc}, вы же уже больше двадцати лет не работаете! Вы на пенсии."
+  },
+  "noeuds.flur.choix.2.puis.0": {
+   "fr": "Qu'est-ce que vous racontez ? Laissez-moi passer tout de suite !",
+   "de": "Was reden Sie denn da? Lassen Sie mich sofort durch!",
+   "ru": "Что вы такое говорите? Сейчас же пропустите меня!"
+  },
+  "noeuds.flur.choix.2.aide": {
+   "fr": "<b>Ne contredis pas une personne désorientée : pour elle, c'est vrai maintenant.</b> La corriger l'inquiète et la met en colère. Entre dans son monde : « Sie wollen zur Arbeit? »",
+   "ru": "<b>Не спорь с дезориентированным человеком: для него это правда сейчас.</b> Если его поправлять, он тревожится и злится. Войди в его мир: «Sie wollen zur Arbeit?»"
+  },
+  "noeuds.beruf.choix.0": {
+   "fr": "Vous aimiez être conducteur de tramway, n'est-ce pas ?",
+   "de": "Sie waren gern Straßenbahnfahrer, nicht wahr?",
+   "ru": "Вы любили свою работу водителя трамвая, правда?"
+  },
+  "noeuds.beruf.choix.0.puis.0": {
+   "fr": "Pendant quarante ans. Je connaissais chaque arrêt de la ville.",
+   "de": "Vierzig Jahre lang. Ich kannte jede Haltestelle in der Stadt.",
+   "ru": "Сорок лет. Я знал каждую остановку в городе."
+  },
+  "noeuds.beruf.choix.1": {
+   "fr": "La ligne quatre ! Vous l'avez conduite pendant combien de temps ?",
+   "de": "Die Linie vier! Wie lange sind Sie die denn gefahren?",
+   "ru": "Четвёрка! А сколько лет вы на ней ездили?"
+  },
+  "noeuds.beruf.choix.1.puis.0": {
+   "fr": "Pendant quarante ans. Je connaissais chaque arrêt de la ville.",
+   "de": "Vierzig Jahre lang. Ich kannte jede Haltestelle in der Stadt.",
+   "ru": "Сорок лет. Я знал каждую остановку в городе."
+  },
+  "noeuds.erzaehlen.choix.0": {
+   "fr": "C'est long. Quel trajet préfériez-vous conduire ?",
+   "de": "Das ist eine lange Zeit. Welche Strecke sind Sie am liebsten gefahren?",
+   "ru": "Это долгое время. По какому маршруту вы больше всего любили ездить?"
+  },
+  "noeuds.erzaehlen.choix.0.puis.0": {
+   "fr": "Le matin, le long du fleuve, quand le soleil se levait. Tout le monde était encore silencieux.",
+   "de": "Morgens am Fluss entlang, wenn die Sonne aufging. Da waren alle noch ganz still.",
+   "ru": "Утром вдоль реки, когда вставало солнце. Все тогда ещё были совсем тихие."
+  },
+  "noeuds.erzaehlen.choix.1": {
+   "fr": "Racontez-moi : qu'est-ce qui était le plus beau dans votre travail ?",
+   "de": "Erzählen Sie mal: Was war das Schönste an Ihrer Arbeit?",
+   "ru": "Расскажите-ка: что было самым прекрасным в вашей работе?"
+  },
+  "noeuds.erzaehlen.choix.1.puis.0": {
+   "fr": "Le matin, le long du fleuve, quand le soleil se levait. Tout le monde était encore silencieux.",
+   "de": "Morgens am Fluss entlang, wenn die Sonne aufging. Da waren alle noch ganz still.",
+   "ru": "Утром вдоль реки, когда вставало солнце. Все тогда ещё были совсем тихие."
+  },
+  "noeuds.nacht.choix.0": {
+   "fr": "Ça a l'air beau. Vous savez, là, on est encore en pleine nuit. Le premier tram ne part que demain matin.",
+   "de": "Das klingt schön. Wissen Sie, jetzt ist noch mitten in der Nacht. Die erste Bahn fährt erst morgen früh.",
+   "ru": "Звучит прекрасно. Знаете, сейчас ещё глубокая ночь. Первый трамвай пойдёт только завтра утром."
+  },
+  "noeuds.nacht.choix.0.puis.0": {
+   "fr": "Encore la nuit ? … Mais je ne dois pas arriver en retard.",
+   "de": "Noch Nacht? … Aber ich darf doch nicht zu spät kommen.",
+   "ru": "Ещё ночь? … Но мне же нельзя опаздывать."
+  },
+  "noeuds.nacht.choix.1": {
+   "fr": "Regardez par la fenêtre : il fait encore tout noir. Dehors, aucun tram ne roule encore.",
+   "de": "Schauen Sie mal aus dem Fenster: Es ist noch ganz dunkel. Draußen fährt noch keine Bahn.",
+   "ru": "Посмотрите-ка в окно: ещё совсем темно. На улице трамваи ещё не ходят."
+  },
+  "noeuds.nacht.choix.1.puis.0": {
+   "fr": "Encore la nuit ? … Mais je ne dois pas arriver en retard.",
+   "de": "Noch Nacht? … Aber ich darf doch nicht zu spät kommen.",
+   "ru": "Ещё ночь? … Но мне же нельзя опаздывать."
+  },
+  "noeuds.nacht.choix.2": {
+   "fr": "Le tram arrive tout de suite. Attendez ici, dans le couloir.",
+   "de": "Die Straßenbahn kommt gleich. Warten Sie hier im Flur.",
+   "ru": "Трамвай сейчас придёт. Подождите здесь, в коридоре."
+  },
+  "noeuds.nacht.choix.2.puis.0": {
+   "fr": "Bien, j'attends. Mais pas trop longtemps !",
+   "de": "Gut, ich warte. Aber nicht zu lange!",
+   "ru": "Хорошо, подожду. Но не слишком долго!"
+  },
+  "noeuds.nacht.choix.2.aide": {
+   "fr": "<b>Même pour calmer, on ne ment pas.</b> Il attendrait un tram qui ne vient pas, puis perdrait confiance en toi. Réoriente avec douceur et avec du vrai : « Es ist noch Nacht. Die erste Bahn fährt erst morgen früh. »",
+   "ru": "<b>Даже чтобы успокоить, не обманывают.</b> Он будет ждать трамвай, который не придёт, а потом перестанет тебе доверять. Мягко сориентируй его правдой: «Es ist noch Nacht. Die erste Bahn fährt erst morgen früh.»"
+  },
+  "noeuds.angst.choix.0": {
+   "fr": "La ponctualité a toujours compté pour vous, ça se voit. Mais maintenant, vous pouvez encore vous reposer.",
+   "de": "Pünktlichkeit war Ihnen immer wichtig, das merkt man. Aber jetzt dürfen Sie sich noch ausruhen.",
+   "ru": "Пунктуальность всегда была для вас важна, это видно. Но сейчас вы ещё можете отдохнуть."
+  },
+  "noeuds.angst.choix.0.puis.0": {
+   "fr": "Vous croyez ? Hum… je suis aussi un peu fatigué.",
+   "de": "Meinen Sie? Hm … ich bin auch ein bisschen müde.",
+   "ru": "Вы думаете? Хм… я и правда немного устал."
+  },
+  "noeuds.angst.choix.1": {
+   "fr": "Vous êtes un homme qui a le sens du devoir. Personne ne vous en voudra, vous avez encore beaucoup de temps.",
+   "de": "Sie sind ein sehr pflichtbewusster Mann. Niemand wird Ihnen böse sein, Sie haben noch viel Zeit.",
+   "ru": "Вы очень ответственный человек. Никто на вас не рассердится, у вас ещё много времени."
+  },
+  "noeuds.angst.choix.1.puis.0": {
+   "fr": "Vous croyez ? Hum… je suis aussi un peu fatigué.",
+   "de": "Meinen Sie? Hm … ich bin auch ein bisschen müde.",
+   "ru": "Вы думаете? Хм… я и правда немного устал."
+  },
+  "noeuds.begleiten.choix.0": {
+   "fr": "Je peux vous accompagner un bout de chemin ? On pourrait déjà suspendre votre veste dans votre chambre.",
+   "de": "Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.",
+   "ru": "Можно я вас немного провожу? Мы могли бы уже повесить вашу куртку у вас в комнате."
+  },
+  "noeuds.begleiten.choix.0.puis.0": {
+   "fr": "Hum… mais je garde la casquette.",
+   "de": "Hm … aber die Mütze behalte ich.",
+   "ru": "Хм… но фуражку я оставлю."
+  },
+  "noeuds.begleiten.choix.1": {
+   "fr": "Venez, je vous accompagne. On fait un bout de chemin ensemble, jusqu'à votre chambre.",
+   "de": "Kommen Sie, ich begleite Sie. Wir gehen zusammen ein Stück, zu Ihrem Zimmer.",
+   "ru": "Пойдёмте, я вас провожу. Пройдёмся вместе немного, до вашей комнаты."
+  },
+  "noeuds.begleiten.choix.1.puis.0": {
+   "fr": "Hum… mais je garde la casquette.",
+   "de": "Hm … aber die Mütze behalte ich.",
+   "ru": "Хм… но фуражку я оставлю."
+  },
+  "noeuds.begleiten.choix.2": {
+   "fr": "Vous allez au lit tout de suite. Il est trois heures !",
+   "de": "Sie gehen jetzt sofort ins Bett. Es ist drei Uhr!",
+   "ru": "Сейчас же идите в кровать. Три часа ночи!"
+  },
+  "noeuds.begleiten.choix.2.puis.0": {
+   "fr": "Vous n'avez pas d'ordres à me donner !",
+   "de": "Sie haben mir gar nichts zu befehlen!",
+   "ru": "Вы мне не командир!"
+  },
+  "noeuds.begleiten.choix.2.aide": {
+   "fr": "<b>Un ordre déclenche la résistance.</b> Propose et accompagne : « Darf ich Sie ein Stück begleiten? » La personne garde le sentiment de choisir.",
+   "ru": "<b>Приказ вызывает сопротивление.</b> Предлагай и сопровождай: «Darf ich Sie ein Stück begleiten?» У человека остаётся ощущение, что он выбирает сам."
+  },
+  "noeuds.zimmer.dit.0.recit": {
+   "fr": "Dans la chambre, {schulze} regarde la photo encadrée au-dessus de son fauteuil : un vieux tram jaune.",
+   "ru": "В комнате {schulze} смотрит на фотографию в рамке над своим креслом: старый жёлтый трамвай."
+  },
+  "noeuds.zimmer.dit.1": {
+   "fr": "C'est mon fauteuil. Et la photo… c'est mon tram.",
+   "de": "Das ist ja mein Sessel. Und das Foto … das ist meine Bahn.",
+   "ru": "Это же моё кресло. А фото… это мой трамвай."
+  },
+  "noeuds.zimmer.choix.0": {
+   "fr": "Oui, c'est votre tram. Voulez-vous vous asseoir dans le fauteuil ? Je vous apporte un thé chaud.",
+   "de": "Ja, das ist Ihre Bahn. Möchten Sie sich in den Sessel setzen? Ich bringe Ihnen einen warmen Tee.",
+   "ru": "Да, это ваш трамвай. Хотите сесть в кресло? Я принесу вам горячего чаю."
+  },
+  "noeuds.zimmer.choix.0.puis.0": {
+   "fr": "Un thé, ce serait bien. À la camomille.",
+   "de": "Ein Tee wäre gut. Kamille.",
+   "ru": "Чай — это хорошо бы. Ромашковый."
+  },
+  "noeuds.zimmer.choix.1": {
+   "fr": "Un beau tram. Vous m'en raconterez plus demain ? Là, je vous allume une petite lumière et je vous apporte un thé.",
+   "de": "Eine schöne Bahn. Erzählen Sie mir morgen mehr davon? Jetzt mache ich Ihnen ein kleines Licht an und bringe Ihnen einen Tee.",
+   "ru": "Красивый трамвай. Расскажете мне завтра о нём побольше? А сейчас я включу вам маленький свет и принесу чаю."
+  },
+  "noeuds.zimmer.choix.1.puis.0": {
+   "fr": "Un thé, ce serait bien. À la camomille.",
+   "de": "Ein Tee wäre gut. Kamille.",
+   "ru": "Чай — это хорошо бы. Ромашковый."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Volontiers. Et quand vous serez fatigué, je vous aiderai à vous coucher. Je suis là toute la nuit.",
+   "de": "Gern. Und wenn Sie müde werden, helfe ich Ihnen ins Bett. Ich bin die ganze Nacht da.",
+   "ru": "С удовольствием. А когда устанете, я помогу вам лечь в кровать. Я здесь всю ночь."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Vous êtes un bon collègue.",
+   "de": "Sie sind ein guter Kollege.",
+   "ru": "Вы хороший коллега."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je reviens tout de suite. Et si vous avez besoin de quelque chose, sonnez, tout simplement.",
+   "de": "Ich bin gleich wieder da. Und wenn Sie etwas brauchen, klingeln Sie einfach.",
+   "ru": "Я сейчас вернусь. А если вам что-нибудь понадобится, просто нажмите на кнопку вызова."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci, collègue.",
+   "de": "Danke, Kollege.",
+   "ru": "Спасибо, коллега."
+  },
+  "ecouter.0.q": {
+   "fr": "Où veut aller {schulze} au début ?",
+   "de": "Wohin will {schulze} am Anfang?",
+   "ru": "Куда хочет пойти {schulze} вначале?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Chez sa fille.",
+   "de": "Zu seiner Tochter.",
+   "ru": "К своей дочери."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Au dépôt, au travail.",
+   "de": "Zum Depot, zur Arbeit.",
+   "ru": "В депо, на работу."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Chez le médecin.",
+   "de": "Zum Arzt.",
+   "ru": "К врачу."
+  },
+  "ecouter.1.q": {
+   "fr": "Pendant combien de temps a-t-il été conducteur de tramway ?",
+   "de": "Wie lange war er Straßenbahnfahrer?",
+   "ru": "Сколько лет он был водителем трамвая?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Quarante ans.",
+   "de": "Vierzig Jahre.",
+   "ru": "Сорок лет."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vingt ans.",
+   "de": "Zwanzig Jahre.",
+   "ru": "Двадцать лет."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Dix ans.",
+   "de": "Zehn Jahre.",
+   "ru": "Десять лет."
+  },
+  "ecouter.2.q": {
+   "fr": "Que veut-il boire à la fin ?",
+   "de": "Was möchte er am Ende trinken?",
+   "ru": "Что он хочет выпить в конце?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un café.",
+   "de": "Einen Kaffee.",
+   "ru": "Кофе."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un verre d'eau.",
+   "de": "Ein Glas Wasser.",
+   "ru": "Стакан воды."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Une camomille.",
+   "de": "Kamillentee.",
+   "ru": "Ромашковый чай."
+  }
+ }
+}

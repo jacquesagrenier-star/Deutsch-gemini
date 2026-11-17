@@ -344,7 +344,32 @@ def phrases_traduites(dit):
         manque = [p for p in dit[l].values() if p not in cible]
         if manque:
             sys.exit("  decouverte sans traduction : " + ", ".join(manque))
+    langues_natives(es, de)
     return {"es": es, "de": de}
+
+
+def langues_natives(es, de):
+    """Le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe pour qui apprend l'allemand, l'arabe pour qui
+    apprend l'espagnol (visuel/contrarios/langues.py, lot 3 de l'alignement des themes, 16 nov. 2026). Une phrase sans
+    sa traduction arrete le script : une langue ne doit pas retomber sur la glose seule."""
+    sys.path.insert(0, ICI)
+    import langues as LG
+    for i in IMAGES:
+        de[phrase_de(i)].update(LG.IMG[i])
+        art, nom = IMAGES[i]["de"]
+        de["Das ist %s %s%s %s." % (ARTDE[art], MOTS[IMAGES[i]["mot"]]["de"], ENDUNG[art], nom)].update(LG.ATTR[i])
+        es[phrase_es(i)]["ar"] = LG.IMG[i]["ar"]
+    for p, t in LG.PHRASES_DE.items():
+        if p not in de:
+            sys.exit("  langues natives, phrase inconnue de la page : " + p)
+        de[p].update(t)
+    for p, t in LG.ES_AR.items():
+        if p not in es:
+            sys.exit("  langues natives, phrase inconnue de la page : " + p)
+        es[p]["ar"] = t
+    manque = [(p, lg) for p, v in de.items() for lg in LG.LANGUES if not v.get(lg)] + [(p, "ar") for p, v in es.items() if not v.get("ar")]
+    if manque:
+        sys.exit("  langues natives : %d traductions absentes, dont %s" % (len(manque), manque[:5]))
 
 
 def ecrire_json():

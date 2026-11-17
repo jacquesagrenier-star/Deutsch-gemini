@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Körper",
@@ -39,7 +40,8 @@ window.SCENE = {
      "pt": "corpo",
      "ar": "جسم",
      "pl": "ciało",
-     "ru": "тело"
+     "ru": "тело",
+     "es": "el cuerpo"
     }
    ],
    "sur": null,
@@ -72,7 +74,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "kopf",
@@ -101,7 +104,8 @@ window.SCENE = {
    "pt": "cabeça",
    "ar": "رأس",
    "pl": "głowa",
-   "ru": "голова"
+   "ru": "голова",
+   "es": "la cabeza"
   },
   {
    "id": "hals",
@@ -130,7 +134,8 @@ window.SCENE = {
    "pt": "pescoço, garganta",
    "ar": "رقبة، حلق",
    "pl": "szyja, gardło",
-   "ru": "шея, горло"
+   "ru": "шея, горло",
+   "es": "el cuello, la garganta"
   },
   {
    "id": "schulter",
@@ -165,7 +170,8 @@ window.SCENE = {
    "pt": "ombro",
    "ar": "كتف",
    "pl": "ramię, bark",
-   "ru": "плечо"
+   "ru": "плечо",
+   "es": "el hombro"
   },
   {
    "id": "brust",
@@ -194,7 +200,8 @@ window.SCENE = {
    "pt": "peito",
    "ar": "صدر",
    "pl": "klatka piersiowa, pierś",
-   "ru": "грудь"
+   "ru": "грудь",
+   "es": "el pecho"
   },
   {
    "id": "bauch",
@@ -223,7 +230,8 @@ window.SCENE = {
    "pt": "barriga",
    "ar": "بطن",
    "pl": "brzuch",
-   "ru": "живот"
+   "ru": "живот",
+   "es": "la barriga, el vientre"
   },
   {
    "id": "bauchnabel",
@@ -252,7 +260,8 @@ window.SCENE = {
    "pt": "umbigo",
    "ar": "سُرّة",
    "pl": "pępek",
-   "ru": "пупок"
+   "ru": "пупок",
+   "es": "el ombligo"
   },
   {
    "id": "arm-l",
@@ -287,7 +296,8 @@ window.SCENE = {
    "pt": "braço",
    "ar": "ذراع",
    "pl": "ręka, ramię",
-   "ru": "рука"
+   "ru": "рука",
+   "es": "el brazo"
   },
   {
    "id": "arm-r",
@@ -322,7 +332,8 @@ window.SCENE = {
    "pt": "braço",
    "ar": "ذراع",
    "pl": "ręka, ramię",
-   "ru": "рука"
+   "ru": "рука",
+   "es": "el brazo"
   },
   {
    "id": "ellbogen",
@@ -357,7 +368,8 @@ window.SCENE = {
    "pt": "cotovelo",
    "ar": "مرفق، كوع",
    "pl": "łokieć",
-   "ru": "локоть"
+   "ru": "локоть",
+   "es": "el codo"
   },
   {
    "id": "handgelenk",
@@ -392,7 +404,8 @@ window.SCENE = {
    "pt": "pulso",
    "ar": "معصم",
    "pl": "nadgarstek",
-   "ru": "запястье"
+   "ru": "запястье",
+   "es": "la muñeca (de la mano)"
   },
   {
    "id": "hand-l",
@@ -421,7 +434,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "hand-r",
@@ -450,7 +464,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "oberschenkel",
@@ -485,7 +500,8 @@ window.SCENE = {
    "pt": "coxa",
    "ar": "فخذ",
    "pl": "udo",
-   "ru": "бедро"
+   "ru": "бедро",
+   "es": "el muslo"
   },
   {
    "id": "unterhose",
@@ -532,7 +548,8 @@ window.SCENE = {
    "pt": "cueca, calcinha",
    "ar": "سروال داخلي",
    "pl": "majtki, slipy",
-   "ru": "трусы"
+   "ru": "трусы",
+   "es": "los calzoncillos"
   },
   {
    "id": "knie",
@@ -567,7 +584,8 @@ window.SCENE = {
    "pt": "joelho",
    "ar": "ركبة",
    "pl": "kolano",
-   "ru": "колено"
+   "ru": "колено",
+   "es": "la rodilla"
   },
   {
    "id": "bein-l",
@@ -596,7 +614,8 @@ window.SCENE = {
    "pt": "perna",
    "ar": "ساق",
    "pl": "noga",
-   "ru": "нога"
+   "ru": "нога",
+   "es": "la pierna"
   },
   {
    "id": "bein-r",
@@ -625,7 +644,8 @@ window.SCENE = {
    "pt": "perna",
    "ar": "ساق",
    "pl": "noga",
-   "ru": "нога"
+   "ru": "нога",
+   "es": "la pierna"
   },
   {
    "id": "fuss-l",
@@ -654,7 +674,8 @@ window.SCENE = {
    "pt": "pé",
    "ar": "قدم",
    "pl": "stopa",
-   "ru": "нога (ступня)"
+   "ru": "нога (ступня)",
+   "es": "el pie"
   },
   {
    "id": "fuss-r",
@@ -683,7 +704,8 @@ window.SCENE = {
    "pt": "pé",
    "ar": "قدم",
    "pl": "stopa",
-   "ru": "нога (ступня)"
+   "ru": "нога (ступня)",
+   "es": "el pie"
   },
   {
    "id": "aerztin",
@@ -707,7 +729,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     }
    ],
    "sur": null,
@@ -740,7 +763,8 @@ window.SCENE = {
    "pt": "médica",
    "ar": "طبيبة",
    "pl": "lekarka",
-   "ru": "врач (женщина)"
+   "ru": "врач (женщина)",
+   "es": "la doctora, la médica"
   },
   {
    "id": "hand-aerztin-haut",
@@ -769,7 +793,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "hand-aerztin-bas",
@@ -798,7 +823,8 @@ window.SCENE = {
    "pt": "mão",
    "ar": "يد",
    "pl": "ręka, dłoń",
-   "ru": "рука (кисть)"
+   "ru": "рука (кисть)",
+   "es": "la mano"
   },
   {
    "id": "stethoskop",
@@ -833,7 +859,8 @@ window.SCENE = {
    "pt": "estetoscópio",
    "ar": "سمّاعة الطبيب",
    "pl": "stetoskop",
-   "ru": "стетоскоп"
+   "ru": "стетоскоп",
+   "es": "el estetoscopio"
   },
   {
    "id": "waage",
@@ -874,7 +901,8 @@ window.SCENE = {
    "pt": "balança",
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
-   "ru": "весы"
+   "ru": "весы",
+   "es": "la báscula, la balanza"
   },
   {
    "id": "wand",
@@ -903,7 +931,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -932,7 +961,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   },
   {
    "id": "haar",
@@ -962,7 +992,8 @@ window.SCENE = {
    "pt": "cabelo",
    "ar": "شعر",
    "pl": "włos, włosy",
-   "ru": "волосы"
+   "ru": "волосы",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "haar-l",
@@ -992,7 +1023,8 @@ window.SCENE = {
    "pt": "cabelo",
    "ar": "شعر",
    "pl": "włos, włosy",
-   "ru": "волосы"
+   "ru": "волосы",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "gesicht",
@@ -1022,7 +1054,8 @@ window.SCENE = {
    "pt": "rosto",
    "ar": "وجه",
    "pl": "twarz",
-   "ru": "лицо"
+   "ru": "лицо",
+   "es": "la cara"
   },
   {
    "id": "stirn",
@@ -1052,7 +1085,8 @@ window.SCENE = {
    "pt": "testa",
    "ar": "جبهة",
    "pl": "czoło",
-   "ru": "лоб"
+   "ru": "лоб",
+   "es": "la frente"
   },
   {
    "id": "augenbraue-l",
@@ -1082,7 +1116,8 @@ window.SCENE = {
    "pt": "sobrancelha",
    "ar": "حاجب",
    "pl": "brew",
-   "ru": "бровь"
+   "ru": "бровь",
+   "es": "la ceja"
   },
   {
    "id": "augenbraue-r",
@@ -1112,7 +1147,8 @@ window.SCENE = {
    "pt": "sobrancelha",
    "ar": "حاجب",
    "pl": "brew",
-   "ru": "бровь"
+   "ru": "бровь",
+   "es": "la ceja"
   },
   {
    "id": "auge-l",
@@ -1142,7 +1178,8 @@ window.SCENE = {
    "pt": "olho",
    "ar": "عين",
    "pl": "oko",
-   "ru": "глаз"
+   "ru": "глаз",
+   "es": "el ojo"
   },
   {
    "id": "auge-r",
@@ -1172,7 +1209,8 @@ window.SCENE = {
    "pt": "olho",
    "ar": "عين",
    "pl": "oko",
-   "ru": "глаз"
+   "ru": "глаз",
+   "es": "el ojo"
   },
   {
    "id": "ohr",
@@ -1202,7 +1240,8 @@ window.SCENE = {
    "pt": "orelha, ouvido",
    "ar": "أذن",
    "pl": "ucho",
-   "ru": "ухо"
+   "ru": "ухо",
+   "es": "la oreja, el oído"
   },
   {
    "id": "nase",
@@ -1232,7 +1271,8 @@ window.SCENE = {
    "pt": "nariz",
    "ar": "أنف",
    "pl": "nos",
-   "ru": "нос"
+   "ru": "нос",
+   "es": "la nariz"
   },
   {
    "id": "wange-l",
@@ -1262,7 +1302,8 @@ window.SCENE = {
    "pt": "bochecha",
    "ar": "خدّ",
    "pl": "policzek",
-   "ru": "щека"
+   "ru": "щека",
+   "es": "la mejilla"
   },
   {
    "id": "wange-r",
@@ -1292,7 +1333,8 @@ window.SCENE = {
    "pt": "bochecha",
    "ar": "خدّ",
    "pl": "policzek",
-   "ru": "щека"
+   "ru": "щека",
+   "es": "la mejilla"
   },
   {
    "id": "mund",
@@ -1322,7 +1364,8 @@ window.SCENE = {
    "pt": "boca",
    "ar": "فم",
    "pl": "usta",
-   "ru": "рот"
+   "ru": "рот",
+   "es": "la boca"
   },
   {
    "id": "zahn",
@@ -1352,7 +1395,8 @@ window.SCENE = {
    "pt": "dente",
    "ar": "سنّ",
    "pl": "ząb",
-   "ru": "зуб"
+   "ru": "зуб",
+   "es": "el diente"
   },
   {
    "id": "lippe",
@@ -1382,7 +1426,8 @@ window.SCENE = {
    "pt": "lábio",
    "ar": "شفة",
    "pl": "warga",
-   "ru": "губа"
+   "ru": "губа",
+   "es": "el labio"
   },
   {
    "id": "kinn",
@@ -1412,7 +1457,8 @@ window.SCENE = {
    "pt": "queixo",
    "ar": "ذقن",
    "pl": "podbródek, broda",
-   "ru": "подбородок"
+   "ru": "подбородок",
+   "es": "la barbilla, el mentón"
   },
   {
    "id": "finger-main",
@@ -1442,7 +1488,8 @@ window.SCENE = {
    "pt": "dedo",
    "ar": "إصبع",
    "pl": "palec",
-   "ru": "палец"
+   "ru": "палец",
+   "es": "el dedo"
   },
   {
    "id": "finger-daumen",
@@ -1472,7 +1519,8 @@ window.SCENE = {
    "pt": "dedo",
    "ar": "إصبع",
    "pl": "palec",
-   "ru": "палец"
+   "ru": "палец",
+   "es": "el dedo"
   },
   {
    "id": "nagel-daumen",
@@ -1502,7 +1550,8 @@ window.SCENE = {
    "pt": "unha",
    "ar": "ظفر",
    "pl": "paznokieć",
-   "ru": "ноготь"
+   "ru": "ноготь",
+   "es": "la uña"
   },
   {
    "id": "knoechel-l",
@@ -1532,7 +1581,8 @@ window.SCENE = {
    "pt": "tornozelo",
    "ar": "كاحل",
    "pl": "kostka (u nogi)",
-   "ru": "лодыжка"
+   "ru": "лодыжка",
+   "es": "el tobillo"
   },
   {
    "id": "knoechel-r",
@@ -1562,7 +1612,8 @@ window.SCENE = {
    "pt": "tornozelo",
    "ar": "كاحل",
    "pl": "kostka (u nogi)",
-   "ru": "лодыжка"
+   "ru": "лодыжка",
+   "es": "el tobillo"
   },
   {
    "id": "zehe-l",
@@ -1592,7 +1643,8 @@ window.SCENE = {
    "pt": "dedo do pé",
    "ar": "إصبع القدم",
    "pl": "palec u nogi",
-   "ru": "палец ноги"
+   "ru": "палец ноги",
+   "es": "el dedo del pie"
   },
   {
    "id": "zehe-r",
@@ -1622,7 +1674,8 @@ window.SCENE = {
    "pt": "dedo do pé",
    "ar": "إصبع القدم",
    "pl": "palec u nogi",
-   "ru": "палец ноги"
+   "ru": "палец ноги",
+   "es": "el dedo del pie"
   },
   {
    "id": "fussnagel-l",
@@ -1652,7 +1705,8 @@ window.SCENE = {
    "pt": "unha",
    "ar": "ظفر",
    "pl": "paznokieć",
-   "ru": "ноготь"
+   "ru": "ноготь",
+   "es": "la uña"
   },
   {
    "id": "fussnagel-r",
@@ -1682,7 +1736,8 @@ window.SCENE = {
    "pt": "unha",
    "ar": "ظفر",
    "pl": "paznokieć",
-   "ru": "ноготь"
+   "ru": "ноготь",
+   "es": "la uña"
   }
  ],
  "grosPlans": [
@@ -2683,7 +2738,7 @@ window.SCENE = {
     "B1 | Bitte atmen Sie tief ein!": "Respire fundo, por favor!",
     "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark tirou a roupa, ficando só de cueca.",
     "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "A médica põe o estetoscópio no peito dele.",
-    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark vai já subir na balança.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark já vai subir na balança.",
     "B1 | Danach steht er still auf der Waage.": "Depois ele fica parado na balança.",
     "B2 | Seine Lunge wird gerade abgehört.": "Os pulmões dele estão sendo auscultados.",
     "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "O paciente cujo peito está sendo auscultado se chama Mark.",
@@ -2831,6 +2886,73 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Если бы его сердцебиение было нерегулярным, она направила бы его к кардиологу.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Если бы он не разделся, она не смогла бы его прослушать.",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Без обследования этого нельзя было бы знать точно."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark, de pie en bóxer azul marino, descalzo, mientras su doctora le ausculta el pecho; una báscula con tallímetro contra la pared verde.",
+    "consigne": "Toca una parte del cuerpo de Mark. Toca su cara, su mano o sus pies para verlos de cerca.",
+    "nom_vue": "Mark, de frente",
+    "autre_vue": "↻ Girar a Mark"
+   },
+   "couches": {
+    "A1": "El cuerpo humano",
+    "A2": "Wo? — las preposiciones y el cuerpo",
+    "B1": "Las indicaciones de la doctora",
+    "B2": "Pasiva y relativas",
+    "C1": "Suposiciones y Konjunktiv II"
+   },
+   "questions": {
+    "A2 | Die Waage steht an der Wand.": "<b>an</b> = contra una superficie vertical. die Wand → an <b>der</b> Wand (dativo).",
+    "A2 | Die Ärztin steht neben dem Patienten.": "<b>neben</b> + dativo. der Patient toma una <b>-en</b>: dem Patient<b>en</b>.",
+    "A2 | Mark steht vor der Waage.": "<b>vor</b> = delante de. die Waage → vor <b>der</b> Waage. Todavía no se ha subido.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Dativo con el posesivo: die Brust → auf <b>seiner</b> Brust.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Dativo plural: <b>an seinen</b> Oberschenkel<b>n</b> — el sustantivo toma una -n.",
+    "A2 | Seine Füße sind auf dem Boden.": "der Boden → auf <b>dem</b> Boden. Descalzo, sobre el suelo gris.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "<b>abhören</b> = auscultar. Verbo separable: la partícula <b>ab</b> va al final.",
+    "B1 | Bitte atmen Sie tief ein!": "<b>einatmen</b> = inhalar, <b>ausatmen</b> = exhalar. Imperativo de cortesía: el verbo al principio, la partícula al final.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "<b>sich ausziehen</b> = desvestirse; <b>sich anziehen</b> = vestirse; <b>sich umziehen</b> = cambiarse.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "<b>setzen</b> = poner (movimiento) → auf <b>die</b> Brust (acusativo). <b>sitzen</b> = estar sentado.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Movimiento, Wohin? → <b>sich stellen</b> + acusativo: auf <b>die</b> Waage.",
+    "B1 | Danach steht er still auf der Waage.": "Estado, Wo? → <b>stehen</b> + dativo: auf <b>der</b> Waage.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Pasiva de una acción en curso: <b>werden</b> + participio II.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Posesión, antecedente masculino → <b>dessen</b> (cuyo pecho).",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Sujeto de la relativa, femenino → <b>die</b>.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "<b>sich stellen auf</b> + acusativo (movimiento) → auf <b>die</b>.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Pasiva: <b>wird</b> … gemessen. El tallímetro de la báscula mide la estatura.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Pasiva en la subordinada: participio II + <b>wird</b> al final.",
+    "C1 | Er muss viel Sport treiben.": "<b>müssen</b> = deducción casi segura, sacada de lo que se ve, como «debe de hacer».",
+    "C1 | Er dürfte gesund sein.": "<b>dürfte</b> = probable, sin certeza.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "<b>sollen</b> = se dice; lo cuento sin garantizarlo.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Suposición sin <b>wenn</b>: el verbo al principio (<b>Wäre</b>…), luego <b>würde</b> + infinitivo.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Irreal del pasado con un verbo modal: <b>hätte</b> + doble infinitivo (abhören können).",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + sustantivo reemplaza una condición: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "La báscula está contra la pared.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "La doctora está de pie al lado del paciente.",
+    "A2 | Mark steht vor der Waage.": "Mark está de pie delante de la báscula.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "La doctora sostiene el estetoscopio sobre su pecho.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Sus manos están pegadas a sus muslos.",
+    "A2 | Seine Füße sind auf dem Boden.": "Sus pies están en el suelo.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "La doctora le ausculta los pulmones.",
+    "B1 | Bitte atmen Sie tief ein!": "¡Inhale profundo, por favor!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark se desvistió hasta quedar en calzoncillos.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "La doctora le pone el estetoscopio en el pecho.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Enseguida Mark se sube a la báscula.",
+    "B1 | Danach steht er still auf der Waage.": "Después se queda quieto sobre la báscula.",
+    "B2 | Seine Lunge wird gerade abgehört.": "En este momento le están auscultando los pulmones.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "El paciente al que le auscultan el pecho se llama Mark.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "La doctora que lo examina es su médica de cabecera.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "La báscula a la que se va a subir enseguida está junto a la pared.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Enseguida le van a medir también la estatura.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Mark se queda quieto, de pie, mientras lo examinan.",
+    "C1 | Er muss viel Sport treiben.": "Debe de hacer mucho deporte.",
+    "C1 | Er dürfte gesund sein.": "Probablemente está sano.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Dicen que esta doctora es muy minuciosa.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Si su ritmo cardíaco fuera irregular, ella lo mandaría al cardiólogo.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Si no se hubiera desvestido, ella no habría podido auscultarlo.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Sin un examen, no se podría saber con exactitud."
    }
   }
  }

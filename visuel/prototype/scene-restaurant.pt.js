@@ -4,9 +4,9 @@ window.SCENE = {
  "points": [
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -21,7 +21,7 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "lampe",
@@ -183,10 +183,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     15,
-     29.5,
-     11,
-     4.5
+     20.6,
+     27.4,
+     6.6,
+     5.2
     ]
    ],
    "fr": "tableau",
@@ -923,26 +923,6 @@ window.SCENE = {
    "fr": "bougie"
   },
   {
-   "id": "salat",
-   "mot": "alface",
-   "genre": "a",
-   "pluriel": "as alfaces",
-   "niveau": "A1",
-   "personne": null,
-   "aussi": [],
-   "sur": "tisch-2",
-   "devant": 0,
-   "boites": [
-    [
-     96,
-     56.5,
-     4,
-     3.5
-    ]
-   ],
-   "fr": "salade"
-  },
-  {
    "id": "tisch-2",
    "mot": "mesa",
    "genre": "a",
@@ -1123,10 +1103,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     33.5,
-     51.5,
-     7,
-     3.5
+     25,
+     50.3,
+     10.5,
+     4.4
     ]
    ],
    "fr": "chemise"

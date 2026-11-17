@@ -1,0 +1,137 @@
+{
+ "id": "d04-ablehnung",
+ "numero": 4,
+ "niveau": "B2",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["brandt"],
+ "titre": {"t": "Die Ablehnung", "fr": "Quand le patient refuse"},
+ "intro": {"fr": "Onze heures et demie. Selon le plan, {brandt} doit faire quelques pas avec le déambulateur. Il refuse. Tu joues {elif} : écoute sa raison, explique l'intérêt sans faire peur, propose un compromis, respecte sa décision, puis documente et informe."},
+ "but": {"fr": "Écouter un refus, en demander la raison, argumenter sans menacer (wenn … dann), proposer (Wie wäre es, wenn …?), respecter l'autonomie du patient, documenter et informer."},
+ "grammaire": ["g07", "g17", "g08"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Autonomie du patient : aucun moyen de contrainte ; risques de l'immobilité (thrombose, pneumonie, perte musculaire, escarre) formulés justement ; compromis proposé (s'asseoir au bord du lit) ; qui informer (médecin, kinésithérapie) ; changement de position pour prévenir l'escarre."},
+ "redemittel": [
+  {"t": "Ich verstehe, dass Sie heute keine Lust haben.", "fr": "Je comprends que vous n'ayez pas envie aujourd'hui.", "fonction": "rassurer"},
+  {"t": "Darf ich fragen, warum?", "fr": "Puis-je vous demander pourquoi ?", "fonction": "demander"},
+  {"t": "Wenn Sie lange liegen bleiben, steigt das Risiko für eine Thrombose.", "fr": "Si vous restez longtemps couché, le risque de thrombose augmente.", "relire": true, "relire_note": "Risque formulé justement.", "fonction": "annoncer"},
+  {"t": "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen?", "fr": "Et si, aujourd'hui, on s'asseyait seulement au bord du lit ?", "fonction": "demander"},
+  {"t": "Das ist Ihre Entscheidung.", "fr": "C'est votre décision.", "fonction": "rassurer"},
+  {"t": "Ich informiere die Ärztin und schreibe es auf.", "fr": "J'informe le médecin et je le note.", "fonction": "transmettre"},
+  {"t": "Darf ich Sie morgen früh noch einmal fragen?", "fr": "Je peux vous redemander demain matin ?", "fonction": "demander"}
+ ],
+ "debut": "angebot",
+ "noeuds": {
+  "angebot": {
+   "dit": [
+    {"recit": {"fr": "Onze heures et demie. {elif} approche le déambulateur du lit de {brandt}."}}
+   ],
+   "choix": [
+    {"t": "{brandt}, jetzt ist Zeit für unseren kleinen Spaziergang mit dem Rollator. Sind Sie bereit?", "fr": "{brandt:voc}, c'est l'heure de notre petite promenade avec le déambulateur. Vous êtes prêt ?", "va": "verstehen",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Nein. Heute nicht. Lassen Sie mich in Ruhe.", "fr": "Non. Pas aujourd'hui. Laissez-moi tranquille."}]},
+    {"t": "Wie besprochen möchte ich jetzt mit Ihnen ein paar Schritte gehen. Wollen wir?", "fr": "Comme prévu, je voudrais faire quelques pas avec vous maintenant. On y va ?", "va": "verstehen",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Nein. Heute nicht. Lassen Sie mich in Ruhe.", "fr": "Non. Pas aujourd'hui. Laissez-moi tranquille."}]},
+    {"faux": true, "t": "Stehen Sie jetzt auf. Wir müssen laufen.", "fr": "Levez-vous maintenant. Il faut marcher.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Wir müssen gar nichts. Ich bleib liegen.", "fr": "On ne doit rien du tout. Je reste couché."}],
+     "aide": {"fr": "<b>Un ordre appelle un refus.</b> Propose, sous forme de question : « Wollen wir? », « Sind Sie bereit? ». Le patient garde le choix, et il le sent."}}
+   ]
+  },
+  "verstehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich verstehe, dass Sie heute keine Lust haben. Darf ich fragen, warum?", "fr": "Je comprends que vous n'ayez pas envie aujourd'hui. Puis-je vous demander pourquoi ?", "va": "angst",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ich bin müde, und die Hüfte tut weh. Und ehrlich gesagt hab ich Angst, dass ich wieder hinfalle.", "fr": "Je suis fatigué, et la hanche me fait mal. Et pour être honnête, j'ai peur de retomber."}]},
+    {"t": "Das ist in Ordnung, ich zwinge Sie zu nichts. Was ist denn heute los?", "fr": "C'est d'accord, je ne vous force à rien. Qu'est-ce qui se passe aujourd'hui ?", "va": "angst",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Ich bin müde, und die Hüfte tut weh. Und ehrlich gesagt hab ich Angst, dass ich wieder hinfalle.", "fr": "Je suis fatigué, et la hanche me fait mal. Et pour être honnête, j'ai peur de retomber."}]},
+    {"faux": true, "t": "Aber das ist doch wichtig! Sie müssen das machen.", "fr": "Mais c'est important ! Vous devez le faire.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Ich muss gar nichts. Ich bin zweiundachtzig!", "fr": "Je ne dois rien du tout. J'ai quatre-vingt-deux ans !"}],
+     "aide": {"fr": "<b>D'abord écouter, ensuite expliquer.</b> Demande la raison du refus : « Darf ich fragen, warum? ». Sans la raison, tu ne peux pas trouver de solution."}}
+   ]
+  },
+  "angst": {
+   "dit": [],
+   "choix": [
+    {"t": "Das kann ich gut verstehen. Nach einem Sturz haben viele Menschen Angst. Ich bin die ganze Zeit neben Ihnen.", "fr": "Je le comprends très bien. Après une chute, beaucoup de gens ont peur. Je reste tout le temps à côté de vous.", "va": "erklaeren",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und warum ist das eigentlich so wichtig mit dem Laufen?", "fr": "Hum. Et pourquoi c'est si important, cette histoire de marcher ?"}]},
+    {"t": "Angst nach einem Sturz ist ganz normal. Ich halte Sie, und der Rollator gibt Ihnen Sicherheit.", "fr": "Avoir peur après une chute, c'est tout à fait normal. Je vous tiens, et le déambulateur vous sécurise.", "va": "erklaeren",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm. Und warum ist das eigentlich so wichtig mit dem Laufen?", "fr": "Hum. Et pourquoi c'est si important, cette histoire de marcher ?"}]}
+   ]
+  },
+  "erklaeren": {
+   "dit": [],
+   "choix": [
+    {"t": "Wenn Sie lange liegen bleiben, werden die Muskeln schwach, und das Risiko für eine Thrombose oder eine Lungenentzündung steigt.", "fr": "Si vous restez longtemps couché, les muscles s'affaiblissent, et le risque de thrombose ou de pneumonie augmente.", "va": "kompromiss",
+     "relire": true, "relire_note": "Risques de l'immobilité après une prothèse de hanche.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Thrombose … das hatte mein Bruder. Aber heute schaff ich das nicht, wirklich nicht.", "fr": "Une thrombose… mon frère en a eu une. Mais aujourd'hui, je n'y arriverai pas, vraiment pas."}]},
+    {"t": "Jeder Schritt macht Ihre Muskeln stärker. Wenn Sie viel liegen, steigt das Risiko für Komplikationen, zum Beispiel für eine Thrombose.", "fr": "Chaque pas renforce vos muscles. Si vous restez beaucoup couché, le risque de complications augmente, par exemple de thrombose.", "va": "kompromiss",
+     "relire": true, "relire_note": "Risques de l'immobilité après une prothèse de hanche.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Thrombose … das hatte mein Bruder. Aber heute schaff ich das nicht, wirklich nicht.", "fr": "Une thrombose… mon frère en a eu une. Mais aujourd'hui, je n'y arriverai pas, vraiment pas."}]},
+    {"faux": true, "t": "Wenn Sie nicht laufen, werden Sie nie wieder gesund.", "fr": "Si vous ne marchez pas, vous ne guérirez jamais.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Nie wieder? Na, Sie machen einem ja Mut.", "fr": "Jamais ? Eh bien, vous savez remonter le moral."}],
+     "aide": {"fr": "<b>Pas de menace ni d'exagération : un risque, dit avec des faits.</b> « Wenn Sie lange liegen bleiben, steigt das Risiko für … ». La peur ne motive pas, elle bloque."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "kompromiss": {
+   "dit": [],
+   "choix": [
+    {"t": "Wie wäre es, wenn wir uns heute nur an die Bettkante setzen? Nur ein paar Minuten.", "fr": "Et si, aujourd'hui, on s'asseyait seulement au bord du lit ? Juste quelques minutes.", "va": "entscheidung",
+     "relire": true, "relire_note": "Compromis de mobilisation : s'asseoir au bord du lit.",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm … Nein. Ich hab's mir überlegt. Heute bleib ich liegen, basta.", "fr": "Hum… Non. J'ai réfléchi. Aujourd'hui, je reste couché, un point c'est tout."}]},
+    {"t": "Was halten Sie davon, wenn wir es erst mal nur bis zum Stuhl am Fenster versuchen?", "fr": "Que diriez-vous d'essayer d'abord seulement jusqu'à la chaise près de la fenêtre ?", "va": "entscheidung",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Hm … Nein. Ich hab's mir überlegt. Heute bleib ich liegen, basta.", "fr": "Hum… Non. J'ai réfléchi. Aujourd'hui, je reste couché, un point c'est tout."}]},
+    {"faux": true, "t": "Wie ist es, wenn wir uns an die Bettkante setzen?", "fr": "« Comment c'est », si on s'assoit au bord du lit ? (mal dit)",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Wie es ist? Unbequem ist es!", "fr": "Comment c'est ? C'est inconfortable !"}],
+     "aide": {"fr": "<b>Pour proposer, le Konjunktiv II : « Wie wäre es, wenn …? »</b> « Wie ist es » demande comment est une chose, ce n'est pas une proposition. Autre tournure : « Was halten Sie davon, wenn …? »"}}
+   ]
+  },
+  "entscheidung": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut, das ist Ihre Entscheidung. Ich informiere {sommer} und die Physiotherapie und schreibe es auf.", "fr": "D'accord, c'est votre décision. J'informe {sommer} et la kinésithérapie, et je le note.", "va": "sauer",
+     "relire": true, "relire_note": "Qui informer après un refus de mobilisation.",
+     "puis": [{"qui": "brandt", "air": "question", "t": "Und jetzt sind Sie sauer auf mich?", "fr": "Et maintenant, vous m'en voulez ?"}]},
+    {"t": "In Ordnung, ich respektiere das. Ich dokumentiere es und sage {sommer} Bescheid.", "fr": "D'accord, je le respecte. Je le note dans le dossier et je préviens {sommer}.", "va": "sauer",
+     "puis": [{"qui": "brandt", "air": "question", "t": "Und jetzt sind Sie sauer auf mich?", "fr": "Et maintenant, vous m'en voulez ?"}]},
+    {"faux": true, "t": "Nein, das geht nicht. Ich hole jetzt {jonas}, und dann stehen Sie auf.", "fr": "Non, ce n'est pas possible. Je vais chercher {jonas}, et vous allez vous lever.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Was? Wollen Sie mich etwa zwingen?", "fr": "Quoi ? Vous voulez me forcer ?"}],
+     "aide": {"fr": "<b>Un patient capable de décider a le droit de refuser un soin.</b> On ne le force pas : on respecte, on documente (« Ich dokumentiere es ») et on informe le médecin. On peut reproposer plus tard."},
+     "relire": true, "relire_note": "Autonomie et limite (urgence, incapacité de discernement) : vérifier l'aide."}
+   ]
+  },
+  "sauer": {
+   "dit": [],
+   "choix": [
+    {"t": "Nein, überhaupt nicht. Vielleicht geht es morgen besser. Darf ich Sie morgen früh noch einmal fragen?", "fr": "Non, pas du tout. Ça ira peut-être mieux demain. Je peux vous redemander demain matin ?", "va": "lagern",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Morgen früh … na gut. Fragen kostet nichts.", "fr": "Demain matin… bon, d'accord. Demander ne coûte rien."}]},
+    {"t": "Gar nicht. Sie entscheiden. Wenn Sie es sich anders überlegen, klingeln Sie einfach.", "fr": "Pas du tout. C'est vous qui décidez. Si vous changez d'avis, sonnez, tout simplement.", "va": "lagern",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Sie sind eine Gute, {elif}.", "fr": "Vous êtes quelqu'un de bien, {elif}."}]}
+   ]
+  },
+  "lagern": {
+   "dit": [
+    {"recit": {"fr": "Avant de partir, {elif} remarque qu'il est couché sur le dos depuis le matin."}}
+   ],
+   "choix": [
+    {"t": "Darf ich Sie wenigstens ein bisschen auf die Seite drehen? Dann liegen Sie nicht immer auf derselben Stelle.", "fr": "Je peux au moins vous tourner un peu sur le côté ? Comme ça, vous n'êtes pas toujours couché au même endroit.", "va": null,
+     "relire": true, "relire_note": "Changement de position (prévention de l'escarre) après prothèse de hanche : côté et coussin à préciser.",
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na gut. Aber vorsichtig.", "fr": "Bon, d'accord. Mais doucement."}]},
+    {"t": "Soll ich Ihnen helfen, anders zu liegen? Das ist gut für die Haut.", "fr": "Voulez-vous que je vous aide à changer de position ? C'est bon pour la peau.", "va": null,
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Na gut. Aber vorsichtig.", "fr": "Bon, d'accord. Mais doucement."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum möchte {brandt} heute nicht laufen?", "fr": "Pourquoi {brandt} ne veut-il pas marcher aujourd'hui ?"},
+   "options": [{"t": "Er ist müde, hat Schmerzen und Angst vor einem Sturz.", "fr": "Il est fatigué, il a mal et il a peur de tomber."}, {"t": "Er möchte lieber fernsehen.", "fr": "Il préfère regarder la télévision."}, {"t": "Er wartet auf seinen Bruder.", "fr": "Il attend son frère."}],
+   "juste": 0},
+  {"q": {"t": "Wer hatte schon einmal eine Thrombose?", "fr": "Qui a déjà eu une thrombose ?"},
+   "options": [{"t": "Seine Frau.", "fr": "Sa femme."}, {"t": "Er selbst.", "fr": "Lui-même."}, {"t": "Sein Bruder.", "fr": "Son frère."}],
+   "juste": 2},
+  {"q": {"t": "Was macht {elif}, als {brandt} endgültig Nein sagt?", "fr": "Que fait {elif} quand {brandt} dit non pour de bon ?"},
+   "options": [{"t": "Sie holt einen Kollegen, und er muss aufstehen.", "fr": "Elle va chercher un collègue, et il doit se lever."}, {"t": "Sie respektiert es, dokumentiert es und informiert die Ärztin.", "fr": "Elle le respecte, le note et informe le médecin."}, {"t": "Sie sagt nichts und geht.", "fr": "Elle ne dit rien et s'en va."}],
+   "juste": 1}
+ ]
+}

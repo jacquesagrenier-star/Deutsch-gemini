@@ -1,0 +1,125 @@
+{
+ "id": "a2-conseil-vendeur",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Demander conseil au magasin de vélos"},
+ "intro": {"fr": "À Berlin, tout le monde roule à vélo. Tu entres dans un magasin pour en acheter un : la vendeuse te pose des questions, te conseille, et tu choisis."},
+ "personnes": ["rad_verkaeuferin"],
+ "debut": "hallo",
+ "textes": {
+  "rad_fr": {"cle": "rad", "neu": "le vélo neuf", "gebraucht": "le vélo d'occasion"},
+  "zub_fr": {"cle": "zub", "schloss": "un antivol", "beides": "un antivol et un casque"},
+  "total_de": {"cle": "total", "neu_schloss": "384 Euro", "neu_beides": "429 Euro", "gebraucht_schloss": "255 Euro", "gebraucht_beides": "300 Euro"},
+  "total_mots": {"cle": "total", "neu_schloss": "dreihundertvierundachtzig Euro", "neu_beides": "vierhundertneunundzwanzig Euro", "gebraucht_schloss": "zweihundertfünfundfünfzig Euro", "gebraucht_beides": "dreihundert Euro"},
+  "total_fr": {"cle": "total", "neu_schloss": "384 euros", "neu_beides": "429 euros", "gebraucht_schloss": "255 euros", "gebraucht_beides": "300 euros"}
+ },
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Un petit magasin de vélos à Neukölln, avec son atelier au fond. Tu regardes les vélos. La vendeuse s'approche."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Guten Tag! Kann ich Ihnen helfen?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte. Ich suche ein Fahrrad für die Stadt.", "fr": "Oui, s'il vous plaît. Je cherche un vélo pour la ville.", "va": "wofuer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Da sind Sie hier richtig!", "fr": "Vous êtes au bon endroit !"}]},
+    {"t": "Guten Tag! Ich möchte ein Fahrrad kaufen.", "fr": "Bonjour ! Je voudrais acheter un vélo.", "va": "wofuer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Da sind Sie hier richtig!", "fr": "Vous êtes au bon endroit !"}]},
+    {"faux": true, "t": "Ja, bitte. Ich suche einen Fahrrad für die Stadt.", "fr": "Oui, s'il vous plaît. Je cherche un vélo pour la ville.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Einen …? Ah, ein Fahrrad! Ein Fahrrad für die Stadt, gern.", "fr": "Un… ? Ah, un vélo ! Un vélo pour la ville, volontiers."}],
+     "aide": {"fr": "<b>« das Fahrrad » est neutre</b> (en français : le vélo). À l'accusatif, le neutre ne change pas : « Ich suche <b>ein</b> Fahrrad ». « einen », c'est pour le masculin."}}
+   ]
+  },
+  "wofuer": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "Wofür brauchen Sie das Rad? Für den Weg zur Arbeit oder eher für Ausflüge am Wochenende?", "fr": "Pour quoi faire avez-vous besoin du vélo ? Pour aller au travail ou plutôt pour des sorties le week-end ?"}],
+   "choix": [
+    {"t": "Für den Weg zur Arbeit. Ich fahre jeden Tag fünf Kilometer.", "fr": "Pour aller au travail. Je fais cinq kilomètres par jour.", "va": "budget",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Jeden Tag, gut. Dann brauchen Sie ein bequemes Rad.", "fr": "Tous les jours, bien. Alors il vous faut un vélo confortable."}]},
+    {"t": "Vor allem für das Wochenende. Ich fahre gern an den See.", "fr": "Surtout pour le week-end. J'aime bien aller au lac.", "va": "budget",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Schön! Dann brauchen Sie ein bequemes Rad.", "fr": "Sympa ! Alors il vous faut un vélo confortable."}]},
+    {"faux": true, "t": "Für gehen zur Arbeit.", "fr": "Pour aller au travail.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Für … gehen? Ach so, Sie fahren mit dem Rad zur Arbeit!", "fr": "Pour… aller ? Ah, vous allez au travail à vélo !"}],
+     "aide": {"fr": "<b>« pour » + verbe ne se dit pas « für » + verbe.</b> Le plus simple : « für » + nom, « Für den Weg zur Arbeit » ou « Für die Arbeit ». Et à vélo, on « fährt », on ne « geht » pas."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "wofuer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Natürlich. Fahren Sie mit dem Rad zur Arbeit? Oder fahren Sie nur am Wochenende?", "fr": "Bien sûr. Vous allez au travail à vélo ? Ou vous roulez seulement le week-end ?"}]}
+   ]
+  },
+  "budget": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "Und wie viel möchten Sie ungefähr ausgeben?", "fr": "Et combien voulez-vous dépenser, à peu près ?"}],
+   "choix": [
+    {"t": "Nicht mehr als vierhundert Euro.", "fr": "Pas plus de quatre cents euros.", "va": "wahl"},
+    {"t": "Vierhundert Euro, aber nicht mehr.", "fr": "Quatre cents euros, mais pas plus.", "va": "wahl"},
+    {"faux": true, "t": "Nicht mehr dass vierhundert Euro.", "fr": "Pas plus que quatre cents euros.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Mehr … dass? Ach so: nicht mehr als vierhundert Euro. Alles klar!", "fr": "Plus… « dass » ? Ah : pas plus de quatre cents euros. Compris !"}],
+     "aide": {"fr": "<b>Le « que » de la comparaison se dit « als ».</b> « mehr als », « billiger als ». « dass » relie deux phrases : « Ich denke, dass… »."}}
+   ]
+  },
+  "wahl": {
+   "dit": [
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Dann habe ich zwei Räder für Sie. Das rote hier ist neu: einfach, aber gut. Es kostet 349 Euro.", "dit": "Dann habe ich zwei Räder für Sie. Das rote hier ist neu: einfach, aber gut. Es kostet dreihundertneunundvierzig Euro.", "fr": "Alors j'ai deux vélos pour vous. Le rouge, ici, est neuf : simple, mais bon. Il coûte 349 euros."},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Und das blaue ist gebraucht. Wir haben es in der Werkstatt komplett geprüft: 220 Euro.", "dit": "Und das blaue ist gebraucht. Wir haben es in der Werkstatt komplett geprüft: zweihundertzwanzig Euro.", "fr": "Et le bleu est d'occasion. Nous l'avons entièrement révisé à l'atelier : 220 euros."}
+   ],
+   "choix": [
+    {"t": "Das neue Rad gefällt mir besser.", "fr": "Le vélo neuf me plaît davantage.", "pose": {"rad": "neu"}, "va": "groesse"},
+    {"t": "Das gebrauchte Rad ist günstiger. Das interessiert mich.", "fr": "Le vélo d'occasion est moins cher. Il m'intéresse.", "pose": {"rad": "gebraucht"}, "va": "zustand"},
+    {"faux": true, "t": "Ich mag besser das neue Rad.", "fr": "J'aime mieux le vélo neuf.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Wie bitte? Ah, das neue Rad gefällt Ihnen besser!", "fr": "Pardon ? Ah, le vélo neuf vous plaît davantage !"}],
+     "aide": {"fr": "<b>« J'aime mieux » ne se dit pas « ich mag besser ».</b> On dit « Das neue Rad gefällt mir besser » ou « Ich nehme lieber das neue Rad »."}}
+   ]
+  },
+  "groesse": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "question", "t": "Gute Wahl! Das Rad gibt es in drei Größen. Wie groß sind Sie?", "fr": "Bon choix ! Ce vélo existe en trois tailles. Vous mesurez combien ?"}],
+   "choix": [
+    {"t": "Ich bin ein Meter siebzig groß.", "fr": "Je mesure un mètre soixante-dix.", "va": "zubehoer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Dann passt Größe M. Machen Sie ruhig eine Probefahrt im Hof!", "fr": "Alors la taille M convient. Allez-y, faites un essai dans la cour !"}]},
+    {"t": "Ein Meter achtzig. Kann ich das Rad ausprobieren?", "fr": "Un mètre quatre-vingts. Je peux essayer le vélo ?", "va": "zubehoer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Dann nehmen wir Größe L. Ja klar, fahren Sie eine Runde im Hof!", "fr": "Alors on prend la taille L. Oui, bien sûr, faites un tour dans la cour !"}]},
+    {"faux": true, "t": "Ich mache ein Meter siebzig.", "fr": "Je fais un mètre soixante-dix.",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Sie machen …? Ach so, Sie sind ein Meter siebzig groß!", "fr": "Vous faites… ? Ah, vous mesurez un mètre soixante-dix !"}],
+     "aide": {"fr": "<b>Pour sa taille, l'allemand dit « être grand de… » :</b> « Ich <b>bin</b> ein Meter siebzig <b>groß</b> ». « Je fais 1 m 70 » ne se traduit pas avec « machen »."}}
+   ]
+  },
+  "zustand": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Das ist ein gutes Rad. Es hat neue Bremsen und neue Reifen.", "fr": "C'est un bon vélo. Il a des freins neufs et des pneus neufs."}],
+   "choix": [
+    {"t": "Kann ich es kurz ausprobieren?", "fr": "Je peux l'essayer rapidement ?", "va": "zubehoer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Ja, natürlich. Fahren Sie eine Runde im Hof!", "fr": "Oui, bien sûr. Faites un tour dans la cour !"}]},
+    {"t": "Sehr gut. Ist es groß genug für mich?", "fr": "Très bien. Il est assez grand pour moi ?", "va": "zubehoer",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Ich glaube schon. Probieren Sie es aus: Fahren Sie eine Runde im Hof!", "fr": "Je pense que oui. Essayez-le : faites un tour dans la cour !"}]},
+    {"faux": true, "t": "Kann ich es anprobieren?", "fr": "Je peux l'essayer (comme un vêtement) ?",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "amuse", "t": "Anprobieren? Ein Fahrrad kann man leider nicht anziehen! Aber Sie können es gern ausprobieren.", "fr": "L'essayer comme un vêtement ? Un vélo, ça ne s'enfile malheureusement pas ! Mais vous pouvez volontiers l'essayer."}],
+     "aide": {"fr": "<b>« anprobieren », c'est essayer un vêtement.</b> Pour un vélo, un appareil, une voiture : « ausprobieren ». « Kann ich es ausprobieren? »"}}
+   ]
+  },
+  "zubehoer": {
+   "dit": [
+    {"recit": {"fr": "Tu fais deux tours dans la cour. Le vélo roule bien, les freins aussi. Tu reviens dans le magasin."}},
+    {"qui": "rad_verkaeuferin", "air": "sourire", "t": "Licht ist schon dran, das ist in Deutschland Pflicht. Aber in Berlin brauchen Sie unbedingt ein gutes Schloss: 35 Euro.", "dit": "Licht ist schon dran, das ist in Deutschland Pflicht. Aber in Berlin brauchen Sie unbedingt ein gutes Schloss: fünfunddreißig Euro.", "fr": "Il y a déjà l'éclairage, c'est obligatoire en Allemagne. Mais à Berlin, il vous faut absolument un bon antivol : 35 euros."},
+    {"qui": "rad_verkaeuferin", "air": "question", "t": "Möchten Sie auch einen Helm? Der kostet 45 Euro.", "dit": "Möchten Sie auch einen Helm? Der kostet fünfundvierzig Euro.", "fr": "Voulez-vous aussi un casque ? Il coûte 45 euros."}
+   ],
+   "choix": [
+    {"si": {"rad": "neu"}, "t": "Nur das Schloss, bitte. Einen Helm habe ich schon.", "fr": "Seulement l'antivol, s'il vous plaît. J'ai déjà un casque.", "pose": {"zub": "schloss", "total": "neu_schloss"}, "va": "zahlen"},
+    {"si": {"rad": "neu"}, "t": "Ich nehme das Schloss und den Helm.", "fr": "Je prends l'antivol et le casque.", "pose": {"zub": "beides", "total": "neu_beides"}, "va": "zahlen"},
+    {"si": {"rad": "gebraucht"}, "t": "Nur das Schloss, bitte. Einen Helm habe ich schon.", "fr": "Seulement l'antivol, s'il vous plaît. J'ai déjà un casque.", "pose": {"zub": "schloss", "total": "gebraucht_schloss"}, "va": "zahlen"},
+    {"si": {"rad": "gebraucht"}, "t": "Ich nehme das Schloss und den Helm.", "fr": "Je prends l'antivol et le casque.", "pose": {"zub": "beides", "total": "gebraucht_beides"}, "va": "zahlen"}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Gut. Dann macht das zusammen {total_de}. Zahlen Sie bar oder mit Karte?", "dit": "Gut. Dann macht das zusammen {total_mots}. Zahlen Sie bar oder mit Karte?", "fr": "Bien. Alors ça fait {total_fr} en tout. Vous payez en espèces ou par carte ?"}],
+   "choix": [
+    {"t": "Mit Karte, bitte. Gibt es eine Garantie?", "fr": "Par carte, s'il vous plaît. Il y a une garantie ?", "va": null,
+     "puis": [
+      {"si": {"rad": "neu"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "Ja, zwei Jahre. Und die erste Inspektion nach drei Monaten ist kostenlos. Gute Fahrt!", "fr": "Oui, deux ans. Et la première révision, au bout de trois mois, est gratuite. Bonne route !"},
+      {"si": {"rad": "gebraucht"}, "qui": "rad_verkaeuferin", "air": "sourire", "t": "Ja, ein Jahr, auch für gebrauchte Räder. Und die erste Inspektion nach drei Monaten ist kostenlos. Gute Fahrt!", "fr": "Oui, un an, même pour les vélos d'occasion. Et la première révision, au bout de trois mois, est gratuite. Bonne route !"}
+     ]},
+    {"t": "Ich zahle bar. Bekomme ich eine Quittung?", "fr": "Je paie en espèces. Je peux avoir un reçu ?", "va": null,
+     "puis": [{"qui": "rad_verkaeuferin", "air": "sourire", "t": "Natürlich, hier ist sie. Und die erste Inspektion nach drei Monaten ist kostenlos. Gute Fahrt!", "fr": "Bien sûr, le voici. Et la première révision, au bout de trois mois, est gratuite. Bonne route !"}]},
+    {"faux": true, "t": "Mit Karte, bitte. Ist es eine Garantie?", "fr": "Par carte, s'il vous plaît. Est-ce une garantie ?",
+     "puis": [{"qui": "rad_verkaeuferin", "air": "surprise", "t": "Was ist eine Garantie? Ach so: ob es eine Garantie gibt! Ja, natürlich.", "fr": "Qu'est-ce qui est une garantie ? Ah : s'il y a une garantie ! Oui, bien sûr."}],
+     "aide": {"fr": "<b>« Il y a » se dit « es gibt ».</b> « Gibt es eine Garantie? » = Y a-t-il une garantie ? « Ist es… » veut dire « est-ce que c'est… »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé conseil, essayé et acheté {rad_fr}, avec {zub_fr} : {total_fr} en tout."}
+}

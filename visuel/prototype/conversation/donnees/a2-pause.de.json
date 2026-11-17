@@ -1,0 +1,351 @@
+{
+ "id": "a2-pause",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "du",
+ "titre": {
+  "fr": "La pause café"
+ },
+ "intro": {
+  "fr": "Mercredi, quinze heures trente : la pause entre le service du midi et celui du soir. Javier, ton collègue cuisinier, te rejoint dans la salle du personnel. Entre collègues, on se tutoie : bavarde avec lui."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "wochenende",
+ "noeuds": {
+  "wochenende": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "La salle du personnel, derrière la cuisine. Javier arrive avec sa tasse."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Na, wie war dein freier Tag am Montag?",
+     "fr": "Alors, c'était comment, ton jour de congé, lundi ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Schön! Ich war mit Freunden im Park.",
+     "fr": "Bien ! J'étais au parc avec des amis.",
+     "va": "maschine",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Bei dem Wetter? Toll! Ich war nur zu Hause.",
+       "fr": "Avec ce temps ? Génial ! Moi, je suis resté à la maison."
+      }
+     ]
+    },
+    {
+     "t": "Ruhig. Ich habe viel geschlafen und gelesen.",
+     "fr": "Calme. J'ai beaucoup dormi et lu.",
+     "va": "maschine",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Das klingt perfekt. Mein freier Tag war viel zu kurz!",
+       "fr": "Ça a l'air parfait. Mon jour de congé a été beaucoup trop court !"
+      }
+     ]
+    },
+    {
+     "t": "Super! Ich habe meine Schwester in Hamburg besucht.",
+     "fr": "Super ! J'ai rendu visite à ma sœur à Hambourg.",
+     "va": "maschine",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Oh, schön! Hamburg mag ich sehr.",
+       "fr": "Oh, c'est bien ! J'aime beaucoup Hambourg."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Gut, danke. Und wie war Ihr freier Tag?",
+     "fr": "Bien, merci. Et comment était votre jour de congé ?",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "„Ihr“ freier Tag? Wir sind doch per du!",
+       "fr": "« Votre » jour de congé ? Mais on se tutoie !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Javier et toi, vous vous tutoyez</b> : « dein freier Tag », pas « Ihr freier Tag ». Raconte plutôt le tien : « Schön! Ich war mit Freunden im Park. »"
+     }
+    }
+   ]
+  },
+  "maschine": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Javier appuie sur le bouton de la machine à café. Rien."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "perplexe",
+     "t": "Oh nein, die Kaffeemaschine ist schon wieder kaputt!",
+     "fr": "Oh non, la machine à café est encore en panne !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Kein Problem, dann trinke ich einen Tee.",
+     "fr": "Pas de problème, alors je bois un thé.",
+     "va": "mittag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Gute Idee. Ich nehme auch einen.",
+       "fr": "Bonne idée. J'en prends un aussi."
+      }
+     ]
+    },
+    {
+     "t": "Gehen wir schnell zum Bäcker an der Ecke?",
+     "fr": "On va vite à la boulangerie du coin ?",
+     "va": "mittag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Ja, komm! Die haben auch guten Kaffee.",
+       "fr": "Oui, viens ! Ils ont du bon café aussi."
+      }
+     ]
+    },
+    {
+     "t": "Schon wieder? Wir müssen es Carmen sagen.",
+     "fr": "Encore ? Il faut le dire à Carmen.",
+     "va": "mittag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Stimmt. Ich schreibe ihr gleich eine Nachricht.",
+       "fr": "C'est vrai. Je lui écris un message tout de suite."
+      }
+     ]
+    }
+   ]
+  },
+  "mittag": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Nächste Woche koche ich das Personalessen. Was isst du gern?",
+     "fr": "La semaine prochaine, c'est moi qui fais le repas du personnel. Qu'est-ce que tu aimes manger ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich esse gern Fisch, mit Reis oder Kartoffeln.",
+     "fr": "J'aime bien le poisson, avec du riz ou des pommes de terre.",
+     "va": "arbeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Fisch, gute Idee! Dann mache ich Lachs mit Kartoffeln.",
+       "fr": "Du poisson, bonne idée ! Alors je fais du saumon avec des pommes de terre."
+      }
+     ]
+    },
+    {
+     "t": "Alles, aber bitte nicht zu scharf.",
+     "fr": "De tout, mais pas trop épicé, s'il te plaît.",
+     "va": "arbeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Okay, kein Chili für dich!",
+       "fr": "D'accord, pas de piment pour toi !"
+      }
+     ]
+    }
+   ]
+  },
+  "arbeit": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Sag mal, wie gefällt dir die Arbeit bis jetzt?",
+     "fr": "Dis-moi, le travail te plaît, jusqu'ici ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sehr gut. Die Kollegen sind sehr nett.",
+     "fr": "Très bien. Les collègues sont très sympas.",
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Danke! Ich gebe mir Mühe.",
+       "fr": "Merci ! Je fais des efforts."
+      }
+     ]
+    },
+    {
+     "t": "Interessant, aber es ist noch ein bisschen viel.",
+     "fr": "Intéressant, mais c'est encore un peu beaucoup.",
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Das ist am Anfang normal. Nach zwei Wochen wird es leichter.",
+       "fr": "C'est normal au début. Après deux semaines, ça devient plus facile."
+      }
+     ]
+    },
+    {
+     "t": "Gut, weil ich viel Neues lerne.",
+     "fr": "Bien, parce que j'apprends beaucoup de choses nouvelles.",
+     "va": "geschenk",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Das ist die richtige Einstellung!",
+       "fr": "C'est le bon état d'esprit !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Gut, weil die Arbeit ist interessant.",
+     "fr": "Bien, parce que le travail est intéressant.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Ah, weil die Arbeit interessant ist? Schön!",
+       "fr": "Ah, parce que le travail est intéressant ? Tant mieux !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Après « weil », le verbe va à la fin</b> : « weil die Arbeit interessant ist ». Javier t'a compris, mais à l'examen, ça s'entend."
+     }
+    }
+   ]
+  },
+  "geschenk": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Übrigens: Carmen hat am Freitag Geburtstag. Wir sammeln Geld für ein Geschenk. Machst du mit?",
+     "fr": "Au fait : vendredi, c'est l'anniversaire de Carmen. On fait une collecte pour un cadeau. Tu participes ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, klar! Wie viel soll ich geben?",
+     "fr": "Oui, bien sûr ! Combien je dois donner ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Fünf Euro, wenn das okay ist. Wir kaufen Blumen und einen Gutschein.",
+       "fr": "Cinq euros, si ça te va. On achète des fleurs et un bon d'achat."
+      }
+     ]
+    },
+    {
+     "t": "Gern! Was schenken wir ihr?",
+     "fr": "Volontiers ! Qu'est-ce qu'on lui offre ?",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Blumen und einen Gutschein für eine Buchhandlung. Fünf Euro pro Person.",
+       "fr": "Des fleurs et un bon d'achat pour une librairie. Cinq euros par personne."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ich mache mit. Wie viel kostet Carmen?",
+     "fr": "Oui, je participe. Combien coûte Carmen ?",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Carmen kostet gar nichts! Das Geschenk kostet fünf Euro pro Person.",
+       "fr": "Carmen ne coûte rien du tout ! Le cadeau, c'est cinq euros par personne."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Wie viel kostet Carmen? »</b> demande le prix… de Carmen ! Demande plutôt : « Wie viel soll ich geben? » ou « Was kostet das Geschenk? »"
+     }
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Javier regarde l'horloge."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "surprise",
+     "t": "Oh, schon fünf vor fünf! Gleich kommen die ersten Gäste.",
+     "fr": "Oh, déjà cinq heures moins cinq ! Les premiers clients vont arriver."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Schade! Dann zurück an die Arbeit.",
+     "fr": "Dommage ! Alors, retour au travail.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Los geht's! Danke für die Pause.",
+       "fr": "C'est parti ! Merci pour la pause."
+      }
+     ]
+    },
+    {
+     "t": "Okay, los! Heute Abend wird es bestimmt voll.",
+     "fr": "D'accord, on y va ! Ce soir, ça va sûrement être plein.",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Wir schaffen das!",
+       "fr": "On va y arriver !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as raconté ton jour de congé, trouvé une solution sans café, dit ce que tu aimes manger et comment tu trouves le travail, et tu participes au cadeau de Carmen."
+ }
+}

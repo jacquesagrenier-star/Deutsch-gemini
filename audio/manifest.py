@@ -270,9 +270,16 @@ def recolter():
         nom = os.path.basename(f)[:-len(".points.json")]
         with io.open(f, encoding="utf-8") as fh:
             scene = json.load(fh)
+        # Une couche dont le nom n'est pas un niveau (« SIT », la Situation des
+        # scenes de la Pflege, 15 nov. 2026) prend le niveau qu'elle declare
+        # (champ « niveau ») ; sans niveau valide, elle est ecartee. Avant, son
+        # nom passait pour un niveau et dedoublonner() plantait.
         for niv, couche in (scene.get("couches") or {}).items():
+            niveau = niv if niv in NIVEAUX else couche.get("niveau")
+            if niveau not in NIVEAUX:
+                continue
             for q in couche.get("qs") or []:
-                prendre(q.get("phrase"), niv, "phrase", "scene." + nom)
+                prendre(q.get("phrase"), niveau, "phrase", "scene." + nom)
         # LES PERSONNES (audit du 12 octobre 2026). En A1 « decouvrir », toucher
         # Anna ou Mark fait dire son prenom AVANT le mot : dire((p.personne ?
         # p.personne + ". " : "") + p.genre + " " + p.mot) -> « Anna. die Frau ».
@@ -348,7 +355,7 @@ def contrarios_textes(langue):
 
 # les themes illustres dont visuel/<theme>/voix.json est lu (les emotions : leur ligne a part, plus haut)
 THEMES_VOIX = ("familia", "descripcion", "ropa", "cuerpo", "manger", "gato", "journee", "contrarios", "metiers", "transportes",
-               "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes")
+               "loisirs", "animales", "meteo", "logement", "demarches", "courses", "vacances", "travail", "ecole", "ciudad", "fetes", "heure")
 
 
 def themes_textes(theme, langue):

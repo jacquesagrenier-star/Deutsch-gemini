@@ -1,0 +1,82 @@
+{
+ "id": "a1-marche",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "poli",
+ "titre": {"fr": "Au marché : la livre et le prix"},
+ "intro": {"fr": "Mardi, au marché des producteurs de Copley Square. Ici, on vend à la livre (environ un demi-kilo) et à la barquette. Tu demandes un prix, tu goûtes et tu paies."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "hello",
+ "prix": {"one_box": 500, "two_boxes": 900, "tomatoes": 400, "apples": 300},
+ "panier": ["fruit", "veg", "more"],
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Mardi, le marché des producteurs de Copley Square. Un marchand t'appelle derrière son stand."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "Good morning! Everything's fresh today. What can I get you?", "fr": "Bonjour ! Tout est frais aujourd'hui. Qu'est-ce que je vous sers ?"}
+   ],
+   "choix": [
+    {"t": "How much are the strawberries?", "fr": "Combien coûtent les fraises ?", "pose": {"prix": "oui"}, "va": "berries",
+     "puis": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Five dollars a box, or two boxes for nine.", "t_gb": "Five dollars a punnet, or two punnets for nine.", "fr": "Cinq dollars la barquette, ou deux barquettes pour neuf."}]},
+    {"t": "Can I try one?", "fr": "Je peux en goûter une ?", "va": "berries",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Of course! Go ahead.", "fr": "Bien sûr ! Allez-y."},
+              {"recit": {"fr": "Tu goûtes une fraise : elle est très sucrée."}}]},
+    {"t": "I'd like a pound of tomatoes, please.", "fr": "Je voudrais une livre de tomates, s'il vous plaît.", "pose": {"veg": "tomatoes"}, "va": "else",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Sure! They're from a farm in Concord.", "fr": "Bien sûr ! Elles viennent d'une ferme de Concord."}]},
+    {"faux": true, "t": "How much cost the strawberries?", "fr": "Combien coûtent les fraises ? (mot à mot)",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "How much… cost? Oh, the strawberries? Five dollars a box.", "t_gb": "How much… cost? Oh, the strawberries? Five dollars a punnet.", "fr": "Combien… coûtent ? Ah, les fraises ? Cinq dollars la barquette."}],
+     "aide": {"fr": "<b>Pour demander un prix :</b> « How much are the strawberries? », ou « How much do they cost? » (avec « do »). Jamais le verbe avant le sujet sans « do »."}}
+   ]
+  },
+  "berries": {
+   "dit": [
+    {"si": {"prix": ""}, "qui": "marktverkaeufer", "air": "attentive", "t": "They're five dollars a box, or two boxes for nine.", "t_gb": "They're five dollars a punnet, or two punnets for nine.", "fr": "Elles sont à cinq dollars la barquette, ou deux barquettes pour neuf."},
+    {"qui": "marktverkaeufer", "air": "question", "t": "So, how many boxes?", "t_gb": "So, how many punnets?", "fr": "Alors, combien de barquettes ?"}
+   ],
+   "choix": [
+    {"t": "One box, please.", "t_gb": "One punnet, please.", "fr": "Une barquette, s'il vous plaît.", "pose": {"fruit": "one_box"}, "va": "else"},
+    {"t": "Two boxes, please.", "t_gb": "Two punnets, please.", "fr": "Deux barquettes, s'il vous plaît.", "pose": {"fruit": "two_boxes"}, "va": "else",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Good deal!", "fr": "Bonne affaire !"}]}
+   ]
+  },
+  "else": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Anything else?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Yes, a pound of apples, please.", "fr": "Oui, une livre de pommes, s'il vous plaît.", "pose": {"more": "apples"}, "va": "pay"},
+    {"t": "No, that's all, thanks.", "fr": "Non, c'est tout, merci.", "va": "pay"},
+    {"repete": true, "t": "Sorry?", "fr": "Pardon ?", "va": "else",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Anything else? Some apples, maybe?", "fr": "Autre chose ? Des pommes, peut-être ?"}]}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "That's {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "That's {a_payer:mots}."}],
+   "choix": [
+    {"t": "Can I pay by card?", "fr": "Je peux payer par carte ?", "va": "cash",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Sorry, cash only today. My card reader isn't working.", "t_gb": "Sorry, cash only today. My card machine isn't working.", "fr": "Désolé, seulement en espèces aujourd'hui. Mon terminal de carte ne marche pas."}]},
+    {"t": "Here you go.", "fr": "Voilà.", "va": "bag",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Thanks!", "fr": "Merci !"}]}
+   ]
+  },
+  "cash": {
+   "dit": [],
+   "choix": [
+    {"t": "No problem. Here's twenty dollars.", "fr": "Pas de problème. Voici vingt dollars.", "va": "bag",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Thanks! Here's your change.", "fr": "Merci ! Voici votre monnaie."}]},
+    {"t": "OK. I have cash. Here you go.", "fr": "D'accord. J'ai des espèces. Voilà.", "va": "bag",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Perfect, thanks!", "fr": "Parfait, merci !"}]}
+   ]
+  },
+  "bag": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "Do you need a bag?", "fr": "Vous avez besoin d'un sac ?"}],
+   "choix": [
+    {"t": "No, thanks. I have one.", "fr": "Non, merci. J'en ai un.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Great! Have a nice day!", "fr": "Très bien ! Bonne journée !"}]},
+    {"t": "Yes, please.", "fr": "Oui, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Here you go. Have a nice day!", "fr": "Voilà. Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé un prix, acheté à la livre et à la barquette, et payé {a_payer} au marché."}
+}

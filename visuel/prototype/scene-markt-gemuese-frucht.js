@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -39,7 +40,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -60,7 +62,8 @@ window.SCENE = {
    "pt": "ervilha",
    "ar": "بازلاء",
    "pl": "groszek",
-   "ru": "горошек"
+   "ru": "горошек",
+   "es": "la arveja"
   },
   {
    "id": "salat",
@@ -84,7 +87,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -99,7 +103,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -120,7 +125,8 @@ window.SCENE = {
    "pt": "alface, salada",
    "ar": "خس، سلطة",
    "pl": "sałata, sałatka",
-   "ru": "салат"
+   "ru": "салат",
+   "es": "la lechuga, la ensalada"
   },
   {
    "id": "spargel",
@@ -144,7 +150,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -159,7 +166,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -180,7 +188,8 @@ window.SCENE = {
    "pt": "aspargo",
    "ar": "هليون",
    "pl": "szparag",
-   "ru": "спаржа"
+   "ru": "спаржа",
+   "es": "el espárrago"
   },
   {
    "id": "kuerbis",
@@ -204,7 +213,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -219,7 +229,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -240,7 +251,8 @@ window.SCENE = {
    "pt": "abóbora",
    "ar": "يقطين",
    "pl": "dynia",
-   "ru": "тыква"
+   "ru": "тыква",
+   "es": "la calabaza"
   },
   {
    "id": "paprika",
@@ -264,7 +276,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -279,7 +292,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -300,7 +314,8 @@ window.SCENE = {
    "pt": "pimentão",
    "ar": "فلفل حلو",
    "pl": "papryka",
-   "ru": "болгарский перец"
+   "ru": "болгарский перец",
+   "es": "el pimiento"
   },
   {
    "id": "mais",
@@ -324,7 +339,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -339,7 +355,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -360,7 +377,8 @@ window.SCENE = {
    "pt": "milho",
    "ar": "ذرة",
    "pl": "kukurydza",
-   "ru": "кукуруза"
+   "ru": "кукуруза",
+   "es": "el maíz"
   },
   {
    "id": "pilz",
@@ -384,7 +402,8 @@ window.SCENE = {
      "pt": "cogumelo (Áustria)",
      "ar": "فطر (نمساوية)",
      "pl": "grzyb (Austria)",
-     "ru": "гриб (австр.)"
+     "ru": "гриб (австр.)",
+     "es": "el hongo (Austria, Baviera)"
     },
     {
      "mot": "Kiste",
@@ -399,7 +418,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -414,7 +434,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -435,7 +456,8 @@ window.SCENE = {
    "pt": "cogumelo",
    "ar": "فطر",
    "pl": "grzyb",
-   "ru": "гриб"
+   "ru": "гриб",
+   "es": "el hongo"
   },
   {
    "id": "bohne",
@@ -459,7 +481,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -474,7 +497,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -495,7 +519,8 @@ window.SCENE = {
    "pt": "feijão, vagem",
    "ar": "فاصوليا",
    "pl": "fasola",
-   "ru": "фасоль, боб"
+   "ru": "фасоль, боб",
+   "es": "el frijol"
   },
   {
    "id": "mangold",
@@ -519,7 +544,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -534,7 +560,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -555,7 +582,8 @@ window.SCENE = {
    "pt": "acelga",
    "ar": "سلق",
    "pl": "boćwina, burak liściowy",
-   "ru": "мангольд"
+   "ru": "мангольд",
+   "es": "la acelga"
   },
   {
    "id": "artischocke",
@@ -579,7 +607,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -594,7 +623,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -615,7 +645,8 @@ window.SCENE = {
    "pt": "alcachofra",
    "ar": "خرشوف",
    "pl": "karczoch",
-   "ru": "артишок"
+   "ru": "артишок",
+   "es": "la alcachofa"
   },
   {
    "id": "aubergine",
@@ -639,7 +670,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -654,7 +686,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -675,7 +708,8 @@ window.SCENE = {
    "pt": "berinjela",
    "ar": "باذنجان",
    "pl": "bakłażan",
-   "ru": "баклажан"
+   "ru": "баклажан",
+   "es": "la berenjena"
   },
   {
    "id": "gurke",
@@ -699,7 +733,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -714,7 +749,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -735,7 +771,8 @@ window.SCENE = {
    "pt": "pepino",
    "ar": "خيار",
    "pl": "ogórek",
-   "ru": "огурец"
+   "ru": "огурец",
+   "es": "el pepino"
   },
   {
    "id": "zucchini",
@@ -759,7 +796,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -774,7 +812,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -795,7 +834,8 @@ window.SCENE = {
    "pt": "abobrinha",
    "ar": "كوسة",
    "pl": "cukinia",
-   "ru": "кабачок, цукини"
+   "ru": "кабачок, цукини",
+   "es": "el calabacín, la calabacita"
   },
   {
    "id": "tomate",
@@ -819,7 +859,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -834,7 +875,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -855,7 +897,8 @@ window.SCENE = {
    "pt": "tomate",
    "ar": "طماطم",
    "pl": "pomidor",
-   "ru": "помидор"
+   "ru": "помидор",
+   "es": "el tomate"
   },
   {
    "id": "spinat",
@@ -879,7 +922,8 @@ window.SCENE = {
      "pt": "caixote",
      "ar": "صندوق",
      "pl": "skrzynia, skrzynka",
-     "ru": "ящик"
+     "ru": "ящик",
+     "es": "la caja (grande)"
     },
     {
      "mot": "Gemüse",
@@ -894,7 +938,8 @@ window.SCENE = {
      "pt": "legumes, verduras",
      "ar": "خضار",
      "pl": "warzywa",
-     "ru": "овощи"
+     "ru": "овощи",
+     "es": "la verdura, las verduras"
     }
    ],
    "sur": null,
@@ -915,7 +960,8 @@ window.SCENE = {
    "pt": "espinafre",
    "ar": "سبانخ",
    "pl": "szpinak",
-   "ru": "шпинат"
+   "ru": "шпинат",
+   "es": "la espinaca"
   },
   {
    "id": "anna",
@@ -956,7 +1002,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "tomate-main",
@@ -985,7 +1032,8 @@ window.SCENE = {
    "pt": "tomate",
    "ar": "طماطم",
    "pl": "pomidor",
-   "ru": "помидор"
+   "ru": "помидор",
+   "es": "el tomate"
   }
  ],
  "grosPlans": [],
@@ -1757,6 +1805,65 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Если бы тыква не была такой тяжёлой, Анна взяла бы её.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Грибы, вероятно, собраны в лесу.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Артишоки следует хорошо промыть перед приготовлением."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Anna toma un racimo de tomates en el puesto de verduras: arvejas, lechugas, espárragos, calabazas, pimientos, maíz, hongos, frijoles, acelgas, alcachofas, berenjenas, pepinos, calabacines, tomates y espinacas.",
+    "consigne": "Toca una fruta, una verdura o una caja.",
+    "nom_vue": "Verduras de fruto y de hoja",
+    "autre_vue": "→ Frutas de la región"
+   },
+   "couches": {
+    "A1": "En el mercado",
+    "A2": "Wo? — las preposiciones en el mercado",
+    "B1": "Hacer las compras: cantidades y precios",
+    "B2": "Pasiva, relativas y adjetivos",
+    "C1": "Hipótesis, je … desto, genitivo"
+   },
+   "questions": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "<b>zwischen</b> + dativo: <b>dem</b> Mais, <b>den</b> Bohne<b>n</b>.",
+    "A2 | Anna nimmt ein paar Tomaten.": "<b>ein paar</b> = unos cuantos, acusativo plural sin artículo.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "die Gurke → dativo plural <b>den Gurken</b>.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "der Kürbis → plural die Kürbisse → dativo <b>den Kürbissen</b>.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "die Tomate → dativo plural <b>den Tomaten</b>.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "<b>ein Pfund</b> = 500 gramos.",
+    "B1 | Was kosten die Pilze?": "En plural, el artículo siempre es <b>die</b>.",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Comparativo: lang → <b>länger</b> … <b>als</b>.",
+    "B1 | Ich nehme einen Kopf Salat.": "<b>ein Kopf Salat</b> = una lechuga (una «cabeza»).",
+    "B1 | Kommt der Spargel aus der Region?": "<b>aus</b> + dativo para el origen: aus der Region.",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Pasiva: <b>wird</b> + participio II. Spargel <b>stechen</b> = cosechar espárragos.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Complemento directo de halten → acusativo plural <b>die</b>.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Después de <b>den</b> (dativo plural), los adjetivos toman <b>-en</b>.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Pasiva de estado: <b>sein</b> + participio II, como «estar» + participio; pero el participio alemán no cambia.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Posesión, antecedente masculino → <b>dessen</b> (cuyos tallos). Al revés que «cuyo», concuerda con el poseedor.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "<b>trotz</b> + genitivo = a pesar de. Strauchtomaten = tomates en racimo.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "<b>je</b> …, <b>desto</b> …: cuanto más…, más…",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Condición sin <b>wenn</b>, con el verbo al principio; luego <b>würde</b> + infinitivo.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Suposición sobre el pasado, en pasiva: participio II + <b>worden sein</b>.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = consejo (uno debería)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Los hongos están entre el maíz y los frijoles.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Anna toma unos cuantos tomates.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "Las berenjenas están al lado de los pepinos.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Los espárragos están entre la lechuga y las calabazas.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "Los calabacines están al lado de los tomates.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Quisiera una libra de tomates.",
+    "B1 | Was kosten die Pilze?": "¿Cuánto cuestan los hongos?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "El pepino es más largo que el calabacín.",
+    "B1 | Ich nehme einen Kopf Salat.": "Me llevo una lechuga.",
+    "B1 | Kommt der Spargel aus der Region?": "¿Los espárragos son de la región?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Los espárragos se cosechan frescos cada mañana.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Los tomates que Anna tiene en la mano están muy maduros.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Al lado de los pimientos rojos y amarillos está el maíz.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Las calabazas ya están cosechadas.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "La acelga, cuyos tallos son rojos y amarillos, es muy saludable.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "A pesar del precio alto, Anna se lleva los tomates en racimo.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Cuanto más maduros están los tomates, más intenso es su sabor.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Si la calabaza no pesara tanto, Anna se la llevaría.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Probablemente los hongos fueron recogidos en el bosque.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Las alcachofas deberían lavarse bien antes de cocinarlas."
    }
   }
  }

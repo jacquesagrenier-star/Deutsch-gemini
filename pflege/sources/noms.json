@@ -1,0 +1,514 @@
+{
+ "_note": "Les noms des personnages de Wortando Pflege : LISTE UNIQUE (chef, 14 nov. 2026), tenue par la session dialogues ; les autres sessions la reprennent et demandent un ajout ici. Personnages valides par Jacques (14 nov.). Changer un nom ici (et dans traductions/<langue>/noms.json), puis python pflege/outils/textes.py construire. Formes : \"\" = la forme courante (sujet), voc = pour s'adresser a la personne, dat / akk = cas allemands, famille = le nom seul, prenom = le prenom seul, fiche = « Nom, Prenom » des formulaires (allemand). \"examen\": true = un role de l'examen blanc seulement. Les autres langues ajoutent leurs cas dans leur fichier. \"manuel\": true = une personne du manuel B2 (pflege-examen) seulement : aucun dialogue ni aucune scene ne reprend ce nom pour quelqu'un d'autre ; ni portrait ni voix.",
+ "personnes": {
+  "elif": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Turquie (Izmir)",
+   "de": {
+    "": "Elif"
+   },
+   "fr": {
+    "": "Elif"
+   }
+  },
+  "yusuf": {
+   "role": "soignant",
+   "genre": "m",
+   "pays": "Syrie (Alep)",
+   "de": {
+    "": "Yusuf",
+    "famille": "Haddad",
+    "fiche": "Haddad, Yusuf"
+   },
+   "fr": {
+    "": "Yusuf"
+   }
+  },
+  "arun": {
+   "role": "soignant",
+   "genre": "m",
+   "pays": "Inde (Kerala)",
+   "de": {
+    "": "Arun"
+   },
+   "fr": {
+    "": "Arun"
+   }
+  },
+  "olena": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Ukraine (Kharkiv)",
+   "de": {
+    "": "Olena"
+   },
+   "fr": {
+    "": "Olena"
+   }
+  },
+  "amira": {
+   "role": "soignante",
+   "genre": "f",
+   "pays": "Tunisie (Sfax)",
+   "de": {
+    "": "Amira"
+   },
+   "fr": {
+    "": "Amira"
+   }
+  },
+  "jonas": {
+   "role": "infirmier tuteur",
+   "genre": "m",
+   "de": {
+    "": "Jonas"
+   },
+   "fr": {
+    "": "Jonas"
+   }
+  },
+  "hoffmann": {
+   "role": "cadre du service",
+   "genre": "f",
+   "de": {
+    "": "Frau Hoffmann",
+    "famille": "Hoffmann",
+    "prenom": "Petra",
+    "fiche": "Hoffmann, Petra"
+   },
+   "fr": {
+    "": "Mme Hoffmann",
+    "voc": "madame Hoffmann",
+    "famille": "Hoffmann"
+   }
+  },
+  "sommer": {
+   "role": "medecin du service",
+   "genre": "f",
+   "de": {
+    "": "Dr. Sommer",
+    "voc": "Frau Dr. Sommer",
+    "famille": "Sommer"
+   },
+   "fr": {
+    "": "la docteure Sommer",
+    "a": "à la docteure Sommer",
+    "de": "de la docteure Sommer",
+    "voc": "docteure Sommer",
+    "famille": "Sommer"
+   }
+  },
+  "kraemer": {
+   "role": "medecin de garde (nuit), Dr. Kraemer (chef, 14 nov. ; le meme que l'ecoute de l'examen)",
+   "genre": "m",
+   "de": {
+    "": "Dr. Krämer",
+    "voc": "Herr Dr. Krämer",
+    "famille": "Krämer"
+   },
+   "fr": {
+    "": "le docteur Krämer",
+    "a": "au docteur Krämer",
+    "de": "du docteur Krämer",
+    "voc": "docteur Krämer",
+    "famille": "Krämer"
+   }
+  },
+  "brandt": {
+   "role": "patient, 82 ans, opere de la hanche",
+   "genre": "m",
+   "de": {
+    "": "Herr Brandt",
+    "dat": "Herrn Brandt",
+    "akk": "Herrn Brandt",
+    "famille": "Brandt",
+    "fiche": "Brandt, Heinrich"
+   },
+   "fr": {
+    "": "M. Brandt",
+    "voc": "monsieur Brandt",
+    "famille": "Brandt"
+   }
+  },
+  "lehmann": {
+   "role": "patiente, 74 ans, diabetique, plaie au pied",
+   "genre": "f",
+   "de": {
+    "": "Frau Lehmann",
+    "famille": "Lehmann",
+    "fiche": "Lehmann, Gisela"
+   },
+   "fr": {
+    "": "Mme Lehmann",
+    "voc": "madame Lehmann",
+    "famille": "Lehmann"
+   }
+  },
+  "lehmann_tochter": {
+   "role": "la fille de Frau Lehmann, Sabine Krueger (chef, 14 nov.)",
+   "genre": "f",
+   "de": {
+    "": "Frau Krüger",
+    "famille": "Krüger",
+    "prenom": "Sabine",
+    "fiche": "Krüger, Sabine"
+   },
+   "fr": {
+    "": "Mme Krüger",
+    "voc": "madame Krüger",
+    "famille": "Krüger"
+   }
+  },
+  "schulze": {
+   "role": "resident, 87 ans, demence moderee, ancien conducteur de tramway",
+   "genre": "m",
+   "de": {
+    "": "Herr Schulze",
+    "dat": "Herrn Schulze",
+    "akk": "Herrn Schulze",
+    "famille": "Schulze",
+    "fiche": "Schulze, Werner"
+   },
+   "fr": {
+    "": "M. Schulze",
+    "voc": "monsieur Schulze",
+    "famille": "Schulze"
+   }
+  },
+  "weber": {
+   "role": "residente, 81 ans",
+   "genre": "f",
+   "de": {
+    "": "Frau Weber",
+    "famille": "Weber",
+    "fiche": "Weber, Hildegard"
+   },
+   "fr": {
+    "": "Mme Weber",
+    "voc": "madame Weber",
+    "famille": "Weber"
+   }
+  },
+  "kowalski": {
+   "role": "cliente des soins a domicile, 79 ans",
+   "genre": "f",
+   "de": {
+    "": "Frau Kowalski",
+    "famille": "Kowalski",
+    "fiche": "Kowalski, Maria"
+   },
+   "fr": {
+    "": "Mme Kowalski",
+    "voc": "madame Kowalski",
+    "famille": "Kowalski"
+   }
+  },
+  "klinik": {
+   "role": "lieu",
+   "de": {
+    "": "Klinikum am Kanal"
+   },
+   "fr": {
+    "": "Klinikum am Kanal"
+   }
+  },
+  "heim": {
+   "role": "lieu",
+   "de": {
+    "": "Haus Lindenhof"
+   },
+   "fr": {
+    "": "Haus Lindenhof"
+   }
+  },
+  "station": {
+   "role": "lieu (service de l'hopital)",
+   "de": {
+    "": "Station 4B",
+    "dit": "Station vier B"
+   },
+   "fr": {
+    "": "service 4B"
+   }
+  },
+  "neumann": {
+   "role": "la Prüferin de l'oral (examen)",
+   "genre": "f",
+   "examen": true,
+   "de": {
+    "": "Frau Neumann",
+    "famille": "Neumann"
+   },
+   "fr": {
+    "": "Mme Neumann",
+    "voc": "madame Neumann",
+    "famille": "Neumann"
+   }
+  },
+  "aksoy": {
+   "role": "laboratoire de l'hopital (examen, et dialogue 19)",
+   "genre": "f",
+   "de": {
+    "": "Frau Aksoy",
+    "famille": "Aksoy"
+   },
+   "fr": {
+    "": "Mme Aksoy",
+    "voc": "madame Aksoy",
+    "famille": "Aksoy"
+   }
+  },
+  "richter": {
+   "role": "pharmacie de l'hopital (examen, et dialogue 19)",
+   "genre": "m",
+   "de": {
+    "": "Herr Richter",
+    "famille": "Richter",
+    "dat": "Herrn Richter",
+    "akk": "Herrn Richter"
+   },
+   "fr": {
+    "": "M. Richter",
+    "voc": "monsieur Richter",
+    "famille": "Richter"
+   }
+  },
+  "lorenz": {
+   "role": "transport sanitaire (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Lorenz",
+    "famille": "Lorenz",
+    "dat": "Herrn Lorenz",
+    "akk": "Herrn Lorenz"
+   },
+   "fr": {
+    "": "M. Lorenz",
+    "voc": "monsieur Lorenz",
+    "famille": "Lorenz"
+   }
+  },
+  "albrecht": {
+   "role": "patient de Yusuf la nuit, pneumonie (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Albrecht",
+    "famille": "Albrecht",
+    "dat": "Herrn Albrecht",
+    "akk": "Herrn Albrecht"
+   },
+   "fr": {
+    "": "M. Albrecht",
+    "voc": "monsieur Albrecht",
+    "famille": "Albrecht"
+   }
+  },
+  "wolf": {
+   "role": "hygieniste, Stefan Wolf (examen)",
+   "genre": "m",
+   "examen": true,
+   "de": {
+    "": "Herr Wolf",
+    "famille": "Wolf",
+    "dat": "Herrn Wolf",
+    "akk": "Herrn Wolf",
+    "prenom": "Stefan",
+    "fiche": "Wolf, Stefan"
+   },
+   "fr": {
+    "": "M. Wolf",
+    "voc": "monsieur Wolf",
+    "famille": "Wolf"
+   }
+  },
+  "schulze_tochter": {
+   "role": "la fille de Herr Schulze, Monika Schulze (examen, e05, dialogues 24 et 26)",
+   "genre": "f",
+   "de": {
+    "": "Frau Schulze",
+    "famille": "Schulze",
+    "prenom": "Monika",
+    "fiche": "Schulze, Monika"
+   },
+   "fr": {
+    "": "Mme Schulze",
+    "voc": "madame Schulze",
+    "famille": "Schulze"
+   }
+  },
+  "vogt": {
+   "role": "patiente, nee en 1941 (manuel B2, ecrit : admission, rapport de soins)",
+   "genre": "f",
+   "manuel": true,
+   "de": {
+    "": "Frau Vogt",
+    "famille": "Vogt",
+    "prenom": "Renate",
+    "fiche": "Vogt, Renate"
+   },
+   "fr": {
+    "": "Mme Vogt",
+    "voc": "madame Vogt",
+    "famille": "Vogt"
+   }
+  },
+  "albers": {
+   "role": "resident, ne en 1940 a Bremerhaven (manuel B2, ecrit : biographie, la nuit)",
+   "genre": "m",
+   "manuel": true,
+   "de": {
+    "": "Herr Albers",
+    "dat": "Herrn Albers",
+    "akk": "Herrn Albers",
+    "famille": "Albers",
+    "prenom": "Günter",
+    "fiche": "Albers, Günter"
+   },
+   "fr": {
+    "": "M. Albers",
+    "voc": "monsieur Albers",
+    "famille": "Albers"
+   }
+  },
+  "peters": {
+   "role": "resident, ne en 1938 (manuel B2, ecrit : admission, transfert aux urgences)",
+   "genre": "m",
+   "manuel": true,
+   "de": {
+    "": "Herr Peters",
+    "dat": "Herrn Peters",
+    "akk": "Herrn Peters",
+    "famille": "Peters",
+    "prenom": "Karl",
+    "fiche": "Peters, Karl"
+   },
+   "fr": {
+    "": "M. Peters",
+    "voc": "monsieur Peters",
+    "famille": "Peters"
+   }
+  },
+  "brueckner": {
+   "role": "cliente des soins a domicile, nee en 1947 a Leipzig (manuel B2, ecrit : biographie)",
+   "genre": "f",
+   "manuel": true,
+   "de": {
+    "": "Frau Brückner",
+    "famille": "Brückner",
+    "prenom": "Elfriede",
+    "fiche": "Brückner, Elfriede"
+   },
+   "fr": {
+    "": "Mme Brückner",
+    "voc": "madame Brückner",
+    "famille": "Brückner"
+   }
+  },
+  "hahn": {
+   "role": "client des soins a domicile, ne en 1950 (manuel B2, ecrit : admission, au sol)",
+   "genre": "m",
+   "manuel": true,
+   "de": {
+    "": "Herr Hahn",
+    "dat": "Herrn Hahn",
+    "akk": "Herrn Hahn",
+    "famille": "Hahn",
+    "prenom": "Dieter",
+    "fiche": "Hahn, Dieter"
+   },
+   "fr": {
+    "": "M. Hahn",
+    "voc": "monsieur Hahn",
+    "famille": "Hahn"
+   }
+  },
+  "yilmaz": {
+   "role": "resident en court sejour, ne en 1944 a Kayseri (manuel B2, ecrit : biographie, retour a la maison)",
+   "genre": "m",
+   "manuel": true,
+   "de": {
+    "": "Herr Yılmaz",
+    "dat": "Herrn Yılmaz",
+    "akk": "Herrn Yılmaz",
+    "famille": "Yılmaz",
+    "prenom": "Mehmet",
+    "fiche": "Yılmaz, Mehmet"
+   },
+   "fr": {
+    "": "M. Yılmaz",
+    "voc": "monsieur Yılmaz",
+    "famille": "Yılmaz"
+   }
+  },
+  "roth": {
+   "role": "patient des exemples (manuel B2, ecrit)",
+   "genre": "m",
+   "manuel": true,
+   "de": {
+    "": "Herr Roth",
+    "dat": "Herrn Roth",
+    "akk": "Herrn Roth",
+    "famille": "Roth",
+    "prenom": "Erwin",
+    "fiche": "Roth, Erwin"
+   },
+   "fr": {
+    "": "M. Roth",
+    "voc": "monsieur Roth",
+    "famille": "Roth"
+   }
+  },
+  "klein": {
+   "role": "patiente des exemples, nee en 1943 (manuel B2, ecrit)",
+   "genre": "f",
+   "manuel": true,
+   "de": {
+    "": "Frau Klein",
+    "famille": "Klein",
+    "prenom": "Maria",
+    "fiche": "Klein, Maria"
+   },
+   "fr": {
+    "": "Mme Klein",
+    "voc": "madame Klein",
+    "famille": "Klein"
+   }
+  },
+  "berger": {
+   "role": "residente des exemples, nee en 1938 a Kassel (manuel B2, ecrit)",
+   "genre": "f",
+   "manuel": true,
+   "de": {
+    "": "Frau Berger",
+    "famille": "Berger",
+    "prenom": "Inge",
+    "fiche": "Berger, Inge"
+   },
+   "fr": {
+    "": "Mme Berger",
+    "voc": "madame Berger",
+    "famille": "Berger"
+   }
+  },
+  "lindner": {
+   "role": "medecin traitante des exemples, Dr. Lindner (manuel B2, ecrit)",
+   "genre": "f",
+   "manuel": true,
+   "de": {
+    "": "Dr. Lindner",
+    "voc": "Frau Dr. Lindner",
+    "famille": "Lindner"
+   },
+   "fr": {
+    "": "la docteure Lindner",
+    "a": "à la docteure Lindner",
+    "de": "de la docteure Lindner",
+    "voc": "docteure Lindner",
+    "famille": "Lindner"
+   }
+  }
+ }
+}

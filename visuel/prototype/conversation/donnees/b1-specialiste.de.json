@@ -1,0 +1,147 @@
+{
+ "id": "b1-specialiste",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Chez l'orthopédiste"},
+ "intro": {"fr": "Tu as mal au genou depuis trois semaines. Ta médecin de famille t'a envoyé(e) chez un orthopédiste, le Dr Silva : décris ta douleur, comprends le diagnostic et pose tes questions."},
+ "personnes": ["b11_medecin"],
+ "debut": "empfang",
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {"recit": {"fr": "Le cabinet d'orthopédie. On t'appelle, tu entres dans la salle de consultation."}},
+    {"qui": "b11_medecin", "air": "sourire", "t": "Guten Tag, ich bin Doktor Silva. Nehmen Sie bitte Platz. Sie haben eine Überweisung von Ihrer Hausärztin, sehe ich. Was führt Sie zu mir?", "fr": "Bonjour, je suis le docteur Silva. Asseyez-vous, je vous prie. Vous avez une lettre de votre médecin de famille, à ce que je vois. Qu'est-ce qui vous amène ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag, Herr Doktor. Ich habe seit drei Wochen Schmerzen im rechten Knie.", "fr": "Bonjour, docteur. J'ai mal au genou droit depuis trois semaines.", "va": "ursache"},
+    {"t": "Guten Tag. Mein rechtes Knie tut seit drei Wochen weh.", "fr": "Bonjour. Mon genou droit me fait mal depuis trois semaines.", "va": "ursache"},
+    {"faux": true, "t": "Guten Tag. Ich bin hier für mein Knie.", "fr": "Bonjour. Je suis ici pour mon genou.",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Wegen Ihres Knies, verstehe. Was ist denn genau los, und seit wann?", "fr": "À cause de votre genou, je comprends. Que se passe-t-il exactement, et depuis quand ?"}],
+     "aide": {"fr": "« Je viens pour… » se dit avec <b>« wegen »</b>, pas avec « für » : « Ich komme wegen meines Knies. » Le plus clair : « Ich habe seit drei Wochen Schmerzen im Knie. »"}}
+   ]
+  },
+  "ursache": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "Seit drei Wochen schon. Wie ist das denn passiert? Erinnern Sie sich?", "fr": "Trois semaines déjà. Comment est-ce arrivé ? Vous vous en souvenez ?"}],
+   "choix": [
+    {"t": "Beim Joggen im Park. Plötzlich hat es im Knie wehgetan.", "fr": "En courant dans le parc. Tout à coup, j'ai eu mal au genou.", "pose": {"sport": "joggen"}, "va": "wann",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Aha, beim Laufen. Das sehe ich hier oft.", "fr": "Ah, en courant. J'en vois souvent ici."}]},
+    {"t": "Ich habe Fußball gespielt und bin hingefallen.", "fr": "Je jouais au foot et je suis tombé(e).", "pose": {"sport": "fussball"}, "va": "wann",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Aha, ein klassischer Sportunfall.", "fr": "Ah, un accident de sport classique."}]},
+    {"t": "Ich weiß es nicht genau. Es hat einfach beim Treppensteigen angefangen.", "fr": "Je ne sais pas exactement. Ça a simplement commencé en montant les escaliers.", "pose": {"sport": "kein"}, "va": "frueher"},
+    {"faux": true, "t": "Ich bin gefallen, wenn ich Fußball gespielt habe.", "fr": "Je suis tombé(e) quand je jouais au foot.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Jedes Mal, wenn Sie spielen? Oder einmal: als Sie vor drei Wochen gespielt haben?", "fr": "À chaque fois que vous jouez ? Ou une seule fois : quand vous avez joué il y a trois semaines ?"}],
+     "aide": {"fr": "Pour un événement unique du passé, « quand » se dit <b>« als »</b> : « Ich bin gefallen, <b>als</b> ich Fußball gespielt habe. » « Wenn » au passé veut dire « chaque fois que »."}}
+   ]
+  },
+  "frueher": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "Ohne Unfall also. Hatten Sie früher schon einmal Probleme mit dem Knie?", "fr": "Sans accident, donc. Avez-vous déjà eu des problèmes au genou auparavant ?"}],
+   "choix": [
+    {"t": "Nein, noch nie. Das ist das erste Mal.", "fr": "Non, jamais. C'est la première fois.", "va": "wann",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Gut, das ist schon einmal ein gutes Zeichen.", "fr": "Bien, c'est déjà bon signe."}]},
+    {"t": "Ja, vor ein paar Jahren, aber das war schnell wieder vorbei.", "fr": "Oui, il y a quelques années, mais c'est vite passé.", "va": "wann",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Verstehe. Dann schauen wir uns das Knie heute genau an.", "fr": "Je comprends. Alors nous allons regarder ce genou de près aujourd'hui."}]},
+    {"faux": true, "t": "Ja, es gibt fünf Jahre.", "fr": "Oui, il y a cinq ans.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Es gibt …? Ach, vor fünf Jahren, meinen Sie.", "fr": "« Es gibt »… ? Ah, il y a cinq ans, vous voulez dire."}],
+     "aide": {"fr": "« Il y a cinq ans » (dans le passé) se dit <b>« vor fünf Jahren »</b>. « Es gibt » ne sert qu'à dire que quelque chose existe."}}
+   ]
+  },
+  "wann": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "Und wann tut es besonders weh?", "fr": "Et quand est-ce que ça fait particulièrement mal ?"}],
+   "choix": [
+    {"t": "Vor allem, wenn ich die Treppe hinuntergehe.", "fr": "Surtout quand je descends l'escalier.", "va": "untersuchung"},
+    {"t": "Morgens nach dem Aufstehen und wenn ich lange stehe.", "fr": "Le matin au lever, et quand je reste longtemps debout.", "va": "untersuchung"},
+    {"t": "Manchmal auch nachts. Dann wache ich davon auf.", "fr": "Parfois la nuit aussi. Ça me réveille.", "va": "untersuchung"},
+    {"faux": true, "t": "Am Morgen, wenn ich stehe auf.", "fr": "Le matin, quand je me lève.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Wenn Sie aufstehen, ja. Morgens ist das Knie oft noch steif.", "fr": "Quand vous vous levez, oui. Le matin, le genou est souvent encore raide."}],
+     "aide": {"fr": "Dans une subordonnée, le verbe à particule se recolle et va à la fin : « wenn ich <b>aufstehe</b> ». Ou plus simple : « Morgens nach dem Aufstehen. »"}}
+   ]
+  },
+  "untersuchung": {
+   "dit": [
+    {"recit": {"fr": "Tu t'allonges. Le médecin plie doucement ton genou, puis appuie sur le côté."}},
+    {"qui": "b11_medecin", "air": "question", "t": "Ich drücke jetzt hier an der Seite. Tut das weh?", "fr": "J'appuie maintenant ici, sur le côté. Ça fait mal ?"}
+   ],
+   "choix": [
+    {"t": "Ja, genau da tut es weh!", "fr": "Oui, c'est exactement là que ça fait mal !", "va": "diagnose",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Entschuldigung. Gut, das reicht schon. Sie können sich wieder hinsetzen.", "fr": "Pardon. Bien, ça suffit. Vous pouvez vous rasseoir."}]},
+    {"t": "Nein, da nicht. Ein bisschen weiter unten.", "fr": "Non, pas là. Un peu plus bas.", "va": "diagnose",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Hier? Ah ja, ich spüre es. Gut, Sie können sich wieder hinsetzen.", "fr": "Ici ? Ah oui, je le sens. Bien, vous pouvez vous rasseoir."}]},
+    {"t": "Ein bisschen, aber es ist nicht schlimm.", "fr": "Un peu, mais ce n'est pas terrible.", "va": "diagnose",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Gut, danke. Sie können sich wieder hinsetzen.", "fr": "Bien, merci. Vous pouvez vous rasseoir."}]},
+    {"faux": true, "t": "Ja, es macht weh.", "fr": "Oui, ça fait mal.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Es tut weh, ja? Genau hier, oder woanders?", "fr": "Ça fait mal, oui ? Exactement ici, ou ailleurs ?"}],
+     "aide": {"fr": "« Ça fait mal » ne se dit pas avec « machen », mais avec <b>« wehtun »</b> : « Es <b>tut</b> weh. » « Ja, genau da tut es weh! »"}}
+   ]
+  },
+  "diagnose": {
+   "dit": [
+    {"qui": "b11_medecin", "air": "sourire", "t": "Also, ich kann Sie beruhigen: Es ist nichts gerissen. Das Knie ist gereizt, wahrscheinlich war die Belastung zu groß.", "fr": "Alors, je peux vous rassurer : rien n'est déchiré. Le genou est irrité, il a sans doute été trop sollicité."},
+    {"qui": "b11_medecin", "air": "attentive", "t": "Ich verschreibe Ihnen sechsmal Physiotherapie und eine Salbe gegen die Entzündung. Und bitte drei Wochen lang keinen Sport.", "fr": "Je vous prescris six séances de kinésithérapie et une pommade contre l'inflammation. Et pas de sport pendant trois semaines, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Wann darf ich denn wieder Sport machen?", "fr": "Quand est-ce que je pourrai refaire du sport ?", "va": "sport"},
+    {"t": "Ich stehe bei der Arbeit den ganzen Tag. Kann ich trotzdem arbeiten?", "fr": "Au travail, je suis debout toute la journée. Est-ce que je peux travailler quand même ?", "va": "arbeit"},
+    {"faux": true, "t": "Muss ich operiert sein?", "fr": "Est-ce que je dois être opéré(e) ?",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "Operiert werden? Nein, nein, keine Sorge! Ruhe und Physiotherapie reichen.", "fr": "Vous faire opérer ? Non, non, ne vous inquiétez pas ! Du repos et de la kiné suffisent."}],
+     "aide": {"fr": "Le passif se forme avec <b>« werden »</b>, pas avec « sein » : « Muss ich operiert <b>werden</b>? »"}},
+    {"repete": true, "t": "Entschuldigung, ich habe nicht alles verstanden. Ist es etwas Schlimmes?", "fr": "Excusez-moi, je n'ai pas tout compris. Est-ce que c'est grave ?", "va": "diagnose",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Nein, gar nicht. Das Knie ist nur gereizt und braucht Ruhe: Physiotherapie, eine Salbe und drei Wochen lang kein Sport.", "fr": "Non, pas du tout. Le genou est seulement irrité et a besoin de repos : de la kiné, une pommade et pas de sport pendant trois semaines."}]}
+   ]
+  },
+  "sport": {
+   "dit": [
+    {"qui": "b11_medecin", "air": "attentive", "t": "In drei Wochen können Sie langsam wieder anfangen, zuerst mit Radfahren oder Schwimmen.", "fr": "Dans trois semaines, vous pourrez reprendre doucement, d'abord le vélo ou la natation."},
+    {"qui": "b11_medecin", "air": "attentive", "si": {"sport": "joggen"}, "t": "Mit dem Joggen warten Sie bitte sechs Wochen.", "fr": "Pour la course à pied, attendez six semaines, s'il vous plaît."},
+    {"qui": "b11_medecin", "air": "attentive", "si": {"sport": "fussball"}, "t": "Mit dem Fußball warten Sie bitte sechs Wochen.", "fr": "Pour le foot, attendez six semaines, s'il vous plaît."},
+    {"qui": "b11_medecin", "air": "attentive", "si": {"sport": "kein"}, "t": "Laufen und Springen bitte erst, wenn gar nichts mehr wehtut.", "fr": "Courir et sauter, seulement quand plus rien ne fera mal, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Gut, dann fange ich mit Schwimmen an.", "fr": "Bien, alors je commencerai par la natation.", "va": "termin",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Sehr gut, Schwimmen ist ideal für das Knie.", "fr": "Très bien, la natation est idéale pour le genou."}]},
+    {"t": "In Ordnung. Ich werde vorsichtig sein und langsam anfangen.", "fr": "D'accord. Je ferai attention et je reprendrai doucement.", "va": "termin",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Genau. Hören Sie auf Ihr Knie: Wenn es wehtut, machen Sie eine Pause.", "fr": "Exactement. Écoutez votre genou : si ça fait mal, faites une pause."}]},
+    {"faux": true, "t": "Gut, ich mache Achtung.", "fr": "Bien, je fais attention.",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "Sie machen Achtung? Ich verstehe schon: Sie passen auf. Sehr gut!", "fr": "« Sie machen Achtung » ? Je comprends : vous ferez attention. Très bien !"}],
+     "aide": {"fr": "« Faire attention » ne se traduit pas mot à mot : on dit <b>« aufpassen »</b> ou « vorsichtig sein ». « Ich werde vorsichtig sein. »"}}
+   ]
+  },
+  "arbeit": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "Den ganzen Tag stehen, das ist im Moment nicht gut. Was machen Sie denn beruflich?", "fr": "Rester debout toute la journée, ce n'est pas bon en ce moment. Quel est votre métier ?"}],
+   "choix": [
+    {"t": "Ich arbeite im Verkauf und stehe acht Stunden am Tag.", "fr": "Je travaille dans la vente et je suis debout huit heures par jour.", "va": "termin",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Dann schreibe ich Sie eine Woche krank. Die Krankschreibung geht direkt an Ihre Krankenkasse; sagen Sie bitte nur Ihrem Arbeitgeber Bescheid.", "fr": "Alors je vous mets en arrêt une semaine. L'arrêt de travail part directement à votre caisse maladie ; prévenez seulement votre employeur."}]},
+    {"t": "Ich arbeite in einer Küche. Dort kann man sich nie hinsetzen.", "fr": "Je travaille dans une cuisine. On ne peut jamais s'y asseoir.", "va": "termin",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Dann schreibe ich Sie eine Woche krank. Die Krankschreibung geht direkt an Ihre Krankenkasse; sagen Sie bitte nur Ihrem Arbeitgeber Bescheid.", "fr": "Alors je vous mets en arrêt une semaine. L'arrêt de travail part directement à votre caisse maladie ; prévenez seulement votre employeur."}]},
+    {"faux": true, "t": "Ich stehe acht Uhr am Tag im Geschäft.", "fr": "Je suis debout huit heures par jour au magasin.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "Acht Uhr? Sie meinen: acht Stunden am Tag?", "fr": "À huit heures ? Vous voulez dire : huit heures par jour ?"}],
+     "aide": {"fr": "<b>« Uhr »</b> donne l'heure qu'il est (um acht Uhr). Une durée se dit avec <b>« Stunden »</b> : « Ich stehe acht Stunden am Tag. »"}}
+   ]
+  },
+  "termin": {
+   "dit": [{"qui": "b11_medecin", "air": "sourire", "t": "Hier ist Ihr Rezept für die Physiotherapie. Kommen Sie bitte in vier Wochen zur Kontrolle. Wenn es bis dahin nicht besser ist, machen wir ein MRT.", "dit": "Hier ist Ihr Rezept für die Physiotherapie. Kommen Sie bitte in vier Wochen zur Kontrolle. Wenn es bis dahin nicht besser ist, machen wir ein Em-er-te.", "fr": "Voici votre ordonnance pour la kinésithérapie. Revenez dans quatre semaines pour un contrôle. Si ça ne va pas mieux d'ici là, nous ferons une IRM."}],
+   "choix": [
+    {"t": "Gut. Den Termin mache ich gleich vorne am Empfang.", "fr": "Bien. Je prends le rendez-vous tout de suite à l'accueil.", "va": "ende",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Genau, die Kollegin gibt Ihnen einen Termin.", "fr": "C'est ça, ma collègue vous donnera un rendez-vous."}]},
+    {"t": "In Ordnung. Und was ist ein MRT genau?", "fr": "D'accord. Et qu'est-ce qu'une « MRT », exactement ?", "va": "ende",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Das ist eine Untersuchung, bei der man Bilder vom Inneren des Knies macht. Aber ich glaube nicht, dass wir das brauchen.", "fr": "C'est un examen qui fait des images de l'intérieur du genou. Mais je ne pense pas que nous en aurons besoin."}]},
+    {"faux": true, "t": "Gut, ich nehme einen Termin am Empfang.", "fr": "Bien, je prends un rendez-vous à l'accueil.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Ja, machen Sie den Termin bitte gleich vorne am Empfang.", "fr": "Oui, prenez le rendez-vous tout de suite à l'accueil, s'il vous plaît."}],
+     "aide": {"fr": "En allemand, on ne « prend » pas un rendez-vous : on le « fait ». <b>« einen Termin machen »</b> (ou « vereinbaren »). « Den Termin mache ich am Empfang. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "b11_medecin", "air": "sourire", "t": "Dann gute Besserung! Und denken Sie daran: Das Knie braucht jetzt Ruhe.", "fr": "Alors, bon rétablissement ! Et n'oubliez pas : le genou a besoin de repos maintenant."}],
+   "choix": [
+    {"t": "Vielen Dank, Herr Doktor. Auf Wiedersehen!", "fr": "Merci beaucoup, docteur. Au revoir !", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Auf Wiedersehen, bis in vier Wochen!", "fr": "Au revoir, à dans quatre semaines !"}]},
+    {"t": "Danke schön, daran denke ich. Bis in vier Wochen!", "fr": "Merci bien, j'y penserai. À dans quatre semaines !", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Bis dann. Auf Wiedersehen!", "fr": "À bientôt. Au revoir !"}]},
+    {"faux": true, "t": "Danke, gute Besserung auch!", "fr": "Merci, bon rétablissement à vous aussi !",
+     "puis": [{"qui": "b11_medecin", "air": "amuse", "t": "Danke, aber ich bin ja gesund! Die Besserung brauchen Sie.", "fr": "Merci, mais moi, je suis en bonne santé ! C'est vous qui devez vous rétablir."}],
+     "aide": {"fr": "<b>« Gute Besserung! »</b> ne se dit qu'à une personne malade. Au médecin, on répond : « Vielen Dank, auf Wiedersehen! »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as consulté un spécialiste en allemand : tu as décrit ta douleur, répondu pendant l'examen, compris le traitement et posé ta question sur le sport ou le travail."}
+}

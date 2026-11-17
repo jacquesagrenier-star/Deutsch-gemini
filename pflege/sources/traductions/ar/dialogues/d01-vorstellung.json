@@ -1,0 +1,457 @@
+{
+ "_langue": "ar",
+ "_source": "pflege/sources/dialogues/d01-vorstellung.json",
+ "cles": {
+  "titre": {
+   "fr": "Se présenter à un patient",
+   "de": "Begrüßung und Vorstellung",
+   "ar": "التعريف بنفسك أمام مريض"
+  },
+  "intro": {
+   "fr": "Un matin dans le service. Aujourd'hui, {elif} s'occupe de {brandt}, qu'elle ne connaît pas encore, opéré de la hanche il y a trois jours. Tu joues {elif} : présente-toi, demande comment il a dormi, dis ce que tu vas faire et montre-lui la sonnette.",
+   "ar": "صباح في القسم. اليوم تتولى {elif} رعاية {brandt}، الذي لا تعرفه بعد، والذي أُجريت له عملية في الورك قبل ثلاثة أيام. أنت تؤدي دور {elif}: عرّف بنفسك، واسأله كيف نام، وقل له ما ستفعله، وأره جرس الاستدعاء."
+  },
+  "but": {
+   "fr": "Se présenter (nom, fonction, expérience), poser les premières questions, annoncer un soin, montrer la sonnette.",
+   "ar": "التعريف بالنفس (الاسم، الوظيفة، الخبرة)، وطرح الأسئلة الأولى، والإعلان عن إجراء تمريضي، وإظهار جرس الاستدعاء."
+  },
+  "redemittel.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "ar": "صباح الخير يا {brandt:voc}. اسمي {elif}، وأنا المسؤولة عن رعايتك اليوم."
+  },
+  "redemittel.1": {
+   "fr": "Je travaille ici depuis quatre mois.",
+   "de": "Ich arbeite seit vier Monaten hier.",
+   "ar": "أعمل هنا منذ أربعة أشهر."
+  },
+  "redemittel.2": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "ar": "كيف نمت الليلة الماضية؟"
+  },
+  "redemittel.3": {
+   "fr": "Je suis désolée.",
+   "de": "Das tut mir leid.",
+   "ar": "أنا آسفة لذلك."
+  },
+  "redemittel.4": {
+   "fr": "Je vais prendre votre tension. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck. Ist das in Ordnung?",
+   "ar": "سأقيس ضغط دمك الآن. هل توافق؟"
+  },
+  "redemittel.5": {
+   "fr": "Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Soll ich Ihnen helfen, sich aufzusetzen?",
+   "ar": "هل تريد أن أساعدك على الجلوس؟"
+  },
+  "redemittel.6": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "ar": "إذا احتجت إلى شيء، فاضغط هنا من فضلك، على جرس الاستدعاء."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens tout de suite.",
+   "de": "Ich komme gleich wieder.",
+   "ar": "سأعود حالًا."
+  },
+  "noeuds.tuer.dit.0.recit": {
+   "fr": "Sept heures, service du matin au {klinik}. {elif} frappe à la porte de la chambre douze.",
+   "ar": "الساعة السابعة، المناوبة الصباحية في مستشفى {klinik}. تطرق {elif} باب الغرفة الثانية عشرة."
+  },
+  "noeuds.tuer.dit.1": {
+   "fr": "Oui ? Entrez !",
+   "de": "Ja? Herein!",
+   "ar": "نعم؟ تفضّلي!"
+  },
+  "noeuds.tuer.choix.0": {
+   "fr": "Bonjour, {brandt:voc}. Je m'appelle {elif}, c'est moi qui m'occupe de vous aujourd'hui.",
+   "de": "Guten Morgen, {brandt}. Mein Name ist {elif}, ich bin heute Ihre Pflegekraft.",
+   "ar": "صباح الخير يا {brandt:voc}. اسمي {elif}، وأنا المسؤولة عن رعايتك اليوم."
+  },
+  "noeuds.tuer.choix.0.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "ar": "{elif}؟ لم أسمع بهذا الاسم من قبل."
+  },
+  "noeuds.tuer.choix.1": {
+   "fr": "Bonjour ! Je suis {elif}. Aujourd'hui, c'est moi qui m'occupe de vous.",
+   "de": "Guten Morgen! Ich bin {elif}. Ich kümmere mich heute um Sie.",
+   "ar": "صباح الخير! أنا {elif}. سأعتني بك اليوم."
+  },
+  "noeuds.tuer.choix.1.puis.0": {
+   "fr": "{elif} ? Je n'ai jamais entendu ce prénom.",
+   "de": "{elif}? Den Namen hab ich ja noch nie gehört.",
+   "ar": "{elif}؟ لم أسمع بهذا الاسم من قبل."
+  },
+  "noeuds.tuer.choix.2": {
+   "fr": "Salut ! Ça va, toi ?",
+   "de": "Hallo! Wie geht's dir?",
+   "ar": "هاي! كيف الحال يا صاحبي؟"
+  },
+  "noeuds.tuer.choix.2.puis.0": {
+   "fr": "« Toi » ? On se connaît, peut-être ?",
+   "de": "Dir? Kennen wir uns etwa?",
+   "ar": "«يا صاحبي»؟ هل نعرف بعضنا أصلًا؟"
+  },
+  "noeuds.tuer.choix.2.aide": {
+   "fr": "<b>Avec un patient, on dit toujours « Sie ».</b> « dir » et « Hallo », c'est pour un ami. Commence par « Guten Morgen, Herr Brandt », puis dis ton nom et ta fonction.",
+   "ar": "<b>مع المريض نقول دائمًا «Sie».</b> أما «dir» و«Hallo» فهما للأصدقاء. ابدأ بعبارة «Guten Morgen, Herr Brandt»، ثم قل اسمك ووظيفتك."
+  },
+  "noeuds.neu.dit.0": {
+   "fr": "Vous êtes nouvelle ici ?",
+   "de": "Sind Sie neu hier?",
+   "ar": "هل أنتِ جديدة هنا؟"
+  },
+  "noeuds.neu.choix.0": {
+   "fr": "Oui, je travaille ici depuis quatre mois. Je viens de Turquie, d'Izmir.",
+   "de": "Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.",
+   "ar": "نعم، أعمل هنا منذ أربعة أشهر. أنا من تركيا، من إزمير."
+  },
+  "noeuds.neu.choix.0.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "ar": "من إزمير! ذهبت إليها مرة في عطلة، قبل أكثر من أربعين سنة. كان الجو هناك دافئًا وجميلًا."
+  },
+  "noeuds.neu.choix.1": {
+   "fr": "Oui, je suis ici depuis quatre mois. En Turquie, j'étais infirmière, dans un hôpital d'Izmir.",
+   "de": "Ja, ich bin seit vier Monaten hier. In der Türkei war ich Krankenschwester, in einem Krankenhaus in Izmir.",
+   "ar": "نعم، أنا هنا منذ أربعة أشهر. كنت ممرضة في تركيا، في مستشفى في إزمير."
+  },
+  "noeuds.neu.choix.1.puis.0": {
+   "fr": "D'Izmir ! J'y suis allé en vacances, il y a plus de quarante ans. Il faisait bien chaud.",
+   "de": "Aus Izmir! Da war ich mal im Urlaub, vor über vierzig Jahren. Schön warm war's da.",
+   "ar": "من إزمير! ذهبت إليها مرة في عطلة، قبل أكثر من أربعين سنة. كان الجو هناك دافئًا وجميلًا."
+  },
+  "noeuds.neu.choix.2": {
+   "fr": "Oui, je suis nouvelle. Je viens « de Turquie » (mal dit).",
+   "de": "Ja, ich bin neu. Ich komme von Türkei.",
+   "ar": "نعم، أنا جديدة. أنا آتية «من تركيا» (تعبير خاطئ)."
+  },
+  "noeuds.neu.choix.2.puis.0": {
+   "fr": "D'où, pardon ?",
+   "de": "Von wo, bitte?",
+   "ar": "من أين، عفوًا؟"
+  },
+  "noeuds.neu.choix.2.aide": {
+   "fr": "<b>On dit « aus der Türkei ».</b> Pour le pays d'où l'on vient : « aus » + datif. Quelques pays ont un article : die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+   "ar": "<b>نقول «aus der Türkei».</b> للبلد الذي نأتي منه: «aus» + حالة الجر (Dativ). بعض البلدان لها أداة تعريف: die Türkei → aus der Türkei، وdie Schweiz → aus der Schweiz."
+  },
+  "noeuds.schlaf.dit.0.recit": {
+   "fr": "{brandt} bâille et se frotte les yeux.",
+   "ar": "يتثاءب {brandt} ويفرك عينيه."
+  },
+  "noeuds.schlaf.choix.0": {
+   "fr": "Comment avez-vous dormi cette nuit ?",
+   "de": "Wie haben Sie heute Nacht geschlafen?",
+   "ar": "كيف نمت الليلة الماضية؟"
+  },
+  "noeuds.schlaf.choix.0.puis.0": {
+   "fr": "Mal. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Schlecht. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "ar": "نمت نومًا سيئًا. وركي يؤلمني، وفي السرير المجاور واحد يشخر كالدب."
+  },
+  "noeuds.schlaf.choix.1": {
+   "fr": "Vous avez bien dormi ?",
+   "de": "Haben Sie gut geschlafen?",
+   "ar": "هل نمت جيدًا؟"
+  },
+  "noeuds.schlaf.choix.1.puis.0": {
+   "fr": "Pas vraiment. La hanche me fait mal, et à côté il y en a un qui ronfle comme un ours.",
+   "de": "Nicht besonders. Die Hüfte tut weh, und nebenan schnarcht einer wie ein Bär.",
+   "ar": "ليس كثيرًا. وركي يؤلمني، وفي السرير المجاور واحد يشخر كالدب."
+  },
+  "noeuds.schlaf.choix.2": {
+   "fr": "Quand avez-vous dormi ?",
+   "de": "Wann haben Sie geschlafen?",
+   "ar": "متى نمت؟"
+  },
+  "noeuds.schlaf.choix.2.puis.0": {
+   "fr": "Quand ? Eh bien, la nuit, comme tout le monde !",
+   "de": "Wann? Na, in der Nacht, wie jeder anständige Mensch!",
+   "ar": "متى؟ في الليل طبعًا، مثل أي إنسان محترم!"
+  },
+  "noeuds.schlaf.choix.2.aide": {
+   "fr": "<b>« Wann ? » demande le moment, « Wie ? » la manière.</b> Pour savoir si la nuit a été bonne : « Wie haben Sie geschlafen? »",
+   "ar": "<b>«Wann?» تسأل عن الوقت، و«Wie?» عن الكيفية.</b> لتعرف إن كانت الليلة جيدة: «Wie haben Sie geschlafen?»"
+  },
+  "noeuds.schmerz.dit.0.recit": {
+   "fr": "Il grimace en bougeant la jambe.",
+   "ar": "يتجهّم وجهه وهو يحرّك ساقه."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Je suis désolée. Je le dis tout de suite {sommer:a}. Elle passe à neuf heures pour la visite.",
+   "de": "Das tut mir leid. Ich sage es gleich {sommer}. Sie kommt um neun zur Visite.",
+   "ar": "أنا آسفة لذلك. سأخبر {sommer} فورًا. ستأتي في التاسعة للجولة الطبية."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Bon. Espérons que la doctoresse aura plus de temps qu'hier.",
+   "de": "Na gut. Hoffentlich hat die Frau Doktor heute mehr Zeit als gestern.",
+   "ar": "حسنًا. أرجو أن يكون لدى الطبيبة اليوم وقت أكثر من الأمس."
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "Je suis désolée. Si la douleur devient forte, dites-le-moi tout de suite.",
+   "de": "Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.",
+   "ar": "أنا آسفة لذلك. إذا اشتدّ الألم، فأخبرني فورًا من فضلك."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Pour l'instant, ça va. Mais dites-le aussi au médecin, s'il vous plaît.",
+   "de": "Im Moment geht's. Aber sagen Sie es bitte auch der Ärztin.",
+   "ar": "حاليًا يمكن احتماله. لكن أخبري الطبيبة أيضًا من فضلك."
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Ce n'est pas grave.",
+   "de": "Das ist nicht schlimm.",
+   "ar": "هذا ليس أمرًا خطيرًا."
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Pas grave ? Évidemment, ce n'est pas vous qui avez une hanche neuve !",
+   "de": "Nicht schlimm? Sie haben ja auch keine neue Hüfte!",
+   "ar": "ليس خطيرًا؟ طبعًا، فلستِ أنتِ من لديه ورك جديد!"
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>D'abord, montre que tu as entendu : « Das tut mir leid ».</b> Dire « ce n'est pas grave » à quelqu'un qui a mal le vexe, même avec une bonne intention.",
+   "ar": "<b>أولًا، أظهر أنك سمعت: «Das tut mir leid».</b> أن تقول «ليس خطيرًا» لشخص يتألم يجرح مشاعره، حتى لو كانت نيتك حسنة."
+  },
+  "noeuds.messen.dit.0": {
+   "fr": "Et maintenant, qu'est-ce que vous allez me faire ?",
+   "de": "Und was machen Sie jetzt mit mir?",
+   "ar": "وماذا ستفعلين بي الآن؟"
+  },
+  "noeuds.messen.choix.0": {
+   "fr": "Je vais prendre votre tension et votre température. Vous êtes d'accord ?",
+   "de": "Ich messe jetzt Ihren Blutdruck und Ihre Temperatur. Ist das in Ordnung?",
+   "ar": "سأقيس الآن ضغط دمك وحرارتك. هل توافق؟"
+  },
+  "noeuds.messen.choix.0.puis.0": {
+   "fr": "Allez-y.",
+   "de": "Machen Sie nur.",
+   "ar": "تفضّلي."
+  },
+  "noeuds.messen.choix.1": {
+   "fr": "D'abord je prends votre tension, ensuite votre température. Je peux ?",
+   "de": "Zuerst messe ich Ihren Blutdruck, dann Ihre Temperatur. Darf ich?",
+   "ar": "أولًا أقيس ضغط دمك، ثم حرارتك. هل تسمح لي؟"
+  },
+  "noeuds.messen.choix.1.puis.0": {
+   "fr": "S'il le faut.",
+   "de": "Wenn's sein muss.",
+   "ar": "إن كان لا بدّ من ذلك."
+  },
+  "noeuds.messen.choix.2": {
+   "fr": "Je vais « mesurer votre sang ».",
+   "de": "Ich messe jetzt Ihr Blut.",
+   "ar": "سأقيس «دمك» الآن."
+  },
+  "noeuds.messen.choix.2.puis.0": {
+   "fr": "Mon sang ? Vous voulez encore me faire une prise de sang ?",
+   "de": "Mein Blut? Wollen Sie mir etwa schon wieder Blut abnehmen?",
+   "ar": "دمي؟ هل تريدين أن تسحبي مني دمًا مرة أخرى؟"
+  },
+  "noeuds.messen.choix.2.aide": {
+   "fr": "<b>Le mot juste est « der Blutdruck » (la tension).</b> « das Blut » est le sang ; « Blut abnehmen », c'est faire une prise de sang. Un mot de travers peut inquiéter un patient.",
+   "ar": "<b>الكلمة الصحيحة هي «der Blutdruck» (ضغط الدم).</b> «das Blut» هو الدم؛ و«Blut abnehmen» هو سحب الدم. كلمة في غير موضعها قد تقلق المريض."
+  },
+  "noeuds.werte.dit.0.recit": {
+   "fr": "{elif} pose le brassard, mesure, puis prend la température.",
+   "ar": "تلفّ {elif} سوار جهاز الضغط، وتقيس، ثم تقيس الحرارة."
+  },
+  "noeuds.werte.dit.1": {
+   "fr": "Alors ? Je suis encore vivant ?",
+   "de": "Und? Lebe ich noch?",
+   "ar": "إذن؟ هل ما زلت حيًا؟"
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Oui, tout va bien. Votre tension est à 13/8 (130 sur 80), et vous n'avez pas de fièvre.",
+   "de": "Ja, alles in Ordnung. Ihr Blutdruck ist 130 zu 80, und Fieber haben Sie nicht.",
+   "ar": "نعم، كل شيء على ما يرام. ضغط دمك 130 على 80، وليست لديك حمّى."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "ar": "حسنًا، هذا أفضل من لا شيء."
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Et comment ! La tension est normale, la température aussi.",
+   "de": "Und wie! Der Blutdruck ist normal, und die Temperatur auch.",
+   "ar": "بكل تأكيد! ضغط الدم طبيعي، والحرارة أيضًا."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Eh bien, c'est déjà ça.",
+   "de": "Na, wenigstens etwas.",
+   "ar": "حسنًا، هذا أفضل من لا شيء."
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Pardon, comment ?",
+   "de": "Entschuldigung, wie bitte?",
+   "ar": "عفوًا، ماذا قلت؟"
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "Je vous ai demandé si j'étais encore vivant. C'était une blague !",
+   "de": "Ob ich noch lebe, hab ich gefragt. Das war ein Witz!",
+   "ar": "سألتك إن كنت ما زلت حيًا. كانت مزحة!"
+  },
+  "noeuds.fruehstueck.dit.0": {
+   "fr": "Il y a le petit-déjeuner à quelle heure, ici ? J'ai faim.",
+   "de": "Wann gibt's denn hier Frühstück? Ich hab Hunger.",
+   "ar": "متى يُقدَّم الفطور هنا؟ أنا جائع."
+  },
+  "noeuds.fruehstueck.choix.0": {
+   "fr": "Le petit-déjeuner arrive à sept heures et demie. Voulez-vous que je vous aide à vous asseoir ?",
+   "de": "Das Frühstück kommt um halb acht. Soll ich Ihnen helfen, sich aufzusetzen?",
+   "ar": "يصل الفطور في السابعة والنصف. هل تريد أن أساعدك على الجلوس؟"
+  },
+  "noeuds.fruehstueck.choix.0.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "ar": "نعم، لا أستطيع ذلك وحدي بعد."
+  },
+  "noeuds.fruehstueck.choix.1": {
+   "fr": "À sept heures et demie, donc dans une demi-heure. Avant, je vous aide à vous asseoir.",
+   "de": "Um halb acht, also in einer halben Stunde. Vorher helfe ich Ihnen, sich aufzusetzen.",
+   "ar": "في السابعة والنصف، أي بعد نصف ساعة. قبل ذلك سأساعدك على الجلوس."
+  },
+  "noeuds.fruehstueck.choix.1.puis.0": {
+   "fr": "Oui, tout seul, je n'y arrive pas encore.",
+   "de": "Ja, allein schaff ich das noch nicht.",
+   "ar": "نعم، لا أستطيع ذلك وحدي بعد."
+  },
+  "noeuds.fruehstueck.choix.2": {
+   "fr": "Le petit-déjeuner est à « sept heures trente minutes ».",
+   "de": "Das Frühstück ist um sieben Uhr dreißig Minuten.",
+   "ar": "الفطور في «السابعة وثلاثين دقيقة»."
+  },
+  "noeuds.fruehstueck.choix.2.puis.0": {
+   "fr": "Sept heures trente minutes ? Vous voulez dire sept heures et demie, non ?",
+   "de": "Sieben Uhr dreißig Minuten? Sie meinen halb acht, oder?",
+   "ar": "السابعة وثلاثين دقيقة؟ تقصدين السابعة والنصف، أليس كذلك؟"
+  },
+  "noeuds.fruehstueck.choix.2.aide": {
+   "fr": "<b>L'heure se dit « halb acht » ou « sieben Uhr dreißig », sans « Minuten ».</b> Attention : « halb acht » veut dire 7 h 30 (la moitié de l'heure qui mène à huit), pas 8 h 30.",
+   "ar": "<b>الوقت يُقال «halb acht» أو «sieben Uhr dreißig»، من دون «Minuten».</b> انتبه: «halb acht» تعني 7:30 (نصف الساعة المؤدية إلى الثامنة)، وليس 8:30."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "{elif} aide {brandt} à s'asseoir dans son lit. Avant de partir, elle lui approche la sonnette.",
+   "ar": "تساعد {elif} {brandt} على الجلوس في سريره. وقبل أن تخرج، تقرّب منه جرس الاستدعاء."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Si vous avez besoin de quelque chose, appuyez ici, sur la sonnette.",
+   "de": "Wenn Sie etwas brauchen, drücken Sie bitte hier auf die Klingel.",
+   "ar": "إذا احتجت إلى شيء، فاضغط هنا من فضلك، على جرس الاستدعاء."
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Le bouton rouge ? D'accord.",
+   "de": "Der rote Knopf? Gut.",
+   "ar": "الزر الأحمر؟ حسنًا."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+   "de": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+   "ar": "هذا جرس الاستدعاء. من فضلك لا تنهض وحدك بعد، بل اضغط على الجرس."
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Oui, oui. Le bouton rouge. Je ne suis pas né de la dernière pluie.",
+   "de": "Ja, ja. Der rote Knopf. Ich bin ja nicht von gestern.",
+   "ar": "نعم، نعم. الزر الأحمر. لم أولد البارحة."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Si vous avez besoin de quelque chose, appelez fort, tout simplement.",
+   "de": "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
+   "ar": "إذا احتجت إلى شيء، فناد بصوت عالٍ، ببساطة."
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Appeler fort ? Personne ne m'entendra, avec le ronfleur d'à côté !",
+   "de": "Laut rufen? Da hört mich doch keiner, bei dem Schnarcher nebenan!",
+   "ar": "أنادي بصوت عالٍ؟ لن يسمعني أحد مع هذا الشخّار المجاور!"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé.",
+   "ar": "<b>في المستشفى نُري المريض جرس الاستدعاء: «die Klingel».</b> «Drücken Sie bitte hier»: اضغط هنا من فضلك. يجب ألا يضطر مريض أُجريت له عملية إلى الصراخ ليحصل على المساعدة."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci, ma sœur. (ancienne façon d'appeler une infirmière)",
+   "de": "Danke, Schwester.",
+   "ar": "شكرًا يا أختي. (طريقة قديمة لمناداة الممرضة)"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Avec plaisir. Je reviens tout de suite avec le petit-déjeuner.",
+   "de": "Gern geschehen. Ich komme gleich mit dem Frühstück wieder.",
+   "ar": "على الرحب والسعة. سأعود حالًا مع الفطور."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Vous êtes gentille, {elif}.",
+   "de": "Sie sind nett, {elif}.",
+   "ar": "أنتِ لطيفة يا {elif}."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je vous en prie. Vous pouvez m'appeler {elif}. À tout de suite !",
+   "de": "Bitte schön. Sie können ruhig {elif} zu mir sagen. Bis gleich!",
+   "ar": "عفوًا. يمكنك أن تناديني {elif} ببساطة. إلى اللقاء بعد قليل!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "{elif}. Bien, je m'en souviendrai.",
+   "de": "{elif}. Gut, das merk ich mir.",
+   "ar": "{elif}. حسنًا، سأتذكر ذلك."
+  },
+  "ecouter.0.q": {
+   "fr": "D'où vient {elif} ?",
+   "de": "Woher kommt {elif}?",
+   "ar": "من أين أتت {elif}؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "D'Izmir, en Turquie.",
+   "de": "Aus Izmir, in der Türkei.",
+   "ar": "من إزمير، في تركيا."
+  },
+  "ecouter.0.options.1": {
+   "fr": "D'Istanbul.",
+   "de": "Aus Istanbul.",
+   "ar": "من إسطنبول."
+  },
+  "ecouter.0.options.2": {
+   "fr": "De Berlin.",
+   "de": "Aus Berlin.",
+   "ar": "من برلين."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {brandt} a-t-il mal dormi ?",
+   "de": "Warum hat {brandt} schlecht geschlafen?",
+   "ar": "لماذا نام {brandt} نومًا سيئًا؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Il avait faim.",
+   "de": "Er hatte Hunger.",
+   "ar": "كان جائعًا."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Sa hanche lui fait mal, et son voisin ronfle.",
+   "de": "Die Hüfte tut weh, und der Nachbar schnarcht.",
+   "ar": "وركه يؤلمه، وجاره يشخر."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Il faisait trop chaud dans la chambre.",
+   "de": "Es war zu warm im Zimmer.",
+   "ar": "كانت الغرفة حارة جدًا."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand arrive le petit-déjeuner ?",
+   "de": "Wann kommt das Frühstück?",
+   "ar": "متى يصل الفطور؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À huit heures et demie.",
+   "de": "Um halb neun.",
+   "ar": "في الثامنة والنصف."
+  },
+  "ecouter.2.options.1": {
+   "fr": "À sept heures.",
+   "de": "Um sieben.",
+   "ar": "في السابعة."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À sept heures et demie.",
+   "de": "Um halb acht.",
+   "ar": "في السابعة والنصف."
+  }
+ }
+}

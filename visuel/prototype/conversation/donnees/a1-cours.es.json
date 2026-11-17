@@ -1,0 +1,66 @@
+{
+ "id": "a1-cours",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "S'inscrire à un cours d'espagnol"},
+ "intro": {"fr": "Tu veux suivre un cours d'espagnol près de chez toi. À l'école de langues (la academia), une enseignante s'occupe des inscriptions."},
+ "personnes": ["kursleiterin_sprachschule"],
+ "debut": "hola",
+ "noeuds": {
+  "hola": {
+   "dit": [
+    {"recit": {"fr": "Dans une école de langues de ton quartier de Madrid. Une femme à lunettes t'accueille au bureau des inscriptions."}},
+    {"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "¡Buenas tardes! ¿Puedo ayudarle?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Sí, por favor. Quiero apuntarme a un curso de español.", "fr": "Oui, s'il vous plaît. Je veux m'inscrire à un cours d'espagnol.", "va": "nivel",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "¡Claro! Soy Marta, soy profesora aquí.", "fr": "Bien sûr ! Je suis Marta, je suis enseignante ici."}]},
+    {"t": "Buenas tardes. ¿Tienen cursos de español para principiantes?", "fr": "Bonjour. Vous avez des cours d'espagnol pour débutants ?", "va": "nivel",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "¡Sí, claro! Soy Marta, soy profesora aquí.", "fr": "Oui, bien sûr ! Je suis Marta, je suis enseignante ici."}]}
+   ]
+  },
+  "nivel": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "¿Ya habla un poco de español?", "fr": "Vous parlez déjà un peu espagnol ?"}],
+   "choix": [
+    {"t": "Sí, un poco. Estudio desde hace dos meses.", "fr": "Oui, un peu. J'étudie depuis deux mois.", "va": "horario",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "¡Se nota! Entonces el curso de principiantes es perfecto.", "fr": "Ça se voit ! Alors le cours pour débutants est parfait."}]},
+    {"t": "Solo un poco. Soy principiante.", "fr": "Seulement un peu. Je suis débutant(e).", "va": "horario",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "No pasa nada. El curso es para principiantes.", "fr": "Ce n'est pas grave. Le cours est pour les débutants."}]},
+    {"faux": true, "t": "Un poco. Soy debutante.", "fr": "Un peu. Je suis débutant(e).",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "amuse", "t": "¿Debutante? ¡Como en un baile! Quiere decir principiante, ¿no?", "fr": "« Debutante » ? Comme dans un bal ! Vous voulez dire « principiante », non ?"}],
+     "aide": {"fr": "Faux ami : <b>una debutante</b>, c'est une jeune fille qui fait son entrée dans le monde, au bal. Pour un cours : <b>principiante</b>."}},
+    {"repete": true, "t": "Más despacio, por favor.", "fr": "Plus lentement, s'il vous plaît.", "va": "nivel",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Claro. ¿Ya… habla… un poco… de español?", "fr": "Bien sûr. Vous… parlez… déjà… un peu espagnol ?"}]}
+   ]
+  },
+  "horario": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Hay un grupo por la mañana y otro por la tarde. ¿Qué le viene mejor?", "fr": "Il y a un groupe le matin et un autre l'après-midi. Qu'est-ce qui vous arrange le mieux ?"}],
+   "choix": [
+    {"t": "Por la tarde, por favor. Por la mañana trabajo.", "fr": "L'après-midi, s'il vous plaît. Le matin, je travaille.", "va": "pregunta",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Bien: los lunes y los miércoles, de seis a ocho de la tarde.", "fr": "Bien : le lundi et le mercredi, de six à huit heures du soir."}]},
+    {"t": "Por la mañana, por favor.", "fr": "Le matin, s'il vous plaît.", "va": "pregunta",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Bien: de lunes a viernes, de nueve a doce.", "fr": "Bien : du lundi au vendredi, de neuf heures à midi."}]}
+   ]
+  },
+  "pregunta": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "¿Tiene alguna pregunta?", "fr": "Vous avez une question ?"}],
+   "choix": [
+    {"t": "Sí. ¿Cuánto cuesta el curso?", "fr": "Oui. Combien coûte le cours ?", "va": "formulario",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "attentive", "t": "Ciento ochenta euros al mes, con el libro.", "fr": "Cent quatre-vingts euros par mois, livre compris."}]},
+    {"t": "Sí. ¿Cuándo empieza el curso?", "fr": "Oui. Quand commence le cours ?", "va": "formulario",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "attentive", "t": "El lunes 7 de diciembre.", "dit": "El lunes siete de diciembre.", "fr": "Le lundi 7 décembre."}]}
+   ]
+  },
+  "formulario": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Entonces, rellene este formulario, por favor: nombre, dirección y teléfono.", "fr": "Alors, remplissez ce formulaire, s'il vous plaît : nom, adresse et téléphone."}],
+   "choix": [
+    {"t": "Claro. ¿Tiene un bolígrafo?", "fr": "Bien sûr. Vous avez un stylo ?", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Tome. ¡Nos vemos en clase!", "fr": "Tenez. À bientôt en cours !"}]},
+    {"t": "Vale. ¡Muchas gracias por todo!", "fr": "D'accord. Merci beaucoup pour tout !", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "¡De nada! ¡Hasta el lunes!", "fr": "De rien ! À lundi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es inscrit(e) au cours d'espagnol de Marta : ton niveau, le matin ou l'après-midi, le prix ou la date de début, et le formulaire."}
+}

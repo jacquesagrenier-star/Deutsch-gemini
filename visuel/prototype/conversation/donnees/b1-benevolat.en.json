@@ -1,0 +1,173 @@
+{
+ "id": "b1-benevolat",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "Devenir bénévole"},
+ "intro": {"fr": "Tu entres dans un centre communautaire de Dorchester, à Boston : tu veux donner un peu de ton temps. Megan, une bénévole qui s'occupe des nouveaux, t'accueille."},
+ "personnes": ["b13_koordinatorin"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Dans le hall du centre, une jeune femme empile des cartons de conserves. Elle te voit entrer."}},
+    {"qui": "b13_koordinatorin", "air": "sourire", "t": "Hi there! I'm Megan, I run the Saturday volunteer team here. How can I help you?", "fr": "Bonjour ! Je suis Megan, je m'occupe de l'équipe de bénévoles du samedi. Je peux t'aider ?"}
+   ],
+   "choix": [
+    {"t": "Hi Megan! I'd like to volunteer here.", "fr": "Bonjour Megan ! J'aimerais être bénévole ici.", "va": "why",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Awesome! We can always use more help.", "t_gb": "Brilliant! We can always use more help.", "fr": "Génial ! On a toujours besoin d'aide."}]},
+    {"t": "Hi! I saw your sign outside. Are you still looking for volunteers?", "fr": "Bonjour ! J'ai vu votre panneau dehors. Vous cherchez toujours des bénévoles ?", "va": "why",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "We sure are! Always.", "t_gb": "We certainly are! Always.", "fr": "Oh oui ! Toujours."}]},
+    {"faux": true, "t": "Hello! I want to make volunteer work.", "fr": "Bonjour ! Je veux « fabriquer » du bénévolat.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "Make …? Oh, you want to do some volunteer work!", "fr": "« Make »… ? Ah, tu veux faire du bénévolat !"}],
+     "aide": {"fr": "<b>On dit « do volunteer work », jamais « make »</b> (« make », c'est fabriquer). Le plus simple : « I'd like to volunteer here »."}}
+   ]
+  },
+  "why": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "So, what made you want to volunteer?", "fr": "Alors, qu'est-ce qui t'a donné envie d'être bénévole ?"}],
+   "choix": [
+    {"t": "I have some free time, and I want to do something useful.", "fr": "J'ai du temps libre, et je veux faire quelque chose d'utile.", "va": "task",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "That's the best reason there is.", "fr": "C'est la meilleure raison qui soit."}]},
+    {"t": "I'm new in Boston. I'd like to meet people and help the neighborhood.", "t_gb": "I'm new in Boston. I'd like to meet people and help the neighbourhood.", "fr": "Je viens d'arriver à Boston. J'aimerais rencontrer des gens et aider le quartier.", "va": "task",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Well, welcome to Boston! You'll meet plenty of people here.", "fr": "Eh bien, bienvenue à Boston ! Tu vas rencontrer plein de monde ici."}]},
+    {"faux": true, "t": "I am in Boston since six months and I want to help.", "fr": "Je suis à Boston depuis six mois et je veux aider (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Oh, you've been here for six months? Then welcome, a little late!", "fr": "Ah, tu es ici depuis six mois ? Alors bienvenue, avec un peu de retard !"}],
+     "aide": {"fr": "<b>« depuis six mois » : present perfect + « for »</b>. « I've been in Boston for six months. » « Since » s'emploie avec un point de départ : « since March »."}}
+   ]
+  },
+  "task": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Here's what we need: people for the food pantry, tutors for the kids' homework club, and drivers to pick up donations. What sounds good to you?", "t_gb": "Here's what we need: people for the food pantry, tutors for the kids' homework club, and drivers to collect donations. What sounds good to you?", "fr": "Voici ce qu'il nous faut : du monde pour la banque alimentaire, des tuteurs pour l'aide aux devoirs des enfants et des chauffeurs pour aller chercher les dons. Qu'est-ce qui te tente ?"}],
+   "choix": [
+    {"t": "I'd like to help at the food pantry.", "fr": "J'aimerais aider à la banque alimentaire.", "pose": {"task": "pantry"}, "va": "pantry",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Great! That's where we need the most hands.", "fr": "Super ! C'est là qu'il nous faut le plus de bras."}]},
+    {"t": "I like working with kids. I could help with homework.", "fr": "J'aime travailler avec les enfants. Je pourrais aider pour les devoirs.", "pose": {"task": "tutoring", "day": "tuesday"}, "va": "tutoring",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Oh, the kids will love that!", "fr": "Oh, les enfants vont adorer !"}]},
+    {"t": "I could drive. I like being on the road.", "fr": "Je pourrais conduire. J'aime être sur la route.", "pose": {"task": "driving", "day": "friday"}, "va": "driving",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "A driver! You just made my day.", "fr": "Un chauffeur ! Tu illumines ma journée."}]},
+    {"faux": true, "t": "I am interesting in the homework club.", "fr": "Je suis « intéressant » dans l'aide aux devoirs.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "I'm sure you're interesting! But you're interested in the homework club, right?", "fr": "Je suis sûre que tu es intéressant ! Mais tu es intéressé par l'aide aux devoirs, c'est ça ?"}],
+     "aide": {"fr": "<b>« interesting »</b> = intéressant ; <b>« interested »</b> = intéressé. Dis : « I'm interested in the homework club »."}},
+    {"repete": true, "t": "Sorry, that was a little fast. Could you say that again?", "fr": "Pardon, c'était un peu rapide. Tu peux répéter ?", "va": "task",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Sure! Three options: help give out food, help kids with their homework, or drive.", "fr": "Bien sûr ! Trois options : aider à distribuer la nourriture, aider des enfants à faire leurs devoirs, ou conduire."}]}
+   ]
+  },
+  "pantry": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "We sort donations on Thursday evenings and hand out food on Saturday mornings. Would you rather sort, or work with the public?", "fr": "On trie les dons le jeudi soir et on distribue la nourriture le samedi matin. Tu préfères trier, ou travailler avec le public ?"}],
+   "choix": [
+    {"t": "I'd rather sort donations. I like quiet work.", "fr": "Je préfère trier les dons. J'aime le travail au calme.", "pose": {"day": "thursday"}, "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Perfect. Thursdays are quiet, and there's always pizza.", "fr": "Parfait. Le jeudi, c'est calme, et il y a toujours de la pizza."}]},
+    {"t": "With the public. I like talking to people.", "fr": "Avec le public. J'aime parler aux gens.", "pose": {"day": "saturday"}, "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Then Saturdays are for you. It gets busy!", "fr": "Alors le samedi est fait pour toi. Il y a du monde !"}]},
+    {"faux": true, "t": "I prefer to work with the persons.", "fr": "Je préfère travailler avec les « personnes ».",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "With the … oh, with people! Sure.", "fr": "Avec les… ah, avec les gens ! Bien sûr."}],
+     "aide": {"fr": "<b>Le pluriel courant de « person » est « people »</b>, sans article quand on parle des gens en général : « I like working with people »."}}
+   ]
+  },
+  "tutoring": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "The homework club meets Tuesdays and Thursdays after school. The kids are in first through fifth grade. What subjects are you good at?", "t_gb": "The homework club meets on Tuesdays and Thursdays after school. The kids are in first to fifth grade. What subjects are you good at?", "fr": "L'aide aux devoirs a lieu le mardi et le jeudi après l'école. Les enfants sont de la première à la cinquième année. Dans quelles matières es-tu bon ?"}],
+   "choix": [
+    {"t": "Math and science. And French, of course!", "t_gb": "Maths and science. And French, of course!", "fr": "Les maths et les sciences. Et le français, bien sûr !", "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Math! You're a lifesaver.", "t_gb": "Maths! You're a lifesaver.", "fr": "Les maths ! Tu nous sauves."}]},
+    {"t": "I can help with reading. My English isn't perfect, though.", "fr": "Je peux aider en lecture. Mon anglais n'est pas parfait, cela dit.", "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Don't worry. The kids will love correcting you!", "fr": "Ne t'en fais pas. Les enfants adoreront te corriger !"}]},
+    {"faux": true, "t": "I can learn math to the kids.", "fr": "Je peux « apprendre » les maths aux enfants.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "You want to learn math? Or teach it?", "t_gb": "You want to learn maths? Or teach it?", "fr": "Tu veux apprendre les maths ? Ou les enseigner ?"}],
+     "aide": {"fr": "<b>« learn »</b>, c'est apprendre pour soi ; apprendre à quelqu'un, c'est <b>« teach »</b>. Dis : « I can teach the kids math » ou « I can help with math »."}}
+   ]
+  },
+  "driving": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "We pick up food from grocery stores on Friday mornings. Do you have a driver's license?", "t_gb": "We collect food from supermarkets on Friday mornings. Do you have a driving licence?", "fr": "On va chercher la nourriture dans les supermarchés le vendredi matin. Tu as le permis de conduire ?"}],
+   "choix": [
+    {"t": "Yes, I do, but I don't have a car.", "fr": "Oui, mais je n'ai pas de voiture.", "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "No problem, we have a van.", "fr": "Pas de problème, on a une camionnette."}]},
+    {"t": "Yes, and I'm used to driving in the city.", "fr": "Oui, et j'ai l'habitude de conduire en ville.", "va": "time",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "In Boston? You're brave!", "fr": "À Boston ? Tu es courageux !"}]},
+    {"faux": true, "t": "Yes, I have my driving permit.", "fr": "Oui, j'ai mon « permit » de conduire.",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "A permit? So you're still learning to drive?", "t_gb": "A permit? Do you mean a driving licence?", "fr": "Un « permit » ? Donc tu apprends encore à conduire ?"}],
+     "aide": {"fr": "<b>Aux États-Unis, un « permit »</b> est le permis d'apprenti conducteur. Le permis de conduire est « a driver's license » (« a driving licence » en anglais britannique)."}}
+   ]
+  },
+  "time": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "And how often could you come? Some people come every week, some once a month.", "fr": "Et tu pourrais venir à quel rythme ? Certains viennent chaque semaine, d'autres une fois par mois."}],
+   "choix": [
+    {"t": "I could come every week, for two or three hours.", "fr": "Je pourrais venir chaque semaine, deux ou trois heures.", "pose": {"often": "week"}, "va": "languages",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Every week? That's a huge help.", "fr": "Chaque semaine ? Ça nous aide énormément."}]},
+    {"t": "I work a lot. Every other week would be better for me.", "fr": "Je travaille beaucoup. Une semaine sur deux, ce serait mieux pour moi.", "pose": {"often": "other"}, "va": "languages",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "I get it. I'm a police officer during the week, so Saturdays are all I can do. Every other week is fine.", "fr": "Je comprends. Je suis policière en semaine, alors je ne peux venir que le samedi. Une semaine sur deux, c'est très bien."}]},
+    {"faux": true, "t": "I can come all the weeks.", "fr": "Je peux venir « toutes les semaines » (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "question", "t": "All the …? Oh, every week!", "fr": "« All the… » ? Ah, chaque semaine !"}],
+     "aide": {"fr": "<b>« toutes les semaines » se dit « every week »</b>, au singulier et sans article. De même : « every day », « every Saturday »."}}
+   ]
+  },
+  "languages": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "By the way, do you speak any other languages?", "fr": "Au fait, tu parles d'autres langues ?"}],
+   "choix": [
+    {"t": "Yes, French is my first language.", "fr": "Oui, le français est ma langue maternelle.", "va": "questions",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "French? That's great! We have a lot of Haitian families here, and many of the grandparents are more comfortable in French.", "fr": "Le français ? C'est super ! On a beaucoup de familles haïtiennes ici, et bien des grands-parents sont plus à l'aise en français."}]},
+    {"t": "Yes, I speak French, and a little Spanish.", "fr": "Oui, je parle français, et un peu espagnol.", "va": "questions",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "French and Spanish? We need both! We have a lot of Haitian families here who are more comfortable in French.", "fr": "Français et espagnol ? Il nous faut les deux ! On a beaucoup de familles haïtiennes ici, qui sont plus à l'aise en français."}]},
+    {"faux": true, "t": "Yes, French is my maternal language.", "fr": "Oui, le français est ma langue « maternelle » (mot à mot).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Your … oh, your native language!", "fr": "Ta… ah, ta langue maternelle !"}],
+     "aide": {"fr": "<b>« langue maternelle » se dit « first language » ou « native language »</b>. « maternal » ne s'emploie que pour ce qui vient de la mère (« my maternal grandmother »)."}}
+   ]
+  },
+  "questions": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Do you have any questions for me?", "fr": "Tu as des questions pour moi ?"}],
+   "choix": [
+    {"t": "Yes. Do I need any experience?", "fr": "Oui. J'ai besoin d'expérience ?", "va": "training",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Good question!", "fr": "Bonne question !"}]},
+    {"t": "Yes. Can I bring a friend? She wants to help too.", "fr": "Oui. Je peux amener une amie ? Elle veut aider aussi.", "va": "friend",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Of course! The more, the merrier.", "fr": "Bien sûr ! Plus on est de fous, plus on rit."}]},
+    {"faux": true, "t": "Yes. Do I need an experience?", "fr": "Oui. J'ai besoin d'« une » expérience ?",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "An experience? Like a special one? No, you don't need any experience.", "fr": "Une expérience ? Une en particulier ? Non, tu n'as pas besoin d'expérience."}],
+     "aide": {"fr": "<b>« experience »</b>, au sens de savoir-faire, ne se compte pas : pas de « an ». Dis : « Do I need any experience? ». « An experience », c'est un événement vécu."}}
+   ]
+  },
+  "training": {
+   "dit": [
+    {"qui": "b13_koordinatorin", "air": "attentive", "t": "Nope, no experience needed.", "t_gb": "No, no experience needed.", "fr": "Non, aucune expérience n'est nécessaire."},
+    {"si": {"task": "pantry"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "You just do a short food safety training online. It takes about an hour. Is that okay with you?", "fr": "Tu suis juste une courte formation en ligne sur l'hygiène alimentaire. Elle dure environ une heure. Ça te va ?"},
+    {"si": {"task": "tutoring"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "We just run a background check, since you'll be working with kids. It's free. Is that okay with you?", "fr": "On fait juste une vérification des antécédents, puisque tu vas travailler avec des enfants. C'est gratuit. Ça te va ?"},
+    {"si": {"task": "driving"}, "qui": "b13_koordinatorin", "air": "attentive", "t": "We just need a copy of your license, and you do your first ride with another driver. Is that okay with you?", "t_gb": "We just need a copy of your licence, and you do your first trip with another driver. Is that okay with you?", "fr": "Il nous faut juste une copie de ton permis, et tu fais ta première tournée avec un autre chauffeur. Ça te va ?"}
+   ],
+   "choix": [
+    {"t": "Sure, no problem.", "fr": "Bien sûr, pas de problème.", "va": "firstday",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Great, then we're all set.", "fr": "Super, alors tout est en ordre."}]},
+    {"t": "That's fine. Can you send me the details by email?", "fr": "Ça me va. Tu peux m'envoyer les détails par e-mail ?", "va": "firstday",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "You got it. I'll send everything tonight.", "t_gb": "Of course. I'll send everything tonight.", "fr": "Entendu. Je t'envoie tout ce soir."}]}
+   ]
+  },
+  "friend": {
+   "dit": [{"qui": "b13_koordinatorin", "air": "question", "t": "Has your friend volunteered before?", "fr": "Ton amie a déjà fait du bénévolat ?"}],
+   "choix": [
+    {"t": "Yes, she helped at a food bank back home.", "fr": "Oui, elle a aidé dans une banque alimentaire au pays.", "va": "firstday",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Even better! Tell her to come by and see me.", "fr": "Encore mieux ! Dis-lui de passer me voir."}]},
+    {"t": "No, it's her first time too.", "fr": "Non, c'est la première fois pour elle aussi.", "va": "firstday",
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Then you'll learn together. Tell her to come by and see me.", "fr": "Alors vous apprendrez ensemble. Dis-lui de passer me voir."}]},
+    {"faux": true, "t": "Yes, she has volunteered last year.", "fr": "Oui, elle « a fait » du bénévolat l'an dernier (mauvais temps).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "attentive", "t": "Oh, she volunteered last year? Nice.", "fr": "Ah, elle a fait du bénévolat l'an dernier ? Bien."}],
+     "aide": {"fr": "<b>Avec un moment passé précis (« last year »), on emploie le prétérit</b>, pas le present perfect : « She volunteered last year »."}}
+   ]
+  },
+  "firstday": {
+   "dit": [
+    {"si": {"day": "thursday"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "So, why don't you come this Thursday at six? I'll let the Thursday team know. Wear something comfortable, there are a lot of boxes to lift.", "fr": "Alors, pourquoi ne viendrais-tu pas ce jeudi à six heures ? Je préviens l'équipe du jeudi. Mets quelque chose de confortable, il y a beaucoup de cartons à soulever."},
+    {"si": {"day": "saturday"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "So, why don't you come this Saturday at nine? Wear comfortable shoes, we're on our feet all morning.", "fr": "Alors, pourquoi ne viendrais-tu pas ce samedi à neuf heures ? Mets des chaussures confortables, on est debout toute la matinée."},
+    {"si": {"day": "tuesday"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "So, why don't you come this Tuesday at three thirty? I'll let the tutors know, and they'll introduce you to the kids.", "t_gb": "So, why don't you come this Tuesday at half past three? I'll let the tutors know, and they'll introduce you to the kids.", "fr": "Alors, pourquoi ne viendrais-tu pas ce mardi à trois heures et demie ? Je préviens les tuteurs, et ils te présenteront aux enfants."},
+    {"si": {"day": "friday"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "So, why don't you come this Friday at eight? You'll ride along with Andre, he knows every store.", "t_gb": "So, why don't you come this Friday at eight? You'll go along with Andre, he knows every shop.", "fr": "Alors, pourquoi ne viendrais-tu pas ce vendredi à huit heures ? Tu feras la tournée avec Andre, il connaît tous les magasins."},
+    {"si": {"often": "other"}, "qui": "b13_koordinatorin", "air": "sourire", "t": "And after that, every other week, like we said.", "t_gb": "And after that, every other week, as we said.", "fr": "Et ensuite, une semaine sur deux, comme on a dit."},
+    {"qui": "b13_koordinatorin", "air": "question", "t": "Does that work for you?", "fr": "Ça te convient ?"}
+   ],
+   "choix": [
+    {"t": "Yes, that works. Should I bring anything?", "fr": "Oui, ça me convient. Je dois apporter quelque chose ?", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Just a good mood. See you soon!", "fr": "Juste ta bonne humeur. À bientôt !"}]},
+    {"t": "Perfect. I'm looking forward to it. Thanks, Megan!", "fr": "Parfait. J'ai hâte. Merci, Megan !", "va": null,
+     "puis": [{"qui": "b13_koordinatorin", "air": "sourire", "t": "Me too. Glad to have you on the team!", "fr": "Moi aussi. Contente de t'avoir dans l'équipe !"}]},
+    {"faux": true, "t": "Perfect. I look forward to see you!", "fr": "Parfait. J'ai hâte de te « voir » (mauvaise forme).",
+     "puis": [{"qui": "b13_koordinatorin", "air": "amuse", "t": "Looking forward to seeing you too!", "fr": "Moi aussi, j'ai hâte de te voir !"}],
+     "aide": {"fr": "<b>Après « look forward to », le verbe prend -ing</b> : « I'm looking forward to seeing you ». Ici, « to » est une préposition, pas la marque de l'infinitif."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté au centre, tu as choisi ta tâche de bénévole, dit à quel rythme tu peux venir et fixé ton premier jour avec Megan."}
+}

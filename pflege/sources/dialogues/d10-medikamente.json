@@ -1,0 +1,135 @@
+{
+ "id": "d10-medikamente",
+ "numero": 10,
+ "niveau": "B1",
+ "registre": "Sie",
+ "lieu": "ambulant",
+ "scene_annexe": 8,
+ "role": "amira",
+ "personnes": ["kowalski"],
+ "titre": {"t": "Medikamente erklären", "fr": "« À quoi sert ce comprimé ? »"},
+ "intro": {"fr": "Huit heures, visite à domicile. {kowalski} vit seule avec son chat ; son médecin traitant lui a prescrit un nouveau comprimé. Tu joues {amira} : explique à quoi il sert en mots simples et quand le prendre, d'après le plan de médication, et sache renvoyer au pharmacien ou au médecin."},
+ "but": {"fr": "Nommer un médicament et dire à quoi il sert en mots simples ; lire le plan de médication (quand, comment) ; reconnaître ce qu'on ne sait pas et renvoyer au pharmacien ou au médecin ; enchaîner glycémie, insuline et repas."},
+ "grammaire": ["g08", "g06", "g09"],
+ "telc": ["oral-1", "oral-2", "lesen"],
+ "relire_notes": {"fr": "Exemple de médicament (ramipril, contre l'hypertension, une fois par jour selon le plan) ; ne pas écraser sans avis ; limite de ce que la soignante explique ; ordre glycémie → insuline → repas (selon l'insuline prescrite) ; pas d'hypoglycémie."},
+ "redemittel": [
+  {"t": "Das ist Ihre Tablette für den Blutdruck.", "fr": "C'est votre comprimé pour la tension.", "fonction": "annoncer"},
+  {"t": "Die nehmen Sie einmal täglich, morgens nach dem Frühstück.", "fr": "Vous le prenez une fois par jour, le matin après le petit-déjeuner.", "relire": true, "relire_note": "Moment de prise de l'exemple.", "fonction": "annoncer"},
+  {"t": "So steht es in Ihrem Medikamentenplan.", "fr": "C'est ce qui est écrit dans votre plan de médication.", "fonction": "annoncer"},
+  {"t": "Diese Tablette dürfen Sie nicht zerkleinern.", "fr": "Vous ne devez pas écraser ce comprimé.", "relire": true, "relire_note": "Formule générale, selon le médicament.", "fonction": "refuser"},
+  {"t": "Das fragen wir am besten in der Apotheke.", "fr": "Le mieux, c'est de demander à la pharmacie.", "fonction": "redemander"},
+  {"t": "Zuerst messe ich Ihren Blutzucker, dann bekommen Sie Ihr Insulin.", "fr": "D'abord je mesure votre glycémie, ensuite vous recevez votre insuline.", "relire": true, "relire_note": "Ordre glycémie / insuline.", "fonction": "annoncer"}
+ ],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Huit heures. {amira} sonne chez {kowalski}. Un gros chat gris tigré est couché devant la porte de l'appartement."}},
+    {"qui": "kowalski", "air": "sourire", "t": "Ach, {amira}, kommen Sie rein. Passen Sie auf, der Kater liegt wieder vor der Tür.", "fr": "Ah, {amira}, entrez. Attention, le chat est encore couché devant la porte."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {kowalski}. Hallo, Mieze! Wie geht es Ihnen heute?", "fr": "Bonjour, {kowalski:voc}. Bonjour, minou ! Comment allez-vous aujourd'hui ?", "va": "frage",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Gut, danke. Aber ich hab eine Frage zu meiner neuen Tablette.", "fr": "Bien, merci. Mais j'ai une question sur mon nouveau comprimé."}]},
+    {"t": "Guten Morgen! Keine Sorge, ich passe auf. Wie geht es Ihnen?", "fr": "Bonjour ! Ne vous inquiétez pas, je fais attention. Comment allez-vous ?", "va": "frage",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Gut, danke. Aber ich hab eine Frage zu meiner neuen Tablette.", "fr": "Bien, merci. Mais j'ai une question sur mon nouveau comprimé."}]}
+   ]
+  },
+  "frage": {
+   "dit": [
+    {"qui": "kowalski", "air": "question", "t": "Der Hausarzt hat sie mir aufgeschrieben. Wofür ist die denn?", "fr": "Le médecin traitant me l'a prescrit. Il sert à quoi ?"}
+   ],
+   "choix": [
+    {"t": "Zeigen Sie mal … Das ist Ramipril. Das ist Ihre Tablette für den Blutdruck.", "fr": "Montrez-moi… C'est du ramipril. C'est votre comprimé pour la tension.", "va": "herz",
+     "relire": true, "relire_note": "Exemple de médicament.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Für den Blutdruck? Ich dachte, für das Herz.", "fr": "Pour la tension ? Je croyais que c'était pour le cœur."}]},
+    {"t": "Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.", "fr": "Je peux voir la boîte ? Ah, du ramipril. C'est contre l'hypertension.", "va": "herz",
+     "relire": true, "relire_note": "Exemple de médicament.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Für den Blutdruck? Ich dachte, für das Herz.", "fr": "Pour la tension ? Je croyais que c'était pour le cœur."}]},
+    {"faux": true, "t": "Keine Ahnung. Nehmen Sie sie einfach.", "fr": "Aucune idée. Prenez-le, tout simplement.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Einfach so? Ohne zu wissen, wofür?", "fr": "Comme ça ? Sans savoir à quoi il sert ?"}],
+     "aide": {"fr": "<b>Lis la boîte et le plan de médication, puis explique en mots simples : « für den Blutdruck ».</b> Si tu ne sais pas, dis-le et propose de demander : ne réponds jamais « nehmen Sie sie einfach »."}}
+   ]
+  },
+  "herz": {
+   "dit": [],
+   "choix": [
+    {"t": "Ein hoher Blutdruck ist schlecht für das Herz. Die Tablette senkt den Blutdruck und schützt so auch das Herz.", "fr": "Une tension trop haute est mauvaise pour le cœur. Le comprimé fait baisser la tension et protège donc aussi le cœur.", "va": "wann",
+     "relire": true, "relire_note": "Explication simple de l'effet.",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ach so. Und wann nehme ich sie?", "fr": "Ah bon. Et je le prends quand ?"}]},
+    {"t": "Das hängt zusammen: Wenn der Blutdruck gut eingestellt ist, wird das Herz entlastet.", "fr": "C'est lié : quand la tension est bien réglée, le cœur est soulagé.", "va": "wann",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ach so. Und wann nehme ich sie?", "fr": "Ah bon. Et je le prends quand ?"}]}
+   ]
+  },
+  "wann": {
+   "dit": [],
+   "choix": [
+    {"t": "Laut Medikamentenplan einmal täglich, morgens nach dem Frühstück, mit einem Glas Wasser.", "fr": "D'après le plan de médication, une fois par jour, le matin après le petit-déjeuner, avec un verre d'eau.", "va": "teilen",
+     "relire": true, "relire_note": "Moment de prise de l'exemple.",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Und kann ich sie zerkleinern? Die ist so groß.", "fr": "Et je peux l'écraser ? Il est si gros."}]},
+    {"t": "Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.", "fr": "Vous le prenez une fois par jour, le matin. C'est écrit ici, dans votre plan.", "va": "teilen",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Und kann ich sie zerkleinern? Die ist so groß.", "fr": "Et je peux l'écraser ? Il est si gros."}]},
+    {"faux": true, "t": "Die nehmen Sie, wann Sie wollen.", "fr": "Vous le prenez quand vous voulez.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Wann ich will? Auch abends um elf?", "fr": "Quand je veux ? Même le soir à onze heures ?"}],
+     "aide": {"fr": "<b>Le moment de la prise est dans le plan de médication : lis-le.</b> « Laut Medikamentenplan einmal täglich, morgens. » Chaque médicament a son heure, et ce n'est pas à la soignante de la choisir."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "teilen": {
+   "dit": [],
+   "choix": [
+    {"t": "Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.", "fr": "Je n'en suis pas sûre. Le mieux, c'est de demander à la pharmacie ou à votre médecin traitant.", "va": "anrufen",
+     "relire": true, "relire_note": "Renvoi au pharmacien.",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Gut. Rufen Sie für mich an?", "fr": "D'accord. Vous appelez pour moi ?"}]},
+    {"t": "Manche Tabletten darf man nicht zerkleinern. Ich frage in der Apotheke nach, bevor Sie das machen.", "fr": "Certains comprimés ne doivent pas être écrasés. Je demande à la pharmacie avant que vous le fassiez.", "va": "anrufen",
+     "relire": true, "relire_note": "Renvoi au pharmacien.",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Gut. Rufen Sie für mich an?", "fr": "D'accord. Vous appelez pour moi ?"}]},
+    {"faux": true, "t": "Ja, klar, Tabletten kann man immer zerkleinern.", "fr": "Oui, bien sûr, on peut toujours écraser un comprimé.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Immer? Auch die mit der Schicht drum?", "fr": "Toujours ? Même ceux qui ont un enrobage ?"}],
+     "aide": {"fr": "<b>Certains comprimés ne s'écrasent pas (enrobage, libération prolongée).</b> Quand tu ne sais pas, renvoie à la pharmacie : « Das fragen wir am besten in der Apotheke. » C'est une réponse professionnelle."},
+     "relire": true, "relire_note": "Vérifier l'aide."}
+   ]
+  },
+  "anrufen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, ich rufe heute Mittag in der Apotheke an und sage Ihnen morgen Bescheid.", "fr": "Oui, j'appelle la pharmacie ce midi et je vous dis demain.", "va": "insulin",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Danke. Und vergessen Sie mein Insulin nicht!", "fr": "Merci. Et n'oubliez pas mon insuline !"}]},
+    {"t": "Ich kläre das heute und schreibe die Antwort in Ihre Pflegemappe.", "fr": "Je règle ça aujourd'hui et j'écris la réponse dans votre classeur de soins.", "va": "insulin",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Danke. Und vergessen Sie mein Insulin nicht!", "fr": "Merci. Et n'oubliez pas mon insuline !"}]}
+   ]
+  },
+  "insulin": {
+   "dit": [],
+   "choix": [
+    {"t": "Natürlich nicht. Zuerst messe ich Ihren Blutzucker, dann bekommen Sie Ihr Insulin.", "fr": "Bien sûr que non. D'abord je mesure votre glycémie, ensuite vous recevez votre insuline.", "va": "fruehstueck",
+     "relire": true, "relire_note": "Ordre glycémie / insuline.",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Und danach darf ich frühstücken?", "fr": "Et après, je peux prendre mon petit-déjeuner ?"}]},
+    {"t": "Keine Sorge. Ich messe jetzt den Zucker, und dann gibt es das Insulin, wie im Plan.", "fr": "Ne vous inquiétez pas. Je mesure le sucre maintenant, et ensuite il y a l'insuline, comme dans le plan.", "va": "fruehstueck",
+     "relire": true, "relire_note": "Ordre glycémie / insuline.",
+     "puis": [{"qui": "kowalski", "air": "question", "t": "Und danach darf ich frühstücken?", "fr": "Et après, je peux prendre mon petit-déjeuner ?"}]}
+   ]
+  },
+  "fruehstueck": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, frühstücken Sie bitte bald, damit der Zucker nicht zu tief fällt. Und nach dem Frühstück kommt die neue Tablette.", "fr": "Oui, prenez votre petit-déjeuner rapidement, pour que le sucre ne baisse pas trop. Et après le petit-déjeuner, le nouveau comprimé.", "va": null,
+     "relire": true, "relire_note": "Repas après l'insuline (selon le type d'insuline).",
+     "puis": [{"qui": "kowalski", "air": "amuse", "t": "Und der Kater bekommt auch was. Sonst schimpft er.", "fr": "Et le chat aura quelque chose aussi. Sinon il râle."}]},
+    {"t": "Ja, gleich danach. Und denken Sie an die neue Tablette nach dem Frühstück.", "fr": "Oui, juste après. Et pensez au nouveau comprimé après le petit-déjeuner.", "va": null,
+     "puis": [{"qui": "kowalski", "air": "amuse", "t": "Und der Kater bekommt auch was. Sonst schimpft er.", "fr": "Et le chat aura quelque chose aussi. Sinon il râle."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wofür ist die neue Tablette?", "fr": "À quoi sert le nouveau comprimé ?"},
+   "options": [{"t": "Für den Blutdruck.", "fr": "Pour la tension."}, {"t": "Für den Magen.", "fr": "Pour l'estomac."}, {"t": "Gegen Schmerzen.", "fr": "Contre la douleur."}],
+   "juste": 0},
+  {"q": {"t": "Was möchte {kowalski} mit der Tablette machen?", "fr": "Que veut faire {kowalski} avec le comprimé ?"},
+   "options": [{"t": "Sie abends nehmen.", "fr": "Le prendre le soir."}, {"t": "Sie zerkleinern.", "fr": "L'écraser."}, {"t": "Sie nicht mehr nehmen.", "fr": "Ne plus le prendre."}],
+   "juste": 1},
+  {"q": {"t": "Wer hat die Tablette verschrieben?", "fr": "Qui a prescrit le comprimé ?"},
+   "options": [{"t": "Die Apotheke.", "fr": "La pharmacie."}, {"t": "Ein Kardiologe im Krankenhaus.", "fr": "Un cardiologue à l'hôpital."}, {"t": "Der Hausarzt.", "fr": "Le médecin traitant."}],
+   "juste": 2}
+ ]
+}

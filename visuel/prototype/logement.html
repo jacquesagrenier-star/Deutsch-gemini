@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Le logement</title>
 <!--
@@ -132,7 +133,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
@@ -214,9 +215,9 @@ const TEXTES = {
               en:"<b>KM + NK = Warmmiete</b> (basic rent plus bills). The <b>Kaution</b> is counted in months of basic rent: 3 MM = 3 × KM.",
               tr:"<b>KM + NK = Warmmiete</b> (çıplak kira artı giderler). <b>Kaution</b> çıplak kira ayı olarak sayılır: 3 MM = 3 × KM.",
               uk:"<b>KM + NK = Warmmiete</b> (оренда без комунальних плюс комунальні). <b>Kaution</b> рахують у місяцях оренди: 3 MM = 3 × KM.",
-              fa:"<b>KM + NK = Warmmiete</b> (اجاره بدون هزینه‌ها به‌علاوه هزینه‌ها). <b>Kaution</b> به ماه‌های اجاره شمرده می‌شود: 3 MM = 3 × KM.",
+              fa:"<b>KM + NK = Warmmiete</b> (اجاره بدون هزینه‌ها به‌علاوه هزینه‌ها). <b>Kaution</b> به ماه‌های اجارهٔ بدون هزینه‌ها شمرده می‌شود: 3 MM = 3 × KM.",
               ar:"<b>KM + NK = Warmmiete</b> (الإيجار الأساسي زائد المصاريف). تُحسب <b>Kaution</b> بأشهر الإيجار الأساسي: 3 MM = 3 × KM.",
-              pt:"<b>KM + NK = Warmmiete</b> (aluguel sem despesas mais as despesas). A <b>Kaution</b> se conta em meses de aluguel: 3 MM = 3 × KM.",
+              pt:"<b>KM + NK = Warmmiete</b> (aluguel sem despesas mais as despesas). A <b>Kaution</b> se conta em meses de aluguel sem despesas: 3 MM = 3 × KM.",
               pl:"<b>KM + NK = Warmmiete</b> (czynsz bez opłat plus opłaty). <b>Kaution</b> liczy się w miesiącach czynszu: 3 MM = 3 × KM.",
               ru:"<b>KM + NK = Warmmiete</b> (аренда без расходов плюс расходы). <b>Kaution</b> считают в месяцах аренды: 3 MM = 3 × KM.",
               de:"<b>KM + NK = Warmmiete</b>. Die <b>Kaution</b> zählt man in Monatsmieten (kalt): 3 MM = 3 × KM."},
@@ -242,7 +243,7 @@ const TEXTES = {
   vraifaux:  {fr:"Regarde la photo : vrai ou faux ?", en:"Look at the photo: true or false?", tr:"Fotoğrafa bak: doğru mu, yanlış mı?", uk:"Подивися на фото: правда чи ні?", fa:"به عکس نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a foto: verdadeiro ou falso?", pl:"Spójrz na zdjęcie: prawda czy fałsz?", ru:"Посмотри на фото: правда или нет?", de:"Sieh dir das Foto an: richtig oder falsch?"},
   entendre:  {fr:"Écoute la phrase et touche la bonne photo.", en:"Listen to the sentence and tap the right photo.", tr:"Cümleyi dinle ve doğru fotoğrafa dokun.", uk:"Послухай речення й торкнися потрібного фото.", fa:"جمله را گوش کن و روی عکس درست بزن.", ar:"استمع إلى الجملة والمس الصورة الصحيحة.", pt:"Ouça a frase e toque na foto certa.", pl:"Posłuchaj zdania i dotknij właściwego zdjęcia.", ru:"Послушай фразу и нажми на нужное фото.", de:"Hör dir den Satz an und tippe auf das richtige Foto."},
   plan:      {fr:"Regarde le plan et réponds.", en:"Look at the plan and answer.", tr:"Plana bak ve cevap ver.", uk:"Подивися на план і відповідай.", fa:"به نقشه نگاه کن و پاسخ بده.", ar:"انظر إلى المخطط وأجب.", pt:"Olhe a planta e responda.", pl:"Spójrz na plan i odpowiedz.", ru:"Посмотри на план и ответь.", de:"Sieh dir den Grundriss an und antworte."},
-  planZimmer:{fr:"Sur le plan, une pièce est en couleur : laquelle ?", en:"One room on the plan is coloured: which one?", tr:"Planda bir oda renkli: hangisi?", uk:"На плані одна кімната кольорова: яка?", fa:"در نقشه یک اتاق رنگی است: کدام؟", ar:"في المخطط غرفة ملوّنة: أيّها؟", pt:"Na planta, um cômodo está colorido: qual?", pl:"Na planie jeden pokój jest kolorowy: który?", ru:"На плане одна комната выделена: какая?", de:"Im Grundriss ist ein Zimmer markiert: Welches?"},
+  planZimmer:{fr:"Sur le plan, une pièce est en couleur : laquelle ?", en:"One room on the plan is colored: which one?", tr:"Planda bir oda renkli: hangisi?", uk:"На плані одна кімната кольорова: яка?", fa:"در نقشه یک اتاق رنگی است: کدام؟", ar:"في المخطط غرفة ملوّنة: أيّها؟", pt:"Na planta, um cômodo está colorido: qual?", pl:"Na planie jeden pokój jest kolorowy: który?", ru:"На плане одна комната выделена: какая?", de:"Im Grundriss ist ein Zimmer markiert: Welches?"},
   zaehlen:   {fr:"Compte les pièces sur le plan.", en:"Count the rooms on the plan.", tr:"Plandaki odaları say.", uk:"Порахуй кімнати на плані.", fa:"اتاق‌های نقشه را بشمار.", ar:"عُدّ الغرف في المخطط.", pt:"Conte os cômodos na planta.", pl:"Policz pokoje na planie.", ru:"Посчитай комнаты на плане.", de:"Zähle die Zimmer im Grundriss."},
   annonce:   {fr:"Lis l'annonce et réponds.", en:"Read the ad and answer.", tr:"İlanı oku ve cevap ver.", uk:"Прочитай оголошення й відповідай.", fa:"آگهی را بخوان و پاسخ بده.", ar:"اقرأ الإعلان وأجب.", pt:"Leia o anúncio e responda.", pl:"Przeczytaj ogłoszenie i odpowiedz.", ru:"Прочитай объявление и ответь.", de:"Lies die Anzeige und antworte."},
   abk:       {fr:"Que veut dire l'abréviation ?", en:"What does the abbreviation mean?", tr:"Kısaltma ne anlama geliyor?", uk:"Що означає скорочення?", fa:"این کوته‌نوشت یعنی چه؟", ar:"ماذا يعني الاختصار؟", pt:"O que quer dizer a abreviação?", pl:"Co znaczy skrót?", ru:"Что значит сокращение?", de:"Was bedeutet die Abkürzung?"},
@@ -354,7 +355,7 @@ function choixTraduit(c){
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -1692,7 +1693,7 @@ function decouvrir(){
 
 // LA PARTIE (« le tirage suit les mots ») -- recopie de familia.html / gato.html, identique d'un theme a l'autre
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus = new Set(), sorteCourante = null, derniereSorte = null;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone");
   const pl = z.querySelector(".plan[data-cle]");
@@ -1756,14 +1757,14 @@ function basDePartie(){
 }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }

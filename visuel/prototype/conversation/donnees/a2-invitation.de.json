@@ -1,0 +1,506 @@
+{
+ "id": "a2-invitation",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "du",
+ "titre": {
+  "fr": "Une invitation : accepter ou refuser"
+ },
+ "intro": {
+  "fr": "Javier, ton collègue, fête ses cinquante ans lundi, votre jour de fermeture, et il t'invite. À toi de choisir : accepter, ou refuser poliment et proposer autre chose."
+ },
+ "personnes": [
+  "a22_javier"
+ ],
+ "debut": "einladung",
+ "textes": {
+  "choix_fr": {
+   "cle": "antwort",
+   "ja": "accepté l'invitation de Javier pour ses cinquante ans, lundi à dix-huit heures",
+   "nein": "refusé poliment l'invitation de Javier et proposé de manger ensemble"
+  },
+  "tag_fr": {
+   "cle": "tag",
+   "mittag": " le lundi suivant, à midi",
+   "abend": " le lundi suivant, le soir"
+  },
+  "tag_fr2": {
+   "cle": "tag",
+   "mittag": "lundi midi",
+   "abend": "lundi soir"
+  },
+  "tag_de": {
+   "cle": "tag",
+   "mittag": "Montagmittag",
+   "abend": "Montagabend"
+  }
+ },
+ "noeuds": {
+  "einladung": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Jeudi, fin de journée. Javier s'arrête à ton bureau."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Du, ich werde am Montag fünfzig! Da haben wir ja Ruhetag: Ich mache ein Grillfest im Garten. Hast du Lust zu kommen?",
+     "fr": "Dis, lundi, j'ai cinquante ans ! C'est notre jour de fermeture : je fais un barbecue dans le jardin. Ça te dit de venir ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Oh, wie schön! Ja, ich komme sehr gern.",
+     "fr": "Oh, c'est super ! Oui, je viens avec grand plaisir.",
+     "pose": {
+      "antwort": "ja"
+     },
+     "va": "mitbringen",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Super, das freut mich!",
+       "fr": "Super, ça me fait plaisir !"
+      }
+     ]
+    },
+    {
+     "t": "Danke für die Einladung! Aber leider kann ich nicht: Meine Eltern besuchen mich.",
+     "fr": "Merci pour l'invitation ! Mais malheureusement, je ne peux pas : mes parents viennent me voir.",
+     "pose": {
+      "antwort": "nein"
+     },
+     "va": "schade",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "attentive",
+       "t": "Oh, schade! Aber Familie geht natürlich vor.",
+       "fr": "Oh, dommage ! Mais la famille passe avant, bien sûr."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nein, ich habe keine Zeit.",
+     "fr": "Non, je n'ai pas le temps.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "Oh … okay. Schade.",
+       "fr": "Oh… d'accord. Dommage."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Un « Nein » tout sec, ça vexe.</b> On remercie, on s'excuse et on donne une raison : « Danke für die Einladung! Aber leider kann ich nicht: … »"
+     }
+    },
+    {
+     "t": "Am Montag? Kannst du das noch mal sagen?",
+     "fr": "Lundi ? Tu peux répéter ?",
+     "va": "einladung",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Klar! Am Montag mache ich ein Grillfest bei mir im Garten. Kommst du?",
+       "fr": "Bien sûr ! Lundi, je fais un barbecue dans mon jardin. Tu viens ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "mitbringen": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Es gibt Würstchen, Salate und Kuchen. Und ganz viele Leute!",
+     "fr": "Il y aura des saucisses, des salades et du gâteau. Et plein de monde !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Was soll ich mitbringen?",
+     "fr": "Qu'est-ce que je dois apporter ?",
+     "va": "adresse",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Nichts! Na gut … vielleicht einen Salat, wenn du willst.",
+       "fr": "Rien ! Bon, d'accord… peut-être une salade, si tu veux."
+      }
+     ]
+    },
+    {
+     "t": "Soll ich einen Kuchen mitbringen?",
+     "fr": "Je dois apporter un gâteau ?",
+     "va": "adresse",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Oh ja, gern! Ich liebe Kuchen.",
+       "fr": "Oh oui, volontiers ! J'adore les gâteaux."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Was soll ich bringen mit?",
+     "fr": "Qu'est-ce que je dois apporter ?",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Was du mitbringen sollst? Nur gute Laune!",
+       "fr": "Ce que tu dois apporter ? Juste de la bonne humeur !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« mitbringen » est un verbe séparable</b> : après « soll », il reste entier, à la fin : « Was soll ich mitbringen? »"
+     }
+    }
+   ]
+  },
+  "adresse": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "attentive",
+     "t": "Ich wohne in der Wiener Straße 12, im Hinterhaus. Wir fangen um 18 Uhr an.",
+     "fr": "J'habite Wiener Straße, au numéro 12, dans le bâtiment sur cour. On commence à 18 h.",
+     "dit": "Ich wohne in der Wiener Straße zwölf, im Hinterhaus. Wir fangen um achtzehn Uhr an."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Wiener Straße zwölf, um sechs. Alles klar!",
+     "fr": "Wiener Straße, numéro douze, à six heures. C'est noté !",
+     "va": "begleitung",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Genau!",
+       "fr": "Exactement !"
+      }
+     ]
+    },
+    {
+     "t": "Wie komme ich am besten zu dir?",
+     "fr": "Comment je viens chez toi, le plus simple ?",
+     "va": "begleitung",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "attentive",
+       "t": "Mit der U1 bis Görlitzer Bahnhof, dann sind es fünf Minuten zu Fuß.",
+       "fr": "Avec la U1 jusqu'à Görlitzer Bahnhof, et ensuite c'est à cinq minutes à pied.",
+       "dit": "Mit der U-eins bis Görlitzer Bahnhof, dann sind es fünf Minuten zu Fuß."
+      }
+     ]
+    }
+   ]
+  },
+  "begleitung": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Kommst du allein oder mit Begleitung?",
+     "fr": "Tu viens seul(e) ou accompagné(e) ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Allein. Ist das okay?",
+     "fr": "Seul(e). Ça va ?",
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Natürlich! Du kennst ja schon ein paar Kollegen.",
+       "fr": "Bien sûr ! Tu connais déjà quelques collègues."
+      }
+     ]
+    },
+    {
+     "t": "Kann ich jemanden mitbringen?",
+     "fr": "Je peux amener quelqu'un ?",
+     "va": "essen",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Klar, je mehr Leute, desto besser!",
+       "fr": "Bien sûr, plus on est de fous, plus on rit !"
+      }
+     ]
+    }
+   ]
+  },
+  "essen": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Isst du eigentlich Fleisch? Ich will genug Essen für alle haben.",
+     "fr": "Au fait, tu manges de la viande ? Je veux avoir assez à manger pour tout le monde."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Nein, ich esse kein Fleisch.",
+     "fr": "Non, je ne mange pas de viande.",
+     "va": "tschuess",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Kein Problem, es gibt auch Gemüse und Käse vom Grill.",
+       "fr": "Pas de problème, il y aura aussi des légumes et du fromage grillés."
+      }
+     ]
+    },
+    {
+     "t": "Ja, ich esse alles.",
+     "fr": "Oui, je mange de tout.",
+     "va": "tschuess",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Perfekt!",
+       "fr": "Parfait !"
+      }
+     ]
+    }
+   ]
+  },
+  "schade": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Aber wir können ja ein anderes Mal etwas zusammen machen, oder?",
+     "fr": "Mais on peut faire quelque chose ensemble une autre fois, non ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, gern! Gehen wir nächste Woche zusammen essen?",
+     "fr": "Oui, volontiers ! On va manger ensemble la semaine prochaine ?",
+     "va": "tag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Gute Idee! Am Montag danach haben wir wieder frei. Mittags oder abends?",
+       "fr": "Bonne idée ! Le lundi suivant, on est de nouveau libres. Le midi ou le soir ?"
+      }
+     ]
+    },
+    {
+     "t": "Sehr gern! Ich lade dich am Montag danach zum Essen ein.",
+     "fr": "Avec plaisir ! Je t'invite à manger le lundi suivant.",
+     "va": "tag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Oh, da sage ich nicht nein! Mittags oder abends?",
+       "fr": "Oh, je ne dis pas non ! Le midi ou le soir ?"
+      }
+     ]
+    }
+   ]
+  },
+  "tag": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Javier sort son téléphone pour regarder son agenda."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Lieber mittags.",
+     "fr": "Plutôt le midi.",
+     "pose": {
+      "tag": "mittag"
+     },
+     "va": "uhrzeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Montagmittag, super!",
+       "fr": "Lundi midi, super !"
+      }
+     ]
+    },
+    {
+     "t": "Am Abend, das ist gemütlicher.",
+     "fr": "Le soir, c'est plus convivial.",
+     "pose": {
+      "tag": "abend"
+     },
+     "va": "uhrzeit",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Montagabend, gern!",
+       "fr": "Lundi soir, avec plaisir !"
+      }
+     ]
+    }
+   ]
+  },
+  "uhrzeit": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Und um wie viel Uhr? Um zwölf?",
+     "fr": "Et à quelle heure ? À midi ?",
+     "si": {
+      "tag": "mittag"
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Und um wie viel Uhr? Um sieben?",
+     "fr": "Et à quelle heure ? À sept heures ?",
+     "si": {
+      "tag": "abend"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ja, das passt mir gut.",
+     "fr": "Oui, ça me va bien.",
+     "va": "geburtstag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Abgemacht! Ich kenne ein tolles Restaurant.",
+       "fr": "Marché conclu ! Je connais un super restaurant."
+      }
+     ]
+    },
+    {
+     "t": "Lieber eine halbe Stunde später. Geht das?",
+     "fr": "Plutôt une demi-heure plus tard. Ça va ?",
+     "va": "geburtstag",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Kein Problem. Ich reserviere einen Tisch.",
+       "fr": "Pas de problème. Je réserve une table."
+      }
+     ]
+    }
+   ]
+  },
+  "geburtstag": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Und viel Spaß mit deinen Eltern am Montag!",
+     "fr": "Et amuse-toi bien avec tes parents lundi !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke! Und alles Gute zum Geburtstag!",
+     "fr": "Merci ! Et joyeux anniversaire !",
+     "va": "tschuess",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Danke, das ist lieb!",
+       "fr": "Merci, c'est gentil !"
+      }
+     ]
+    },
+    {
+     "t": "Danke! Und feiert schön am Montag!",
+     "fr": "Merci ! Et faites une belle fête lundi !",
+     "va": "tschuess",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Das machen wir!",
+       "fr": "On n'y manquera pas !"
+      }
+     ]
+    }
+   ]
+  },
+  "tschuess": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Dann bis Montag! Ich freue mich.",
+     "fr": "Alors à lundi ! Je me réjouis.",
+     "si": {
+      "antwort": "ja"
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Dann bis {tag_de}!",
+     "fr": "Alors à {tag_fr2} !",
+     "si": {
+      "antwort": "nein"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Ich mich auch. Bis Montag!",
+     "fr": "Moi aussi. À lundi !",
+     "si": {
+      "antwort": "ja"
+     },
+     "va": null
+    },
+    {
+     "t": "Bis {tag_de}! Ich freue mich.",
+     "fr": "À {tag_fr2} ! Je me réjouis.",
+     "si": {
+      "antwort": "nein"
+     },
+     "va": null
+    },
+    {
+     "t": "Danke noch mal, Javier! Bis morgen.",
+     "fr": "Merci encore, Javier ! À demain.",
+     "va": null
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as {choix_fr}{tag_fr}."
+ }
+}

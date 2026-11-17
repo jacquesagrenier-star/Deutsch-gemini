@@ -21,15 +21,20 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "wand",
@@ -70,7 +75,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -99,7 +105,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "schluessel",
@@ -146,7 +153,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "regal",
@@ -175,7 +183,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "aufzug",
@@ -204,7 +213,8 @@ window.SCENE = {
    "pt": "elevador",
    "ar": "مصعد",
    "pl": "winda",
-   "ru": "лифт"
+   "ru": "лифт",
+   "es": "el ascensor, el elevador"
   },
   {
    "id": "fenster",
@@ -233,7 +243,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "vorhang",
@@ -262,7 +273,8 @@ window.SCENE = {
    "pt": "cortina",
    "ar": "ستارة",
    "pl": "zasłona",
-   "ru": "штора, занавеска"
+   "ru": "штора, занавеска",
+   "es": "la cortina"
   },
   {
    "id": "pflanze",
@@ -291,7 +303,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "pflanze-2",
@@ -320,7 +333,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "treppe",
@@ -349,7 +363,8 @@ window.SCENE = {
    "pt": "escada",
    "ar": "درج، سلّم",
    "pl": "schody",
-   "ru": "лестница"
+   "ru": "лестница",
+   "es": "la escalera"
   },
   {
    "id": "bild-2",
@@ -378,7 +393,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "bild",
@@ -402,7 +418,8 @@ window.SCENE = {
      "pt": "pintura, quadro",
      "ar": "لوحة زيتية",
      "pl": "obraz (malowany)",
-     "ru": "картина (живопись)"
+     "ru": "картина (живопись)",
+     "es": "el cuadro, la pintura"
     }
    ],
    "sur": null,
@@ -423,7 +440,8 @@ window.SCENE = {
    "pt": "quadro",
    "ar": "صورة، لوحة",
    "pl": "obraz",
-   "ru": "картина, изображение"
+   "ru": "картина, изображение",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "spiegel",
@@ -452,7 +470,8 @@ window.SCENE = {
    "pt": "espelho",
    "ar": "مرآة",
    "pl": "lustro",
-   "ru": "зеркало"
+   "ru": "зеркало",
+   "es": "el espejo"
   },
   {
    "id": "lampe",
@@ -476,7 +495,8 @@ window.SCENE = {
      "pt": "luminária de chão",
      "ar": "مصباح أرضي",
      "pl": "lampa stojąca",
-     "ru": "торшер"
+     "ru": "торшер",
+     "es": "la lámpara de pie"
     }
    ],
    "sur": null,
@@ -503,7 +523,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "regenschirm",
@@ -532,7 +553,8 @@ window.SCENE = {
    "pt": "guarda-chuva",
    "ar": "مظلّة",
    "pl": "parasol",
-   "ru": "зонт"
+   "ru": "зонт",
+   "es": "el paraguas"
   },
   {
    "id": "mann",
@@ -561,7 +583,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "hemd",
@@ -602,7 +625,8 @@ window.SCENE = {
    "pt": "camisa",
    "ar": "قميص",
    "pl": "koszula",
-   "ru": "рубашка"
+   "ru": "рубашка",
+   "es": "la camisa"
   },
   {
    "id": "krawatte",
@@ -631,7 +655,8 @@ window.SCENE = {
    "pt": "gravata",
    "ar": "ربطة عنق",
    "pl": "krawat",
-   "ru": "галстук"
+   "ru": "галстук",
+   "es": "la corbata"
   },
   {
    "id": "anzug",
@@ -660,7 +685,8 @@ window.SCENE = {
    "pt": "terno",
    "ar": "بدلة",
    "pl": "garnitur",
-   "ru": "костюм"
+   "ru": "костюм",
+   "es": "el traje"
   },
   {
    "id": "bildschirm",
@@ -684,7 +710,8 @@ window.SCENE = {
      "pt": "computador",
      "ar": "حاسوب",
      "pl": "komputer",
-     "ru": "компьютер"
+     "ru": "компьютер",
+     "es": "la computadora"
     }
    ],
    "sur": null,
@@ -705,7 +732,8 @@ window.SCENE = {
    "pt": "tela",
    "ar": "شاشة",
    "pl": "ekran",
-   "ru": "экран"
+   "ru": "экран",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -734,7 +762,8 @@ window.SCENE = {
    "pt": "teclado",
    "ar": "لوحة المفاتيح",
    "pl": "klawiatura",
-   "ru": "клавиатура"
+   "ru": "клавиатура",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -763,7 +792,8 @@ window.SCENE = {
    "pt": "rato",
    "ar": "فأر",
    "pl": "mysz",
-   "ru": "мышь"
+   "ru": "мышь",
+   "es": "el ratón"
   },
   {
    "id": "schluessel-2",
@@ -792,7 +822,8 @@ window.SCENE = {
    "pt": "chave",
    "ar": "مفتاح",
    "pl": "klucz",
-   "ru": "ключ"
+   "ru": "ключ",
+   "es": "la llave"
   },
   {
    "id": "mark",
@@ -821,7 +852,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "pullover",
@@ -850,7 +882,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "mantel",
@@ -879,7 +912,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "pass",
@@ -908,7 +942,8 @@ window.SCENE = {
    "pt": "passaporte",
    "ar": "جواز سفر",
    "pl": "paszport",
-   "ru": "паспорт"
+   "ru": "паспорт",
+   "es": "el pasaporte"
   },
   {
    "id": "hose",
@@ -932,7 +967,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "mark",
@@ -953,7 +989,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "schuh",
@@ -982,7 +1019,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "rucksack",
@@ -1011,7 +1049,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "koffer",
@@ -1040,7 +1079,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "koffer-2",
@@ -1069,7 +1109,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "sofa",
@@ -1098,7 +1139,8 @@ window.SCENE = {
    "pt": "sofá",
    "ar": "أريكة، كنبة",
    "pl": "kanapa",
-   "ru": "диван"
+   "ru": "диван",
+   "es": "el sofá"
   },
   {
    "id": "kissen",
@@ -1127,7 +1169,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "frau",
@@ -1156,7 +1199,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "brille",
@@ -1191,7 +1235,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "zeitung",
@@ -1220,7 +1265,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "mantel-2",
@@ -1249,7 +1295,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "blume",
@@ -1278,7 +1325,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "glas",
@@ -1307,7 +1355,8 @@ window.SCENE = {
    "pt": "copo",
    "ar": "كوب زجاجي",
    "pl": "szklanka, szkło",
-   "ru": "стакан"
+   "ru": "стакан",
+   "es": "el vaso"
   },
   {
    "id": "tasse",
@@ -1331,7 +1380,8 @@ window.SCENE = {
      "pt": "café",
      "ar": "قهوة",
      "pl": "kawa",
-     "ru": "кофе"
+     "ru": "кофе",
+     "es": "el café"
     }
    ],
    "sur": "couchtisch",
@@ -1352,7 +1402,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "couchtisch",
@@ -1376,7 +1427,8 @@ window.SCENE = {
      "pt": "mesa",
      "ar": "طاولة",
      "pl": "stół",
-     "ru": "стол"
+     "ru": "стол",
+     "es": "la mesa"
     }
    ],
    "sur": null,
@@ -1397,7 +1449,8 @@ window.SCENE = {
    "pt": "mesa de centro",
    "ar": "طاولة القهوة",
    "pl": "stolik kawowy, ława",
-   "ru": "журнальный столик"
+   "ru": "журнальный столик",
+   "es": "la mesa de centro"
   },
   {
    "id": "klingel",
@@ -1426,7 +1479,8 @@ window.SCENE = {
    "pt": "campainha",
    "ar": "جرس",
    "pl": "dzwonek",
-   "ru": "звонок"
+   "ru": "звонок",
+   "es": "el timbre"
   },
   {
    "id": "telefon",
@@ -1455,7 +1509,8 @@ window.SCENE = {
    "pt": "telefone",
    "ar": "هاتف",
    "pl": "telefon",
-   "ru": "телефон"
+   "ru": "телефон",
+   "es": "el teléfono"
   },
   {
    "id": "prospekt",
@@ -1484,7 +1539,8 @@ window.SCENE = {
    "pt": "folheto",
    "ar": "نشرة إعلانية",
    "pl": "prospekt, ulotka",
-   "ru": "рекламный проспект"
+   "ru": "рекламный проспект",
+   "es": "el folleto publicitario"
   },
   {
    "id": "papier",
@@ -1508,7 +1564,8 @@ window.SCENE = {
      "pt": "formulário",
      "ar": "استمارة",
      "pl": "formularz",
-     "ru": "бланк, форма"
+     "ru": "бланк, форма",
+     "es": "el formulario"
     }
    ],
    "sur": "rezeption",
@@ -1529,7 +1586,8 @@ window.SCENE = {
    "pt": "papel",
    "ar": "ورق",
    "pl": "papier",
-   "ru": "бумага"
+   "ru": "бумага",
+   "es": "el papel"
   },
   {
    "id": "kugelschreiber",
@@ -1558,7 +1616,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "pflanze-3",
@@ -1587,7 +1646,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "rezeption",
@@ -1616,7 +1676,8 @@ window.SCENE = {
    "pt": "recepção (hotel)",
    "ar": "مكتب الاستقبال",
    "pl": "recepcja",
-   "ru": "стойка регистрации, ресепшен"
+   "ru": "стойка регистрации, ресепшен",
+   "es": "la recepción"
   },
   {
    "id": "boden",
@@ -1640,7 +1701,8 @@ window.SCENE = {
      "pt": "tapete",
      "ar": "سجّادة",
      "pl": "dywan",
-     "ru": "ковёр"
+     "ru": "ковёр",
+     "es": "la alfombra, el tapete"
     }
    ],
    "sur": null,
@@ -1667,7 +1729,8 @@ window.SCENE = {
    "pt": "chão, solo",
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
-   "ru": "почва, пол"
+   "ru": "почва, пол",
+   "es": "el suelo"
   }
  ],
  "grosPlans": [],
@@ -2618,6 +2681,75 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "Пожилая дама, возможно, постоянная гостья.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Номер, вероятно, на втором этаже.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Говорят, этот отель — самый старый в Гамбурге."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark llega a su hotel en Hamburgo, un viernes por la noche: el recepcionista de traje le entrega la llave de su habitación por encima del mostrador, Mark la toma, con el pasaporte en la otra mano; su maleta gris y su mochila están a su lado; sobre el mostrador, una pantalla, un teléfono, un timbre, folletos, un formulario y un bolígrafo, una planta; en la pared, un tablero de llaves, un reloj, el ascensor; al fondo, la escalera con alfombra roja, una ventana con cortina verde, un paraguas; en el rincón de la sala de estar, una señora mayor lee el periódico en el sofá verde, cerca de una mesa de centro con un café y flores, de una lámpara de pie, de un espejo, de un cuadro de un velero y de una pequeña maleta marrón.",
+    "consigne": "Mark pasa el fin de semana en Hamburgo: llega a su hotel. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Las preposiciones de tiempo: am, um, im, von … bis, ab, nach",
+    "B2": "Las subordinadas de tiempo: während, solange, sobald",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Schlüssel hängen im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
+    "A2 | Der Koffer steht auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "das Sofa → auf <b>dem</b> Sofa.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "der Couchtisch → auf <b>dem</b> Couchtisch.",
+    "A2 | Die Klingel steht auf der Rezeption.": "die Rezeption → auf <b>der</b> Rezeption: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Das Bild hängt über dem Sofa.": "<b>über</b> = encima de. das Sofa → über <b>dem</b> Sofa.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "<b>neben</b> = al lado de. der Spiegel → neben <b>dem</b> Spiegel.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "<b>ab</b> + hora = a partir de.",
+    "B1 | Mark kommt am Freitagabend an.": "<b>am</b> + día o momento del día: am Freitagabend. El español no pone preposición: «el viernes por la noche».",
+    "B1 | Er bleibt bis Sonntag.": "<b>bis</b> + día = hasta.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "<b>um</b> + hora exacta: «a las tres».",
+    "B1 | Im Winter ist das Hotel ruhig.": "<b>im</b> + estación o mes: im Winter.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "<b>von … bis</b> = de… a.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "<b>nach</b> + dativo = después de: nach dem Frühstück.",
+    "B1 | Die Frau liest am Abend Zeitung.": "<b>am</b> Abend, am Morgen: los momentos del día.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "<b>während</b> = mientras (dos acciones al mismo tiempo), verbo al final.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "<b>sobald</b> = en cuanto.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "<b>solange</b> = mientras (todo el tiempo que).",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Después de <b>während</b>, el verbo conjugado va al final: gibt.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "<b>sobald</b> + presente, verbo al final: ist. El alemán no usa aquí el subjuntivo.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Después de la subordinada, la principal empieza por el verbo y luego va el sujeto (die Gäste → nehmen).",
+    "C1 | Er muss sich auf das Wochenende freuen.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "El reloj cuelga en la pared.",
+    "A2 | Die Schlüssel hängen im Regal.": "Las llaves cuelgan en el estante.",
+    "A2 | Der Koffer steht auf dem Boden.": "La maleta está en el piso.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "La mujer está sentada en el sofá.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "La taza está sobre la mesa de centro.",
+    "A2 | Die Klingel steht auf der Rezeption.": "El timbre está sobre el mostrador de la recepción.",
+    "A2 | Das Bild hängt über dem Sofa.": "El cuadro cuelga encima del sofá.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "La lámpara está junto al espejo.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "El desayuno se sirve a partir de las siete.",
+    "B1 | Mark kommt am Freitagabend an.": "Mark llega el viernes por la noche.",
+    "B1 | Er bleibt bis Sonntag.": "Se queda hasta el domingo.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "La habitación está lista a las tres.",
+    "B1 | Im Winter ist das Hotel ruhig.": "En invierno, el hotel es tranquilo.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "La recepción atiende de las siete a las veintitrés horas.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Después del desayuno, Mark va al centro.",
+    "B1 | Die Frau liest am Abend Zeitung.": "La mujer lee el periódico por la noche.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Mientras Mark espera la llave, la mujer lee el periódico.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "En cuanto Mark tiene la llave, sube a su habitación.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "La mujer se queda en el hotel mientras llueva.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "El hombre sonríe mientras le da la llave a Mark.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "En cuanto la habitación está lista, la recepción llama.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Mientras el ascensor esté descompuesto, los huéspedes usan las escaleras.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Debe de estar esperando con ganas el fin de semana.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "La señora mayor podría ser una clienta habitual.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "La habitación probablemente está en el segundo piso.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Dicen que este hotel es el más antiguo de Hamburgo."
    }
   }
  }

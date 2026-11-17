@@ -1,0 +1,880 @@
+{
+ "_lisez_moi": [
+  "Scene de soins 5, l'admission (14 nov. 2026). Memes regles que les scenes generales (klassenzimmer.points.json, arztpraxis.points.json) ; construite par visuel/prototype/construire.py, qui lit aussi pflege/datos/themes.json pour une scene soins-. Controle : python pflege/outils/construire_scenes.py soins-aufnahme.",
+  "La patiente est Frau Lehmann (74 ans, diabete, plaie au pied), arrivee a pied avec sa fille, Frau Kruger (pflege/sources/noms.json) : ecart a l'annexe B approuve par le chef le 14 nov. (Herr Brandt, opere de la hanche, arrive couche).",
+  "Zones mesurees sur une grille de 5 % de l'image REELLE (prompt et recu : pflege/scenes/soins-aufnahme.*). Le plan de medication de l'annexe ne se voit pas : pas de zone. Le chevet porte les objets recopies de la chambre (verre, gobelet, lunettes, boite) : ils ont leur zone.",
+  "Couches : BROUILLON non relu ; ce qui porte ⚕️ attend l'infirmiere relectrice."
+ ],
+ "image": "soins-aufnahme.webp",
+ "source": "~/.wortando/pflege/scenes/soins-aufnahme.png",
+ "titre": "Die Aufnahme",
+ "alt": "Une chambre d'hôpital au moment de l'admission : Frau Lehmann, 74 ans, le pied bandé dans une chaussure de décharge, est assise dans un fauteuil ; sa fille lui tend une chemise de documents ; sur la tablette, la fiche d'admission, la carte d'assurance, le carnet d'allergies, le sachet des objets de valeur ; à côté, une canne, une valise, un sac, la toise.",
+ "consigne": "Touche un objet, Frau Lehmann ou sa fille.",
+ "couches": {
+  "A1": {
+   "titre": "Les objets de l'admission"
+  },
+  "A2": {
+   "titre": "Les questions en W",
+   "qs": [
+    {
+     "q": "___ heißen Sie?",
+     "c": [
+      "Wie",
+      "Was",
+      "Wo"
+     ],
+     "f": "patientin",
+     "phrase": "Wie heißen Sie?",
+     "sens": "Comment vous appelez-vous ?",
+     "n": "<b>Wie</b> heißen Sie? — jamais « Was heißen Sie ». À une patiente : <b>Sie</b>."
+    },
+    {
+     "q": "___ sind Sie geboren?",
+     "c": [
+      "Wann",
+      "Wie",
+      "Wer"
+     ],
+     "f": "patientin",
+     "phrase": "Wann sind Sie geboren?",
+     "sens": "Quand êtes-vous née ?",
+     "n": "La date : <b>wann</b> ; le lieu : <b>wo</b> (Wo sind Sie geboren?)."
+    },
+    {
+     "q": "___ ist die Dame neben Ihnen?",
+     "c": [
+      "Wer",
+      "Was",
+      "Wo"
+     ],
+     "f": "tochter",
+     "phrase": "Wer ist die Dame neben Ihnen?",
+     "sens": "Qui est la dame à côté de vous ?",
+     "n": "<b>Wer?</b> pour une personne, <b>Was?</b> pour une chose."
+    },
+    {
+     "q": "___ Medikamente nehmen Sie?",
+     "c": [
+      "Welche",
+      "Wer",
+      "Wie"
+     ],
+     "f": "patientin",
+     "phrase": "Welche Medikamente nehmen Sie?",
+     "sens": "Quels médicaments prenez-vous ?",
+     "n": "<b>welche</b> + nom au pluriel = quels, quelles."
+    },
+    {
+     "q": "Wie ___ sind Sie?",
+     "c": [
+      "groß",
+      "viel",
+      "lang"
+     ],
+     "f": "waage",
+     "phrase": "Wie groß sind Sie?",
+     "sens": "Combien mesurez-vous ?",
+     "n": "La taille d'une personne : <b>Wie groß</b> ? Le poids : <b>Wie viel</b> wiegen Sie?"
+    },
+    {
+     "q": "___ ist Ihre Versichertenkarte?",
+     "c": [
+      "Wo",
+      "Wann",
+      "Wie"
+     ],
+     "f": "karte",
+     "phrase": "Wo ist Ihre Versichertenkarte?",
+     "sens": "Où est votre carte d'assurance maladie ?",
+     "n": "<b>Wo?</b> = où. <b>Ihre</b>, avec une majuscule = votre."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les questions indirectes",
+   "qs": [
+    {
+     "q": "Können Sie mir sagen, ___ Sie Allergien haben?",
+     "c": [
+      "ob",
+      "dass",
+      "wenn"
+     ],
+     "f": "allergiepass",
+     "phrase": "Können Sie mir sagen, ob Sie Allergien haben?",
+     "sens": "Pouvez-vous me dire si vous avez des allergies ?",
+     "n": "Une question oui / non devient indirecte avec <b>ob</b> ; le verbe va à la fin (haben)."
+    },
+    {
+     "q": "Darf ich fragen, ___ Sie zu Hause wohnen?",
+     "c": [
+      "mit wem",
+      "mit wer",
+      "wem mit"
+     ],
+     "f": "patientin",
+     "phrase": "Darf ich fragen, mit wem Sie zu Hause wohnen?",
+     "sens": "Puis-je vous demander avec qui vous habitez ?",
+     "n": "<b>mit</b> + datif : mit <b>wem</b> (avec qui)."
+    },
+    {
+     "q": "Wissen Sie, ___?",
+     "c": [
+      "wann Sie die letzte Tablette genommen haben",
+      "wann haben Sie die letzte Tablette genommen",
+      "ob wann Sie die letzte Tablette genommen haben"
+     ],
+     "f": "patientin",
+     "phrase": "Wissen Sie, wann Sie die letzte Tablette genommen haben?",
+     "sens": "Savez-vous quand vous avez pris le dernier comprimé ?",
+     "n": "Dans une question indirecte, le verbe conjugué (<b>haben</b>) va tout à la fin."
+    },
+    {
+     "q": "Ich möchte wissen, ___ Ihre Tochter Sie besucht.",
+     "c": [
+      "wie oft",
+      "wie viel",
+      "wann oft"
+     ],
+     "f": "tochter",
+     "phrase": "Ich möchte wissen, wie oft Ihre Tochter Sie besucht.",
+     "sens": "J'aimerais savoir à quelle fréquence votre fille vous rend visite.",
+     "n": "<b>wie oft</b> = combien de fois ; le verbe (besucht) va à la fin."
+    },
+    {
+     "q": "Können Sie mir zeigen, ___ Ihre Wertsachen sind?",
+     "c": [
+      "wo",
+      "wohin",
+      "woher"
+     ],
+     "f": "wertsachenbeutel",
+     "phrase": "Können Sie mir zeigen, wo Ihre Wertsachen sind?",
+     "sens": "Pouvez-vous me montrer où sont vos objets de valeur ?",
+     "n": "<b>wo</b> : le lieu, sans mouvement (wohin = où on va, woher = d'où)."
+    },
+    {
+     "q": "Frau Krüger, wissen Sie, ___ Ihre Mutter eine Patientenverfügung hat?",
+     "c": [
+      "ob",
+      "dass",
+      "wenn"
+     ],
+     "f": "mappe",
+     "r": "tochter",
+     "phrase": "Frau Krüger, wissen Sie, ob Ihre Mutter eine Patientenverfügung hat?",
+     "sens": "Madame Krüger, savez-vous si votre mère a des directives anticipées ?",
+     "n": "Encore <b>ob</b> : on ne sait pas si la réponse est oui ou non."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les questions de l'anamnèse",
+   "qs": [
+    {
+     "q": "___ haben Sie die Wunde am Fuß?",
+     "c": [
+      "Seit wann",
+      "Ab wann",
+      "Bis wann"
+     ],
+     "f": "verband",
+     "phrase": "Seit wann haben Sie die Wunde am Fuß?",
+     "sens": "Depuis quand avez-vous cette plaie au pied ?",
+     "n": "<b>Seit wann</b> + présent : la plaie est toujours là (le français dit aussi « depuis quand »)."
+    },
+    {
+     "q": "___ messen Sie zu Hause Ihren Blutzucker?",
+     "c": [
+      "Wie oft",
+      "Wie viel",
+      "Wie lange"
+     ],
+     "f": "patientin",
+     "phrase": "Wie oft messen Sie zu Hause Ihren Blutzucker?",
+     "sens": "Combien de fois mesurez-vous votre glycémie à la maison ?",
+     "n": "La fréquence : <b>wie oft</b> ; la durée : wie lange ; la quantité : wie viel."
+    },
+    {
+     "q": "Unter ___ Umständen haben Sie Schmerzen?",
+     "c": [
+      "welchen",
+      "welche",
+      "welcher"
+     ],
+     "f": "verband",
+     "phrase": "Unter welchen Umständen haben Sie Schmerzen?",
+     "sens": "Dans quelles circonstances avez-vous mal ?",
+     "n": "<b>unter</b> + datif pluriel : unter welch<b>en</b> Umständen."
+    },
+    {
+     "q": "Tut es weh, ___ Sie mit dem Fuß auftreten?",
+     "c": [
+      "wenn",
+      "als",
+      "ob"
+     ],
+     "f": "verband",
+     "phrase": "Tut es weh, wenn Sie mit dem Fuß auftreten?",
+     "sens": "Avez-vous mal quand vous posez le pied ?",
+     "n": "<b>wenn</b> = chaque fois que ; <b>als</b> = une seule fois, dans le passé."
+    },
+    {
+     "q": "Wie lange ___ Sie schon Diabetes?",
+     "c": [
+      "haben",
+      "hatten",
+      "sind"
+     ],
+     "f": "patientin",
+     "phrase": "Wie lange haben Sie schon Diabetes?",
+     "sens": "Depuis combien de temps avez-vous du diabète ?",
+     "n": "<b>schon</b> + présent : ça dure encore aujourd'hui."
+    },
+    {
+     "q": "Nehmen Sie das Schmerzmittel regelmäßig ___ nur bei Bedarf?",
+     "c": [
+      "oder",
+      "aber",
+      "sondern"
+     ],
+     "f": "patientin",
+     "phrase": "Nehmen Sie das Schmerzmittel regelmäßig oder nur bei Bedarf?",
+     "sens": "Prenez-vous l'antidouleur régulièrement ou seulement si besoin ?",
+     "n": "<b>oder</b> = ou. <b>bei Bedarf</b> = si besoin, une formule des prescriptions."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Reformuler pour vérifier",
+   "qs": [
+    {
+     "q": "Frau Lehmann sagt: „Ich spritze morgens und abends.“ Wie vergewissern Sie sich?",
+     "c": [
+      "Habe ich Sie richtig verstanden, dass Sie zweimal täglich Insulin spritzen?",
+      "Sie spritzen also nie?",
+      "Was spritzen Sie da eigentlich?"
+     ],
+     "f": "patientin",
+     "phrase": "Habe ich Sie richtig verstanden, dass Sie zweimal täglich Insulin spritzen?",
+     "sens": "Ai-je bien compris que vous vous injectez de l'insuline deux fois par jour ?",
+     "n": "<b>Habe ich Sie richtig verstanden, dass</b> … : on reprend ses mots en termes précis, le verbe va à la fin."
+    },
+    {
+     "q": "Frau Krüger sagt: „Mama ist in letzter Zeit öfter hingefallen.“ Was antworten Sie?",
+     "c": [
+      "Wenn ich Sie richtig verstehe, ist Ihre Mutter in den letzten Wochen mehrmals gestürzt?",
+      "Hingefallen? Das ist doch normal in dem Alter.",
+      "Das gehört nicht hierher."
+     ],
+     "f": "tochter",
+     "phrase": "Wenn ich Sie richtig verstehe, ist Ihre Mutter in den letzten Wochen mehrmals gestürzt?",
+     "sens": "Si je vous comprends bien, votre mère est tombée plusieurs fois ces dernières semaines ?",
+     "n": "Reformuler dans le registre du soin : hinfallen → <b>stürzen</b> ; öfter → <b>mehrmals</b>. Une chute se signale toujours ⚕️."
+    },
+    {
+     "q": "Frau Lehmann sagt: „Ich vertrage kein … wie heißt das … Penizillin.“ Was sagen Sie?",
+     "c": [
+      "Sie meinen, Sie sind gegen Penizillin allergisch?",
+      "Sie meinen, Sie mögen kein Penizillin?",
+      "Sie meinen, Sie nehmen Penizillin?"
+     ],
+     "f": "allergiepass",
+     "phrase": "Sie meinen, Sie sind gegen Penizillin allergisch?",
+     "sens": "Vous voulez dire que vous êtes allergique à la pénicilline ?",
+     "n": "<b>Sie meinen, …?</b> : on propose le terme exact. <b>allergisch gegen</b> + accusatif."
+    },
+    {
+     "q": "Frau Lehmann sagt: „Die Wunde ist schon länger da.“ Wie fragen Sie genauer nach?",
+     "c": [
+      "Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?",
+      "Länger? Dann ist es ja nicht schlimm.",
+      "Warum sind Sie nicht früher gekommen?"
+     ],
+     "f": "verband",
+     "phrase": "Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?",
+     "sens": "Pourriez-vous préciser : depuis des jours, des semaines ou des mois ?",
+     "n": "Préciser sans juger : le Konjunktiv II poli (<b>Könnten Sie</b>) et des choix concrets à proposer."
+    },
+    {
+     "q": "Am Ende des Gesprächs fassen Sie zusammen. Was sagen Sie?",
+     "c": [
+      "Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?",
+      "Zusammenfassend Sie leben allein und Tochter kommt.",
+      "Ich habe alles, tschüss."
+     ],
+     "f": "tochter",
+     "r": "patientin",
+     "phrase": "Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?",
+     "sens": "Puis-je résumer : vous vivez seule, et votre fille vient tous les jours ?",
+     "n": "On annonce le résumé (<b>Darf ich kurz zusammenfassen</b>), puis on le fait confirmer par une question."
+    }
+   ]
+  },
+  "SIT": {
+   "titre": "Que répondez-vous ?",
+   "niveau": "B2",
+   "qs": [
+    {
+     "q": "Frau Krüger sagt: „Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.“",
+     "c": [
+      "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
+      "Keine Sorge, das ist normal bei alten Leuten.",
+      "Das ist nicht schlimm."
+     ],
+     "f": "tochter",
+     "type": "situation",
+     "phrase": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
+     "sens": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée.",
+     "n": "<b>Ne généralise pas (« bei alten Leuten ») et prends l'inquiétude au sérieux.</b> Une confusion nouvelle n'est pas « normale » : c'est un signe à transmettre au médecin. Dis plutôt ce que tu as observé aujourd'hui. ⚕️",
+     "source": "d05-angehoerige/sorgen"
+    },
+    {
+     "q": "Frau Krüger fragt: „Das ist schön. Und der Fuß? Muss sie operiert werden? Ich habe gelesen, dass man bei Diabetes manchmal …“",
+     "c": [
+      "Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.",
+      "Nein, keine Sorge, sie wird bestimmt nicht operiert.",
+      "Die Wunde ist ziemlich eklig."
+     ],
+     "f": "tochter",
+     "type": "situation",
+     "phrase": "Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.",
+     "sens": "Pour les résultats des examens et le traitement, le médecin pourra vous en dire plus. Ce que je peux vous dire, c'est que nous soignons la plaie tous les jours.",
+     "n": "<b>Ne promets rien sur le diagnostic ni sur une opération.</b> Ce n'est pas ton rôle, et une promesse fausse détruit la confiance. Renvoie au médecin : « Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen. » ⚕️",
+     "source": "d05-angehoerige/befund"
+    },
+    {
+     "q": "Frau Krüger fragt: „Hm. Und wann kann ich mit ihr sprechen?“",
+     "c": [
+      "Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.",
+      "Rufen Sie einfach die Ärztin an. Die Nummer steht im Internet.",
+      "Das darf ich Ihnen nicht sagen."
+     ],
+     "f": "tochter",
+     "type": "situation",
+     "phrase": "Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.",
+     "sens": "Voulez-vous que je vous organise un entretien avec la docteure Sommer ? Après la visite, elle a souvent du temps.",
+     "n": "<b>Propose ton aide pour organiser l'entretien.</b> « Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren? » : « Soll ich …? » propose un service, poliment.",
+     "source": "d05-angehoerige/termin"
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    1.4,
+    12.6,
+    8.6,
+    5.4
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "boite": [
+    35.1,
+    6.0,
+    24.5,
+    27.6
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "sichtschutz",
+   "mot": "Sichtschutz",
+   "boite": [
+    0,
+    22.0,
+    11.8,
+    28.0
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    10.0,
+    38.3,
+    16.5,
+    11.6
+   ],
+   "polygone": [
+    [
+     9.9,
+     39.2
+    ],
+    [
+     11.6,
+     38.3
+    ],
+    [
+     26.0,
+     37.9
+    ],
+    [
+     26.1,
+     38.9
+    ],
+    [
+     25.4,
+     39.6
+    ],
+    [
+     25.2,
+     41.2
+    ],
+    [
+     24.4,
+     44.3
+    ],
+    [
+     22.5,
+     45.7
+    ],
+    [
+     20.0,
+     47.3
+    ],
+    [
+     17.6,
+     48.5
+    ],
+    [
+     10.7,
+     48.8
+    ],
+    [
+     10.3,
+     40.0
+    ]
+   ]
+  },
+  {
+   "id": "wasserglas",
+   "mot": "Wasserglas",
+   "boite": [
+    15.0,
+    36.6,
+    2.6,
+    2.2
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "schnabelbecher",
+   "mot": "Schnabelbecher",
+   "boite": [
+    19.8,
+    36.4,
+    4.0,
+    2.2
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "brille-nt",
+   "mot": "Brille",
+   "boite": [
+    18.5,
+    38.4,
+    4.6,
+    1.2
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "prothesendose",
+   "mot": "Zahnprothese",
+   "boite": [
+    18.3,
+    42.6,
+    3.6,
+    1.5
+   ],
+   "sur": "nachttisch"
+  },
+  {
+   "id": "pflegebett",
+   "mot": "Pflegebett",
+   "aussi": [
+    "Bett"
+   ],
+   "boite": [
+    9.2,
+    33.5,
+    48.5,
+    21.5
+   ]
+  },
+  {
+   "id": "sessel",
+   "mot": "Sessel",
+   "boite": [
+    25.5,
+    39.8,
+    43.0,
+    44.7
+   ]
+  },
+  {
+   "id": "patientin",
+   "mot": "Patientin",
+   "aussi": [
+    "Frau"
+   ],
+   "boite": [
+    32.2,
+    37.6,
+    35.2,
+    54.0
+   ],
+   "sur": "sessel"
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "ellipses": [
+    [
+     45.3,
+     42.1,
+     4.4,
+     1.0
+    ]
+   ],
+   "sur": "patientin"
+  },
+  {
+   "id": "verband",
+   "mot": "Verband",
+   "boite": [
+    49.3,
+    78.5,
+    7.4,
+    5.8
+   ],
+   "sur": "patientin",
+   "sens_zone": {
+    "fr": "pansement",
+    "en": "bandage",
+    "tr": "sargı",
+    "uk": "повʼязка",
+    "fa": "باند زخم",
+    "ar": "ضمادة",
+    "pt": "curativo, atadura",
+    "pl": "opatrunek, bandaż",
+    "ru": "повязка",
+    "es": "el vendaje"
+   }
+  },
+  {
+   "id": "schuh-l",
+   "mot": "Schuh",
+   "boite": [
+    50.6,
+    83.4,
+    10.5,
+    7.9
+   ],
+   "sur": "patientin"
+  },
+  {
+   "id": "schuh-r",
+   "mot": "Schuh",
+   "boite": [
+    56.1,
+    79.9,
+    11.1,
+    7.4
+   ],
+   "sur": "patientin"
+  },
+  {
+   "id": "tochter",
+   "mot": "Tochter",
+   "aussi": [
+    "Frau"
+   ],
+   "boite": [
+    73.2,
+    24.8,
+    26.8,
+    46.0
+   ]
+  },
+  {
+   "id": "mappe",
+   "mot": "Mappe",
+   "boite": [
+    57.6,
+    49.3,
+    19.0,
+    2.8
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    0,
+    54.2,
+    48.5,
+    45.8
+   ],
+   "points_sam": [
+    [
+     30,
+     70.5,
+     1
+    ],
+    [
+     16,
+     80,
+     1
+    ],
+    [
+     25,
+     92,
+     1
+    ],
+    [
+     3,
+     88,
+     0
+    ],
+    [
+     8,
+     97,
+     0
+    ],
+    [
+     2,
+     75,
+     0
+    ],
+    [
+     18.5,
+     86,
+     0
+    ],
+    [
+     23,
+     99.3,
+     0
+    ],
+    [
+     12.5,
+     83,
+     0
+    ],
+    [
+     35,
+     96,
+     0
+    ],
+    [
+     29,
+     87.5,
+     0
+    ],
+    [
+     8,
+     74.5,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "blutdruckmessgeraet",
+   "mot": "Blutdruckmessgerät",
+   "boite": [
+    2.9,
+    54.0,
+    21.0,
+    4.4
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "allergiepass",
+   "mot": "Allergiepass",
+   "boite": [
+    13.5,
+    56.4,
+    15.8,
+    3.5
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "karte",
+   "mot": "Versichertenkarte",
+   "boite": [
+    4.4,
+    58.9,
+    6.2,
+    2.1
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "einweisung",
+   "mot": "Einweisungsschein",
+   "boite": [
+    2.9,
+    61.3,
+    7.9,
+    5.0
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "aufnahmebogen",
+   "mot": "Aufnahmebogen",
+   "aussi": [
+    "Formular"
+   ],
+   "boite": [
+    6.8,
+    58.0,
+    31.3,
+    7.7
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "boite": [
+    17.0,
+    60.0,
+    7.4,
+    2.7
+   ],
+   "sur": "aufnahmebogen"
+  },
+  {
+   "id": "wertsachenbeutel",
+   "mot": "Wertsachenbeutel",
+   "boite": [
+    5.4,
+    65.7,
+    22.0,
+    7.4
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "portemonnaie",
+   "mot": "Portemonnaie",
+   "aussi": [
+    "Geldbörse"
+   ],
+   "boite": [
+    10.5,
+    66.5,
+    9.5,
+    5.0
+   ],
+   "sur": "wertsachenbeutel"
+  },
+  {
+   "id": "armbanduhr",
+   "mot": "Armbanduhr",
+   "boite": [
+    14.2,
+    66.0,
+    4.8,
+    2.2
+   ],
+   "sur": "portemonnaie"
+  },
+  {
+   "id": "schluessel",
+   "mot": "Schlüssel",
+   "boite": [
+    19.5,
+    68.2,
+    5.4,
+    2.2
+   ],
+   "sur": "wertsachenbeutel"
+  },
+  {
+   "id": "tablet",
+   "mot": "Tablet",
+   "boite": [
+    22.5,
+    62.6,
+    26.0,
+    7.0
+   ],
+   "sur": "tisch"
+  },
+  {
+   "id": "gehstock",
+   "mot": "Gehstock",
+   "boite": [
+    62.1,
+    55.6,
+    12.1,
+    27.8
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    70.3,
+    78.5,
+    12.0,
+    19.6
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    82.0,
+    70.0,
+    18.0,
+    28.3
+   ]
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "boite": [
+    66.9,
+    28.1,
+    14.2,
+    26.4
+   ]
+  },
+  {
+   "id": "messlatte",
+   "mot": "Messlatte",
+   "boite": [
+    72.2,
+    32.0,
+    2.6,
+    17.0
+   ],
+   "sur": "waage"
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "boite": [
+    82.0,
+    15.0,
+    18.0,
+    40.6
+   ],
+   "rigide": "rectangle"
+  }
+ ]
+}

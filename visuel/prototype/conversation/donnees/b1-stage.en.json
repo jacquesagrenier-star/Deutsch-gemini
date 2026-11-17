@@ -1,0 +1,155 @@
+{
+ "id": "b1-stage",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "L'entretien pour un stage"},
+ "intro": {"fr": "Tu passes un entretien pour un stage de trois mois à la réception d'un petit hôtel de Boston. La réceptionniste, qui forme les stagiaires, te reçoit."},
+ "personnes": ["rezeptionistin"],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Un petit hôtel, dans une rue calme de Boston. La réceptionniste t'invite à t'asseoir dans le salon, près de l'accueil."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Good morning! I'm Denise Walsh. I've worked the front desk here for years, and I train our interns. Thanks for coming in. So, tell me a little about yourself.", "t_gb": "Good morning! I'm Denise Walsh. I've worked on reception here for years, and I train our interns. Thanks for coming in. So, tell me a little about yourself.", "fr": "Bonjour ! Je suis Denise Walsh. Je travaille à la réception ici depuis des années, et je forme nos stagiaires. Merci d'être venu. Alors, parlez-moi un peu de vous."}
+   ],
+   "choix": [
+    {"t": "Sure. I'm studying tourism, and I need a three-month internship for my degree.", "fr": "Bien sûr. J'étudie le tourisme, et j'ai besoin d'un stage de trois mois pour mon diplôme.", "pose": {"profile": "student"}, "va": "why",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. We have a student with us almost every year.", "fr": "Très bien. Nous accueillons un étudiant presque chaque année."}]},
+    {"t": "Sure. I worked in a store for eight years, and now I'm taking a course to change careers.", "t_gb": "Sure. I worked in a shop for eight years, and now I'm taking a course to change careers.", "fr": "Bien sûr. J'ai travaillé huit ans dans un magasin, et je suis maintenant une formation pour changer de métier.", "pose": {"profile": "career"}, "va": "why",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "A career change. Good for you, that takes courage.", "fr": "Une reconversion. Bravo, il faut du courage."}]},
+    {"faux": true, "t": "Sure. I am graduated in tourism.", "fr": "Bien sûr. Je « suis diplômé » en tourisme (mot à mot).",
+     "puis": [{"qui": "rezeptionistin", "air": "question", "t": "Sorry, you already graduated? Or are you still studying?", "t_gb": "Sorry, you've already graduated? Or are you still studying?", "fr": "Pardon, vous avez déjà votre diplôme ? Ou vous étudiez encore ?"}],
+     "aide": {"fr": "<b>« graduate » est un verbe</b> : « I graduated in tourism » (j'ai eu mon diplôme) ou « I have a degree in tourism ». Jamais « I am graduated ». Si tu étudies encore : « I'm studying tourism »."}}
+   ]
+  },
+  "why": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "And why do you want to intern with us?", "t_gb": "And why do you want to do your internship with us?", "fr": "Et pourquoi voulez-vous faire votre stage chez nous ?"}],
+   "choix": [
+    {"t": "I enjoy working with people, and in a small hotel you learn every part of the job.", "fr": "J'aime travailler avec les gens, et dans un petit hôtel on apprend toutes les facettes du métier.", "va": "experience",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "That's true. Everybody does a little of everything here.", "fr": "C'est vrai. Ici, tout le monde fait un peu de tout."}]},
+    {"t": "I want to learn how a front desk really works. I also speak French and English.", "t_gb": "I want to learn how a hotel reception really works. I also speak French and English.", "fr": "Je veux apprendre comment fonctionne vraiment une réception. Je parle aussi français et anglais.", "va": "experience",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "That's a real plus. We get a lot of guests from Quebec and France.", "fr": "C'est un vrai atout. Nous recevons beaucoup de clients du Québec et de France."}]},
+    {"faux": true, "t": "Because I search a stage in a small hotel.", "fr": "Parce que je cherche un « stage » dans un petit hôtel.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "A stage? Like in a theater? Oh, you mean an internship!", "t_gb": "A stage? Like in a theatre? Oh, you mean an internship!", "fr": "Une scène ? Comme au théâtre ? Ah, vous voulez dire un stage !"}],
+     "aide": {"fr": "<b>« stage »</b> est un faux ami : c'est la scène d'un théâtre. Le stage se dit « internship », et « chercher » ici « look for » : « I'm looking for an internship in a small hotel »."}}
+   ]
+  },
+  "experience": {
+   "dit": [
+    {"si": {"profile": "student"}, "qui": "rezeptionistin", "air": "question", "t": "A lot of students have summer jobs. Have you ever worked with customers?", "fr": "Beaucoup d'étudiants ont un travail d'été. Avez-vous déjà travaillé avec des clients ?"},
+    {"si": {"profile": "career"}, "qui": "rezeptionistin", "air": "question", "t": "You must have seen a lot of customers in that store. Tell me about it.", "t_gb": "You must have seen a lot of customers in that shop. Tell me about it.", "fr": "Vous avez dû voir beaucoup de clients dans ce magasin. Racontez-moi."}
+   ],
+   "choix": [
+    {"si": {"profile": "student"}, "t": "Yes, I worked in a café for two summers.", "fr": "Oui, j'ai travaillé deux étés dans un café.", "va": "strengths",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "A café teaches you a lot: be fast and keep smiling.", "fr": "Un café, ça apprend beaucoup : aller vite et garder le sourire."}]},
+    {"si": {"profile": "career"}, "t": "Yes, I helped customers every day, even the difficult ones.", "fr": "Oui, j'aidais des clients tous les jours, même les difficiles.", "va": "strengths",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Oh, we have difficult ones here too, don't worry.", "fr": "Oh, nous en avons des difficiles ici aussi, ne vous inquiétez pas."}]},
+    {"t": "Yes. I learned to stay friendly even when it gets busy.", "fr": "Oui. J'ai appris à rester aimable même quand il y a beaucoup de monde.", "va": "strengths",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "That's exactly what we need at the desk.", "fr": "C'est exactement ce qu'il nous faut à l'accueil."}]},
+    {"faux": true, "t": "Yes, I have a big experience with the clients.", "fr": "Oui, j'ai une « grosse » expérience avec les clients.",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "A big experience? What happened? Oh, you mean a lot of experience!", "fr": "Une grande aventure ? Que s'est-il passé ? Ah, vous voulez dire beaucoup d'expérience !"}],
+     "aide": {"fr": "<b>« experience »</b>, au sens de savoir-faire, ne se compte pas : « I have a lot of experience with customers ». « A big experience » serait un grand moment vécu. Et les clients d'un commerce sont des « customers »."}}
+   ]
+  },
+  "strengths": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "What would you say is your biggest strength? And a weakness?", "fr": "Quel est, selon vous, votre plus grand point fort ? Et un point faible ?"}],
+   "choix": [
+    {"t": "I'm patient and I stay calm. My weakness: I'm still a little nervous on the phone in English.", "fr": "Je suis patient et je reste calme. Mon point faible : je suis encore un peu nerveux au téléphone en anglais.", "va": "guest",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "You'll get over that fast. The phone never stops here.", "fr": "Cela passera vite. Le téléphone n'arrête jamais ici."}]},
+    {"t": "I'm well organized. But sometimes I try to do everything myself and ask for help too late.", "t_gb": "I'm well organised. But sometimes I try to do everything myself and ask for help too late.", "fr": "Je suis bien organisé. Mais parfois j'essaie de tout faire moi-même et je demande de l'aide trop tard.", "va": "guest",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "It's good that you know that. Here, we'd rather you ask one time too many.", "fr": "C'est bien de le savoir. Ici, nous préférons que vous demandiez une fois de trop."}]},
+    {"faux": true, "t": "I am very serious and sympathetic.", "fr": "Je suis très sérieux et « sympathique ».",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "Sympathetic? That's useful with unhappy guests! Or do you mean friendly?", "fr": "Compatissant ? C'est utile avec les clients mécontents ! Ou vous voulez dire sympathique ?"}],
+     "aide": {"fr": "<b>« sympathetic »</b> est un faux ami : il veut dire compatissant. Sympathique se dit « friendly » ou « nice ». Et pour « sérieux » au travail : « reliable ». Dis : « I'm reliable and friendly »."}}
+   ]
+  },
+  "guest": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "Let's say a guest comes to the desk, and he's really upset because his room isn't ready. What do you do?", "fr": "Imaginons qu'un client arrive à l'accueil, très contrarié parce que sa chambre n'est pas prête. Que faites-vous ?"}],
+   "choix": [
+    {"t": "First I listen and apologize. Then I offer him a coffee while he waits.", "t_gb": "First I listen and apologise. Then I offer him a coffee while he waits.", "fr": "D'abord j'écoute et je m'excuse. Ensuite je lui offre un café pendant qu'il attend.", "va": "guest_good",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Nice. Listening is the most important part.", "fr": "Bien. Écouter, c'est le plus important."}]},
+    {"t": "I stay calm and get you or a coworker right away.", "t_gb": "I stay calm and get you or a colleague straight away.", "fr": "Je reste calme et je vais tout de suite vous chercher, vous ou un collègue.", "va": "guest_help",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Getting help is fine, especially at the beginning.", "fr": "Aller chercher de l'aide, c'est très bien, surtout au début."}]},
+    {"faux": true, "t": "I tell him it is not my fault.", "fr": "Je lui dis que ce n'est pas ma faute.",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Ouch. Even if it's true, a guest never wants to hear that.", "fr": "Aïe. Même si c'est vrai, un client ne veut jamais entendre cela."}],
+     "aide": {"fr": "<b>À un client mécontent, on ne se défend pas</b> : on écoute, on s'excuse, on propose quelque chose. Par exemple : « First I listen and apologize »."}},
+    {"repete": true, "t": "I'm sorry, could you repeat the situation, please?", "fr": "Excusez-moi, pourriez-vous répéter la situation, s'il vous plaît ?", "va": "guest",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Of course. A guest arrives, but his room isn't clean yet. He's angry.", "fr": "Bien sûr. Un client arrive, mais sa chambre n'est pas encore propre. Il est en colère."}]}
+   ]
+  },
+  "guest_good": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "And what if he keeps yelling?", "t_gb": "And what if he keeps shouting?", "fr": "Et s'il continue de crier ?"}],
+   "choix": [
+    {"t": "I stay polite, and I call you or a coworker.", "t_gb": "I stay polite, and I call you or a colleague.", "fr": "Je reste poli, et je vous appelle, vous ou un collègue.", "va": "shifts",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Right. Nobody should handle that alone.", "fr": "Exact. Personne ne devrait gérer cela seul."}]},
+    {"t": "I tell him I understand, and I look for a solution, like another room.", "fr": "Je lui dis que je comprends, et je cherche une solution, comme une autre chambre.", "va": "shifts",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Another room: good thinking. Not everybody thinks of that.", "fr": "Une autre chambre : bien vu. Tout le monde n'y pense pas."}]}
+   ]
+  },
+  "guest_help": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "But what do you say to the guest before you step away?", "fr": "Mais que dites-vous au client avant de vous éloigner ?"}],
+   "choix": [
+    {"t": "I say: I'm very sorry, sir. I'll take care of it right away.", "t_gb": "I say: I'm very sorry, sir. I'll take care of it straight away.", "fr": "Je dis : je suis vraiment désolé, monsieur. Je m'en occupe tout de suite.", "va": "shifts",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Exactly. Then he knows someone is taking him seriously.", "fr": "Exactement. Il sait alors qu'on le prend au sérieux."}]},
+    {"t": "I apologize and ask him to wait just a moment.", "t_gb": "I apologise and ask him to wait just a moment.", "fr": "Je m'excuse et je lui demande d'attendre juste un instant.", "va": "shifts",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Good. Short, polite, and clear.", "fr": "Bien. Court, poli et clair."}]},
+    {"faux": true, "t": "I say: Wait here.", "fr": "Je dis : attendez ici.",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Hmm, that sounds like an order. How could you say it more politely?", "fr": "Hum, cela sonne comme un ordre. Comment le dire plus poliment ?"}],
+     "aide": {"fr": "<b>Un impératif seul sonne comme un ordre.</b> À un client : « Could you wait just a moment, please? » ou « I'll be right back, sir »."}}
+   ]
+  },
+  "shifts": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "We work in shifts: mornings from seven to three, evenings from three to eleven, and some weekends. Does that work for you?", "fr": "Nous travaillons par roulement : le matin de sept heures à quinze heures, le soir de quinze heures à vingt-trois heures, et certains week-ends. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Yes, that's fine. I'm flexible.", "fr": "Oui, c'est très bien. Je suis flexible.", "va": "questions",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Good, that makes the schedule easier.", "t_gb": "Good, that makes the rota easier.", "fr": "Bien, cela simplifie le planning."}]},
+    {"t": "Mostly, yes. But I have an English class on Tuesday evenings.", "fr": "En gros, oui. Mais j'ai un cours d'anglais le mardi soir.", "pose": {"wish": "class"}, "va": "arrangement",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Oh, you should definitely keep your class.", "fr": "Oh, il faut absolument garder votre cours."}]},
+    {"t": "The shifts are fine, but working every weekend would be hard for me.", "fr": "Les horaires me vont, mais travailler tous les week-ends serait difficile pour moi.", "pose": {"wish": "weekend"}, "va": "arrangement",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Don't worry, nobody works every weekend here.", "fr": "Ne vous inquiétez pas, personne ne travaille tous les week-ends ici."}]},
+    {"faux": true, "t": "Yes, I am agree with the schedule.", "fr": "Oui, je « suis d'accord » avec le planning (mot à mot).",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Sorry? Oh, you agree. So the schedule works for you?", "t_gb": "Sorry? Oh, you agree. So the hours work for you?", "fr": "Pardon ? Ah, vous êtes d'accord. Donc le planning vous convient ?"}],
+     "aide": {"fr": "<b>« agree » est un verbe</b> : « I agree », jamais « I am agree ». Ici, le plus naturel : « Yes, that's fine » ou « That works for me »."}}
+   ]
+  },
+  "arrangement": {
+   "dit": [
+    {"si": {"wish": "class"}, "qui": "rezeptionistin", "air": "question", "t": "You could always take the morning shift on Tuesdays. Would that work?", "fr": "Vous pourriez toujours prendre l'équipe du matin le mardi. Cela irait ?"},
+    {"si": {"wish": "weekend"}, "qui": "rezeptionistin", "air": "question", "t": "It would be two weekends a month, with two days off during the week. Would that work?", "fr": "Ce serait deux week-ends par mois, avec deux jours de repos en semaine. Cela irait ?"}
+   ],
+   "choix": [
+    {"t": "Yes, that works for me. Thank you!", "fr": "Oui, cela me convient. Merci !", "va": "questions",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "You're welcome. I'll make a note of it.", "fr": "Je vous en prie. Je le note."}]},
+    {"t": "That would be perfect. Thank you for understanding.", "fr": "Ce serait parfait. Merci de votre compréhension.", "va": "questions",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Of course. That's how we do things here.", "fr": "Naturellement. C'est ainsi que nous faisons ici."}]}
+   ]
+  },
+  "questions": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Do you have any questions for me?", "fr": "Avez-vous des questions pour moi ?"}],
+   "choix": [
+    {"t": "Yes. What will I learn during the three months?", "fr": "Oui. Qu'est-ce que j'apprendrai pendant ces trois mois ?", "va": "start",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Check-in, check-out, reservations, the phones. By the end, you'll run a shift almost on your own.", "fr": "L'arrivée et le départ des clients, les réservations, le téléphone. À la fin, vous assurerez un service presque seul."}]},
+    {"t": "Yes. Who will help me if I have questions?", "fr": "Oui. Qui m'aidera si j'ai des questions ?", "va": "start",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "I will. And on the evening shift, my coworker Tyler.", "t_gb": "I will. And on the evening shift, my colleague Tyler.", "fr": "Moi. Et dans l'équipe du soir, mon collègue Tyler."}]},
+    {"t": "Yes. Is it a paid internship?", "fr": "Oui. Est-ce un stage rémunéré ?", "va": "start",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "It is. We pay $18 an hour.", "dit": "It is. We pay eighteen dollars an hour.", "fr": "Oui. Nous payons 18 dollars de l'heure."}]},
+    {"faux": true, "t": "Yes. I have a question about the formation.", "fr": "Oui. J'ai une question sur la « formation ».",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "The formation? Oh, you mean the training!", "fr": "La « formation » ? Ah, vous voulez dire la formation !"}],
+     "aide": {"fr": "<b>« formation »</b> est un faux ami : c'est la manière dont une chose se forme. La formation qu'on reçoit se dit « training ». Demande par exemple : « What will I learn during the three months? »."}}
+   ]
+  },
+  "start": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "One last thing: when could you start?", "fr": "Une dernière chose : quand pourriez-vous commencer ?"}],
+   "choix": [
+    {"si": {"profile": "student"}, "t": "In early June, right after my exams.", "fr": "Début juin, juste après mes examens.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. We'll get back to you next week. Thanks again for coming in!", "fr": "Très bien. Nous vous recontacterons la semaine prochaine. Merci encore d'être venu !"}]},
+    {"si": {"profile": "career"}, "t": "On March first. My school just needs the signed agreement.", "t_gb": "On the first of March. My school just needs the signed agreement.", "fr": "Le premier mars. Mon école n'a besoin que de la convention signée.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. We'll get back to you next week. Thanks again for coming in!", "fr": "Très bien. Nous vous recontacterons la semaine prochaine. Merci encore d'être venu !"}]},
+    {"t": "I could start next month.", "fr": "Je pourrais commencer le mois prochain.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Wonderful. We'll get back to you next week. Thanks again for coming in!", "fr": "Parfait. Nous vous recontacterons la semaine prochaine. Merci encore d'être venu !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté, tu as expliqué ta motivation, répondu à la question du client mécontent, réglé les horaires et posé ta question : l'hôtel te rappelle la semaine prochaine."}
+}

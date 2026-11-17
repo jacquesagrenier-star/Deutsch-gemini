@@ -1,0 +1,129 @@
+{
+ "id": "b1-sinistre",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Le dégât des eaux"},
+ "intro": {"fr": "Dimanche matin : de l'eau coule de ton plafond. Tu montes sonner chez le voisin du dessus. Explique le problème, parlez des dégâts, de l'assurance et de la gérance, sans vous fâcher."},
+ "personnes": ["b11_voisin"],
+ "debut": "klingeln",
+ "noeuds": {
+  "klingeln": {
+   "dit": [
+    {"recit": {"fr": "Tu montes un étage et tu sonnes. Des pas, puis la porte s'ouvre : ton voisin, en survêtement, une tasse à la main."}},
+    {"qui": "b11_voisin", "air": "surprise", "t": "Ja, bitte? … Oh, guten Morgen! Ist etwas passiert?", "fr": "Oui ?… Oh, bonjour ! Il s'est passé quelque chose ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Entschuldigen Sie die Störung, aber bei mir kommt Wasser von der Decke im Bad.", "fr": "Bonjour. Excusez-moi de vous déranger, mais chez moi, de l'eau coule du plafond de la salle de bains.", "pose": {"ort": "bad"}, "va": "ursache"},
+    {"t": "Guten Morgen. Ich wohne unter Ihnen. An meiner Küchendecke ist ein großer nasser Fleck.", "fr": "Bonjour. J'habite en dessous de chez vous. Il y a une grande tache humide au plafond de ma cuisine.", "pose": {"ort": "kueche"}, "va": "ursache"},
+    {"faux": true, "t": "Guten Morgen. Du machst meine Wohnung nass!", "fr": "Bonjour. Tu inondes mon appartement !",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Wie bitte? Was mache ich? Ich verstehe nicht …", "fr": "Pardon ? Qu'est-ce que je fais ? Je ne comprends pas…"}],
+     "aide": {"fr": "<b>« Du »</b> avec un voisin qu'on connaît à peine, et un reproche en prime : c'est trop brusque. Vouvoie et décris le problème : « Entschuldigen Sie die Störung, aber bei mir kommt Wasser von der Decke. »"}}
+   ]
+  },
+  "ursache": {
+   "dit": [
+    {"recit": {"fr": "Il court voir dans sa salle de bains et revient tout pâle."}},
+    {"qui": "b11_voisin", "air": "surprise", "t": "Oh nein! Der Schlauch von meiner Waschmaschine ist kaputt, das ganze Bad steht unter Wasser. Ich habe das Wasser sofort abgestellt. Das tut mir furchtbar leid!", "fr": "Oh non ! Le tuyau de ma machine à laver a lâché, toute la salle de bains est sous l'eau. J'ai tout de suite coupé l'eau. Je suis vraiment désolé !"}
+   ],
+   "choix": [
+    {"t": "Schon gut, das kann jedem passieren. Hauptsache, das Wasser ist jetzt aus.", "fr": "Ce n'est rien, ça peut arriver à tout le monde. L'essentiel, c'est que l'eau soit coupée.", "va": "schaden",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Danke, dass Sie so ruhig bleiben.", "fr": "Merci de rester aussi calme."}]},
+    {"t": "Danke, dass Sie so schnell reagiert haben.", "fr": "Merci d'avoir réagi aussi vite.", "va": "schaden",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Das ist doch selbstverständlich.", "fr": "C'est bien la moindre des choses."}]},
+    {"faux": true, "t": "Kein Problem, es ist nicht schwer.", "fr": "Pas de problème, ce n'est pas grave.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Nicht schwer? … Ach, nicht schlimm, meinen Sie! Das ist nett von Ihnen.", "fr": "Pas lourd ?… Ah, pas grave, vous voulez dire ! C'est gentil de votre part."}],
+     "aide": {"fr": "<b>« schwer »</b> veut dire lourd ou difficile. « Ce n'est pas grave » se dit <b>« Das ist nicht schlimm »</b> ou « Schon gut »."}}
+   ]
+  },
+  "schaden": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Ist bei Ihnen unten viel kaputtgegangen?", "fr": "Il y a beaucoup de dégâts chez vous, en bas ?"}],
+   "choix": [
+    {"t": "Die Decke ist ganz nass, und die Lampe funktioniert nicht mehr.", "fr": "Le plafond est tout mouillé, et la lampe ne marche plus.", "va": "strom"},
+    {"t": "Zum Glück nicht viel: Ein Teppich und ein paar Sachen auf dem Boden sind nass.", "fr": "Heureusement, pas grand-chose : un tapis et quelques affaires par terre sont mouillés.", "va": "versicherung",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Da haben wir ja noch Glück gehabt. Den Teppich bezahle ich natürlich.", "fr": "Nous avons eu de la chance, alors. Le tapis, je le paie, bien entendu."}]},
+    {"faux": true, "t": "Die Decke ist nass, und die Lampe marschiert nicht mehr.", "fr": "Le plafond est mouillé, et la lampe ne marche plus.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Die Lampe marschiert nicht? Ach so, sie funktioniert nicht mehr!", "fr": "La lampe ne défile plus ? Ah, elle ne fonctionne plus !"}],
+     "aide": {"fr": "<b>« marschieren »</b>, c'est marcher au pas, comme des soldats. Un appareil qui marche <b>« funktioniert »</b> : « Die Lampe funktioniert nicht mehr. »"}}
+   ]
+  },
+  "strom": {
+   "dit": [{"qui": "b11_voisin", "air": "surprise", "t": "Die Lampe? Vorsicht mit dem Strom! Haben Sie die Sicherung schon ausgeschaltet?", "fr": "La lampe ? Attention à l'électricité ! Avez-vous déjà coupé le disjoncteur ?"}],
+   "choix": [
+    {"t": "Ja, die Sicherung habe ich sofort ausgeschaltet.", "fr": "Oui, j'ai tout de suite coupé le disjoncteur.", "va": "versicherung",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Sehr gut. Wasser und Strom zusammen, das ist gefährlich.", "fr": "Très bien. L'eau et l'électricité ensemble, c'est dangereux."}]},
+    {"t": "Noch nicht. Das mache ich gleich, wenn ich wieder unten bin.", "fr": "Pas encore. Je le fais tout de suite, dès que je redescends.", "va": "versicherung",
+     "puis": [{"qui": "b11_voisin", "air": "attentive", "t": "Ja, bitte, machen Sie das zuerst. Wasser und Strom zusammen, das ist gefährlich.", "fr": "Oui, s'il vous plaît, faites-le en premier. L'eau et l'électricité ensemble, c'est dangereux."}]},
+    {"faux": true, "t": "Ja, ich habe das Licht geschlossen.", "fr": "Oui, j'ai fermé la lumière.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Geschlossen? … Ach, ausgemacht! Gut.", "fr": "Fermé ?… Ah, éteint ! Bien."}],
+     "aide": {"fr": "En allemand, on ne « ferme » pas la lumière : on l'éteint, <b>« ausmachen »</b> ou « ausschalten ». « Ich habe das Licht ausgemacht », « Ich habe die Sicherung ausgeschaltet. »"}}
+   ]
+  },
+  "versicherung": {
+   "dit": [{"qui": "b11_voisin", "air": "attentive", "t": "Machen Sie sich wegen der Kosten keine Sorgen: Ich habe eine Haftpflichtversicherung, die bezahlt solche Schäden. Ich melde das gleich morgen früh.", "fr": "Ne vous inquiétez pas pour les frais : j'ai une assurance responsabilité civile, elle paie ce genre de dégâts. Je le déclare dès demain matin."}],
+   "choix": [
+    {"t": "Das ist gut. Können wir unsere Telefonnummern tauschen?", "fr": "C'est bien. Pouvons-nous échanger nos numéros de téléphone ?", "va": "fotos",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Natürlich. Ich schreibe Ihnen alles auf einen Zettel: meine Nummer und den Namen meiner Versicherung.", "fr": "Bien sûr. Je vous note tout sur un papier : mon numéro et le nom de mon assurance."}]},
+    {"t": "Sehr gut. Dann brauche ich bitte Ihren Namen und den Namen Ihrer Versicherung.", "fr": "Très bien. Alors il me faudrait votre nom et celui de votre assurance, s'il vous plaît.", "va": "fotos",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Natürlich. Ich schreibe Ihnen alles auf einen Zettel, auch meine Telefonnummer.", "fr": "Bien sûr. Je vous note tout sur un papier, mon numéro de téléphone aussi."}]},
+    {"faux": true, "t": "Gut. Können Sie mir Ihre Koordinaten geben?", "fr": "Bien. Pouvez-vous me donner vos coordonnées ?",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Meine Koordinaten? Wie beim Navi? Ach, Sie meinen meine Telefonnummer!", "fr": "Mes coordonnées ? Comme sur un GPS ? Ah, vous voulez dire mon numéro de téléphone !"}],
+     "aide": {"fr": "<b>« Koordinaten »</b>, ce sont des coordonnées géographiques. Pour joindre quelqu'un, on demande « Ihre Telefonnummer », « Ihre Adresse » ou « Ihre Kontaktdaten »."}}
+   ]
+  },
+  "fotos": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Meine Versicherung will bestimmt Bilder sehen. Sollen wir zusammen runtergehen?", "fr": "Mon assurance voudra sûrement voir des images. On descend ensemble ?"}],
+   "choix": [
+    {"t": "Gute Idee. Ich habe schon ein paar Fotos mit dem Handy gemacht.", "fr": "Bonne idée. J'ai déjà fait quelques photos avec mon téléphone.", "va": "verwaltung",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Prima, die schicken Sie mir bitte. Ich mache trotzdem noch ein paar.", "fr": "Parfait, envoyez-les-moi, s'il vous plaît. J'en ferai quand même encore quelques-unes."}]},
+    {"t": "Ja, kommen Sie mit. Dann sehen Sie den Schaden selbst.", "fr": "Oui, venez avec moi. Vous verrez les dégâts vous-même.", "va": "verwaltung",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Moment, ich hole nur schnell mein Handy.", "fr": "Un instant, je prends juste mon téléphone."}]},
+    {"faux": true, "t": "Ja, ich habe schon Fotos genommen.", "fr": "Oui, j'ai déjà pris des photos.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Sie haben schon Fotos gemacht? Sehr gut!", "fr": "Vous avez déjà fait des photos ? Très bien !"}],
+     "aide": {"fr": "On ne « prend » pas une photo en allemand, on la « fait » : <b>« ein Foto machen »</b>. « Ich habe schon ein paar Fotos gemacht. »"}}
+   ]
+  },
+  "verwaltung": {
+   "dit": [
+    {"recit": {"fr": "En bas, chez toi, il regarde le plafond et prend des photos à son tour."}},
+    {"qui": "b11_voisin", "air": "perplexe", "t": "Oje, das sieht nicht gut aus. Wir müssen auch die Hausverwaltung informieren. Aber heute ist Sonntag …", "fr": "Aïe, ce n'est pas beau à voir. Il faut aussi prévenir la gérance. Mais aujourd'hui, c'est dimanche…"}
+   ],
+   "choix": [
+    {"t": "Es gibt doch einen Notdienst. Ich rufe dort gleich an.", "fr": "Il y a bien un service d'urgence. Je l'appelle tout de suite.", "va": "notdienst"},
+    {"t": "Könnten Sie das bitte übernehmen? Das Wasser kommt ja aus Ihrer Wohnung.", "fr": "Pourriez-vous vous en charger, s'il vous plaît ? L'eau vient bien de chez vous.", "va": "ende",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Selbstverständlich. Ich rufe gleich den Notdienst an und schreibe morgen eine E-Mail an die Hausverwaltung.", "fr": "Naturellement. J'appelle tout de suite le service d'urgence et j'écris demain un courriel à la gérance."}]},
+    {"faux": true, "t": "Ich telefoniere die Hausverwaltung.", "fr": "Je téléphone à la gérance.",
+     "puis": [{"qui": "b11_voisin", "air": "perplexe", "t": "Sie rufen die Hausverwaltung an? Heute ist dort aber niemand, nur der Notdienst.", "fr": "Vous appelez la gérance ? Mais aujourd'hui, il n'y a personne, seulement le service d'urgence."}],
+     "aide": {"fr": "« Téléphoner à quelqu'un » se dit <b>« jemanden anrufen »</b> (ou « mit jemandem telefonieren ») : « Ich <b>rufe</b> den Notdienst <b>an</b>. »"}}
+   ]
+  },
+  "notdienst": {
+   "dit": [{"qui": "b11_voisin", "air": "question", "t": "Gute Idee. Die Nummer hängt unten im Treppenhaus. Soll ich dabeibleiben, falls es Fragen zu meiner Waschmaschine gibt?", "fr": "Bonne idée. Le numéro est affiché en bas, dans la cage d'escalier. Voulez-vous que je reste, au cas où on poserait des questions sur ma machine à laver ?"}],
+   "choix": [
+    {"t": "Ja, bitte. Sie können besser erklären, was oben passiert ist.", "fr": "Oui, s'il vous plaît. Vous expliquerez mieux ce qui s'est passé en haut.", "va": "ende",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Gern, das ist das Mindeste.", "fr": "Volontiers, c'est la moindre des choses."}]},
+    {"t": "Das wäre nett. Am Telefon verstehe ich nicht immer alles.", "fr": "Ce serait gentil. Au téléphone, je ne comprends pas toujours tout.", "va": "ende",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Kein Problem, ich helfe Ihnen. Das ist das Mindeste.", "fr": "Pas de problème, je vous aide. C'est la moindre des choses."}]},
+    {"faux": true, "t": "Ja, bitte. Ich habe Angst von dem Telefon.", "fr": "Oui, s'il vous plaît. J'ai peur du téléphone.",
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Angst vor dem Telefonieren? Keine Sorge, ich bleibe hier.", "fr": "Peur de téléphoner ? Ne vous inquiétez pas, je reste là."}],
+     "aide": {"fr": "« Avoir peur de » se dit <b>« Angst haben vor »</b> + datif : « Ich habe Angst <b>vor</b> dem Telefonieren. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "Un peu plus tard, le service d'urgence est prévenu : un artisan passera lundi."}},
+    {"qui": "b11_voisin", "air": "sourire", "t": "Noch einmal: Es tut mir wirklich leid. Darf ich Sie heute Nachmittag auf einen Kaffee einladen? Als kleine Entschuldigung.", "fr": "Encore une fois : je suis vraiment désolé. Puis-je vous inviter à prendre un café cet après-midi ? En guise de petite excuse."}
+   ],
+   "choix": [
+    {"t": "Sehr gern! So lernen wir uns wenigstens einmal kennen.", "fr": "Très volontiers ! Comme ça, nous ferons au moins connaissance.", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Stimmt, nach zwei Jahren im selben Haus! Dann bis später – ich besorge Kuchen.", "fr": "C'est vrai, après deux ans dans le même immeuble ! Alors à tout à l'heure, je m'occupe du gâteau."}]},
+    {"t": "Das ist nett, danke. Um vier Uhr hätte ich Zeit.", "fr": "C'est gentil, merci. À quatre heures, j'aurais le temps.", "va": null,
+     "puis": [{"qui": "b11_voisin", "air": "sourire", "t": "Um vier, perfekt. Ich besorge Kuchen!", "fr": "À quatre heures, parfait. Je m'occupe du gâteau !"}]},
+    {"faux": true, "t": "Ich bin einverstanden.", "fr": "Je suis d'accord.",
+     "puis": [{"qui": "b11_voisin", "air": "amuse", "t": "Einverstanden? Das klingt ja wie bei einem Vertrag! Sagen Sie einfach: gern.", "fr": "D'accord ? On dirait un contrat ! Dites simplement : volontiers."}],
+     "aide": {"fr": "<b>« Ich bin einverstanden »</b> sert à approuver une proposition sérieuse (un prix, un plan). Pour accepter une invitation : « Sehr gern! » ou « Das ist nett, danke. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as géré un dégât des eaux avec ton voisin : tu as expliqué le problème, décrit les dégâts, parlé de l'assurance et des photos, et réglé qui prévient la gérance."}
+}

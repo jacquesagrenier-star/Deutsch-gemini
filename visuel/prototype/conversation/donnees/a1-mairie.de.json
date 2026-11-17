@@ -1,0 +1,62 @@
+{
+ "id": "a1-mairie",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "L'Anmeldung au Bürgeramt"},
+ "intro": {"fr": "En Allemagne, quand on emménage, on déclare son adresse au Bürgeramt (la mairie d'arrondissement) : c'est l'Anmeldung. Tu as rendez-vous ce matin."},
+ "personnes": ["buergeramt_schalter"],
+ "debut": "aufruf",
+ "noeuds": {
+  "aufruf": {
+   "dit": [
+    {"recit": {"fr": "Au Bürgeramt. Ton numéro s'affiche à l'écran : c'est à toi."}},
+    {"qui": "buergeramt_schalter", "air": "sourire", "t": "Guten Morgen! Bitte nehmen Sie Platz. Was kann ich für Sie tun?", "fr": "Bonjour ! Asseyez-vous, je vous en prie. Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Ich möchte mich anmelden. Ich wohne jetzt in Berlin.", "fr": "Bonjour. Je voudrais déclarer mon domicile. J'habite à Berlin maintenant.", "va": "pass"},
+    {"t": "Guten Morgen. Ich habe einen Termin für die Anmeldung.", "fr": "Bonjour. J'ai un rendez-vous pour déclarer mon domicile.", "va": "pass"},
+    {"faux": true, "t": "Guten Morgen. Ich möchte mich einschreiben.", "fr": "Bonjour. Je voudrais m'inscrire.",
+     "puis": [{"qui": "buergeramt_schalter", "air": "surprise", "t": "Einschreiben? Das macht man an der Uni. Sie möchten sich anmelden, oder?", "fr": "Vous inscrire ? Ça, c'est à l'université. Vous voulez déclarer votre domicile, non ?"}],
+     "aide": {"fr": "« S'inscrire » ne se dit pas toujours <b>sich einschreiben</b> : c'est pour l'université ou un cours. Pour déclarer son domicile à la mairie : <b>sich anmelden</b>, « Ich möchte mich <b>anmelden</b> »."}}
+   ]
+  },
+  "pass": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Gut. Ihren Pass oder Ihren Ausweis, bitte.", "fr": "Bien. Votre passeport ou votre carte d'identité, s'il vous plaît."}],
+   "choix": [
+    {"t": "Hier ist mein Pass.", "fr": "Voici mon passeport.", "va": "bestaetigung"},
+    {"t": "Hier, bitte. Mein Ausweis.", "fr": "Voici. Ma carte d'identité.", "va": "bestaetigung"}
+   ]
+  },
+  "bestaetigung": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Danke. Und haben Sie die Wohnungsgeberbestätigung?", "fr": "Merci. Et vous avez l'attestation du logeur ?"}],
+   "choix": [
+    {"t": "Ja, hier ist das Formular von meinem Vermieter.", "fr": "Oui, voici le formulaire de mon propriétaire.", "va": "adresse"},
+    {"repete": true, "t": "Wie bitte? Das Wort ist sehr lang!", "fr": "Pardon ? Ce mot est très long !", "va": "bestaetigung",
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "Ja, das stimmt! Das ist das Formular von Ihrem Vermieter.", "fr": "Oui, c'est vrai ! C'est le formulaire de votre propriétaire."}]}
+   ]
+  },
+  "adresse": {
+   "dit": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Wie ist Ihre neue Adresse?", "fr": "Quelle est votre nouvelle adresse ?"}],
+   "choix": [
+    {"t": "Lindenstraße fünf, in Kreuzberg.", "fr": "5, Lindenstraße, à Kreuzberg.", "va": "fertig",
+     "puis": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Moment, ich schreibe.", "fr": "Un instant, j'écris."}]},
+    {"t": "Weserstraße zwölf, in Neukölln.", "fr": "12, Weserstraße, à Neukölln.", "va": "fertig",
+     "puis": [{"qui": "buergeramt_schalter", "air": "attentive", "t": "Moment, ich schreibe.", "fr": "Un instant, j'écris."}]}
+   ]
+  },
+  "fertig": {
+   "dit": [
+    {"recit": {"fr": "Elle tape, imprime, signe."}},
+    {"qui": "buergeramt_schalter", "air": "sourire", "t": "So, fertig! Hier ist Ihre Meldebescheinigung. Bitte gut aufbewahren!", "fr": "Voilà, c'est fait ! Voici votre attestation de domicile. Gardez-la bien !"}
+   ],
+   "choix": [
+    {"t": "Vielen Dank! Das ging aber schnell.", "fr": "Merci beaucoup ! C'est allé vite !", "va": null,
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "Gern geschehen. Willkommen in Berlin!", "fr": "Avec plaisir. Bienvenue à Berlin !"}]},
+    {"t": "Danke schön! Auf Wiedersehen!", "fr": "Merci beaucoup ! Au revoir !", "va": null,
+     "puis": [{"qui": "buergeramt_schalter", "air": "sourire", "t": "Auf Wiedersehen!", "fr": "Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait ton Anmeldung : passeport, attestation du logeur, nouvelle adresse… et tu repars avec ta Meldebescheinigung."}
+}

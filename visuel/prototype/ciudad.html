@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>En ville : s'orienter</title>
 <!--
@@ -114,7 +115,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
@@ -134,8 +135,8 @@ const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb
 
 const TEXTES = {
   titre:     {fr:"En ville : s'orienter", en:"In town: finding your way", tr:"Şehirde: yolunu bulmak", uk:"У місті: орієнтуватися", fa:"در شهر: پیدا کردن راه", ar:"في المدينة: معرفة الطريق", pt:"Na cidade: se orientar", pl:"W mieście: jak trafić", ru:"В городе: найти дорогу", de:"In der Stadt: sich orientieren"},
-  introDe:   {fr:"Voici le quartier de Mark, à Berlin. Touche un lieu : tu le vois, tu entends son nom.", en:"This is Mark's neighbourhood in Berlin. Tap a place: you see it and hear its name.", tr:"Burası Mark'ın Berlin'deki mahallesi. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Марка в Берліні. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این محلهٔ مارک در برلین است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ مارك في برلين. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é o bairro do Mark, em Berlim. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Marka w Berlinie. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Марка в Берлине. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist Marks Viertel in Berlin. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
-  introEs:   {fr:"Voici un quartier de Madrid. Touche un lieu : tu le vois, tu entends son nom.", en:"This is a neighbourhood in Madrid. Tap a place: you see it and hear its name.", tr:"Burası Madrid'de bir mahalle. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Мадрида. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این یک محله در مادرید است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ في مدريد. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é um bairro de Madri. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Madrytu. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Мадрида. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist ein Viertel in Madrid. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
+  introDe:   {fr:"Voici le quartier de Mark, à Berlin. Touche un lieu : tu le vois, tu entends son nom.", en:"This is Mark's neighborhood in Berlin. Tap a place: you see it and hear its name.", tr:"Burası Mark'ın Berlin'deki mahallesi. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Марка в Берліні. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این محلهٔ مارک در برلین است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ مارك في برلين. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é o bairro do Mark, em Berlim. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Marka w Berlinie. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Марка в Берлине. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist Marks Viertel in Berlin. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
+  introEs:   {fr:"Voici un quartier de Madrid. Touche un lieu : tu le vois, tu entends son nom.", en:"This is a neighborhood in Madrid. Tap a place: you see it and hear its name.", tr:"Burası Madrid'de bir mahalle. Bir yere dokun: onu görür, adını duyarsın.", uk:"Це район Мадрида. Торкнися місця: ти його бачиш і чуєш назву.", fa:"این یک محله در مادرید است. روی یک مکان بزن: آن را می‌بینی و نامش را می‌شنوی.", ar:"هذا حيّ في مدريد. المس مكانًا: تراه وتسمع اسمه.", pt:"Este é um bairro de Madri. Toque em um lugar: você o vê e ouve o nome.", pl:"To dzielnica Madrytu. Dotknij miejsca: zobaczysz je i usłyszysz nazwę.", ru:"Это район Мадрида. Нажми на место: ты его увидишь и услышишь название.", de:"Das ist ein Viertel in Madrid. Tippe auf einen Ort: Du siehst ihn und hörst seinen Namen."},
   ongletLieux:{fr:"Les lieux", en:"Places", tr:"Yerler", uk:"Місця", fa:"مکان‌ها", ar:"الأماكن", pt:"Os lugares", pl:"Miejsca", ru:"Места", de:"Die Orte"},
   ongletChemin:{fr:"Le chemin", en:"The way", tr:"Yol", uk:"Дорога", fa:"راه", ar:"الطريق", pt:"O caminho", pl:"Droga", ru:"Дорога", de:"Der Weg"},
   introChemin:{fr:"Tu pars du point rouge. Choisis où tu vas : tu entends la question, puis le chemin.", en:"You start at the red dot. Choose where you are going: you hear the question, then the way.", tr:"Kırmızı noktadan başlıyorsun. Nereye gideceğini seç: önce soruyu, sonra yolu duyarsın.", uk:"Ти починаєш від червоної точки. Обери, куди йдеш: почуєш запитання, а потім дорогу.", fa:"از نقطهٔ قرمز شروع می‌کنی. انتخاب کن کجا می‌روی: اول سؤال را می‌شنوی، بعد راه را.", ar:"تبدأ من النقطة الحمراء. اختر إلى أين تذهب: تسمع السؤال ثم الطريق.", pt:"Você parte do ponto vermelho. Escolha aonde vai: você ouve a pergunta e depois o caminho.", pl:"Zaczynasz od czerwonej kropki. Wybierz, dokąd idziesz: usłyszysz pytanie, a potem drogę.", ru:"Ты начинаешь от красной точки. Выбери, куда идёшь: услышишь вопрос, а потом дорогу.", de:"Du startest am roten Punkt. Wähle, wohin du gehst: Du hörst die Frage und dann den Weg."},
@@ -367,7 +368,7 @@ function choixTraduit(c){
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   // les noms caches du plan se montrent
@@ -789,7 +790,7 @@ function decouvrir(){
 
 // LA PARTIE (« le tirage suit les mots ») : recopie de familia.html (THEMES-ILLUSTRES.md : identique d'un theme a l'autre)
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus = new Set(), sorteCourante = null, derniereSorte = null;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
   const plans = Array.from(z.querySelectorAll(".plan polyline, .plan .cible, .plan .vise")).map(e => e.getAttribute("points") || e.dataset.id || e.dataset.lot).join(",");
@@ -853,14 +854,14 @@ function basDePartie(){
 }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan_ = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan_.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  file = plan_.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(plan_.prochaine);
   montrer();
 }

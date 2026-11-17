@@ -1,0 +1,148 @@
+{
+ "id": "b1-horaires",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Changer ses horaires de travail"},
+ "intro": {"fr": "Tu travailles en cuisine dans un restaurant. Tu commences un cours d'allemand le soir, le mardi et le jeudi : tu demandes à la cheffe de changer tes horaires."},
+ "personnes": ["kuechenchefin"],
+ "debut": "fragen",
+ "textes": {
+  "wahl_fr": {"cle": "wahl", "frueh": "le service du matin le mardi et le jeudi", "wochenende": "tes mardis et jeudis soir libres, contre un jour de week-end", "tausch": "un échange de service avec ton collègue Emre"},
+  "start_fr": {"cle": "start", "monat": "à partir du mois prochain", "woche": "dès la semaine prochaine, sauf un jeudi de fête où tu restes jusqu'à six heures"}
+ },
+ "noeuds": {
+  "fragen": {
+   "dit": [
+    {"recit": {"fr": "Trois heures de l'après-midi, le calme entre deux services. Tu frappes à la porte du petit bureau, derrière la cuisine."}},
+    {"qui": "kuechenchefin", "air": "question", "t": "Sie wollten mich sprechen? Kommen Sie rein. Ich habe fünf Minuten, dann kommt der Fisch.", "fr": "Vous vouliez me parler ? Entrez. J'ai cinq minutes, ensuite le poisson arrive."}
+   ],
+   "choix": [
+    {"t": "Ja, danke. Ich wollte fragen, ob ich meine Arbeitszeiten ändern könnte.", "fr": "Oui, merci. Je voulais demander si je pourrais changer mes horaires de travail.", "va": "grund"},
+    {"t": "Ja. Es geht um den Dienstplan: Ich hätte eine Bitte.", "fr": "Oui. C'est au sujet du planning : j'aurais une demande.", "va": "grund",
+     "puis": [{"qui": "kuechenchefin", "air": "question", "t": "Eine Bitte? Na, dann mal los.", "fr": "Une demande ? Eh bien, allez-y."},
+              {"recit": {"fr": "Tu expliques que tu aimerais changer tes horaires."}}]},
+    {"faux": true, "t": "Ich will meine Stunden wechseln.", "fr": "Je veux changer mes heures.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sie wollen? Aha. Und was genau wollen Sie wechseln?", "fr": "Vous voulez ? Tiens donc. Et que voulez-vous changer au juste ?"}],
+     "aide": {"fr": "<b>« Ich will » est trop direct face à une cheffe.</b> Demande plutôt : « Ich wollte fragen, ob ich meine Arbeitszeiten ändern könnte ». Et on « change » un horaire avec « ändern », pas « wechseln »."}}
+   ]
+  },
+  "grund": {
+   "dit": [{"qui": "kuechenchefin", "air": "surprise", "t": "Die Arbeitszeiten ändern? Warum denn? Gefällt es Ihnen abends nicht mehr bei uns?", "fr": "Changer vos horaires ? Pourquoi donc ? Vous ne vous plaisez plus chez nous le soir ?"}],
+   "choix": [
+    {"t": "Doch, sehr! Aber ich habe mich für einen Deutschkurs angemeldet, dienstags und donnerstags abends.", "fr": "Si, beaucoup ! Mais je me suis inscrit(e) à un cours d'allemand, le mardi et le jeudi soir.", "va": "problem"},
+    {"t": "Doch, aber ich möchte einen Deutschkurs an der Volkshochschule machen. Er findet dienstags und donnerstags abends statt.", "fr": "Si, mais j'aimerais suivre un cours d'allemand à l'université populaire. Il a lieu le mardi et le jeudi soir.", "va": "problem"},
+    {"faux": true, "t": "Weil ich besuche einen Deutschkurs am Dienstag und Donnerstag.", "fr": "Parce que je suis un cours d'allemand le mardi et le jeudi.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Weil Sie einen Deutschkurs besuchen? Ich glaube, den brauchen Sie wirklich!", "fr": "Parce que vous suivez un cours d'allemand ? Je crois que vous en avez vraiment besoin !"}],
+     "aide": {"fr": "<b>Après « weil », le verbe va à la fin</b> : « Weil ich einen Deutschkurs besuche ». Et à « Gefällt es Ihnen nicht mehr? », on répond d'abord « Doch! » (si !)."}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Ein Deutschkurs, das ist gut. Aber dienstags und donnerstags … Abends ist bei uns am meisten los, das wissen Sie. Um wie viel Uhr beginnt der Kurs denn?", "fr": "Un cours d'allemand, c'est bien. Mais le mardi et le jeudi… Le soir, c'est le coup de feu chez nous, vous le savez. À quelle heure commence le cours ?"}],
+   "choix": [
+    {"t": "Um halb sieben. Ich müsste also spätestens um halb sechs gehen.", "fr": "À six heures et demie. Il faudrait donc que je parte à cinq heures et demie au plus tard.", "va": "optionen"},
+    {"t": "Er beginnt um halb sieben und dauert bis neun Uhr.", "fr": "Il commence à six heures et demie et dure jusqu'à neuf heures.", "va": "optionen"},
+    {"faux": true, "t": "Um sechs und halb.", "fr": "À six et demie.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sechs und halb? Ach so, um halb sieben meinen Sie!", "fr": "« Six et demie » ? Ah, à six heures et demie, vous voulez dire !"}],
+     "aide": {"fr": "<b>6 h 30 se dit « halb sieben »</b> (la moitié vers sept), jamais « sechs und halb ». Attention : « halb sieben », ce n'est pas 7 h 30 !"}}
+   ]
+  },
+  "optionen": {
+   "dit": [{"qui": "kuechenchefin", "air": "attentive", "t": "Gut, ich sehe drei Möglichkeiten. Erstens: Sie machen an diesen Tagen die Frühschicht, ab 7 Uhr. Zweitens: Sie arbeiten dafür am Wochenende. Drittens: Sie tauschen mit einem Kollegen. Was wäre Ihnen am liebsten?", "dit": "Gut, ich sehe drei Möglichkeiten. Erstens: Sie machen an diesen Tagen die Frühschicht, ab sieben Uhr. Zweitens: Sie arbeiten dafür am Wochenende. Drittens: Sie tauschen mit einem Kollegen. Was wäre Ihnen am liebsten?", "fr": "Bon, je vois trois possibilités. Un : ces jours-là, vous faites le service du matin, à partir de 7 heures. Deux : vous travaillez le week-end en échange. Trois : vous échangez avec un collègue. Qu'est-ce que vous préféreriez ?"}],
+   "choix": [
+    {"t": "Die Frühschicht wäre mir am liebsten. Ich stehe gern früh auf.", "fr": "Je préférerais le service du matin. J'aime bien me lever tôt.", "pose": {"wahl": "frueh"}, "va": "frueh"},
+    {"t": "Ich könnte am Wochenende arbeiten, wenn das für Sie besser ist.", "fr": "Je pourrais travailler le week-end, si c'est mieux pour vous.", "pose": {"wahl": "wochenende"}, "va": "wochenende"},
+    {"t": "Ich würde gern mit einem Kollegen tauschen, wenn jemand einverstanden ist.", "fr": "J'échangerais volontiers avec un collègue, si quelqu'un est d'accord.", "pose": {"wahl": "tausch"}, "va": "tausch"},
+    {"repete": true, "t": "Entschuldigung, das war ein bisschen schnell. Welche Möglichkeiten gibt es?", "fr": "Excusez-moi, c'était un peu rapide. Quelles sont les possibilités ?", "va": "optionen",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Langsam, gern: die Frühschicht am Morgen, das Wochenende oder ein Tausch mit einem Kollegen.", "fr": "Lentement, volontiers : le service du matin, le week-end, ou un échange avec un collègue."}]},
+    {"faux": true, "t": "Ich nehme den Morgen, ich aufstehe gern früh.", "fr": "Je prends le matin, j'aime me lever tôt.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sie stehen gern früh auf? Das höre ich in der Küche selten!", "fr": "Vous aimez vous lever tôt ? J'entends rarement ça en cuisine !"}],
+     "aide": {"fr": "<b>« aufstehen » se sépare</b> : « Ich stehe gern früh auf ». Et le service du matin s'appelle « die Frühschicht »."}}
+   ]
+  },
+  "frueh": {
+   "dit": [{"qui": "kuechenchefin", "air": "question", "t": "Frühschicht heißt bei uns: von 7 bis 15 Uhr. Gemüse schneiden, Soßen kochen, die Lieferungen annehmen. Schaffen Sie es, pünktlich um sieben hier zu sein?", "dit": "Frühschicht heißt bei uns: von sieben bis fünfzehn Uhr. Gemüse schneiden, Soßen kochen, die Lieferungen annehmen. Schaffen Sie es, pünktlich um sieben hier zu sein?", "fr": "Le service du matin, chez nous, c'est de 7 à 15 heures. Couper les légumes, préparer les sauces, réceptionner les livraisons. Vous arriverez à être ici à sept heures pile ?"}],
+   "choix": [
+    {"t": "Ja, kein Problem. Ich wohne nur zwanzig Minuten von hier.", "fr": "Oui, pas de problème. J'habite à vingt minutes d'ici seulement.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Zwanzig Minuten, wunderbar.", "fr": "Vingt minutes, parfait."}]},
+    {"t": "Ja, das schaffe ich. Dann bin ich um drei fertig und kann vor dem Kurs noch lernen.", "fr": "Oui, j'y arriverai. Comme ça, j'ai fini à trois heures et je peux encore réviser avant le cours.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Sehr vernünftig.", "fr": "Très raisonnable."}]},
+    {"faux": true, "t": "Ja, ich werde hier um sieben Uhr.", "fr": "Oui, je « deviens » ici à sept heures.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sie werden hier … was? Ach, Sie werden hier sein. Gut!", "fr": "Vous « devenez » ici… quoi ? Ah, vous serez ici. Bien !"}],
+     "aide": {"fr": "<b>Le futur a besoin de l'infinitif à la fin</b> : « Ich werde um sieben hier sein ». Plus simple, au présent : « Ich bin um sieben hier »."}}
+   ]
+  },
+  "wochenende": {
+   "dit": [{"qui": "kuechenchefin", "air": "sourire", "t": "Am Wochenende brauche ich immer Leute! Dann haben Sie dienstags und donnerstags abends frei. Samstag oder Sonntag: Was passt Ihnen besser?", "fr": "Le week-end, j'ai toujours besoin de monde ! Alors vous avez vos mardis et jeudis soir libres. Samedi ou dimanche : qu'est-ce qui vous convient le mieux ?"}],
+   "choix": [
+    {"t": "Lieber samstags. Sonntags möchte ich mich ausruhen und Hausaufgaben machen.", "fr": "Plutôt le samedi. Le dimanche, j'aimerais me reposer et faire mes devoirs.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Samstagabend also. Da ist die Küche voll, Sie werden sich nicht langweilen.", "fr": "Le samedi soir, donc. La cuisine est pleine, vous ne vous ennuierez pas."}]},
+    {"t": "Der Sonntag passt mir besser, weil ich samstags oft Besuch habe.", "fr": "Le dimanche me convient mieux, parce que j'ai souvent de la visite le samedi.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Sonntag also, zum Brunch. Da ist die Küche voll, Sie werden sich nicht langweilen.", "fr": "Le dimanche, donc, pour le brunch. La cuisine est pleine, vous ne vous ennuierez pas."}]},
+    {"faux": true, "t": "Ich mag besser den Samstag.", "fr": "J'aime mieux le samedi.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sie mögen … lieber den Samstag, ja?", "fr": "Vous aimez… mieux le samedi, c'est ça ?"}],
+     "aide": {"fr": "<b>« J'aime mieux » se dit avec « lieber »</b>, pas « besser » : « Lieber samstags » ou « Der Samstag ist mir lieber »."}}
+   ]
+  },
+  "tausch": {
+   "dit": [{"qui": "kuechenchefin", "air": "attentive", "t": "Tauschen, das könnte klappen. Ihr Kollege Emre hat an diesen Tagen die Frühschicht, und er würde lieber abends arbeiten. Wollen Sie ihn selbst fragen, oder soll ich das machen?", "fr": "Échanger, ça pourrait marcher. Votre collègue Emre fait le service du matin ces jours-là, et il préférerait travailler le soir. Vous voulez lui demander vous-même, ou je m'en occupe ?"}],
+   "choix": [
+    {"t": "Ich frage ihn selbst, wir verstehen uns gut.", "fr": "Je lui demande moi-même, on s'entend bien.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Schön. Sagen Sie mir Bescheid, sobald er Ja gesagt hat.", "fr": "Très bien. Prévenez-moi dès qu'il aura dit oui."}]},
+    {"t": "Es wäre nett, wenn Sie ihn fragen könnten. Ich kenne ihn noch nicht so gut.", "fr": "Ce serait gentil si vous pouviez lui demander. Je ne le connais pas encore très bien.", "va": "ab_wann",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Mache ich, heute noch. Er sagt bestimmt Ja.", "fr": "Je m'en charge, aujourd'hui même. Il dira sûrement oui."}]},
+    {"faux": true, "t": "Ich frage ihm selbst.", "fr": "Je demande à lui moi-même.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Sie fragen ihn selbst? Gut, einverstanden.", "fr": "Vous lui demandez vous-même ? Bon, d'accord."}],
+     "aide": {"fr": "<b>« fragen » prend l'accusatif</b>, contrairement au français « demander à » : « Ich frage ihn », pas « ihm »."}}
+   ]
+  },
+  "ab_wann": {
+   "dit": [{"qui": "kuechenchefin", "air": "question", "t": "Und ab wann soll das gelten? Der Dienstplan für diesen Monat hängt ja schon.", "fr": "Et à partir de quand ? Le planning de ce mois-ci est déjà affiché."}],
+   "choix": [
+    {"t": "Ab nächstem Monat, wenn das möglich ist. Bis dahin arbeite ich wie immer.", "fr": "À partir du mois prochain, si c'est possible. D'ici là, je travaille comme d'habitude.", "pose": {"start": "monat"}, "va": "plan"},
+    {"t": "Wäre es schon ab nächster Woche möglich? Der Kurs fängt nämlich am Dienstag an.", "fr": "Est-ce que ce serait possible dès la semaine prochaine ? C'est que le cours commence mardi.", "pose": {"start": "woche"}, "va": "sofort"},
+    {"faux": true, "t": "Seit nächstem Monat, bitte.", "fr": "Depuis le mois prochain, s'il vous plaît.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Seit nächstem Monat? Sie meinen: ab nächstem Monat?", "fr": "« Depuis » le mois prochain ? Vous voulez dire : à partir du mois prochain ?"}],
+     "aide": {"fr": "<b>« À partir de » (dans le futur) se dit « ab »</b> : « ab nächstem Monat ». « seit » ne sert que pour ce qui a commencé dans le passé."}}
+   ]
+  },
+  "sofort": {
+   "dit": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Nächste Woche schon? Hm. Dienstag geht. Aber am Donnerstag haben wir eine Feier mit 40 Gästen, da brauche ich abends wirklich alle.", "dit": "Nächste Woche schon? Hm. Dienstag geht. Aber am Donnerstag haben wir eine Feier mit vierzig Gästen, da brauche ich abends wirklich alle.", "fr": "Dès la semaine prochaine ? Hum. Mardi, ça va. Mais jeudi, nous avons une fête de 40 personnes, et là, j'ai vraiment besoin de tout le monde le soir."}],
+   "choix": [
+    {"t": "Das verstehe ich. Könnte ich am Donnerstag wenigstens bis sechs bleiben und dann zum Kurs fahren?", "fr": "Je comprends. Est-ce que je pourrais au moins rester jusqu'à six heures jeudi, puis partir au cours ?", "va": "plan",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Bis sechs? Ja, dann ist das meiste vorbereitet. So machen wir das.", "fr": "Jusqu'à six heures ? Oui, l'essentiel sera prêt. On fait comme ça."}]},
+    {"t": "Ich helfe am Donnerstag bis sechs Uhr, wenn Ihnen das reicht. Danach muss ich leider los.", "fr": "J'aide jeudi jusqu'à six heures, si ça vous suffit. Après, je dois malheureusement filer.", "va": "plan",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Das reicht, bis dahin ist das meiste vorbereitet. So machen wir das.", "fr": "Ça suffit, l'essentiel sera prêt d'ici là. On fait comme ça."}]},
+    {"faux": true, "t": "Das ist nicht mein Problem, ich habe Kurs.", "fr": "Ce n'est pas mon problème, j'ai cours.",
+     "puis": [{"qui": "kuechenchefin", "air": "surprise", "t": "Wie bitte? Ich versuche gerade, Ihnen zu helfen!", "fr": "Pardon ? Je suis en train d'essayer de vous aider !"}],
+     "aide": {"fr": "<b>Beaucoup trop sec</b> pour quelqu'un qui te rend service. Montre que tu comprends, puis propose : « Das verstehe ich. Könnte ich wenigstens bis sechs bleiben? »."}}
+   ]
+  },
+  "plan": {
+   "dit": [
+    {"qui": "kuechenchefin", "air": "sourire", "si": {"wahl": "frueh"}, "t": "Gut, das kriegen wir hin. Sie stehen dann dienstags und donnerstags in der Frühschicht. Den neuen Dienstplan hänge ich am Freitag aus.", "fr": "Bon, on va y arriver. Vous serez donc du matin le mardi et le jeudi. J'affiche le nouveau planning vendredi."},
+    {"qui": "kuechenchefin", "air": "sourire", "si": {"wahl": "wochenende"}, "t": "Gut, das kriegen wir hin. Dienstag- und Donnerstagabend frei, dafür ein Tag am Wochenende. Den neuen Dienstplan hänge ich am Freitag aus.", "fr": "Bon, on va y arriver. Mardi et jeudi soir libres, et un jour de week-end en échange. J'affiche le nouveau planning vendredi."},
+    {"qui": "kuechenchefin", "air": "sourire", "si": {"wahl": "tausch"}, "t": "Gut, das kriegen wir hin. Wenn Emre einverstanden ist, tauschen Sie beide dienstags und donnerstags. Den neuen Dienstplan hänge ich am Freitag aus.", "fr": "Bon, on va y arriver. Si Emre est d'accord, vous échangez tous les deux le mardi et le jeudi. J'affiche le nouveau planning vendredi."},
+    {"qui": "kuechenchefin", "air": "question", "t": "Nur eine Bedingung: Wenn im Dezember sehr viel los ist, müssen Sie vielleicht einmal abends helfen. Einverstanden?", "fr": "Une seule condition : si décembre est très chargé, il faudra peut-être que vous aidiez un soir. D'accord ?"}
+   ],
+   "choix": [
+    {"t": "Einverstanden. Wenn es nötig ist, helfe ich natürlich gern.", "fr": "D'accord. Si c'est nécessaire, j'aiderai volontiers, bien sûr.", "va": "ende"},
+    {"t": "Ja, das ist fair. Sagen Sie mir nur bitte ein paar Tage vorher Bescheid.", "fr": "Oui, c'est honnête. Prévenez-moi seulement quelques jours avant, s'il vous plaît.", "va": "ende",
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Natürlich, mindestens eine Woche vorher.", "fr": "Bien sûr, au moins une semaine avant."}]},
+    {"faux": true, "t": "Ja, ich bin einverstanden mit das.", "fr": "Oui, je suis d'accord avec ça.",
+     "puis": [{"qui": "kuechenchefin", "air": "perplexe", "t": "Mit das? Sie sind damit einverstanden. Gut!", "fr": "« Avec ça » ? Vous êtes d'accord avec ça. Bien !"}],
+     "aide": {"fr": "<b>« Avec ça » se dit « damit »</b>, en un mot : « Ich bin damit einverstanden », ou simplement « Einverstanden »."}}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "kuechenchefin", "air": "amuse", "t": "Abgemacht. Und viel Erfolg im Kurs! Bald verstehen Sie sogar, was ich sage, wenn ich in der Küche schimpfe.", "fr": "Marché conclu. Et bonne chance pour le cours ! Bientôt, vous comprendrez même ce que je dis quand je râle en cuisine."}],
+   "choix": [
+    {"t": "Vielen Dank, dass Sie das möglich machen! Das hilft mir sehr.", "fr": "Merci beaucoup de rendre ça possible ! Ça m'aide énormément.", "va": null,
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Gern. So, und jetzt zurück an die Arbeit, der Fisch ist da!", "fr": "Avec plaisir. Bon, et maintenant au travail, le poisson est là !"}]},
+    {"t": "Danke schön! Ich freue mich, dass wir eine Lösung gefunden haben.", "fr": "Merci beaucoup ! Je suis content(e) que nous ayons trouvé une solution.", "va": null,
+     "puis": [{"qui": "kuechenchefin", "air": "sourire", "t": "Ich auch. So, und jetzt zurück an die Arbeit, der Fisch ist da!", "fr": "Moi aussi. Bon, et maintenant au travail, le poisson est là !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ta demande et obtenu {wahl_fr}, {start_fr}. Le nouveau planning sera affiché vendredi, et la cheffe t'encourage pour ton cours."}
+}
