@@ -159,10 +159,10 @@ PHOTOS = {
         " He stands on the right of the picture, facing the visitor at an arm's length, both open hands raised a little in "
         "front of his chest in a calm gesture, his face calm and attentive.\n\nTHE VISITOR, a man of about fifty-five with "
         "short grey hair and a grey stubble, in a brown leather jacket over a dark-blue jumper and jeans, stands on the left "
-        "of the picture, his face red and angry, his mouth open as he speaks, one arm thrown out to the side. He never "
-        "touches the nurse.\n\nTHE CORRIDOR: warm white walls, a pale wooden handrail, closed pale wooden doors." + SANS_TEXTE,
+        "of the picture, his face red and angry, his mouth open as he speaks, one arm thrown out to the side, an arm's length of empty corridor "
+        "between the two men.\n\nTHE CORRIDOR: warm white walls, a pale wooden handrail, closed pale wooden doors." + SANS_TEXTE,
     },
-    "entr-2a-lebensende": {
+    "entr-2a-zuwendung": {
         "refs": ["perso:olena", "scene:soins-altenheim"],
         "texte": TETE.format(quoi="a carer sitting quietly at the bedside of a very old woman in a care home room",
                              lumiere="the soft warm light of a small bedside lamp, the curtains half drawn") + piece(2, A) +
@@ -172,7 +172,7 @@ PHOTOS = {
         "calm, a white duvet up to her chest.\n\nTHE ROOM: a wooden care bed, a bedside cabinet with a small vase of "
         "yellow roses and a small lamp, a framed landscape painting on the wall." + SANS_TEXTE,
     },
-    "entr-2a-kultur": {
+    "entr-2a-sprachbarriere": {
         "refs": ["perso:olena", "scene:soins-altenheim"],
         "texte": TETE.format(quoi="a carer talking with an elderly resident wearing a headscarf, while a young woman translates",
                              lumiere="soft daylight from the window") + piece(2, A) +
@@ -214,7 +214,7 @@ PHOTOS = {
         "Beside it lie a sheet of paper with only grey lines and empty boxes and two plain white medicine boxes.\n\n"
         "THE KITCHEN: pale-yellow walls, a red coffee machine on the counter, a window with a white frame." + SANS_TEXTE,
     },
-    "entr-2a-technik": {
+    "entr-2a-beschaeftigung": {
         "refs": ["perso:frau-weber", "scene:soins-altenheim"],
         "texte": TETE.format(quoi="a small white care robot in the common room of a care home, in front of two old ladies",
                              lumiere="warm afternoon light from the large windows") +
