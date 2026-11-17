@@ -76,7 +76,25 @@ def noms(texte, langue):
         if not avant.strip() or re.search(r"[.!?:]\s*$|[«„“\"]\s*$", avant):
             forme = forme[:1].upper() + forme[1:]
         return forme
+    # La préposition devant un nom qui porte son article (« a {Herr Schulze} » -> « al Sr. Schulze ») : la
+    # contraction obligatoire de l'espagnol et du portugais (second avis du 16 nov.). Seulement devant un gabarit.
+    for prep, art, contr in CONTRACTIONS.get(langue, ()):
+        def contracte(mo, art=art, contr=contr):
+            n = mo.group(2)
+            forme = PERSONNAGES.get(n, {}).get(langue, "")
+            if not forme.lower().startswith(art + " "):
+                return mo.group(0)
+            c = contr[:1].upper() + contr[1:] if mo.group(1)[:1].isupper() else contr
+            return "%s %s" % (c, forme[len(art) + 1:])
+        texte = re.sub(r"\b(%s) \{([^{}]+)\}" % prep, contracte, texte, flags=re.I)
     return re.sub(r"\{([^{}]+)\}", rep, texte)
+
+
+CONTRACTIONS = {
+    "es": (("a", "el", "al"), ("de", "el", "del")),
+    "pt": (("a", "o", "ao"), ("de", "o", "do"), ("em", "o", "no"), ("por", "o", "pelo"),
+           ("a", "a", "à"), ("de", "a", "da"), ("em", "a", "na"), ("por", "a", "pela")),
+}
 
 
 def _article(fr):

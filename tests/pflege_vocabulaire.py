@@ -24,7 +24,7 @@ qui gardent ce que le fichier derive laisse tomber (homographes, lectures du mot
      fa, une espace avant « ? » et « ! » en francais ; en espagnol (10e langue, 16 nov.), l'alphabet latin et
      « ¿ … ? », « ¡ … ! » ;
   8. le chapitre (« chapitre », 16 nov.) : un id de pflege/sources/chapitres.py.
-L'espagnol n'est pas encore exige partout : le bilan dit combien d'entrees l'ont.
+L'espagnol est exige partout depuis le 16 nov. (vocab_es.py pour en ajouter).
 """
 import importlib.util
 import os
@@ -126,7 +126,7 @@ def main():
         if not src.THEME.get("svg"):
             echecs.append("%s : svg absent" % nom)
         tt = src.THEME.get("nom_theme_trad") or {}
-        if sorted(set(tt) - {"es"}) != sorted(LANGUES) or not all(tt.values()):
+        if sorted(tt) != sorted(LANGUES + ["es"]) or not all(tt.values()):
             echecs.append("%s : nom_theme_trad sans ses 9 langues" % nom)
         for ligne in src.MOTS:
             d = en_dict(ligne)
@@ -154,7 +154,9 @@ def main():
                 ecritures(echecs, ou, l, "traduction", t[0])
                 ecritures(echecs, ou, l, "exemple", t[1])
             ecritures(echecs, ou, "de", "exemple", d.get("exemple", ""))
-            if trad.get("es"):
+            if not trad.get("es"):
+                echecs.append("%s : sans espagnol (10e langue, obligatoire depuis le 16 nov.)" % ou)
+            else:
                 avec_es += 1
                 t = trad["es"]
                 if len(t) != 2 or not t[0] or not t[1]:
