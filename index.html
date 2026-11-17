@@ -3132,10 +3132,18 @@ body[data-theme="dark"] .soins-bascule button[aria-pressed="true"]{background:#E
 #home #seancePilule.pilule-soins .seance-niveaux{display:flex !important; width:100%; box-sizing:border-box;}
 #home #seancePilule.pilule-soins .seance-niveau.sn-porte{flex:1 1 0; min-width:0; padding:0 10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #home #seancePilule.pilule-soins .pa-anneau, #home #seancePilule.pilule-soins .pa-niv, #home #seancePilule.pilule-soins .pa-sens,
-#home #seancePilule.pilule-soins .pa-changer, #home #seancePilule.pilule-soins .pa-placement{display:none !important;}
-/* le fond des Soins (FOND_SOINS), a la place de la carte du monde et de son filigrane */
-.fm-soins{position:absolute; inset:0; background-repeat:no-repeat; background-position:center top; background-size:cover;}
-body.fond-soins #fondMonde > .fm-carte, body.fond-soins #fondMonde > .fm-lettres, body.fond-soins #seancePilule > .sp-fili{display:none;}
+#home #seancePilule.pilule-soins .pa-changer:not(.sn-changer), #home #seancePilule.pilule-soins .pa-placement{display:none !important;}
+#home #seancePilule.pilule-soins .pa-contenu{white-space:pre-line;}
+#home #seancePilule .sn-niveau-ligne{order:3; font-size:13px; color:rgba(28,36,48,.80); text-align:center;}
+body[data-theme="dark"] #home #seancePilule .sn-niveau-ligne{color:rgba(255,255,255,.92);}
+/* l'interrupteur : la position choisie en verre noir (maquette validee) */
+.soins-bascule button[aria-pressed="true"]{background:linear-gradient(180deg, rgba(52,48,44,.86), rgba(6,5,4,.96)); color:#fff;}
+/* le fond des Soins : l'HERBIER (Jacques, 16 nov. : « le herbier est plus positif »), a la place de la carte du monde,
+   dans le ciel comme dans le filigrane de la carte de la seance. Meme tuile (960 x 378), meme defilement, memes lettres :
+   seule l'image change (visuel/fond/herbier.py fait les trois SVG). */
+body.fond-soins #fondMonde .fm-piste{background-image:url("visuel/fond/herbier-jour.svg");}
+body.fond-soins[data-theme="dark"] #fondMonde .fm-piste{background-image:url("visuel/fond/herbier-nuit.svg");}
+body.fond-soins .spf-piste{background-image:url("visuel/fond/herbier-filigrane.svg");}
 /* les ecrans « Ma journee au service » et du chapitre (maquette : ecrans Chapitres et Releve) */
 .ecran-soins .es-kick{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#2E3A48; margin:8px 0 2px;}
 .ecran-soins .es-titre{font-family:'Source Serif 4', Georgia, serif; font-size:28px; line-height:1.1; margin:4px 0 2px; color:#1C2430;}
@@ -9877,10 +9885,6 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
      reste immobile et pale, pour ne pas attirer l'attention. Derriere tout (z-index -1), sans
      jamais intercepter un toucher. Fichiers : visuel/fond/ (Natural Earth, domaine public). -->
 <div id="fondMonde" aria-hidden="true">
-    <!-- Wortando Pflege (16 nov. 2026) : le fond de l'accueil Soins, a la place de la carte du monde et de son filigrane,
-         quand FOND_SOINS nomme un dessin de visuel/fond/ (Jacques n'a pas encore choisi : plan du service, pouls ou
-         herbier). Voir majFondSoins(). -->
-    <div class="fm-soins" id="fondSoins" hidden></div>
     <div class="fm-carte"><div class="fm-piste"></div></div>
     <div class="fm-lettres"><div class="fm-lettres-piste">
         <span style="left:22px; top:0;">語</span><span style="left:262px; top:30px;">ع</span><span style="left:150px; top:170px;">Ж</span>
@@ -17437,6 +17441,9 @@ const I18N = {
         orb_zahlen_title: "Nombres",
         orb_prononciation: "Prononciation",
         orb_conversations: "Conversations",
+        sn_chapitre_sur: "chapitre {n} sur {t}",
+        sn_ligne_porte: "{niv} · {n} cartes et un dialogue",
+        sn_changer_chapitre: "Changer de chapitre",
         sn_tuile_journee: "Ma journée",
         sn_tuile_dialogues: "Dialogues",
         sn_tuile_telc: "Examen telc",
@@ -19326,6 +19333,9 @@ const I18N = {
         orb_zahlen_title: "Numbers",
         orb_prononciation: "Pronunciation",
         orb_conversations: "Conversations",
+        sn_chapitre_sur: "chapter {n} of {t}",
+        sn_ligne_porte: "{niv} · {n} cards and a dialogue",
+        sn_changer_chapitre: "Change chapter",
         sn_tuile_journee: "My day",
         sn_tuile_dialogues: "Dialogues",
         sn_tuile_telc: "telc exam",
@@ -21159,6 +21169,9 @@ const I18N = {
         orb_zahlen_title: "Sayılar",
         orb_prononciation: "Telaffuz",
         orb_conversations: "Konuşmalar",
+        sn_chapitre_sur: "bölüm {n} / {t}",
+        sn_ligne_porte: "{niv} · {n} kart ve bir diyalog",
+        sn_changer_chapitre: "Bölümü değiştir",
         sn_tuile_journee: "Günüm",
         sn_tuile_dialogues: "Diyaloglar",
         sn_tuile_telc: "telc sınavı",
@@ -23198,6 +23211,9 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Вимова",
         orb_conversations: "Розмови",
+        sn_chapitre_sur: "розділ {n} з {t}",
+        sn_ligne_porte: "{niv} · карток: {n} і діалог",
+        sn_changer_chapitre: "Змінити розділ",
         sn_tuile_journee: "Мій день",
         sn_tuile_dialogues: "Діалоги",
         sn_tuile_telc: "Іспит telc",
@@ -23793,6 +23809,9 @@ const I18N = {
         orb_zahlen_title: "عددها",
         orb_prononciation: "تلفظ",
         orb_conversations: "گفت‌وگوها",
+        sn_chapitre_sur: "فصل {n} از {t}",
+        sn_ligne_porte: "{niv} · {n} کارت و یک گفت‌وگو",
+        sn_changer_chapitre: "تغییر فصل",
         sn_tuile_journee: "روز من",
         sn_tuile_dialogues: "گفت‌وگوها",
         sn_tuile_telc: "آزمون telc",
@@ -25693,6 +25712,9 @@ const I18N = {
         orb_zahlen_title: "الأعداد",
         orb_prononciation: "النطق",
         orb_conversations: "المحادثات",
+        sn_chapitre_sur: "الفصل {n} من {t}",
+        sn_ligne_porte: "{niv} · {n} بطاقة وحوار",
+        sn_changer_chapitre: "تغيير الفصل",
         sn_tuile_journee: "يومي",
         sn_tuile_dialogues: "الحوارات",
         sn_tuile_telc: "امتحان telc",
@@ -28676,6 +28698,9 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronúncia",
         orb_conversations: "Conversas",
+        sn_chapitre_sur: "capítulo {n} de {t}",
+        sn_ligne_porte: "{niv} · {n} cartões e um diálogo",
+        sn_changer_chapitre: "Mudar de capítulo",
         sn_tuile_journee: "Meu dia",
         sn_tuile_dialogues: "Diálogos",
         sn_tuile_telc: "Prova telc",
@@ -30572,6 +30597,9 @@ const I18N = {
         orb_zahlen_title: "Liczby",
         orb_prononciation: "Wymowa",
         orb_conversations: "Rozmowy",
+        sn_chapitre_sur: "rozdział {n} z {t}",
+        sn_ligne_porte: "{niv} · kart: {n} i dialog",
+        sn_changer_chapitre: "Zmień rozdział",
         sn_tuile_journee: "Mój dzień",
         sn_tuile_dialogues: "Dialogi",
         sn_tuile_telc: "Egzamin telc",
@@ -32471,6 +32499,9 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Произно­шение",
         orb_conversations: "Разговоры",
+        sn_chapitre_sur: "глава {n} из {t}",
+        sn_ligne_porte: "{niv} · карточек: {n} и диалог",
+        sn_changer_chapitre: "Сменить главу",
         sn_tuile_journee: "Мой день",
         sn_tuile_dialogues: "Диалоги",
         sn_tuile_telc: "Экзамен telc",
@@ -36231,6 +36262,9 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronunciación",
         orb_conversations: "Conversaciones",
+        sn_chapitre_sur: "capítulo {n} de {t}",
+        sn_ligne_porte: "{niv} · {n} tarjetas y un diálogo",
+        sn_changer_chapitre: "Cambiar de capítulo",
         sn_tuile_journee: "Mi día",
         sn_tuile_dialogues: "Diálogos",
         sn_tuile_telc: "Examen telc",
@@ -59049,8 +59083,10 @@ function contenuSeanceSoins(ch){
 function dialogueDuChapitreSoins(ch){
     const infos = (ch && ch.dialogues_info) || [];
     if(!infos.length) return null;
-    const niveaux = PORTES_SOINS[porteSoins()], joues = dialoguesSoinsJoues();
-    const aLaPorte = infos.filter(d => niveaux.indexOf(d.niveau) >= 0 || (d.niveau === "A2" && niveaux[0] === "A2"));
+    const joues = dialoguesSoinsJoues();
+    // la porte du dialogue (champ « porte » de dialogues.json : « commence » ou « examen ») ; « debut » ici = « commence »
+    const porte = porteSoins() === "examen" ? "examen" : "commence";
+    const aLaPorte = infos.filter(d => (d.porte || (d.niveau === "B2" ? "examen" : "commence")) === porte);
     const liste = aLaPorte.length ? aLaPorte : infos;
     return liste.find(d => joues.indexOf(d.id) < 0) || liste.slice().sort((a, b) => joues.indexOf(a.id) - joues.indexOf(b.id))[0];
 }
@@ -59094,17 +59130,37 @@ function appliquerPiluleSoins(){
     if(!pil) return;
     const soins = soinsActifs() && modeAccueilSoins();
     pil.classList.toggle("pilule-soins", soins);
-    if(!soins) return;
+    if(!soins){ pil.querySelectorAll(".sn-changer, .sn-niveau-ligne").forEach(x => x.remove()); return; }
     const ch = chapitreDuJourSoins();
     const porte = porteSoins();
-    pil.classList.remove("pa-etape", "seance-faite");
+    // les niveaux replies aux paliers 1-2 (majChangerNiveau) : en Soins, les deux portes sont toujours la
+    pil.classList.remove("pa-etape", "seance-faite", "niveaux-replies");
     pil.classList.add("pa-concis");
     const aujd = pil.querySelector(".pa-aujourdhui");
     if(aujd){ aujd.removeAttribute("data-i18n"); aujd.textContent = t("sn_aujourdhui"); }
     const sp = document.getElementById("spTitre");
     if(sp) sp.textContent = t("sn_seance");
+    // maquette validee (version 12) : « La douleur · chapitre 7 sur 14 », puis « Demander, evaluer, noter »
     const contenu = pil.querySelector(".pa-contenu");
-    if(contenu){ contenu.removeAttribute("data-i18n"); contenu.textContent = ch ? texteSoins(ch.titre) + " : " + texteSoins(ch.sous_titre) : t("sn_mots_service"); }
+    if(contenu){
+        contenu.removeAttribute("data-i18n");
+        contenu.textContent = ch ? texteSoins(ch.titre) + " · " + tf("sn_chapitre_sur", { n: ch.numero, t: (chapitresSoins || []).length })
+                                   + "\n" + texteSoins(ch.sous_titre)
+                                 : t("sn_mots_service");
+    }
+    // sous les portes : la ligne de la porte, puis « Changer de chapitre › » (le gabarit de « Changer de niveau »)
+    let ligne = pil.querySelector(".sn-niveau-ligne");
+    if(!ligne){ ligne = document.createElement("span"); ligne.className = "sn-niveau-ligne"; pil.appendChild(ligne); }
+    ligne.textContent = tf("sn_ligne_porte", { niv: porte === "examen" ? "B1 · B2" : "A2 · B1", n: 15 });
+    let changer = pil.querySelector(".sn-changer");
+    if(!changer){
+        changer = document.createElement("button");
+        changer.type = "button";
+        changer.className = "pa-changer sn-changer";
+        changer.addEventListener("click", ev => { ev.stopPropagation(); ouvrirJourneeSoins(); });
+        pil.appendChild(changer);
+    }
+    changer.textContent = t("sn_changer_chapitre") + " ›";
     const box = document.getElementById("seanceNiveaux");
     if(box){
         box.innerHTML = "";
@@ -59126,17 +59182,12 @@ function appliquerPiluleSoins(){
         if(b) b.setAttribute("aria-label", t("sn_commencer"));
     }
 }
-// Le fond de l'accueil Soins (visuel/fond/<FOND_SOINS>), a la place de la carte du monde et de son filigrane dans la
-// carte de la seance. null tant que Jacques n'a pas choisi (le plan du service, le pouls ou l'herbier, maquette « Fonds ») :
-// la carte du monde reste.
-const FOND_SOINS = null;
+// Le fond de l'accueil Soins : l'herbier (choix de Jacques du 16 nov., maquette « Fonds »), a la place de la carte du monde
+// dans le ciel et dans le filigrane de la carte de la seance. La classe body.fond-soins change l'image des deux pistes
+// (CSS) ; false rend la carte du monde.
+const FOND_SOINS = true;
 function majFondSoins(){
-    const f = document.getElementById("fondSoins");
-    const on = !!FOND_SOINS && soinsActifs() && modeAccueilSoins();
-    document.body.classList.toggle("fond-soins", on);
-    if(!f) return;
-    f.hidden = !on;
-    if(on && f.dataset.pose !== FOND_SOINS){ f.style.backgroundImage = "url('" + RACINE_DEPOT + "visuel/fond/" + FOND_SOINS + "')"; f.dataset.pose = FOND_SOINS; }
+    document.body.classList.toggle("fond-soins", !!FOND_SOINS && soinsActifs() && modeAccueilSoins());
 }
 
 // « Ma journee au service » : les chapitres visibles, dans l'ordre d'une journee, celui du jour en ambre.

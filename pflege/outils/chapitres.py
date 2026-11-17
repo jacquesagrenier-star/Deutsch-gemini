@@ -170,6 +170,7 @@ def construire():
             "dialogues": dlg,
             # ce que l'accueil et l'ecran du chapitre affichent, sans charger dialogues.json ni ecrit.json
             "dialogues_info": [dict({"id": par_source[d]["id"], "niveau": par_source[d].get("niveau"),
+                                     "porte": par_source[d].get("porte") or ("examen" if par_source[d].get("niveau") in ("B2", "C1") else "commence"),
                                      "de": par_source[d].get("titre_de", ""),
                                      "titre": {l: par_source[d]["titre"].get(l, "") for l in S.LANGUES if par_source[d]["titre"].get(l)}},
                                     **en_face(par_source[d]))

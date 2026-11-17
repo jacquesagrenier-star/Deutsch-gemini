@@ -137,7 +137,7 @@ CHAPITRES = [
                        "ru": "Спросить, оценить, записать"},
         "scenes": ["soins-zimmer"],
         "dialogues": ["d02-schmerzen", "d15-angst-vor-untersuchung"],
-        "ecrits": [],
+        "ecrits": ["soins_ecrit_schmerz_01"],
         "theme_illustre": None,
     },
     {
@@ -151,7 +151,7 @@ CHAPITRES = [
                        "ar": "نقل الأهم شفهيًا", "pl": "Ustnie przekazać to, co najważniejsze",
                        "ru": "Устно передать главное"},
         "scenes": ["soins-uebergabe"],
-        "dialogues": ["d06-uebergabe"],
+        "dialogues": ["d06-uebergabe", "d27-abenduebergabe"],
         "ecrits": ["soins_ecrit_pflegebericht_01"],
         "theme_illustre": None,
     },
@@ -186,7 +186,7 @@ CHAPITRES = [
                        "ru": "Позвонить врачу, в лабораторию, родственникам"},
         "scenes": ["soins-telefon"],
         "dialogues": ["d07-sbar", "d19-telefon", "d23-schweigepflicht"],
-        "ecrits": [],
+        "ecrits": ["soins_ecrit_telefon_01"],
         "theme_illustre": None,
     },
     {
