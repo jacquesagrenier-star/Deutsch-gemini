@@ -60675,11 +60675,22 @@ function contexteEcran(){
                  + (q ? " « " + q + " »" : "");
         }
         if(ecran === "flashcards" && currentCards[currentFlashcard]){
-            const w = currentCards[currentFlashcard].word;
-            const mot = Array.isArray(w) ? w[0] : (typeof w === "string" ? w : "");
+            const c = currentCards[currentFlashcard];
+            const w = c.word;
+            let mot = Array.isArray(w) ? w[0] : (typeof w === "string" ? w : "");
+            // 17 nov. 2026 : UNE CARTE-PHRASE CACHE SON MOT (une dictee n'a pas de « word »), et le retour « Il n'y a
+            // pas de son » du 16 nov. ne disait donc ni la forme ni le mot : « carte nomen 4/10 ». La forme, puis le
+            // mot dicte ou la phrase. Sans crochets : tests/retours.js decoupe les en-tetes sur « [ ... ] ».
+            let forme = "";
+            if(c.forme){
+                forme = " " + c.forme;
+                if(!mot){
+                    try{ mot = c.forme === "dictee_mot" && c.cible ? motDictee(c.cible) : ((c.phrase && c.phrase.de) || ""); }catch(e){}
+                }
+            }
             return "carte " + flashcardMode + " "
-                 + (currentFlashcard + 1) + "/" + currentCards.length
-                 + (mot ? " « " + mot + " »" : "");
+                 + (currentFlashcard + 1) + "/" + currentCards.length + forme
+                 + (mot ? " « " + String(mot).replace(/[\[\]]/g, "").slice(0, 60) + " »" : "");
         }
         if(ecran === "orbPanel" && openOrbId) return "panneau " + openOrbId;
     }catch(e){}   // Un contexte incomplet ne doit JAMAIS empecher un envoi.
@@ -60760,7 +60771,10 @@ function finDuJournalAudio(){
         // PRECHARGE ; la ligne qui explique la carte muette, ecrite deux cartes plus tot, en sortait. Les six dernieres
         // lignes d'echec des dix minutes s'ajoutent, et une ligne dit l'appareil (systeme, app posee ou navigateur) :
         // sans elle, un « iPhone » se devinait au mieux.
-        const echec = e => e && /^(MUET|BASCULE|IGNORE|SAUTE|BLOQUE|SANS-VOIX|NATIF-ERR)$/.test(e.source);
+        // 17 nov. 2026 : TRANSIT aussi (« son coupe », « retabli en quittant la seance »). Le mode sans son se
+        // retablit des qu'on ouvre les reglages pour signaler : a l'envoi il est toujours eteint, et seule sa ligne
+        // de journal dit qu'une carte muette l'etait parce que le son etait coupe. REDIT : la dictee redite au retour.
+        const echec = e => e && /^(MUET|BASCULE|IGNORE|SAUTE|BLOQUE|SANS-VOIX|NATIF-ERR|TRANSIT|REDIT)$/.test(e.source);
         const echecs = journalAudio.filter(e => echec(e) && e.t >= depuis && lignes.indexOf(e) < 0).slice(-6);
         lignes = mesures.concat(echecs.concat(lignes).sort((a, b) => a.t - b.t));
         if(!lignes.length) return "";
@@ -63184,7 +63198,11 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
 //      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
 //      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
-const AUDIO_REVISION = "15";
+//  16  L'ALPHABET ALLEMAND REFAIT EN PORTEUSE (17 nov. 2026, retour de Jacques : « le C n'est pas prononce comme il
+//      faut »). Les lettres des reperes (Ah, Beh, Zeh...) avaient ete generees seules : C et Z sortaient en [z] au
+//      lieu de [ts] (0 ms de souffle sourd, contre 125 a 205 pour Zug, Zahn, Zeit), O et U a l'anglaise. 28 lettres
+//      refaites dans « Wort: ... » (Hah garde : sa prise en porteuse etait chuchotee), plus Zehe, Zoo, Zins.
+const AUDIO_REVISION = "16";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -70734,6 +70752,37 @@ function direPhrase(item){
 function direMotPhrase(item){
     try{ direAllemand(motDictee(item.cible), { rate: 0.9 }); }catch(e){}
 }
+// ⚠️ UNE DICTEE NE DIT SON MOT QU'UNE FOIS, A L'AFFICHAGE (Jacques, 16 nov. 2026, espagnol : « Il n'y a pas de son »).
+// Le journal joint montrait l'app revenue au premier plan apres 45 minutes, puis aucune demande de son : le mot avait
+// ete dit avant le depart, et la carte attendait, muette, une reponse a un mot oublie. Au retour au premier plan apres
+// une minute ou plus, sur une dictee (mot ou phrase) restee sans reponse, le PREMIER TOUCHER redit le mot -- un
+// toucher, parce que l'iPhone ne laisse pas parler une page sans geste. Pas si le toucher est sur Ecouter ou la tortue
+// (ils parlent eux-memes), ni le son coupe, ni si la carte a change entre-temps.
+(function(){
+    let cacheDepuis = 0;
+    const enDictee = () => {
+        const it = CARTE_PHRASE_AFFICHEE, el = document.getElementById("cartePhrase");
+        if(!it || (it.forme !== "dictee" && it.forme !== "dictee_mot")) return null;
+        if(!el || el.classList.contains("hidden") || el.querySelector(".cp-retour:not(.hidden)")) return null;
+        const ecran = document.querySelector(".screen.active");
+        return (ecran && ecran.id === "flashcards") ? it : null;
+    };
+    document.addEventListener("visibilitychange", () => {
+        if(document.hidden){ cacheDepuis = Date.now(); return; }
+        const absence = cacheDepuis ? Date.now() - cacheDepuis : 0;
+        cacheDepuis = 0;
+        const carte = enDictee();
+        if(absence < 60000 || !carte) return;
+        const redire = ev => {
+            document.removeEventListener("click", redire, true);
+            if(enDictee() !== carte || transitSansSon()) return;
+            if(ev && ev.target && ev.target.closest && ev.target.closest(".cp-ecouter")) return;
+            try{ noterAudio(carte.forme, "REDIT", "dictee redite au premier toucher, apres " + Math.round(absence / 1000) + " s en arriere-plan"); }catch(e){}
+            if(carte.forme === "dictee_mot") direMotPhrase(carte); else direPhrase(carte);
+        };
+        document.addEventListener("click", redire, true);
+    });
+})();
 
 // L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
 // Parler) ; la piste est rendue des l'arret, l'URL revoquee a la carte suivante.
@@ -70860,7 +70909,19 @@ function motsLibresOral(attendu){
     return libres;
 }
 
-function scoreOral(attendu, entendus, chiffres){
+// ⚠️ UN ARTICLE NE FAIT PAS ECHOUER UN MOT (Jacques, 14 nov. 2026, en espagnol : « Il n'a pas reconnu TREN »). La carte
+// attend « el tren » ; la reconnaissance rend souvent le nom sans son petit mot (« tren »), la phrase tombe a 50 % et
+// sort « presque » alors que le mot est bien dit. Comme un nom propre (motsLibresOral) : l'article compte s'il est
+// entendu, il n'est jamais exige, jamais demande seul, et ne retient pas l'arret automatique. SAUF la ou l'article
+// est justement ce qu'on apprend : les reperes du genre et du pluriel (« der Tisch », « die Tische »), qui passent
+// articlesExiges. Une phrase faite seulement d'articles se juge entiere, comme avant.
+const ARTICLES_ORAL = {
+    de: ["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"],
+    es: ["el", "la", "los", "las", "un", "una", "unos", "unas"],
+    en: ["the", "a", "an"],
+    pt: ["o", "a", "os", "as", "um", "uma", "uns", "umas"]
+};
+function scoreOral(attendu, entendus, chiffres, articlesExiges){
     if(LANGUE_APPRISE === "ja") return scoreOralJaponais(attendu, entendus);
     const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
     // v879 (les reperes) : dire « einundzwanzig », la reconnaissance ecrit
@@ -70875,6 +70936,7 @@ function scoreOral(attendu, entendus, chiffres){
     const cible = mots(attendu);
     // Les noms propres (voir NOMS_PROPRES_ORAL) : comptes s'ils sont reconnus, ignores sinon.
     const noms = motsLibresOral(attendu);
+    if(!articlesExiges) (ARTICLES_ORAL[LANGUE_APPRISE] || ARTICLES_ORAL.de).forEach(a => noms.add(a));
     const libre = m => noms.has(m) && !cible.every(x => noms.has(x));
     let meilleur = { ratio: 0, manques: cible.filter(m => !libre(m)), libres: cible.filter(libre), texte: "" };
     (entendus || []).forEach(tx => {
@@ -71913,6 +71975,8 @@ function montrerCartePhrase(item){
         // restent verts dans la phrase.
         const v2 = essaiActif("oral_v2");
         let cible = item.phrase.de;
+        // 17 nov. 2026 : l'article n'est exige que la ou on l'apprend (reperes du genre et du pluriel) -- voir ARTICLES_ORAL.
+        const articleAppris = item.rpType === "genre" || item.rpType === "pluriel";
         let dernierManques = [];
         const reussis = [];
         let eclatDonne = false;
@@ -72084,7 +72148,7 @@ function montrerCartePhrase(item){
         // v845 : les mots s'allument a mesure que la reconnaissance les entend.
         const eclairer = () => {
             if(!v2 || !essai || cible !== item.phrase.de) return;
-            const sc = scoreOral(item.phrase.de, essai.textes, item.oralChiffres);
+            const sc = scoreOral(item.phrase.de, essai.textes, item.oralChiffres, articleAppris);
             const reste = sc.manques.slice(), libres = sc.libres || [];
             // v852 : TOUS LES MOTS VERTS = REUSSI, l'enregistrement s'arrete seul
             // (Jacques). Un court delai laisse arriver le dernier resultat.
@@ -72153,7 +72217,7 @@ function montrerCartePhrase(item){
                 journal("verdict", "sans reconnaissance");
                 return;
             }
-            const s = scoreOral(cible, essai.textes, item.oralChiffres);
+            const s = scoreOral(cible, essai.textes, item.oralChiffres, articleAppris);
             journal("verdict", (cible === item.phrase.de ? "" : "mot " + cible + " : ") + s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »"
                 + (essai.natif ? " · partiels " + (essai.nbPartiels || 0) + ", micro max " + Math.round(100 * (essai.pic || 0)) + " %" : ""));
             if(v2 && cible !== item.phrase.de){
