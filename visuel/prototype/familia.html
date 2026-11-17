@@ -103,8 +103,8 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=4"></script>
-<script src="themes/voix.js?v=7"></script>
+<script src="themes/tirage.js?v=5"></script>
+<script src="themes/voix.js?v=8"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
@@ -604,6 +604,12 @@ function tirer(liste){
   return liste[liste.length - 1];
 }
 const lies = (e, k) => IDS.filter(o => relation(e, o) === k);
+// UNE SEULE REPONSE, DANS LES DEUX LANGUES (17 nov. 2026, une testeuse anglophone devant « Wer ist der Cousin von Lena? » :
+// « They are both Lena's cousin I think? »). En allemand, Felix seul est « der Cousin » ; mais la traduction anglaise
+// dit « cousin » pour Felix comme pour Sophie. Une question a toucher ne se pose donc que si personne d'autre dans
+// l'arbre ne porte le meme mot, dans la langue apprise ou dans celle de l'interface (quel que soit le lien).
+const memeMot = (k1, s1, k2, s2) => { try{ return mot(k1, s1) === mot(k2, s2) || !!(TR && TR.rel(k1, s1) === TR.rel(k2, s2)); }catch(e){ return true; } };
+const autresReponses = (e, o, k) => IDS.filter(x => x !== o && x !== e && relation(e, x) && memeMot(relation(e, x), sexe(x), k, sexe(o)));
 
 // ---------- l'arbre dessine ----------
 // Les places, en colonnes : la generation de Heinz et Gisela en haut, celle de Ben et Mia en bas. Chaque couple
@@ -736,7 +742,7 @@ const EX = {
   },
   // « ¿Quién es la abuela de Mia? » : on touche la personne dans l'arbre (une seule reponse possible)
   toucher(w){
-    const cand = paires((e, o, k) => lies(e, k).filter(x => mot(k, sexe(x)) === mot(k, sexe(o))).length === 1 && vise(w, k, sexe(o)));
+    const cand = paires((e, o, k) => !autresReponses(e, o, k).length && vise(w, k, sexe(o)));
     if (!cand.length) return false;
     const [e, o, k] = tirer(cand), groupe = avecArt(k, sexe(o));
     motQ = [k, sexe(o)];
@@ -748,7 +754,11 @@ const EX = {
       a.querySelectorAll("g.p").forEach(x => x.removeAttribute("tabindex"));
       a.querySelector('[data-id="' + o + '"]').classList.add("juste");
       if (id !== o) g.classList.add("faux");
+      // la personne touchee, et ce qu'elle est pour e : « Sophie ist die Cousine von Lena. »
+      const k2 = id !== o ? relation(e, id) : null, dite = k2 ? L.lien(id, avecArt(k2, sexe(id)), e) : "";
+      if (k2) choixFaux = {texte: dite, trad: TR ? TR.lien(id, TR.rel(k2, sexe(id)), e) : tradDuChoix(avecArt(k2, sexe(id)))};
       juger(id === o, o, L.lien(o, groupe, e));
+      if (k2 && !choixFaux.trad) $("msg").insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(dite)}) + '</span>');
     }});
     z.appendChild(a); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
     return true;

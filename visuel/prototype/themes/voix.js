@@ -283,6 +283,7 @@ const Voix = (() => {
     }catch(e){}
   }
   function bravo(){
+    if (coupe) return;
     finBravo = Date.now() + APRES_BRAVO;
     try{ const app = window.parent; if (app && app !== window && typeof app.playMasteredSound === "function"){ app.playMasteredSound(); return; } }catch(e){}
     try{ if (wav){ wav.currentTime = 0; const p = wav.play(); if (p && p.catch) p.catch(secours); return; } }catch(e){}
@@ -293,8 +294,13 @@ const Voix = (() => {
   // son coupe retire, une fois le bravo fini (l'element a ete lance par le geste, iOS le laisse rejouer) ; la voix du
   // telephone est debloquee de meme par un enonce vide.
   const APRES_BRAVO = 650;
+  // SANS SON (17 nov. 2026, « I can't listen right now ») : comme le mode transit des cartes (v981), la voix et le son de
+  // reussite se taisent ; `dernier` garde le texte, que themes/tirage.js ecrit a la place d'une ecoute.
+  let coupe = false, dernier = "";
   function dire(texte, entree){
     if (!texte) return;
+    dernier = texte;
+    if (coupe) return;
     arreter();
     try{ ditQuestion = texte; ditConsigne = document.querySelector("#zone .consigne"); majReecoute(); }catch(e){}
     const attente = Math.max(0, finBravo - Date.now());
@@ -330,5 +336,5 @@ const Voix = (() => {
     if (p && p.then) p.then(() => setTimeout(reprendre, attente)).catch(() => setTimeout(() => { if (s === son){ s.loop = false; s.muted = false; s.play().catch(tel); } }, attente));
     else setTimeout(reprendre, attente);
   }
-  return {dire, arreter, bravo, aUnFichier: texte => connus.has(sha1(texte)), sha1, enonce: enonceDeLaCarte};
+  return {dire, arreter, bravo, couper(v){ coupe = !!v; if (coupe) arreter(); }, dernier: () => dernier, aUnFichier: texte => connus.has(sha1(texte)), sha1, enonce: enonceDeLaCarte};
 })();

@@ -61,6 +61,22 @@ COMPTER = """(n) => {
   res.TOTAL = total.size;
   return {res, defauts: defauts.slice(0, 8), nbDefauts: defauts.length};
 }"""
+# LA FAMILLE : UNE SEULE BONNE REPONSE (17 nov. 2026, une testeuse anglophone : « Wer ist der Cousin von Lena? », « They are
+# both Lena's cousin I think? »). Dans une question a toucher, personne d'autre dans l'arbre ne doit porter le mot demande,
+# ni dans la langue apprise ni dans celle de l'interface (« cousin » en anglais vaut pour Felix et pour Sophie). Verifie
+# dans plusieurs langues d'interface, pour tous les liens.
+UNIQUE = """(n) => {
+  const defauts = new Set(); let poses = 0;
+  for (let i = 0; i < n; i++) {
+    repondu = false; if (!EX.toucher()) break; poses++;
+    const z = document.getElementById('zone'), ego = z.querySelector('.arbre g.ego').dataset.id;
+    z.querySelector('.arbre g.p:not(.ego)').dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    const o = z.querySelector('.arbre g.juste').dataset.id, k = relation(ego, o);
+    const meme = (k2, x) => mot(k2, sexe(x)) === mot(k, sexe(o)) || !!(TR && TR.rel(k2, sexe(x)) === TR.rel(k, sexe(o)));
+    IDS.forEach(x => { const k2 = relation(ego, x); if (x !== o && x !== ego && k2 && meme(k2, x)) defauts.add(k + ' de ' + ego + ' : ' + o + ' et ' + x); });
+  }
+  return {poses, defauts: [...defauts].slice(0, 8), nb: defauts.size};
+}"""
 # une partie suit les mots (tirage.js) : la page seule n'a pas d'etats, tous ses mots sont neufs ; on verifie que chaque
 # question vise le mot de la file, qu'aucune ne revient dans la partie et que deux sortes ne se suivent jamais
 SERIES = """async () => {
@@ -309,6 +325,16 @@ def main():
                     if erreurs: echec.append("%s %s : erreurs JavaScript %s" % (th, app, erreurs[:3]))
                     print(ligne)
                     ctx.close()
+                if th == "familia":
+                    for lang in ("fr", "en", "pt", "de", "tr"):
+                        ctx = nav.new_context(viewport={"width": 390, "height": 844})
+                        page = ctx.new_page()
+                        page.goto("http://127.0.0.1:%d/visuel/prototype/familia.html?apprendre=%s&lang=%s" % (PORT, app, lang))
+                        page.wait_for_timeout(1500)
+                        u = page.evaluate(UNIQUE, 400)
+                        print("familia      %s interface %s : %d questions a toucher, %d a deux bonnes reponses" % (app, lang, u["poses"], u["nb"]))
+                        if u["nb"]: echec.append("familia %s interface %s : deux bonnes reponses, %s" % (app, lang, u["defauts"]))
+                        ctx.close()
         try:
             nav.close()
         except Exception:
