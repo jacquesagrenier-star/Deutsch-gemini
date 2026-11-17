@@ -1,0 +1,337 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d07-sbar.json",
+ "cles": {
+  "titre": {
+   "fr": "Appeler le médecin de garde",
+   "de": "Den Arzt anrufen (SBAR)",
+   "es": "Llamar al médico de guardia (SBAR)"
+  },
+  "intro": {
+   "fr": "Trois heures du matin. {yusuf}, de garde de nuit, trouve {brandt} essoufflé. Il a pris les constantes et appelle le médecin de garde, {kraemer}. Tu joues {yusuf} : un appel structuré en quatre temps (SBAR) : la situation, le contexte, ton évaluation, ta demande. Puis répète la prescription orale.",
+   "es": "Las tres de la madrugada. {yusuf}, en el turno de noche, encuentra {brandt:a} con dificultad para respirar. Tomó los signos vitales y llama al médico de guardia, {kraemer}. Juegas el papel de {yusuf}: una llamada estructurada en cuatro pasos (SBAR): la situación, los antecedentes, tu evaluación, tu petición. Después, repite la indicación verbal."
+  },
+  "but": {
+   "fr": "Faire un appel SBAR : Situation, Hintergrund (contexte), Einschätzung (évaluation), Empfehlung (demande) ; donner des valeurs précises ; dire son inquiétude ; répéter une prescription orale (boucle fermée).",
+   "es": "Hacer una llamada SBAR: Situation, Hintergrund (antecedentes), Einschätzung (evaluación), Empfehlung (petición); dar valores precisos; expresar tu preocupación; repetir una indicación verbal (comunicación en circuito cerrado)."
+  },
+  "relire_notes": {
+   "fr": "Valeurs d'alerte (SpO2 88 % à l'air ambiant, pouls 112, TA 100/60, T 38,4 °C, FR 28) ; contenu de chaque rubrique SBAR ; mesure immédiate prescrite (2 l/min d'O2 aux lunettes, buste relevé) ; règle de la prescription orale (répéter, documenter, faire signer ensuite) ; une soignante peut-elle évoquer une embolie ?",
+   "es": "Valores de alarma (SpO2 88 % al aire ambiente, pulso 112, PA 100/60, T 38,4 °C, FR 28); contenido de cada apartado SBAR; medida inmediata indicada (2 l/min de O2 por cánula nasal, tronco elevado); regla de la indicación verbal (repetir, documentar, hacerla firmar después); ¿puede el personal de enfermería mencionar una embolia?"
+  },
+  "redemittel.0": {
+   "fr": "Ici {yusuf}, du {station}. J'appelle pour {brandt}, chambre 12.",
+   "de": "Hier ist {yusuf} von der {station}. Ich rufe wegen {brandt:dat} an, Zimmer 12.",
+   "es": "Habla {yusuf}, desde {station}. Llamo por {brandt}, habitación 12."
+  },
+  "redemittel.1": {
+   "fr": "Il est essoufflé depuis une heure.",
+   "de": "Er hat seit einer Stunde Atemnot.",
+   "es": "Tiene dificultad para respirar desde hace una hora."
+  },
+  "redemittel.2": {
+   "fr": "La saturation en oxygène est à 88 %.",
+   "de": "Die Sauerstoffsättigung liegt bei 88 Prozent.",
+   "es": "La saturación de oxígeno está en 88 %."
+  },
+  "redemittel.3": {
+   "fr": "Il a été opéré de la hanche mardi.",
+   "de": "Er ist am Dienstag an der Hüfte operiert worden.",
+   "es": "Lo operaron de la cadera el martes."
+  },
+  "redemittel.4": {
+   "fr": "Je suis inquiet. Je pense qu'il doit être examiné rapidement.",
+   "de": "Ich mache mir Sorgen. Ich glaube, er muss schnell untersucht werden.",
+   "es": "Estoy preocupado. Creo que hay que examinarlo pronto."
+  },
+  "redemittel.5": {
+   "fr": "Pouvez-vous venir l'examiner, s'il vous plaît ?",
+   "de": "Können Sie bitte kommen und ihn sich ansehen?",
+   "es": "¿Puede venir a verlo, por favor?"
+  },
+  "redemittel.6": {
+   "fr": "Je répète : …",
+   "de": "Ich wiederhole: …",
+   "es": "Repito: …"
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "Trois heures du matin. {brandt} respire vite et il est agité. {yusuf} a mesuré : saturation 88 % sans oxygène, pouls 112, tension 100/60, température 38,4 °C, 28 respirations par minute. Il appelle le médecin de garde.",
+   "es": "Las tres de la madrugada. {brandt} respira rápido y está inquieto. {yusuf} midió: saturación 88 % sin oxígeno, pulso 112, presión arterial 100/60, temperatura 38,4 °C, 28 respiraciones por minuto. Llama al médico de guardia."
+  },
+  "noeuds.melden.dit.1": {
+   "fr": "{kraemer:famille}, médecin de garde.",
+   "de": "{kraemer:famille}, Dienstarzt.",
+   "es": "{kraemer:famille}, médico de guardia."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Ici {yusuf}, soignant du {station}. J'appelle pour {brandt}, chambre 12.",
+   "de": "Hier ist {yusuf}, Pflegekraft von der {station}. Ich rufe wegen {brandt:dat} an, Zimmer 12.",
+   "es": "Habla {yusuf}, enfermero en {station}. Llamo por {brandt}, habitación 12."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "Oui, qu'est-ce qui se passe ?",
+   "de": "Ja, was ist los?",
+   "es": "Sí, ¿qué pasa?"
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Excusez-moi de vous déranger, {kraemer:voc}. Ici {yusuf}, du {station}. C'est au sujet de {brandt}, chambre 12.",
+   "de": "Entschuldigen Sie die Störung, {kraemer:voc}. Hier ist {yusuf} von der {station}. Es geht um {brandt:akk}, Zimmer 12.",
+   "es": "Disculpe la molestia, {kraemer:voc}. Habla {yusuf}, desde {station}. Se trata {brandt:de}, habitación 12."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "Oui, qu'est-ce qui se passe ?",
+   "de": "Ja, was ist los?",
+   "es": "Sí, ¿qué pasa?"
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Allô, c'est {yusuf}. Le patient ne va pas bien.",
+   "de": "Hallo, hier ist {yusuf}. Dem Patienten geht's nicht gut.",
+   "es": "Hola, habla {yusuf}. El paciente no está bien."
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Attendez. Qui est à l'appareil ? Quel service, quel patient ?",
+   "de": "Moment. Wer ist da? Welche Station, welcher Patient?",
+   "es": "Un momento. ¿Quién habla? ¿Qué área, qué paciente?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>S comme Situation : qui tu es, d'où tu appelles, pour quel patient.</b> « Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12. » Le médecin ne connaît pas encore le patient.",
+   "es": "<b>S de Situation: quién eres, desde dónde llamas, por qué paciente.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» El médico todavía no conoce al paciente."
+  },
+  "noeuds.situation.choix.0": {
+   "fr": "Il est essoufflé depuis environ une heure. La saturation est à 88 %, sans oxygène.",
+   "de": "Er hat seit etwa einer Stunde Atemnot. Die Sauerstoffsättigung liegt bei 88 Prozent, ohne Sauerstoff.",
+   "es": "Tiene dificultad para respirar desde hace más o menos una hora. La saturación de oxígeno está en 88 %, sin oxígeno."
+  },
+  "noeuds.situation.choix.0.puis.0": {
+   "fr": "Je vois. Quel genre de patient est-ce ?",
+   "de": "Verstehe. Was ist das für ein Patient?",
+   "es": "Entiendo. ¿Qué tipo de paciente es?"
+  },
+  "noeuds.situation.choix.1": {
+   "fr": "Depuis environ une heure, il respire mal. Saturation 88 % à l'air ambiant.",
+   "de": "Seit ungefähr einer Stunde bekommt er schlecht Luft. Sättigung 88 Prozent bei Raumluft.",
+   "es": "Desde hace aproximadamente una hora le cuesta respirar. Saturación 88 % al aire ambiente."
+  },
+  "noeuds.situation.choix.1.puis.0": {
+   "fr": "Je vois. Quel genre de patient est-ce ?",
+   "de": "Verstehe. Was ist das für ein Patient?",
+   "es": "Entiendo. ¿Qué tipo de paciente es?"
+  },
+  "noeuds.hintergrund.choix.0": {
+   "fr": "{brandt} a 82 ans. Il a été opéré de la hanche droite mardi. Depuis, il reste presque tout le temps au lit.",
+   "de": "{brandt} ist 82. Er ist am Dienstag an der rechten Hüfte operiert worden. Seitdem liegt er fast nur im Bett.",
+   "es": "{brandt} tiene 82 años. Lo operaron de la cadera derecha el martes. Desde entonces está casi todo el tiempo en cama."
+  },
+  "noeuds.hintergrund.choix.0.puis.0": {
+   "fr": "Et les constantes ?",
+   "de": "Und die Vitalwerte?",
+   "es": "¿Y los signos vitales?"
+  },
+  "noeuds.hintergrund.choix.1": {
+   "fr": "Il a 82 ans et il a été opéré de la hanche mardi. Depuis, il ne s'est presque pas levé.",
+   "de": "Er ist 82 Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.",
+   "es": "Tiene 82 años y lo operaron de la cadera el martes. Desde entonces casi no se ha levantado."
+  },
+  "noeuds.hintergrund.choix.1.puis.0": {
+   "fr": "Et les constantes ?",
+   "de": "Und die Vitalwerte?",
+   "es": "¿Y los signos vitales?"
+  },
+  "noeuds.hintergrund.choix.2": {
+   "fr": "Mardi, il « a fait » une opération à la hanche.",
+   "de": "Er hat am Dienstag eine Operation an der Hüfte gemacht.",
+   "es": "El martes «hizo» una operación de cadera."
+  },
+  "noeuds.hintergrund.choix.2.puis.0": {
+   "fr": "Il a opéré ? Ah, vous voulez dire qu'il a été opéré.",
+   "de": "Er hat operiert? Ach, Sie meinen, er ist operiert worden.",
+   "es": "¿Que él operó? Ah, quiere decir que lo operaron."
+  },
+  "noeuds.hintergrund.choix.2.aide": {
+   "fr": "<b>Le patient ne fait pas l'opération, il la subit : le passif.</b> « Er ist am Dienstag operiert worden » (Perfekt du passif) ou « Er wurde am Dienstag operiert » (Präteritum). C'est le B de SBAR (Background, Hintergrund) : le contexte.",
+   "es": "<b>El paciente no hace la operación, la recibe: la voz pasiva.</b> «Er ist am Dienstag operiert worden» (Perfekt de la pasiva) o «Er wurde am Dienstag operiert» (Präteritum). Es la B de SBAR (Background, Hintergrund): los antecedentes."
+  },
+  "noeuds.vital.choix.0": {
+   "fr": "Pouls 112, tension 10/6 (100 sur 60), température 38,4. Il est agité et il a mal à la poitrine quand il respire.",
+   "de": "Puls 112, Blutdruck 100 zu 60, Temperatur 38,4. Er ist unruhig und hat beim Atmen Schmerzen in der Brust.",
+   "es": "Pulso 112, presión arterial 100/60 (100 sobre 60), temperatura 38,4. Está inquieto y le duele el pecho al respirar."
+  },
+  "noeuds.vital.choix.0.puis.0": {
+   "fr": "Hum. Ça ne me plaît pas. Qu'est-ce que vous en pensez ?",
+   "de": "Hm. Das gefällt mir nicht. Was denken Sie?",
+   "es": "Hum. Eso no me gusta. ¿Usted qué piensa?"
+  },
+  "noeuds.vital.choix.1": {
+   "fr": "Les valeurs : pouls 112, tension 10/6, température 38,4 °C, fréquence respiratoire 28.",
+   "de": "Die Werte: Puls 112, Blutdruck 100 zu 60, Temperatur 38,4 Grad, Atemfrequenz 28.",
+   "es": "Los valores: pulso 112, presión arterial 100/60, temperatura 38,4 °C, frecuencia respiratoria 28."
+  },
+  "noeuds.vital.choix.1.puis.0": {
+   "fr": "Hum. Ça ne me plaît pas. Qu'est-ce que vous en pensez ?",
+   "de": "Hm. Das gefällt mir nicht. Was denken Sie?",
+   "es": "Hum. Eso no me gusta. ¿Usted qué piensa?"
+  },
+  "noeuds.einschaetzung.choix.0": {
+   "fr": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.",
+   "de": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.",
+   "es": "Estoy preocupado. Su estado ha empeorado claramente en la última hora. Me temo que sea algo de los pulmones."
+  },
+  "noeuds.einschaetzung.choix.0.puis.0": {
+   "fr": "Vous avez bien fait d'appeler.",
+   "de": "Gut, dass Sie anrufen.",
+   "es": "Hizo bien en llamar."
+  },
+  "noeuds.einschaetzung.choix.1": {
+   "fr": "Je trouve qu'il s'est nettement aggravé. Je pense qu'il doit être examiné rapidement par un médecin.",
+   "de": "Ich finde, er hat sich deutlich verschlechtert. Ich glaube, dass er schnell ärztlich untersucht werden muss.",
+   "es": "Me parece que ha empeorado claramente. Creo que un médico tiene que examinarlo pronto."
+  },
+  "noeuds.einschaetzung.choix.1.puis.0": {
+   "fr": "Vous avez bien fait d'appeler.",
+   "de": "Gut, dass Sie anrufen.",
+   "es": "Hizo bien en llamar."
+  },
+  "noeuds.einschaetzung.choix.2": {
+   "fr": "Je ne sais pas… peut-être que ce n'est rien.",
+   "de": "Ich weiß nicht … vielleicht ist es auch nichts.",
+   "es": "No sé… a lo mejor no es nada."
+  },
+  "noeuds.einschaetzung.choix.2.puis.0": {
+   "fr": "Et pourquoi vous m'appelez à trois heures du matin, alors ?",
+   "de": "Und warum rufen Sie mich dann um drei Uhr nachts an?",
+   "es": "¿Y entonces por qué me llama a las tres de la madrugada?"
+  },
+  "noeuds.einschaetzung.choix.2.aide": {
+   "fr": "<b>A comme Assessment (Einschätzung) : dis clairement ce que tu penses.</b> « Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss. » Ton inquiétude est une information pour le médecin.",
+   "es": "<b>A de Assessment (Einschätzung): di con claridad lo que piensas.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Tu preocupación es una información para el médico."
+  },
+  "noeuds.empfehlung.choix.0": {
+   "fr": "Pouvez-vous venir l'examiner, s'il vous plaît ? Et que dois-je faire en attendant ?",
+   "de": "Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?",
+   "es": "¿Puede venir a verlo, por favor? ¿Y qué hago mientras tanto?"
+  },
+  "noeuds.empfehlung.choix.0.puis.0": {
+   "fr": "J'arrive dans dix minutes. Donnez-lui deux litres d'oxygène aux lunettes et relevez-lui le buste.",
+   "de": "Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.",
+   "es": "Llego en diez minutos. Póngale dos litros de oxígeno por cánula nasal y colóquelo con el tronco elevado."
+  },
+  "noeuds.empfehlung.choix.1": {
+   "fr": "Je vous demande de venir le plus vite possible. Que dois-je faire en attendant ?",
+   "de": "Ich bitte Sie, so schnell wie möglich zu kommen. Was soll ich in der Zwischenzeit machen?",
+   "es": "Le pido que venga lo antes posible. ¿Qué hago mientras tanto?"
+  },
+  "noeuds.empfehlung.choix.1.puis.0": {
+   "fr": "J'arrive dans dix minutes. Donnez-lui deux litres d'oxygène aux lunettes et relevez-lui le buste.",
+   "de": "Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.",
+   "es": "Llego en diez minutos. Póngale dos litros de oxígeno por cánula nasal y colóquelo con el tronco elevado."
+  },
+  "noeuds.empfehlung.choix.2": {
+   "fr": "Je lui ai déjà donné un antidouleur. Ça suffira peut-être.",
+   "de": "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht.",
+   "es": "Ya le di un analgésico. A lo mejor con eso basta."
+  },
+  "noeuds.empfehlung.choix.2.puis.0": {
+   "fr": "Vous lui avez donné quoi ? Et qui l'a prescrit ?",
+   "de": "Was haben Sie ihm gegeben? Und wer hat das angeordnet?",
+   "es": "¿Qué le dio? ¿Y quién lo indicó?"
+  },
+  "noeuds.empfehlung.choix.2.aide": {
+   "fr": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant.",
+   "es": "<b>R de Recommendation (Empfehlung): di lo que pides.</b> «Können Sie bitte kommen?» Y no des ningún medicamento sin indicación médica: pregunta qué debes hacer mientras tanto."
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Je répète : deux litres d'oxygène aux lunettes, buste relevé. Vous arrivez dans dix minutes.",
+   "de": "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.",
+   "es": "Repito: dos litros de oxígeno por cánula nasal, tronco elevado. Usted llega en diez minutos."
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "C'est ça. J'arrive tout de suite.",
+   "de": "Richtig. Ich bin gleich da.",
+   "es": "Correcto. Ya voy para allá."
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Donc : deux litres d'oxygène aux lunettes et le buste relevé. Je note la prescription. À tout de suite.",
+   "de": "Also: zwei Liter Sauerstoff über die Nasenbrille und den Oberkörper hoch. Ich dokumentiere die Anordnung. Bis gleich.",
+   "es": "Entonces: dos litros de oxígeno por cánula nasal y el tronco elevado. Documento la indicación. Hasta ahora."
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Exactement. Je suis en route.",
+   "de": "Genau. Ich bin unterwegs.",
+   "es": "Exacto. Voy en camino."
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "OK, c'est bon. Salut !",
+   "de": "Okay, alles klar. Tschüss!",
+   "es": "Ok, entendido. ¡Chao!"
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Attendez ! Répétez la prescription, s'il vous plaît.",
+   "de": "Moment! Wiederholen Sie bitte die Anordnung.",
+   "es": "¡Un momento! Repita la indicación, por favor."
+  },
+  "noeuds.wiederholen.choix.2.aide": {
+   "fr": "<b>Une prescription orale se répète au médecin, mot pour mot.</b> « Ich wiederhole: … » Puis on la note et on la fait signer plus tard. C'est ce qui évite les erreurs au téléphone.",
+   "es": "<b>Una indicación verbal se le repite al médico, palabra por palabra.</b> «Ich wiederhole: …» Después se anota y se hace firmar más tarde. Así se evitan los errores por teléfono."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle est la saturation en oxygène de {brandt} ?",
+   "de": "Wie hoch ist die Sauerstoffsättigung von {brandt}?",
+   "es": "¿Cuál es la saturación de oxígeno {brandt:de}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Quatre-vingt-dix-huit pour cent.",
+   "de": "Achtundneunzig Prozent.",
+   "es": "Noventa y ocho por ciento."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Quatre-vingt-huit pour cent.",
+   "de": "Achtundachtzig Prozent.",
+   "es": "Ochenta y ocho por ciento."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Cent douze pour cent.",
+   "de": "Hundertzwölf Prozent.",
+   "es": "Ciento doce por ciento."
+  },
+  "ecouter.1.q": {
+   "fr": "Que doit faire {yusuf} en attendant le médecin ?",
+   "de": "Was soll {yusuf} tun, bis der Arzt kommt?",
+   "es": "¿Qué debe hacer {yusuf} hasta que llegue el médico?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Donner un antidouleur.",
+   "de": "Ein Schmerzmittel geben.",
+   "es": "Dar un analgésico."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Faire marcher le patient.",
+   "de": "Den Patienten mobilisieren.",
+   "es": "Movilizar al paciente."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Donner de l'oxygène et relever le buste.",
+   "de": "Sauerstoff geben und den Oberkörper hochlagern.",
+   "es": "Dar oxígeno y elevar el tronco."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand arrive {kraemer} ?",
+   "de": "Wann kommt {kraemer}?",
+   "es": "¿Cuándo llega {kraemer}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Dans dix minutes.",
+   "de": "In zehn Minuten.",
+   "es": "En diez minutos."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Dans une heure.",
+   "de": "In einer Stunde.",
+   "es": "En una hora."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Demain matin.",
+   "de": "Morgen früh.",
+   "es": "Mañana temprano."
+  }
+ }
+}

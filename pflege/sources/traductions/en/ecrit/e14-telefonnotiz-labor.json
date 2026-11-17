@@ -1,0 +1,106 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/ecrit/e14-telefonnotiz-labor.json",
+ "cles": {
+  "titre": {
+   "fr": "Note d'appel : une valeur critique du labo",
+   "de": "Telefonnotiz: ein kritischer Laborwert",
+   "en": "Phone note: a critical lab value"
+  },
+  "consigne": {
+   "fr": "Tu as pris l'appel du laboratoire central (dialogue 19). À l'aide de tes notes, écris la note d'appel pour le dossier de {lehmann} : qui a appelé, et quand ? De quelle patiente s'agit-il ? Quelle valeur ? Qu'as-tu fait, et qui as-tu informé ? Écris court, mais en phrases complètes.",
+   "de": "Sie haben den Anruf aus dem Zentrallabor angenommen (Dialog 19). Schreiben Sie mit Hilfe Ihrer Notizen die Telefonnotiz für die Akte von {lehmann}: Wer hat wann angerufen? Um welche Patientin geht es? Welcher Wert? Was haben Sie getan, und wen haben Sie informiert? Schreiben Sie kurz, aber in ganzen Sätzen.",
+   "en": "You took the call from the central lab (dialogue 19). Using your notes, write the phone note for {lehmann}'s chart: Who called, and when? Which patient is it about? What value? What did you do, and whom did you inform? Keep it short, but write in complete sentences."
+  },
+  "relire_notes": {
+   "fr": "Note d'appel d'une valeur critique : date et heure, interlocuteur (nom, service), identité de la patiente vérifiée (nom et date de naissance), valeur et unité, valeur relue (« read back »), échantillon non hémolysé, médecin informée avec l'heure, signature. Kaliémie 6,2 mmol/l (dialogue 19).",
+   "en": "Phone note for a critical value: date and time, caller (name, department), patient's identity checked (name and date of birth), value and unit, value read back, sample not hemolyzed, doctor informed with the time, signature. Potassium 6.2 mmol/L (dialogue 19)."
+  },
+  "fiche.titre": {
+   "fr": "Notes",
+   "de": "Notizen",
+   "en": "Notes"
+  },
+  "fiche.rubriques.0": {
+   "fr": "Date / heure",
+   "de": "Datum / Uhrzeit",
+   "en": "Date / time"
+  },
+  "fiche.rubriques.1": {
+   "fr": "Appelant",
+   "de": "Anrufer",
+   "en": "Caller"
+  },
+  "fiche.rubriques.2": {
+   "fr": "Patiente",
+   "de": "Patientin",
+   "en": "Patient"
+  },
+  "fiche.rubriques.3": {
+   "fr": "Résultat",
+   "de": "Befund",
+   "en": "Result"
+  },
+  "fiche.rubriques.4": {
+   "fr": "Vérification",
+   "de": "Kontrolle",
+   "en": "Check"
+  },
+  "fiche.rubriques.5": {
+   "fr": "Transmis",
+   "de": "weitergeleitet",
+   "en": "Passed on"
+  },
+  "points.0": {
+   "fr": "12.11, 11 h 20, appel de {aksoy} du laboratoire central",
+   "de": "12.11., 11:20 Uhr, Anruf von {aksoy} aus dem Zentrallabor",
+   "en": "12.11, 11:20, call from {aksoy} at the central lab"
+  },
+  "points.1": {
+   "fr": "patiente {lehmann}, née le 21.08.1952, chambre 14 ; nom et date de naissance vérifiés",
+   "de": "Patientin {lehmann}, geboren am 21.08.1952, Zimmer 14; Name und Geburtsdatum geprüft",
+   "en": "patient {lehmann}, born 21.08.1952, room 14; name and date of birth checked"
+  },
+  "points.2": {
+   "fr": "potassium 6,2 mmol/l, valeur critique, échantillon non hémolysé",
+   "de": "Kalium 6,2 mmol/l, kritischer Wert, Probe nicht hämolysiert",
+   "en": "potassium 6.2 mmol/L, critical value, sample not hemolyzed"
+  },
+  "points.3": {
+   "fr": "valeur relue et confirmée par le labo",
+   "de": "Wert wiederholt und vom Labor bestätigt",
+   "en": "value read back and confirmed by the lab"
+  },
+  "points.4": {
+   "fr": "11 h 22, {sommer} informée, elle va voir la patiente",
+   "de": "11:22 Uhr {sommer} informiert, sie geht zur Patientin",
+   "en": "11:22, {sommer} informed, she is going to see the patient"
+  },
+  "points.5": {
+   "fr": "signature",
+   "de": "Unterschrift",
+   "en": "signature"
+  },
+  "modele": {
+   "fr": "Note d'appel, 12.11.2026, 11 h 20\n\nAppel de {aksoy}, laboratoire central.\n\nPatiente : {lehmann}, née le 21.08.1952, chambre 14. Le nom et la date de naissance ont été vérifiés.\n\nRésultat : potassium 6,2 mmol/l (valeur critique). Selon le labo, l'échantillon n'est pas hémolysé. J'ai relu la valeur, le labo l'a confirmée.\n\n11 h 22 : {sommer} a été informée. Elle va tout de suite voir la patiente.\n\n{elif}",
+   "de": "Telefonnotiz, 12.11.2026, 11:20 Uhr\n\nAnruf von {aksoy}, Zentrallabor.\n\nPatientin: {lehmann:fiche}, geboren am 21.08.1952, Zimmer 14. Name und Geburtsdatum wurden geprüft.\n\nBefund: Kalium 6,2 mmol/l (kritischer Wert). Die Probe ist laut Labor nicht hämolysiert. Ich habe den Wert wiederholt, das Labor hat ihn bestätigt.\n\n11:22 Uhr: {sommer} wurde informiert. Sie geht sofort zur Patientin.\n\n{elif}",
+   "en": "Phone note, 12.11.2026, 11:20\n\nCall from {aksoy}, central lab.\n\nPatient: {lehmann}, born 21.08.1952, room 14. Name and date of birth were checked.\n\nResult: potassium 6.2 mmol/L (critical value). According to the lab, the sample is not hemolyzed. I read the value back, and the lab confirmed it.\n\n11:22: {sommer} was informed. She is going to see the patient right away.\n\n{elif}"
+  },
+  "pieges.0": {
+   "fr": "Une note d'appel dit toujours qui a appelé, de quel service, et quand.",
+   "en": "A phone note always says who called, from which department, and when."
+  },
+  "pieges.1": {
+   "fr": "La valeur s'écrit avec son unité : « Kalium 6,2 mmol/l », jamais « Kalium 6,2 » seul.",
+   "en": "The value is written with its unit: “Kalium 6,2 mmol/l”, never just “Kalium 6,2”."
+  },
+  "pieges.2": {
+   "fr": "Note que tu as vérifié l'identité et relu la valeur : « Name und Geburtsdatum wurden geprüft », « Ich habe den Wert wiederholt ».",
+   "en": "Note that you checked the identity and read the value back: “Name und Geburtsdatum wurden geprüft”, “Ich habe den Wert wiederholt”."
+  },
+  "pieges.3": {
+   "fr": "Qui a été informé, et à quelle heure : « 11:22 Uhr: {sommer} wurde informiert. »",
+   "en": "Who was informed, and at what time: “11:22 Uhr: {sommer} wurde informiert.”"
+  }
+ }
+}

@@ -1,0 +1,409 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d02-schmerzen.json",
+ "cles": {
+  "titre": {
+   "fr": "La douleur, de 0 à 10",
+   "de": "Schmerzen erfragen",
+   "es": "El dolor, de 0 a 10"
+  },
+  "intro": {
+   "fr": "Dix heures. {brandt} sonne : sa hanche lui fait mal. Tu joues {elif} : fais-lui dire où il a mal, combien sur l'échelle de 0 à 10, comment et depuis quand, propose ce qui est prescrit et dis quand tu reviens.",
+   "es": "Las diez. {brandt} toca el timbre: le duele la cadera. Juegas el papel de {elif}: haz que te diga dónde le duele, cuánto en la escala de 0 a 10, cómo y desde cuándo; ofrécele lo que está indicado y dile cuándo vuelves."
+  },
+  "but": {
+   "fr": "Localiser, chiffrer et décrire une douleur ; proposer l'antalgique prescrit « si besoin » ; installer le patient ; prévoir la réévaluation et la noter.",
+   "es": "Localizar, cuantificar y describir un dolor; ofrecer el analgésico indicado «si es necesario»; acomodar al paciente; prever la reevaluación y anotarla."
+  },
+  "relire_notes": {
+   "fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit, dans le cadre de compétence d'une assistante de soins en cours de reconnaissance ; délai de réévaluation (30 min après une prise orale ici).",
+   "es": "Escala numérica 0-10 (NRS); analgésico «bei Bedarf» administrado solo si está indicado, dentro de las competencias de una auxiliar de enfermería en proceso de reconocimiento del título; plazo de reevaluación (aquí, 30 min después de una toma por vía oral)."
+  },
+  "redemittel.0": {
+   "fr": "Avez-vous mal ?",
+   "de": "Haben Sie Schmerzen?",
+   "es": "¿Tiene dolor?"
+  },
+  "redemittel.1": {
+   "fr": "Où avez-vous mal, exactement ?",
+   "de": "Wo genau tut es weh?",
+   "es": "¿Dónde le duele exactamente?"
+  },
+  "redemittel.2": {
+   "fr": "Pouvez-vous me montrer où vous avez mal ?",
+   "de": "Können Sie mir zeigen, wo es wehtut?",
+   "es": "¿Puede mostrarme dónde le duele?"
+  },
+  "redemittel.3": {
+   "fr": "Sur une échelle de 0 à 10, quelle est l'intensité de votre douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: Wie stark sind Ihre Schmerzen jetzt?",
+   "es": "En una escala de 0 a 10, ¿qué tan fuerte es su dolor ahora?"
+  },
+  "redemittel.4": {
+   "fr": "La douleur est-elle plutôt lancinante (en coups de couteau) ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "es": "¿El dolor es más bien punzante (como una puñalada) o más bien sordo?"
+  },
+  "redemittel.5": {
+   "fr": "Depuis quand avez-vous mal ?",
+   "de": "Seit wann haben Sie die Schmerzen?",
+   "es": "¿Desde cuándo tiene el dolor?"
+  },
+  "redemittel.6": {
+   "fr": "Le médecin vous a prescrit un antidouleur si besoin.",
+   "de": "Der Arzt hat Ihnen ein Schmerzmittel bei Bedarf verordnet.",
+   "es": "El médico le indicó un analgésico si es necesario."
+  },
+  "redemittel.7": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande.",
+   "de": "Ich komme in einer halben Stunde wieder und frage noch einmal nach.",
+   "es": "Vuelvo en media hora y le pregunto otra vez."
+  },
+  "noeuds.klingel.dit.0.recit": {
+   "fr": "Dix heures. Au-dessus de la chambre douze, la lampe de la sonnette s'allume. {elif} entre.",
+   "es": "Las diez. Sobre la puerta de la habitación doce se enciende la luz del timbre. {elif} entra."
+  },
+  "noeuds.klingel.dit.1": {
+   "fr": "Ah, {elif}, heureusement que vous venez. Ça fait de nouveau si mal.",
+   "de": "Ach, {elif}, gut, dass Sie kommen. Es tut wieder so weh.",
+   "es": "Ay, {elif}, qué bueno que viene. Me está doliendo mucho otra vez."
+  },
+  "noeuds.klingel.choix.0": {
+   "fr": "Je suis désolée, {brandt:voc}. Où avez-vous mal, exactement ?",
+   "de": "Das tut mir leid, {brandt}. Wo genau tut es weh?",
+   "es": "Lo siento mucho, {brandt:voc}. ¿Dónde le duele exactamente?"
+  },
+  "noeuds.klingel.choix.0.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "es": "Aquí, en la cadera derecha. Y me jala hasta la rodilla."
+  },
+  "noeuds.klingel.choix.1": {
+   "fr": "Vous avez mal ? Pouvez-vous me montrer où ?",
+   "de": "Sie haben Schmerzen? Können Sie mir zeigen, wo es wehtut?",
+   "es": "¿Tiene dolor? ¿Puede mostrarme dónde le duele?"
+  },
+  "noeuds.klingel.choix.1.puis.0": {
+   "fr": "Ici, à la hanche droite. Et ça tire jusque dans le genou.",
+   "de": "Hier, an der rechten Hüfte. Und es zieht bis ins Knie runter.",
+   "es": "Aquí, en la cadera derecha. Y me jala hasta la rodilla."
+  },
+  "noeuds.klingel.choix.2": {
+   "fr": "Où « avez-vous mal » ? (mal dit)",
+   "de": "Wo haben Sie weh?",
+   "es": "¿Dónde «tiene duele»? (dicho incorrectamente)"
+  },
+  "noeuds.klingel.choix.2.puis.0": {
+   "fr": "Où j'ai… quoi ?",
+   "de": "Wo ich … was habe?",
+   "es": "¿Dónde tengo… qué?"
+  },
+  "noeuds.klingel.choix.2.aide": {
+   "fr": "<b>« weh » n'est pas un nom : on dit « Wo tut es weh? » ou « Wo haben Sie Schmerzen? ».</b> « wehtun » est un verbe (es tut weh) ; « der Schmerz, die Schmerzen » est le nom.",
+   "es": "<b>«weh» no es un sustantivo: se dice «Wo tut es weh?» o «Wo haben Sie Schmerzen?».</b> «wehtun» es un verbo (es tut weh); «der Schmerz, die Schmerzen» es el sustantivo."
+  },
+  "noeuds.skala.dit.0.recit": {
+   "fr": "{elif} veut un chiffre pour le dossier.",
+   "es": "{elif} quiere un número para el expediente."
+  },
+  "noeuds.skala.choix.0": {
+   "fr": "Sur une échelle de 0 à 10 : 0, c'est pas de douleur, 10, la pire douleur que vous puissiez imaginer. Quelle est l'intensité de la douleur maintenant ?",
+   "de": "Auf einer Skala von 0 bis 10: 0 heißt keine Schmerzen, 10 die stärksten Schmerzen, die Sie sich vorstellen können. Wie stark sind die Schmerzen jetzt?",
+   "es": "En una escala de 0 a 10: 0 significa nada de dolor, 10 el dolor más fuerte que pueda imaginar. ¿Qué tan fuerte es el dolor ahora?"
+  },
+  "noeuds.skala.choix.0.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "es": "Mmm… un siete. Y cuando me muevo, un ocho."
+  },
+  "noeuds.skala.choix.1": {
+   "fr": "Quelle est l'intensité de la douleur, de 0 à 10 ? 0, c'est pas de douleur, 10, la pire douleur.",
+   "de": "Wie stark sind die Schmerzen, von 0 bis 10? 0 ist kein Schmerz, 10 ist der schlimmste Schmerz.",
+   "es": "¿Qué tan fuerte es el dolor, de 0 a 10? 0 es nada de dolor, 10 es el peor dolor."
+  },
+  "noeuds.skala.choix.1.puis.0": {
+   "fr": "Hum… un sept. Et quand je bouge, un huit.",
+   "de": "Hm … eine Sieben. Und wenn ich mich bewege, eine Acht.",
+   "es": "Mmm… un siete. Y cuando me muevo, un ocho."
+  },
+  "noeuds.skala.choix.2": {
+   "fr": "Vous avez combien de douleur ?",
+   "de": "Wie viel Schmerzen haben Sie?",
+   "es": "¿Cuánto dolor tiene?"
+  },
+  "noeuds.skala.choix.2.puis.0": {
+   "fr": "Beaucoup ! Énormément !",
+   "de": "Viel! Sehr viel!",
+   "es": "¡Mucho! ¡Muchísimo!"
+  },
+  "noeuds.skala.choix.2.aide": {
+   "fr": "<b>Pour le dossier, il faut un chiffre : demande avec l'échelle.</b> « Auf einer Skala von 0 bis 10 … » : explique ce que veulent dire 0 et 10, puis demande « Wie stark sind die Schmerzen jetzt? ».",
+   "es": "<b>Para el expediente hace falta un número: pregunta con la escala.</b> «Auf einer Skala von 0 bis 10 …»: explica qué significan 0 y 10, y luego pregunta «Wie stark sind die Schmerzen jetzt?»."
+  },
+  "noeuds.art.choix.0": {
+   "fr": "La douleur est-elle plutôt lancinante, en coups de couteau, ou plutôt sourde ?",
+   "de": "Ist der Schmerz eher stechend oder eher dumpf?",
+   "es": "¿El dolor es más bien punzante, como una puñalada, o más bien sordo?"
+  },
+  "noeuds.art.choix.0.puis.0": {
+   "fr": "Lancinante. Comme un couteau, quand je bouge la jambe.",
+   "de": "Stechend. Wie ein Messer, wenn ich das Bein bewege.",
+   "es": "Punzante. Como un cuchillo, cuando muevo la pierna."
+  },
+  "noeuds.art.choix.1": {
+   "fr": "Comment est la douleur ? Elle pique, elle brûle, ou elle appuie ?",
+   "de": "Wie fühlt sich der Schmerz an? Sticht er, brennt er, oder drückt er?",
+   "es": "¿Cómo se siente el dolor? ¿Punza, arde o aprieta?"
+  },
+  "noeuds.art.choix.1.puis.0": {
+   "fr": "Elle pique. Comme un couteau, quand je bouge la jambe.",
+   "de": "Er sticht. Wie ein Messer, wenn ich das Bein bewege.",
+   "es": "Punza. Como un cuchillo, cuando muevo la pierna."
+  },
+  "noeuds.art.choix.2": {
+   "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?",
+   "de": "Entschuldigung, können Sie das bitte noch einmal sagen?",
+   "es": "Disculpe, ¿puede repetirlo, por favor?"
+  },
+  "noeuds.art.choix.2.puis.0": {
+   "fr": "Un sept, j'ai dit. Et quand je bouge, un huit.",
+   "de": "Eine Sieben, hab ich gesagt. Und wenn ich mich bewege, eine Acht.",
+   "es": "Un siete, dije. Y cuando me muevo, un ocho."
+  },
+  "noeuds.seit.choix.0": {
+   "fr": "Depuis quand la douleur est-elle aussi forte ?",
+   "de": "Seit wann sind die Schmerzen so stark?",
+   "es": "¿Desde cuándo es tan fuerte el dolor?"
+  },
+  "noeuds.seit.choix.0.puis.0": {
+   "fr": "Depuis le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Seit dem Frühstück. Heute Morgen ging's noch.",
+   "es": "Desde el desayuno. Hoy temprano todavía se aguantaba."
+  },
+  "noeuds.seit.choix.1": {
+   "fr": "Quand la forte douleur a-t-elle commencé ?",
+   "de": "Wann haben die starken Schmerzen angefangen?",
+   "es": "¿Cuándo empezó el dolor fuerte?"
+  },
+  "noeuds.seit.choix.1.puis.0": {
+   "fr": "Après le petit-déjeuner. Ce matin, ça allait encore.",
+   "de": "Nach dem Frühstück. Heute Morgen ging's noch.",
+   "es": "Después del desayuno. Hoy temprano todavía se aguantaba."
+  },
+  "noeuds.seit.choix.2": {
+   "fr": "« Depuis combien longtemps » avez-vous mal ? (mal dit)",
+   "de": "Seit wie lange haben Sie die Schmerzen?",
+   "es": "¿«Desde cuánto tiempo hace» tiene el dolor? (dicho incorrectamente)"
+  },
+  "noeuds.seit.choix.2.puis.0": {
+   "fr": "Depuis comb… ? Ah, vous voulez dire depuis quand.",
+   "de": "Seit wie … ? Ach, Sie meinen, seit wann.",
+   "es": "¿Desde cuánto…? Ah, quiere decir desde cuándo."
+  },
+  "noeuds.seit.choix.2.aide": {
+   "fr": "<b>On dit « Seit wann …? » ou « Wie lange schon …? ».</b> « Seit wie lange » est un mélange des deux, que les Allemands remarquent tout de suite.",
+   "es": "<b>Se dice «Seit wann …?» o «Wie lange schon …?».</b> «Seit wie lange» es una mezcla de las dos, que los alemanes notan enseguida."
+  },
+  "noeuds.mittel.dit.0.recit": {
+   "fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin ».",
+   "es": "{elif} revisa la hoja de indicaciones médicas: {sommer} indicó un analgésico en pastilla, «si es necesario»."
+  },
+  "noeuds.mittel.choix.0": {
+   "fr": "{sommer} vous a prescrit un antidouleur si besoin. Vous voulez le prendre ?",
+   "de": "{sommer} hat Ihnen ein Schmerzmittel bei Bedarf verordnet. Möchten Sie es haben?",
+   "es": "{sommer} le indicó un analgésico si es necesario. ¿Quiere tomarlo?"
+  },
+  "noeuds.mittel.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "es": "Sí, por favor. Pero nada de inyecciones, no me gustan."
+  },
+  "noeuds.mittel.choix.1": {
+   "fr": "Vous avez droit à un antidouleur si besoin. Voulez-vous que j'aille le chercher ?",
+   "de": "Sie dürfen bei Bedarf ein Schmerzmittel bekommen. Soll ich es Ihnen holen?",
+   "es": "Si es necesario, puede recibir un analgésico. ¿Quiere que se lo traiga?"
+  },
+  "noeuds.mittel.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Mais pas de piqûre, je n'aime pas ça.",
+   "de": "Ja, bitte. Aber keine Spritze, die mag ich nicht.",
+   "es": "Sí, por favor. Pero nada de inyecciones, no me gustan."
+  },
+  "noeuds.mittel.choix.2": {
+   "fr": "J'ai encore un comprimé d'hier, ici. Vous pouvez le prendre.",
+   "de": "Ich habe hier noch eine Tablette von gestern. Die können Sie nehmen.",
+   "es": "Aquí me queda una pastilla de ayer. Puede tomársela."
+  },
+  "noeuds.mittel.choix.2.puis.0": {
+   "fr": "D'hier ? Il est seulement pour moi, ce comprimé ?",
+   "de": "Von gestern? Ist die denn überhaupt für mich?",
+   "es": "¿De ayer? ¿Y de veras es para mí?"
+  },
+  "noeuds.mittel.choix.2.aide": {
+   "fr": "<b>C'est une faute de soin, pas de langue.</b> On ne donne que ce qui est prescrit à ce patient, préparé pour lui. Dis ce que le médecin a prescrit : « Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet. »",
+   "es": "<b>Es un error de atención, no de idioma.</b> Solo se da lo que está indicado para ese paciente y preparado para él. Di lo que indicó la médica: «Die Ärztin hat Ihnen ein Schmerzmittel bei Bedarf verordnet.»"
+  },
+  "noeuds.spritze.choix.0": {
+   "fr": "Ne vous inquiétez pas, c'est un comprimé. Je vais vous le chercher tout de suite, avec un verre d'eau.",
+   "de": "Keine Sorge, es ist eine Tablette. Ich hole sie Ihnen gleich, mit einem Glas Wasser.",
+   "es": "No se preocupe, es una pastilla. Se la traigo enseguida, con un vaso de agua."
+  },
+  "noeuds.spritze.choix.0.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "es": "Ah, bueno, entonces está bien."
+  },
+  "noeuds.spritze.choix.1": {
+   "fr": "Ce n'est pas une piqûre, c'est un comprimé. Je vous l'apporte tout de suite.",
+   "de": "Das ist keine Spritze, das ist eine Tablette. Ich bringe sie Ihnen sofort.",
+   "es": "No es una inyección, es una pastilla. Se la traigo de inmediato."
+  },
+  "noeuds.spritze.choix.1.puis.0": {
+   "fr": "Bon, alors ça va.",
+   "de": "Na, dann ist ja gut.",
+   "es": "Ah, bueno, entonces está bien."
+  },
+  "noeuds.lage.dit.0.recit": {
+   "fr": "{elif} revient avec le comprimé. {brandt} l'avale et soupire. Il est mal installé, de travers dans son lit.",
+   "es": "{elif} vuelve con la pastilla. {brandt} se la traga y suspira. Está mal acomodado, atravesado en la cama."
+  },
+  "noeuds.lage.choix.0": {
+   "fr": "Voulez-vous que je remette votre oreiller autrement ? Vous serez peut-être mieux installé.",
+   "de": "Soll ich Ihr Kissen anders hinlegen? Vielleicht liegen Sie dann bequemer.",
+   "es": "¿Quiere que le acomode la almohada de otra forma? Tal vez así esté más cómodo."
+  },
+  "noeuds.lage.choix.0.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "es": "Sí, estaría bien. Pero con cuidado, por favor."
+  },
+  "noeuds.lage.choix.1": {
+   "fr": "Je peux vous aider à vous installer un peu autrement ?",
+   "de": "Darf ich Ihnen helfen, sich ein bisschen anders hinzulegen?",
+   "es": "¿Me permite ayudarle a acomodarse un poco diferente?"
+  },
+  "noeuds.lage.choix.1.puis.0": {
+   "fr": "Oui, ce serait bien. Mais doucement, s'il vous plaît.",
+   "de": "Ja, das wäre gut. Aber vorsichtig, bitte.",
+   "es": "Sí, estaría bien. Pero con cuidado, por favor."
+  },
+  "noeuds.lage.choix.2": {
+   "fr": "Bougez beaucoup la jambe, et la douleur va partir.",
+   "de": "Bewegen Sie das Bein ganz viel, dann geht der Schmerz weg.",
+   "es": "Mueva mucho la pierna y el dolor se le va a quitar."
+  },
+  "noeuds.lage.choix.2.puis.0": {
+   "fr": "Bouger beaucoup ? Maintenant que ça fait si mal ?",
+   "de": "Viel bewegen? Jetzt, wo es so wehtut?",
+   "es": "¿Moverla mucho? ¿Ahora que me duele tanto?"
+  },
+  "noeuds.lage.choix.2.aide": {
+   "fr": "<b>Ne promets pas que la douleur va partir, et ne donne pas de consigne de rééducation.</b> Les mouvements après l'opération sont décidés avec la kinésithérapie. Propose plutôt de l'installer confortablement.",
+   "es": "<b>No prometas que el dolor se va a quitar, y no des indicaciones de rehabilitación.</b> Los movimientos después de la operación se deciden con fisioterapia. Mejor ofrécele acomodarlo para que esté cómodo."
+  },
+  "noeuds.zurueck.choix.0": {
+   "fr": "Je reviens dans une demi-heure et je vous redemande pour la douleur.",
+   "de": "Ich komme in einer halben Stunde wieder und frage Sie noch einmal nach den Schmerzen.",
+   "es": "Vuelvo en media hora y le pregunto otra vez por el dolor."
+  },
+  "noeuds.zurueck.choix.0.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "es": "Bien. Y si empeora, toco el timbre."
+  },
+  "noeuds.zurueck.choix.1": {
+   "fr": "Dans 30 minutes, je repasse vous voir. Vous me redonnerez un chiffre.",
+   "de": "In 30 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.",
+   "es": "En 30 minutos paso a verlo otra vez. Entonces me vuelve a decir un número."
+  },
+  "noeuds.zurueck.choix.1.puis.0": {
+   "fr": "Bien. Et si ça empire, je sonne.",
+   "de": "Gut. Und wenn es schlimmer wird, klingle ich.",
+   "es": "Bien. Y si empeora, toco el timbre."
+  },
+  "noeuds.doku.dit.0": {
+   "fr": "Au fait, vous notez tout ça ?",
+   "de": "Schreiben Sie das eigentlich alles auf?",
+   "es": "Por cierto, ¿usted anota todo eso?"
+  },
+  "noeuds.doku.choix.0": {
+   "fr": "Oui, je note le sept et l'antidouleur dans votre dossier. Comme ça, le médecin est au courant aussi.",
+   "de": "Ja, ich trage die Sieben und das Schmerzmittel in Ihre Kurve ein. So weiß auch die Ärztin Bescheid.",
+   "es": "Sí, anoto el siete y el analgésico en su expediente. Así la doctora también está enterada."
+  },
+  "noeuds.doku.choix.0.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "es": "Cuidadosa sí es usted, eso hay que reconocérselo."
+  },
+  "noeuds.doku.choix.1": {
+   "fr": "Oui, tout est noté : où vous avez mal, à quelle intensité et quel médicament vous avez reçu.",
+   "de": "Ja, alles wird dokumentiert: wo es wehtut, wie stark und welches Medikament Sie bekommen haben.",
+   "es": "Sí, todo queda registrado: dónde le duele, qué tan fuerte y qué medicamento recibió."
+  },
+  "noeuds.doku.choix.1.puis.0": {
+   "fr": "Vous êtes consciencieuse, il faut bien le reconnaître.",
+   "de": "Ordentlich sind Sie ja, das muss man Ihnen lassen.",
+   "es": "Cuidadosa sí es usted, eso hay que reconocérselo."
+  },
+  "ecouter.0.q": {
+   "fr": "Où {brandt} a-t-il mal ?",
+   "de": "Wo hat {brandt} Schmerzen?",
+   "es": "¿Dónde le duele {brandt:a}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À la hanche droite.",
+   "de": "An der rechten Hüfte.",
+   "es": "En la cadera derecha."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Au genou gauche.",
+   "de": "Am linken Knie.",
+   "es": "En la rodilla izquierda."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Dans le dos.",
+   "de": "Im Rücken.",
+   "es": "En la espalda."
+  },
+  "ecouter.1.q": {
+   "fr": "Quelle est l'intensité de la douleur quand il bouge ?",
+   "de": "Wie stark sind die Schmerzen, wenn er sich bewegt?",
+   "es": "¿Qué tan fuerte es el dolor cuando se mueve?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Sept.",
+   "de": "Eine Sieben.",
+   "es": "Un siete."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Huit.",
+   "de": "Eine Acht.",
+   "es": "Un ocho."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Dix.",
+   "de": "Eine Zehn.",
+   "es": "Un diez."
+  },
+  "ecouter.2.q": {
+   "fr": "Qu'est-ce que {brandt} ne veut pas ?",
+   "de": "Was möchte {brandt} nicht?",
+   "es": "¿Qué es lo que {brandt} no quiere?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un comprimé.",
+   "de": "Eine Tablette.",
+   "es": "Una pastilla."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un verre d'eau.",
+   "de": "Ein Glas Wasser.",
+   "es": "Un vaso de agua."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Une piqûre.",
+   "de": "Eine Spritze.",
+   "es": "Una inyección."
+  }
+ }
+}
