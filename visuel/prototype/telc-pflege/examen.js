@@ -1077,7 +1077,7 @@ function inscrire(){
 // Le brouillon reste sur l'appareil (cle ecrit_<id>), le resultat dans l'etat du manuel (m.ecrits[id]). Un renvoi
 // « ecrit:<id> » d'un chapitre du manuel ouvre le sujet ici meme, et revient au chapitre.
 // Les textes du sujet sont dans les langues d'ecrit.json ; une langue absente retombe sur le francais.
-const ECRIT_TYPES = ["aufnahme", "biografie", "pflegebericht", "sturz", "nachricht"];
+const ECRIT_TYPES = ["aufnahme", "biografie", "pflegebericht", "schmerz", "sturz", "telefon", "nachricht"];
 const DEPUIS = Q.get("depuis") || "";
 const lg = o => !o ? "" : typeof o === "string" ? o : (o[LANGUE] || o.fr || "");
 const sujetsEcrits = () => (PF.ecrit && PF.ecrit.sujets) || [];
@@ -1176,6 +1176,8 @@ function comparerSujet(s, texte, ctx){
       (s.examen ? '<div class="bloc"><div class="score">' + note + ' / 20</div><p class="petit" style="text-align:center">' + esc(nomNiveau(B.niveauSchreiben(note))) + '</p>' +
         '<p class="petit">' + esc(T("pf_ecrit_estimation")) + '</p></div>' : "") +
       (grille && grille.criteres ? '<div class="bloc"><details><summary>' + esc(lg(grille.titre) || T("pf_ecrit_grille")) + '</summary>' +
+        // l'intro de la grille, sauf si elle cite encore un fichier du depot (version d'avant le 16 nov.)
+        (lg(grille.intro) && !/\.md\b/.test(lg(grille.intro)) ? '<p class="petit">' + esc(lg(grille.intro)) + '</p>' : "") +
         grille.criteres.map(c => '<div class="rubrik"><div class="rubrik-t">' + esc(lg(c.titre)) + '</div><p>' + esc(lg(c.question)) + '</p>' +
           (lg(c.conseil) ? '<p class="petit">' + esc(lg(c.conseil)) + '</p>' : "") + '</div>').join("") + '</details></div>' : "");
     $("zone").querySelectorAll("[data-pt]").forEach(b => b.onclick = () => {
