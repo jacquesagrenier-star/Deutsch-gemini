@@ -289,7 +289,7 @@ def importer():
     print("importe :", total, "champs")
 
 
-PORTUGAIS = ("ã", "õ", "ç", " você", " não ", " é ", " uma ", " está ", " com ")
+PORTUGAIS = ("ã", "õ", "ç", " você", " não ", " é ", " uma ", " com ", " muito ", " também ")  # pas « está » : de l espagnol aussi
 
 
 def verifier(nom):
