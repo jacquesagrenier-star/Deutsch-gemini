@@ -3117,6 +3117,67 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .soins-scenes{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px;}
 .suivi-soins-ligne{padding:8px 0; border-top:1px solid rgba(76,86,107,.18); line-height:1.45;}
 .suivi-soins-alerte{display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; background:#fde8e4; color:#a33a2c;}
+/* Wortando Pflege, l'accueil Soins et les chapitres (16 nov. 2026, maquette « Accueil Pflege ») : en mode Soins, le bloc
+   #accueilSoins prend la place de la grille ; en Allemand general, rien de tout cela ne s'affiche. */
+body.mode-soins #home #orbGrid, body.mode-soins #home #homeStatsCard, body.mode-soins #home #homeHelpLaunch{display:none !important;}
+.soins-bascule{display:flex; gap:4px; padding:4px; margin:6px 0 12px; border-radius:999px; background:rgba(28,36,48,.07); max-width:420px;}
+.soins-bascule button{flex:1; min-height:44px; border:0; border-radius:999px; background:transparent; color:#2C3647; font-weight:700; font-size:.95rem; cursor:pointer; padding:0 12px;}
+.soins-bascule button[aria-pressed="true"]{background:#fff; color:#1C2430; box-shadow:0 2px 8px rgba(20,40,60,.12);}
+.accueil-soins{position:relative; display:grid; gap:14px; margin-bottom:18px;}
+.as-fond{position:absolute; inset:0; z-index:-1; pointer-events:none;}
+.as-carte{background:#fff; border-radius:22px; padding:16px; box-shadow:0 6px 18px rgba(20,40,60,.08); display:grid; gap:10px;}
+.as-kick{font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#8A5A12;}
+.as-tete{display:flex; align-items:baseline; justify-content:space-between; gap:8px; flex-wrap:wrap;}
+.as-tete strong{font-size:1.25rem; color:#1C2430;}
+.as-min{font-size:.85rem; color:#4C566B; white-space:nowrap;}
+.as-chap{font-weight:700; color:#2C3647;}
+.as-portes{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.as-porte{min-height:56px; border:2px solid rgba(28,36,48,.12); border-radius:14px; background:#F7F8FA; color:#1C2430; text-align:start; padding:8px 10px; cursor:pointer; display:grid; gap:2px;}
+.as-porte b{font-size:.92rem;}
+.as-porte small{font-size:.78rem; color:#4C566B;}
+.as-porte[aria-pressed="true"]{border-color:#E8A23A; background:#FFF6E6;}
+.as-lignes{list-style:none; margin:0; padding:0; display:grid; gap:8px;}
+.as-lignes li{display:grid; gap:2px; padding:8px 10px; border-radius:12px; background:#F7F8FA;}
+.as-lignes b{font-size:.92rem; color:#1C2430;}
+.as-lignes small{font-size:.82rem; color:#4C566B; overflow-wrap:anywhere;}
+.as-go{min-height:48px;}
+.as-bloc{display:grid; gap:8px;}
+.as-bloc-tete strong{font-size:1.05rem; color:#1C2430;}
+.as-desc{margin:0; font-size:.85rem; color:#4C566B;}
+.as-ruban{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px;}
+.as-chapitre{min-height:64px; border:0; border-radius:14px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); text-align:start; padding:10px; cursor:pointer; display:grid; gap:2px; color:#1C2430;}
+.as-chapitre small{color:#4C566B; font-size:.75rem;}
+.as-chapitre b{font-size:.9rem;}
+.as-chapitre .as-prep{color:#8A5A12; font-size:.72rem;}
+.as-ligne{display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:56px; width:100%; border:0; border-radius:16px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); padding:10px 14px; text-align:start; cursor:pointer; color:#1C2430;}
+.as-ligne span{display:grid; gap:2px;}
+.as-ligne small{color:#4C566B; font-size:.8rem;}
+.as-lien{border:0; background:none; color:#1E5E8C; font-weight:700; text-align:start; min-height:44px; cursor:pointer; padding:0;}
+.ch-section{margin:14px 0; display:grid; gap:8px;}
+.ch-section h3{margin:0; font-size:1rem;}
+.ch-boutons{display:grid; gap:8px;}
+.ch-bouton{min-height:52px; border:0; border-radius:14px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); text-align:start; padding:10px 14px; cursor:pointer; display:grid; gap:2px; color:#1C2430;}
+.ch-bouton small{color:#4C566B; font-size:.8rem;}
+.ch-bouton[disabled]{opacity:.6; cursor:default;}
+.sn-cote{display:grid; gap:6px; margin:8px 0;}
+.sn-cache{display:none !important;}
+.sn-qui{font-size:.78rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#8A5A12;}
+.sn-de, .sn-sigle, .sn-ex{border:0; background:none; text-align:start; padding:4px 0; cursor:pointer; color:#1C2430;}
+.sn-de{font-size:1.3rem; font-weight:800;}
+.sn-sigle{font-size:2rem; font-weight:800; letter-spacing:.04em;}
+.sn-ex{font-size:1rem;}
+.sn-egal{font-size:1.2rem; font-weight:700; margin:0;}
+.sn-voir{margin-top:6px; min-height:44px;}
+body[data-theme="dark"] .soins-bascule{background:rgba(255,255,255,.08);}
+body[data-theme="dark"] .soins-bascule button{color:#D6DCE6;}
+body[data-theme="dark"] .soins-bascule button[aria-pressed="true"]{background:#2A3546; color:#fff;}
+body[data-theme="dark"] .as-carte, body[data-theme="dark"] .as-chapitre, body[data-theme="dark"] .as-ligne, body[data-theme="dark"] .ch-bouton{background:#1B2433; color:#E8ECF2; box-shadow:none;}
+body[data-theme="dark"] .as-porte, body[data-theme="dark"] .as-lignes li{background:#232E3F; color:#E8ECF2; border-color:rgba(255,255,255,.12);}
+body[data-theme="dark"] .as-porte[aria-pressed="true"]{border-color:#D99634; background:#33291A;}
+body[data-theme="dark"] .as-tete strong, body[data-theme="dark"] .as-chap, body[data-theme="dark"] .as-lignes b, body[data-theme="dark"] .as-bloc-tete strong, body[data-theme="dark"] .sn-de, body[data-theme="dark"] .sn-sigle, body[data-theme="dark"] .sn-ex, body[data-theme="dark"] .sn-egal{color:#E8ECF2;}
+body[data-theme="dark"] .as-min, body[data-theme="dark"] .as-desc, body[data-theme="dark"] .as-porte small, body[data-theme="dark"] .as-lignes small, body[data-theme="dark"] .as-chapitre small, body[data-theme="dark"] .as-ligne small, body[data-theme="dark"] .ch-bouton small{color:#A9B3C2;}
+body[data-theme="dark"] .as-kick, body[data-theme="dark"] .sn-qui, body[data-theme="dark"] .as-chapitre .as-prep{color:#E8B25E;}
+body[data-theme="dark"] .as-lien{color:#8CC4EE;}
 
 .theme-count{
     color:#4C566B;
@@ -10299,6 +10360,18 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
          pendant l'essai seulement ; le toucher ouvre l'abonnement. Cache tant
          que ACCES.actif vaut false (majCompteurEssai). -->
     <button type="button" id="essaiCompteur" class="essai-compteur hidden" onclick="ouvrirAbonnement()"></button>
+    <!-- WORTANDO PFLEGE, L'ACCUEIL SOINS (decision de Jacques du 16 nov. 2026, 923aa49 ; maquette « Accueil Pflege ») :
+         pour un compte ouvert aux Soins seulement, un interrupteur « Soins / Allemand general » ; en Soins, le bloc
+         #accueilSoins remplace la grille de l'accueil (body.mode-soins), en Allemand general rien ne change. Le fond
+         (#accueilSoinsFond) attend le choix de Jacques parmi les trois pistes de la maquette. Voir majAccueilSoins(). -->
+    <div class="soins-bascule hidden" id="soinsBascule" role="group" data-i18n-aria-label="sn_bascule_aria" aria-label="Choisir l'accueil">
+        <button type="button" data-mode="soins" aria-pressed="true" onclick="choisirModeAccueil('soins')" data-i18n="sn_bascule_soins">Soins</button>
+        <button type="button" data-mode="general" aria-pressed="false" onclick="choisirModeAccueil('general')" data-i18n="sn_bascule_general">Allemand général</button>
+    </div>
+    <div class="accueil-soins hidden" id="accueilSoins">
+        <div class="as-fond" id="accueilSoinsFond" aria-hidden="true"></div>
+        <div id="accueilSoinsCorps"></div>
+    </div>
 
     <h1>
         <span class="gradient">
@@ -11775,6 +11848,20 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         </div>
         <div class="theme-list" id="soinsList"></div>
     </div>
+</section>
+
+<!-- WORTANDO PFLEGE, UN CHAPITRE DE « MA JOURNEE AU SERVICE » (16 nov. 2026) : sa seance, sa scene, ses mots en images,
+     ses conversations, son ecrit (pflege/datos/chapitres.json). Rempli par rendreChapitreSoins(). -->
+<section id="soinsChapitre" class="screen">
+    <button class="back" onclick="retourDeChapitreSoins()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" id="soinsChapKicker"></div>
+            <h2 id="soinsChapTitre"></h2>
+        </div>
+    </div>
+    <p class="soins-chapeau" id="soinsChapSous"></p>
+    <div id="soinsChapCorps"></div>
 </section>
 
 <!-- ================= ADJEKTIVE ================= -->
@@ -17308,6 +17395,43 @@ const I18N = {
         orb_zahlen_title: "Nombres",
         orb_prononciation: "Prononciation",
         orb_conversations: "Conversations",
+        sn_bascule_soins: "Soins",
+        sn_bascule_general: "Allemand général",
+        sn_bascule_aria: "Choisir l'accueil",
+        sn_aujourdhui: "Aujourd'hui · Soins",
+        sn_seance: "Ma séance Soins",
+        sn_minutes: "environ {n} min",
+        sn_porte_debut: "Je commence",
+        sn_porte_examen: "Je prépare l'examen",
+        sn_porte_aria: "Mon objectif",
+        sn_ligne_mots: "{n} mots du service",
+        sn_ligne_paire: "Le patient dit / le service écrit",
+        sn_ligne_abrev: "Une abréviation",
+        sn_ligne_dialogue: "Un dialogue pour finir",
+        sn_commencer: "Commencer la séance",
+        sn_mots_service: "Les mots du service",
+        sn_journee: "Ma journée au service",
+        sn_journee_desc: "Un chapitre par moment de la journée : la scène, les mots en images, les conversations, l'écrit.",
+        sn_chapitres_vides: "Les chapitres arrivent. En attendant : les dialogues, les scènes et les mots des Soins.",
+        sn_en_preparation: "en préparation",
+        sn_bientot: "bientôt",
+        sn_dialogues: "Les dialogues du service",
+        sn_dialogues_sous: "Choisis ou dis ta réponse",
+        sn_telc_sous: "Lire · Écouter · Écrire · Parler",
+        sn_telc_go: "S'entraîner",
+        sn_tout_soins: "Tous les contenus des Soins",
+        sn_q_paire: "Comment le dit le service ?",
+        sn_q_abrev: "Que veut dire cette abréviation ?",
+        sn_patient_dit: "Le patient dit",
+        sn_service_dit: "Le service dit",
+        sn_voir: "Voir la réponse",
+        sn_on_dit: "À voix haute",
+        ch_scene: "La scène",
+        ch_theme: "Les mots en images",
+        ch_conversations: "Les conversations",
+        ch_ecrit: "L'écrit",
+        ch_seance: "La séance de ce chapitre",
+        ch_numero: "Chapitre {n}",
         conv_ligne: "Converser",
         conv_ligne_n: "{n} conversations",
         conv_ligne_n1: "{n} conversation",
@@ -19148,6 +19272,43 @@ const I18N = {
         orb_zahlen_title: "Numbers",
         orb_prononciation: "Pronunciation",
         orb_conversations: "Conversations",
+        sn_bascule_soins: "Care",
+        sn_bascule_general: "General German",
+        sn_bascule_aria: "Choose the home screen",
+        sn_aujourdhui: "Today · Care",
+        sn_seance: "My care session",
+        sn_minutes: "about {n} min",
+        sn_porte_debut: "I'm starting",
+        sn_porte_examen: "I'm preparing for the exam",
+        sn_porte_aria: "My goal",
+        sn_ligne_mots: "{n} ward words",
+        sn_ligne_paire: "The patient says / the ward writes",
+        sn_ligne_abrev: "An abbreviation",
+        sn_ligne_dialogue: "A dialogue to finish",
+        sn_commencer: "Start the session",
+        sn_mots_service: "Ward vocabulary",
+        sn_journee: "My day on the ward",
+        sn_journee_desc: "One chapter for each moment of the day: the scene, the words in pictures, the conversations, the writing.",
+        sn_chapitres_vides: "The chapters are on their way. In the meantime: the care dialogues, scenes and words.",
+        sn_en_preparation: "in preparation",
+        sn_bientot: "coming soon",
+        sn_dialogues: "Ward dialogues",
+        sn_dialogues_sous: "Choose or say your answer",
+        sn_telc_sous: "Reading · Listening · Writing · Speaking",
+        sn_telc_go: "Practise",
+        sn_tout_soins: "All care content",
+        sn_q_paire: "How does the ward say it?",
+        sn_q_abrev: "What does this abbreviation mean?",
+        sn_patient_dit: "The patient says",
+        sn_service_dit: "The ward says",
+        sn_voir: "Show the answer",
+        sn_on_dit: "Said aloud",
+        ch_scene: "The scene",
+        ch_theme: "Words in pictures",
+        ch_conversations: "Conversations",
+        ch_ecrit: "Writing",
+        ch_seance: "This chapter's session",
+        ch_numero: "Chapter {n}",
         conv_ligne: "Talk",
         conv_ligne_n: "{n} conversations",
         conv_ligne_n1: "{n} conversation",
@@ -20932,6 +21093,43 @@ const I18N = {
         orb_zahlen_title: "Sayılar",
         orb_prononciation: "Telaffuz",
         orb_conversations: "Konuşmalar",
+        sn_bascule_soins: "Bakım",
+        sn_bascule_general: "Genel Almanca",
+        sn_bascule_aria: "Ana ekranı seç",
+        sn_aujourdhui: "Bugün · Bakım",
+        sn_seance: "Bakım oturumum",
+        sn_minutes: "yaklaşık {n} dk",
+        sn_porte_debut: "Yeni başlıyorum",
+        sn_porte_examen: "Sınava hazırlanıyorum",
+        sn_porte_aria: "Hedefim",
+        sn_ligne_mots: "Servisten {n} kelime",
+        sn_ligne_paire: "Hasta der ki / servis yazar",
+        sn_ligne_abrev: "Bir kısaltma",
+        sn_ligne_dialogue: "Bitirmek için bir diyalog",
+        sn_commencer: "Oturumu başlat",
+        sn_mots_service: "Servisin kelimeleri",
+        sn_journee: "Servisteki günüm",
+        sn_journee_desc: "Günün her anı için bir bölüm: sahne, resimli kelimeler, konuşmalar, yazı.",
+        sn_chapitres_vides: "Bölümler yolda. Bu arada: bakım diyalogları, sahneleri ve kelimeleri.",
+        sn_en_preparation: "hazırlanıyor",
+        sn_bientot: "yakında",
+        sn_dialogues: "Serviste diyaloglar",
+        sn_dialogues_sous: "Cevabını seç ya da söyle",
+        sn_telc_sous: "Okuma · Dinleme · Yazma · Konuşma",
+        sn_telc_go: "Alıştırma yap",
+        sn_tout_soins: "Tüm bakım içerikleri",
+        sn_q_paire: "Serviste bu nasıl söylenir?",
+        sn_q_abrev: "Bu kısaltma ne anlama geliyor?",
+        sn_patient_dit: "Hasta der ki",
+        sn_service_dit: "Servis der ki",
+        sn_voir: "Cevabı göster",
+        sn_on_dit: "Sesli okunuşu",
+        ch_scene: "Sahne",
+        ch_theme: "Resimli kelimeler",
+        ch_conversations: "Konuşmalar",
+        ch_ecrit: "Yazma",
+        ch_seance: "Bu bölümün oturumu",
+        ch_numero: "Bölüm {n}",
         conv_ligne: "Sohbet et",
         conv_ligne_n: "{n} konuşma",
         conv_ligne_n1: "{n} konuşma",
@@ -22922,6 +23120,43 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Вимова",
         orb_conversations: "Розмови",
+        sn_bascule_soins: "Догляд",
+        sn_bascule_general: "Загальна німецька",
+        sn_bascule_aria: "Вибрати головний екран",
+        sn_aujourdhui: "Сьогодні · Догляд",
+        sn_seance: "Мій урок догляду",
+        sn_minutes: "близько {n} хв",
+        sn_porte_debut: "Я починаю",
+        sn_porte_examen: "Я готуюся до іспиту",
+        sn_porte_aria: "Моя мета",
+        sn_ligne_mots: "{n} слів відділення",
+        sn_ligne_paire: "Пацієнт каже / відділення пише",
+        sn_ligne_abrev: "Скорочення",
+        sn_ligne_dialogue: "Діалог наостанок",
+        sn_commencer: "Почати урок",
+        sn_mots_service: "Слова відділення",
+        sn_journee: "Мій день у відділенні",
+        sn_journee_desc: "Розділ на кожну мить дня: сцена, слова в картинках, розмови, письмо.",
+        sn_chapitres_vides: "Розділи вже незабаром. А поки що: діалоги, сцени й слова догляду.",
+        sn_en_preparation: "готується",
+        sn_bientot: "незабаром",
+        sn_dialogues: "Діалоги у відділенні",
+        sn_dialogues_sous: "Вибери або скажи відповідь",
+        sn_telc_sous: "Читання · Слухання · Письмо · Говоріння",
+        sn_telc_go: "Тренуватися",
+        sn_tout_soins: "Увесь вміст догляду",
+        sn_q_paire: "Як це скаже відділення?",
+        sn_q_abrev: "Що означає це скорочення?",
+        sn_patient_dit: "Пацієнт каже",
+        sn_service_dit: "Відділення каже",
+        sn_voir: "Показати відповідь",
+        sn_on_dit: "Уголос",
+        ch_scene: "Сцена",
+        ch_theme: "Слова в картинках",
+        ch_conversations: "Розмови",
+        ch_ecrit: "Письмо",
+        ch_seance: "Урок цього розділу",
+        ch_numero: "Розділ {n}",
         conv_ligne: "Розмовляти",
         conv_ligne_n: "Розмови: {n}",
         conv_ligne_n1: "Розмови: {n}",
@@ -23468,6 +23703,43 @@ const I18N = {
         orb_zahlen_title: "عددها",
         orb_prononciation: "تلفظ",
         orb_conversations: "گفت‌وگوها",
+        sn_bascule_soins: "پرستاری",
+        sn_bascule_general: "آلمانی عمومی",
+        sn_bascule_aria: "انتخاب صفحه اصلی",
+        sn_aujourdhui: "امروز · پرستاری",
+        sn_seance: "جلسه پرستاری من",
+        sn_minutes: "حدود {n} دقیقه",
+        sn_porte_debut: "تازه شروع می‌کنم",
+        sn_porte_examen: "برای آزمون آماده می‌شوم",
+        sn_porte_aria: "هدف من",
+        sn_ligne_mots: "{n} واژه بخش",
+        sn_ligne_paire: "بیمار می‌گوید / بخش می‌نویسد",
+        sn_ligne_abrev: "یک کوته‌نوشت",
+        sn_ligne_dialogue: "یک گفت‌وگو برای پایان",
+        sn_commencer: "شروع جلسه",
+        sn_mots_service: "واژه‌های بخش",
+        sn_journee: "روز من در بخش",
+        sn_journee_desc: "برای هر لحظه روز یک فصل: صحنه، واژه‌ها در تصویر، گفت‌وگوها، نوشتن.",
+        sn_chapitres_vides: "فصل‌ها در راه‌اند. تا آن موقع: گفت‌وگوها، صحنه‌ها و واژه‌های پرستاری.",
+        sn_en_preparation: "در حال آماده‌سازی",
+        sn_bientot: "به‌زودی",
+        sn_dialogues: "گفت‌وگوهای بخش",
+        sn_dialogues_sous: "جوابت را انتخاب کن یا بگو",
+        sn_telc_sous: "خواندن · شنیدن · نوشتن · صحبت کردن",
+        sn_telc_go: "تمرین کردن",
+        sn_tout_soins: "همه محتوای پرستاری",
+        sn_q_paire: "در بخش این را چطور می‌گویند؟",
+        sn_q_abrev: "این کوته‌نوشت یعنی چه؟",
+        sn_patient_dit: "بیمار می‌گوید",
+        sn_service_dit: "بخش می‌گوید",
+        sn_voir: "نشان دادن جواب",
+        sn_on_dit: "با صدای بلند",
+        ch_scene: "صحنه",
+        ch_theme: "واژه‌ها در تصویر",
+        ch_conversations: "گفت‌وگوها",
+        ch_ecrit: "نوشتن",
+        ch_seance: "جلسه این فصل",
+        ch_numero: "فصل {n}",
         conv_ligne: "گفت‌وگو کن",
         conv_ligne_n: "{n} گفت‌وگو",
         conv_ligne_n1: "{n} گفت‌وگو",
@@ -25319,6 +25591,43 @@ const I18N = {
         orb_zahlen_title: "الأعداد",
         orb_prononciation: "النطق",
         orb_conversations: "المحادثات",
+        sn_bascule_soins: "الرعاية",
+        sn_bascule_general: "الألمانية العامة",
+        sn_bascule_aria: "اختيار الشاشة الرئيسية",
+        sn_aujourdhui: "اليوم · الرعاية",
+        sn_seance: "جلستي في الرعاية",
+        sn_minutes: "نحو {n} دقيقة",
+        sn_porte_debut: "أنا في البداية",
+        sn_porte_examen: "أستعد للامتحان",
+        sn_porte_aria: "هدفي",
+        sn_ligne_mots: "{n} كلمة من القسم",
+        sn_ligne_paire: "المريض يقول / القسم يكتب",
+        sn_ligne_abrev: "اختصار",
+        sn_ligne_dialogue: "حوار في الختام",
+        sn_commencer: "ابدأ الجلسة",
+        sn_mots_service: "كلمات القسم",
+        sn_journee: "يومي في القسم",
+        sn_journee_desc: "فصل لكل لحظة من اليوم: المشهد، الكلمات بالصور، المحادثات، الكتابة.",
+        sn_chapitres_vides: "الفصول قادمة. وفي الأثناء: حوارات الرعاية ومشاهدها وكلماتها.",
+        sn_en_preparation: "قيد الإعداد",
+        sn_bientot: "قريبًا",
+        sn_dialogues: "حوارات القسم",
+        sn_dialogues_sous: "اختر إجابتك أو قلها",
+        sn_telc_sous: "القراءة · الاستماع · الكتابة · المحادثة",
+        sn_telc_go: "تدرّب",
+        sn_tout_soins: "كل محتوى الرعاية",
+        sn_q_paire: "كيف يقولها القسم؟",
+        sn_q_abrev: "ماذا يعني هذا الاختصار؟",
+        sn_patient_dit: "المريض يقول",
+        sn_service_dit: "القسم يقول",
+        sn_voir: "أظهر الإجابة",
+        sn_on_dit: "بصوت عالٍ",
+        ch_scene: "المشهد",
+        ch_theme: "الكلمات بالصور",
+        ch_conversations: "المحادثات",
+        ch_ecrit: "الكتابة",
+        ch_seance: "جلسة هذا الفصل",
+        ch_numero: "الفصل {n}",
         conv_ligne: "المحادثة",
         conv_ligne_n: "المحادثات: {n}",
         conv_ligne_n1: "المحادثات: {n}",
@@ -28253,6 +28562,43 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronúncia",
         orb_conversations: "Conversas",
+        sn_bascule_soins: "Cuidados",
+        sn_bascule_general: "Alemão geral",
+        sn_bascule_aria: "Escolher a tela inicial",
+        sn_aujourdhui: "Hoje · Cuidados",
+        sn_seance: "Minha sessão de cuidados",
+        sn_minutes: "cerca de {n} min",
+        sn_porte_debut: "Estou começando",
+        sn_porte_examen: "Estou me preparando para a prova",
+        sn_porte_aria: "Meu objetivo",
+        sn_ligne_mots: "{n} palavras do setor",
+        sn_ligne_paire: "O paciente diz / o setor escreve",
+        sn_ligne_abrev: "Uma abreviatura",
+        sn_ligne_dialogue: "Um diálogo para terminar",
+        sn_commencer: "Começar a sessão",
+        sn_mots_service: "As palavras do setor",
+        sn_journee: "Meu dia no setor",
+        sn_journee_desc: "Um capítulo para cada momento do dia: a cena, as palavras em imagens, as conversas, a escrita.",
+        sn_chapitres_vides: "Os capítulos estão chegando. Enquanto isso: os diálogos, as cenas e as palavras dos cuidados.",
+        sn_en_preparation: "em preparação",
+        sn_bientot: "em breve",
+        sn_dialogues: "Os diálogos do setor",
+        sn_dialogues_sous: "Escolha ou diga sua resposta",
+        sn_telc_sous: "Ler · Ouvir · Escrever · Falar",
+        sn_telc_go: "Praticar",
+        sn_tout_soins: "Todo o conteúdo de cuidados",
+        sn_q_paire: "Como o setor diz isso?",
+        sn_q_abrev: "O que significa esta abreviatura?",
+        sn_patient_dit: "O paciente diz",
+        sn_service_dit: "O setor diz",
+        sn_voir: "Ver a resposta",
+        sn_on_dit: "Em voz alta",
+        ch_scene: "A cena",
+        ch_theme: "As palavras em imagens",
+        ch_conversations: "As conversas",
+        ch_ecrit: "A escrita",
+        ch_seance: "A sessão deste capítulo",
+        ch_numero: "Capítulo {n}",
         conv_ligne: "Conversar",
         conv_ligne_n: "{n} conversas",
         conv_ligne_n1: "{n} conversa",
@@ -30100,6 +30446,43 @@ const I18N = {
         orb_zahlen_title: "Liczby",
         orb_prononciation: "Wymowa",
         orb_conversations: "Rozmowy",
+        sn_bascule_soins: "Opieka",
+        sn_bascule_general: "Niemiecki ogólny",
+        sn_bascule_aria: "Wybierz ekran główny",
+        sn_aujourdhui: "Dziś · Opieka",
+        sn_seance: "Moja sesja opieki",
+        sn_minutes: "około {n} min",
+        sn_porte_debut: "Zaczynam",
+        sn_porte_examen: "Przygotowuję się do egzaminu",
+        sn_porte_aria: "Mój cel",
+        sn_ligne_mots: "{n} słów z oddziału",
+        sn_ligne_paire: "Pacjent mówi / oddział pisze",
+        sn_ligne_abrev: "Skrót",
+        sn_ligne_dialogue: "Na koniec dialog",
+        sn_commencer: "Zacznij sesję",
+        sn_mots_service: "Słowa z oddziału",
+        sn_journee: "Mój dzień na oddziale",
+        sn_journee_desc: "Rozdział na każdą chwilę dnia: scena, słowa na obrazkach, rozmowy, pisanie.",
+        sn_chapitres_vides: "Rozdziały są w drodze. Tymczasem: dialogi, sceny i słowa z opieki.",
+        sn_en_preparation: "w przygotowaniu",
+        sn_bientot: "wkrótce",
+        sn_dialogues: "Dialogi na oddziale",
+        sn_dialogues_sous: "Wybierz albo powiedz odpowiedź",
+        sn_telc_sous: "Czytanie · Słuchanie · Pisanie · Mówienie",
+        sn_telc_go: "Ćwiczyć",
+        sn_tout_soins: "Wszystkie treści o opiece",
+        sn_q_paire: "Jak mówi się to na oddziale?",
+        sn_q_abrev: "Co oznacza ten skrót?",
+        sn_patient_dit: "Pacjent mówi",
+        sn_service_dit: "Oddział mówi",
+        sn_voir: "Pokaż odpowiedź",
+        sn_on_dit: "Na głos",
+        ch_scene: "Scena",
+        ch_theme: "Słowa na obrazkach",
+        ch_conversations: "Rozmowy",
+        ch_ecrit: "Pisanie",
+        ch_seance: "Sesja tego rozdziału",
+        ch_numero: "Rozdział {n}",
         conv_ligne: "Rozmawiać",
         conv_ligne_n: "Rozmowy: {n}",
         conv_ligne_n1: "Rozmowy: {n}",
@@ -31950,6 +32333,43 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Произно­шение",
         orb_conversations: "Разговоры",
+        sn_bascule_soins: "Уход",
+        sn_bascule_general: "Общий немецкий",
+        sn_bascule_aria: "Выбрать главный экран",
+        sn_aujourdhui: "Сегодня · Уход",
+        sn_seance: "Мой урок по уходу",
+        sn_minutes: "около {n} мин",
+        sn_porte_debut: "Я начинаю",
+        sn_porte_examen: "Я готовлюсь к экзамену",
+        sn_porte_aria: "Моя цель",
+        sn_ligne_mots: "{n} слов отделения",
+        sn_ligne_paire: "Пациент говорит / отделение пишет",
+        sn_ligne_abrev: "Сокращение",
+        sn_ligne_dialogue: "Диалог в конце",
+        sn_commencer: "Начать урок",
+        sn_mots_service: "Слова отделения",
+        sn_journee: "Мой день в отделении",
+        sn_journee_desc: "Глава на каждый момент дня: сцена, слова в картинках, разговоры, письмо.",
+        sn_chapitres_vides: "Главы скоро появятся. А пока: диалоги, сцены и слова по уходу.",
+        sn_en_preparation: "готовится",
+        sn_bientot: "скоро",
+        sn_dialogues: "Диалоги в отделении",
+        sn_dialogues_sous: "Выбери или скажи ответ",
+        sn_telc_sous: "Чтение · Аудирование · Письмо · Говорение",
+        sn_telc_go: "Тренироваться",
+        sn_tout_soins: "Все материалы по уходу",
+        sn_q_paire: "Как это скажут в отделении?",
+        sn_q_abrev: "Что означает это сокращение?",
+        sn_patient_dit: "Пациент говорит",
+        sn_service_dit: "Отделение говорит",
+        sn_voir: "Показать ответ",
+        sn_on_dit: "Вслух",
+        ch_scene: "Сцена",
+        ch_theme: "Слова в картинках",
+        ch_conversations: "Разговоры",
+        ch_ecrit: "Письмо",
+        ch_seance: "Урок этой главы",
+        ch_numero: "Глава {n}",
         conv_ligne: "Разговаривать",
         conv_ligne_n: "Разговоры: {n}",
         conv_ligne_n1: "Разговоры: {n}",
@@ -52847,6 +53267,8 @@ function tuilesProposees(home){
 function majGrilleAccueil(){
     const home = document.getElementById("home"), g = document.getElementById("grilleAccueil");
     if(!home || !g) return;
+    // Wortando Pflege (16 nov. 2026) : l'interrupteur Soins / Allemand general, pour un compte ouvert aux Soins.
+    try{ majAccueilSoins(); }catch(e){}
     let actif = false;
     try{ actif = essaiActif("accueil_grille"); }catch(e){}
     if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); try{ majLigneConverser().catch(() => {}); }catch(e){} return; }
@@ -53037,7 +53459,7 @@ function quitterToutLeContenu(){
     synchroniserHistorique();
 }
 
-function goHome(){ PANNEAU_DORIGINE = null; showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} try{ majBandeauFetes(); }catch(e){} try{ majAccesAccueil(); }catch(e){} }
+function goHome(){ PANNEAU_DORIGINE = null; showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} try{ majBandeauFetes(); }catch(e){} try{ majAccesAccueil(); }catch(e){} try{ majAccueilSoins(); }catch(e){} }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -58204,6 +58626,9 @@ function chargerThemesSoins(){
                     r.sorte = w.sorte;
                     if(w.perfekt) r.perfekt = w.perfekt;
                 }
+                // L'entree d'origine, pour la seance Soins (16 nov. 2026) : le cote du patient d'une paire
+                // (patient, exemple_patient, traduction_patient_*), la lecture d'une abreviation (lecture_mot).
+                r.brut = w;
                 return r;
             });
             groupes[baseId].levels[niveau] = { id: entryId, words: mots, verben: [], adjektive: [] };
@@ -58222,6 +58647,7 @@ function majTuileSoins(){
 
 async function ouvrirSoins(){
     if(!soinsActifs()) return;
+    SOINS_RETOUR = null;   // ce qu'on ouvre d'ici revient ici
     showScreen("soinsListe");
     const box = document.getElementById("soinsList");
     if(box && !themesSoinsCharges) box.innerHTML = '<p class="soins-vide">Chargement…</p>';
@@ -58254,7 +58680,9 @@ const SCENES_SOINS = [
 ];
 function ouvrirSceneSoins(nom){
     if(!soinsActifs()) return;
-    if(!SCENES_SOINS.some(s => s.nom === nom)) return;
+    // Une scene de la liste, ou une vue qu'un chapitre nomme (soins-zimmer-aufstehen, 16 nov. 2026).
+    const dansUnChapitre = (chapitresSoins || []).some(c => (c.scenes || []).indexOf(nom) >= 0);
+    if(!SCENES_SOINS.some(s => s.nom === nom) && !dansUnChapitre) return;
     ouvrirSceneLibre(nom);
     sceneOuverteDepuis = "soins";
 }
@@ -58265,6 +58693,10 @@ function ouvrirSceneSoins(nom){
 // B2), puis le plus anciennement joue. Joue = fini par « Continuer » (« fini » de la page) ; la liste vit sur
 // l'appareil (SOINS_DIALOGUES_KEY), comme les examens blancs, et n'entre pas dans la sauvegarde.
 const SOINS_DIALOGUES_KEY = PREFIXE_STOCKAGE + "soinsDialogues";
+// 16 nov. 2026 : la seance Soins existe a part (ouvrirSeanceSoins), et l'interrupteur « Soins / Allemand general » de
+// Jacques fait de « Allemand general » de l'allemand general : sa seance ne prend plus les mots ni le dialogue des Soins
+// (v1196 / v1203 les y melaient). true les y remet.
+const SOINS_DANS_SEANCE_GENERALE = false;
 let dialogueSoinsOuvert = null;
 function dialoguesSoinsJoues(){
     try{ const l = JSON.parse(localStorage.getItem(SOINS_DIALOGUES_KEY) || "[]"); return Array.isArray(l) ? l.filter(x => typeof x === "string").slice(-40) : []; }
@@ -58277,7 +58709,7 @@ function marquerDialogueSoinsJoue(id){
     try{ localStorage.setItem(SOINS_DIALOGUES_KEY, JSON.stringify(l.slice(-40))); }catch(e){}
 }
 function insererDialogueSoins(seance){
-    if(!seance || seance.length < 2) return seance;
+    if(!seance || seance.length < 2 || !SOINS_DANS_SEANCE_GENERALE) return seance;
     try{ if(!soinsActifs()) return seance; }catch(e){ return seance; }
     try{ if(premiersPasEnCours()) return seance; }catch(e){}
     if(seance.some(c => c && c.forme === "conv_arret")) return seance;
@@ -58306,6 +58738,290 @@ function ouvrirDialoguesSoins(id){
                   + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
+}
+
+// ============ L'ACCUEIL SOINS ET « MA JOURNEE AU SERVICE » (decision de Jacques du 16 nov. 2026, 923aa49) ============
+// Plan : pflege/PLAN-CHAPITRES.md ; maquette « Accueil Pflege ». Pour un compte ouvert aux Soins seulement
+// (soinsActifs) : un interrupteur « Soins / Allemand general » en haut de l'accueil. En Soins : la carte « Ma seance
+// Soins » (deux portes au lieu de A1-C1), les chapitres de la journee, les dialogues, l'examen ; en Allemand general,
+// l'accueil d'avant, sans rien changer. Les chapitres : pflege/datos/chapitres.json (derive de pflege/sources/chapitres.py).
+// L'etat (l'accueil choisi, la porte, ce qu'on a vu, les chapitres faits) vit sur l'appareil : aucune cle nouvelle dans
+// la sauvegarde, donc aucune regle Firestore a coller.
+const MODE_ACCUEIL_KEY = PREFIXE_STOCKAGE + "modeAccueil";
+const PORTE_SOINS_KEY = PREFIXE_STOCKAGE + "porteSoins";
+const SOINS_VUS_KEY = PREFIXE_STOCKAGE + "soinsVus";
+// Les chapitres incomplets (sans theme illustre, sans ecrit...) sont CACHES pendant l'essai (recommandation du chef du
+// 16 nov.) ; true les montre « bientot ». L'admin les voit toujours, marques « en preparation », pour les relire.
+const CHAPITRES_SOINS_BIENTOT = false;
+// « Je commence » : A2 et B1 ; « Je prepare l'examen » : B1 et B2 (telc Pflege). Le niveau general du compte ne bouge pas.
+const PORTES_SOINS = { debut: ["A2", "B1"], examen: ["B1", "B2"] };
+const SEANCE_SOINS_MOTS = 11;   // + une paire, une abreviation, un dialogue : une quinzaine de cartes
+let chapitresSoins = null, promesseChapitresSoins = null;
+let SOINS_RETOUR = null;            // « accueil » ou « chapitre:<id> » : ou reviennent une scene, un dialogue, l'examen
+let SEANCE_SOINS_CHAPITRE = null;   // le chapitre de la seance Soins en cours (marque fait a la fin de son dialogue)
+
+function chargerChapitresSoins(){
+    if(chapitresSoins) return Promise.resolve(chapitresSoins);
+    if(promesseChapitresSoins) return promesseChapitresSoins;
+    promesseChapitresSoins = fetch(RACINE_DEPOT + "pflege/datos/chapitres.json", { cache: "no-cache" })
+        .then(r => { if(!r.ok) throw new Error("chapitres.json : " + r.status); return r.json(); })
+        .then(d => { chapitresSoins = Array.isArray(d.chapitres) ? d.chapitres : []; return chapitresSoins; })
+        .catch(e => { promesseChapitresSoins = null; throw e; });
+    return promesseChapitresSoins;
+}
+function chapitreVisibleSoins(c){
+    if(!c) return false;
+    let admin = false;
+    try{ admin = isAdminUser(); }catch(e){}
+    return !!(c.complet || CHAPITRES_SOINS_BIENTOT || admin);
+}
+function chapitresVisiblesSoins(){ return (chapitresSoins || []).filter(chapitreVisibleSoins); }
+function texteSoins(o){ if(!o) return ""; const l = getUiLang(); return o[l] || o.en || o.fr || ""; }
+function lireSoinsVus(){
+    try{
+        const o = JSON.parse(localStorage.getItem(SOINS_VUS_KEY) || "null");
+        if(o && typeof o === "object") return { m: Array.isArray(o.m) ? o.m.filter(x => typeof x === "string") : [],
+                                                c: (o.c && typeof o.c === "object") ? o.c : {} };
+    }catch(e){}
+    return { m: [], c: {} };
+}
+function ecrireSoinsVus(v){ try{ localStorage.setItem(SOINS_VUS_KEY, JSON.stringify({ m: v.m.slice(-400), c: v.c })); }catch(e){} }
+function marquerVuSoins(cle){ if(!cle) return; const v = lireSoinsVus(); v.m = v.m.filter(x => x !== cle); v.m.push(cle); ecrireSoinsVus(v); }
+function marquerChapitreFaitSoins(id){ if(!id) return; const v = lireSoinsVus(); v.c[id] = Date.now(); ecrireSoinsVus(v); }
+// Le chapitre du jour : le premier chapitre visible jamais fait, dans l'ordre de la journee ; sinon le plus
+// anciennement fait. Fait = le dialogue de sa seance joue jusqu'au bout (« fini »).
+function chapitreDuJourSoins(){
+    const vis = chapitresVisiblesSoins();
+    if(!vis.length) return null;
+    const faits = lireSoinsVus().c;
+    return vis.find(c => !faits[c.id]) || vis.slice().sort((a, b) => (faits[a.id] || 0) - (faits[b.id] || 0))[0];
+}
+function porteSoins(){ try{ return localStorage.getItem(PORTE_SOINS_KEY) === "examen" ? "examen" : "debut"; }catch(e){ return "debut"; } }
+function choisirPorteSoins(p){ try{ localStorage.setItem(PORTE_SOINS_KEY, p === "examen" ? "examen" : "debut"); }catch(e){} rendreAccueilSoins(); }
+function modeAccueilSoins(){
+    if(!soinsActifs()) return false;
+    try{ return localStorage.getItem(MODE_ACCUEIL_KEY) !== "general"; }catch(e){ return true; }
+}
+function choisirModeAccueil(m){
+    try{ localStorage.setItem(MODE_ACCUEIL_KEY, m === "general" ? "general" : "soins"); }catch(e){}
+    majAccueilSoins();
+    if(m === "general"){ try{ majGrilleAccueil(); }catch(e){} }
+}
+// Les mots des Soins aux niveaux d'une porte, au format de la seance ({ word, index, themeId, mode }).
+function itemsSoinsDesNiveaux(niveaux){
+    const out = [];
+    (themesSoins || []).forEach(th => niveaux.forEach(n => {
+        const d = th.levels[n];
+        if(d) d.words.forEach((w, i) => out.push({ word: w, index: i, themeId: d.id, mode: "nomen" }));
+    }));
+    return out;
+}
+const cleSoins = it => it.themeId + ":" + it.index;
+const estPaireSoins = it => !!(it && it.word && it.word.sorte === "paire");
+const estAbrevSoins = it => !!(it && it.word && /\(=/.test(String(it.word[0] || "")));
+// Ce que la seance d'un chapitre (ou, sans chapitre, de tous les Soins) prend a la porte choisie.
+function contenuSeanceSoins(ch){
+    const tous = itemsSoinsDesNiveaux(PORTES_SOINS[porteSoins()]);
+    const permis = ch ? new Set([].concat(ch.mots || [], ch.paires || [], ch.abreviations || [])) : null;
+    const dans = permis ? tous.filter(it => permis.has(cleSoins(it))) : tous;
+    const mots = dans.filter(it => !estPaireSoins(it) && !estAbrevSoins(it));
+    const vus = lireSoinsVus().m;
+    const prochain = liste => {
+        if(!liste.length) return null;
+        return liste.find(it => vus.indexOf(cleSoins(it)) < 0)
+            || liste.slice().sort((a, b) => vus.indexOf(cleSoins(a)) - vus.indexOf(cleSoins(b)))[0];
+    };
+    const paires = dans.filter(estPaireSoins), abrevs = dans.filter(estAbrevSoins);
+    return { mots: mots,
+             paire: prochain(paires.length ? paires : tous.filter(estPaireSoins)),
+             abrev: prochain(abrevs.length ? abrevs : tous.filter(estAbrevSoins)) };
+}
+// Le dialogue d'un chapitre : le premier pas encore joue, a la porte d'abord ; sinon le plus anciennement joue.
+function dialogueDuChapitreSoins(ch){
+    const infos = (ch && ch.dialogues_info) || [];
+    if(!infos.length) return null;
+    const niveaux = PORTES_SOINS[porteSoins()], joues = dialoguesSoinsJoues();
+    const aLaPorte = infos.filter(d => niveaux.indexOf(d.niveau) >= 0 || (d.niveau === "A2" && niveaux[0] === "A2"));
+    const liste = aLaPorte.length ? aLaPorte : infos;
+    return liste.find(d => joues.indexOf(d.id) < 0) || liste.slice().sort((a, b) => joues.indexOf(a.id) - joues.indexOf(b.id))[0];
+}
+function motAfficheSoins(it){
+    const r = it.word || [];
+    return ((r[1] && /^(der|die|das)$/.test(r[1])) ? r[1] + " " : "") + (r[0] || "");
+}
+
+// L'accueil : l'interrupteur, et en Soins le bloc qui remplace la grille (body.mode-soins).
+function majAccueilSoins(){
+    const bascule = document.getElementById("soinsBascule"), bloc = document.getElementById("accueilSoins");
+    if(!bascule || !bloc) return;
+    const actif = soinsActifs();
+    bascule.classList.toggle("hidden", !actif);
+    const soins = actif && modeAccueilSoins();
+    document.body.classList.toggle("mode-soins", soins);
+    bloc.classList.toggle("hidden", !soins);
+    bascule.querySelectorAll("button[data-mode]").forEach(b => b.setAttribute("aria-pressed", String((b.dataset.mode === "soins") === soins)));
+    if(!soins) return;
+    Promise.all([chargerThemesSoins().catch(() => null), chargerChapitresSoins().catch(() => null)])
+        .then(() => { try{ rendreAccueilSoins(); }catch(e){ console.warn("rendreAccueilSoins", e); } });
+}
+function rendreAccueilSoins(){
+    const corps = document.getElementById("accueilSoinsCorps");
+    if(!corps) return;
+    const e = echapperCompte;
+    const ch = chapitreDuJourSoins();
+    const porte = porteSoins();
+    const c = contenuSeanceSoins(ch);
+    const dlg = ch ? dialogueDuChapitreSoins(ch) : null;
+    const nMots = Math.min(SEANCE_SOINS_MOTS, c.mots.length);
+    const exemples = c.mots.slice(0, 4).map(motAfficheSoins).join(", ");
+    const brutPaire = (c.paire && c.paire.word && c.paire.word.brut) || {};
+    const brutAbrev = (c.abrev && c.abrev.word && c.abrev.word.brut) || {};
+    const titreChap = ch ? texteSoins(ch.titre) + " : " + texteSoins(ch.sous_titre) : t("sn_mots_service");
+    const ligne = (titre, sous) => '<li><b>' + e(titre) + '</b>' + (sous ? '<small lang="de">' + e(sous) + '</small>' : '') + '</li>';
+    let h = '<div class="as-carte">'
+        + '<div class="as-kick">' + e(t("sn_aujourdhui")) + '</div>'
+        + '<div class="as-tete"><strong>' + e(t("sn_seance")) + '</strong><span class="as-min">' + e(tf("sn_minutes", { n: 10 })) + '</span></div>'
+        + '<div class="as-chap">' + e(titreChap) + '</div>'
+        + '<div class="as-portes" role="group" aria-label="' + e(t("sn_porte_aria")) + '">'
+        + '<button type="button" class="as-porte" aria-pressed="' + (porte === "debut") + '" onclick="choisirPorteSoins(\'debut\')"><b>' + e(t("sn_porte_debut")) + '</b><small>A2 · B1</small></button>'
+        + '<button type="button" class="as-porte" aria-pressed="' + (porte === "examen") + '" onclick="choisirPorteSoins(\'examen\')"><b>' + e(t("sn_porte_examen")) + '</b><small>telc Pflege B1 · B2</small></button>'
+        + '</div><ul class="as-lignes">'
+        + (nMots ? ligne(tf("sn_ligne_mots", { n: nMots }), exemples + (c.mots.length > 4 ? "…" : "")) : "")
+        + (brutPaire.patient ? ligne(t("sn_ligne_paire"), "« " + brutPaire.patient + " » → " + (brutPaire.mot || "")) : "")
+        + (brutAbrev.mot ? ligne(t("sn_ligne_abrev"), brutAbrev.mot) : "")
+        + ligne(t("sn_ligne_dialogue"), dlg ? dlg.de : "")
+        + '</ul><button type="button" class="primary as-go" onclick="ouvrirSeanceSoins()">' + e(t("sn_commencer")) + '</button></div>';
+    // Ma journee au service : les chapitres visibles (complets ; tous pour l'admin, « en preparation »).
+    const vis = chapitresVisiblesSoins();
+    h += '<div class="as-bloc"><div class="as-bloc-tete"><strong>' + e(t("sn_journee")) + '</strong></div>';
+    if(vis.length){
+        h += '<p class="as-desc">' + e(t("sn_journee_desc")) + '</p><div class="as-ruban">'
+           + vis.map(x => '<button type="button" class="as-chapitre" onclick="ouvrirChapitreSoins(\'' + e(x.id) + '\')">'
+                 + '<small>' + e(tf("ch_numero", { n: x.numero })) + '</small><b>' + e(texteSoins(x.titre)) + '</b>'
+                 + (x.complet ? '' : '<span class="as-prep">' + e(CHAPITRES_SOINS_BIENTOT ? t("sn_bientot") : t("sn_en_preparation")) + '</span>')
+                 + '</button>').join("")
+           + '</div>';
+    } else {
+        h += '<p class="as-desc">' + e(t("sn_chapitres_vides")) + '</p>';
+    }
+    h += '</div>';
+    const nDlg = (chapitresSoins || []).reduce((s, x) => s + ((x.dialogues || []).length), 0);
+    h += '<button type="button" class="as-ligne" onclick="SOINS_RETOUR = \'accueil\'; ouvrirDialoguesSoins()"><span><b>'
+       + e(t("sn_dialogues")) + '</b><small>' + e(t("sn_dialogues_sous")) + '</small></span><b>' + (nDlg || "") + ' ›</b></button>';
+    h += '<button type="button" class="as-ligne" onclick="SOINS_RETOUR = \'accueil\'; ouvrirTelcPflege(\'\')"><span><b lang="de">telc Deutsch B1·B2 Pflege</b><small>'
+       + e(t("sn_telc_sous")) + '</small></span><b>' + e(t("sn_telc_go")) + ' ›</b></button>';
+    h += '<button type="button" class="as-lien" onclick="ouvrirSoins()">' + e(t("sn_tout_soins")) + ' ›</button>';
+    corps.innerHTML = h;
+}
+
+// La seance Soins : les mots du chapitre du jour (les dus d'abord, puis des nouveaux a la porte), une paire, une
+// abreviation, puis le dialogue du chapitre en partie Conversations. Sans chapitre complet : tous les Soins, et le
+// dialogue choisi par la page (c=auto). Elle passe par la mecanique de la seance (parties, barre, ecran de fin).
+async function ouvrirSeanceSoins(idChap){
+    if(!soinsActifs()) return;
+    try{ await chargerThemesSoins(); }catch(e){ showInfoToast(t("sn_chapitres_vides")); return; }
+    try{ await chargerChapitresSoins(); }catch(e){}
+    const ch = idChap ? (chapitresSoins || []).find(x => x.id === idChap && chapitreVisibleSoins(x)) || null : chapitreDuJourSoins();
+    const c = contenuSeanceSoins(ch);
+    const dus = cartesEchuesTriees(c.mots.filter(it => !estNeuf(getWordState(it.themeId, it.index))));
+    const neufs = c.mots.filter(it => estNeuf(getWordState(it.themeId, it.index)));
+    let cartes = dus.slice(0, SEANCE_SOINS_MOTS);
+    if(cartes.length < SEANCE_SOINS_MOTS) cartes = cartes.concat(neufs.slice(0, SEANCE_SOINS_MOTS - cartes.length));
+    if(cartes.length < SEANCE_SOINS_MOTS) cartes = cartes.concat(c.mots.filter(it => cartes.indexOf(it) < 0).slice(0, SEANCE_SOINS_MOTS - cartes.length));
+    let seance = cartes.slice();
+    const carte = (forme, q, it) => ({ mode: "phrase", forme: forme, q: q, themeId: forme, index: 0, soinsMot: it.word,
+                                       soinsCle: cleSoins(it), cible: null, phrase: null, word: "" });
+    if(c.paire) seance.push(carte("soins_paire", "sn_q_paire", c.paire));
+    if(c.abrev) seance.push(carte("soins_abrev", "sn_q_abrev", c.abrev));
+    const dlg = ch ? dialogueDuChapitreSoins(ch) : null;
+    seance.push({ mode: "phrase", forme: "conv_arret", soins: true, cible: null, themeId: "conv_arret", index: 0,
+                  conversation: dlg ? dlg.id : "auto", phrase: null, word: "" });
+    if(seance.length < 2){ showInfoToast(t("sn_chapitres_vides")); return; }
+    let regroupee = null;
+    try{ regroupee = regrouperSeance(seance, null); seance = regroupee.cartes; }catch(e){ regroupee = null; }
+    PHRASES_POSEES.clear();
+    RETOURS_FIN_SEANCE.length = 0;
+    REVOIR_SEANCE = null;
+    POOL_NEUFS_SEANCE = null;
+    CIEL_AV = null;
+    SEANCE_SOINS_CHAPITRE = ch ? ch.id : null;
+    currentCardsFull = c.mots;
+    currentCards = seance;
+    debutSeanceSuivie(seance);
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "seance_soins", name: t("sn_seance") };
+    PASSAGES_VUS.clear();
+    SEANCE_PARTS = null;
+    if(regroupee) SEANCE_PARTS = { paquet: seance, parts: regroupee.parts, themeId: currentTheme.id,
+                                   niveau: PORTES_SOINS[porteSoins()][0], etape: null, rang: 1 };
+    currentFlashcard = 0;
+    flashcardMode = seance[0].mode || "nomen";
+    setFlashHeader("sn_seance", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+// L'ecran d'un chapitre : sa seance, sa scene, ses mots en images, ses conversations, son ecrit.
+function ouvrirChapitreSoins(id){
+    if(!soinsActifs()) return;
+    chargerChapitresSoins().then(() => {
+        const c = (chapitresSoins || []).find(x => x.id === id);
+        if(!c || !chapitreVisibleSoins(c)) return;
+        SOINS_RETOUR = "chapitre:" + id;
+        rendreChapitreSoins(c);
+        showScreen("soinsChapitre");
+    }).catch(() => {});
+}
+function rendreChapitreSoins(c){
+    const e = echapperCompte;
+    const kicker = document.getElementById("soinsChapKicker"), titre = document.getElementById("soinsChapTitre"),
+          sous = document.getElementById("soinsChapSous"), corps = document.getElementById("soinsChapCorps");
+    if(!corps) return;
+    kicker.textContent = tf("ch_numero", { n: c.numero }) + (c.complet ? "" : " · " + t("sn_en_preparation"));
+    titre.textContent = texteSoins(c.titre);
+    sous.textContent = texteSoins(c.sous_titre) + " · " + (c.de || "");
+    const section = (cle, contenu) => '<div class="ch-section"><h3>' + e(t(cle)) + '</h3><div class="ch-boutons">' + contenu + '</div></div>';
+    const bientot = '<button type="button" class="ch-bouton" disabled><small>' + e(t("sn_bientot")) + '</small></button>';
+    let h = '<button type="button" class="primary as-go" onclick="ouvrirSeanceSoins(\'' + e(c.id) + '\')">' + e(t("ch_seance")) + '</button>';
+    h += section("ch_scene", (c.scenes || []).map(nom => {
+        const s = SCENES_SOINS.find(x => x.nom === nom) || SCENES_SOINS.find(x => nom.indexOf(x.nom) === 0) || {};
+        return '<button type="button" class="ch-bouton" onclick="ouvrirSceneSoins(\'' + e(nom) + '\')"><b lang="de">' + e(s.titre || nom) + '</b></button>';
+    }).join("") || bientot);
+    h += section("ch_theme", c.theme_illustre
+        ? '<button type="button" class="ch-bouton" onclick="ouvrirThemeChapitreSoins(\'' + e(c.id) + '\')"><b>' + e(texteSoins(c.titre)) + '</b></button>'
+        : bientot);
+    h += section("ch_conversations", (c.dialogues_info || []).map(d =>
+        '<button type="button" class="ch-bouton" onclick="ouvrirDialoguesSoins(\'' + e(d.id) + '\')"><b>' + e(texteSoins(d.titre)) + '</b>'
+        + '<small><span lang="de">' + e(d.de || "") + '</span> · ' + e(d.niveau || "") + '</small></button>').join("") || bientot);
+    // L'ecrit : la page d'entrainement de pflege-examen, ouverte sur un sujet, quand elle existera (plan, E5).
+    h += section("ch_ecrit", (c.ecrits_info || []).map(x =>
+        '<button type="button" class="ch-bouton" disabled><b>' + e(texteSoins(x.titre)) + '</b><small>' + e(t("sn_bientot")) + '</small></button>').join("") || bientot);
+    h += '<button type="button" class="as-lien" onclick="ouvrirSoins()">' + e(t("sn_tout_soins")) + ' ›</button>';
+    corps.innerHTML = h;
+}
+// Le theme illustre d'un chapitre (visuel/prototype/soins-theme-<cle>.html), dans le cadre comme les themes illustres.
+function ouvrirThemeChapitreSoins(id){
+    const c = (chapitresSoins || []).find(x => x.id === id);
+    if(!c || !c.theme_illustre || !soinsActifs()) return;
+    SOINS_RETOUR = "chapitre:" + id;
+    sceneOuverteDepuis = "soins";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = texteSoins(c.titre);
+        chargerCadre(cadre, baseScenes() + c.theme_illustre + "?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "") + "&t=" + Date.now());
+    }
+    showScreen("sceneSeance");
+}
+function retourDeChapitreSoins(){ SOINS_RETOUR = null; goHome(); }
+// Ou revient ce qu'on a ouvert depuis les Soins : le chapitre, l'accueil, ou l'ecran Soins (la liste des themes).
+function retourSoinsApres(){
+    const r = SOINS_RETOUR;
+    if(r && r.indexOf("chapitre:") === 0){ ouvrirChapitreSoins(r.slice(9)); return; }
+    if(r === "accueil"){ SOINS_RETOUR = null; goHome(); return; }
+    ouvrirSoins();
 }
 
 // L'examen blanc telc Pflege : une page a part, sur le modele du telc A2·B1 (ouvrirTelc), construite par la
@@ -65077,6 +65793,8 @@ function estSeanceDuJourOuverte(){
 let ENCORE_EN_COURS = false;
 async function encoreUneSeance(){
     if(ENCORE_EN_COURS) return;   // le deuxieme toucher ne compte rien
+    // Wortando Pflege (16 nov. 2026) : apres une seance Soins, une seance Soins (le chapitre suivant).
+    if(currentTheme && currentTheme.id === "seance_soins"){ hideFlashcardEnd(); try{ await ouvrirSeanceSoins(); }catch(e){} return; }
     ENCORE_EN_COURS = true;
     hideFlashcardEnd();
     // 14 nov. 2026 : une seance entamee se reprend ; la dose de mots neufs n'est que pour une seance NOUVELLE.
@@ -69388,7 +70106,7 @@ window.addEventListener("message", (e) => {
     }
     // Le dialogue des Soins que la page a choisi (c=auto), puis sa fin : il compte comme joue.
     if(d.type === "dialogue"){ if(dansLArret) dialogueSoinsOuvert = String(d.id || ""); return; }
-    if(dansLArret && d.type === "fini" && dialogueSoinsOuvert){ marquerDialogueSoinsJoue(dialogueSoinsOuvert); dialogueSoinsOuvert = null; }
+    if(dansLArret && d.type === "fini" && dialogueSoinsOuvert){ marquerDialogueSoinsJoue(dialogueSoinsOuvert); dialogueSoinsOuvert = null; try{ if(SEANCE_SOINS_CHAPITRE && currentTheme && currentTheme.id === "seance_soins") marquerChapitreFaitSoins(SEANCE_SOINS_CHAPITRE); }catch(err){} }
     if(dansLArret && d.type === "fini"){ try{ avancerArret(1); }catch(err){} }
     if(sceneOuverteDepuis === "conversations"){
         if(d.type === "micro") microPourCadre(d, e);
@@ -69403,7 +70121,7 @@ window.addEventListener("message", (e) => {
     // les erreurs corrigees) : seul « fermer » (Terminer, ‹) ramene aux Soins.
     if(sceneOuverteDepuis === "soins-dialogues"){
         if(d.type === "micro") microPourCadre(d, e);
-        else if(d.type === "fermer"){ try{ ouvrirSoins(); }catch(err){ goHome(); } }
+        else if(d.type === "fermer"){ try{ retourSoinsApres(); }catch(err){ goHome(); } }
         return;
     }
     if(d.type === "fini" && d.faits > 0 && d.bons === d.faits && sceneOuverteDepuis !== "admin"){
@@ -69431,7 +70149,7 @@ window.addEventListener("message", (e) => {
     // Wortando Pflege : la fin de l'examen blanc telc Pflege ou d'une scene des Soins, ou leur page quittee, ramene a
     // l'ecran Soins -- sans marquer la scene du jour comme faite (ce que fait la fin d'une scene libre).
     if((sceneOuverteDepuis === "telc-pflege" || sceneOuverteDepuis === "soins") && (d.type === "fini" || d.type === "fermer")){
-        try{ ouvrirSoins(); }catch(err){ goHome(); }
+        try{ retourSoinsApres(); }catch(err){ goHome(); }
         return;
     }
     // Le bloc d'ou l'on vient (essai examens_blocs) : l'oral du DTZ revient au bloc DTZ s'il en vient, la page du
@@ -71258,6 +71976,58 @@ function montrerCartePhrase(item){
         // La conversation de l'etape (12 nov. 2026) : d'ordinaire ouverte par la fin de la scene qui la precede.
         ouvrirArretConversation(item);
         return;
+    } else if(item.forme === "soins_paire" || item.forme === "soins_abrev"){
+        // Wortando Pflege (16 nov. 2026), la seance Soins : une paire « ce que dit le patient / ce que dit le service »
+        // (sorte « paire », pflege/FORMAT-DONNEES.md § 1 bis), ou une abreviation de la documentation (« RR (= Blutdruck) »,
+        // lue « Er-Er, Blutdruck » : lecture_mot). Le recto pose la question, « Voir la reponse » montre l'autre cote et le
+        // dit ; rien a juger (decouverte), la carte est marquee vue sur l'appareil (soinsVus) pour que la suivante change.
+        const r = item.soinsMot || [];
+        const w = r.brut || {};
+        const dire = txt => { if(txt) try{ direAllemand(txt, { rate: 0.9 }); }catch(e){} };
+        const bouton = (txt, cls, aDire) => {
+            const b = creer("button", cls, txt); b.type = "button"; b.setAttribute("lang", langueDe);
+            const hp = creer("i", "", " "); hp.appendChild(iconeHP()); b.appendChild(hp);
+            b.addEventListener("click", () => dire(aDire || txt));
+            return b;
+        };
+        const recto = creer("div", "sn-cote"), verso = creer("div", "sn-cote sn-cache");
+        const motService = ((w.genre && /^(der|die|das)$/.test(w.genre)) ? w.genre + " " : "") + (w.mot || r[0] || "");
+        if(item.forme === "soins_paire"){
+            recto.appendChild(creer("small", "sn-qui", t("sn_patient_dit")));
+            recto.appendChild(bouton("« " + (w.patient || "") + " »", "sn-de"));
+            recto.appendChild(creer("p", "cp-sens", texteTraduit(w, "traduction_patient")));
+            if(w.exemple_patient) recto.appendChild(bouton(w.exemple_patient, "sn-ex", w.lecture_patient || w.exemple_patient));
+            verso.appendChild(creer("small", "sn-qui", t("sn_service_dit")));
+            verso.appendChild(bouton(motService, "sn-de"));
+            verso.appendChild(creer("p", "cp-sens", texteTraduit(w, "traduction")));
+            if(w.exemple){ verso.appendChild(bouton(w.exemple, "sn-ex", w.lecture || w.exemple)); verso.appendChild(creer("p", "cp-sens", texteTraduit(w, "exemple"))); }
+        } else {
+            const brutMot = String(w.mot || r[0] || "");
+            const sigle = brutMot.split(" (=")[0].trim();
+            const sens = (brutMot.match(/\(=\s*([^)]*)\)/) || [])[1] || "";
+            recto.appendChild(bouton(sigle, "sn-sigle", w.lecture_mot || sigle));
+            verso.appendChild(creer("p", "sn-egal", "= " + sens));
+            verso.appendChild(creer("p", "cp-sens", texteTraduit(w, "traduction")));
+            if(w.lecture_mot){
+                const ld = creer("p", "sn-lecture"); ld.appendChild(creer("small", "", t("sn_on_dit") + " : "));
+                ld.appendChild(bouton(w.lecture_mot, "sn-ex")); verso.appendChild(ld);
+            }
+            if(w.exemple){ verso.appendChild(bouton(w.exemple, "sn-ex", w.lecture || w.exemple)); verso.appendChild(creer("p", "cp-sens", texteTraduit(w, "exemple"))); }
+        }
+        el.appendChild(recto);
+        const voir = creer("button", "secondary sn-voir", t("sn_voir")); voir.type = "button";
+        el.appendChild(voir);
+        el.appendChild(verso);
+        voir.addEventListener("click", () => {
+            voir.remove();
+            verso.classList.remove("sn-cache");
+            dire(item.forme === "soins_paire" ? motService : (w.lecture_mot || ""));
+            try{ marquerVuSoins(item.soinsCle); }catch(e){}
+            fait.repondu = true;
+            suite.classList.remove("hidden");
+            suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
+        }, { once: true });
+        dire(item.forme === "soins_paire" ? (w.patient || "") : (w.lecture_mot || ""));
     } else if(item.forme === "pp_tableau"){
         // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
         // juger : il familiarise, les flashcards font retenir.
@@ -74994,7 +75764,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // Le japonais aussi depuis le lot J1 (11 nov. 2026) : ses Premiers pas sont japonais (japonais/datos/premiers-pas.json).
     try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, echeancesPermises(cartesPremiersPasVues(), "PP", niveau)); } }catch(e){}
     // Wortando Pflege (essai « soins », 14 nov. 2026) : les mots de soins dans la seance d'un compte ouvert.
-    try{ if(soinsActifs()){ await chargerThemesSoins(); ajouterSoinsASeance(niveau, pool, tout); } }catch(e){}
+    try{ if(soinsActifs() && SOINS_DANS_SEANCE_GENERALE){ await chargerThemesSoins(); ajouterSoinsASeance(niveau, pool, tout); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;

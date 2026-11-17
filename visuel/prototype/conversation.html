@@ -1056,7 +1056,8 @@ poserPaysage();
       Object.keys(pers).filter(k => k.charAt(0) !== "_").forEach(k => { PERS[k] = pers[k]; });
       DIALOGUES_SOINS = dlg.dialogues || [];
       const d = Q.get("c") === "auto" ? dialogueDeLaSeance() : Q.get("c") && dialogueSoins(Q.get("c"));
-      if (d){ C = adapterSoins(d); presentation(); if (Q.get("c") === "auto") parler("dialogue", { id: d.id }); }
+      // en seance, toujours : le dialogue qu'on va jouer (choisi ici, c=auto, ou par l'app, celui du chapitre)
+      if (d){ C = adapterSoins(d); presentation(); if (SEANCE || Q.get("c") === "auto") parler("dialogue", { id: d.id }); }
       else if (Q.get("c")) ecran.textContent = u("introuvable");
       else await listeSoins();
       return;
