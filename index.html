@@ -3117,48 +3117,80 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
 .soins-scenes{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px;}
 .suivi-soins-ligne{padding:8px 0; border-top:1px solid rgba(76,86,107,.18); line-height:1.45;}
 .suivi-soins-alerte{display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; background:#fde8e4; color:#a33a2c;}
-/* Wortando Pflege, l'accueil Soins et les chapitres (16 nov. 2026, maquette « Accueil Pflege ») : en mode Soins, le bloc
-   #accueilSoins prend la place de la grille ; en Allemand general, rien de tout cela ne s'affiche. */
-body.mode-soins #home #orbGrid, body.mode-soins #home #homeStatsCard, body.mode-soins #home #homeHelpLaunch{display:none !important;}
-.soins-bascule{display:flex; gap:4px; padding:4px; margin:6px 0 12px; border-radius:999px; background:rgba(28,36,48,.07); max-width:420px;}
-.soins-bascule button{flex:1; min-height:44px; border:0; border-radius:999px; background:transparent; color:#2C3647; font-weight:700; font-size:.95rem; cursor:pointer; padding:0 12px;}
-.soins-bascule button[aria-pressed="true"]{background:#fff; color:#1C2430; box-shadow:0 2px 8px rgba(20,40,60,.12);}
-.accueil-soins{position:relative; display:grid; gap:14px; margin-bottom:18px;}
-.as-fond{position:absolute; inset:0; z-index:-1; pointer-events:none;}
-.as-carte{background:#fff; border-radius:22px; padding:16px; box-shadow:0 6px 18px rgba(20,40,60,.08); display:grid; gap:10px;}
-.as-kick{font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#8A5A12;}
-.as-tete{display:flex; align-items:baseline; justify-content:space-between; gap:8px; flex-wrap:wrap;}
-.as-tete strong{font-size:1.25rem; color:#1C2430;}
-.as-min{font-size:.85rem; color:#4C566B; white-space:nowrap;}
-.as-chap{font-weight:700; color:#2C3647;}
-.as-portes{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
-.as-porte{min-height:56px; border:2px solid rgba(28,36,48,.12); border-radius:14px; background:#F7F8FA; color:#1C2430; text-align:start; padding:8px 10px; cursor:pointer; display:grid; gap:2px;}
-.as-porte b{font-size:.92rem;}
-.as-porte small{font-size:.78rem; color:#4C566B;}
-.as-porte[aria-pressed="true"]{border-color:#E8A23A; background:#FFF6E6;}
-.as-lignes{list-style:none; margin:0; padding:0; display:grid; gap:8px;}
-.as-lignes li{display:grid; gap:2px; padding:8px 10px; border-radius:12px; background:#F7F8FA;}
-.as-lignes b{font-size:.92rem; color:#1C2430;}
-.as-lignes small{font-size:.82rem; color:#4C566B; overflow-wrap:anywhere;}
-.as-go{min-height:48px;}
-.as-bloc{display:grid; gap:8px;}
-.as-bloc-tete strong{font-size:1.05rem; color:#1C2430;}
-.as-desc{margin:0; font-size:.85rem; color:#4C566B;}
-.as-ruban{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px;}
-.as-chapitre{min-height:64px; border:0; border-radius:14px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); text-align:start; padding:10px; cursor:pointer; display:grid; gap:2px; color:#1C2430;}
-.as-chapitre small{color:#4C566B; font-size:.75rem;}
-.as-chapitre b{font-size:.9rem;}
-.as-chapitre .as-prep{color:#8A5A12; font-size:.72rem;}
-.as-ligne{display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:56px; width:100%; border:0; border-radius:16px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); padding:10px 14px; text-align:start; cursor:pointer; color:#1C2430;}
-.as-ligne span{display:grid; gap:2px;}
-.as-ligne small{color:#4C566B; font-size:.8rem;}
-.as-lien{border:0; background:none; color:#1E5E8C; font-weight:700; text-align:start; min-height:44px; cursor:pointer; padding:0;}
-.ch-section{margin:14px 0; display:grid; gap:8px;}
-.ch-section h3{margin:0; font-size:1rem;}
-.ch-boutons{display:grid; gap:8px;}
-.ch-bouton{min-height:52px; border:0; border-radius:14px; background:#fff; box-shadow:0 3px 10px rgba(20,40,60,.07); text-align:start; padding:10px 14px; cursor:pointer; display:grid; gap:2px; color:#1C2430;}
-.ch-bouton small{color:#4C566B; font-size:.8rem;}
-.ch-bouton[disabled]{opacity:.6; cursor:default;}
+/* Wortando Pflege, l'accueil Soins (16 nov. 2026, maquette « Accueil Pflege », « exactement le meme look qu'on a avec
+   l'accueil actuel ») : ce sont les VRAIS composants qui changent de contenu (la carte #seancePilule, la grille .tg) ;
+   ici seulement l'interrupteur (le verre de la barre de serie), les portes dans la rangee des niveaux, le fond, et les
+   deux ecrans des chapitres. */
+.soins-bascule{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:3px; padding:3px; margin:6px 0 10px; border-radius:999px;
+    background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);}
+.soins-bascule.hidden{display:none;}
+.soins-bascule button{min-height:44px; border:0; border-radius:999px; background:transparent; color:#2C3647; font:inherit; font-weight:800; font-size:13.5px; cursor:pointer; padding:0 10px;}
+.soins-bascule button[aria-pressed="true"]{background:#1C2430; color:#fff;}
+body[data-theme="dark"] .soins-bascule button{color:rgba(255,255,255,.82);}
+body[data-theme="dark"] .soins-bascule button[aria-pressed="true"]{background:#E8A23A; color:#1C2430;}
+/* les deux portes, dans la rangee blanche des niveaux de la carte : la porte choisie a l'allure du niveau choisi */
+#home #seancePilule.pilule-soins .seance-niveaux{display:flex !important; width:100%; box-sizing:border-box;}
+#home #seancePilule.pilule-soins .seance-niveau.sn-porte{flex:1 1 0; min-width:0; padding:0 10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+#home #seancePilule.pilule-soins .pa-anneau, #home #seancePilule.pilule-soins .pa-niv, #home #seancePilule.pilule-soins .pa-sens,
+#home #seancePilule.pilule-soins .pa-changer, #home #seancePilule.pilule-soins .pa-placement{display:none !important;}
+/* le fond des Soins (FOND_SOINS), a la place de la carte du monde et de son filigrane */
+.fm-soins{position:absolute; inset:0; background-repeat:no-repeat; background-position:center top; background-size:cover;}
+body.fond-soins #fondMonde > .fm-carte, body.fond-soins #fondMonde > .fm-lettres, body.fond-soins #seancePilule > .sp-fili{display:none;}
+/* les ecrans « Ma journee au service » et du chapitre (maquette : ecrans Chapitres et Releve) */
+.ecran-soins .es-kick{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#2E3A48; margin:8px 0 2px;}
+.ecran-soins .es-titre{font-family:'Source Serif 4', Georgia, serif; font-size:28px; line-height:1.1; margin:4px 0 2px; color:#1C2430;}
+.ecran-soins .es-de{font-family:Georgia, serif; font-style:italic; font-size:16px; color:#2E3A48; margin:0;}
+.ecran-soins .es-sous{font-size:13.5px; line-height:1.45; color:#2E3A48; margin:6px 0 10px;}
+.es-legende{font-size:11.5px; font-weight:700; color:#2E3A48; margin:0 0 10px;}
+.es-liste{display:grid; gap:6px;}
+.es-ch{display:flex; align-items:center; gap:12px; min-height:64px; width:100%; padding:8px 12px; border:0; border-radius:18px; cursor:pointer; text-align:start;
+    color:#1C2430; background:rgba(255,255,255,.62); box-shadow:inset 0 0 0 1px rgba(255,255,255,.8); font:inherit;}
+.es-ch.jour{background:rgba(255,255,255,.92); box-shadow:0 0 0 2px #E8A23A;}
+.es-n{width:34px; height:34px; border-radius:17px; background:#1C2430; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; flex:none;}
+.es-ch.jour .es-n{background:#E8A23A; color:#1C2430;}
+.es-t{flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.25;}
+.es-t b{font-size:14.5px; font-weight:800;}
+.es-t i{font-size:12px; color:#4A5566; font-family:Georgia, serif;}
+.es-badge{font-size:10.5px; font-weight:900; letter-spacing:.08em; padding:4px 8px; border-radius:10px; background:#E8A23A; color:#1C2430; text-transform:uppercase;}
+.es-prep{font-size:10.5px; font-weight:800; color:#8A5208;}
+.es-fleche{flex:none; color:#4A5566; font-weight:900;}
+.es-bloc{border-radius:22px; background:rgba(255,255,255,.7); box-shadow:inset 0 0 0 1px rgba(255,255,255,.9); padding:14px; display:grid; gap:10px; margin:12px 0;}
+.es-bloc-tete{display:flex; align-items:center; gap:10px;}
+.es-bloc-tete span{flex:1; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#2E3A48;}
+.es-lien{border:0; background:none; font:inherit; font-size:13px; font-weight:800; color:#1C2430; cursor:pointer; min-height:44px; padding:0 4px;}
+.es-scene{border-radius:22px; overflow:hidden; background:rgba(255,255,255,.7); box-shadow:inset 0 0 0 1px rgba(255,255,255,.9); margin:12px 0;}
+.es-scene img{display:block; width:100%; height:170px; object-fit:cover;}
+.es-scene-pied{display:flex; align-items:center; gap:10px; padding:12px 14px;}
+.es-scene-pied div{flex:1; min-width:0;}
+.es-scene-pied b{display:block; font-size:15px;}
+.es-scene-pied i{font-size:12.5px; color:#4A5566; font-family:Georgia, serif;}
+.es-rond{width:44px; height:44px; border-radius:22px; border:0; background:#1C2430; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; font-weight:900;}
+.es-rond.or{background:#E8A23A; color:#1C2430;}
+.es-puces{display:flex; flex-wrap:wrap; gap:6px;}
+.es-puces span{padding:6px 10px; border-radius:12px; background:#fff; font-size:13px; font-weight:700;}
+.es-conv{display:flex; align-items:center; gap:10px;}
+.es-av{width:40px; height:40px; border-radius:20px; background:#C9D9DD; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px; color:#2E4A50; flex:none; overflow:hidden;}
+.es-av img{width:100%; height:100%; object-fit:cover;}
+.es-conv div{flex:1; min-width:0; line-height:1.3;}
+.es-conv b{display:block; font-size:14px;}
+.es-conv small{font-size:12.5px; color:#4A5566;}
+.es-ecrit{border-radius:22px; background:#1C2430; color:#fff; padding:14px; display:grid; gap:10px; margin:12px 0;}
+.es-ecrit .es-k{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#E8A23A;}
+.es-ecrit b{font-size:15px;}
+.es-ecrit button{min-height:48px; border-radius:24px; border:0; background:#E8A23A; color:#1C2430; font:inherit; font-weight:900; font-size:15px; cursor:pointer;}
+.es-ecrit button[disabled]{opacity:.55; cursor:default;}
+.es-suivant{border:0; background:none; font:inherit; font-size:12.5px; color:#4A5566; text-align:center; width:100%; min-height:44px; cursor:pointer;}
+.es-seance{width:100%; min-height:54px; border:0; border-radius:27px; background:#1C2430; color:#fff; font:inherit; font-weight:800; font-size:17px; cursor:pointer; margin:6px 0 4px;}
+body[data-theme="dark"] .ecran-soins .es-titre, body[data-theme="dark"] .es-ch, body[data-theme="dark"] .es-lien, body[data-theme="dark"] .es-scene-pied b, body[data-theme="dark"] .es-conv b{color:#E8ECF2;}
+body[data-theme="dark"] .ecran-soins .es-kick, body[data-theme="dark"] .ecran-soins .es-de, body[data-theme="dark"] .ecran-soins .es-sous, body[data-theme="dark"] .es-legende,
+body[data-theme="dark"] .es-t i, body[data-theme="dark"] .es-scene-pied i, body[data-theme="dark"] .es-conv small, body[data-theme="dark"] .es-suivant,
+body[data-theme="dark"] .es-bloc-tete span{color:#A9B3C2;}
+body[data-theme="dark"] .es-ch, body[data-theme="dark"] .es-bloc, body[data-theme="dark"] .es-scene{background:rgba(255,255,255,.07); box-shadow:inset 0 0 0 1px rgba(255,255,255,.10);}
+body[data-theme="dark"] .es-ch.jour{background:rgba(255,255,255,.12); box-shadow:0 0 0 2px #E8A23A;}
+body[data-theme="dark"] .es-puces span{background:#232E3F; color:#E8ECF2;}
+body[data-theme="dark"] .es-seance{background:#E8A23A; color:#1C2430;}
+body[data-theme="dark"] .es-ecrit{background:#232E3F;}
+body[data-theme="dark"] .es-prep{color:#E8B25E;}
 .sn-cote{display:grid; gap:6px; margin:8px 0;}
 .sn-cache{display:none !important;}
 .sn-qui{font-size:.78rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#8A5A12;}
@@ -3168,16 +3200,8 @@ body.mode-soins #home #orbGrid, body.mode-soins #home #homeStatsCard, body.mode-
 .sn-ex{font-size:1rem;}
 .sn-egal{font-size:1.2rem; font-weight:700; margin:0;}
 .sn-voir{margin-top:6px; min-height:44px;}
-body[data-theme="dark"] .soins-bascule{background:rgba(255,255,255,.08);}
-body[data-theme="dark"] .soins-bascule button{color:#D6DCE6;}
-body[data-theme="dark"] .soins-bascule button[aria-pressed="true"]{background:#2A3546; color:#fff;}
-body[data-theme="dark"] .as-carte, body[data-theme="dark"] .as-chapitre, body[data-theme="dark"] .as-ligne, body[data-theme="dark"] .ch-bouton{background:#1B2433; color:#E8ECF2; box-shadow:none;}
-body[data-theme="dark"] .as-porte, body[data-theme="dark"] .as-lignes li{background:#232E3F; color:#E8ECF2; border-color:rgba(255,255,255,.12);}
-body[data-theme="dark"] .as-porte[aria-pressed="true"]{border-color:#D99634; background:#33291A;}
-body[data-theme="dark"] .as-tete strong, body[data-theme="dark"] .as-chap, body[data-theme="dark"] .as-lignes b, body[data-theme="dark"] .as-bloc-tete strong, body[data-theme="dark"] .sn-de, body[data-theme="dark"] .sn-sigle, body[data-theme="dark"] .sn-ex, body[data-theme="dark"] .sn-egal{color:#E8ECF2;}
-body[data-theme="dark"] .as-min, body[data-theme="dark"] .as-desc, body[data-theme="dark"] .as-porte small, body[data-theme="dark"] .as-lignes small, body[data-theme="dark"] .as-chapitre small, body[data-theme="dark"] .as-ligne small, body[data-theme="dark"] .ch-bouton small{color:#A9B3C2;}
-body[data-theme="dark"] .as-kick, body[data-theme="dark"] .sn-qui, body[data-theme="dark"] .as-chapitre .as-prep{color:#E8B25E;}
-body[data-theme="dark"] .as-lien{color:#8CC4EE;}
+body[data-theme="dark"] .sn-de, body[data-theme="dark"] .sn-sigle, body[data-theme="dark"] .sn-ex, body[data-theme="dark"] .sn-egal{color:#E8ECF2;}
+body[data-theme="dark"] .sn-qui{color:#E8B25E;}
 
 .theme-count{
     color:#4C566B;
@@ -9853,6 +9877,10 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
      reste immobile et pale, pour ne pas attirer l'attention. Derriere tout (z-index -1), sans
      jamais intercepter un toucher. Fichiers : visuel/fond/ (Natural Earth, domaine public). -->
 <div id="fondMonde" aria-hidden="true">
+    <!-- Wortando Pflege (16 nov. 2026) : le fond de l'accueil Soins, a la place de la carte du monde et de son filigrane,
+         quand FOND_SOINS nomme un dessin de visuel/fond/ (Jacques n'a pas encore choisi : plan du service, pouls ou
+         herbier). Voir majFondSoins(). -->
+    <div class="fm-soins" id="fondSoins" hidden></div>
     <div class="fm-carte"><div class="fm-piste"></div></div>
     <div class="fm-lettres"><div class="fm-lettres-piste">
         <span style="left:22px; top:0;">語</span><span style="left:262px; top:30px;">ع</span><span style="left:150px; top:170px;">Ж</span>
@@ -10360,17 +10388,15 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
          pendant l'essai seulement ; le toucher ouvre l'abonnement. Cache tant
          que ACCES.actif vaut false (majCompteurEssai). -->
     <button type="button" id="essaiCompteur" class="essai-compteur hidden" onclick="ouvrirAbonnement()"></button>
-    <!-- WORTANDO PFLEGE, L'ACCUEIL SOINS (decision de Jacques du 16 nov. 2026, 923aa49 ; maquette « Accueil Pflege ») :
-         pour un compte ouvert aux Soins seulement, un interrupteur « Soins / Allemand general » ; en Soins, le bloc
-         #accueilSoins remplace la grille de l'accueil (body.mode-soins), en Allemand general rien ne change. Le fond
-         (#accueilSoinsFond) attend le choix de Jacques parmi les trois pistes de la maquette. Voir majAccueilSoins(). -->
+    <!-- WORTANDO PFLEGE, L'ACCUEIL SOINS (decision de Jacques du 16 nov. 2026, 923aa49 ; maquette « Accueil Pflege »,
+         « exactement le meme look qu'on a avec l'accueil actuel ») : pour un compte ouvert aux Soins seulement, un
+         interrupteur « Soins / Allemand general » en pilule de verre. En Soins, ce sont les VRAIS composants qui changent
+         de contenu : la carte de la seance (#seancePilule : « Ma seance Soins », les deux portes a la place des niveaux)
+         et la grille (les tuiles MA JOURNEE, DIALOGUES, ECOUTER, EXAMEN TELC, puis TOUT LE CONTENU). Voir
+         majAccueilSoins() et appliquerPiluleSoins(). En Allemand general, rien ne change. -->
     <div class="soins-bascule hidden" id="soinsBascule" role="group" data-i18n-aria-label="sn_bascule_aria" aria-label="Choisir l'accueil">
         <button type="button" data-mode="soins" aria-pressed="true" onclick="choisirModeAccueil('soins')" data-i18n="sn_bascule_soins">Soins</button>
         <button type="button" data-mode="general" aria-pressed="false" onclick="choisirModeAccueil('general')" data-i18n="sn_bascule_general">Allemand général</button>
-    </div>
-    <div class="accueil-soins hidden" id="accueilSoins">
-        <div class="as-fond" id="accueilSoinsFond" aria-hidden="true"></div>
-        <div id="accueilSoinsCorps"></div>
     </div>
 
     <h1>
@@ -10673,6 +10699,12 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <button type="button" class="tg" data-tg="ecouter" onclick="ouvrirEcouteMenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5.5 10.2v3.6M8.75 7.6v8.8M12 4.6v14.8M15.25 7.6v8.8M18.5 10.2v3.6"/></svg></span><span class="tg-lib" data-i18n="orb_ecouter_title">Écouter</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="episodes" onclick="episodeDepuisAccueil()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="10.4" width="18" height="10.1" rx="1.6"/><path d="M3 13.6h18"/><path d="M7.4 10.4 5.6 13.6M11.8 10.4 10 13.6M16.2 10.4 14.4 13.6M20.6 10.4 18.8 13.6"/><g transform="rotate(-13 3.2 10)"><rect x="3.2" y="6.7" width="17.8" height="3.3" rx=".7"/><path d="M7.4 6.7 5.7 10M11.8 6.7 10.1 10M16.2 6.7 14.5 10"/></g></svg></span><span class="tg-lib" data-i18n="ep_tuile">Mes épisodes</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="gardes" data-orbid="gardes" onclick="ouvrirGardes()"><span class="tg-ico"><svg viewBox="40 60 450 450" fill="none" stroke="currentColor" stroke-width="28.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M265 253C228 222 172 208 110 214V421C172 415 228 428 265 455 302 428 358 415 420 421V214C358 208 302 222 265 253z"/><path d="M265 253V455"/><path d="M110 245H78V463C150 459 222 467 265 497 308 467 380 459 452 463V245H420"/><path d="M265.00 76.00 L279.69 111.77 L318.26 114.70 L288.78 139.73 L297.92 177.30 L265.00 157.00 L232.08 177.30 L241.22 139.73 L211.74 114.70 L250.31 111.77Z"/></svg></span><span class="tg-lib" data-i18n="gardes_titre">Mis de côté</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <!-- Wortando Pflege (16 nov. 2026) : les tuiles de l'accueil Soins, montrees par majGrilleAccueil en mode Soins
+                 seulement (TOUT LE CONTENU, juste apres, sert aux deux). -->
+            <button type="button" class="tg hidden" data-tg="soins_journee" onclick="ouvrirJourneeSoins()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.2 2"/><path d="M12 2.2v1.6M12 20.2v1.6M2.2 12h1.6M20.2 12h1.6"/></svg></span><span class="tg-lib" data-i18n="sn_tuile_journee">Ma journée</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg hidden" data-tg="soins_dialogues" onclick="SOINS_RETOUR = 'accueil'; ouvrirDialoguesSoins()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 5.5h11v7.5H8.6l-3.6 3v-3H3.5z"/><path d="M14.5 9h6v7.2h-1.6v2.6l-3.1-2.6H10.5v-3.2"/></svg></span><span class="tg-lib" data-i18n="sn_tuile_dialogues">Dialogues</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg hidden" data-tg="soins_ecouter" onclick="ouvrirPhrasesSoins()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5.5 10.2v3.6M8.75 7.6v8.8M12 4.6v14.8M15.25 7.6v8.8M18.5 10.2v3.6"/></svg></span><span class="tg-lib" data-i18n="orb_ecouter_title">Écouter</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <button type="button" class="tg hidden" data-tg="soins_telc" onclick="SOINS_RETOUR = 'accueil'; ouvrirTelcPflege('')"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3.5h7.5L18 7v13.5H7z"/><path d="M14.5 3.5V7H18"/><path d="M9.6 12.2l1.8 1.8 3.4-3.6"/><path d="M9.6 17.2h5.6"/></svg></span><span class="tg-lib" data-i18n="sn_tuile_telc">Examen telc</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
             <div class="tg-rangee">
                 <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
@@ -11852,16 +11884,26 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 
 <!-- WORTANDO PFLEGE, UN CHAPITRE DE « MA JOURNEE AU SERVICE » (16 nov. 2026) : sa seance, sa scene, ses mots en images,
      ses conversations, son ecrit (pflege/datos/chapitres.json). Rempli par rendreChapitreSoins(). -->
-<section id="soinsChapitre" class="screen">
+<section id="soinsChapitre" class="screen ecran-soins">
     <button class="back" onclick="retourDeChapitreSoins()"><span data-i18n="back_button">‹ Retour</span></button>
-    <div class="title-row">
-        <div>
-            <div class="kicker" id="soinsChapKicker"></div>
-            <h2 id="soinsChapTitre"></h2>
-        </div>
-    </div>
-    <p class="soins-chapeau" id="soinsChapSous"></p>
+    <div class="es-kick" id="soinsChapKicker"></div>
+    <h2 class="es-titre" id="soinsChapTitre"></h2>
+    <p class="es-de" id="soinsChapDe" lang="de"></p>
+    <p class="es-sous" id="soinsChapSous"></p>
     <div id="soinsChapCorps"></div>
+</section>
+
+<!-- WORTANDO PFLEGE, « MA JOURNEE AU SERVICE » (16 nov. 2026, maquette « Accueil Pflege », ecran Chapitres) : les chapitres
+     dans l'ordre d'une journee, celui du jour en ambre. Rempli par rendreJourneeSoins(). -->
+<section id="soinsJournee" class="screen ecran-soins">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <h2 class="es-titre" data-i18n="sn_journee">Ma journée au service</h2>
+    <p class="es-sous" id="soinsJourneeSous"></p>
+    <div class="es-legende" aria-hidden="true">
+        <span data-i18n="ch_scene">La scène</span> · <span data-i18n="ch_theme">Les mots en images</span> ·
+        <span data-i18n="ch_conversations">Les conversations</span> · <span data-i18n="ch_ecrit">L'écrit</span>
+    </div>
+    <div class="es-liste" id="soinsJourneeListe"></div>
 </section>
 
 <!-- ================= ADJEKTIVE ================= -->
@@ -17395,6 +17437,18 @@ const I18N = {
         orb_zahlen_title: "Nombres",
         orb_prononciation: "Prononciation",
         orb_conversations: "Conversations",
+        sn_tuile_journee: "Ma journée",
+        sn_tuile_dialogues: "Dialogues",
+        sn_tuile_telc: "Examen telc",
+        sn_journee_sous: "{n} chapitres, dans l'ordre d'une journée",
+        ch_numero_sur: "Chapitre {n} sur {t}",
+        sn_ouvrir: "Ouvrir",
+        ch_suivant: "Le chapitre suivant : {t}",
+        ch_avec: "avec {qui}",
+        sn_ecrire: "Écrire",
+        sn_jouer: "Jouer la conversation",
+        sn_phrases_titre: "Les phrases du service",
+        sn_q_phrase: "Écoute et répète",
         sn_bascule_soins: "Soins",
         sn_bascule_general: "Allemand général",
         sn_bascule_aria: "Choisir l'accueil",
@@ -19272,6 +19326,18 @@ const I18N = {
         orb_zahlen_title: "Numbers",
         orb_prononciation: "Pronunciation",
         orb_conversations: "Conversations",
+        sn_tuile_journee: "My day",
+        sn_tuile_dialogues: "Dialogues",
+        sn_tuile_telc: "telc exam",
+        sn_journee_sous: "{n} chapters, in the order of a day",
+        ch_numero_sur: "Chapter {n} of {t}",
+        sn_ouvrir: "Open",
+        ch_suivant: "Next chapter: {t}",
+        ch_avec: "with {qui}",
+        sn_ecrire: "Write",
+        sn_jouer: "Play the conversation",
+        sn_phrases_titre: "Ward phrases",
+        sn_q_phrase: "Listen and repeat",
         sn_bascule_soins: "Care",
         sn_bascule_general: "General German",
         sn_bascule_aria: "Choose the home screen",
@@ -21093,6 +21159,18 @@ const I18N = {
         orb_zahlen_title: "Sayılar",
         orb_prononciation: "Telaffuz",
         orb_conversations: "Konuşmalar",
+        sn_tuile_journee: "Günüm",
+        sn_tuile_dialogues: "Diyaloglar",
+        sn_tuile_telc: "telc sınavı",
+        sn_journee_sous: "Bir günün sırasıyla {n} bölüm",
+        ch_numero_sur: "Bölüm {n} / {t}",
+        sn_ouvrir: "Aç",
+        ch_suivant: "Sonraki bölüm: {t}",
+        ch_avec: "{qui} ile",
+        sn_ecrire: "Yaz",
+        sn_jouer: "Konuşmayı oyna",
+        sn_phrases_titre: "Servisin cümleleri",
+        sn_q_phrase: "Dinle ve tekrar et",
         sn_bascule_soins: "Bakım",
         sn_bascule_general: "Genel Almanca",
         sn_bascule_aria: "Ana ekranı seç",
@@ -23120,6 +23198,18 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Вимова",
         orb_conversations: "Розмови",
+        sn_tuile_journee: "Мій день",
+        sn_tuile_dialogues: "Діалоги",
+        sn_tuile_telc: "Іспит telc",
+        sn_journee_sous: "Розділів: {n}, у порядку дня",
+        ch_numero_sur: "Розділ {n} з {t}",
+        sn_ouvrir: "Відкрити",
+        ch_suivant: "Наступний розділ: {t}",
+        ch_avec: "у розмові: {qui}",
+        sn_ecrire: "Писати",
+        sn_jouer: "Зіграти розмову",
+        sn_phrases_titre: "Фрази відділення",
+        sn_q_phrase: "Слухай і повторюй",
         sn_bascule_soins: "Догляд",
         sn_bascule_general: "Загальна німецька",
         sn_bascule_aria: "Вибрати головний екран",
@@ -23703,6 +23793,18 @@ const I18N = {
         orb_zahlen_title: "عددها",
         orb_prononciation: "تلفظ",
         orb_conversations: "گفت‌وگوها",
+        sn_tuile_journee: "روز من",
+        sn_tuile_dialogues: "گفت‌وگوها",
+        sn_tuile_telc: "آزمون telc",
+        sn_journee_sous: "{n} فصل، به ترتیب یک روز",
+        ch_numero_sur: "فصل {n} از {t}",
+        sn_ouvrir: "باز کردن",
+        ch_suivant: "فصل بعدی: {t}",
+        ch_avec: "با {qui}",
+        sn_ecrire: "نوشتن",
+        sn_jouer: "اجرای گفت‌وگو",
+        sn_phrases_titre: "جمله‌های بخش",
+        sn_q_phrase: "گوش کن و تکرار کن",
         sn_bascule_soins: "پرستاری",
         sn_bascule_general: "آلمانی عمومی",
         sn_bascule_aria: "انتخاب صفحه اصلی",
@@ -25591,6 +25693,18 @@ const I18N = {
         orb_zahlen_title: "الأعداد",
         orb_prononciation: "النطق",
         orb_conversations: "المحادثات",
+        sn_tuile_journee: "يومي",
+        sn_tuile_dialogues: "الحوارات",
+        sn_tuile_telc: "امتحان telc",
+        sn_journee_sous: "{n} فصلًا بترتيب اليوم",
+        ch_numero_sur: "الفصل {n} من {t}",
+        sn_ouvrir: "افتح",
+        ch_suivant: "الفصل التالي: {t}",
+        ch_avec: "مع {qui}",
+        sn_ecrire: "اكتب",
+        sn_jouer: "ابدأ المحادثة",
+        sn_phrases_titre: "عبارات القسم",
+        sn_q_phrase: "استمع وكرّر",
         sn_bascule_soins: "الرعاية",
         sn_bascule_general: "الألمانية العامة",
         sn_bascule_aria: "اختيار الشاشة الرئيسية",
@@ -28562,6 +28676,18 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronúncia",
         orb_conversations: "Conversas",
+        sn_tuile_journee: "Meu dia",
+        sn_tuile_dialogues: "Diálogos",
+        sn_tuile_telc: "Prova telc",
+        sn_journee_sous: "{n} capítulos, na ordem de um dia",
+        ch_numero_sur: "Capítulo {n} de {t}",
+        sn_ouvrir: "Abrir",
+        ch_suivant: "Próximo capítulo: {t}",
+        ch_avec: "com {qui}",
+        sn_ecrire: "Escrever",
+        sn_jouer: "Jogar a conversa",
+        sn_phrases_titre: "As frases do setor",
+        sn_q_phrase: "Ouça e repita",
         sn_bascule_soins: "Cuidados",
         sn_bascule_general: "Alemão geral",
         sn_bascule_aria: "Escolher a tela inicial",
@@ -30446,6 +30572,18 @@ const I18N = {
         orb_zahlen_title: "Liczby",
         orb_prononciation: "Wymowa",
         orb_conversations: "Rozmowy",
+        sn_tuile_journee: "Mój dzień",
+        sn_tuile_dialogues: "Dialogi",
+        sn_tuile_telc: "Egzamin telc",
+        sn_journee_sous: "Rozdziały: {n}, w kolejności dnia",
+        ch_numero_sur: "Rozdział {n} z {t}",
+        sn_ouvrir: "Otwórz",
+        ch_suivant: "Następny rozdział: {t}",
+        ch_avec: "rozmowa: {qui}",
+        sn_ecrire: "Pisz",
+        sn_jouer: "Zagraj rozmowę",
+        sn_phrases_titre: "Zwroty z oddziału",
+        sn_q_phrase: "Słuchaj i powtarzaj",
         sn_bascule_soins: "Opieka",
         sn_bascule_general: "Niemiecki ogólny",
         sn_bascule_aria: "Wybierz ekran główny",
@@ -32333,6 +32471,18 @@ const I18N = {
         orb_zahlen_title: "Числа",
         orb_prononciation: "Произно­шение",
         orb_conversations: "Разговоры",
+        sn_tuile_journee: "Мой день",
+        sn_tuile_dialogues: "Диалоги",
+        sn_tuile_telc: "Экзамен telc",
+        sn_journee_sous: "Глав: {n}, в порядке дня",
+        ch_numero_sur: "Глава {n} из {t}",
+        sn_ouvrir: "Открыть",
+        ch_suivant: "Следующая глава: {t}",
+        ch_avec: "в разговоре: {qui}",
+        sn_ecrire: "Писать",
+        sn_jouer: "Сыграть разговор",
+        sn_phrases_titre: "Фразы отделения",
+        sn_q_phrase: "Слушай и повторяй",
         sn_bascule_soins: "Уход",
         sn_bascule_general: "Общий немецкий",
         sn_bascule_aria: "Выбрать главный экран",
@@ -36081,6 +36231,55 @@ const I18N = {
         orb_zahlen_title: "Números",
         orb_prononciation: "Pronunciación",
         orb_conversations: "Conversaciones",
+        sn_tuile_journee: "Mi día",
+        sn_tuile_dialogues: "Diálogos",
+        sn_tuile_telc: "Examen telc",
+        sn_journee_sous: "{n} capítulos, en el orden de un día",
+        ch_numero_sur: "Capítulo {n} de {t}",
+        sn_ouvrir: "Abrir",
+        ch_suivant: "Siguiente capítulo: {t}",
+        ch_avec: "con {qui}",
+        sn_ecrire: "Escribir",
+        sn_jouer: "Jugar la conversación",
+        sn_phrases_titre: "Las frases del servicio",
+        sn_q_phrase: "Escucha y repite",
+        sn_bascule_soins: "Cuidados",
+        sn_bascule_general: "Alemán general",
+        sn_bascule_aria: "Elegir la pantalla de inicio",
+        sn_aujourdhui: "Hoy · Cuidados",
+        sn_seance: "Mi sesión de cuidados",
+        sn_minutes: "unos {n} min",
+        sn_porte_debut: "Estoy empezando",
+        sn_porte_examen: "Me preparo para el examen",
+        sn_porte_aria: "Mi objetivo",
+        sn_ligne_mots: "{n} palabras del servicio",
+        sn_ligne_paire: "El paciente dice / el servicio escribe",
+        sn_ligne_abrev: "Una abreviatura",
+        sn_ligne_dialogue: "Un diálogo para terminar",
+        sn_commencer: "Empezar la sesión",
+        sn_mots_service: "Las palabras del servicio",
+        sn_journee: "Mi día en el servicio",
+        sn_journee_desc: "Un capítulo para cada momento del día: la escena, las palabras en imágenes, las conversaciones, la escritura.",
+        sn_chapitres_vides: "Los capítulos están en camino. Mientras tanto: los diálogos, las escenas y las palabras de los cuidados.",
+        sn_en_preparation: "en preparación",
+        sn_bientot: "próximamente",
+        sn_dialogues: "Los diálogos del servicio",
+        sn_dialogues_sous: "Elige o di tu respuesta",
+        sn_telc_sous: "Leer · Escuchar · Escribir · Hablar",
+        sn_telc_go: "Practicar",
+        sn_tout_soins: "Todo el contenido de cuidados",
+        sn_q_paire: "¿Cómo lo dice el servicio?",
+        sn_q_abrev: "¿Qué significa esta abreviatura?",
+        sn_patient_dit: "El paciente dice",
+        sn_service_dit: "El servicio dice",
+        sn_voir: "Ver la respuesta",
+        sn_on_dit: "En voz alta",
+        ch_scene: "La escena",
+        ch_theme: "Las palabras en imágenes",
+        ch_conversations: "Las conversaciones",
+        ch_ecrit: "La escritura",
+        ch_seance: "La sesión de este capítulo",
+        ch_numero: "Capítulo {n}",
         conv_ligne: "Conversar",
         conv_ligne_n: "{n} conversaciones",
         conv_ligne_n1: "{n} conversación",
@@ -48632,6 +48831,8 @@ function bilanAMontrer(){
 }
 // Les boutons de la seance du jour passent par ici.
 function entrerSeanceDuJour(){
+    // Wortando Pflege (16 nov. 2026) : en mode Soins, la carte mene a la seance Soins.
+    try{ if(soinsActifs() && modeAccueilSoins()){ ouvrirSeanceSoins(); return; } }catch(e){}
     let montrer = false;
     try{ montrer = bilanAMontrer(); }catch(e){}
     if(montrer){ ouvrirBilanSemaine(); return; }
@@ -53273,7 +53474,9 @@ function majGrilleAccueil(){
     try{ actif = essaiActif("accueil_grille"); }catch(e){}
     if(!actif){ home.classList.remove("grille-c"); g.classList.add("hidden"); try{ majLigneConverser().catch(() => {}); }catch(e){} return; }
     home.classList.add("grille-c");
-    const vis = tuilesProposees(home);
+    let vis = tuilesProposees(home);
+    // Wortando Pflege (16 nov. 2026) : en mode Soins, les tuiles des Soins (tuilesSoinsAccueil).
+    try{ if(soinsActifs() && modeAccueilSoins()) vis = tuilesSoinsAccueil(Object.assign({}, vis)); }catch(e){}
     let i = 0;
     g.querySelectorAll(".tg").forEach(b => {
         const v = !!vis[b.dataset.tg];
@@ -58683,6 +58886,8 @@ function ouvrirSceneSoins(nom){
     // Une scene de la liste, ou une vue qu'un chapitre nomme (soins-zimmer-aufstehen, 16 nov. 2026).
     const dansUnChapitre = (chapitresSoins || []).some(c => (c.scenes || []).indexOf(nom) >= 0);
     if(!SCENES_SOINS.some(s => s.nom === nom) && !dansUnChapitre) return;
+    // Les mots des Soins, pour que les reponses de la scene avancent leurs cartes de soins (carteDeScene, theme « soins_ »).
+    try{ chargerThemesSoins().catch(() => {}); }catch(e){}
     ouvrirSceneLibre(nom);
     sceneOuverteDepuis = "soins";
 }
@@ -58797,7 +59002,7 @@ function chapitreDuJourSoins(){
     return vis.find(c => !faits[c.id]) || vis.slice().sort((a, b) => (faits[a.id] || 0) - (faits[b.id] || 0))[0];
 }
 function porteSoins(){ try{ return localStorage.getItem(PORTE_SOINS_KEY) === "examen" ? "examen" : "debut"; }catch(e){ return "debut"; } }
-function choisirPorteSoins(p){ try{ localStorage.setItem(PORTE_SOINS_KEY, p === "examen" ? "examen" : "debut"); }catch(e){} rendreAccueilSoins(); }
+function choisirPorteSoins(p){ try{ localStorage.setItem(PORTE_SOINS_KEY, p === "examen" ? "examen" : "debut"); }catch(e){} appliquerPiluleSoins(); }
 function modeAccueilSoins(){
     if(!soinsActifs()) return false;
     try{ return localStorage.getItem(MODE_ACCUEIL_KEY) !== "general"; }catch(e){ return true; }
@@ -58805,7 +59010,11 @@ function modeAccueilSoins(){
 function choisirModeAccueil(m){
     try{ localStorage.setItem(MODE_ACCUEIL_KEY, m === "general" ? "general" : "soins"); }catch(e){}
     majAccueilSoins();
-    if(m === "general"){ try{ majGrilleAccueil(); }catch(e){} }
+    // la carte et la grille se redessinent pour le mode choisi (appliquerPiluleSoins passe apres chacune)
+    try{ majTuileSeance(); }catch(e){}
+    try{ majPiluleSeance(); }catch(e){}
+    try{ majBoutonSeance(); }catch(e){}
+    try{ majGrilleAccueil(); }catch(e){}
 }
 // Les mots des Soins aux niveaux d'une porte, au format de la seance ({ word, index, themeId, mode }).
 function itemsSoinsDesNiveaux(niveaux){
@@ -58850,68 +59059,108 @@ function motAfficheSoins(it){
     return ((r[1] && /^(der|die|das)$/.test(r[1])) ? r[1] + " " : "") + (r[0] || "");
 }
 
-// L'accueil : l'interrupteur, et en Soins le bloc qui remplace la grille (body.mode-soins).
+// L'accueil : l'interrupteur, et en Soins les VRAIS composants changent de contenu (Jacques : « exactement le meme look
+// qu'on a avec l'accueil actuel ») -- la carte de la seance (appliquerPiluleSoins) et la grille des tuiles
+// (majGrilleAccueil, tuilesSoinsAccueil). body.mode-soins ; le fond : majFondSoins.
 function majAccueilSoins(){
-    const bascule = document.getElementById("soinsBascule"), bloc = document.getElementById("accueilSoins");
-    if(!bascule || !bloc) return;
+    const bascule = document.getElementById("soinsBascule");
+    if(!bascule) return;
     const actif = soinsActifs();
     bascule.classList.toggle("hidden", !actif);
     const soins = actif && modeAccueilSoins();
     document.body.classList.toggle("mode-soins", soins);
-    bloc.classList.toggle("hidden", !soins);
     bascule.querySelectorAll("button[data-mode]").forEach(b => b.setAttribute("aria-pressed", String((b.dataset.mode === "soins") === soins)));
-    if(!soins) return;
-    Promise.all([chargerThemesSoins().catch(() => null), chargerChapitresSoins().catch(() => null)])
-        .then(() => { try{ rendreAccueilSoins(); }catch(e){ console.warn("rendreAccueilSoins", e); } });
+    try{ majFondSoins(); }catch(e){}
+    try{ appliquerPiluleSoins(); }catch(e){}
+    if(soins){
+        Promise.all([chargerThemesSoins().catch(() => null), chargerChapitresSoins().catch(() => null)])
+            .then(() => { try{ appliquerPiluleSoins(); }catch(e){} });
+    }
 }
-function rendreAccueilSoins(){
-    const corps = document.getElementById("accueilSoinsCorps");
-    if(!corps) return;
-    const e = echapperCompte;
+// Les tuiles de la grille en mode Soins : MA JOURNEE, DIALOGUES, ECOUTER, EXAMEN TELC, puis TOUT LE CONTENU, et Ton
+// tableau / Ton ciel comme d'habitude. L'ambre et l'ardoise alternent d'elles-memes (ordre du DOM).
+function tuilesSoinsAccueil(vis){
+    const garder = ["tout", "tableau", "ciel"];
+    Object.keys(vis).forEach(k => { if(garder.indexOf(k) < 0) vis[k] = false; });
+    ["soins_journee", "soins_dialogues", "soins_ecouter", "soins_telc", "tout"].forEach(k => { vis[k] = true; });
+    return vis;
+}
+// La carte de la seance en mode Soins : « AUJOURD'HUI · SOINS », « Ma seance Soins », le chapitre du jour, les deux
+// portes dans la rangee blanche des niveaux (memes boutons .seance-niveau, la porte choisie en turquoise comme le
+// niveau), « Commencer la seance » (entrerSeanceDuJour mene a la seance Soins). Appelee apres chaque dessin de la carte
+// (majTuileSeance, majPiluleSeance, majBoutonSeance), qui la refont pour l'allemand general.
+function appliquerPiluleSoins(){
+    const pil = document.getElementById("seancePilule");
+    if(!pil) return;
+    const soins = soinsActifs() && modeAccueilSoins();
+    pil.classList.toggle("pilule-soins", soins);
+    if(!soins) return;
     const ch = chapitreDuJourSoins();
     const porte = porteSoins();
-    const c = contenuSeanceSoins(ch);
-    const dlg = ch ? dialogueDuChapitreSoins(ch) : null;
-    const nMots = Math.min(SEANCE_SOINS_MOTS, c.mots.length);
-    const exemples = c.mots.slice(0, 4).map(motAfficheSoins).join(", ");
-    const brutPaire = (c.paire && c.paire.word && c.paire.word.brut) || {};
-    const brutAbrev = (c.abrev && c.abrev.word && c.abrev.word.brut) || {};
-    const titreChap = ch ? texteSoins(ch.titre) + " : " + texteSoins(ch.sous_titre) : t("sn_mots_service");
-    const ligne = (titre, sous) => '<li><b>' + e(titre) + '</b>' + (sous ? '<small lang="de">' + e(sous) + '</small>' : '') + '</li>';
-    let h = '<div class="as-carte">'
-        + '<div class="as-kick">' + e(t("sn_aujourdhui")) + '</div>'
-        + '<div class="as-tete"><strong>' + e(t("sn_seance")) + '</strong><span class="as-min">' + e(tf("sn_minutes", { n: 10 })) + '</span></div>'
-        + '<div class="as-chap">' + e(titreChap) + '</div>'
-        + '<div class="as-portes" role="group" aria-label="' + e(t("sn_porte_aria")) + '">'
-        + '<button type="button" class="as-porte" aria-pressed="' + (porte === "debut") + '" onclick="choisirPorteSoins(\'debut\')"><b>' + e(t("sn_porte_debut")) + '</b><small>A2 · B1</small></button>'
-        + '<button type="button" class="as-porte" aria-pressed="' + (porte === "examen") + '" onclick="choisirPorteSoins(\'examen\')"><b>' + e(t("sn_porte_examen")) + '</b><small>telc Pflege B1 · B2</small></button>'
-        + '</div><ul class="as-lignes">'
-        + (nMots ? ligne(tf("sn_ligne_mots", { n: nMots }), exemples + (c.mots.length > 4 ? "…" : "")) : "")
-        + (brutPaire.patient ? ligne(t("sn_ligne_paire"), "« " + brutPaire.patient + " » → " + (brutPaire.mot || "")) : "")
-        + (brutAbrev.mot ? ligne(t("sn_ligne_abrev"), brutAbrev.mot) : "")
-        + ligne(t("sn_ligne_dialogue"), dlg ? dlg.de : "")
-        + '</ul><button type="button" class="primary as-go" onclick="ouvrirSeanceSoins()">' + e(t("sn_commencer")) + '</button></div>';
-    // Ma journee au service : les chapitres visibles (complets ; tous pour l'admin, « en preparation »).
-    const vis = chapitresVisiblesSoins();
-    h += '<div class="as-bloc"><div class="as-bloc-tete"><strong>' + e(t("sn_journee")) + '</strong></div>';
-    if(vis.length){
-        h += '<p class="as-desc">' + e(t("sn_journee_desc")) + '</p><div class="as-ruban">'
-           + vis.map(x => '<button type="button" class="as-chapitre" onclick="ouvrirChapitreSoins(\'' + e(x.id) + '\')">'
-                 + '<small>' + e(tf("ch_numero", { n: x.numero })) + '</small><b>' + e(texteSoins(x.titre)) + '</b>'
-                 + (x.complet ? '' : '<span class="as-prep">' + e(CHAPITRES_SOINS_BIENTOT ? t("sn_bientot") : t("sn_en_preparation")) + '</span>')
-                 + '</button>').join("")
-           + '</div>';
-    } else {
-        h += '<p class="as-desc">' + e(t("sn_chapitres_vides")) + '</p>';
+    pil.classList.remove("pa-etape", "seance-faite");
+    pil.classList.add("pa-concis");
+    const aujd = pil.querySelector(".pa-aujourdhui");
+    if(aujd){ aujd.removeAttribute("data-i18n"); aujd.textContent = t("sn_aujourdhui"); }
+    const sp = document.getElementById("spTitre");
+    if(sp) sp.textContent = t("sn_seance");
+    const contenu = pil.querySelector(".pa-contenu");
+    if(contenu){ contenu.removeAttribute("data-i18n"); contenu.textContent = ch ? texteSoins(ch.titre) + " : " + texteSoins(ch.sous_titre) : t("sn_mots_service"); }
+    const box = document.getElementById("seanceNiveaux");
+    if(box){
+        box.innerHTML = "";
+        [["debut", "sn_porte_debut"], ["examen", "sn_porte_examen"]].forEach(([p, cle]) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "seance-niveau sn-porte" + (porte === p ? " on" : "");
+            b.textContent = t(cle);
+            b.title = p === "examen" ? "telc Pflege B1 · B2" : "A2 · B1";
+            b.setAttribute("aria-pressed", porte === p ? "true" : "false");
+            b.addEventListener("click", ev => { ev.stopPropagation(); choisirPorteSoins(p); });
+            box.appendChild(b);
+        });
     }
-    h += '</div>';
-    const nDlg = (chapitresSoins || []).reduce((s, x) => s + ((x.dialogues || []).length), 0);
-    h += '<button type="button" class="as-ligne" onclick="SOINS_RETOUR = \'accueil\'; ouvrirDialoguesSoins()"><span><b>'
-       + e(t("sn_dialogues")) + '</b><small>' + e(t("sn_dialogues_sous")) + '</small></span><b>' + (nDlg || "") + ' ›</b></button>';
-    h += '<button type="button" class="as-ligne" onclick="SOINS_RETOUR = \'accueil\'; ouvrirTelcPflege(\'\')"><span><b lang="de">telc Deutsch B1·B2 Pflege</b><small>'
-       + e(t("sn_telc_sous")) + '</small></span><b>' + e(t("sn_telc_go")) + ' ›</b></button>';
-    h += '<button type="button" class="as-lien" onclick="ouvrirSoins()">' + e(t("sn_tout_soins")) + ' ›</button>';
-    corps.innerHTML = h;
+    const pt = document.getElementById("spPlayTxt");
+    if(pt){
+        pt.textContent = t("sn_commencer");
+        const b = pt.closest("button");
+        if(b) b.setAttribute("aria-label", t("sn_commencer"));
+    }
+}
+// Le fond de l'accueil Soins (visuel/fond/<FOND_SOINS>), a la place de la carte du monde et de son filigrane dans la
+// carte de la seance. null tant que Jacques n'a pas choisi (le plan du service, le pouls ou l'herbier, maquette « Fonds ») :
+// la carte du monde reste.
+const FOND_SOINS = null;
+function majFondSoins(){
+    const f = document.getElementById("fondSoins");
+    const on = !!FOND_SOINS && soinsActifs() && modeAccueilSoins();
+    document.body.classList.toggle("fond-soins", on);
+    if(!f) return;
+    f.hidden = !on;
+    if(on && f.dataset.pose !== FOND_SOINS){ f.style.backgroundImage = "url('" + RACINE_DEPOT + "visuel/fond/" + FOND_SOINS + "')"; f.dataset.pose = FOND_SOINS; }
+}
+
+// « Ma journee au service » : les chapitres visibles, dans l'ordre d'une journee, celui du jour en ambre.
+function ouvrirJourneeSoins(){
+    if(!soinsActifs()) return;
+    chargerChapitresSoins().then(() => { rendreJourneeSoins(); showScreen("soinsJournee"); })
+        .catch(() => { showInfoToast(t("sn_chapitres_vides")); });
+}
+function rendreJourneeSoins(){
+    const e = echapperCompte;
+    const vis = chapitresVisiblesSoins(), jour = chapitreDuJourSoins();
+    const sous = document.getElementById("soinsJourneeSous");
+    if(sous) sous.textContent = vis.length ? tf("sn_journee_sous", { n: vis.length }) : t("sn_chapitres_vides");
+    const l = document.getElementById("soinsJourneeListe");
+    if(!l) return;
+    l.innerHTML = vis.map(c => {
+        const j = !!(jour && jour.id === c.id);
+        return '<button type="button" class="es-ch' + (j ? ' jour' : '') + '" onclick="ouvrirChapitreSoins(\'' + e(c.id) + '\')">'
+            + '<span class="es-n">' + Number(c.numero) + '</span><span class="es-t"><b>' + e(texteSoins(c.titre)) + '</b>'
+            + '<i lang="de">' + e(c.de || "") + '</i>'
+            + (c.complet ? '' : '<span class="es-prep">' + e(CHAPITRES_SOINS_BIENTOT ? t("sn_bientot") : t("sn_en_preparation")) + '</span>')
+            + '</span>' + (j ? '<span class="es-badge">' + e(t("accueil_aujourdhui")) + '</span>' : '')
+            + '<span class="es-fleche" aria-hidden="true">›</span></button>';
+    }).join("");
 }
 
 // La seance Soins : les mots du chapitre du jour (les dus d'abord, puis des nouveaux a la porte), une paire, une
@@ -58963,10 +59212,66 @@ async function ouvrirSeanceSoins(idChap){
     loadFlashcard();
 }
 
-// L'ecran d'un chapitre : sa seance, sa scene, ses mots en images, ses conversations, son ecrit.
+// « Ecouter » (tuile de l'accueil Soins) : les phrases du service, une quinzaine, celles du chapitre du jour d'abord
+// (pflege/datos/redemittel.json, source unique avec le manuel B2), dites par leur voix enregistree quand elle existe
+// (pflege/datos/sons.json, Firebase Hosting, dossier pflege/), sinon par le telephone. Un paquet a part (« soins_phrases »),
+// qui n'est pas la seance du jour.
+let redemittelSoins = null, sonsSoins = null;
+const BASE_SONS_SOINS = "https://deutschai-b6fbb.web.app/pflege/";
+function direPhraseSoins(k){
+    const txt = (k && (k.lecture || k.de)) || "";
+    const f = k && k.son && sonsSoins ? sonsSoins[k.son] : null;
+    if(!f){ direAllemand(txt, { rate: 0.9 }); return; }
+    try{
+        const a = new Audio(BASE_SONS_SOINS + f);
+        let parti = false;
+        a.onplaying = () => { parti = true; };
+        const repli = () => { if(!parti){ try{ a.pause(); }catch(e){} direAllemand(txt, { rate: 0.9 }); parti = true; } };
+        a.onerror = repli;
+        setTimeout(repli, 4000);
+        const p = a.play(); if(p && p.catch) p.catch(repli);
+    }catch(e){ direAllemand(txt, { rate: 0.9 }); }
+}
+async function ouvrirPhrasesSoins(){
+    if(!soinsActifs()) return;
+    try{
+        if(!redemittelSoins){
+            const r = await fetch(RACINE_DEPOT + "pflege/datos/redemittel.json", { cache: "no-cache" });
+            if(!r.ok) throw new Error("redemittel.json : " + r.status);
+            redemittelSoins = await r.json();
+        }
+    }catch(e){ showInfoToast(t("sn_chapitres_vides")); return; }
+    if(!sonsSoins){ try{ const r = await fetch(RACINE_DEPOT + "pflege/datos/sons.json", { cache: "no-cache" }); if(r.ok) sonsSoins = await r.json(); }catch(e){} }
+    try{ await chargerChapitresSoins(); }catch(e){}
+    const ch = chapitreDuJourSoins();
+    const toutes = (redemittelSoins.cartes || []).filter(k => k && !k.retire && k.de);
+    const permis = ch ? new Set(ch.cartes || []) : null;
+    const devant = permis ? toutes.filter(k => permis.has(k.id)) : [];
+    const liste = devant.concat(toutes.filter(k => devant.indexOf(k) < 0)).slice(0, 15);
+    if(!liste.length) return;
+    const paquet = liste.map(k => ({ mode: "phrase", forme: "soins_rm", q: "sn_q_phrase", themeId: "soins_rm", index: 0, rm: k,
+                                     cible: null, phrase: null, word: "" }));
+    PHRASES_POSEES.clear();
+    currentCardsFull = [];
+    currentCards = paquet;
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "soins_phrases", name: t("sn_phrases_titre") };
+    PASSAGES_VUS.clear();
+    SEANCE_PARTS = null;
+    currentFlashcard = 0;
+    flashcardMode = "phrase";
+    setFlashHeader("sn_phrases_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
+
+// L'ecran d'un chapitre (maquette : ecran « Releve ») : sa seance, sa scene (en vignette), ses mots, ses conversations
+// (avec la personne en face), son ecrit, et le chapitre suivant.
 function ouvrirChapitreSoins(id){
     if(!soinsActifs()) return;
-    chargerChapitresSoins().then(() => {
+    Promise.all([chargerChapitresSoins(), chargerThemesSoins().catch(() => null)]).then(() => {
         const c = (chapitresSoins || []).find(x => x.id === id);
         if(!c || !chapitreVisibleSoins(c)) return;
         SOINS_RETOUR = "chapitre:" + id;
@@ -58976,29 +59281,54 @@ function ouvrirChapitreSoins(id){
 }
 function rendreChapitreSoins(c){
     const e = echapperCompte;
-    const kicker = document.getElementById("soinsChapKicker"), titre = document.getElementById("soinsChapTitre"),
-          sous = document.getElementById("soinsChapSous"), corps = document.getElementById("soinsChapCorps");
+    const corps = document.getElementById("soinsChapCorps");
     if(!corps) return;
-    kicker.textContent = tf("ch_numero", { n: c.numero }) + (c.complet ? "" : " · " + t("sn_en_preparation"));
-    titre.textContent = texteSoins(c.titre);
-    sous.textContent = texteSoins(c.sous_titre) + " · " + (c.de || "");
-    const section = (cle, contenu) => '<div class="ch-section"><h3>' + e(t(cle)) + '</h3><div class="ch-boutons">' + contenu + '</div></div>';
-    const bientot = '<button type="button" class="ch-bouton" disabled><small>' + e(t("sn_bientot")) + '</small></button>';
-    let h = '<button type="button" class="primary as-go" onclick="ouvrirSeanceSoins(\'' + e(c.id) + '\')">' + e(t("ch_seance")) + '</button>';
-    h += section("ch_scene", (c.scenes || []).map(nom => {
+    const total = (chapitresSoins || []).length;
+    document.getElementById("soinsChapKicker").textContent = tf("ch_numero_sur", { n: c.numero, t: total })
+        + (c.complet ? "" : " · " + t("sn_en_preparation"));
+    document.getElementById("soinsChapTitre").textContent = texteSoins(c.titre);
+    document.getElementById("soinsChapDe").textContent = c.de || "";
+    document.getElementById("soinsChapSous").textContent = texteSoins(c.sous_titre);
+    let h = '<button type="button" class="es-seance" onclick="ouvrirSeanceSoins(\'' + e(c.id) + '\')">' + e(t("ch_seance")) + '</button>';
+    // la scene, en vignette (son image), le nom allemand du lieu
+    (c.scenes || []).forEach(nom => {
         const s = SCENES_SOINS.find(x => x.nom === nom) || SCENES_SOINS.find(x => nom.indexOf(x.nom) === 0) || {};
-        return '<button type="button" class="ch-bouton" onclick="ouvrirSceneSoins(\'' + e(nom) + '\')"><b lang="de">' + e(s.titre || nom) + '</b></button>';
-    }).join("") || bientot);
-    h += section("ch_theme", c.theme_illustre
-        ? '<button type="button" class="ch-bouton" onclick="ouvrirThemeChapitreSoins(\'' + e(c.id) + '\')"><b>' + e(texteSoins(c.titre)) + '</b></button>'
-        : bientot);
-    h += section("ch_conversations", (c.dialogues_info || []).map(d =>
-        '<button type="button" class="ch-bouton" onclick="ouvrirDialoguesSoins(\'' + e(d.id) + '\')"><b>' + e(texteSoins(d.titre)) + '</b>'
-        + '<small><span lang="de">' + e(d.de || "") + '</span> · ' + e(d.niveau || "") + '</small></button>').join("") || bientot);
-    // L'ecrit : la page d'entrainement de pflege-examen, ouverte sur un sujet, quand elle existera (plan, E5).
-    h += section("ch_ecrit", (c.ecrits_info || []).map(x =>
-        '<button type="button" class="ch-bouton" disabled><b>' + e(texteSoins(x.titre)) + '</b><small>' + e(t("sn_bientot")) + '</small></button>').join("") || bientot);
-    h += '<button type="button" class="as-lien" onclick="ouvrirSoins()">' + e(t("sn_tout_soins")) + ' ›</button>';
+        h += '<div class="es-scene"><img src="' + e(baseScenes() + nom + ".webp") + '" alt="" loading="lazy">'
+           + '<div class="es-scene-pied"><div><b lang="de">' + e(s.titre || nom) + '</b><i>' + e(t("ch_scene")) + '</i></div>'
+           + '<button type="button" class="es-rond" aria-label="' + e(t("ch_scene")) + '" onclick="ouvrirSceneSoins(\'' + e(nom) + '\')">›</button></div></div>';
+    });
+    // les mots, en pastilles (les premiers du chapitre) ; « Ouvrir » mene au theme illustre quand il existe
+    const rangs = {};
+    (themesSoins || []).forEach(th => Object.keys(th.levels || {}).forEach(n => {
+        const d = th.levels[n];
+        if(d) d.words.forEach((w, i) => { rangs[d.id + ":" + i] = w; });
+    }));
+    const puces = (c.mots || []).slice(0, 8).map(k => rangs[k]).filter(Boolean)
+        .map(w => '<span lang="de">' + e(motAfficheSoins({ word: w })) + '</span>').join("");
+    h += '<div class="es-bloc"><div class="es-bloc-tete"><span>' + e(t("ch_theme")) + '</span>'
+       + (c.theme_illustre ? '<button type="button" class="es-lien" onclick="ouvrirThemeChapitreSoins(\'' + e(c.id) + '\')">' + e(t("sn_ouvrir")) + ' ›</button>'
+                           : '<span class="es-prep">' + e(t("sn_bientot")) + '</span>')
+       + '</div>' + (puces ? '<div class="es-puces">' + puces + '</div>' : '') + '</div>';
+    // les conversations, avec la personne en face (son visage, ou son initiale)
+    const convs = (c.dialogues_info || []).map(d => {
+        const av = d.visage ? '<img src="' + e(baseScenes() + d.visage) + '" alt="" loading="lazy">'
+                            : e(String(d.avec_nom || "?").replace(/^(Herr|Frau|Dr\.)\s+/, "").charAt(0));
+        return '<div class="es-conv"><span class="es-av" aria-hidden="true">' + av + '</span><div><b lang="de">' + e(d.de || "") + '</b>'
+             + '<small>' + e(texteSoins(d.titre)) + ' · ' + e(tf("ch_avec", { qui: d.avec_nom || "" })) + ' · ' + e(d.niveau || "") + '</small></div>'
+             + '<button type="button" class="es-rond or" aria-label="' + e(t("sn_jouer")) + '" onclick="ouvrirDialoguesSoins(\'' + e(d.id) + '\')">▶</button></div>';
+    }).join("");
+    h += '<div class="es-bloc"><div class="es-bloc-tete"><span>' + e(t("ch_conversations")) + '</span></div>' + (convs || '<span class="es-prep">' + e(t("sn_bientot")) + '</span>') + '</div>';
+    // l'ecrit : la page de l'ecrit de pflege-examen ouverte sur un sujet (« bientot » tant qu'elle n'est pas sur main)
+    const ecrits = (c.ecrits_info || []);
+    h += ecrits.length ? ecrits.map(x => '<div class="es-ecrit"><span class="es-k">' + e(t("ch_ecrit")) + '</span><b>' + e(texteSoins(x.titre)) + '</b>'
+            + (ECRIT_SOINS_PAR_SUJET ? '<button type="button" onclick="ouvrirEcritSoins(\'' + e(c.id) + '\', \'' + e(x.id) + '\')">' + e(t("sn_ecrire")) + '</button>'
+                                     : '<button type="button" disabled>' + e(t("sn_bientot")) + '</button>') + '</div>').join("")
+        : '<div class="es-ecrit"><span class="es-k">' + e(t("ch_ecrit")) + '</span><button type="button" disabled>' + e(t("sn_bientot")) + '</button></div>';
+    // le chapitre suivant (visible)
+    const vis = chapitresVisiblesSoins();
+    const i = vis.findIndex(x => x.id === c.id);
+    const suivant = i >= 0 ? vis[i + 1] : null;
+    if(suivant) h += '<button type="button" class="es-suivant" onclick="ouvrirChapitreSoins(\'' + e(suivant.id) + '\')">' + e(tf("ch_suivant", { t: texteSoins(suivant.titre) })) + ' ›</button>';
     corps.innerHTML = h;
 }
 // Le theme illustre d'un chapitre (visuel/prototype/soins-theme-<cle>.html), dans le cadre comme les themes illustres.
@@ -59011,6 +59341,23 @@ function ouvrirThemeChapitreSoins(id){
     if(cadre){
         cadre.title = texteSoins(c.titre);
         chargerCadre(cadre, baseScenes() + c.theme_illustre + "?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "") + "&t=" + Date.now());
+    }
+    showScreen("sceneSeance");
+}
+// L'ecrit d'un chapitre dans la page de l'examen (telc-pflege/telc.html?sujet=<id d'ecrit.json>&depuis=<chapitre>) :
+// ses « fermer » reviennent au chapitre (sceneOuverteDepuis « telc-pflege », retourSoinsApres). Contrat : branche de
+// pflege-examen, pflege/examen/FORMAT-MANUEL.md § 8 ; true quand cette page est sur main.
+const ECRIT_SOINS_PAR_SUJET = false;
+function ouvrirEcritSoins(idChap, sujet){
+    if(!soinsActifs() || !ECRIT_SOINS_PAR_SUJET) return;
+    SOINS_RETOUR = idChap ? "chapitre:" + idChap : null;
+    sceneOuverteDepuis = "telc-pflege";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = "telc Deutsch B1·B2 Pflege";
+        chargerCadre(cadre, baseScenes() + "telc-pflege/telc.html?apprendre=de&lang=" + encodeURIComponent(getUiLang())
+                  + "&sujet=" + encodeURIComponent(sujet || "") + (idChap ? "&depuis=" + encodeURIComponent(idChap) : "")
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "") + "&t=" + Date.now());
     }
     showScreen("sceneSeance");
@@ -70230,6 +70577,21 @@ function carteDeScene(d){
         if(sens){ const j = liste.findIndex(w => ok(w) && trad(w) === sens); if(j >= 0) return j; }
         return liste.findIndex(ok);
     };
+    // Wortando Pflege (16 nov. 2026, demande de la session scenes) : une page des Soins (scene, theme illustre d'un
+    // chapitre) envoie theme = l'id d'un theme de soins avec son niveau (« soins_koerper_a2 ») ; le mot fait alors avancer
+    // sa carte de SOINS, le meme mot du corpus general gardant la sienne. Ce theme-la d'abord, puis les autres themes de
+    // soins, puis le corpus (plus bas). Sans « theme » de soins, rien ne change.
+    if(typeof d.theme === "string" && d.theme.indexOf("soins_") === 0 && Array.isArray(themesSoins) && themesSoins.length){
+        let trouve = null;
+        const essayer = lv => {
+            if(trouve || !lv || !Array.isArray(lv.words)) return;
+            const i = lv.words.findIndex(w => Array.isArray(w) && w[0] === mot && (!d.genre || !w[1] || w[1] === d.genre));
+            if(i >= 0) trouve = { word: lv.words[i], index: i, themeId: lv.id, mode: "nomen" };
+        };
+        themesSoins.forEach(th => Object.keys(th.levels || {}).forEach(n => { if(th.levels[n] && th.levels[n].id === d.theme) essayer(th.levels[n]); }));
+        themesSoins.forEach(th => Object.keys(th.levels || {}).forEach(n => essayer(th.levels[n])));
+        if(trouve) return trouve;
+    }
     if(d.cat === "verbe"){
         const i = chercher(verbeTheme.words || [], w => w && w.infinitif === mot, w => w.traduction);
         return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
@@ -71976,6 +72338,31 @@ function montrerCartePhrase(item){
         // La conversation de l'etape (12 nov. 2026) : d'ordinaire ouverte par la fin de la scene qui la precede.
         ouvrirArretConversation(item);
         return;
+    } else if(item.forme === "soins_rm"){
+        // Wortando Pflege (16 nov. 2026), la tuile ECOUTER de l'accueil Soins : une phrase du service (pflege/datos/
+        // redemittel.json), dite par sa voix enregistree (sons.json) sinon par le telephone ; sa situation au-dessus, sa
+        // traduction apres « Voir la reponse ». Rien a juger.
+        const k = item.rm || {};
+        const dire = () => { try{ direPhraseSoins(k); }catch(e){} };
+        const sit = texteSoins(k.situation);
+        if(sit) el.appendChild(creer("small", "sn-qui", sit));
+        const b = creer("button", "sn-de", k.de || ""); b.type = "button"; b.setAttribute("lang", langueDe);
+        { const hp = creer("i", "", " "); hp.appendChild(iconeHP()); b.appendChild(hp); }
+        b.addEventListener("click", dire);
+        el.appendChild(b);
+        const verso = creer("div", "sn-cote sn-cache");
+        verso.appendChild(creer("p", "cp-sens", texteSoins(k.trad)));
+        const voir = creer("button", "secondary sn-voir", t("sn_voir")); voir.type = "button";
+        el.appendChild(voir);
+        el.appendChild(verso);
+        voir.addEventListener("click", () => {
+            voir.remove();
+            verso.classList.remove("sn-cache");
+            fait.repondu = true;
+            suite.classList.remove("hidden");
+            suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
+        }, { once: true });
+        dire();
     } else if(item.forme === "soins_paire" || item.forme === "soins_abrev"){
         // Wortando Pflege (16 nov. 2026), la seance Soins : une paire « ce que dit le patient / ce que dit le service »
         // (sorte « paire », pflege/FORMAT-DONNEES.md § 1 bis), ou une abreviation de la documentation (« RR (= Blutdruck) »,
@@ -77240,6 +77627,7 @@ function majPiluleSeance(){
     if(lienProfil){ let on = false; try{ on = essaiActif("profil"); }catch(e){} lienProfil.classList.toggle("hidden", !on); }
     majAnneauSeance();
     majTuilesCarnetFeuilles();
+    try{ appliquerPiluleSoins(); }catch(e){}   // Wortando Pflege : la carte en mode Soins (16 nov. 2026)
 }
 // L'ETAT DE LA SEANCE DU JOUR, POUR L'ACCUEIL (revue A a Z du 12 nov. 2026 ; Jacques, le meme jour : « ca m'a ramene a
 // une ligne complete de progression vide dans ma seance du jour » ; decision du 11 nov. : l'accueil dit que c'est fait).
@@ -77269,6 +77657,7 @@ function majBoutonSeance(){
     const pil = document.getElementById("seancePilule");
     if(pil) pil.classList.toggle("seance-faite", e === "faite");
     try{ majPlanPilule(); }catch(err){}
+    try{ appliquerPiluleSoins(); }catch(err){}   // Wortando Pflege : la carte en mode Soins (16 nov. 2026)
 }
 function majAnneauSeance(){
     if(objectifRetire()){ try{ majBoutonSeance(); }catch(e){} }
