@@ -27,6 +27,11 @@ def main():
                        capture_output=True, text=True, encoding="utf-8")
     if r.returncode != 0:
         problemes.append((r.stdout or r.stderr).strip())
+    # Les 14 chapitres de « Ma journee au service » (16 nov. 2026) : sortie a jour, renvois justes.
+    r = subprocess.run([sys.executable, str(RACINE / "pflege" / "outils" / "chapitres.py"), "--verifier"],
+                       capture_output=True, text=True, encoding="utf-8")
+    if r.returncode != 0:
+        problemes.append((r.stdout or r.stderr).strip())
     if not DATOS.exists():
         print("ECHEC : pflege/datos/themes.json absent")
         return 1
