@@ -45,7 +45,7 @@ POSES = {
     "schmerz": {
         ("brandt", "huefte"): "sits on the edge of the bed, upright, one hand pressed flat on the side of his hip, on the bone at the top of the thigh, the other hand on the mattress beside him.",
         ("brandt", "ruecken"): "stands beside the bed, leaning slightly forward, one hand pressed on the small of his back, the other hand resting on the bed rail.",
-        ("brandt", "knie"): "sits on a chair beside the bed, one leg stretched a little forward, both hands wrapped around that knee.",
+        ("brandt", "knie"): "sits alone on a chair beside the bed, leaning forward, his right leg stretched a little forward, both hands clasped tightly around his right knee, the kneecap between his hands. No other person and no part of another person is anywhere in the picture.",
         ("lehmann", "fuss"): "sits in an armchair; one foot, wrapped in a clean white bandage, rests on a low footstool in front of her, and she points at that foot with one hand.",
         ("lehmann", "kopf"): "sits in an armchair, one hand laid on her forehead, her eyes half closed.",
         ("weber", "hand"): "sits at a table, holding one hand at the wrist with her other hand, close to her chest, looking down at it.",
@@ -53,7 +53,7 @@ POSES = {
         ("schulze", "bauch"): "sits on a chair, slightly hunched forward, both hands laid flat on his stomach.",
         ("schulze", "hals"): "sits on a chair, one hand laid at the front of his throat, as if swallowing hurt.",
         ("kowalski", "bein"): "sits in her armchair, leaning forward, both hands holding her lower leg just below the knee.",
-        ("kowalski", "arm"): "sits in her armchair, holding one forearm against her body with her other hand.",
+        ("kowalski", "arm"): "sits alone in her armchair, her right arm bent at the elbow and raised in front of her chest, her left hand gripping the right forearm just below the elbow; her hands do not touch her stomach. No other person and no part of another person is anywhere in the picture.",
     },
 }
 EXPRESSION = ("The face shows clear, real pain, the way a patient looks when telling the nurse where it hurts: the eyebrows "
