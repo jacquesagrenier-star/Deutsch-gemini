@@ -1,0 +1,173 @@
+{
+ "id": "d28-knieschmerzen",
+ "numero": 28,
+ "niveau": "A2",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "ambulant",
+ "scene_annexe": 8,
+ "role": "amira",
+ "personnes": ["kowalski"],
+ "titre": {"t": "Das Knie tut weh", "fr": "Mal au genou"},
+ "intro": {"fr": "Mardi 10 novembre, huit heures, visite du matin chez {kowalski}. Elle ouvre la porte en boitant, sa canne à la main : son genou lui fait mal et elle a mal dormi. Tu joues {amira} : demande où elle a mal, depuis quand et combien, de 0 à 10, avec des mots simples ; regarde le genou ; propose ce qui soulage sans médicament, et dis quand tu appelles son médecin traitant."},
+ "but": {"fr": "Poser les questions de base sur une douleur (où, depuis quand, combien, déjà un médicament ?) en phrases courtes ; demander la permission avant de regarder ; dire où on a mal (am Knie, am linken Knie) ; proposer du froid et la jambe surélevée ; dire quand on appelle le médecin."},
+ "grammaire": ["g01", "g05"],
+ "telc": ["oral-1"],
+ "relire_notes": {"fr": "Genou gauche douloureux depuis la veille au soir, après une longue marche, sans chute ; un peu gonflé, ni rouge ni chaud ; douleur 5 sur 10 le matin, 7 la nuit. À valider : les signes qui font appeler le médecin le jour même (rougeur, chaleur, gros gonflement, fièvre, impossibilité d'appuyer, chute) ; le froid (poche de froid enveloppée dans un linge, une vingtaine de minutes, jamais directement sur la peau, prudence chez une diabétique qui sent moins bien le froid) ; la jambe surélevée ; la soignante ne donne aucun antidouleur non prescrit (pas d'anti-inflammatoire en libre-service chez une personne âgée diabétique et hypertendue) ; appel au médecin traitant si ça ne va pas mieux le soir ; la suite de la visite : glycémie puis insuline, comme d'habitude (dialogue 10)."},
+ "redemittel": [
+  {"t": "Welches Knie tut weh? Zeigen Sie mir bitte, wo.", "fr": "Quel genou vous fait mal ? Montrez-moi où, s'il vous plaît.", "fonction": "demander"},
+  {"t": "Seit wann tut das Knie weh?", "fr": "Depuis quand le genou vous fait-il mal ?", "fonction": "demander"},
+  {"t": "Null ist kein Schmerz, zehn ist ganz schlimm. Wie viel ist es jetzt?", "fr": "Zéro, c'est pas de douleur, dix, c'est très fort. C'est combien maintenant ?", "fonction": "demander"},
+  {"t": "Darf ich mir Ihr Knie mal ansehen?", "fr": "Est-ce que je peux regarder votre genou ?", "fonction": "demander"},
+  {"t": "Haben Sie schon etwas gegen die Schmerzen genommen?", "fr": "Vous avez déjà pris quelque chose contre la douleur ?", "fonction": "demander"},
+  {"t": "Ich lege ein Kühlpack auf, mit einem Handtuch dazwischen.", "fr": "Je mets une poche de froid, avec une serviette entre les deux.", "fonction": "annoncer", "relire": true, "relire_note": "Froid enveloppé, une vingtaine de minutes."},
+  {"t": "Legen Sie das Bein bitte hier auf den Hocker.", "fr": "Posez la jambe ici sur le tabouret, s'il vous plaît.", "fonction": "annoncer"},
+  {"t": "Wenn es heute Abend nicht besser ist, rufe ich Ihren Hausarzt an.", "fr": "Si ça ne va pas mieux ce soir, j'appelle votre médecin traitant.", "fonction": "annoncer"}
+ ],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Mardi, huit heures. {amira} sonne chez {kowalski}. La porte s'ouvre lentement : {kowalski} boite, sa canne à la main. Derrière elle, le chat gris tigré attend sur le tapis."}},
+    {"qui": "kowalski", "air": "attentive", "t": "Guten Morgen, {amira}. Kommen Sie rein. Heute geht es nicht so gut.", "fr": "Bonjour, {amira}. Entrez. Aujourd'hui, ça ne va pas très bien."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {kowalski}. Das tut mir leid. Was ist los?", "fr": "Bonjour, {kowalski:voc}. Je suis désolée. Qu'est-ce qui se passe ?", "va": "wo",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Mein Knie tut weh. Ich habe heute Nacht schlecht geschlafen.", "fr": "J'ai mal au genou. J'ai mal dormi cette nuit."}]},
+    {"t": "Guten Morgen! Sie gehen heute langsam. Haben Sie Schmerzen?", "fr": "Bonjour ! Vous marchez lentement aujourd'hui. Vous avez mal ?", "va": "wo",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Ja. Mein Knie tut weh. Ich habe heute Nacht kaum geschlafen.", "fr": "Oui. J'ai mal au genou. J'ai à peine dormi cette nuit."}]},
+    {"faux": true, "t": "Guten Morgen! Warum gehen Sie so komisch?", "fr": "Bonjour ! Pourquoi vous marchez si bizarrement ?",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Komisch? Na, danke schön.", "fr": "Bizarrement ? Eh bien, merci beaucoup."}],
+     "aide": {"fr": "<b>Dis ce que tu vois avec douceur, sans « komisch ».</b> « komisch » (bizarre) vexe. Dis par exemple : « Sie gehen heute langsam. Haben Sie Schmerzen? »"}}
+   ]
+  },
+  "wo": {
+   "dit": [
+    {"recit": {"fr": "{kowalski} s'assoit lentement sur une chaise de la cuisine."}}
+   ],
+   "choix": [
+    {"t": "Welches Knie tut weh? Zeigen Sie mir bitte, wo.", "fr": "Quel genou vous fait mal ? Montrez-moi où, s'il vous plaît.", "va": "seit",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Das linke. Hier, innen an der Seite.", "fr": "Le gauche. Ici, à l'intérieur, sur le côté."}]},
+    {"t": "Wo genau tut es weh? Am linken Knie oder am rechten?", "fr": "Où exactement avez-vous mal ? Au genou gauche ou au droit ?", "va": "seit",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Am linken. Hier, innen an der Seite.", "fr": "Au gauche. Ici, à l'intérieur, sur le côté."}]},
+    {"faux": true, "t": "Tut Ihr Kinn weh?", "fr": "Vous avez mal au menton ? (mot pris pour un autre)",
+     "puis": [{"qui": "kowalski", "air": "amuse", "t": "Mein Kinn? Nein, Kindchen, das Knie!", "fr": "Mon menton ? Non, ma petite, le genou !"}],
+     "aide": {"fr": "<b>« das Knie », c'est le genou ; « das Kinn », c'est le menton.</b> Les deux mots se ressemblent : dis-les lentement. Et pour savoir où : « Zeigen Sie mir bitte, wo. »"}}
+   ]
+  },
+  "seit": {
+   "dit": [],
+   "choix": [
+    {"t": "Seit wann tut das Knie weh?", "fr": "Depuis quand le genou vous fait-il mal ?", "va": "skala",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Seit gestern Abend. Am Nachmittag war ich mit meiner Nachbarin einkaufen. Wir sind viel gelaufen.", "fr": "Depuis hier soir. L'après-midi, je suis allée faire les courses avec ma voisine. On a beaucoup marché."}]},
+    {"t": "Wann hat der Schmerz angefangen?", "fr": "Quand la douleur a-t-elle commencé ?", "va": "skala",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Gestern Abend. Am Nachmittag war ich mit meiner Nachbarin einkaufen. Wir sind viel gelaufen.", "fr": "Hier soir. L'après-midi, je suis allée faire les courses avec ma voisine. On a beaucoup marché."}]},
+    {"faux": true, "t": "Das ist bestimmt das Wetter, oder? Es ist so kalt.", "fr": "C'est sûrement le temps, non ? Il fait si froid.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Das Wetter? Ich weiß nicht …", "fr": "Le temps ? Je ne sais pas…"}],
+     "aide": {"fr": "<b>Ne devine pas la cause : pose la question.</b> « Seit wann tut das Knie weh? » La réponse aide le médecin, une supposition non."}}
+   ]
+  },
+  "skala": {
+   "dit": [],
+   "choix": [
+    {"t": "Wie stark ist der Schmerz? Null ist kein Schmerz, zehn ist ganz schlimm. Wie viel ist es jetzt?", "fr": "Quelle est la force de la douleur ? Zéro, c'est pas de douleur, dix, c'est très fort. C'est combien maintenant ?", "va": "ansehen",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Jetzt eine Fünf. Heute Nacht war es eine Sieben.", "fr": "Maintenant un cinq. Cette nuit, c'était un sept."}]},
+    {"t": "Sagen Sie mir eine Zahl von null bis zehn. Null: gar nicht. Zehn: sehr, sehr stark.", "fr": "Dites-moi un chiffre de zéro à dix. Zéro : pas du tout. Dix : très, très fort.", "va": "ansehen",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Jetzt eine Fünf. Heute Nacht war es eine Sieben.", "fr": "Maintenant un cinq. Cette nuit, c'était un sept."}]},
+    {"faux": true, "t": "Ist es viel weh oder wenig weh?", "fr": "C'est « beaucoup mal » ou « peu mal » ? (mal dit)",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Viel weh? … Es tut eben weh.", "fr": "Beaucoup mal ? … Ça fait mal, voilà."}],
+     "aide": {"fr": "<b>« weh » ne se compte pas : on demande la force de la douleur avec un chiffre.</b> « Wie stark ist der Schmerz? Null ist kein Schmerz, zehn ist ganz schlimm. » Un chiffre se compare d'une visite à l'autre."}}
+   ]
+  },
+  "ansehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Darf ich mir Ihr Knie mal ansehen?", "fr": "Est-ce que je peux regarder votre genou ?", "va": "befund",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ja, natürlich. Aber nicht lachen, meine Beine sind alt.", "fr": "Oui, bien sûr. Mais ne riez pas, mes jambes sont vieilles."}]},
+    {"t": "Ich möchte das Knie kurz ansehen. Schieben Sie bitte das Hosenbein hoch.", "fr": "Je voudrais regarder rapidement le genou. Remontez votre jambe de pantalon, s'il vous plaît.", "va": "befund",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ja, natürlich. Aber nicht lachen, meine Beine sind alt.", "fr": "Oui, bien sûr. Mais ne riez pas, mes jambes sont vieilles."}]},
+    {"faux": true, "t": "Hose runter, bitte. Ich muss das sehen.", "fr": "Baissez le pantalon. Je dois voir ça.",
+     "puis": [{"qui": "kowalski", "air": "surprise", "t": "Wie bitte? So schnell geht das bei mir nicht!", "fr": "Pardon ? Pas si vite avec moi !"}],
+     "aide": {"fr": "<b>Avant de regarder ou de toucher, demande la permission.</b> « Darf ich mir Ihr Knie mal ansehen? » Et à l'impératif poli, le verbe en tête, puis « Sie » et « bitte » : « Schieben Sie bitte das Hosenbein hoch. »"}}
+   ]
+  },
+  "befund": {
+   "dit": [
+    {"recit": {"fr": "{amira} regarde le genou gauche : il est un peu gonflé. La peau n'est pas rouge et pas chaude."}},
+    {"qui": "kowalski", "air": "question", "t": "Und? Ist es schlimm?", "fr": "Alors ? C'est grave ?"}
+   ],
+   "choix": [
+    {"t": "Das Knie ist ein bisschen dick, aber nicht rot und nicht warm. Sind Sie gestern gefallen?", "fr": "Le genou est un peu gonflé, mais pas rouge et pas chaud. Vous êtes tombée hier ?", "va": "tablette",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Nein, ich bin nicht gefallen. Es hat einfach angefangen.", "fr": "Non, je ne suis pas tombée. Ça a commencé comme ça."}]},
+    {"t": "Es ist etwas geschwollen. Rot ist es nicht. Haben Sie sich gestoßen oder sind Sie gestürzt?", "fr": "Il est un peu enflé. Il n'est pas rouge. Vous vous êtes cognée, ou vous êtes tombée ?", "va": "tablette",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Nein, nichts. Es hat einfach angefangen.", "fr": "Non, rien. Ça a commencé comme ça."}]},
+    {"faux": true, "t": "Oh je, das sieht aber schlimm aus!", "fr": "Oh là là, ça a l'air grave !",
+     "puis": [{"qui": "kowalski", "air": "surprise", "t": "Schlimm? Jetzt habe ich aber Angst.", "fr": "Grave ? Là, j'ai peur."}],
+     "aide": {"fr": "<b>Dis ce que tu vois, sans faire peur : « ein bisschen dick, nicht rot, nicht warm ».</b> Dire si c'est grave, c'est le rôle du médecin. Demande aussi s'il y a eu une chute."}}
+   ]
+  },
+  "tablette": {
+   "dit": [],
+   "choix": [
+    {"t": "Haben Sie schon etwas gegen die Schmerzen genommen?", "fr": "Vous avez déjà pris quelque chose contre la douleur ?", "va": "kuehlen",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Nein, nichts. Ich nehme schon so viele Tabletten.", "fr": "Non, rien. Je prends déjà tellement de comprimés."}]},
+    {"t": "Haben Sie heute Nacht eine Tablette genommen?", "fr": "Vous avez pris un comprimé cette nuit ?", "va": "kuehlen",
+     "puis": [{"qui": "kowalski", "air": "attentive", "t": "Nein. Ich nehme schon so viele Tabletten.", "fr": "Non. Je prends déjà tellement de comprimés."}]},
+    {"faux": true, "t": "Ich habe Ibuprofen in der Tasche. Nehmen Sie doch eine!", "fr": "J'ai de l'ibuprofène dans mon sac. Prenez-en un !",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Darf ich das denn? Mit meinen anderen Tabletten?", "fr": "J'ai le droit ? Avec mes autres comprimés ?"}],
+     "aide": {"fr": "<b>Ne donne jamais un médicament qui n'est pas prescrit, même un « petit » antidouleur.</b> Avec ses autres médicaments, il peut être dangereux. Demande ce qu'elle a déjà pris ; c'est le médecin qui décide."},
+     "relire": true, "relire_note": "Pas d'anti-inflammatoire sans prescription (âge, diabète, hypertension)."}
+   ]
+  },
+  "kuehlen": {
+   "dit": [],
+   "choix": [
+    {"t": "Wir kühlen das Knie. Ich lege ein Kühlpack auf, mit einem Handtuch. Und Sie legen das Bein hoch.", "fr": "On va refroidir le genou. Je mets une poche de froid, avec une serviette. Et vous surélevez la jambe.", "va": "arzt",
+     "relire": true, "relire_note": "Froid enveloppé, une vingtaine de minutes ; jambe surélevée.",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ein Kühlpack ist im Gefrierfach. Links, neben dem Brot.", "fr": "Il y a une poche de froid dans le congélateur. À gauche, à côté du pain."}]},
+    {"t": "Legen Sie das Bein bitte hier auf den Hocker. Dann kühlen wir das Knie, zwanzig Minuten, mit einem Tuch dazwischen.", "fr": "Posez la jambe ici sur le tabouret, s'il vous plaît. Ensuite on refroidit le genou, vingt minutes, avec un linge entre les deux.", "va": "arzt",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Ein Kühlpack ist im Gefrierfach. Links, neben dem Brot.", "fr": "Il y a une poche de froid dans le congélateur. À gauche, à côté du pain."}]},
+    {"faux": true, "t": "Ich lege das Eis direkt auf die Haut. So hilft es am schnellsten.", "fr": "Je mets la glace directement sur la peau. Comme ça, ça aide plus vite.",
+     "puis": [{"qui": "kowalski", "air": "surprise", "t": "Direkt? Das ist doch eiskalt!", "fr": "Directement ? Mais c'est glacé !"}],
+     "aide": {"fr": "<b>Jamais de glace directement sur la peau : on met un linge entre les deux.</b> Le froid direct peut abîmer la peau, surtout chez une personne diabétique, qui sent moins bien le froid. Une vingtaine de minutes suffit."},
+     "relire": true, "relire_note": "Froid et peau chez une diabétique."}
+   ]
+  },
+  "arzt": {
+   "dit": [
+    {"qui": "kowalski", "air": "question", "t": "Muss ich zum Arzt?", "fr": "Est-ce que je dois aller chez le médecin ?"}
+   ],
+   "choix": [
+    {"t": "Heute Abend komme ich wieder. Wenn es dann nicht besser ist, rufe ich Ihren Hausarzt an.", "fr": "Je reviens ce soir. Si ça ne va pas mieux, j'appelle votre médecin traitant.", "va": "ende",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Gut. Dann warte ich bis heute Abend.", "fr": "Bien. Alors j'attends ce soir."}]},
+    {"t": "Noch nicht. Aber wenn das Knie rot oder heiß wird, rufen Sie uns bitte sofort an. Dann rufe ich Ihren Hausarzt an.", "fr": "Pas encore. Mais si le genou devient rouge ou chaud, appelez-nous tout de suite, s'il vous plaît. Alors j'appellerai votre médecin traitant.", "va": "ende",
+     "relire": true, "relire_note": "Signes d'alerte qui font appeler le médecin le jour même.",
+     "puis": [{"qui": "kowalski", "air": "sourire", "t": "Gut. Die Nummer vom Pflegedienst hängt am Kühlschrank.", "fr": "Bien. Le numéro du service de soins est accroché au frigo."}]},
+    {"faux": true, "t": "Nein, das ist nur das Alter. Da kann man nichts machen.", "fr": "Non, c'est juste l'âge. On n'y peut rien.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Nur das Alter? Gestern ging es doch noch.", "fr": "Juste l'âge ? Hier, ça allait encore."}],
+     "aide": {"fr": "<b>« C'est l'âge » n'est pas une réponse : une douleur nouvelle se surveille.</b> Dis ce que tu fais et quand : « Heute Abend komme ich wieder. Wenn es dann nicht besser ist, rufe ich Ihren Hausarzt an. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "La jambe est posée sur le tabouret, la poche de froid sur le genou, dans une serviette. Le chat vient se coucher contre la chaise."}},
+    {"qui": "kowalski", "air": "question", "t": "So ist es besser. Und jetzt? Mein Blutzucker?", "fr": "Comme ça, c'est mieux. Et maintenant ? Ma glycémie ?"}
+   ],
+   "choix": [
+    {"t": "Genau. Sie bleiben sitzen, ich messe hier am Tisch. Danach bekommen Sie Ihr Insulin.", "fr": "Exactement. Vous restez assise, je mesure ici, à la table. Ensuite vous aurez votre insuline.", "va": null,
+     "puis": [{"qui": "kowalski", "air": "amuse", "t": "Danke, {amira}. Und der Kater sagt auch danke.", "fr": "Merci, {amira}. Et le chat aussi vous dit merci."}]},
+    {"t": "Ja, jetzt der Blutzucker. Bleiben Sie ruhig sitzen, das Bein bleibt oben.", "fr": "Oui, maintenant la glycémie. Restez assise tranquillement, la jambe reste en haut.", "va": null,
+     "puis": [{"qui": "kowalski", "air": "amuse", "t": "Danke, {amira}. Und der Kater sagt auch danke.", "fr": "Merci, {amira}. Et le chat aussi vous dit merci."}]},
+    {"faux": true, "t": "Stehen Sie bitte auf und holen Sie Ihr Messgerät.", "fr": "Levez-vous et allez chercher votre lecteur de glycémie, s'il vous plaît.",
+     "puis": [{"qui": "kowalski", "air": "perplexe", "t": "Jetzt? Mit dem Kühlpack auf dem Knie?", "fr": "Maintenant ? Avec la poche de froid sur le genou ?"}],
+     "aide": {"fr": "<b>Elle doit garder la jambe au repos : c'est toi qui te déplaces.</b> « Sie bleiben sitzen, ich messe hier am Tisch. »"}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Welches Knie tut weh?", "fr": "Quel genou fait mal ?"}, "options": [{"t": "Das linke Knie.", "fr": "Le genou gauche."}, {"t": "Das rechte Knie.", "fr": "Le genou droit."}, {"t": "Beide Knie.", "fr": "Les deux genoux."}], "juste": 0},
+  {"q": {"t": "Seit wann hat {kowalski} Schmerzen?", "fr": "Depuis quand {kowalski} a-t-elle mal ?"}, "options": [{"t": "Seit einer Woche.", "fr": "Depuis une semaine."}, {"t": "Seit gestern Abend.", "fr": "Depuis hier soir."}, {"t": "Seit heute Morgen.", "fr": "Depuis ce matin."}], "juste": 1},
+  {"q": {"t": "Wie stark war der Schmerz in der Nacht?", "fr": "Quelle était la force de la douleur la nuit ?"}, "options": [{"t": "Eine Fünf.", "fr": "Un cinq."}, {"t": "Eine Drei.", "fr": "Un trois."}, {"t": "Eine Sieben.", "fr": "Un sept."}], "juste": 2},
+  {"q": {"t": "Was macht {amira} gegen den Schmerz?", "fr": "Que fait {amira} contre la douleur ?"}, "options": [{"t": "Sie kühlt das Knie, und das Bein liegt hoch.", "fr": "Elle refroidit le genou, et la jambe est surélevée."}, {"t": "Sie gibt ihr eine Tablette.", "fr": "Elle lui donne un comprimé."}, {"t": "Sie ruft sofort den Arzt.", "fr": "Elle appelle tout de suite le médecin."}], "juste": 0}
+ ]
+}

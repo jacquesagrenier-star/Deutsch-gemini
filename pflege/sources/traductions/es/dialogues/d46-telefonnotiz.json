@@ -1,0 +1,466 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d46-telefonnotiz.json",
+ "cles": {
+  "titre": {
+   "fr": "Prendre un message au téléphone",
+   "de": "Eine Nachricht am Telefon",
+   "es": "Tomar un mensaje por teléfono"
+  },
+  "intro": {
+   "fr": "Mardi 10 novembre, dix heures quinze. Au poste de soins du {station}, le téléphone sonne. {sommer} est en visite, elle ne peut pas répondre. Tu joues {elif} : réponds au téléphone, puis prends un message pour la médecin : le nom (fais-le épeler), le numéro (chiffre par chiffre, et relis-le), et quand rappeler. Termine poliment.",
+   "es": "Martes 10 de noviembre, las diez y cuarto. En la estación de enfermería {station:de} suena el teléfono. {sommer} está en la visita médica, no puede contestar. Juegas el papel de {elif}: contesta el teléfono, y luego toma un mensaje para la médica: el nombre (pide que lo deletreen), el número (cifra por cifra, y léelo de nuevo), y cuándo devolver la llamada. Termina con cortesía."
+  },
+  "but": {
+   "fr": "Répondre au téléphone au travail ; dire qu'une personne n'est pas là et proposer un message ; faire épeler un nom ; faire dire un numéro chiffre par chiffre et le relire ; demander quand rappeler ; finir par « Auf Wiederhören ».",
+   "es": "Contestar el teléfono en el trabajo; decir que una persona no está y ofrecer tomar un mensaje; pedir que deletreen un nombre; pedir un número cifra por cifra y leerlo de nuevo; preguntar cuándo devolver la llamada; terminar con «Auf Wiederhören»."
+  },
+  "relire_notes": {
+   "fr": "Au téléphone, prendre un message ne demande pas de vérifier l'identité (aucune information sur la patiente n'est donnée) ; si la personne demande des nouvelles, vérifier d'abord qui appelle (dialogue 23). Ne pas promettre l'heure du rappel à la place de la médecin.",
+   "es": "Por teléfono, tomar un mensaje no exige verificar la identidad (no se da ninguna información sobre la paciente); si la persona pide noticias, verificar primero quién llama (diálogo 23). No prometer la hora de la llamada en lugar de la médica."
+  },
+  "redemittel.0": {
+   "fr": "Bonjour, {station}, {elif} à l'appareil.",
+   "de": "Guten Tag, {station}, hier spricht {elif}.",
+   "es": "Buenos días, {station}, habla {elif}."
+  },
+  "redemittel.1": {
+   "fr": "{sommer} est en visite en ce moment.",
+   "de": "{sommer} ist gerade bei der Visite.",
+   "es": "{sommer} está en la visita médica en este momento."
+  },
+  "redemittel.2": {
+   "fr": "Je peux lui transmettre un message ?",
+   "de": "Kann ich ihr etwas ausrichten?",
+   "es": "¿Puedo darle algún mensaje?"
+  },
+  "redemittel.3": {
+   "fr": "Pouvez-vous épeler votre nom, s'il vous plaît ?",
+   "de": "Können Sie Ihren Namen bitte buchstabieren?",
+   "es": "¿Puede deletrear su apellido, por favor?"
+  },
+  "redemittel.4": {
+   "fr": "Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?",
+   "de": "Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?",
+   "es": "¿Puede decir el número despacio, por favor, cifra por cifra?"
+  },
+  "redemittel.5": {
+   "fr": "Je répète le numéro : …",
+   "de": "Ich wiederhole die Nummer: …",
+   "es": "Repito el número: …"
+  },
+  "redemittel.6": {
+   "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?",
+   "de": "Bis wann sind Sie unter dieser Nummer erreichbar?",
+   "es": "¿Hasta qué hora se le puede encontrar en ese número?"
+  },
+  "redemittel.7": {
+   "fr": "Je pose le message sur le bureau de {sommer}.",
+   "de": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch.",
+   "es": "Le dejo el mensaje {sommer:a} en su escritorio."
+  },
+  "redemittel.8": {
+   "fr": "Merci de votre appel. Au revoir !",
+   "de": "Danke für Ihren Anruf. Auf Wiederhören!",
+   "es": "Gracias por su llamada. ¡Hasta luego!"
+  },
+  "noeuds.klingeln.dit.0.recit": {
+   "fr": "Dix heures quinze, au poste de soins. Le téléphone sonne. {elif} est seule : tous les autres sont en visite avec {sommer}.",
+   "es": "Las diez y cuarto, en la estación de enfermería. Suena el teléfono. {elif} está sola: todos los demás están en la visita médica con {sommer}."
+  },
+  "noeuds.klingeln.choix.0": {
+   "fr": "Bonjour, {station}, {elif} à l'appareil.",
+   "de": "Guten Tag, {station}, hier spricht {elif}.",
+   "es": "Buenos días, {station}, habla {elif}."
+  },
+  "noeuds.klingeln.choix.0.puis.0": {
+   "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît.",
+   "de": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.",
+   "es": "Buenos días, habla {lehmann_tochter}. Quisiera hablar con {sommer}, por favor."
+  },
+  "noeuds.klingeln.choix.1": {
+   "fr": "{station}, {elif} au téléphone. Bonjour !",
+   "de": "{station}, {elif} am Telefon. Guten Tag!",
+   "es": "{station}, {elif} al teléfono. ¡Buenos días!"
+  },
+  "noeuds.klingeln.choix.1.puis.0": {
+   "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît.",
+   "de": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.",
+   "es": "Buenos días, habla {lehmann_tochter}. Quisiera hablar con {sommer}, por favor."
+  },
+  "noeuds.klingeln.choix.2": {
+   "fr": "Allô ? Qui est là ?",
+   "de": "Hallo? Wer ist da?",
+   "es": "¿Aló? ¿Quién habla?"
+  },
+  "noeuds.klingeln.choix.2.puis.0": {
+   "fr": "Euh… Je suis bien à l'hôpital ?",
+   "de": "Äh … Bin ich da richtig im Krankenhaus?",
+   "es": "Eh… ¿Estoy llamando al hospital?"
+  },
+  "noeuds.klingeln.choix.2.aide": {
+   "fr": "<b>Au travail, on répond avec le nom du service et son prénom.</b> « Guten Tag, Station …, hier spricht {elif}. » Comme ça, la personne sait tout de suite où elle appelle et à qui elle parle.",
+   "es": "<b>En el trabajo se contesta con el nombre del área y el nombre propio.</b> «Guten Tag, Station …, hier spricht {elif}.» Así la persona sabe enseguida adónde llamó y con quién habla."
+  },
+  "noeuds.visite.choix.0": {
+   "fr": "Je suis désolée, {sommer} est en visite en ce moment. Je peux lui transmettre un message ?",
+   "de": "Das tut mir leid, {sommer} ist gerade bei der Visite. Kann ich ihr etwas ausrichten?",
+   "es": "Lo siento, {sommer} está en la visita médica en este momento. ¿Puedo darle algún mensaje?"
+  },
+  "noeuds.visite.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze.",
+   "de": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.",
+   "es": "Sí, por favor. Que me devuelva la llamada. Es por mi madre, {lehmann}, habitación catorce."
+  },
+  "noeuds.visite.choix.1": {
+   "fr": "{sommer} n'est pas là pour le moment, elle fait la visite. Voulez-vous qu'elle vous rappelle ?",
+   "de": "{sommer} ist im Moment nicht da, sie macht Visite. Soll sie Sie zurückrufen?",
+   "es": "{sommer} no está por el momento, está haciendo la visita médica. ¿Quiere que ella le devuelva la llamada?"
+  },
+  "noeuds.visite.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze.",
+   "de": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.",
+   "es": "Sí, por favor. Que me devuelva la llamada. Es por mi madre, {lehmann}, habitación catorce."
+  },
+  "noeuds.visite.choix.2": {
+   "fr": "{sommer} n'est pas là. Rappelez plus tard.",
+   "de": "{sommer} ist nicht da. Rufen Sie später an.",
+   "es": "{sommer} no está. Llame más tarde."
+  },
+  "noeuds.visite.choix.2.puis.0": {
+   "fr": "Plus tard ? Quand ça ? Je suis au travail.",
+   "de": "Später? Wann denn? Ich bin bei der Arbeit.",
+   "es": "¿Más tarde? ¿A qué hora? Estoy en el trabajo."
+  },
+  "noeuds.visite.choix.2.aide": {
+   "fr": "<b>Quand la personne n'est pas là, propose un message.</b> « Sie ist gerade bei der Visite. Kann ich ihr etwas ausrichten? » ou « Soll sie Sie zurückrufen? » Ne renvoie pas la personne sans solution.",
+   "es": "<b>Cuando la persona no está, ofrece tomar un mensaje.</b> «Sie ist gerade bei der Visite. Kann ich ihr etwas ausrichten?» o «Soll sie Sie zurückrufen?» No despidas a la persona sin una solución."
+  },
+  "noeuds.name.dit.0.recit": {
+   "fr": "{elif} prend un bloc et un stylo. Elle n'a pas bien entendu le nom au début.",
+   "es": "{elif} toma una libreta y un bolígrafo. No oyó bien el apellido al principio."
+  },
+  "noeuds.name.choix.0": {
+   "fr": "Volontiers. Quel est votre nom, s'il vous plaît ? Pouvez-vous l'épeler ?",
+   "de": "Gern. Wie ist Ihr Name, bitte? Können Sie ihn bitte buchstabieren?",
+   "es": "Con gusto. ¿Cuál es su apellido, por favor? ¿Puede deletrearlo?"
+  },
+  "noeuds.name.choix.0.puis.0": {
+   "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille.",
+   "de": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.",
+   "es": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Soy la hija."
+  },
+  "noeuds.name.choix.1": {
+   "fr": "Un instant, je note. Quel était votre nom ? Épelez-le, s'il vous plaît.",
+   "de": "Einen Moment, ich schreibe mit. Wie war Ihr Name? Buchstabieren Sie bitte.",
+   "es": "Un momento, voy anotando. ¿Cómo me dijo que se llama? Deletréelo, por favor."
+  },
+  "noeuds.name.choix.1.puis.0": {
+   "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille.",
+   "de": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.",
+   "es": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Soy la hija."
+  },
+  "noeuds.name.choix.2": {
+   "fr": "D'accord. Et c'est quoi, ton nom ?",
+   "de": "Okay. Und wie ist dein Name?",
+   "es": "Okey. ¿Y tú cómo te llamas?"
+  },
+  "noeuds.name.choix.2.puis.0": {
+   "fr": "« Ton » ? Mais on ne se connaît pas.",
+   "de": "„Dein“? Wir kennen uns doch gar nicht.",
+   "es": "¿«Tú»? Pero si ni nos conocemos."
+  },
+  "noeuds.name.choix.2.aide": {
+   "fr": "<b>Au téléphone aussi, c'est « Sie » : « Wie ist Ihr Name, bitte? »</b> Et pour être sûre de l'écrire juste : « Können Sie ihn bitte buchstabieren? »",
+   "es": "<b>Por teléfono también se usa «Sie»: «Wie ist Ihr Name, bitte?»</b> Y para estar segura de escribirlo bien: «Können Sie ihn bitte buchstabieren?»"
+  },
+  "noeuds.nachlesen.choix.0": {
+   "fr": "Merci. Je répète : K – R – Ü – G – E – R. C'est juste ?",
+   "de": "Danke. Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig?",
+   "es": "Gracias. Repito: K – R – Ü – G – E – R. ¿Es correcto?"
+  },
+  "noeuds.nachlesen.choix.0.puis.0": {
+   "fr": "Oui, c'est ça. Avec un Ü.",
+   "de": "Ja, genau. Mit Ü.",
+   "es": "Sí, exacto. Con Ü."
+  },
+  "noeuds.nachlesen.choix.1": {
+   "fr": "Donc {lehmann_tochter:famille} avec un Ü, K – R – Ü – G – E – R. C'est ça ?",
+   "de": "Also {lehmann_tochter:famille} mit Ü, K – R – Ü – G – E – R. Richtig?",
+   "es": "Entonces {lehmann_tochter:famille} con Ü, K – R – Ü – G – E – R. ¿Correcto?"
+  },
+  "noeuds.nachlesen.choix.1.puis.0": {
+   "fr": "Oui, c'est ça. Avec un Ü.",
+   "de": "Ja, genau. Mit Ü.",
+   "es": "Sí, exacto. Con Ü."
+  },
+  "noeuds.nachlesen.choix.2": {
+   "fr": "Merci. K – R – U – G – E – R.",
+   "de": "Danke. K – R – U – G – E – R.",
+   "es": "Gracias. K – R – U – G – E – R."
+  },
+  "noeuds.nachlesen.choix.2.puis.0": {
+   "fr": "Non, pas U. Ü, avec deux points !",
+   "de": "Nein, nicht U. Ü, mit zwei Punkten!",
+   "es": "No, no es U. ¡Ü, con dos puntos!"
+  },
+  "noeuds.nachlesen.choix.2.aide": {
+   "fr": "<b>Relis le nom lettre par lettre, et fais attention aux Umlaute : Ü n'est pas U.</b> « Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig? » Un nom mal écrit, et le message n'arrive pas.",
+   "es": "<b>Lee de nuevo el apellido letra por letra, y pon atención a los Umlaute: Ü no es U.</b> «Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig?» Un apellido mal escrito, y el mensaje no llega."
+  },
+  "noeuds.nummer.choix.0": {
+   "fr": "À quel numéro {sommer} peut-elle vous joindre ?",
+   "de": "Unter welcher Nummer kann {sommer} Sie erreichen?",
+   "es": "¿A qué número puede llamarla {sommer}?"
+  },
+  "noeuds.nummer.choix.0.puis.0": {
+   "fr": "Je suis au bureau. Le numéro est le 47 39 25.",
+   "de": "Ich bin im Büro. Die Nummer ist 47 39 25.",
+   "es": "Estoy en la oficina. El número es el 47 39 25."
+  },
+  "noeuds.nummer.choix.1": {
+   "fr": "Et votre numéro de téléphone, s'il vous plaît ?",
+   "de": "Und Ihre Telefonnummer, bitte?",
+   "es": "¿Y su número de teléfono, por favor?"
+  },
+  "noeuds.nummer.choix.1.puis.0": {
+   "fr": "Je suis au bureau. Le numéro est le 47 39 25.",
+   "de": "Ich bin im Büro. Die Nummer ist 47 39 25.",
+   "es": "Estoy en la oficina. El número es el 47 39 25."
+  },
+  "noeuds.nummer.choix.2": {
+   "fr": "Votre numéro, on l'a sûrement déjà.",
+   "de": "Ihre Nummer haben wir bestimmt schon.",
+   "es": "Su número seguro ya lo tenemos."
+  },
+  "noeuds.nummer.choix.2.puis.0": {
+   "fr": "Non, aujourd'hui je suis au bureau. C'est un autre numéro.",
+   "de": "Nein, ich bin heute im Büro. Das ist eine andere Nummer.",
+   "es": "No, hoy estoy en la oficina. Es otro número."
+  },
+  "noeuds.nummer.choix.2.aide": {
+   "fr": "<b>Ne devine pas : demande le numéro pour ce rappel.</b> « Unter welcher Nummer kann die Ärztin Sie erreichen? » La personne n'est peut-être pas chez elle aujourd'hui.",
+   "es": "<b>No adivines: pregunta el número para esta llamada.</b> «Unter welcher Nummer kann die Ärztin Sie erreichen?» Tal vez la persona no está en su casa hoy."
+  },
+  "noeuds.zahlen.dit.0.recit": {
+   "fr": "{lehmann_tochter} a dit le numéro très vite, par paires. {elif} n'a pas tout noté.",
+   "es": "{lehmann_tochter} dijo el número muy rápido, de dos en dos cifras. {elif} no alcanzó a anotar todo."
+  },
+  "noeuds.zahlen.choix.0": {
+   "fr": "Pardon, c'était un peu rapide. Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?",
+   "de": "Entschuldigung, das war ein bisschen schnell. Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?",
+   "es": "Disculpe, fue un poco rápido. ¿Puede decir el número despacio, por favor, cifra por cifra?"
+  },
+  "noeuds.zahlen.choix.0.puis.0": {
+   "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq.",
+   "de": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.",
+   "es": "Claro. Cuatro – siete – tres – nueve – dos – cinco."
+  },
+  "noeuds.zahlen.choix.1": {
+   "fr": "Pouvez-vous dire les chiffres un par un, s'il vous plaît ? Comme ça, je les note correctement.",
+   "de": "Können Sie die Zahlen bitte einzeln sagen? Dann schreibe ich sie richtig auf.",
+   "es": "¿Puede decir las cifras una por una, por favor? Así las anoto bien."
+  },
+  "noeuds.zahlen.choix.1.puis.0": {
+   "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq.",
+   "de": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.",
+   "es": "Claro. Cuatro – siete – tres – nueve – dos – cinco."
+  },
+  "noeuds.zahlen.choix.2": {
+   "fr": "D'accord… quarante-sept… cinquante-neuf… Oui, je l'ai.",
+   "de": "Okay … siebenundvierzig … neunundfünfzig … Ja, ich habe es.",
+   "es": "Okey… cuarenta y siete… cincuenta y nueve… Sí, ya lo tengo."
+  },
+  "noeuds.zahlen.choix.2.puis.0": {
+   "fr": "Cinquante-neuf ? Non, trente-neuf !",
+   "de": "Neunundfünfzig? Nein, neununddreißig!",
+   "es": "¿Cincuenta y nueve? ¡No, treinta y nueve!"
+  },
+  "noeuds.zahlen.choix.2.aide": {
+   "fr": "<b>Si tu n'as pas tout compris, ne devine pas : demande les chiffres un par un.</b> « Können Sie die Nummer bitte langsam sagen, Zahl für Zahl? » Un seul chiffre faux, et la médecin ne peut pas rappeler.",
+   "es": "<b>Si no entendiste todo, no adivines: pide las cifras una por una.</b> «Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?» Una sola cifra equivocada, y la médica no puede devolver la llamada."
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Merci. Je répète : quatre, sept, trois, neuf, deux, cinq. C'est bien ça ?",
+   "de": "Danke. Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das?",
+   "es": "Gracias. Repito: cuatro, siete, tres, nueve, dos, cinco. ¿Es correcto?"
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "Oui, c'est juste.",
+   "de": "Ja, das stimmt.",
+   "es": "Sí, es correcto."
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Je relis encore une fois : quatre – sept – trois – neuf – deux – cinq. C'est ça ?",
+   "de": "Ich lese noch einmal vor: vier – sieben – drei – neun – zwei – fünf. Richtig?",
+   "es": "Lo leo una vez más: cuatro – siete – tres – nueve – dos – cinco. ¿Correcto?"
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Oui, c'est juste.",
+   "de": "Ja, das stimmt.",
+   "es": "Sí, es correcto."
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "Bien, merci. J'ai le numéro.",
+   "de": "Gut, danke. Ich habe die Nummer.",
+   "es": "Bien, gracias. Ya tengo el número."
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Vous ne voulez pas me la relire ? Au téléphone, on comprend vite de travers.",
+   "de": "Möchten Sie sie nicht lieber noch einmal vorlesen? Am Telefon versteht man schnell etwas falsch.",
+   "es": "¿No prefiere leérmelo otra vez? Por teléfono es fácil entender algo mal."
+  },
+  "noeuds.wiederholen.choix.2.aide": {
+   "fr": "<b>Un numéro se relit toujours.</b> « Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das? » Au téléphone, on dit souvent « zwo » pour « zwei », pour ne pas le confondre avec « drei ».",
+   "es": "<b>Un número siempre se lee de nuevo.</b> «Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das?» Por teléfono se dice a menudo «zwo» en lugar de «zwei», para no confundirlo con «drei»."
+  },
+  "noeuds.wann.choix.0": {
+   "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?",
+   "de": "Bis wann sind Sie unter dieser Nummer erreichbar?",
+   "es": "¿Hasta qué hora se le puede encontrar en ese número?"
+  },
+  "noeuds.wann.choix.0.puis.0": {
+   "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère.",
+   "de": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.",
+   "es": "Hasta las doce. De todos modos, en la tarde voy a ver a mi madre."
+  },
+  "noeuds.wann.choix.1": {
+   "fr": "Jusqu'à quand peut-on vous joindre au bureau ? La visite dure en général jusqu'à onze heures et demie.",
+   "de": "Bis wann können wir Sie im Büro erreichen? Die Visite dauert meistens bis halb zwölf.",
+   "es": "¿Hasta qué hora podemos encontrarla en la oficina? La visita médica casi siempre dura hasta las once y media."
+  },
+  "noeuds.wann.choix.1.puis.0": {
+   "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère.",
+   "de": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.",
+   "es": "Hasta las doce. De todos modos, en la tarde voy a ver a mi madre."
+  },
+  "noeuds.wann.choix.2": {
+   "fr": "{sommer} vous appelle à onze heures.",
+   "de": "{sommer} ruft Sie um elf Uhr an.",
+   "es": "{sommer} la llama a las once."
+  },
+  "noeuds.wann.choix.2.puis.0": {
+   "fr": "À onze heures, c'est sûr ? Alors j'attends près du téléphone.",
+   "de": "Ganz sicher um elf? Dann warte ich am Telefon.",
+   "es": "¿A las once, seguro? Entonces espero junto al teléfono."
+  },
+  "noeuds.wann.choix.2.aide": {
+   "fr": "<b>Ne promets pas une heure à la place de la médecin : demande quand la personne est joignable.</b> « Bis wann sind Sie unter dieser Nummer erreichbar? » La médecin rappellera dans ce créneau, si elle peut.",
+   "es": "<b>No prometas una hora en lugar de la médica: pregunta cuándo se puede encontrar a la persona.</b> «Bis wann sind Sie unter dieser Nummer erreichbar?» La médica llamará en ese horario, si puede."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Bien. Je transmets le message à {sommer} : vous demandez à être rappelée avant midi. Merci de votre appel. Au revoir !",
+   "de": "Gut. Ich gebe die Nachricht an {sommer:voc} weiter: Sie bitten um einen Rückruf bis zwölf Uhr. Danke für Ihren Anruf. Auf Wiederhören!",
+   "es": "Bien. Le paso el mensaje {sommer:a}: usted pide que le devuelva la llamada antes de las doce. Gracias por su llamada. ¡Hasta luego!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci beaucoup. Au revoir !",
+   "de": "Vielen Dank. Auf Wiederhören!",
+   "es": "Muchas gracias. ¡Hasta luego!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je pose le message sur le bureau de {sommer}. Au revoir, {lehmann_tochter:voc} !",
+   "de": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch. Auf Wiederhören, {lehmann_tochter}!",
+   "es": "Le dejo el mensaje {sommer:a} en su escritorio. ¡Hasta luego, {lehmann_tochter:voc}!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci beaucoup. Au revoir !",
+   "de": "Vielen Dank. Auf Wiederhören!",
+   "es": "Muchas gracias. ¡Hasta luego!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Bien. Bon rétablissement !",
+   "de": "Gut. Gute Besserung!",
+   "es": "Bien. ¡Que se mejore!"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Bon rétablissement ? Je vais bien, merci. C'est ma mère, la patiente.",
+   "de": "Gute Besserung? Mir geht es gut, danke. Meine Mutter ist die Patientin.",
+   "es": "¿Que me mejore? Yo estoy bien, gracias. La paciente es mi madre."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>« Gute Besserung » se dit à une personne malade.</b> Pour finir un appel : « Danke für Ihren Anruf. Auf Wiederhören! » Au téléphone, on dit « Auf Wiederhören » (on ne se voit pas).",
+   "es": "<b>«Gute Besserung» se le dice a una persona enferma.</b> Para terminar una llamada: «Danke für Ihren Anruf. Auf Wiederhören!» Por teléfono se dice «Auf Wiederhören» (uno no se ve)."
+  },
+  "ecouter.0.q": {
+   "fr": "À qui {lehmann_tochter} veut-elle parler ?",
+   "de": "Wen möchte {lehmann_tochter} sprechen?",
+   "es": "¿Con quién quiere hablar {lehmann_tochter}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À sa mère.",
+   "de": "Ihre Mutter.",
+   "es": "Con su madre."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À {sommer}.",
+   "de": "{sommer:voc}.",
+   "es": "Con {sommer}."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À la cadre du service.",
+   "de": "Die Stationsleitung.",
+   "es": "Con la jefa de enfermería."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {sommer} ne peut-elle pas venir au téléphone ?",
+   "de": "Warum kann {sommer} nicht ans Telefon kommen?",
+   "es": "¿Por qué {sommer} no puede contestar el teléfono?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle est en visite.",
+   "de": "Sie ist bei der Visite.",
+   "es": "Está en la visita médica."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle est en congé aujourd'hui.",
+   "de": "Sie hat heute frei.",
+   "es": "Hoy tiene el día libre."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle est au bloc opératoire.",
+   "de": "Sie ist im Operationssaal.",
+   "es": "Está en el quirófano."
+  },
+  "ecouter.2.q": {
+   "fr": "Quel est le numéro de téléphone de {lehmann_tochter} ?",
+   "de": "Wie ist die Telefonnummer von {lehmann_tochter}?",
+   "es": "¿Cuál es el número de teléfono {lehmann_tochter:de}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Sept, quatre, trois, neuf, deux, cinq.",
+   "de": "Sieben, vier, drei, neun, zwei, fünf.",
+   "es": "Siete, cuatro, tres, nueve, dos, cinco."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Quatre, sept, trois, cinq, deux, neuf.",
+   "de": "Vier, sieben, drei, fünf, zwei, neun.",
+   "es": "Cuatro, siete, tres, cinco, dos, nueve."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Quatre, sept, trois, neuf, deux, cinq.",
+   "de": "Vier, sieben, drei, neun, zwei, fünf.",
+   "es": "Cuatro, siete, tres, nueve, dos, cinco."
+  },
+  "ecouter.3.q": {
+   "fr": "Jusqu'à quand peut-on joindre {lehmann_tochter} au bureau ?",
+   "de": "Bis wann ist {lehmann_tochter} im Büro erreichbar?",
+   "es": "¿Hasta qué hora se puede encontrar {lehmann_tochter:a} en la oficina?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Jusqu'à dix heures.",
+   "de": "Bis zehn Uhr.",
+   "es": "Hasta las diez."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Jusqu'à midi.",
+   "de": "Bis zwölf Uhr.",
+   "es": "Hasta las doce."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Jusqu'à quatre heures.",
+   "de": "Bis vier Uhr.",
+   "es": "Hasta las cuatro."
+  }
+ }
+}

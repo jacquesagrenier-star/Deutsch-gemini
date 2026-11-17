@@ -1,0 +1,138 @@
+{
+ "id": "d39-teambesprechung",
+ "numero": 39,
+ "niveau": "B2",
+ "porte": "examen",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 4,
+ "role": "elif",
+ "personnes": ["hoffmann"],
+ "titre": {"t": "Die Teambesprechung am Morgen", "fr": "La réunion d'équipe du matin"},
+ "intro": {"fr": "Mardi 17 novembre, sept heures et quart. La relève de nuit est faite ; avant la visite de neuf heures, {hoffmann} réunit l'équipe du matin dans la salle de soins. Aujourd'hui, {elif} s'occupe de {brandt}, {lehmann}, {pohl} et d'une admission prévue à dix heures. Tu joues {elif} : fais un point court sur tes quatre patients, en commençant par ce qui est urgent, justifie ton ordre et propose une répartition du travail."},
+ "but": {"fr": "Hiérarchiser à l'oral : annoncer son ordre, commencer par l'urgent ; présenter chaque patient en peu de mots, avec des faits mesurés (style nominal des rapports) ; justifier avec « da », « weil », « obwohl », « deshalb » ; situer dans le temps avec « bevor », « sobald » ; proposer sans imposer (« Ich würde vorschlagen, dass … »)."},
+ "grammaire": ["g19", "g12", "g17"],
+ "telc": ["oral-3", "hoeren"],
+ "relire_notes": {"fr": "Situation inventée pour la réunion, à valider et à accorder avec les dialogues 44 et 50 : {pohl} au 4e jour d'une cholécystectomie (opéré le vendredi 13), de nouveau 38,3 °C depuis 4 h, pouls 96, douleur de l'hypochondre droit à 5 sur 10, hémocultures du samedi 14 (dialogue 50) sans germe à ce jour ; conduite proposée : constantes tout de suite et appel de la médecin sans attendre la visite. {brandt} au 7e jour d'une prothèse de hanche, pneumonie sous antibiotique depuis le 12 (dialogue 17), apyrétique, douleur à 2-3 sous métamizole, marche au déambulateur ; le service social à 11 h pour la demande de rééducation. {lehmann} : sortie prévue vendredi 20 (dialogue 25), soins à domicile pour le pansement quotidien, fiche de liaison (Pflegeüberleitungsbogen), délai des services de soins à domicile. Une admission programmée à 10 h, sans nom. L'ordre de priorité lui-même."},
+ "redemittel": [
+  {"t": "Ich fange mit dem an, was heute am dringendsten ist.", "fr": "Je commence par ce qui est le plus urgent aujourd'hui.", "fonction": "annoncer"},
+  {"t": "Seit vier Uhr hat er wieder erhöhte Temperatur.", "fr": "Depuis quatre heures, il a de nouveau de la température.", "fonction": "transmettre"},
+  {"t": "Da sich sein Zustand verändert hat, würde ich nicht bis zur Visite warten.", "fr": "Comme son état a changé, je n'attendrais pas la visite.", "fonction": "transmettre", "relire": true, "relire_note": "Fièvre nouvelle au 4e jour postopératoire : appel de la médecin sans attendre la visite."},
+  {"t": "Bevor die Aufnahme kommt, muss das Zimmer vorbereitet sein.", "fr": "Avant que l'admission arrive, la chambre doit être prête.", "fonction": "transmettre"},
+  {"t": "Bei {brandt:dat} gibt es heute keine Besonderheiten.", "fr": "Chez {brandt}, rien de particulier aujourd'hui.", "fonction": "transmettre"},
+  {"t": "Obwohl die Wunde gut heilt, braucht sie zu Hause einen Pflegedienst.", "fr": "Bien que la plaie guérisse bien, elle a besoin d'un service de soins à domicile.", "fonction": "transmettre"},
+  {"t": "Ich würde vorschlagen, dass {jonas} die Aufnahme übernimmt.", "fr": "Je proposerais que {jonas} prenne l'admission.", "fonction": "demander"},
+  {"t": "Ich gebe Bescheid, sobald ich mit der Ärztin gesprochen habe.", "fr": "Je vous tiens au courant dès que j'aurai parlé à la médecin.", "fonction": "annoncer"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Sept heures et quart, dans la salle de soins. Autour de la table : {hoffmann}, {jonas}, {elif} et deux collègues, chacun avec sa feuille de relève. La cadre regarde l'heure."}},
+    {"qui": "hoffmann", "air": "attentive", "t": "Guten Morgen zusammen. Wir haben heute eine Aufnahme um zehn und um neun die Visite, also halten wir es kurz. {elif}, Sie fangen an: Was hat bei Ihren Patienten heute Vorrang?", "fr": "Bonjour à tous. Nous avons une admission à dix heures et la visite à neuf, alors faisons court. {elif}, vous commencez : qu'est-ce qui est prioritaire chez vos patients aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Gern. Ich fange mit dem an, was heute am dringendsten ist: {pohl} in Zimmer fünfzehn. Danach kommen die Aufnahme, {brandt} und {lehmann}.", "fr": "Volontiers. Je commence par ce qui est le plus urgent aujourd'hui : {pohl}, chambre 15. Ensuite viennent l'admission, {brandt} et {lehmann}.", "va": "pohl",
+     "puis": [{"qui": "hoffmann", "air": "question", "t": "Gut. Was ist mit {pohl:dat}?", "fr": "Bien. Qu'est-ce qu'il y a avec {pohl} ?"}]},
+    {"t": "Ich habe vier Punkte, nach Dringlichkeit geordnet. Zuerst {pohl}, Zimmer fünfzehn, weil sich bei ihm heute Nacht etwas verändert hat.", "fr": "J'ai quatre points, classés par urgence. D'abord {pohl}, chambre 15, parce que quelque chose a changé chez lui cette nuit.", "va": "pohl",
+     "puis": [{"qui": "hoffmann", "air": "question", "t": "Gut. Was ist mit {pohl:dat}?", "fr": "Bien. Qu'est-ce qu'il y a avec {pohl} ?"}]},
+    {"faux": true, "t": "Also, ich fange mit Zimmer zwölf an, dann vierzehn, dann fünfzehn, und am Ende die Aufnahme.", "fr": "Alors, je commence par la chambre 12, puis la 14, puis la 15, et à la fin l'admission.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Nach Zimmernummern? Mich interessiert zuerst, wo es brennt.", "fr": "Par numéros de chambre ? Ce qui m'intéresse d'abord, c'est là où il y a le feu."}],
+     "aide": {"fr": "<b>En réunion d'équipe, on ne suit pas les numéros de chambre : on commence par ce qui est urgent.</b> Annonce ton ordre en une phrase : « Ich fange mit dem an, was heute am dringendsten ist: … »"}}
+   ]
+  },
+  "pohl": {
+   "dit": [],
+   "choix": [
+    {"t": "Er ist am vierten Tag nach der Gallenblasen-OP. Seit vier Uhr hat er wieder erhöhte Temperatur, 38,3, Puls 96, und Schmerzen im rechten Oberbauch, fünf von zehn. Die Blutkulturen von Samstag sind bisher ohne Befund.", "dit": "Er ist am vierten Tag nach der Gallenblasen-OP. Seit vier Uhr hat er wieder erhöhte Temperatur, achtunddreißig Komma drei, Puls sechsundneunzig, und Schmerzen im rechten Oberbauch, fünf von zehn. Die Blutkulturen von Samstag sind bisher ohne Befund.", "fr": "Il est au quatrième jour après l'opération de la vésicule. Depuis quatre heures, il a de nouveau de la température, 38,3, pouls à 96, et des douleurs dans le haut du ventre à droite, à cinq sur dix. Les hémocultures de samedi ne montrent rien pour l'instant.", "va": "massnahme", "relire": true, "relire_note": "Valeurs inventées pour la réunion (fièvre au 4e jour postopératoire).",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Das gefällt mir nicht. Was schlagen Sie vor?", "fr": "Ça ne me plaît pas. Que proposez-vous ?"}]},
+    {"t": "Vierter postoperativer Tag nach Cholezystektomie. Seit vier Uhr erneuter Temperaturanstieg auf 38,3 °C, Puls 96, dazu Schmerzen im rechten Oberbauch, fünf von zehn. Blutkulturen von Samstag bisher ohne Befund.", "dit": "Vierter postoperativer Tag nach Cholezystektomie. Seit vier Uhr erneuter Temperaturanstieg auf achtunddreißig Komma drei Grad, Puls sechsundneunzig, dazu Schmerzen im rechten Oberbauch, fünf von zehn. Blutkulturen von Samstag bisher ohne Befund.", "fr": "Quatrième jour après une cholécystectomie. Depuis quatre heures, nouvelle montée de la température à 38,3 °C, pouls à 96, avec des douleurs dans le haut du ventre à droite, à cinq sur dix. Hémocultures de samedi sans résultat pour l'instant.", "va": "massnahme",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Das gefällt mir nicht. Was schlagen Sie vor?", "fr": "Ça ne me plaît pas. Que proposez-vous ?"}]},
+    {"faux": true, "t": "{pohl} geht es heute schlecht. Er ist ziemlich wehleidig und klingelt die ganze Nacht.", "fr": "{pohl} ne va pas bien aujourd'hui. Il est assez douillet et il sonne toute la nuit.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Wehleidig? Das ist eine Bewertung, keine Beobachtung. Was wurde gemessen?", "fr": "Douillet ? C'est un jugement, pas une observation. Qu'est-ce qui a été mesuré ?"}],
+     "aide": {"fr": "<b>En réunion, on donne des faits mesurés, pas un jugement sur le patient.</b> Après une opération : la température, le pouls, la douleur sur 10, avec l'heure : « Seit vier Uhr hat er wieder erhöhte Temperatur, … »"}}
+   ]
+  },
+  "massnahme": {
+   "dit": [],
+   "choix": [
+    {"t": "Da sich sein Zustand verändert hat, würde ich nicht bis zur Visite warten. Ich kontrolliere gleich nach der Besprechung die Vitalzeichen und rufe dann {sommer} an.", "fr": "Comme son état a changé, je n'attendrais pas la visite. Je contrôle les constantes juste après la réunion, puis j'appelle {sommer}.", "va": "aufnahme", "relire": true, "relire_note": "Conduite devant une fièvre postopératoire nouvelle.",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Einverstanden, das hat Vorrang. Und als Nächstes?", "fr": "D'accord, c'est la priorité. Et ensuite ?"}]},
+    {"t": "Ich würde ihn als Ersten sehen. Sobald ich die aktuellen Werte habe, informiere ich {sommer}, nicht erst um neun bei der Visite.", "fr": "J'irais le voir en premier. Dès que j'ai les valeurs actuelles, j'informe {sommer}, pas seulement à neuf heures à la visite.", "va": "aufnahme",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Einverstanden, das hat Vorrang. Und als Nächstes?", "fr": "D'accord, c'est la priorité. Et ensuite ?"}]},
+    {"faux": true, "t": "Wir können ja bis zur Visite um neun warten, dann sieht ihn die Ärztin sowieso.", "fr": "On peut bien attendre la visite de neuf heures, la médecin le verra de toute façon.",
+     "puis": [{"qui": "hoffmann", "air": "surprise", "t": "Fast zwei Stunden warten? Bei Fieber nach einer Operation?", "fr": "Attendre presque deux heures ? Avec de la fièvre après une opération ?"}],
+     "aide": {"fr": "<b>Un changement après une opération n'attend pas la visite : on contrôle, puis on informe la médecin tout de suite.</b> Justifie avec « da » : « Da sich sein Zustand verändert hat, würde ich nicht bis zur Visite warten. »"}}
+   ]
+  },
+  "aufnahme": {
+   "dit": [],
+   "choix": [
+    {"t": "Als Zweites die Aufnahme um zehn in Zimmer sechzehn. Bevor die Aufnahme kommt, muss das Zimmer vorbereitet sein, und das Aufnahmegespräch dauert etwa eine halbe Stunde.", "fr": "En deuxième, l'admission de dix heures, chambre 16. Avant que l'admission arrive, la chambre doit être prête, et l'entretien d'admission dure environ une demi-heure.", "va": "brandt",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut. Und {brandt} und {lehmann}?", "fr": "Bien. Et {brandt} et {lehmann} ?"}]},
+    {"t": "Danach die geplante Aufnahme um zehn, Zimmer sechzehn. Das Bett und die Aufnahmemappe müssen fertig sein, bevor die Aufnahme kommt.", "fr": "Ensuite l'admission prévue à dix heures, chambre 16. Le lit et le dossier d'admission doivent être prêts avant que l'admission arrive.", "va": "brandt",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut. Und {brandt} und {lehmann}?", "fr": "Bien. Et {brandt} et {lehmann} ?"}]},
+    {"faux": true, "t": "Als die Aufnahme kommt, muss das Zimmer fertig sein.", "fr": "« Quand » (une fois, dans le passé) l'admission arrive, la chambre doit être prête. (mal dit)",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "„Als“? Die Aufnahme kommt doch erst noch.", "fr": "« Als » ? L'admission n'est pas encore arrivée."}],
+     "aide": {"fr": "<b>« als » raconte un moment unique du passé ; pour ce qui va venir : « wenn » ou « bevor ».</b> « Bevor die Aufnahme kommt, muss das Zimmer vorbereitet sein. »"}}
+   ]
+  },
+  "brandt": {
+   "dit": [],
+   "choix": [
+    {"t": "Bei {brandt:dat} gibt es heute keine Besonderheiten: fieberfrei, Schmerzen unter Metamizol bei zwei bis drei, er läuft mit dem Rollator bis auf den Flur. Um elf kommt der Sozialdienst wegen der Reha-Anmeldung.", "fr": "Chez {brandt}, rien de particulier aujourd'hui : pas de fièvre, douleur à deux ou trois sous métamizole, il marche avec le déambulateur jusque dans le couloir. À onze heures, le service social vient pour la demande de rééducation.", "va": "lehmann",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Schön, dass er so gut läuft. Und {lehmann}?", "fr": "C'est bien qu'il marche aussi bien. Et {lehmann} ?"}]},
+    {"t": "{brandt}: siebter Tag nach der Hüft-TEP, stabil. Kein Fieber mehr, Schmerzen unter Metamizol zwei bis drei, Mobilisation mit dem Rollator bis auf den Flur. Heute um elf Gespräch mit dem Sozialdienst, Anmeldung zur Reha.", "fr": "{brandt} : septième jour après la prothèse de hanche, stable. Plus de fièvre, douleur à deux ou trois sous métamizole, il marche avec le déambulateur jusque dans le couloir. Aujourd'hui à onze heures, entretien avec le service social, demande de rééducation.", "va": "lehmann",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Schön, dass er so gut läuft. Und {lehmann}?", "fr": "C'est bien qu'il marche aussi bien. Et {lehmann} ?"}]},
+    {"faux": true, "t": "{brandt} hat mir gestern lange von früher erzählt. Das Essen schmeckt ihm nicht, und sein Fernseher geht auch nicht richtig …", "fr": "{brandt} m'a longuement parlé d'autrefois hier. Le repas ne lui plaît pas, et sa télévision ne marche pas bien non plus…",
+     "puis": [{"qui": "hoffmann", "air": "amuse", "t": "Das ist nett, aber für die Besprechung zu viel. Was ist heute bei ihm wichtig?", "fr": "C'est gentil, mais c'est trop pour la réunion. Qu'est-ce qui compte chez lui aujourd'hui ?"}],
+     "aide": {"fr": "<b>En réunion, seulement ce qui compte pour la journée : l'état, les valeurs, les rendez-vous.</b> Un patient stable se dit en une phrase : « Bei Herrn … gibt es heute keine Besonderheiten. »"}}
+   ]
+  },
+  "lehmann": {
+   "dit": [],
+   "choix": [
+    {"t": "{lehmann} soll am Freitag entlassen werden. Obwohl die Wunde gut heilt, braucht sie zu Hause jeden Tag einen Verbandswechsel. Deshalb sollten wir heute den Pflegedienst anfragen und den Überleitungsbogen schreiben.", "fr": "{lehmann} doit sortir vendredi. Bien que la plaie guérisse bien, il lui faut à la maison un changement de pansement chaque jour. C'est pourquoi nous devrions contacter aujourd'hui le service de soins à domicile et rédiger la fiche de liaison.", "va": "aufteilung",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Richtig, die Pflegedienste sind im Moment voll. Wie würden Sie die Arbeit heute Vormittag aufteilen?", "fr": "C'est juste, les services de soins à domicile sont pleins en ce moment. Comment répartiriez-vous le travail ce matin ?"}]},
+    {"t": "{lehmann}: Entlassung am Freitag geplant. Heute steht die Anfrage beim Pflegedienst an, für den täglichen Verbandswechsel. Das ist nicht dringend, sollte aber heute passieren, weil die Pflegedienste oft ein paar Tage Vorlauf brauchen.", "fr": "{lehmann} : sortie prévue vendredi. Aujourd'hui, il faut contacter le service de soins à domicile pour le pansement quotidien. Ce n'est pas urgent, mais ça devrait se faire aujourd'hui, parce que les services de soins à domicile ont souvent besoin de quelques jours de délai.", "va": "aufteilung",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Richtig, die Pflegedienste sind im Moment voll. Wie würden Sie die Arbeit heute Vormittag aufteilen?", "fr": "C'est juste, les services de soins à domicile sont pleins en ce moment. Comment répartiriez-vous le travail ce matin ?"}]},
+    {"faux": true, "t": "Trotzdem die Wunde gut heilt, braucht sie zu Hause einen Pflegedienst.", "fr": "« Malgré cela » la plaie guérit bien, elle a besoin d'un service de soins à domicile. (mal dit)",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "„Trotzdem die Wunde …“? Sie meinen: Obwohl die Wunde gut heilt.", "fr": "« Trotzdem die Wunde… » ? Vous voulez dire : bien que la plaie guérisse bien."}],
+     "aide": {"fr": "<b>« obwohl » ouvre une subordonnée (verbe à la fin) ; « trotzdem » est un adverbe (verbe juste après).</b> « Obwohl die Wunde gut heilt, braucht sie einen Pflegedienst. » ou « Die Wunde heilt gut. Trotzdem braucht sie einen Pflegedienst. »"}}
+   ]
+  },
+  "aufteilung": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich würde vorschlagen, dass ich mich zuerst um {pohl:akk} kümmere und die Visite vorbereite. Könnte {jonas} die Aufnahme übernehmen? Den Pflegedienst für {lehmann} rufe ich nach der Visite an.", "fr": "Je proposerais de m'occuper d'abord de {pohl} et de préparer la visite. Est-ce que {jonas} pourrait prendre l'admission ? J'appelle le service de soins à domicile pour {lehmann} après la visite.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Einverstanden, so machen wir es. {jonas} nickt schon, er übernimmt die Aufnahme.", "fr": "D'accord, on fait comme ça. {jonas} fait déjà oui de la tête, il prend l'admission."}]},
+    {"t": "Mein Vorschlag wäre: Ich übernehme {pohl:akk} und {brandt:akk}, {jonas} nimmt die Aufnahme, und um den Pflegedienst für {lehmann} kümmere ich mich nach der Visite.", "fr": "Ma proposition serait la suivante : je prends {pohl} et {brandt}, {jonas} prend l'admission, et je m'occupe du service de soins à domicile pour {lehmann} après la visite.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Einverstanden, so machen wir es. {jonas} nickt schon, er übernimmt die Aufnahme.", "fr": "D'accord, on fait comme ça. {jonas} fait déjà oui de la tête, il prend l'admission."}]},
+    {"faux": true, "t": "{jonas} macht die Aufnahme, und Sie rufen den Pflegedienst an.", "fr": "{jonas} fait l'admission, et vous, vous appelez le service de soins à domicile.",
+     "puis": [{"qui": "hoffmann", "air": "amuse", "t": "Ich? Sie verteilen die Arbeit ja gleich an die Chefin.", "fr": "Moi ? Vous distribuez carrément le travail à la cheffe."}],
+     "aide": {"fr": "<b>En réunion, on propose ; c'est la cadre qui décide.</b> « Ich würde vorschlagen, dass … », « Könnte … die Aufnahme übernehmen? », « Mein Vorschlag wäre: … ». Et ce qui est à toi, tu le prends toi-même."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "hoffmann", "air": "sourire", "t": "Danke, {elif}, das war kurz, klar und in der richtigen Reihenfolge. Noch eine Frage?", "fr": "Merci, {elif}, c'était court, clair et dans le bon ordre. Encore une question ?"}
+   ],
+   "choix": [
+    {"t": "Nein, danke. Ich gehe jetzt gleich zu {pohl:dat} und gebe Bescheid, sobald ich mit {sommer} gesprochen habe.", "fr": "Non, merci. Je vais tout de suite voir {pohl} et je vous tiens au courant dès que j'aurai parlé à {sommer}.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Prima. Dann an die Arbeit, alle zusammen!", "fr": "Parfait. Alors au travail, tout le monde !"}]},
+    {"t": "Keine Fragen. Sobald ich die Werte von {pohl:dat} habe und {sommer} informiert ist, sage ich Ihnen Bescheid.", "fr": "Pas de questions. Dès que j'aurai les valeurs de {pohl} et que {sommer} sera informée, je vous préviens.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Prima. Dann an die Arbeit, alle zusammen!", "fr": "Parfait. Alors au travail, tout le monde !"}]},
+    {"faux": true, "t": "Nein. Ich melde mich, sobald ich mit {sommer} gesprochen hätte.", "fr": "Non. Je vous tiens au courant dès que j'« aurais » parlé à {sommer}. (mal dit)",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "„Gesprochen hätte“? Sie sprechen doch wirklich mit ihr, oder?", "fr": "« Aurais parlé » ? Vous allez vraiment lui parler, non ?"}],
+     "aide": {"fr": "<b>Après « sobald », l'indicatif : « sobald ich mit ihr gesprochen habe ».</b> Le Konjunktiv II (« hätte ») dit une situation imaginée ; ici, l'appel aura vraiment lieu."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was hat bei {elif} heute Vorrang?", "fr": "Qu'est-ce qui est prioritaire pour {elif} aujourd'hui ?"}, "options": [{"t": "Die Anmeldung von {brandt:dat} zur Reha.", "fr": "La demande de rééducation de {brandt}."}, {"t": "{pohl}, weil er wieder erhöhte Temperatur hat.", "fr": "{pohl}, parce qu'il a de nouveau de la température."}, {"t": "Die Entlassung von {lehmann}.", "fr": "La sortie de {lehmann}."}], "juste": 1},
+  {"q": {"t": "Wann kommt die Aufnahme?", "fr": "Quand l'admission arrive-t-elle ?"}, "options": [{"t": "Um neun Uhr.", "fr": "À neuf heures."}, {"t": "Um elf Uhr.", "fr": "À onze heures."}, {"t": "Um zehn Uhr.", "fr": "À dix heures."}], "juste": 2},
+  {"q": {"t": "Warum kommt heute der Sozialdienst?", "fr": "Pourquoi le service social vient-il aujourd'hui ?"}, "options": [{"t": "Wegen der Anmeldung von {brandt:dat} zur Reha.", "fr": "Pour la demande de rééducation de {brandt}."}, {"t": "Wegen der Schmerzen von {pohl:dat}.", "fr": "Pour les douleurs de {pohl}."}, {"t": "Wegen der Aufnahme um zehn.", "fr": "Pour l'admission de dix heures."}], "juste": 0},
+  {"q": {"t": "Wann soll {lehmann} entlassen werden?", "fr": "Quand {lehmann} doit-elle sortir ?"}, "options": [{"t": "Heute.", "fr": "Aujourd'hui."}, {"t": "Am Freitag.", "fr": "Vendredi."}, {"t": "Nächste Woche.", "fr": "La semaine prochaine."}], "juste": 1},
+  {"q": {"t": "Wer übernimmt die Aufnahme?", "fr": "Qui prend l'admission ?"}, "options": [{"t": "{jonas}.", "fr": "{jonas}."}, {"t": "{elif}.", "fr": "{elif}."}, {"t": "{hoffmann}.", "fr": "{hoffmann}."}], "juste": 0}
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "id": "d35-uebergabe-am-bett",
+ "numero": 35,
+ "niveau": "B1",
+ "porte": "commence",
+ "registre": "du+Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 1,
+ "role": "elif",
+ "personnes": ["jonas", "brandt"],
+ "titre": {"t": "Die Übergabe am Bett", "fr": "La relève au lit du patient"},
+ "intro": {"fr": "Samedi 14 novembre, treize heures trente. {elif} finit son service du matin, {jonas} prend l'après-midi. Aujourd'hui, la relève se fait dans la chambre 12, au lit de {brandt} : devant lui, et avec lui. Avec {jonas}, on se dit « du » ; avec {brandt}, c'est « Sie ». Tu joues {elif} : demande-lui son accord, parle de lui comme d'une personne et non d'un dossier, écoute-le quand il te corrige, et laisse-le dire lui-même comment il va."},
+ "but": {"fr": "Faire une relève au lit : demander l'accord du patient ; passer du « du » (au collègue) au « Sie » (au patient) d'une phrase à l'autre ; parler du patient par son nom ; accepter sa correction et la reprendre au Perfekt ; l'inviter à dire lui-même sa douleur et à poser ses questions."},
+ "grammaire": ["g13", "g21"],
+ "telc": ["oral-1"],
+ "relire_notes": {"fr": "Relève au lit (Übergabe am Bett) : accord du patient, rien de confidentiel devant un voisin de chambre (le lit voisin est vide ici) ; quatrième jour après la prothèse totale de hanche droite (opéré le mardi 10) ; pneumonie droite sous antibiotique depuis le jeudi 12 (dialogues 17 et 18), plus de fièvre le samedi matin (37,1 °C) ; marche avec déambulateur jusqu'à la porte et retour, avec la kinésithérapeute, deuxième séance l'après-midi (dialogue 17 : kiné deux fois par jour) ; métamizole 1 g à 10 h avant la kinésithérapie, douleur à 4, prochain au plus tôt à 16 h (dialogue 18 : 1 g si douleur au-dessus de 3, au plus tôt toutes les six heures) ; douleur 2/10 assis, 4/10 à la marche."},
+ "redemittel": [
+  {"t": "Ist es Ihnen recht, dass wir die Übergabe hier bei Ihnen machen?", "fr": "Est-ce que ça vous convient qu'on fasse la relève ici, avec vous ?", "fonction": "demander"},
+  {"t": "Mein Kollege {jonas} ist heute Nachmittag für Sie da.", "fr": "Mon collègue {jonas} s'occupe de vous cet après-midi.", "fonction": "annoncer"},
+  {"t": "Wir machen die Übergabe hier bei Ihnen, dann können Sie mitreden.", "fr": "On fait la relève ici, avec vous : comme ça, vous pouvez donner votre avis.", "fonction": "annoncer"},
+  {"t": "Danke, dass Sie das sagen! Das korrigiere ich sofort.", "fr": "Merci de me le dire ! Je le corrige tout de suite.", "fonction": "reformuler"},
+  {"t": "Er ist mit dem Rollator bis zur Tür und zurück gegangen.", "fr": "Il est allé avec le déambulateur jusqu'à la porte, et retour.", "fonction": "transmettre"},
+  {"t": "Möchten Sie {jonas} selbst sagen, wie es mit den Schmerzen ist?", "fr": "Vous voulez dire vous-même à {jonas} comment ça va, côté douleur ?", "fonction": "demander"},
+  {"t": "Habe ich etwas vergessen? Sie kennen sich selbst am besten.", "fr": "J'ai oublié quelque chose ? C'est vous qui vous connaissez le mieux.", "fonction": "demander"},
+  {"t": "Die nächste Gabe darf er frühestens um 16 Uhr bekommen.", "dit": "Die nächste Gabe darf er frühestens um sechzehn Uhr bekommen.", "fr": "Il peut avoir la prochaine dose à 16 h au plus tôt.", "fonction": "transmettre", "relire": true, "relire_note": "Intervalle du métamizole (au plus tôt toutes les six heures, dialogue 18)."}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "registre": "du",
+   "dit": [
+    {"recit": {"fr": "Samedi, treize heures vingt-cinq. {jonas} arrive pour le service de l'après-midi. Il retrouve {elif} au poste de soins, la feuille de relève à la main."}},
+    {"qui": "jonas", "air": "sourire", "t": "Hallo, {elif}! Lass uns die Übergabe heute mal am Bett machen, bei {brandt:dat}. Du übergibst, ich höre zu.", "fr": "Salut, {elif} ! Aujourd'hui, faisons la relève au lit, chez {brandt}. Tu fais la relève, moi j'écoute."}
+   ],
+   "choix": [
+    {"t": "Gern. Aber zuerst fragen wir ihn, ob er einverstanden ist, oder?", "fr": "Volontiers. Mais d'abord, on lui demande s'il est d'accord, non ?", "va": "fragen",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Genau so. Dann komm.", "fr": "Exactement. Alors viens."}]},
+    {"t": "Gute Idee. Ich frage ihn als Erstes, ob es ihm recht ist.", "fr": "Bonne idée. Je lui demande d'abord si ça lui convient.", "va": "fragen",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Genau so. Dann komm.", "fr": "Exactement. Alors viens."}]},
+    {"faux": true, "t": "Okay. Aber wir reden leise, damit er nicht alles hört.", "fr": "D'accord. Mais on parle bas, pour qu'il n'entende pas tout.",
+     "puis": [{"qui": "jonas", "air": "amuse", "t": "Leise? Er soll doch gerade alles hören. Es geht um ihn!", "fr": "Bas ? Mais justement, il doit tout entendre. C'est de lui qu'il s'agit !"}],
+     "aide": {"fr": "<b>La relève au lit se fait avec le patient, pas dans son dos.</b> Il entend ce qu'on dit de lui, il peut corriger une erreur et poser ses questions. Seul ce qui est délicat, ou ce qu'un voisin de chambre ne doit pas entendre, se dit ailleurs."}}
+   ]
+  },
+  "fragen": {
+   "registre": "Sie",
+   "dit": [
+    {"recit": {"fr": "Chambre 12. {brandt} est assis dans le fauteuil près de la fenêtre, le journal sur les genoux. Le lit voisin est vide."}},
+    {"qui": "brandt", "air": "question", "t": "Nanu, gleich zu zweit? Hab ich was ausgefressen?", "fr": "Tiens, à deux d'un coup ? J'ai fait une bêtise ?"}
+   ],
+   "choix": [
+    {"t": "Nein, keine Sorge, {brandt}. Mein Dienst ist gleich zu Ende, und mein Kollege {jonas} ist heute Nachmittag für Sie da. Ist es Ihnen recht, dass wir die Übergabe hier bei Ihnen machen?", "fr": "Non, ne vous inquiétez pas, {brandt:voc}. Mon service se termine, et mon collègue {jonas} s'occupe de vous cet après-midi. Est-ce que ça vous convient qu'on fasse la relève ici, avec vous ?", "va": "vorstellen",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Mitreden darf ich auch? Na, von mir aus. Dann weiß ich wenigstens, was Sie über mich erzählen.", "fr": "Je peux même donner mon avis ? Bon, d'accord. Au moins, je saurai ce que vous racontez sur moi."}]},
+    {"t": "Ganz im Gegenteil! Das ist {jonas}, er übernimmt jetzt. Wir möchten die Übergabe gern hier bei Ihnen machen, dann können Sie mitreden. Sind Sie einverstanden?", "fr": "Bien au contraire ! Voici {jonas}, il prend le relais. Nous aimerions faire la relève ici, avec vous : comme ça, vous pouvez donner votre avis. Vous êtes d'accord ?", "va": "vorstellen",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Mitreden darf ich auch? Na, von mir aus. Dann weiß ich wenigstens, was Sie über mich erzählen.", "fr": "Je peux même donner mon avis ? Bon, d'accord. Au moins, je saurai ce que vous racontez sur moi."}]},
+    {"faux": true, "t": "Nein, nein, bleib sitzen. Wir machen nur schnell die Übergabe.", "fr": "Non, non, reste assis. On fait juste vite la relève.",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "„Bleib sitzen“? Seit wann duzen wir uns denn?", "fr": "« Reste assis » ? Depuis quand on se tutoie ?"}],
+     "aide": {"fr": "<b>Avec le patient, c'est « Sie », même au milieu d'une relève entre collègues : « Bleiben Sie sitzen ».</b> Tu passes du « du » (à ton collègue) au « Sie » (au patient) d'une phrase à l'autre. Et avant de parler de lui devant lui, tu lui demandes s'il est d'accord."}}
+   ]
+  },
+  "vorstellen": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {"t": "Also, {jonas}: {brandt} ist am Dienstag an der rechten Hüfte operiert worden, heute ist der vierte Tag. Wegen der Lungenentzündung bekommt er seit Donnerstag ein Antibiotikum. Heute früh hatte er kein Fieber mehr.", "fr": "Alors, {jonas} : {brandt} a été opéré de la hanche droite mardi, aujourd'hui c'est le quatrième jour. Pour sa pneumonie, il reçoit un antibiotique depuis jeudi. Ce matin, il n'avait plus de fièvre.", "va": "vormittag",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Und wie war der Vormittag?", "fr": "D'accord. Et la matinée ?"}]},
+    {"t": "{brandt} hat seit Dienstag eine neue Hüfte, rechts. Er hat eine Lungenentzündung und bekommt seit Donnerstag ein Antibiotikum. Die Temperatur heute früh war normal, 37,1.", "dit": "{brandt} hat seit Dienstag eine neue Hüfte, rechts. Er hat eine Lungenentzündung und bekommt seit Donnerstag ein Antibiotikum. Die Temperatur heute früh war normal, siebenunddreißig Komma eins.", "fr": "{brandt} a une nouvelle hanche depuis mardi, à droite. Il a une pneumonie et reçoit un antibiotique depuis jeudi. Ce matin, la température était normale, 37,1.", "va": "vormittag", "relire": true, "relire_note": "Température du samedi matin.",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Okay. Und wie war der Vormittag?", "fr": "D'accord. Et la matinée ?"}]},
+    {"faux": true, "t": "Also: Der hier ist der mit der Hüfte und der Lunge.", "fr": "Bon : lui, c'est celui de la hanche et du poumon.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "„Der hier“? Ich bin {brandt}, junge Frau, nicht „der mit der Hüfte“.", "fr": "« Lui » ? Je suis {brandt}, jeune femme, pas « celui de la hanche »."}],
+     "aide": {"fr": "<b>Devant le patient, on parle de lui par son nom, comme d'une personne, pas comme d'un diagnostic.</b> « der hier », « der mit der Hüfte » : ce jargon de couloir blesse, surtout quand le patient l'entend. Dis son nom, puis ce qui compte : l'opération, le jour, le traitement."}}
+   ]
+  },
+  "vormittag": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {"t": "Heute Vormittag hat er mit der Physiotherapeutin ein paar Schritte mit dem Rollator gemacht.", "fr": "Ce matin, il a fait quelques pas avec le déambulateur, avec la kinésithérapeute.", "va": "korrektur",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Moment mal! Ein paar Schritte? Bis zur Tür bin ich gelaufen, und wieder zurück!", "fr": "Minute ! Quelques pas ? Je suis allé jusqu'à la porte, et retour !"}]},
+    {"t": "Er ist heute Vormittag mit der Physiotherapie ein paar Schritte gegangen, mit dem Rollator.", "fr": "Ce matin, il a fait quelques pas avec la kinésithérapie, avec le déambulateur.", "va": "korrektur",
+     "puis": [{"qui": "brandt", "air": "surprise", "t": "Moment mal! Ein paar Schritte? Bis zur Tür bin ich gelaufen, und wieder zurück!", "fr": "Minute ! Quelques pas ? Je suis allé jusqu'à la porte, et retour !"}]},
+    {"faux": true, "t": "Er ist heute Vormittag mit dem Rollator ein paar Schritte gelauft.", "fr": "Ce matin, il a « marché » quelques pas avec le déambulateur. (participe faux)",
+     "puis": [{"qui": "jonas", "air": "perplexe", "t": "„Gelauft“? Du meinst: Er ist gelaufen.", "fr": "« Gelauft » ? Tu veux dire : il a marché, « er ist gelaufen »."}],
+     "aide": {"fr": "<b>« laufen » est irrégulier : « er ist gelaufen », avec « sein ».</b> De même « gehen → gegangen », « kommen → gekommen ». Les verbes de déplacement font leur Perfekt avec « sein »."}}
+   ]
+  },
+  "korrektur": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Bis zur Tür und zurück? Entschuldigung, dann habe ich das falsch notiert. Das ist ja toll, {brandt}!", "fr": "Jusqu'à la porte et retour ? Pardon, alors je l'ai mal noté. C'est formidable, {brandt:voc} !", "va": "korrigieren",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Na also. Und ohne Pause! Die Physiotherapeutin sagt, ich bin ihr bester Schüler.", "fr": "Eh bien voilà. Et sans pause ! La kiné dit que je suis son meilleur élève."}]},
+    {"t": "Danke, dass Sie das sagen! Das korrigiere ich sofort. Bis zur Tür, das ist ein großer Fortschritt.", "fr": "Merci de me le dire ! Je le corrige tout de suite. Jusqu'à la porte, c'est un grand progrès.", "va": "korrigieren",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Na also. Und ohne Pause! Die Physiotherapeutin sagt, ich bin ihr bester Schüler.", "fr": "Eh bien voilà. Et sans pause ! La kiné dit que je suis son meilleur élève."}]},
+    {"faux": true, "t": "Na ja, er übertreibt ein bisschen. Es waren höchstens ein paar Meter.", "fr": "Bon, il exagère un peu. C'était quelques mètres au plus.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Übertreiben? Fragen Sie doch die Physiotherapeutin!", "fr": "Exagérer ? Demandez donc à la kiné !"}],
+     "aide": {"fr": "<b>Quand le patient corrige, on le remercie et on vérifie ; on ne le contredit pas devant lui, à la troisième personne.</b> Il était là, toi non. Remercie-le, corrige ta transmission, et en cas de doute, demande à la kinésithérapeute."}}
+   ]
+  },
+  "korrigieren": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {"t": "Also, {jonas}, ich korrigiere: Er ist heute Vormittag mit dem Rollator bis zur Tür und zurück gegangen, ohne Pause. Am Nachmittag kommt die Physiotherapie noch einmal.", "fr": "Alors, {jonas}, je corrige : ce matin, il est allé avec le déambulateur jusqu'à la porte et retour, sans pause. L'après-midi, la kinésithérapie revient.", "va": "schmerz",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Super, das notiere ich. Und wie sieht's mit den Schmerzen aus?", "fr": "Super, je le note. Et côté douleur ?"}]},
+    {"t": "Richtig ist also: Mit dem Rollator ist er heute Vormittag bis zur Zimmertür und wieder zurück gelaufen. Die Physiotherapeutin kommt heute Nachmittag wieder.", "fr": "Donc, ce qui est juste : ce matin, avec le déambulateur, il a marché jusqu'à la porte de la chambre et retour. La kinésithérapeute revient cet après-midi.", "va": "schmerz",
+     "puis": [{"qui": "jonas", "air": "sourire", "t": "Super, das notiere ich. Und wie sieht's mit den Schmerzen aus?", "fr": "Super, je le note. Et côté douleur ?"}]},
+    {"faux": true, "t": "Also, er geht heute Vormittag bis zur Tür und zurück.", "fr": "Donc, il « va » ce matin jusqu'à la porte et retour. (présent)",
+     "puis": [{"qui": "jonas", "air": "question", "t": "Er geht? Muss er das noch machen, oder ist das schon passiert?", "fr": "Il va ? Il doit encore le faire, ou c'est déjà fait ?"}],
+     "aide": {"fr": "<b>Ce qui est déjà fait se transmet au Perfekt : « Er ist bis zur Tür gegangen ».</b> Le présent ferait croire que c'est encore à faire."}}
+   ]
+  },
+  "schmerz": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "{brandt}, wie stark sind Ihre Schmerzen gerade, von null bis zehn? Dann hört {jonas} es direkt von Ihnen.", "fr": "{brandt:voc}, quelle est l'intensité de votre douleur en ce moment, de zéro à dix ? Comme ça, {jonas} l'entend directement de vous.", "va": "schmerz_doku",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Im Sitzen eine Zwei. Beim Laufen eine Vier, aber das halt ich aus. Die Tablette heute früh hat gut geholfen.", "fr": "Assis, deux. Quand je marche, quatre, mais je le supporte. Le comprimé de ce matin a bien aidé."}]},
+    {"t": "Möchten Sie {jonas} selbst sagen, wie es mit den Schmerzen ist? Von null bis zehn, im Sitzen und beim Gehen.", "fr": "Vous voulez dire vous-même à {jonas} comment ça va, côté douleur ? De zéro à dix, assis et en marchant.", "va": "schmerz_doku",
+     "puis": [{"qui": "brandt", "air": "attentive", "t": "Im Sitzen eine Zwei. Beim Laufen eine Vier, aber das halt ich aus. Die Tablette heute früh hat gut geholfen.", "fr": "Assis, deux. Quand je marche, quatre, mais je le supporte. Le comprimé de ce matin a bien aidé."}]},
+    {"faux": true, "t": "Schmerzen haben Sie ja keine mehr, oder?", "fr": "Vous n'avez plus mal, n'est-ce pas ?",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Wer sagt das? Beim Laufen zieht's schon noch.", "fr": "Qui a dit ça ? Quand je marche, ça tire encore."}],
+     "aide": {"fr": "<b>Pour la douleur, une question ouverte, avec l'échelle : « Wie stark sind Ihre Schmerzen, von null bis zehn? »</b> « …, oder? » met la réponse dans la bouche du patient : il risque de dire oui pour faire plaisir."}}
+   ]
+  },
+  "schmerz_doku": {
+   "registre": "du",
+   "dit": [],
+   "choix": [
+    {"t": "Er hat um 10 Uhr vor der Physiotherapie ein Gramm Metamizol bekommen, da lag er bei vier. Das nächste darf er frühestens um 16 Uhr bekommen.", "dit": "Er hat um zehn Uhr vor der Physiotherapie ein Gramm Metamizol bekommen, da lag er bei vier. Das nächste darf er frühestens um sechzehn Uhr bekommen.", "fr": "Il a eu un gramme de métamizole à 10 h, avant la kinésithérapie, il était à quatre. Il peut avoir le suivant à 16 h au plus tôt.", "va": "abschluss", "relire": true, "relire_note": "Métamizole 1 g si douleur au-dessus de 3, au plus tôt toutes les six heures (dialogue 18).",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Zwei in Ruhe, vier beim Gehen, Metamizol um zehn, das nächste ab sechzehn Uhr. Danke.", "fr": "Deux au repos, quatre à la marche, métamizole à dix heures, le suivant à partir de seize heures. Merci."}]},
+    {"t": "Dazu noch: Metamizol ein Gramm um 10 Uhr, vor der Physio. Die nächste Gabe ist frühestens um 16 Uhr möglich.", "dit": "Dazu noch: Metamizol ein Gramm um zehn Uhr, vor der Physio. Die nächste Gabe ist frühestens um sechzehn Uhr möglich.", "fr": "J'ajoute : métamizole un gramme à 10 h, avant la kiné. La prochaine dose est possible à 16 h au plus tôt.", "va": "abschluss", "relire": true, "relire_note": "Métamizole 1 g, intervalle d'au moins six heures (dialogue 18).",
+     "puis": [{"qui": "jonas", "air": "attentive", "t": "Zwei in Ruhe, vier beim Gehen, Metamizol um zehn, das nächste ab sechzehn Uhr. Danke.", "fr": "Deux au repos, quatre à la marche, métamizole à dix heures, le suivant à partir de seize heures. Merci."}]},
+    {"faux": true, "t": "Er hatte heute früh eine Tablette. Wenn er will, kann er jederzeit noch eine haben.", "fr": "Il a eu un comprimé ce matin. S'il veut, il peut en avoir un autre quand il veut.",
+     "puis": [{"qui": "jonas", "air": "surprise", "t": "Jederzeit? Bei Metamizol sind es mindestens sechs Stunden Abstand.", "fr": "Quand il veut ? Pour le métamizole, il faut au moins six heures d'intervalle."}],
+     "aide": {"fr": "<b>Un antidouleur se transmet avec son nom, sa dose, l'heure, et le moment où le suivant est possible.</b> « Metamizol ein Gramm um 10 Uhr, das nächste frühestens um 16 Uhr. » « jederzeit » est faux, et dangereux."}}
+   ]
+  },
+  "abschluss": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Haben Sie noch eine Frage an uns, {brandt}? Oder möchten Sie {jonas} noch etwas sagen?", "fr": "Vous avez encore une question, {brandt:voc} ? Ou vous voulez dire encore quelque chose à {jonas} ?", "va": "ende",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Nur eins: Bringt mir der junge Mann nachher einen Kaffee? Schwarz, bitte.", "fr": "Juste une chose : le jeune homme m'apporte un café tout à l'heure ? Noir, s'il vous plaît."},
+              {"qui": "jonas", "air": "sourire", "t": "Schwarz, ohne Zucker. Wird gemacht, {brandt}.", "fr": "Noir, sans sucre. C'est noté, {brandt:voc}."}]},
+    {"t": "Habe ich etwas vergessen, {brandt}? Sie kennen sich selbst am besten.", "fr": "J'ai oublié quelque chose, {brandt:voc} ? C'est vous qui vous connaissez le mieux.", "va": "ende",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Nur eins: Bringt mir der junge Mann nachher einen Kaffee? Schwarz, bitte.", "fr": "Juste une chose : le jeune homme m'apporte un café tout à l'heure ? Noir, s'il vous plaît."},
+              {"qui": "jonas", "air": "sourire", "t": "Schwarz, ohne Zucker. Wird gemacht, {brandt}.", "fr": "Noir, sans sucre. C'est noté, {brandt:voc}."}]},
+    {"faux": true, "t": "So, fertig. Komm, {jonas}, ich zeig dir noch die Kurve.", "fr": "Bon, fini. Viens, {jonas}, je te montre encore la feuille de soins.",
+     "puis": [{"qui": "brandt", "air": "perplexe", "t": "Und ich? Mich fragt wohl keiner mehr was?", "fr": "Et moi ? Plus personne ne me demande rien ?"}],
+     "aide": {"fr": "<b>Une relève au lit se termine avec le patient : on lui demande s'il a une question ou quelque chose à ajouter.</b> Ensuite seulement, on lui dit au revoir et on part avec le collègue."}}
+   ]
+  },
+  "ende": {
+   "registre": "Sie",
+   "dit": [],
+   "choix": [
+    {"t": "Dann verabschiede ich mich jetzt, {brandt}. Ich wünsche Ihnen ein schönes Wochenende!", "fr": "Alors je vous dis au revoir, {brandt:voc}. Je vous souhaite un bon week-end !", "va": null,
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Wiedersehen, {elif}. Und danke, dass ich mal mitreden durfte.", "fr": "Au revoir, {elif}. Et merci de m'avoir laissé donner mon avis, pour une fois."}]},
+    {"t": "Für heute bin ich fertig. Auf Wiedersehen, {brandt}, und weiter so mit dem Laufen!", "fr": "Pour aujourd'hui, j'ai fini. Au revoir, {brandt:voc}, et continuez comme ça avec la marche !", "va": null,
+     "puis": [{"qui": "brandt", "air": "sourire", "t": "Wiedersehen, {elif}. Und danke, dass ich mal mitreden durfte.", "fr": "Au revoir, {elif}. Et merci de m'avoir laissé donner mon avis, pour une fois."}]},
+    {"faux": true, "t": "So, dann schönen Feierabend, {brandt}!", "fr": "Bon, alors bonne fin de journée de travail, {brandt:voc} !",
+     "puis": [{"qui": "brandt", "air": "amuse", "t": "Feierabend? Ich hab hier rund um die Uhr frei, junge Frau.", "fr": "Fin de journée ? Ici, je suis en congé jour et nuit, jeune femme."}],
+     "aide": {"fr": "<b>« Feierabend » est la fin du travail : c'est toi qui as fini, pas lui.</b> Au patient, on souhaite « ein schönes Wochenende », « einen schönen Nachmittag », ou simplement « Auf Wiedersehen »."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wen fragt {elif} zuerst, ob die Übergabe am Bett in Ordnung ist?", "fr": "À qui {elif} demande-t-elle d'abord si la relève au lit lui convient ?"}, "options": [{"t": "{brandt}.", "fr": "{brandt}."}, {"t": "Die Ärztin.", "fr": "La médecin."}, {"t": "Die Physiotherapeutin.", "fr": "La kinésithérapeute."}], "juste": 0},
+  {"q": {"t": "Wie weit ist {brandt} heute Vormittag gegangen?", "fr": "Jusqu'où {brandt} est-il allé ce matin ?"}, "options": [{"t": "Nur ein paar Schritte.", "fr": "Seulement quelques pas."}, {"t": "Bis zum Ende des Flurs.", "fr": "Jusqu'au bout du couloir."}, {"t": "Bis zur Tür und zurück.", "fr": "Jusqu'à la porte et retour."}], "juste": 2},
+  {"q": {"t": "Wie stark sind seine Schmerzen beim Laufen?", "fr": "Quelle est l'intensité de sa douleur quand il marche ?"}, "options": [{"t": "Zwei.", "fr": "Deux."}, {"t": "Vier.", "fr": "Quatre."}, {"t": "Sieben.", "fr": "Sept."}], "juste": 1},
+  {"q": {"t": "Ab wann darf {brandt} das nächste Metamizol bekommen?", "fr": "À partir de quand {brandt} peut-il avoir le prochain métamizole ?"}, "options": [{"t": "Sofort.", "fr": "Tout de suite."}, {"t": "Um zehn Uhr.", "fr": "À 10 heures."}, {"t": "Um sechzehn Uhr.", "fr": "À 16 heures."}], "juste": 2},
+  {"q": {"t": "Was möchte {brandt} am Ende von {jonas}?", "fr": "Que demande {brandt} à {jonas}, à la fin ?"}, "options": [{"t": "Einen schwarzen Kaffee.", "fr": "Un café noir."}, {"t": "Eine Zeitung.", "fr": "Un journal."}, {"t": "Eine Tablette.", "fr": "Un comprimé."}], "juste": 0}
+ ]
+}

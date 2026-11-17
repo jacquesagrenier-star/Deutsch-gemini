@@ -1,0 +1,400 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d49-krankmeldung.json",
+ "cles": {
+  "titre": {
+   "fr": "Se déclarer malade",
+   "de": "Sich krankmelden",
+   "ru": "Сообщить о болезни"
+  },
+  "intro": {
+   "fr": "Mardi 24 novembre, cinq heures et demie. {elif} devait commencer à six heures, mais elle a passé une mauvaise nuit : fièvre, frissons, mal partout. Le thermomètre affiche 39,1. Elle appelle {hoffmann} avant le début du service, comme le veut la règle du {station}. Tu joues {elif} : dis que tu ne viens pas, depuis quand tu es malade, que tu vas chez le médecin, comment arrive l'arrêt de travail et jusqu'à quand tu penses être absente ; puis réponds à la question de la cadre.",
+   "ru": "Вторник, 24 ноября, половина шестого. {elif} должна была начать в шесть, но ночь прошла плохо: температура, озноб, всё болит. Градусник показывает 39,1. Она звонит {hoffmann:dat} до начала смены, как того требует правило {station:gen}. Ты играешь роль {elif:gen}: скажи, что не придёшь, с какого времени болеешь, что пойдёшь к врачу, как поступит больничный и до какого дня тебя, по твоим предположениям, не будет; затем ответь на вопрос старшей медсестры."
+  },
+  "but": {
+   "fr": "Se déclarer malade au téléphone, tôt et au « Sie » : se nommer, dire qu'on ne vient pas ; donner les symptômes avec un chiffre, pas un diagnostic ; dire ce qui suit avec « sobald » et « bis » ; savoir que l'arrêt de travail (« der gelbe Schein ») part aujourd'hui par voie électronique ; répondre à une demande sans promettre ce qu'on ne sait pas encore.",
+   "ru": "Сообщить о болезни по телефону, заранее и на «Sie»: назвать себя, сказать, что не придёшь; назвать симптомы с цифрой, а не диагноз; сказать, что будет дальше, с «sobald» и «bis»; знать, что больничный («der gelbe Schein») сегодня уходит в электронном виде; ответить на просьбу, не обещая того, что ещё неизвестно."
+  },
+  "relire_notes": {
+   "fr": "Prévenir l'employeur avant le début du service (ici 5 h 30 pour 6 h) ; l'arrêt de travail électronique (eAU) depuis 2023 : le cabinet le transmet à la caisse d'assurance maladie, l'employeur le consulte, plus de papier pour l'employeur (sauf assurance privée) ; certificat exigé dès le premier jour si le contrat ou l'employeur le demande (sinon à partir du 4e jour, § 5 EntgFG) ; 39,1 °C avec frissons : consulter ; on ne travaille pas pendant un arrêt ; la demande de la cadre (prendre un poste du dimanche contre un jour de repos) est une demande, pas une obligation.",
+   "ru": "Предупредить работодателя до начала смены (здесь в 5:30 при начале в 6:00); электронный больничный (eAU) с 2023 года: кабинет врача передаёт его в больничную кассу, работодатель запрашивает его там, бумаги для работодателя больше нет (кроме частной страховки); справка требуется с первого дня, если этого требует договор или работодатель (иначе с 4-го дня, § 5 EntgFG); 39,1 °C с ознобом: обратиться к врачу; на больничном не работают; просьба старшей медсестры (взять воскресную смену в обмен на выходной) — это просьба, а не обязанность."
+  },
+  "redemittel.0": {
+   "fr": "Je dois malheureusement me déclarer malade.",
+   "de": "Ich muss mich leider krankmelden.",
+   "ru": "К сожалению, я должна сообщить, что заболела."
+  },
+  "redemittel.1": {
+   "fr": "Excusez-moi d'appeler si tôt.",
+   "de": "Entschuldigen Sie, dass ich so früh anrufe.",
+   "ru": "Извините, что звоню так рано."
+  },
+  "redemittel.2": {
+   "fr": "Depuis hier soir, j'ai de la fièvre et des frissons.",
+   "de": "Seit gestern Abend habe ich Fieber und Schüttelfrost.",
+   "ru": "Со вчерашнего вечера у меня температура и озноб."
+  },
+  "redemittel.3": {
+   "fr": "Dès que le cabinet ouvre, je vais chez ma médecin traitante.",
+   "de": "Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin.",
+   "ru": "Как только откроется кабинет, я пойду к своему лечащему врачу."
+  },
+  "redemittel.4": {
+   "fr": "Le cabinet envoie l'arrêt de travail par voie électronique à ma caisse d'assurance maladie.",
+   "de": "Die Praxis schickt die Krankschreibung elektronisch an meine Krankenkasse.",
+   "ru": "Кабинет врача отправит больничный в электронном виде в мою больничную кассу."
+  },
+  "redemittel.5": {
+   "fr": "Je vous rappelle dès que je sais jusqu'à quand je suis en arrêt.",
+   "de": "Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin.",
+   "ru": "Я позвоню, как только узнаю, до какого числа у меня больничный."
+  },
+  "redemittel.6": {
+   "fr": "En principe volontiers, mais je ne pourrai le promettre qu'après la consultation.",
+   "de": "Grundsätzlich gern, aber zusagen kann ich es erst nach dem Arztbesuch.",
+   "ru": "В принципе с удовольствием, но пообещать смогу только после визита к врачу."
+  },
+  "redemittel.7": {
+   "fr": "Je suis désolée que vous deviez chercher un remplaçant si tard.",
+   "de": "Es tut mir leid, dass Sie so kurzfristig Ersatz suchen müssen.",
+   "ru": "Мне жаль, что вам приходится искать замену в последний момент."
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Cinq heures et demie. {elif} est assise au bord de son lit, une couverture sur les épaules. Elle compose le numéro de {hoffmann}. Ça sonne trois fois.",
+   "ru": "Половина шестого. {elif} сидит на краю кровати с одеялом на плечах. Она набирает номер {hoffmann:gen}. Раздаются три гудка."
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Oui, {hoffmann:famille} ?",
+   "de": "Ja, {hoffmann:famille}?",
+   "ru": "Да, {hoffmann:famille}?"
+  },
+  "noeuds.start.choix.0": {
+   "fr": "Bonjour, {hoffmann:voc}, c'est {elif}. Excusez-moi d'appeler si tôt. Je dois malheureusement me déclarer malade.",
+   "de": "Guten Morgen, {hoffmann}, hier ist {elif}. Entschuldigen Sie, dass ich so früh anrufe. Ich muss mich leider krankmelden.",
+   "ru": "Доброе утро, {hoffmann:voc}, это {elif}. Извините, что звоню так рано. К сожалению, я должна сообщить, что заболела."
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "Oh là là. Qu'est-ce qui se passe ?",
+   "de": "Oh je. Was ist denn los?",
+   "ru": "Ох. А что случилось?"
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Bonjour, {hoffmann:voc}. C'est {elif}, du {station}. J'appelle parce que je ne peux malheureusement pas venir au poste du matin aujourd'hui : je suis malade.",
+   "de": "Guten Morgen, {hoffmann}. {elif} hier, von der {station}. Ich rufe an, weil ich heute leider nicht zum Frühdienst kommen kann: Ich bin krank.",
+   "ru": "Доброе утро, {hoffmann:voc}. Это {elif} из {station:gen}. Я звоню, потому что, к сожалению, не смогу сегодня выйти в утреннюю смену: я заболела."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "Oh là là. Qu'est-ce qui se passe ?",
+   "de": "Oh je. Was ist denn los?",
+   "ru": "Ох. А что случилось?"
+  },
+  "noeuds.start.choix.2": {
+   "fr": "Bonjour, {hoffmann:voc}, c'est {elif}. Aujourd'hui, je suis en arrêt de travail (déjà signé par le médecin).",
+   "de": "Guten Morgen, {hoffmann}, hier ist {elif}. Ich bin heute krankgeschrieben.",
+   "ru": "Доброе утро, {hoffmann:voc}, это {elif}. Я сегодня на больничном (уже выписанном врачом: «krankgeschrieben»)."
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "En arrêt ? À cinq heures et demie, vous êtes déjà allée chez le médecin ?",
+   "de": "Krankgeschrieben? Um halb sechs waren Sie schon beim Arzt?",
+   "ru": "На больничном? В половине шестого вы уже были у врача?"
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>« krankgeschrieben » veut dire que le médecin t'a déjà mise en arrêt.</b> Ce matin, tu te déclares malade toi-même : « Ich muss mich leider krankmelden » ou « Ich bin krank und kann heute nicht kommen ».",
+   "ru": "<b>«krankgeschrieben» значит, что врач уже выписал тебе больничный.</b> Сегодня утром о болезни сообщаешь ты: «Ich muss mich leider krankmelden» или «Ich bin krank und kann heute nicht kommen»."
+  },
+  "noeuds.symptome.choix.0": {
+   "fr": "Depuis hier soir, j'ai de la fièvre et des frissons. Ce matin, j'étais à 39,1. J'ai mal partout.",
+   "de": "Seit gestern Abend habe ich Fieber und Schüttelfrost. Heute Morgen waren es 39,1. Mir tut alles weh.",
+   "ru": "Со вчерашнего вечера у меня температура и озноб. Сегодня утром было 39,1. У меня всё болит."
+  },
+  "noeuds.symptome.choix.0.puis.0": {
+   "fr": "Ça n'a pas l'air bien du tout. Vous allez chez le médecin ?",
+   "de": "Das klingt gar nicht gut. Gehen Sie zum Arzt?",
+   "ru": "Звучит совсем нехорошо. Вы пойдёте к врачу?"
+  },
+  "noeuds.symptome.choix.1": {
+   "fr": "J'ai une forte fièvre depuis hier soir, 39,1 à l'instant, et des courbatures. J'ai à peine dormi.",
+   "de": "Ich habe seit gestern Abend hohes Fieber, gerade eben 39,1, und Gliederschmerzen. Ich habe kaum geschlafen.",
+   "ru": "У меня со вчерашнего вечера высокая температура, только что было 39,1, и ломота в теле. Я почти не спала."
+  },
+  "noeuds.symptome.choix.1.puis.0": {
+   "fr": "Ça n'a pas l'air bien du tout. Vous allez chez le médecin ?",
+   "de": "Das klingt gar nicht gut. Gehen Sie zum Arzt?",
+   "ru": "Звучит совсем нехорошо. Вы пойдёте к врачу?"
+  },
+  "noeuds.symptome.choix.2": {
+   "fr": "J'ai la grippe. Je le sais très bien, je suis du métier.",
+   "de": "Ich habe die Grippe. Das weiß ich genau, ich bin ja vom Fach.",
+   "ru": "У меня грипп. Я это точно знаю, я ведь сама медик."
+  },
+  "noeuds.symptome.choix.2.puis.0": {
+   "fr": "C'est bien possible, mais c'est la médecin qui vous le dira. Qu'est-ce que vous avez, exactement ?",
+   "de": "Das kann gut sein, aber das sagt Ihnen die Ärztin. Was haben Sie denn genau?",
+   "ru": "Вполне возможно, но это вам скажет врач. А что именно у вас?"
+  },
+  "noeuds.symptome.choix.2.aide": {
+   "fr": "<b>Dis tes symptômes et depuis quand, avec un chiffre : pas un diagnostic.</b> « Seit gestern Abend habe ich Fieber und Schüttelfrost, heute Morgen 39,1. » Même soignante, tu ne te diagnostiques pas toi-même.",
+   "ru": "<b>Назови свои симптомы и с какого времени они у тебя, с цифрой — а не диагноз.</b> «Seit gestern Abend habe ich Fieber und Schüttelfrost, heute Morgen 39,1.» Даже работая в уходе, диагноз себе не ставят."
+  },
+  "noeuds.arzt.choix.0": {
+   "fr": "Oui. Dès que le cabinet ouvre, je vais chez ma médecin traitante. C'est à huit heures.",
+   "de": "Ja. Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin. Das ist um acht.",
+   "ru": "Да. Как только откроется кабинет, я пойду к своему лечащему врачу. Это в восемь."
+  },
+  "noeuds.arzt.choix.0.puis.0": {
+   "fr": "Bien. Il nous faut l'arrêt de travail dès le premier jour, le « papier jaune », comme on dit toujours.",
+   "de": "Gut. Wir brauchen die Krankschreibung ab dem ersten Tag, den „gelben Schein“, wie man immer noch sagt.",
+   "ru": "Хорошо. Больничный нам нужен с первого дня — «жёлтый листок», как всё ещё говорят."
+  },
+  "noeuds.arzt.choix.1": {
+   "fr": "Oui, j'appelle le cabinet à huit heures et j'y vais dès que j'ai un rendez-vous.",
+   "de": "Ja, ich rufe um acht in der Praxis an und gehe hin, sobald ich einen Termin habe.",
+   "ru": "Да, в восемь я позвоню в кабинет врача и пойду, как только меня запишут."
+  },
+  "noeuds.arzt.choix.1.puis.0": {
+   "fr": "Bien. Il nous faut l'arrêt de travail dès le premier jour, le « papier jaune », comme on dit toujours.",
+   "de": "Gut. Wir brauchen die Krankschreibung ab dem ersten Tag, den „gelben Schein“, wie man immer noch sagt.",
+   "ru": "Хорошо. Больничный нам нужен с первого дня — «жёлтый листок», как всё ещё говорят."
+  },
+  "noeuds.arzt.choix.2": {
+   "fr": "Non, je reste simplement au lit. Demain, je reviens sûrement.",
+   "de": "Nein, ich bleibe einfach im Bett. Morgen komme ich bestimmt wieder.",
+   "ru": "Нет, я просто останусь в постели. Завтра я наверняка снова выйду."
+  },
+  "noeuds.arzt.choix.2.puis.0": {
+   "fr": "Avec trente-neuf de fièvre ? Faites-vous examiner, s'il vous plaît.",
+   "de": "Mit neununddreißig Grad Fieber? Bitte lassen Sie sich untersuchen.",
+   "ru": "С температурой тридцать девять? Пожалуйста, покажитесь врачу."
+  },
+  "noeuds.arzt.choix.2.aide": {
+   "fr": "<b>Avec une forte fièvre, on va chez le médecin ; et l'employeur peut demander un arrêt de travail dès le premier jour.</b> « Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin. » Après « sobald », le verbe va à la fin.",
+   "ru": "<b>С высокой температурой идут к врачу; а работодатель может потребовать больничный с первого дня.</b> «Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin.» После «sobald» глагол стоит в конце."
+  },
+  "noeuds.schein.choix.0": {
+   "fr": "Bien sûr. Le cabinet envoie l'arrêt de travail par voie électronique à ma caisse d'assurance maladie, et vous pouvez le consulter là-bas.",
+   "de": "Natürlich. Die Praxis schickt die Krankschreibung elektronisch an meine Krankenkasse, und Sie können sie dort abrufen.",
+   "ru": "Конечно. Кабинет врача отправит больничный в электронном виде в мою больничную кассу, и вы сможете запросить его там."
+  },
+  "noeuds.schein.choix.0.puis.0": {
+   "fr": "Exactement. Vous avez déjà une idée de la durée de votre absence ?",
+   "de": "Genau. Haben Sie schon eine Ahnung, wie lange Sie ausfallen?",
+   "ru": "Именно. Вы уже представляете, как долго вас не будет?"
+  },
+  "noeuds.schein.choix.1": {
+   "fr": "Oui, je l'aurai aujourd'hui. Le « papier jaune » pour l'employeur n'existe plus sur papier : le cabinet déclare l'arrêt directement à la caisse d'assurance maladie.",
+   "de": "Ja, die bekomme ich heute. Den gelben Schein für den Arbeitgeber gibt es ja nicht mehr auf Papier: Die Praxis meldet die Krankschreibung direkt an die Krankenkasse.",
+   "ru": "Да, я получу его сегодня. «Жёлтого листка» для работодателя на бумаге ведь больше нет: кабинет врача сообщает о больничном напрямую в больничную кассу."
+  },
+  "noeuds.schein.choix.1.puis.0": {
+   "fr": "Exactement. Vous avez déjà une idée de la durée de votre absence ?",
+   "de": "Genau. Haben Sie schon eine Ahnung, wie lange Sie ausfallen?",
+   "ru": "Именно. Вы уже представляете, как долго вас не будет?"
+  },
+  "noeuds.schein.choix.2": {
+   "fr": "Oui, je vous apporte le papier jaune demain au service.",
+   "de": "Ja, ich bringe Ihnen den gelben Schein morgen auf Station.",
+   "ru": "Да, я принесу вам жёлтый листок завтра в отделение."
+  },
+  "noeuds.schein.choix.2.puis.0": {
+   "fr": "Surtout pas ! Avec de la fièvre, vous restez chez vous. Et on n'a plus besoin de papier, tout passe par voie électronique.",
+   "de": "Bloß nicht! Mit Fieber bleiben Sie zu Hause. Und Papier brauchen wir nicht mehr, das läuft elektronisch.",
+   "ru": "Ни в коем случае! С температурой вы остаётесь дома. И бумага нам больше не нужна, всё идёт в электронном виде."
+  },
+  "noeuds.schein.choix.2.aide": {
+   "fr": "<b>Depuis 2023, l'arrêt de travail est électronique : le cabinet l'envoie à ta caisse, l'employeur le consulte là.</b> On dit encore « der gelbe Schein », mais tu n'as rien à apporter : tu préviens, et tu dis la durée.",
+   "ru": "<b>С 2023 года больничный электронный: кабинет врача отправляет его в твою больничную кассу, работодатель запрашивает его там.</b> По-прежнему говорят «der gelbe Schein», но приносить ничего не нужно: достаточно предупредить и назвать срок."
+  },
+  "noeuds.dauer.choix.0": {
+   "fr": "Je ne le saurai exactement qu'après la consultation. Je pense au moins jusqu'à jeudi. Je vous rappelle dès que je sais jusqu'à quand je suis en arrêt.",
+   "de": "Genau weiß ich es erst nach dem Arztbesuch. Ich denke, mindestens bis Donnerstag. Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin.",
+   "ru": "Точно я узнаю только после визита к врачу. Думаю, как минимум до четверга. Я позвоню, как только узнаю, до какого числа у меня больничный."
+  },
+  "noeuds.dauer.choix.0.puis.0": {
+   "fr": "Bien, alors j'attends votre appel. J'aurais encore une question.",
+   "de": "Gut, dann warte ich auf Ihren Anruf. Eine Frage hätte ich noch.",
+   "ru": "Хорошо, тогда я жду вашего звонка. У меня ещё один вопрос."
+  },
+  "noeuds.dauer.choix.1": {
+   "fr": "Probablement quelques jours. Je vous appelle ce matin, dès que je suis passée chez la médecin, et je vous donne la date exacte.",
+   "de": "Wahrscheinlich ein paar Tage. Ich rufe Sie heute Vormittag an, sobald ich bei der Ärztin war, und sage Ihnen das genaue Datum.",
+   "ru": "Вероятно, несколько дней. Я позвоню вам сегодня до обеда, как только побываю у врача, и назову точную дату."
+  },
+  "noeuds.dauer.choix.1.puis.0": {
+   "fr": "Bien, alors j'attends votre appel. J'aurais encore une question.",
+   "de": "Gut, dann warte ich auf Ihren Anruf. Eine Frage hätte ich noch.",
+   "ru": "Хорошо, тогда я жду вашего звонка. У меня ещё один вопрос."
+  },
+  "noeuds.dauer.choix.2": {
+   "fr": "Aucune idée. Peut-être une semaine, peut-être deux, on verra.",
+   "de": "Keine Ahnung. Vielleicht eine Woche, vielleicht zwei, mal sehen.",
+   "ru": "Понятия не имею. Может, неделю, может, две, посмотрим."
+  },
+  "noeuds.dauer.choix.2.puis.0": {
+   "fr": "Pour le planning, il me faut quelque chose de plus précis. Quand en saurez-vous plus ?",
+   "de": "Für den Dienstplan brauche ich etwas Genaueres. Wann wissen Sie mehr?",
+   "ru": "Для графика смен мне нужно что-то поточнее. Когда вы будете знать больше?"
+  },
+  "noeuds.dauer.choix.2.aide": {
+   "fr": "<b>Dis ce que tu sais, et quand tu donneras la durée exacte.</b> « Genau weiß ich es erst nach dem Arztbesuch. Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin. »",
+   "ru": "<b>Скажи то, что знаешь, и когда назовёшь точный срок.</b> «Genau weiß ich es erst nach dem Arztbesuch. Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin.»"
+  },
+  "noeuds.tausch.dit.0": {
+   "fr": "Ce week-end, vous êtes normalement en repos. Si vous êtes guérie d'ici là : pourriez-vous prendre le poste du matin dimanche ? En échange, vous auriez un jour de repos la semaine prochaine.",
+   "de": "Am Wochenende haben Sie eigentlich frei. Wenn Sie bis dahin wieder gesund sind: Könnten Sie den Frühdienst am Sonntag übernehmen? Dafür bekämen Sie nächste Woche einen Tag frei.",
+   "ru": "В выходные у вас вообще-то выходной. Если вы к тому времени поправитесь: не могли бы вы взять утреннюю смену в воскресенье? За это вы получили бы выходной на следующей неделе."
+  },
+  "noeuds.tausch.choix.0": {
+   "fr": "En principe volontiers. Mais je ne pourrai le promettre que quand je saurai combien de temps je suis en arrêt. Est-ce que je peux vous donner la réponse ce matin ?",
+   "de": "Grundsätzlich gern. Aber zusagen kann ich es erst, wenn ich weiß, wie lange ich krankgeschrieben bin. Darf ich Ihnen heute Vormittag Bescheid geben?",
+   "ru": "В принципе с удовольствием. Но пообещать я смогу, только когда узнаю, на сколько у меня больничный. Можно я дам вам ответ сегодня до обеда?"
+  },
+  "noeuds.tausch.choix.0.puis.0": {
+   "fr": "C'est honnête. Merci d'y réfléchir, déjà.",
+   "de": "Das ist fair. Danke, dass Sie überhaupt darüber nachdenken.",
+   "ru": "Это честно. Спасибо, что вы вообще об этом думаете."
+  },
+  "noeuds.tausch.choix.1": {
+   "fr": "Si je suis remise d'ici dimanche, je le fais volontiers. Mais je ne peux pas encore le promettre. Je vous préviens après la consultation.",
+   "de": "Wenn ich bis Sonntag wieder fit bin, mache ich das gern. Versprechen kann ich es aber noch nicht. Ich sage Ihnen nach dem Arztbesuch Bescheid.",
+   "ru": "Если к воскресенью я снова буду в форме, я с удовольствием это сделаю. Но обещать пока не могу. Я сообщу вам после визита к врачу."
+  },
+  "noeuds.tausch.choix.1.puis.0": {
+   "fr": "C'est honnête. Merci d'y réfléchir, déjà.",
+   "de": "Das ist fair. Danke, dass Sie überhaupt darüber nachdenken.",
+   "ru": "Это честно. Спасибо, что вы вообще об этом думаете."
+  },
+  "noeuds.tausch.choix.2": {
+   "fr": "Oui, bien sûr, dimanche je viens, même si je suis encore malade.",
+   "de": "Ja, klar, am Sonntag komme ich, auch wenn ich noch krank bin.",
+   "ru": "Да, конечно, в воскресенье я приду, даже если ещё буду болеть."
+  },
+  "noeuds.tausch.choix.2.puis.0": {
+   "fr": "Non, je ne le veux en aucun cas. Malade, vous ne venez pas voir les patients, s'il vous plaît.",
+   "de": "Nein, das möchte ich auf keinen Fall. Krank kommen Sie bitte nicht zu den Patienten.",
+   "ru": "Нет, этого я ни в коем случае не хочу. Больной к пациентам, пожалуйста, не приходите."
+  },
+  "noeuds.tausch.choix.2.aide": {
+   "fr": "<b>Pendant un arrêt de travail, on ne travaille pas ; et on ne promet rien avant de savoir.</b> On peut dire oui sous condition : « Grundsätzlich gern, aber zusagen kann ich es erst, wenn … »",
+   "ru": "<b>На больничном не работают; и ничего не обещают, пока не знают наверняка.</b> Можно согласиться с условием: «Grundsätzlich gern, aber zusagen kann ich es erst, wenn …»"
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Alors reposez-vous et buvez beaucoup. Bon rétablissement, {elif} !",
+   "de": "Dann ruhen Sie sich aus und trinken Sie viel. Gute Besserung, {elif}!",
+   "ru": "Тогда отдыхайте и много пейте. Выздоравливайте, {elif}!"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Merci, {hoffmann:voc}. Je suis désolée que vous deviez maintenant chercher un remplaçant si tard.",
+   "de": "Danke, {hoffmann}. Es tut mir leid, dass Sie jetzt so kurzfristig Ersatz suchen müssen.",
+   "ru": "Спасибо, {hoffmann:voc}. Мне жаль, что вам теперь приходится искать замену в последний момент."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "On va s'en sortir. Le principal, c'est que vous guérissiez. À plus tard au téléphone !",
+   "de": "Das kriegen wir hin. Hauptsache, Sie werden wieder gesund. Bis später am Telefon!",
+   "ru": "Справимся. Главное — выздоравливайте. До связи по телефону!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci beaucoup pour votre compréhension. Je vous rappelle après le rendez-vous chez le médecin. Au revoir !",
+   "de": "Vielen Dank für Ihr Verständnis. Ich melde mich nach dem Arzttermin. Auf Wiederhören!",
+   "ru": "Большое спасибо за понимание. Я позвоню после приёма у врача. До свидания!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "On va s'en sortir. Le principal, c'est que vous guérissiez. À plus tard au téléphone !",
+   "de": "Das kriegen wir hin. Hauptsache, Sie werden wieder gesund. Bis später am Telefon!",
+   "ru": "Справимся. Главное — выздоравливайте. До связи по телефону!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Merci. Pardon pour ma maladie.",
+   "de": "Danke. Entschuldigung für meine Krankheit.",
+   "ru": "Спасибо. Извините за мою болезнь."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Personne n'a à s'excuser d'être malade, {elif}.",
+   "de": "Für eine Krankheit muss sich niemand entschuldigen, {elif}.",
+   "ru": "За болезнь никому не нужно извиняться, {elif}."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>On ne s'excuse pas d'être malade ; on peut regretter le dérangement.</b> « Es tut mir leid, dass Sie so kurzfristig Ersatz suchen müssen. » ou « Vielen Dank für Ihr Verständnis. »",
+   "ru": "<b>За болезнь не извиняются; можно выразить сожаление о доставленных хлопотах.</b> «Es tut mir leid, dass Sie so kurzfristig Ersatz suchen müssen.» или «Vielen Dank für Ihr Verständnis.»"
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle était la fièvre d'{elif} ce matin ?",
+   "de": "Wie hoch war das Fieber von {elif} heute Morgen?",
+   "ru": "Какая температура была у {elif:gen} сегодня утром?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "38,5.",
+   "de": "Achtunddreißig Komma fünf.",
+   "ru": "38,5."
+  },
+  "ecouter.0.options.1": {
+   "fr": "39,1.",
+   "de": "Neununddreißig Komma eins.",
+   "ru": "39,1."
+  },
+  "ecouter.0.options.2": {
+   "fr": "37,8.",
+   "de": "Siebenunddreißig Komma acht.",
+   "ru": "37,8."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand {elif} va-t-elle chez la médecin ?",
+   "de": "Wann geht {elif} zur Ärztin?",
+   "ru": "Когда {elif} пойдёт к врачу?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "À huit heures, quand le cabinet ouvre.",
+   "de": "Um acht, wenn die Praxis aufmacht.",
+   "ru": "В восемь, когда откроется кабинет."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Demain matin.",
+   "de": "Morgen früh.",
+   "ru": "Завтра утром."
+  },
+  "ecouter.1.options.2": {
+   "fr": "L'après-midi, après le service.",
+   "de": "Am Nachmittag, nach dem Dienst.",
+   "ru": "После обеда, после смены."
+  },
+  "ecouter.2.q": {
+   "fr": "Comment l'hôpital reçoit-il l'arrêt de travail ?",
+   "de": "Wie bekommt das Krankenhaus die Krankschreibung?",
+   "ru": "Как больница получит больничный?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Par la poste.",
+   "de": "Per Post.",
+   "ru": "По почте."
+  },
+  "ecouter.2.options.1": {
+   "fr": "{elif} l'apporte au service.",
+   "de": "{elif} bringt sie auf Station.",
+   "ru": "{elif} принесёт его в отделение."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Par voie électronique, par la caisse d'assurance maladie.",
+   "de": "Elektronisch, über die Krankenkasse.",
+   "ru": "В электронном виде, через больничную кассу."
+  },
+  "ecouter.3.q": {
+   "fr": "Que veut savoir {hoffmann} à la fin ?",
+   "de": "Was möchte {hoffmann} am Ende wissen?",
+   "ru": "Что {hoffmann} хочет узнать в конце?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Si {elif} peut venir cet après-midi.",
+   "de": "Ob {elif} heute Nachmittag kommen kann.",
+   "ru": "Сможет ли {elif} прийти сегодня после обеда."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Si {elif} pourrait prendre le poste du matin dimanche.",
+   "de": "Ob {elif} am Sonntag den Frühdienst übernehmen könnte.",
+   "ru": "Могла бы {elif} взять утреннюю смену в воскресенье."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Si {elif} a fait un test.",
+   "de": "Ob {elif} einen Test gemacht hat.",
+   "ru": "Сделала ли {elif} тест."
+  }
+ }
+}

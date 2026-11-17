@@ -1,0 +1,497 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d45-aufnahme-arzt.json",
+ "cles": {
+  "titre": {
+   "fr": "Présenter une admission à la médecin",
+   "de": "Die Neuaufnahme an die Ärztin übergeben",
+   "es": "Presentar un ingreso a la médica"
+  },
+  "intro": {
+   "fr": "Lundi 9 novembre, douze heures trente, au poste de soins. {sommer} a été retenue toute la matinée aux urgences : elle n'a pas encore vu {lehmann}, arrivée à 10 h 15. {elif} a fait l'entretien d'admission (dialogue 13) et rempli la fiche. Tu joues {elif} : présente la patiente à la médecin avec des valeurs précises (constantes, glycémie, plaie, allergies, traitement de la maison, risque de chute, peau), réponds à ses questions, puis dis ce qui reste à faire.",
+   "es": "Lunes 9 de noviembre, las doce y media, en la estación de enfermería. {sommer} estuvo ocupada toda la mañana en urgencias: todavía no ha visto {lehmann:a}, que llegó a las 10:15 h. {elif} hizo la entrevista de ingreso (diálogo 13) y llenó la hoja. Juegas el papel de {elif}: presenta la paciente a la médica con valores precisos (signos vitales, glucemia, herida, alergias, medicación habitual, riesgo de caída, piel), responde sus preguntas, y luego di lo que queda pendiente."
+  },
+  "but": {
+   "fr": "Faire un rapport oral à une médecin : dans l'ordre, en phrases complètes, avec des valeurs et leur unité ; décrire une plaie sans poser de diagnostic ; dire ce qui a été fait au passif (wurde fotografiert, ist angeordnet) ; distinguer ce qu'on sait de ce qu'on suppose ; nommer ce qui reste à faire et le demander poliment.",
+   "es": "Dar un reporte oral a una médica: en orden, con oraciones completas, con valores y su unidad; describir una herida sin hacer un diagnóstico; decir lo que se hizo en pasiva (wurde fotografiert, ist angeordnet); distinguir lo que se sabe de lo que se supone; nombrar lo que queda pendiente y pedirlo con cortesía."
+  },
+  "relire_notes": {
+   "fr": "Valeurs inventées pour le cas, cohérentes avec e02 et le dialogue 13 : TA 150/85 mmHg (hypertension connue), pouls 78 régulier, T 36,8 °C, glycémie 245 mg/dl à 11 h (insuline du matin faite à 7 h à la maison). Pas d'insuline de correction tant qu'aucun schéma n'est prescrit. Plaie : ulcère de l'avant-pied droit d'environ 2 × 1,5 cm, bord légèrement rouge, sans pus ni odeur ; photo, pansement stérile, chaussure de décharge. Traitement personnel : insuline matin et soir (dose modifiée la semaine précédente, prise sur le plan de la médecin traitante, jamais de mémoire), un antihypertenseur ; à prescrire et signer par la médecin. Risque de chute (canne, chaussure de décharge, polyneuropathie, deux levers la nuit) : lit en position basse, sonnette, veilleuse. Peau sèche aux jambes, intacte ; échelle de Braden sans risque accru. Conseil diabétologique. Levée du secret pour la fille.",
+   "es": "Valores inventados para el caso, coherentes con e02 y el diálogo 13: PA 150/85 mmHg (hipertensión conocida), pulso 78 regular, T 36,8 °C, glucemia 245 mg/dl a las 11 h (insulina de la mañana aplicada a las 7 h en casa). Sin insulina de corrección mientras no haya un esquema indicado. Herida: úlcera en el antepié derecho de unos 2 × 1,5 cm, borde ligeramente enrojecido, sin pus ni olor; foto, apósito estéril, zapato de descarga. Medicación habitual: insulina en la mañana y en la noche (dosis modificada la semana anterior, tomada del plan de la médica de cabecera, nunca de memoria), un antihipertensivo; la médica debe indicarla y firmarla. Riesgo de caída (bastón, zapato de descarga, polineuropatía, se levanta dos veces en la noche): cama en la posición más baja, timbre, luz de noche. Piel seca en las piernas, intacta; escala de Braden sin riesgo aumentado. Educación en diabetes. Autorización para dar información a la hija."
+  },
+  "redemittel.0": {
+   "fr": "Puis-je vous présenter rapidement la nouvelle admission de la chambre 14 ?",
+   "de": "Darf ich Ihnen kurz die Neuaufnahme aus Zimmer 14 vorstellen?",
+   "es": "¿Puedo presentarle brevemente el nuevo ingreso de la habitación 14?"
+  },
+  "redemittel.1": {
+   "fr": "Elle a été adressée ce matin par sa médecin traitante.",
+   "de": "Sie wurde heute Vormittag von ihrer Hausärztin eingewiesen.",
+   "es": "La envió hoy en la mañana su médica de cabecera."
+  },
+  "redemittel.2": {
+   "fr": "J'ai mesuré la glycémie à onze heures.",
+   "de": "Den Blutzucker habe ich um elf Uhr gemessen.",
+   "es": "Medí la glucemia a las once."
+  },
+  "redemittel.3": {
+   "fr": "Je n'ai pas encore donné d'insuline, parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.",
+   "es": "Todavía no le he puesto insulina, porque aún no hay un esquema indicado."
+  },
+  "redemittel.4": {
+   "fr": "La plaie a été photographiée et couverte d'un pansement stérile.",
+   "de": "Die Wunde wurde fotografiert und steril abgedeckt.",
+   "es": "La herida fue fotografiada y cubierta con un apósito estéril."
+  },
+  "redemittel.5": {
+   "fr": "Son risque de chute est augmenté.",
+   "de": "Ihr Sturzrisiko ist erhöht.",
+   "es": "Su riesgo de caída está aumentado."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous prescrire et signer le traitement personnel, s'il vous plaît ?",
+   "de": "Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?",
+   "es": "¿Podría indicar y firmar la medicación habitual, por favor?"
+  },
+  "redemittel.7": {
+   "fr": "J'aimerais demander le conseil en diabétologie.",
+   "de": "Ich würde gern die Diabetesberatung anmelden.",
+   "es": "Me gustaría solicitar el servicio de educación en diabetes."
+  },
+  "redemittel.8": {
+   "fr": "La levée du secret professionnel pour la fille est au dossier.",
+   "de": "Eine Schweigepflichtentbindung für die Tochter liegt vor.",
+   "es": "Hay una autorización para dar información a la hija."
+  },
+  "noeuds.anfang.dit.0.recit": {
+   "fr": "Douze heures trente, au poste de soins. {sommer} revient des urgences, une tasse de café à la main. {elif} a devant elle la fiche d'admission de {lehmann}.",
+   "es": "Las doce y media, en la estación de enfermería. {sommer} regresa de urgencias, con una taza de café en la mano. {elif} tiene delante la hoja de ingreso {lehmann:de}."
+  },
+  "noeuds.anfang.dit.1": {
+   "fr": "{elif}, c'est vous qui avez fait l'admission de la quatorze ? Je vais la voir tout de suite. Qu'est-ce que je dois savoir avant ?",
+   "de": "{elif}, Sie haben die Aufnahme in der Vierzehn gemacht? Ich gehe gleich zu ihr. Was muss ich vorher wissen?",
+   "es": "{elif}, ¿usted hizo el ingreso de la catorce? Voy a verla enseguida. ¿Qué tengo que saber antes?"
+  },
+  "noeuds.anfang.choix.0": {
+   "fr": "Oui. Chambre 14, {lehmann}, 74 ans. Elle est arrivée aujourd'hui à 10 h 15, adressée par sa médecin traitante, pour un ulcère de l'avant-pied droit. Elle a un diabète de type 2 depuis quinze ans et s'injecte de l'insuline.",
+   "de": "Ja. Zimmer 14, {lehmann}, 74 Jahre. Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. Sie hat seit fünfzehn Jahren Diabetes Typ 2 und spritzt Insulin.",
+   "es": "Sí. Habitación 14, {lehmann}, 74 años. Llegó hoy a las 10:15 h, enviada por su médica de cabecera, por una úlcera en el antepié derecho. Tiene diabetes tipo 2 desde hace quince años y se inyecta insulina."
+  },
+  "noeuds.anfang.choix.0.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "es": "Bien. ¿Cómo estaban los signos vitales?"
+  },
+  "noeuds.anfang.choix.1": {
+   "fr": "{lehmann}, 74 ans, a été adressée ce matin par sa médecin traitante. Le motif d'admission est un ulcère de l'avant-pied droit, sur un diabète de type 2 traité par insuline depuis quinze ans.",
+   "de": "{lehmann}, 74 Jahre, wurde heute Vormittag von ihrer Hausärztin eingewiesen. Aufnahmegrund ist ein Ulkus am rechten Vorfuß bei einem Diabetes Typ 2, der seit fünfzehn Jahren mit Insulin behandelt wird.",
+   "es": "{lehmann}, 74 años, fue enviada hoy en la mañana por su médica de cabecera. El motivo de ingreso es una úlcera en el antepié derecho, con una diabetes tipo 2 tratada con insulina desde hace quince años."
+  },
+  "noeuds.anfang.choix.1.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "es": "Bien. ¿Cómo estaban los signos vitales?"
+  },
+  "noeuds.anfang.choix.2": {
+   "fr": "Quatorze : ulcère avant-pied dr., DT, sinon RAS.",
+   "de": "Vierzehn: Ulkus Vorfuß re., DM, sonst o. B.",
+   "es": "Catorce: úlcera antepié der., DM, resto s/p."
+  },
+  "noeuds.anfang.choix.2.puis.0": {
+   "fr": "« RAS », pour une nouvelle admission que je n'ai pas encore vue ? En phrases complètes, s'il vous plaît.",
+   "de": "„O. B.“, bei einer Neuaufnahme, die ich noch nicht gesehen habe? In ganzen Sätzen, bitte.",
+   "es": "¿«S/p», en un ingreso nuevo que todavía no he visto? Con oraciones completas, por favor."
+  },
+  "noeuds.anfang.choix.2.aide": {
+   "fr": "<b>Le style télégraphique est pour la fiche ; à l'oral, une admission se présente en phrases.</b> Qui (nom, âge, chambre), depuis quand, envoyée par qui, pourquoi : « Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. » Et « o. B. » (rien de particulier) ne résume pas un patient qu'on présente.",
+   "es": "<b>El estilo telegráfico es para la hoja; de palabra, un ingreso se presenta con oraciones.</b> Quién (nombre, edad, habitación), desde cuándo, enviada por quién, por qué: «Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß.» Y «o. B.» (sin particularidades) no resume a un paciente que se está presentando."
+  },
+  "noeuds.vital.choix.0": {
+   "fr": "Tension 150 sur 85, pouls 78 et régulier, température 36,8 degrés. J'ai mesuré la glycémie à onze heures : 245 milligrammes par décilitre.",
+   "de": "Blutdruck 150 zu 85, Puls 78 und regelmäßig, Temperatur 36,8 Grad. Den Blutzucker habe ich um elf Uhr gemessen: 245 Milligramm pro Deziliter.",
+   "es": "Presión arterial 150 sobre 85, pulso 78 y regular, temperatura 36,8 grados. Medí la glucemia a las once: 245 miligramos por decilitro."
+  },
+  "noeuds.vital.choix.0.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "es": "Doscientos cuarenta y cinco, eso está demasiado alto. ¿Ya le puso insulina?"
+  },
+  "noeuds.vital.choix.1": {
+   "fr": "La tension était un peu élevée, à 150 sur 85 ; une hypertension est connue. Pouls 78, pas de fièvre, 36,8 degrés. Glycémie à onze heures : 245.",
+   "de": "Der Blutdruck war mit 150 zu 85 etwas erhöht; eine Hypertonie ist bekannt. Puls 78, kein Fieber, 36,8 Grad. Blutzucker um elf Uhr: 245.",
+   "es": "La presión arterial estaba un poco elevada, 150 sobre 85; tiene una hipertensión conocida. Pulso 78, sin fiebre, 36,8 grados. Glucemia a las once: 245."
+  },
+  "noeuds.vital.choix.1.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "es": "Doscientos cuarenta y cinco, eso está demasiado alto. ¿Ya le puso insulina?"
+  },
+  "noeuds.vital.choix.2": {
+   "fr": "Les valeurs étaient toutes normales, je crois. Juste le sucre était un peu élevé.",
+   "de": "Die Werte waren eigentlich alle normal, glaube ich. Nur der Zucker war ein bisschen hoch.",
+   "es": "Los valores estaban todos normales, creo. Solo el azúcar estaba un poco alto."
+  },
+  "noeuds.vital.choix.2.puis.0": {
+   "fr": "« Je crois » et « un peu » ? Qu'est-ce qu'il y a sur la fiche ?",
+   "de": "„Glaube ich“ und „ein bisschen“? Was steht denn auf dem Bogen?",
+   "es": "¿«Creo» y «un poco»? ¿Qué dice la hoja?"
+  },
+  "noeuds.vital.choix.2.aide": {
+   "fr": "<b>À une médecin, on donne les valeurs, avec l'heure et l'unité, pas une impression.</b> « Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter. » « Normal » et « un peu », c'est à elle d'en juger.",
+   "es": "<b>A una médica se le dan los valores, con la hora y la unidad, no una impresión.</b> «Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter.» «Normal» y «un poco»: eso le toca juzgarlo a ella."
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "Non. Aucun schéma n'est encore prescrit, c'est pourquoi je n'ai rien donné. Son insuline, elle l'a faite ce matin à sept heures à la maison.",
+   "de": "Nein. Es ist noch kein Schema angeordnet, deshalb habe ich nichts gegeben. Ihr Insulin hat sie heute Morgen um sieben zu Hause gespritzt.",
+   "es": "No. Todavía no hay un esquema indicado, por eso no le puse nada. Su insulina se la inyectó hoy a las siete de la mañana en su casa."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "es": "Así está bien. Enseguida indico un esquema. ¿Trae un plan de medicación?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "Pas encore, parce qu'il n'y a encore aucune prescription pour elle. Selon ses propres dires, elle a fait sa dose du matin à sept heures à la maison.",
+   "de": "Noch nicht, weil für sie noch keine Anordnung vorliegt. Die Morgendosis hat sie laut eigener Aussage um sieben Uhr zu Hause gespritzt.",
+   "es": "Todavía no, porque aún no hay ninguna indicación para ella. Según lo que ella misma dice, se inyectó la dosis de la mañana a las siete en su casa."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "es": "Así está bien. Enseguida indico un esquema. ¿Trae un plan de medicación?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "Oui, je lui ai déjà donné quatre unités. Ça convient en général.",
+   "de": "Ja, ich habe ihr schon mal vier Einheiten gegeben. Das passt meistens.",
+   "es": "Sí, ya le puse cuatro unidades. Casi siempre es lo adecuado."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "Sans prescription ? Ce n'est pas possible, {elif}. Qui l'a prescrit ?",
+   "de": "Ohne Anordnung? Das geht nicht, {elif}. Wer hat das verordnet?",
+   "es": "¿Sin indicación? Eso no puede ser, {elif}. ¿Quién lo indicó?"
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Pas d'insuline sans prescription, même quand la glycémie est haute.</b> On donne la valeur à la médecin et on attend le schéma : « Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist. » « Ça convient en général » ne vaut rien pour une patiente qu'on ne connaît pas.",
+   "es": "<b>Nada de insulina sin indicación médica, aunque la glucemia esté alta.</b> Se le da el valor a la médica y se espera el esquema: «Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.» «Casi siempre es lo adecuado» no vale nada con una paciente que no se conoce."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Oui, le plan de sa médecin traitante est dans le dossier : insuline matin et soir, la dose a été modifiée la semaine dernière, et un comprimé contre l'hypertension. Elle-même n'était pas sûre de sa dose d'insuline, c'est pourquoi je me suis fiée au plan.",
+   "de": "Ja, der Plan ihrer Hausärztin liegt in der Akte: Insulin morgens und abends, die Dosis wurde letzte Woche geändert, und eine Tablette gegen den Bluthochdruck. Sie selbst war bei der Insulindosis unsicher, deshalb habe ich mich an den Plan gehalten.",
+   "es": "Sí, el plan de su médica de cabecera está en el expediente: insulina en la mañana y en la noche, la dosis se cambió la semana pasada, y una tableta para la presión alta. Ella misma no estaba segura de la dosis de insulina, por eso me guié por el plan."
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "es": "Qué bueno que tomó el plan. ¿Y el pie?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Son plan de médicaments est dans le dossier. Elle s'injecte de l'insuline matin et soir et prend un médicament pour la tension. Comme elle n'était pas sûre de la nouvelle dose, je n'ai repris que le plan, pas ce qu'elle m'a dit.",
+   "de": "Ihr Medikamentenplan ist in der Akte. Sie spritzt morgens und abends Insulin und nimmt ein Blutdruckmittel. Weil sie sich bei der neuen Dosis nicht sicher war, habe ich nur den Plan übernommen, nicht ihre Angabe.",
+   "es": "Su plan de medicación está en el expediente. Se inyecta insulina en la mañana y en la noche y toma un medicamento para la presión. Como no estaba segura de la dosis nueva, solo tomé lo del plan, no lo que ella me dijo."
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "es": "Qué bueno que tomó el plan. ¿Y el pie?"
+  },
+  "noeuds.medikamente.choix.2": {
+   "fr": "Elle s'injecte douze ou quatorze unités, elle ne savait pas exactement. J'ai noté douze, pour l'instant.",
+   "de": "Sie spritzt zwölf oder vierzehn Einheiten, sie wusste es nicht genau. Ich habe mal zwölf aufgeschrieben.",
+   "es": "Se inyecta doce o catorce unidades, no lo sabía con exactitud. Anoté doce, por ahora."
+  },
+  "noeuds.medikamente.choix.2.puis.0": {
+   "fr": "« Douze, pour l'instant » ? Il n'y a pas de plan de la médecin traitante ?",
+   "de": "„Mal zwölf“? Gibt es denn keinen Plan von der Hausärztin?",
+   "es": "¿«Doce, por ahora»? ¿No hay un plan de la médica de cabecera?"
+  },
+  "noeuds.medikamente.choix.2.aide": {
+   "fr": "<b>Une dose dont la patiente n'est pas sûre ne se rapporte pas comme un fait : on dit d'où vient l'information.</b> Ici, le plan de la médecin traitante fait foi : « Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher. »",
+   "es": "<b>Una dosis de la que la paciente no está segura no se reporta como un hecho: se dice de dónde viene la información.</b> Aquí, lo que vale es el plan de la médica de cabecera: «Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Un ulcère de l'avant-pied droit, d'environ deux centimètres sur un et demi. Le bord est légèrement rouge, pas de pus, pas d'odeur. La plaie a été photographiée et couverte d'un pansement stérile. Elle n'a presque pas mal, un sur dix, parce qu'elle sent peu ses pieds.",
+   "de": "Ein Ulkus am rechten Vorfuß, etwa zwei mal anderthalb Zentimeter. Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch. Die Wunde wurde fotografiert und steril abgedeckt. Schmerzen hat sie kaum, eine Eins, weil sie die Füße wenig spürt.",
+   "es": "Una úlcera en el antepié derecho, de unos dos centímetros por uno y medio. El borde está ligeramente enrojecido, sin pus, sin olor. La herida fue fotografiada y cubierta con un apósito estéril. Casi no tiene dolor, un uno de diez, porque siente poco los pies."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "es": "Enseguida la reviso. ¿Alergias?"
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "La plaie mesure environ deux centimètres sur un et demi, le bord est légèrement rouge, elle n'est pas fibrineuse et ne sent pas. Elle a été photographiée et couverte d'un pansement stérile, et la chaussure de décharge est mise.",
+   "de": "Die Wunde ist etwa zwei mal anderthalb Zentimeter groß, der Rand ist leicht gerötet, sie ist nicht belegt und riecht nicht. Sie ist fotografiert und mit einem sterilen Verband versorgt worden, und der Verbandsschuh ist angezogen.",
+   "es": "La herida mide unos dos centímetros por uno y medio, el borde está ligeramente enrojecido, no tiene fibrina y no huele. Fue fotografiada y cubierta con un vendaje estéril, y tiene puesto el zapato de descarga."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "es": "Enseguida la reviso. ¿Alergias?"
+  },
+  "noeuds.wunde.choix.2": {
+   "fr": "La plaie est infectée. Elle a sûrement besoin d'un antibiotique.",
+   "de": "Die Wunde ist entzündet. Sie braucht bestimmt ein Antibiotikum.",
+   "es": "La herida está infectada. Seguro necesita un antibiótico."
+  },
+  "noeuds.wunde.choix.2.puis.0": {
+   "fr": "Ça, je le déciderai quand je l'aurai vue. Décrivez-moi, s'il vous plaît, ce que vous avez vu.",
+   "de": "Das entscheide ich, wenn ich sie gesehen habe. Beschreiben Sie mir bitte, was Sie gesehen haben.",
+   "es": "Eso lo decido yo cuando la haya visto. Descríbame, por favor, lo que usted vio."
+  },
+  "noeuds.wunde.choix.2.aide": {
+   "fr": "<b>Décris la plaie, ne pose pas de diagnostic.</b> Taille, bord, pus, odeur : « Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch. » Puis ce qui a été fait, au passif : « Die Wunde wurde fotografiert und steril abgedeckt. » Le diagnostic et le traitement reviennent à la médecin.",
+   "es": "<b>Describe la herida, no hagas un diagnóstico.</b> Tamaño, borde, pus, olor: «Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch.» Luego lo que se hizo, en pasiva: «Die Wunde wurde fotografiert und steril abgedeckt.» El diagnóstico y el tratamiento le corresponden a la médica."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Aucune connue. J'ai demandé expressément pour les médicaments, les pansements et les aliments.",
+   "de": "Keine bekannt. Ich habe ausdrücklich nach Medikamenten, Pflastern und Lebensmitteln gefragt.",
+   "es": "Ninguna conocida. Pregunté expresamente por medicamentos, cintas adhesivas y alimentos."
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "es": "Bien. ¿Cómo se moviliza?"
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Aucune allergie connue, pas non plus aux pansements ni aux désinfectants. J'ai demandé exprès.",
+   "de": "Allergien sind keine bekannt, auch nicht gegen Pflaster oder Desinfektionsmittel. Ich habe extra nachgefragt.",
+   "es": "No se conocen alergias, tampoco a las cintas adhesivas ni a los desinfectantes. Lo pregunté a propósito."
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "es": "Bien. ¿Cómo se moviliza?"
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Je n'ai pas demandé directement, mais elle n'a rien dit.",
+   "de": "Ich habe nicht direkt gefragt, aber sie hat nichts gesagt.",
+   "es": "No le pregunté directamente, pero no dijo nada."
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Alors on ne le sait pas. Demandez-lui, s'il vous plaît, avant que je prescrive quoi que ce soit.",
+   "de": "Dann wissen wir es nicht. Fragen Sie bitte nach, bevor ich etwas anordne.",
+   "es": "Entonces no lo sabemos. Pregúntele, por favor, antes de que yo indique algo."
+  },
+  "noeuds.allergien.choix.2.aide": {
+   "fr": "<b>« Elle n'a rien dit » n'est pas « aucune allergie » : une allergie se demande, toujours.</b> Médicaments, pansements, aliments. Puis on rapporte : « Keine bekannt. Ich habe ausdrücklich nachgefragt. »",
+   "es": "<b>«No dijo nada» no es «ninguna alergia»: por una alergia se pregunta, siempre.</b> Medicamentos, cintas adhesivas, alimentos. Luego se reporta: «Keine bekannt. Ich habe ausdrücklich nachgefragt.»"
+  },
+  "noeuds.sturz.choix.0": {
+   "fr": "Elle marche avec une canne et porte la chaussure de décharge à droite. À cause de la polyneuropathie, et parce qu'elle va deux fois aux toilettes la nuit, son risque de chute est augmenté. Le lit a été mis en position basse, la sonnette lui a été expliquée, et la nuit une veilleuse reste allumée.",
+   "de": "Sie geht mit einem Gehstock und trägt rechts den Verbandsschuh. Wegen der Polyneuropathie und weil sie nachts zweimal zur Toilette geht, ist ihr Sturzrisiko erhöht. Das Bett wurde ganz nach unten gestellt, die Klingel ist erklärt, und nachts bleibt ein Licht an.",
+   "es": "Camina con bastón y usa el zapato de descarga en el pie derecho. Por la polineuropatía, y porque va dos veces al baño en la noche, su riesgo de caída está aumentado. Se bajó la cama al máximo, se le explicó el timbre, y en la noche se queda una luz encendida."
+  },
+  "noeuds.sturz.choix.0.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "es": "Muy bien. ¿Y la piel?"
+  },
+  "noeuds.sturz.choix.1": {
+   "fr": "Avec sa canne, elle se déplace seule. Elle risque quand même de tomber : elle sent peu ses pieds, porte la chaussure de décharge et se lève deux fois la nuit. Lit en position basse, sonnette à portée de main, veilleuse allumée.",
+   "de": "Mit dem Gehstock ist sie selbstständig mobil. Sturzgefährdet ist sie trotzdem: Sie spürt die Füße wenig, trägt den Verbandsschuh und steht nachts zweimal auf. Bett tief gestellt, Klingel in Reichweite, Nachtlicht an.",
+   "es": "Con el bastón se moviliza sola. Aun así tiene riesgo de caerse: siente poco los pies, usa el zapato de descarga y se levanta dos veces en la noche. Cama en la posición más baja, timbre al alcance de la mano, luz de noche encendida."
+  },
+  "noeuds.sturz.choix.1.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "es": "Muy bien. ¿Y la piel?"
+  },
+  "noeuds.sturz.choix.2": {
+   "fr": "Elle marche bien toute seule. Il n'y a pas de problème.",
+   "de": "Sie läuft gut allein. Da gibt es kein Problem.",
+   "es": "Camina bien sola. Ahí no hay ningún problema."
+  },
+  "noeuds.sturz.choix.2.puis.0": {
+   "fr": "Avec une polyneuropathie et une chaussure de décharge ? Et la nuit ?",
+   "de": "Mit einer Polyneuropathie und einem Verbandsschuh? Und nachts?",
+   "es": "¿Con una polineuropatía y un zapato de descarga? ¿Y en la noche?"
+  },
+  "noeuds.sturz.choix.2.aide": {
+   "fr": "<b>« Elle marche bien » ne dit rien du risque : nomme les facteurs, puis les mesures.</b> Canne, chaussure de décharge, pieds qui sentent mal, levers la nuit : « Ihr Sturzrisiko ist erhöht. » Puis ce qui a été fait : lit en bas, sonnette, veilleuse.",
+   "es": "<b>«Camina bien» no dice nada del riesgo: nombra los factores, y luego las medidas.</b> Bastón, zapato de descarga, pies con poca sensibilidad, levantarse en la noche: «Ihr Sturzrisiko ist erhöht.» Luego lo que se hizo: cama abajo, timbre, luz de noche."
+  },
+  "noeuds.haut.choix.0": {
+   "fr": "La peau est sèche, surtout aux jambes, mais intacte. Pas d'escarre, et selon l'échelle de Braden, elle n'a pas de risque accru.",
+   "de": "Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt. Kein Dekubitus, und nach der Braden-Skala hat sie kein erhöhtes Risiko.",
+   "es": "La piel está seca, sobre todo en las piernas, pero intacta. No hay úlcera por presión, y según la escala de Braden no tiene un riesgo aumentado."
+  },
+  "noeuds.haut.choix.0.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "es": "Bien. ¿Queda algo pendiente?"
+  },
+  "noeuds.haut.choix.1": {
+   "fr": "Sèche sur les deux jambes, intacte par ailleurs, pas de rougeur d'appui. D'après l'échelle de Braden, il n'y a pas de risque d'escarre.",
+   "de": "Trocken an beiden Unterschenkeln, sonst intakt, keine Druckstellen. Ein Dekubitusrisiko besteht laut Braden-Skala nicht.",
+   "es": "Seca en las dos piernas, por lo demás intacta, sin zonas de presión. Según la escala de Braden no hay riesgo de úlcera por presión."
+  },
+  "noeuds.haut.choix.1.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "es": "Bien. ¿Queda algo pendiente?"
+  },
+  "noeuds.haut.choix.2": {
+   "fr": "La peau est assez mauvaise.",
+   "de": "Die Haut ist ziemlich schlecht.",
+   "es": "La piel está bastante mal."
+  },
+  "noeuds.haut.choix.2.puis.0": {
+   "fr": "Mauvaise ? Ça veut dire quoi exactement : sèche, rouge, ouverte ?",
+   "de": "Schlecht? Was heißt das genau: trocken, gerötet, offen?",
+   "es": "¿Mal? ¿Qué quiere decir exactamente: seca, enrojecida, abierta?"
+  },
+  "noeuds.haut.choix.2.aide": {
+   "fr": "<b>« Mauvaise » est un jugement ; la médecin a besoin d'une description.</b> Où, comment, intacte ou non : « Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt. »",
+   "es": "<b>«Mal» es un juicio; la médica necesita una descripción.</b> Dónde, cómo, intacta o no: «Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt.»"
+  },
+  "noeuds.offen.choix.0": {
+   "fr": "Deux choses. Pourriez-vous, s'il vous plaît, prescrire et signer le traitement personnel et le schéma d'insuline ? Et j'aimerais demander le conseil en diabétologie, parce qu'elle aime les sucreries.",
+   "de": "Zwei Dinge. Könnten Sie bitte die Hausmedikation und das Insulinschema anordnen und unterschreiben? Und ich würde gern die Diabetesberatung anmelden, weil sie gern Süßes isst.",
+   "es": "Dos cosas. ¿Podría, por favor, indicar y firmar la medicación habitual y el esquema de insulina? Y me gustaría solicitar el servicio de educación en diabetes, porque le gusta comer cosas dulces."
+  },
+  "noeuds.offen.choix.0.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "es": "Lo hago en cuanto la haya visto. Solicite la educación en diabetes, por favor. ¿Algo más?"
+  },
+  "noeuds.offen.choix.1": {
+   "fr": "Oui. Le traitement personnel n'est pas encore prescrit ; pour ça, j'aurais besoin de votre signature. Je propose aussi de faire appel au conseil en diabétologie : elle a dit elle-même qu'elle aimait les sucreries.",
+   "de": "Ja. Die Hausmedikation ist noch nicht angeordnet; dafür bräuchte ich Ihre Unterschrift. Außerdem schlage ich vor, die Diabetesberatung einzuschalten: Sie hat selbst gesagt, dass sie gern Süßes isst.",
+   "es": "Sí. La medicación habitual todavía no está indicada; para eso necesitaría su firma. Además, propongo llamar al servicio de educación en diabetes: ella misma dijo que le gusta comer cosas dulces."
+  },
+  "noeuds.offen.choix.1.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "es": "Lo hago en cuanto la haya visto. Solicite la educación en diabetes, por favor. ¿Algo más?"
+  },
+  "noeuds.offen.choix.2": {
+   "fr": "Non, tout est fait.",
+   "de": "Nein, es ist alles erledigt.",
+   "es": "No, ya está todo hecho."
+  },
+  "noeuds.offen.choix.2.puis.0": {
+   "fr": "Et le traitement personnel ? Il n'est pas encore prescrit.",
+   "de": "Und die Hausmedikation? Die ist doch noch gar nicht angeordnet.",
+   "es": "¿Y la medicación habitual? Si todavía ni está indicada."
+  },
+  "noeuds.offen.choix.2.aide": {
+   "fr": "<b>Un bon rapport finit par ce qui reste à faire, et par qui.</b> « Könnten Sie die Hausmedikation bitte anordnen und unterschreiben? » Tant que ce n'est pas prescrit et signé, l'équipe ne peut pas donner le traitement de la patiente.",
+   "es": "<b>Un buen reporte termina con lo que queda pendiente, y a quién le toca.</b> «Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?» Mientras no esté indicada y firmada, el equipo no puede darle su medicación a la paciente."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Juste une chose encore : sa fille, {lehmann_tochter}, vient tous les jours. La levée du secret professionnel pour elle est au dossier.",
+   "de": "Nur noch eins: Ihre Tochter, {lehmann_tochter}, kommt jeden Tag. Eine Schweigepflichtentbindung für sie liegt vor.",
+   "es": "Solo una cosa más: su hija, {lehmann_tochter}, viene todos los días. Hay una autorización para darle información."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "es": "Es bueno saberlo. Gracias, {elif}, fue una entrega completa. Ahora voy a verla."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Oui : la fille peut être informée, la levée du secret professionnel est dans le dossier. Elle vient cet après-midi.",
+   "de": "Ja: Die Tochter darf informiert werden, die Schweigepflichtentbindung ist in der Akte. Sie kommt heute Nachmittag.",
+   "es": "Sí: se puede informar a la hija, la autorización para dar información está en el expediente. Viene hoy en la tarde."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "es": "Es bueno saberlo. Gracias, {elif}, fue una entrega completa. Ahora voy a verla."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "La fille a le droit de tout savoir, je crois.",
+   "de": "Die Tochter darf alles wissen, glaube ich.",
+   "es": "La hija puede saberlo todo, creo."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "« Je crois » ? La levée du secret est au dossier, oui ou non ?",
+   "de": "„Glaube ich“? Liegt eine Schweigepflichtentbindung vor oder nicht?",
+   "es": "¿«Creo»? ¿Hay una autorización para dar información o no?"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Le secret professionnel ne se devine pas : on vérifie le dossier.</b> « Eine Schweigepflichtentbindung für die Tochter liegt vor. » Sans ce papier, l'équipe ne peut rien dire à la famille.",
+   "es": "<b>El secreto profesional no se adivina: se revisa el expediente.</b> «Eine Schweigepflichtentbindung für die Tochter liegt vor.» Sin ese papel, el equipo no puede decirle nada a la familia."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle était la glycémie à onze heures ?",
+   "de": "Wie hoch war der Blutzucker um elf Uhr?",
+   "es": "¿Cuánto tenía de glucemia a las once?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Cent quarante.",
+   "de": "Hundertvierzig.",
+   "es": "Ciento cuarenta."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Deux cent quarante-cinq.",
+   "de": "Zweihundertfünfundvierzig.",
+   "es": "Doscientos cuarenta y cinco."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Cent quatre-vingts.",
+   "de": "Hundertachtzig.",
+   "es": "Ciento ochenta."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {elif} n'a-t-elle pas encore donné d'insuline ?",
+   "de": "Warum hat {elif} noch kein Insulin gegeben?",
+   "es": "¿Por qué {elif} todavía no ha puesto insulina?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Weil noch kein Schema angeordnet ist.",
+   "es": "Porque aún no hay un esquema indicado."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Parce que la glycémie était normale.",
+   "de": "Weil der Blutzucker normal war.",
+   "es": "Porque la glucemia estaba normal."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Parce que {lehmann} ne voulait pas d'insuline.",
+   "de": "Weil {lehmann} kein Insulin wollte.",
+   "es": "Porque {lehmann} no quería insulina."
+  },
+  "ecouter.2.q": {
+   "fr": "Pourquoi le risque de chute de {lehmann} est-il augmenté ?",
+   "de": "Warum ist das Sturzrisiko von {lehmann} erhöht?",
+   "es": "¿Por qué está aumentado el riesgo de caída {lehmann:de}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Parce qu'elle prend des somnifères.",
+   "de": "Weil sie Schlafmittel nimmt.",
+   "es": "Porque toma pastillas para dormir."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Parce qu'elle voit mal et n'a pas de lunettes.",
+   "de": "Weil sie schlecht sieht und keine Brille hat.",
+   "es": "Porque ve mal y no tiene lentes."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À cause de la polyneuropathie, de la chaussure de décharge et parce qu'elle se lève la nuit.",
+   "de": "Wegen der Polyneuropathie, des Verbandsschuhs und weil sie nachts aufsteht.",
+   "es": "Por la polineuropatía, por el zapato de descarga y porque se levanta en la noche."
+  },
+  "ecouter.3.q": {
+   "fr": "Que demande {elif} à la fin ?",
+   "de": "Worum bittet {elif} am Ende?",
+   "es": "¿Qué pide {elif} al final?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Que {sommer} appelle la fille.",
+   "de": "Dass {sommer} die Tochter anruft.",
+   "es": "Que {sommer} llame a la hija."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Que {sommer} prescrive et signe le traitement personnel.",
+   "de": "Dass {sommer} die Hausmedikation anordnet und unterschreibt.",
+   "es": "Que {sommer} indique y firme la medicación habitual."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Que {sommer} fasse le pansement.",
+   "de": "Dass {sommer} die Wunde verbindet.",
+   "es": "Que {sommer} cubra la herida."
+  }
+ }
+}

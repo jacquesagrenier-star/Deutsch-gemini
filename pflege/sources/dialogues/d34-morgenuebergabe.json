@@ -1,0 +1,162 @@
+{
+ "id": "d34-morgenuebergabe",
+ "numero": 34,
+ "niveau": "A2",
+ "porte": "commence",
+ "registre": "du",
+ "lieu": "klinikum",
+ "scene_annexe": 4,
+ "role": "elif",
+ "personnes": ["yusuf"],
+ "titre": {"t": "Die Übergabe am Morgen: nachfragen", "fr": "La relève du matin : redemander"},
+ "intro": {"fr": "Vendredi 13 novembre, six heures. {yusuf} a fait la nuit, il est fatigué et il parle vite. {elif} commence le service du matin. Il y a un patient nouveau. Entre collègues, on se dit « du ». Tu joues {elif} : écoute bien, et quand tu n'as pas compris, demande. Ne devine jamais."},
+ "but": {"fr": "Écouter une relève courte ; redemander ce qu'on n'a pas compris : « Wie bitte? », « Welches Zimmer? », « Um wie viel Uhr? », « Kannst du das bitte wiederholen? » ; demander le sens d'un mot ; relire ses notes à la fin."},
+ "grammaire": ["g21", "g06"],
+ "telc": ["hoeren", "oral-1"],
+ "relire_notes": {"fr": "{pohl} : admis à 23 h 30 par les urgences (calculs biliaires), opéré à 8 h, à jeun depuis minuit (rien manger, rien boire, ne pas fumer : selon le protocole de l'anesthésie) ; {lehmann} : kaliémie de contrôle 5,4 mmol/l, résultat à 22 h (la veille 6,2, dialogue 19 ; seuil d'appel 6, dialogue 27) : « mieux », encore un peu haut, à signaler à la médecin à la visite ? ; {brandt} : nuit calme, pas de douleur."},
+ "redemittel": [
+  {"t": "Das war zu schnell. Kannst du das bitte wiederholen?", "fr": "C'était trop rapide. Tu peux répéter, s'il te plaît ?", "fonction": "redemander"},
+  {"t": "Wie bitte? Welches Zimmer?", "fr": "Pardon ? Quelle chambre ?", "fonction": "redemander"},
+  {"t": "Um wie viel Uhr ist die Operation?", "fr": "L'opération est à quelle heure ?", "fonction": "demander"},
+  {"t": "Was bedeutet „nüchtern“?", "fr": "Que veut dire « nüchtern » (à jeun) ?", "fonction": "redemander"},
+  {"t": "Kannst du die Zahl bitte noch einmal sagen?", "fr": "Tu peux redire le chiffre, s'il te plaît ?", "fonction": "redemander"},
+  {"t": "Hat er geklingelt oder nicht?", "fr": "Il a sonné ou pas ?", "fonction": "redemander"},
+  {"t": "Ich lese vor, was ich notiert habe.", "fr": "Je relis ce que j'ai noté.", "fonction": "reformuler"},
+  {"t": "Danke dir! Schlaf gut!", "fr": "Merci ! Dors bien !", "fonction": "annoncer"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Six heures, au poste de soins. {yusuf} a les yeux rouges, il tient la liste de relève. {elif} pose son café."}},
+    {"qui": "yusuf", "air": "sourire", "t": "Guten Morgen, {elif}! Hast du was zum Schreiben? Wir haben einen Neuen.", "fr": "Bonjour, {elif} ! Tu as de quoi écrire ? On a un nouveau."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {yusuf}! Ja, ich schreibe mit.", "fr": "Bonjour, {yusuf} ! Oui, je prends des notes.", "va": "neu",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Gut. Also, der Neue heißt {pohl}, er ist heute Nacht von der Notaufnahme gekommen, mit Gallensteinen, und er wird heute …", "fr": "Bien. Alors, le nouveau s'appelle {pohl}, il est arrivé cette nuit des urgences, avec des calculs biliaires, et il va être aujourd'hui…"}]},
+    {"t": "Morgen! Moment, ich nehme einen Stift. So, ich höre.", "fr": "Salut ! Attends, je prends un stylo. Voilà, je t'écoute.", "va": "neu",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Gut. Also, der Neue heißt {pohl}, er ist heute Nacht von der Notaufnahme gekommen, mit Gallensteinen, und er wird heute …", "fr": "Bien. Alors, le nouveau s'appelle {pohl}, il est arrivé cette nuit des urgences, avec des calculs biliaires, et il va être aujourd'hui…"}]},
+    {"faux": true, "t": "Guten Morgen. Wie war Ihre Nacht?", "fr": "Bonjour. Comment s'est passée votre nuit ?",
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "„Ihre“ Nacht? Wir sagen doch du, {elif}!", "fr": "« Votre » nuit ? On se dit « du », {elif} !"}],
+     "aide": {"fr": "<b>Dans l'équipe, on se dit « du » : « Wie war deine Nacht? ».</b> Avec les patients, c'est « Sie ». Entre collègues, « Sie » sonne froid."}}
+   ]
+  },
+  "neu": {
+   "dit": [
+    {"recit": {"fr": "{yusuf} a parlé très vite. Tu as seulement compris « Notaufnahme ». Tu n'es pas sûre du nom."}}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, das war zu schnell. Kannst du das bitte wiederholen?", "fr": "Pardon, c'était trop rapide. Tu peux répéter, s'il te plaît ?", "va": "zimmer",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Klar, sorry. Langsam: Der Patient heißt {pohl}. Er hat Gallensteine. Er liegt in Zimmer fünfzehn.", "fr": "Bien sûr, pardon. Lentement : le patient s'appelle {pohl}. Il a des calculs biliaires. Il est dans la chambre quinze."}]},
+    {"t": "Langsam, bitte! Wie heißt der Patient?", "fr": "Plus lentement, s'il te plaît ! Comment s'appelle le patient ?", "va": "zimmer",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Klar, sorry. Langsam: Der Patient heißt {pohl}. Er hat Gallensteine. Er liegt in Zimmer fünfzehn.", "fr": "Bien sûr, pardon. Lentement : le patient s'appelle {pohl}. Il a des calculs biliaires. Il est dans la chambre quinze."}]},
+    {"faux": true, "t": "Ja, ja. Okay.", "fr": "Oui, oui. D'accord.",
+     "puis": [{"qui": "yusuf", "air": "question", "t": "Okay? Dann sag mal: Wie heißt der Patient?", "fr": "D'accord ? Alors dis-moi : comment s'appelle le patient ?"}],
+     "aide": {"fr": "<b>Ne fais pas semblant d'avoir compris.</b> À la relève, ce que tu n'as pas entendu manque ensuite au patient. Dis-le : « Das war zu schnell. Kannst du das bitte wiederholen? »"}}
+   ]
+  },
+  "zimmer": {
+   "dit": [
+    {"recit": {"fr": "Au même moment, une sonnette retentit dans le couloir. Tu n'as pas entendu le numéro de la chambre : « fünfzehn » ou « fünfzig » ?"}}
+   ],
+   "choix": [
+    {"t": "Wie bitte? Welches Zimmer?", "fr": "Pardon ? Quelle chambre ?", "va": "op",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Fünfzehn. Eins, fünf. Er wird heute operiert.", "fr": "Quinze. Un, cinq. Il est opéré aujourd'hui."}]},
+    {"t": "Entschuldigung, in welchem Zimmer liegt er? Fünfzehn oder fünfzig?", "fr": "Pardon, il est dans quelle chambre ? Quinze ou cinquante ?", "va": "op",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Fünfzehn. Eins, fünf. Er wird heute operiert.", "fr": "Quinze. Un, cinq. Il est opéré aujourd'hui."}]},
+    {"faux": true, "t": "Zimmer fünfzig, okay.", "fr": "Chambre cinquante, d'accord.",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Fünfzig? So viele Zimmer haben wir gar nicht! Fünfzehn!", "fr": "Cinquante ? On n'a même pas autant de chambres ! Quinze !"}],
+     "aide": {"fr": "<b>Ne devine pas un chiffre : demande.</b> « fünfzehn » (15) et « fünfzig » (50) se ressemblent beaucoup. « Wie bitte? Welches Zimmer? » ou « Fünfzehn oder fünfzig? »"}}
+   ]
+  },
+  "op": {
+   "dit": [],
+   "choix": [
+    {"t": "Um wie viel Uhr ist die Operation?", "fr": "L'opération est à quelle heure ?", "va": "nuechtern",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Um acht Uhr. Er ist nüchtern, seit Mitternacht.", "fr": "À huit heures. Il est à jeun depuis minuit."}]},
+    {"t": "Wann genau? Um wie viel Uhr?", "fr": "Quand exactement ? À quelle heure ?", "va": "nuechtern",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Um acht Uhr. Er ist nüchtern, seit Mitternacht.", "fr": "À huit heures. Il est à jeun depuis minuit."}]},
+    {"faux": true, "t": "Wie lange ist die Operation?", "fr": "L'opération dure combien de temps ?",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Wie lange sie dauert? Keine Ahnung. Aber sie ist um acht.", "fr": "Combien de temps elle dure ? Aucune idée. Mais elle est à huit heures."}],
+     "aide": {"fr": "<b>« Wie lange? » demande une durée ; « Um wie viel Uhr? » demande l'heure.</b> Pour préparer le patient, tu as besoin de l'heure : « Um wie viel Uhr ist die Operation? »"}}
+   ]
+  },
+  "nuechtern": {
+   "dit": [
+    {"recit": {"fr": "Tu notes « 8 h ». Mais le mot « nüchtern », tu ne le connais pas bien."}}
+   ],
+   "choix": [
+    {"t": "Was bedeutet „nüchtern“?", "fr": "Que veut dire « nüchtern » ?", "va": "lehmann",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération."}]},
+    {"t": "„Nüchtern“? Das Wort kenne ich nicht. Kannst du es mir erklären?", "fr": "« Nüchtern » ? Je ne connais pas ce mot. Tu peux me l'expliquer ?", "va": "lehmann",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération."}]},
+    {"faux": true, "t": "Ah, nüchtern: Er trinkt keinen Alkohol. Gut.", "fr": "Ah, « nüchtern » : il ne boit pas d'alcool. Bien.",
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "Ha! Das auch. Aber hier heißt es: gar nichts essen und trinken.", "fr": "Ha ! Ça aussi. Mais ici, ça veut dire : ne rien manger et ne rien boire du tout."}],
+     "aide": {"fr": "<b>À l'hôpital, « nüchtern » veut dire « à jeun » : rien manger, rien boire.</b> Dans la vie de tous les jours, « nüchtern » veut aussi dire « pas ivre ». Un mot que tu ne connais pas, demande-le : « Was bedeutet …? »"}}
+   ]
+  },
+  "lehmann": {
+   "dit": [
+    {"qui": "yusuf", "air": "attentive", "t": "Dann {lehmann}, Zimmer vierzehn. Das Kalium war gestern zu hoch, das weißt du. Die Kontrolle ist besser: fünf Komma …", "fr": "Ensuite {lehmann}, chambre quatorze. Le potassium était trop élevé hier, tu le sais. Le contrôle est meilleur : cinq virgule…"},
+    {"recit": {"fr": "{yusuf} bâille au milieu du chiffre. Tu n'as pas entendu la fin."}}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, wie viel? Kannst du die Zahl bitte noch einmal sagen?", "fr": "Pardon, combien ? Tu peux redire le chiffre, s'il te plaît ?", "va": "brandt",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. Et elle a bien dormi."}]},
+    {"t": "Fünf Komma wie viel? Das habe ich nicht verstanden.", "fr": "Cinq virgule combien ? Je n'ai pas compris.", "va": "brandt",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. Et elle a bien dormi."}]},
+    {"faux": true, "t": "Fünf. Okay, dann ist alles gut.", "fr": "Cinq. D'accord, alors tout va bien.",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Nicht fünf: fünf Komma vier. Das ist ein Unterschied.", "fr": "Pas cinq : cinq virgule quatre. Ce n'est pas pareil."}],
+     "aide": {"fr": "<b>Une valeur se note en entier, avec ce qui vient après la virgule.</b> Si tu n'as pas entendu la fin, demande : « Kannst du die Zahl bitte noch einmal sagen? »"}}
+   ]
+  },
+  "brandt": {
+   "dit": [
+    {"qui": "yusuf", "air": "sourire", "t": "Und {brandt}, Zimmer zwölf: eine ruhige Nacht. Er hat nicht geklingelt.", "fr": "Et {brandt}, chambre douze : une nuit calme. Il n'a pas sonné."}
+   ],
+   "choix": [
+    {"t": "Er hat nicht geklingelt? Super. Und hatte er Schmerzen?", "fr": "Il n'a pas sonné ? Super. Et il a eu mal ?", "va": "notizen",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Nein, keine Schmerzen. Er hat durchgeschlafen.", "fr": "Non, pas de douleur. Il a dormi toute la nuit."}]},
+    {"t": "Also eine ruhige Nacht. Hatte er auch keine Schmerzen?", "fr": "Donc une nuit calme. Il n'a pas eu mal non plus ?", "va": "notizen",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Nein, keine Schmerzen. Er hat durchgeschlafen.", "fr": "Non, pas de douleur. Il a dormi toute la nuit."}]},
+    {"faux": true, "t": "Er hat geklingelt? Warum?", "fr": "Il a sonné ? Pourquoi ?",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Nein, er hat nicht geklingelt. Alles ruhig.", "fr": "Non, il n'a pas sonné. Tout était calme."}],
+     "aide": {"fr": "<b>Écoute bien le « nicht » : il change tout.</b> « Er hat nicht geklingelt » : il n'a pas sonné. Si tu n'es pas sûre, demande : « Hat er geklingelt oder nicht? »"}}
+   ]
+  },
+  "notizen": {
+   "dit": [
+    {"qui": "yusuf", "air": "question", "t": "Das war's. Hast du alles?", "fr": "C'est tout. Tu as tout ?"}
+   ],
+   "choix": [
+    {"t": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer 15, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier. {brandt}: ruhige Nacht.", "dit": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer fünfzehn, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier. {brandt}: ruhige Nacht.", "fr": "Je relis ce que j'ai noté : {pohl}, chambre 15, opération à huit heures, à jeun. {lehmann} : potassium cinq virgule quatre. {brandt} : nuit calme.", "va": "ende",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Perfekt. Alles richtig.", "fr": "Parfait. Tout est juste."}]},
+    {"t": "Moment, ich lese kurz vor: Zimmer 15, {pohl}, OP um acht Uhr, nüchtern. Zimmer 14, Kalium fünf Komma vier. Zimmer 12, alles ruhig. Stimmt das?", "dit": "Moment, ich lese kurz vor: Zimmer fünfzehn, {pohl}, OP um acht Uhr, nüchtern. Zimmer vierzehn, Kalium fünf Komma vier. Zimmer zwölf, alles ruhig. Stimmt das?", "fr": "Attends, je relis vite : chambre 15, {pohl}, opération à huit heures, à jeun. Chambre 14, potassium cinq virgule quatre. Chambre 12, tout calme. C'est juste ?", "va": "ende",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Perfekt. Alles richtig.", "fr": "Parfait. Tout est juste."}]},
+    {"faux": true, "t": "Ja, alles. {pohl}, Zimmer 15, Operation um neun.", "dit": "Ja, alles. {pohl}, Zimmer fünfzehn, Operation um neun.", "fr": "Oui, tout. {pohl}, chambre 15, opération à neuf heures.",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Um neun? Nein, um acht! Gut, dass du das gesagt hast.", "fr": "À neuf heures ? Non, à huit ! Heureusement que tu l'as dit."}],
+     "aide": {"fr": "<b>Relis tes notes à voix haute, en entier : c'est là qu'on trouve les erreurs.</b> L'opération est à huit heures. « Ich lese vor, was ich notiert habe: … »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "yusuf", "air": "sourire", "t": "Dann gehe ich jetzt nach Hause und schlafe.", "fr": "Alors je rentre à la maison et je vais dormir."}
+   ],
+   "choix": [
+    {"t": "Danke dir! Schlaf gut!", "fr": "Merci ! Dors bien !", "va": null,
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke! Einen guten Dienst!", "fr": "Merci ! Bon service !"}]},
+    {"t": "Danke, {yusuf}. Schlaf gut und bis morgen früh!", "fr": "Merci, {yusuf}. Dors bien et à demain matin !", "va": null,
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke! Einen guten Dienst!", "fr": "Merci ! Bon service !"}]},
+    {"faux": true, "t": "Danke. Auf Wiederhören!", "fr": "Merci. Au revoir ! (au téléphone)",
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "„Wiederhören“? Wir telefonieren doch nicht!", "fr": "« Wiederhören » ? On n'est pas au téléphone !"}],
+     "aide": {"fr": "<b>« Auf Wiederhören », c'est seulement au téléphone.</b> Face à face, on dit « Tschüss! » à un collègue, ou « Schlaf gut! » à quelqu'un qui rentre après la nuit."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "In welchem Zimmer liegt {pohl}?", "fr": "Dans quelle chambre est {pohl} ?"}, "options": [{"t": "In Zimmer fünfzehn.", "fr": "Dans la chambre quinze."}, {"t": "In Zimmer fünfzig.", "fr": "Dans la chambre cinquante."}, {"t": "In Zimmer zwölf.", "fr": "Dans la chambre douze."}], "juste": 0},
+  {"q": {"t": "Um wie viel Uhr wird {pohl} operiert?", "fr": "À quelle heure {pohl} est-il opéré ?"}, "options": [{"t": "Um neun Uhr.", "fr": "À neuf heures."}, {"t": "Um Mitternacht.", "fr": "À minuit."}, {"t": "Um acht Uhr.", "fr": "À huit heures."}], "juste": 2},
+  {"q": {"t": "Wie hoch ist das Kalium von {lehmann} jetzt?", "fr": "Quel est maintenant le potassium de {lehmann} ?"}, "options": [{"t": "Sechs Komma zwei.", "fr": "Six virgule deux."}, {"t": "Fünf Komma vier.", "fr": "Cinq virgule quatre."}, {"t": "Fünf.", "fr": "Cinq."}], "juste": 1},
+  {"q": {"t": "Wie war die Nacht von {brandt}?", "fr": "Comment s'est passée la nuit de {brandt} ?"}, "options": [{"t": "Ruhig, er hat nicht geklingelt.", "fr": "Calme, il n'a pas sonné."}, {"t": "Er hatte starke Schmerzen.", "fr": "Il avait très mal."}, {"t": "Er hat oft geklingelt.", "fr": "Il a souvent sonné."}], "juste": 0}
+ ]
+}
