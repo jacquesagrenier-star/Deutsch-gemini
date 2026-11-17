@@ -349,7 +349,29 @@ def compter():
         print("  %-20s %d" % (ch or "(titres)", n))
 
 
+def remplir(nom, reponses):
+    """Recopie dans un lot un fichier de réponses {id: {champ: texte}} (champs es_* seulement)."""
+    chemin = os.path.join(ES, nom if nom.endswith(".json") else nom + ".json")
+    donnees = json.load(io.open(chemin, encoding="utf-8"))
+    rep = json.load(io.open(reponses, encoding="utf-8"))
+    n = 0
+    for it in donnees["items"]:
+        for k, v in rep.get(it["id"], {}).items():
+            if k in it and k.startswith("es_"):
+                it[k] = v
+                n += 1
+            else:
+                print("  ignore :", it["id"], k)
+    inconnus = set(rep) - {it["id"] for it in donnees["items"]}
+    for i in sorted(inconnus):
+        print("  id inconnu :", i)
+    json.dump(donnees, io.open(chemin, "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)
+    print("%s : %d champs recopies" % (nom, n))
+
+
 if __name__ == "__main__":
     if sys.argv[1] == "verifier":
         sys.exit(verifier(sys.argv[2]))
+    if sys.argv[1] == "remplir":
+        sys.exit(remplir(sys.argv[2], sys.argv[3]))
     {"exporter": exporter, "importer": importer, "compter": compter}[sys.argv[1]]()
