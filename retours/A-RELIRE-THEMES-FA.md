@@ -134,3 +134,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **L'itinéraire** : « از خیابان اول به چپ بپیچید. »، « تا چهارراه دوم بروید و آنجا به چپ بپیچید. ».
 3. **Les rues en lettres latines** dans la phrase persane (comme sur le plan) : à vérifier à l'écran, de droite à gauche.
 4. **La fin** : « هتل سمت راست است. »، sans lieu « سمت چپ است. ».
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **Les titres** : « خانم اشنایدر »، « آقای لانگه »، la lettre « خانم اشنایدر گرامی، » ; les noms : کراوزه، ولف، زومر، برانت، گارنیه.
+2. **L'ezafe écrit** : « فروشندهٔ جدید »، « رانندهٔ جدید » ; « متصدی پذیرش » pour Rezeptionist.
+3. **Les qualités** : وقت‌شناس، قابل‌اعتماد، خوش‌برخورد (freundlich)، انعطاف‌پذیر، سخت‌کوش، مستقل، منظم ; « روحیهٔ کار تیمی دارد » (teamfähig).
+4. **Du / Sie** : « می‌توانید … » / « می‌توانی … »، « اهل کجا هستید؟ » / « اهل کجایی؟ » ; l'entreprise après le verbe : « کارفرمای مارک Sonnenweg Reisen است. ».

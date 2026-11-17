@@ -137,3 +137,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **L'impératif des indications** : « خذ الشارع الأول على اليسار. », « انعطف يسارًا هنا. » (masculin, l'usage des panneaux et des guides).
 3. **Les rues en lettres latines** : « عند زاوية Bergstraße و Lindenstraße » (le و détaché devant un nom latin) ; pour l'espagnol « في calle Mayor ».
 4. **La fin sans lieu** : « المكان على اليسار. » pour « Es ist auf der linken Seite. » ; pour l'espagnol, « ¿Dónde está la farmacia? » = « عفوًا، أين الصيدلية؟ ».
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **Le Sie** : l'arabe n'a pas de vouvoiement ; « حضرتك » le marque dans du ou Sie (« هل يمكن لحضرتك أن تبدأ يوم الاثنين؟ » / « هل يمكنك مساعدتي قليلًا؟ ») : à confirmer, sinon les deux phrases se traduisent pareil.
+2. **L'accord du nombre** : « 40 ساعة »، « 8 ساعات »، « 6 أشهر »، « شهرين »، « 28 يومًا » ; les qualités au féminin (« ليزا منضبطة في المواعيد »، « تتأخر »).
+3. **Les noms** : شنايدر، لانغه، كراوزه، فولف، زومر، برانت، غارنييه ; pour l'espagnol نافارو، خيل، لوبيز، رويز، فيغا، سانز، خورخي، لوسيا.
+4. **L'entreprise** jamais en tête de phrase (le sens de la ligne) : « جهة عمل مارك هي Sonnenweg Reisen. »، « إن Viajes Solano شركة سفريات. ».

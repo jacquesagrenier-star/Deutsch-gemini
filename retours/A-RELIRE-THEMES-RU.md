@@ -170,3 +170,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **L'itinéraire** : « Поверните налево на первую улицу. », « Потом на третьем перекрёстке поверните направо. ».
 3. **La fin** : « Вокзал слева. », sans lieu « Это слева. » ; « гостиница » pour Hotel, « полицейский участок » pour Polizei.
 4. **Les rues** : « на улице Gartenstraße », « на углу Bergstraße и Lindenstraße », « перейдите Lindenstraße и Schulstraße ».
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **Les titres** : « госпожа Шнайдер », « господину Ланге / Вольфу / Брандту », « Уважаемый господин Вольф, » (sans vocatif), « Выздоравливайте, господин Гарнье! ».
+2. **L'impersonnel** : « Работают 40 часов в неделю. », « Зарабатывают 3000 € в месяц. », « Нужно быть приветливым. ».
+3. **Les métiers** : « администратор » pour Rezeptionist, « гостиница » pour Hotel, « Новый водитель работает на аптеку. ».
+4. **Les qualités au masculin et au féminin** : « Лиза пунктуальная. », « Госпожа Шнайдер аккуратная. » (forme longue, plus parlée que « пунктуальна »).

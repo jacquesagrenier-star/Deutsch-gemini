@@ -46,6 +46,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, os.path.join(RACINE, "video"))
+sys.path.insert(0, ICI)
+import langues as LG   # lot 15 (16 nov. 2026) : tr, uk, pl, ru, fa, ar, et l'arabe de l'espagnol (visuel/travail/langues.py)
 
 TEXTE, EDIT, PRIX = "fal-ai/nano-banana-pro", "fal-ai/nano-banana-pro/edit", 0.15
 DOSSIER = os.path.join(os.path.expanduser("~"), ".wortando", "travail", "img")
@@ -1681,10 +1683,14 @@ def annonce_affiche(langue, a):
 
 def ecrire_json():
     d = {"gens": GENS, "firme": FIRME, "annonces": {}, "cv": CV, "contrat": CONTRAT, "lettres": {}, "appels": {}, "images": {i: img_src(i) for i in IMAGES},
-         "docs": DOCS, "actions": ACTIONS, "questions": {}, "mots": {}, "absents": {}, "tc": {}}
+         "docs": DOCS, "actions": ACTIONS, "questions": {}, "mots": {}, "absents": {}, "tc": {}, "papiers": {}}
     rapport = []
     for langue in APPRIS:
         Q, C = fabriquer(langue)
+        if LG.pour(langue):   # les phrases traduites dans les langues de langues.py ; « papiers » : « C'est … » en entier
+            manque, d["papiers"][langue] = LG.poser(langue, Q, ACTIONS[langue], DOCS[langue])
+            if manque:
+                sys.exit("  %s : %d phrase(s) sans traduction dans langues.py, dont %s" % (langue, len(manque), manque[:5]))
         d["annonces"][langue] = {a["id"]: annonce_affiche(langue, a) for a in ANNONCES[langue]}
         d["lettres"][langue] = {}
         for a in ANNONCES[langue]:

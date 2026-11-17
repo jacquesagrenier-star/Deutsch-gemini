@@ -168,3 +168,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **« й » après une voyelle** : « Ідіть прямо й поверніть… », « Дійдіть до першого перехрестя й там… ».
 3. **Les rues** : « на вулиці Gartenstraße », « на розі Bergstraße та Lindenstraße », « перейдіть Lindenstraße та Schulstraße ».
 4. **La fin** : « Вокзал ліворуч. », sans lieu « Це ліворуч. » ; la police « поліцейська дільниця ».
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **Les cas des noms** : « пані Шнайдер » (indéclinable), « пану Ланге », « пану Вольфу », « пану Брандту » ; au vocatif de la lettre « Шановний пане Вольфе, », « пане Брандте, », « Одужуйте, пане Гарньє! ».
+2. **L'impersonnel des annonces** : « Працюють 40 годин на тиждень. », « Заробляють 3000 € на місяць. », « Починають 1 грудня. », « Потрібно бути привітним. ».
+3. **Les métiers** : « адміністратор » pour Rezeptionist, « Новий водій працює на аптеку. », « Я подаю заявку на посаду офіціанта. ».
+4. **у / в, і / й** : « Марк уміє … » mais « Ліза вміє … », « усміхається й вітається », « працює й у вихідні » ; l'apostrophe ʼ de « Випʼєте кави? ».

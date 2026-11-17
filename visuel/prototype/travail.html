@@ -228,7 +228,9 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 // ---------- la donnee (travail.json) ----------
 let D = null, QS = [], GENS = null;
 const ES_ = APPRENDRE === "es", PT_ = APPRENDRE === "pt";
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && ES_));
+// lot 15 (16 nov. 2026) : tr, uk, pl, ru, fa et ar pour l'allemand appris, l'arabe pour l'espagnol (visuel/travail/langues.py)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && ES_)
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && ES_));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + esc(t) + '</span>' : "";
 
@@ -436,7 +438,7 @@ function decouvrir(){
     document.querySelectorAll(".planche button").forEach(b => b.classList.toggle("choisi", b.dataset.k === cle));
     const [t, id] = cle.split(":");
     if (t === "a"){ const a = D.actions[APPRENDRE].find(x => x.id === id); fiche(a.img, a.v, glose({mot: a.v, cat: "verbe"}), a.ph, TL ? a.t[TL] : null); }
-    else { const d = D.docs[APPRENDRE][id]; fiche(id, d[1] + " " + d[0], glose({mot: d[0], genre: d[1]}), (ES_ ? "Es " : PT_ ? "É " : "Das ist ") + d[1] + " " + d[0] + ".", TL ? ({fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + d[2][TL] + ".") : null); }
+    else { const d = D.docs[APPRENDRE][id]; fiche(id, d[1] + " " + d[0], glose({mot: d[0], genre: d[1]}), (ES_ ? "Es " : PT_ ? "É " : "Das ist ") + d[1] + " " + d[0] + ".", TL ? (((D.papiers || {})[APPRENDRE] || {})[id] || {})[TL] || ({fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + d[2][TL] + ".") : null); }
   };
   document.querySelectorAll(".planche button").forEach(b => b.addEventListener("click", () => choisir(b.dataset.k)));
   const garde = dire; dire = () => {};

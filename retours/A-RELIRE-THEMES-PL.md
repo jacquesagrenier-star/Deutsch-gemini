@@ -166,3 +166,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **Les cas** : « obok banku », « naprzeciwko poczty », « między piekarnią a bankiem », « jak dojść do apteki ».
 3. **La fin** : « Dworzec jest po lewej stronie. », sans lieu « To jest po lewej stronie. ».
 4. **Les lieux** : « komisariat policji », « kawiarnia » (Café), « przystanek » (Haltestelle).
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **pan / pani** : « Może pan zacząć w poniedziałek? », « Jakimi językami pan mówi? » (minuscule dans le dialogue) ; la lettre « Szanowna Pani, » / « Szanowny Panie, » sans le nom.
+2. **Le génitif des messieurs** : « Aplikację wysyła się do pana Langego / Wolfa / Brandta », « do pani Krause » (indéclinable).
+3. **L'impersonnel** : « Pracuje się 40 godzin tygodniowo. », « Zarabia się 15 € za godzinę. », « Trzeba być uprzejmym. » ; « schludny » pour ordentlich, « rzetelny » pour zuverlässig.
+4. **Les métiers** : « Ubiegam się o stanowisko kelnera. », « Nowy kierowca pracuje dla apteki. », « To minijob, kilka godzin tygodniowo. ».

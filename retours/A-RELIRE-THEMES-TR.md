@@ -170,3 +170,12 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 2. **Le vouvoiement** : « Birinci sokaktan sola dönün. », « İkinci kavşağa kadar gidin ve orada sola dönün. ».
 3. **La photo** : « Burası okul. » pour « Das ist die Schule. » ; la fin « Otel sağ tarafta. », sans lieu « Sol tarafta. ».
 4. **Les lieux** : « tren istasyonu », « belediye binası » (Rathaus), « karakol » (Polizei), « fırın » (Bäckerei).
+
+## Lot 15, 16 nov. : « Le travail et l'emploi »
+
+La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
+
+1. **Les titres** : « Schneider Hanım », « Lange Bey », avec le suffixe après l'apostrophe (« Başvuru Schneider Hanım'a gönderiliyor. », « Lange Bey'e ») ; la lettre « Sayın Schneider Hanım, », « Sayın Lange Bey, ».
+2. **L'impersonnel des annonces** : « Haftada 40 saat çalışılıyor. », « Ayda 3.000 € kazanılıyor. », « İşe 1 Aralık'ta başlanıyor. », « Nazik olmak gerekiyor. ».
+3. **Les qualités** : dakik, güvenilir, nazik (freundlich), esnek, çalışkan, bağımsız, düzenli, « takım çalışmasına yatkın » (teamfähig) ; « Dakik ve güvenilir biriyim. ».
+4. **Du / Sie** : « Pazartesi başlayabilir misiniz? » / « Bana biraz yardım edebilir misin? », « Nerelisiniz? » / « Nerelisin? » ; « Bu ön yazı. » pour l'Anschreiben.
