@@ -68091,8 +68091,9 @@ function niveauSeance(){
 }
 
 // `parLUsager` : le niveau est choisi par l'eleve (pastille, carte du vocabulaire,
-// fin de l'A1 voyage). Seul ce cas pose la question de la montee (v1114) --
-// jamais la restauration nuage ni le niveau declare a l'inscription.
+// reglage du niveau, test de niveau). Seul ce cas pose la question de la montee
+// (v1114) -- jamais la restauration nuage, ni le niveau declare a l'inscription,
+// ni le passage automatique de la fin de l'A1 voyage (B12, 16 nov. 2026).
 function fixerNiveauSeance(niv, parLUsager){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
     niv = niveauExistant(niv);
@@ -71399,7 +71400,12 @@ function montrerCartePhrase(item){
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => {
             const v = lireA1Voyage(); v.sf = true; ecrireA1Voyage(v);
-            try{ fixerNiveauSeance("A2", true); }catch(e){}
+            // B12 de la revue A a Z (16 nov. 2026) : PAS de question de la montee ici.
+            // Elle surprenait (« Tu as commence 899 mots… Tu les connais deja ? »,
+            // « Oui » en avant) juste apres des semaines d'A1 dans l'app, et un seul
+            // toucher retirait tout l'A1 de la revision. La regle « garder » vaut
+            // sans question ; la question reste pour un changement fait a la main.
+            try{ fixerNiveauSeance("A2"); }catch(e){}
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_fin"){
