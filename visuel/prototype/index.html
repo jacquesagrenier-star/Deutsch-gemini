@@ -362,7 +362,11 @@ html.nuit .hp-rond{color:#F0A93C}
 .suite::before{content:"";position:absolute;inset:2px;border-radius:inherit;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%)}
 html.nuit .suite{background:linear-gradient(180deg, rgba(110,200,145,.62), rgba(40,120,80,.80)) !important}
-/* v1005 : L'IMAGE PLUS GRANDE EN SEANCE (Jacques, 29 oct. 2026 : « on n'utilise pas suffisamment
+/* 17 nov. 2026 : le rond « → » dans un coin quand la reponse est sous sa place (placeRond) ; plus precis que la
+   regle .verre-v.v-rond de verre.js, qui le centre. */
+.suite.verre-v.v-rond.rond-gauche{left:16px !important;right:auto !important}
+.suite.verre-v.v-rond.rond-droite{left:auto !important;right:16px !important}
+/* v1005 :L'IMAGE PLUS GRANDE EN SEANCE (Jacques, 29 oct. 2026 : « on n'utilise pas suffisamment
    l'espace pour l'image [...] le texte en haut prend trop de place »). Le retour devient un rond
    « ‹ » A COTE de la question (une ligne de gagnee), et « Continuer » flotte sur le bas de
    l'image -- il n'apparait qu'apres la reponse, quand il n'y a plus rien a toucher. */
@@ -1161,6 +1165,32 @@ function anneau(id, second){
   allumes.push({id, second: !!second}); dessiner();
 }
 const englobe = p => p.cadre;
+/* LE ROND NE COUVRE PAS LA REPONSE (17 nov. 2026, Jacques, seance espagnole, restaurant, « los zapatos ») :
+   le rond « → » de verre.js se pose au centre, en bas -- la ou sont les souliers de Mark et ceux de la
+   serveuse. Apres une erreur, l'anneau ambre des souliers passait sous son verre, et la fleche se perdait
+   sur le cuir sombre : « je me suis retrouve [sans] savoir quoi faire ». Si une zone montree passe sous la
+   place du rond, il va dans un coin, du cote oppose a la reponse ; s'il n'y a de place nulle part, la ou il
+   en couvre le moins. Le meme geste que les themes illustres (4cf9666), qui defilent ; une scene ne defile
+   pas. `ids` : les zones montrees. Rend la classe a ajouter au bouton (« » : le rond reste au centre). */
+function placeRond(ids){
+  try{
+    if (zoom) return "";
+    const R = calquePlan.getBoundingClientRect(), W = innerWidth, H = innerHeight;
+    if (!R.width || !R.height) return "";
+    const zs = ids.filter(id => P[id] && P[id].cadre).map(id => { const [x, y, w, h] = P[id].cadre;
+      return {l: R.left + x / 100 * R.width, r: R.left + (x + w) / 100 * R.width, t: R.top + y / 100 * R.height, b: R.top + (y + h) / 100 * R.height}; });
+    if (!zs.length) return "";
+    // la place du rond (64 px, 12 px du bas), plus l'encoche de l'iPhone et un peu d'air autour
+    const place = l => ({l: l - 8, r: l + 72, t: H - 130, b: H});
+    const gene = c => zs.reduce((s, z) => s + Math.max(0, Math.min(z.r, c.r) - Math.max(z.l, c.l)) * Math.max(0, Math.min(z.b, c.b) - Math.max(z.t, c.t)), 0);
+    const milieu = zs.reduce((s, z) => s + (z.l + z.r) / 2, 0) / zs.length;
+    const gauche = ["rond-gauche", 16], droite = ["rond-droite", W - 16 - 64];
+    const ordre = [["", W / 2 - 32], ...(milieu < W / 2 ? [droite, gauche] : [gauche, droite])];
+    let mieux = ordre[0], g0 = Infinity;
+    for (const o of ordre){ const g = gene(place(o[1])); if (!g) return o[0] && " " + o[0]; if (g < g0){ g0 = g; mieux = o; } }
+    return mieux[0] && " " + mieux[0];
+  }catch(e){ return ""; }
+}
 $("voirZones").addEventListener("change", e => {
   if (e.target.checked){ allumes = S.points.map(p => ({id: p.id, second: true})); dessiner(); }
   else effacer();
@@ -1764,10 +1794,11 @@ function toucher(id, pt){
     envoyer("exercice", avecQuestion({juste}, cleTrouve({mot: cible})));   // v957 : chaque question compte, voir repondre()
     reviser(A_TROUVER.find(t => t.mot === cible), juste);
     effacer();
+    let support = null;
     if (juste){
       bons++; bravo(); envoyer("bonne");
       // On encadre ce qui porte le nom : la porte, pas le manteau qu'on a touche.
-      let support = retenue.id;
+      support = retenue.id;
       for (let z = retenue, n = 0; z && n < 5; z = P[z.sur], n++) if (porte(z, cible)){ support = z.id; break; }
       anneau(support); etiquette(support, cible);
     }
@@ -1786,7 +1817,7 @@ function toucher(id, pt){
     $("bas").innerHTML = `<div class="explication">${juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` + traduit(demande) + "." + autres
         : traduit(demande) + " : " + T("cetait") + " " + (bonnes.length > 1 ? T("unDeCes") : T("ici"))
           + ". " + T("avaisTouche") + " " + traduit(p) + "."}</div>
-                          <button class="suite" id="suite">${T("suite")}</button>`;
+                          <button class="suite${placeRond(juste ? [support] : bonnes)}" id="suite">${T("suite")}</button>`;
     $("suite").addEventListener("click", () => {
       i++; verrou = false; fermerGrosPlan(); effacer();
       if (etapeTrouve){ etapeTrouve = false; attenteToucher = null; poser(); } else trouver();
@@ -1862,7 +1893,7 @@ function repondre(q, opts, k){
       `<div class="sens"><span lang="${LANG_CIBLE}">${q.phrase}</span><span class="fleche">${fleche}</span>${q.sens}</div>`);
   }
   const suite = document.createElement("button");
-  suite.className = "suite"; suite.removeAttribute("lang"); suite.textContent = T("suite");
+  suite.className = "suite" + placeRond([q.f, q.r].filter(Boolean)); suite.removeAttribute("lang"); suite.textContent = T("suite");
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });
   const sc = $("bas").querySelector(".score"); sc.innerHTML = scoreTexte(bons, faits);
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
