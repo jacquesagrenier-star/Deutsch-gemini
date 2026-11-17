@@ -153,7 +153,9 @@ const Tirage = {
       }
       window.addEventListener("message", ecoute);
       // « sens » (3 nov.) : la traduction de l'entree voulue, pour un mot a deux entrees au corpus (rico : delicieux / riche)
-      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null, sens: m.sens || null}))}, "*"); }
+      // « theme » (16 nov. 2026, themes des Soins) : l'id du theme de soins avec son niveau (soins_koerper_a2), pour que
+      // l'app cherche d'abord la carte de SOINS (carteDeScene) ; absent des autres themes, il ne change rien pour eux
+      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null, sens: m.sens || null, theme: m.theme || null}))}, "*"); }
       catch(e){ clearTimeout(delai); fin(null); }
     });
   },
