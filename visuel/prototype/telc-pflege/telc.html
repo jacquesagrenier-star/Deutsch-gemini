@@ -71,6 +71,17 @@ label.case{display:flex;gap:8px;align-items:center;text-align:start;cursor:point
 .chap-nr{display:inline-flex;align-items:center;justify-content:center;min-width:1.7em;height:1.7em;margin-inline-end:4px;border-radius:50%;background:#1C2430;color:#E8A23A;font-size:13px}
 .mode{text-align:start}
 .mode .chap-prog{font-size:12px;font-weight:800;color:var(--encre)}
+.trad-rubrique{display:block;font-size:12px;font-weight:600;color:var(--gris)}
+.briques{list-style:none;margin:4px 0 10px;padding:0;display:flex;flex-direction:column;gap:6px}
+.briques li{line-height:1.4}.briques small{display:block;font-size:12.5px;color:var(--gris)}
+.coches{display:flex;flex-direction:column;gap:6px}
+.coche{display:block;width:100%;text-align:start;padding:8px 10px 8px 36px;position:relative;border-radius:12px;border:1px solid rgba(76,86,107,.3);background:var(--carte);color:var(--encre);font:inherit;cursor:pointer}
+html[dir="rtl"] .coche{padding:8px 36px 8px 10px}
+.coche::before{content:"";position:absolute;inset-inline-start:10px;top:10px;width:16px;height:16px;border-radius:5px;border:2px solid var(--gris)}
+.coche.ok{border-color:var(--vert)}.coche.ok::before{background:var(--vert);border-color:var(--vert)}
+.coche.ok::after{content:"✓";position:absolute;inset-inline-start:13px;top:8px;color:#fff;font-weight:900;font-size:14px}
+.coche small{display:block;font-size:12.5px;color:var(--gris);margin-top:2px}
+details.trad{margin-top:4px}details.trad summary{font-weight:700;font-size:13px;color:var(--gris)}
 .rubrique h3{font-size:15px;margin:12px 0 4px}
 .rubrique p{line-height:1.5}
 .de{font-style:italic;font-weight:700;unicode-bidi:isolate}
@@ -119,12 +130,14 @@ window.PROFIL_EXAMEN = { id: "soins_telc", titre: "telc Deutsch B1·B2 Pflege", 
 </script>
 <script src="../telc/telc-commun.js?v=4"></script>
 <script src="bareme.js?v=1"></script>
-<script src="examen.js?v=9"></script>
+<script src="examen.js?v=10"></script>
 <script>
 Promise.all(DTZ.chargements).then(() => {
   // « blanc » ou « BLANC » : l'examen blanc (ouvrirTelcPflege("blanc") de l'ecran Soins)
   const p = (Q.get("partie") || "").toLowerCase(), partie = p && DTZ.parties.find(x => x.id.toLowerCase() === p);
   if (partie){ TELC.direct = true; partie.ouvrir(); }
+  // ?sujet=<id> : l'ecrit de la section Soins ouvert sur un sujet (l'ecran d'un chapitre de « Ma journee au service »)
+  else if (Q.has("sujet")) SOINS_EXAMEN.sujet(Q.get("sujet"));
   else if (Q.get("chapitre")) SOINS_EXAMEN.chapitre(Q.get("chapitre"), Q.get("rubrique"));
   else accueil();
 }).catch(e => { console.error(e); $("zone").innerHTML = '<div class="bloc"><p>Les données de l’examen ne se chargent pas.</p></div>'; });

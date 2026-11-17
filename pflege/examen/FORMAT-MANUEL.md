@@ -192,3 +192,38 @@ existants : un besoin dans l'un d'eux se demande à pflege-examen.
 - **Les essais au navigateur** : un port à soi. Le 8794 est déjà pris par deux serveurs : un `python -m
   http.server` sur un port occupé répond pour l'autre dossier. Une sonde Playwright passe sous le verrou
   `~/.wortando/verrou-parcours`.
+
+## 8. L'écrit ouvert sur un sujet (16 nov. 2026, « Ma journée au service », étape E5 de `pflege/PLAN-CHAPITRES.md`)
+
+L'écran d'un chapitre ouvre la page de l'écrit sur un sujet de la section Soins, lu dans `pflege/datos/ecrit.json`
+(session pflege-dialogues, `pflege/FORMAT-DONNEES.md` § 4). La page n'a pas de copie des sujets : elle lit le fichier.
+
+**L'adresse** :
+
+```
+visuel/prototype/telc-pflege/telc.html?apprendre=de&lang=<langue>&sujet=<id du sujet>&depuis=<id du chapitre>
+```
+
+- `sujet` : un id de `ecrit.json` (`soins_ecrit_aufnahme_01`…). Un id inconnu, ou `sujet=` vide, ouvre la **liste
+  des sujets**, rangés par sorte, sans erreur.
+- `depuis` : l'id du chapitre (`ch01_aufnahme`…), renvoyé tel quel à l'app ; il donne au bouton de fin son
+  libellé « Retour au chapitre ».
+
+**Ce que la page montre** : la sorte et le niveau, le titre, la consigne (allemand et traduction), la fiche, les
+pièges et les phrases utiles (repliés), la zone d'écriture (le brouillon reste sur l'appareil, clé `ecrit_<id>`) ;
+puis « J'ai fini, je compare » : les `points` à cocher, le texte modèle (`corrige_de`, traduction repliée), le modèle
+B1 s'il existe, la grille du fichier (`grilles[sujet.grille]`). Un sujet d'examen (`examen: true`) a en plus la note
+sur 20 : le contenu vient des coches, les trois autres critères se choisissent, comme à l'examen blanc.
+
+**Les messages au cadre** (`parler()`, `source: "wortando-scene"`) :
+
+| Quand | Message |
+|---|---|
+| le sujet fini | `{type: "ecrit_fait", sujet, depuis, coches, sur, punkte}` (`punkte` sur 20, `null` hors examen), puis `{type: "exercice", juste}` |
+| le retour | `{type: "fermer", sujet, depuis, fini}` : le « ‹ » de l'écran d'écriture (`fini: false`), le bouton de fin (`fini: true`) ; l'app rouvre l'écran du chapitre `depuis` |
+
+Le résultat reste aussi dans l'état du manuel (`m.ecrits[<id>] = {date, coches, sur, punkte}`), et la liste l'affiche.
+Un renvoi `ecrit:<id>` d'un chapitre du manuel ouvre le sujet dans la page même et revient au chapitre.
+Les textes des sujets suivent les langues d'`ecrit.json` ; une langue absente (l'espagnol aujourd'hui) retombe sur le
+français. Les textes de la page (`pf_ecrit_*`) sont dans les 10 langues. Contrôle : section 11 de
+`tests/pflege_examen.py`.

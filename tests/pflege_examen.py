@@ -747,6 +747,29 @@ for epr, crits in (("schreiben", ["gestaltung", "korrektheit", "wortschatz"]), (
             if "pf_desc_%s_%s_%d" % (epr, c, k) not in UI.get("fr", {}):
                 faute("interface : pf_desc_%s_%s_%d manque" % (epr, c, k))
 
+# 11. l'ecrit ouvert sur un sujet (?sujet=, « Ma journee au service », 16 nov. 2026) : ce que la page lit dans
+# pflege/datos/ecrit.json (session pflege-dialogues), et un libelle pour chaque sorte de sujet
+ECRIT = lire(os.path.join(DEPOT, "pflege", "datos", "ecrit.json"))
+if ECRIT:
+    sujets = ECRIT.get("sujets") or []
+    for s in sujets:
+        ou = "ecrit.json %s" % s.get("id")
+        for k in ("id", "type", "titre_de", "consigne_de", "fiche"):
+            if not s.get(k):
+                faute(ou + " : « %s » manque (la page de l'ecrit le lit)" % k)
+        if not (s.get("points") or s.get("points_cles")):
+            faute(ou + " : ni « points » ni « points_cles » : rien a cocher a la comparaison")
+        if not s.get("corrige_de"):
+            faute(ou + " : pas de texte modele (corrige_de)")
+        if s.get("type") and "pf_ecrit_type_" + s["type"] not in UI.get("fr", {}):
+            faute(ou + " : sorte « %s » sans libelle (pf_ecrit_type_%s dans interface.json)" % (s["type"], s["type"]))
+        if s.get("grille") and s["grille"] not in (ECRIT.get("grilles") or {}):
+            faute(ou + " : grille « %s » absente du fichier" % s["grille"])
+    if len({s.get("id") for s in sujets}) != len(sujets):
+        faute("ecrit.json : deux sujets ont le meme id")
+    sans_es = sum(1 for s in sujets if isinstance(s.get("consigne"), dict) and "es" not in s["consigne"])
+    notes.append("ecrit : %d sujet(s) lisibles par ?sujet=%s" % (len(sujets), (" ; %d sans espagnol (repli sur le francais)" % sans_es) if sans_es else ""))
+
 for n in notes:
     print("· " + n)
 if fautes:

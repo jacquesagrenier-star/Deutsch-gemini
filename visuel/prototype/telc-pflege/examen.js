@@ -60,7 +60,9 @@ DTZ.charger(Promise.all([
   // les Redemittel : UNE source, celle de la section Soins (pflege/datos/redemittel.json, FORMAT-DONNEES.md § 2 bis)
   json("../../../pflege/datos/redemittel.json", true),
   json("../../../pflege/datos/sons.json", true),
-  ...VOIX_CHAPITRES.map(c => json("donnees/manuel/voix-" + c + ".json", true))
+  ...VOIX_CHAPITRES.map(c => json("donnees/manuel/voix-" + c + ".json", true)),
+  // les sujets d'ecrit de la section Soins (?sujet=, et les renvois « ecrit: » du manuel)
+  json("../../../pflege/datos/ecrit.json", true)
 ]).then(([ui, ...reste]) => {
   textesTelc({ fr: ui.fr, en: ui.en });
   if (AUTRES) Object.assign(TXT, ui[LANGUE] || {});
@@ -79,6 +81,7 @@ DTZ.charger(Promise.all([
   PF.rm = reste[2 * n + 5 + CHAPITRES.length] || {};
   PF.sons = reste[2 * n + 6 + CHAPITRES.length] || {};
   VOIX_CHAPITRES.forEach((c, k) => { const m = reste[2 * n + 7 + CHAPITRES.length + k] || {}; for (const x in m) if (x[0] !== "_") DTZ_PISTES[x] = m[x]; });
+  PF.ecrit = reste[2 * n + 7 + CHAPITRES.length + VOIX_CHAPITRES.length] || {};
   if (ex && ex.rubriques){
     PF.chap._exemple = ex;
     PF.sommaire = [{ id: "_exemple", nr: "·", titre_fr: "Exemple : chaque sorte de bloc", titre_en: "Example: every kind of block", resume_fr: "Pour voir le rendu du format (?exemple=1).", resume_en: "To see how the format renders (?exemple=1)." }].concat(PF.sommaire);
@@ -1032,6 +1035,8 @@ function brancherBlocs(c){
   $("zone").querySelectorAll("[data-vers]").forEach(x => x.onclick = () => {
     const v = x.dataset.vers;
     if (/^chapitre:/.test(v)) return chapitre(v.slice(9));
+    if (/^ecrit:/.test(v) && sujetsEcrits().some(y => y.id === v.slice(6)))
+      return ouvrirEcrit(v.slice(6), { retour: () => chapitre(c), libelleFin: T("pf_retour_chapitre") });
     parler("ouvrir", { vers: v });
   });
 }
@@ -1060,6 +1065,138 @@ function inscrire(){
   DTZ.partie({ id: "BLANC", ordre: 99, titre: T("pf_blanc"), sous: T("pf_blanc_s"), ouvrir: () => Q.get("serie") ? blancIntro(Number(Q.get("serie"))) : examens() });
 }
 
+// ================================================================= L'ECRIT OUVERT SUR UN SUJET (16 nov. 2026)
+// « Ma journee au service » (pflege/PLAN-CHAPITRES.md, etape E5) : l'ecran d'un chapitre ouvre cette page sur un
+// sujet de la section Soins, lu dans pflege/datos/ecrit.json (session pflege-dialogues, FORMAT-DONNEES.md § 4) :
+//     telc.html?apprendre=de&lang=<langue>&sujet=<id du sujet>&depuis=<id du chapitre>
+// Un id inconnu (ou ?sujet= vide) donne la liste des sujets, sans erreur. LE CONTRAT AVEC L'APP (le cadre) :
+//   - le sujet fini : parler("ecrit_fait", {sujet, depuis, coches, sur, punkte}) ; punkte sur 20 pour un sujet
+//     d'examen (examen: true), null sinon ; puis parler("exercice", {juste}) comme les autres epreuves ;
+//   - le retour : parler("fermer", {sujet, depuis, fini}) -- le « ‹ » de l'ecran d'ecriture (fini: false) et le
+//     bouton « Retour au chapitre » de la fin (fini: true) ; l'app rouvre alors l'ecran du chapitre « depuis ».
+// Le brouillon reste sur l'appareil (cle ecrit_<id>), le resultat dans l'etat du manuel (m.ecrits[id]). Un renvoi
+// « ecrit:<id> » d'un chapitre du manuel ouvre le sujet ici meme, et revient au chapitre.
+// Les textes du sujet sont dans les langues d'ecrit.json ; une langue absente retombe sur le francais.
+const ECRIT_TYPES = ["aufnahme", "biografie", "pflegebericht", "sturz", "nachricht"];
+const DEPUIS = Q.get("depuis") || "";
+const lg = o => !o ? "" : typeof o === "string" ? o : (o[LANGUE] || o.fr || "");
+const sujetsEcrits = () => (PF.ecrit && PF.ecrit.sujets) || [];
+const niveauSujet = s => s.niveau + (s.niveau_max && s.niveau_max !== s.niveau ? "–" + s.niveau_max : "");
+// le cadre se referme ; hors de l'app (la page ouverte seule), on revient a l'accueil du module
+function retourCadre(id, fini){
+  silence(); arreterSon();
+  parler("fermer", { sujet: id || "", depuis: DEPUIS, fini: !!fini });
+  if (window.parent === window) accueil();
+}
+// l'entree par l'adresse (telc.html?sujet=)
+function sujetDepuisAdresse(id){
+  if (sujetsEcrits().some(x => x.id === id)) ouvrirEcrit(id, { retour: fini => retourCadre(id, fini), libelleFin: T(DEPUIS ? "pf_retour_chapitre" : "pf_terminer") });
+  else if (sujetsEcrits().length) listeEcrits({ retour: () => retourCadre("", false) });
+  else accueil();
+}
+function ouvrirEcrit(id, ctx){
+  const s = sujetsEcrits().find(x => x.id === id);
+  if (!s) return listeEcrits(ctx);
+  ecrireSujet(s, ctx);
+}
+function listeEcrits(ctx){
+  ecran(T("pf_ecrit_liste"));
+  DTZ.surRetour(() => { (ctx && ctx.retour ? ctx.retour : () => accueil())(false); return true; });
+  const S = sujetsEcrits(), faits = etatManuel().ecrits || {};
+  const types = ECRIT_TYPES.concat([...new Set(S.map(x => x.type))].filter(t => !ECRIT_TYPES.includes(t)));
+  $("zone").innerHTML = '<div class="bloc"><h2>' + esc(T("pf_ecrit_liste")) + '</h2><p class="petit">' + esc(T("pf_ecrit_liste_s")) + '</p></div>' +
+    types.map(t => {
+      const l = S.filter(x => x.type === t);
+      return l.length ? '<div class="bloc"><div class="section">' + esc(T("pf_ecrit_type_" + t)) + '</div>' + l.map(x =>
+        '<button class="mode" data-sujet="' + esc(x.id) + '"><b lang="de">' + esc(x.titre_de || x.id) + '</b><span>' + esc(lg(x.titre)) + ' · ' + esc(niveauSujet(x)) +
+        (faits[x.id] ? '</span><span class="chap-prog">' + esc(T("pf_ecrit_fait", { n: faits[x.id].coches, sur: faits[x.id].sur })) : "") + '</span></button>').join("") + '</div>' : "";
+    }).join("");
+  $("zone").querySelectorAll("[data-sujet]").forEach(b => b.onclick = () =>
+    ouvrirEcrit(b.dataset.sujet, { retour: () => listeEcrits(ctx), libelleFin: T("pf_ecrit_retour_liste") }));
+}
+function ficheSoins(f){
+  if (!f) return "";
+  return '<div class="doc fiche" dir="ltr"><div class="k" lang="de">' + esc(f.titre_de || "") + '</div>' +
+    (f.rubriques || []).map(r => '<div class="zeile"><span><span lang="de">' + esc(r.rubrique_de || "") + '</span>' +
+      (lg(r.rubrique) && lg(r.rubrique) !== r.rubrique_de ? '<small class="trad-rubrique" dir="auto">' + esc(lg(r.rubrique)) + '</small>' : "") + '</span>' +
+      '<b lang="de">' + esc(r.texte_de || (r.champs || []).map(c => (c.coche ? "☑ " : "☐ ") + c.label_de).join(" · ")) + '</b></div>').join("") + '</div>';
+}
+function ecrireSujet(s, ctx){
+  const cle = "ecrit_" + s.id;
+  ecran(lg(s.titre) || s.titre_de);
+  DTZ.surRetour(() => { ctx.retour(false); return true; });
+  const pieges = s.pieges || [];
+  const groupes = s.briques_groupes || (s.briques && s.briques.length ? [{ briques: s.briques }] : []);
+  $("zone").innerHTML =
+    '<div class="bloc"><div class="section">' + esc(T("pf_ecrit_type_" + s.type)) + ' · ' + esc(niveauSujet(s)) + '</div>' +
+      '<h2 lang="de">' + esc(s.titre_de || "") + '</h2>' +
+      '<p class="consigne" lang="de">' + esc(s.consigne_de || "") + '<span class="fr">' + esc(lg(s.consigne)) + '</span></p></div>' +
+    '<div class="bloc">' + ficheSoins(s.fiche) + '</div>' +
+    (pieges.length ? '<div class="bloc"><details><summary>' + esc(T("pf_ecrit_pieges")) + '</summary><ul class="redemittel">' +
+      pieges.map(p => '<li>' + esc(lg(p)) + '</li>').join("") + '</ul></details></div>' : "") +
+    (groupes.length ? '<div class="bloc"><details><summary>' + esc(T("pf_ecrit_briques")) + '</summary>' + groupes.map(g =>
+      (g.titre_de ? '<div class="rubrik-t"><span lang="de">' + esc(g.titre_de) + '</span>' + (lg(g.titre) ? ' <span class="petit">· ' + esc(lg(g.titre)) + '</span>' : "") + '</div>' : "") +
+      '<ul class="briques">' + (g.briques || []).map(b => '<li><span lang="de">' + esc(b.de) + '</span>' + (lg(b.trad) ? '<small>' + esc(lg(b.trad)) + '</small>' : "") + '</li>').join("") + '</ul>').join("") +
+      '</details></div>' : "") +
+    '<div class="bloc"><textarea id="pfTexte" lang="de" rows="12" spellcheck="false" placeholder="' + esc(T("pf_ecrit_ici")) + '">' + esc(lire(cle, "")) + '</textarea>' +
+      '<p class="petit" id="pfMots"></p></div>';
+  const ta = $("pfTexte"), compte = () => {
+    const n = mots(ta.value);
+    $("pfMots").textContent = T("pf_mots", { n }) + (s.examen ? (n < 120 ? " · " + T("pf_mots_peu") : n > 170 ? " · " + T("pf_mots_trop") : "") : "");
+  };
+  ta.oninput = () => { compte(); ecrire(cle, ta.value); };
+  compte();
+  const fini = () => comparerSujet(s, ta.value, ctx);
+  bouton(T("pf_ecrit_fini"), () => mots(ta.value) < 10 ? confirmer(T("pf_rendre_court"), fini, T("pf_rendre")) : fini());
+}
+// la comparaison : ce que le texte doit dire (on coche), le modele, et pour un sujet d'examen la note sur 20
+function comparerSujet(s, texte, ctx){
+  ecran(T("pf_ecrit_comparer"));
+  DTZ.surRetour(() => { ecrireSujet(s, ctx); return true; });
+  const pts = (s.points && s.points.length) ? s.points : (s.points_cles || []).map((de, k) => ({ id: "p" + k, de }));
+  const coches = new Set();
+  const g = { gestaltung: null, korrektheit: null, wortschatz: null };
+  const grille = ((PF.ecrit || {}).grilles || {})[s.grille];
+  const modele = (de, trad, titre, ouvert) => de ? '<details' + (ouvert ? " open" : "") + '><summary>' + esc(titre) + '</summary>' +
+    de.split(/\n+/).map(p => '<p lang="de">' + esc(p) + '</p>').join("") +
+    (lg(trad) ? '<details class="trad"><summary>' + esc(T("pf_ecrit_traduction")) + '</summary>' + lg(trad).split(/\n+/).map(p => '<p>' + esc(p) + '</p>').join("") + '</details>' : "") + '</details>' : "";
+  const rendre = () => {
+    const n = coches.size, inhalt = B.inhaltPunkte(pts.length, n);
+    const note = B.punkteSchreiben(Object.assign({ inhalt }, g));
+    $("zone").innerHTML =
+      '<div class="bloc"><details><summary>' + esc(T("pf_ton_texte")) + '</summary><p lang="de" class="entendu">' + esc(texte || "—") + '</p></details></div>' +
+      '<div class="bloc"><h2>' + esc(T("pf_ecrit_coches")) + ' · ' + esc(T("pf_ecrit_n", { n, sur: pts.length })) + '</h2>' +
+        '<p class="petit">' + esc(T("pf_ecrit_coches_s")) + '</p><div class="coches">' +
+        pts.map(p => '<button type="button" class="coche' + (coches.has(p.id) ? " ok" : "") + '" aria-pressed="' + coches.has(p.id) + '" data-pt="' + esc(p.id) + '">' +
+          '<b lang="de">' + esc(p.de) + '</b>' + (lg(p.trad) ? '<small>' + esc(lg(p.trad)) + '</small>' : "") + '</button>').join("") + '</div>' +
+        (s.examen ? '<p class="petit">' + esc(T("pf_crit_inhalt")) + ' · ' + inhalt + ' / 5. ' + esc(T("pf_ecrit_inhalt")) + '</p>' : "") + '</div>' +
+      '<div class="bloc">' + modele(s.corrige_de, s.corrige, T("pf_ecrit_modele", { n: s.corrige_niveau || s.niveau }), true) +
+        modele(s.corrige_b1_de, s.corrige_b1, T("pf_ecrit_modele_b1"), false) + '</div>' +
+      (s.examen && inhalt ? ["gestaltung", "korrektheit", "wortschatz"].map(k => selecteur(k, 5, g[k], "schreiben")).join("") : "") +
+      (s.examen ? '<div class="bloc"><div class="score">' + note + ' / 20</div><p class="petit" style="text-align:center">' + esc(nomNiveau(B.niveauSchreiben(note))) + '</p>' +
+        '<p class="petit">' + esc(T("pf_ecrit_estimation")) + '</p></div>' : "") +
+      (grille && grille.criteres ? '<div class="bloc"><details><summary>' + esc(lg(grille.titre) || T("pf_ecrit_grille")) + '</summary>' +
+        grille.criteres.map(c => '<div class="rubrik"><div class="rubrik-t">' + esc(lg(c.titre)) + '</div><p>' + esc(lg(c.question)) + '</p>' +
+          (lg(c.conseil) ? '<p class="petit">' + esc(lg(c.conseil)) + '</p>' : "") + '</div>').join("") + '</details></div>' : "");
+    $("zone").querySelectorAll("[data-pt]").forEach(b => b.onclick = () => {
+      coches.has(b.dataset.pt) ? coches.delete(b.dataset.pt) : coches.add(b.dataset.pt);
+      garderScroll(rendre);
+    });
+    brancherSelecteurs(g, () => garderScroll(rendre));
+    const pret = !s.examen || !inhalt || ["gestaltung", "korrektheit", "wortschatz"].every(k => g[k] !== null);
+    if (pret) bouton(ctx.libelleFin || T("pf_terminer"), () => {
+      const punkte = s.examen ? note : null;
+      noterManuel(m => { m.ecrits = m.ecrits || {}; m.ecrits[s.id] = { date: new Date().toISOString().slice(0, 10), coches: n, sur: pts.length, punkte }; });
+      parler("ecrit_fait", { sujet: s.id, depuis: DEPUIS, coches: n, sur: pts.length, punkte });
+      parler("exercice", { juste: s.examen ? punkte >= 7 : n * 10 >= pts.length * 7 });
+      ctx.retour(true);
+    });
+    else $("suite").hidden = true;
+  };
+  rendre();
+}
+
 // pour le controle et les sondes : le calcul, et l'index des questions (rien d'ecrit)
-window.SOINS_EXAMEN = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe, modeles, progresChapitre, chapitre };
+window.SOINS_EXAMEN = { PF, juste, pointsDe, estimer, infosTrouvees, itemsDe, choixDe, modeles, progresChapitre, chapitre,
+  sujet: sujetDepuisAdresse, sujetsEcrits };
 })();
