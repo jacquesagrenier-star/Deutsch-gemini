@@ -24,7 +24,7 @@
 // Sans cette ligne, chaque repli sur la voix du telephone se taisait sans erreur, au DTZ comme au telc.
 try{ if (!("speechSynthesis" in window) && window.parent !== window && window.parent.speechSynthesis){ window.speechSynthesis = window.parent.speechSynthesis; window.SpeechSynthesisUtterance = window.parent.SpeechSynthesisUtterance; } }catch(e){}
 const Q = new URLSearchParams(location.search);
-const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";

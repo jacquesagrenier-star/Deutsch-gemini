@@ -53,8 +53,8 @@ window.SCENE = {
    "en": "the painting",
    "pt": "a pintura",
    "ar": "لوحة، رسم",
-   "pl": "kolor",
-   "ru": "цвет, краска",
+   "pl": "farba",
+   "ru": "краска",
    "de": "die Malerei, das Gemälde",
    "latam": null
   },
@@ -661,8 +661,8 @@ window.SCENE = {
    "en": "the nail",
    "pt": "o prego",
    "ar": "مسمار",
-   "pl": "paznokieć",
-   "ru": "ноготь",
+   "pl": "gwóźdź",
+   "ru": "гвоздь",
    "de": "der Nagel",
    "latam": null
   },
@@ -686,7 +686,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le métro",
-   "en": "the underground",
+   "en": "the subway",
    "pt": "o metrô",
    "ar": "مترو",
    "pl": "miarka składana",
@@ -1326,7 +1326,7 @@ window.SCENE = {
     "B1 | ¡No te caigas de la escalera!": "Don't fall off the ladder!",
     "B1 | Ten cuidado, Mark.": "Be careful, Mark.",
     "B1 | Gato, baja de la ventana.": "Cat, get down from the window.",
-    "B1 | Señor vecino, sujete la escalera, por favor.": "Neighbour, hold the ladder, please.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "Neighbor, hold the ladder, please.",
     "B2 | Mark compró pintura para pintar la pared de azul.": "Mark bought paint to paint the wall blue.",
     "B2 | Lee las instrucciones para que la estantería no se caiga.": "He reads the instructions so that the shelf does not fall.",
     "B2 | Se le olvidó ponerse los guantes.": "He forgot to put on his gloves.",
@@ -1334,10 +1334,10 @@ window.SCENE = {
     "B2 | La pared ya está medio pintada.": "The wall is already half painted.",
     "B2 | Sin leer las instrucciones, no se puede montar.": "Without reading the instructions, it cannot be put together.",
     "C1 | Las instrucciones deben de ser difíciles.": "The instructions must be difficult.",
-    "C1 | Puede que el gato sea del vecino.": "The cat may belong to the neighbour.",
+    "C1 | Puede que el gato sea del vecino.": "The cat may belong to the neighbor.",
     "C1 | Estará cansado.": "He is probably tired.",
-    "C1 | Dicen que en este departamento vivía un pintor.": "They say a painter used to live in this flat.",
-    "C1 | Dicen que en este piso vivía un pintor.": "They say a painter used to live in this flat."
+    "C1 | Dicen que en este departamento vivía un pintor.": "They say a painter used to live in this apartment.",
+    "C1 | Dicen que en este piso vivía un pintor.": "They say a painter used to live in this apartment."
    }
   },
   "tr": {

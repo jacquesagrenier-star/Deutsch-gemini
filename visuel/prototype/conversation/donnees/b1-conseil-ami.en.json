@@ -1,0 +1,165 @@
+{
+ "id": "b1-conseil-ami",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "familier",
+ "titre": {"fr": "Conseiller un ami épuisé"},
+ "intro": {"fr": "Vendredi soir, dans un bar de Jamaica Plain. Ton ami, médecin dans un grand hôpital de Boston, n'en peut plus de ses gardes de nuit. À toi de l'écouter et de le conseiller."},
+ "personnes": ["freund_arzt"],
+ "debut": "hello",
+ "textes": {
+  "conseil_fr": {"cle": "conseil", "chef": "de parler à sa cheffe", "vac": "de prendre de vraies vacances", "cabinet": "de chercher un poste dans un centre de santé ou un petit cabinet"},
+  "aide_fr": {"cle": "aide", "course": "vous irez courir ensemble dimanche matin", "diner": "tu lui prépares à dîner dimanche", "lettre": "tu reliras sa lettre de candidature"}
+ },
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Ton ami arrive avec une demi-heure de retard et se laisse tomber sur la chaise en face de toi."}},
+    {"qui": "freund_arzt", "air": "perplexe", "t": "Sorry I'm late. I just got off a sixteen-hour shift. Honestly, I can't do this anymore.", "t_gb": "Sorry I'm late. I've just come off a sixteen-hour shift. Honestly, I can't do this any more.", "fr": "Désolé du retard. Je sors d'une garde de seize heures. Franchement, je n'en peux plus."}
+   ],
+   "choix": [
+    {"t": "You look exhausted. What's going on?", "fr": "Tu as l'air épuisé. Qu'est-ce qui se passe ?", "va": "problem"},
+    {"t": "Oh no. Sit down and tell me everything.", "fr": "Oh non. Assieds-toi et raconte-moi tout.", "va": "problem"},
+    {"faux": true, "t": "You have the air tired.", "fr": "Tu as l'air fatigué.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "I have the … air? I look tired, you mean. Yeah, I know.", "fr": "J'ai… l'air ? J'ai l'air fatigué, tu veux dire. Ouais, je sais."}],
+     "aide": {"fr": "<b>« avoir l'air » + adjectif = « look » + adjectif :</b> « You look tired », « You look exhausted. »"}}
+   ]
+  },
+  "problem": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "Too many night shifts. I've worked five in the last two weeks. I can't sleep, I never go running anymore, and I haven't seen my friends in a month. I'm thinking about quitting.", "t_gb": "Too many night shifts. I've worked five in the last two weeks. I can't sleep, I never go running any more, and I haven't seen my friends for a month. I'm thinking about quitting.", "fr": "Trop de gardes de nuit. J'en ai fait cinq en deux semaines. Je n'arrive pas à dormir, je ne vais plus jamais courir, et ça fait un mois que je n'ai pas vu mes amis. Je pense à tout arrêter."}
+   ],
+   "choix": [
+    {"t": "Quitting? Do you mean leaving the hospital, or leaving Boston?", "fr": "Tout arrêter ? Tu veux dire quitter l'hôpital, ou quitter Boston ?", "va": "quit"},
+    {"t": "That sounds really hard. How long has it been like this?", "fr": "Ça a l'air vraiment dur. Ça dure depuis combien de temps ?", "va": "quit",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "Since January. Two doctors left, and nobody has replaced them.", "fr": "Depuis janvier. Deux médecins sont partis, et personne ne les a remplacés."}]},
+    {"repete": true, "t": "Wait, slow down. What are you thinking about?", "fr": "Attends, moins vite. Tu penses à quoi ?", "va": "problem",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "About quitting my job. I work too many nights, I don't sleep, and I have no time for sports or friends.", "t_gb": "About quitting my job. I work too many nights, I don't sleep, and I have no time for sport or friends.", "fr": "À quitter mon travail. Je fais trop de nuits, je ne dors pas, et je n'ai plus de temps pour le sport ni pour les amis."}]},
+    {"faux": true, "t": "How long time is it like this?", "fr": "Ça fait combien de temps que c'est comme ça ?",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "How long … what? How long has it been like this? Too long.", "fr": "Combien de… quoi ? Depuis combien de temps ça dure ? Trop longtemps."}],
+     "aide": {"fr": "<b>« depuis combien de temps » = « How long » + present perfect :</b> « How long has it been like this? » Pas de « time » après « how long »."}}
+   ]
+  },
+  "quit": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "I don't know. Maybe I should leave the hospital. Maybe I should move back to Chicago. What would you do?", "fr": "Je ne sais pas. Je devrais peut-être quitter l'hôpital. Ou retourner vivre à Chicago. Tu ferais quoi, toi ?"}
+   ],
+   "choix": [
+    {"t": "If I were you, I'd talk to your boss first.", "fr": "À ta place, je parlerais d'abord à ta cheffe.", "pose": {"conseil": "chef"}, "va": "boss"},
+    {"t": "You should take a real vacation before you decide anything.", "t_gb": "You should take a proper holiday before you decide anything.", "fr": "Tu devrais prendre de vraies vacances avant de décider quoi que ce soit.", "pose": {"conseil": "vac"}, "va": "vacation"},
+    {"t": "Have you thought about working at a health center or a small practice?", "t_gb": "Have you thought about working at a health centre or a small practice?", "fr": "Tu as pensé à travailler dans un centre de santé ou un petit cabinet ?", "pose": {"conseil": "cabinet"}, "va": "practice"},
+    {"faux": true, "t": "If I were you, I will talk to your boss.", "fr": "À ta place, je parlerai à ta cheffe.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "You will talk to my boss? Please don't! Oh, you mean you would, in my place.", "fr": "Tu vas parler à ma cheffe ? Surtout pas ! Ah, tu veux dire que tu le ferais, à ma place."}],
+     "aide": {"fr": "<b>Après « If I were you », le conditionnel :</b> « If I were you, I would (I'd) talk to your boss. » Jamais « I will »."}},
+    {"faux": true, "t": "You should to take holidays.", "fr": "Tu devrais prendre des vacances.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "I should … take a vacation? Is that what you're saying?", "t_gb": "I should … take a holiday? Is that what you're saying?", "fr": "Je devrais… prendre des vacances ? C'est ce que tu dis ?"}],
+     "aide": {"fr": "<b>Après « should », jamais de « to » :</b> « You should take a vacation » (« a holiday » en anglais britannique)."}}
+   ]
+  },
+  "boss": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "Talk to my boss? But she knows we don't have enough doctors. She'll just say there's nobody else.", "fr": "Parler à ma cheffe ? Mais elle sait qu'on manque de médecins. Elle dira juste qu'il n'y a personne d'autre."}
+   ],
+   "choix": [
+    {"t": "Maybe, but she can't help you if she doesn't know how you feel.", "fr": "Peut-être, mais elle ne peut pas t'aider si elle ne sait pas ce que tu ressens.", "va": "reassure"},
+    {"t": "You could ask for fewer night shifts, not for zero.", "fr": "Tu pourrais demander moins de gardes de nuit, pas zéro.", "va": "reassure"},
+    {"faux": true, "t": "She can't help you if she doesn't know how do you feel.", "fr": "Elle ne peut pas t'aider si elle ne sait pas comment tu te sens.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "How do I feel? Terrible! Oh, that wasn't a question.", "fr": "Comment je me sens ? Très mal ! Ah, ce n'était pas une question."}],
+     "aide": {"fr": "<b>Dans une question indirecte, pas de « do » et l'ordre normal :</b> « She doesn't know how you feel. »"}}
+   ]
+  },
+  "vacation": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "perplexe", "t": "A vacation? But if I take time off, the others will have to cover my shifts. I'd feel guilty.", "t_gb": "A holiday? But if I take time off, the others will have to cover my shifts. I'd feel guilty.", "fr": "Des vacances ? Mais si je m'absente, les autres devront faire mes gardes. Je me sentirais coupable."}
+   ],
+   "choix": [
+    {"t": "You won't help anyone if you get sick yourself.", "t_gb": "You won't help anyone if you get ill yourself.", "fr": "Tu n'aideras personne si tu tombes malade toi-même.", "va": "reassure"},
+    {"t": "They've taken vacations too, haven't they? You deserve a break.", "t_gb": "They've taken holidays too, haven't they? You deserve a break.", "fr": "Eux aussi ont pris des vacances, non ? Tu mérites une pause.", "va": "reassure"},
+    {"faux": true, "t": "You need to repose you.", "fr": "Tu as besoin de te reposer.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "To repose me? That sounds like a funeral! To rest, you mean.", "fr": "Me « reposer » comme ça ? On dirait un enterrement ! Me reposer, tu veux dire."}],
+     "aide": {"fr": "<b>« se reposer » = « rest », sans pronom :</b> « You need to rest » ou « You need a rest. » « Repose » est un mot rare et solennel."}}
+   ]
+  },
+  "practice": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "attentive", "t": "A small practice? I've thought about it. But I've always worked in hospitals. And applications, cover letters … I haven't written one in ten years.", "t_gb": "A small practice? I've thought about it. But I've always worked in hospitals. And applications, cover letters … I haven't written one for ten years.", "fr": "Un petit cabinet ? J'y ai pensé. Mais j'ai toujours travaillé à l'hôpital. Et les candidatures, les lettres de motivation… je n'en ai pas écrit depuis dix ans."}
+   ],
+   "choix": [
+    {"t": "You're a great doctor. Any clinic would be lucky to have you.", "fr": "Tu es un excellent médecin. N'importe quelle clinique aurait de la chance de t'avoir.", "va": "reassure"},
+    {"t": "It's not too late to try something new. Just look at the job ads.", "fr": "Il n'est pas trop tard pour essayer autre chose. Regarde simplement les offres d'emploi.", "va": "reassure"},
+    {"faux": true, "t": "You have many experiences as doctor.", "fr": "Tu as beaucoup d'expérience comme médecin.",
+     "puis": [{"qui": "freund_arzt", "air": "amuse", "t": "Many experiences? Oh yes, I could tell you stories … You mean a lot of experience.", "fr": "Beaucoup d'aventures ? Oh oui, je pourrais t'en raconter… Tu veux dire beaucoup d'expérience."}],
+     "aide": {"fr": "<b>L'expérience professionnelle ne se compte pas :</b> « You have a lot of experience as a doctor. » « Experiences », ce sont des choses vécues. Et un métier prend l'article : « as a doctor »."}}
+   ]
+  },
+  "reassure": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "attentive", "t": "Maybe you're right. I'm just so tired that everything looks impossible.", "fr": "Tu as peut-être raison. Je suis tellement fatigué que tout me paraît impossible."}
+   ],
+   "choix": [
+    {"t": "I know. Let's start with something small. What would help you this week?", "fr": "Je sais. Commençons par quelque chose de petit. Qu'est-ce qui t'aiderait cette semaine ?", "va": "concrete"},
+    {"t": "One step at a time. You don't have to decide everything tonight.", "fr": "Une chose à la fois. Tu n'as pas à tout décider ce soir.", "va": "concrete"}
+   ]
+  },
+  "concrete": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "attentive", "t": "Honestly? I miss running. I miss normal evenings. And I need someone to push me a little.", "fr": "Franchement ? Courir me manque. Les soirées normales me manquent. Et j'ai besoin de quelqu'un qui me pousse un peu."},
+    {"si": {"conseil": "cabinet"}, "qui": "freund_arzt", "air": "attentive", "t": "And if I apply somewhere, somebody has to read my cover letter. My writing is terrible.", "fr": "Et si je postule quelque part, il faut que quelqu'un relise ma lettre. J'écris très mal."}
+   ],
+   "choix": [
+    {"t": "Let's go running together on Sunday morning, along the river.", "fr": "Allons courir ensemble dimanche matin, le long de la rivière.", "pose": {"aide": "course"}, "va": "sunday"},
+    {"t": "Come over for dinner on Sunday. I'll cook, and you can relax.", "fr": "Viens dîner chez moi dimanche. Je cuisine, et toi tu te détends.", "pose": {"aide": "diner"}, "va": "dinner"},
+    {"si": {"conseil": "cabinet"}, "t": "Send me your cover letter. I'll read it and tell you what I think.", "fr": "Envoie-moi ta lettre de candidature. Je la lirai et je te dirai ce que j'en pense.", "pose": {"aide": "lettre"}, "va": "letter"},
+    {"faux": true, "t": "I propose you to run together on Sunday.", "fr": "Je te propose de courir ensemble dimanche.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "You propose … ? For a second I thought you wanted to marry me.", "fr": "Tu me demandes… ? Une seconde, j'ai cru que tu voulais m'épouser."}],
+     "aide": {"fr": "<b>« Je te propose de… » = « Let's… », « How about… » + -ing, ou « Why don't we…? »</b> « Propose to someone », c'est demander en mariage."}}
+   ]
+  },
+  "sunday": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "t": "Running on Sunday … OK. But not too early! I finish my shift at midnight on Saturday.", "fr": "Courir dimanche… D'accord. Mais pas trop tôt ! Je finis ma garde à minuit samedi."}
+   ],
+   "choix": [
+    {"t": "Ten o'clock, then. I'll wait for you at the boathouse.", "fr": "Dix heures, alors. Je t'attendrai au hangar à bateaux.", "va": "bye"},
+    {"t": "No problem. Text me when you wake up.", "fr": "Pas de problème. Écris-moi quand tu te réveilles.", "va": "bye"}
+   ]
+  },
+  "dinner": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "t": "A home-cooked dinner? I've been living on hospital sandwiches for weeks. What can I bring?", "fr": "Un dîner fait maison ? Je vis de sandwichs d'hôpital depuis des semaines. J'apporte quoi ?"}
+   ],
+   "choix": [
+    {"t": "Nothing. Just come around seven and relax.", "fr": "Rien. Viens simplement vers sept heures et détends-toi.", "va": "bye"},
+    {"t": "Maybe a dessert, if you have time. Otherwise, nothing.", "fr": "Un dessert, peut-être, si tu as le temps. Sinon, rien.", "va": "bye"}
+   ]
+  },
+  "letter": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "surprise", "t": "Really? You'd do that? I could write it this weekend.", "fr": "Vraiment ? Tu ferais ça ? Je pourrais l'écrire ce week-end."}
+   ],
+   "choix": [
+    {"t": "Of course. Send it to me by Sunday, and we'll go over it together.", "fr": "Bien sûr. Envoie-la-moi d'ici dimanche, et on la reverra ensemble.", "va": "bye"},
+    {"t": "Sure. I've written a lot of them, so I know what employers want.", "fr": "Bien sûr. J'en ai écrit beaucoup, alors je sais ce que veulent les employeurs.", "va": "bye"},
+    {"faux": true, "t": "Yes, I will correct your letter of motivation.", "fr": "Oui, je corrigerai ta lettre de motivation.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "My letter of … motivation? I don't have much of that right now. My cover letter, you mean.", "fr": "Ma lettre de… motivation ? Je n'en ai pas beaucoup en ce moment. Ma lettre de candidature, tu veux dire."}],
+     "aide": {"fr": "<b>« lettre de motivation » = « cover letter ».</b> « Letter of motivation » est un calque du français que personne ne dit à Boston."}}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"si": {"conseil": "chef"}, "qui": "freund_arzt", "air": "sourire", "t": "You know what? I'll ask for a meeting with my boss on Monday.", "fr": "Tu sais quoi ? Je vais demander un rendez-vous à ma cheffe lundi."},
+    {"si": {"conseil": "vac"}, "qui": "freund_arzt", "air": "sourire", "t": "You know what? I'm going to ask for a week off next month.", "fr": "Tu sais quoi ? Je vais demander une semaine de congé le mois prochain."},
+    {"si": {"conseil": "cabinet"}, "qui": "freund_arzt", "air": "sourire", "t": "You know what? I'm going to look at the job ads tomorrow.", "fr": "Tu sais quoi ? Je vais regarder les offres d'emploi demain."},
+    {"qui": "freund_arzt", "air": "sourire", "t": "Thanks. I really needed this. I already feel a bit better.", "fr": "Merci. J'en avais vraiment besoin. Je me sens déjà un peu mieux."}
+   ],
+   "choix": [
+    {"t": "That's what friends are for. Now, what are you drinking?", "fr": "Les amis, c'est fait pour ça. Bon, qu'est-ce que tu bois ?", "va": null},
+    {"t": "Anytime. I'm glad you told me.", "fr": "Quand tu veux. Je suis content(e) que tu m'en aies parlé.", "va": null},
+    {"faux": true, "t": "You're welcome, it's normal.", "fr": "De rien, c'est normal.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Normal? Nothing about my life is normal right now!", "fr": "Normal ? Rien n'est normal dans ma vie en ce moment !"}],
+     "aide": {"fr": "<b>« C'est normal » (de rien) ne se traduit pas mot à mot.</b> On dit « No problem », « Anytime » ou « That's what friends are for »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as écouté ton ami et tu lui as conseillé {conseil_fr}. Pour l'aider tout de suite : {aide_fr}. Il se sent déjà un peu mieux."}
+}

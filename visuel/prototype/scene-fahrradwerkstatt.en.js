@@ -4,9 +4,9 @@ window.SCENE = {
  "points": [
   {
    "id": "decke",
-   "mot": "blanket",
+   "mot": "ceiling",
    "genre": "",
-   "pluriel": "blankets",
+   "pluriel": "ceilings",
    "niveau": "A1",
    "theme": "home_a1",
    "personne": null,
@@ -21,9 +21,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "couverture",
-   "es": "la cobija, la manta",
-   "esp": "la manta"
+   "fr": "plafond",
+   "es": "el techo"
   },
   {
    "id": "lampe",

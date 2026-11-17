@@ -1,0 +1,137 @@
+{
+ "id": "b1-conseil-ami",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "Conseiller un ami épuisé"},
+ "intro": {"fr": "Ton ami est médecin à l'hôpital. Trop de gardes de nuit : il est à bout et pense à tout quitter. Tu l'écoutes, tu le conseilles et tu lui proposes une aide concrète."},
+ "personnes": ["freund_arzt"],
+ "debut": "muede",
+ "textes": {
+  "rat_fr": {"cle": "rat", "chefin": "de parler à sa cheffe", "urlaub": "de prendre des vacances", "praxis": "de chercher un poste dans un cabinet"},
+  "hilfe_fr": {"cle": "hilfe", "laufen": "d'aller courir ensemble dimanche", "ueben": "de répéter avec lui l'entretien avec sa cheffe", "planen": "de préparer ses vacances avec lui", "bewerbung": "de relire sa lettre de candidature"}
+ },
+ "noeuds": {
+  "muede": {
+   "dit": [
+    {"recit": {"fr": "Un café à Kreuzberg, en fin d'après-midi. Ton ami arrive avec vingt minutes de retard, les yeux cernés."}},
+    {"qui": "freund_arzt", "air": "perplexe", "t": "Entschuldige, dass ich zu spät komme. Ich hatte wieder Nachtdienst, den dritten in dieser Woche. Ich bin total fertig.", "fr": "Excuse-moi d'être en retard. J'ai encore fait une garde de nuit, la troisième cette semaine. Je suis complètement à plat."}
+   ],
+   "choix": [
+    {"t": "Du siehst wirklich müde aus. Wie lange geht das schon so?", "fr": "Tu as vraiment l'air fatigué. Ça dure depuis combien de temps ?", "va": "kuendigen",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Seit drei Monaten. Ich schlafe schlecht, ich mache keinen Sport mehr, und meine Freunde sehe ich fast nie.", "fr": "Depuis trois mois. Je dors mal, je ne fais plus de sport, et je ne vois presque jamais mes amis."}]},
+    {"t": "Schon wieder Nachtdienst? Erzähl mal, was ist denn los?", "fr": "Encore une garde de nuit ? Raconte, qu'est-ce qui se passe ?", "va": "kuendigen",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Uns fehlen Leute, seit drei Monaten. Ich schlafe schlecht, ich mache keinen Sport mehr, und meine Freunde sehe ich fast nie.", "fr": "On manque de personnel, depuis trois mois. Je dors mal, je ne fais plus de sport, et je ne vois presque jamais mes amis."}]},
+    {"faux": true, "t": "Du siehst müde. Was ist los?", "fr": "Tu « vois » fatigué. Qu'est-ce qui se passe ?",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Ich sehe … was? Ach so, ich sehe müde aus. Ja, das stimmt leider.", "fr": "Je vois… quoi ? Ah, j'ai l'air fatigué. Oui, c'est vrai, hélas."}],
+     "aide": {"fr": "<b>« Avoir l'air » : « aussehen », verbe séparable</b> : « Du siehst müde aus ». Sans « aus », « sehen » veut dire « voir »."}}
+   ]
+  },
+  "kuendigen": {
+   "dit": [{"qui": "freund_arzt", "air": "perplexe", "t": "Manchmal denke ich, ich höre einfach auf. Ich kündige im Krankenhaus und ziehe weg aus Berlin, irgendwohin ans Meer.", "fr": "Parfois, je me dis que j'arrête, tout simplement. Je démissionne de l'hôpital et je quitte Berlin, pour aller n'importe où au bord de la mer."}],
+   "choix": [
+    {"t": "Ich glaube, du brauchst vor allem eine Pause. Warte noch mit der Kündigung.", "fr": "Je crois que tu as surtout besoin d'une pause. Attends encore avant de démissionner.", "va": "rat"},
+    {"t": "Ich verstehe dich. Aber du solltest so etwas nicht entscheiden, wenn du so müde bist.", "fr": "Je te comprends. Mais tu ne devrais pas décider une chose pareille quand tu es aussi fatigué.", "va": "rat"},
+    {"repete": true, "t": "Wie bitte? Du willst kündigen? Habe ich das richtig verstanden?", "fr": "Pardon ? Tu veux démissionner ? J'ai bien compris ?", "va": "kuendigen",
+     "puis": [{"qui": "freund_arzt", "air": "attentive", "t": "Ja, richtig verstanden. Im Krankenhaus aufhören und weg aus Berlin. Ich denke jeden Tag daran.", "fr": "Oui, tu as bien compris. Arrêter l'hôpital et quitter Berlin. J'y pense tous les jours."}]},
+    {"faux": true, "t": "Nein, du musst nicht kündigen!", "fr": "Non, tu ne dois pas démissionner !",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Dass ich nicht muss, weiß ich. Aber vielleicht will ich ja!", "fr": "Que je n'y suis pas obligé, je le sais. Mais peut-être que j'en ai envie !"}],
+     "aide": {"fr": "<b>« nicht müssen » veut dire « ne pas être obligé »</b>, pas « ne pas devoir ». Pour déconseiller : « Du solltest nicht kündigen »."}}
+   ]
+  },
+  "rat": {
+   "dit": [{"qui": "freund_arzt", "air": "question", "t": "Vielleicht. Aber so kann es nicht weitergehen. Was würdest du denn an meiner Stelle tun?", "fr": "Peut-être. Mais ça ne peut pas continuer comme ça. Qu'est-ce que tu ferais à ma place, toi ?"}],
+   "choix": [
+    {"t": "An deiner Stelle würde ich zuerst mit deiner Chefin sprechen.", "fr": "À ta place, je parlerais d'abord à ta cheffe.", "pose": {"rat": "chefin"}, "va": "chefin"},
+    {"t": "Du solltest erst einmal Urlaub nehmen, mindestens zwei Wochen.", "fr": "Tu devrais d'abord prendre des vacances, au moins deux semaines.", "pose": {"rat": "urlaub"}, "va": "urlaub"},
+    {"t": "Hast du schon daran gedacht, in einer Praxis zu arbeiten? Dort gibt es keine Nachtdienste.", "fr": "Tu as déjà pensé à travailler dans un cabinet ? Là-bas, il n'y a pas de gardes de nuit.", "pose": {"rat": "praxis"}, "va": "praxis"},
+    {"faux": true, "t": "In deinem Platz würde ich mit der Chefin sprechen.", "fr": "À ta place, je parlerais à la cheffe.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "In meinem Platz? Auf meinem Stuhl hier? Ach, an meiner Stelle!", "fr": "« Dans ma place » ? Sur ma chaise, ici ? Ah, à ma place !"}],
+     "aide": {"fr": "<b>« À ta place » se dit « an deiner Stelle »</b> : « An deiner Stelle würde ich… ». « Platz », c'est la place où l'on s'assoit."}}
+   ]
+  },
+  "chefin": {
+   "dit": [{"qui": "freund_arzt", "air": "perplexe", "t": "Mit der Chefärztin? Aber dann denkt sie, dass ich schwach bin. Die anderen schaffen das doch auch.", "fr": "À la cheffe de service ? Mais elle va penser que je suis faible. Les autres y arrivent bien, eux."}],
+   "choix": [
+    {"t": "Das glaube ich nicht. Sie weiß bestimmt, dass zu viele Nachtdienste krank machen.", "fr": "Je ne crois pas. Elle sait sûrement que trop de gardes de nuit rendent malade.", "va": "hilfe"},
+    {"t": "Du bist nicht schwach. Aber wenn du nichts sagst, ändert sich auch nichts.", "fr": "Tu n'es pas faible. Mais si tu ne dis rien, rien ne changera non plus.", "va": "hilfe"},
+    {"faux": true, "t": "Nein, sie wird nicht denken das.", "fr": "Non, elle ne va pas penser ça.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Sie wird das nicht denken, meinst du? Hm. Da bin ich nicht so sicher.", "fr": "Elle ne va pas penser ça, tu veux dire ? Hum. Je n'en suis pas si sûr."}],
+     "aide": {"fr": "<b>Avec « werden », l'infinitif va tout à la fin</b> : « Das wird sie nicht denken » ou « Sie wird das nicht denken »."}}
+   ]
+  },
+  "urlaub": {
+   "dit": [{"qui": "freund_arzt", "air": "perplexe", "t": "Urlaub? Wir haben doch jetzt schon zu wenig Leute. Wenn ich weg bin, müssen die Kollegen noch mehr arbeiten.", "fr": "Des vacances ? On manque déjà de monde. Si je pars, les collègues devront travailler encore plus."}],
+   "choix": [
+    {"t": "Das stimmt. Aber wenn du krank wirst, fehlst du viel länger.", "fr": "C'est vrai. Mais si tu tombes malade, tu manqueras bien plus longtemps.", "va": "hilfe"},
+    {"t": "Deine Kollegen nehmen doch auch Urlaub. Du hast ein Recht darauf.", "fr": "Tes collègues prennent bien des vacances, eux aussi. Tu y as droit.", "va": "hilfe"},
+    {"faux": true, "t": "Aber wenn du krank bekommst, ist es schlimmer.", "fr": "Mais si tu « reçois » malade, c'est pire.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Krank bekommen? Was bekomme ich denn? Ach, wenn ich krank werde!", "fr": "« Recevoir » malade ? Qu'est-ce que je reçois ? Ah, si je tombe malade !"}],
+     "aide": {"fr": "<b>« Devenir, tomber (malade) » se dit « werden »</b> : « wenn du krank wirst ». « bekommen » veut dire « recevoir » (« Ich bekomme einen Brief »)."}}
+   ]
+  },
+  "praxis": {
+   "dit": [{"qui": "freund_arzt", "air": "attentive", "t": "Eine Praxis … Daran habe ich auch schon gedacht. Aber ich habe seit zehn Jahren keine Bewerbung mehr geschrieben. Ich weiß gar nicht, wie das heute geht.", "fr": "Un cabinet… J'y ai déjà pensé, moi aussi. Mais je n'ai plus écrit de candidature depuis dix ans. Je ne sais même pas comment on fait aujourd'hui."}],
+   "choix": [
+    {"t": "Das ist nicht so schwer. Gute Ärzte werden überall gesucht.", "fr": "Ce n'est pas si difficile. On cherche de bons médecins partout.", "va": "hilfe"},
+    {"t": "Du musst es nur versuchen. Mit deiner Erfahrung findest du schnell etwas.", "fr": "Il suffit d'essayer. Avec ton expérience, tu trouveras vite quelque chose.", "va": "hilfe"},
+    {"faux": true, "t": "Mit deiner Experienz findest du schnell etwas.", "fr": "Avec ton expérience, tu trouveras vite quelque chose.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Mit meiner was? Experimente mache ich schon lange nicht mehr!", "fr": "Avec ma quoi ? Des expériences de laboratoire, je n'en fais plus depuis longtemps !"}],
+     "aide": {"fr": "<b>L'expérience (professionnelle) se dit « die Erfahrung »</b> : « mit deiner Erfahrung ». « Experienz » n'existe pas, et « das Experiment » est une expérience scientifique."}}
+   ]
+  },
+  "hilfe": {
+   "dit": [{"qui": "freund_arzt", "air": "attentive", "t": "Vielleicht hast du recht. Ich bin nur so müde, dass ich allein gar nichts mehr schaffe.", "fr": "Tu as peut-être raison. Je suis juste tellement fatigué que je n'arrive plus à rien tout seul."}],
+   "choix": [
+    {"t": "Dann fangen wir klein an: Komm am Sonntag mit mir laufen, im Park.", "fr": "Alors on commence petit : viens courir avec moi dimanche, au parc.", "pose": {"hilfe": "laufen"}, "va": "laufen"},
+    {"si": {"rat": "chefin"}, "t": "Du bist nicht allein. Wenn du willst, üben wir das Gespräch zusammen.", "fr": "Tu n'es pas seul. Si tu veux, on répète l'entretien ensemble.", "pose": {"hilfe": "ueben"}, "va": "termin"},
+    {"si": {"rat": "urlaub"}, "t": "Du bist nicht allein. Ich helfe dir, den Urlaub zu planen.", "fr": "Tu n'es pas seul. Je t'aide à préparer tes vacances.", "pose": {"hilfe": "planen"}, "va": "termin"},
+    {"si": {"rat": "praxis"}, "t": "Du bist nicht allein. Schreib die Bewerbung, und ich lese sie für dich durch.", "fr": "Tu n'es pas seul. Écris la candidature, et je la relis pour toi.", "pose": {"hilfe": "bewerbung"}, "va": "termin"},
+    {"faux": true, "t": "Keine Sorge, ich kann dich helfen.", "fr": "Ne t'inquiète pas, je peux t'aider.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Du kannst mir helfen? Das wäre schön. Aber wie?", "fr": "Tu peux m'aider ? Ce serait bien. Mais comment ?"}],
+     "aide": {"fr": "<b>« helfen » demande le datif</b> : « Ich kann dir helfen », pas « dich ». Et propose quelque chose de précis."}}
+   ]
+  },
+  "laufen": {
+   "dit": [{"qui": "freund_arzt", "air": "perplexe", "t": "Laufen? Ich bin seit Monaten nicht mehr gelaufen. Nach zwei Kilometern falle ich um.", "fr": "Courir ? Je n'ai pas couru depuis des mois. Au bout de deux kilomètres, je m'écroule."}],
+   "choix": [
+    {"t": "Dann laufen wir ganz langsam. Danach lade ich dich zum Frühstück ein.", "fr": "Alors on courra tout doucement. Après, je t'invite à prendre le petit-déjeuner.", "va": "ende",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Mit Frühstück? Na gut, überredet. Sonntag um zehn am Parkeingang.", "fr": "Avec petit-déjeuner ? Bon, tu m'as convaincu. Dimanche à dix heures, à l'entrée du parc."}]},
+    {"t": "Kein Problem, wir können auch nur spazieren gehen. Hauptsache, du kommst raus.", "fr": "Pas de problème, on peut aussi juste se promener. L'essentiel, c'est que tu sortes.", "va": "ende",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Spazieren gehen, das schaffe ich. Sonntag um zehn am Parkeingang.", "fr": "Se promener, ça, j'y arriverai. Dimanche à dix heures, à l'entrée du parc."}]},
+    {"faux": true, "t": "Das ist egal, wir machen einen kleinen Jogging.", "fr": "Peu importe, on fait un petit jogging.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Einen Jogging? Du meinst, wir gehen ein bisschen joggen?", "fr": "« Un jogging » ? Tu veux dire qu'on va courir un peu ?"}],
+     "aide": {"fr": "<b>En allemand, « joggen » est un verbe</b> : « Wir gehen joggen » ou « Wir laufen langsam ». « Ein Jogging » ne se dit pas."}}
+   ]
+  },
+  "termin": {
+   "dit": [
+    {"qui": "freund_arzt", "air": "sourire", "si": {"hilfe": "ueben"}, "t": "Du spielst die Chefärztin? Das will ich sehen! Gut, das machen wir. Wann hast du Zeit?", "fr": "Tu joues la cheffe de service ? Je veux voir ça ! Bon, on le fait. Tu es libre quand ?"},
+    {"qui": "freund_arzt", "air": "sourire", "si": {"hilfe": "planen"}, "t": "Zwei Wochen am Meer … Allein hätte ich nie etwas gebucht. Gut, das machen wir. Wann hast du Zeit?", "fr": "Deux semaines à la mer… Tout seul, je n'aurais jamais rien réservé. Bon, on le fait. Tu es libre quand ?"},
+    {"qui": "freund_arzt", "air": "sourire", "si": {"hilfe": "bewerbung"}, "t": "Das würdest du machen? Dann schreibe ich am Wochenende etwas. Wann hast du Zeit?", "fr": "Tu ferais ça ? Alors j'écris quelque chose ce week-end. Tu es libre quand ?"}
+   ],
+   "choix": [
+    {"t": "Am Sonntagnachmittag. Komm zu mir, ich koche uns etwas.", "fr": "Dimanche après-midi. Viens chez moi, je nous prépare quelque chose à manger.", "va": "ende",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Sonntag passt, da habe ich frei. Ich bringe den Nachtisch mit.", "fr": "Dimanche, ça me va, je suis de repos. J'apporte le dessert."}]},
+    {"t": "Morgen Abend, wenn du keinen Dienst hast.", "fr": "Demain soir, si tu n'es pas de garde.", "va": "ende",
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Morgen habe ich frei, zum Glück. Ich komme um sieben zu dir.", "fr": "Demain, je suis de repos, heureusement. Je passe chez toi à sept heures."}]},
+    {"faux": true, "t": "Ich bin frei am Sonntag, komm bei mir.", "fr": "Je suis libre dimanche, viens chez moi.",
+     "puis": [{"qui": "freund_arzt", "air": "perplexe", "t": "Komm bei dir? Ich soll zu dir kommen, ja?", "fr": "« Viens chez toi » ? Je dois venir chez toi, c'est ça ?"}],
+     "aide": {"fr": "<b>Aller chez quelqu'un : « zu »</b> (« Komm zu mir ») ; être chez quelqu'un : « bei » (« Ich bin bei mir »). Et « Am Sonntag habe ich Zeit » sonne plus naturel que « Ich bin frei »."}}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "freund_arzt", "air": "sourire", "t": "Weißt du was? Mir geht es schon ein bisschen besser. Danke, dass du mir zugehört hast. Ich dachte, ich kann mit niemandem darüber reden.", "fr": "Tu sais quoi ? Je me sens déjà un peu mieux. Merci de m'avoir écouté. Je croyais que je ne pouvais en parler à personne."}],
+   "choix": [
+    {"t": "Dafür sind Freunde da. Ruf mich an, wenn es dir wieder schlecht geht.", "fr": "Les amis sont là pour ça. Appelle-moi si ça ne va pas de nouveau.", "va": null,
+     "puis": [{"qui": "freund_arzt", "air": "sourire", "t": "Versprochen. Und der Kaffee geht heute auf mich!", "fr": "Promis. Et aujourd'hui, le café, c'est pour moi !"}]},
+    {"t": "Du kannst immer mit mir reden. Und jetzt bestellen wir ein Stück Kuchen!", "fr": "Tu peux toujours me parler. Et maintenant, on commande une part de gâteau !", "va": null,
+     "puis": [{"qui": "freund_arzt", "air": "amuse", "t": "Gute Idee. Für mich zwei, ich habe seit gestern Abend nichts gegessen!", "fr": "Bonne idée. Deux pour moi, je n'ai rien mangé depuis hier soir !"}]},
+    {"faux": true, "t": "Das ist normal, du bist mein Freund.", "fr": "C'est normal, tu es mon ami.",
+     "puis": [{"qui": "freund_arzt", "air": "amuse", "t": "Normal? Dein Freund? Äh … wir sind gute Freunde, meinst du!", "fr": "Normal ? Ton petit ami ? Euh… on est de bons amis, tu veux dire !"}],
+     "aide": {"fr": "<b>« mein Freund » veut souvent dire « mon petit ami »</b> : pour un ami, dis « ein Freund von mir » ou « wir sind Freunde ». Et « c'est normal » : « Das ist doch selbstverständlich » ou « Dafür sind Freunde da »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as écouté ton ami et tu lui as conseillé {rat_fr}, plutôt que de tout quitter sur un coup de fatigue. Tu l'as rassuré et tu lui as proposé {hilfe_fr}. Il va déjà un peu mieux, et vous avez rendez-vous."}
+}

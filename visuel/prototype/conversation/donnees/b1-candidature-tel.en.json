@@ -1,0 +1,150 @@
+{
+ "id": "b1-candidature-tel",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Appeler pour une offre d'emploi"},
+ "intro": {"fr": "Un garage de Somerville cherche quelqu'un pour l'accueil et le bureau : les rendez-vous, le téléphone, les factures. Tu appelles pour en savoir plus."},
+ "personnes": ["b11_garagiste"],
+ "debut": "call",
+ "noeuds": {
+  "call": {
+   "dit": [
+    {"recit": {"fr": "Tu composes le numéro du garage. Ça sonne deux fois, puis on décroche. Derrière, on entend une radio et des outils."}},
+    {"qui": "b11_garagiste", "air": "sourire", "t": "Morales Auto Repair, this is Rosa. How can I help you?", "t_gb": "Morales Auto Repair, Rosa speaking. How can I help you?", "fr": "Garage Morales, Rosa à l'appareil. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hello. I'm calling about the job posting I saw online.", "t_gb": "Hello. I'm calling about the job advert I saw online.", "fr": "Bonjour. J'appelle au sujet de l'offre d'emploi que j'ai vue sur internet.", "pose": {"source": "web"}, "va": "available"},
+    {"t": "Hi. A friend told me you're looking for someone for the front desk.", "t_gb": "Hi. A friend told me you're looking for someone for reception.", "fr": "Bonjour. Un ami m'a dit que vous cherchiez quelqu'un pour l'accueil.", "pose": {"source": "friend"}, "va": "available"},
+    {"faux": true, "t": "Hello. I call for the announce.", "fr": "Bonjour. J'appelle pour l'annonce.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "Sorry — an announcement? About what?", "fr": "Pardon, une annonce ? À quel sujet ?"}],
+     "aide": {"fr": "Une annonce d'emploi se dit <b>job posting</b> (ou « job ad »), et pour ce qu'on fait en ce moment on dit <b>I'm calling</b>. Dis plutôt : « I'm calling about the job posting. »"}}
+   ]
+  },
+  "available": {
+   "dit": [
+    {"si": {"source": "web"}, "qui": "b11_garagiste", "air": "sourire", "t": "Oh, yes! We put that up on Monday. What would you like to know?", "fr": "Ah oui ! Nous l'avons mise en ligne lundi. Que voulez-vous savoir ?"},
+    {"si": {"source": "friend"}, "qui": "b11_garagiste", "air": "sourire", "t": "Oh, nice! Word gets around fast. What would you like to know?", "fr": "Ah, très bien ! Les nouvelles vont vite. Que voulez-vous savoir ?"}
+   ],
+   "choix": [
+    {"t": "Is the position still open?", "fr": "Le poste est-il encore libre ?", "va": "office",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Yes, it is. We've had a few calls, but we haven't hired anyone yet.", "fr": "Oui. Nous avons reçu quelques appels, mais nous n'avons encore embauché personne."}]},
+    {"t": "I wanted to ask if the job is still available.", "fr": "Je voulais savoir si le poste est toujours à pourvoir.", "va": "office",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "It is. You're calling at a good time.", "fr": "Oui. Vous appelez au bon moment."}]},
+    {"faux": true, "t": "The post is it still free?", "fr": "Le poste est-il encore libre ?",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "The post …? Oh, the job! Yes, it's still open.", "fr": "« The post »… ? Ah, le travail ! Oui, il est encore libre."}],
+     "aide": {"fr": "En anglais, la question commence par le verbe, sans reprendre le sujet : <b>Is the position…</b> Et un poste « libre » est <b>open</b> ou <b>available</b>. Dis plutôt : « Is the position still open? »"}}
+   ]
+  },
+  "office": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "Let me ask you a couple of things first. Have you worked in an office before?", "fr": "Je vous pose d'abord deux ou trois questions. Vous avez déjà travaillé dans un bureau ?"}],
+   "choix": [
+    {"t": "Yes, I worked in an office for four years, at an insurance company.", "fr": "Oui, j'ai travaillé quatre ans dans un bureau, dans une compagnie d'assurances.", "va": "office_yes"},
+    {"t": "No, but I worked at a hotel front desk for two years.", "t_gb": "No, but I worked on a hotel reception desk for two years.", "fr": "Non, mais j'ai travaillé deux ans à la réception d'un hôtel.", "va": "office_no"},
+    {"t": "No, but I worked in a store, and I often answered the phone.", "t_gb": "No, but I worked in a shop, and I often answered the phone.", "fr": "Non, mais j'ai travaillé dans un magasin, et je répondais souvent au téléphone.", "va": "office_no"},
+    {"faux": true, "t": "Yes, I worked in an office during four years.", "fr": "Oui, j'ai travaillé dans un bureau pendant quatre ans.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "During …? Oh, for four years. Got it.", "fr": "« During »… ? Ah, pendant quatre ans. Compris."}],
+     "aide": {"fr": "Devant une durée, « pendant » se dit <b>for</b>. « During » va avec un événement (during the meeting). Dis plutôt : « I worked in an office for four years. »"}}
+   ]
+  },
+  "office_yes": {
+   "dit": [{"qui": "b11_garagiste", "air": "sourire", "t": "Insurance — so paperwork doesn't scare you! Here it's appointments, invoices, and ordering parts. Are you comfortable with computers?", "fr": "Les assurances : la paperasse ne vous fait donc pas peur ! Ici, ce sont les rendez-vous, les factures et les commandes de pièces. Vous êtes à l'aise avec l'informatique ?"}],
+   "choix": [
+    {"t": "Yes, I used email and Excel every day at my last job.", "fr": "Oui, dans mon dernier travail, j'utilisais le courriel et Excel tous les jours.", "va": "phone"},
+    {"t": "Yes, and I learn new software quickly.", "fr": "Oui, et j'apprends vite les nouveaux logiciels.", "va": "phone"},
+    {"faux": true, "t": "Yes, I know very well the computers.", "fr": "Oui, je connais très bien les ordinateurs.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "You know them well? Good — then say hello to ours, it's very old!", "fr": "Vous les connaissez bien ? Tant mieux : vous direz bonjour au nôtre, il est très vieux !"}],
+     "aide": {"fr": "En anglais, <b>very well</b> ne se glisse pas entre le verbe et son complément, et on ne met pas « the » pour parler des ordinateurs en général. Dis plutôt : « I'm comfortable with computers. » ou « I know computers very well. »"}}
+   ]
+  },
+  "office_no": {
+   "dit": [{"qui": "b11_garagiste", "air": "sourire", "t": "That's fine. If you've dealt with customers, you can learn the rest. Here it's appointments, invoices, and ordering parts. Would you be willing to learn our billing software?", "fr": "Très bien. Si vous avez l'habitude des clients, le reste s'apprend. Ici, ce sont les rendez-vous, les factures et les commandes de pièces. Vous seriez prêt(e) à apprendre notre logiciel de facturation ?"}],
+   "choix": [
+    {"t": "Of course. I'd be happy to learn something new.", "fr": "Bien sûr. Je serais content(e) d'apprendre quelque chose de nouveau.", "va": "phone"},
+    {"t": "Yes, definitely. I usually learn quickly.", "fr": "Oui, tout à fait. En général, j'apprends vite.", "va": "phone"},
+    {"faux": true, "t": "Yes, I want well.", "fr": "Oui, je veux bien.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "You want … well? Sorry, I didn't catch that.", "fr": "Vous voulez… « well » ? Pardon, je n'ai pas compris."}],
+     "aide": {"fr": "<b>« Je veux bien »</b> ne se traduit pas mot à mot. Dis plutôt : « I'd be happy to. » ou « Of course, I'd be happy to learn. »"}}
+   ]
+  },
+  "phone": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "Good. One more thing: the phone rings all day here, and some customers are pretty stressed about their cars. Is that okay with you?", "fr": "Bien. Autre chose : ici, le téléphone sonne toute la journée, et certains clients sont assez stressés à cause de leur voiture. Ça vous va ?"}],
+   "choix": [
+    {"t": "Yes, I'm comfortable on the phone, and I'm patient.", "fr": "Oui, je suis à l'aise au téléphone, et j'ai de la patience.", "va": "hours",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Patient — that's the magic word in this business.", "fr": "De la patience : c'est le mot magique dans ce métier."}]},
+    {"t": "That's fine. People calm down when you really listen to them.", "fr": "Ça me va. Les gens se calment quand on les écoute vraiment.", "va": "hours",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Exactly. I like that answer.", "fr": "Exactement. J'aime cette réponse."}]},
+    {"repete": true, "t": "Sorry, could you repeat that, please?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "phone",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sure. The phone rings a lot here, and some callers are stressed. Is that okay with you?", "fr": "Bien sûr. Ici, le téléphone sonne beaucoup, et certaines personnes sont stressées. Ça vous va ?"}]},
+    {"faux": true, "t": "Yes, I have the habit to phone.", "fr": "Oui, j'ai l'habitude de téléphoner.",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "A habit? You mean you're used to it?", "fr": "Une habitude ? Vous voulez dire que vous y êtes habitué(e) ?"}],
+     "aide": {"fr": "<b>« avoir l'habitude de »</b> se dit <b>be used to + -ing</b>. Dis plutôt : « I'm used to talking on the phone. » ou « I'm comfortable on the phone. »"}}
+   ]
+  },
+  "hours": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "So — do you have any questions about the job?", "fr": "Alors, vous avez des questions sur le poste ?"}],
+   "choix": [
+    {"t": "Yes. Is it a full-time or a part-time position?", "fr": "Oui. C'est un poste à temps plein ou à temps partiel ?", "va": "resume",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Full-time. Monday through Friday, 7:30 to 4:30, with an hour for lunch.", "t_gb": "Full-time. Monday to Friday, 7:30 to 4:30, with an hour for lunch.", "dit": "Full-time. Monday through Friday, seven thirty to four thirty, with an hour for lunch.", "dit_gb": "Full-time. Monday to Friday, half past seven to half past four, with an hour for lunch.", "fr": "À temps plein. Du lundi au vendredi, de 7 h 30 à 16 h 30, avec une heure pour déjeuner."}]},
+    {"t": "Yes. What are the working hours?", "fr": "Oui. Quels sont les horaires de travail ?", "va": "resume",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Monday through Friday, 7:30 to 4:30, with an hour for lunch. It's full-time.", "t_gb": "Monday to Friday, 7:30 to 4:30, with an hour for lunch. It's full-time.", "dit": "Monday through Friday, seven thirty to four thirty, with an hour for lunch. It's full-time.", "dit_gb": "Monday to Friday, half past seven to half past four, with an hour for lunch. It's full-time.", "fr": "Du lundi au vendredi, de 7 h 30 à 16 h 30, avec une heure pour déjeuner. C'est un temps plein."}]},
+    {"faux": true, "t": "Yes. Is it a job at full time?", "fr": "Oui. C'est un travail à temps plein ?",
+     "puis": [{"qui": "b11_garagiste", "air": "perplexe", "t": "At full …? Oh, full-time! Yes, it is.", "fr": "« At full »… ? Ah, à temps plein ! Oui."}],
+     "aide": {"fr": "« À temps plein » se dit <b>full-time</b>, placé devant le nom, sans préposition. Dis plutôt : « Is it a full-time or a part-time position? »"}}
+   ]
+  },
+  "resume": {
+   "dit": [{"qui": "b11_garagiste", "air": "sourire", "t": "If that works for you, please email me your résumé.", "t_gb": "If that works for you, please email me your CV.", "fr": "Si cela vous convient, envoyez-moi votre CV par courriel."}],
+   "choix": [
+    {"t": "Sure. What email address should I send it to?", "fr": "Bien sûr. À quelle adresse dois-je l'envoyer ?", "va": "confirm",
+     "puis": [{"qui": "b11_garagiste", "air": "attentive", "t": "It's rosa@morales-auto.com. That's M-O-R-A-L-E-S, dash, auto.", "t_gb": "It's rosa@morales-auto.com. That's M-O-R-A-L-E-S, hyphen, auto.", "dit": "It's rosa, at, morales, dash, auto, dot com. That's M, O, R, A, L, E, S, dash, auto.", "dit_gb": "It's rosa, at, morales, hyphen, auto, dot com. That's M, O, R, A, L, E, S, hyphen, auto.", "fr": "C'est rosa@morales-auto.com. Morales : M-O-R-A-L-E-S, tiret, auto."}]},
+    {"t": "Of course. Could you give me your email address, please?", "fr": "Bien sûr. Pourriez-vous me donner votre adresse courriel, s'il vous plaît ?", "va": "confirm",
+     "puis": [{"qui": "b11_garagiste", "air": "attentive", "t": "It's rosa@morales-auto.com. That's M-O-R-A-L-E-S, dash, auto.", "t_gb": "It's rosa@morales-auto.com. That's M-O-R-A-L-E-S, hyphen, auto.", "dit": "It's rosa, at, morales, dash, auto, dot com. That's M, O, R, A, L, E, S, dash, auto.", "dit_gb": "It's rosa, at, morales, hyphen, auto, dot com. That's M, O, R, A, L, E, S, hyphen, auto.", "fr": "C'est rosa@morales-auto.com. Morales : M-O-R-A-L-E-S, tiret, auto."}]},
+    {"faux": true, "t": "Yes. Can you give me your mail?", "fr": "Oui. Vous pouvez me donner votre mail ?",
+     "puis": [{"qui": "b11_garagiste", "air": "surprise", "t": "My mail? You mean my email address?", "fr": "Mon courrier ? Vous voulez dire mon adresse courriel ?"}],
+     "aide": {"fr": "<b>« mail »</b>, en anglais, c'est le courrier papier, celui du facteur. Dis plutôt : « Could you give me your email address, please? »"}}
+   ]
+  },
+  "confirm": {
+   "dit": [
+    {"recit": {"fr": "La ligne grésille un peu. Tu as noté l'adresse, mais tu préfères vérifier."}},
+    {"qui": "b11_garagiste", "air": "question", "t": "Did you get that?", "fr": "Vous avez noté ?"}
+   ],
+   "choix": [
+    {"t": "Let me check: rosa, at, morales, dash, auto, dot com. Is that right?", "t_gb": "Let me check: rosa, at, morales, hyphen, auto, dot com. Is that right?", "fr": "Je vérifie : rosa, arobase, morales, tiret, auto, point com. C'est bien ça ?", "va": "interview",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "That's it. Perfect.", "fr": "C'est ça. Parfait."}]},
+    {"t": "I think so. Morales with one L, then a dash, then auto?", "t_gb": "I think so. Morales with one L, then a hyphen, then auto?", "fr": "Je crois. Morales avec un seul L, puis un tiret, puis auto ?", "va": "interview",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Exactly. One L, dash, auto, dot com.", "t_gb": "Exactly. One L, hyphen, auto, dot com.", "fr": "Exactement. Un seul L, tiret, auto, point com."}]},
+    {"repete": true, "t": "Sorry, the line is bad. Could you spell it again, please?", "fr": "Pardon, la ligne est mauvaise. Vous pouvez l'épeler encore une fois, s'il vous plaît ?", "va": "confirm",
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Sure, nice and slow: rosa … at … M-O-R-A-L-E-S … dash … auto … dot com.", "t_gb": "Sure, nice and slow: rosa … at … M-O-R-A-L-E-S … hyphen … auto … dot com.", "dit": "Sure, nice and slow: rosa, at, M, O, R, A, L, E, S, dash, auto, dot com.", "dit_gb": "Sure, nice and slow: rosa, at, M, O, R, A, L, E, S, hyphen, auto, dot com.", "fr": "Bien sûr, tout doucement : rosa… arobase… M-O-R-A-L-E-S… tiret… auto… point com."}]},
+    {"faux": true, "t": "Yes: rosa, arobase, morales, tiret, auto, point com.", "fr": "Oui : rosa, arobase, morales, tiret, auto, point com.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "A-ro-what? Let's try that one more time, in English!", "fr": "A-ro-quoi ? On réessaie, en anglais cette fois !"}],
+     "aide": {"fr": "Une adresse se dicte avec <b>at</b> (@), <b>dash</b> (le tiret) et <b>dot</b> (le point). Dis plutôt : « rosa, at, morales, dash, auto, dot com ». En anglais britannique, le tiret se dit « hyphen »."}}
+   ]
+  },
+  "interview": {
+   "dit": [{"qui": "b11_garagiste", "air": "question", "t": "And I'd like to meet you in person. Could you come in for an interview on Wednesday at 10?", "dit": "And I'd like to meet you in person. Could you come in for an interview on Wednesday at ten?", "fr": "Et j'aimerais vous rencontrer. Pourriez-vous venir pour un entretien mercredi à 10 h ?"}],
+   "choix": [
+    {"t": "Wednesday at ten is perfect. Thank you very much.", "fr": "Mercredi à dix heures, c'est parfait. Merci beaucoup.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Great. Send me that résumé today, and I'll see you Wednesday. Bye now!", "t_gb": "Great. Send me that CV today, and I'll see you on Wednesday. Bye for now!", "fr": "Parfait. Envoyez-moi ce CV aujourd'hui, et à mercredi. Au revoir !"}]},
+    {"t": "I'm sorry, I can't make it on Wednesday. Would Thursday be possible?", "fr": "Je suis désolé(e), mercredi, je ne peux pas. Jeudi, ce serait possible ?", "va": "otherday"},
+    {"faux": true, "t": "Sorry, Wednesday I have a rendez-vous.", "fr": "Désolé(e), mercredi, j'ai un rendez-vous.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "A rendezvous? How romantic! Oh — you mean an appointment.", "fr": "Un « rendezvous » ? Comme c'est romantique ! Ah, vous voulez dire un rendez-vous ordinaire."}],
+     "aide": {"fr": "En anglais, <b>« rendezvous »</b> évoque un rendez-vous galant ou secret. Un rendez-vous ordinaire est un <b>appointment</b>. Dis plutôt : « I'm sorry, I can't make it on Wednesday. Would Thursday be possible? »"}}
+   ]
+  },
+  "otherday": {
+   "dit": [{"qui": "b11_garagiste", "air": "attentive", "t": "Thursday … I have a customer at 10, but I'm free at 2. Does that work?", "dit": "Thursday … I have a customer at ten, but I'm free at two. Does that work?", "fr": "Jeudi… J'ai un client à 10 h, mais je suis libre à 14 h. Ça vous irait ?"}],
+   "choix": [
+    {"t": "Yes, Thursday at two works for me. Thank you very much.", "fr": "Oui, jeudi à deux heures, ça me va. Merci beaucoup.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Great. Send me that résumé today, and I'll see you Thursday. Bye now!", "t_gb": "Great. Send me that CV today, and I'll see you on Thursday. Bye for now!", "fr": "Parfait. Envoyez-moi ce CV aujourd'hui, et à jeudi. Au revoir !"}]},
+    {"t": "Two o'clock is fine. I'll send you my résumé this afternoon.", "t_gb": "Two o'clock is fine. I'll send you my CV this afternoon.", "fr": "Deux heures, c'est très bien. Je vous envoie mon CV cet après-midi.", "va": null,
+     "puis": [{"qui": "b11_garagiste", "air": "sourire", "t": "Perfect. See you Thursday, then. Bye now!", "t_gb": "Perfect. See you on Thursday, then. Bye for now!", "fr": "Parfait. À jeudi, alors. Au revoir !"}]},
+    {"faux": true, "t": "Yes, I will be there at fourteen hours.", "fr": "Oui, je serai là à quatorze heures.",
+     "puis": [{"qui": "b11_garagiste", "air": "amuse", "t": "Fourteen hours? That would be a very long interview! Two o'clock, right?", "fr": "Quatorze heures ? Ce serait un entretien bien long ! Deux heures de l'après-midi, c'est ça ?"}],
+     "aide": {"fr": "Aux États-Unis, on ne compte pas les heures jusqu'à vingt-quatre : 14 h, c'est <b>two o'clock</b> ou « two p.m. ». Dis plutôt : « Thursday at two works for me. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as appelé le garage, parlé de ton expérience, noté l'adresse courriel de Rosa Morales et obtenu un entretien."}
+}

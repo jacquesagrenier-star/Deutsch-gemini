@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>L'école et la garderie</title>
 <!--
@@ -128,11 +129,12 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
+<script src="ecole/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = ["de", "pt"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
@@ -160,7 +162,7 @@ const TEXTES = {
   secObj:    {fr:"Les fournitures", en:"School supplies", tr:"Okul malzemeleri", uk:"Шкільне приладдя", fa:"لوازم مدرسه", ar:"الأدوات المدرسية", pt:"O material escolar", pl:"Przybory szkolne", ru:"Школьные принадлежности", de:"Das Schulmaterial"},
   secPap:    {fr:"Les papiers de l'école", en:"School papers", tr:"Okul kâğıtları", uk:"Шкільні папери", fa:"کاغذهای مدرسه", ar:"أوراق المدرسة", pt:"Os papéis da escola", pl:"Papiery ze szkoły", ru:"Школьные бумаги", de:"Die Papiere der Schule"},
   regleDe:   {fr:"Wohin? avec l'accusatif : Ben geht in die Schule, Mia geht in den Kindergarten. Wo? avec le datif : Ben ist in der Schule, Mia ist im Kindergarten (in dem). Beaucoup de verbes sont séparables : Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — le petit mot va à la fin. Et après weil, le verbe aussi : Ben fehlt, weil er krank ist.", en:"Wohin? takes the accusative: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? takes the dative: Ben ist in der Schule, Mia ist im Kindergarten (in dem). Many verbs are separable: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — the small word goes to the end. After weil, the verb goes there too: Ben fehlt, weil er krank ist.", tr:"Wohin? sorusunda akuzatif: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? sorusunda datif: Ben ist in der Schule, Mia ist im Kindergarten (in dem). Birçok fiil ayrılabilir: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — küçük kelime sona gider. weil'den sonra fiil de sona gider: Ben fehlt, weil er krank ist.", uk:"Wohin? — Akkusativ: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? — Dativ (українською тут місцевий: у школі): Ben ist in der Schule, Mia ist im Kindergarten (in dem). Багато дієслів відокремлювані: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — маленьке слово йде в кінець. Після weil дієслово теж іде в кінець: Ben fehlt, weil er krank ist.", fa:"Wohin? با حالت مفعولی (آکوزاتیو): Ben geht in die Schule، Mia geht in den Kindergarten. Wo? با حالت داتیو: Ben ist in der Schule، Mia ist im Kindergarten (in dem). بسیاری از فعل‌ها جداشدنی‌اند: Mark holt Mia von der Kita ab، Katrin meldet Mia an، Katrin ruft in der Schule an — واژهٔ کوچک به آخر می‌رود. بعد از weil هم فعل به آخر می‌رود: Ben fehlt, weil er krank ist.", ar:"‏Wohin? مع حالة النصب (الأكوزاتيف): Ben geht in die Schule، Mia geht in den Kindergarten. ‏Wo? مع حالة الجر (الداتيف): Ben ist in der Schule، Mia ist im Kindergarten ‏(in dem). أفعال كثيرة قابلة للفصل: Mark holt Mia von der Kita ab، Katrin meldet Mia an، Katrin ruft in der Schule an — الكلمة الصغيرة تذهب إلى آخر الجملة. وبعد weil يذهب الفعل إلى الآخر أيضًا: Ben fehlt, weil er krank ist.", pt:"Wohin? com o acusativo: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? com o dativo: Ben ist in der Schule, Mia ist im Kindergarten (in dem). Muitos verbos são separáveis: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — a palavrinha vai para o fim. Depois de weil, o verbo também: Ben fehlt, weil er krank ist.", pl:"Wohin? z Akkusativem: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? z Dativem (po polsku tu miejscownik: w szkole): Ben ist in der Schule, Mia ist im Kindergarten (in dem). Wiele czasowników jest rozdzielnych: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — małe słowo idzie na koniec. Po weil czasownik też idzie na koniec: Ben fehlt, weil er krank ist.", ru:"Wohin? — Akkusativ: Ben geht in die Schule, Mia geht in den Kindergarten. Wo? — Dativ (по-русски здесь предложный: в школе): Ben ist in der Schule, Mia ist im Kindergarten (in dem). Многие глаголы отделяемые: Mark holt Mia von der Kita ab, Katrin meldet Mia an, Katrin ruft in der Schule an — маленькое слово уходит в конец. После weil глагол тоже в конце: Ben fehlt, weil er krank ist."},
-  regleEs:   {fr:"Où va-t-on ? ir a : Ben va al colegio (a + el = al), Mia va a la guardería. Où est-on ? estar en : Ben está en el colegio. Devant une personne, le complément prend « a » : Mark recoge a Mia, Katrin lleva a Ben al colegio. Pourquoi ? porque : Ben falta porque está enfermo.", en:"Where to? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Where? estar en: Ben está en el colegio. Before a person, the object takes « a »: Mark recoge a Mia, Katrin lleva a Ben al colegio. Why? porque: Ben falta porque está enfermo.", pt:"Para onde? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Onde? estar en: Ben está en el colegio. Diante de uma pessoa, o complemento leva « a »: Mark recoge a Mia, Katrin lleva a Ben al colegio. Por quê? porque: Ben falta porque está enfermo.", ar:"إلى أين؟ ir a: Ben va al colegio ‏(a + el = al)، Mia va a la guardería. أين؟ estar en: Ben está en el colegio. أمام الشخص يأخذ المفعول « a »: Mark recoge a Mia، Katrin lleva a Ben al colegio. لماذا؟ porque: Ben falta porque está enfermo.", de:"Wohin? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Wo? estar en: Ben está en el colegio. Vor einer Person steht « a »: Mark recoge a Mia, Katrin lleva a Ben al colegio. Warum? porque: Ben falta porque está enfermo."},
+  regleEs:   {fr:"Où va-t-on ? ir a : Ben va al colegio (a + el = al), Mia va a la guardería. Où est-on ? estar en : Ben está en el colegio. Devant une personne, le complément prend « a » : Mark recoge a Mia, Katrin lleva a Ben al colegio. Pourquoi ? porque : Ben falta porque está enfermo.", en:"Where to? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Where? estar en: Ben está en el colegio. Before a person, the object takes “a”: Mark recoge a Mia, Katrin lleva a Ben al colegio. Why? porque: Ben falta porque está enfermo.", pt:"Para onde? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Onde? estar en: Ben está en el colegio. Diante de uma pessoa, o complemento leva « a »: Mark recoge a Mia, Katrin lleva a Ben al colegio. Por quê? porque: Ben falta porque está enfermo.", ar:"إلى أين؟ ir a: Ben va al colegio ‏(a + el = al)، Mia va a la guardería. أين؟ estar en: Ben está en el colegio. أمام الشخص يأخذ المفعول « a »: Mark recoge a Mia، Katrin lleva a Ben al colegio. لماذا؟ porque: Ben falta porque está enfermo.", de:"Wohin? ir a: Ben va al colegio (a + el = al), Mia va a la guardería. Wo? estar en: Ben está en el colegio. Vor einer Person steht « a »: Mark recoge a Mia, Katrin lleva a Ben al colegio. Warum? porque: Ben falta porque está enfermo."},
   // le portugais appris : l'interface en francais (et en anglais)
   introPt:   {fr:"Ben a 7 ans, il va à l'école primaire ; sa petite sœur Mia a 4 ans, elle va au jardin d'enfants (o jardim de infância). La famille vit à Lisbonne. Touche une image : tu vois et tu entends ce qui se passe. En bas, les papiers de l'école.", en:"Ben is 7 and goes to primary school; his little sister Mia is 4 and goes to kindergarten (o jardim de infância). The family lives in Lisbon. Tap a picture to see and hear what happens. Below are the school papers."},
   reglePt:   {fr:"Où va-t-on ? ir a, collé à l'article : o Ben vai à escola (a + a = à), a Mia vai ao jardim de infância (a + o = ao). Où est-on ? estar em : o Ben está na escola (em + a = na), a Mia está no jardim de infância (em + o = no). Aller chercher : ir buscar — o Mark vai buscar a Mia ao jardim de infância. Pourquoi ? porque : o Ben falta porque está doente. Au Portugal, on met l'article devant le prénom : o Ben, a Mia, a Katrin.", en:"Where to? ir a, joined to the article: o Ben vai à escola (a + a = à), a Mia vai ao jardim de infância (a + o = ao). Where? estar em: o Ben está na escola (em + a = na), a Mia está no jardim de infância (em + o = no). To pick up: ir buscar — o Mark vai buscar a Mia ao jardim de infância. Why? porque: o Ben falta porque está doente. In Portugal, first names take the article: o Ben, a Mia, a Katrin."},
@@ -174,11 +176,11 @@ const TEXTES = {
   c_ordre:   {fr:"Quelle phrase est correcte ? Regarde où va le petit mot.", en:"Which sentence is correct? Look where the small word goes.", tr:"Hangi cümle doğru? Küçük kelimenin nereye gittiğine bak.", uk:"Яке речення правильне? Подивися, куди йде маленьке слово.", fa:"کدام جمله درست است؟ ببین واژهٔ کوچک کجا می‌رود.", ar:"أي جملة صحيحة؟ انظر أين تذهب الكلمة الصغيرة.", pt:"Qual frase está correta? Veja para onde vai a palavrinha.", pl:"Które zdanie jest poprawne? Zobacz, gdzie idzie małe słowo.", ru:"Какое предложение правильное? Посмотри, куда идёт маленькое слово.", de:"Welcher Satz ist richtig? Achte darauf, wo das kleine Wort steht."},
   c_aPersonal:{fr:"Devant une personne : quel petit mot manque ?", en:"Before a person: which small word is missing?", pt:"Diante de uma pessoa: que palavrinha falta?", ar:"أمام الشخص: ما الكلمة الصغيرة الناقصة؟", de:"Vor einer Person: Welches kleine Wort fehlt?"},
   c_liste:   {fr:"Lis la liste des fournitures : de quoi Ben a-t-il besoin ?", en:"Read the list of supplies: what does Ben need?", tr:"Malzeme listesini oku: Ben'in neye ihtiyacı var?", uk:"Прочитай список приладдя: що потрібно Бенові?", fa:"فهرست لوازم را بخوان: بن به چه چیزی نیاز دارد؟", ar:"اقرأ قائمة الأدوات: ماذا يحتاج بن؟", pt:"Leia a lista de material: do que o Ben precisa?", pl:"Przeczytaj listę przyborów: czego potrzebuje Ben?", ru:"Прочитай список принадлежностей: что нужно Бену?", de:"Lies die Materialliste: Was braucht Ben?"},
-  c_horaire: {fr:"Lis l'emploi du temps de Ben et réponds.", en:"Read Ben's timetable and answer.", tr:"Ben'in ders programını oku ve cevap ver.", uk:"Прочитай розклад Бена й дай відповідь.", fa:"برنامهٔ درسی بن را بخوان و جواب بده.", ar:"اقرأ جدول بن الدراسي وأجب.", pt:"Leia o horário do Ben e responda.", pl:"Przeczytaj plan lekcji Bena i odpowiedz.", ru:"Прочитай расписание Бена и ответь.", de:"Lies Bens Stundenplan und antworte."},
+  c_horaire: {fr:"Lis l'emploi du temps de Ben et réponds.", en:"Read Ben's schedule and answer.", tr:"Ben'in ders programını oku ve cevap ver.", uk:"Прочитай розклад Бена й дай відповідь.", fa:"برنامهٔ درسی بن را بخوان و جواب بده.", ar:"اقرأ جدول بن الدراسي وأجب.", pt:"Leia o horário do Ben e responda.", pl:"Przeczytaj plan lekcji Bena i odpowiedz.", ru:"Прочитай расписание Бена и ответь.", de:"Lies Bens Stundenplan und antworte."},
   c_papier:  {fr:"Regarde ce papier : qu'est-ce que c'est ?", en:"Look at this paper: what is it?", tr:"Bu kâğıda bak: bu ne?", uk:"Подивися на цей папір: що це?", fa:"به این کاغذ نگاه کن: این چیست؟", ar:"انظر إلى هذه الورقة: ما هذه؟", pt:"Olhe este papel: o que é isto?", pl:"Spójrz na tę kartkę: co to jest?", ru:"Посмотри на эту бумагу: что это?", de:"Sieh dir das Papier an: Was ist das?"},
   c_mot:     {fr:"Lis le mot de Katrin à l'enseignante et réponds.", en:"Read Katrin's note to the teacher and answer.", tr:"Katrin'in öğretmene yazdığı notu oku ve cevap ver.", uk:"Прочитай записку Катрін учительці й дай відповідь.", fa:"یادداشت کاترین به معلم را بخوان و جواب بده.", ar:"اقرأ رسالة كاترين إلى المعلمة وأجب.", pt:"Leia o bilhete da Katrin para a professora e responda.", pl:"Przeczytaj liścik Katrin do nauczycielki i odpowiedz.", ru:"Прочитай записку Катрин учительнице и ответь.", de:"Lies Katrins Nachricht an die Lehrerin und antworte."},
   c_reunion: {fr:"Lis l'invitation et réponds.", en:"Read the invitation and answer.", tr:"Daveti oku ve cevap ver.", uk:"Прочитай запрошення й дай відповідь.", fa:"دعوت‌نامه را بخوان و جواب بده.", ar:"اقرأ الدعوة وأجب.", pt:"Leia o convite e responda.", pl:"Przeczytaj zaproszenie i odpowiedz.", ru:"Прочитай приглашение и ответь.", de:"Lies die Einladung und antworte."},
-  c_ferien:  {fr:"Lis le calendrier des vacances et complète.", en:"Read the holiday calendar and complete.", tr:"Tatil takvimini oku ve tamamla.", uk:"Прочитай календар канікул і доповни.", fa:"تقویم تعطیلات را بخوان و کامل کن.", ar:"اقرأ تقويم العطل وأكمل.", pt:"Leia o calendário de férias e complete.", pl:"Przeczytaj kalendarz ferii i uzupełnij.", ru:"Прочитай календарь каникул и закончи.", de:"Lies den Ferienkalender und ergänze."},
+  c_ferien:  {fr:"Lis le calendrier des vacances et complète.", en:"Read the vacation calendar and complete.", tr:"Tatil takvimini oku ve tamamla.", uk:"Прочитай календар канікул і доповни.", fa:"تقویم تعطیلات را بخوان و کامل کن.", ar:"اقرأ تقويم العطل وأكمل.", pt:"Leia o calendário de férias e complete.", pl:"Przeczytaj kalendarz ferii i uzupełnij.", ru:"Прочитай календарь каникул и закончи.", de:"Lies den Ferienkalender und ergänze."},
   c_abholen: {fr:"Lis le tableau de la garderie : qui va chercher Mia ?", en:"Read the day-care chart: who picks Mia up?", tr:"Kreşin tablosunu oku: Mia'yı kim alıyor?", uk:"Прочитай таблицю дитсадка: хто забирає Мію?", fa:"جدول مهدکودک را بخوان: چه کسی میا را می‌برد؟", ar:"اقرأ جدول الحضانة: من يأخذ ميا؟", pt:"Leia o quadro da creche: quem busca a Mia?", pl:"Przeczytaj tabelę przedszkola: kto odbiera Mię?", ru:"Прочитай таблицу детского сада: кто забирает Мию?", de:"Lies den Plan der Kita: Wer holt Mia ab?"},
   c_vraifaux:{fr:"Lis bien : vrai ou faux ?", en:"Read carefully: true or false?", tr:"Dikkatle oku: doğru mu, yanlış mı?", uk:"Уважно прочитай: правда чи ні?", fa:"با دقت بخوان: درست یا نادرست؟", ar:"اقرأ جيدًا: صحيح أم خطأ؟", pt:"Leia com atenção: verdadeiro ou falso?", pl:"Przeczytaj uważnie: prawda czy fałsz?", ru:"Прочитай внимательно: правда или нет?", de:"Lies genau: richtig oder falsch?"},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
@@ -195,7 +197,12 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (ecole.json, faite par visuel/ecole/ecole.py) ----------
 let D = null, LX, ACT, OBJ, CJ, NO;
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (ecole/langues.js, lot 5 de l'alignement des themes, 16 nov. 2026) : leurs morceaux sont poses
+// dans la donnee au chargement, et LEC[langue] assemble les phrases que la grammaire de la langue demande
+let LEC = {};
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
@@ -276,6 +283,7 @@ const objsDe = w => Object.keys(OBJ).filter(k => !w || memeMot(objMot(k), w));
 const objPhrase = k => PT_ ? "É " + objAff(k) + "." : ES_ ? (OBJ[k].genre === "las" ? "Son " : "Es ") + objAff(k) + "." : "Das ist " + objAff(k) + ".";
 function objTrad(k){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].obj(k);
   const t = OBJ[k].trad[TL][0];
   return {fr: (t.startsWith("les ") ? "Ce sont " : "C'est ") + t + ".", en: (t.endsWith("scissors") ? "These are " : "This is ") + t + ".", pt: "É " + t + ".", de: "Das ist " + t + "."}[TL];
 }
@@ -323,6 +331,7 @@ function phraseWohin(e, k, ou, trou){
 }
 function tradWohin(e, k, ou){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].wohin(e, k, ou);
   const t = LX[k].trad[TL], a = AGE_T[D.enfants[e].age][TL], P = PRON[e][TL];
   const dat = TL === "de" ? DAT_DE[k] : t[1];
   if (TL === "fr") return ou ? "Il est dix heures du matin. " + e + " est " + dat + "." : e + " a " + a + " ans. " + P + " va " + t[1] + ".";
@@ -340,7 +349,7 @@ const aHeure = (h, m, l) => { l = l || APPRENDRE; return ({de: "um ", es: "a las
 const dateLongue = (j, m, l) => { l = l || APPRENDRE; const M = D.mois[l][m - 1];
   return l === "de" ? j + ". " + M : l === "es" || l === "pt" ? j + " de " + M : l === "en" ? j + " " + M : (j === 1 ? "1er" : j) + " " + M; };
 const auJour = (j, m, l) => { l = l || APPRENDRE; return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: "em "})[l] + dateLongue(j, m, l); };
-const auJourSemaine = (n, l) => { l = l || APPRENDRE; return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: n >= 6 ? "no " : "na "})[l] + NOM_JOUR(n, l); };
+const auJourSemaine = (n, l) => { l = l || APPRENDRE; if (LEC[l]) return LEC[l].auJour(n); return ({de: "am ", es: "el ", fr: "le ", en: "on ", pt: n >= 6 ? "no " : "na "})[l] + NOM_JOUR(n, l); };
 const ceJour = (n, l) => l === "fr" ? NOM_JOUR(n, "fr") : auJourSemaine(n, l);          // un jour precis : « jeudi » (« le jeudi » = tous les jeudis)
 const dateCourte = (j, m, a) => { const p = n => String(n).padStart(2, "0"); return ES_ || PT_ ? p(j) + "/" + p(m) + (a ? "/" + a : "") : p(j) + "." + p(m) + "." + (a || ""); };
 
@@ -394,6 +403,7 @@ const quandMotTrad = m => TL ? joursMot(m).map(j => ceJour(j, TL)).join({fr: " e
 const phraseMot = m => PT_ ? cap(artPt("Ben")) + " falta à escola " + quandMot(m) + " " + parceQue(m.r) + "." : ES_ ? "Ben falta al colegio " + quandMot(m) + " " + parceQue(m.r) + "." : "Ben fehlt " + quandMot(m) + ", " + parceQue(m.r) + ".";
 function tradMot(m){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].mot(joursMot(m), m.r);
   const r = RA(m.r).t[TL], q = quandMotTrad(m), low = r.charAt(0).toLowerCase() + r.slice(1).replace(/\.$/, "");
   return {fr: "Ben est absent " + q + " parce qu'" + low.replace(/^il /, "il ") + ".", en: "Ben is absent " + q + " because " + low.replace(/^he /, "he ") + ".",
           pt: "O Ben falta " + q.replace(/^na /, "na ") + " porque " + low.replace(/^ele /, "ele ") + ".", de: "Ben fehlt " + q + ", weil " + low.replace(/^er /, "er ").replace(/ (ist|hat) (.*)$/, " $2 $1") + "."}[TL].replace("parce qu'il", "parce qu'il");
@@ -422,6 +432,7 @@ function papierReunion(r){
 const phraseReunion = r => PT_ ? "A reunião de pais é " + auJourSemaine(r.j) + ", " + aHeure(r.h, r.mi) + ", na " + r.salle + "." : ES_ ? "La reunión de padres es " + auJourSemaine(r.j) + " " + aHeure(r.h, r.mi) + " en el " + r.salle + "." : "Der Elternabend ist " + auJourSemaine(r.j) + " " + aHeure(r.h, r.mi) + " in " + r.salle + ".";
 function tradReunion(r){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].reunion(r.j, r.h, r.mi, r.salle.replace(/^(Raum|aula|sala) /, ""));
   const s = r.salle.replace(/^(Raum|aula|sala) /, ""), J = ceJour(r.j, TL), H = aHeure(r.h, r.mi, TL);
   return {fr: "La réunion de parents a lieu " + J + " " + H + ", salle " + s + ".", en: "The parents' evening is " + J + " " + H + " in room " + s + ".",
           pt: "A reunião de pais é " + J + " " + H + ", na sala " + s + ".", de: "Der Elternabend ist " + J + " " + H + " in Raum " + s + "."}[TL];
@@ -454,6 +465,7 @@ const phraseFerien = (d, vac) => PT_ ? "No dia " + dateLongue(d.getDate(), d.get
                                      : "Am " + dateLongue(d.getDate(), d.getMonth() + 1) + " hat Ben " + (vac ? "Ferien" : "Schule") + ".";
 function tradFerien(d, vac){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].ferien(d.getDate(), d.getMonth() + 1, vac);
   const q = auJour(d.getDate(), d.getMonth() + 1, TL);
   return {fr: cap(q) + ", Ben " + (vac ? "est en vacances" : "va à l'école") + ".", en: cap(q) + ", Ben " + (vac ? "is on holiday" : "goes to school") + ".",
           pt: cap(q) + ", o Ben " + (vac ? "está de férias" : "tem aula") + ".", de: cap(q) + " hat Ben " + (vac ? "Ferien" : "Schule") + "."}[TL];
@@ -475,6 +487,7 @@ const buscaMia = () => BR ? "busca Mia" : "vai buscar a Mia";
 const phraseAbholung = x => PT_ ? cap(auJourSemaine(x.j)) + ", " + artPt(x.qui) + " " + buscaMia() + " " + aHeure(x.h, x.m) + "." : ES_ ? cap(auJourSemaine(x.j)) + ", " + x.qui + " recoge a Mia " + aHeure(x.h, x.m) + "." : cap(auJourSemaine(x.j)) + " holt " + x.qui + " Mia " + aHeure(x.h, x.m) + " ab.";
 function tradAbholung(x){
   if (!TL) return null;
+  if (LEC[TL]) return LEC[TL].abholung(x.j, x.qui, x.h, x.m);
   const J = ceJour(x.j, TL), H = aHeure(x.h, x.m, TL);
   return {fr: cap(J) + ", " + x.qui + " va chercher Mia " + H + ".", en: cap(J) + ", " + x.qui + " picks Mia up " + H + ".",
           pt: cap(J) + ", " + x.qui + " busca a Mia " + H + ".", de: cap(J) + " holt " + x.qui + " Mia " + H + " ab."}[TL];
@@ -489,7 +502,7 @@ function papierListe(l){
     '<ul>' + l.map(x => '<li>' + x.n + " " + esc(x.n === 1 ? OBJ[x.k].mot : OBJ[x.k].pl) + '</li>').join("") + '</ul>');
 }
 const phraseListe = x => (PT_ ? cap(artPt("Ben")) + " precisa de " : ES_ ? "Ben necesita " : "Ben braucht ") + quantite(x.k, x.n) + ".";
-const tradListe = x => TL ? ({fr: "Ben a besoin de ", en: "Ben needs ", pt: "O Ben precisa de ", de: "Ben braucht "}[TL] + quantiteTrad(x.k, x.n)).replace("de un", "d'un").replace(/^O Ben precisa de (uma?|dois|duas|três|quatro|cinco)/, "O Ben precisa de $1") + "." : null;
+const tradListe = x => TL && LEC[TL] ? LEC[TL].liste(x.k, x.n) : TL ? ({fr: "Ben a besoin de ", en: "Ben needs ", pt: "O Ben precisa de ", de: "Ben braucht "}[TL] + quantiteTrad(x.k, x.n)).replace("de un", "d'un").replace(/^O Ben precisa de (uma?|dois|duas|três|quatro|cinco)/, "O Ben precisa de $1") + "." : null;
 
 // ---------- les reponses ----------
 let file = [], rang = 0, bons = 0, repondu = false;
@@ -498,7 +511,7 @@ function viser(w){ motQ = w ? {mot: w.mot, genre: w.genre || null, cat: w.cat ||
 function juger(ok, bonneTexte, phraseDite){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -709,7 +722,7 @@ const EX = {
       rep = MAT(c).aff;
       opts = melanger(uniques([rep, ...melanger(Object.keys(D.matieres[APPRENDRE]).filter(x => x !== c)).slice(0, 3).map(x => MAT(x).aff)]));
       juste = PT_ ? cap(aulaPt) + ", " + artPt("Ben") + " tem " + rep + "." : ES_ ? "El " + NOM_JOUR(j) + ", Ben tiene " + rep + " a la " + D.ordinaux.es[r + 1] + " hora." : "Am " + NOM_JOUR(j) + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + rep + ".";
-      trad = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
+      trad = TL ? LEC[TL] ? LEC[TL].cours(j, r, c) : {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
                    pt: cap(auJourSemaine(j, "pt")) + ", na " + D.ordinaux.pt[r + 1] + " aula, o Ben tem " + MTR(c).pt + ".", de: "Am " + NOM_JOUR(j, "de") + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MTR(c).de + "."}[TL] : null;
       trads = o => { const x = Object.keys(D.matieres[APPRENDRE]).find(y => MAT(y).aff === o); return x && TL ? MTR(x)[TL] : null; };
     } else if (sorte === "jour"){
@@ -719,7 +732,7 @@ const EX = {
         : ES_ ? "¿Qué día tiene Ben " + MAT(c).aff + "?" : "An welchem Tag hat Ben " + MAT(c).aff + "?";
       rep = auJourSemaine(j); opts = melanger([rep, ...melanger(J.filter(x => x !== j)).slice(0, 3).map(x => auJourSemaine(x))]);
       juste = PT_ ? cap(artPt("Ben")) + " tem " + MAT(c).aff + " " + auJourSemaine(j) + "." : ES_ ? "Ben tiene " + MAT(c).aff + " " + auJourSemaine(j) + "." : "Ben hat " + auJourSemaine(j) + " " + MAT(c).aff + ".";
-      trad = TL ? {fr: "Ben a " + MTR(c).fr + " " + auJourSemaine(j, "fr") + ".", en: "Ben has " + MTR(c).en + " " + auJourSemaine(j, "en") + ".", pt: "O Ben tem " + MTR(c).pt + " " + auJourSemaine(j, "pt") + ".", de: "Ben hat " + auJourSemaine(j, "de") + " " + MTR(c).de + "."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].jourCours(j, c) : {fr: "Ben a " + MTR(c).fr + " " + auJourSemaine(j, "fr") + ".", en: "Ben has " + MTR(c).en + " " + auJourSemaine(j, "en") + ".", pt: "O Ben tem " + MTR(c).pt + " " + auJourSemaine(j, "pt") + ".", de: "Ben hat " + auJourSemaine(j, "de") + " " + MTR(c).de + "."}[TL] : null;
       trads = o => { const x = J.find(y => auJourSemaine(y) === o); return x && TL ? auJourSemaine(x, TL) : null; };
     } else if (sorte === "fin"){
       if (!w) viser(papMot("stundenplan"));
@@ -732,7 +745,7 @@ const EX = {
       opts = melanger(uniques([rep, ...J.map(x => D.heures[H[x].length - 1][1]).filter(x => x !== fin).map(x => aHeure(...x.split(":").map(Number))), aHeure(hh + 1, mm)])).slice(0, 4);
       if (!opts.includes(rep)) opts[0] = rep;
       juste = PT_ ? cap(auJourSemaine(j)) + ", as aulas " + finPt + " " + rep + "." : ES_ ? "El " + NOM_JOUR(j) + ", el colegio termina " + rep + "." : "Am " + NOM_JOUR(j) + " ist " + rep + " Schulschluss.";
-      trad = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", l'école finit " + aHeure(hh, mm, "fr") + ".", en: "On " + NOM_JOUR(j, "en") + ", school ends " + aHeure(hh, mm, "en") + ".", pt: cap(auJourSemaine(j, "pt")) + ", a escola termina " + aHeure(hh, mm, "pt") + ".", de: "Am " + NOM_JOUR(j, "de") + " ist " + aHeure(hh, mm, "de") + " Schulschluss."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].fin(j, hh, mm) : {fr: "Le " + NOM_JOUR(j, "fr") + ", l'école finit " + aHeure(hh, mm, "fr") + ".", en: "On " + NOM_JOUR(j, "en") + ", school ends " + aHeure(hh, mm, "en") + ".", pt: cap(auJourSemaine(j, "pt")) + ", a escola termina " + aHeure(hh, mm, "pt") + ".", de: "Am " + NOM_JOUR(j, "de") + " ist " + aHeure(hh, mm, "de") + " Schulschluss."}[TL] : null;
     } else {
       if (!w) viser(pauseMot());
       const [h1, m1] = D.pause[0].split(":").map(Number);
@@ -740,7 +753,7 @@ const EX = {
       rep = aHeure(h1, m1);
       opts = melanger([rep, ...melanger(D.heures.slice(1).map(x => x[0]).filter(x => x !== D.pause[1])).slice(0, 3).map(x => aHeure(...x.split(":").map(Number)))]);
       juste = PT_ ? "O recreio começa " + rep + "." : ES_ ? "El recreo empieza " + rep + "." : "Die große Pause beginnt " + rep + ".";
-      trad = TL ? {fr: "La récréation commence " + aHeure(h1, m1, "fr") + ".", en: "Break time starts " + aHeure(h1, m1, "en") + ".", pt: "O recreio começa " + aHeure(h1, m1, "pt") + ".", de: "Die große Pause beginnt " + aHeure(h1, m1, "de") + "."}[TL] : null;
+      trad = TL ? LEC[TL] ? LEC[TL].pause(h1, m1) : {fr: "La récréation commence " + aHeure(h1, m1, "fr") + ".", en: "Break time starts " + aHeure(h1, m1, "en") + ".", pt: "O recreio começa " + aHeure(h1, m1, "pt") + ".", de: "Die große Pause beginnt " + aHeure(h1, m1, "de") + "."}[TL] : null;
     }
     tradQ = trad; dirQ = motQ ? (motQ.genre ? motQ.genre + " " + motQ.mot : motQ.mot) : null;
     ecran("c_horaire", papierHoraire(vise), q, {centre: true});
@@ -754,7 +767,7 @@ const EX = {
     const k = hasard(ks); viser(w || papMot(k) || papMot("stundenplan"));
     const P = {stundenplan: () => papierHoraire(), entschuldigung: () => papierMot(tirerMot()), elternabend: () => papierReunion(tirerReunion()), ferien: papierFerien, liste: () => papierListe(tirerListe())};
     const rep = PAP(k).aff, opts = melanger([rep, ...melanger(Object.keys(D.papiers[APPRENDRE]).filter(x => x !== k)).slice(0, 3).map(x => PAP(x).aff)]);
-    tradQ = TL ? {fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + PAP(k).t[TL] + "." : null; dirQ = PAP(k).mot ? PAP(k).genre + " " + PAP(k).mot : rep;
+    tradQ = TL ? (LEC[TL] ? LEC[TL].papier(k) : {fr: "C'est ", en: "This is ", pt: "É ", de: "Das ist "}[TL] + PAP(k).t[TL] + ".") : null; dirQ = PAP(k).mot ? PAP(k).genre + " " + PAP(k).mot : rep;
     // le titre du papier le dirait : on le cache
     ecran("c_papier", P[k]().replace(/<h3>.*?<\/h3>/, "<h3>?</h3>"), queEsto(), {centre: true});
     boutons($("choix"), opts, rep, ok => juger(ok, rep, (PT_ ? "É " : ES_ ? "Es " : "Das ist ") + rep + "."), o => { const x = Object.keys(D.papiers[APPRENDRE]).find(y => PAP(y).aff === o); return x && TL ? PAP(x).t[TL] : null; });
@@ -841,7 +854,7 @@ const EX = {
     }
     tradQ = tradAbholung(x); dirQ = abholenDit();
     ecran(PT_ ? "c_abholenPt" : "c_abholen", papierAbholung(s, vise), q, {centre: true});
-    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseAbholung(x)), o => D.abholer[o] && TL ? o + ", " + D.abholer[o].t[TL] : null);
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseAbholung(x)), o => D.abholer[o] && TL ? (LEC[TL] ? LEC[TL].nom(o) : o) + ", " + D.abholer[o].t[TL] : null);
     return true;
   },
   // vrai ou faux : une image et sa phrase (ou celle d'une autre image), le mot d'absence, les vacances, qui va chercher Mia
@@ -884,7 +897,7 @@ const EX = {
       const autre = hasard(Object.keys(D.matieres[APPRENDRE]).filter(x => x !== c));
       const ph = x => PT_ ? cap(auJourSemaine(j)) + ", na " + D.ordinaux.pt[r + 1] + " aula, " + artPt("Ben") + " tem " + MAT(x).aff + "." : ES_ ? "El " + NOM_JOUR(j) + ", Ben tiene " + MAT(x).aff + " a la " + D.ordinaux.es[r + 1] + " hora." : "Am " + NOM_JOUR(j) + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MAT(x).aff + ".";
       avant = papierHoraire([j, r]); juste = ph(c); dite = vrai ? juste : ph(autre);
-      tradQ = TL ? {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
+      tradQ = TL ? LEC[TL] ? LEC[TL].cours(j, r, c) : {fr: "Le " + NOM_JOUR(j, "fr") + ", en " + D.ordinaux.fr[r + 1] + " heure, Ben a " + MTR(c).fr + ".", en: "On " + NOM_JOUR(j, "en") + ", Ben has " + MTR(c).en + " in the " + D.ordinaux.en[r + 1] + " lesson.",
                     pt: cap(auJourSemaine(j, "pt")) + ", na " + D.ordinaux.pt[r + 1] + " aula, o Ben tem " + MTR(c).pt + ".", de: "Am " + NOM_JOUR(j, "de") + " hat Ben in der " + D.ordinaux.de[r + 1] + " Stunde " + MTR(c).de + "."}[TL] : null;
       dirQ = motQ.genre ? motQ.genre + " " + motQ.mot : motQ.mot;
     } else {
@@ -939,7 +952,7 @@ function decouvrir(){
 
 // ---------- LA PARTIE : recopiee de demarches.html (identique d'un theme a l'autre) ----------
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus = new Set(), sorteCourante = null, derniereSorte = null;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce"), pa = z.querySelector(".papier");
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (pa ? pa.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
@@ -1033,14 +1046,14 @@ const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="b
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  file = plan.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }
@@ -1052,6 +1065,7 @@ document.title = T("titre");
 fetch("ecole/ecole.json?v=4").then(r => r.json()).then(d => {
   D = d;
   if (PT_) portugaisAppris(D);
+  if (typeof installerLanguesEcole === "function") LEC = installerLanguesEcole(D, APPRENDRE) || {};
   LX = D.lieux[APPRENDRE]; ACT = D.actions[APPRENDRE]; OBJ = D.objets[APPRENDRE]; CJ = D.conj[APPRENDRE]; NO = D.noms[APPRENDRE];
   if (Q.get("seance") === "1" && Q.get("decouvrir") !== "1") demarrer(); else decouvrir();
 });

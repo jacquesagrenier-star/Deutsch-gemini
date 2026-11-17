@@ -1245,7 +1245,7 @@ window.SCENE = {
     "A2 | La laptop está en la mesa.": "The laptop is on the table.",
     "A2 | El portátil está en la mesa.": "The laptop is on the table.",
     "B1 | Anna piensa en su examen.": "Anna is thinking about her exam.",
-    "B1 | El estudiante sueña con las vacaciones.": "The student dreams of the holidays.",
+    "B1 | El estudiante sueña con las vacaciones.": "The student dreams of the vacation.",
     "B1 | Anna se interesa por la historia.": "Anna is interested in history.",
     "B1 | Anna espera a su amiga.": "Anna is waiting for her friend.",
     "B1 | Anna se acuerda de la clase de ayer.": "Anna remembers yesterday's class.",

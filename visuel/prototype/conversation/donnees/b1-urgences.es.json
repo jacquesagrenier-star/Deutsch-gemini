@@ -1,0 +1,150 @@
+{
+ "id": "b1-urgences",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Appeler les urgences"},
+ "intro": {"fr": "Ta voisine âgée est tombée dans l'escalier de ton immeuble, à Madrid. Tu appelles le 112 et tu réponds aux questions du standard."},
+ "personnes": ["b13_notruf"],
+ "debut": "que",
+ "noeuds": {
+  "que": {
+   "dit": [
+    {"recit": {"fr": "Dans l'escalier de ton immeuble, à Lavapiés, ta voisine Pilar est tombée. Elle ne peut pas se relever. Tu composes le 112."}},
+    {"qui": "b13_notruf", "air": "attentive", "t": "Emergencias 112, ¿dígame?", "dit": "Emergencias uno uno dos, ¿dígame?", "fr": "Urgences 112, je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Hola, necesito una ambulancia. Mi vecina se ha caído por la escalera y no puede levantarse.", "fr": "Bonjour, j'ai besoin d'une ambulance. Ma voisine est tombée dans l'escalier et elle ne peut pas se relever.", "va": "direccion",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "De acuerdo. No se preocupe, vamos a ayudarle.", "fr": "D'accord. Ne vous inquiétez pas, nous allons vous aider."}]},
+    {"t": "Llamo porque una vecina mayor se ha caído en la escalera del edificio. No puede levantarse.", "fr": "J'appelle parce qu'une voisine âgée est tombée dans l'escalier de l'immeuble. Elle ne peut pas se relever.", "va": "direccion",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Muy bien. No se preocupe, vamos a ayudarle.", "fr": "Très bien. Ne vous inquiétez pas, nous allons vous aider."}]},
+    {"faux": true, "t": "¡Necesito un hospital, por favor!", "fr": "J'ai besoin d'un hôpital, s'il vous plaît !",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Un hospital? ¿Qué ha pasado? ¿Necesita una ambulancia?", "fr": "Un hôpital ? Que s'est-il passé ? Vous avez besoin d'une ambulance ?"}],
+     "aide": {"fr": "<b>« un hospital »</b>, c'est le bâtiment. Ce qu'on demande au 112, c'est « una ambulancia », et l'on dit tout de suite ce qui se passe : « Mi vecina se ha caído. »"}},
+    {"faux": true, "t": "Mi vecina es caída por la escalera.", "fr": "Ma voisine « est tombée » dans l'escalier (calque du français).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Que se ha caído su vecina? ¿Por la escalera?", "fr": "Votre voisine est tombée ? Dans l'escalier ?"}],
+     "aide": {"fr": "<b>En espagnol, le passé composé se forme toujours avec « haber »</b>, jamais avec « ser », et « caerse » est pronominal : « Mi vecina se ha caído. »"}}
+   ]
+  },
+  "direccion": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "¿Desde dónde llama? Dígame la dirección exacta, por favor.", "fr": "D'où appelez-vous ? Donnez-moi l'adresse exacte, s'il vous plaît."}],
+   "choix": [
+    {"t": "Calle de Embajadores, número treinta y dos, en Madrid. Estamos en la escalera, en el tercer piso.", "fr": "Calle de Embajadores, numéro trente-deux, à Madrid. Nous sommes dans l'escalier, au troisième étage.", "va": "consciente",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Calle de Embajadores, 32, tercer piso. La ambulancia ya sale hacia allí.", "dit": "Calle de Embajadores, treinta y dos, tercer piso. La ambulancia ya sale hacia allí.", "fr": "Calle de Embajadores, 32, troisième étage. L'ambulance part tout de suite."}]},
+    {"t": "Estoy en la calle de Embajadores, treinta y dos. Vivo en el tercero B y ella está en la escalera, delante de mi puerta.", "fr": "Je suis calle de Embajadores, au trente-deux. J'habite au troisième B et elle est dans l'escalier, devant ma porte.", "va": "consciente",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Embajadores, 32, tercero B. La ambulancia ya sale hacia allí.", "dit": "Embajadores, treinta y dos, tercero B. La ambulancia ya sale hacia allí.", "fr": "Embajadores, 32, troisième B. L'ambulance part tout de suite."}]},
+    {"faux": true, "t": "Estoy a la calle de Embajadores, treinta y dos.", "fr": "Je suis « à la » calle de Embajadores, au trente-deux.",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "¿En la calle de Embajadores, treinta y dos? ¿Y en qué piso están?", "fr": "Calle de Embajadores, au trente-deux ? Et à quel étage êtes-vous ?"}],
+     "aide": {"fr": "<b>Le lieu où l'on se trouve se dit avec « en »</b> : « Estoy en la calle de Embajadores. » La préposition « a » marque le mouvement (« voy a la calle… »). Ajoute l'étage : « en el tercer piso »."}},
+    {"repete": true, "t": "Perdone, ¿puede repetir, por favor?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "direccion",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Sí, claro. ¿En qué calle y en qué número está usted?", "fr": "Oui, bien sûr. Dans quelle rue et à quel numéro êtes-vous ?"}]}
+   ]
+  },
+  "consciente": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "¿Está consciente? ¿Le responde cuando usted le habla?", "fr": "Est-elle consciente ? Vous répond-elle quand vous lui parlez ?"}],
+   "choix": [
+    {"t": "Sí, está consciente y habla conmigo. Pero le duele mucho la pierna.", "fr": "Oui, elle est consciente et elle me parle. Mais elle a très mal à la jambe.", "pose": {"donde": "pierna"}, "va": "sangre",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Que hable es buena señal.", "fr": "Qu'elle parle, c'est bon signe."}]},
+    {"t": "Sí, me responde. Dice que le duele muchísimo la cadera.", "fr": "Oui, elle me répond. Elle dit qu'elle a extrêmement mal à la hanche.", "pose": {"donde": "cadera"}, "va": "sangre",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Que responda es buena señal.", "fr": "Qu'elle réponde, c'est bon signe."}]},
+    {"faux": true, "t": "Sí, pero ella tiene mal a la pierna.", "fr": "Oui, mais elle « a mal à » la jambe (calque du français).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Quiere decir que le duele la pierna? ¿Y está consciente?", "fr": "Vous voulez dire qu'elle a mal à la jambe ? Et elle est consciente ?"}],
+     "aide": {"fr": "<b>« avoir mal à » se dit avec « doler »</b>, construit comme « gustar » : « Le duele la pierna », « Me duele la cabeza »."}}
+   ]
+  },
+  "sangre": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "¿Respira bien? ¿Y sangra por algún sitio?", "fr": "Respire-t-elle bien ? Et saigne-t-elle quelque part ?"}],
+   "choix": [
+    {"t": "Respira bien. Pero tiene una herida en la cabeza y sangra un poco.", "fr": "Elle respire bien. Mais elle a une plaie à la tête et elle saigne un peu.", "pose": {"sangre": "si"}, "va": "presion"},
+    {"t": "Sí, respira bien. Y no, no veo sangre.", "fr": "Oui, elle respire bien. Et non, je ne vois pas de sang.", "pose": {"sangre": "no"}, "va": "edad",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Muy bien.", "fr": "Très bien."}]},
+    {"t": "Respira bien, pero le sangra la rodilla.", "fr": "Elle respire bien, mais son genou saigne.", "pose": {"sangre": "si"}, "va": "presion"}
+   ]
+  },
+  "presion": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "Coja un paño limpio o una toalla y apriete sobre la herida, sin soltar. ¿Tiene algo a mano?", "fr": "Prenez un linge propre ou une serviette et appuyez sur la plaie, sans relâcher. Avez-vous quelque chose à portée de main ?"}],
+   "choix": [
+    {"t": "Sí, tengo una toalla limpia. Ya estoy apretando.", "fr": "Oui, j'ai une serviette propre. J'appuie déjà.", "va": "edad",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Eso es. Siga apretando y no la quite.", "fr": "C'est ça. Continuez d'appuyer et ne l'enlevez pas."}]},
+    {"t": "Solo tengo mi bufanda. ¿Sirve?", "fr": "Je n'ai que mon écharpe. Ça convient ?", "va": "edad",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Sí, sirve. Apriete fuerte y no la quite.", "fr": "Oui, ça convient. Appuyez fort et ne l'enlevez pas."}]},
+    {"faux": true, "t": "Sí, tengo una toalla. Apoyo fuerte sobre la herida.", "fr": "Oui, j'ai une serviette. « J'appuie » fort sur la plaie (verbe mal choisi).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Que apoya…? Ah, que está apretando. Eso es, apriete fuerte.", "fr": "Vous « posez »… ? Ah, vous appuyez. C'est ça, appuyez fort."}],
+     "aide": {"fr": "<b>« appuyer » au sens de presser se dit « apretar »</b> (ou « presionar ») : « Estoy apretando. » « Apoyar », c'est poser une chose contre une autre, ou soutenir quelqu'un."}}
+   ]
+  },
+  "edad": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "¿Qué edad tiene su vecina, más o menos? ¿Sabe si toma alguna medicación?", "fr": "Quel âge a votre voisine, à peu près ? Savez-vous si elle prend des médicaments ?"}],
+   "choix": [
+    {"t": "Tiene unos ochenta años. Creo que es diabética.", "fr": "Elle a environ quatre-vingts ans. Je crois qu'elle est diabétique.", "pose": {"med": "si"}, "va": "manta",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Gracias, es importante. Se lo paso a los sanitarios.", "fr": "Merci, c'est important. Je le transmets aux secouristes."}]},
+    {"t": "Unos ochenta, más o menos. No sé qué medicación toma.", "fr": "Environ quatre-vingts ans. Je ne sais pas quels médicaments elle prend.", "pose": {"med": "no"}, "va": "manta",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "No pasa nada. Eso lo verán los sanitarios allí.", "fr": "Ce n'est pas grave. Les secouristes verront ça sur place."}]},
+    {"t": "Más de ochenta, creo. Toma pastillas para el corazón, me lo contó una vez.", "fr": "Plus de quatre-vingts ans, je crois. Elle prend des comprimés pour le cœur, elle me l'a raconté un jour.", "pose": {"med": "si"}, "va": "manta",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Gracias, es importante. Se lo paso a los sanitarios.", "fr": "Merci, c'est important. Je le transmets aux secouristes."}]},
+    {"faux": true, "t": "Tiene unos ochenta años. No sé si prende medicamentos.", "fr": "Elle a environ quatre-vingts ans. Je ne sais pas si elle « prend » des médicaments (verbe mal choisi).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Que si toma medicamentos, quiere decir? ¿Sabe algo de eso?", "fr": "Si elle prend des médicaments, vous voulez dire ? Savez-vous quelque chose là-dessus ?"}],
+     "aide": {"fr": "<b>« prendre un médicament » se dit « tomar »</b> : « No sé si toma medicamentos. » « Prender » veut dire allumer, ou accrocher."}}
+   ]
+  },
+  "manta": {
+   "dit": [
+    {"qui": "b13_notruf", "air": "attentive", "t": "Ahora, muy importante: no la mueva, aunque ella quiera levantarse. Y tápela con una manta o un abrigo para que no coja frío.", "fr": "Maintenant, très important : ne la déplacez pas, même si elle veut se lever. Et couvrez-la d'une couverture ou d'un manteau pour qu'elle ne prenne pas froid."},
+    {"si": {"donde": "pierna"}, "qui": "b13_notruf", "air": "attentive", "t": "La pierna no debe moverse nada.", "fr": "La jambe ne doit pas bouger du tout."},
+    {"si": {"donde": "cadera"}, "qui": "b13_notruf", "air": "attentive", "t": "Con un golpe en la cadera, es todavía más importante.", "fr": "Avec un choc à la hanche, c'est encore plus important."}
+   ],
+   "choix": [
+    {"t": "De acuerdo, no la muevo. Voy a buscar una manta a mi casa, está aquí al lado.", "fr": "D'accord, je ne la déplace pas. Je vais chercher une couverture chez moi, c'est juste à côté.", "va": "portal",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Perfecto. Vaya y vuelva enseguida con ella.", "fr": "Parfait. Allez-y et revenez tout de suite auprès d'elle."}]},
+    {"t": "Entendido. Le pongo mi abrigo encima. ¿Puedo darle un poco de agua?", "fr": "Compris. Je mets mon manteau sur elle. Est-ce que je peux lui donner un peu d'eau ?", "va": "portal",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "No, mejor no le dé nada de beber ni de comer. El abrigo está muy bien.", "fr": "Non, mieux vaut ne rien lui donner à boire ni à manger. Le manteau, c'est très bien."}]},
+    {"faux": true, "t": "Vale, la llevo a su cama. Allí estará mejor.", "fr": "D'accord, je la porte dans son lit. Elle y sera mieux.",
+     "puis": [{"qui": "b13_notruf", "air": "surprise", "t": "¡No, por favor! No la mueva. Déjela donde está y tápela.", "fr": "Non, surtout pas ! Ne la déplacez pas. Laissez-la où elle est et couvrez-la."}],
+     "aide": {"fr": "<b>« No la mueva »</b> veut dire « ne la déplacez pas », et « tapar », c'est couvrir. Réponds que tu la laisses où elle est : « No la muevo. »"}}
+   ]
+  },
+  "portal": {
+   "dit": [
+    {"si": {"sangre": "si"}, "qui": "b13_notruf", "air": "attentive", "t": "Y siga apretando sobre la herida.", "fr": "Et continuez d'appuyer sur la plaie."},
+    {"qui": "b13_notruf", "air": "question", "t": "La ambulancia ya está en camino. ¿Hay alguien que pueda abrir el portal?", "fr": "L'ambulance est en route. Y a-t-il quelqu'un qui puisse ouvrir la porte de l'immeuble ?"}
+   ],
+   "choix": [
+    {"t": "Sí, acaba de subir otro vecino. Él baja ahora mismo a abrir.", "fr": "Oui, un autre voisin vient de monter. Il descend tout de suite ouvrir.", "va": "fin",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Estupendo. Que espere en el portal para indicarles el camino.", "fr": "Parfait. Qu'il attende à l'entrée pour leur montrer le chemin."}]},
+    {"t": "No, no hay nadie más, y el portal está cerrado.", "fr": "Non, il n'y a personne d'autre, et la porte de l'immeuble est fermée.", "va": "telefonillo"},
+    {"faux": true, "t": "Sí, voy a atender la ambulancia abajo.", "fr": "Oui, je vais « attendre » l'ambulance en bas (faux ami).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "¿Atender…? Ah, esperar. No, mejor quédese con ella. ¿Hay alguien más en el edificio?", "fr": "« Atender »… ? Ah, attendre. Non, restez plutôt avec elle. Y a-t-il quelqu'un d'autre dans l'immeuble ?"}],
+     "aide": {"fr": "<b>« attendre » se dit « esperar ».</b> « Atender », c'est s'occuper de quelqu'un (un client, un malade). Et ici, mieux vaut rester près d'elle : dis qui peut ouvrir, ou que la porte est fermée."}}
+   ]
+  },
+  "telefonillo": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "No se preocupe. ¿A qué piso tienen que llamar los sanitarios? ¿Puede abrirles con el telefonillo?", "fr": "Ne vous inquiétez pas. À quel étage les secouristes doivent-ils sonner ? Pouvez-vous leur ouvrir avec l'interphone ?"}],
+   "choix": [
+    {"t": "Que llamen al tercero B. Tengo la puerta abierta y les abro con el telefonillo.", "fr": "Qu'ils sonnent au troisième B. Ma porte est ouverte et je leur ouvre avec l'interphone.", "va": "fin",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Tercero B, apuntado. Se lo paso a la ambulancia.", "fr": "Troisième B, c'est noté. Je le transmets à l'ambulance."}]},
+    {"t": "Al tercero B, por favor. En cuanto llamen, les abro desde mi casa.", "fr": "Au troisième B, s'il vous plaît. Dès qu'ils sonnent, je leur ouvre de chez moi.", "va": "fin",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Tercero B, apuntado. Se lo paso a la ambulancia.", "fr": "Troisième B, c'est noté. Je le transmets à l'ambulance."}]}
+   ]
+  },
+  "fin": {
+   "dit": [
+    {"recit": {"fr": "L'opérateur reste en ligne avec toi. Quelques minutes plus tard, tu entends une sirène dans la rue."}},
+    {"qui": "b13_notruf", "air": "sourire", "t": "La ambulancia debe de estar llegando. ¿La oye ya?", "fr": "L'ambulance doit être en train d'arriver. Vous l'entendez déjà ?"}
+   ],
+   "choix": [
+    {"t": "Sí, ya la oigo. Los sanitarios están subiendo por la escalera. ¡Muchas gracias por su ayuda!", "fr": "Oui, je l'entends. Les secouristes montent l'escalier. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [
+      {"si": {"med": "si"}, "qui": "b13_notruf", "air": "attentive", "t": "Recuerde decirles qué medicación toma.", "fr": "N'oubliez pas de leur dire quels médicaments elle prend."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "Lo ha hecho usted muy bien. Que se mejore su vecina.", "fr": "Vous avez très bien réagi. Bon rétablissement à votre voisine."}]},
+    {"t": "Sí, ya están aquí. Gracias por quedarse al teléfono conmigo.", "fr": "Oui, ils sont là. Merci d'être resté en ligne avec moi.", "va": null,
+     "puis": [
+      {"si": {"med": "si"}, "qui": "b13_notruf", "air": "attentive", "t": "Recuerde decirles qué medicación toma.", "fr": "N'oubliez pas de leur dire quels médicaments elle prend."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "No hay de qué. Lo ha hecho usted muy bien. Que se mejore su vecina.", "fr": "Je vous en prie. Vous avez très bien réagi. Bon rétablissement à votre voisine."}]},
+    {"faux": true, "t": "Sí, ya son aquí. ¡Gracias por su ayuda!", "fr": "Oui, ils « sont » là (mauvais verbe). Merci pour votre aide !",
+     "puis": [{"qui": "b13_notruf", "air": "amuse", "t": "¿Ya están ahí? ¡Estupendo!", "fr": "Ils sont déjà là ? Parfait !"}],
+     "aide": {"fr": "<b>Pour dire où se trouve quelqu'un, c'est « estar »</b>, jamais « ser » : « Ya están aquí. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué l'accident, donné l'adresse et suivi les consignes jusqu'à l'arrivée de l'ambulance."}
+}

@@ -1,0 +1,90 @@
+{
+ "id": "a2-banque",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Ouvrir un compte à la banque"},
+ "intro": {"fr": "Tu viens de t'installer à Madrid. Il te faut un compte espagnol. Tu entres dans une agence, près de la Puerta del Sol, avec tes papiers."},
+ "personnes": ["bankberaterin"],
+ "debut": "bienvenida",
+ "noeuds": {
+  "bienvenida": {
+   "dit": [
+    {"recit": {"fr": "Dix heures du matin. Une conseillère te fait signe d'approcher."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Buenos días. Siéntese, por favor. ¿En qué puedo ayudarle?", "fr": "Bonjour. Asseyez-vous, je vous en prie. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Quería abrir una cuenta.", "fr": "Bonjour. Je voulais ouvrir un compte.", "va": "tiempo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Muy bien. Es muy fácil.", "fr": "Très bien. C'est très facile."}]},
+    {"t": "Buenos días. Necesito una cuenta en un banco español.", "fr": "Bonjour. J'ai besoin d'un compte dans une banque espagnole.", "va": "tiempo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Pues está en el lugar correcto.", "fr": "Eh bien, vous êtes au bon endroit."}]},
+    {"faux": true, "t": "Buenos días. Quiero abrir un cuento.", "fr": "Bonjour. Je veux ouvrir un compte.",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "¿Un cuento? ¿Como «Caperucita Roja»? Aquí solo abrimos cuentas …", "fr": "Un conte ? Comme « Le Petit Chaperon rouge » ? Ici, nous n'ouvrons que des comptes…"}],
+     "aide": {"fr": "<b>« un cuento »</b>, c'est un conte, une histoire. Le compte en banque est féminin : « una cuenta ». Dis : « Quería abrir una cuenta »."}}
+   ]
+  },
+  "tiempo": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "¿Desde cuándo vive usted en Madrid?", "fr": "Depuis quand habitez-vous à Madrid ?"}],
+   "choix": [
+    {"t": "Desde hace dos semanas.", "fr": "Depuis deux semaines.", "va": "trabajo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "¡Qué bien! Madrid es una ciudad estupenda.", "fr": "C'est bien ! Madrid est une ville formidable."}]},
+    {"t": "Desde septiembre.", "fr": "Depuis septembre.", "va": "trabajo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "¡Qué bien! Madrid es una ciudad estupenda.", "fr": "C'est bien ! Madrid est une ville formidable."}]}
+   ]
+  },
+  "trabajo": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "¿Y trabaja usted aquí?", "fr": "Et vous travaillez ici ?"}],
+   "choix": [
+    {"t": "Sí, trabajo en una empresa de Madrid.", "fr": "Oui, je travaille dans une entreprise de Madrid.", "va": "papeles",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Muy bien. Entonces puede recibir su sueldo en esta cuenta.", "fr": "Très bien. Alors vous pourrez recevoir votre salaire sur ce compte."}]},
+    {"t": "No, estudio español en una academia.", "fr": "Non, j'étudie l'espagnol dans une école de langues.", "va": "papeles",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "¡Pues habla muy bien! Tenemos una cuenta para estudiantes.", "fr": "Eh bien, vous parlez très bien ! Nous avons un compte pour les étudiants."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "trabajo",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sí, claro. ¿Tiene usted un trabajo en España?", "fr": "Oui, bien sûr. Vous avez un travail en Espagne ?"}]}
+   ]
+  },
+  "papeles": {
+   "dit": [{"qui": "bankberaterin", "air": "attentive", "t": "Necesito su pasaporte, su NIE y el certificado de empadronamiento. ¿Los tiene?", "fr": "J'ai besoin de votre passeport, de votre NIE (le numéro d'identité des étrangers) et du certificat d'inscription à la mairie. Vous les avez ?"}],
+   "choix": [
+    {"t": "Sí, aquí tiene todo.", "fr": "Oui, voici tout.", "va": "precio",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Perfecto. Hago una copia de todo.", "fr": "Parfait. Je fais une copie de tout."}]},
+    {"t": "Tengo el pasaporte y el NIE. ¿El certificado es obligatorio?", "fr": "J'ai le passeport et le NIE. Le certificat est obligatoire ?", "va": "precio",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sí, pero puede enviarlo esta semana por correo electrónico. Hoy empezamos con el pasaporte y el NIE.", "fr": "Oui, mais vous pouvez l'envoyer cette semaine par courriel. Aujourd'hui, nous commençons avec le passeport et le NIE."}]},
+    {"faux": true, "t": "Sí, tengo todos los papeles en mi saco.", "fr": "Oui, j'ai tous les papiers dans mon sac.",
+     "puis": [{"qui": "bankberaterin", "air": "surprise", "t": "¿En un saco? ¿Como las patatas? Ah, ¡en el bolso!", "fr": "Dans un sac de toile ? Comme les pommes de terre ? Ah, dans votre sac !"}],
+     "aide": {"fr": "<b>« un saco »</b>, c'est un grand sac de toile (de pommes de terre, de ciment). Le sac qu'on porte : « el bolso », ou « la mochila » pour un sac à dos."}}
+   ]
+  },
+  "precio": {
+   "dit": [{"qui": "bankberaterin", "air": "question", "t": "Todo está bien. ¿Tiene alguna pregunta?", "fr": "Tout est en ordre. Vous avez une question ?"}],
+   "choix": [
+    {"t": "Sí. ¿Cuánto cuesta la cuenta?", "fr": "Oui. Combien coûte le compte ?", "va": "tarjeta",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Es gratis si recibe su sueldo aquí. Si no, son 3 euros al mes.", "dit": "Es gratis si recibe su sueldo aquí. Si no, son tres euros al mes.", "fr": "Il est gratuit si vous recevez votre salaire ici. Sinon, c'est 3 euros par mois."}]},
+    {"t": "Sí. ¿La cuenta es gratis?", "fr": "Oui. Le compte est gratuit ?", "va": "tarjeta",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sí, si recibe su sueldo aquí. Si no, son 3 euros al mes.", "dit": "Sí, si recibe su sueldo aquí. Si no, son tres euros al mes.", "fr": "Oui, si vous recevez votre salaire ici. Sinon, c'est 3 euros par mois."}]}
+   ]
+  },
+  "tarjeta": {
+   "dit": [{"qui": "bankberaterin", "air": "sourire", "t": "La tarjeta llega por correo a su casa, en una semana. El número secreto llega en otra carta.", "fr": "La carte arrive chez vous par la poste, dans une semaine. Le code secret arrive dans une autre lettre."}],
+   "choix": [
+    {"t": "Muy bien. Entonces espero la tarjeta.", "fr": "Très bien. Alors j'attends la carte.", "va": "firma",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Eso es. Una semana, más o menos.", "fr": "C'est ça. Une semaine, à peu près."}]},
+    {"t": "De acuerdo. ¿Y puedo pagar con el móvil?", "fr": "D'accord. Et je peux payer avec mon téléphone ?", "va": "firma",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Sí, desde hoy, con la aplicación del banco.", "fr": "Oui, dès aujourd'hui, avec l'application de la banque."}]},
+    {"faux": true, "t": "Muy bien. Entonces atiendo la tarjeta.", "fr": "Très bien. Alors j'attends la carte.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "¿Atiende la tarjeta? Ah, ¡que la espera!", "fr": "Vous vous occupez de la carte ? Ah, vous l'attendez !"}],
+     "aide": {"fr": "Attendre, c'est <b>« esperar »</b>. « Atender » veut dire s'occuper de quelqu'un. Dis : « Entonces espero la tarjeta »."}}
+   ]
+  },
+  "firma": {
+   "dit": [{"qui": "bankberaterin", "air": "sourire", "t": "Ya casi está. Ahora firme aquí y aquí, por favor.", "fr": "C'est presque fini. Maintenant, signez ici et ici, s'il vous plaît."}],
+   "choix": [
+    {"t": "Ya está. Muchas gracias por su ayuda.", "fr": "Voilà. Merci beaucoup pour votre aide.", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Gracias a usted. ¡Que tenga un buen día!", "fr": "Merci à vous. Bonne journée !"}]},
+    {"t": "Aquí tiene. ¡Gracias y hasta luego!", "fr": "Voici. Merci et au revoir !", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "¡Hasta luego! Y suerte en Madrid.", "fr": "Au revoir ! Et bonne chance à Madrid."}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as ouvert un compte à Madrid : tu as répondu aux questions, montré tes papiers, demandé le prix et signé."}
+}

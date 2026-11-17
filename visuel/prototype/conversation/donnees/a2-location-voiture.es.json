@@ -1,0 +1,120 @@
+{
+ "id": "a2-location-voiture",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Louer une voiture pour le week-end"},
+ "intro": {"fr": "Tu veux passer le week-end à Ségovie ou à Tolède. Au comptoir de location, près de la gare d'Atocha : le permis, le choix de la voiture, l'assurance, le plein et la clé."},
+ "personnes": ["vermietung_agentin"],
+ "debut": "saludo",
+ "prix": {"pequeno": 3500, "grande": 5500, "todo_riesgo": 1500},
+ "panier": ["coche", "seguro"],
+ "textes": {
+  "coche_fr": {"cle": "coche", "pequeno": "une petite voiture", "grande": "une grande voiture"},
+  "seguro_fr": {"cle": "seguro", "todo_riesgo": " avec l'assurance tous risques", "no": " sans assurance supplémentaire"}
+ },
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, près de la gare d'Atocha. Tu entres dans une agence de location de voitures."}},
+    {"qui": "vermietung_agentin", "air": "sourire", "t": "¡Buenos días! ¿Tiene una reserva?", "fr": "Bonjour ! Vous avez une réservation ?"}
+   ],
+   "choix": [
+    {"t": "Sí, he reservado por internet. A nombre de Martin.", "fr": "Oui, j'ai réservé sur internet. Au nom de Martin.", "va": "carne",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Martin… Sí, aquí está. Un coche para dos días.", "fr": "Martin… Oui, la voilà. Une voiture pour deux jours."}]},
+    {"t": "No, no tengo reserva. Quería un coche para dos días.", "fr": "Non, je n'ai pas de réservation. Je voudrais une voiture pour deux jours.", "va": "destino"},
+    {"faux": true, "t": "Sí, he reservado sobre internet.", "fr": "Oui, j'ai réservé sur internet.",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "¿Sobre internet? Ah, por internet. ¿A qué nombre?", "fr": "« Sobre » internet ? Ah, par internet. À quel nom ?"}],
+     "aide": {"fr": "<b>« Sur internet » se dit « por internet » (ou « en internet »).</b> « Sobre » veut dire « posé sur » ou « au sujet de ». « He reservado por internet »."}}
+   ]
+  },
+  "destino": {
+   "dit": [{"qui": "vermietung_agentin", "air": "question", "t": "No hay problema, hoy tenemos coches. ¿Adónde va?", "fr": "Pas de problème, nous avons des voitures aujourd'hui. Où allez-vous ?"}],
+   "choix": [
+    {"t": "Voy a Segovia, para ver el acueducto.", "fr": "Je vais à Ségovie, pour voir l'aqueduc.", "va": "carne",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "¡Qué bonito! Está a una hora de aquí.", "fr": "Comme c'est beau ! C'est à une heure d'ici."}]},
+    {"t": "Voy a Toledo con unos amigos.", "fr": "Je vais à Tolède avec des amis.", "va": "carne",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "¡Muy buena idea! Está a una hora de aquí.", "fr": "Très bonne idée ! C'est à une heure d'ici."}]},
+    {"faux": true, "t": "Voy a Segovia por ver el acueducto.", "fr": "Je vais à Ségovie pour voir l'aqueduc.",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "¿Por ver…? Ah, para ver el acueducto. ¡Qué bonito!", "fr": "« Por » voir… ? Ah, pour voir l'aqueduc. Comme c'est beau !"}],
+     "aide": {"fr": "<b>Le but (« pour » + infinitif) se dit « para ».</b> « Voy a Segovia para ver el acueducto ». « Por » donne la cause : « por el trabajo »."}}
+   ]
+  },
+  "carne": {
+   "dit": [{"qui": "vermietung_agentin", "air": "attentive", "t": "Necesito su carné de conducir y su pasaporte, por favor.", "fr": "J'ai besoin de votre permis de conduire et de votre passeport, s'il vous plaît."}],
+   "choix": [
+    {"t": "Aquí tiene los dos.", "fr": "Voici les deux.", "va": "coche",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Gracias. Todo correcto.", "fr": "Merci. Tout est en ordre."}]},
+    {"t": "Aquí tiene. Mi carné es de Francia, ¿está bien?", "fr": "Voici. Mon permis est français, ça va ?", "va": "coche",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Sí, claro, ningún problema.", "fr": "Oui, bien sûr, aucun problème."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "carne",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Sí, claro. Su carné de conducir, para el coche, y su pasaporte.", "fr": "Oui, bien sûr. Votre permis de conduire, pour la voiture, et votre passeport."}]}
+   ]
+  },
+  "coche": {
+   "dit": [{"qui": "vermietung_agentin", "air": "question", "t": "¿Qué coche prefiere? El pequeño cuesta 35 euros al día y el grande, 55.", "dit": "¿Qué coche prefiere? El pequeño cuesta treinta y cinco euros al día y el grande, cincuenta y cinco.", "fr": "Quelle voiture préférez-vous ? La petite coûte 35 euros par jour et la grande, 55."}],
+   "choix": [
+    {"t": "El pequeño, por favor. Somos solo dos.", "fr": "La petite, s'il vous plaît. Nous ne sommes que deux.", "pose": {"coche": "pequeno"}, "va": "seguro",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Muy bien. Es más fácil de aparcar.", "fr": "Très bien. Elle est plus facile à garer."}]},
+    {"t": "Prefiero el grande. Somos cuatro, con maletas.", "fr": "Je préfère la grande. Nous sommes quatre, avec des valises.", "pose": {"coche": "grande"}, "va": "seguro",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Claro, con cuatro personas es mejor.", "fr": "Bien sûr, à quatre, c'est mieux."}]},
+    {"faux": true, "t": "La pequeña, por favor.", "fr": "La petite, s'il vous plaît.",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "¿La pequeña? Ah, el coche pequeño, ¿no?", "fr": "« La » petite ? Ah, la petite voiture, non ?"}],
+     "aide": {"fr": "<b>« El coche » est masculin</b>, contrairement à « la voiture ». On dit donc « el pequeño », « el grande »."}}
+   ]
+  },
+  "seguro": {
+   "dit": [{"qui": "vermietung_agentin", "air": "question", "t": "¿Quiere el seguro a todo riesgo? Son 15 euros más al día.", "dit": "¿Quiere el seguro a todo riesgo? Son quince euros más al día.", "fr": "Voulez-vous l'assurance tous risques ? C'est 15 euros de plus par jour."}],
+   "choix": [
+    {"t": "Sí, prefiero el seguro a todo riesgo.", "fr": "Oui, je préfère l'assurance tous risques.", "pose": {"seguro": "todo_riesgo"}, "va": "vuelta",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Muy bien. Así no hay sorpresas.", "fr": "Très bien. Comme ça, pas de surprise."}]},
+    {"t": "No, gracias. Sin seguro extra.", "fr": "Non, merci. Sans assurance supplémentaire.", "pose": {"seguro": "no"}, "va": "vuelta",
+     "puis": [{"qui": "vermietung_agentin", "air": "attentive", "t": "De acuerdo. Entonces bloqueamos una fianza en su tarjeta.", "fr": "D'accord. Dans ce cas, nous bloquons une caution sur votre carte."}]},
+    {"faux": true, "t": "Sí, lo prendo.", "fr": "Oui, je la prends.",
+     "puis": [{"qui": "vermietung_agentin", "air": "surprise", "t": "¿Lo prende? ¿Quiere decir que lo coge?", "fr": "Vous l'« allumez » ? Vous voulez dire que vous la prenez ?"}],
+     "aide": {"fr": "<b>« Prendre » ne se dit pas « prender »</b> (qui veut dire allumer, accrocher). En Espagne : « Sí, lo cojo » ou simplement « Sí, lo quiero »."}}
+   ]
+  },
+  "vuelta": {
+   "dit": [
+    {"qui": "vermietung_agentin", "air": "attentive", "t": "Entonces son {a_payer} al día. El depósito está lleno: tiene que devolver el coche con el depósito lleno.", "dit": "Entonces son {a_payer:mots} al día. El depósito está lleno: tiene que devolver el coche con el depósito lleno.", "fr": "Alors ça fait {a_payer} par jour. Le réservoir est plein : vous devez rendre la voiture avec le plein."},
+    {"qui": "vermietung_agentin", "air": "question", "t": "¿A qué hora lo devuelve el domingo?", "fr": "À quelle heure la rendez-vous dimanche ?"}
+   ],
+   "choix": [
+    {"t": "El domingo a las seis de la tarde.", "fr": "Dimanche à six heures du soir.", "va": "llave",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Perfecto. Cerramos a las nueve.", "fr": "Parfait. Nous fermons à neuf heures."}]},
+    {"t": "Sobre las ocho. ¿Hasta qué hora abren?", "fr": "Vers huit heures. Vous êtes ouverts jusqu'à quelle heure ?", "va": "llave",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Hasta las nueve de la noche. No hay problema.", "fr": "Jusqu'à neuf heures du soir. Pas de problème."}]},
+    {"faux": true, "t": "El domingo a seis horas.", "fr": "Dimanche à six heures.",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "¿Seis horas? ¿A las seis de la tarde, quiere decir?", "fr": "Six heures (de durée) ? À six heures du soir, vous voulez dire ?"}],
+     "aide": {"fr": "<b>L'heure se dit « a las » + le nombre, sans « horas ».</b> « A las seis de la tarde ». « Seis horas », c'est une durée."}}
+   ]
+  },
+  "llave": {
+   "dit": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Aquí tiene la llave. El coche está en el aparcamiento, planta menos uno, plaza veintitrés.", "fr": "Voici la clé. La voiture est au parking, niveau moins un, place vingt-trois."}],
+   "choix": [
+    {"t": "Gracias. ¿Dónde está el aparcamiento?", "fr": "Merci. Où est le parking ?", "va": "fin",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Salga y gire a la derecha. Está al lado de la estación.", "fr": "Sortez et tournez à droite. Il est à côté de la gare."}]},
+    {"t": "Vale: planta menos uno, plaza veintitrés.", "fr": "D'accord : niveau moins un, place vingt-trois.", "va": "fin",
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "Eso es. El aparcamiento está aquí al lado, a la derecha.", "fr": "C'est ça. Le parking est juste à côté, à droite."}]},
+    {"faux": true, "t": "Gracias. ¿Dónde es el aparcamiento?", "fr": "Merci. Où est le parking ?",
+     "puis": [{"qui": "vermietung_agentin", "air": "perplexe", "t": "¿Dónde es…? Ah, ¿dónde está? Aquí al lado.", "fr": "Où « es »… ? Ah, où il se trouve ? Juste à côté."}],
+     "aide": {"fr": "<b>Pour dire où se trouve quelque chose, c'est « estar ».</b> « ¿Dónde está el aparcamiento? », « El coche está en la planta menos uno »."}}
+   ]
+  },
+  "fin": {
+   "dit": [{"qui": "vermietung_agentin", "air": "question", "t": "¿Tiene alguna pregunta más?", "fr": "Vous avez une autre question ?"}],
+   "choix": [
+    {"t": "Sí: ¿el coche es de gasolina o diésel?", "fr": "Oui : la voiture est à essence ou diesel ?", "va": null,
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "De gasolina. ¡Buen viaje!", "fr": "À essence. Bon voyage !"}]},
+    {"t": "No, todo claro. Muchas gracias. ¡Hasta el domingo!", "fr": "Non, tout est clair. Merci beaucoup. À dimanche !", "va": null,
+     "puis": [{"qui": "vermietung_agentin", "air": "sourire", "t": "¡Hasta el domingo! Es de gasolina, no lo olvide. ¡Buen viaje!", "fr": "À dimanche ! Elle est à essence, ne l'oubliez pas. Bon voyage !"}]},
+    {"faux": true, "t": "No, gracias. ¡Hasta domingo!", "fr": "Non, merci. À dimanche !",
+     "puis": [{"qui": "vermietung_agentin", "air": "amuse", "t": "¿Hasta domingo? ¡Hasta el domingo! ¿Ninguna pregunta, entonces?", "fr": "« Hasta domingo » ? À dimanche ! Aucune question, alors ?"}],
+     "aide": {"fr": "<b>Les jours de la semaine prennent l'article : « el domingo ».</b> « À dimanche ! » se dit « ¡Hasta el domingo! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as loué {coche_fr} pour le week-end{seguro_fr} : {a_payer} par jour. Pense à refaire le plein avant dimanche !"}
+}

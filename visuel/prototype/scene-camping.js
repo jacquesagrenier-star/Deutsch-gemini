@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "mond",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "lua",
    "ar": "قمر",
    "pl": "księżyc",
-   "ru": "луна"
+   "ru": "луна",
+   "es": "la luna"
   },
   {
    "id": "baum",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "wald",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "floresta",
    "ar": "غابة",
    "pl": "las",
-   "ru": "лес"
+   "ru": "лес",
+   "es": "el bosque"
   },
   {
    "id": "see",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "lago",
    "ar": "بحيرة",
    "pl": "jezioro",
-   "ru": "озеро"
+   "ru": "озеро",
+   "es": "el lago"
   },
   {
    "id": "boot",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "barco",
    "ar": "قارب",
    "pl": "łódź, łódka",
-   "ru": "лодка"
+   "ru": "лодка",
+   "es": "el bote, la lancha"
   },
   {
    "id": "zelt",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "barraca",
    "ar": "خيمة",
    "pl": "namiot",
-   "ru": "палатка"
+   "ru": "палатка",
+   "es": "la carpa, la tienda de campaña"
   },
   {
    "id": "pilz",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "cogumelo",
    "ar": "فطر",
    "pl": "grzyb",
-   "ru": "гриб"
+   "ru": "гриб",
+   "es": "el hongo"
   },
   {
    "id": "rucksack",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "gitarre",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "anna",
@@ -319,7 +329,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "schuh",
@@ -348,7 +359,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "mann",
@@ -377,7 +389,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "topf",
@@ -406,7 +419,8 @@ window.SCENE = {
    "pt": "panela",
    "ar": "قِدر",
    "pl": "garnek",
-   "ru": "кастрюля"
+   "ru": "кастрюля",
+   "es": "la olla"
   },
   {
    "id": "feuer",
@@ -435,7 +449,8 @@ window.SCENE = {
    "pt": "fogo",
    "ar": "نار",
    "pl": "ogień",
-   "ru": "огонь, костёр"
+   "ru": "огонь, костёр",
+   "es": "el fuego"
   },
   {
    "id": "stein",
@@ -470,7 +485,8 @@ window.SCENE = {
    "pt": "pedra",
    "ar": "حجر",
    "pl": "kamień",
-   "ru": "камень"
+   "ru": "камень",
+   "es": "la piedra"
   },
   {
    "id": "holz",
@@ -499,7 +515,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "holz-2",
@@ -528,7 +545,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "lampe",
@@ -557,7 +575,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "tasse",
@@ -586,7 +605,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "gras",
@@ -621,7 +641,8 @@ window.SCENE = {
    "pt": "grama, capim",
    "ar": "عشب",
    "pl": "trawa",
-   "ru": "трава"
+   "ru": "трава",
+   "es": "el pasto, la hierba"
   },
   {
    "id": "isomatte",
@@ -650,7 +671,8 @@ window.SCENE = {
    "pt": "isolante térmico",
    "ar": "حصيرة التخييم",
    "pl": "karimata",
-   "ru": "туристический коврик"
+   "ru": "туристический коврик",
+   "es": "la colchoneta aislante"
   }
  ],
  "grosPlans": [],
@@ -1574,6 +1596,75 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "Мужчина, возможно, двоюродный брат Анны.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "Вероятно, уже почти десять часов.",
     "C1 | Im Wald soll es Wölfe geben.": "Говорят, в лесу есть волки."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una noche de verano a orillas de un lago, en el bosque: Anna toca la guitarra, sentada en un tronco junto a la fogata; un amigo asa una salchicha; una olla sobre el fuego, leña, una linterna, una taza roja; detrás de ellos, la carpa, una mochila, un bote, el lago, los pinos y la luna.",
+    "consigne": "Anna acampa a orillas de un lago. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "El futuro con werden",
+    "B2": "Lo irreal: Konjunktiv II",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Der Mond ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Das Boot liegt am See.": "<b>am</b> = an + <b>dem</b>: der See → am See.",
+    "A2 | Der Topf hängt über dem Feuer.": "<b>über</b> = encima de. das Feuer → über <b>dem</b> Feuer.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "<b>vor</b> = delante de. das Zelt → vor <b>dem</b> Zelt.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "<b>neben</b> = al lado de. das Zelt → neben <b>dem</b> Zelt.",
+    "A2 | Die Tasse steht auf dem Stein.": "der Stein → auf <b>dem</b> Stein.",
+    "A2 | Die Lampe liegt neben dem Holz.": "<b>neben</b> = al lado de. das Holz → neben <b>dem</b> Holz.",
+    "A2 | Das Zelt steht am See.": "<b>am</b> = an + <b>dem</b>: der See → am See.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Futuro: <b>werden</b> + infinitivo al final.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Sujeto plural (sie = ellos) → <b>werden</b>.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Futuro: el infinitivo al final → vorspielen.",
+    "B1 | Gleich wird die Suppe fertig sein.": "Futuro de <b>sein</b>: wird … sein.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "<b>wir</b> → werden.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Verbo separable en futuro: el infinitivo entero, <b>ausmachen</b>, al final.",
+    "B1 | Es wird heute Nacht kalt werden.": "Futuro de <b>werden</b>: wird … werden.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "Futuro: <b>werden</b> + infinitivo al final.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Irreal: <b>wenn</b> + Konjunktiv II → wäre, como «si… estuviera».",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "<b>haben</b> → Konjunktiv II <b>hätten</b>.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Oración principal: <b>würde</b> + infinitivo, el condicional del español.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Deseo: Konjunktiv II de können → <b>könnte</b>.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Irreal del presente → <b>wäre</b>.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Lamento sobre el pasado: <b>hätte</b> + participio.",
+    "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = deducción casi segura.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "La luna está en el cielo.",
+    "A2 | Das Boot liegt am See.": "El bote está a la orilla del lago.",
+    "A2 | Der Topf hängt über dem Feuer.": "La olla cuelga sobre el fuego.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "La mochila está delante de la carpa.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "El hongo crece al lado de la carpa.",
+    "A2 | Die Tasse steht auf dem Stein.": "La taza está sobre la piedra.",
+    "A2 | Die Lampe liegt neben dem Holz.": "La lámpara está al lado de la leña.",
+    "A2 | Das Zelt steht am See.": "La carpa está a la orilla del lago.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Mañana Anna nadará en el lago.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Esta noche dormirán en la carpa.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Te voy a tocar una canción.",
+    "B1 | Gleich wird die Suppe fertig sein.": "La sopa estará lista enseguida.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Mañana temprano iremos en bote.",
+    "B1 | Wirst du das Feuer später ausmachen?": "¿Apagarás el fuego más tarde?",
+    "B1 | Es wird heute Nacht kalt werden.": "Esta noche va a hacer frío.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "El hombre se va a comer su salchicha enseguida.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Si no estuviera tan oscuro, irían a nadar.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Si tuvieran tiempo, se quedarían una semana más.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Si el hombre tuviera hambre, se comería la salchicha.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Me gustaría poder tocar la guitarra tan bien como Anna.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Si el bote fuera más grande, podrían ir todos.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "¡Ojalá hubieran traído más leña!",
+    "C1 | Sie muss den Abend sehr genießen.": "Debe de estar disfrutando mucho la noche.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "El hombre podría ser el primo de Anna.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Ya deben de ser casi las diez.",
+    "C1 | Im Wald soll es Wölfe geben.": "Dicen que en el bosque hay lobos."
    }
   }
  }

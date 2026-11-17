@@ -1,0 +1,62 @@
+{
+ "id": "a1-poste",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "Un colis au bureau de poste"},
+ "intro": {"fr": "Tu envoies un colis à ta famille. Au guichet de la poste américaine (USPS), à Boston, il faut dire où il va, ce qu'il contient, et choisir la vitesse."},
+ "personnes": ["post_schalter"],
+ "debut": "counter",
+ "prix": {"france": 4500, "canada": 3200, "regular": 0, "priority": 2000, "stamp": 165, "none": 0},
+ "panier": ["country", "service", "stamp"],
+ "textes": {"pays_fr": {"cle": "country", "france": "en France", "canada": "au Canada"}},
+ "noeuds": {
+  "counter": {
+   "dit": [
+    {"recit": {"fr": "Au bureau de poste. Tu as un colis sous le bras. C'est ton tour."}},
+    {"qui": "post_schalter", "air": "sourire", "t": "Hi! Next, please. How can I help you?", "fr": "Bonjour ! Au suivant. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "I'd like to send this package to France.", "t_gb": "I'd like to send this parcel to France.", "fr": "Je voudrais envoyer ce colis en France.", "pose": {"country": "france"}, "va": "inside"},
+    {"t": "I'd like to send this package to Canada.", "t_gb": "I'd like to send this parcel to Canada.", "fr": "Je voudrais envoyer ce colis au Canada.", "pose": {"country": "canada"}, "va": "inside"},
+    {"faux": true, "t": "I'd like to send this package in France.", "t_gb": "I'd like to send this parcel in France.", "fr": "Je voudrais envoyer ce colis en France.",
+     "puis": [{"qui": "post_schalter", "air": "perplexe", "t": "In France? But we're in Boston…", "fr": "En France ? Mais nous sommes à Boston…"}],
+     "aide": {"fr": "Pour la destination : <b>to</b> France, <b>to</b> Canada. « in France », c'est être déjà en France."}}
+   ]
+  },
+  "inside": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Put it on the scale, please. Anything fragile, liquid or perishable inside?", "fr": "Posez-le sur la balance, s'il vous plaît. Quelque chose de fragile, de liquide ou de périssable à l'intérieur ?"}],
+   "choix": [
+    {"t": "No, just clothes and books.", "fr": "Non, seulement des vêtements et des livres.", "va": "service"},
+    {"t": "No, it's a present for my mother.", "fr": "Non, c'est un cadeau pour ma mère.", "va": "service",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Oh, that's nice!", "fr": "Oh, c'est gentil !"}]},
+    {"repete": true, "t": "Sorry, I don't understand.", "fr": "Pardon, je ne comprends pas.", "va": "inside",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Is there anything that can break? Or any liquid?", "fr": "Est-ce qu'il y a quelque chose qui peut casser ? Ou du liquide ?"}]}
+   ]
+  },
+  "service": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "Regular or Priority? Regular takes one to two weeks. Priority is faster, but it's twenty dollars more.", "fr": "Normal ou prioritaire ? Le normal prend une à deux semaines. Le prioritaire est plus rapide, mais il coûte vingt dollars de plus."}],
+   "choix": [
+    {"t": "Regular, please. It's not urgent.", "fr": "Normal, s'il vous plaît. Ce n'est pas urgent.", "pose": {"service": "regular"}, "va": "stamps"},
+    {"t": "Priority, please.", "fr": "Prioritaire, s'il vous plaît.", "pose": {"service": "priority"}, "va": "stamps"}
+   ]
+  },
+  "stamps": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "Anything else? Do you need stamps?", "fr": "Autre chose ? Vous avez besoin de timbres ?"}],
+   "choix": [
+    {"t": "Yes, a stamp for a postcard, please.", "fr": "Oui, un timbre pour une carte postale, s'il vous plaît.", "pose": {"stamp": "stamp"}, "va": "pay"},
+    {"t": "No, thank you. That's all.", "fr": "Non, merci. C'est tout.", "pose": {"stamp": "none"}, "va": "pay"}
+   ]
+  },
+  "pay": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Okay, that's {a_payer}.", "dit": "Okay, that's {a_payer:mots}.", "fr": "D'accord, ça fait {a_payer}."}],
+   "choix": [
+    {"t": "By card, please.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Here's your receipt. Have a nice day!", "fr": "Voici votre reçu. Bonne journée !"}]},
+    {"t": "Cash. Here you go.", "fr": "En espèces. Voilà.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Thank you. Have a good one!", "fr": "Merci. Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as envoyé ton colis {pays_fr}, dit ce qu'il contenait, choisi la vitesse et payé {a_payer}."}
+}

@@ -53,8 +53,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -842,7 +842,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1019,12 +1019,12 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -1761,7 +1761,7 @@ window.SCENE = {
     "A1": "Nomen und Artikel",
     "A2": "¿Dónde está? — estar und die Präpositionen",
     "B1": "Saber oder conocer?",
-    "B2": "Der gerundio der Art und Weise: aprende dibujando",
+    "B2": "Das Gerundio der Art und Weise: aprende dibujando",
     "C1": "Vermutungen und Wahrscheinlichkeit"
    },
    "questions": {

@@ -25,8 +25,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -270,7 +270,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1821,8 +1821,8 @@ window.SCENE = {
     "B1 | El sofá todavía tiene el plástico.": "The sofa still has its plastic on.",
     "B1 | Anna todavía no ha colgado el cuadro.": "Anna hasn't hung the painting yet.",
     "B1 | El hermano ya ha subido a la escalera.": "The brother has already climbed the ladder.",
-    "B1 | Anna ya no vive en su departamento antiguo.": "Anna no longer lives in her old flat.",
-    "B1 | Anna ya no vive en su piso antiguo.": "Anna no longer lives in her old flat.",
+    "B1 | Anna ya no vive en su departamento antiguo.": "Anna no longer lives in her old apartment.",
+    "B1 | Anna ya no vive en su piso antiguo.": "Anna no longer lives in her old apartment.",
     "B1 | ¿Ya has comido? — No, todavía no.": "Have you eaten yet? — No, not yet.",
     "B1 | El reloj todavía está en el piso.": "The clock is still on the floor.",
     "B1 | El reloj todavía está en el suelo.": "The clock is still on the floor.",
@@ -1831,14 +1831,14 @@ window.SCENE = {
     "B2 | En un minuto el hermano habrá cambiado la bombilla.": "In a minute the brother will have changed the bulb.",
     "B2 | Anna está cansada: habrá llevado muchas cajas.": "Anna is tired: she must have carried a lot of boxes.",
     "B2 | La habrá pedido el hermano.": "The brother probably ordered it.",
-    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo departamento.": "By Monday Anna will have got used to her new flat.",
-    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo piso.": "By Monday Anna will have got used to her new flat.",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo departamento.": "By Monday Anna will have got used to her new apartment.",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo piso.": "By Monday Anna will have got used to her new apartment.",
     "B2 | Cuando lleguen los amigos, ya habremos puesto la mesa.": "When the friends arrive, we will already have laid the table.",
-    "C1 | Debe de estar contenta con su nuevo departamento.": "She must be happy with her new flat.",
-    "C1 | Debe de estar contenta con su nuevo piso.": "She must be happy with her new flat.",
+    "C1 | Debe de estar contenta con su nuevo departamento.": "She must be happy with her new apartment.",
+    "C1 | Debe de estar contenta con su nuevo piso.": "She must be happy with her new apartment.",
     "C1 | Puede que los libros vayan en la estantería blanca.": "The books may go on the white shelf.",
     "C1 | Será para Anna y su hermano.": "It is probably for Anna and her brother.",
-    "C1 | Dicen que el barrio es muy tranquilo.": "They say the neighbourhood is very quiet."
+    "C1 | Dicen que el barrio es muy tranquilo.": "They say the neighborhood is very quiet."
    }
   },
   "tr": {

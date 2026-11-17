@@ -41,9 +41,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "cobertor",
+   "mot": "teto",
    "genre": "o",
-   "pluriel": "os cobertores",
+   "pluriel": "os tetos",
    "niveau": "A1",
    "theme": "casa_pt",
    "personne": null,
@@ -58,7 +58,7 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture"
+   "fr": "plafond"
   },
   {
    "id": "wand",
@@ -191,7 +191,7 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pansement ; fédération",
+   "fr": "pansement",
    "br": {
     "mot": "atadura",
     "pluriel": "as ataduras"
@@ -573,7 +573,7 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "recette"
+   "fr": "ordonnance"
   },
   {
    "id": "mark",
@@ -1005,7 +1005,7 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "br": {
     "mot": "guichê",
     "pluriel": "os guichês"

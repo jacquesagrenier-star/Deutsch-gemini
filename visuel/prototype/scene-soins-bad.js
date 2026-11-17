@@ -58,7 +58,8 @@ window.SCENE = {
    "pt": "espelho",
    "ar": "مرآة",
    "pl": "lustro",
-   "ru": "зеркало"
+   "ru": "зеркало",
+   "es": "el espejo"
   },
   {
    "id": "haltegriff",
@@ -145,7 +146,8 @@ window.SCENE = {
    "pt": "banheiro",
    "ar": "دورة المياه، حمّام",
    "pl": "toaleta",
-   "ru": "туалет"
+   "ru": "туалет",
+   "es": "el baño"
   },
   {
    "id": "waschlotion",
@@ -319,7 +321,8 @@ window.SCENE = {
    "pt": "escova de dentes",
    "ar": "فرشاة أسنان",
    "pl": "szczoteczka do zębów",
-   "ru": "зубная щётка"
+   "ru": "зубная щётка",
+   "es": "el cepillo de dientes"
   },
   {
    "id": "wasserhahn",
@@ -348,7 +351,8 @@ window.SCENE = {
    "pt": "torneira",
    "ar": "صنبور الماء",
    "pl": "kran",
-   "ru": "кран"
+   "ru": "кран",
+   "es": "la llave del agua"
   },
   {
    "id": "waschbecken",
@@ -406,7 +410,8 @@ window.SCENE = {
    "pt": "paciente (mulher)",
    "ar": "مريضة",
    "pl": "pacjentka",
-   "ru": "пациентка"
+   "ru": "пациентка",
+   "es": "la paciente"
   },
   {
    "id": "brille",
@@ -435,7 +440,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "waschlappen",
@@ -493,7 +499,8 @@ window.SCENE = {
    "pt": "roupão",
    "ar": "رداء الحمّام",
    "pl": "szlafrok",
-   "ru": "халат"
+   "ru": "халат",
+   "es": "la bata de baño"
   },
   {
    "id": "handtuch",
@@ -522,7 +529,8 @@ window.SCENE = {
    "pt": "toalha",
    "ar": "منشفة",
    "pl": "ręcznik",
-   "ru": "полотенце"
+   "ru": "полотенце",
+   "es": "la toalla"
   },
   {
    "id": "duschstuhl",
@@ -580,7 +588,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "hausschuh",
@@ -696,7 +705,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "waschschuessel",
@@ -754,7 +764,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "badetuch",
@@ -841,7 +852,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   }
  ],
  "grosPlans": [],
@@ -1845,6 +1857,82 @@ window.SCENE = {
     "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Сначала я продезинфицирую руки и надену перчатки. Потом сниму старую повязку.",
     "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Может немного тянуть. Пожалуйста, сразу скажите мне, если будет больно, и я сделаю паузу.",
     "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Хорошо. Рана чистая и уже немного уменьшилась."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "El baño de una habitación de hospital, en la mañana: la señora Lehmann, en bata rosa, con una toalla sobre las rodillas, está sentada en una silla de ducha frente al lavamanos y se lava la cara; Elif, la enfermera, con guantes azules, tiene lista una toalla; alrededor de ellas, el espejo y la repisa, el inodoro con la barra de apoyo y el cordón rojo de llamada, la palangana sobre un banquito, la toalla de baño y la bolsa de la ropa sucia.",
+    "consigne": "Toca un objeto del baño, a la señora Lehmann o a Elif."
+   },
+   "couches": {
+    "A1": "Los objetos del baño",
+    "A2": "Los verbos reflexivos",
+    "B1": "Anunciar y pedir permiso",
+    "B2": "Las subordinadas de tiempo",
+    "C1": "El estilo nominal del informe",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Frau Lehmann wäscht sich das Gesicht.": "<b>sich waschen</b>: en la 3.ª persona, la a se vuelve ä — sie <b>wäscht</b> sich.",
+    "A2 | Möchten Sie sich selbst kämmen?": "Con <b>Sie</b>, el pronombre reflexivo es <b>sich</b>, en minúscula: Sie kämmen <b>sich</b>.",
+    "A2 | Frau Lehmann trocknet sich die Hände ab.": "<b>sich abtrocknen</b>: en la 3.ª persona, acusativo y dativo se dicen los dos <b>sich</b>. <b>ab</b> va al final.",
+    "A2 | Bitte setzen Sie sich auf den Duschstuhl.": "<b>sich setzen</b> + <b>auf den</b> (acusativo: se va hacia la silla). Ya sentada, se dice <b>auf dem</b> Duschstuhl.",
+    "A2 | Elif zieht sich frische Handschuhe an.": "<b>sich etwas anziehen</b>: sich en dativo, el objeto en acusativo; la partícula <b>an</b> va al final.",
+    "A2 | Ich fühle mich heute gut.": "<b>sich fühlen</b>: ich fühle <b>mich</b>, Sie fühlen <b>sich</b>.",
+    "B1 | Ich wasche jetzt Ihren Rücken. Ist das in Ordnung?": "Se anuncia cada gesto y luego se pide el consentimiento: <b>Ist das in Ordnung?</b> El pudor de la persona va antes que el ritmo del cuidado ⚕️.",
+    "B1 | Darf ich Ihnen beim Abtrocknen helfen?": "<b>Darf ich …?</b> = ¿puedo …? Se pregunta antes de ayudar. <b>helfen</b> + dativo: <b>Ihnen</b>.",
+    "B1 | Ich lege Ihnen ein Handtuch über die Knie, damit Sie nicht frieren.": "<b>damit</b> = para que (la finalidad); el verbo va al final: … nicht <b>frieren</b>.",
+    "B1 | Möchten Sie das Gesicht selbst waschen, oder soll ich das machen?": "<b>selbst</b> = uno mismo. La persona hace lo que puede hacer sola: es la <b>aktivierende Pflege</b>.",
+    "B1 | Ist das Wasser so angenehm für Sie?": "La temperatura se comprueba con la persona: <b>angenehm</b> = agradable. Una piel de edad avanzada o con diabetes siente mal el calor ⚕️.",
+    "B1 | Sagen Sie mir bitte, wenn Ihnen etwas unangenehm ist.": "<b>wenn</b> = si, cuando (una condición); el verbo al final. <b>unangenehm</b> = desagradable, incómodo.",
+    "B2 | Nachdem die Haut abgetrocknet ist, cremt Elif sie ein.": "<b>nachdem</b> = después de que, con un tiempo perfecto (abgetrocknet <b>ist</b>); la principal empieza con el verbo: <b>cremt</b> Elif …",
+    "B2 | Bevor Elif die Waschschüssel füllt, zieht sie Handschuhe an.": "<b>bevor</b> = antes de, antes de que. Aun con el mismo sujeto, el alemán hace una subordinada, donde el español pone un infinitivo («antes de llenar»).",
+    "B2 | Während Frau Lehmann sich das Gesicht wäscht, hält Elif das Handtuch bereit.": "<b>während</b> = mientras: dos acciones al mismo tiempo.",
+    "B2 | Sagen Sie Bescheid, sobald Sie fertig sind.": "<b>sobald</b> = en cuanto. <b>Bescheid sagen</b> = avisar.",
+    "B2 | Der Verband darf nicht nass werden, bis die Wunde verheilt ist.": "<b>bis</b> = hasta que. El vendaje de una herida de pie diabético se mantiene seco ⚕️.",
+    "B2 | Seit Frau Lehmann im Krankenhaus ist, wäscht sie sich am Waschbecken.": "<b>seit</b> + presente: desde que, y sigue siendo cierto (el español también usa el presente).",
+    "C1 | Teilwäsche am Waschbecken.": "El informe de enfermería prefiere el sustantivo: <b>Teilwäsche</b> (aseo parcial), <b>Ganzkörperwäsche</b> (aseo completo).",
+    "C1 | Gesicht und Oberkörper selbstständig.": "Sin sujeto, sin verbo: basta el adjetivo sin terminación, <b>selbstständig</b>.",
+    "C1 | Rücken und Beine mit Unterstützung.": "<b>mit Unterstützung</b> = con ayuda. Se escribe lo que la persona hace sola y lo que hace con ayuda.",
+    "C1 | Haut intakt.": "<b>intakt</b>: la palabra del informe para una piel sin enrojecimiento ni lesión. Enrojecida: <b>gerötet</b>.",
+    "C1 | Verband trocken und sauber.": "Ni artículo ni verbo: <b>Verband trocken und sauber</b>. El pie diabético se vigila en cada aseo ⚕️.",
+    "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "El sustantivo <b>Schwindel</b> (mareo) reemplaza la frase «estaba mareada»; siempre se anota lo que se hizo ⚕️.",
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "<b>Di exactamente lo que vas a hacer y pide el consentimiento.</b> «Ich möchte jetzt Ihren Verband wechseln. Ist das in Ordnung?» «machen» solo no le dice nada a la paciente.",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "<b>Explica para qué sirve el cuidado, con palabras sencillas: «damit …».</b> «Damit die Wunde sauber bleibt und gut heilen kann.» Un paciente que entiende el porqué coopera mejor. ⚕️",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "<b>Es un error de cuidado: la higiene de manos va antes de cualquier procedimiento.</b> «Zuerst desinfiziere ich mir die Hände, dann …». La paciente lo notó: en el examen como en el trabajo, el orden cuenta. ⚕️",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "<b>No prometas que un procedimiento no va a doler.</b> Avisa con honestidad («Es kann ein bisschen ziehen») y dale a la paciente una forma de actuar: «Sagen Sie mir bitte sofort, wenn es wehtut.»",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "<b>Para una herida, palabras neutras y precisas: sauber, gerötet, kleiner, größer.</b> «eklig» (asqueroso) hiere a la paciente y no le aporta nada al expediente."
+   },
+   "sens": {
+    "A2 | Frau Lehmann wäscht sich das Gesicht.": "La Sra. Lehmann se lava la cara.",
+    "A2 | Möchten Sie sich selbst kämmen?": "¿Quiere peinarse usted misma?",
+    "A2 | Frau Lehmann trocknet sich die Hände ab.": "La Sra. Lehmann se seca las manos.",
+    "A2 | Bitte setzen Sie sich auf den Duschstuhl.": "Por favor, siéntese en la silla de ducha.",
+    "A2 | Elif zieht sich frische Handschuhe an.": "Elif se pone guantes limpios.",
+    "A2 | Ich fühle mich heute gut.": "Hoy me siento bien.",
+    "B1 | Ich wasche jetzt Ihren Rücken. Ist das in Ordnung?": "Ahora le lavo la espalda. ¿Está bien?",
+    "B1 | Darf ich Ihnen beim Abtrocknen helfen?": "¿Puedo ayudarle a secarse?",
+    "B1 | Ich lege Ihnen ein Handtuch über die Knie, damit Sie nicht frieren.": "Le pongo una toalla sobre las rodillas para que no tenga frío.",
+    "B1 | Möchten Sie das Gesicht selbst waschen, oder soll ich das machen?": "¿Quiere lavarse la cara usted misma, o lo hago yo?",
+    "B1 | Ist das Wasser so angenehm für Sie?": "¿Así está agradable el agua para usted?",
+    "B1 | Sagen Sie mir bitte, wenn Ihnen etwas unangenehm ist.": "Por favor, dígame si algo le incomoda.",
+    "B2 | Nachdem die Haut abgetrocknet ist, cremt Elif sie ein.": "Una vez que la piel está seca, Elif le pone crema.",
+    "B2 | Bevor Elif die Waschschüssel füllt, zieht sie Handschuhe an.": "Antes de llenar la palangana, Elif se pone guantes.",
+    "B2 | Während Frau Lehmann sich das Gesicht wäscht, hält Elif das Handtuch bereit.": "Mientras la Sra. Lehmann se lava la cara, Elif tiene lista la toalla.",
+    "B2 | Sagen Sie Bescheid, sobald Sie fertig sind.": "Avíseme en cuanto termine.",
+    "B2 | Der Verband darf nicht nass werden, bis die Wunde verheilt ist.": "El vendaje no debe mojarse hasta que la herida haya sanado.",
+    "B2 | Seit Frau Lehmann im Krankenhaus ist, wäscht sie sich am Waschbecken.": "Desde que la Sra. Lehmann está en el hospital, se asea en el lavamanos.",
+    "C1 | Teilwäsche am Waschbecken.": "Aseo parcial en el lavamanos.",
+    "C1 | Gesicht und Oberkörper selbstständig.": "Cara y parte superior del cuerpo: sola.",
+    "C1 | Rücken und Beine mit Unterstützung.": "Espalda y piernas: con ayuda.",
+    "C1 | Haut intakt.": "Piel intacta.",
+    "C1 | Verband trocken und sauber.": "Vendaje seco y limpio.",
+    "C1 | Kurzzeitig Schwindel beim Waschen, Vitalzeichen kontrolliert.": "Mareo breve durante el aseo, signos vitales controlados.",
+    "SIT | Guten Morgen, Frau Lehmann. Ich möchte jetzt Ihren Verband am Fuß wechseln. Ist das in Ordnung?": "Buenos días, señora Lehmann. Quisiera cambiarle ahora el vendaje del pie. ¿Está de acuerdo?",
+    "SIT | Damit die Wunde sauber bleibt und gut heilen kann. Bei Diabetes heilt eine Wunde oft langsamer.": "Para que la herida se mantenga limpia y pueda sanar bien. Con diabetes, una herida suele sanar más despacio.",
+    "SIT | Zuerst desinfiziere ich mir die Hände und ziehe Handschuhe an. Dann nehme ich den alten Verband ab.": "Primero me desinfecto las manos y me pongo guantes. Después quito el vendaje anterior.",
+    "SIT | Es kann ein bisschen ziehen. Sagen Sie mir bitte sofort, wenn es wehtut, dann mache ich eine Pause.": "Puede jalar un poco. Por favor, dígame enseguida si le duele, y hago una pausa.",
+    "SIT | Gut. Die Wunde ist sauber und schon ein bisschen kleiner geworden.": "Bien. La herida está limpia y ya se hizo un poco más pequeña."
    }
   }
  }

@@ -27,7 +27,7 @@ import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FICHIERS = {
-    "de": {"chemin": "premiers-pas.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]},
+    "de": {"chemin": "premiers-pas.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"]},
     # L'allemand : langue d'interface de l'espagnol depuis le 1er nov. 2026 (v1065).
     "es": {"chemin": os.path.join("espanol", "datos", "premiers-pas.json"), "langues": ["fr", "en", "pt", "ar", "de"]},
 }

@@ -1,0 +1,155 @@
+{
+ "id": "b1-stage",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "L'entretien pour un stage"},
+ "intro": {"fr": "Tu passes un entretien pour un stage de trois mois à la réception d'un petit hôtel de Madrid. La réceptionniste, qui encadre les stagiaires, te reçoit."},
+ "personnes": ["rezeptionistin"],
+ "debut": "saludo",
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Un petit hôtel, dans une rue tranquille de Madrid. La réceptionniste t'invite à t'asseoir dans le salon, près de l'accueil."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Buenos días, soy Pilar Ortega. Llevo muchos años en la recepción y me ocupo de los alumnos en prácticas. Siéntese, por favor. Para empezar, hábleme un poco de usted.", "fr": "Bonjour, je suis Pilar Ortega. Je travaille à la réception depuis de nombreuses années et je m'occupe des stagiaires. Asseyez-vous, je vous en prie. Pour commencer, parlez-moi un peu de vous."}
+   ],
+   "choix": [
+    {"t": "Con mucho gusto. Estudio Turismo y necesito hacer tres meses de prácticas para terminar el curso.", "fr": "Avec plaisir. J'étudie le tourisme et je dois faire trois mois de stage pour terminer l'année.", "pose": {"perfil": "estudios"}, "va": "porque",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Cada año recibimos a uno o dos estudiantes.", "fr": "Très bien. Chaque année, nous accueillons un ou deux étudiants."}]},
+    {"t": "Con mucho gusto. He trabajado ocho años en una tienda y ahora hago un curso de recepcionista para cambiar de profesión.", "fr": "Avec plaisir. J'ai travaillé huit ans dans un magasin et je suis maintenant une formation de réceptionniste pour changer de métier.", "pose": {"perfil": "cambio"}, "va": "porque",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Cambiar de profesión no es fácil. Me parece muy valiente.", "fr": "Changer de métier n'est pas facile. Je trouve cela très courageux."}]},
+    {"faux": true, "t": "Con mucho gusto. Soy en segundo año de Turismo.", "fr": "Avec plaisir. Je « suis » en deuxième année de tourisme (avec ser).",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "¿Cómo dice? Ah, que está en segundo de Turismo.", "fr": "Comment dites-vous ? Ah, vous êtes en deuxième année de tourisme."}],
+     "aide": {"fr": "<b>Pour dire où l'on en est, c'est « estar »</b> : « Estoy en segundo año de Turismo ». « Ser » dit ce que l'on est : « Soy estudiante »."}}
+   ]
+  },
+  "porque": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Y por qué quiere hacer las prácticas en nuestro hotel?", "fr": "Et pourquoi voulez-vous faire votre stage dans notre hôtel ?"}],
+   "choix": [
+    {"t": "Porque me gusta el trato con la gente, y en un hotel pequeño se aprende de todo.", "fr": "Parce que j'aime le contact avec les gens, et dans un petit hôtel on apprend de tout.", "va": "experiencia",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Eso es verdad. Aquí todos hacemos un poco de todo.", "fr": "C'est vrai. Ici, nous faisons tous un peu de tout."}]},
+    {"t": "Quiero aprender bien el trabajo de recepción. Además, hablo francés e inglés.", "fr": "Je veux bien apprendre le travail de la réception. En plus, je parle français et anglais.", "va": "experiencia",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Eso nos interesa mucho: recibimos a muchos clientes franceses.", "fr": "Cela nous intéresse beaucoup : nous recevons de nombreux clients français."}]},
+    {"faux": true, "t": "Porque su hotel es pequeño pero muy lujurioso.", "fr": "Parce que votre hôtel est petit mais très « luxurieux ».",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¿Lujurioso? ¡Espero que no! ¿Quiere decir lujoso?", "fr": "« Lujurioso » ? J'espère que non ! Vous voulez dire luxueux ?"}],
+     "aide": {"fr": "<b>« lujurioso »</b> est un faux ami : il veut dire luxurieux, porté sur la luxure. Luxueux se dit « lujoso ». Dis plutôt : « Me gusta el trato con la gente »."}}
+   ]
+  },
+  "experiencia": {
+   "dit": [
+    {"si": {"perfil": "estudios"}, "qui": "rezeptionistin", "air": "question", "t": "Muchos estudiantes trabajan los veranos. ¿Ha trabajado ya con clientes?", "fr": "Beaucoup d'étudiants travaillent l'été. Avez-vous déjà travaillé avec des clients ?"},
+    {"si": {"perfil": "cambio"}, "qui": "rezeptionistin", "air": "question", "t": "En una tienda se ve a muchos clientes. Cuénteme un poco.", "fr": "Dans un magasin, on voit beaucoup de clients. Racontez-moi un peu."}
+   ],
+   "choix": [
+    {"si": {"perfil": "estudios"}, "t": "Sí, trabajé dos veranos en una cafetería.", "fr": "Oui, j'ai travaillé deux étés dans un café.", "va": "puntos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "En una cafetería se aprende mucho: ir rápido y seguir sonriendo.", "fr": "Dans un café, on apprend beaucoup : aller vite et garder le sourire."}]},
+    {"si": {"perfil": "cambio"}, "t": "Sí, en la tienda atendía a clientes todos los días, también a los difíciles.", "fr": "Oui, au magasin, je servais des clients tous les jours, y compris les difficiles.", "va": "puntos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Clientes difíciles también hay en un hotel, no se preocupe.", "fr": "Des clients difficiles, il y en a aussi dans un hôtel, ne vous inquiétez pas."}]},
+    {"t": "Sí. Aprendí a ser amable incluso cuando hay mucho trabajo.", "fr": "Oui. J'ai appris à être aimable même quand il y a beaucoup de travail.", "va": "puntos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Eso es justo lo que hace falta en recepción.", "fr": "C'est exactement ce qu'il faut à la réception."}]},
+    {"faux": true, "t": "Sí, tengo una grande experiencia con clientes.", "fr": "Oui, j'ai une « grande » expérience avec les clients.",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "¿Mucha experiencia, entonces? Cuénteme dónde.", "fr": "Beaucoup d'expérience, alors ? Dites-moi où."}],
+     "aide": {"fr": "<b>Devant un nom, « grande » devient « gran »</b> : « una gran experiencia ». Le plus naturel reste : « Tengo mucha experiencia con clientes »."}}
+   ]
+  },
+  "puntos": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Cuál es su punto fuerte? ¿Y su punto débil?", "fr": "Quel est votre point fort ? Et votre point faible ?"}],
+   "choix": [
+    {"t": "Tengo paciencia y no pierdo la calma. Mi punto débil: todavía me cuesta hablar español por teléfono.", "fr": "J'ai de la patience et je ne perds pas mon calme. Mon point faible : j'ai encore du mal à parler espagnol au téléphone.", "va": "cliente",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Eso se aprende rápido aquí: el teléfono no para.", "fr": "Cela s'apprend vite ici : le téléphone n'arrête pas."}]},
+    {"t": "Me organizo bien. Pero a veces quiero hacerlo todo sin ayuda y pregunto demasiado tarde.", "fr": "Je m'organise bien. Mais parfois je veux tout faire sans aide et je demande trop tard.", "va": "cliente",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Está bien saberlo. Aquí es mejor preguntar una vez de más.", "fr": "C'est bien de le savoir. Ici, mieux vaut demander une fois de trop."}]},
+    {"faux": true, "t": "Mi punto fuerte: estoy siempre a la hora.", "fr": "Mon point fort : je suis toujours « à l'heure » (mot à mot).",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "¿A la hora… de qué? Ah, ¡que es usted puntual!", "fr": "À l'heure… de quoi ? Ah, vous êtes ponctuel !"}],
+     "aide": {"fr": "<b>« être à l'heure » se dit « ser puntual »</b> ou « llegar a la hora ». Dis : « Soy muy puntual »."}}
+   ]
+  },
+  "cliente": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "Imagine: un cliente llega a recepción muy enfadado porque su habitación todavía no está lista. ¿Qué hace usted?", "fr": "Imaginez : un client arrive à la réception très fâché parce que sa chambre n'est pas encore prête. Que faites-vous ?"}],
+   "choix": [
+    {"t": "Primero lo escucho y le pido disculpas. Después le ofrezco un café mientras espera.", "fr": "D'abord je l'écoute et je lui présente des excuses. Ensuite je lui offre un café pendant qu'il attend.", "va": "cliente_bien",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Escuchar es lo más importante.", "fr": "Très bien. Écouter, c'est le plus important."}]},
+    {"t": "Mantengo la calma y llamo enseguida a un compañero o a usted.", "fr": "Je garde mon calme et j'appelle tout de suite un collègue ou vous.", "va": "cliente_ayuda",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Pedir ayuda está bien, sobre todo al principio.", "fr": "Demander de l'aide, c'est bien, surtout au début."}]},
+    {"faux": true, "t": "Le digo que se calme.", "fr": "Je lui dis de se calmer.",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Uy. Decirle «cálmese» a un cliente enfadado suele empeorar las cosas.", "fr": "Aïe. Dire « calmez-vous » à un client fâché aggrave en général les choses."}],
+     "aide": {"fr": "<b>À un client mécontent, on ne dit pas de se calmer</b> : on écoute, on s'excuse, on propose quelque chose. Par exemple : « Primero lo escucho y le pido disculpas »."}},
+    {"repete": true, "t": "Perdone, ¿puede repetir la situación, por favor?", "fr": "Excusez-moi, pouvez-vous répéter la situation, s'il vous plaît ?", "va": "cliente",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Claro. Llega un cliente, pero su habitación todavía no está limpia. Está muy enfadado.", "fr": "Bien sûr. Un client arrive, mais sa chambre n'est pas encore propre. Il est très fâché."}]}
+   ]
+  },
+  "cliente_bien": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Y si el cliente sigue gritando?", "fr": "Et si le client continue de crier ?"}],
+   "choix": [
+    {"t": "Sigo hablando con educación y la llamo a usted o a un compañero.", "fr": "Je continue à parler poliment et je vous appelle, vous ou un collègue.", "va": "turnos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Eso es. Nadie debe resolver solo una situación así.", "fr": "C'est cela. Personne ne doit régler seul une situation pareille."}]},
+    {"t": "Le digo que lo entiendo y busco una solución, por ejemplo otra habitación.", "fr": "Je lui dis que je le comprends et je cherche une solution, par exemple une autre chambre.", "va": "turnos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Otra habitación: buena idea. No todo el mundo lo piensa.", "fr": "Une autre chambre : bonne idée. Tout le monde n'y pense pas."}]}
+   ]
+  },
+  "cliente_ayuda": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Pero ¿qué le dice al cliente antes de irse?", "fr": "Mais que dites-vous au client avant de partir ?"}],
+   "choix": [
+    {"t": "Le digo: «Lo siento mucho, ahora mismo me ocupo».", "fr": "Je lui dis : « Je suis vraiment désolé, je m'en occupe tout de suite ».", "va": "turnos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Exacto. Así el cliente ve que lo toman en serio.", "fr": "Exactement. Le client voit ainsi qu'on le prend au sérieux."}]},
+    {"t": "Le pido disculpas y le pido que espere un momento, por favor.", "fr": "Je lui présente des excuses et je lui demande d'attendre un instant, s'il vous plaît.", "va": "turnos",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Corto, amable y claro.", "fr": "Très bien. Court, aimable et clair."}]},
+    {"faux": true, "t": "Le digo: «Espera un momento, ahora vuelvo».", "fr": "Je lui dis : « Attends un instant, je reviens ».",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "¿«Espera»? A un cliente siempre se le habla de usted.", "fr": "« Espera » ? À un client, on parle toujours au « usted »."}],
+     "aide": {"fr": "<b>« Espera »</b> est un impératif au « tú ». À un client, toujours « usted » : « Espere un momento, por favor »."}}
+   ]
+  },
+  "turnos": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "Trabajamos por turnos: de mañana, de siete a tres, y de tarde, de tres a once. También algunos fines de semana. ¿Le viene bien?", "fr": "Nous travaillons par roulement : le matin, de sept heures à quinze heures, et l'après-midi, de quinze heures à vingt-trois heures. Certains week-ends aussi. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Sí, no hay problema. Puedo adaptarme.", "fr": "Oui, pas de problème. Je peux m'adapter.", "va": "preguntas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Perfecto, así es más fácil organizar los horarios.", "fr": "Parfait, c'est plus facile ainsi d'organiser les horaires."}]},
+    {"t": "En principio sí, pero los martes por la tarde tengo clase de español.", "fr": "En principe oui, mais le mardi après-midi j'ai cours d'espagnol.", "pose": {"deseo": "clase"}, "va": "arreglo",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Las clases de español no hay que dejarlas, claro.", "fr": "Les cours d'espagnol, il ne faut pas les arrêter, bien sûr."}]},
+    {"t": "Los turnos me van bien, pero todos los fines de semana sería difícil para mí.", "fr": "Les horaires me vont, mais tous les week-ends, ce serait difficile pour moi.", "pose": {"deseo": "finde"}, "va": "arreglo",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "No se preocupe, aquí nadie trabaja todos los fines de semana.", "fr": "Ne vous inquiétez pas, ici personne ne travaille tous les week-ends."}]},
+    {"faux": true, "t": "Sí, soy disponible todos los días.", "fr": "Oui, je « suis » disponible tous les jours (avec ser).",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "¿Cómo? Ah, que está disponible todos los días.", "fr": "Comment ? Ah, vous êtes disponible tous les jours."}],
+     "aide": {"fr": "<b>« disponible » se dit avec « estar »</b>, car c'est un état du moment : « Estoy disponible todos los días »."}}
+   ]
+  },
+  "arreglo": {
+   "dit": [
+    {"si": {"deseo": "clase"}, "qui": "rezeptionistin", "air": "question", "t": "Los martes puede hacer siempre el turno de mañana. ¿Le parece bien?", "fr": "Le mardi, vous pouvez toujours faire l'équipe du matin. Cela vous va ?"},
+    {"si": {"deseo": "finde"}, "qui": "rezeptionistin", "air": "question", "t": "Serían dos fines de semana al mes y, a cambio, dos días libres entre semana. ¿Le parece bien?", "fr": "Ce serait deux week-ends par mois et, en échange, deux jours libres en semaine. Cela vous va ?"}
+   ],
+   "choix": [
+    {"t": "Sí, me parece muy bien. Muchas gracias.", "fr": "Oui, cela me va très bien. Merci beaucoup.", "va": "preguntas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "De nada. Lo apunto ahora mismo.", "fr": "De rien. Je le note tout de suite."}]},
+    {"t": "Sería perfecto. Gracias por su comprensión.", "fr": "Ce serait parfait. Merci de votre compréhension.", "va": "preguntas",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "No hay de qué. Es lo normal.", "fr": "Il n'y a pas de quoi. C'est normal."}]}
+   ]
+  },
+  "preguntas": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "¿Tiene alguna pregunta para mí?", "fr": "Avez-vous une question pour moi ?"}],
+   "choix": [
+    {"t": "Sí. ¿Qué voy a aprender durante estos tres meses?", "fr": "Oui. Qu'est-ce que je vais apprendre pendant ces trois mois ?", "va": "inicio",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Las entradas y salidas, las reservas, el teléfono. Al final hará un turno casi sin ayuda.", "fr": "Les arrivées et les départs, les réservations, le téléphone. À la fin, vous assurerez un service presque sans aide."}]},
+    {"t": "Sí. ¿Quién me va a ayudar si tengo dudas?", "fr": "Oui. Qui va m'aider si j'ai des doutes ?", "va": "inicio",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Yo misma. Y en el turno de tarde, mi compañero Andrés.", "fr": "Moi-même. Et dans l'équipe de l'après-midi, mon collègue Andrés."}]},
+    {"t": "Sí. ¿Las prácticas están pagadas?", "fr": "Oui. Le stage est-il payé ?", "va": "inicio",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Hay una ayuda al estudio de cuatrocientos euros al mes. Y firmamos un convenio de prácticas con su centro de estudios.", "fr": "Il y a une aide aux études de quatre cents euros par mois. Et nous signons une convention de stage avec votre établissement."}]},
+    {"faux": true, "t": "Sí. Y tú, ¿cuánto tiempo llevas aquí?", "fr": "Oui. Et toi, tu es ici depuis combien de temps ?",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Mejor nos tratamos de usted, si no le importa. Llevo doce años en esta recepción.", "fr": "Parlons-nous plutôt au « usted », si cela ne vous dérange pas. Je suis à cette réception depuis douze ans."}],
+     "aide": {"fr": "<b>Dans cet entretien, on reste au « usted »</b> tant que l'autre ne propose pas le « tú ». Dis : « Y usted, ¿cuánto tiempo lleva aquí? »."}}
+   ]
+  },
+  "inicio": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Una última pregunta: ¿cuándo podría empezar?", "fr": "Une dernière question : quand pourriez-vous commencer ?"}],
+   "choix": [
+    {"si": {"perfil": "estudios"}, "t": "A partir del uno de marzo, cuando terminan mis exámenes.", "fr": "À partir du premier mars, quand mes examens se terminent.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Le llamaremos la semana que viene. ¡Gracias por venir!", "fr": "Très bien. Nous vous appellerons la semaine prochaine. Merci d'être venu !"}]},
+    {"si": {"perfil": "cambio"}, "t": "A partir del uno de marzo. Mi centro solo necesita el convenio firmado.", "fr": "À partir du premier mars. Mon centre de formation n'a besoin que de la convention signée.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Muy bien. Le llamaremos la semana que viene. ¡Gracias por venir!", "fr": "Très bien. Nous vous appellerons la semaine prochaine. Merci d'être venu !"}]},
+    {"t": "Podría empezar el mes que viene.", "fr": "Je pourrais commencer le mois prochain.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Estupendo. Le llamaremos la semana que viene. ¡Gracias por venir!", "fr": "Formidable. Nous vous appellerons la semaine prochaine. Merci d'être venu !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté, tu as expliqué ta motivation, répondu à la question du client mécontent, réglé les horaires et posé ta question : l'hôtel te rappelle la semaine prochaine."}
+}

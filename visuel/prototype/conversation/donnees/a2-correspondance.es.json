@@ -1,0 +1,93 @@
+{
+ "id": "a2-correspondance",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {"fr": "Un train en retard, une correspondance"},
+ "intro": {"fr": "Tu vas de Madrid à Huesca, avec un changement à Saragosse. Ton train s'est arrêté en pleine campagne. Le contrôleur passe : c'est le moment de poser tes questions."},
+ "personnes": ["zugbegleiter"],
+ "debut": "billete",
+ "noeuds": {
+  "billete": {
+   "dit": [
+    {"recit": {"fr": "Onze heures et quart. Le train ne bouge plus depuis un moment. Le contrôleur entre dans ta voiture."}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Buenos días. Su billete, por favor.", "fr": "Bonjour. Votre billet, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Buenos días. Aquí tiene.", "fr": "Bonjour. Le voici.", "va": "retraso",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Gracias. Madrid, Zaragoza y después Huesca. Muy bien.", "fr": "Merci. Madrid, Saragosse, puis Huesca. Très bien."}]},
+    {"t": "Sí, un momento … Aquí está.", "fr": "Oui, un instant… Le voilà.", "va": "retraso",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Gracias. Madrid, Zaragoza y después Huesca. Muy bien.", "fr": "Merci. Madrid, Saragosse, puis Huesca. Très bien."}]}
+   ]
+  },
+  "retraso": {
+   "dit": [{"qui": "zugbegleiter", "air": "question", "t": "Todo correcto. ¿Tiene alguna pregunta?", "fr": "Tout est en ordre. Vous avez une question ?"}],
+   "choix": [
+    {"t": "Sí. ¿El tren lleva retraso?", "fr": "Oui. Le train a du retard ?", "va": "enlace",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Sí, lo siento. Llevamos treinta minutos de retraso. Llegamos a Zaragoza a las doce y diez.", "fr": "Oui, je suis désolé. Nous avons trente minutes de retard. Nous arrivons à Saragosse à midi dix."}]},
+    {"t": "Sí. ¿A qué hora llegamos a Zaragoza?", "fr": "Oui. À quelle heure arrivons-nous à Saragosse ?", "va": "enlace",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "A las doce y diez, lo siento. Llevamos treinta minutos de retraso.", "fr": "À midi dix, je suis désolé. Nous avons trente minutes de retard."}]},
+    {"faux": true, "t": "Sí. ¿El tren tiene retardo?", "fr": "Oui. Le train a du retard ?",
+     "puis": [{"qui": "zugbegleiter", "air": "perplexe", "t": "¿Retardo? Ah, ¡retraso! Sí, treinta minutos, lo siento.", "fr": "« Retardo » ? Ah, du retard ! Oui, trente minutes, je suis désolé."}],
+     "aide": {"fr": "Le retard d'un train, c'est <b>« el retraso »</b>, pas « retardo ». Dis : « ¿El tren lleva retraso? » ou « ¿El tren tiene retraso? »."}}
+   ]
+  },
+  "enlace": {
+   "dit": [{"qui": "zugbegleiter", "air": "question", "t": "¿A qué hora sale su tren a Huesca?", "fr": "À quelle heure part votre train pour Huesca ?"}],
+   "choix": [
+    {"t": "A las doce menos cinco. Voy a perder el tren, ¿verdad?", "fr": "À midi moins cinq. Je vais rater le train, n'est-ce pas ?", "va": "siguiente",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Me temo que sí. Pero no se preocupe.", "fr": "Je le crains. Mais ne vous inquiétez pas."}]},
+    {"t": "Sale a las doce menos cinco. ¿Qué puedo hacer?", "fr": "Il part à midi moins cinq. Qu'est-ce que je peux faire ?", "va": "siguiente",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Uf, ese tren no espera. Pero no se preocupe.", "fr": "Aïe, ce train-là n'attend pas. Mais ne vous inquiétez pas."}]},
+    {"faux": true, "t": "A las doce menos cinco. Voy a faltar mi tren.", "fr": "À midi moins cinq. Je vais manquer mon train.",
+     "puis": [{"qui": "zugbegleiter", "air": "perplexe", "t": "¿Faltar? Ah, ¡que va a perder el tren!", "fr": "« Faltar » ? Ah, vous allez rater le train !"}],
+     "aide": {"fr": "Rater un train, c'est <b>« perder el tren »</b>. « Faltar » veut dire être absent, ou manquer (« falta una silla »). Dis : « Voy a perder el tren »."}}
+   ]
+  },
+  "siguiente": {
+   "dit": [
+    {"recit": {"fr": "Il cherche sur sa tablette."}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Mire: hay otro tren a Huesca a las 13:15, en la vía 4.", "dit": "Mire: hay otro tren a Huesca a la una y cuarto, en la vía cuatro.", "fr": "Regardez : il y a un autre train pour Huesca à 13 h 15, voie 4."}
+   ],
+   "choix": [
+    {"t": "A la una y cuarto, en la vía cuatro. Muy bien.", "fr": "À une heure et quart, voie quatre. Très bien.", "va": "valido",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Eso es.", "fr": "C'est ça."}]},
+    {"t": "A la una y cuarto. Perdone, ¿en qué vía?", "fr": "À une heure et quart. Pardon, sur quelle voie ?", "va": "valido",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "En la vía cuatro, al lado de la cafetería.", "fr": "Voie quatre, à côté de la cafétéria."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir, por favor?", "fr": "Pardon ? Vous pouvez répéter, s'il vous plaît ?", "va": "siguiente",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Claro. El tren siguiente a Huesca sale a la una y cuarto, en la vía cuatro.", "fr": "Bien sûr. Le train suivant pour Huesca part à une heure et quart, voie quatre."}]}
+   ]
+  },
+  "valido": {
+   "dit": [{"qui": "zugbegleiter", "air": "sourire", "t": "Tiene una hora de espera en Zaragoza, lo siento.", "fr": "Vous avez une heure d'attente à Saragosse, je suis désolé."}],
+   "choix": [
+    {"t": "¿Puedo usar mi billete en ese tren?", "fr": "Je peux utiliser mon billet dans ce train ?", "va": "cafe",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Sí, claro. El retraso es culpa nuestra: su billete vale para el tren siguiente.", "fr": "Oui, bien sûr. Le retard est de notre faute : votre billet est valable pour le train suivant."}]},
+    {"t": "¿Tengo que comprar otro billete?", "fr": "Je dois acheter un autre billet ?", "va": "cafe",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "No, no. El retraso es culpa nuestra: su billete vale para el tren siguiente.", "fr": "Non, non. Le retard est de notre faute : votre billet est valable pour le train suivant."}]}
+   ]
+  },
+  "cafe": {
+   "dit": [{"qui": "zugbegleiter", "air": "sourire", "t": "Y por las molestias, le invito a un café en la cafetería del tren. Está en el coche cuatro.", "fr": "Et pour le dérangement, je vous offre un café à la cafétéria du train. Elle est dans la voiture quatre."}],
+   "choix": [
+    {"t": "¡Qué amable! Muchas gracias.", "fr": "Comme c'est gentil ! Merci beaucoup.", "va": "adios",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "De nada.", "fr": "Je vous en prie."}]},
+    {"t": "Gracias. ¿Y me devuelven una parte del dinero?", "fr": "Merci. Et on me rembourse une partie du billet ?", "va": "adios",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Eso depende del retraso. Puede preguntar en la estación, en Atención al Cliente.", "fr": "Cela dépend du retard. Vous pouvez demander à la gare, au service clients."}]}
+   ]
+  },
+  "adios": {
+   "dit": [{"qui": "zugbegleiter", "air": "sourire", "t": "Pues nada más. ¡Buen viaje, y perdone las molestias!", "fr": "Eh bien, c'est tout. Bon voyage, et pardon pour le dérangement !"}],
+   "choix": [
+    {"t": "Gracias por su ayuda. ¡Adiós!", "fr": "Merci pour votre aide. Au revoir !", "va": null,
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "¡Adiós!", "fr": "Au revoir !"}]},
+    {"t": "Muchas gracias. ¡Que tenga un buen día!", "fr": "Merci beaucoup. Bonne journée !", "va": null,
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "¡Igualmente!", "fr": "À vous aussi !"}]},
+    {"faux": true, "t": "Muchas gracias. ¡Buen coraje!", "fr": "Merci beaucoup. Bon courage !",
+     "puis": [{"qui": "zugbegleiter", "air": "surprise", "t": "¿Coraje? ¡No estoy enfadado! Ah, ¡ánimo!", "fr": "De la colère ? Je ne suis pas fâché ! Ah, bon courage !"}],
+     "aide": {"fr": "« Bon courage » se dit <b>« ¡Ánimo! »</b>. En Espagne, « coraje » veut souvent dire la colère. Tu peux dire aussi : « ¡Que tenga un buen día! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as compris le retard, trouvé le train suivant pour Huesca (13 h 15, voie 4) et vérifié que ton billet restait valable."}
+}

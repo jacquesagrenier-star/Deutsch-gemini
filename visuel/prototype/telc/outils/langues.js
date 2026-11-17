@@ -20,7 +20,7 @@ const path = require("path");
 const vm = require("vm");
 
 const ICI = path.dirname(__dirname);           // visuel/prototype/telc
-const LANGUES = ["tr", "uk", "fa", "ar", "pt", "pl", "ru"];
+const LANGUES = ["tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"];
 const MODULES = ["telc-commun.js", "lesen.js", "sprachbausteine.js", "schreiben.js", "hoeren.js",
                  "hoeren-schreiben.js", "sprechen.js", "examen-blanc.js"];
 

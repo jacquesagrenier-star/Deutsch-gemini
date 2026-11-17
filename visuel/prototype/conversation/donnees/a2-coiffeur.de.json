@@ -1,0 +1,103 @@
+{
+ "id": "a2-coiffeur",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Chez le coiffeur"},
+ "intro": {"fr": "Tu vas chez le coiffeur de ton quartier, à Berlin. Tu expliques ce que tu veux, tu bavardes un peu, tu paies."},
+ "personnes": ["friseurin-ines"],
+ "debut": "empfang",
+ "prix": {"mit": 3200, "ohne": 2600},
+ "panier": ["schnitt"],
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, dans un petit salon de coiffure de Prenzlauer Berg. Tu as rendez-vous à onze heures."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "Hallo, guten Tag! Haben Sie einen Termin?", "fr": "Bonjour ! Vous avez rendez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Ja, um elf Uhr.", "fr": "Oui, à onze heures.", "va": "waschen",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Genau, Sie sind pünktlich! Nehmen Sie bitte Platz.", "fr": "C'est ça, vous êtes à l'heure ! Asseyez-vous, je vous en prie."}]},
+    {"t": "Guten Tag! Ja, ich habe einen Termin für elf Uhr.", "fr": "Bonjour ! Oui, j'ai un rendez-vous à onze heures.", "va": "waschen",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Ja, ich sehe Sie hier. Nehmen Sie bitte Platz.", "fr": "Oui, je vous vois dans le carnet. Asseyez-vous, je vous en prie."}]}
+   ]
+  },
+  "waschen": {
+   "dit": [
+    {"qui": "friseurin-ines", "air": "question", "t": "Soll ich Ihnen die Haare waschen, oder nur schneiden?", "fr": "Je vous lave les cheveux, ou je coupe seulement ?"}
+   ],
+   "choix": [
+    {"t": "Waschen und schneiden, bitte.", "fr": "Un shampoing et une coupe, s'il vous plaît.", "pose": {"schnitt": "mit"}, "va": "schnitt",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Gern. Kommen Sie bitte mit zum Waschbecken.", "fr": "Volontiers. Venez avec moi au bac, s'il vous plaît."}]},
+    {"t": "Nur schneiden, bitte.", "fr": "Seulement une coupe, s'il vous plaît.", "pose": {"schnitt": "ohne"}, "va": "schnitt",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Gut, dann mache ich die Haare nur ein bisschen nass.", "fr": "Bien, alors je mouille juste un peu les cheveux."}]}
+   ]
+  },
+  "schnitt": {
+   "dit": [
+    {"qui": "friseurin-ines", "air": "question", "t": "Was darf ich heute für Sie machen?", "fr": "Qu'est-ce que je vous fais aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Bitte nur die Spitzen schneiden.", "fr": "Seulement les pointes, s'il vous plaît.", "va": "laenge",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Gut, nur die Spitzen.", "fr": "D'accord, seulement les pointes."}]},
+    {"t": "Ich möchte die Haare etwas kürzer, bitte.", "fr": "Je voudrais les cheveux un peu plus courts, s'il vous plaît.", "va": "laenge",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Gut, etwas kürzer.", "fr": "D'accord, un peu plus court."}]},
+    {"faux": true, "t": "Schneiden Sie mich, bitte.", "fr": "Coupez-moi, s'il vous plaît.",
+     "puis": [{"qui": "friseurin-ines", "air": "amuse", "t": "Sie schneiden? Nein, nein … nur die Haare, oder?", "fr": "Vous couper, vous ? Non, non… seulement les cheveux, non ?"}],
+     "aide": {"fr": "<b>« Schneiden Sie mich »</b>, c'est « coupez-moi ». Pour les cheveux : « Schneiden Sie mir bitte die Haare » ou « Bitte nur die Spitzen »."}}
+   ]
+  },
+  "laenge": {
+   "dit": [
+    {"recit": {"fr": "Elle prend une mèche entre deux doigts pour te montrer."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "So viel? Ungefähr zwei Zentimeter?", "fr": "Autant que ça ? Environ deux centimètres ?"}
+   ],
+   "choix": [
+    {"t": "Ja, genau so.", "fr": "Oui, exactement comme ça.", "va": "plaudern"},
+    {"t": "Ein bisschen mehr, bitte.", "fr": "Un peu plus, s'il vous plaît.", "va": "plaudern",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Gut, dann etwas mehr.", "fr": "D'accord, alors un peu plus."}]},
+    {"repete": true, "t": "Wie bitte? Wie viel?", "fr": "Pardon ? Combien ?", "va": "laenge",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "So viel, schauen Sie: ungefähr zwei Zentimeter.", "fr": "Autant que ça, regardez : environ deux centimètres."}]}
+   ]
+  },
+  "plaudern": {
+   "dit": [
+    {"recit": {"fr": "Les ciseaux s'activent. La coiffeuse aime bavarder."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "Wohnen Sie hier im Viertel?", "fr": "Vous habitez le quartier ?"}
+   ],
+   "choix": [
+    {"t": "Ja, seit drei Monaten. Ich wohne in der Nähe vom Park.", "fr": "Oui, depuis trois mois. J'habite près du parc.", "va": "spiegel",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Ach, schön! Der Park ist toll im Sommer.", "fr": "Ah, chouette ! Le parc est super en été."}]},
+    {"t": "Ja, ich bin neu hier. Es gefällt mir sehr gut.", "fr": "Oui, je suis nouveau (nouvelle) ici. Ça me plaît beaucoup.", "va": "spiegel",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Das freut mich! Hier ist es wirklich nett.", "fr": "Ça me fait plaisir ! C'est vraiment sympa, ici."}]},
+    {"faux": true, "t": "Ja, ich wohne hier für drei Monate.", "fr": "Oui, j'habite ici depuis trois mois (mot à mot : pour trois mois).",
+     "puis": [{"qui": "friseurin-ines", "air": "surprise", "t": "Nur für drei Monate? Und dann ziehen Sie wieder weg?", "fr": "Seulement pour trois mois ? Et après, vous déménagez ?"}],
+     "aide": {"fr": "<b>« depuis »</b> se dit <b>« seit »</b>, avec le présent : « Ich wohne seit drei Monaten hier ». « für drei Monate » veut dire « pour trois mois », et puis on s'en va."}}
+   ]
+  },
+  "spiegel": {
+   "dit": [
+    {"recit": {"fr": "Vingt minutes plus tard, elle te tend un miroir."}},
+    {"qui": "friseurin-ines", "air": "question", "t": "So, fertig! Gefällt es Ihnen?", "fr": "Voilà, c'est fini ! Ça vous plaît ?"}
+   ],
+   "choix": [
+    {"t": "Ja, sehr schön! Vielen Dank.", "fr": "Oui, c'est très joli ! Merci beaucoup.", "va": "bezahlen"},
+    {"t": "Ja, aber hier vorne ist es noch ein bisschen lang.", "fr": "Oui, mais ici, devant, c'est encore un peu long.", "va": "bezahlen",
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Kein Problem, da schneide ich noch ein bisschen. … So, besser?", "fr": "Pas de problème, je recoupe un peu là. … Voilà, c'est mieux ?"}]}
+   ]
+  },
+  "bezahlen": {
+   "dit": [
+    {"recit": {"fr": "À la caisse."}},
+    {"qui": "friseurin-ines", "air": "sourire", "t": "Das macht dann {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht dann {a_payer:mots}."}
+   ],
+   "choix": [
+    {"t": "{arrondi:mots_maj} Euro. Stimmt so!", "fr": "{arrondi} euros. Gardez la monnaie !", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Oh, danke schön! Bis zum nächsten Mal!", "fr": "Oh, merci beaucoup ! À la prochaine !"}]},
+    {"t": "Kann ich mit Karte zahlen?", "fr": "Je peux payer par carte ?", "va": null,
+     "puis": [{"qui": "friseurin-ines", "air": "sourire", "t": "Ja, natürlich. … Danke schön, und bis zum nächsten Mal!", "fr": "Oui, bien sûr. … Merci beaucoup, et à la prochaine !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué la coupe que tu voulais, bavardé avec la coiffeuse et payé {a_payer}."}
+}

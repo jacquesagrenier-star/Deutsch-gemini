@@ -1,0 +1,141 @@
+{
+ "id": "b1-titre-sejour",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Prolonger son titre de séjour"},
+ "intro": {"fr": "Ton titre de séjour arrive bientôt à échéance. Tu as rendez-vous au Landesamt für Einwanderung, le service des étrangers de Berlin, pour le faire prolonger : les papiers, la photo, les frais, le délai."},
+ "personnes": ["b11_guichet"],
+ "debut": "aufruf",
+ "noeuds": {
+  "aufruf": {
+   "dit": [
+    {"recit": {"fr": "La salle d'attente est pleine. Ton numéro s'affiche enfin, et une employée t'appelle depuis son bureau."}},
+    {"qui": "b11_guichet", "air": "sourire", "t": "Die Nummer 247, bitte! … Guten Morgen. Nehmen Sie bitte Platz. Was kann ich für Sie tun?", "dit": "Die Nummer zweihundertsiebenundvierzig, bitte! … Guten Morgen. Nehmen Sie bitte Platz. Was kann ich für Sie tun?", "fr": "Le numéro 247, s'il vous plaît !… Bonjour. Asseyez-vous, je vous prie. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Ich habe einen Termin, um meinen Aufenthaltstitel zu verlängern.", "fr": "Bonjour. J'ai rendez-vous pour prolonger mon titre de séjour.", "va": "papiere"},
+    {"t": "Guten Morgen. Mein Aufenthaltstitel läuft bald ab, und ich möchte ihn verlängern lassen.", "fr": "Bonjour. Mon titre de séjour expire bientôt, et j'aimerais le faire prolonger.", "va": "papiere"},
+    {"faux": true, "t": "Guten Morgen. Mein Aufenthaltstitel ist bald fertig.", "fr": "Bonjour. Mon titre de séjour est bientôt fini.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Fertig? Sie meinen, er läuft bald ab und Sie möchten ihn verlängern?", "fr": "Prêt ? Vous voulez dire qu'il expire bientôt et que vous souhaitez le prolonger ?"}],
+     "aide": {"fr": "<b>« fertig »</b> veut dire prêt, terminé (un travail, un repas). Un document qui arrive à échéance <b>« läuft ab »</b>. Dis plutôt : « Ich möchte meinen Aufenthaltstitel verlängern. »"}}
+   ]
+  },
+  "papiere": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "Gut. Dann brauche ich Ihren Pass, ein biometrisches Foto, Ihren Arbeitsvertrag, den Mietvertrag und einen Nachweis von Ihrer Krankenkasse.", "fr": "Bien. Il me faut alors votre passeport, une photo biométrique, votre contrat de travail, le bail et une attestation de votre caisse d'assurance maladie."}],
+   "choix": [
+    {"t": "Hier, bitte. Ich habe alles mitgebracht.", "fr": "Voici. J'ai tout apporté.", "va": "arbeit",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sehr schön, das erlebe ich nicht jeden Tag!", "fr": "Très bien, ça n'arrive pas tous les jours !"}]},
+    {"t": "Fast alles. Den Nachweis von der Krankenkasse habe ich leider vergessen.", "fr": "Presque tout. J'ai malheureusement oublié l'attestation de la caisse maladie.", "va": "fehlt"},
+    {"faux": true, "t": "Ich habe alle Papiere mit mich.", "fr": "J'ai tous les papiers avec moi.",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sie haben alles dabei? Dann zeigen Sie mal.", "fr": "Vous avez tout sur vous ? Alors montrez-moi."}],
+     "aide": {"fr": "<b>« mit »</b> demande le datif : « mit <b>mir</b> ». Mais le plus naturel est : « Ich habe alles <b>dabei</b> » ou « Ich habe alles mitgebracht »."}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie die Liste bitte langsam wiederholen?", "fr": "Pardon, pourriez-vous répéter la liste lentement, s'il vous plaît ?", "va": "papiere",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Natürlich: der Pass, ein Foto, der Arbeitsvertrag, der Mietvertrag und der Nachweis von der Krankenkasse.", "fr": "Bien sûr : le passeport, une photo, le contrat de travail, le bail et l'attestation de la caisse maladie."}]}
+   ]
+  },
+  "fehlt": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Das ist nicht schlimm. Sie können den Nachweis nachreichen: Schicken Sie ihn uns bitte bis Ende der Woche als PDF.", "dit": "Das ist nicht schlimm. Sie können den Nachweis nachreichen: Schicken Sie ihn uns bitte bis Ende der Woche als Pe-de-eff.", "fr": "Ce n'est pas grave. Vous pouvez fournir l'attestation après coup : envoyez-la-nous en PDF d'ici la fin de la semaine, s'il vous plaît."}],
+   "choix": [
+    {"t": "Vielen Dank. Ich schicke ihn Ihnen noch heute Abend.", "fr": "Merci beaucoup. Je vous l'envoie dès ce soir.", "va": "arbeit",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Gut. Schreiben Sie bitte Ihr Geburtsdatum dazu, dann finden wir Ihre Akte schneller.", "fr": "Bien. Indiquez votre date de naissance, s'il vous plaît, nous retrouverons votre dossier plus vite."}]},
+    {"t": "Das mache ich sofort, wenn ich wieder zu Hause bin.", "fr": "Je le fais dès que je suis de retour à la maison.", "va": "arbeit",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Gut. Schreiben Sie bitte Ihr Geburtsdatum dazu, dann finden wir Ihre Akte schneller.", "fr": "Bien. Indiquez votre date de naissance, s'il vous plaît, nous retrouverons votre dossier plus vite."}]},
+    {"faux": true, "t": "Ich schicke ihn, wann ich bin zu Hause.", "fr": "Je l'envoie quand je suis à la maison.",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Wenn Sie zu Hause sind – ja, das reicht.", "fr": "Quand vous serez à la maison : oui, ça suffit."}],
+     "aide": {"fr": "« Quand » dans une subordonnée se dit <b>« wenn »</b> (« wann » pose une question), et le verbe va à la fin : « …, wenn ich zu Hause <b>bin</b>. »"}}
+   ]
+  },
+  "arbeit": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Arbeiten Sie noch bei derselben Firma wie im letzten Jahr?", "fr": "Travaillez-vous toujours dans la même entreprise que l'an dernier ?"}],
+   "choix": [
+    {"t": "Ja, ich arbeite seit zwei Jahren bei derselben Firma.", "fr": "Oui, je travaille depuis deux ans dans la même entreprise.", "va": "foto",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Gut, das macht es einfach.", "fr": "Bien, ça simplifie les choses."}]},
+    {"t": "Ja, und mein Vertrag ist jetzt unbefristet.", "fr": "Oui, et mon contrat est maintenant à durée indéterminée.", "va": "foto",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Unbefristet, sehr gut. Das macht es einfach.", "fr": "À durée indéterminée, très bien. Ça simplifie les choses."}]},
+    {"faux": true, "t": "Ja, ich arbeite dort für zwei Jahre.", "fr": "Oui, j'y travaille pour deux ans.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Nur noch für zwei Jahre? Oder schon seit zwei Jahren?", "fr": "Encore deux ans seulement ? Ou depuis deux ans déjà ?"}],
+     "aide": {"fr": "« Depuis deux ans » se dit <b>« seit zwei Jahren »</b>, avec le présent. « Für zwei Jahre » annonce une durée à venir. « Ich arbeite <b>seit</b> zwei Jahren dort. »"}}
+   ]
+  },
+  "foto": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "Hm, das Foto kann ich leider nicht nehmen. Es ist dasselbe wie auf Ihrer alten Karte, und es darf höchstens sechs Monate alt sein.", "fr": "Hum, je ne peux malheureusement pas accepter cette photo. C'est la même que sur votre ancienne carte, et elle doit dater de six mois au plus."}],
+   "choix": [
+    {"t": "Oh, das wusste ich nicht. Wo kann ich hier ein neues Foto machen?", "fr": "Oh, je ne le savais pas. Où puis-je faire une nouvelle photo ici ?", "va": "gebuehr",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Im Erdgeschoss steht ein Automat. Kommen Sie danach direkt wieder zu mir, Sie brauchen keine neue Nummer.", "fr": "Il y a une cabine au rez-de-chaussée. Revenez ensuite directement me voir, vous n'avez pas besoin d'un nouveau numéro."}]},
+    {"t": "Das tut mir leid. Gibt es hier im Haus einen Fotoautomaten?", "fr": "Je suis désolé(e). Y a-t-il une cabine photo dans le bâtiment ?", "va": "gebuehr",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Ja, im Erdgeschoss. Kommen Sie danach direkt wieder zu mir, Sie brauchen keine neue Nummer.", "fr": "Oui, au rez-de-chaussée. Revenez ensuite directement me voir, vous n'avez pas besoin d'un nouveau numéro."}]},
+    {"faux": true, "t": "Wo kann ich eine neue Foto nehmen?", "fr": "Où puis-je prendre une nouvelle photo ?",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Ein neues Foto machen können Sie am Automaten im Erdgeschoss.", "fr": "Vous pouvez faire une nouvelle photo à la cabine du rez-de-chaussée."}],
+     "aide": {"fr": "On dit <b>« ein Foto machen »</b> (pas « nehmen »), et « Foto » est neutre : « ein neu<b>es</b> Foto ». « Wo kann ich ein neues Foto machen? »"}}
+   ]
+  },
+  "gebuehr": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes plus tard, tu reviens avec une photo toute neuve."}},
+    {"qui": "b11_guichet", "air": "sourire", "t": "Perfekt, dieses Foto passt. Die Verlängerung kostet dreiundneunzig Euro.", "fr": "Parfait, cette photo convient. La prolongation coûte quatre-vingt-treize euros."}
+   ],
+   "choix": [
+    {"t": "Kann ich bei Ihnen mit Karte bezahlen?", "fr": "Puis-je payer par carte auprès de vous ?", "va": "dauer",
+     "puis": [{"qui": "b11_guichet", "air": "attentive", "t": "Mit Karte ja, aber nicht bei mir: am Kassenautomaten im Flur. Die Quittung bringen Sie mir bitte zurück.", "fr": "Par carte, oui, mais pas auprès de moi : à la borne de paiement, dans le couloir. Rapportez-moi le reçu, s'il vous plaît."}]},
+    {"t": "Wo bezahle ich die Gebühr?", "fr": "Où dois-je payer les frais ?", "va": "dauer",
+     "puis": [{"qui": "b11_guichet", "air": "attentive", "t": "Am Kassenautomaten im Flur, am besten mit Karte. Die Quittung bringen Sie mir bitte zurück.", "fr": "À la borne de paiement, dans le couloir, de préférence par carte. Rapportez-moi le reçu, s'il vous plaît."}]},
+    {"faux": true, "t": "Kann ich mit die Karte bezahlen?", "fr": "Puis-je payer avec la carte ?",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Mit der Karte? Ja, am Automaten im Flur.", "fr": "Par carte ? Oui, à la borne dans le couloir."}],
+     "aide": {"fr": "<b>« mit »</b> demande le datif : « mit <b>der</b> Karte ». Le plus courant, sans article : « Kann ich mit Karte bezahlen? »"}}
+   ]
+  },
+  "dauer": {
+   "dit": [
+    {"recit": {"fr": "Tu paies à la borne et tu rapportes le reçu."}},
+    {"qui": "b11_guichet", "air": "attentive", "t": "Danke. Die neue Karte wird jetzt bestellt, das dauert ungefähr sechs Wochen. Bis dahin bekommen Sie von mir eine Fiktionsbescheinigung.", "fr": "Merci. La nouvelle carte est commandée maintenant ; il faut compter environ six semaines. En attendant, je vous remets une attestation provisoire, la « Fiktionsbescheinigung »."}
+   ],
+   "choix": [
+    {"t": "Darf ich mit dieser Bescheinigung ins Ausland reisen?", "fr": "Ai-je le droit de voyager à l'étranger avec cette attestation ?", "va": "reise"},
+    {"t": "Darf ich in dieser Zeit ganz normal weiterarbeiten?", "fr": "Ai-je le droit de continuer à travailler normalement pendant ce temps ?", "va": "weiterarbeiten"},
+    {"faux": true, "t": "Kann ich mit dieser Bescheinigung im Ausland reisen?", "fr": "Puis-je voyager à l'étranger avec cette attestation ?",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Ins Ausland reisen, meinen Sie? Also von Deutschland wegfahren und wiederkommen?", "fr": "Partir à l'étranger, vous voulez dire ? Donc quitter l'Allemagne et revenir ?"}],
+     "aide": {"fr": "Quand on va quelque part, <b>« in »</b> prend l'accusatif : « <b>ins</b> Ausland reisen ». « Im Ausland » veut dire qu'on y est déjà."}},
+    {"repete": true, "t": "Entschuldigung, wie heißt diese Bescheinigung? Könnten Sie das wiederholen?", "fr": "Pardon, comment s'appelle cette attestation ? Pourriez-vous répéter ?", "va": "dauer",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Fiktionsbescheinigung. Das ist ein Papier, das zeigt: Ihr Aufenthaltstitel gilt weiter, bis die neue Karte da ist.", "fr": "« Fiktionsbescheinigung ». C'est un papier qui montre que votre titre de séjour reste valable jusqu'à l'arrivée de la nouvelle carte."}]}
+   ]
+  },
+  "reise": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Ja, das dürfen Sie. Nehmen Sie aber immer den Pass, die alte Karte und die Bescheinigung zusammen mit.", "fr": "Oui, vous en avez le droit. Mais emportez toujours ensemble le passeport, l'ancienne carte et l'attestation."}],
+   "choix": [
+    {"t": "Sehr gut, dann kann ich im Sommer meine Familie besuchen.", "fr": "Très bien, alors je pourrai aller voir ma famille cet été.", "va": "abschluss",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Bis zum Sommer haben Sie die neue Karte sicher schon.", "fr": "D'ici l'été, vous aurez sûrement déjà la nouvelle carte."}]},
+    {"t": "Danke, das ist eine gute Nachricht. Ich nehme immer alle drei Papiere mit.", "fr": "Merci, c'est une bonne nouvelle. J'emporterai toujours les trois papiers.", "va": "abschluss",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Genau, dann gibt es an der Grenze keine Probleme.", "fr": "Exactement, comme ça, pas de problème à la frontière."}]},
+    {"faux": true, "t": "Sehr gut, ich will meine Familie visitieren.", "fr": "Très bien, je veux visiter ma famille.",
+     "puis": [{"qui": "b11_guichet", "air": "amuse", "t": "Visitieren? Das macht der Arzt im Krankenhaus! Sie möchten Ihre Familie besuchen.", "fr": "« Visitieren » ? C'est le médecin qui fait ça à l'hôpital ! Vous voulez rendre visite à votre famille."}],
+     "aide": {"fr": "Rendre visite à quelqu'un se dit <b>« besuchen »</b> : « Ich möchte meine Familie besuchen. » « Visitieren » ne s'emploie pas ainsi."}}
+   ]
+  },
+  "weiterarbeiten": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Ja, natürlich. Mit der Fiktionsbescheinigung gilt Ihre Arbeitserlaubnis weiter wie bisher. Zeigen Sie sie einfach Ihrem Arbeitgeber.", "fr": "Oui, bien sûr. Avec cette attestation, votre autorisation de travail reste valable comme avant. Montrez-la simplement à votre employeur."}],
+   "choix": [
+    {"t": "Gut, dann gebe ich meinem Chef morgen eine Kopie.", "fr": "Bien, alors je donnerai une copie à mon chef demain.", "va": "abschluss",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sehr gut, mehr braucht er nicht.", "fr": "Très bien, il ne lui faut rien de plus."}]},
+    {"t": "Danke, das beruhigt mich. Ich hatte Angst, meine Arbeit zu verlieren.", "fr": "Merci, ça me rassure. J'avais peur de perdre mon travail.", "va": "abschluss",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Keine Sorge, da ändert sich nichts.", "fr": "Ne vous inquiétez pas, rien ne change."}]},
+    {"faux": true, "t": "Gut, ich gebe eine Kopie zu meinem Chef.", "fr": "Bien, je donne une copie à mon chef.",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sie geben Ihrem Chef eine Kopie – ja, das genügt.", "fr": "Vous donnez une copie à votre chef : oui, ça suffit."}],
+     "aide": {"fr": "Avec <b>« geben »</b>, pas de préposition : la personne se met au datif. « Ich gebe <b>meinem Chef</b> eine Kopie. »"}}
+   ]
+  },
+  "abschluss": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Wenn die Karte fertig ist, bekommen Sie einen Brief von uns. Haben Sie sonst noch Fragen?", "fr": "Quand la carte sera prête, vous recevrez une lettre de notre part. Avez-vous d'autres questions ?"}],
+   "choix": [
+    {"t": "Nein, alles klar. Vielen Dank für Ihre Hilfe und einen schönen Tag noch!", "fr": "Non, tout est clair. Merci beaucoup pour votre aide, et bonne journée !", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Gern geschehen. Ihnen auch einen schönen Tag!", "fr": "Je vous en prie. Bonne journée à vous aussi !"}]},
+    {"t": "Nein, danke. Sie haben mir alles sehr gut erklärt. Auf Wiedersehen!", "fr": "Non, merci. Vous m'avez tout très bien expliqué. Au revoir !", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Das freut mich. Auf Wiedersehen!", "fr": "Ça me fait plaisir. Au revoir !"}]},
+    {"faux": true, "t": "Nein, danke für alles. Guten Tag!", "fr": "Non, merci pour tout. Bonne journée !",
+     "puis": [{"qui": "b11_guichet", "air": "amuse", "t": "Guten Tag? Sie gehen doch gerade! Einen schönen Tag noch, meinen Sie.", "fr": "Bonjour ? Mais vous partez ! Bonne journée, vous voulez dire."}],
+     "aide": {"fr": "<b>« Guten Tag »</b> ne se dit qu'en arrivant (bonjour). En partant, « bonne journée » se dit : « Einen schönen Tag noch! »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait prolonger ton titre de séjour : tu as présenté tes papiers, refait une photo, payé les frais et demandé ce que permet l'attestation provisoire en attendant la nouvelle carte."}
+}

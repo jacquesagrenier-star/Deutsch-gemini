@@ -65,8 +65,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -245,8 +245,8 @@ window.SCENE = {
    "en": "the bandage",
    "pt": "o curativo, a bandagem",
    "ar": "ضمادة",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
    "de": "der Verband",
    "latam": null
   },
@@ -761,8 +761,8 @@ window.SCENE = {
    "en": "the prescription",
    "pt": "a receita (médica)",
    "ar": "وصفة طبية",
-   "pl": "przepis",
-   "ru": "рецепт",
+   "pl": "recepta",
+   "ru": "рецепт (врача)",
    "de": "das Rezept (ärztliche Verordnung)",
    "latam": null
   },
@@ -904,7 +904,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1333,8 +1333,8 @@ window.SCENE = {
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
    "ar": "مكتب، منضدة",
-   "pl": "okienko, kasa; włącznik",
-   "ru": "окошко, касса; выключатель",
+   "pl": "okienko, kasa",
+   "ru": "окошко, касса",
    "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },
@@ -2267,8 +2267,8 @@ window.SCENE = {
     "A2 | La báscula está al lado de la silla.": "The scale is next to the chair.",
     "A2 | Hay un carro rojo en la calle.": "There is a red car in the street.",
     "A2 | Hay un coche rojo en la calle.": "There is a red car in the street.",
-    "A2 | El bote de basura está al lado de la puerta.": "The bin is next to the door.",
-    "A2 | La papelera está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | El bote de basura está al lado de la puerta.": "The trash can is next to the door.",
+    "A2 | La papelera está al lado de la puerta.": "The trash can is next to the door.",
     "A2 | La caja de cartón está en el piso.": "The cardboard box is on the floor.",
     "A2 | La caja de cartón está en el suelo.": "The cardboard box is on the floor.",
     "B1 | Mark toma una pastilla cada ocho horas.": "Mark takes a tablet every eight hours.",
@@ -2287,7 +2287,7 @@ window.SCENE = {
     "C1 | Debe de estar resfriado.": "He must have a cold.",
     "C1 | Puede que el señor esté esperando sus medicamentos.": "The man may be waiting for his medicines.",
     "C1 | Mark estará mejor en dos días.": "Mark will probably be better in two days.",
-    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "They say this pharmacy is the oldest in the neighbourhood."
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "They say this pharmacy is the oldest in the neighborhood."
    }
   },
   "tr": {
@@ -2384,7 +2384,7 @@ window.SCENE = {
     "B1 | Mark nunca ha tenido fiebre.": "لم يُصب مارك بالحمّى قطّ.",
     "B1 | ¿Con qué frecuencia toma el jarabe?": "كم مرة يأخذ الشراب؟",
     "B1 | El señor viene a la farmacia una vez a la semana.": "يأتي الرجل إلى الصيدلية مرة في الأسبوع.",
-    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "إذا أصاب مارك الحمّى، فسيأخذ قرصاً.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "إذا أصابت الحمّى مارك، فسيأخذ قرصاً.",
     "B2 | Si no mejora, vaya al médico.": "إذا لم تتحسّن، فاذهب إلى الطبيب.",
     "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "إذا لم ينفع الشراب، فعُد إلى الصيدلية.",
     "B2 | Si toma las pastillas, estará mejor mañana.": "إذا أخذ الأقراص، فسيكون أفضل غداً.",

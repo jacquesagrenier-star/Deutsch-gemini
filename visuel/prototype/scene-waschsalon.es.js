@@ -725,7 +725,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1070,7 +1070,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1332,7 +1332,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1364,7 +1364,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -1468,12 +1468,12 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "la banque, le banc",
-   "en": "the bank, the bench",
-   "pt": "o banco",
-   "ar": "بنك، مقعد",
-   "pl": "bank",
-   "ru": "банк",
+   "fr": "le banc",
+   "en": "the bench",
+   "pt": "o banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
    "de": "die Bank",
    "latam": null
   },
@@ -1970,8 +1970,8 @@ window.SCENE = {
    },
    "sens": {
     "A2 | El reloj está en la pared.": "The clock is on the wall.",
-    "A2 | El suéter verde está en la mesa.": "The green jumper is on the table.",
-    "A2 | El jersey verde está en la mesa.": "The green jumper is on the table.",
+    "A2 | El suéter verde está en la mesa.": "The green sweater is on the table.",
+    "A2 | El jersey verde está en la mesa.": "The green sweater is on the table.",
     "A2 | La niña está sentada en el banco.": "The girl is sitting on the bench.",
     "A2 | Los jeans están en la cesta.": "The jeans are in the basket.",
     "A2 | Los vaqueros están en la cesta.": "The jeans are in the basket.",
@@ -1981,7 +1981,7 @@ window.SCENE = {
     "A2 | Las toallas están en la estantería.": "The towels are on the shelf.",
     "B1 | No creo que la lavadora esté rota.": "I don't think the washing machine is broken.",
     "B1 | Dudo que la ropa esté lista en diez minutos.": "I doubt the laundry will be ready in ten minutes.",
-    "B1 | Es posible que la señora sea la vecina de Anna.": "The lady may be Anna's neighbour.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "The lady may be Anna's neighbor.",
     "B1 | No es seguro que la niña viva con la señora.": "It is not certain that the girl lives with the lady.",
     "B1 | Quizás Anna use la plancha después.": "Anna may use the iron afterwards.",
     "B1 | No pienso que el detergente sea suficiente.": "I don't think the detergent is enough.",
@@ -2167,7 +2167,7 @@ window.SCENE = {
     "B2 | La niña jugará hasta que su abuela termine el periódico.": "A menina vai brincar até a avó terminar o jornal.",
     "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "Quando Anna vem à lavanderia, sempre traz a sua cesta.",
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "Assim que dobrar as toalhas, vai colocá-las na prateleira.",
-    "C1 | Debe de llevar tiempo sin lavar.": "Ela deve estar há tempo sem lavar roupa.",
+    "C1 | Debe de llevar tiempo sin lavar.": "Ela deve estar há muito tempo sem lavar roupa.",
     "C1 | Puede que la niña sea la nieta de la señora.": "Pode ser que a menina seja a neta da senhora.",
     "C1 | Estará lista en una hora.": "Deve ficar pronta em uma hora.",
     "C1 | Dicen que esta lavandería cierra pronto.": "Dizem que esta lavanderia fecha em breve."

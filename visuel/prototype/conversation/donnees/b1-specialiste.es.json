@@ -1,0 +1,140 @@
+{
+ "id": "b1-specialiste",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Chez le spécialiste"},
+ "intro": {"fr": "Tu as mal au genou depuis trois semaines. Ton médecin traitant t'a envoyé(e) chez un spécialiste, le docteur Silva, traumatologue."},
+ "bilan": {"fr": "Tu as consulté un spécialiste en espagnol : expliquer comment la douleur a commencé, dire quand tu as mal, comprendre le traitement et poser tes questions."},
+ "personnes": ["b11_medecin"],
+ "debut": "volante",
+ "noeuds": {
+  "volante": {
+   "dit": [
+    {"recit": {"fr": "Au centre de spécialités. Tu attends depuis vingt minutes quand une porte s'ouvre : c'est ton tour."}},
+    {"qui": "b11_medecin", "air": "sourire", "t": "Buenos días, pase. Soy el doctor Silva. ¿Trae el volante de su médico de cabecera?", "fr": "Bonjour, entrez. Je suis le docteur Silva. Vous avez la lettre de votre médecin traitant ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días, doctor. Sí, aquí tiene el volante.", "fr": "Bonjour, docteur. Oui, voici la lettre.", "va": "como"},
+    {"t": "Sí, aquí está. Mi médica de cabecera me ha mandado por la rodilla.", "fr": "Oui, la voici. Ma médecin traitante m'envoie pour mon genou.", "va": "como"},
+    {"faux": true, "t": "Buenos días. Sí, aquí está la carta de mi médico tratante.", "fr": "Bonjour. Oui, voici la lettre de mon médecin traitant.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "¿Una carta? Ah, el volante. Sí, démelo.", "fr": "Une lettre ? Ah, le « volante ». Oui, donnez-le-moi."}],
+     "aide": {"fr": "En Espagne, le médecin traitant est <b>« el médico de cabecera »</b>, et le papier qui t'envoie chez le spécialiste s'appelle « el volante ». Dis plutôt : « Sí, aquí tiene el volante »."}}
+   ]
+  },
+  "como": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "A ver… dolor en la rodilla derecha desde hace tres semanas. ¿Cómo empezó?", "fr": "Voyons… douleur au genou droit depuis trois semaines. Comment cela a-t-il commencé ?"}],
+   "choix": [
+    {"t": "Empezó mientras corría por el parque del Retiro.", "fr": "Ça a commencé pendant que je courais au parc du Retiro.", "pose": {"causa": "correr"}, "va": "cuando"},
+    {"t": "Me hice daño jugando al fútbol con unos amigos.", "fr": "Je me suis fait mal en jouant au foot avec des amis.", "pose": {"causa": "futbol"}, "va": "cuando"},
+    {"t": "No lo sé muy bien. Un día empezó a dolerme al subir las escaleras.", "fr": "Je ne sais pas très bien. Un jour, j'ai commencé à avoir mal en montant les escaliers.", "pose": {"causa": "nada"}, "va": "golpe"},
+    {"faux": true, "t": "Me he hecho mal jugando al fútbol.", "fr": "Je me suis fait mal en jouant au foot.",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "¿Que se hizo daño jugando al fútbol, quiere decir?", "fr": "Vous vous êtes fait mal en jouant au foot, vous voulez dire ?"}],
+     "aide": {"fr": "« Se faire mal » se dit <b>« hacerse daño »</b>, pas « hacerse mal ». Dis plutôt : « Me hice daño jugando al fútbol »."}}
+   ]
+  },
+  "golpe": {
+   "dit": [{"qui": "b11_medecin", "air": "question", "t": "¿No se dio ningún golpe ni se cayó?", "fr": "Vous ne vous êtes pas cogné(e), vous n'êtes pas tombé(e) ?"}],
+   "choix": [
+    {"t": "No, que yo recuerde no me he caído.", "fr": "Non, pour autant que je me souvienne, je ne suis pas tombé(e).", "va": "cuando",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Vale. A veces empieza así, sin una causa clara.", "fr": "D'accord. Parfois, cela commence ainsi, sans cause claire."}]},
+    {"t": "No, pero paso muchas horas de pie en el trabajo.", "fr": "Non, mais je passe beaucoup d'heures debout au travail.", "va": "cuando",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Ah, eso puede tener algo que ver.", "fr": "Ah, cela peut avoir un rapport."}]},
+    {"faux": true, "t": "No, no he caído.", "fr": "Non, je ne suis pas tombé.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "No se ha caído, de acuerdo.", "fr": "Vous n'êtes pas tombé, d'accord."}],
+     "aide": {"fr": "Tomber (pour une personne) se dit <b>« caerse »</b>, avec le pronom : « no me he caído ». Dis plutôt : « No, que yo recuerde no me he caído »."}}
+   ]
+  },
+  "cuando": {
+   "dit": [
+    {"si": {"causa": "correr"}, "qui": "b11_medecin", "air": "sourire", "t": "Ya, los corredores… lo veo mucho en la consulta.", "fr": "Ah, les coureurs… j'en vois beaucoup en consultation."},
+    {"si": {"causa": "futbol"}, "qui": "b11_medecin", "air": "sourire", "t": "El fútbol, claro: giros, frenazos… La rodilla sufre mucho.", "fr": "Le foot, bien sûr : pivots, arrêts brusques… Le genou souffre beaucoup."},
+    {"qui": "b11_medecin", "air": "question", "t": "¿Y cuándo le duele más?", "fr": "Et quand avez-vous le plus mal ?"}
+   ],
+   "choix": [
+    {"t": "Me duele sobre todo cuando bajo escaleras.", "fr": "J'ai mal surtout quand je descends des escaliers.", "va": "exploracion"},
+    {"t": "Por la mañana, al levantarme, casi no puedo doblarla.", "fr": "Le matin, au lever, je peux à peine le plier.", "va": "exploracion"},
+    {"t": "Por la noche me duele tanto que me despierto.", "fr": "La nuit, j'ai tellement mal que je me réveille.", "va": "exploracion"},
+    {"faux": true, "t": "Tengo mal a la rodilla cuando bajo escaleras.", "fr": "J'ai mal au genou quand je descends des escaliers.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Le duele al bajar escaleras, entiendo.", "fr": "Vous avez mal en descendant les escaliers, je comprends."}],
+     "aide": {"fr": "« Avoir mal à » ne se calque pas : on emploie <b>« doler »</b>, comme « gustar ». Dis plutôt : « Me duele la rodilla cuando bajo escaleras »."}}
+   ]
+  },
+  "exploracion": {
+   "dit": [
+    {"recit": {"fr": "Il te fait allonger sur la table d'examen et plie doucement ton genou."}},
+    {"qui": "b11_medecin", "air": "question", "t": "Voy a apretar un poco. ¿Le duele aquí?", "fr": "Je vais appuyer un peu. Vous avez mal ici ?"}
+   ],
+   "choix": [
+    {"t": "Sí, ahí me duele bastante.", "fr": "Oui, là, j'ai assez mal.", "va": "diagnostico",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Vale, ya veo. Ya puede sentarse.", "fr": "D'accord, je vois. Vous pouvez vous rasseoir."}]},
+    {"t": "Ahí no mucho, solo me molesta un poco.", "fr": "Là, pas beaucoup, ça me gêne juste un peu.", "va": "diagnostico",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Mejor. Ya puede sentarse.", "fr": "Tant mieux. Vous pouvez vous rasseoir."}]},
+    {"faux": true, "t": "Sí, ahí me duelo mucho.", "fr": "Oui, là, j'ai très mal.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "¿Le duele mucho? Perdone, ya paro.", "fr": "Vous avez très mal ? Pardon, j'arrête."}],
+     "aide": {"fr": "Avec « doler », c'est la partie du corps qui est le sujet : <b>« me duele »</b> (la rodilla), jamais « me duelo ». Dis plutôt : « Sí, ahí me duele bastante »."}}
+   ]
+  },
+  "diagnostico": {
+   "dit": [{"qui": "b11_medecin", "air": "sourire", "t": "Tranquilidad, no es grave. Tiene el tendón inflamado, pero los ligamentos están bien. No hace falta operar.", "fr": "Rassurez-vous, ce n'est pas grave. Le tendon est enflammé, mais les ligaments vont bien. Il n'est pas nécessaire d'opérer."}],
+   "choix": [
+    {"t": "¡Menos mal! ¿Y qué tengo que hacer para curarme?", "fr": "Heureusement ! Et que dois-je faire pour guérir ?", "va": "tratamiento"},
+    {"t": "Qué alivio. Entonces, ¿cuál es el tratamiento?", "fr": "Quel soulagement. Alors, quel est le traitement ?", "va": "tratamiento"},
+    {"faux": true, "t": "¡Qué bien! Entonces, ¿no es nada grave lo que soy?", "fr": "Tant mieux ! Alors, ce n'est rien de grave, ce que je suis ?",
+     "puis": [{"qui": "b11_medecin", "air": "perplexe", "t": "¿Lo que es? Usted es… una persona con suerte. Lo que tiene no es grave, no.", "fr": "Ce que vous êtes ? Vous êtes… une personne qui a de la chance. Ce que vous avez n'est pas grave, non."}],
+     "aide": {"fr": "Une maladie, on l'« a » : <b>« lo que tengo »</b>, pas « lo que soy ». Dis plutôt : « ¡Menos mal! ¿Y qué tengo que hacer para curarme? »."}}
+   ]
+  },
+  "tratamiento": {
+   "dit": [{"qui": "b11_medecin", "air": "attentive", "t": "Seis sesiones de fisioterapia, un antiinflamatorio durante una semana y nada de deporte durante un mes. Ahora le hago la receta. ¿Alguna pregunta?", "fr": "Six séances de kinésithérapie, un anti-inflammatoire pendant une semaine et pas de sport pendant un mois. Je vous fais l'ordonnance tout de suite. Des questions ?"}],
+   "choix": [
+    {"t": "Sí. ¿Cuándo podré volver a hacer deporte?", "fr": "Oui. Quand pourrai-je refaire du sport ?", "va": "deporte"},
+    {"t": "Sí. Trabajo de pie todo el día. ¿Necesito la baja?", "fr": "Oui. Je travaille debout toute la journée. Ai-je besoin d'un arrêt de travail ?", "va": "baja"},
+    {"faux": true, "t": "Sí. ¿Cuándo puedo recomenzar el deporte?", "fr": "Oui. Quand est-ce que je peux recommencer le sport ?",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "¿Que cuándo puede volver a hacer deporte? Ahora se lo explico.", "fr": "Quand vous pourrez refaire du sport ? Je vous l'explique tout de suite."}],
+     "aide": {"fr": "« Recommencer à », « refaire » se disent <b>« volver a »</b> + infinitif. Dis plutôt : « ¿Cuándo podré volver a hacer deporte? »."}}
+   ]
+  },
+  "deporte": {
+   "dit": [
+    {"si": {"causa": "correr"}, "qui": "b11_medecin", "air": "attentive", "t": "Correr, dentro de un mes, y poco a poco.", "fr": "La course, dans un mois, et petit à petit."},
+    {"si": {"causa": "futbol"}, "qui": "b11_medecin", "air": "attentive", "t": "El fútbol, mejor dentro de seis semanas, y sin partidos al principio.", "fr": "Le foot, plutôt dans six semaines, et sans matchs au début."},
+    {"si": {"causa": "nada"}, "qui": "b11_medecin", "air": "attentive", "t": "Dentro de un mes, y empezando suave.", "fr": "Dans un mois, et en commençant doucement."},
+    {"qui": "b11_medecin", "air": "question", "t": "Mientras tanto, puede nadar o montar en bici, que no cargan la rodilla. ¿Le gusta nadar?", "fr": "En attendant, vous pouvez nager ou faire du vélo, cela ne charge pas le genou. Vous aimez nager ?"}
+   ],
+   "choix": [
+    {"t": "Sí, puedo ir a la piscina municipal dos veces por semana.", "fr": "Oui, je peux aller à la piscine municipale deux fois par semaine.", "va": "revision",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Perfecto, eso le vendrá muy bien.", "fr": "Parfait, cela vous fera beaucoup de bien."}]},
+    {"t": "Nadar no mucho, pero tengo una bici en casa.", "fr": "Nager, pas tellement, mais j'ai un vélo à la maison.", "va": "revision",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Pues la bici, por terreno llano y sin forzar.", "fr": "Alors le vélo, sur terrain plat et sans forcer."}]},
+    {"faux": true, "t": "Sí, voy a la piscina dos veces por la semana.", "fr": "Oui, je vais à la piscine deux fois par semaine.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Dos veces por semana, muy bien.", "fr": "Deux fois par semaine, très bien."}],
+     "aide": {"fr": "« Par semaine » se dit <b>« por semana »</b> ou « a la semana », sans mélanger les deux. Dis plutôt : « Puedo ir a la piscina dos veces por semana »."}}
+   ]
+  },
+  "baja": {
+   "dit": [{"qui": "b11_medecin", "air": "perplexe", "t": "¿De pie todo el día? Entonces sí conviene parar unos días. Pero la baja no la doy yo: la tramita su médico de cabecera. Yo le hago un informe. ¿En qué trabaja?", "fr": "Debout toute la journée ? Alors oui, il vaut mieux s'arrêter quelques jours. Mais l'arrêt de travail, ce n'est pas moi qui le donne : c'est votre médecin traitant. Je vous fais un compte rendu. Vous travaillez dans quoi ?"}],
+   "choix": [
+    {"t": "Trabajo en una panadería y casi nunca puedo sentarme.", "fr": "Je travaille dans une boulangerie et je ne peux presque jamais m'asseoir.", "va": "revision",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Pues lleve este informe a su médico de cabecera. Con una semana de reposo debería bastar.", "fr": "Alors apportez ce compte rendu à votre médecin traitant. Une semaine de repos devrait suffire."}]},
+    {"t": "Trabajo en una tienda, de pie, ocho horas al día.", "fr": "Je travaille dans un magasin, debout, huit heures par jour.", "va": "revision",
+     "puis": [{"qui": "b11_medecin", "air": "attentive", "t": "Pues lleve este informe a su médico de cabecera. Con una semana de reposo debería bastar.", "fr": "Alors apportez ce compte rendu à votre médecin traitant. Une semaine de repos devrait suffire."}]},
+    {"faux": true, "t": "Trabajo en una tienda y soy de pie todo el día.", "fr": "Je travaille dans un magasin et je suis debout toute la journée.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Está de pie todo el día, ya veo.", "fr": "Vous êtes debout toute la journée, je vois."}],
+     "aide": {"fr": "Une position se dit avec « estar » : <b>« estoy de pie »</b>. Dis plutôt : « Trabajo en una tienda, de pie, ocho horas al día »."}}
+   ]
+  },
+  "revision": {
+   "dit": [{"qui": "b11_medecin", "air": "sourire", "t": "Quiero volver a verle dentro de un mes, cuando termine la fisioterapia. Si no ha mejorado, le haremos una resonancia.", "fr": "Je veux vous revoir dans un mois, quand vous aurez fini la kinésithérapie. Si cela ne s'est pas amélioré, nous vous ferons une IRM."}],
+   "choix": [
+    {"t": "De acuerdo. ¿Pido la cita en el mostrador de la entrada?", "fr": "D'accord. Je prends le rendez-vous au comptoir de l'entrée ?", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Sí, al salir, con este papel. ¡Que se mejore!", "fr": "Oui, en sortant, avec ce papier. Bon rétablissement !"}]},
+    {"t": "Muy bien. Y si me duele más, ¿puedo venir antes?", "fr": "Très bien. Et si j'ai plus mal, puis-je venir avant ?", "va": null,
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Claro, pida cita antes si lo necesita. ¡Que se mejore!", "fr": "Bien sûr, prenez rendez-vous plus tôt si nécessaire. Bon rétablissement !"}]},
+    {"faux": true, "t": "De acuerdo. Voy a tomar una cita para el mes próximo.", "fr": "D'accord. Je vais prendre un rendez-vous pour le mois prochain.",
+     "puis": [{"qui": "b11_medecin", "air": "sourire", "t": "Eso, pida la cita al salir.", "fr": "C'est ça, prenez le rendez-vous en sortant."}],
+     "aide": {"fr": "« Prendre rendez-vous » se dit <b>« pedir cita »</b>, pas « tomar una cita ». Dis plutôt : « ¿Pido la cita en el mostrador de la entrada? »."}}
+   ]
+  }
+ }
+}

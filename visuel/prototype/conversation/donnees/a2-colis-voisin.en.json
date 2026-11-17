@@ -1,0 +1,97 @@
+{
+ "id": "a2-colis-voisin",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Un colis chez le voisin"},
+ "intro": {"fr": "Un avis dans ta boîte aux lettres : ton colis a été laissé chez le voisin du rez-de-chaussée. Tu vas le chercher."},
+ "personnes": ["nachbar-pablo"],
+ "debut": "door",
+ "noeuds": {
+  "door": {
+   "dit": [
+    {"recit": {"fr": "Fin d'après-midi, dans ton immeuble de Boston. Tu sonnes chez le voisin du rez-de-chaussée. Il ouvre en bâillant."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "Yes? … Hello?", "fr": "Oui ? … Bonjour ?"}
+   ],
+   "choix": [
+    {"t": "Hello! Sorry to bother you.", "fr": "Bonjour ! Désolé(e) de vous déranger.", "va": "intro",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "No, no, it's fine. I was just resting.", "fr": "Non, non, ce n'est rien. Je me reposais."}]},
+    {"t": "Good afternoon. I hope I'm not bothering you.", "fr": "Bonjour. J'espère que je ne vous dérange pas.", "va": "intro",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "No, no, it's fine. I was just resting.", "fr": "Non, non, ce n'est rien. Je me reposais."}]},
+    {"faux": true, "t": "Hello! Excuse me for the derangement.", "fr": "Bonjour ! Excusez-moi pour la folie.",
+     "puis": [{"qui": "nachbar-pablo", "air": "perplexe", "t": "The … what? Who is deranged? Not me, I hope!", "fr": "Le… quoi ? Qui est fou ? Pas moi, j'espère !"}],
+     "aide": {"fr": "<b>« deranged » veut dire « fou, dérangé mentalement ».</b> Pour s'excuser de déranger quelqu'un : « Sorry to bother you »."}}
+   ]
+  },
+  "intro": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "Sorry, do I know you?", "fr": "Pardon, on se connaît ?"}],
+   "choix": [
+    {"t": "I'm your new neighbor. I live on the third floor.", "t_gb": "I'm your new neighbour. I live on the second floor.", "fr": "Je suis votre nouveau voisin (nouvelle voisine). J'habite au deuxième étage.", "va": "ask",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Oh, welcome to the building! Nice to meet you.", "fr": "Oh, bienvenue dans l'immeuble ! Enchanté."}]},
+    {"t": "Not yet! I just moved in upstairs, on the third floor.", "t_gb": "Not yet! I just moved in upstairs, on the second floor.", "fr": "Pas encore ! Je viens d'emménager en haut, au deuxième étage.", "va": "ask",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Oh, welcome to the building! Nice to meet you.", "fr": "Oh, bienvenue dans l'immeuble ! Enchanté."}]}
+   ]
+  },
+  "ask": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "So, what can I do for you?", "fr": "Alors, que puis-je faire pour vous ?"}],
+   "choix": [
+    {"t": "I think you have a package for me.", "t_gb": "I think you have a parcel for me.", "fr": "Je crois que vous avez un colis pour moi.", "va": "name",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Ah yes! I have two boxes here.", "fr": "Ah oui ! J'ai deux cartons ici."}]},
+    {"t": "I got a note. It says my package is with you.", "t_gb": "I got a note. It says my parcel is with you.", "fr": "J'ai reçu un avis. Il dit que mon colis est chez vous.", "va": "name",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Ah yes! I have two boxes here.", "fr": "Ah oui ! J'ai deux cartons ici."}]},
+    {"faux": true, "t": "I attend a package.", "t_gb": "I attend a parcel.", "fr": "J'assiste à un colis.",
+     "puis": [{"qui": "nachbar-pablo", "air": "perplexe", "t": "You attend … a package? Like a class? Oh, you're waiting for one!", "t_gb": "You attend … a parcel? Like a class? Oh, you're waiting for one!", "fr": "Vous assistez… à un colis ? Comme à un cours ? Ah, vous en attendez un !"}],
+     "aide": {"fr": "<b>« to attend » veut dire « assister à » (un cours, une réunion).</b> Attendre se dit « to wait for » : « I'm waiting for a package »."}}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "nachbar-pablo", "air": "question", "t": "Which apartment are you in?", "t_gb": "Which flat are you in?", "fr": "Vous êtes dans quel appartement ?"}],
+   "choix": [
+    {"t": "Apartment five.", "t_gb": "Flat five.", "fr": "L'appartement cinq.", "va": "heavy"},
+    {"t": "I'm in apartment five. It's on the box, I think.", "t_gb": "I'm in flat five. It's on the box, I think.", "fr": "Je suis à l'appartement cinq. C'est écrit sur le carton, je crois.", "va": "heavy"},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "name",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Sure. Your apartment number, please. I have two boxes.", "t_gb": "Sure. Your flat number, please. I have two boxes.", "fr": "Bien sûr. Le numéro de votre appartement, s'il vous plaît. J'ai deux cartons."}]}
+   ]
+  },
+  "heavy": {
+   "dit": [
+    {"recit": {"fr": "Il cherche dans son entrée et revient avec un gros carton."}},
+    {"qui": "nachbar-pablo", "air": "amuse", "t": "Apartment five … here it is. Wow, it's heavy! What's in there?", "t_gb": "Flat five … here it is. Wow, it's heavy! What's in there?", "fr": "Appartement cinq… le voilà. Ouh, c'est lourd ! Qu'est-ce qu'il y a dedans ?"}
+   ],
+   "choix": [
+    {"t": "Books. I read a lot.", "fr": "Des livres. Je lis beaucoup.", "va": "sorry",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Ha! A whole library, then.", "fr": "Ha ! Toute une bibliothèque, alors."}]},
+    {"t": "It's a present from my mother. I think it's food.", "fr": "C'est un cadeau de ma mère. Je crois que c'est de la nourriture.", "va": "sorry",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Ha! Lucky you.", "fr": "Ha ! Vous avez de la chance."}]}
+   ]
+  },
+  "sorry": {
+   "dit": [
+    {"recit": {"fr": "Il bâille encore."}},
+    {"qui": "nachbar-pablo", "air": "attentive", "t": "Excuse me. I'm a baker. I work at night and I sleep during the day.", "fr": "Excusez-moi. Je suis boulanger. Je travaille la nuit et je dors le jour."}
+   ],
+   "choix": [
+    {"t": "Oh, I'm sorry I woke you up!", "fr": "Oh, je suis désolé(e) de vous avoir réveillé !", "va": "bye",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Don't worry about it. I had to get up anyway.", "fr": "Ne vous en faites pas. Je devais me lever de toute façon."}]},
+    {"t": "Oh no, were you sleeping? I'm so sorry.", "fr": "Oh non, vous dormiez ? Je suis vraiment désolé(e).", "va": "bye",
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Don't worry about it. I had to get up anyway.", "fr": "Ne vous en faites pas. Je devais me lever de toute façon."}]},
+    {"faux": true, "t": "Oh, I'm sorry. I didn't want to wake up you!", "fr": "Oh, je suis désolé(e). Je ne voulais pas vous réveiller ! (ordre des mots)",
+     "puis": [{"qui": "nachbar-pablo", "air": "perplexe", "t": "To wake … up me? Ah, to wake me up. It's okay!", "fr": "« Wake up me » ? Ah, me réveiller. Ce n'est rien !"}],
+     "aide": {"fr": "<b>Avec « you », « me », « him », le petit mot « up » se met après</b> : « wake you up », jamais « wake up you ». Dis : « I'm sorry I woke you up »."}}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "nachbar-pablo", "air": "sourire", "t": "Next time, the mail carrier can leave your packages with me anytime. I'm always home during the day.", "t_gb": "Next time, the postman can leave your parcels with me anytime. I'm always at home during the day.", "fr": "La prochaine fois, le facteur peut laisser vos colis chez moi quand il veut. Je suis toujours à la maison le jour."}],
+   "choix": [
+    {"t": "Thank you, that's very kind. Have a nice evening!", "fr": "Merci, c'est très gentil. Bonne soirée !", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "sourire", "t": "You too. See you around!", "fr": "Vous aussi. À bientôt !"}]},
+    {"t": "Thanks a lot! Come up for a coffee sometime.", "fr": "Merci beaucoup ! Montez prendre un café un de ces jours.", "va": null,
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Will do. And I'll bring the bread!", "fr": "Avec plaisir. Et j'apporterai le pain !"}]},
+    {"faux": true, "t": "Thank you, you are very sympathetic!", "fr": "Merci, vous êtes très compatissant !",
+     "puis": [{"qui": "nachbar-pablo", "air": "amuse", "t": "Sympathetic? Why, are you sad? Oh, you mean nice!", "fr": "Compatissant ? Pourquoi, vous êtes triste ? Ah, vous voulez dire sympathique !"}],
+     "aide": {"fr": "<b>« sympathetic » veut dire « compatissant », qui partage la peine de quelqu'un.</b> Sympathique se dit « nice » ou « kind » : « That's very kind »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté(e) à ton voisin du rez-de-chaussée, tu as récupéré ton colis et tu t'es excusé(e) de l'avoir réveillé."}
+}

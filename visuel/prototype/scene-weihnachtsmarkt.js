@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "mond",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "lua",
    "ar": "قمر",
    "pl": "księżyc",
-   "ru": "луна"
+   "ru": "луна",
+   "es": "la luna"
   },
   {
    "id": "turm",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "torre",
    "ar": "برج",
    "pl": "wieża",
-   "ru": "башня"
+   "ru": "башня",
+   "es": "la torre"
   },
   {
    "id": "uhr",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "kirche",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "igreja",
    "ar": "كنيسة",
    "pl": "kościół",
-   "ru": "церковь"
+   "ru": "церковь",
+   "es": "la iglesia"
   },
   {
    "id": "laterne",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "dach",
@@ -209,7 +215,8 @@ window.SCENE = {
    "pt": "telhado",
    "ar": "سقف",
    "pl": "dach",
-   "ru": "крыша"
+   "ru": "крыша",
+   "es": "el techo, el tejado"
   },
   {
    "id": "baum",
@@ -244,7 +251,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "lichterkette",
@@ -279,7 +287,8 @@ window.SCENE = {
    "pt": "pisca-pisca, cordão de luzes",
    "ar": "سلسلة أضواء",
    "pl": "girlanda świetlna, lampki",
-   "ru": "гирлянда"
+   "ru": "гирлянда",
+   "es": "la guirnalda de luces"
   },
   {
    "id": "spielzeug",
@@ -303,7 +312,8 @@ window.SCENE = {
      "pt": "cavalo",
      "ar": "حصان",
      "pl": "koń",
-     "ru": "лошадь"
+     "ru": "лошадь",
+     "es": "el caballo"
     }
    ],
    "sur": null,
@@ -324,7 +334,8 @@ window.SCENE = {
    "pt": "brinquedo",
    "ar": "لعبة (أطفال)",
    "pl": "zabawka, zabawki",
-   "ru": "игрушка"
+   "ru": "игрушка",
+   "es": "el juguete"
   },
   {
    "id": "puppe",
@@ -353,7 +364,8 @@ window.SCENE = {
    "pt": "boneca",
    "ar": "دمية",
    "pl": "lalka",
-   "ru": "кукла"
+   "ru": "кукла",
+   "es": "la muñeca (juguete)"
   },
   {
    "id": "stern-2",
@@ -412,7 +424,8 @@ window.SCENE = {
    "pt": "estrela",
    "ar": "نجمة",
    "pl": "gwiazda",
-   "ru": "звезда"
+   "ru": "звезда",
+   "es": "la estrella"
   },
   {
    "id": "regal",
@@ -447,7 +460,8 @@ window.SCENE = {
    "pt": "estante",
    "ar": "رفّ",
    "pl": "regał, półka",
-   "ru": "полка, стеллаж"
+   "ru": "полка, стеллаж",
+   "es": "el estante"
   },
   {
    "id": "mann",
@@ -476,7 +490,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "muetze",
@@ -505,7 +520,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "pullover",
@@ -529,7 +545,8 @@ window.SCENE = {
      "pt": "jaqueta",
      "ar": "سترة، جاكيت",
      "pl": "kurtka",
-     "ru": "куртка"
+     "ru": "куртка",
+     "es": "la chaqueta"
     }
    ],
    "sur": "mann",
@@ -550,7 +567,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "stern",
@@ -579,7 +597,8 @@ window.SCENE = {
    "pt": "estrela",
    "ar": "نجمة",
    "pl": "gwiazda",
-   "ru": "звезда"
+   "ru": "звезда",
+   "es": "la estrella"
   },
   {
    "id": "kerze",
@@ -608,7 +627,8 @@ window.SCENE = {
    "pt": "vela",
    "ar": "شمعة",
    "pl": "świeczka",
-   "ru": "свеча"
+   "ru": "свеча",
+   "es": "la vela"
   },
   {
    "id": "kanne",
@@ -637,7 +657,8 @@ window.SCENE = {
    "pt": "jarra, bule",
    "ar": "إبريق",
    "pl": "dzbanek",
-   "ru": "кофейник, кувшин"
+   "ru": "кофейник, кувшин",
+   "es": "la jarra, la cafetera"
   },
   {
    "id": "topf",
@@ -666,7 +687,8 @@ window.SCENE = {
    "pt": "panela",
    "ar": "قِدر",
    "pl": "garnek",
-   "ru": "кастрюля"
+   "ru": "кастрюля",
+   "es": "la olla"
   },
   {
    "id": "geschenk",
@@ -695,7 +717,8 @@ window.SCENE = {
    "pt": "presente",
    "ar": "هدية",
    "pl": "prezent",
-   "ru": "подарок"
+   "ru": "подарок",
+   "es": "el regalo"
   },
   {
    "id": "tasse-2",
@@ -724,7 +747,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "muenze",
@@ -748,7 +772,8 @@ window.SCENE = {
      "pt": "dinheiro",
      "ar": "مال، نقود",
      "pl": "pieniądze",
-     "ru": "деньги"
+     "ru": "деньги",
+     "es": "el dinero"
     }
    ],
    "sur": "stand",
@@ -769,7 +794,8 @@ window.SCENE = {
    "pt": "moeda",
    "ar": "قطعة نقدية",
    "pl": "moneta",
-   "ru": "монета"
+   "ru": "монета",
+   "es": "la moneda"
   },
   {
    "id": "kiste",
@@ -798,7 +824,8 @@ window.SCENE = {
    "pt": "caixote",
    "ar": "صندوق",
    "pl": "skrzynia, skrzynka",
-   "ru": "ящик"
+   "ru": "ящик",
+   "es": "la caja (grande)"
   },
   {
    "id": "apfel",
@@ -827,7 +854,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "orange",
@@ -862,7 +890,8 @@ window.SCENE = {
    "pt": "laranja",
    "ar": "برتقالة",
    "pl": "pomarańcza",
-   "ru": "апельсин"
+   "ru": "апельсин",
+   "es": "la naranja"
   },
   {
    "id": "nuss",
@@ -891,7 +920,8 @@ window.SCENE = {
    "pt": "noz, castanha",
    "ar": "جوز، مكسّرات",
    "pl": "orzech",
-   "ru": "орех"
+   "ru": "орех",
+   "es": "la nuez, el fruto seco"
   },
   {
    "id": "stand",
@@ -918,15 +948,25 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "l'état, le stand",
-   "en": "state, stall",
-   "tr": "durum; tezgâh",
-   "uk": "стан; ятка",
-   "fa": "وضع کنونی؛ غرفه",
-   "pt": "situação, estado; barraca",
-   "ar": "وضع، حالة؛ كشك",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк"
+   "fr": "le stand",
+   "en": "stall",
+   "tr": "tezgâh",
+   "uk": "ятка",
+   "fa": "غرفه",
+   "pt": "barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "es": "el puesto",
+   "zone": {
+    "es_sens": {
+     "fr": "le stand",
+     "en": "the stall",
+     "pt": "a barraca",
+     "ar": "كشك",
+     "de": "der Stand"
+    }
+   }
   },
   {
    "id": "stand-2",
@@ -947,15 +987,25 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "l'état, le stand",
-   "en": "state, stall",
-   "tr": "durum; tezgâh",
-   "uk": "стан; ятка",
-   "fa": "وضع کنونی؛ غرفه",
-   "pt": "situação, estado; barraca",
-   "ar": "وضع، حالة؛ كشك",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк"
+   "fr": "le stand",
+   "en": "stall",
+   "tr": "tezgâh",
+   "uk": "ятка",
+   "fa": "غرفه",
+   "pt": "barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "es": "el puesto",
+   "zone": {
+    "es_sens": {
+     "fr": "le stand",
+     "en": "the stall",
+     "pt": "a barraca",
+     "ar": "كشك",
+     "de": "der Stand"
+    }
+   }
   },
   {
    "id": "brezel",
@@ -970,10 +1020,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     80,
-     46,
-     20,
-     7.5
+     85.2,
+     48.4,
+     8.8,
+     3.3
     ]
    ],
    "fr": "bretzel",
@@ -984,7 +1034,8 @@ window.SCENE = {
    "pt": "pretzel",
    "ar": "بريتزل (خبز معقود)",
    "pl": "precel",
-   "ru": "брецель (крендель)"
+   "ru": "брецель (крендель)",
+   "es": "el pretzel"
   },
   {
    "id": "brezel-2",
@@ -999,10 +1050,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     76,
-     55,
-     24,
-     6
+     81.0,
+     39.2,
+     19.0,
+     3.8
     ]
    ],
    "fr": "bretzel",
@@ -1013,7 +1064,8 @@ window.SCENE = {
    "pt": "pretzel",
    "ar": "بريتزل (خبز معقود)",
    "pl": "precel",
-   "ru": "брецель (крендель)"
+   "ru": "брецель (крендель)",
+   "es": "el pretzel"
   },
   {
    "id": "frau",
@@ -1042,7 +1094,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "muetze-4",
@@ -1071,7 +1124,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "mantel",
@@ -1100,7 +1154,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "kind",
@@ -1129,7 +1184,8 @@ window.SCENE = {
    "pt": "criança",
    "ar": "طفل",
    "pl": "dziecko",
-   "ru": "ребёнок"
+   "ru": "ребёнок",
+   "es": "el niño"
   },
   {
    "id": "muetze-3",
@@ -1158,7 +1214,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "jacke-2",
@@ -1187,7 +1244,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-3",
@@ -1211,7 +1269,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "kind",
@@ -1232,7 +1291,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "stiefel-2",
@@ -1261,7 +1321,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "mark",
@@ -1290,7 +1351,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "muetze-2",
@@ -1319,7 +1381,8 @@ window.SCENE = {
    "pt": "gorro",
    "ar": "قبعة صوفية",
    "pl": "czapka",
-   "ru": "шапка"
+   "ru": "шапка",
+   "es": "el gorro"
   },
   {
    "id": "schal",
@@ -1348,7 +1411,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "jacke",
@@ -1377,7 +1441,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "pullover-2",
@@ -1406,7 +1471,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "handschuh",
@@ -1441,7 +1507,8 @@ window.SCENE = {
    "pt": "luva",
    "ar": "قفاز",
    "pl": "rękawiczka",
-   "ru": "перчатка"
+   "ru": "перчатка",
+   "es": "el guante"
   },
   {
    "id": "tasse",
@@ -1470,7 +1537,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "hose",
@@ -1494,7 +1562,8 @@ window.SCENE = {
      "pt": "calça jeans",
      "ar": "جينز",
      "pl": "dżinsy",
-     "ru": "джинсы"
+     "ru": "джинсы",
+     "es": "los jeans"
     }
    ],
    "sur": "mark",
@@ -1515,7 +1584,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "stiefel",
@@ -1550,7 +1620,8 @@ window.SCENE = {
    "pt": "bota",
    "ar": "جزمة",
    "pl": "kozak, but z cholewą",
-   "ru": "сапог"
+   "ru": "сапог",
+   "es": "la bota"
   },
   {
    "id": "hund",
@@ -1579,7 +1650,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "feuer",
@@ -1608,7 +1680,8 @@ window.SCENE = {
    "pt": "fogo",
    "ar": "نار",
    "pl": "ogień",
-   "ru": "огонь, костёр"
+   "ru": "огонь, костёр",
+   "es": "el fuego"
   },
   {
    "id": "holz",
@@ -1637,7 +1710,8 @@ window.SCENE = {
    "pt": "madeira",
    "ar": "خشب",
    "pl": "drewno",
-   "ru": "дерево (материал)"
+   "ru": "дерево (материал)",
+   "es": "la madera"
   },
   {
    "id": "schnee",
@@ -1661,7 +1735,8 @@ window.SCENE = {
      "pt": "chão, solo",
      "ar": "أرض، تربة",
      "pl": "ziemia, podłoże",
-     "ru": "почва, пол"
+     "ru": "почва, пол",
+     "es": "el suelo"
     }
    ],
    "sur": null,
@@ -1688,7 +1763,8 @@ window.SCENE = {
    "pt": "neve",
    "ar": "ثلج",
    "pl": "śnieg",
-   "ru": "снег"
+   "ru": "снег",
+   "es": "la nieve"
   }
  ],
  "grosPlans": [],
@@ -2328,7 +2404,7 @@ window.SCENE = {
     "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "واژهٔ توصیف‌کننده اول می‌آید و واژهٔ آخر جنس را تعیین می‌کند: <span lang=\"de\">der Markt → <b>der</b> Weihnachts<b>markt</b></span>؛ <b>-s-</b> دو بخش را به هم می‌پیوندد.",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "جمعِ <b>Lichter</b> واژهٔ اول است؛ جنس از <span lang=\"de\">die Kette</span> می‌آید ← <span lang=\"de\"><b>die</b> Lichter<b>kette</b></span>.",
     "B2 | Ein Stern aus Holz ist ein Holzstern.": "اول مادهٔ ساخت (جنس چیز): <span lang=\"de\">Holz + Stern → <b>der</b> Holz<b>stern</b></span> (<span lang=\"de\">das Sternholz</span> چوبِ یک ستاره می‌شد).",
-    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "<span lang=\"de\">Weihnacht<b>s</b>baum</span>: <b>-s-</b> پیوندی, مانند <span lang=\"de\">Weihnachtsmarkt</span>.",
+    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "<span lang=\"de\">Weihnacht<b>s</b>baum</span>: <b>-s-</b> پیوندی، مانند <span lang=\"de\">Weihnachtsmarkt</span>.",
     "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "جنس و شمار از واژهٔ آخر می‌آیند: <span lang=\"de\">der Handschuh → <b>der</b> Winterhand<b>schuh</b></span>.",
     "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "سه واژه: <span lang=\"de\">Kirche + Turm + Uhr → <b>die</b> Kirchturm<b>uhr</b></span>، ساعت برج کلیسا؛ <span lang=\"de\">-e</span> واژهٔ <span lang=\"de\">Kirche</span> می‌افتد.",
     "C1 | Er muss den Weihnachtsmarkt mögen.": "<b>müssen</b> = استنتاجی تقریباً قطعی.",
@@ -2397,7 +2473,7 @@ window.SCENE = {
     "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "الكلمة الموصِّفة تأتي أولاً، والكلمة الأخيرة تعطي الجنس: <span lang=\"de\">der Markt → <b>der</b> Weihnachts<b>markt</b></span>؛ و<b>-s-</b> يربط الجزأين.",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "الجمع <b>Lichter</b> هو الكلمة الأولى؛ والجنس يأتي من <span lang=\"de\">die Kette</span> ← <span lang=\"de\"><b>die</b> Lichter<b>kette</b></span>.",
     "B2 | Ein Stern aus Holz ist ein Holzstern.": "المادّة أولاً: <span lang=\"de\">Holz + Stern → <b>der</b> Holz<b>stern</b></span> (<span lang=\"de\">das Sternholz</span> سيكون خشب نجمة).",
-    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "<span lang=\"de\">Weihnacht<b>s</b>baum</span>: <b>-s-</b> الرابطة, كما في <span lang=\"de\">Weihnachtsmarkt</span>.",
+    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "<span lang=\"de\">Weihnacht<b>s</b>baum</span>: <b>-s-</b> الرابطة، كما في <span lang=\"de\">Weihnachtsmarkt</span>.",
     "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "الجنس والعدد يأتيان من الكلمة الأخيرة: <span lang=\"de\">der Handschuh → <b>der</b> Winterhand<b>schuh</b></span>.",
     "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "ثلاث كلمات: <span lang=\"de\">Kirche + Turm + Uhr → <b>die</b> Kirchturm<b>uhr</b></span>، ساعة برج الكنيسة؛ وتسقط <span lang=\"de\">-e</span> من <span lang=\"de\">Kirche</span>.",
     "C1 | Er muss den Weihnachtsmarkt mögen.": "<b>müssen</b> = استنتاج شبه مؤكَّد.",
@@ -2639,6 +2715,75 @@ window.SCENE = {
     "C1 | Der Stern könnte ein Geschenk für seine Mutter sein.": "Возможно, звезда — подарок для его матери.",
     "C1 | Der Hund dürfte dem Mann am Stand gehören.": "Пёс, наверное, принадлежит мужчине за прилавком.",
     "C1 | Dieser Weihnachtsmarkt soll der älteste in Berlin sein.": "Говорят, эта рождественская ярмарка — самая старая в Берлине."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark en un mercado navideño, una noche de diciembre en Berlín: con una taza humeante en una mano, extiende la otra hacia la estrella de madera que el vendedor de gorro rojo le alcanza por encima del puesto; sobre el puesto de madera espolvoreado de nieve, tres velas rojas, una jarra y una olla de cobre, regalos envueltos, tazas rojas, dos monedas, una caja de manzanas y naranjas y nueces; arriba, un caballito mecedor, una muñeca de trapo y estrellas de madera bajo una guirnalda de luces; detrás, un gran árbol de Navidad iluminado, la iglesia de ladrillo y su torre, un farol, la luna, y un puesto de pretzels donde una madre lleva a su hijo de la mano; adelante, un brasero encendido, leña y un perro sentado en la nieve.",
+    "consigne": "Mark descubre su primer mercado navideño en Berlín. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Los pronombres personales: ihn, ihm, sie, ihr",
+    "B2": "Las palabras compuestas: der Weihnachtsmarkt, die Lichterkette",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die Puppe hängt am Stand.": "<b>am</b> = an + <b>dem</b>: der Stand → am Stand.",
+    "A2 | Die Kanne steht auf dem Stand.": "der Stand → auf <b>dem</b> Stand.",
+    "A2 | Die Äpfel liegen in der Kiste.": "die Kiste → in <b>der</b> Kiste: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Hund sitzt im Schnee.": "<b>im</b> = in + <b>dem</b>: der Schnee → im Schnee.",
+    "A2 | Die Uhr hängt am Turm.": "<b>am</b> = an + <b>dem</b>: der Turm → am Turm.",
+    "A2 | Der Mann steht hinter dem Stand.": "<b>hinter</b> = detrás de. der Stand → hinter <b>dem</b> Stand.",
+    "A2 | Der Mond ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Der Baum steht vor der Kirche.": "<b>vor</b> = delante de. die Kirche → vor <b>der</b> Kirche.",
+    "B1 | Mark kauft ihn.": "der Stern → en acusativo, <b>ihn</b>. El pronombre sigue el género alemán, aunque «la estrella» sea femenino.",
+    "B1 | Der Mann gibt ihm den Stern.": "¿A quién? → dativo: Mark → <b>ihm</b>.",
+    "B1 | Mark hält sie mit Handschuhen.": "die Tasse → en acusativo, <b>sie</b>.",
+    "B1 | Die Mutter hat sie gekauft.": "die Brezel → en acusativo, <b>sie</b>: en alemán es femenino.",
+    "B1 | Sie gibt ihm die Hand.": "das Kind → en dativo, <b>ihm</b> (igual que el masculino).",
+    "B1 | Der Hund sieht ihn an.": "<b>ansehen</b> + acusativo: Mark → <b>ihn</b>.",
+    "B1 | Die Brezeln schmecken ihr.": "<b>schmecken</b> + dativo, como «gustarle» a alguien: die Frau → <b>ihr</b>.",
+    "B1 | Mark kauft sie für seine Mutter.": "die Kerzen (plural) → en acusativo, <b>sie</b>.",
+    "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "Al revés que en español: la palabra que precisa va primero y la última da el género: der Markt → <b>der</b> Weihnachts<b>markt</b>; la <b>-s-</b> une las dos partes.",
+    "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "El plural <b>Lichter</b> sirve de primera palabra; el género viene de die Kette → <b>die</b> Lichter<b>kette</b>.",
+    "B2 | Ein Stern aus Holz ist ein Holzstern.": "Primero el material: Holz + Stern → <b>der</b> Holz<b>stern</b> (das Sternholz sería la madera de una estrella).",
+    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "Weihnacht<b>s</b>baum: la <b>-s-</b> de unión, como en Weihnachtsmarkt.",
+    "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "El género y el número vienen de la última palabra: der Handschuh → <b>der</b> Winterhand<b>schuh</b>.",
+    "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "Tres palabras: Kirche + Turm + Uhr → <b>die</b> Kirchturm<b>uhr</b>, el reloj del campanario; la -e de Kirche se cae.",
+    "C1 | Er muss den Weihnachtsmarkt mögen.": "<b>müssen</b> = deducción casi segura, como «debe de».",
+    "C1 | Der Stern könnte ein Geschenk für seine Mutter sein.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Hund dürfte dem Mann am Stand gehören.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Dieser Weihnachtsmarkt soll der älteste in Berlin sein.": "<b>sollen</b> = según lo que se dice: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Puppe hängt am Stand.": "La muñeca está colgada en el puesto.",
+    "A2 | Die Kanne steht auf dem Stand.": "La jarra está sobre el puesto.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Las manzanas están en la caja.",
+    "A2 | Der Hund sitzt im Schnee.": "El perro está sentado en la nieve.",
+    "A2 | Die Uhr hängt am Turm.": "El reloj está en la torre.",
+    "A2 | Der Mann steht hinter dem Stand.": "El hombre está detrás del puesto.",
+    "A2 | Der Mond ist am Himmel.": "La luna está en el cielo.",
+    "A2 | Der Baum steht vor der Kirche.": "El árbol está delante de la iglesia.",
+    "B1 | Mark kauft ihn.": "Mark la compra.",
+    "B1 | Der Mann gibt ihm den Stern.": "El hombre le da la estrella.",
+    "B1 | Mark hält sie mit Handschuhen.": "Mark la sostiene con guantes.",
+    "B1 | Die Mutter hat sie gekauft.": "La madre lo compró.",
+    "B1 | Sie gibt ihm die Hand.": "Ella le da la mano.",
+    "B1 | Der Hund sieht ihn an.": "El perro lo mira.",
+    "B1 | Die Brezeln schmecken ihr.": "A ella le gustan los pretzels.",
+    "B1 | Mark kauft sie für seine Mutter.": "Mark las compra para su madre.",
+    "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "El mercado de Navidad es el «Weihnachtsmarkt».",
+    "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "Una guirnalda de luces es una «Lichterkette».",
+    "B2 | Ein Stern aus Holz ist ein Holzstern.": "Una estrella de madera es un «Holzstern».",
+    "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "El árbol de Navidad se llama «Weihnachtsbaum».",
+    "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "Un guante para el invierno es un «Winterhandschuh».",
+    "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "El reloj de la iglesia es una «Kirchturmuhr», un reloj de campanario.",
+    "C1 | Er muss den Weihnachtsmarkt mögen.": "Debe de gustarle el mercado navideño.",
+    "C1 | Der Stern könnte ein Geschenk für seine Mutter sein.": "La estrella podría ser un regalo para su madre.",
+    "C1 | Der Hund dürfte dem Mann am Stand gehören.": "El perro probablemente es del hombre del puesto.",
+    "C1 | Dieser Weihnachtsmarkt soll der älteste in Berlin sein.": "Dicen que este mercado navideño es el más antiguo de Berlín."
    }
   }
  }

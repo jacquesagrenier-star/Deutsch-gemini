@@ -18,7 +18,7 @@ import io, json, os, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGUES = {"de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"], "es": ["fr", "en", "pt", "ar", "de"]}
+LANGUES = {"de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"], "es": ["fr", "en", "pt", "ar", "de"]}
 LISTE = "--liste" in sys.argv
 
 def charger(f):

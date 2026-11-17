@@ -38,9 +38,9 @@ window.SCENE = {
   },
   {
    "id": "decke",
-   "mot": "blanket",
+   "mot": "ceiling",
    "genre": "",
-   "pluriel": "blankets",
+   "pluriel": "ceilings",
    "niveau": "A1",
    "theme": "home_a1",
    "personne": null,
@@ -55,9 +55,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture",
-   "es": "la cobija, la manta",
-   "esp": "la manta"
+   "fr": "plafond",
+   "es": "el techo"
   },
   {
    "id": "wand",
@@ -197,7 +196,7 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pansement ; fédération",
+   "fr": "pansement",
    "es": "el vendaje"
   },
   {
@@ -583,11 +582,11 @@ window.SCENE = {
   },
   {
    "id": "rezept",
-   "mot": "recipe",
+   "mot": "prescription",
    "genre": "",
-   "pluriel": "recipes",
-   "niveau": "B1",
-   "theme": "food_b1_2",
+   "pluriel": "prescriptions",
+   "niveau": "A1",
+   "theme": "body_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -600,8 +599,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "recette",
-   "es": "la receta"
+   "fr": "ordonnance",
+   "es": "la receta médica"
   },
   {
    "id": "mark",
@@ -1047,7 +1046,7 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "guichet ; interrupteur",
+   "fr": "guichet",
    "es": "la ventanilla"
   },
   {

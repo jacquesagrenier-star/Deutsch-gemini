@@ -1,0 +1,131 @@
+{
+ "id": "b1-titre-sejour",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Au guichet du RMV : le permis de conduire"},
+ "intro": {"fr": "Tu vis maintenant à Boston et tu veux un permis de conduire du Massachusetts. Tu as rendez-vous au RMV, le service des permis de l'État (ailleurs aux États-Unis, on dit « the DMV »)."},
+ "personnes": ["b11_guichet"],
+ "debut": "number",
+ "noeuds": {
+  "number": {
+   "dit": [
+    {"recit": {"fr": "La salle d'attente du RMV. Tu attends depuis quarante minutes, ton ticket à la main. Enfin, ton numéro s'affiche."}},
+    {"qui": "b11_guichet", "air": "sourire", "t": "B147? Window 6, please. … Hi there. What can I do for you today?", "dit": "B one forty-seven? Window six, please. … Hi there. What can I do for you today?", "fr": "B147 ? Guichet 6, s'il vous plaît. … Bonjour. Que puis-je faire pour vous aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Hi. I'd like to apply for a Massachusetts driver's license.", "t_gb": "Hi. I'd like to apply for a Massachusetts driving licence.", "fr": "Bonjour. Je voudrais demander un permis de conduire du Massachusetts.", "va": "driving"},
+    {"t": "Hello. I have a license from another country, and I'd like to get one here.", "t_gb": "Hello. I have a licence from another country, and I'd like to get one here.", "fr": "Bonjour. J'ai un permis d'un autre pays, et je voudrais en obtenir un ici.", "va": "driving"},
+    {"faux": true, "t": "Hello. I want to pass my driving license.", "fr": "Bonjour. Je veux passer mon permis de conduire.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "You want to pass … the test? Or apply for a license?", "t_gb": "You want to pass … the test? Or apply for a licence?", "fr": "Vous voulez réussir… l'examen ? Ou demander un permis ?"}],
+     "aide": {"fr": "<b>« pass »</b> veut dire réussir un examen, pas le passer. Pour demander un permis : « I'd like to apply for a driver's license. »"}}
+   ]
+  },
+  "driving": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Sure. How long have you been driving?", "fr": "Bien sûr. Depuis combien de temps conduisez-vous ?"}],
+   "choix": [
+    {"t": "I've been driving for ten years. I got my license back home.", "t_gb": "I've been driving for ten years. I got my licence back home.", "fr": "Je conduis depuis dix ans. J'ai eu mon permis dans mon pays.", "va": "docs",
+     "puis": [{"qui": "b11_guichet", "air": "attentive", "t": "Okay. Unless your country has an agreement with Massachusetts, you'll need to take the learner's permit test — that's the written one — and then a road test.", "fr": "D'accord. Sauf si votre pays a un accord avec le Massachusetts, vous devrez passer l'examen du « learner's permit », c'est-à-dire l'examen théorique, puis un examen de conduite."}]},
+    {"t": "For about ten years, but never in the United States.", "fr": "Depuis une dizaine d'années, mais jamais aux États-Unis.", "va": "docs",
+     "puis": [{"qui": "b11_guichet", "air": "attentive", "t": "Okay. Unless your country has an agreement with Massachusetts, you'll need to take the learner's permit test — that's the written one — and then a road test.", "fr": "D'accord. Sauf si votre pays a un accord avec le Massachusetts, vous devrez passer l'examen du « learner's permit », c'est-à-dire l'examen théorique, puis un examen de conduite."}]},
+    {"faux": true, "t": "I drive since ten years.", "fr": "Je conduis depuis dix ans.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Since ten …? Oh, you've been driving for ten years. Got it.", "fr": "« Since ten »… ? Ah, vous conduisez depuis dix ans. Compris."}],
+     "aide": {"fr": "Pour une action commencée dans le passé et qui continue : <b>have been + -ing</b>, avec <b>for</b> devant une durée. Dis plutôt : « I've been driving for ten years. »"}}
+   ]
+  },
+  "docs": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "First, your documents. I need your passport and visa, your Social Security number, and proof that you live in Massachusetts — a lease or a utility bill, for example.", "fr": "D'abord, vos documents. Il me faut votre passeport et votre visa, votre numéro de Social Security, et une preuve que vous habitez dans le Massachusetts : un bail ou une facture d'électricité, par exemple."}],
+   "choix": [
+    {"t": "Here's everything: my passport, my Social Security card, and my lease.", "fr": "Voici tout : mon passeport, ma carte de Social Security et mon bail.", "pose": {"papiers": "tout"}, "va": "address",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Wow, you came prepared. I wish everybody did!", "fr": "Eh bien, vous êtes venu(e) avec tout ce qu'il faut. Si tout le monde faisait pareil !"}]},
+    {"t": "I have my passport and my lease, but I forgot my Social Security card.", "fr": "J'ai mon passeport et mon bail, mais j'ai oublié ma carte de Social Security.", "pose": {"papiers": "manque"}, "va": "missing"},
+    {"faux": true, "t": "Here are all my informations.", "fr": "Voici toutes mes informations.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Your information? I need the actual documents: passport, visa, proof of address.", "fr": "Vos informations ? Il me faut les documents eux-mêmes : passeport, visa, justificatif de domicile."}],
+     "aide": {"fr": "<b>information</b> ne prend jamais de « s » en anglais. Et ici, on parle de papiers : « Here are all my documents. »"}}
+   ]
+  },
+  "missing": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "That's okay. I don't need the card itself, just the number. Do you know it by heart?", "fr": "Ce n'est pas grave. Je n'ai pas besoin de la carte elle-même, seulement du numéro. Vous le connaissez par cœur ?"}],
+   "choix": [
+    {"t": "Yes, I know it. I can write it down for you.", "fr": "Oui, je le connais. Je peux vous l'écrire.", "va": "address",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "No need to write it. Just type it in on the keypad right here.", "fr": "Inutile de l'écrire. Tapez-le simplement sur le clavier, juste ici."}]},
+    {"t": "No, but I have a photo of the card on my phone.", "fr": "Non, mais j'ai une photo de la carte sur mon téléphone.", "va": "address",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "That works. Just type the number in on the keypad right here.", "fr": "Ça ira. Tapez simplement le numéro sur le clavier, juste ici."}]},
+    {"faux": true, "t": "Yes, I know it by the heart.", "fr": "Oui, je le connais par cœur.",
+     "puis": [{"qui": "b11_guichet", "air": "amuse", "t": "By THE heart? Just “by heart” — but good for you!", "fr": "« By THE heart » ? On dit simplement « by heart »… mais bravo !"}],
+     "aide": {"fr": "<b>« par cœur »</b> se dit <b>by heart</b>, sans article. Dis plutôt : « Yes, I know it by heart. »"}}
+   ]
+  },
+  "address": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Thanks. And the address on this lease — is that where you live now?", "fr": "Merci. Et l'adresse de ce bail, c'est bien là que vous habitez en ce moment ?"}],
+   "choix": [
+    {"t": "Yes, I've lived there since March.", "fr": "Oui, j'y habite depuis mars.", "va": "realid"},
+    {"t": "Yes, it is. I moved in six months ago.", "fr": "Oui. J'ai emménagé il y a six mois.", "va": "realid"},
+    {"faux": true, "t": "Yes, I habit there.", "fr": "Oui, j'habite là.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "You have a habit …? Sorry, do you live at this address?", "fr": "Vous avez une habitude… ? Pardon, vous habitez à cette adresse ?"}],
+     "aide": {"fr": "<b>« habiter »</b> se dit <b>live</b> ; « habit », c'est une habitude. Dis plutôt : « Yes, I live there. » ou « I've lived there since March. »"}}
+   ]
+  },
+  "realid": {
+   "dit": [{"qui": "b11_guichet", "air": "question", "t": "Now, do you want a REAL ID or a standard license? With a REAL ID you can take flights inside the U.S. without your passport, but I need a second proof of address for that.", "t_gb": "Now, do you want a REAL ID or a standard licence? With a REAL ID you can take flights inside the U.S. without your passport, but I need a second proof of address for that.", "fr": "Maintenant, voulez-vous un permis « REAL ID » ou un permis standard ? Avec un REAL ID, vous pouvez prendre un vol intérieur sans passeport, mais il me faut alors un deuxième justificatif de domicile."}],
+   "choix": [
+    {"t": "A REAL ID, please. I have a bank statement with my address.", "fr": "Un REAL ID, s'il vous plaît. J'ai un relevé bancaire avec mon adresse.", "va": "fees",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Let me see … it's from last month. That's fine.", "fr": "Voyons… il date du mois dernier. C'est bon."}]},
+    {"t": "A standard license is fine. I always travel with my passport anyway.", "t_gb": "A standard licence is fine. I always travel with my passport anyway.", "fr": "Un permis standard me suffit. De toute façon, je voyage toujours avec mon passeport.", "va": "fees",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Standard it is. That's less paperwork for both of us.", "fr": "Va pour le standard. Moins de paperasse pour nous deux."}]},
+    {"repete": true, "t": "Sorry, I didn't understand. Could you explain the difference again?", "fr": "Pardon, je n'ai pas compris. Pourriez-vous m'expliquer encore la différence ?", "va": "realid",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Sure. A REAL ID works at the airport for flights inside the country. A standard license doesn't — you'd need your passport. For the REAL ID, I need two proofs of address.", "t_gb": "Sure. A REAL ID works at the airport for flights inside the country. A standard licence doesn't — you'd need your passport. For the REAL ID, I need two proofs of address.", "fr": "Bien sûr. Un REAL ID est accepté à l'aéroport pour les vols intérieurs. Pas un permis standard : il vous faudrait votre passeport. Pour le REAL ID, il me faut deux justificatifs de domicile."}]},
+    {"faux": true, "t": "I don't know. Explain me the difference.", "fr": "Je ne sais pas. Expliquez-moi la différence.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Explain … you? Oh, explain it to you. Sure — but a “please” would be nice!", "fr": "« Explain you » ? Ah, vous l'expliquer. Bien sûr… mais un « s'il vous plaît » ferait plaisir !"}],
+     "aide": {"fr": "On dit <b>explain something to someone</b>, jamais « explain me ». Et une demande passe mieux en question : « Could you explain the difference, please? »"}}
+   ]
+  },
+  "fees": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "All right. The learner's permit is $30, and that includes the written test. You can pay by card right here.", "dit": "All right. The learner's permit is thirty dollars, and that includes the written test. You can pay by card right here.", "fr": "Très bien. Le « learner's permit » coûte 30 dollars, examen théorique compris. Vous pouvez payer par carte ici même."}],
+   "choix": [
+    {"t": "By card, please. Can I take the test today?", "fr": "Par carte, s'il vous plaît. Puis-je passer l'examen aujourd'hui ?", "va": "after",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Yes, on the computers over there, or you can come back when you're ready. It's twenty-five questions, and you need eighteen right.", "fr": "Oui, sur les ordinateurs, là-bas ; ou vous pouvez revenir quand vous serez prêt(e). Il y a vingt-cinq questions, et il faut dix-huit bonnes réponses."}]},
+    {"t": "Here's my card. When can I take the written test?", "fr": "Voici ma carte. Quand puis-je passer l'examen théorique ?", "va": "after",
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Today, on the computers over there, or you can come back when you're ready. It's twenty-five questions, and you need eighteen right.", "fr": "Aujourd'hui, sur les ordinateurs, là-bas ; ou vous pouvez revenir quand vous serez prêt(e). Il y a vingt-cinq questions, et il faut dix-huit bonnes réponses."}]},
+    {"faux": true, "t": "Okay. Where do I must pay?", "fr": "D'accord. Où dois-je payer ?",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Where do you … have to pay? Right here, with me.", "fr": "Où vous… devez payer ? Ici même, avec moi."}],
+     "aide": {"fr": "<b>must</b> ne se combine jamais avec « do ». On dit <b>Where do I pay?</b> ou « Where do I have to pay? »"}}
+   ]
+  },
+  "after": {
+   "dit": [{"qui": "b11_guichet", "air": "attentive", "t": "Once you pass, you get your learner's permit, and then you book your road test online. When you pass that, you get a temporary paper license, and the card comes in the mail about two weeks later.", "t_gb": "Once you pass, you get your learner's permit, and then you book your road test online. When you pass that, you get a temporary paper licence, and the card comes in the post about two weeks later.", "fr": "Une fois l'examen réussi, vous recevez votre « learner's permit », puis vous réservez l'examen de conduite en ligne. Quand vous le réussissez, on vous remet un permis provisoire en papier, et la carte arrive par la poste environ deux semaines plus tard."}],
+   "choix": [
+    {"t": "Thanks. How soon can I take the road test?", "fr": "Merci. Dans combien de temps puis-je passer l'examen de conduite ?", "va": "roadtest"},
+    {"t": "Thank you. What should I study for the written test?", "fr": "Merci. Que dois-je réviser pour l'examen théorique ?", "va": "study"},
+    {"faux": true, "t": "How many time I must wait for the road test?", "fr": "Combien de temps dois-je attendre pour l'examen de conduite ?",
+     "puis": [{"qui": "b11_guichet", "air": "amuse", "t": "How many times? Just once, I hope — if you pass! Oh, you mean how long.", "fr": "Combien de fois ? Une seule, j'espère… si vous réussissez ! Ah, vous voulez dire combien de temps."}],
+     "aide": {"fr": "<b>« how many times »</b>, c'est « combien de fois ». « Combien de temps » se dit <b>how long</b> ou <b>how soon</b>. Dis plutôt : « How soon can I take the road test? »"}}
+   ]
+  },
+  "roadtest": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Check the website tonight; new times open up every day. Usually you can get one within a few weeks. And you need to bring a car, with a licensed driver.", "fr": "Regardez le site ce soir : de nouveaux créneaux s'ouvrent chaque jour. En général, on en trouve un dans les semaines qui suivent. Et il faut venir avec une voiture, accompagné(e) d'une personne qui a le permis."}],
+   "choix": [
+    {"t": "Okay. I'll ask a friend to come with me.", "fr": "D'accord. Je demanderai à un ami de m'accompagner.", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Perfect. Good luck with the test — the computers are right over there. Next, please!", "fr": "Parfait. Bonne chance pour l'examen : les ordinateurs sont juste là. Personne suivante, s'il vous plaît !"}]},
+    {"t": "I see. Can I use a driving school's car for the test?", "fr": "Je vois. Puis-je utiliser la voiture d'une auto-école pour l'examen ?", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Yes, lots of people do that. The school sends an instructor with you. Good luck! Next, please!", "fr": "Oui, beaucoup de gens le font. L'auto-école envoie un moniteur avec vous. Bonne chance ! Personne suivante, s'il vous plaît !"}]},
+    {"faux": true, "t": "Okay. I will demand to a friend.", "fr": "D'accord. Je demanderai à un ami.",
+     "puis": [{"qui": "b11_guichet", "air": "perplexe", "t": "Demand? Poor friend! Maybe just ask nicely.", "fr": "« Demand » ? Pauvre ami ! Demandez-le-lui gentiment, plutôt."}],
+     "aide": {"fr": "<b>« demand »</b>, c'est exiger. Demander se dit <b>ask</b>, sans « to » devant la personne. Dis plutôt : « I'll ask a friend to come with me. »"}}
+   ]
+  },
+  "study": {
+   "dit": [{"qui": "b11_guichet", "air": "sourire", "t": "Everything is in the Massachusetts driver's manual. It's free on our website. Look closely at the road signs and the right-of-way rules — that's where people lose points.", "fr": "Tout est dans le manuel du conducteur du Massachusetts. Il est gratuit sur notre site. Regardez bien les panneaux et les règles de priorité : c'est là que les gens perdent des points."}],
+   "choix": [
+    {"t": "Great. I'll read it first and come back next week for the test.", "fr": "Très bien. Je le lirai d'abord, et je reviendrai la semaine prochaine pour l'examen.", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Good plan. See you next week, and good luck! Next, please!", "fr": "Bonne idée. À la semaine prochaine, et bonne chance ! Personne suivante, s'il vous plaît !"}]},
+    {"t": "Thanks. I studied a little already, so I'll try the test today.", "t_gb": "Thanks. I've studied a little already, so I'll try the test today.", "fr": "Merci. J'ai déjà un peu révisé, alors je tente l'examen aujourd'hui.", "va": null,
+     "puis": [{"qui": "b11_guichet", "air": "sourire", "t": "Good for you! The computers are right over there. Good luck! Next, please!", "fr": "Bravo ! Les ordinateurs sont juste là. Bonne chance ! Personne suivante, s'il vous plaît !"}]},
+    {"faux": true, "t": "Thanks, you are very gentle.", "fr": "Merci, vous êtes très gentille.",
+     "puis": [{"qui": "b11_guichet", "air": "amuse", "t": "Gentle? Nobody has ever called me that at the RMV! You mean kind — thank you.", "fr": "« Gentle » ? Personne ne m'a jamais dit ça au RMV ! Vous voulez dire aimable… merci."}],
+     "aide": {"fr": "<b>« gentle »</b>, c'est doux, délicat. « Gentil » se dit <b>kind</b> ou <b>nice</b>. Dis plutôt : « Thanks, that's very kind of you. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as présenté tes documents au RMV, choisi ton type de permis, payé le « learner's permit », et tu sais ce qui t'attend : l'examen théorique, puis l'examen de conduite."}
+}

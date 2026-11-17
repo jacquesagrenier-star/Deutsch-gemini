@@ -1,0 +1,198 @@
+{
+ "id": "b1-mon-pays",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Présenter mon pays au cours"},
+ "intro": {"fr": "Au cours d'allemand, à Berlin, la professeure te demande de présenter ton pays à la classe. Tu réponds à ses questions et tu compares avec l'Allemagne."},
+ "personnes": ["b13_kursleiterin"],
+ "debut": "land",
+ "noeuds": {
+  "land": {
+   "dit": [
+    {"recit": {"fr": "Mardi soir, à la Volkshochschule. Aujourd'hui, c'est ton tour : tu es devant la classe, à côté de la carte."}},
+    {"qui": "b13_kursleiterin", "air": "sourire", "t": "So, heute stellen Sie uns Ihr Heimatland vor. Woher kommen Sie denn?", "fr": "Alors, aujourd'hui, vous nous présentez votre pays d'origine. D'où venez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Ich komme aus Kanada, aus der Provinz Québec.", "fr": "Je viens du Canada, de la province de Québec.", "pose": {"pays": "kanada"}, "va": "wo",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "Aus Kanada! Das ist aber weit weg.", "fr": "Du Canada ! C'est vraiment loin."}]},
+    {"t": "Ich komme aus Frankreich.", "fr": "Je viens de France.", "pose": {"pays": "frankreich"}, "va": "wo",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Ah, unsere Nachbarn! Sehr schön.", "fr": "Ah, nos voisins ! Très bien."}]},
+    {"t": "Ich komme aus Belgien.", "fr": "Je viens de Belgique.", "pose": {"pays": "belgien"}, "va": "wo",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aus Belgien, wie schön! Das ist ja gar nicht weit.", "fr": "De Belgique, comme c'est bien ! Ce n'est pas loin du tout."}]},
+    {"t": "Ich komme aus der Schweiz.", "fr": "Je viens de Suisse.", "pose": {"pays": "schweiz"}, "va": "wo",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aus der Schweiz! Aber aus dem französischen Teil, nehme ich an.", "fr": "De Suisse ! Mais de la partie francophone, je suppose."}]},
+    {"faux": true, "t": "Ich komme aus Schweiz.", "fr": "Je viens de Suisse (sans l'article).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Aus der Schweiz, meinen Sie. Die Schweiz hat einen Artikel.", "fr": "De « la » Suisse, vous voulez dire. La Suisse a un article."}],
+     "aide": {"fr": "<b>La plupart des pays n'ont pas d'article en allemand</b> (aus Frankreich, aus Belgien, aus Kanada), mais quelques-uns en ont un : « die Schweiz », « die Türkei ». On dit donc « aus der Schweiz », « in der Schweiz »."}},
+    {"faux": true, "t": "Ich komme von Frankreich.", "fr": "Je viens « depuis » la France.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "perplexe", "t": "Von Frankreich? Sie meinen: Sie kommen aus Frankreich.", "fr": "« Von Frankreich » ? Vous voulez dire : vous venez de France."}],
+     "aide": {"fr": "<b>Pour l'origine, c'est « aus »</b> : « Ich komme aus Frankreich. » « von » ne s'emploie pas pour dire de quel pays on est."}}
+   ]
+  },
+  "wo": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Und woher genau? Zeigen Sie es uns bitte auf der Karte.", "fr": "Et d'où exactement ? Montrez-le-nous sur la carte, s'il vous plaît."}],
+   "choix": [
+    {"si": {"pays": "kanada"}, "t": "Ich komme aus Montreal, im Osten von Kanada. Dort spricht man Französisch.", "fr": "Je viens de Montréal, dans l'est du Canada. On y parle français.", "va": "klima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Stimmt, in Québec spricht man Französisch. Das wissen hier nicht alle.", "fr": "C'est vrai, au Québec on parle français. Ici, tout le monde ne le sait pas."}]},
+    {"si": {"pays": "frankreich"}, "t": "Ich komme aus Lyon. Das liegt im Südosten, nicht weit von den Alpen.", "fr": "Je viens de Lyon. C'est dans le sud-est, pas loin des Alpes.", "va": "klima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Lyon, da soll man ja besonders gut essen.", "fr": "Lyon, il paraît qu'on y mange particulièrement bien."}]},
+    {"si": {"pays": "belgien"}, "t": "Ich komme aus Lüttich, im Osten von Belgien. Das ist nicht weit von Aachen.", "fr": "Je viens de Liège, dans l'est de la Belgique. Ce n'est pas loin d'Aix-la-Chapelle.", "va": "klima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Ach, dann sind Sie ja fast aus der Nachbarschaft!", "fr": "Ah, alors vous êtes presque du voisinage !"}]},
+    {"si": {"pays": "schweiz"}, "t": "Ich komme aus Lausanne. Die Stadt liegt im Westen, am Genfer See.", "fr": "Je viens de Lausanne. La ville est à l'ouest, au bord du lac Léman.", "va": "klima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Am Genfer See, das klingt nach Urlaub!", "fr": "Au bord du lac Léman, ça sent les vacances !"}]},
+    {"t": "Aus einer kleinen Stadt, ungefähr zwei Stunden von der Hauptstadt entfernt.", "fr": "D'une petite ville, à environ deux heures de la capitale.", "va": "klima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aha, ungefähr hier also. Danke!", "fr": "Ah, à peu près ici, donc. Merci !"}]},
+    {"repete": true, "t": "Entschuldigung, können Sie die Frage bitte wiederholen?", "fr": "Excusez-moi, pouvez-vous répéter la question, s'il vous plaît ?", "va": "wo",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Natürlich. Aus welcher Stadt oder Region kommen Sie?", "fr": "Bien sûr. De quelle ville ou de quelle région venez-vous ?"}]}
+   ]
+  },
+  "klima": {
+   "dit": [
+    {"si": {"pays": "kanada"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Bei Kanada denke ich sofort an Schnee.", "fr": "Quand on me dit Canada, je pense tout de suite à la neige."},
+    {"qui": "b13_kursleiterin", "air": "question", "t": "Wie ist denn das Wetter bei Ihnen? So wie in Berlin?", "fr": "Quel temps fait-il chez vous ? Comme à Berlin ?"}
+   ],
+   "choix": [
+    {"si": {"pays": "kanada"}, "t": "Bei uns ist der Winter viel kälter als hier. Manchmal sind es minus dreißig Grad, und es gibt sehr viel Schnee.", "fr": "Chez nous, l'hiver est beaucoup plus froid qu'ici. Il fait parfois moins trente, et il y a énormément de neige.", "va": "essen",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "Minus dreißig! Und wir schimpfen hier schon bei minus fünf.", "fr": "Moins trente ! Et nous, ici, on râle déjà à moins cinq."}]},
+    {"si": {"pays": "frankreich"}, "t": "Das kommt auf die Region an. Im Süden ist es viel wärmer als in Deutschland, im Norden regnet es mehr.", "fr": "Ça dépend de la région. Dans le sud, il fait beaucoup plus chaud qu'en Allemagne ; dans le nord, il pleut davantage.", "va": "essen",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Deshalb fahren so viele Deutsche im Sommer nach Südfrankreich.", "fr": "C'est pour ça que tant d'Allemands vont dans le sud de la France en été."}]},
+    {"si": {"pays": "belgien"}, "t": "Bei uns regnet es oft, noch mehr als in Berlin. Ohne Regenschirm geht man nicht aus dem Haus.", "fr": "Chez nous, il pleut souvent, encore plus qu'à Berlin. On ne sort pas sans parapluie.", "va": "essen",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Dann fühlen Sie sich im Berliner November ja wie zu Hause.", "fr": "Alors, en novembre à Berlin, vous vous sentez comme à la maison."}]},
+    {"si": {"pays": "schweiz"}, "t": "In den Bergen liegt im Winter viel Schnee, und viele Leute fahren Ski. Am See ist es milder.", "fr": "En montagne, il y a beaucoup de neige en hiver, et beaucoup de gens font du ski. Au bord du lac, il fait plus doux.", "va": "essen",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Schnee und Berge, darum beneiden wir Sie hier in Berlin.", "fr": "La neige et les montagnes : ici, à Berlin, on vous les envie."}]},
+    {"t": "Ziemlich ähnlich. Im Winter ist es kalt, und im Sommer ist es ein bisschen wärmer als hier.", "fr": "Assez semblable. En hiver il fait froid, et en été il fait un peu plus chaud qu'ici.", "va": "essen",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Dann war das Wetter für Sie keine große Überraschung.", "fr": "Alors le temps n'a pas été une grande surprise pour vous."}]},
+    {"faux": true, "t": "Bei uns ist es im Winter mehr kalt als hier.", "fr": "Chez nous, il fait « plus froid » qu'ici en hiver (calqué sur le français).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Kälter als hier, meinen Sie. Ja, das glaube ich!", "fr": "« Kälter » qu'ici, vous voulez dire. Oui, je veux bien le croire !"}],
+     "aide": {"fr": "<b>Le comparatif se forme avec « -er »</b>, pas avec « mehr » : kalt → kälter, warm → wärmer. « Bei uns ist es im Winter kälter als hier. »"}}
+   ]
+  },
+  "essen": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Jetzt eine wichtige Frage: Was isst man bei Ihnen? Gibt es eine Spezialität?", "fr": "Maintenant, une question importante : qu'est-ce qu'on mange chez vous ? Y a-t-il une spécialité ?"}],
+   "choix": [
+    {"si": {"pays": "kanada"}, "t": "Typisch ist Poutine: Pommes mit Käse und brauner Soße. Und wir machen Ahornsirup.", "fr": "Le plat typique, c'est la poutine : des frites avec du fromage et de la sauce brune. Et nous faisons du sirop d'érable.", "va": "fest",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Pommes mit Käse und Soße? Das klingt wie für Berlin gemacht!", "fr": "Des frites avec du fromage et de la sauce ? On dirait que c'est fait pour Berlin !"}]},
+    {"si": {"pays": "frankreich"}, "t": "Bei uns gibt es zu jedem Essen Baguette, und nach dem Hauptgericht essen wir Käse.", "fr": "Chez nous, il y a de la baguette à chaque repas, et après le plat principal, nous mangeons du fromage.", "va": "fest",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Käse nach dem Hauptgericht! In Deutschland dagegen isst man ihn eher zum Abendbrot.", "fr": "Du fromage après le plat ! En Allemagne, en revanche, on le mange plutôt au repas du soir, avec du pain."}]},
+    {"si": {"pays": "belgien"}, "t": "Wir sind bekannt für Pommes, Waffeln und Schokolade. Die Pommes isst man mit Mayonnaise.", "fr": "Nous sommes connus pour les frites, les gaufres et le chocolat. Les frites se mangent avec de la mayonnaise.", "va": "fest",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Pommes, Waffeln, Schokolade: Jetzt haben alle Hunger!", "fr": "Frites, gaufres, chocolat : maintenant, tout le monde a faim !"}]},
+    {"si": {"pays": "schweiz"}, "t": "Im Winter essen wir oft Fondue oder Raclette, am liebsten mit Freunden.", "fr": "En hiver, nous mangeons souvent de la fondue ou de la raclette, de préférence entre amis.", "va": "fest",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Raclette machen wir hier auch, aber fast nur an Silvester.", "fr": "Nous aussi, nous faisons de la raclette, mais presque uniquement au Nouvel An."}]},
+    {"t": "Es gibt viele Spezialitäten. Am besten bringe ich nächste Woche etwas zum Probieren mit.", "fr": "Il y a beaucoup de spécialités. Le mieux, c'est que j'apporte quelque chose à goûter la semaine prochaine.", "pose": {"probieren": "ja"}, "va": "fest",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Oh ja, sehr gern! Das merke ich mir.", "fr": "Oh oui, très volontiers ! Je m'en souviendrai."}]}
+   ]
+  },
+  "fest": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Gibt es bei Ihnen ein besonderes Fest oder eine Tradition?", "fr": "Y a-t-il chez vous une fête particulière ou une tradition ?"}],
+   "choix": [
+    {"si": {"pays": "kanada"}, "t": "Am vierundzwanzigsten Juni feiern wir den Nationalfeiertag von Québec, mit Musik und großen Feuern.", "fr": "Le vingt-quatre juin, nous fêtons la fête nationale du Québec, avec de la musique et de grands feux.", "va": "erstaunt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Ein Fest mitten im Sommer, wie schön.", "fr": "Une fête en plein été, comme c'est beau."}]},
+    {"si": {"pays": "frankreich"}, "t": "Am vierzehnten Juli ist unser Nationalfeiertag. Abends gibt es überall Feuerwerk, und man tanzt auf der Straße.", "fr": "Le quatorze juillet, c'est notre fête nationale. Le soir, il y a des feux d'artifice partout, et on danse dans la rue.", "va": "erstaunt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Bei uns ist der dritte Oktober viel ruhiger. Getanzt wird da kaum.", "fr": "Chez nous, le trois octobre est bien plus calme. On n'y danse guère."}]},
+    {"si": {"pays": "belgien"}, "t": "Am sechsten Dezember kommt der Nikolaus und bringt den Kindern Geschenke. Das ist wichtiger als Weihnachten.", "fr": "Le six décembre, saint Nicolas vient apporter des cadeaux aux enfants. C'est plus important que Noël.", "va": "erstaunt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Den Nikolaus kennen wir auch! Bei uns bringt er aber nur Süßigkeiten.", "fr": "Saint Nicolas, nous le connaissons aussi ! Mais chez nous, il n'apporte que des friandises."}]},
+    {"si": {"pays": "schweiz"}, "t": "Am ersten August ist unser Nationalfeiertag. Abends macht man Feuer auf den Bergen.", "fr": "Le premier août, c'est notre fête nationale. Le soir, on allume des feux sur les montagnes.", "va": "erstaunt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Feuer auf den Bergen, das würde ich gern einmal sehen.", "fr": "Des feux sur les montagnes, j'aimerais bien voir ça un jour."}]},
+    {"t": "Weihnachten ist bei uns sehr wichtig. Die ganze Familie isst zusammen, und das Essen dauert stundenlang.", "fr": "Noël est très important chez nous. Toute la famille mange ensemble, et le repas dure des heures.", "va": "erstaunt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Stundenlang essen, das gefällt mir.", "fr": "Manger pendant des heures, ça me plaît."}]},
+    {"faux": true, "t": "Am Weihnachten isst die ganze Familie zusammen.", "fr": "« Au » Noël, toute la famille mange ensemble.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "An Weihnachten, ohne Artikel. Und was gibt es da zu essen?", "fr": "« An Weihnachten », sans article. Et qu'est-ce qu'on mange ce jour-là ?"}],
+     "aide": {"fr": "<b>Les fêtes n'ont pas d'article</b> : « an Weihnachten » ou « zu Weihnachten », « an Ostern ». « am » (an + dem) va avec les jours et les dates : am Montag, am vierzehnten Juli."}}
+   ]
+  },
+  "erstaunt": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Sie leben jetzt schon eine Weile in Deutschland. Was hat Sie hier am meisten überrascht?", "fr": "Vous vivez en Allemagne depuis un moment déjà. Qu'est-ce qui vous a le plus étonné ici ?"}],
+   "choix": [
+    {"t": "Dass am Sonntag fast alle Geschäfte geschlossen sind. Das kannte ich nicht.", "fr": "Que presque tous les magasins soient fermés le dimanche. Je ne connaissais pas ça.", "va": "sonntag",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Ja, das überrascht fast alle!", "fr": "Oui, ça étonne presque tout le monde !"}]},
+    {"t": "Das Pfand. Man bringt die leeren Flaschen zurück und bekommt Geld dafür. Und der Müll wird sehr genau getrennt.", "fr": "La consigne. On rapporte les bouteilles vides et on reçoit de l'argent en échange. Et les déchets sont triés très précisément.", "va": "pfand",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Ja, beim Müll sind wir sehr genau.", "fr": "Oui, pour les déchets, nous sommes très précis."}]},
+    {"t": "Die Pünktlichkeit. Wenn man um acht Uhr eingeladen ist, kommen die Gäste wirklich um acht.", "fr": "La ponctualité. Quand on est invité à huit heures, les invités arrivent vraiment à huit heures.", "va": "puenktlich",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Manche stehen sogar schon fünf Minuten früher vor der Tür.", "fr": "Certains sont même devant la porte cinq minutes plus tôt."}]},
+    {"faux": true, "t": "Ich bin überrascht, dass die Geschäfte sind am Sonntag geschlossen.", "fr": "Je suis surpris que les magasins sont fermés le dimanche (ordre des mots du français).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "… dass die Geschäfte am Sonntag geschlossen sind. Das Verb kommt ans Ende!", "fr": "… que les magasins « am Sonntag geschlossen sind ». Le verbe va à la fin !"}],
+     "aide": {"fr": "<b>Après « dass », le verbe conjugué va à la fin</b> : « …, dass die Geschäfte am Sonntag geschlossen sind. »"}}
+   ]
+  },
+  "sonntag": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Und was machen Sie jetzt am Sonntag?", "fr": "Et que faites-vous maintenant le dimanche ?"}],
+   "choix": [
+    {"t": "Ich kaufe jetzt immer am Samstag ein. Am Sonntag gehe ich spazieren oder treffe Freunde.", "fr": "Maintenant, je fais toujours mes courses le samedi. Le dimanche, je me promène ou je vois des amis.", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Sehen Sie, jetzt machen Sie es wie die Berliner.", "fr": "Vous voyez, maintenant vous faites comme les Berlinois."}]},
+    {"t": "Am Anfang war mein Kühlschrank sonntags leer. Bei uns kann man nämlich auch am Sonntag einkaufen.", "fr": "Au début, mon frigo était vide le dimanche. C'est que chez nous, on peut aussi faire ses courses le dimanche.", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Das passiert jedem genau einmal.", "fr": "Ça arrive à tout le monde exactement une fois."}]}
+   ]
+  },
+  "pfand": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Und wie ist das bei Ihnen zu Hause?", "fr": "Et comment ça se passe chez vous ?"}],
+   "choix": [
+    {"t": "Bei uns trennt man den Müll auch, aber nicht so streng. In Deutschland dagegen gibt es für alles eine eigene Tonne.", "fr": "Chez nous aussi, on trie les déchets, mais pas aussi strictement. En Allemagne, en revanche, il y a une poubelle pour chaque chose.", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Gelb, blau, braun, schwarz. Nach einem Jahr können Sie das im Schlaf.", "fr": "Jaune, bleu, marron, noir. Au bout d'un an, vous le ferez les yeux fermés."}]},
+    {"t": "Bei uns gibt es Pfand nur für wenige Flaschen. Ich finde das deutsche System gut für die Umwelt.", "fr": "Chez nous, il n'y a de consigne que pour peu de bouteilles. Je trouve le système allemand bon pour l'environnement.", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Das finde ich auch. Und die Straßen bleiben sauberer.", "fr": "Je trouve aussi. Et les rues restent plus propres."}]}
+   ]
+  },
+  "puenktlich": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Und bei Ihnen? Kommt man da später?", "fr": "Et chez vous ? On arrive plus tard ?"}],
+   "choix": [
+    {"t": "Ja. Bei uns kommt man zu einer Einladung lieber eine Viertelstunde später. Das ist höflicher.", "fr": "Oui. Chez nous, quand on est invité, on arrive plutôt un quart d'heure plus tard. C'est plus poli.", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "Höflicher? Interessant! Hier wäre das Essen dann schon kalt.", "fr": "Plus poli ? Intéressant ! Ici, le repas serait déjà froid."}]},
+    {"t": "Bei uns ist man nicht so streng. Aber die Züge sind hier auch nicht immer pünktlich!", "fr": "Chez nous, on n'est pas aussi strict. Mais ici, les trains ne sont pas toujours à l'heure non plus !", "va": "fehlt",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Da haben Sie leider völlig recht.", "fr": "Là, vous avez malheureusement tout à fait raison."}]}
+   ]
+  },
+  "fehlt": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Und was fehlt Ihnen hier am meisten?", "fr": "Et qu'est-ce qui vous manque le plus ici ?"}],
+   "choix": [
+    {"t": "Meine Familie und meine Freunde fehlen mir am meisten.", "fr": "Ce sont ma famille et mes amis qui me manquent le plus.", "va": "familie",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Das verstehe ich gut.", "fr": "Je le comprends bien."}]},
+    {"t": "Das Essen von zu Hause. Hier schmeckt es mir auch, aber es ist nicht dasselbe.", "fr": "La cuisine de chez moi. Ici aussi, c'est bon, mais ce n'est pas la même chose.", "va": "besuch",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Das sagen alle hier im Kurs. Essen ist eben Heimat.", "fr": "Tout le monde dit ça dans ce cours. La cuisine, c'est le pays, justement."}]},
+    {"t": "Ehrlich gesagt nicht viel. Ich fühle mich in Berlin sehr wohl.", "fr": "À vrai dire, pas grand-chose. Je me sens très bien à Berlin.", "va": "besuch",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Das freut mich sehr!", "fr": "Ça me fait très plaisir !"}]},
+    {"faux": true, "t": "Ich fehle meiner Familie.", "fr": "Je manque à ma famille (le contraire de ce que tu veux dire).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Bestimmt! Aber fehlt Ihre Familie Ihnen auch?", "fr": "Sûrement ! Mais votre famille vous manque-t-elle aussi ?"}],
+     "aide": {"fr": "<b>« fehlen » marche comme « manquer »</b> : ce qui manque est le sujet, la personne est au datif. « Meine Familie fehlt mir. » On peut aussi dire : « Ich vermisse meine Familie. »"}}
+   ]
+  },
+  "familie": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Wie oft sehen Sie Ihre Familie?", "fr": "Vous voyez souvent votre famille ?"}],
+   "choix": [
+    {"t": "Zweimal im Jahr, im Sommer und an Weihnachten.", "fr": "Deux fois par an, en été et à Noël.", "va": "besuch",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Dann sind diese Wochen sicher besonders schön.", "fr": "Alors ces semaines-là doivent être particulièrement belles."}]},
+    {"t": "Nicht sehr oft. Aber wir telefonieren jeden Sonntag mit Video.", "fr": "Pas très souvent. Mais nous nous appelons en vidéo tous les dimanches.", "va": "besuch",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Am Sonntag, wenn die Geschäfte zu sind. Das passt ja gut!", "fr": "Le dimanche, quand les magasins sont fermés. Ça tombe bien !"}]}
+   ]
+  },
+  "besuch": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Eine letzte Frage: Wann sollten wir Ihr Land besuchen?", "fr": "Une dernière question : quand devrions-nous visiter votre pays ?"}],
+   "choix": [
+    {"si": {"pays": "kanada"}, "t": "Am besten im Herbst, wenn die Wälder rot und gelb sind. Das ist wunderschön.", "fr": "L'idéal, c'est l'automne, quand les forêts sont rouges et jaunes. C'est magnifique.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Das klingt herrlich. Vielen Dank, das war eine sehr schöne Präsentation!", "fr": "Ça a l'air superbe. Merci beaucoup, c'était une très belle présentation !"},
+      {"si": {"probieren": "ja"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Und vergessen Sie nächste Woche die Spezialität nicht!", "fr": "Et n'oubliez pas la spécialité la semaine prochaine !"}]},
+    {"si": {"pays": "frankreich"}, "t": "Im Frühling oder im September. Dann ist es noch warm, und es sind weniger Touristen da.", "fr": "Au printemps ou en septembre. Il fait encore chaud, et il y a moins de touristes.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Ein guter Tipp. Vielen Dank, das war eine sehr schöne Präsentation!", "fr": "Un bon conseil. Merci beaucoup, c'était une très belle présentation !"},
+      {"si": {"probieren": "ja"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Und vergessen Sie nächste Woche die Spezialität nicht!", "fr": "Et n'oubliez pas la spécialité la semaine prochaine !"}]},
+    {"si": {"pays": "belgien"}, "t": "Im Sommer. Dann sind die Tage lang, und man kann abends draußen sitzen.", "fr": "En été. Les journées sont longues, et on peut rester dehors le soir.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Und mit dem Zug ist man schnell da. Vielen Dank, das war eine sehr schöne Präsentation!", "fr": "Et en train, on y est vite. Merci beaucoup, c'était une très belle présentation !"},
+      {"si": {"probieren": "ja"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Und vergessen Sie nächste Woche die Spezialität nicht!", "fr": "Et n'oubliez pas la spécialité la semaine prochaine !"}]},
+    {"si": {"pays": "schweiz"}, "t": "Im Winter zum Skifahren oder im Sommer zum Wandern. Beides ist schön.", "fr": "En hiver pour skier ou en été pour la randonnée. Les deux sont bien.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Dann müssen wir wohl zweimal fahren. Vielen Dank, das war eine sehr schöne Präsentation!", "fr": "Alors il faudra sans doute y aller deux fois. Merci beaucoup, c'était une très belle présentation !"},
+      {"si": {"probieren": "ja"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Und vergessen Sie nächste Woche die Spezialität nicht!", "fr": "Et n'oubliez pas la spécialité la semaine prochaine !"}]},
+    {"t": "Kommen Sie im Sommer! Ich zeige Ihnen gern meine Stadt.", "fr": "Venez en été ! Je vous montrerai ma ville avec plaisir.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Das Angebot nehme ich an! Vielen Dank, das war eine sehr schöne Präsentation!", "fr": "J'accepte l'offre ! Merci beaucoup, c'était une très belle présentation !"},
+      {"si": {"probieren": "ja"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Und vergessen Sie nächste Woche die Spezialität nicht!", "fr": "Et n'oubliez pas la spécialité la semaine prochaine !"}]},
+    {"faux": true, "t": "Sie müssen mein Land im Sommer visitieren.", "fr": "Vous devez « visiter » mon pays en été (mot calqué sur le français).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Visitieren? Das macht der Arzt im Krankenhaus. Sie meinen: besuchen.", "fr": "« Visitieren » ? C'est ce que fait le médecin à l'hôpital. Vous voulez dire : « besuchen »."}],
+     "aide": {"fr": "<b>« visiter » se dit « besuchen »</b> (un pays, une ville, une personne) ou « besichtigen » (un monument). « Sie sollten mein Land im Sommer besuchen. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as présenté ton pays en allemand : où il se trouve, son climat, ce qu'on y mange, une fête, et ce qui t'étonne en Allemagne."}
+}

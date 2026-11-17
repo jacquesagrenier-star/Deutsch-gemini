@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>La ropa</title>
 <!--
@@ -118,7 +119,7 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
@@ -143,7 +144,7 @@ const NB = Q.get("seance") === "1" ? Math.max(2, Math.min(12, parseInt(Q.get("nb
 const TEXTES = {
   titre:     {fr:"Les vêtements", en:"Clothes", tr:"Giysiler", uk:"Одяг", fa:"لباس‌ها", ar:"الملابس", pt:"As roupas", pl:"Ubrania", ru:"Одежда", de:"Kleidung"},
   intro:     {fr:"Touche une personne : tu vois ce qu'elle porte, et tu l'entends.", en:"Tap a person to see and hear what they are wearing.", tr:"Bir kişiye dokun: ne giydiğini gör ve dinle.", uk:"Торкнися людини: побачиш і почуєш, у що вона вдягнена.", fa:"روی یک نفر بزن تا ببینی و بشنوی چه پوشیده است.", ar:"المس شخصًا لترى وتسمع ماذا يرتدي.", pt:"Toque em uma pessoa para ver e ouvir o que ela está usando.", pl:"Dotknij osoby, aby zobaczyć i usłyszeć, co ma na sobie.", ru:"Нажми на человека, чтобы увидеть и услышать, во что он одет.", de:"Tippe auf eine Person: Du siehst und hörst, was sie trägt."},
-  couleurs:  {fr:"Touche une couleur : elle change avec le vêtement.", en:"Tap a colour: it changes with the piece of clothing.", tr:"Bir renge dokun: giysiye göre değişir.", uk:"Торкнися кольору: він змінюється разом з одягом.", fa:"روی یک رنگ بزن: با لباس تغییر می‌کند.", ar:"المس لونًا: يتغيّر بحسب قطعة الملابس.", pt:"Toque em uma cor: ela muda com a peça de roupa.", pl:"Dotknij koloru: zmienia się razem z ubraniem.", ru:"Нажми на цвет: он меняется вместе с одеждой.", de:"Tippe auf eine Farbe: Sie ändert sich mit dem Kleidungsstück."},
+  couleurs:  {fr:"Touche une couleur : elle change avec le vêtement.", en:"Tap a color: it changes with the piece of clothing.", tr:"Bir renge dokun: giysiye göre değişir.", uk:"Торкнися кольору: він змінюється разом з одягом.", fa:"روی یک رنگ بزن: با لباس تغییر می‌کند.", ar:"المس لونًا: يتغيّر بحسب قطعة الملابس.", pt:"Toque em uma cor: ela muda com a peça de roupa.", pl:"Dotknij koloru: zmienia się razem z ubraniem.", ru:"Нажми на цвет: он меняется вместе с одеждой.", de:"Tippe auf eine Farbe: Sie ändert sich mit dem Kleidungsstück."},
   diario:    {fr:"Tous les jours", en:"Every day", tr:"Her gün", uk:"Щодня", fa:"هر روز", ar:"كل يوم", pt:"Todo dia", pl:"Na co dzień", ru:"Каждый день", de:"Alltag"},
   lluvia:    {fr:"Il pleut", en:"Rain", tr:"Yağmur", uk:"Дощ", fa:"باران", ar:"المطر", pt:"Chuva", pl:"Deszcz", ru:"Дождь", de:"Regen"},
   frio:      {fr:"Il fait froid", en:"Cold", tr:"Soğuk", uk:"Холод", fa:"سرما", ar:"البرد", pt:"Frio", pl:"Zimno", ru:"Холод", de:"Kälte"},
@@ -151,7 +152,7 @@ const TEXTES = {
   boda:      {fr:"Un mariage", en:"A wedding", tr:"Düğün", uk:"Весілля", fa:"عروسی", ar:"حفل زفاف", pt:"Casamento", pl:"Wesele", ru:"Свадьба", de:"Hochzeit"},
   deporte:   {fr:"Le sport", en:"Sport", tr:"Spor", uk:"Спорт", fa:"ورزش", ar:"الرياضة", pt:"Esporte", pl:"Sport", ru:"Спорт", de:"Sport"},
   regleEs:   {fr:"La couleur vient après le vêtement et s'accorde avec lui : un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón ne changent qu'au pluriel). Mettre, enlever : se pone, se quita el abrigo.",
-              en:"The colour comes after the piece of clothing and agrees with it: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón only change in the plural). To put on, to take off: se pone, se quita el abrigo.",
+              en:"The color comes after the piece of clothing and agrees with it: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón only change in the plural). To put on, to take off: se pone, se quita el abrigo.",
               tr:"Renk giysiden sonra gelir ve ona uyar: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón yalnızca çoğulda değişir). Giymek, çıkarmak: se pone, se quita el abrigo.",
               uk:"Колір стоїть після назви одягу й узгоджується з нею: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón змінюються лише в множині). Одягти, зняти: se pone, se quita el abrigo.",
               fa:"رنگ بعد از نام لباس می‌آید و با آن هماهنگ می‌شود: un abrigo rojo، una falda roja، unos zapatos rojos، unas botas rojas (azul، verde، gris، marrón فقط در جمع تغییر می‌کنند). پوشیدن و درآوردن: se pone، se quita el abrigo.",
@@ -161,7 +162,7 @@ const TEXTES = {
               ru:"Цвет стоит после названия одежды и согласуется с ним: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón меняются только во множественном числе). Надеть, снять: se pone, se quita el abrigo.",
               de:"Die Farbe steht nach dem Kleidungsstück und richtet sich nach ihm: un abrigo rojo, una falda roja, unos zapatos rojos, unas botas rojas (azul, verde, gris, marrón ändern sich nur im Plural). Anziehen, ausziehen: se pone, se quita el abrigo."},
   regleDe:   {fr:"Après trägt, l'accusatif : einen roten Mantel, eine rote Jacke, ein rotes Kleid, rote Schuhe. Après ist, la couleur ne change pas : Der Mantel ist rot. Anziehen et ausziehen se coupent en deux : Er zieht den Mantel an.",
-              en:"After trägt, the accusative: einen roten Mantel, eine rote Jacke, ein rotes Kleid, rote Schuhe. After ist, the colour does not change: Der Mantel ist rot. Anziehen and ausziehen split in two: Er zieht den Mantel an.",
+              en:"After trägt, the accusative: einen roten Mantel, eine rote Jacke, ein rotes Kleid, rote Schuhe. After ist, the color does not change: Der Mantel ist rot. Anziehen and ausziehen split in two: Er zieht den Mantel an.",
               tr:"trägt'ten sonra -i hâli (Akkusativ): einen roten Mantel, eine rote Jacke, ein rotes Kleid, rote Schuhe. ist'ten sonra renk değişmez: Der Mantel ist rot. Anziehen ve ausziehen ikiye ayrılır: Er zieht den Mantel an.",
               uk:"Після trägt — знахідний відмінок: einen roten Mantel, eine rote Jacke, ein rotes Kleid, rote Schuhe. Після ist колір не змінюється: Der Mantel ist rot. Anziehen і ausziehen розпадаються на дві частини: Er zieht den Mantel an.",
               fa:"بعد از trägt حالت مفعولی (Akkusativ) می‌آید: einen roten Mantel، eine rote Jacke، ein rotes Kleid، rote Schuhe. بعد از ist رنگ تغییر نمی‌کند: Der Mantel ist rot. ‏anziehen و ausziehen دو تکه می‌شوند: Er zieht den Mantel an.",
@@ -174,9 +175,9 @@ const TEXTES = {
   commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   queLleva:  {fr:"Regarde la photo : que porte cette personne ?", en:"Look at the photo: what is this person wearing?", tr:"Fotoğrafa bak: bu kişi ne giyiyor?", uk:"Подивися на фото: у що вдягнена ця людина?", fa:"به عکس نگاه کن: این شخص چه پوشیده است؟", ar:"انظر إلى الصورة: ماذا يرتدي هذا الشخص؟", pt:"Olhe a foto: o que esta pessoa está usando?", pl:"Spójrz na zdjęcie: co ma na sobie ta osoba?", ru:"Посмотри на фото: во что одет этот человек?", de:"Sieh dir das Foto an: Was trägt diese Person?"},
   quien:     {fr:"Lis la question et touche la bonne personne.", en:"Read the question and tap the right person.", tr:"Soruyu oku ve doğru kişiye dokun.", uk:"Прочитай запитання й торкнися потрібної людини.", fa:"سؤال را بخوان و روی شخص درست بزن.", ar:"اقرأ السؤال والمس الشخص الصحيح.", pt:"Leia a pergunta e toque na pessoa certa.", pl:"Przeczytaj pytanie i dotknij właściwej osoby.", ru:"Прочитай вопрос и нажми на нужного человека.", de:"Lies die Frage und tippe auf die richtige Person."},
-  couleur:   {fr:"De quelle couleur est ce vêtement ?", en:"What colour is this piece of clothing?", tr:"Bu giysi ne renk?", uk:"Якого кольору ця річ?", fa:"این لباس چه رنگی است؟", ar:"ما لون قطعة الملابس هذه؟", pt:"De que cor é esta peça de roupa?", pl:"Jakiego koloru jest to ubranie?", ru:"Какого цвета эта вещь?", de:"Welche Farbe hat dieses Kleidungsstück?"},
-  accord:    {fr:"Choisis la bonne forme : la couleur s'accorde avec le vêtement.", en:"Choose the right form: the colour agrees with the piece of clothing.", tr:"Doğru biçimi seç: renk giysiye uyar.", uk:"Обери правильну форму: колір узгоджується з одягом.", fa:"شکل درست را انتخاب کن: رنگ با لباس هماهنگ می‌شود.", ar:"اختر الصيغة الصحيحة: يتوافق اللون مع قطعة الملابس.", pt:"Escolha a forma certa: a cor concorda com a peça de roupa.", pl:"Wybierz właściwą formę: kolor zgadza się z ubraniem.", ru:"Выбери правильную форму: цвет согласуется с одеждой.", de:"Wähle die richtige Form: Die Farbe richtet sich nach dem Kleidungsstück."},
-  endung:    {fr:"Choisis la bonne terminaison de la couleur.", en:"Choose the right ending for the colour.", tr:"Rengin doğru ekini seç.", uk:"Обери правильне закінчення кольору.", fa:"پایانهٔ درست رنگ را انتخاب کن.", ar:"اختر النهاية الصحيحة للون.", pt:"Escolha a terminação certa da cor.", pl:"Wybierz właściwą końcówkę koloru.", ru:"Выбери правильное окончание цвета.", de:"Wähle die richtige Endung der Farbe."},
+  couleur:   {fr:"De quelle couleur est ce vêtement ?", en:"What color is this piece of clothing?", tr:"Bu giysi ne renk?", uk:"Якого кольору ця річ?", fa:"این لباس چه رنگی است؟", ar:"ما لون قطعة الملابس هذه؟", pt:"De que cor é esta peça de roupa?", pl:"Jakiego koloru jest to ubranie?", ru:"Какого цвета эта вещь?", de:"Welche Farbe hat dieses Kleidungsstück?"},
+  accord:    {fr:"Choisis la bonne forme : la couleur s'accorde avec le vêtement.", en:"Choose the right form: the color agrees with the piece of clothing.", tr:"Doğru biçimi seç: renk giysiye uyar.", uk:"Обери правильну форму: колір узгоджується з одягом.", fa:"شکل درست را انتخاب کن: رنگ با لباس هماهنگ می‌شود.", ar:"اختر الصيغة الصحيحة: يتوافق اللون مع قطعة الملابس.", pt:"Escolha a forma certa: a cor concorda com a peça de roupa.", pl:"Wybierz właściwą formę: kolor zgadza się z ubraniem.", ru:"Выбери правильную форму: цвет согласуется с одеждой.", de:"Wähle die richtige Form: Die Farbe richtet sich nach dem Kleidungsstück."},
+  endung:    {fr:"Choisis la bonne terminaison de la couleur.", en:"Choose the right ending for the color.", tr:"Rengin doğru ekini seç.", uk:"Обери правильне закінчення кольору.", fa:"پایانهٔ درست رنگ را انتخاب کن.", ar:"اختر النهاية الصحيحة للون.", pt:"Escolha a terminação certa da cor.", pl:"Wybierz właściwą końcówkę koloru.", ru:"Выбери правильное окончание цвета.", de:"Wähle die richtige Endung der Farbe."},
   tiempo:    {fr:"Regarde la tenue : quel temps fait-il, ou où va la personne ?", en:"Look at the outfit: what is the weather like, or where is the person going?", tr:"Kıyafete bak: hava nasıl, ya da kişi nereye gidiyor?", uk:"Подивися на вбрання: яка погода або куди йде людина?", fa:"به لباس نگاه کن: هوا چطور است، یا این شخص کجا می‌رود؟", ar:"انظر إلى الملابس: كيف هو الطقس، أو إلى أين يذهب الشخص؟", pt:"Olhe a roupa: como está o tempo, ou aonde a pessoa vai?", pl:"Spójrz na strój: jaka jest pogoda albo dokąd idzie ta osoba?", ru:"Посмотри на одежду: какая погода или куда идёт человек?", de:"Sieh dir die Kleidung an: Wie ist das Wetter, oder wohin geht die Person?"},
   bienVestido:{fr:"Touche la personne habillée pour l'occasion.", en:"Tap the person dressed for the occasion.", tr:"Duruma uygun giyinmiş kişiye dokun.", uk:"Торкнися людини, вдягненої відповідно.", fa:"روی کسی بزن که مناسب موقعیت لباس پوشیده است.", ar:"المس الشخص الذي يرتدي ملابس مناسبة.", pt:"Toque na pessoa vestida para a ocasião.", pl:"Dotknij osoby ubranej odpowiednio do sytuacji.", ru:"Нажми на человека, одетого по случаю.", de:"Tippe auf die Person, die passend angezogen ist."},
   ponerQuitar:{fr:"On met ce vêtement, ou on l'enlève ?", en:"Is the piece of clothing being put on or taken off?", tr:"Bu giysi giyiliyor mu, çıkarılıyor mu?", uk:"Цю річ одягають чи знімають?", fa:"این لباس را می‌پوشد یا درمی‌آورد؟", ar:"هل يلبس قطعة الملابس هذه أم يخلعها؟", pt:"A peça de roupa é vestida ou tirada?", pl:"To ubranie się zakłada czy zdejmuje?", ru:"Эту вещь надевают или снимают?", de:"Wird das Kleidungsstück angezogen oder ausgezogen?"},
@@ -730,7 +731,7 @@ const motVerbe = v => ({k: "verbe", v, mot: VERBES[APPRENDRE][v], cat: "verbe"})
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -1228,7 +1229,7 @@ function motsDuTheme(){
 // jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
 // Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus_ = new Set(), sorteCourante = null, derniereSorte = null;
+let vus_ = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
@@ -1290,14 +1291,14 @@ function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("cli
 // « Encore des questions » : en fin de partie et quand tout est revu
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus_ = new Set(); derniereSorte = null;
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus_ = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus_ = new Set(); derniereSorte = null;
+  file = plan.file; rang = 0; bons = 0; vus_ = Tirage.vus(); derniereSorte = null;
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }

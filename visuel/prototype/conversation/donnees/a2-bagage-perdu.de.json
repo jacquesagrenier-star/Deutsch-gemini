@@ -1,0 +1,111 @@
+{
+ "id": "a2-bagage-perdu",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Ta valise n'est pas arrivée"},
+ "intro": {"fr": "Tu atterris à l'aéroport de Berlin, le BER, mais ta valise n'est pas sur le tapis. Au comptoir des bagages, tu expliques, tu décris ta valise et tu donnes une adresse pour la livraison."},
+ "personnes": ["gepaeck_agent"],
+ "debut": "schalter",
+ "textes": {
+  "farbe_fr": {"cle": "farbe", "schwarz": "noire", "rot": "rouge"},
+  "ort_fr": {"cle": "ort", "zuhause": "chez toi", "hotel": "à ton hôtel"}
+ },
+ "noeuds": {
+  "schalter": {
+   "dit": [
+    {"recit": {"fr": "Tu viens d'atterrir à l'aéroport BER. Le tapis à bagages s'arrête : ta valise n'est pas là. Tu vas au comptoir des bagages, la « Gepäckermittlung »."}},
+    {"qui": "gepaeck_agent", "air": "sourire", "t": "Guten Tag. Was kann ich für Sie tun?", "fr": "Bonjour. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Mein Koffer ist nicht angekommen.", "fr": "Bonjour. Ma valise n'est pas arrivée.", "va": "flug",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Oh, das tut mir leid. Das passiert leider manchmal.", "fr": "Oh, je suis désolé. Ça arrive parfois, malheureusement."}]},
+    {"t": "Guten Tag. Mein Koffer ist nicht da.", "fr": "Bonjour. Ma valise n'est pas là.", "va": "flug",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Oh, das tut mir leid. Wir suchen ihn.", "fr": "Oh, je suis désolé. Nous allons la chercher."}]},
+    {"faux": true, "t": "Guten Tag. Mein Koffer hat nicht angekommen.", "fr": "Bonjour. Ma valise n'est pas arrivée (avec « haben »).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Hat nicht …? Ach so, Ihr Koffer ist nicht angekommen.", "fr": "N'a pas… ? Ah, votre valise n'est pas arrivée."}],
+     "aide": {"fr": "<b>« ankommen » forme son passé avec « sein », comme « arriver » avec « être ».</b> « Mein Koffer ist nicht angekommen. » Les verbes de déplacement prennent « sein »."}}
+   ]
+  },
+  "flug": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Woher kommen Sie gerade? Und haben Sie Ihre Bordkarte noch?", "fr": "D'où arrivez-vous ? Et avez-vous encore votre carte d'embarquement ?"}],
+   "choix": [
+    {"t": "Aus Paris. Hier ist meine Bordkarte.", "fr": "De Paris. Voici ma carte d'embarquement.", "pose": {"flug": "paris"}, "va": "koffer",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Danke. Ah, gut, der Gepäckabschnitt klebt noch hinten drauf.", "fr": "Merci. Ah, très bien, le ticket du bagage est encore collé au dos."}]},
+    {"t": "Aus Montreal, über Frankfurt. Hier ist meine Bordkarte.", "fr": "De Montréal, via Francfort. Voici ma carte d'embarquement.", "pose": {"flug": "montreal"}, "va": "koffer",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Danke. Mit Umsteigen in Frankfurt … Dann ist der Koffer vielleicht noch dort.", "fr": "Merci. Avec une correspondance à Francfort… Alors la valise est peut-être encore là-bas."}]},
+    {"faux": true, "t": "Ich komme von Frankreich, von Paris.", "fr": "Je viens de France, de Paris (avec « von »).",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Aus Frankreich, aus Paris, ja? Und Ihre Bordkarte, bitte?", "fr": "De France, de Paris, c'est ça ? Et votre carte d'embarquement, s'il vous plaît ?"}],
+     "aide": {"fr": "<b>Pour dire de quel pays ou de quelle ville on vient : « aus ».</b> « Ich komme aus Frankreich, aus Paris. » « von » s'emploie pour une personne ou un lieu sans nom propre : « vom Arzt », « vom Bahnhof »."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "flug",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Natürlich. Aus welcher Stadt kommt Ihr Flug? Und zeigen Sie mir bitte Ihre Bordkarte.", "fr": "Bien sûr. De quelle ville vient votre vol ? Et montrez-moi votre carte d'embarquement, s'il vous plaît."}]}
+   ]
+  },
+  "koffer": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Wie sieht Ihr Koffer aus?", "fr": "À quoi ressemble votre valise ?"}],
+   "choix": [
+    {"t": "Er ist groß und schwarz, mit vier Rollen.", "fr": "Elle est grande et noire, avec quatre roulettes.", "pose": {"farbe": "schwarz"}, "va": "inhalt",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Groß, schwarz, mit Rollen … Davon gibt es viele, aber wir finden ihn.", "fr": "Grande, noire, à roulettes… Il y en a beaucoup, mais nous la trouverons."}]},
+    {"t": "Er ist rot und ziemlich groß, mit einem gelben Band.", "fr": "Elle est rouge et assez grande, avec un ruban jaune.", "pose": {"farbe": "rot"}, "va": "inhalt",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Rot, mit einem gelben Band … Sehr gut, den erkennt man sofort.", "fr": "Rouge, avec un ruban jaune… Très bien, on la reconnaît tout de suite."}]},
+    {"faux": true, "t": "Sie ist groß und schwarz, mit vier Rollen.", "fr": "« Elle » est grande et noire, avec quatre roulettes.",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Sie? Wer denn? Ach so, der Koffer! Er ist groß und schwarz.", "fr": "Elle ? Qui donc ? Ah, la valise ! Elle est grande et noire."}],
+     "aide": {"fr": "<b>« der Koffer » est masculin : on le reprend par « er ».</b> La valise est féminine en français, pas en allemand. « Er ist groß und schwarz. »"}}
+   ]
+  },
+  "inhalt": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Ist etwas Wichtiges im Koffer? Medikamente zum Beispiel?", "fr": "Y a-t-il quelque chose d'important dans la valise ? Des médicaments, par exemple ?"}],
+   "choix": [
+    {"t": "Nein, nur Kleidung und Schuhe.", "fr": "Non, seulement des vêtements et des chaussures.", "va": "adresse",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gut, dann ist es nicht so schlimm.", "fr": "Bien, alors ce n'est pas trop grave."}]},
+    {"t": "Ja, meine Medikamente sind im Koffer.", "fr": "Oui, mes médicaments sont dans la valise.", "va": "medikamente"}
+   ]
+  },
+  "medikamente": {
+   "dit": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Oh. Brauchen Sie die Medikamente heute noch?", "fr": "Oh. Avez-vous besoin de ces médicaments aujourd'hui même ?"}],
+   "choix": [
+    {"t": "Ja, heute Abend.", "fr": "Oui, ce soir.", "va": "adresse",
+     "puis": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Dann gehen Sie bitte gleich in die Apotheke hier im Terminal. Und ich schreibe „dringend“ auf das Formular.", "fr": "Alors allez tout de suite à la pharmacie, ici dans le terminal. Et j'écris « urgent » sur le formulaire."}]},
+    {"t": "Nein, erst morgen Abend.", "fr": "Non, seulement demain soir.", "va": "adresse",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gut. Ich schreibe trotzdem „dringend“ auf das Formular.", "fr": "Bien. J'écris quand même « urgent » sur le formulaire."}]},
+    {"faux": true, "t": "Ja, diesen Abend.", "fr": "Oui, « ce soir » (mot à mot).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Diesen Abend? Sie meinen: heute Abend?", "fr": "« Ce soir-ci » ? Vous voulez dire : aujourd'hui, ce soir ?"}],
+     "aide": {"fr": "<b>« ce soir » se dit « heute Abend ».</b> De même : « heute Morgen » (ce matin), « heute Nachmittag » (cet après-midi). « diesen Abend » ne s'emploie pas ainsi."}}
+   ]
+  },
+  "adresse": {
+   "dit": [{"qui": "gepaeck_agent", "air": "question", "t": "Wohin sollen wir den Koffer bringen?", "fr": "Où devons-nous livrer la valise ?"}],
+   "choix": [
+    {"t": "Zu mir nach Hause: Bergmannstraße zwölf, in Kreuzberg.", "fr": "Chez moi : douze Bergmannstraße, à Kreuzberg.", "pose": {"ort": "zuhause"}, "va": "handy",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Bergmannstraße zwölf … notiert.", "fr": "Douze Bergmannstraße… c'est noté."}]},
+    {"t": "In mein Hotel. Es heißt Hotel Spreeblick, am Alexanderplatz.", "fr": "À mon hôtel. Il s'appelle Hotel Spreeblick, sur l'Alexanderplatz.", "pose": {"ort": "hotel"}, "va": "handy",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Gut. Dann geben wir den Koffer an der Rezeption ab.", "fr": "Bien. Alors nous déposerons la valise à la réception."}]},
+    {"faux": true, "t": "Nach mein Hotel, am Alexanderplatz.", "fr": "« Vers » mon hôtel, sur l'Alexanderplatz (avec « nach »).",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Nach …? Ach so, in Ihr Hotel! Und wie heißt es?", "fr": "« Nach »… ? Ah, à votre hôtel ! Et comment s'appelle-t-il ?"}],
+     "aide": {"fr": "<b>« nach » ne va qu'avec les villes, les pays et « nach Hause ».</b> Pour un bâtiment : « in mein Hotel » ; chez soi : « zu mir nach Hause »."}}
+   ]
+  },
+  "handy": {
+   "dit": [{"qui": "gepaeck_agent", "air": "attentive", "t": "Wahrscheinlich kommt der Koffer morgen. Der Fahrer ruft Sie vorher an. Wie ist Ihre Handynummer?", "fr": "La valise arrivera sans doute demain. Le chauffeur vous appellera avant. Quel est votre numéro de portable ?"}],
+   "choix": [
+    {"t": "Null eins fünf eins, sieben drei drei, zwei null acht.", "fr": "Zéro un cinq un, sept trois trois, deux zéro huit.", "va": "ende"},
+    {"t": "Ich habe eine französische Nummer. Geht das auch?", "fr": "J'ai un numéro français. Ça marche aussi ?", "va": "ende",
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Ja, kein Problem. Schreiben Sie die Nummer bitte hier auf.", "fr": "Oui, pas de problème. Écrivez le numéro ici, s'il vous plaît."}]}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "gepaeck_agent", "air": "sourire", "t": "So, hier ist Ihre Kopie mit der Nummer. Haben Sie noch eine Frage?", "fr": "Voilà, votre copie avec le numéro du dossier. Avez-vous encore une question ?"}],
+   "choix": [
+    {"t": "Ja. Ich brauche eine Zahnbürste und Kleidung. Bekomme ich das Geld zurück?", "fr": "Oui. J'ai besoin d'une brosse à dents et de vêtements. Est-ce qu'on me rembourse ?", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Ja, für die wichtigsten Sachen. Heben Sie bitte alle Kassenzettel auf. Einen schönen Abend noch!", "fr": "Oui, pour les choses les plus nécessaires. Gardez bien tous les tickets de caisse. Bonne soirée !"}]},
+    {"t": "Nein, danke. Hoffentlich kommt der Koffer morgen!", "fr": "Non, merci. J'espère que la valise arrivera demain !", "va": null,
+     "puis": [{"qui": "gepaeck_agent", "air": "sourire", "t": "Bestimmt. Und wenn Sie etwas kaufen müssen: Heben Sie bitte die Kassenzettel auf. Schönen Abend noch!", "fr": "Sûrement. Et si vous devez acheter quelque chose : gardez bien les tickets de caisse. Bonne soirée !"}]},
+    {"faux": true, "t": "Ja. Kann ich kaufen eine Zahnbürste und Kleidung?", "fr": "Oui. Je peux acheter une brosse à dents et des vêtements ? (infinitif juste après « kann ich »)",
+     "puis": [{"qui": "gepaeck_agent", "air": "perplexe", "t": "Wie bitte? Ach so, ob Sie eine Zahnbürste kaufen können! Ja, natürlich.", "fr": "Pardon ? Ah, si vous pouvez acheter une brosse à dents ! Oui, bien sûr."}],
+     "aide": {"fr": "<b>Avec « können », l'infinitif va à la fin de la phrase.</b> « Kann ich eine Zahnbürste und Kleidung kaufen? » : « kann » au début, « kaufen » tout au bout."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé la perte de ta valise {farbe_fr} et donné une adresse : elle sera livrée {ort_fr}, sans doute demain. Garde tes tickets de caisse !"}
+}

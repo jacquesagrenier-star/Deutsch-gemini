@@ -844,10 +844,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     50.3,
-     40.7,
-     11.5,
-     2.8
+     49.8,
+     39.9,
+     12.0,
+     3.7
     ]
    ],
    "fr": "les ciseaux",
@@ -1003,7 +1003,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1954,7 +1954,7 @@ window.SCENE = {
     "C1 | Debe de estar contenta con el corte.": "She must be happy with the cut.",
     "C1 | Puede que la señora sea la próxima clienta.": "The lady may be the next customer.",
     "C1 | El abrigo y la bufanda serán de Anna.": "The coat and the scarf are probably Anna's.",
-    "C1 | Dicen que este peluquero es el mejor del barrio.": "They say this hairdresser is the best in the neighbourhood."
+    "C1 | Dicen que este peluquero es el mejor del barrio.": "They say this hairdresser is the best in the neighborhood."
    }
   },
   "tr": {

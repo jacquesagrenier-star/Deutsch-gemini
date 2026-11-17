@@ -61,8 +61,8 @@ import os
 import re
 import sys
 
-LANGUES_CIBLES = ["en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
-LANGUES_CONNUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]
+LANGUES_CIBLES = ["en", "tr", "uk", "fa", "pt", "ar", "pl", "ru", "es"]
+LANGUES_CONNUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru", "es"]
 FICHIERS_JSON = ["exercices.json", "pruefung.json", "grammaire.json",
                  "themes.json", "verbe.json", "adjectif.json", "adverbe.json",
                  "redewendung.json", "funktionswort.json", "prononciation.json"]

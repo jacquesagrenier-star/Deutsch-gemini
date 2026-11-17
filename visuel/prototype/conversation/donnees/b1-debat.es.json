@@ -1,0 +1,126 @@
+{
+ "id": "b1-debat",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Donner son avis : un portable à l'école primaire ?"},
+ "intro": {"fr": "Au cours d'espagnol, la prof vous fait discuter à deux, comme à l'oral d'un examen. Le sujet du jour : « ¿Un móvil para niños de primaria? »"},
+ "bilan": {"fr": "Tu as défendu ton avis en espagnol : prendre position, répondre à un argument, parler de ton pays, céder ou tenir bon, puis résumer à deux."},
+ "personnes": ["b11_camarade"],
+ "debut": "tema",
+ "noeuds": {
+  "tema": {
+   "dit": [
+    {"recit": {"fr": "La prof écrit le sujet au tableau : « ¿Un móvil para niños de primaria? » Vous avez cinq minutes, à deux. Ta camarade se tourne vers toi."}},
+    {"qui": "b11_camarade", "air": "question", "t": "Bueno, nos toca. ¿Tú qué opinas? ¿Un niño de primaria necesita un móvil?", "fr": "Bon, c'est à nous. Tu en penses quoi, toi ? Un enfant de primaire a besoin d'un portable ?"}
+   ],
+   "choix": [
+    {"t": "Yo creo que sí, porque así los padres pueden llamarlo en cualquier momento.", "fr": "Moi, je crois que oui, parce que comme ça les parents peuvent l'appeler à tout moment.", "pose": {"opinion": "favor"}, "va": "replica"},
+    {"t": "Yo creo que no. Me parece que a esa edad es demasiado pronto.", "fr": "Moi, je crois que non. Il me semble qu'à cet âge, c'est trop tôt.", "pose": {"opinion": "contra"}, "va": "replica"},
+    {"t": "Depende. Para mí, lo importante es para qué lo usa.", "fr": "Ça dépend. Pour moi, l'important, c'est à quoi il lui sert.", "pose": {"opinion": "depende"}, "va": "replica"},
+    {"faux": true, "t": "Pienso que sea demasiado pronto.", "fr": "Je pense que ce soit trop tôt.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Piensas que ES demasiado pronto, ¿no? Si nos oye la profe…", "fr": "Tu penses que c'EST trop tôt, non ? Si la prof nous entend…"}],
+     "aide": {"fr": "Après « pienso que » ou « creo que » à la forme affirmative, l'espagnol met l'<b>indicatif</b>, comme le français : « Pienso que es demasiado pronto ». Le subjonctif ne vient qu'avec « no creo que »."}}
+   ]
+  },
+  "replica": {
+   "dit": [
+    {"si": {"opinion": "favor"}, "qui": "b11_camarade", "air": "perplexe", "t": "Pues yo no lo veo tan claro. Con un móvil, los niños ya no juegan en la calle ni hablan entre ellos. ¿No te parece?", "fr": "Eh bien moi, je n'en suis pas si sûre. Avec un portable, les enfants ne jouent plus dehors et ne se parlent plus. Tu ne trouves pas ?"},
+    {"si": {"opinion": "contra"}, "qui": "b11_camarade", "air": "perplexe", "t": "¿Tú crees? Yo pienso que con un móvil los padres están más tranquilos, por ejemplo cuando el niño vuelve solo del colegio. ¿No te parece?", "fr": "Tu crois ? Moi, je pense qu'avec un portable les parents sont plus tranquilles, par exemple quand l'enfant rentre seul de l'école. Tu ne trouves pas ?"},
+    {"si": {"opinion": "depende"}, "qui": "b11_camarade", "air": "perplexe", "t": "Ya, pero eso es muy difícil de controlar. Al final, todos acaban viendo vídeos durante horas. ¿No te parece?", "fr": "Oui, mais c'est très difficile à contrôler. À la fin, ils finissent tous par regarder des vidéos pendant des heures. Tu ne trouves pas ?"}
+   ],
+   "choix": [
+    {"si": {"opinion": "favor"}, "t": "Tienes razón en parte, pero los padres pueden poner límites de tiempo.", "fr": "Tu as raison en partie, mais les parents peuvent fixer des limites de temps.", "va": "pais",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Vale, visto así… Si hay límites, es otra cosa.", "fr": "D'accord, vu comme ça… S'il y a des limites, c'est autre chose."}]},
+    {"si": {"opinion": "contra"}, "t": "Puede ser, pero para llamar basta con un teléfono sencillo, sin internet.", "fr": "Peut-être, mais pour appeler, un téléphone simple, sans internet, suffit.", "va": "pais",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Vale, visto así… En eso no había pensado.", "fr": "D'accord, vu comme ça… Je n'y avais pas pensé."}]},
+    {"si": {"opinion": "depende"}, "t": "Por eso creo que los padres tienen que poner normas claras.", "fr": "C'est pour ça que je crois que les parents doivent fixer des règles claires.", "va": "pais",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Vale, visto así… Con normas, es otra cosa.", "fr": "D'accord, vu comme ça… Avec des règles, c'est autre chose."}]},
+    {"t": "Entiendo lo que dices, pero no estoy del todo de acuerdo.", "fr": "Je comprends ce que tu dis, mais je ne suis pas tout à fait d'accord.", "va": "pais",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "¡Mejor! Si pensamos igual, no hay debate.", "fr": "Tant mieux ! Si nous pensons pareil, il n'y a pas de débat."}]},
+    {"faux": true, "t": "No creo que tienes razón.", "fr": "Je ne crois pas que tu as raison.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "¿No crees que tenga razón? Pues explícame por qué.", "fr": "Tu ne crois pas que j'aie raison ? Eh bien, explique-moi pourquoi."}],
+     "aide": {"fr": "Après <b>« no creo que »</b>, l'espagnol veut le subjonctif : « No creo que tengas razón ». Plus aimable : « Entiendo lo que dices, pero no estoy del todo de acuerdo »."}}
+   ]
+  },
+  "pais": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "¿Y en tu país cómo es? ¿Los niños tienen móvil muy pronto?", "fr": "Et dans ton pays, c'est comment ? Les enfants ont un portable très tôt ?"}],
+   "choix": [
+    {"t": "En mi país, muchos niños reciben su primer móvil a los once años.", "fr": "Dans mon pays, beaucoup d'enfants reçoivent leur premier portable à onze ans.", "va": "edad",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "¡Anda, más o menos como aquí!", "fr": "Tiens, à peu près comme ici !"}]},
+    {"t": "En mi país, los móviles están prohibidos en los colegios.", "fr": "Dans mon pays, les portables sont interdits dans les écoles.", "va": "colegio"},
+    {"faux": true, "t": "En mi país, los niños tienen un móvil a diez años.", "fr": "Dans mon pays, les enfants ont un portable à dix ans.",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "¿A los diez años? ¡Qué pronto!", "fr": "À dix ans ? Que c'est tôt !"}],
+     "aide": {"fr": "L'âge prend l'article : <b>« a los diez años »</b>. Dis plutôt : « Muchos niños reciben su primer móvil a los once años »."}}
+   ]
+  },
+  "colegio": {
+   "dit": [{"qui": "b11_camarade", "air": "surprise", "t": "¿En serio? ¿Y a ti te parece bien que estén prohibidos?", "fr": "Sérieusement ? Et toi, tu trouves ça bien qu'ils soient interdits ?"}],
+   "choix": [
+    {"t": "Sí, me parece bien, porque así los niños se concentran mejor en clase.", "fr": "Oui, je trouve ça bien, parce que comme ça les enfants se concentrent mieux en classe.", "va": "edad",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Interesante… Aquí en España también se habla mucho de eso.", "fr": "Intéressant… Ici, en Espagne, on en parle beaucoup aussi."}]},
+    {"t": "No del todo: es mejor que aprendan a usarlo bien.", "fr": "Pas tout à fait : il vaut mieux qu'ils apprennent à bien s'en servir.", "va": "edad",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Interesante… Aquí en España también se habla mucho de eso.", "fr": "Intéressant… Ici, en Espagne, on en parle beaucoup aussi."}]},
+    {"faux": true, "t": "Sí, me parece bien que están prohibidos.", "fr": "Oui, je trouve bien qu'ils sont interdits.",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Te parece bien que estén prohibidos, vale. ¿Y por qué?", "fr": "Tu trouves bien qu'ils soient interdits, d'accord. Et pourquoi ?"}],
+     "aide": {"fr": "Après un jugement comme <b>« me parece bien que »</b>, il faut le subjonctif : « que estén prohibidos ». Plus simple : « Sí, me parece bien, porque… »."}}
+   ]
+  },
+  "edad": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "Entonces, según tú, ¿a partir de qué edad?", "fr": "Alors, d'après toi, à partir de quel âge ?"}],
+   "choix": [
+    {"t": "Para mí, a partir de los doce años, cuando empiezan el instituto.", "fr": "Pour moi, à partir de douze ans, quand ils entrent au collège.", "va": "desacuerdo"},
+    {"t": "Yo diría que a los diez años, pero sin redes sociales.", "fr": "Je dirais à dix ans, mais sans réseaux sociaux.", "va": "desacuerdo"},
+    {"faux": true, "t": "Según yo, a los doce años.", "fr": "Selon moi, à douze ans.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "«Según yo» no se dice… Para ti, a los doce, ¿no?", "fr": "« Según yo », ça ne se dit pas… Pour toi, à douze ans, c'est ça ?"}],
+     "aide": {"fr": "On dit « según tú », « según él », mais pas <b>« según yo »</b>. Pour donner son avis : « para mí », « en mi opinión ». Dis plutôt : « Para mí, a partir de los doce años »."}}
+   ]
+  },
+  "desacuerdo": {
+   "dit": [{"qui": "b11_camarade", "air": "perplexe", "t": "Mmm, no sé. A mí me sigue pareciendo muy pronto: yo esperaría hasta los catorce.", "fr": "Hum, je ne sais pas. Ça me paraît toujours très tôt : moi, j'attendrais jusqu'à quatorze ans."}],
+   "choix": [
+    {"t": "Puede que tengas razón: quizá sea mejor esperar un poco más.", "fr": "Tu as peut-être raison : il vaut peut-être mieux attendre un peu plus.", "va": "solucion"},
+    {"t": "Lo entiendo, pero sigo pensando que catorce años es demasiado tarde.", "fr": "Je comprends, mais je continue de penser que quatorze ans, c'est trop tard.", "va": "ejemplo"},
+    {"faux": true, "t": "Tú has razón, pero catorce años es tarde.", "fr": "Tu as raison, mais quatorze ans, c'est tard.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "¿Que tengo razón? ¡Gracias! Pero entonces, ¿en qué quedamos?", "fr": "J'ai raison ? Merci ! Mais alors, qu'est-ce qu'on décide ?"}],
+     "aide": {"fr": "« Avoir raison » se dit <b>« tener razón »</b> : « tienes razón », jamais « has razón » (« haber » ne sert qu'aux temps composés)."}}
+   ]
+  },
+  "solucion": {
+   "dit": [{"qui": "b11_camarade", "air": "sourire", "t": "¡Mira, al final nos acercamos! ¿Y qué harías tú mientras tanto, si el niño vuelve solo a casa?", "fr": "Tu vois, finalement on se rapproche ! Et toi, tu ferais quoi en attendant, si l'enfant rentre seul à la maison ?"}],
+   "choix": [
+    {"t": "Le daría un teléfono sencillo, solo para llamar.", "fr": "Je lui donnerais un téléphone simple, juste pour appeler.", "va": "resumen",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Eso me parece muy buena solución.", "fr": "Ça me paraît une très bonne solution."}]},
+    {"t": "Le compraría un reloj con teléfono, que no tiene internet.", "fr": "Je lui achèterais une montre-téléphone, qui n'a pas internet.", "va": "resumen",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "¡Anda, buena idea! No lo había pensado.", "fr": "Tiens, bonne idée ! Je n'y avais pas pensé."}]},
+    {"faux": true, "t": "Si sería necesario, le daría un teléfono sencillo.", "fr": "Si ce serait nécessaire, je lui donnerais un téléphone simple.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Si FUERA necesario… Esa la sé porque la profe me la corrige siempre.", "fr": "Si c'ÉTAIT nécessaire… Celle-là, je la connais : la prof me la corrige toujours."}],
+     "aide": {"fr": "Comme en français, jamais de conditionnel après <b>« si »</b> : on dit « si fuera necesario ». Plus simple : « Le daría un teléfono sencillo, solo para llamar »."}}
+   ]
+  },
+  "ejemplo": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "¿Por qué tarde? Dame un ejemplo.", "fr": "Pourquoi tard ? Donne-moi un exemple."}],
+   "choix": [
+    {"t": "Porque a los doce ya van solos al instituto y quedan con sus amigos por mensaje.", "fr": "Parce qu'à douze ans, ils vont déjà seuls au collège et ils se donnent rendez-vous par message avec leurs amis.", "va": "resumen",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Vale, en eso tienes razón.", "fr": "D'accord, là-dessus tu as raison."}]},
+    {"t": "Porque si todos sus amigos tienen móvil, el niño se queda fuera del grupo.", "fr": "Parce que si tous ses amis ont un portable, l'enfant se retrouve exclu du groupe.", "va": "resumen",
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Vale, en eso tienes razón: nadie quiere quedarse fuera.", "fr": "D'accord, là-dessus tu as raison : personne ne veut rester à l'écart."}]},
+    {"faux": true, "t": "Porque a esa edad es importante de tener un móvil.", "fr": "Parce qu'à cet âge, c'est important d'avoir un portable.",
+     "puis": [{"qui": "b11_camarade", "air": "question", "t": "¿Es importante tenerlo? ¿Por qué? Dame un ejemplo concreto.", "fr": "C'est important d'en avoir un ? Pourquoi ? Donne-moi un exemple concret."}],
+     "aide": {"fr": "Après « es importante », l'infinitif vient <b>sans « de »</b> : « es importante tener un móvil ». Et donne un vrai exemple : « Porque a los doce ya van solos al instituto »."}}
+   ]
+  },
+  "resumen": {
+   "dit": [{"qui": "b11_camarade", "air": "question", "t": "Uy, la profe nos está mirando: hay que terminar. ¿Cómo lo resumimos?", "fr": "Oh, la prof nous regarde : il faut conclure. On résume comment ?"}],
+   "choix": [
+    {"t": "Estamos de acuerdo en que los padres tienen que poner normas.", "fr": "Nous sommes d'accord sur le fait que les parents doivent fixer des règles.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "¡Perfecto! Y que cada familia decida la edad. Creo que nos ha salido muy bien.", "fr": "Parfait ! Et que chaque famille décide de l'âge. Je crois qu'on s'en est très bien sortis."}]},
+    {"t": "En una cosa pensamos lo mismo: un móvil sí, pero con límites.", "fr": "Sur un point, nous pensons la même chose : un portable, oui, mais avec des limites.", "va": null,
+     "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "¡Eso es! Y que cada familia decida la edad. Creo que nos ha salido muy bien.", "fr": "C'est ça ! Et que chaque famille décide de l'âge. Je crois qu'on s'en est très bien sortis."}]},
+    {"faux": true, "t": "Estamos de acuerdo que los padres deben poner normas.", "fr": "Nous sommes d'accord que les parents doivent fixer des règles.",
+     "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "De acuerdo EN que… Casi, casi. ¡Otra vez, que nos escucha la profe!", "fr": "D'accord « EN que »… Presque. Encore une fois, la prof nous écoute !"}],
+     "aide": {"fr": "On est d'accord <b>« en que »</b> + phrase (ou « con » + nom) : « Estamos de acuerdo en que los padres tienen que poner normas »."}}
+   ]
+  }
+ }
+}

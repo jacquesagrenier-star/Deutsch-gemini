@@ -524,7 +524,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -887,13 +887,13 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "le poste",
-   "en": "the position",
-   "pt": "o cargo, a vaga",
-   "ar": "وظيفة، منصب",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "de": "die Stelle (Arbeitsplatz)",
+   "fr": "le stand",
+   "en": "the stall",
+   "pt": "a barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "de": "der Stand",
    "latam": null
   },
   {
@@ -915,13 +915,13 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "le poste",
-   "en": "the position",
-   "pt": "o cargo, a vaga",
-   "ar": "وظيفة، منصب",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "de": "die Stelle (Arbeitsplatz)",
+   "fr": "le stand",
+   "en": "the stall",
+   "pt": "a barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "de": "der Stand",
    "latam": null
   },
   {
@@ -937,10 +937,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     80,
-     46,
-     20,
-     7.5
+     85.2,
+     48.4,
+     8.8,
+     3.3
     ]
    ],
    "fr": "le bretzel",
@@ -965,10 +965,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     76,
-     55,
-     24,
-     6
+     81.0,
+     39.2,
+     19.0,
+     3.8
     ]
    ],
    "fr": "le bretzel",
@@ -1353,7 +1353,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",

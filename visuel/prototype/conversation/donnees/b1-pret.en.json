@@ -1,0 +1,149 @@
+{
+ "id": "b1-pret",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Demander un prêt à la banque"},
+ "intro": {"fr": "Tu as trouvé un nouvel appartement à Boston. Pour la caution et les meubles, il te faut un petit prêt : tu as rendez-vous avec la conseillère de ta banque, à Cambridge."},
+ "personnes": ["bankberaterin"],
+ "debut": "purpose",
+ "textes": {
+  "duree_fr": {"cle": "duree", "court": "vingt-quatre mois, environ 138 $ par mois", "long": "quarante-huit mois, environ 75 $ par mois"},
+  "carte_fr": {"cle": "carte", "oui": ", avec une carte de crédit garantie pour bâtir ton historique de crédit"},
+  "docs_fr": {"cle": "docs", "ici": "Tu avais tous tes documents : la demande est déposée, réponse sous trois jours ouvrables", "envoi": "Tu envoies tes fiches de paie ce soir, et la demande partira dès leur réception"}
+ },
+ "noeuds": {
+  "purpose": {
+   "dit": [
+    {"recit": {"fr": "L'agence de ta banque, près de Harvard Square. La conseillère te fait signe d'entrer dans son bureau."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Good afternoon, have a seat. How can I help you today?", "fr": "Bonjour, asseyez-vous. Que puis-je faire pour vous aujourd'hui ?"}
+   ],
+   "choix": [
+    {"t": "Good afternoon. I'd like to apply for a personal loan.", "fr": "Bonjour. J'aimerais demander un prêt personnel.", "va": "why"},
+    {"t": "Hello. I need to borrow some money for a new apartment.", "t_gb": "Hello. I need to borrow some money for a new flat.", "fr": "Bonjour. J'ai besoin d'emprunter de l'argent pour un nouvel appartement.", "va": "why"},
+    {"faux": true, "t": "Hello. Can you borrow me five thousand dollars?", "fr": "Bonjour. Pouvez-vous me prêter cinq mille dollars ?",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "Borrow you … ? I'm afraid the bank doesn't borrow from its customers. But maybe we can lend you some money.", "fr": "Vous emprunter… ? La banque n'emprunte pas à ses clients, je le crains. Mais nous pouvons peut-être vous prêter de l'argent."}],
+     "aide": {"fr": "<b>« borrow » = emprunter ; « lend » = prêter.</b> « Can you lend me five thousand dollars? » — ou, à la banque : « I'd like to apply for a loan. »"}},
+    {"faux": true, "t": "Hello. I would like to ask a credit.", "fr": "Bonjour. Je voudrais demander un crédit.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "A credit? Do you mean a refund on your account, or a loan?", "fr": "Un « credit » ? Vous voulez dire un remboursement sur votre compte, ou un prêt ?"}],
+     "aide": {"fr": "<b>Un crédit (de l'argent prêté) = « a loan » :</b> « I'd like to apply for a loan. » « A credit », c'est une somme portée à ton compte."}}
+   ]
+  },
+  "why": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Of course. What is the loan for, and how much do you need?", "fr": "Bien sûr. À quoi servira le prêt, et de combien avez-vous besoin ?"}
+   ],
+   "choix": [
+    {"t": "About five thousand dollars, for the security deposit and some furniture.", "fr": "Environ cinq mille dollars, pour la caution et quelques meubles.", "va": "job"},
+    {"t": "Five thousand dollars. I've found an apartment, and I have to pay the first and last month's rent, plus a deposit.", "t_gb": "Five thousand dollars. I've found a flat, and I have to pay the first and last month's rent, plus a deposit.", "fr": "Cinq mille dollars. J'ai trouvé un appartement, et je dois payer le premier et le dernier mois de loyer, plus une caution.", "va": "job",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ah yes: first, last and security. Welcome to Boston!", "fr": "Ah oui : premier mois, dernier mois et caution. Bienvenue à Boston !"}]},
+    {"faux": true, "t": "Five thousand dollars, for the caution of my apartment.", "fr": "Cinq mille dollars, pour la caution de mon appartement.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "The caution? Is the apartment dangerous? Oh, the security deposit!", "fr": "La « caution » ? L'appartement est dangereux ? Ah, le dépôt de garantie !"}],
+     "aide": {"fr": "<b>La caution d'un logement = « the security deposit » (ou « the deposit »).</b> « Caution », en anglais, c'est la prudence."}}
+   ]
+  },
+  "job": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "I see. Do you have a full-time job? And how long have you been working there?", "fr": "Je vois. Avez-vous un emploi à temps plein ? Et depuis combien de temps y travaillez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I work full-time at a restaurant. I've been there for eight months.", "fr": "Oui, je travaille à temps plein dans un restaurant. J'y suis depuis huit mois.", "va": "income"},
+    {"t": "Yes. I've worked full-time at a restaurant in Cambridge since March.", "fr": "Oui. Je travaille à temps plein dans un restaurant de Cambridge depuis mars.", "va": "income"},
+    {"faux": true, "t": "Yes, I work there since eight months.", "fr": "Oui, j'y travaille depuis huit mois.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Since … eight months? You mean you've worked there for eight months?", "fr": "Depuis… huit mois ? Vous voulez dire que vous y travaillez depuis huit mois ?"}],
+     "aide": {"fr": "<b>« depuis huit mois » = present perfect + « for » :</b> « I've worked there for eight months. » « Since » va avec un point de départ : « since March »."}},
+    {"repete": true, "t": "I'm sorry, could you repeat the question, please?", "fr": "Pardon, pourriez-vous répéter la question, s'il vous plaît ?", "va": "job",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Of course. Do you work full-time? And when did you start that job?", "fr": "Bien sûr. Travaillez-vous à temps plein ? Et quand avez-vous commencé cet emploi ?"}]}
+   ]
+  },
+  "income": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Good. And what is your monthly income, after taxes?", "t_gb": "Good. And what is your monthly income, after tax?", "fr": "Bien. Et quel est votre revenu mensuel, après impôts ?"}
+   ],
+   "choix": [
+    {"t": "I earn about three thousand dollars a month after taxes.", "t_gb": "I earn about three thousand dollars a month after tax.", "fr": "Je gagne environ trois mille dollars par mois après impôts.", "va": "history"},
+    {"t": "Around three thousand dollars a month. I can show you my pay stubs.", "t_gb": "Around three thousand dollars a month. I can show you my payslips.", "fr": "Autour de trois mille dollars par mois. Je peux vous montrer mes fiches de paie.", "va": "history"},
+    {"faux": true, "t": "I win three thousand dollars by month.", "fr": "Je gagne trois mille dollars par mois.",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "You win it? In the lottery, every month? Lucky you! Or do you earn it?", "fr": "Vous les gagnez ? À la loterie, tous les mois ? Quelle chance ! Ou c'est votre salaire ?"}],
+     "aide": {"fr": "<b>Gagner un salaire = « earn » (ou « make ») ; « win », c'est gagner un jeu ou un prix.</b> Et « par mois » = « a month » : « I earn three thousand dollars a month. »"}}
+   ]
+  },
+  "history": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "Thank you. Now, I've checked, and you don't have any credit history in the United States yet. That's normal for someone who arrived recently, but it makes a loan of $5,000 difficult.", "dit": "Thank you. Now, I've checked, and you don't have any credit history in the United States yet. That's normal for someone who arrived recently, but it makes a loan of five thousand dollars difficult.", "fr": "Merci. Alors, j'ai vérifié : vous n'avez pas encore d'historique de crédit aux États-Unis. C'est normal quand on vient d'arriver, mais cela rend un prêt de 5 000 $ difficile."},
+    {"qui": "bankberaterin", "air": "sourire", "t": "I can offer you two things: a smaller loan of $3,000, or a secured credit card to build your credit first.", "dit": "I can offer you two things: a smaller loan of three thousand dollars, or a secured credit card to build your credit first.", "fr": "Je peux vous proposer deux choses : un prêt plus petit, de 3 000 $, ou une carte de crédit garantie pour bâtir d'abord votre crédit."}
+   ],
+   "choix": [
+    {"t": "I'd prefer the smaller loan. I can use my savings for the rest.", "fr": "Je préférerais le prêt plus petit. Je peux utiliser mes économies pour le reste.", "va": "term",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "That sounds sensible.", "fr": "Cela me paraît raisonnable."}]},
+    {"t": "What is a secured credit card, exactly?", "fr": "Qu'est-ce qu'une carte de crédit garantie, exactement ?", "va": "card"},
+    {"faux": true, "t": "I prefer the little loan. I will complete with my economies.", "fr": "Je préfère le petit prêt. Je compléterai avec mes économies.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Your … economies? How many economies do you have? Oh, your savings!", "fr": "Vos… économies nationales ? Vous en avez combien ? Ah, votre épargne !"}],
+     "aide": {"fr": "<b>Les économies (l'argent mis de côté) = « savings » :</b> « I can use my savings for the rest. » « An economy », c'est l'économie d'un pays."}}
+   ]
+  },
+  "card": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "You give the bank a deposit, for example $500, and that becomes your credit limit. If the card is paid on time every month, you build a credit history. After a year, a bigger loan is much easier.", "dit": "You give the bank a deposit, for example five hundred dollars, and that becomes your credit limit. If the card is paid on time every month, you build a credit history. After a year, a bigger loan is much easier.", "fr": "Vous versez un dépôt à la banque, par exemple 500 $, et il devient votre limite de crédit. Si la carte est payée à temps chaque mois, vous bâtissez un historique de crédit. Au bout d'un an, un prêt plus important est bien plus facile."}
+   ],
+   "choix": [
+    {"t": "I understand. But I need the money now, so I'll take the smaller loan.", "fr": "Je comprends. Mais j'ai besoin de l'argent maintenant, donc je prendrai le prêt plus petit.", "va": "term",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Of course. You can always get the card later.", "fr": "Bien sûr. Vous pourrez toujours prendre la carte plus tard."}]},
+    {"t": "That's useful. Could I have the card as well as the smaller loan?", "fr": "C'est utile. Pourrais-je avoir la carte en plus du prêt plus petit ?", "pose": {"carte": "oui"}, "va": "term",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Yes, and it's a smart idea: the card builds your credit while the loan is being repaid.", "fr": "Oui, et c'est une bonne idée : la carte bâtit votre crédit pendant que le prêt se rembourse."}]}
+   ]
+  },
+  "term": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "So: $3,000 at 9.5% interest. It can be repaid over 24 months, which is about $138 a month, or over 48 months, about $75 a month. With the longer term, you pay more interest in total.", "dit": "So: three thousand dollars at nine point five percent interest. It can be repaid over twenty-four months, which is about one hundred thirty-eight dollars a month, or over forty-eight months, about seventy-five dollars a month. With the longer term, you pay more interest in total.", "dit_gb": "So: three thousand dollars at nine point five per cent interest. It can be repaid over twenty-four months, which is about one hundred and thirty-eight dollars a month, or over forty-eight months, about seventy-five dollars a month. With the longer term, you pay more interest in total.", "fr": "Donc : 3 000 $ à 9,5 % d'intérêt. Il peut se rembourser sur 24 mois, soit environ 138 $ par mois, ou sur 48 mois, environ 75 $ par mois. Sur la durée longue, vous payez plus d'intérêts au total."}
+   ],
+   "choix": [
+    {"t": "I'll take twenty-four months. I'd rather pay it back quickly.", "fr": "Je prendrai vingt-quatre mois. J'aime mieux rembourser vite.", "pose": {"duree": "court"}, "va": "docs",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Twenty-four months it is.", "fr": "Va pour vingt-quatre mois."}]},
+    {"t": "Forty-eight months, please. A lower payment is safer for me.", "fr": "Quarante-huit mois, s'il vous plaît. Une mensualité plus basse est plus sûre pour moi.", "pose": {"duree": "long"}, "va": "docs",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Forty-eight months, then. And you can always pay it off early, without a fee.", "fr": "Quarante-huit mois, alors. Et vous pouvez toujours rembourser plus tôt, sans frais."}]},
+    {"faux": true, "t": "I take twenty-four months, for reimburse quickly.", "fr": "Je prends vingt-quatre mois, pour rembourser vite.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "For … ? To pay it back quickly, you mean?", "fr": "Pour… ? Pour le rembourser vite, vous voulez dire ?"}],
+     "aide": {"fr": "<b>Le but se dit « to » + verbe, jamais « for » + verbe,</b> et rembourser un prêt = « pay back » ou « repay » : « I'll take twenty-four months, to pay it back quickly. »"}}
+   ]
+  },
+  "docs": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "For the application, I'll need a photo ID, your two most recent pay stubs, and your new lease. Do you have them with you?", "t_gb": "For the application, I'll need a photo ID, your two most recent payslips, and your new tenancy agreement. Do you have them with you?", "fr": "Pour la demande, il me faut une pièce d'identité avec photo, vos deux dernières fiches de paie et votre nouveau bail. Vous les avez avec vous ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I have everything here in my bag.", "fr": "Oui, j'ai tout ici dans mon sac.", "pose": {"docs": "ici"}, "va": "sign"},
+    {"t": "I have my ID and the lease, but I'll have to send you the pay stubs.", "t_gb": "I have my ID and the tenancy agreement, but I'll have to send you the payslips.", "fr": "J'ai ma pièce d'identité et le bail, mais il faudra que je vous envoie les fiches de paie.", "pose": {"docs": "envoi"}, "va": "send"},
+    {"faux": true, "t": "I have my ID, but not my sheets of pay.", "fr": "J'ai ma pièce d'identité, mais pas mes fiches de paie.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Your sheets of … ? Oh, your pay stubs!", "t_gb": "Your sheets of … ? Oh, your payslips!", "fr": "Vos feuilles de… ? Ah, vos fiches de paie !"}],
+     "aide": {"fr": "<b>Une fiche de paie = « a pay stub » aux États-Unis, « a payslip » en Grande-Bretagne.</b> « Sheets of pay » ne se dit pas."}}
+   ]
+  },
+  "sign": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "Perfect. Let me make copies … Everything looks good. Your application has been submitted. You'll get an answer within three business days.", "t_gb": "Perfect. Let me make copies … Everything looks good. Your application has been submitted. You'll get an answer within three working days.", "fr": "Parfait. Je fais des copies… Tout est en ordre. Votre demande a été déposée. Vous aurez une réponse sous trois jours ouvrables."}
+   ],
+   "choix": [
+    {"t": "Thank you. Will I be told by email?", "fr": "Merci. Serai-je prévenu(e) par courriel ?", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Yes, by email. Then you come in to sign the contract. Good luck with the move!", "fr": "Oui, par courriel. Ensuite, vous passez signer le contrat. Bon déménagement !"}]},
+    {"t": "Great. Thank you for your help and your advice.", "fr": "Parfait. Merci pour votre aide et vos conseils.", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "My pleasure. Enjoy the new apartment!", "t_gb": "My pleasure. Enjoy the new flat!", "fr": "Avec plaisir. Profitez bien du nouvel appartement !"}]}
+   ]
+  },
+  "send": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "No problem. They can be uploaded on our website or emailed to me. As soon as I have them, I'll submit the application.", "fr": "Pas de problème. Vous pouvez les téléverser sur notre site ou me les envoyer par courriel. Dès que je les ai, je dépose la demande."}
+   ],
+   "choix": [
+    {"t": "I'll send them tonight. When will I get an answer?", "fr": "Je les enverrai ce soir. Quand aurai-je une réponse ?", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Within three business days after that. Then we'll make an appointment to sign. Good luck with the move!", "t_gb": "Within three working days after that. Then we'll make an appointment to sign. Good luck with the move!", "fr": "Sous trois jours ouvrables ensuite. Puis nous prendrons rendez-vous pour signer. Bon déménagement !"}]},
+    {"t": "Thank you. I'll email them to you this evening.", "fr": "Merci. Je vous les enverrai par courriel ce soir.", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Perfect. I'll call you when the loan is approved. Enjoy the new apartment!", "t_gb": "Perfect. I'll call you when the loan is approved. Enjoy the new flat!", "fr": "Parfait. Je vous appellerai quand le prêt sera approuvé. Profitez bien du nouvel appartement !"}]},
+    {"faux": true, "t": "I send you them this night.", "fr": "Je vous les envoie ce soir.",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "This … night? Tonight, you mean? That would be fine.", "fr": "Cette… nuit ? Ce soir, vous voulez dire ? Ce serait très bien."}],
+     "aide": {"fr": "<b>« ce soir » = « tonight » ; une décision prise sur le moment prend « I'll » ; et le pronom « them » passe avant :</b> « I'll send them to you tonight. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Sans historique de crédit aux États-Unis, tu as obtenu un prêt de 3 000 $ au lieu de 5 000 $, sur {duree_fr}{carte_fr}. {docs_fr}."}
+}

@@ -1,0 +1,155 @@
+{
+ "id": "b1-orientation",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "L'orientation de ma fille"},
+ "intro": {"fr": "Ta fille Emma est en 8th grade, la dernière année de middle school, près de Boston. Tu rencontres son enseignante pour parler de son entrée en high school."},
+ "personnes": ["b13_lehrerin"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Un soir de février, à l'école d'Emma. C'est la soirée des rencontres avec les parents ; l'enseignante t'attend dans sa salle de classe."}},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Hi, thanks so much for coming in! Please, have a seat.", "fr": "Bonjour, merci beaucoup d'être venu (venue) ! Asseyez-vous, je vous en prie."},
+    {"qui": "b13_lehrerin", "air": "question", "t": "I wanted to talk about Emma's move to high school next year. How is she feeling about it?", "fr": "Je voulais vous parler de l'entrée d'Emma en high school l'an prochain. Comment le vit-elle ?"}
+   ],
+   "choix": [
+    {"t": "Thank you for meeting with me. She's excited, but a little nervous too.", "fr": "Merci de me recevoir. Elle a hâte, mais elle est aussi un peu inquiète.", "va": "grades",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "That's exactly how most eighth graders feel.", "fr": "C'est exactement ce que ressentent la plupart des élèves de 8th grade."}]},
+    {"t": "Good evening. She's looking forward to it, but she has a lot of questions.", "fr": "Bonsoir. Elle a hâte, mais elle se pose beaucoup de questions.", "va": "grades",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Good. Questions are a good sign.", "fr": "Bien. Les questions sont bon signe."}]},
+    {"faux": true, "t": "Good evening. She is very exciting.", "fr": "Bonsoir. Elle est très « passionnante ».",
+     "puis": [{"qui": "b13_lehrerin", "air": "amuse", "t": "She is, actually! But I think you mean she's excited.", "fr": "C'est vrai, d'ailleurs ! Mais je crois que vous voulez dire qu'elle a hâte."}],
+     "aide": {"fr": "<b>« excited » décrit ce qu'on ressent</b> (avoir hâte, être enthousiaste) ; « exciting » décrit ce qui provoque ce sentiment. « She's excited about high school. »"}}
+   ]
+  },
+  "grades": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Emma is doing great in science. She got an A on her last project. Writing is harder for her: her essays are short, and it's hard for her to organize her ideas. Have you noticed that?", "t_gb": "Emma is doing great in science. She got an A for her last project. Writing is harder for her: her essays are short, and it's hard for her to organise her ideas. Have you noticed that?", "fr": "Emma réussit très bien en sciences. Elle a eu un A à son dernier projet. L'écriture est plus difficile pour elle : ses rédactions sont courtes, et elle a du mal à organiser ses idées. L'avez-vous remarqué ?"}],
+   "choix": [
+    {"t": "Yes, writing is difficult for her. We speak French at home.", "fr": "Oui, écrire est difficile pour elle. Nous parlons français à la maison.", "va": "options",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "That explains part of it. But she's getting better every month.", "fr": "Cela l'explique en partie. Mais elle progresse chaque mois."}]},
+    {"t": "Yes. She loves science, but she doesn't read much in English.", "fr": "Oui. Elle adore les sciences, mais elle ne lit pas beaucoup en anglais.", "va": "options",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "More reading would really help her writing.", "fr": "Lire davantage aiderait vraiment son écriture."}]},
+    {"faux": true, "t": "Yes, she is good in science but bad in writing.", "fr": "Oui, elle est bonne « dans » les sciences mais mauvaise « dans » l'écriture.",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Right, she's good at science, and writing is harder for her.", "fr": "Oui, elle est « good at science », et l'écriture est plus difficile pour elle."}],
+     "aide": {"fr": "<b>« bon en » se dit « good at »</b> : « She's good at science » ; « She's not very good at writing. »"}}
+   ]
+  },
+  "options": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "In ninth grade, students can take regular classes or honors classes. Do you know the difference?", "t_gb": "In ninth grade, students can take regular classes or honours classes. Do you know the difference?", "fr": "En 9th grade, les élèves peuvent suivre des cours normaux ou des cours « honors ». Connaissez-vous la différence ?"}],
+   "choix": [
+    {"t": "Not really. Could you explain it to me, please?", "fr": "Pas vraiment. Pourriez-vous me l'expliquer, s'il vous plaît ?", "va": "wish",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Of course. Honors classes move faster and have more homework. Colleges like to see them, but they're a lot of work.", "t_gb": "Of course. Honours classes move faster and have more homework. Colleges like to see them, but they're a lot of work.", "fr": "Bien sûr. Les cours « honors » avancent plus vite et donnent plus de devoirs. Les universités aiment les voir dans un dossier, mais ils demandent beaucoup de travail."}]},
+    {"t": "I think honors classes are harder and faster. Is that right?", "t_gb": "I think honours classes are harder and faster. Is that right?", "fr": "Je crois que les cours « honors » sont plus difficiles et plus rapides. C'est bien ça ?", "va": "wish",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Exactly. And a student can take honors in one subject and regular classes in another.", "t_gb": "Exactly. And a student can take honours in one subject and regular classes in another.", "fr": "Exactement. Et un élève peut prendre « honors » dans une matière et des cours normaux dans une autre."}]},
+    {"repete": true, "t": "Sorry, what does “honors” mean?", "t_gb": "Sorry, what does “honours” mean?", "fr": "Pardon, que veut dire « honors » ?", "va": "options",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "It's a more advanced class for strong students. Do you know how it's different from a regular class?", "fr": "C'est un cours plus avancé pour les bons élèves. Savez-vous en quoi il diffère d'un cours normal ?"}]}
+   ]
+  },
+  "wish": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "So, what would you like for Emma next year?", "fr": "Alors, que souhaiteriez-vous pour Emma l'an prochain ?"}],
+   "choix": [
+    {"t": "We'd like her to take honors classes. She wants to go to a good college.", "t_gb": "We'd like her to take honours classes. She wants to go to a good college.", "fr": "Nous aimerions qu'elle suive des cours « honors ». Elle veut aller dans une bonne université.", "pose": {"voie": "honors"}, "va": "honors",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "I understand.", "fr": "Je comprends."}]},
+    {"t": "I'd prefer regular classes at first. I don't want her to have too much pressure.", "fr": "Je préférerais des cours normaux au début. Je ne veux pas qu'elle ait trop de pression.", "pose": {"voie": "regular"}, "va": "regular",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "That's a reasonable choice.", "fr": "C'est un choix raisonnable."}]},
+    {"t": "I'm not sure yet. What would you recommend?", "fr": "Je ne sais pas encore. Que conseilleriez-vous ?", "va": "advice",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "I'm glad you asked.", "fr": "Je suis contente que vous posiez la question."}]},
+    {"faux": true, "t": "We want that she takes honors classes.", "fr": "Nous voulons qu'elle suive des cours « honors » (calqué sur le français).",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "You want her to take honors classes. Okay!", "t_gb": "You want her to take honours classes. Okay!", "fr": "Vous « want her to take » des cours « honors ». D'accord !"}],
+     "aide": {"fr": "<b>Après « want », pas de « that »</b> : want + personne + to + verbe. « We want her to take honors classes. »"}}
+   ]
+  },
+  "honors": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "I think honors science is perfect for her. But honors English means a lot of reading and writing. Is she ready to work hard on that?", "t_gb": "I think honours science is perfect for her. But honours English means a lot of reading and writing. Is she ready to work hard on that?", "fr": "Je pense que les sciences en « honors » sont parfaites pour elle. Mais l'anglais en « honors », c'est beaucoup de lecture et d'écriture. Est-elle prête à travailler dur là-dessus ?"}],
+   "choix": [
+    {"t": "Yes, she works very hard. And we're looking for a tutor to help her with writing.", "fr": "Oui, elle travaille beaucoup. Et nous cherchons un professeur particulier pour l'aider en écriture.", "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "That's a great idea. With some help, she can do it.", "fr": "C'est une excellente idée. Avec un peu d'aide, elle peut y arriver."}]},
+    {"t": "I think so. But what happens if it's too hard for her?", "fr": "Je crois que oui. Mais que se passe-t-il si c'est trop difficile pour elle ?", "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Then she can move to a regular class after the first term. It happens, and it's not a big deal.", "fr": "Dans ce cas, elle peut passer dans un cours normal après le premier trimestre. Ça arrive, et ce n'est pas grave."}]}
+   ]
+  },
+  "regular": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "You know, she could take honors science and regular English. Do you think Emma would like that?", "t_gb": "You know, she could take honours science and regular English. Do you think Emma would like that?", "fr": "Vous savez, elle pourrait prendre les sciences en « honors » et l'anglais en cours normal. Pensez-vous que cela plairait à Emma ?"}],
+   "choix": [
+    {"t": "Yes, I think she'd love that. Science is her favorite subject.", "t_gb": "Yes, I think she'd love that. Science is her favourite subject.", "fr": "Oui, je crois qu'elle adorerait. Les sciences sont sa matière préférée.", "pose": {"voie": "mix"}, "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Then let's write that down as a plan.", "fr": "Alors notons cela comme projet."}]},
+    {"t": "Maybe later. For the first year, I'd like to keep things simple.", "fr": "Peut-être plus tard. Pour la première année, j'aimerais que les choses restent simples.", "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "That's fine. She can always move up in tenth grade.", "fr": "Très bien. Elle pourra toujours monter de niveau en 10th grade."}]}
+   ]
+  },
+  "advice": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "With her grades, I'd recommend honors science and regular English for now. She can move up in English later. How does that sound?", "t_gb": "With her grades, I'd recommend honours science and regular English for now. She can move up in English later. How does that sound?", "fr": "Avec ses notes, je conseillerais les sciences en « honors » et l'anglais en cours normal pour l'instant. Elle pourra monter de niveau en anglais plus tard. Qu'en pensez-vous ?"}],
+   "choix": [
+    {"t": "That sounds good. She can do more in science and take her time in English.", "fr": "Ça me paraît bien. Elle pourra en faire plus en sciences et prendre son temps en anglais.", "pose": {"voie": "mix"}, "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Great. I think it's the right balance for her.", "fr": "Parfait. Je pense que c'est le bon équilibre pour elle."}]},
+    {"t": "Honestly, I'd prefer to start with regular classes in every subject and see how it goes.", "fr": "Honnêtement, je préférerais commencer par des cours normaux dans toutes les matières et voir comment ça se passe.", "pose": {"voie": "regular"}, "va": "worry",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "That works too. She can always move up in tenth grade.", "fr": "C'est possible aussi. Elle pourra toujours monter de niveau en 10th grade."}]}
+   ]
+  },
+  "worry": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Is there anything you're worried about?", "fr": "Y a-t-il quelque chose qui vous inquiète ?"}],
+   "choix": [
+    {"t": "Yes, stress. Emma already gets very nervous before tests.", "fr": "Oui, le stress. Emma est déjà très nerveuse avant les contrôles.", "pose": {"souci": "stress"}, "va": "clubs",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "I'm glad you told me. Make sure she keeps time for friends and sleep. And the school counselor is always there to help.", "t_gb": "I'm glad you told me. Make sure she keeps time for friends and sleep. And the school counsellor is always there to help.", "fr": "Je suis contente que vous me le disiez. Veillez à ce qu'elle garde du temps pour ses amis et pour dormir. Et la conseillère de l'école est toujours là pour aider."}]},
+    {"t": "We only speak French at home. Is that a problem for her English?", "fr": "Nous ne parlons que français à la maison. Est-ce un problème pour son anglais ?", "pose": {"souci": "langue"}, "va": "clubs",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Not at all. Speaking two languages is a real advantage. The best thing she can do is read a lot in English.", "fr": "Pas du tout. Parler deux langues est un vrai avantage. Le mieux qu'elle puisse faire, c'est lire beaucoup en anglais."}]},
+    {"t": "I can't really help her with her essays. Is there any extra help at school?", "fr": "Je ne peux pas vraiment l'aider pour ses rédactions. Y a-t-il une aide supplémentaire à l'école ?", "pose": {"souci": "aide"}, "va": "clubs",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Yes. The high school has a free writing center after school, and the public library has homework help.", "t_gb": "Yes. The high school has a free writing centre after school, and the public library has homework help.", "fr": "Oui. La high school a un centre d'aide à l'écriture gratuit après les cours, et la bibliothèque municipale propose une aide aux devoirs."}]},
+    {"faux": true, "t": "Yes, I have fear that she has too much stress.", "fr": "Oui, « j'ai peur » qu'elle ait trop de stress (calqué sur le français).",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "You're afraid she'll be too stressed. I understand.", "fr": "Vous « are afraid » qu'elle soit trop stressée. Je comprends."}],
+     "aide": {"fr": "<b>« avoir peur » se dit « be afraid »</b> (ou « be worried ») : « I'm afraid she'll have too much stress. » On ne dit pas « I have fear »."}}
+   ]
+  },
+  "clubs": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "One more thing: high school has lots of clubs and teams, like robotics, science club, debate and soccer. They're a great way to make friends, and colleges like them too. What do you think Emma would enjoy?", "fr": "Encore une chose : la high school a beaucoup de clubs et d'équipes, comme la robotique, le club de sciences, le débat et le soccer. C'est un excellent moyen de se faire des amis, et les universités les apprécient aussi. Qu'est-ce qui plairait à Emma, selon vous ?"}],
+   "choix": [
+    {"t": "The science club, of course. And maybe the robotics team.", "fr": "Le club de sciences, bien sûr. Et peut-être l'équipe de robotique.", "va": "steps",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "She'd be great at robotics.", "fr": "Elle serait excellente en robotique."}]},
+    {"t": "She's a bit shy. Do you think the debate team could help her with her English?", "fr": "Elle est un peu timide. Pensez-vous que l'équipe de débat pourrait l'aider en anglais ?", "va": "shy",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "It really could.", "fr": "Vraiment, oui."}]},
+    {"faux": true, "t": "She already makes sport outside school.", "fr": "Elle « fabrique » déjà du sport en dehors de l'école.",
+     "puis": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Oh, she plays sports already? Which one?", "t_gb": "Oh, she does sport already? Which one?", "fr": "Ah, elle fait déjà du sport ? Lequel ?"}],
+     "aide": {"fr": "<b>« faire du sport » se dit « play sports »</b> (« do sport » en anglais britannique), jamais « make sport » : « She already plays sports outside school. »"}}
+   ]
+  },
+  "shy": {
+   "dit": [{"qui": "b13_lehrerin", "air": "attentive", "t": "Speaking in front of people builds confidence, and it helps with writing too. But she shouldn't feel forced. Could you talk to her about it?", "fr": "Parler devant des gens donne de l'assurance, et cela aide aussi pour l'écriture. Mais elle ne doit pas se sentir obligée. Pourriez-vous lui en parler ?"}],
+   "choix": [
+    {"t": "Yes, I'll talk to her this weekend. Maybe she can try it for a month.", "fr": "Oui, je lui en parlerai ce week-end. Elle peut peut-être essayer pendant un mois.", "va": "steps",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "A month is perfect. No pressure.", "fr": "Un mois, c'est parfait. Sans pression."}]},
+    {"t": "I will. Maybe she could join with a friend.", "fr": "Je le ferai. Elle pourrait peut-être s'inscrire avec une amie.", "va": "steps",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Good idea. Everything is easier with a friend.", "fr": "Bonne idée. Tout est plus facile avec une amie."}]}
+   ]
+  },
+  "steps": {
+   "dit": [{"qui": "b13_lehrerin", "air": "question", "t": "Great. Course selection forms go home in March, and the high school has an open house for eighth-grade families. Will you be able to come?", "t_gb": "Great. Course selection forms go home in March, and the high school has an open evening for eighth-grade families. Will you be able to come?", "fr": "Parfait. Les formulaires de choix des cours sont envoyés aux familles en mars, et la high school organise une soirée portes ouvertes pour les familles de 8th grade. Pourrez-vous venir ?"}],
+   "choix": [
+    {"t": "Yes, we'll be there. Can Emma come too?", "fr": "Oui, nous y serons. Emma peut-elle venir aussi ?", "va": "bye",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Of course! Ninth graders show the students around the school.", "fr": "Bien sûr ! Des élèves de 9th grade font visiter l'école aux élèves."}]},
+    {"t": "I work in the evenings. Is there another way to get the information?", "fr": "Je travaille le soir. Y a-t-il un autre moyen d'avoir les informations ?", "va": "bye",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "No problem. I'll email you everything, and you can always call the high school counselor.", "t_gb": "No problem. I'll email you everything, and you can always call the high school counsellor.", "fr": "Aucun problème. Je vous envoie tout par courriel, et vous pouvez toujours appeler le conseiller de la high school."}]}
+   ]
+  },
+  "bye": {
+   "dit": [
+    {"si": {"voie": "honors"}, "qui": "b13_lehrerin", "air": "sourire", "t": "So, honors classes, with some extra help in writing. I think Emma can do it.", "t_gb": "So, honours classes, with some extra help in writing. I think Emma can do it.", "fr": "Donc, des cours « honors », avec une aide supplémentaire en écriture. Je pense qu'Emma peut y arriver."},
+    {"si": {"voie": "mix"}, "qui": "b13_lehrerin", "air": "sourire", "t": "So, honors science and regular English. I think that's a great plan for Emma.", "t_gb": "So, honours science and regular English. I think that's a great plan for Emma.", "fr": "Donc, les sciences en « honors » et l'anglais en cours normal. Je pense que c'est un très bon projet pour Emma."},
+    {"si": {"voie": "regular"}, "qui": "b13_lehrerin", "air": "sourire", "t": "So, regular classes to start, and we'll see how she does. Emma will find her way.", "fr": "Donc, des cours normaux pour commencer, et nous verrons comment elle s'en sort. Emma trouvera sa voie."},
+    {"si": {"souci": "stress"}, "qui": "b13_lehrerin", "air": "attentive", "t": "And if the stress gets worse, please call me.", "fr": "Et si le stress s'aggrave, appelez-moi, s'il vous plaît."},
+    {"qui": "b13_lehrerin", "air": "sourire", "t": "Say hi to Emma for me!", "fr": "Dites bonjour à Emma de ma part !"}
+   ],
+   "choix": [
+    {"t": "Thank you so much for your time and your advice.", "fr": "Merci beaucoup pour votre temps et vos conseils.", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "My pleasure. Have a good night!", "fr": "Avec plaisir. Bonne soirée !"}]},
+    {"t": "Thank you, this was really helpful. I'll talk to Emma tonight.", "fr": "Merci, cela m'a vraiment aidé (aidée). Je parlerai à Emma ce soir.", "va": null,
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "Please do. Take care!", "fr": "Faites donc. Bonne continuation !"}]},
+    {"faux": true, "t": "Thank you for your advices.", "fr": "Merci pour vos « conseils » (au pluriel).",
+     "puis": [{"qui": "b13_lehrerin", "air": "sourire", "t": "You're welcome! I hope my advice helps.", "fr": "Je vous en prie ! J'espère que mes conseils vous aideront."}],
+     "aide": {"fr": "<b>« advice » ne se met jamais au pluriel</b> : « Thank you for your advice. » Pour un seul conseil : « a piece of advice »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as parlé avec l'enseignante d'Emma de ses notes, du choix des cours en high school, de ce qui t'inquiète, des clubs et de la soirée portes ouvertes."}
+}

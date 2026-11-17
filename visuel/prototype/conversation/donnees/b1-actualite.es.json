@@ -1,0 +1,143 @@
+{
+ "id": "b1-actualite",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "Les nouvelles du jour, entre amis"},
+ "intro": {"fr": "Tu prends un café avec ton amie Alba pendant sa pause. Elle a vu les nouvelles : une vague de chaleur arrive sur Madrid."},
+ "personnes": ["b13_freundin"],
+ "debut": "noticia",
+ "noeuds": {
+  "noticia": {
+   "dit": [
+    {"recit": {"fr": "Un bar de quartier à Madrid, en fin de matinée. Alba s'évente avec le journal du comptoir."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "¿Has visto las noticias? Viene una ola de calor: el jueves, 42 grados en Madrid. Aviso rojo.", "dit": "¿Has visto las noticias? Viene una ola de calor: el jueves, cuarenta y dos grados en Madrid. Aviso rojo.", "fr": "Tu as vu les nouvelles ? Une vague de chaleur arrive : jeudi, 42 degrés à Madrid. Alerte rouge."}
+   ],
+   "choix": [
+    {"t": "¡No me digas! No sabía nada. ¿Y cuánto va a durar?", "fr": "Sans blague ! Je n'en savais rien. Et ça va durer combien de temps ?", "va": "opinion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Dicen que hasta el domingo, por lo menos. Y por la noche no baja de veinticinco.", "fr": "On dit jusqu'à dimanche, au moins. Et la nuit, ça ne descend pas sous les vingt-cinq."}]},
+    {"t": "Sí, lo he oído en la radio esta mañana. ¡Qué horror!", "fr": "Oui, je l'ai entendu à la radio ce matin. Quelle horreur !", "va": "opinion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Y lo peor son las noches: no baja de veinticinco grados.", "fr": "Et le pire, ce sont les nuits : ça ne descend pas sous les vingt-cinq degrés."}]},
+    {"faux": true, "t": "No, no he mirado las actualidades.", "fr": "Non, je n'ai pas regardé les « actualités ».",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "¿Las actualidades? Ah, las noticias. Pues escucha: el jueves, cuarenta y dos grados.", "fr": "Les « actualidades » ? Ah, les nouvelles. Eh bien écoute : jeudi, quarante-deux degrés."}],
+     "aide": {"fr": "<b>Les actualités = « las noticias ».</b> « La actualidad » existe, mais au singulier, pour « l'époque actuelle ». Dis : « No he visto las noticias. »"}},
+    {"repete": true, "t": "Perdona, ¿cuántos grados has dicho?", "fr": "Pardon, tu as dit combien de degrés ?", "va": "noticia",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Cuarenta y dos. El jueves. ¡Cuarenta y dos!", "fr": "Quarante-deux. Jeudi. Quarante-deux !"}]}
+   ]
+  },
+  "opinion": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "¿Tú qué opinas? Cada verano es peor, ¿no?", "fr": "Tu en penses quoi, toi ? Chaque été est pire, non ?"}],
+   "choix": [
+    {"t": "Creo que sí. En mi opinión, es por el cambio climático.", "fr": "Je crois que oui. À mon avis, c'est à cause du changement climatique.", "va": "venir",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Yo pienso lo mismo. Mi abuela dice que antes, en junio, todavía se dormía con manta.", "fr": "Je pense la même chose. Ma grand-mère dit qu'avant, en juin, on dormait encore avec une couverture."}]},
+    {"t": "Por un lado me gusta el verano, pero por otro, con cuarenta grados no se puede vivir.", "fr": "D'un côté j'aime l'été, mais de l'autre, à quarante degrés, on ne peut pas vivre.", "va": "venir",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Exacto. Y en la peluquería, con los secadores, ni te cuento.", "fr": "Exactement. Et au salon de coiffure, avec les sèche-cheveux, je ne te raconte pas."}]},
+    {"t": "No sé. En Madrid siempre ha hecho calor en verano, ¿no?", "fr": "Je ne sais pas. À Madrid, il a toujours fait chaud en été, non ?", "va": "debate"},
+    {"faux": true, "t": "Sí, hace muy caliente cada verano.", "fr": "Oui, il fait très « chaud » (adjectif) chaque été.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "«Hace mucho calor», querrás decir. «Caliente» está el café.", "fr": "Tu veux dire « hace mucho calor ». « Caliente », c'est le café."}],
+     "aide": {"fr": "<b>« il fait chaud » = « hace calor »</b> (un nom, donc « mucho calor », pas « muy »). « Caliente » qualifie une chose : « el café está caliente ». "}}
+   ]
+  },
+  "debate": {
+   "dit": [{"qui": "b13_freundin", "air": "attentive", "t": "Calor sí, pero no así. Antes eran tres días; ahora son tres semanas seguidas.", "fr": "Chaud, oui, mais pas comme ça. Avant, c'était trois jours ; maintenant, c'est trois semaines d'affilée."}],
+   "choix": [
+    {"t": "Tienes razón. Estoy de acuerdo contigo.", "fr": "Tu as raison. Je suis d'accord avec toi.", "va": "venir",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "¡Menos mal! Creía que íbamos a discutir.", "fr": "Heureusement ! Je croyais qu'on allait se disputer."}]},
+    {"t": "Puede ser. Yo llevo poco tiempo aquí, no puedo comparar.", "fr": "Peut-être. Je ne suis pas ici depuis longtemps, je ne peux pas comparer.", "va": "venir",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Pues créeme: yo nací aquí, y esto no es normal.", "fr": "Eh bien crois-moi : je suis née ici, et ça, ce n'est pas normal."}]},
+    {"faux": true, "t": "Tienes razón. Soy de acuerdo contigo.", "fr": "Tu as raison. Je suis (ser) d'accord avec toi.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "«Estoy de acuerdo», se dice. ¡Pero me alegro!", "fr": "On dit « estoy de acuerdo ». Mais ça me fait plaisir !"}],
+     "aide": {"fr": "<b>« être d'accord » = « estar de acuerdo »</b>, jamais « ser » : « Estoy de acuerdo contigo. »"}}
+   ]
+  },
+  "venir": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Bueno, ¿y el jueves cómo vas a ir al trabajo? El metro va a ser un horno.", "fr": "Bon, et jeudi, tu vas au travail comment ? Le métro va être un four."}],
+   "choix": [
+    {"t": "Voy a pedirle a mi jefe que me deje trabajar desde casa. Allí por lo menos tengo un ventilador.", "fr": "Je vais demander à mon chef de travailler de chez moi. Là, au moins, j'ai un ventilateur.", "pose": {"venir": "casa"}, "va": "teletrabajo"},
+    {"t": "Tú vas en coche a la peluquería, ¿no? ¿Me podrías llevar?", "fr": "Toi, tu vas au salon en voiture, non ? Tu pourrais m'emmener ?", "pose": {"venir": "coche"}, "va": "coche",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Claro, tu oficina me pilla de camino. ¡Y tengo aire acondicionado!", "fr": "Bien sûr, ton bureau est sur mon chemin. Et j'ai la climatisation !"}]},
+    {"t": "Iré en bici, pero muy temprano, cuando todavía hace fresco.", "fr": "J'irai à vélo, mais très tôt, quand il fait encore frais.", "pose": {"venir": "bici"}, "va": "bici"},
+    {"faux": true, "t": "Voy a quedar en casa.", "fr": "Je vais « avoir rendez-vous » à la maison.",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "¿Has quedado en casa? ¿Con quién? Ah, que te vas a quedar en casa.", "fr": "Tu as rendez-vous chez toi ? Avec qui ? Ah, tu vas rester chez toi."}],
+     "aide": {"fr": "<b>« rester » = « quedarse »</b>, avec le pronom : « Voy a quedarme en casa. » Sans pronom, « quedar » veut dire « se donner rendez-vous ». "}}
+   ]
+  },
+  "teletrabajo": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "¡Qué suerte! Yo no puedo cortar el pelo desde casa. Pero ¿el jueves no tenías esa reunión tan importante?", "fr": "Quelle chance ! Moi, je ne peux pas couper les cheveux depuis chez moi. Mais jeudi, tu n'avais pas cette réunion si importante ?"}],
+   "choix": [
+    {"t": "Es verdad. Me conecto por videollamada, no pasa nada.", "fr": "C'est vrai. Je me connecterai en visio, ce n'est pas grave.", "va": "alquiler",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Con camisa por arriba y pantalón corto por abajo. ¡Qué envidia!", "fr": "En chemise en haut et en short en bas. Je t'envie !"}]},
+    {"t": "¡Se me había olvidado! Entonces tengo que ir. ¿Me llevas en tu coche?", "fr": "J'avais oublié ! Alors il faut que j'y aille. Tu m'emmènes dans ta voiture ?", "pose": {"venir": "coche"}, "va": "coche",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Claro, tu oficina me pilla de camino. ¡Y tengo aire acondicionado!", "fr": "Bien sûr, ton bureau est sur mon chemin. Et j'ai la climatisation !"}]},
+    {"faux": true, "t": "Es verdad, ahora me recuerdo.", "fr": "C'est vrai, maintenant je « me rappelle » (mot à mot).",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ahora te acuerdas, ¿eh? Entonces, ¿qué vas a hacer?", "fr": "Maintenant tu t'en souviens, hein ? Alors, tu vas faire quoi ?"}],
+     "aide": {"fr": "<b>« se souvenir » = « acordarse (de) » ou « recordar »</b>, sans pronom : « Ahora me acuerdo » ou « Ahora lo recuerdo ». « Me recuerdo » ne se dit pas."}}
+   ]
+  },
+  "coche": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Abro a las ocho, así que salgo de Carabanchel a las siete y cuarto. ¿Te va bien?", "fr": "J'ouvre à huit heures, donc je pars de Carabanchel à sept heures et quart. Ça te va ?"}],
+   "choix": [
+    {"t": "Sí, perfecto. ¿Dónde te espero?", "fr": "Oui, parfait. Je t'attends où ?", "va": "alquiler",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "En la salida del metro de Oporto. Sé puntual, que allí no puedo aparcar.", "fr": "À la sortie du métro Oporto. Sois à l'heure, je ne peux pas me garer là."}]},
+    {"t": "Es pronto, pero mejor que el metro. ¡Yo invito al café!", "fr": "C'est tôt, mais c'est mieux que le métro. C'est moi qui offre le café !", "va": "alquiler",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "¡Hecho! Te recojo en tu portal.", "fr": "Marché conclu ! Je passe te prendre devant ton immeuble."}]},
+    {"faux": true, "t": "Sí, perfecto. Te atiendo en la esquina.", "fr": "Oui, parfait. Je « m'occupe de toi » au coin de la rue.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "¿Me atiendes? ¿Como en una tienda? Me esperas, ¿no?", "fr": "Tu t'occupes de moi ? Comme dans un magasin ? Tu m'attends, non ?"}],
+     "aide": {"fr": "<b>« atender » est un faux ami :</b> il veut dire « s'occuper de, servir (un client) ». Attendre = « esperar » : « Te espero en la esquina. »"}}
+   ]
+  },
+  "bici": {
+   "dit": [{"qui": "b13_freundin", "air": "surprise", "t": "¿En bici? ¿Y la vuelta, a las tres de la tarde, con cuarenta y dos grados?", "fr": "À vélo ? Et le retour, à trois heures de l'après-midi, par quarante-deux degrés ?"}],
+   "choix": [
+    {"t": "Tienes razón, no lo había pensado. Volveré en metro.", "fr": "Tu as raison, je n'y avais pas pensé. Je rentrerai en métro.", "va": "alquiler",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Mejor. Y lleva agua, que en el metro tampoco se respira.", "fr": "C'est mieux. Et prends de l'eau, parce que dans le métro non plus on ne respire pas."}]},
+    {"t": "Me llevo mucha agua y una gorra. No está tan lejos.", "fr": "Je prends beaucoup d'eau et une casquette. Ce n'est pas si loin.", "va": "alquiler",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Tú verás… ¡Qué valor tienes!", "fr": "C'est toi qui vois… Quel courage !"}]}
+   ]
+  },
+  "alquiler": {
+   "dit": [
+    {"recit": {"fr": "Alba ouvre le journal et s'arrête sur une page."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "Oye, ¿y has leído lo de los alquileres? Han vuelto a subir. Una habitación en un piso compartido ya cuesta 600 euros de media.", "dit": "Oye, ¿y has leído lo de los alquileres? Han vuelto a subir. Una habitación en un piso compartido ya cuesta seiscientos euros de media.", "fr": "Dis, et tu as lu l'histoire des loyers ? Ils ont encore augmenté. Une chambre en colocation coûte déjà 600 euros en moyenne."}
+   ],
+   "choix": [
+    {"t": "¡Qué locura! Cuando llegué, tardé tres meses en encontrar piso.", "fr": "C'est de la folie ! Quand je suis arrivé, j'ai mis trois mois à trouver un appartement.", "va": "solucion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Y tuviste suerte. Mi hermano sigue viviendo con mis padres, y tiene treinta y dos años.", "fr": "Et tu as eu de la chance. Mon frère vit toujours chez mes parents, et il a trente-deux ans."}]},
+    {"t": "No me sorprende. Yo pago casi la mitad de mi sueldo en el alquiler.", "fr": "Ça ne m'étonne pas. Moi, presque la moitié de mon salaire part dans le loyer.", "va": "solucion",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Y yo. Y el año que viene también me suben el alquiler de la peluquería.", "fr": "Moi aussi. Et l'an prochain, on m'augmente aussi le loyer du salon."}]},
+    {"faux": true, "t": "Sí, la locación es muy cara aquí.", "fr": "Oui, la « location » est très chère ici.",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "¿La locación? Ah, el alquiler. Sí, carísimo.", "fr": "La « locación » ? Ah, le loyer. Oui, hors de prix."}],
+     "aide": {"fr": "<b>Le loyer, la location = « el alquiler »</b> ; louer = « alquilar ». Dis : « El alquiler es muy caro aquí. »"}}
+   ]
+  },
+  "solucion": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "¿Y tú qué crees que debería hacer el Ayuntamiento?", "fr": "Et d'après toi, que devrait faire la mairie ?"}],
+   "choix": [
+    {"t": "Debería construir más pisos baratos, sobre todo para la gente joven.", "fr": "Elle devrait construire plus d'appartements bon marché, surtout pour les jeunes.", "va": "fin",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Eso llevan años prometiéndolo. A ver si esta vez es verdad.", "fr": "Ça fait des années qu'ils le promettent. On verra si cette fois c'est vrai."}]},
+    {"t": "En mi opinión, habría que poner un límite a los precios.", "fr": "À mon avis, il faudrait mettre une limite aux prix.", "va": "fin",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ya hay una ley para eso, pero en Madrid casi no se aplica.", "fr": "Il y a déjà une loi pour ça, mais à Madrid elle n'est presque pas appliquée."}]},
+    {"t": "Sinceramente, no lo sé. Es un problema muy complicado.", "fr": "Sincèrement, je ne sais pas. C'est un problème très compliqué.", "va": "fin",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Ya. Con un café no lo vamos a arreglar.", "fr": "Oui. Ce n'est pas avec un café qu'on va régler ça."}]},
+    {"faux": true, "t": "Espero que el Ayuntamiento hace algo.", "fr": "J'espère que la mairie fait quelque chose (indicatif).",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Que haga algo, sí. Yo también lo espero, pero no soy muy optimista.", "fr": "Qu'elle fasse quelque chose, oui. Je l'espère aussi, mais je ne suis pas très optimiste."}],
+     "aide": {"fr": "<b>Après « espero que », le subjonctif :</b> « Espero que el Ayuntamiento haga algo. »"}}
+   ]
+  },
+  "fin": {
+   "dit": [
+    {"recit": {"fr": "Alba regarde l'heure et laisse quelques pièces sur le comptoir."}},
+    {"si": {"venir": "coche"}, "qui": "b13_freundin", "air": "sourire", "t": "¡Uy, qué tarde! Mi siguiente clienta está al llegar. Entonces, el jueves a las siete y cuarto. ¡No te duermas!", "fr": "Oh là, qu'il est tard ! Ma prochaine cliente va arriver. Alors, jeudi à sept heures et quart. Ne te rendors pas !"},
+    {"si": {"venir": "casa"}, "qui": "b13_freundin", "air": "sourire", "t": "¡Uy, qué tarde! Mi siguiente clienta está al llegar. Y el jueves, ¡disfruta de tu ventilador!", "fr": "Oh là, qu'il est tard ! Ma prochaine cliente va arriver. Et jeudi, profite de ton ventilateur !"},
+    {"si": {"venir": "bici"}, "qui": "b13_freundin", "air": "sourire", "t": "¡Uy, qué tarde! Mi siguiente clienta está al llegar. Y el jueves, ¡mucha agua!", "fr": "Oh là, qu'il est tard ! Ma prochaine cliente va arriver. Et jeudi, beaucoup d'eau !"}
+   ],
+   "choix": [
+    {"t": "¡Hasta luego! Y gracias por avisarme.", "fr": "À plus tard ! Et merci de m'avoir prévenu.", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "¡De nada! Un beso, cuídate.", "fr": "De rien ! Je t'embrasse, prends soin de toi."}]},
+    {"t": "Venga, Alba, a trabajar. ¡Luego te escribo!", "fr": "Allez, Alba, au travail. Je t'écris tout à l'heure !", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "¡Vale! Hasta luego.", "fr": "D'accord ! À plus tard."}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commenté les nouvelles du jour avec une amie : tu as donné ton avis sur la canicule et sur les loyers, et tu t'es organisé pour jeudi."}
+}

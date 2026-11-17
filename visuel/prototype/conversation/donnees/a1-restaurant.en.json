@@ -1,0 +1,102 @@
+{
+ "id": "a1-restaurant",
+ "langue": "en",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "manger",
+ "registre": "poli",
+ "titre": {"fr": "Au restaurant : la table et le plat du jour"},
+ "intro": {"fr": "Un vendredi soir, dans un restaurant de fruits de mer près du port de Boston. Ta table, le plat du jour, et le pourboire, qui n'est pas compris aux États-Unis."},
+ "personnes": ["kellnerin"],
+ "debut": "host",
+ "prix": {"water": 0, "icedtea": 350, "lemonade": 400, "special": 2400, "chowder": 1200, "sandwich": 1500},
+ "panier": ["drink", "dish"],
+ "textes": {
+  "dish_fr": {"cle": "dish", "special": "le lobster roll (le plat du jour)", "chowder": "la clam chowder", "sandwich": "le sandwich au poulet"}
+ },
+ "noeuds": {
+  "host": {
+   "dit": [
+    {"recit": {"fr": "Vendredi soir, un restaurant de fruits de mer près du port de Boston. Il y a du monde."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Hi, welcome! Do you have a reservation?", "fr": "Bonsoir, bienvenue ! Vous avez une réservation ?"}
+   ],
+   "choix": [
+    {"t": "Yes, under the name Martin.", "fr": "Oui, au nom de Martin.", "va": "drinks",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Martin… yes, there you are. Right this way!", "fr": "Martin… oui, vous voilà. Par ici !"}]},
+    {"t": "No. Do you have a table for one?", "fr": "Non. Vous avez une table pour une personne ?", "va": "drinks",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "For one? Sure, follow me.", "fr": "Pour une personne ? Bien sûr, suivez-moi."}]},
+    {"faux": true, "t": "Yes, I have a reservation on the name Martin.", "fr": "Oui, j'ai une réservation au nom de Martin (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "On the name…? Oh, under the name Martin? Let me check.", "fr": "« On the name » ? Oh, au nom de Martin ? Je regarde."}],
+     "aide": {"fr": "<b>« au nom de… » se dit « under the name… »</b> : « I have a reservation under the name Martin. » Plus court : « Yes, under the name Martin. »"}}
+   ]
+  },
+  "drinks": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Can I get you something to drink?", "fr": "Je vous apporte quelque chose à boire ?"}],
+   "choix": [
+    {"t": "Just water, please.", "fr": "De l'eau seulement, s'il vous plaît.", "pose": {"drink": "water"}, "va": "special",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sure, I'll bring it right away.", "fr": "Bien sûr, je vous l'apporte tout de suite."}]},
+    {"t": "An iced tea, please.", "fr": "Un thé glacé, s'il vous plaît.", "pose": {"drink": "icedtea"}, "va": "special",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Coming right up!", "fr": "Ça arrive tout de suite !"}]},
+    {"t": "A lemonade, please.", "fr": "Une citronnade, s'il vous plaît.", "pose": {"drink": "lemonade"}, "va": "special",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Good choice!", "fr": "Bon choix !"}]}
+   ]
+  },
+  "special": {
+   "dit": [
+    {"recit": {"fr": "Elle revient avec ta boisson."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Our special tonight is the lobster roll, with fries.", "t_gb": "Our special tonight is the lobster roll, with chips.", "fr": "Notre plat du jour, ce soir, c'est le lobster roll (un petit pain au homard), avec des frites."}
+   ],
+   "choix": [
+    {"t": "I'll have the special, please.", "fr": "Je vais prendre le plat du jour, s'il vous plaît.", "pose": {"dish": "special"}, "va": "meal",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Great choice!", "fr": "Excellent choix !"}]},
+    {"t": "How much is the special?", "fr": "Combien coûte le plat du jour ?", "va": "price",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "It's twenty-four dollars.", "fr": "Vingt-quatre dollars."}]},
+    {"t": "I don't eat seafood. I'll have the chicken sandwich, please.", "fr": "Je ne mange pas de fruits de mer. Je vais prendre le sandwich au poulet, s'il vous plaît.", "pose": {"dish": "sandwich"}, "va": "meal",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "No problem!", "fr": "Pas de problème !"}]},
+    {"faux": true, "t": "I take the special.", "fr": "Je prends le plat du jour (mot à mot).",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "You take…? Oh, you'll have the special? Sure!", "fr": "Vous prenez… ? Ah, vous allez prendre le plat du jour ? Bien sûr !"}],
+     "aide": {"fr": "<b>Pour commander, on dit « I'll have… » ou « I'll take… »</b> (avec 'll), ou « I'd like… » : « I'll have the special, please. » Le présent « I take » ne s'emploie pas pour commander."}}
+   ]
+  },
+  "price": {
+   "dit": [],
+   "choix": [
+    {"t": "OK, I'll have the special.", "fr": "D'accord, je prends le plat du jour.", "pose": {"dish": "special"}, "va": "meal",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Great choice!", "fr": "Excellent choix !"}]},
+    {"t": "Hmm. I'll have the clam chowder, please.", "fr": "Hum. Je vais prendre la clam chowder, s'il vous plaît.", "pose": {"dish": "chowder"}, "va": "meal",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Good choice. It's the best in Boston!", "fr": "Bon choix. C'est la meilleure de Boston !"}]}
+   ]
+  },
+  "meal": {
+   "dit": [
+    {"recit": {"fr": "Plus tard. Ton assiette est vide."}},
+    {"qui": "kellnerin", "air": "question", "t": "How was everything?", "fr": "Tout s'est bien passé ?"}
+   ],
+   "choix": [
+    {"t": "Everything was great, thanks! Can I have the check, please?", "t_gb": "Everything was great, thanks! Can I have the bill, please?", "fr": "Tout était parfait, merci ! L'addition, s'il vous plaît.", "va": "check"},
+    {"t": "It was delicious! The check, please.", "t_gb": "It was delicious! The bill, please.", "fr": "C'était délicieux ! L'addition, s'il vous plaît.", "va": "check"},
+    {"faux": true, "t": "It was very delicious!", "fr": "C'était très délicieux !",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "Very delicious? Ha, I'll tell the chef!", "fr": "Très délicieux ? Ha, je le dirai au chef !"}],
+     "aide": {"fr": "<b>« delicious » est déjà très fort :</b> on ne dit pas « very delicious », mais « It was delicious! » ou « It was really good! »."}},
+    {"repete": true, "t": "Sorry? Can you say that again?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "meal",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Of course. How was your meal?", "fr": "Bien sûr. Comment était votre repas ?"}]}
+   ]
+  },
+  "check": {
+   "dit": [
+    {"recit": {"fr": "Elle revient avec l'addition et le terminal de paiement."}},
+    {"qui": "kellnerin", "air": "attentive", "t": "That's {a_payer}. Would you like to add a tip?", "fr": "Ça fait {a_payer}. Vous voulez ajouter un pourboire ?", "dit": "That's {a_payer:mots}. Would you like to add a tip?"}
+   ],
+   "choix": [
+    {"t": "Yes, twenty percent, please.", "fr": "Oui, vingt pour cent, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Thank you so much! Have a great night!", "fr": "Merci beaucoup ! Bonne soirée !"}]},
+    {"t": "Yes, eighteen percent.", "fr": "Oui, dix-huit pour cent.", "va": null,
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Thanks! Have a good night!", "fr": "Merci ! Bonne soirée !"}]},
+    {"faux": true, "t": "No, the service is included, right?", "fr": "Non, le service est compris, n'est-ce pas ?",
+     "puis": [{"qui": "kellnerin", "air": "surprise", "t": "Included? Not here! In the US, the tip isn't included.", "fr": "Compris ? Pas ici ! Aux États-Unis, le pourboire n'est pas compris."}],
+     "aide": {"fr": "<b>Aux États-Unis, le service n'est pas compris</b> : on laisse entre 18 et 20 %. « Yes, twenty percent, please. » (Et la taxe sur les repas, environ 7 % à Boston, s'ajoute aussi.)"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as eu ta table, mangé {dish_fr}, payé {a_payer} et laissé le pourboire."}
+}

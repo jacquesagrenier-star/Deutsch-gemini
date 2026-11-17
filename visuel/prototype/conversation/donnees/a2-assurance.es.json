@@ -1,0 +1,117 @@
+{
+ "id": "a2-assurance",
+ "langue": "es",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "usted",
+ "titre": {"fr": "À l'agence d'assurances"},
+ "intro": {"fr": "Tu viens d'emménager dans un appartement en location à Madrid. Il te faut une assurance habitation (« seguro de hogar ») : tu poses tes questions, tu compares deux formules et tu choisis."},
+ "personnes": ["versicherung_beraterin"],
+ "debut": "saludo",
+ "prix": {"basico": 900, "completo": 1500},
+ "panier": ["formula"],
+ "textes": {
+  "formula_fr": {"cle": "formula", "basico": "de base", "completo": "complète"}
+ },
+ "noeuds": {
+  "saludo": {
+   "dit": [
+    {"recit": {"fr": "Tu viens d'emménager à Madrid. Tu entres dans une petite agence d'assurances de ton quartier."}},
+    {"qui": "versicherung_beraterin", "air": "sourire", "t": "Buenos días. Siéntese, por favor. ¿En qué puedo ayudarle?", "fr": "Bonjour. Asseyez-vous, je vous en prie. En quoi puis-je vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Necesito un seguro de hogar.", "fr": "Bonjour. J'ai besoin d'une assurance habitation.", "va": "alquiler"},
+    {"t": "Hola. Quería un seguro para mi piso.", "fr": "Bonjour. Je voudrais une assurance pour mon appartement.", "va": "alquiler"},
+    {"faux": true, "t": "Buenos días. Necesito una asegurancia para mi piso.", "fr": "Bonjour. J'ai besoin d'une « assurance » pour mon appartement.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "¿Una… asegurancia? Ah, ¡un seguro de hogar!", "fr": "Une… « asegurancia » ? Ah, une assurance habitation !"}],
+     "aide": {"fr": "<b>« Assurance » se dit « el seguro » (masculin).</b> Pour le logement : « un seguro de hogar ». « Necesito un seguro para mi piso »."}}
+   ]
+  },
+  "alquiler": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Muy bien. ¿El piso es suyo o es de alquiler?", "fr": "Très bien. L'appartement est à vous ou c'est une location ?"}],
+   "choix": [
+    {"t": "Es de alquiler. Vivo allí desde el lunes.", "fr": "C'est une location. J'y habite depuis lundi.", "va": "personas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "¡Ah, qué bien! Piso nuevo, entonces.", "fr": "Ah, très bien ! Nouvel appartement, donc."}]},
+    {"t": "Es de alquiler, y el dueño pide un seguro.", "fr": "C'est une location, et le propriétaire demande une assurance.", "va": "dueno",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sí, es muy normal. Muchos dueños lo piden.", "fr": "Oui, c'est très courant. Beaucoup de propriétaires le demandent."}]},
+    {"faux": true, "t": "Es una locación. Soy el locatario.", "fr": "C'est une location. Je suis le locataire.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "¿Locación? Ah, vive de alquiler. Usted es el inquilino.", "fr": "« Locación » ? Ah, vous êtes en location. Vous êtes le locataire."}],
+     "aide": {"fr": "<b>« Location » se dit « el alquiler », et « locataire », « el inquilino ».</b> « El piso es de alquiler » : l'appartement est en location."}}
+   ]
+  },
+  "dueno": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "¿Sabe si el dueño pide responsabilidad civil? Es para los daños a otras personas.", "fr": "Savez-vous si le propriétaire demande la responsabilité civile ? C'est pour les dommages causés à d'autres personnes."}],
+   "choix": [
+    {"t": "Sí, creo que sí. Está en el contrato.", "fr": "Oui, je crois que oui. C'est dans le contrat.", "pose": {"rc": "si"}, "va": "personas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Vale, lo apunto.", "fr": "D'accord, je le note."}]},
+    {"t": "No lo sé. Tengo que preguntar.", "fr": "Je ne sais pas. Je dois demander.", "va": "personas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "No pasa nada. Le explico los dos seguros.", "fr": "Ce n'est pas grave. Je vous explique les deux assurances."}]},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "dueno",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sí, claro. Responsabilidad civil: usted rompe algo de otra persona y el seguro lo paga. ¿El dueño lo pide?", "fr": "Oui, bien sûr. La responsabilité civile : vous cassez quelque chose à quelqu'un et l'assurance paie. Le propriétaire la demande ?"}]}
+   ]
+  },
+  "personas": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "¿Cuántas personas viven en el piso?", "fr": "Combien de personnes vivent dans l'appartement ?"}],
+   "choix": [
+    {"t": "Solo yo.", "fr": "Seulement moi.", "pose": {"vive": "uno"}, "va": "formulas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Muy bien, una persona.", "fr": "Très bien, une personne."}]},
+    {"t": "Somos dos. Comparto el piso con una amiga.", "fr": "Nous sommes deux. Je partage l'appartement avec une amie.", "pose": {"vive": "dos"}, "va": "formulas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Vale, dos personas. El precio es el mismo.", "fr": "D'accord, deux personnes. Le prix est le même."}]},
+    {"faux": true, "t": "Estamos dos en el piso.", "fr": "Nous sommes deux dans l'appartement.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "¿Están dos…? Ah, son dos personas.", "fr": "Vous « êtes » deux… ? Ah, vous êtes deux personnes."}],
+     "aide": {"fr": "<b>Pour dire combien on est, c'est « ser » : « Somos dos ».</b> « Estar » sert à dire où l'on est : « Estamos en el piso »."}},
+    {"repete": true, "t": "¿Perdone? ¿Puede repetir?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "personas",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sí, claro. ¿Vive usted con más personas en su piso?", "fr": "Oui, bien sûr. Vous vivez avec d'autres personnes dans votre appartement ?"}]}
+   ]
+  },
+  "formulas": {
+   "dit": [
+    {"qui": "versicherung_beraterin", "air": "attentive", "t": "Tenemos dos seguros. El básico cuesta 9 euros al mes: fuego y agua. El completo cuesta 15 euros al mes: también robo y responsabilidad civil.", "dit": "Tenemos dos seguros. El básico cuesta nueve euros al mes: fuego y agua. El completo cuesta quince euros al mes: también robo y responsabilidad civil.", "fr": "Nous avons deux assurances. La formule de base coûte 9 euros par mois : incendie et dégât des eaux. La formule complète coûte 15 euros par mois : en plus, le vol et la responsabilité civile."},
+    {"qui": "versicherung_beraterin", "air": "attentive", "si": {"rc": "si"}, "t": "Si el dueño pide responsabilidad civil, necesita el completo.", "fr": "Si le propriétaire demande la responsabilité civile, il vous faut la formule complète."}
+   ],
+   "choix": [
+    {"t": "¿Y si me roban la bicicleta?", "fr": "Et si on me vole mon vélo ?", "va": "elegir",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Con el completo, sí, si la bicicleta está dentro del piso. Con el básico, no.", "fr": "Avec la formule complète, oui, si le vélo est à l'intérieur de l'appartement. Avec la formule de base, non."}]},
+    {"t": "¿Y si rompo el móvil de un amigo?", "fr": "Et si je casse le portable d'un ami ?", "va": "elegir",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Eso es responsabilidad civil: solo con el completo.", "fr": "Ça, c'est la responsabilité civile : seulement avec la formule complète."}]},
+    {"faux": true, "t": "¿Y si me vuelan la bicicleta?", "fr": "Et si on me « vole » mon vélo ?",
+     "puis": [{"qui": "versicherung_beraterin", "air": "amuse", "t": "¿Si le vuelan la bicicleta? ¡Las bicicletas no vuelan! ¿Si se la roban, quiere decir?", "fr": "Si on fait « voler » votre vélo ? Les vélos ne volent pas ! Si on vous le vole, vous voulez dire ?"}],
+     "aide": {"fr": "<b>« Volar », c'est voler dans les airs.</b> Voler quelque chose à quelqu'un se dit « robar » : « ¿Y si me roban la bicicleta? »."}}
+   ]
+  },
+  "elegir": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "Entonces, ¿cuál prefiere?", "fr": "Alors, laquelle préférez-vous ?"}],
+   "choix": [
+    {"t": "Prefiero el completo. Es más seguro.", "fr": "Je préfère la formule complète. C'est plus sûr.", "pose": {"formula": "completo"}, "va": "papeles",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Buena idea. Por seis euros más, vale la pena.", "fr": "Bonne idée. Pour six euros de plus, ça vaut la peine."}]},
+    {"t": "El básico, por favor. Es suficiente para mí.", "fr": "La formule de base, s'il vous plaît. Elle me suffit.", "pose": {"formula": "basico"}, "va": "papeles",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Muy bien, el básico. Puede cambiar más adelante, si quiere.", "fr": "Très bien, la formule de base. Vous pouvez changer plus tard, si vous voulez."}]},
+    {"faux": true, "t": "El básico. Es suficiente por mí.", "fr": "La formule de base. Elle me suffit.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "¿Por usted? Ah, es suficiente para usted. Muy bien.", "fr": "« Por » vous ? Ah, elle vous suffit. Très bien."}],
+     "aide": {"fr": "<b>« Pour moi » (le destinataire) se dit « para mí ».</b> « Por » donne la cause ou l'échange. « Es suficiente para mí »."}}
+   ]
+  },
+  "papeles": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Perfecto. Necesito su pasaporte y un número de cuenta bancaria.", "fr": "Parfait. J'ai besoin de votre passeport et d'un numéro de compte bancaire."}],
+   "choix": [
+    {"t": "Aquí tiene mi pasaporte. ¿Puedo mandar el número por correo electrónico?", "fr": "Voici mon passeport. Je peux envoyer le numéro par e-mail ?", "va": "fin",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sí, claro. Aquí tiene mi tarjeta, con el correo.", "fr": "Oui, bien sûr. Voici ma carte, avec l'adresse e-mail."}]},
+    {"t": "Aquí tiene. El número de cuenta está en mi móvil.", "fr": "Voici. Le numéro de compte est dans mon portable.", "va": "fin",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Perfecto, lo copio. Gracias.", "fr": "Parfait, je le recopie. Merci."}]},
+    {"faux": true, "t": "¿Puedo lo mandar por correo electrónico?", "fr": "Je peux l'envoyer par e-mail ?",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "¿Cómo? Ah, sí, sí: puede mandarlo por correo. ¿Y el pasaporte?", "fr": "Comment ? Ah, oui, oui : vous pouvez l'envoyer par e-mail. Et le passeport ?"}],
+     "aide": {"fr": "<b>Le pronom ne se glisse pas entre les deux verbes.</b> Il se colle à l'infinitif ou passe devant : « ¿Puedo mandarlo? » ou « ¿Lo puedo mandar? »."}}
+   ]
+  },
+  "fin": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Pues ya está. El seguro empieza mañana y hoy le mando el contrato.", "fr": "Eh bien voilà. L'assurance commence demain et je vous envoie le contrat aujourd'hui."}],
+   "choix": [
+    {"t": "Muchas gracias. ¿Cuándo pago el primer mes?", "fr": "Merci beaucoup. Quand est-ce que je paie le premier mois ?", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "El día uno del mes que viene, en su cuenta. ¡Hasta luego!", "fr": "Le premier du mois prochain, sur votre compte. Au revoir !"}]},
+    {"t": "Perfecto. Muchas gracias por todo. Adiós.", "fr": "Parfait. Merci beaucoup pour tout. Au revoir.", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "A usted. ¡Que disfrute de su piso nuevo!", "fr": "Merci à vous. Profitez bien de votre nouvel appartement !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris une assurance habitation pour ton appartement en location : la formule {formula_fr}, à {a_payer} par mois."}
+}

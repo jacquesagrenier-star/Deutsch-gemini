@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "spender",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "cama",
    "ar": "سرير",
    "pl": "łóżko",
-   "ru": "кровать"
+   "ru": "кровать",
+   "es": "la cama"
   },
   {
    "id": "nachttisch",
@@ -232,7 +235,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "wasserglas",
@@ -319,7 +323,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "hoergeraet",
@@ -435,7 +440,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "urinbeutel",
@@ -493,7 +499,8 @@ window.SCENE = {
    "pt": "cadeira de rodas",
    "ar": "كرسي متحرّك",
    "pl": "wózek inwalidzki",
-   "ru": "инвалидная коляска"
+   "ru": "инвалидная коляска",
+   "es": "la silla de ruedas"
   },
   {
    "id": "pflegebett",
@@ -517,7 +524,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -567,7 +575,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "patient",
@@ -591,7 +600,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -612,7 +622,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "schlafanzug",
@@ -641,7 +652,8 @@ window.SCENE = {
    "pt": "pijama",
    "ar": "بيجامة",
    "pl": "piżama",
-   "ru": "пижама"
+   "ru": "пижама",
+   "es": "la piyama"
   },
   {
    "id": "nasenbrille",
@@ -757,7 +769,8 @@ window.SCENE = {
    "pt": "campainha",
    "ar": "جرس",
    "pl": "dzwonek",
-   "ru": "звонок"
+   "ru": "звонок",
+   "es": "el timbre"
   },
   {
    "id": "rollator",
@@ -978,6 +991,22 @@ window.SCENE = {
    },
    "sens": {
     "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Вот ваша кнопка вызова. Пожалуйста, пока не вставайте сами, лучше нажмите на кнопку."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La misma habitación: Herr Brandt se sentó al borde de la cama, en pijama y pantuflas, con las dos manos sobre su andador, listo para levantarse solo; el timbre quedó sobre la cama, detrás de él.",
+    "consigne": "Toca un objeto de la habitación, o a Herr Brandt.",
+    "nom_vue": "Herr Brandt se levanta"
+   },
+   "couches": {
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>En el hospital, se le muestra el timbre al paciente: «die Klingel».</b> «Drücken Sie bitte hier»: presione aquí, por favor. Un paciente operado no debe tener que gritar para que lo ayuden. ⚕️"
+   },
+   "sens": {
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Aquí está su timbre. Por favor, todavía no se levante solo, mejor toque el timbre."
    }
   }
  }

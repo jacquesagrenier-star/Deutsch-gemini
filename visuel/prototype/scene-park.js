@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "céu",
    "ar": "سماء",
    "pl": "niebo",
-   "ru": "небо"
+   "ru": "небо",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "nuvem",
    "ar": "غيمة، سحابة",
    "pl": "chmura",
-   "ru": "облако, туча"
+   "ru": "облако, туча",
+   "es": "la nube"
   },
   {
    "id": "baum",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "brunnen",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "fonte, chafariz",
    "ar": "نافورة",
    "pl": "fontanna, studnia",
-   "ru": "фонтан, колодец"
+   "ru": "фонтан, колодец",
+   "es": "la fuente, el pozo"
   },
   {
    "id": "see",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "lago",
    "ar": "بحيرة",
    "pl": "jezioro",
-   "ru": "озеро"
+   "ru": "озеро",
+   "es": "el lago"
   },
   {
    "id": "boot",
@@ -174,7 +179,8 @@ window.SCENE = {
    "pt": "barco",
    "ar": "قارب",
    "pl": "łódź, łódka",
-   "ru": "лодка"
+   "ru": "лодка",
+   "es": "el bote, la lancha"
   },
   {
    "id": "bruecke",
@@ -203,7 +209,8 @@ window.SCENE = {
    "pt": "ponte",
    "ar": "جسر",
    "pl": "most",
-   "ru": "мост"
+   "ru": "мост",
+   "es": "el puente"
   },
   {
    "id": "stein",
@@ -232,7 +239,8 @@ window.SCENE = {
    "pt": "pedra",
    "ar": "حجر",
    "pl": "kamień",
-   "ru": "камень"
+   "ru": "камень",
+   "es": "la piedra"
   },
   {
    "id": "laterne",
@@ -261,7 +269,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "muelleimer",
@@ -290,7 +299,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "bank",
@@ -311,15 +321,26 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "monsieur",
@@ -348,7 +369,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "vogel",
@@ -377,7 +399,8 @@ window.SCENE = {
    "pt": "pássaro",
    "ar": "طائر",
    "pl": "ptak",
-   "ru": "птица"
+   "ru": "птица",
+   "es": "el pájaro"
   },
   {
    "id": "junge",
@@ -406,7 +429,8 @@ window.SCENE = {
    "pt": "menino",
    "ar": "ولد، صبي",
    "pl": "chłopiec",
-   "ru": "мальчик"
+   "ru": "мальчик",
+   "es": "el chico"
   },
   {
    "id": "helm",
@@ -435,7 +459,8 @@ window.SCENE = {
    "pt": "capacete",
    "ar": "خوذة",
    "pl": "kask",
-   "ru": "шлем"
+   "ru": "шлем",
+   "es": "el casco"
   },
   {
    "id": "fahrrad",
@@ -464,7 +489,8 @@ window.SCENE = {
    "pt": "bicicleta",
    "ar": "درّاجة",
    "pl": "rower",
-   "ru": "велосипед"
+   "ru": "велосипед",
+   "es": "la bicicleta"
   },
   {
    "id": "blume",
@@ -493,7 +519,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "blume-droite",
@@ -522,7 +549,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "weg",
@@ -551,7 +579,8 @@ window.SCENE = {
    "pt": "caminho",
    "ar": "طريق",
    "pl": "droga",
-   "ru": "дорога, путь"
+   "ru": "дорога, путь",
+   "es": "el camino"
   },
   {
    "id": "gras",
@@ -580,7 +609,8 @@ window.SCENE = {
    "pt": "grama, capim",
    "ar": "عشب",
    "pl": "trawa",
-   "ru": "трава"
+   "ru": "трава",
+   "es": "el pasto, la hierba"
   },
   {
    "id": "hund",
@@ -609,7 +639,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "ball",
@@ -638,7 +669,8 @@ window.SCENE = {
    "pt": "bola",
    "ar": "كرة",
    "pl": "piłka",
-   "ru": "мяч"
+   "ru": "мяч",
+   "es": "la pelota, el balón"
   },
   {
    "id": "anna",
@@ -667,7 +699,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "korb",
@@ -696,7 +729,8 @@ window.SCENE = {
    "pt": "cesto, cesta",
    "ar": "سلّة",
    "pl": "koszyk, kosz",
-   "ru": "корзина"
+   "ru": "корзина",
+   "es": "la canasta"
   },
   {
    "id": "flasche",
@@ -720,7 +754,8 @@ window.SCENE = {
      "pt": "água",
      "ar": "ماء",
      "pl": "woda",
-     "ru": "вода"
+     "ru": "вода",
+     "es": "el agua"
     }
    ],
    "sur": "decke",
@@ -741,7 +776,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "apfel",
@@ -770,7 +806,8 @@ window.SCENE = {
    "pt": "maçã",
    "ar": "تفاحة",
    "pl": "jabłko",
-   "ru": "яблоко"
+   "ru": "яблоко",
+   "es": "la manzana"
   },
   {
    "id": "kuchen",
@@ -799,7 +836,8 @@ window.SCENE = {
    "pt": "bolo",
    "ar": "كعكة",
    "pl": "ciasto",
-   "ru": "пирог, торт"
+   "ru": "пирог, торт",
+   "es": "el pastel"
   },
   {
    "id": "teller",
@@ -828,7 +866,8 @@ window.SCENE = {
    "pt": "prato",
    "ar": "صحن",
    "pl": "talerz",
-   "ru": "тарелка"
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "buch",
@@ -857,7 +896,8 @@ window.SCENE = {
    "pt": "livro",
    "ar": "كتاب",
    "pl": "książka",
-   "ru": "книга"
+   "ru": "книга",
+   "es": "el libro"
   },
   {
    "id": "decke",
@@ -886,7 +926,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "rucksack",
@@ -915,7 +956,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "handy",
@@ -944,7 +986,8 @@ window.SCENE = {
    "pt": "celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
-   "ru": "мобильный телефон"
+   "ru": "мобильный телефон",
+   "es": "el celular"
   },
   {
    "id": "schuhe-anna",
@@ -979,7 +1022,8 @@ window.SCENE = {
    "pt": "sapato",
    "ar": "حذاء",
    "pl": "but",
-   "ru": "ботинок, туфля"
+   "ru": "ботинок, туфля",
+   "es": "el zapato"
   },
   {
    "id": "baum-2",
@@ -1014,7 +1058,8 @@ window.SCENE = {
    "pt": "árvore",
    "ar": "شجرة",
    "pl": "drzewo",
-   "ru": "дерево"
+   "ru": "дерево",
+   "es": "el árbol"
   },
   {
    "id": "rasen",
@@ -1061,7 +1106,8 @@ window.SCENE = {
    "pt": "gramado",
    "ar": "عشب الحديقة، مرجة",
    "pl": "trawnik",
-   "ru": "газон"
+   "ru": "газон",
+   "es": "el césped"
   }
  ],
  "grosPlans": [],
@@ -1531,7 +1577,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta gazete okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
+    "alt": "Berlin'de bir parkta bir pazar günü: Anna, bir piknik örtüsünde oturmuş bir köpeğe top atıyor; arkasında yolda bisikletli bir çocuk, bankta okuyan bir adam, kayıklı bir göl, bir köprü ve bir çeşme var.",
     "consigne": "Anna parkta piknik yapıyor. Bir nesneye dokun."
    },
    "couches": {
@@ -1744,7 +1790,7 @@ window.SCENE = {
    "couches": {
     "A1": "الأسماء وأدوات التعريف",
     "A2": "<span lang=\"de\">Wo?</span> — حروف الجر",
-    "B1": "<span lang=\"de\">Wo?</span> أم <span lang=\"de\">Wohin?</span>؟",
+    "B1": "<span lang=\"de\">Wo?</span> أم <span lang=\"de\">Wohin?</span>",
     "B2": "الجمل الموصولة واسما الفاعل والمفعول",
     "C1": "الافتراضات"
    },
@@ -2010,6 +2056,75 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "Собака, возможно, сейчас поймает мяч.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Мужчина, вероятно, приходит сюда каждое воскресенье.",
     "C1 | Im See soll es riesige Fische geben.": "Говорят, в озере водятся огромные рыбы."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Un domingo en un parque de Berlín: Anna, sentada sobre una manta de pícnic, le lanza una pelota a un perro; detrás de ella, un niño en bicicleta por el camino, un señor que lee en una banca, un lago con un bote de remos, un puente y una fuente.",
+    "consigne": "Anna hace un pícnic en el parque. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Wo? o Wohin?",
+    "B2": "Relativas y participios",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Der Mann sitzt auf der Bank.": "die Bank → auf <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Das Boot ist auf dem See.": "der See → auf <b>dem</b> See. (die See, en femenino, ¡es el mar!)",
+    "A2 | Der Junge fährt auf dem Weg.": "der Weg → auf <b>dem</b> Weg.",
+    "A2 | Der Korb steht auf der Decke.": "die Decke → auf <b>der</b> Decke.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "<b>neben</b> = al lado de. der Rucksack → neben <b>dem</b> Rucksack.",
+    "A2 | Der Ball ist über dem Gras.": "<b>über</b> = encima de, sin tocar. das Gras → über <b>dem</b> Gras.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "der Mülleimer → neben <b>dem</b> Mülleimer.",
+    "A2 | Der Vogel sitzt auf der Bank.": "<b>Wo?</b> → dativo: auf <b>der</b> Bank.",
+    "B1 | Anna wirft dem Hund den Ball.": "¿A quién? → dativo (<b>dem</b> Hund). ¿Qué? → acusativo (<b>den</b> Ball).",
+    "B1 | Der Hund läuft über das Gras.": "<b>Wohin?</b> Lo cruza: <b>über</b> + acusativo → <b>das</b> Gras.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "<b>mit</b> siempre pide dativo: das Fahrrad → mit <b>dem</b> Fahrrad.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "<b>legen</b> = movimiento, <b>Wohin?</b> → acusativo: auf <b>die</b> Decke.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "<b>liegen</b> = estado, <b>Wo?</b> → dativo: auf <b>der</b> Decke.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "<b>sich setzen</b> = movimiento → acusativo: auf <b>die</b> Bank.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "<b>sitzen</b> = estado → dativo: auf <b>der</b> Bank.",
+    "B1 | Zwei Leute rudern auf dem See.": "Se quedan en el lago (<b>Wo?</b>) → dativo: auf <b>dem</b> See.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Sujeto de la relativa, femenino → <b>die</b>.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Posesión, antecedente masculino → <b>dessen</b> (cuyo casco). Al revés que «cuyo», concuerda con el poseedor.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "<b>auf</b> + Wo? → dativo, femenino → <b>der</b>.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Participio presente (Partizip I) como adjetivo: laufen + <b>d</b> + terminación → <b>laufende</b> (que corre).",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "Partizip II como adjetivo = el resultado (abierto). Después de <b>ein</b>, neutro → <b>-es</b>.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Pasiva de estado: <b>sein</b> + participio, como «está extendida». Verbo separable: aus<b>ge</b>breitet.",
+    "C1 | Sie muss den Hund kennen.": "<b>müssen</b> = deducción casi segura, como «debe de conocer»: juega con él.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "El hombre está sentado en la banca.",
+    "A2 | Das Boot ist auf dem See.": "El bote está en el lago.",
+    "A2 | Der Junge fährt auf dem Weg.": "El niño va por el camino.",
+    "A2 | Der Korb steht auf der Decke.": "La canasta está sobre la manta.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "El celular está al lado de la mochila.",
+    "A2 | Der Ball ist über dem Gras.": "La pelota está por encima del pasto.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "El farol está al lado del basurero.",
+    "A2 | Der Vogel sitzt auf der Bank.": "El pájaro está posado en la banca.",
+    "B1 | Anna wirft dem Hund den Ball.": "Anna le lanza la pelota al perro.",
+    "B1 | Der Hund läuft über das Gras.": "El perro corre por el pasto.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "El niño va en bicicleta.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Anna puso su libro sobre la manta.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Ahora el libro está sobre la manta.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "El pájaro se posó en la banca.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "El hombre está sentado en la banca y lee.",
+    "B1 | Zwei Leute rudern auf dem See.": "Dos personas reman en el lago.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "La mujer que le lanza la pelota al perro se llama Anna.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "El niño, cuyo casco es azul, va en bicicleta.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "La banca en la que está sentado el hombre es verde.",
+    "B2 | Der laufende Hund will den Ball fangen.": "El perro que corre quiere atrapar la pelota.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "Sobre la manta hay un libro abierto.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "La manta está extendida sobre el pasto.",
+    "C1 | Sie muss den Hund kennen.": "Debe de conocer al perro.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "El perro podría atrapar la pelota en cualquier momento.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "El hombre probablemente viene aquí todos los domingos.",
+    "C1 | Im See soll es riesige Fische geben.": "Dicen que en el lago hay peces enormes."
    }
   }
  }

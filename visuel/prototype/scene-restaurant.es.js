@@ -25,8 +25,8 @@ window.SCENE = {
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
    "ar": "سقف",
-   "pl": "koc",
-   "ru": "одеяло, плед",
+   "pl": "sufit",
+   "ru": "потолок",
    "de": "die Zimmerdecke",
    "latam": null
   },
@@ -230,10 +230,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     15,
-     29.5,
-     11,
-     4.5
+     20.6,
+     27.4,
+     6.6,
+     5.2
     ]
    ],
    "fr": "le tableau",
@@ -945,7 +945,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -1494,7 +1494,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le pull",
-   "en": "the jumper",
+   "en": "the sweater",
    "pt": "o suéter, a blusa de lã",
    "ar": "كنزة صوفية",
    "pl": "sweter",
@@ -2709,7 +2709,7 @@ window.SCENE = {
     "C1 | Debe de tener hambre.": "He must be hungry.",
     "C1 | Puede que la pareja cene aquí todas las noches.": "The couple may have dinner here every evening.",
     "C1 | Serán para la mesa de la ventana.": "They are probably for the table by the window.",
-    "C1 | Dicen que este restaurante tiene la mejor cocina del barrio.": "They say this restaurant has the best food in the neighbourhood."
+    "C1 | Dicen que este restaurante tiene la mejor cocina del barrio.": "They say this restaurant has the best food in the neighborhood."
    }
   },
   "tr": {

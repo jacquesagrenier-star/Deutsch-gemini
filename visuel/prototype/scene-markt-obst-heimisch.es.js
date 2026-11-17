@@ -200,7 +200,7 @@ window.SCENE = {
    "fr": "la prune",
    "en": "the plum",
    "pt": "a ameixa",
-   "ar": "برقوقة، خوخة",
+   "ar": "برقوقة",
    "pl": "śliwka",
    "ru": "слива",
    "de": "die Pflaume",
@@ -862,13 +862,13 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "le poste",
-   "en": "the position",
-   "pt": "o cargo, a vaga",
-   "ar": "وظيفة، منصب",
-   "pl": "stan; stoisko",
-   "ru": "состояние; стенд, ларёк",
-   "de": "die Stelle (Arbeitsplatz)",
+   "fr": "le stand",
+   "en": "the stall",
+   "pt": "a barraca",
+   "ar": "كشك",
+   "pl": "stoisko",
+   "ru": "ларёк",
+   "de": "der Stand",
    "latam": null
   }
  ],
@@ -1217,7 +1217,7 @@ window.SCENE = {
     "B1 | Los duraznos son más grandes que los chabacanos.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
     "B1 | Los melocotones son más grandes que los albaricoques.": "<b>más</b> … <b>que</b> = more … than. (tan … <b>como</b> = as … as.)",
     "B1 | ¿Cuánto cuestan las frambuesas?": "The verb agrees with what costs: las frambuesas → <b>cuestan</b>.",
-    "B1 | Me llevo medio kilo de ciruelas.": "<b>medio kilo</b>, no article: never « un medio ». <b>Me llevo</b> = I'll take.",
+    "B1 | Me llevo medio kilo de ciruelas.": "<b>medio kilo</b>, no article: never “un medio”. <b>Me llevo</b> = I'll take.",
     "B2 | Son fresas frescas de la región.": "The adjective agrees: fresas (feminine plural) → <b>frescas</b>.",
     "B2 | Estas manzanas se cultivan en la región.": "The passive with <b>se</b>: se cultivan, agreeing with las manzanas.",
     "B2 | La mujer que elige una manzana se llama Anna.": "Subject of the relative clause, no commas → <b>que</b>.",
@@ -1429,7 +1429,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Анна берёт яблоко у прилавка с местными фруктами: малина, черника, виноград, сливы, ревень, орехи, груши, крыжовник, вишня, ежевика, абрикосы, клубника, персики и яблоки — каждые в своём ящике.",
+    "alt": "Анна берёт яблоко у прилавка с местными фруктами: малина, черника, виноград, сливы, ревень, орехи, груши, крыжовник, вишня, ежевика, абрикосы, клубника, персики и яблоки — каждый вид в своём ящике.",
     "consigne": "Нажми на фрукт, овощ или ящик.",
     "nom_vue": "Местные фрукты",
     "autre_vue": "→ Южные фрукты"

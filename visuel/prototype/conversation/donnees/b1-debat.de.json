@@ -1,0 +1,125 @@
+{
+ "id": "b1-debat",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "Donner son avis : un smartphone à l'école primaire ?"},
+ "intro": {"fr": "Au cours d'allemand, vous vous entraînez pour l'oral de l'examen : discuter à deux d'un sujet. Avec ta camarade, donne ton avis, défends-le, écoute le sien et trouvez un terrain d'entente."},
+ "personnes": ["b11_camarade"],
+ "debut": "thema",
+ "noeuds": {
+  "thema": {
+   "dit": [
+    {"recit": {"fr": "L'enseignante distribue une fiche par binôme. Ta camarade lit la vôtre à voix haute."}},
+    {"qui": "b11_camarade", "air": "question", "t": "Okay, unser Thema: „Brauchen Grundschulkinder ein Smartphone?“ Hm, spannend. Was meinst du?", "fr": "Bon, notre sujet : « Les enfants de l'école primaire ont-ils besoin d'un smartphone ? » Hum, intéressant. Qu'en penses-tu ?"}
+   ],
+   "choix": [
+    {"t": "Ich bin eher dafür. Ich finde, dass ein Handy für Kinder nützlich sein kann.", "fr": "Je suis plutôt pour. Je trouve qu'un téléphone peut être utile aux enfants.", "pose": {"pos": "pro", "f": "ja", "s": "nein"}, "va": "dafuer"},
+    {"t": "Ich bin eher dagegen. Meiner Meinung nach sind Grundschulkinder dafür zu jung.", "fr": "Je suis plutôt contre. À mon avis, les enfants du primaire sont trop jeunes pour ça.", "pose": {"pos": "contra", "f": "nein", "s": "ja"}, "va": "dagegen"},
+    {"t": "Das kommt darauf an, wie alt das Kind ist und wofür es das Handy benutzt.", "fr": "Ça dépend de l'âge de l'enfant et de ce qu'il fait avec le téléphone.", "pose": {"pos": "teils", "f": "ja", "s": "ja"}, "va": "teils"},
+    {"faux": true, "t": "Ich bin einverstanden, dass Kinder ein Handy brauchen.", "fr": "Je suis d'accord que les enfants ont besoin d'un téléphone.", "puis": [{"qui": "b11_camarade", "air": "perplexe", "t": "Einverstanden? Womit denn? Ich habe doch noch gar nichts gesagt!", "fr": "D'accord ? Avec quoi ? Je n'ai encore rien dit !"}], "aide": {"fr": "<b>« einverstanden »</b> répond à la proposition de quelqu'un. Pour donner ton avis : <b>« Ich finde, dass… »</b>, « Ich bin der Meinung, dass… » ou « Meiner Meinung nach… »."}}
+   ]
+  },
+  "dafuer": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "surprise", "t": "Echt? Ich sehe das anders. Kinder sitzen doch sowieso schon zu viel vor dem Bildschirm. Warum sollten sie noch ein eigenes Handy haben?", "fr": "Vraiment ? Je ne vois pas les choses comme ça. Les enfants passent déjà trop de temps devant les écrans. Pourquoi leur faudrait-il en plus leur propre téléphone ?"}
+   ],
+   "choix": [
+    {"t": "Weil die Eltern ihr Kind dann immer erreichen können, zum Beispiel auf dem Schulweg.", "fr": "Parce que les parents peuvent alors toujours joindre leur enfant, par exemple sur le chemin de l'école.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Okay, das mit dem Schulweg verstehe ich.", "fr": "D'accord, pour le chemin de l'école, je comprends."}]},
+    {"t": "Weil Kinder früh lernen sollten, wie man das Internet richtig benutzt.", "fr": "Parce que les enfants devraient apprendre tôt à bien se servir d'internet.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Hm, das ist ein Argument. Lernen müssen sie es ja irgendwann.", "fr": "Hum, c'est un argument. Il faudra bien qu'ils l'apprennent un jour."}]},
+    {"faux": true, "t": "Weil die Eltern können das Kind immer anrufen.", "fr": "Parce que les parents peuvent toujours appeler l'enfant.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Weil die Eltern es immer anrufen können – okay, verstehe.", "fr": "Parce que les parents peuvent toujours l'appeler : d'accord, je comprends."}], "aide": {"fr": "Après <b>« weil »</b>, le verbe conjugué va tout à la fin : « Weil die Eltern das Kind immer anrufen <b>können</b>. »"}}
+   ]
+  },
+  "dagegen": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "surprise", "t": "Wirklich? Ich finde ein Handy eigentlich praktisch: Die Eltern können ihr Kind immer erreichen. Was stört dich denn daran?", "fr": "Vraiment ? Moi, je trouve un téléphone plutôt pratique : les parents peuvent toujours joindre leur enfant. Qu'est-ce qui te dérange là-dedans ?"}
+   ],
+   "choix": [
+    {"t": "Ich finde, dass Kinder lieber draußen spielen sollten, statt auf das Handy zu schauen.", "fr": "Je trouve que les enfants devraient plutôt jouer dehors au lieu de regarder leur téléphone.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Ja, da ist was dran. Draußen sieht man immer weniger Kinder.", "fr": "Oui, il y a du vrai. On voit de moins en moins d'enfants dehors."}]},
+    {"t": "Viele Kinder schlafen wegen des Handys schlecht und können sich nicht mehr konzentrieren.", "fr": "Beaucoup d'enfants dorment mal à cause du téléphone et n'arrivent plus à se concentrer.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Stimmt, das habe ich auch schon gelesen.", "fr": "C'est vrai, je l'ai déjà lu aussi."}]},
+    {"faux": true, "t": "Ich denke, dass Kinder sollten draußen spielen.", "fr": "Je pense que les enfants devraient jouer dehors.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Dass sie draußen spielen sollten – ja, da ist was dran.", "fr": "Qu'ils devraient jouer dehors : oui, il y a du vrai."}], "aide": {"fr": "Après <b>« dass »</b>, le verbe conjugué va à la fin : « Ich denke, dass Kinder draußen spielen <b>sollten</b>. »"}}
+   ]
+  },
+  "teils": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "amuse", "t": "Sehr diplomatisch! Aber sag mal konkret: Wann wäre ein Handy für dich in Ordnung?", "fr": "Très diplomate ! Mais dis-moi concrètement : dans quel cas un téléphone te paraîtrait-il acceptable ?"}
+   ],
+   "choix": [
+    {"t": "Ein einfaches Handy zum Telefonieren ist in Ordnung, aber kein Smartphone mit Internet.", "fr": "Un téléphone simple pour appeler, d'accord, mais pas un smartphone avec internet.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Ah, das ist ein guter Unterschied. Daran habe ich gar nicht gedacht.", "fr": "Ah, c'est une bonne distinction. Je n'y avais pas pensé."}]},
+    {"t": "Wenn das Kind allein zur Schule geht, finde ich ein Handy sinnvoll.", "fr": "Si l'enfant va seul à l'école, je trouve qu'un téléphone a du sens.", "va": "land", "puis": [{"qui": "b11_camarade", "air": "attentive", "t": "Okay, für den Schulweg – das verstehe ich.", "fr": "D'accord, pour le chemin de l'école : je comprends."}]},
+    {"faux": true, "t": "Wann das Kind geht allein zur Schule.", "fr": "Quand l'enfant va seul à l'école.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Wenn es allein zur Schule geht, meinst du? Okay, guter Punkt.", "fr": "S'il va seul à l'école, tu veux dire ? D'accord, bon argument."}], "aide": {"fr": "« Wann » pose une question. Pour une condition, c'est <b>« wenn »</b>, avec le verbe à la fin : « <b>Wenn</b> das Kind allein zur Schule <b>geht</b>, … »"}}
+   ]
+  },
+  "land": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "question", "t": "Und wie ist das bei euch, in deinem Land? Haben die Kinder dort früh ein Handy?", "fr": "Et chez vous, dans ton pays, c'est comment ? Les enfants ont-ils un téléphone tôt ?"}
+   ],
+   "choix": [
+    {"t": "Bei uns bekommen viele Kinder ihr erstes Handy mit zehn oder elf Jahren.", "fr": "Chez nous, beaucoup d'enfants reçoivent leur premier téléphone à dix ou onze ans.", "va": "alter", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Ach, das ist ja ungefähr wie hier.", "fr": "Ah, c'est à peu près comme ici."}]},
+    {"t": "Bei uns sind Handys in vielen Schulen verboten, sogar in den Pausen.", "fr": "Chez nous, les téléphones sont interdits dans beaucoup d'écoles, même pendant les récréations.", "va": "alter", "puis": [{"qui": "b11_camarade", "air": "surprise", "t": "Sogar in den Pausen? Interessant! Hier ist das von Schule zu Schule verschieden.", "fr": "Même pendant les récréations ? Intéressant ! Ici, ça change d'une école à l'autre."}]},
+    {"faux": true, "t": "In meinem Land die Kinder haben ein Handy mit zehn Jahren.", "fr": "Dans mon pays, les enfants ont un téléphone à dix ans.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "In deinem Land haben sie schon mit zehn eins? Okay.", "fr": "Dans ton pays, ils en ont un dès dix ans ? D'accord."}], "aide": {"fr": "Le verbe reste en <b>deuxième position</b> : après « In meinem Land », il vient tout de suite. « In meinem Land <b>haben</b> die Kinder… » Ou : « Bei uns bekommen viele Kinder… »"}},
+    {"repete": true, "t": "Entschuldigung, kannst du die Frage bitte wiederholen?", "fr": "Pardon, tu peux répéter la question, s'il te plaît ?", "va": "land", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Klar. Wie ist das in deinem Land: Haben Kinder dort schon früh ein Handy?", "fr": "Bien sûr. Comment ça se passe dans ton pays : les enfants ont-ils un téléphone tôt ?"}]}
+   ]
+  },
+  "alter": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "question", "t": "Und ab welchem Alter findest du ein eigenes Smartphone in Ordnung?", "fr": "Et à partir de quel âge trouves-tu acceptable d'avoir son propre smartphone ?"}
+   ],
+   "choix": [
+    {"si": {"pos": "pro"}, "t": "Schon ab acht oder neun Jahren, wenn das Kind allein unterwegs ist.", "fr": "Dès huit ou neuf ans, si l'enfant se déplace seul.", "pose": {"alter": "frueh"}, "va": "einwand"},
+    {"si": {"f": "ja"}, "t": "Ab zehn Jahren, aber nur mit klaren Regeln von den Eltern.", "fr": "À partir de dix ans, mais seulement avec des règles claires fixées par les parents.", "pose": {"alter": "frueh"}, "va": "einwand"},
+    {"si": {"s": "ja"}, "t": "Ich würde sagen, ab zwölf Jahren, also nach der Grundschule.", "fr": "Je dirais à partir de douze ans, donc après l'école primaire.", "pose": {"alter": "spaet"}, "va": "einwand"},
+    {"si": {"pos": "contra"}, "t": "Frühestens mit vierzehn. Vorher reicht ein einfaches Handy ohne Internet.", "fr": "Pas avant quatorze ans. Avant, un téléphone simple, sans internet, suffit.", "pose": {"alter": "spaet"}, "va": "einwand"},
+    {"faux": true, "t": "Meiner Meinung nach sie brauchen es ab zwölf.", "fr": "À mon avis, ils en ont besoin à partir de douze ans.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Meiner Meinung nach brauchen sie es … ab zwölf, sagst du? Hm.", "fr": "À mon avis, ils en ont besoin… à partir de douze ans, tu dis ? Hum."}], "aide": {"fr": "<b>« Meiner Meinung nach »</b> occupe la première place : le verbe suit aussitôt. « Meiner Meinung nach <b>brauchen</b> sie es ab zwölf. »"}}
+   ]
+  },
+  "einwand": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "perplexe", "si": {"alter": "spaet"}, "t": "Hm, da bin ich nicht ganz deiner Meinung. In der Klasse meiner Nichte haben fast alle schon ein Smartphone. Ein Kind ohne Handy ist dann schnell allein, und das ist doch auch nicht gut, oder?", "fr": "Hum, là, je ne suis pas tout à fait de ton avis. Dans la classe de ma nièce, presque tous ont déjà un smartphone. Un enfant sans téléphone se retrouve vite seul, et ça non plus, ce n'est pas bien, non ?"},
+    {"qui": "b11_camarade", "air": "perplexe", "si": {"alter": "frueh"}, "t": "Hm, da bin ich nicht ganz deiner Meinung. So junge Kinder können doch noch nicht selbst aufhören: Meine Nichte spielt stundenlang am Handy, wenn niemand aufpasst. Das ist doch nicht gut, oder?", "fr": "Hum, là, je ne suis pas tout à fait de ton avis. Des enfants si jeunes ne savent pas encore s'arrêter tout seuls : ma nièce joue des heures sur son téléphone quand personne ne la surveille. Ce n'est pas bien, non ?"}
+   ],
+   "choix": [
+    {"si": {"alter": "spaet"}, "t": "Da hast du recht, das ist ein Problem. Aber dann sollten die Eltern der Klasse zusammen eine Regel finden.", "fr": "Là, tu as raison, c'est un problème. Mais alors les parents de la classe devraient trouver une règle ensemble.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Eine Regel für die ganze Klasse – das gefällt mir!", "fr": "Une règle pour toute la classe : ça me plaît !"}]},
+    {"si": {"alter": "frueh"}, "t": "Da hast du recht, das ist ein Problem. Aber dann sollten die Eltern feste Zeiten für das Handy bestimmen.", "fr": "Là, tu as raison, c'est un problème. Mais alors les parents devraient fixer des horaires précis pour le téléphone.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Feste Zeiten, ja – das würde meiner Nichte guttun!", "fr": "Des horaires précis, oui : ça ferait du bien à ma nièce !"}]},
+    {"si": {"alter": "spaet"}, "t": "Das verstehe ich, aber ich bleibe bei meiner Meinung: Ein Kind braucht nicht alles, was die anderen haben.", "fr": "Je comprends, mais je reste sur ma position : un enfant n'a pas besoin de tout ce qu'ont les autres.", "va": "bleiben"},
+    {"si": {"alter": "frueh"}, "t": "Das verstehe ich, aber ich bleibe bei meiner Meinung: Kinder sollten früh lernen, das Handy richtig zu benutzen.", "fr": "Je comprends, mais je reste sur ma position : les enfants devraient apprendre tôt à bien se servir du téléphone.", "va": "bleiben"},
+    {"faux": true, "t": "Du hast Grund, aber es ist trotzdem ein Problem.", "fr": "Tu as raison, mais c'est quand même un problème.", "puis": [{"qui": "b11_camarade", "air": "amuse", "t": "Ich habe Grund? Du meinst: Ich habe recht! Danke.", "fr": "« Ich habe Grund » ? Tu veux dire : j'ai raison ! Merci."}], "aide": {"fr": "« Avoir raison » se dit <b>« recht haben »</b> : « Da hast du recht. » « Der Grund », c'est la raison, la cause de quelque chose."}}
+   ]
+  },
+  "bleiben": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "amuse", "si": {"alter": "spaet"}, "t": "Okay, du gibst nicht so schnell auf! Aber wie erklärst du einem Kind, dass alle anderen ein Handy haben, nur es selbst nicht?", "fr": "D'accord, tu ne lâches pas facilement ! Mais comment expliques-tu à un enfant que tous les autres ont un téléphone, sauf lui ?"},
+    {"qui": "b11_camarade", "air": "amuse", "si": {"alter": "frueh"}, "t": "Okay, du gibst nicht so schnell auf! Aber was machst du, wenn das Kind das Handy abends nicht weglegen will?", "fr": "D'accord, tu ne lâches pas facilement ! Mais que fais-tu si l'enfant ne veut pas poser son téléphone le soir ?"}
+   ],
+   "choix": [
+    {"si": {"alter": "spaet"}, "t": "Ich würde ihm erklären, warum wir noch warten, und mehr Zeit mit ihm verbringen.", "fr": "Je lui expliquerais pourquoi nous attendons encore, et je passerais plus de temps avec lui.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Mehr Zeit statt Handy – okay, das ist ein schöner Gedanke.", "fr": "Plus de temps au lieu d'un téléphone : d'accord, c'est une belle idée."}]},
+    {"si": {"alter": "spaet"}, "t": "Das ist schwer, aber Kinder verstehen viel, wenn man ehrlich mit ihnen spricht.", "fr": "C'est difficile, mais les enfants comprennent beaucoup de choses quand on leur parle franchement.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Das stimmt allerdings. Ehrlich sein hilft meistens.", "fr": "Ça, c'est vrai. La franchise aide le plus souvent."}]},
+    {"si": {"alter": "frueh"}, "t": "Abends bleibt das Handy im Wohnzimmer. Das wäre bei mir eine feste Regel.", "fr": "Le soir, le téléphone reste au salon. Chez moi, ce serait une règle fixe.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Das Handy schläft im Wohnzimmer – okay, das ist eine gute Idee.", "fr": "Le téléphone dort au salon : d'accord, c'est une bonne idée."}]},
+    {"si": {"alter": "frueh"}, "t": "Ich würde in Ruhe mit ihm sprechen und die Regeln noch einmal erklären.", "fr": "Je lui parlerais calmement et je lui réexpliquerais les règles.", "va": "fazit", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Du hast aber viel Geduld! Okay, das kann funktionieren.", "fr": "Tu en as, de la patience ! D'accord, ça peut marcher."}]},
+    {"faux": true, "t": "Wenn ich hätte ein Kind, ich würde es erklären.", "fr": "Si j'avais un enfant, je l'expliquerais.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Wenn du ein Kind hättest, würdest du es ihm erklären – okay! Und wie?", "fr": "Si tu avais un enfant, tu le lui expliquerais : d'accord ! Et comment ?"}], "aide": {"fr": "Après <b>« wenn »</b>, le verbe va à la fin ; puis la principale commence par son verbe : « Wenn ich ein Kind <b>hätte</b>, <b>würde</b> ich es ihm erklären. »"}}
+   ]
+  },
+  "fazit": {
+   "dit": [
+    {"qui": "b11_camarade", "air": "question", "t": "Na gut, die Zeit ist gleich um. Fassen wir zusammen: Worin sind wir uns einig?", "fr": "Bon, le temps est presque écoulé. Résumons : sur quoi sommes-nous d'accord ?"}
+   ],
+   "choix": [
+    {"t": "Wir sind uns einig, dass Kinder klare Regeln für das Handy brauchen.", "fr": "Nous sommes d'accord sur le fait que les enfants ont besoin de règles claires pour le téléphone.", "va": "ende", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Genau! Und beim Alter sind wir eben verschiedener Meinung. Das ist auch okay.", "fr": "Exactement ! Et sur l'âge, nous ne sommes pas du même avis, voilà tout. C'est très bien aussi."}]},
+    {"t": "Wir finden beide, dass die Eltern eine große Verantwortung haben.", "fr": "Nous trouvons, toi et moi, que les parents ont une grande responsabilité.", "va": "ende", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Genau! Und beim Alter sind wir eben verschiedener Meinung. Das ist auch okay.", "fr": "Exactement ! Et sur l'âge, nous ne sommes pas du même avis, voilà tout. C'est très bien aussi."}]},
+    {"faux": true, "t": "Wir sind beide dieselbe Meinung.", "fr": "Nous sommes du même avis, toi et moi.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Derselben Meinung, ja – aber worüber genau?", "fr": "Du même avis, oui : mais sur quoi, exactement ?"}], "aide": {"fr": "« Être du même avis » demande le génitif : <b>« derselben Meinung sein »</b>. Pour résumer un accord : « Wir sind uns einig, dass… »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "L'enseignante frappe dans ses mains : c'est terminé."}},
+    {"qui": "b11_camarade", "air": "sourire", "t": "Das war doch eine gute Übung für die Prüfung! Mit dir kann man richtig gut diskutieren.", "fr": "C'était un bon entraînement pour l'examen ! Avec toi, on peut vraiment bien discuter."}
+   ],
+   "choix": [
+    {"t": "Danke, gleichfalls! Mit dir macht das Diskutieren Spaß.", "fr": "Merci, toi aussi ! Discuter avec toi, c'est un plaisir.", "va": null, "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Dann schaffen wir die mündliche Prüfung bestimmt!", "fr": "Alors nous réussirons sûrement l'oral !"}]},
+    {"t": "Finde ich auch. Sollen wir nächste Woche wieder zusammen üben?", "fr": "Je trouve aussi. On s'entraîne de nouveau ensemble la semaine prochaine ?", "va": null, "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Unbedingt! Gleiche Zeit, gleicher Tisch.", "fr": "Absolument ! Même heure, même table."}]},
+    {"faux": true, "t": "Danke, das hat mich gefallen.", "fr": "Merci, ça m'a plu.", "puis": [{"qui": "b11_camarade", "air": "sourire", "t": "Mir hat es auch gefallen!", "fr": "À moi aussi, ça m'a plu !"}], "aide": {"fr": "<b>« gefallen »</b> demande le datif : « Das hat <b>mir</b> gefallen. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as mené une discussion comme à l'oral de l'examen : tu as donné ton avis, argumenté, parlé de ton pays, proposé un âge, répondu à une objection et résumé ce sur quoi vous êtes d'accord."}
+}

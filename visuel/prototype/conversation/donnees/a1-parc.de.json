@@ -1,0 +1,62 @@
+{
+ "id": "a1-parc",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "Sur un banc, au parc"},
+ "intro": {"fr": "Un après-midi au parc, à Berlin. Un promeneur te demande l'heure, puis parle du temps qu'il fait."},
+ "personnes": ["park_spaziergaenger"],
+ "debut": "uhrzeit",
+ "noeuds": {
+  "uhrzeit": {
+   "dit": [
+    {"recit": {"fr": "Un après-midi de printemps, dans un parc de Berlin. Tu es assis(e) sur un banc ; ton téléphone indique 14 h 30. Un homme s'arrête devant toi."}},
+    {"qui": "park_spaziergaenger", "air": "attentive", "t": "Entschuldigung, wie spät ist es?", "fr": "Excusez-moi, quelle heure est-il ?"}
+   ],
+   "choix": [
+    {"t": "Es ist halb drei.", "fr": "Il est deux heures et demie.", "va": "wetter",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Danke schön!", "fr": "Merci beaucoup !"}]},
+    {"t": "Es ist vierzehn Uhr dreißig.", "fr": "Il est quatorze heures trente.", "va": "wetter",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Danke schön!", "fr": "Merci beaucoup !"}]},
+    {"faux": true, "t": "Es ist zwei und halb.", "fr": "Il est deux heures et demie.",
+     "puis": [{"qui": "park_spaziergaenger", "air": "perplexe", "t": "Zwei und halb? Ach so, halb drei!", "fr": "« Deux et demie » ? Ah, deux heures et demie !"}],
+     "aide": {"fr": "<b>« halb drei » = 2 h 30.</b> En allemand, la demi-heure compte vers l'heure suivante : la moitié du chemin vers trois heures. Ou, plus officiel : « vierzehn Uhr dreißig »."}}
+   ]
+  },
+  "wetter": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Schönes Wetter heute, oder?", "fr": "Il fait beau aujourd'hui, hein ?"}],
+   "choix": [
+    {"t": "Ja, die Sonne scheint. Es ist warm.", "fr": "Oui, il y a du soleil. Il fait chaud.", "va": "morgen"},
+    {"t": "Ja, aber es ist ein bisschen kalt.", "fr": "Oui, mais il fait un peu froid.", "va": "morgen",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Stimmt, der Wind ist noch kalt.", "fr": "C'est vrai, le vent est encore froid."}]},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "wetter",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Das Wetter! Es ist schön heute, oder?", "fr": "Le temps ! Il fait beau aujourd'hui, non ?"}]}
+   ]
+  },
+  "morgen": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "Aber morgen regnet es den ganzen Tag.", "fr": "Mais demain, il pleut toute la journée."}],
+   "choix": [
+    {"t": "Schade! Dann bleibe ich zu Hause.", "fr": "Dommage ! Alors je reste à la maison.", "va": "oft"},
+    {"t": "Kein Problem. Ich habe einen Regenschirm.", "fr": "Pas de problème. J'ai un parapluie.", "va": "oft",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Sehr gut!", "fr": "Très bien !"}]}
+   ]
+  },
+  "oft": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "attentive", "t": "Kommen Sie oft hierher?", "fr": "Vous venez souvent ici ?"}],
+   "choix": [
+    {"t": "Ja, ich gehe hier jeden Tag spazieren.", "fr": "Oui, je me promène ici tous les jours.", "va": "tschuess",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Ich auch, mit meinem Hund. Er heißt Max.", "fr": "Moi aussi, avec mon chien. Il s'appelle Max."}]},
+    {"t": "Nein, ich bin neu in Berlin.", "fr": "Non, je suis nouveau (nouvelle) à Berlin.", "va": "tschuess",
+     "puis": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "Dann herzlich willkommen! Der Park ist sehr schön.", "fr": "Alors bienvenue ! Le parc est très beau."}]}
+   ]
+  },
+  "tschuess": {
+   "dit": [{"qui": "park_spaziergaenger", "air": "sourire", "t": "So, ich muss weiter. Schönen Tag noch!", "fr": "Bon, je dois y aller. Bonne journée !"}],
+   "choix": [
+    {"t": "Danke, Ihnen auch! Auf Wiedersehen!", "fr": "Merci, à vous aussi ! Au revoir !", "va": null},
+    {"t": "Danke, gleichfalls! Tschüss!", "fr": "Merci, pareillement ! Au revoir !", "va": null}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné l'heure (halb drei !), parlé du soleil et de la pluie de demain, et dit au revoir poliment."}
+}

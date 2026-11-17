@@ -536,7 +536,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le téléphone portable",
-   "en": "the mobile phone",
+   "en": "the cell phone",
    "pt": "o celular",
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
@@ -1260,7 +1260,7 @@ window.SCENE = {
    "couches": {
     "A1": "Nouns and articles",
     "A2": "¿Dónde está? — estar and prepositions",
-    "B1": "Travelling: en, a, por",
+    "B1": "Traveling: en, a, por",
     "B2": "Relative clauses and the passive",
     "C1": "Hypotheses and probability"
    },
@@ -1307,7 +1307,7 @@ window.SCENE = {
     "A2 | El móvil está al lado del pan.": "The phone is next to the bread.",
     "A2 | La mochila está al lado de la maleta.": "The backpack is next to the suitcase.",
     "A2 | Hay un río debajo del puente.": "There is a river under the bridge.",
-    "B1 | Mark viaja en tren.": "Mark is travelling by train.",
+    "B1 | Mark viaja en tren.": "Mark is traveling by train.",
     "B1 | Va a las montañas.": "He is going to the mountains.",
     "B1 | Mira por la ventana.": "He is looking out of the window.",
     "B1 | El tren pasa por el puente.": "The train is going over the bridge.",
@@ -1317,8 +1317,8 @@ window.SCENE = {
     "B1 | Alguien la ha olvidado en el asiento.": "Someone has left it on the seat.",
     "B2 | El hombre que mira por la ventana se llama Mark.": "The man looking out of the window is called Mark.",
     "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "The village, whose church has a pointed tower, is in the valley.",
-    "B2 | La mesa en la que está la laptop es gris.": "The table the laptop is on is grey.",
-    "B2 | La mesa en la que está el portátil es gris.": "The table the laptop is on is grey.",
+    "B2 | La mesa en la que está la laptop es gris.": "The table the laptop is on is gray.",
+    "B2 | La mesa en la que está el portátil es gris.": "The table the laptop is on is gray.",
     "B2 | El boleto tiene que ser revisado en el tren.": "The ticket has to be checked on the train.",
     "B2 | El billete tiene que ser revisado en el tren.": "The ticket has to be checked on the train.",
     "B2 | El periódico está doblado sobre la mesa.": "The newspaper is folded on the table.",

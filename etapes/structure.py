@@ -28,7 +28,8 @@ Controler  : python tests/etapes.py
 
 # Les langues d'interface, par langue apprise (celles de a1-voyage.json).
 LANGUES = {
-    "de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
+    # « es » : l'espagnol d'Amerique latine, 10e langue d'interface de l'allemand (15 nov. 2026, interface-es/).
+    "de": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"],
     "es": ["fr", "en", "pt", "ar", "de"],
 }
 

@@ -1,0 +1,77 @@
+{
+ "id": "a1-pharmacie",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "sante",
+ "registre": "Sie",
+ "titre": {"fr": "À la pharmacie"},
+ "intro": {"fr": "Tu as mal à la gorge ou à la tête. À la pharmacie, tu dis ce qui ne va pas, depuis quand, et tu repars avec un médicament."},
+ "personnes": ["apothekerin"],
+ "debut": "hilfe",
+ "prix": {"hals": 690, "kopf": 450},
+ "panier": ["mittel"],
+ "noeuds": {
+  "hilfe": {
+   "dit": [
+    {"recit": {"fr": "Le matin, dans une pharmacie de ton quartier. Tu as mal dormi."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "Guten Morgen! Was kann ich für Sie tun?", "fr": "Bonjour ! Qu'est-ce que je peux faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Ich habe Halsschmerzen.", "fr": "J'ai mal à la gorge.", "pose": {"mittel": "hals"}, "va": "seit"},
+    {"t": "Mein Kopf tut weh.", "fr": "J'ai mal à la tête.", "pose": {"mittel": "kopf"}, "va": "seit"},
+    {"faux": true, "t": "Ich habe mal am Kopf.", "fr": "J'ai mal à la tête (mot à mot).",
+     "puis": [{"qui": "apothekerin", "air": "perplexe", "t": "Sie haben … mal? Ach so: Sie haben Kopfschmerzen?", "fr": "Vous avez… « mal » ? Ah : vous avez mal à la tête ?"}],
+     "aide": {"fr": "<b>« J'ai mal à… » ne se traduit pas mot à mot.</b> On dit « Mein Kopf tut weh » ou « Ich habe Kopfschmerzen » (Kopf + Schmerzen), « Ich habe Halsschmerzen »."}}
+   ]
+  },
+  "seit": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "Seit wann haben Sie das?", "fr": "Depuis quand avez-vous ça ?"}],
+   "choix": [
+    {"t": "Seit gestern.", "fr": "Depuis hier.", "va": "fieber"},
+    {"t": "Seit zwei Tagen.", "fr": "Depuis deux jours.", "va": "fieber"}
+   ]
+  },
+  "fieber": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "Haben Sie auch Fieber?", "fr": "Vous avez aussi de la fièvre ?"}],
+   "choix": [
+    {"t": "Nein, kein Fieber.", "fr": "Non, pas de fièvre.", "va": "allergie"},
+    {"t": "Ein bisschen, ja.", "fr": "Un peu, oui.", "va": "allergie",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Dann trinken Sie viel Tee und bleiben Sie im Bett.", "fr": "Alors buvez beaucoup de thé et restez au lit."}]}
+   ]
+  },
+  "allergie": {
+   "dit": [{"qui": "apothekerin", "air": "question", "t": "Sind Sie allergisch gegen Medikamente?", "fr": "Vous êtes allergique à des médicaments ?"}],
+   "choix": [
+    {"t": "Nein, ich bin nicht allergisch.", "fr": "Non, je ne suis pas allergique.", "va": "mittel"},
+    {"t": "Ja, gegen Penicillin.", "fr": "Oui, à la pénicilline.", "va": "mittel",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Gut, dass Sie das sagen. Das hier ist kein Penicillin.", "fr": "Vous avez bien fait de le dire. Ceci n'est pas de la pénicilline."}]}
+   ]
+  },
+  "mittel": {
+   "dit": [
+    {"si": {"mittel": "hals"}, "qui": "apothekerin", "air": "attentive", "t": "Dann nehmen Sie diese Lutschtabletten: alle drei Stunden eine.", "fr": "Alors prenez ces pastilles à sucer : une toutes les trois heures."},
+    {"si": {"mittel": "kopf"}, "qui": "apothekerin", "air": "attentive", "t": "Dann nehmen Sie diese Tabletten: dreimal am Tag eine, nach dem Essen.", "fr": "Alors prenez ces comprimés : un trois fois par jour, après le repas."}
+   ],
+   "choix": [
+    {"t": "Brauche ich ein Rezept?", "fr": "J'ai besoin d'une ordonnance ?", "va": "ende",
+     "puis": [{"qui": "apothekerin", "air": "sourire", "t": "Nein, die sind rezeptfrei. Das macht {a_payer}.", "fr": "Non, c'est sans ordonnance. Ça fait {a_payer}.", "dit": "Nein, die sind rezeptfrei. Das macht {a_payer:mots}."}]},
+    {"t": "Danke. Was kostet das?", "fr": "Merci. Combien ça coûte ?", "va": "ende",
+     "puis": [{"qui": "apothekerin", "air": "attentive", "t": "Das macht {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Das macht {a_payer:mots}."}]}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "Tu paies."}},
+    {"qui": "apothekerin", "air": "sourire", "t": "Gute Besserung!", "fr": "Bon rétablissement !"}
+   ],
+   "choix": [
+    {"t": "Danke schön! Auf Wiedersehen!", "fr": "Merci beaucoup ! Au revoir !", "va": null},
+    {"faux": true, "t": "Danke, gute Besserung!", "fr": "Merci, bon rétablissement !",
+     "puis": [{"qui": "apothekerin", "air": "amuse", "t": "Mir? Ha, ich bin nicht krank! Aber danke.", "fr": "À moi ? Ha, je ne suis pas malade ! Mais merci."}],
+     "aide": {"fr": "<b>« Gute Besserung! » se dit au malade</b> : c'est toi. Réponds simplement « Danke schön! » ou « Danke, auf Wiedersehen! »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué ce qui n'allait pas, répondu aux questions de la pharmacienne et payé {a_payer}."}
+}

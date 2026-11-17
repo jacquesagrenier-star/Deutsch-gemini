@@ -1,0 +1,470 @@
+{
+ "id": "a2-premier-jour",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {
+  "fr": "Le premier jour de travail"
+ },
+ "intro": {
+  "fr": "C'est ton premier jour comme commis de cuisine (prep cook) dans un restaurant de Boston. Carmen, la cheffe, t'accueille : réponds-lui, pose tes questions et fais connaissance avec Javier, ton collègue cuisinier."
+ },
+ "personnes": [
+  "a22_carmen",
+  "a22_javier"
+ ],
+ "debut": "welcome",
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Mardi matin, un peu avant neuf heures. Tu entres par la porte de service d'un restaurant de Boston. Une femme en veste blanche vient vers toi."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Good morning! You must be our new prep cook. Welcome! I'm Carmen, the head chef.",
+     "fr": "Bonjour ! Vous devez être la nouvelle personne en cuisine. Bienvenue ! Je suis Carmen, la cheffe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Good morning, Chef! Yes, today is my first day.",
+     "fr": "Bonjour, Chef ! Oui, aujourd'hui c'est mon premier jour.",
+     "va": "locker",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Great. We're all happy to have you here.",
+       "fr": "Parfait. Nous sommes tous contents de vous avoir ici."
+      }
+     ]
+    },
+    {
+     "t": "Hello, nice to meet you. I'm a little early.",
+     "fr": "Bonjour, enchanté(e). Je suis un peu en avance.",
+     "va": "locker",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "No problem at all. In a kitchen, early is good!",
+       "fr": "Aucun problème. En cuisine, être en avance, c'est très bien !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I work here since today.",
+     "fr": "Oui, je travaille ici depuis aujourd'hui.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "Since today? Oh, you mean you start today!",
+       "fr": "Depuis aujourd'hui ? Ah, vous voulez dire que vous commencez aujourd'hui !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« since » ne va pas avec le présent simple</b>, et « depuis aujourd'hui » ne se dit pas ainsi. Dis simplement : « Today is my first day. »"
+     }
+    }
+   ]
+  },
+  "locker": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "This is your locker. Here's your chef coat and an apron. Did you bring non-slip shoes?",
+     "fr": "Voici votre casier. Voilà votre veste de cuisine et un tablier. Avez-vous apporté des chaussures antidérapantes ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, I have them in my bag.",
+     "fr": "Oui, je les ai dans mon sac.",
+     "va": "hygiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Perfect. The floor gets wet in here.",
+       "fr": "Parfait. Le sol est vite mouillé ici."
+      }
+     ]
+    },
+    {
+     "t": "No, I'm sorry. I only have these shoes.",
+     "fr": "Non, je suis désolé(e). Je n'ai que ces chaussures.",
+     "va": "hygiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "attentive",
+       "t": "They're OK for today. But please buy non-slip shoes this week.",
+       "fr": "Elles iront pour aujourd'hui. Mais achetez des chaussures antidérapantes cette semaine, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I have my baskets.",
+     "fr": "Oui, j'ai mes « paniers ».",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "amuse",
+       "t": "Baskets? For the bread? Oh, you mean your sneakers!",
+       "fr": "Des paniers ? Pour le pain ? Ah, vous voulez dire vos baskets !",
+       "t_gb": "Baskets? For the bread? Oh, you mean your trainers!"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« baskets »</b>, en anglais, ce sont des paniers. Les baskets se disent « sneakers » (« trainers » en anglais britannique). Ici : « Yes, I have them in my bag. »"
+     }
+    }
+   ]
+  },
+  "hygiene": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "Three rules in my kitchen: wash your hands often, keep your hair tied back, and no rings or watches. OK?",
+     "fr": "Trois règles dans ma cuisine : lavez-vous souvent les mains, gardez les cheveux attachés, et ni bagues ni montres. D'accord ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Of course. I'll wash my hands now.",
+     "fr": "Bien sûr. Je me lave les mains maintenant.",
+     "va": "hours",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Good. The sink is over there.",
+       "fr": "Bien. Le lavabo est là-bas."
+      }
+     ]
+    },
+    {
+     "t": "No problem. Where can I wash my hands?",
+     "fr": "Pas de problème. Où est-ce que je peux me laver les mains ?",
+     "va": "hours",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "At the small sink, next to the door. The soap is right there.",
+       "fr": "Au petit lavabo, à côté de la porte. Le savon est juste là."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK. I wash me the hands.",
+     "fr": "D'accord. Je me lave les mains. (mot à mot)",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "perplexe",
+       "t": "You wash … Oh, you'll wash your hands. Good!",
+       "fr": "Vous lavez… Ah, vous allez vous laver les mains. Bien !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Avec une partie du corps, l'anglais met le possessif</b> : « wash my hands », jamais « wash me the hands ». Dis : « I'll wash my hands now. »"
+     }
+    },
+    {
+     "t": "Sorry, could you say that again, slowly?",
+     "fr": "Pardon, vous pouvez répéter, lentement ?",
+     "va": "hygiene",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Sure. Wash your hands. Tie your hair back. No rings, no watches.",
+       "fr": "Bien sûr. Lavez-vous les mains. Attachez vos cheveux. Pas de bagues, pas de montres."
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "hours": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "You work Tuesday to Saturday, from 9 to 5. We all eat together at 3. And we're closed on Mondays. Any questions?",
+     "fr": "Vous travaillez du mardi au samedi, de 9 h à 17 h. Nous mangeons tous ensemble à 15 h. Et nous sommes fermés le lundi. Des questions ?",
+     "dit": "You work Tuesday to Saturday, from nine to five. We all eat together at three. And we're closed on Mondays. Any questions?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes. Do I need to bring my lunch?",
+     "fr": "Oui. Est-ce que je dois apporter mon déjeuner ?",
+     "va": "tomorrow",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "No. The staff meal is free. Javier is cooking it today.",
+       "fr": "Non. Le repas du personnel est gratuit. C'est Javier qui le prépare aujourd'hui."
+      }
+     ]
+    },
+    {
+     "t": "Can I sometimes work on Sunday too?",
+     "fr": "Est-ce que je peux parfois travailler aussi le dimanche ?",
+     "va": "tomorrow",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Maybe later. Sundays are very busy. Let's see how the first weeks go.",
+       "fr": "Peut-être plus tard. Le dimanche, il y a beaucoup de monde. Voyons d'abord comment se passent les premières semaines."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, so I work on Mondays.",
+     "fr": "D'accord, donc je travaille le lundi.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "surprise",
+       "t": "No, no. We're closed on Mondays. Monday is your day off!",
+       "fr": "Non, non. Nous sommes fermés le lundi. Le lundi, c'est votre jour de congé !"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« closed »</b> veut dire fermé : le restaurant n'ouvre pas le lundi. Tu travailles « Tuesday to Saturday ». Pose plutôt une question : « Do I need to bring my lunch? »"
+     }
+    }
+   ]
+  },
+  "tomorrow": {
+   "dit": [
+    {
+     "qui": "a22_carmen",
+     "air": "attentive",
+     "t": "One more thing: the fish delivery comes tomorrow morning, and I want to show you. Can you be here at 8:45?",
+     "fr": "Encore une chose : la livraison de poisson arrive demain matin, et je veux vous montrer. Pouvez-vous être là à 8 h 45 ?",
+     "dit": "One more thing: the fish delivery comes tomorrow morning, and I want to show you. Can you be here at eight forty-five?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Yes, no problem. Tomorrow at eight forty-five.",
+     "fr": "Oui, pas de problème. Demain à huit heures quarante-cinq.",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Thank you. You'll learn a lot.",
+       "fr": "Merci. Vous allez apprendre beaucoup."
+      }
+     ]
+    },
+    {
+     "t": "Sure. I'll be there.",
+     "fr": "Bien sûr. J'y serai.",
+     "va": "javier",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "Great. Come in through the back door.",
+       "fr": "Très bien. Entrez par la porte de derrière."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "OK, tomorrow at nine forty-five.",
+     "fr": "D'accord, demain à neuf heures quarante-cinq.",
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "surprise",
+       "t": "No, eight forty-five. The fish doesn't wait!",
+       "fr": "Non, huit heures quarante-cinq. Le poisson n'attend pas !"
+      }
+     ],
+     "aide": {
+      "fr": "Elle a dit <b>« eight forty-five »</b> : 8 h 45, pas 9 h 45. Confirme l'heure : « Tomorrow at eight forty-five. »"
+     }
+    }
+   ]
+  },
+  "javier": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un homme à moustache, en tablier, s'approche avec une caisse de légumes."
+     }
+    },
+    {
+     "qui": "a22_javier",
+     "air": "sourire",
+     "t": "Hi! You're the new prep cook, right? I'm Javier. I work on the line, right next to you.",
+     "fr": "Salut ! C'est toi qui viens d'arriver en cuisine, non ? Moi, c'est Javier. Je suis cuisinier, je travaille juste à côté de toi."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Hi Javier, nice to meet you!",
+     "fr": "Bonjour Javier, enchanté(e) !",
+     "va": "veg",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Nice to meet you too!",
+       "fr": "Enchanté, moi aussi !"
+      }
+     ]
+    },
+    {
+     "t": "Hello! Nice to meet you. I'm new here.",
+     "fr": "Bonjour ! Enchanté(e). Je suis nouveau (nouvelle) ici.",
+     "va": "veg",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "I know! Carmen told us. Welcome!",
+       "fr": "Je sais ! Carmen nous l'a dit. Bienvenue !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nice to meet you, Mister Javier.",
+     "fr": "Enchanté(e), monsieur Javier.",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "amuse",
+       "t": "Just Javier, please! We all use first names here. Only Carmen is “Chef.”",
+       "fr": "Javier tout court, s'il te plaît ! Ici, tout le monde s'appelle par son prénom. Seule Carmen est « Chef »."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« Mister » ne va qu'avec un nom de famille</b> (Mister Smith). Entre collègues américains, on s'appelle par le prénom : « Nice to meet you, Javier! »"
+     }
+    }
+   ]
+  },
+  "veg": {
+   "dit": [
+    {
+     "qui": "a22_javier",
+     "air": "question",
+     "t": "Can you start with these? I need the onions and the carrots cut small, for the soup.",
+     "fr": "Tu peux commencer par ça ? Il me faut les oignons et les carottes coupés petit, pour la soupe."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sure. How small do you want them?",
+     "fr": "Bien sûr. Tu les veux petits comment ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "Like this, look. Small cubes. Take your time.",
+       "fr": "Comme ça, regarde. Des petits cubes. Prends ton temps."
+      }
+     ]
+    },
+    {
+     "t": "Yes, of course. Where are the knives?",
+     "fr": "Oui, bien sûr. Où sont les couteaux ?",
+     "va": "bye",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "sourire",
+       "t": "On the wall, behind you. Be careful, they're very sharp!",
+       "fr": "Au mur, derrière toi. Attention, ils coupent très bien !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Yes, I cut them actually.",
+     "fr": "Oui, je les coupe « en fait ».",
+     "puis": [
+      {
+       "qui": "a22_javier",
+       "air": "perplexe",
+       "t": "Actually? … Oh, you mean right now! Great.",
+       "fr": "« En fait » ? … Ah, tu veux dire tout de suite ! Super."
+      }
+     ],
+     "aide": {
+      "fr": "<b>« actually »</b> veut dire « en fait ». « Actuellement », « maintenant » se disent « now » ou « right now ». Ici : « Sure. How small do you want them? »"
+     }
+    }
+   ]
+  },
+  "bye": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Un quart d'heure plus tard, Carmen passe derrière toi et regarde ta planche."
+     }
+    },
+    {
+     "qui": "a22_carmen",
+     "air": "sourire",
+     "t": "Nice work so far! Have a great first day. I'm right over there if you need anything.",
+     "fr": "Beau travail jusqu'ici ! Bonne première journée. Je suis juste là-bas si vous avez besoin de quelque chose."
+    }
+   ],
+   "choix": [
+    {
+     "t": "Thank you, Chef. See you later!",
+     "fr": "Merci, Chef. À tout à l'heure !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "See you at the staff meal!",
+       "fr": "On se voit au repas du personnel !"
+      }
+     ]
+    },
+    {
+     "t": "Thank you very much. I'm happy to be here!",
+     "fr": "Merci beaucoup. Je suis content(e) d'être ici !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_carmen",
+       "air": "sourire",
+       "t": "We're happy too. See you later!",
+       "fr": "Nous aussi. À tout à l'heure !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as reçu ton casier et ta tenue, retenu les règles d'hygiène et les horaires (du mardi au samedi, de 9 h à 17 h, fermé le lundi), pris rendez-vous demain à 8 h 45 pour la livraison et commencé à couper les légumes avec Javier."
+ }
+}

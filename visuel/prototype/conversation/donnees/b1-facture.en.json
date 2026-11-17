@@ -1,0 +1,135 @@
+{
+ "id": "b1-facture",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Une erreur sur la facture internet"},
+ "intro": {"fr": "En regardant ta facture internet, tu vois que quelque chose ne va pas. Tu appelles le service client de ton fournisseur pour faire corriger l'erreur."},
+ "personnes": ["b11_service_client"],
+ "debut": "hello",
+ "noeuds": {
+  "hello": {
+   "dit": [
+    {"recit": {"fr": "Dix minutes de musique d'attente, la facture sous les yeux. Enfin, une voix."}},
+    {"qui": "b11_service_client", "air": "sourire", "t": "Thank you for holding. Can I have your account number, please?", "fr": "Merci d'avoir patienté. Puis-je avoir votre numéro de client, s'il vous plaît ?"}
+   ],
+   "choix": [
+    {"t": "Yes, it's four, seven, two, nine, zero, one.", "fr": "Oui, c'est le quatre, sept, deux, neuf, zéro, un.", "va": "problem",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Thank you. I have your account right here.", "fr": "Merci. J'ai votre dossier sous les yeux."}]},
+    {"t": "I don't have it with me. Can you find my account with my phone number?", "fr": "Je ne l'ai pas sur moi. Pouvez-vous retrouver mon dossier avec mon numéro de téléphone ?", "va": "problem",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "No problem. I can see the number you're calling from … and I have your account right here.", "fr": "Aucun problème. Je vois le numéro d'où vous appelez… et j'ai votre dossier sous les yeux."}]},
+    {"faux": true, "t": "Yes, it's forty-seven, twenty-nine, zero one.", "fr": "Oui, c'est le quarante-sept, vingt-neuf, zéro un.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Sorry — forty-seven …? Could you give it to me one digit at a time?", "fr": "Pardon, quarante-sept… ? Pourriez-vous me le donner chiffre par chiffre ?"}],
+     "aide": {"fr": "En anglais, un numéro se dicte <b>chiffre par chiffre</b>, pas par paires comme en français. Dis plutôt : « It's four, seven, two, nine, zero, one. »"}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "And what can I help you with today?", "fr": "Et que puis-je faire pour vous aujourd'hui ?"}],
+   "choix": [
+    {"t": "I was charged twice for my internet this month.", "fr": "On m'a prélevé deux fois mon abonnement internet ce mois-ci.", "pose": {"souci": "double"}, "va": "twice"},
+    {"t": "There's a charge on my bill for a service I never ordered.", "fr": "Il y a sur ma facture un service que je n'ai jamais commandé.", "pose": {"souci": "option"}, "va": "option"},
+    {"faux": true, "t": "I call because my facture is false.", "fr": "J'appelle parce que ma facture est fausse.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "I'm sorry, your …? Is there a problem with your bill?", "fr": "Pardon, votre… ? Il y a un problème avec votre facture ?"}],
+     "aide": {"fr": "<b>« facture »</b> se dit <b>bill</b>, et une facture qui contient une erreur est <b>wrong</b>, pas « false ». Dis plutôt : « I'm calling because my bill is wrong. »"}}
+   ]
+  },
+  "twice": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "Let me look … I see a payment of $64.99 on the 3rd, and another one on the 5th. Did you maybe make a payment yourself, on top of your autopay?", "t_gb": "Let me look … I see a payment of $64.99 on the 3rd, and another one on the 5th. Did you maybe make a payment yourself, on top of your direct debit?", "dit": "Let me look … I see a payment of sixty-four ninety-nine on the third, and another one on the fifth. Did you maybe make a payment yourself, on top of your autopay?", "dit_gb": "Let me look … I see a payment of sixty-four dollars ninety-nine on the third, and another one on the fifth. Did you maybe make a payment yourself, on top of your direct debit?", "fr": "Je regarde… Je vois un paiement de 64,99 dollars le 3, et un autre le 5. Auriez-vous fait un paiement vous-même, en plus de votre prélèvement automatique ?"}],
+   "choix": [
+    {"t": "No, I only use autopay. I didn't make any other payment.", "t_gb": "No, I only pay by direct debit. I didn't make any other payment.", "fr": "Non, je n'utilise que le prélèvement automatique. Je n'ai fait aucun autre paiement.", "va": "admit"},
+    {"t": "No. I checked my bank statement, and both payments went out automatically.", "fr": "Non. J'ai vérifié mon relevé bancaire : les deux paiements sont partis automatiquement.", "va": "admit"},
+    {"faux": true, "t": "No. It's your error, give me back my money.", "fr": "Non. C'est votre erreur, rendez-moi mon argent.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "I understand you're upset. Let's figure out what happened, okay?", "fr": "Je comprends votre mécontentement. Essayons de voir ce qui s'est passé, d'accord ?"}],
+     "aide": {"fr": "<b>Trop direct.</b> Au téléphone, on reste poli même quand on a raison, et on apporte un fait. Dis plutôt : « No, I only use autopay. I didn't make any other payment. »"}}
+   ]
+  },
+  "option": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "I see it: “Premium Wi-Fi Security,” $12.99 a month, added in March. It says here it was activated online.", "dit": "I see it: “Premium Wi-Fi Security,” twelve ninety-nine a month, added in March. It says here it was activated online.", "fr": "Je le vois : « Premium Wi-Fi Security », 12,99 dollars par mois, ajouté en mars. Il est indiqué ici qu'il a été activé en ligne."}],
+   "choix": [
+    {"t": "I never ordered that. I didn't even know it existed.", "fr": "Je n'ai jamais commandé cela. Je ne savais même pas que ça existait.", "va": "admit"},
+    {"t": "That must be a mistake. I've never asked for that service.", "fr": "Ce doit être une erreur. Je n'ai jamais demandé ce service.", "va": "admit"},
+    {"faux": true, "t": "I have never commanded this option.", "fr": "Je n'ai jamais commandé cette option.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Commanded? I'm sorry — you mean you never ordered it?", "fr": "« Commanded » ? Pardon, vous voulez dire que vous ne l'avez jamais commandé ?"}],
+     "aide": {"fr": "<b>« command »</b>, c'est donner un ordre. Commander un produit ou un service se dit <b>order</b>. Dis plutôt : « I never ordered that. »"}}
+   ]
+  },
+  "admit": {
+   "dit": [
+    {"si": {"souci": "double"}, "qui": "b11_service_client", "air": "sourire", "t": "You're right. Our system charged you twice by mistake. I apologize for that.", "t_gb": "You're right. Our system charged you twice by mistake. I apologise for that.", "fr": "Vous avez raison. Notre système vous a prélevé deux fois par erreur. Je vous prie de nous en excuser."},
+    {"si": {"souci": "option"}, "qui": "b11_service_client", "air": "sourire", "t": "You're right. I can't find any order from you. I'm removing it now, and I apologize.", "t_gb": "You're right. I can't find any order from you. I'm removing it now, and I apologise.", "fr": "Vous avez raison. Je ne trouve aucune commande de votre part. Je le retire à l'instant, et je vous prie de nous en excuser."},
+    {"qui": "b11_service_client", "air": "question", "t": "I can send the money back to your bank account, or put a credit on your next bill. Which would you prefer?", "fr": "Je peux renvoyer l'argent sur votre compte bancaire, ou faire un avoir sur votre prochaine facture. Que préférez-vous ?"}
+   ],
+   "choix": [
+    {"t": "I'd prefer a refund to my bank account, please.", "fr": "Je préférerais un remboursement sur mon compte bancaire, s'il vous plaît.", "va": "refund"},
+    {"t": "A credit on my next bill is fine.", "fr": "Un avoir sur ma prochaine facture me convient.", "va": "email",
+     "puis": [
+      {"si": {"souci": "double"}, "qui": "b11_service_client", "air": "sourire", "t": "Done. You'll see a credit of $64.99 on your next bill.", "dit": "Done. You'll see a credit of sixty-four ninety-nine on your next bill.", "fr": "C'est fait. Vous verrez un avoir de 64,99 dollars sur votre prochaine facture."},
+      {"si": {"souci": "option"}, "qui": "b11_service_client", "air": "sourire", "t": "Done. You'll see a credit of $38.97 — that's three months — on your next bill.", "dit": "Done. You'll see a credit of thirty-eight ninety-seven — that's three months — on your next bill.", "fr": "C'est fait. Vous verrez un avoir de 38,97 dollars, soit trois mois, sur votre prochaine facture."}
+     ]},
+    {"faux": true, "t": "I want to be reimbursed on my count.", "fr": "Je veux être remboursé(e) sur mon compte.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "On your … count? Oh, your bank account. Of course.", "fr": "Sur votre… « count » ? Ah, votre compte bancaire. Bien sûr."}],
+     "aide": {"fr": "Un compte en banque est un <b>account</b> ; « count », c'est compter. Dis plutôt : « I'd prefer a refund to my bank account, please. »"}}
+   ]
+  },
+  "refund": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "No problem. The refund will go back to the account you pay with. It takes five to seven business days. Is that all right?", "t_gb": "No problem. The refund will go back to the account you pay with. It takes five to seven working days. Is that all right?", "fr": "Aucun problème. Le remboursement sera versé sur le compte avec lequel vous payez. Il faut compter cinq à sept jours ouvrables. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Yes, that's fine. Thank you.", "fr": "Oui, très bien. Merci.", "va": "email"},
+    {"t": "That's fine. Will I get a message when it's done?", "fr": "Très bien. Est-ce que je recevrai un message quand ce sera fait ?", "va": "email",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Yes, you'll get a text as soon as the refund goes through.", "fr": "Oui, vous recevrez un SMS dès que le remboursement sera effectué."}]},
+    {"faux": true, "t": "Yes, it's okay, I will attend.", "fr": "Oui, d'accord, j'attendrai.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Attend … what? Oh, you'll wait. Thank you for your patience.", "fr": "Assister… à quoi ? Ah, vous attendrez. Merci de votre patience."}],
+     "aide": {"fr": "<b>« attend »</b>, c'est assister à (une réunion, un cours). « Attendre » se dit <b>wait</b>. Dis plutôt : « That's fine, I'll wait. »"}}
+   ]
+  },
+  "email": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Is there anything else I can do for you?", "fr": "Puis-je faire autre chose pour vous ?"}],
+   "choix": [
+    {"t": "Yes. Could you send me a written confirmation by email?", "fr": "Oui. Pourriez-vous m'envoyer une confirmation écrite par courriel ?", "va": "offer",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Of course. I'm sending it to the email address on your account right now.", "fr": "Bien sûr. Je l'envoie à l'instant à l'adresse courriel de votre dossier."}]},
+    {"t": "Yes, please. I'd like to have all of this in writing.", "fr": "Oui, s'il vous plaît. J'aimerais avoir tout cela par écrit.", "va": "offer",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Of course. I'm emailing you a confirmation right now.", "fr": "Bien sûr. Je vous envoie une confirmation par courriel à l'instant."}]},
+    {"faux": true, "t": "Yes. I want that you send me a confirmation.", "fr": "Oui. Je veux que vous m'envoyiez une confirmation.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "You want … me to send you a confirmation? Sure, I can do that.", "fr": "Vous voulez… que je vous envoie une confirmation ? Bien sûr, c'est possible."}],
+     "aide": {"fr": "Après <b>want</b>, pas de « that » : on dit « want someone to do something ». Et une demande est plus polie avec « Could you » : « Could you send me a written confirmation by email? »"}}
+   ]
+  },
+  "offer": {
+   "dit": [{"qui": "b11_service_client", "air": "sourire", "t": "While I have you on the line: you're paying $64.99 for 300 megabits. Right now we have a plan with 500 megabits for $59.99 a month for the first year. Would you be interested?", "dit": "While I have you on the line: you're paying sixty-four ninety-nine for three hundred megabits. Right now we have a plan with five hundred megabits for fifty-nine ninety-nine a month for the first year. Would you be interested?", "fr": "Pendant que je vous ai en ligne : vous payez 64,99 dollars pour 300 mégabits. En ce moment, nous avons une offre à 500 mégabits pour 59,99 dollars par mois la première année. Cela vous intéresserait-il ?"}],
+   "choix": [
+    {"t": "Maybe. What happens to the price after the first year?", "fr": "Peut-être. Que devient le prix après la première année ?", "va": "details"},
+    {"t": "No, thank you. I'm happy with what I have.", "fr": "Non, merci. Ce que j'ai me convient.", "va": "reference",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "No problem at all.", "fr": "Aucun souci."}]},
+    {"repete": true, "t": "Sorry, that was a little fast. Could you repeat the offer, please?", "fr": "Pardon, c'était un peu rapide. Pourriez-vous répéter l'offre, s'il vous plaît ?", "va": "offer",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Of course. Faster internet, and $5 less a month for one year. Would you be interested?", "dit": "Of course. Faster internet, and five dollars less a month for one year. Would you be interested?", "fr": "Bien sûr. Un internet plus rapide, et 5 dollars de moins par mois pendant un an. Cela vous intéresserait-il ?"}]},
+    {"faux": true, "t": "No thank you, I keep my actual plan.", "fr": "Non merci, je garde mon forfait actuel.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Your actual plan? As opposed to …? Oh, your current plan!", "fr": "Votre « vrai » forfait ? Par rapport à… ? Ah, votre forfait actuel !"}],
+     "aide": {"fr": "<b>« actual »</b> veut dire réel, véritable. « Actuel » se dit <b>current</b>. Dis plutôt : « No, thank you. I'll keep my current plan. »"}}
+   ]
+  },
+  "details": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "After twelve months, it goes to the regular price, $74.99. But there's no contract, so you can change plans at any time.", "dit": "After twelve months, it goes to the regular price, seventy-four ninety-nine. But there's no contract, so you can change plans at any time.", "fr": "Au bout de douze mois, on passe au tarif normal, 74,99 dollars. Mais il n'y a pas d'engagement : vous pouvez changer de forfait à tout moment."}],
+   "choix": [
+    {"t": "Thanks, but I'll keep my current plan for now.", "fr": "Merci, mais je garde mon forfait actuel pour l'instant.", "va": "reference",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "That's perfectly fine.", "fr": "C'est très bien ainsi."}]},
+    {"t": "I'd like to think about it. Could you email me the details?", "fr": "J'aimerais y réfléchir. Pourriez-vous m'envoyer les détails par courriel ?", "va": "reference",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Sure. I'll add them to your confirmation email.", "fr": "Bien sûr. Je les ajoute à votre courriel de confirmation."}]},
+    {"faux": true, "t": "Okay, I will take it eventually.", "fr": "D'accord, je le prendrai éventuellement.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "Eventually? So … not today, but one day for sure?", "fr": "« Eventually » ? Donc… pas aujourd'hui, mais un jour, c'est sûr ?"}],
+     "aide": {"fr": "<b>« eventually »</b> veut dire « finalement, un jour ». « Éventuellement » se dit <b>maybe</b> ou <b>possibly</b>. Dis plutôt : « Maybe. I'd like to think about it. »"}}
+   ]
+  },
+  "reference": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "All right. Your reference number for this call is HN-58213. Is there anything else I can help you with?", "dit": "All right. Your reference number for this call is H N, five, eight, two, one, three. Is there anything else I can help you with?", "fr": "Très bien. Le numéro de dossier de cet appel est HN-58213. Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "No, that's all. Thank you for your help.", "fr": "Non, c'est tout. Merci de votre aide.", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "You're welcome. Thank you for calling, and have a great day!", "fr": "Je vous en prie. Merci de votre appel, et excellente journée !"}]},
+    {"t": "No, thank you. You've been very helpful. Goodbye!", "fr": "Non, merci. Vous m'avez beaucoup aidé(e). Au revoir !", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "I'm glad I could help. Have a great day!", "fr": "Ravie d'avoir pu vous aider. Excellente journée !"}]},
+    {"repete": true, "t": "Sorry, could you repeat the reference number more slowly?", "fr": "Pardon, pourriez-vous répéter le numéro de dossier plus lentement ?", "va": "reference",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Of course: H … N … 5 … 8 … 2 … 1 … 3. Is there anything else I can help you with?", "dit": "Of course: H, N, five, eight, two, one, three. Is there anything else I can help you with?", "fr": "Bien sûr : H… N… 5… 8… 2… 1… 3. Puis-je vous aider pour autre chose ?"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué l'erreur, obtenu ton remboursement ou un avoir, demandé une confirmation écrite et noté le numéro de dossier."}
+}

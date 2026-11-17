@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "fenster-m",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "uhr",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "kalender",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "calendário",
    "ar": "تقويم، رزنامة",
    "pl": "kalendarz",
-   "ru": "календарь"
+   "ru": "календарь",
+   "es": "el calendario"
   },
   {
    "id": "pflanze",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "planta",
    "ar": "نبات",
    "pl": "roślina",
-   "ru": "растение"
+   "ru": "растение",
+   "es": "la planta"
   },
   {
    "id": "trinkstation",
@@ -203,7 +208,8 @@ window.SCENE = {
    "pt": "água",
    "ar": "ماء",
    "pl": "woda",
-   "ru": "вода"
+   "ru": "вода",
+   "es": "el agua"
   },
   {
    "id": "saft",
@@ -232,7 +238,8 @@ window.SCENE = {
    "pt": "suco",
    "ar": "عصير",
    "pl": "sok",
-   "ru": "сок"
+   "ru": "сок",
+   "es": "el jugo"
   },
   {
    "id": "becher",
@@ -319,7 +326,8 @@ window.SCENE = {
    "pt": "cadeira de rodas",
    "ar": "كرسي متحرّك",
    "pl": "wózek inwalidzki",
-   "ru": "инвалидная коляска"
+   "ru": "инвалидная коляска",
+   "es": "la silla de ruedas"
   },
   {
    "id": "bewohnerin",
@@ -343,7 +351,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -358,7 +367,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "rollstuhl",
@@ -408,7 +418,8 @@ window.SCENE = {
    "pt": "cobertor",
    "ar": "بطانية",
    "pl": "koc",
-   "ru": "одеяло, плед"
+   "ru": "одеяло, плед",
+   "es": "la cobija, la manta"
   },
   {
    "id": "herr-schulze",
@@ -432,7 +443,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Rentner",
@@ -447,7 +459,8 @@ window.SCENE = {
      "pt": "aposentado",
      "ar": "متقاعد",
      "pl": "emeryt",
-     "ru": "пенсионер"
+     "ru": "пенсионер",
+     "es": "el jubilado"
     }
    ],
    "sur": "stuhl-l",
@@ -468,7 +481,8 @@ window.SCENE = {
    "pt": "morador",
    "ar": "ساكن، مقيم",
    "pl": "mieszkaniec",
-   "ru": "житель, жилец"
+   "ru": "житель, жилец",
+   "es": "el habitante, el residente"
   },
   {
    "id": "hoergeraet",
@@ -521,7 +535,8 @@ window.SCENE = {
      "pt": "mulher / esposa",
      "ar": "امرأة، زوجة",
      "pl": "kobieta / żona",
-     "ru": "женщина, жена"
+     "ru": "женщина, жена",
+     "es": "la mujer, la esposa"
     },
     {
      "mot": "Rentnerin",
@@ -536,7 +551,8 @@ window.SCENE = {
      "pt": "aposentada",
      "ar": "متقاعدة",
      "pl": "emerytka",
-     "ru": "пенсионерка"
+     "ru": "пенсионерка",
+     "es": "la jubilada"
     }
    ],
    "sur": "stuhl-r",
@@ -586,7 +602,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "stuhl-r",
@@ -615,7 +632,8 @@ window.SCENE = {
    "pt": "cadeira",
    "ar": "كرسي",
    "pl": "krzesło",
-   "ru": "стул"
+   "ru": "стул",
+   "es": "la silla"
   },
   {
    "id": "tisch",
@@ -644,7 +662,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "kanne",
@@ -673,7 +692,8 @@ window.SCENE = {
    "pt": "jarra, bule",
    "ar": "إبريق",
    "pl": "dzbanek",
-   "ru": "кофейник, кувшин"
+   "ru": "кофейник, кувшин",
+   "es": "la jarra, la cafetera"
   },
   {
    "id": "tasse-1",
@@ -702,7 +722,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-2",
@@ -731,7 +752,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-3",
@@ -760,7 +782,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "tasse-weber",
@@ -789,7 +812,8 @@ window.SCENE = {
    "pt": "xícara",
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
-   "ru": "чашка"
+   "ru": "чашка",
+   "es": "la taza"
   },
   {
    "id": "kuchen",
@@ -818,7 +842,8 @@ window.SCENE = {
    "pt": "bolo",
    "ar": "كعكة",
    "pl": "ciasto",
-   "ru": "пирог, торт"
+   "ru": "пирог, торт",
+   "es": "el pastel"
   },
   {
    "id": "fotoalbum",
@@ -847,7 +872,8 @@ window.SCENE = {
    "pt": "álbum de fotos",
    "ar": "ألبوم صور",
    "pl": "album ze zdjęciami",
-   "ru": "фотоальбом"
+   "ru": "фотоальбом",
+   "es": "el álbum de fotos"
   },
   {
    "id": "brille",
@@ -876,7 +902,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "puzzle",
@@ -905,7 +932,8 @@ window.SCENE = {
    "pt": "quebra-cabeça",
    "ar": "أحجية تركيب (بازل)",
    "pl": "puzzle",
-   "ru": "пазл"
+   "ru": "пазл",
+   "es": "el rompecabezas"
   },
   {
    "id": "zeitung",
@@ -934,7 +962,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "rollator",
@@ -992,7 +1021,8 @@ window.SCENE = {
    "pt": "bola",
    "ar": "كرة",
    "pl": "piłka",
-   "ru": "мяч"
+   "ru": "мяч",
+   "es": "la pelota, el balón"
   }
  ],
  "grosPlans": [],
@@ -1982,6 +2012,80 @@ window.SCENE = {
     "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Кашляйте сильно, так и надо. Я рядом.",
     "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "господин Шульце, вы уже проснулись. Вы собрались на работу?",
     "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "Можно я вас немного провожу? Мы могли бы уже повесить вашу куртку у вас в комнате."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "La sala común de una residencia de adultos mayores a la hora del café: Herr Schulze muestra una foto de un tranvía en un álbum, Frau Weber se ríe con su taza en la mano, una residente en una silla de ruedas de cuidados bajo una manta azul; sobre la mesa, la cafetera, el pastel, el rompecabezas, el periódico; alrededor, un andador, una pelota roja, el dispensador de bebidas, el pasamanos, un reloj grande y un calendario.",
+    "consigne": "Toca un objeto o a una persona de la sala común."
+   },
+   "couches": {
+    "A1": "Los objetos de la sala común",
+    "A2": "El día y la hora: orientarse",
+    "B1": "Contar una vida en pasado",
+    "B2": "Hablar con suavidad, sin contradecir",
+    "C1": "Matizar una observación",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Heute ist Mittwoch.": "El día, sin artículo: Heute ist <b>Mittwoch</b>. «am Mittwoch» (el miércoles) responde a la pregunta Wann?",
+    "A2 | Herr Schulze, welchen Monat haben wir?": "haben + acusativo: der Monat → welch<b>en</b> Monat. Estas preguntas ayudan a un residente a orientarse.",
+    "A2 | Gleich gibt es Kaffee und Kuchen.": "<b>Kaffee und Kuchen</b>: el café con pastel de la tarde, un punto fijo del día.",
+    "A2 | Sie liegt auf dem Tisch.": "<b>auf</b> + dativo: sobre una superficie. «die Brille» es singular en alemán: sie liegt.",
+    "A2 | Die Uhr hängt an der Wand.": "Contra una superficie vertical: <b>an</b> + dativo.",
+    "A2 | Frau Weber, möchten Sie noch eine Tasse Kaffee?": "die Tasse, en acusativo: <b>eine</b> Tasse.",
+    "B1 | Herr Schulze ist vierzig Jahre Straßenbahn gefahren.": "<b>fahren</b> → Perfekt con <b>sein</b>, no con haben.",
+    "B1 | Frau Weber hat früher als Schneiderin gearbeitet.": "<b>arbeiten</b> → Perfekt con <b>haben</b>.",
+    "B1 | Herr Schulze ist mit zwanzig nach Berlin gezogen.": "<b>ziehen</b> (mudarse, cambiar de lugar) → <b>sein</b>.",
+    "B1 | Als junger Mann trug er eine Uniform.": "Una biografía escrita se cuenta en Präteritum: tragen → <b>trug</b> (verbo fuerte).",
+    "B1 | Frau Weber hat heute viel gelacht.": "<b>lachen</b> → <b>haben</b>.",
+    "B1 | Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.": "<b>einschlafen</b>: un cambio de estado → <b>sein</b>.",
+    "B2 | Sie waren gern Straßenbahnfahrer, nicht wahr?": "La validación: se acoge lo que siente y su historia, no se le opone la realidad ⚕️.",
+    "B2 | Wie wäre es, wenn wir zusammen das Album anschauen?": "<b>Wie wäre es, wenn …?</b>: proponer con suavidad (Konjunktiv II), como «¿Qué tal si…?».",
+    "B2 | Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?": "<b>Würden Sie …?</b>: una petición cortés, que deja elegir.",
+    "B2 | Möchten Sie sich ein bisschen ausruhen?": "Se propone (<b>Möchten Sie …?</b>), no se impone.",
+    "B2 | Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?": "Nombrar el sentimiento y luego invitar a contar: la validación, sin mentira ni confrontación ⚕️.",
+    "C1 | Herr Schulze erinnert sich eher an früher als an gestern.": "<b>eher … als …</b> = más bien … que …",
+    "C1 | Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.": "<b>kaum</b> = casi no: una observación que hay que transmitir ⚕️.",
+    "C1 | Seine Orientierung lässt zunehmend nach.": "<b>zunehmend</b> = cada vez más: una evolución, no un estado.",
+    "C1 | Frau Weber war heute ziemlich gut gelaunt.": "<b>ziemlich</b> = bastante.",
+    "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Comparar con su estado habitual (<b>als sonst</b>): la base de una observación útil.",
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "<b>Nunca levantes enseguida a una persona que se cayó.</b> Primero tranquilizar y revisar: una fractura o un golpe en la cabeza pueden pasar inadvertidos. «Bleiben Sie bitte erst mal sitzen.» ⚕️",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "<b>No se deja sola a una persona que se cayó.</b> Pide ayuda desde la habitación: el timbre, el teléfono. «Ich rufe meine Kollegin. Ich bleibe bei Ihnen.» ⚕️",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "<b>Nunca se prueba con la cuchara del residente: es una falta de higiene.</b> Para la temperatura, se revuelve, se espera o se comprueba en el borde del plato. ⚕️",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "<b>Mientras tose, nada de beber ni de comer: la tos limpia por sí sola.</b> Déjalo toser, con el tronco un poco hacia adelante, y quédate cerca de él. Si ya no puede respirar ni toser, es una emergencia: pedir ayuda. ⚕️",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "<b>No contradigas a una persona desorientada: para ella, eso es verdad ahora.</b> Corregirla la inquieta y la enoja. Entra en su mundo: «Sie wollen zur Arbeit?» ⚕️",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "<b>Una orden provoca resistencia.</b> Propón y acompaña: «Darf ich Sie ein Stück begleiten?» La persona conserva la sensación de elegir."
+   },
+   "sens": {
+    "A2 | Heute ist Mittwoch.": "Hoy es miércoles.",
+    "A2 | Herr Schulze, welchen Monat haben wir?": "Señor Schulze, ¿en qué mes estamos?",
+    "A2 | Gleich gibt es Kaffee und Kuchen.": "Dentro de poco hay café y pastel.",
+    "A2 | Sie liegt auf dem Tisch.": "Están sobre la mesa.",
+    "A2 | Die Uhr hängt an der Wand.": "El reloj está colgado en la pared.",
+    "A2 | Frau Weber, möchten Sie noch eine Tasse Kaffee?": "Señora Weber, ¿quiere otra taza de café?",
+    "B1 | Herr Schulze ist vierzig Jahre Straßenbahn gefahren.": "El Sr. Schulze manejó tranvías durante cuarenta años.",
+    "B1 | Frau Weber hat früher als Schneiderin gearbeitet.": "Antes, la Sra. Weber trabajaba como costurera.",
+    "B1 | Herr Schulze ist mit zwanzig nach Berlin gezogen.": "El Sr. Schulze se mudó a Berlín a los veinte años.",
+    "B1 | Als junger Mann trug er eine Uniform.": "De joven llevaba uniforme.",
+    "B1 | Frau Weber hat heute viel gelacht.": "La Sra. Weber se rio mucho hoy.",
+    "B1 | Die Bewohnerin im Rollstuhl ist nach dem Mittagessen eingeschlafen.": "La residente en silla de ruedas se durmió después del almuerzo.",
+    "B2 | Sie waren gern Straßenbahnfahrer, nicht wahr?": "A usted le gustaba ser conductor de tranvía, ¿verdad?",
+    "B2 | Wie wäre es, wenn wir zusammen das Album anschauen?": "¿Qué tal si vemos el álbum juntos?",
+    "B2 | Würden Sie mir erzählen, wo diese Straßenbahn gefahren ist?": "¿Me contaría por dónde pasaba este tranvía?",
+    "B2 | Möchten Sie sich ein bisschen ausruhen?": "¿Quiere descansar un poco?",
+    "B2 | Sie denken gerade viel an Ihren Mann. Erzählen Sie mir von ihm?": "Últimamente piensa mucho en su esposo. ¿Me cuenta de él?",
+    "C1 | Herr Schulze erinnert sich eher an früher als an gestern.": "El Sr. Schulze se acuerda más de antes que de ayer.",
+    "C1 | Die Bewohnerin im Rollstuhl isst in letzter Zeit kaum etwas.": "Últimamente, la residente en silla de ruedas casi no come nada.",
+    "C1 | Seine Orientierung lässt zunehmend nach.": "Su orientación disminuye cada vez más.",
+    "C1 | Frau Weber war heute ziemlich gut gelaunt.": "La Sra. Weber estuvo hoy de bastante buen humor.",
+    "C1 | Er wirkte beim Erzählen ruhiger als sonst.": "Mientras contaba, se veía más tranquilo que de costumbre.",
+    "SIT | Frau Weber, ich bin da. Bleiben Sie bitte erst mal sitzen, ich helfe Ihnen gleich.": "Señora Weber, aquí estoy. Por favor, quédese sentada por ahora, enseguida la ayudo.",
+    "SIT | Ich drücke jetzt die Klingel und rufe meine Kollegin. Ich bleibe bei Ihnen.": "Ahora toco el timbre y llamo a mi colega. Me quedo con usted.",
+    "SIT | Keine Sorge, ich rühre kurz um, dann ist sie nicht mehr so heiß. Nehmen Sie sich Zeit.": "No se preocupe, la revuelvo un poco y así ya no estará tan caliente. Tómese su tiempo.",
+    "SIT | Husten Sie kräftig, das ist gut so. Ich bin da.": "Tosa fuerte, así está bien. Aquí estoy.",
+    "SIT | Herr Schulze, Sie sind ja schon wach. Sie wollen zur Arbeit?": "Señor Schulze, ya está despierto. ¿Quiere ir al trabajo?",
+    "SIT | Darf ich Sie ein Stück begleiten? Wir könnten in Ihrem Zimmer schon mal die Jacke aufhängen.": "¿Puedo acompañarlo un tramo? Podríamos ir colgando la chaqueta en su habitación."
    }
   }
  }

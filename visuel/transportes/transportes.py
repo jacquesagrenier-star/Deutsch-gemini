@@ -444,9 +444,9 @@ def construire():
                 ich = "%s sagt: „Ich %s %s %s.“" % (qui, CONJ_DE[v]["ich"], mit_de(m), dd)
                 q = "Wie kommt %s %s?" % (qui, dd)
                 frp = "%s va %s %s." % (qui, dfr, fr)
-                trad("de", p, frp, "%s goes %s %s." % (qui, den, en), "%s vai %s %s." % (qui, dpt, pt))
+                trad("de", p, frp, "%s goes %s %s." % (qui, den, en), "%s vai %s %s." % (qui, pt, dpt))
                 trad("de", ich, "%s dit : « Je vais %s %s. »" % (qui, dfr, fr), "%s says: “I go %s %s.”" % (qui, den, en),
-                     "%s diz: “Eu vou %s %s.”" % (qui, dpt, pt))
+                     "%s diz: “Eu vou %s %s.”" % (qui, pt, dpt))
                 phrases["de"].append({"qui": qui, "moyen": m, "dest": dd, "phrase": p, "ich": ich, "q": q,
                                       "trou": "%s ___ %s %s." % (qui, mit_de(m), dd), "trouIch": "%s sagt: „Ich ___ %s %s.“" % (qui, mit_de(m), dd),
                                       "trouMit": "%s geht ___ Fuß %s." % (qui, dd) if m == "fuss" else "%s %s mit ___ %s %s." % (qui, CONJ_DE[v]["er"], de_[1], dd),
@@ -456,9 +456,9 @@ def construire():
                 yo = "%s dice: «Voy %s %s.»" % (qui, dd, en_es(m))
                 q = "¿Cómo va %s %s?" % (qui, dd)
                 gde = "%s %s %s %s." % (qui, CONJ_DE[v]["er"], mit_de(m), dde)
-                trad("es", p, "%s va %s %s." % (qui, dfr, fr), "%s goes %s %s." % (qui, den, en), "%s vai %s %s." % (qui, dpt, pt), gde)
+                trad("es", p, "%s va %s %s." % (qui, dfr, fr), "%s goes %s %s." % (qui, den, en), "%s vai %s %s." % (qui, pt, dpt), gde)
                 trad("es", yo, "%s dit : « Je vais %s %s. »" % (qui, dfr, fr), "%s says: “I go %s %s.”" % (qui, den, en),
-                     "%s diz: “Eu vou %s %s.”" % (qui, dpt, pt), "%s sagt: „Ich %s %s %s.“" % (qui, CONJ_DE[v]["ich"], mit_de(m), dde))
+                     "%s diz: “Eu vou %s %s.”" % (qui, pt, dpt), "%s sagt: „Ich %s %s %s.“" % (qui, CONJ_DE[v]["ich"], mit_de(m), dde))
                 phrases["es"].append({"qui": qui, "moyen": m, "dest": dd, "phrase": p, "ich": yo, "q": q,
                                       "trou": "%s ___ %s %s." % (qui, dd, en_es(m)), "trouIch": "%s dice: «___ %s %s.»" % (qui, dd, en_es(m)),
                                       "trouMit": "%s va %s ___ %s." % (qui, dd, "pie" if m == "fuss" else es_[1]), "verbe": "ir"})

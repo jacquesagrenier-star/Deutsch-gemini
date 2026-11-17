@@ -323,7 +323,7 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "caméra",
+   "fr": "appareil photo",
    "es": "la cámara"
   },
   {

@@ -1,0 +1,450 @@
+{
+ "id": "a2-symptomes",
+ "langue": "es",
+ "niveau": "A2",
+ "registre": "usted",
+ "titre": {
+  "fr": "Chez le médecin"
+ },
+ "intro": {
+  "fr": "Tu ne te sens pas bien et tu as rendez-vous au centre de santé de ton quartier. Explique au médecin ce que tu as, réponds à ses questions et vérifie le traitement."
+ },
+ "personnes": [
+  "a22_diego"
+ ],
+ "debut": "motivo",
+ "textes": {
+  "sintoma_fr": {
+   "cle": "sintoma",
+   "garganta": "ton mal de gorge et ta fièvre",
+   "estomago": "ton mal de ventre"
+  }
+ },
+ "noeuds": {
+  "motivo": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Au centre de santé, le médecin t'appelle. Tu entres dans son cabinet."
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Buenos días. Siéntese, por favor. Dígame, ¿qué le pasa?",
+     "fr": "Bonjour. Asseyez-vous, je vous en prie. Dites-moi, qu'est-ce qui vous arrive ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Buenos días, doctor. Me duele mucho la garganta y tengo fiebre.",
+     "fr": "Bonjour, docteur. J'ai très mal à la gorge et j'ai de la fièvre.",
+     "pose": {
+      "sintoma": "garganta"
+     },
+     "va": "desde",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Ya veo. Ahora miramos esa garganta.",
+       "fr": "Je vois. Nous allons regarder cette gorge."
+      }
+     ]
+    },
+    {
+     "t": "Buenos días. Me duele el estómago y no puedo comer nada.",
+     "fr": "Bonjour. J'ai mal au ventre et je ne peux rien manger.",
+     "pose": {
+      "sintoma": "estomago"
+     },
+     "va": "desde",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Vaya. Vamos a ver qué pasa.",
+       "fr": "Aïe. Voyons ce qui se passe."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Buenos días. Me duele mi garganta.",
+     "fr": "Bonjour. J'ai mal à ma gorge.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "amuse",
+       "t": "¿Su garganta? Claro, la suya… Le duele la garganta, entonces.",
+       "fr": "Votre gorge ? Bien sûr, la vôtre… Vous avez mal à la gorge, donc."
+      }
+     ],
+     "aide": {
+      "fr": "Avec <b>doler</b>, le corps prend l'article, pas le possessif : « Me duele <b>la</b> garganta ». Le « me » dit déjà que c'est la tienne."
+     }
+    }
+   ]
+  },
+  "desde": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "¿Desde cuándo está así?",
+     "fr": "Depuis quand êtes-vous comme ça ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Desde el lunes.",
+     "fr": "Depuis lundi.",
+     "va": "fiebre",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Unos días ya. De acuerdo.",
+       "fr": "Quelques jours déjà. D'accord."
+      }
+     ]
+    },
+    {
+     "t": "Desde hace tres días.",
+     "fr": "Depuis trois jours.",
+     "va": "fiebre",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Tres días. De acuerdo.",
+       "fr": "Trois jours. D'accord."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Desde tres días.",
+     "fr": "Depuis trois jours.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "perplexe",
+       "t": "¿Desde… el día tres? ¿O desde hace tres días?",
+       "fr": "Depuis… le trois ? Ou depuis trois jours ?"
+      }
+     ],
+     "aide": {
+      "fr": "Pour une durée : <b>desde hace</b> tres días. « Desde » seul va avec un moment précis : « desde el lunes »."
+     }
+    }
+   ]
+  },
+  "fiebre": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "¿Ha tenido fiebre? ¿Y ha tomado algo?",
+     "fr": "Avez-vous eu de la fièvre ? Et avez-vous pris quelque chose ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, anoche tenía treinta y ocho y medio. He tomado una pastilla para el dolor.",
+     "fr": "Oui, hier soir j'avais trente-huit et demi. J'ai pris un comprimé contre la douleur.",
+     "va": "alergia",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Bien hecho.",
+       "fr": "Vous avez bien fait."
+      }
+     ]
+    },
+    {
+     "t": "Un poco de fiebre, sí. No he tomado nada.",
+     "fr": "Un peu de fièvre, oui. Je n'ai rien pris.",
+     "va": "alergia",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "De acuerdo.",
+       "fr": "D'accord."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sí, un poco. He tomado la píldora.",
+     "fr": "Oui, un peu. J'ai pris la pilule.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "amuse",
+       "t": "¿La píldora? Quiere decir una pastilla para el dolor, ¿no?",
+       "fr": "La pilule ? Vous voulez dire un comprimé contre la douleur, non ?"
+      }
+     ],
+     "aide": {
+      "fr": "« La píldora », en Espagne, c'est surtout <b>la pilule contraceptive</b>. Un comprimé : <b>una pastilla</b>."
+     }
+    }
+   ]
+  },
+  "alergia": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "¿Tiene alergia a algún medicamento?",
+     "fr": "Êtes-vous allergique à un médicament ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "No, no tengo ninguna alergia.",
+     "fr": "Non, je n'ai aucune allergie.",
+     "pose": {
+      "alergia": "no"
+     },
+     "va": "exploracion",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Perfecto.",
+       "fr": "Parfait."
+      }
+     ]
+    },
+    {
+     "t": "Sí, tengo alergia a la penicilina.",
+     "fr": "Oui, je suis allergique à la pénicilline.",
+     "pose": {
+      "alergia": "si"
+     },
+     "va": "exploracion",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "attentive",
+       "t": "Está bien saberlo. Lo apunto: nada de penicilina.",
+       "fr": "C'est bon à savoir. Je le note : pas de pénicilline."
+      }
+     ]
+    },
+    {
+     "t": "Perdone, ¿puede repetir, por favor?",
+     "fr": "Pardon, pouvez-vous répéter, s'il vous plaît ?",
+     "va": "alergia",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Sí, claro: ¿tiene alergia a alguna medicina?",
+       "fr": "Oui, bien sûr : êtes-vous allergique à un médicament ?"
+      }
+     ],
+     "repete": true
+    }
+   ]
+  },
+  "exploracion": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Le médecin t'examine."
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Abra la boca… Tiene la garganta muy roja. Es una infección, pero no es grave.",
+     "fr": "Ouvrez la bouche… Vous avez la gorge très rouge. C'est une infection, mais ce n'est pas grave.",
+     "si": {
+      "sintoma": "garganta"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "¿Le duele aquí? Ya… Es un virus de estómago. Es molesto, pero no es grave.",
+     "fr": "Vous avez mal ici ? Je vois… C'est un virus à l'estomac. C'est pénible, mais ce n'est pas grave.",
+     "si": {
+      "sintoma": "estomago"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "question",
+     "t": "¿Trabaja usted? ¿Necesita la baja?",
+     "fr": "Vous travaillez ? Avez-vous besoin d'un arrêt de travail ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Sí, por favor. ¿Para cuántos días?",
+     "fr": "Oui, s'il vous plaît. Pour combien de jours ?",
+     "va": "receta",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Le doy la baja para tres días. Descanse en casa.",
+       "fr": "Je vous donne un arrêt de trois jours. Reposez-vous à la maison."
+      }
+     ]
+    },
+    {
+     "t": "Sí, trabajo en un restaurante. ¿Cuántos días necesito?",
+     "fr": "Oui, je travaille dans un restaurant. Il me faut combien de jours ?",
+     "va": "receta",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Con tres días en casa es suficiente. Le doy la baja.",
+       "fr": "Trois jours à la maison suffisent. Je vous donne l'arrêt."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "No, gracias, no quiero bajar.",
+     "fr": "Non, merci, je ne veux pas descendre.",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "amuse",
+       "t": "No, no: la baja es el papel del médico para no ir a trabajar.",
+       "fr": "Non, non : « la baja », c'est le papier du médecin pour ne pas aller travailler."
+      }
+     ],
+     "aide": {
+      "fr": "<b>La baja</b> (médica), c'est <b>l'arrêt de travail</b>, rien à voir avec « descendre ». Si tu en as besoin : « Sí, por favor »."
+     }
+    }
+   ]
+  },
+  "receta": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Le receto un antibiótico: una pastilla tres veces al día, después de las comidas, durante cinco días.",
+     "fr": "Je vous prescris un antibiotique : un comprimé trois fois par jour, après les repas, pendant cinq jours.",
+     "si": {
+      "sintoma": "garganta"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Y no se preocupe: no lleva penicilina.",
+     "fr": "Et ne vous inquiétez pas : il ne contient pas de pénicilline.",
+     "si": {
+      "sintoma": "garganta",
+      "alergia": "si"
+     }
+    },
+    {
+     "qui": "a22_diego",
+     "air": "attentive",
+     "t": "Le receto unas pastillas para el estómago: una tres veces al día, después de las comidas, durante cinco días. Y coma arroz blanco.",
+     "fr": "Je vous prescris des comprimés pour l'estomac : un trois fois par jour, après les repas, pendant cinq jours. Et mangez du riz blanc.",
+     "si": {
+      "sintoma": "estomago"
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Entonces, tres veces al día, después de comer, cinco días.",
+     "fr": "Donc, trois fois par jour, après manger, cinq jours.",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Exacto. Y beba mucha agua.",
+       "fr": "Exactement. Et buvez beaucoup d'eau."
+      }
+     ]
+    },
+    {
+     "t": "¿Una después del desayuno, de la comida y de la cena?",
+     "fr": "Un après le petit-déjeuner, le déjeuner et le dîner ?",
+     "va": "fin",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Eso es. Los cinco días, aunque se encuentre mejor.",
+       "fr": "C'est ça. Les cinq jours, même si vous vous sentez mieux."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "¿Tres veces a la semana?",
+     "fr": "Trois fois par semaine ?",
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "surprise",
+       "t": "No, no: tres veces al día. Mañana, mediodía y noche.",
+       "fr": "Non, non : trois fois par jour. Matin, midi et soir."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Al día</b> = par jour ; « a la semana » = par semaine. Répète : « tres veces al día »."
+     }
+    }
+   ]
+  },
+  "fin": {
+   "dit": [
+    {
+     "qui": "a22_diego",
+     "air": "sourire",
+     "t": "Ya tiene la receta en la tarjeta sanitaria: puede ir a cualquier farmacia. Si en una semana no está mejor, vuelva. ¡Que se mejore!",
+     "fr": "L'ordonnance est déjà sur votre carte sanitaire : vous pouvez aller dans n'importe quelle pharmacie. Si dans une semaine ça ne va pas mieux, revenez. Bon rétablissement !"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Muchas gracias, doctor. ¡Adiós!",
+     "fr": "Merci beaucoup, docteur. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Adiós. Cuídese.",
+       "fr": "Au revoir. Prenez soin de vous."
+      }
+     ]
+    },
+    {
+     "t": "Gracias. Si no estoy mejor, vuelvo. ¡Hasta luego!",
+     "fr": "Merci. Si ça ne va pas mieux, je reviens. À bientôt !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "a22_diego",
+       "air": "sourire",
+       "t": "Eso es. ¡Cuídese!",
+       "fr": "C'est ça. Prenez soin de vous !"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bilan": {
+  "fr": "Tu as expliqué {sintoma_fr} au médecin, obtenu un arrêt de travail de trois jours et vérifié le traitement : un comprimé trois fois par jour, pendant cinq jours."
+ }
+}

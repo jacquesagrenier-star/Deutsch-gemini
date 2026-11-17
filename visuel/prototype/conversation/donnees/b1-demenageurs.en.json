@@ -1,0 +1,150 @@
+{
+ "id": "b1-demenageurs",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Organiser son déménagement au téléphone"},
+ "intro": {"fr": "Tu quittes ton troisième étage sans ascenseur de Somerville pour Jamaica Plain. Tu appelles une entreprise de déménagement : date, meubles, stationnement, cartons, prix. À Boston, tout le monde déménage le premier septembre…"},
+ "personnes": ["umzugschef"],
+ "debut": "call",
+ "textes": {
+  "jour_fr": {"cle": "jour", "samedi": "le samedi d'avant, au tarif du week-end (180 $ l'heure)", "lundi": "le lundi de la semaine d'avant (150 $ l'heure)"},
+  "permis_fr": {"cle": "permis", "eux": "L'entreprise s'occupe du permis de stationnement", "soi": "Tu demandes toi-même le permis de stationnement à la ville"},
+  "emb_fr": {"cle": "emb", "soi": "tu emballes tout toi-même", "eux": "l'équipe emballe la cuisine et les objets fragiles la veille"}
+ },
+ "noeuds": {
+  "call": {
+   "dit": [
+    {"recit": {"fr": "Tu composes le numéro d'une entreprise de déménagement du quartier. Ça décroche à la deuxième sonnerie."}},
+    {"qui": "umzugschef", "air": "sourire", "t": "Good morning, Triple-Decker Movers. How can I help you?", "t_gb": "Good morning, Triple-Decker Removals. How can I help you?", "fr": "Bonjour, Déménagements Triple-Decker. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Good morning. I'm moving on September first, and I'd like a quote.", "t_gb": "Good morning. I'm moving on the first of September, and I'd like a quote.", "fr": "Bonjour. Je déménage le premier septembre, et j'aimerais un devis.", "va": "taken"},
+    {"t": "Hello. I need movers. Are you available on the first of September?", "t_gb": "Hello. I need a removal company. Are you available on the first of September?", "fr": "Bonjour. J'ai besoin de déménageurs. Êtes-vous libres le premier septembre ?", "va": "taken"},
+    {"faux": true, "t": "Hello. I need movers for my furnitures on September first.", "fr": "Bonjour. J'ai besoin de déménageurs pour mes meubles le premier septembre.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Your furnitures? However many you have, we call it all “furniture”!", "fr": "Vos « furnitures » ? Peu importe combien vous en avez, tout ça se dit « furniture » !"}],
+     "aide": {"fr": "<b>« furniture » ne se compte pas et ne prend jamais de « s » :</b> « my furniture », « a piece of furniture », « a lot of furniture »."}},
+    {"faux": true, "t": "Hello. I déménage … I mean, I remove the first September.", "fr": "Bonjour. Je déménage le premier septembre.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "You remove … what, exactly? Oh, you're moving!", "fr": "Vous enlevez… quoi, au juste ? Ah, vous déménagez !"}],
+     "aide": {"fr": "<b>« déménager » = « move » :</b> « I'm moving on September first. » « Remove », c'est enlever quelque chose."}}
+   ]
+  },
+  "taken": {
+   "dit": [
+    {"qui": "umzugschef", "air": "amuse", "t": "September first? You and the rest of Boston! Half the city moves that day, and we've been fully booked since June.", "t_gb": "The first of September? You and the rest of Boston! Half the city moves that day, and we've been fully booked since June.", "fr": "Le premier septembre ? Vous et tout Boston ! La moitié de la ville déménage ce jour-là, et nous sommes complets depuis juin."},
+    {"qui": "umzugschef", "air": "question", "t": "I still have the Saturday before, but that's the weekend rate, a bit more expensive. Or the Monday of the week before. Could you move a few days early?", "fr": "Il me reste le samedi d'avant, mais c'est le tarif du week-end, un peu plus cher. Ou le lundi de la semaine d'avant. Pourriez-vous déménager quelques jours plus tôt ?"}
+   ],
+   "choix": [
+    {"t": "Saturday would be better for me. I work during the week.", "fr": "Le samedi m'irait mieux. Je travaille en semaine.", "pose": {"jour": "samedi"}, "va": "from"},
+    {"t": "Let's say Monday, then. I'll ask for a day off.", "fr": "Disons lundi, alors. Je demanderai un jour de congé.", "pose": {"jour": "lundi"}, "va": "from"},
+    {"faux": true, "t": "Monday. I will demand a day off to my boss.", "fr": "Lundi. Je demanderai un jour de congé à mon patron.",
+     "puis": [{"qui": "umzugschef", "air": "surprise", "t": "You'll demand it? Wow. I hope your boss is in a good mood!", "fr": "Vous allez l'exiger ? Eh bien. J'espère que votre patron est de bonne humeur !"}],
+     "aide": {"fr": "<b>« demander » = « ask for » ; « demand » veut dire « exiger ».</b> « I'll ask my boss for a day off. »"}}
+   ]
+  },
+  "from": {
+   "dit": [
+    {"qui": "umzugschef", "air": "question", "t": "OK. Where are you moving from, and where to?", "fr": "D'accord. Vous partez d'où, et vous allez où ?"}
+   ],
+   "choix": [
+    {"t": "From Somerville to Jamaica Plain. I live on the third floor, and there's no elevator.", "t_gb": "From Somerville to Jamaica Plain. I live on the second floor, and there's no lift.", "fr": "De Somerville à Jamaica Plain. J'habite au troisième niveau (le « third floor » américain, « second floor » britannique), et il n'y a pas d'ascenseur.", "va": "rooms"},
+    {"t": "From a third-floor apartment in Somerville, without an elevator, to a first-floor apartment in Jamaica Plain.", "t_gb": "From a second-floor flat in Somerville, without a lift, to a ground-floor flat in Jamaica Plain.", "fr": "D'un appartement en haut d'un triple-decker de Somerville, sans ascenseur, à un rez-de-chaussée à Jamaica Plain.", "va": "rooms"},
+    {"faux": true, "t": "I live at the third stage, without elevator.", "fr": "J'habite au troisième étage, sans ascenseur.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "The third stage? Like in a theater? Oh, the third floor!", "t_gb": "The third stage? Like in a theatre? Oh, the third floor!", "fr": "La troisième scène ? Comme au théâtre ? Ah, le troisième étage !"}],
+     "aide": {"fr": "<b>Un étage = « a floor », et on habite « on » un étage :</b> « I live on the third floor. » « A stage », c'est une scène ou une étape."}}
+   ]
+  },
+  "rooms": {
+   "dit": [
+    {"qui": "umzugschef", "air": "question", "t": "Top floor, no elevator. A classic triple-decker! How many rooms do you have, and are there any big or fragile items?", "t_gb": "Top floor, no lift. A classic triple-decker! How many rooms do you have, and are there any big or fragile items?", "fr": "Dernier étage, pas d'ascenseur. Le triple-decker classique ! Combien de pièces avez-vous, et y a-t-il des objets lourds ou fragiles ?"}
+   ],
+   "choix": [
+    {"t": "Two rooms and about thirty boxes. There's a big wardrobe that has to be taken apart.", "fr": "Deux pièces et une trentaine de cartons. Il y a une grande armoire qu'il faut démonter.", "va": "parking",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "No problem, we'll bring tools.", "fr": "Pas de problème, on apportera des outils."}]},
+    {"t": "It's a one-bedroom apartment. I have a washing machine and a few fragile things, like a large mirror.", "t_gb": "It's a one-bedroom flat. I have a washing machine and a few fragile things, like a large mirror.", "fr": "C'est un appartement avec une chambre. J'ai une machine à laver et quelques objets fragiles, comme un grand miroir.", "va": "parking",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "OK. The mirror will be wrapped in blankets.", "fr": "D'accord. Le miroir sera enveloppé dans des couvertures."}]},
+    {"faux": true, "t": "Two pieces and thirty cartons.", "fr": "Deux pièces et trente cartons.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Two pieces of what? And cartons of … milk? Ah: two rooms and thirty boxes!", "fr": "Deux morceaux de quoi ? Et des briques de… lait ? Ah : deux pièces et trente cartons !"}],
+     "aide": {"fr": "<b>Une pièce d'un logement = « a room » ; un carton de déménagement = « a box ».</b> « A piece », c'est un morceau ; « a carton », une brique de lait."}},
+    {"repete": true, "t": "Sorry, the line is bad. Could you say that again?", "fr": "Pardon, la ligne est mauvaise. Pourriez-vous répéter ?", "va": "rooms",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Sure. How many rooms are there in your apartment? And do you have any heavy or fragile things?", "t_gb": "Sure. How many rooms are there in your flat? And do you have any heavy or fragile things?", "fr": "Bien sûr. Combien de pièces y a-t-il dans votre appartement ? Et avez-vous des objets lourds ou fragiles ?"}]}
+   ]
+  },
+  "parking": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Now, parking. In Somerville and Boston, a moving truck needs a street permit, and “No Parking” signs have to be posted two days before. We can take care of it for $90. Would you like that?", "t_gb": "Now, parking. In Somerville and Boston, a removal van needs a street permit, and “No Parking” signs have to be posted two days before. We can take care of it for $90. Would you like that?", "dit": "Now, parking. In Somerville and Boston, a moving truck needs a street permit, and “No Parking” signs have to be posted two days before. We can take care of it for ninety dollars. Would you like that?", "dit_gb": "Now, parking. In Somerville and Boston, a removal van needs a street permit, and “No Parking” signs have to be posted two days before. We can take care of it for ninety dollars. Would you like that?", "fr": "Maintenant, le stationnement. À Somerville comme à Boston, un camion de déménagement a besoin d'un permis de rue, et des panneaux « No Parking » doivent être posés deux jours avant. Nous pouvons nous en occuper pour 90 $. Cela vous irait ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please take care of it. I don't know how it works.", "fr": "Oui, occupez-vous-en, s'il vous plaît. Je ne sais pas comment ça marche.", "pose": {"permis": "eux"}, "va": "pack",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Consider it done.", "fr": "C'est comme si c'était fait."}]},
+    {"t": "I'd rather do it myself. Where do I apply for the permit?", "fr": "J'aime mieux le faire moi-même. Où fait-on la demande de permis ?", "pose": {"permis": "soi"}, "va": "permit"},
+    {"faux": true, "t": "Yes, please occupy of it.", "fr": "Oui, occupez-vous-en, s'il vous plaît.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Occupy … the street? That's what the truck does! Oh, you want us to take care of it.", "t_gb": "Occupy … the street? That's what the van does! Oh, you want us to take care of it.", "fr": "Occuper… la rue ? C'est ce que fait le camion ! Ah, vous voulez qu'on s'en occupe."}],
+     "aide": {"fr": "<b>« s'occuper de » = « take care of » :</b> « Please take care of it. » « Occupy », c'est occuper un lieu."}}
+   ]
+  },
+  "permit": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "You apply online, on the city's website, at least two weeks ahead. Then the signs have to be picked up and posted by you, forty-eight hours before the move.", "fr": "La demande se fait en ligne, sur le site de la ville, au moins deux semaines à l'avance. Ensuite, c'est à vous d'aller chercher les panneaux et de les poser, quarante-huit heures avant le déménagement."}
+   ],
+   "choix": [
+    {"t": "OK, I'll apply this week, so it's done.", "fr": "D'accord, je ferai la demande cette semaine, comme ça ce sera fait.", "va": "pack",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Good. Send me a photo of the permit when you have it.", "fr": "Bien. Envoyez-moi une photo du permis quand vous l'aurez."}]},
+    {"t": "That sounds complicated. Could you do it for me after all?", "fr": "Ça a l'air compliqué. Pourriez-vous le faire pour moi, finalement ?", "pose": {"permis": "eux"}, "va": "pack",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Sure. Most people say that! I'll add it to the quote.", "fr": "Bien sûr. C'est ce que presque tout le monde dit ! Je l'ajoute au devis."}]}
+   ]
+  },
+  "pack": {
+   "dit": [
+    {"qui": "umzugschef", "air": "question", "t": "And the packing? Would you like to do it yourself, or should my team do it?", "fr": "Et l'emballage ? Vous voulez le faire vous-même, ou mon équipe s'en charge ?"}
+   ],
+   "choix": [
+    {"t": "I'll pack everything myself.", "fr": "J'emballerai tout moi-même.", "pose": {"emb": "soi"}, "va": "boxes"},
+    {"t": "I'd like your team to pack the kitchen and the fragile things.", "fr": "J'aimerais que votre équipe emballe la cuisine et les objets fragiles.", "pose": {"emb": "eux"}, "va": "packers"},
+    {"faux": true, "t": "I will pack myself.", "fr": "Je m'emballerai moi-même.",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "You'll pack yourself? I don't think you'd fit in a box!", "fr": "Vous allez vous emballer vous-même ? Je ne crois pas que vous entriez dans un carton !"}],
+     "aide": {"fr": "<b>« I'll pack myself » veut dire « je m'emballerai ».</b> Il faut un complément : « I'll pack everything myself » ou « I'll do the packing myself. »"}}
+   ]
+  },
+  "boxes": {
+   "dit": [
+    {"qui": "umzugschef", "air": "question", "t": "Then boxes can be delivered to you a week before: thirty boxes and tape for $60. Do you want them?", "dit": "Then boxes can be delivered to you a week before: thirty boxes and tape for sixty dollars. Do you want them?", "fr": "Alors des cartons peuvent vous être livrés une semaine avant : trente cartons et du ruban adhésif pour 60 $. Vous les voulez ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. That would save me a trip to the store.", "t_gb": "Yes, please. That would save me a trip to the shop.", "fr": "Oui, s'il vous plaît. Ça m'éviterait un aller-retour au magasin.", "va": "price"},
+    {"t": "No, thank you. I've already collected boxes from the supermarket.", "fr": "Non, merci. J'ai déjà récupéré des cartons au supermarché.", "va": "price",
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Fine. Just don't make them too heavy.", "fr": "Très bien. Ne les faites simplement pas trop lourds."}]}
+   ]
+  },
+  "packers": {
+   "dit": [
+    {"qui": "umzugschef", "air": "attentive", "t": "Sure. Two of my people will come the day before and pack the kitchen. That's $150 extra.", "dit": "Sure. Two of my people will come the day before and pack the kitchen. That's one hundred fifty dollars extra.", "dit_gb": "Sure. Two of my people will come the day before and pack the kitchen. That's one hundred and fifty dollars extra.", "fr": "Bien sûr. Deux de mes employés viendront la veille emballer la cuisine. C'est 150 $ de plus."}
+   ],
+   "choix": [
+    {"t": "That's fine. The kitchen is the hardest part.", "fr": "C'est d'accord. La cuisine, c'est le plus difficile.", "va": "price"},
+    {"t": "OK. Please be careful with the glasses.", "fr": "D'accord. Faites attention aux verres, s'il vous plaît.", "va": "price",
+     "puis": [{"qui": "umzugschef", "air": "amuse", "t": "Don't worry, nothing has been broken this year. Well … almost nothing.", "fr": "Ne vous inquiétez pas, rien n'a été cassé cette année. Enfin… presque rien."}]},
+    {"faux": true, "t": "OK. Make attention to the glasses, please.", "fr": "D'accord. Faites attention aux verres, s'il vous plaît.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "Make … ? Oh, be careful with them. We always are.", "fr": "Faire… ? Ah, y faire attention. Comme toujours."}],
+     "aide": {"fr": "<b>« faire attention à » = « be careful with » :</b> « Please be careful with the glasses. » « Make attention » n'existe pas."}}
+   ]
+  },
+  "price": {
+   "dit": [
+    {"si": {"jour": "samedi"}, "qui": "umzugschef", "air": "attentive", "t": "So, Saturday: three movers and a truck, at $180 an hour, weekend rate. I'd say about four hours.", "t_gb": "So, Saturday: three movers and a van, at $180 an hour, weekend rate. I'd say about four hours.", "dit": "So, Saturday: three movers and a truck, at one hundred eighty dollars an hour, weekend rate. I'd say about four hours.", "dit_gb": "So, Saturday: three movers and a van, at one hundred and eighty dollars an hour, weekend rate. I'd say about four hours.", "fr": "Donc, samedi : trois déménageurs et un camion, à 180 $ l'heure, tarif du week-end. Je dirais environ quatre heures."},
+    {"si": {"jour": "lundi"}, "qui": "umzugschef", "air": "attentive", "t": "So, Monday: three movers and a truck, at $150 an hour. I'd say about four hours.", "t_gb": "So, Monday: three movers and a van, at $150 an hour. I'd say about four hours.", "dit": "So, Monday: three movers and a truck, at one hundred fifty dollars an hour. I'd say about four hours.", "dit_gb": "So, Monday: three movers and a van, at one hundred and fifty dollars an hour. I'd say about four hours.", "fr": "Donc, lundi : trois déménageurs et un camion, à 150 $ l'heure. Je dirais environ quatre heures."},
+    {"qui": "umzugschef", "air": "sourire", "t": "We'll be there at 8 a.m. sharp. Everything will be confirmed by email today. Does that work for you?", "dit": "We'll be there at eight a.m. sharp. Everything will be confirmed by email today. Does that work for you?", "fr": "Nous serons là à 8 h pile. Tout vous sera confirmé par courriel aujourd'hui. Cela vous convient ?"}
+   ],
+   "choix": [
+    {"t": "That works. I'll wait for your email. See you at eight!", "fr": "Ça me convient. J'attendrai votre courriel. À huit heures !", "va": null,
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "See you then. And wear good shoes: those stairs are steep!", "fr": "À bientôt. Et mettez de bonnes chaussures : ces escaliers sont raides !"}]},
+    {"t": "Perfect. Thank you, and see you on moving day!", "fr": "Parfait. Merci, et au jour du déménagement !", "va": null,
+     "puis": [{"qui": "umzugschef", "air": "sourire", "t": "Thank you for calling. Have a good one!", "fr": "Merci de votre appel. Bonne journée !"}]},
+    {"faux": true, "t": "OK. I attend your email.", "fr": "D'accord. J'attends votre courriel.",
+     "puis": [{"qui": "umzugschef", "air": "perplexe", "t": "You attend … my email? Like a meeting? Oh, you'll wait for it!", "fr": "Vous assistez… à mon courriel ? Comme à une réunion ? Ah, vous l'attendrez !"}],
+     "aide": {"fr": "<b>« attendre » = « wait for » ; « attend » veut dire « assister à ».</b> « I'll wait for your email. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Le premier septembre était complet : tu déménages {jour_fr}, trois déménageurs, arrivée à 8 h. {permis_fr}, et {emb_fr}. La confirmation arrive par courriel."}
+}

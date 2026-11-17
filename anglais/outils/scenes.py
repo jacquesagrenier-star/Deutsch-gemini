@@ -133,7 +133,9 @@ def pluriel(mot):
 
 def anglais_de(point, idx):
     """La zone allemande -> son mot anglais (dict), ou None."""
-    brut = MOTS.get(point["mot"])
+    # Le sens de la zone (15 nov. 2026, construire.py) : « en_mot » passe avant
+    # la table commune -- die Decke est un plafond ici, une couverture ailleurs.
+    brut = (point.get("zone") or {}).get("en_mot") or MOTS.get(point["mot"])
     if brut is None:
         en = re.sub(r"\(.*?\)", "", point.get("en") or "")
         brut = re.split(r"[,;]", en)[0].strip()
@@ -173,7 +175,7 @@ def construire_scene(nom, idx):
             if ra and ra["mot"] not in vus:
                 vus.add(ra["mot"])
                 aussi.append(nettoyer({k: ra.get(k) for k in ("mot", "genre", "niveau", "theme", "fr", "es", "esp", "gb")}))
-        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en")}
+        q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en", "zone")}
         q.update(nettoyer(r))
         if not r.get("gb"):
             q.pop("gb", None)

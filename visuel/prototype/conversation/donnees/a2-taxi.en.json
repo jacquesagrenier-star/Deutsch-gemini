@@ -1,0 +1,123 @@
+{
+ "id": "a2-taxi",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "En taxi"},
+ "intro": {"fr": "Tu sors de South Station avec ta valise et tu prends un taxi. Tu donnes l'adresse, tu bavardes en route avec le chauffeur, puis tu paies, sans oublier le pourboire."},
+ "personnes": ["taxi_fahrer"],
+ "debut": "where",
+ "textes": {
+  "dest_fr": {"cle": "dest", "cambridge": "Cambridge", "somerville": "Somerville"},
+  "dest_en": {"cle": "dest", "cambridge": "Oxford Street, Cambridge", "somerville": "Highland Avenue, Somerville"}
+ },
+ "noeuds": {
+  "where": {
+   "dit": [
+    {"recit": {"fr": "Tu sors de South Station avec ta valise. Un taxi s'arrête devant toi."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "Hi! Where to?", "fr": "Bonjour ! On va où ?"}
+   ],
+   "choix": [
+    {"t": "To forty-two Oxford Street, in Cambridge, please.", "fr": "Au quarante-deux, Oxford Street, à Cambridge, s'il vous plaît.", "pose": {"dest": "cambridge"}, "va": "trunk"},
+    {"t": "Hello. Eighteen Highland Avenue, in Somerville, please.", "fr": "Bonjour. Dix-huit, Highland Avenue, à Somerville, s'il vous plaît.", "pose": {"dest": "somerville"}, "va": "trunk"},
+    {"faux": true, "t": "To the street Oxford, forty-two, please.", "fr": "À la rue Oxford, quarante-deux, s'il vous plaît (dans l'ordre du français).",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "The street … Oxford? Oh, forty-two Oxford Street, in Cambridge?", "fr": "« The street Oxford »… ? Ah, le quarante-deux, Oxford Street, à Cambridge ?"}],
+     "aide": {"fr": "<b>Une adresse en anglais : le numéro, puis le nom, puis « Street », sans article.</b> « 42, rue Oxford » → « forty-two Oxford Street »."}}
+   ]
+  },
+  "trunk": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "{dest_en}. Sure! Let me put your suitcase in the trunk.", "t_gb": "{dest_en}. Sure! Let me put your suitcase in the boot.", "fr": "{dest_en}. Bien sûr ! Je mets votre valise dans le coffre."}],
+   "choix": [
+    {"t": "Thank you, that's very kind.", "fr": "Merci, c'est très gentil.", "va": "ask",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "No problem!", "fr": "Pas de problème !"}]},
+    {"t": "Thanks. Be careful, it's very heavy!", "fr": "Merci. Faites attention, elle est très lourde !", "va": "ask",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Wow, it is! What do you have in there, books?", "fr": "Oh là, en effet ! Qu'est-ce que vous avez là-dedans, des livres ?"}]},
+    {"faux": true, "t": "Thanks. Attention, it's heavy!", "fr": "Merci. « Attention », elle est lourde !",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Attention? Oh, you mean \"careful\"! Don't worry, I've got it.", "fr": "« Attention » ? Ah, vous voulez dire « careful » ! Ne vous inquiétez pas, je l'ai."}],
+     "aide": {"fr": "<b>Pour prévenir quelqu'un, « Attention ! » se dit « Careful! » ou « Be careful! ».</b> En anglais, « attention » ne s'emploie pas comme un avertissement entre deux personnes."}}
+   ]
+  },
+  "ask": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "All set. Let's go!", "t_gb": "Right. Let's go!", "fr": "C'est bon. On y va !"}],
+   "choix": [
+    {"t": "How long does it take?", "fr": "Il faut combien de temps ?", "va": "chat",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "About twenty minutes. A little more if there's traffic.", "fr": "Environ vingt minutes. Un peu plus s'il y a de la circulation."}]},
+    {"t": "About how much will it cost?", "fr": "Ça va coûter combien, à peu près ?", "va": "chat",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Around thirty-five dollars. It's on the meter.", "fr": "Dans les trente-cinq dollars. C'est au compteur."}]},
+    {"faux": true, "t": "How much time it takes?", "fr": "Combien de temps ça prend ? (dans l'ordre du français)",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "Sorry? Oh, how long does it take? About twenty minutes.", "fr": "Pardon ? Ah, combien de temps il faut ? Environ vingt minutes."}],
+     "aide": {"fr": "<b>Une question a besoin de « does », et la durée se demande avec « How long ».</b> « How long does it take? », pas « How much time it takes? »."}}
+   ]
+  },
+  "chat": {
+   "dit": [{"qui": "taxi_fahrer", "air": "question", "t": "So, are you visiting Boston, or do you live here?", "fr": "Alors, vous visitez Boston, ou vous habitez ici ?"}],
+   "choix": [
+    {"t": "I'm here on vacation, for one week.", "t_gb": "I'm here on holiday, for one week.", "fr": "Je suis ici en vacances, pour une semaine.", "pose": {"sejour": "vacances"}, "va": "visit"},
+    {"t": "I live here now. I moved here last month.", "fr": "J'habite ici maintenant. Je suis arrivé(e) le mois dernier.", "pose": {"sejour": "habite"}, "va": "local"},
+    {"faux": true, "t": "I'm here in vacancies.", "fr": "Je suis ici « en vacances » (avec « vacancies »).",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Vacancies? Like free rooms at a hotel? Oh, you're on vacation!", "t_gb": "Vacancies? Like free rooms at a hotel? Oh, you're on holiday!", "fr": "« Vacancies » ? Comme des chambres libres à l'hôtel ? Ah, vous êtes en vacances !"}],
+     "aide": {"fr": "<b>« en vacances » se dit « on vacation »</b> (« on holiday » en anglais britannique). « a vacancy » est une chambre libre ou un poste à pourvoir."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "chat",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Sure. Are you a tourist? Or is Boston your home?", "fr": "Bien sûr. Vous êtes touriste ? Ou vous vivez à Boston ?"}]}
+   ]
+  },
+  "visit": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Nice! Then you have to eat a lobster roll. Have you tried one yet?", "fr": "Super ! Alors il faut manger un « lobster roll », un sandwich au homard. Vous en avez déjà goûté un ?"}],
+   "choix": [
+    {"t": "No, not yet. Is it good?", "fr": "Non, pas encore. C'est bon ?", "va": "traffic",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "It's the best thing in Boston! Try one by the harbor.", "t_gb": "It's the best thing in Boston! Try one by the harbour.", "fr": "C'est ce qu'il y a de meilleur à Boston ! Goûtez-en un près du port."}]},
+    {"t": "Yes, I had one yesterday. It was delicious!", "fr": "Oui, j'en ai mangé un hier. C'était délicieux !", "va": "traffic",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Ha! Then you're a real Bostonian already.", "fr": "Ha ! Alors vous êtes déjà un vrai Bostonien."}]},
+    {"faux": true, "t": "No, not again.", "fr": "Non, pas de nouveau.",
+     "puis": [{"qui": "taxi_fahrer", "air": "surprise", "t": "Not again? So you had one and you didn't like it?", "fr": "Pas de nouveau ? Vous en avez mangé un et vous n'avez pas aimé ?"}],
+     "aide": {"fr": "<b>« pas encore » se dit « not yet ».</b> « not again » veut dire « pas une fois de plus ». Dis : « No, not yet »."}}
+   ]
+  },
+  "local": {
+   "dit": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Welcome to Boston! And how do you like it so far?", "fr": "Bienvenue à Boston ! Et ça vous plaît, pour l'instant ?"}],
+   "choix": [
+    {"t": "I like it a lot. People are very friendly.", "fr": "Ça me plaît beaucoup. Les gens sont très sympathiques.", "va": "traffic",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "We try! But wait for the winter.", "fr": "On fait de notre mieux ! Mais attendez l'hiver."}]},
+    {"t": "It's a beautiful city, but it's expensive.", "fr": "C'est une belle ville, mais elle est chère.", "va": "traffic",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Tell me about it! The rents are crazy.", "fr": "À qui le dites-vous ! Les loyers sont fous."}]},
+    {"faux": true, "t": "I like very much Boston.", "fr": "J'aime beaucoup Boston (dans l'ordre du français).",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "Sorry? Ah, you like Boston very much. Good!", "fr": "Pardon ? Ah, vous aimez beaucoup Boston. Tant mieux !"}],
+     "aide": {"fr": "<b>On ne sépare pas le verbe de son complément.</b> « very much » ou « a lot » vont à la fin : « I like Boston very much », « I like it a lot »."}}
+   ]
+  },
+  "traffic": {
+   "dit": [
+    {"recit": {"fr": "Sur le pont au-dessus de la Charles River, les voitures n'avancent plus."}},
+    {"qui": "taxi_fahrer", "air": "attentive", "t": "Uh-oh. Construction on the bridge. I can take another way: it's a little longer, but faster. Is that OK?", "t_gb": "Uh-oh. Roadworks on the bridge. I can take another way: it's a little longer, but faster. Is that OK?", "fr": "Aïe. Des travaux sur le pont. Je peux prendre un autre chemin : c'est un peu plus long, mais plus rapide. Ça vous va ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please take the other way.", "fr": "Oui, prenez l'autre chemin, s'il vous plaît.", "va": "pay",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "You got it.", "t_gb": "No problem.", "fr": "C'est parti."}]},
+    {"t": "No, that's OK. I'm not in a hurry.", "fr": "Non, ça va. Je ne suis pas pressé(e).", "va": "pay",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "OK, we'll wait. It shouldn't be long.", "fr": "D'accord, on attend. Ça ne devrait pas être long."}]},
+    {"faux": true, "t": "Yes, please. I am pressed.", "fr": "Oui, s'il vous plaît. Je suis « pressé(e) » (mot à mot).",
+     "puis": [{"qui": "taxi_fahrer", "air": "perplexe", "t": "Pressed? Oh, you're in a hurry! OK, the other way.", "fr": "« Pressed » ? Ah, vous êtes pressé(e) ! D'accord, l'autre chemin."}],
+     "aide": {"fr": "<b>« être pressé » se dit « to be in a hurry ».</b> « pressed » veut dire écrasé, repassé. Dis : « I'm in a hurry »."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "traffic",
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Sure. There are too many cars on this bridge. I know another street. It's faster. OK?", "fr": "Bien sûr. Il y a trop de voitures sur ce pont. Je connais une autre rue. C'est plus rapide. D'accord ?"}]}
+   ]
+  },
+  "pay": {
+   "dit": [
+    {"recit": {"fr": "Le taxi s'arrête devant ta porte, à {dest_fr}. Aux États-Unis, on laisse quinze à vingt pour cent de pourboire au chauffeur."}},
+    {"qui": "taxi_fahrer", "air": "sourire", "t": "Here we are. That's $34.", "dit": "Here we are. That's thirty-four dollars.", "fr": "Nous y voilà. Ça fait 34 $."}
+   ],
+   "choix": [
+    {"t": "Here's forty dollars. Keep the change!", "fr": "Voici quarante dollars. Gardez la monnaie !", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Thank you very much! Let me get your suitcase. Have a good one!", "t_gb": "Thank you very much! Let me get your suitcase. Have a good day!", "fr": "Merci beaucoup ! Je vous sors votre valise. Bonne journée !"}]},
+    {"t": "Can I pay by card? And can I have a receipt, please?", "fr": "Je peux payer par carte ? Et je peux avoir un reçu, s'il vous plaît ?", "va": null,
+     "puis": [{"qui": "taxi_fahrer", "air": "sourire", "t": "Sure. Tap your card here. You can add the tip on the screen. Here's your receipt, and your suitcase. Take care!", "fr": "Bien sûr. Posez votre carte ici. Vous pouvez ajouter le pourboire sur l'écran. Voici votre reçu, et votre valise. Bonne continuation !"}]},
+    {"faux": true, "t": "Here's forty dollars. Guard the money!", "fr": "Voici quarante dollars. « Gardez la monnaie » (mot à mot) !",
+     "puis": [{"qui": "taxi_fahrer", "air": "amuse", "t": "Guard it? From who? Oh, keep the change! Thank you!", "fr": "La surveiller ? Contre qui ? Ah, garder la monnaie ! Merci !"}],
+     "aide": {"fr": "<b>« Gardez la monnaie » se dit « Keep the change ».</b> « guard » veut dire surveiller, et « money » est l'argent en général ; la monnaie qu'on rend, c'est « change »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris un taxi de South Station à {dest_fr} : tu as donné l'adresse, bavardé avec le chauffeur et payé la course avec un pourboire, comme on le fait à Boston."}
+}

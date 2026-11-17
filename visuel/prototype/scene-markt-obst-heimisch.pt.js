@@ -616,7 +616,7 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "l'état, le stand"
+   "fr": "le stand"
   }
  ],
  "grosPlans": [],

@@ -1,0 +1,134 @@
+{
+ "id": "b1-plainte",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Porter plainte pour un vélo volé"},
+ "intro": {"fr": "Cette nuit, ton vélo a été volé devant ton immeuble, alors qu'il était attaché. Tu vas au commissariat : la policière prend ta plainte."},
+ "personnes": ["polizistin_wache"],
+ "debut": "anzeige",
+ "textes": {
+  "nummer_fr": {"cle": "nummer", "da": "Tu avais le numéro de cadre sur la photo de la facture", "spaeter": "Tu apporteras le numéro de cadre dans les prochains jours"},
+  "zeuge_fr": {"cle": "zeuge", "ja": "ton voisin a vu un homme près des vélos vers minuit", "nein": "aucun voisin n'a rien remarqué"}
+ },
+ "noeuds": {
+  "anzeige": {
+   "dit": [
+    {"recit": {"fr": "Le commissariat de ton quartier, à Friedrichshain. Tu attends dix minutes, puis une policière t'appelle au guichet."}},
+    {"qui": "polizistin_wache", "air": "sourire", "t": "Guten Morgen. Was kann ich für Sie tun?", "fr": "Bonjour. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen. Mein Fahrrad ist gestohlen worden. Ich möchte den Diebstahl melden.", "fr": "Bonjour. Mon vélo a été volé. Je voudrais déclarer le vol.", "va": "wann_wo"},
+    {"t": "Guten Morgen. Jemand hat heute Nacht mein Fahrrad gestohlen. Ich möchte Anzeige erstatten.", "fr": "Bonjour. Quelqu'un a volé mon vélo cette nuit. Je voudrais porter plainte.", "va": "wann_wo"},
+    {"faux": true, "t": "Guten Morgen. Mein Fahrrad hat gestohlen.", "fr": "Bonjour. Mon vélo a volé.",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "Ihr Fahrrad hat gestohlen? Was denn? Ach so, es ist gestohlen worden!", "fr": "Votre vélo a volé ? Quoi donc ? Ah, il a été volé !"}],
+     "aide": {"fr": "<b>Le passif au passé : « ist … worden »</b> : « Mein Fahrrad ist gestohlen worden » (ou « wurde gestohlen »). « hat gestohlen » fait du vélo le voleur."}}
+   ]
+  },
+  "wann_wo": {
+   "dit": [{"qui": "polizistin_wache", "air": "attentive", "t": "Das tut mir leid. Dann nehme ich jetzt die Anzeige auf. Wann und wo ist es passiert?", "fr": "Je suis désolée. Je vais donc enregistrer la plainte. Quand et où est-ce arrivé ?"}],
+   "choix": [
+    {"t": "Heute Nacht, vor meinem Haus. Gestern Abend um zehn stand es noch da.", "fr": "Cette nuit, devant mon immeuble. Hier soir à dix heures, il était encore là.", "va": "beschreibung"},
+    {"t": "Zwischen gestern Abend und heute Morgen. Es stand vor meinem Haus in der Boxhagener Straße.", "fr": "Entre hier soir et ce matin. Il était devant mon immeuble, dans la Boxhagener Straße.", "va": "beschreibung"},
+    {"faux": true, "t": "Heute Nacht, bevor mein Haus.", "fr": "Cette nuit, avant mon immeuble.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "Bevor Ihr Haus … was gemacht hat? Ach so, vor Ihrem Haus!", "fr": "Avant que votre immeuble… fasse quoi ? Ah, devant votre immeuble !"}],
+     "aide": {"fr": "<b>« Devant » (un lieu) se dit « vor » + datif</b> : « vor meinem Haus ». « bevor » veut dire « avant que » et introduit une phrase avec un verbe."}}
+   ]
+  },
+  "beschreibung": {
+   "dit": [{"qui": "polizistin_wache", "air": "question", "t": "War das Fahrrad abgeschlossen? Und können Sie es mir beschreiben?", "fr": "Le vélo était-il attaché ? Et pouvez-vous me le décrire ?"}],
+   "choix": [
+    {"t": "Ja, es war abgeschlossen. Es ist ein blaues Stadtrad mit einem schwarzen Korb vorne.", "fr": "Oui, il était attaché. C'est un vélo de ville bleu avec un panier noir à l'avant.", "va": "rahmennummer",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Blau, schwarzer Korb. Und das Schloss ist auch weg, nehme ich an.", "fr": "Bleu, panier noir. Et l'antivol a disparu aussi, je suppose."}]},
+    {"t": "Ja, mit einem Kettenschloss. Das Rad ist grün und ziemlich alt, und auf dem Rahmen klebt ein gelber Aufkleber.", "fr": "Oui, avec un antivol à chaîne. Le vélo est vert et assez vieux, et il y a un autocollant jaune sur le cadre.", "va": "rahmennummer",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Grün, gelber Aufkleber. Das ist gut, so etwas erkennt man wieder.", "fr": "Vert, autocollant jaune. C'est bien, ce genre de détail se reconnaît."}]},
+    {"faux": true, "t": "Ja, es war attachiert mit einem Schloss.", "fr": "Oui, il était attaché avec un antivol.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "Attachiert? Das Wort kenne ich nicht. Sie meinen, es war abgeschlossen?", "fr": "« Attachiert » ? Je ne connais pas ce mot. Vous voulez dire qu'il était fermé avec un antivol ?"}],
+     "aide": {"fr": "<b>Un vélo attaché avec un antivol est « abgeschlossen »</b> (ou « angeschlossen ») : « Es war abgeschlossen ». « attachiert » n'existe pas."}}
+   ]
+  },
+  "rahmennummer": {
+   "dit": [{"qui": "polizistin_wache", "air": "question", "t": "Kennen Sie die Rahmennummer? Sie steht meistens auf der Rechnung vom Fahrradladen.", "fr": "Connaissez-vous le numéro de cadre ? Il figure en général sur la facture du magasin de vélos."}],
+   "choix": [
+    {"t": "Ja, ich habe ein Foto von der Rechnung auf dem Handy. Einen Moment, bitte.", "fr": "Oui, j'ai une photo de la facture sur mon téléphone. Un instant, s'il vous plaît.", "pose": {"nummer": "da"}, "va": "foto"},
+    {"t": "Leider nicht. Die Rechnung liegt zu Hause. Kann ich die Nummer später bringen?", "fr": "Malheureusement non. La facture est à la maison. Est-ce que je peux apporter le numéro plus tard ?", "pose": {"nummer": "spaeter"}, "va": "nachreichen"},
+    {"repete": true, "t": "Entschuldigung, was ist eine Rahmennummer?", "fr": "Excusez-moi, qu'est-ce qu'une « Rahmennummer » ?", "va": "rahmennummer",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Das ist eine Nummer, die unten am Fahrrad ins Metall geschrieben ist. Jedes Rad hat seine eigene. Kennen Sie Ihre?", "fr": "C'est un numéro gravé dans le métal, sous le vélo. Chaque vélo a le sien. Vous connaissez le vôtre ?"}]}
+   ]
+  },
+  "foto": {
+   "dit": [{"qui": "polizistin_wache", "air": "sourire", "t": "Sehr gut, die Nummer schreibe ich gleich ab. Haben Sie vielleicht auch ein Foto vom Fahrrad selbst?", "fr": "Très bien, je recopie le numéro tout de suite. Vous avez peut-être aussi une photo du vélo lui-même ?"}],
+   "choix": [
+    {"t": "Ja, hier. Das Foto habe ich im Sommer gemacht.", "fr": "Oui, tenez. J'ai pris cette photo en été.", "va": "zeuge",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Schönes Rad. Schicken Sie mir das Bild bitte an diese Adresse.", "fr": "Beau vélo. Envoyez-moi l'image à cette adresse, s'il vous plaît."}]},
+    {"t": "Leider nicht. Aber ich kann es noch genauer beschreiben, wenn Sie möchten.", "fr": "Malheureusement non. Mais je peux le décrire plus précisément, si vous voulez.", "va": "zeuge",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Nicht nötig. Die Rahmennummer ist das Wichtigste.", "fr": "Ce n'est pas nécessaire. Le numéro de cadre, c'est l'essentiel."}]},
+    {"faux": true, "t": "Ja, ich habe ein Foto im Sommer genommen.", "fr": "Oui, j'ai pris une photo en été.",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "Genommen? Wem haben Sie es denn weggenommen? Ach so, Sie haben ein Foto gemacht!", "fr": "« Pris » ? À qui l'avez-vous pris ? Ah, vous avez fait une photo !"}],
+     "aide": {"fr": "<b>« Prendre une photo » : « ein Foto machen »</b> : « Ich habe im Sommer ein Foto gemacht ». Avec « nehmen », on croit que tu l'as prise à quelqu'un."}}
+   ]
+  },
+  "nachreichen": {
+   "dit": [{"qui": "polizistin_wache", "air": "attentive", "t": "Ja, das geht: per E-Mail oder persönlich hier auf der Wache. Aber bitte in den nächsten Tagen. Ohne die Nummer finden wir das Rad fast nie wieder.", "fr": "Oui, c'est possible : par courriel ou en personne, ici au commissariat. Mais dans les prochains jours, s'il vous plaît. Sans le numéro, nous ne retrouvons presque jamais le vélo."}],
+   "choix": [
+    {"t": "Ich schicke sie Ihnen heute Abend per E-Mail.", "fr": "Je vous l'envoie ce soir par courriel.", "va": "zeuge",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Gut. Die Adresse steht auf dem Papier, das Sie gleich bekommen.", "fr": "Bien. L'adresse est sur le papier que vous allez recevoir."}]},
+    {"t": "Ich komme morgen früh noch einmal vorbei und bringe die Rechnung mit.", "fr": "Je repasse demain matin et j'apporte la facture.", "va": "zeuge",
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Gut, wir haben ab sieben Uhr geöffnet.", "fr": "Bien, nous ouvrons à partir de sept heures."}]},
+    {"faux": true, "t": "Ich bringe sie morgen, wenn ich habe die Rechnung gefunden.", "fr": "Je l'apporte demain, quand j'ai trouvé la facture.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "Wenn Sie die Rechnung gefunden haben, ja? Gut, dann bis morgen.", "fr": "Quand vous aurez trouvé la facture, c'est ça ? Bon, alors à demain."}],
+     "aide": {"fr": "<b>Dans la subordonnée, le verbe conjugué va tout à la fin</b>, même au passé : « …, wenn ich die Rechnung gefunden habe »."}}
+   ]
+  },
+  "zeuge": {
+   "dit": [{"qui": "polizistin_wache", "air": "question", "t": "Noch eine Frage: Hat jemand etwas gesehen oder gehört? Ein Nachbar vielleicht?", "fr": "Encore une question : quelqu'un a-t-il vu ou entendu quelque chose ? Un voisin, peut-être ?"}],
+   "choix": [
+    {"t": "Ja, mein Nachbar hat gegen Mitternacht einen Mann bei den Fahrrädern gesehen.", "fr": "Oui, mon voisin a vu un homme près des vélos vers minuit.", "pose": {"zeuge": "ja"}, "va": "person"},
+    {"t": "Nein, leider nicht. Ich habe die Nachbarn gefragt, aber niemand hat etwas bemerkt.", "fr": "Non, malheureusement. J'ai demandé aux voisins, mais personne n'a rien remarqué.", "pose": {"zeuge": "nein"}, "va": "versicherung",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Schade. Das ist leider oft so, die Diebe sind sehr schnell.", "fr": "Dommage. C'est souvent le cas, hélas, les voleurs sont très rapides."}]},
+    {"faux": true, "t": "Nein, niemand hat nichts gesehen.", "fr": "Non, personne n'a rien vu.",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "Niemand hat nichts gesehen? Dann haben ja alle etwas gesehen!", "fr": "Personne n'a « rien » vu ? Alors tout le monde a vu quelque chose !"}],
+     "aide": {"fr": "<b>Une seule négation en allemand</b> : « Niemand hat etwas gesehen ». « niemand … nichts » s'annule, contrairement au français « personne… rien »."}}
+   ]
+  },
+  "person": {
+   "dit": [{"qui": "polizistin_wache", "air": "attentive", "t": "Das ist wichtig. Konnte Ihr Nachbar die Person beschreiben?", "fr": "C'est important. Votre voisin a-t-il pu décrire cette personne ?"}],
+   "choix": [
+    {"t": "Er hat gesagt, dass der Mann groß war und eine dunkle Jacke trug.", "fr": "Il a dit que l'homme était grand et qu'il portait une veste sombre.", "va": "versicherung",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Groß, dunkle Jacke. Schreiben Sie mir bitte den Namen Ihres Nachbarn auf, vielleicht rufen wir ihn an.", "fr": "Grand, veste sombre. Notez-moi le nom de votre voisin, s'il vous plaît, nous l'appellerons peut-être."}]},
+    {"t": "Nicht genau, weil es dunkel war. Aber der Mann hatte einen großen Rucksack.", "fr": "Pas précisément, parce qu'il faisait noir. Mais l'homme avait un grand sac à dos.", "va": "versicherung",
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Ein großer Rucksack, gut. Schreiben Sie mir bitte den Namen Ihres Nachbarn auf, vielleicht rufen wir ihn an.", "fr": "Un grand sac à dos, bien. Notez-moi le nom de votre voisin, s'il vous plaît, nous l'appellerons peut-être."}]},
+    {"faux": true, "t": "Ja, ein großer Mann mit einem dunklen Veston.", "fr": "Oui, un homme grand avec un veston sombre.",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "Mit einem dunklen … Veston? Ist das eine Jacke?", "fr": "Avec un… « Veston » sombre ? C'est une veste ?"}],
+     "aide": {"fr": "<b>La veste : « die Jacke »</b> (« mit einer dunklen Jacke »). « Veston » ne se dit pas en Allemagne."}}
+   ]
+  },
+  "versicherung": {
+   "dit": [{"qui": "polizistin_wache", "air": "question", "t": "Sind Sie eigentlich versichert? Oft ist das Fahrrad in der Hausratversicherung mit drin.", "fr": "Au fait, êtes-vous assuré(e) ? Souvent, le vélo est compris dans l'assurance habitation."}],
+   "choix": [
+    {"t": "Ja, ich habe eine Hausratversicherung. Was braucht sie von der Polizei?", "fr": "Oui, j'ai une assurance habitation. De quoi a-t-elle besoin de la part de la police ?", "va": "ende"},
+    {"t": "Ich glaube schon. Bekomme ich eine Bestätigung für die Versicherung?", "fr": "Je crois que oui. Est-ce que je reçois une attestation pour l'assurance ?", "va": "ende"},
+    {"faux": true, "t": "Ja, ich bin assuriert.", "fr": "Oui, je suis assuré(e).",
+     "puis": [{"qui": "polizistin_wache", "air": "perplexe", "t": "Assuriert? Sie meinen, Sie sind versichert?", "fr": "« Assuriert » ? Vous voulez dire que vous êtes assuré(e) ?"}],
+     "aide": {"fr": "<b>« Être assuré » : « versichert sein »</b>, l'assurance : « die Versicherung ». Plus simple : « Ich habe eine Hausratversicherung »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "polizistin_wache", "air": "attentive", "t": "Sie bekommen von mir diese Bescheinigung mit dem Aktenzeichen: 2511-0842. Das geben Sie Ihrer Versicherung.", "dit": "Sie bekommen von mir diese Bescheinigung mit dem Aktenzeichen: zwei fünf eins eins, Strich, null acht vier zwei. Das geben Sie Ihrer Versicherung.", "fr": "Je vous remets cette attestation avec le numéro de dossier : 2511-0842. Vous le donnerez à votre assurance."},
+    {"qui": "polizistin_wache", "air": "attentive", "si": {"nummer": "spaeter"}, "t": "Und denken Sie bitte an die Rahmennummer!", "fr": "Et pensez au numéro de cadre, s'il vous plaît !"},
+    {"qui": "polizistin_wache", "air": "sourire", "t": "Noch ein Tipp für Ihr nächstes Rad: Lassen Sie es bei der Polizei codieren, das ist kostenlos. Und kaufen Sie ein richtig gutes Schloss.", "fr": "Encore un conseil pour votre prochain vélo : faites-le marquer par la police, c'est gratuit. Et achetez un vraiment bon antivol."}
+   ],
+   "choix": [
+    {"t": "Danke für den Tipp und für Ihre Hilfe. Auf Wiedersehen!", "fr": "Merci pour le conseil et pour votre aide. Au revoir !", "va": null,
+     "puis": [{"qui": "polizistin_wache", "air": "sourire", "t": "Gern. Wir melden uns, wenn wir etwas finden. Auf Wiedersehen!", "fr": "Je vous en prie. Nous vous contacterons si nous trouvons quelque chose. Au revoir !"}]},
+    {"t": "Vielen Dank. Glauben Sie, dass mein Fahrrad wiedergefunden wird?", "fr": "Merci beaucoup. Croyez-vous que mon vélo sera retrouvé ?", "va": null,
+     "puis": [{"qui": "polizistin_wache", "air": "attentive", "t": "Ehrlich gesagt: Die Chancen sind klein. Aber mit der Rahmennummer passiert es manchmal. Wir melden uns. Auf Wiedersehen!", "fr": "Franchement : les chances sont minces. Mais avec le numéro de cadre, ça arrive parfois. Nous vous contacterons. Au revoir !"}]},
+    {"faux": true, "t": "Danke, tschüss, bis bald!", "fr": "Merci, salut, à bientôt !",
+     "puis": [{"qui": "polizistin_wache", "air": "amuse", "t": "Bis bald? Ich hoffe für Sie, dass wir uns nicht so bald wiedersehen!", "fr": "À bientôt ? J'espère pour vous qu'on ne se reverra pas de sitôt !"}],
+     "aide": {"fr": "<b>Au commissariat, on reste formel</b> : « Vielen Dank, auf Wiedersehen ». « Tschüss, bis bald » se dit entre gens qui se connaissent."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as porté plainte pour le vol de ton vélo : quand, où, la description, l'antivol. {nummer_fr} ; {zeuge_fr}. Tu repars avec l'attestation et le numéro de dossier pour ton assurance habitation."}
+}

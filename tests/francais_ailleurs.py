@@ -58,7 +58,7 @@ except Exception:
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8793
 HEURE_FIGEE = "2026-10-10T09:00:00"
-LANGUES = {"de": ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
+LANGUES = {"de": ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"],
            "es": ["en", "pt", "ar", "de"],
            "en": ["es"]}
 
@@ -259,6 +259,10 @@ class Session:
         self.page.goto(adresse)
         self.page.wait_for_load_state("networkidle")
         self.page.evaluate("(l) => localStorage.setItem(UI_LANG_KEY, l)", langue)
+        # L'espagnol de l'allemand est en essai (15 nov. 2026) : il n'entre dans UI_LANGS
+        # qu'avec la cle d'essai de l'appareil.
+        if app == "de" and langue == "es":
+            self.page.evaluate("() => localStorage.setItem(CLE_ESSAI_INTERFACE_ES, '1')")
         self.page.reload()
         self.page.wait_for_load_state("networkidle")
         self.page.wait_for_timeout(1500)

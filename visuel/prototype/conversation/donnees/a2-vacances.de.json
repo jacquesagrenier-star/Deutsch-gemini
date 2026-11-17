@@ -1,0 +1,121 @@
+{
+ "id": "a2-vacances",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "du",
+ "titre": {"fr": "Raconter tes vacances"},
+ "intro": {"fr": "Tu rentres de vacances et tu retrouves ton ami Diego. Il veut tout savoir : tu racontes, au passé (le Perfekt, avec haben ou sein)."},
+ "personnes": ["freund_diego"],
+ "debut": "hallo",
+ "textes": {
+  "lieu_fr": {"cle": "ort", "meer": "au bord de la mer, en Italie", "berge": "à la montagne, en Autriche"}
+ },
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Un café de Kreuzberg, en fin d'après-midi. Diego, ton ami, t'attend déjà à une table."}},
+    {"qui": "freund_diego", "air": "sourire", "t": "Hey, du bist wieder da! Wie war dein Urlaub?", "fr": "Hé, te revoilà ! C'était comment, tes vacances ?"}
+   ],
+   "choix": [
+    {"t": "Super! Ich bin gestern zurückgekommen.", "fr": "Super ! Je suis rentré(e) hier.", "va": "wo",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Schön! Ich war die ganze Zeit hier und habe gearbeitet.", "fr": "Chouette ! Moi, je suis resté ici tout le temps et j'ai travaillé."}]},
+    {"t": "Sehr schön! Aber zwei Wochen sind zu kurz.", "fr": "Très bien ! Mais deux semaines, c'est trop court.", "va": "wo",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Das stimmt. Urlaub ist immer zu kurz!", "fr": "C'est vrai. Les vacances, c'est toujours trop court !"}]},
+    {"faux": true, "t": "Super! Ich bin gestern zurückkommen.", "fr": "Super ! Je suis hier revenir.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Du kommst gestern zurück? Ach so, du bist gestern zurückgekommen!", "fr": "Tu reviens hier ? Ah, tu es rentré(e) hier !"}],
+     "aide": {"fr": "<b>Au Perfekt, il faut le participe passé.</b> Pour un verbe à particule, « ge » se glisse au milieu : zurückkommen → « zurück<b>ge</b>kommen ». « Ich bin gestern zurückgekommen »."}}
+   ]
+  },
+  "wo": {
+   "dit": [{"qui": "freund_diego", "air": "question", "t": "Erzähl mal! Wo warst du denn?", "fr": "Raconte ! Tu étais où, alors ?"}],
+   "choix": [
+    {"t": "Ich war in Italien, am Meer.", "fr": "J'étais en Italie, au bord de la mer.", "pose": {"ort": "meer"}, "va": "reise",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Italien! Da war ich noch nie.", "fr": "L'Italie ! Je n'y suis encore jamais allé."}]},
+    {"t": "Ich war in Österreich, in den Bergen.", "fr": "J'étais en Autriche, à la montagne.", "pose": {"ort": "berge"}, "va": "reise",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "In den Alpen! Da war ich noch nie.", "fr": "Dans les Alpes ! Je n'y suis encore jamais allé."}]},
+    {"faux": true, "t": "Ich war nach Italien.", "fr": "J'étais vers l'Italie.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Wie? Du warst in Italien, oder du bist nach Italien gefahren?", "fr": "Comment ? Tu étais en Italie, ou tu es allé(e) en Italie ?"}],
+     "aide": {"fr": "<b>« in » pour l'endroit où l'on est, « nach » pour l'endroit où l'on va.</b> « Ich war in Italien », mais « Ich bin nach Italien gefahren ». En français, c'est « en Italie » dans les deux cas."}}
+   ]
+  },
+  "reise": {
+   "dit": [{"qui": "freund_diego", "air": "question", "t": "Und wie bist du gereist? Mit dem Flugzeug?", "fr": "Et tu as voyagé comment ? En avion ?"}],
+   "choix": [
+    {"t": "Nein, ich bin mit dem Zug gefahren.", "fr": "Non, j'y suis allé(e) en train.", "va": "gemacht",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Mit dem Zug, cool! Da sieht man viel.", "fr": "En train, cool ! On voit plein de choses."}]},
+    {"t": "Ja, ich bin geflogen. Das geht schnell.", "fr": "Oui, j'ai pris l'avion. Ça va vite.", "va": "gemacht",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Klar, von Berlin ist das am einfachsten.", "fr": "Bien sûr, de Berlin, c'est le plus simple."}]},
+    {"faux": true, "t": "Nein, ich habe mit dem Zug gefahren.", "fr": "Non, j'ai allé en train.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Du hast …? Ah, du bist mit dem Zug gefahren!", "fr": "Tu as… ? Ah, tu es allé(e) en train !"}],
+     "aide": {"fr": "<b>Les verbes de déplacement prennent « sein ».</b> fahren, fliegen, gehen, kommen : « Ich <b>bin</b> mit dem Zug gefahren », « Ich bin geflogen »."}}
+   ]
+  },
+  "gemacht": {
+   "dit": [{"qui": "freund_diego", "air": "question", "t": "Und was hast du die ganze Zeit gemacht?", "fr": "Et qu'est-ce que tu as fait pendant tout ce temps ?"}],
+   "choix": [
+    {"si": {"ort": "meer"}, "t": "Ich bin jeden Tag geschwommen.", "fr": "J'ai nagé tous les jours.", "pose": {"akt": "schwimmen"}, "va": "wetter",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Jeden Tag im Meer! Ich bin ein bisschen neidisch.", "fr": "Tous les jours dans la mer ! Je suis un peu jaloux."}]},
+    {"si": {"ort": "meer"}, "t": "Ich habe am Strand gelegen und viel gelesen.", "fr": "Je suis resté(e) allongé(e) sur la plage et j'ai beaucoup lu.", "pose": {"akt": "strand"}, "va": "wetter",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Strand und Bücher: perfekt! Ich bin ein bisschen neidisch.", "fr": "La plage et des livres : parfait ! Je suis un peu jaloux."}]},
+    {"si": {"ort": "berge"}, "t": "Ich bin viel gewandert.", "fr": "J'ai fait beaucoup de randonnée.", "pose": {"akt": "wandern"}, "va": "wetter",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Wandern in den Bergen! Ich bin ein bisschen neidisch.", "fr": "De la randonnée en montagne ! Je suis un peu jaloux."}]},
+    {"si": {"ort": "berge"}, "t": "Ich habe kleine Dörfer besucht und gut gegessen.", "fr": "J'ai visité de petits villages et bien mangé.", "pose": {"akt": "doerfer"}, "va": "wetter",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Kleine Dörfer, gutes Essen: Ich bin ein bisschen neidisch.", "fr": "De petits villages, de la bonne cuisine : je suis un peu jaloux."}]},
+    {"faux": true, "t": "Ich habe gegessen sehr gut.", "fr": "J'ai mangé très bien.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Du hast … sehr gut gegessen? Das glaube ich! Und sonst?", "fr": "Tu as… très bien mangé ? Je veux bien le croire ! Et à part ça ?"}],
+     "aide": {"fr": "<b>Au Perfekt, le participe va tout à la fin.</b> « Ich habe sehr gut <b>gegessen</b> », « Ich habe viel <b>gelesen</b> ». L'auxiliaire reste en deuxième position."}}
+   ]
+  },
+  "wetter": {
+   "dit": [{"qui": "freund_diego", "air": "question", "t": "Und das Wetter? Hattest du Glück?", "fr": "Et le temps ? Tu as eu de la chance ?"}],
+   "choix": [
+    {"t": "Ja, meistens. Nur einen Tag hat es geregnet.", "fr": "Oui, la plupart du temps. Il n'a plu qu'un seul jour.", "va": "regentag"},
+    {"t": "Ja! Es war die ganze Zeit warm und sonnig.", "fr": "Oui ! Il a fait chaud et beau tout le temps.", "va": "erlebnis",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Und hier in Berlin war es grau und kalt. Typisch!", "fr": "Et ici, à Berlin, il a fait gris et froid. Typique !"}]},
+    {"faux": true, "t": "Ja, es hat fast immer schön gemacht.", "fr": "Oui, il a fait beau presque tout le temps.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Es hat schön gemacht? Was denn? Ach so, das Wetter war schön!", "fr": "« Ça a fait beau » ? Quoi donc ? Ah, il a fait beau !"}],
+     "aide": {"fr": "<b>« Il a fait beau » ne se dit pas avec « machen ».</b> On dit « Das Wetter war schön » ou « Es war sonnig ». Et pour la pluie : « Es hat geregnet »."}},
+    {"repete": true, "t": "Wie bitte? Kannst du das wiederholen?", "fr": "Pardon ? Tu peux répéter ?", "va": "wetter",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Klar: Wie war das Wetter? War es schön?", "fr": "Bien sûr : il a fait quel temps ? Il a fait beau ?"}]}
+   ]
+  },
+  "regentag": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "Oh nein! Und was hast du an dem Regentag gemacht?", "fr": "Oh non ! Et qu'est-ce que tu as fait, ce jour de pluie ?"}],
+   "choix": [
+    {"t": "Ich bin ins Museum gegangen.", "fr": "Je suis allé(e) au musée.", "va": "erlebnis",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Gute Idee. Das mache ich bei Regen auch immer.", "fr": "Bonne idée. C'est ce que je fais toujours, moi aussi, quand il pleut."}]},
+    {"t": "Ich bin im Hotel geblieben und habe geschlafen.", "fr": "Je suis resté(e) à l'hôtel et j'ai dormi.", "va": "erlebnis",
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Auch gut! Als Arzt sage ich: Schlafen ist gesund.", "fr": "C'est bien aussi ! En tant que médecin, je te le dis : dormir, c'est bon pour la santé."}]},
+    {"faux": true, "t": "Ich habe im Hotel geblieben.", "fr": "J'ai resté à l'hôtel.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Du hast …? Ah, du bist im Hotel geblieben. Den ganzen Tag?", "fr": "Tu as… ? Ah, tu es resté(e) à l'hôtel. Toute la journée ?"}],
+     "aide": {"fr": "<b>« bleiben » prend « sein »</b>, comme « rester » prend « être » en français : « Ich <b>bin</b> im Hotel geblieben »."}}
+   ]
+  },
+  "erlebnis": {
+   "dit": [{"qui": "freund_diego", "air": "question", "t": "Und, ist etwas Lustiges passiert?", "fr": "Et alors, il s'est passé quelque chose de drôle ?"}],
+   "choix": [
+    {"t": "Ja! Ich habe den falschen Bus genommen.", "fr": "Oui ! J'ai pris le mauvais bus.", "va": "tipp",
+     "puis": [{"qui": "freund_diego", "air": "amuse", "t": "Haha! Das passiert mir auch immer.", "fr": "Haha ! Ça m'arrive tout le temps à moi aussi."}]},
+    {"t": "Ja! Im Restaurant habe ich das falsche Essen bestellt.", "fr": "Oui ! Au restaurant, j'ai commandé le mauvais plat.", "va": "tipp",
+     "puis": [{"qui": "freund_diego", "air": "amuse", "t": "Haha! Das passiert mir auch immer.", "fr": "Haha ! Ça m'arrive tout le temps à moi aussi."}]},
+    {"faux": true, "t": "Ja! Ich habe den falschen Bus genehmt.", "fr": "Oui ! J'ai « prendu » le mauvais bus.",
+     "puis": [{"qui": "freund_diego", "air": "amuse", "t": "Genehmt? Haha, du hast den falschen Bus genommen!", "fr": "« Genehmt » ? Haha, tu as pris le mauvais bus !"}],
+     "aide": {"fr": "<b>« nehmen » est irrégulier :</b> son participe est « genommen ». « Ich habe den Bus genommen ». De même : essen → gegessen, lesen → gelesen."}}
+   ]
+  },
+  "tipp": {
+   "dit": [{"qui": "freund_diego", "air": "attentive", "t": "Ich möchte im Sommer auch dahin. Hast du einen Tipp für mich?", "fr": "J'aimerais y aller aussi cet été. Tu as un conseil pour moi ?"}],
+   "choix": [
+    {"t": "Ja! Fahr im Juni, dann ist es nicht so voll.", "fr": "Oui ! Vas-y en juin, il y a moins de monde.", "va": null,
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Gute Idee, danke! Und nächstes Mal zeigst du mir die Fotos, ja? Bis bald!", "fr": "Bonne idée, merci ! Et la prochaine fois, tu me montres les photos, hein ? À bientôt !"}]},
+    {"t": "Ja, viele! Ich zeige dir am Freitag meine Fotos.", "fr": "Oui, plein ! Je te montre mes photos vendredi.", "va": null,
+     "puis": [{"qui": "freund_diego", "air": "sourire", "t": "Freitag passt! Ich bringe Kuchen mit. Bis dann!", "fr": "Vendredi, ça me va ! J'apporte un gâteau. À vendredi !"}]},
+    {"faux": true, "t": "Ja! Ich habe viele Fotos genommen. Ich zeige sie dir.", "fr": "Oui ! J'ai pris beaucoup de photos. Je te les montre.",
+     "puis": [{"qui": "freund_diego", "air": "perplexe", "t": "Fotos genommen? Wem denn? Ach so, du hast Fotos gemacht!", "fr": "Pris des photos ? À qui donc ? Ah, tu as fait des photos !"}],
+     "aide": {"fr": "<b>En allemand, on « fait » des photos :</b> « Fotos machen ». « Ich habe viele Fotos <b>gemacht</b> ». « Nehmen », c'est prendre quelque chose avec soi."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as raconté à Diego tes vacances {lieu_fr} : le voyage, le temps qu'il a fait, une petite mésaventure. Tout au passé !"}
+}

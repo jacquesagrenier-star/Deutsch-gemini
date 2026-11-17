@@ -1,0 +1,131 @@
+{
+ "id": "a2-reserver-tel",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Réserver une table au téléphone"},
+ "intro": {"fr": "Samedi soir, tu sors dîner avec des amis à Berlin. Tu appelles le restaurant pour réserver une table."},
+ "personnes": ["kellnerin"],
+ "debut": "anruf",
+ "textes": {
+  "p_fr": {"cle": "p", "vier": "quatre", "sechs": "six"},
+  "heure_de": {"cle": "heure", "frueh": "halb sieben", "spaet": "halb neun"},
+  "heure_fr": {"cle": "heure", "frueh": "six heures et demie", "spaet": "huit heures et demie"},
+  "wo_de": {"cle": "wo", "draussen": "draußen auf der Terrasse", "drinnen": "drinnen", "fenster": "drinnen am Fenster"},
+  "wo_fr": {"cle": "wo", "draussen": "en terrasse", "drinnen": "à l'intérieur", "fenster": "à l'intérieur, près de la fenêtre"}
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Tu appelles le restaurant « Zur Linde », à Prenzlauer Berg. Ça sonne, puis quelqu'un décroche."}},
+    {"qui": "kellnerin", "air": "sourire", "t": "Restaurant Zur Linde, guten Tag! Was kann ich für Sie tun?", "fr": "Restaurant Zur Linde, bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag! Ich möchte für Samstagabend einen Tisch reservieren.", "fr": "Bonjour ! Je voudrais réserver une table pour samedi soir.", "va": "wann",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Sehr gern. Einen Moment, ich schaue nach.", "fr": "Très volontiers. Un instant, je regarde."}]},
+    {"t": "Guten Tag! Haben Sie am Samstagabend noch einen Tisch frei?", "fr": "Bonjour ! Vous avez encore une table libre samedi soir ?", "va": "wann",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Am Samstagabend? Einen Moment, ich schaue nach.", "fr": "Samedi soir ? Un instant, je regarde."}]},
+    {"faux": true, "t": "Guten Tag! Ich möchte für Samstagabend eine Tabelle reservieren.", "fr": "Bonjour ! Je voudrais réserver un tableau pour samedi soir.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Eine Tabelle? Ach so, Sie möchten einen Tisch reservieren!", "fr": "Un tableau ? Ah, vous voulez réserver une table !"}],
+     "aide": {"fr": "<b>« die Tabelle » est un faux ami :</b> c'est un tableau de chiffres. La table où l'on mange, c'est « der Tisch » : « Ich möchte einen Tisch reservieren »."}}
+   ]
+  },
+  "wann": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Für wie viele Personen und um wie viel Uhr?", "fr": "Pour combien de personnes et à quelle heure ?"}],
+   "choix": [
+    {"t": "Für vier Personen, um acht Uhr.", "fr": "Pour quatre personnes, à huit heures.", "pose": {"p": "vier"}, "va": "voll",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Vier Personen … Oh, um acht ist am Samstag leider schon alles voll.", "fr": "Quatre personnes… Oh, à huit heures, samedi, tout est malheureusement déjà complet."}]},
+    {"t": "Wir sind sechs. Um zwanzig Uhr, bitte.", "fr": "Nous sommes six. À vingt heures, s'il vous plaît.", "pose": {"p": "sechs"}, "va": "voll",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Sechs Personen … Oh, um acht ist am Samstag leider schon alles voll.", "fr": "Six personnes… Oh, à huit heures, samedi, tout est malheureusement déjà complet."}]},
+    {"faux": true, "t": "Für vier Personen, um acht Stunden.", "fr": "Pour quatre personnes, à huit heures (de durée).",
+     "puis": [{"qui": "kellnerin", "air": "amuse", "t": "Acht Stunden? So lange möchten Sie bleiben? Ach, Sie meinen: um acht Uhr!", "fr": "Huit heures ? Vous voulez rester aussi longtemps ? Ah, vous voulez dire : à huit heures !"}],
+     "aide": {"fr": "<b>« Uhr » pour l'heure qu'il est, « Stunde » pour la durée.</b> « Um acht Uhr » = à huit heures ; « acht Stunden » = pendant huit heures."}}
+   ]
+  },
+  "voll": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Ich habe noch einen Tisch um halb sieben oder um halb neun. Was passt Ihnen besser?", "fr": "J'ai encore une table à six heures et demie ou à huit heures et demie. Qu'est-ce qui vous convient le mieux ?"}],
+   "choix": [
+    {"t": "Dann lieber um halb sieben.", "fr": "Alors plutôt à six heures et demie.", "pose": {"heure": "frueh"}, "va": "terrasse",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Halb sieben, sehr gut.", "fr": "Six heures et demie, très bien."}]},
+    {"t": "Halb neun passt gut.", "fr": "Huit heures et demie, ça va bien.", "pose": {"heure": "spaet"}, "va": "drinnen",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Halb neun, sehr gut.", "fr": "Huit heures et demie, très bien."}]},
+    {"faux": true, "t": "Halb neun ist gut. Also um neun Uhr dreißig.", "fr": "« Halb neun », c'est bien. Donc à neuf heures trente.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Nein, nein: Halb neun ist acht Uhr dreißig, nicht neun Uhr dreißig.", "fr": "Non, non : « halb neun », c'est huit heures trente, pas neuf heures trente."}],
+     "aide": {"fr": "<b>« halb neun », c'est huit heures et demie.</b> En allemand, « halb » annonce la moitié de l'heure qui VIENT : halb neun = 8 h 30, halb sieben = 6 h 30."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "voll",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Natürlich. Um acht Uhr geht es nicht. Aber es geht früher, um halb sieben, oder später, um halb neun.", "fr": "Bien sûr. À huit heures, ce n'est pas possible. Mais c'est possible plus tôt, à six heures et demie, ou plus tard, à huit heures et demie."}]}
+   ]
+  },
+  "terrasse": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Um halb sieben ist auch auf der Terrasse noch etwas frei. Möchten Sie draußen oder drinnen sitzen?", "fr": "À six heures et demie, il reste aussi de la place en terrasse. Vous préférez être dehors ou à l'intérieur ?"}],
+   "choix": [
+    {"t": "Draußen, bitte. Das ist schöner.", "fr": "Dehors, s'il vous plaît. C'est plus agréable.", "pose": {"wo": "draussen"}, "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern. Wir haben auch Decken, wenn es kühl wird.", "fr": "Volontiers. Nous avons aussi des couvertures, s'il fait frais."}]},
+    {"t": "Lieber drinnen. Abends ist es zu kalt.", "fr": "Plutôt à l'intérieur. Le soir, il fait trop froid.", "pose": {"wo": "drinnen"}, "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "In Ordnung, dann drinnen.", "fr": "D'accord, à l'intérieur alors."}]},
+    {"faux": true, "t": "Außen, bitte.", "fr": "À l'extérieur (de quelque chose), s'il vous plaît.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Außen? Ach so, Sie möchten draußen sitzen, auf der Terrasse!", "fr": "« Außen » ? Ah, vous voulez être dehors, en terrasse !"}],
+     "aide": {"fr": "<b>Dehors se dit « draußen ».</b> « Außen » désigne le côté extérieur d'un objet (l'extérieur d'une boîte). Pour s'asseoir dehors : « draußen » ; dedans : « drinnen »."}}
+   ]
+  },
+  "drinnen": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Um halb neun habe ich nur noch einen Tisch drinnen, am Fenster. Ist das in Ordnung?", "fr": "À huit heures et demie, il ne me reste qu'une table à l'intérieur, près de la fenêtre. Ça vous convient ?"}],
+   "choix": [
+    {"t": "Ja, das ist in Ordnung.", "fr": "Oui, ça me convient.", "pose": {"wo": "fenster"}, "va": "name"},
+    {"t": "Ja, am Fenster ist es schön.", "fr": "Oui, près de la fenêtre, c'est agréable.", "pose": {"wo": "fenster"}, "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Ja, das ist unser schönster Tisch.", "fr": "Oui, c'est notre plus belle table."}]},
+    {"faux": true, "t": "Ja, am Fenster das ist schön.", "fr": "Oui, près de la fenêtre, c'est agréable.",
+     "puis": [{"qui": "kellnerin", "air": "perplexe", "t": "Wie bitte? Ah, am Fenster ist es schön, meinen Sie. Gut!", "fr": "Pardon ? Ah, près de la fenêtre c'est agréable, vous voulez dire. Bien !"}],
+     "aide": {"fr": "<b>Le verbe est toujours en deuxième position.</b> Si la phrase commence par « am Fenster », le verbe suit tout de suite : « Am Fenster ist es schön ». En français on dit « près de la fenêtre, c'est… », pas en allemand."}}
+   ]
+  },
+  "name": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Und auf welchen Namen darf ich reservieren?", "fr": "Et à quel nom puis-je réserver ?"}],
+   "choix": [
+    {"t": "Auf den Namen Martin. M wie Martha, A, R, T, I, N.", "fr": "Au nom de Martin. M comme Martha, A, R, T, I, N.", "va": "telefon",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Martin, danke.", "fr": "Martin, merci."}]},
+    {"t": "Martin. Ich buchstabiere: M, A, R, T, I, N.", "fr": "Martin. J'épelle : M, A, R, T, I, N.", "va": "telefon",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Martin, danke.", "fr": "Martin, merci."}]},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "name",
+     "puis": [{"qui": "kellnerin", "air": "sourire", "t": "Gern: Wie ist Ihr Name, bitte?", "fr": "Volontiers : quel est votre nom, s'il vous plaît ?"}]}
+   ]
+  },
+  "telefon": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Geben Sie mir bitte noch Ihre Telefonnummer?", "fr": "Vous me donnez encore votre numéro de téléphone, s'il vous plaît ?"}],
+   "choix": [
+    {"t": "Ja: null eins sieben sechs, zwei drei vier, fünf sechs, sieben acht.", "fr": "Oui : zéro un sept six, deux trois quatre, cinq six, sept huit.", "va": "wunsch",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Danke, ich habe sie notiert.", "fr": "Merci, je l'ai noté."}]},
+    {"t": "Meine Nummer ist null eins sieben sechs, zwei drei vier, fünf sechs, sieben acht.", "fr": "Mon numéro est le zéro un sept six, deux trois quatre, cinq six, sept huit.", "va": "wunsch",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Danke, ich habe sie notiert.", "fr": "Merci, je l'ai noté."}]},
+    {"faux": true, "t": "Mein Nummer ist null eins sieben sechs, zwei drei vier, fünf sechs, sieben acht.", "fr": "Mon numéro est le zéro un sept six, deux trois quatre, cinq six, sept huit.",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Ihre Nummer ist also … Entschuldigung, noch einmal bitte, etwas langsamer.", "fr": "Votre numéro est donc… Excusez-moi, encore une fois s'il vous plaît, un peu plus lentement."}],
+     "aide": {"fr": "<b>« die Nummer » est féminin</b> (en français : le numéro). On dit donc « meine Nummer », « meine Telefonnummer »."}}
+   ]
+  },
+  "wunsch": {
+   "dit": [{"qui": "kellnerin", "air": "question", "t": "Haben Sie sonst noch einen Wunsch für den Abend?", "fr": "Avez-vous encore un souhait pour la soirée ?"}],
+   "choix": [
+    {"t": "Ja, eine Person isst kein Fleisch.", "fr": "Oui, une personne ne mange pas de viande.", "va": null,
+     "puis": [
+      {"qui": "kellnerin", "air": "sourire", "t": "Kein Problem, wir haben auch vegetarische Gerichte.", "fr": "Aucun problème, nous avons aussi des plats végétariens."},
+      {"qui": "kellnerin", "air": "sourire", "t": "Also: Samstag um {heure_de}, {p} Personen, {wo_de}, auf den Namen Martin. Bis Samstag!", "fr": "Donc : samedi à {heure_fr}, {p_fr} personnes, {wo_fr}, au nom de Martin. À samedi !"}
+     ]},
+    {"t": "Ja, wir feiern einen Geburtstag.", "fr": "Oui, nous fêtons un anniversaire.", "va": null,
+     "puis": [
+      {"qui": "kellnerin", "air": "surprise", "t": "Oh, wie schön! Dann stelle ich eine Kerze auf den Tisch.", "fr": "Oh, comme c'est bien ! Alors je mettrai une bougie sur la table."},
+      {"qui": "kellnerin", "air": "sourire", "t": "Also: Samstag um {heure_de}, {p} Personen, {wo_de}, auf den Namen Martin. Bis Samstag!", "fr": "Donc : samedi à {heure_fr}, {p_fr} personnes, {wo_fr}, au nom de Martin. À samedi !"}
+     ]},
+    {"t": "Ja, wir brauchen einen Kinderstuhl, bitte.", "fr": "Oui, il nous faut une chaise haute pour enfant, s'il vous plaît.", "va": null,
+     "puis": [
+      {"qui": "kellnerin", "air": "sourire", "t": "Natürlich, ich stelle einen Kinderstuhl an den Tisch.", "fr": "Bien sûr, je mettrai une chaise haute à la table."},
+      {"qui": "kellnerin", "air": "sourire", "t": "Also: Samstag um {heure_de}, {p} Personen, {wo_de}, auf den Namen Martin. Bis Samstag!", "fr": "Donc : samedi à {heure_fr}, {p_fr} personnes, {wo_fr}, au nom de Martin. À samedi !"}
+     ]},
+    {"faux": true, "t": "Ja, eine Person isst nicht Fleisch.", "fr": "Oui, une personne ne mange pas viande.",
+     "puis": [{"qui": "kellnerin", "air": "attentive", "t": "Sie isst … kein Fleisch, meinen Sie? Vegetarisch also?", "fr": "Elle ne mange… pas de viande, vous voulez dire ? Végétarien, donc ?"}],
+     "aide": {"fr": "<b>« kein » devant un nom, « nicht » pour le reste.</b> « Pas de viande » = « kein Fleisch » : « Sie isst kein Fleisch »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as réservé une table par téléphone : samedi à {heure_fr}, pour {p_fr} personnes, {wo_fr}, au nom de Martin."}
+}

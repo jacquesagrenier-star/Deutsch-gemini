@@ -21,15 +21,20 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "couverture",
-   "en": "blanket",
-   "tr": "battaniye",
-   "uk": "ковдра",
-   "fa": "پتو",
-   "pt": "cobertor",
-   "ar": "بطانية",
-   "pl": "koc",
-   "ru": "одеяло, плед"
+   "fr": "plafond",
+   "en": "ceiling",
+   "tr": "tavan",
+   "uk": "стеля",
+   "fa": "سقف",
+   "pt": "teto",
+   "ar": "سقف",
+   "pl": "sufit",
+   "ru": "потолок",
+   "es": "el techo",
+   "zone": {
+    "en_mot": "ceiling",
+    "pt_mot": "o teto"
+   }
   },
   {
    "id": "lampe",
@@ -64,7 +69,8 @@ window.SCENE = {
    "pt": "luminária",
    "ar": "مصباح",
    "pl": "lampa",
-   "ru": "лампа"
+   "ru": "лампа",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -93,7 +99,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "bildschirm",
@@ -122,7 +129,8 @@ window.SCENE = {
    "pt": "tela",
    "ar": "شاشة",
    "pl": "ekran",
-   "ru": "экран"
+   "ru": "экран",
+   "es": "la pantalla"
   },
   {
    "id": "wand",
@@ -157,7 +165,8 @@ window.SCENE = {
    "pt": "parede",
    "ar": "جدار",
    "pl": "ściana",
-   "ru": "стена"
+   "ru": "стена",
+   "es": "la pared"
   },
   {
    "id": "tuer-2",
@@ -186,7 +195,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "schild",
@@ -215,7 +225,8 @@ window.SCENE = {
    "pt": "placa",
    "ar": "لافتة",
    "pl": "tabliczka, szyld",
-   "ru": "табличка, вывеска"
+   "ru": "табличка, вывеска",
+   "es": "el letrero"
   },
   {
    "id": "treppe",
@@ -244,7 +255,8 @@ window.SCENE = {
    "pt": "escada",
    "ar": "درج، سلّم",
    "pl": "schody",
-   "ru": "лестница"
+   "ru": "лестница",
+   "es": "la escalera"
   },
   {
    "id": "kiosk",
@@ -273,7 +285,8 @@ window.SCENE = {
    "pt": "banca, quiosque",
    "ar": "كشك",
    "pl": "kiosk",
-   "ru": "киоск"
+   "ru": "киоск",
+   "es": "el quiosco"
   },
   {
    "id": "brezel",
@@ -302,7 +315,8 @@ window.SCENE = {
    "pt": "pretzel",
    "ar": "بريتزل (خبز معقود)",
    "pl": "precel",
-   "ru": "брецель (крендель)"
+   "ru": "брецель (крендель)",
+   "es": "el pretzel"
   },
   {
    "id": "zeitung",
@@ -331,7 +345,8 @@ window.SCENE = {
    "pt": "jornal",
    "ar": "جريدة",
    "pl": "gazeta",
-   "ru": "газета"
+   "ru": "газета",
+   "es": "el periódico"
   },
   {
    "id": "mann",
@@ -360,7 +375,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "gitarre",
@@ -389,7 +405,8 @@ window.SCENE = {
    "pt": "violão, guitarra",
    "ar": "غيتار",
    "pl": "gitara",
-   "ru": "гитара"
+   "ru": "гитара",
+   "es": "la guitarra"
   },
   {
    "id": "hocker",
@@ -418,7 +435,8 @@ window.SCENE = {
    "pt": "banquinho",
    "ar": "مقعد بلا ظهر",
    "pl": "taboret",
-   "ru": "табурет"
+   "ru": "табурет",
+   "es": "el taburete"
   },
   {
    "id": "koffer-2",
@@ -447,7 +465,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "muenze",
@@ -471,7 +490,8 @@ window.SCENE = {
      "pt": "dinheiro",
      "ar": "مال، نقود",
      "pl": "pieniądze",
-     "ru": "деньги"
+     "ru": "деньги",
+     "es": "el dinero"
     }
    ],
    "sur": "koffer-2",
@@ -492,7 +512,8 @@ window.SCENE = {
    "pt": "moeda",
    "ar": "قطعة نقدية",
    "pl": "moneta",
-   "ru": "монета"
+   "ru": "монета",
+   "es": "la moneda"
   },
   {
    "id": "frau",
@@ -521,7 +542,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "mantel",
@@ -550,7 +572,8 @@ window.SCENE = {
    "pt": "casaco (sobretudo)",
    "ar": "معطف",
    "pl": "płaszcz",
-   "ru": "пальто"
+   "ru": "пальто",
+   "es": "el abrigo"
   },
   {
    "id": "regenschirm",
@@ -579,7 +602,8 @@ window.SCENE = {
    "pt": "guarda-chuva",
    "ar": "مظلّة",
    "pl": "parasol",
-   "ru": "зонт"
+   "ru": "зонт",
+   "es": "el paraguas"
   },
   {
    "id": "koffer",
@@ -608,7 +632,8 @@ window.SCENE = {
    "pt": "mala",
    "ar": "حقيبة سفر",
    "pl": "walizka",
-   "ru": "чемодан"
+   "ru": "чемодан",
+   "es": "la maleta"
   },
   {
    "id": "bank",
@@ -629,15 +654,26 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "la banque",
-   "en": "bank",
-   "tr": "banka",
-   "uk": "банк",
-   "fa": "بانک",
-   "pt": "banco (dinheiro)",
-   "ar": "بنك، مصرف",
-   "pl": "bank",
-   "ru": "банк"
+   "fr": "le banc",
+   "en": "bench",
+   "tr": "bank",
+   "uk": "лавка",
+   "fa": "نیمکت",
+   "pt": "banco (assento)",
+   "ar": "مقعد",
+   "pl": "ławka",
+   "ru": "скамейка",
+   "es": "el banco",
+   "zone": {
+    "en_mot": "bench",
+    "es_sens": {
+     "fr": "le banc",
+     "en": "the bench",
+     "pt": "o banco (assento)",
+     "ar": "مقعد",
+     "de": "die Bank"
+    }
+   }
   },
   {
    "id": "hund",
@@ -666,7 +702,8 @@ window.SCENE = {
    "pt": "cachorro",
    "ar": "كلب",
    "pl": "pies",
-   "ru": "собака"
+   "ru": "собака",
+   "es": "el perro"
   },
   {
    "id": "muelleimer",
@@ -695,7 +732,8 @@ window.SCENE = {
    "pt": "lixeira",
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
-   "ru": "мусорное ведро"
+   "ru": "мусорное ведро",
+   "es": "el basurero"
   },
   {
    "id": "ubahn",
@@ -719,7 +757,8 @@ window.SCENE = {
      "pt": "trem",
      "ar": "قطار",
      "pl": "pociąg",
-     "ru": "поезд"
+     "ru": "поезд",
+     "es": "el tren"
     }
    ],
    "sur": null,
@@ -746,7 +785,8 @@ window.SCENE = {
    "pt": "metrô",
    "ar": "مترو الأنفاق",
    "pl": "metro",
-   "ru": "метро"
+   "ru": "метро",
+   "es": "el metro"
   },
   {
    "id": "tuer",
@@ -775,7 +815,8 @@ window.SCENE = {
    "pt": "porta",
    "ar": "باب",
    "pl": "drzwi",
-   "ru": "дверь"
+   "ru": "дверь",
+   "es": "la puerta"
   },
   {
    "id": "fahrgast",
@@ -804,7 +845,8 @@ window.SCENE = {
    "pt": "passageiro",
    "ar": "راكب",
    "pl": "pasażer",
-   "ru": "пассажир"
+   "ru": "пассажир",
+   "es": "el pasajero"
   },
   {
    "id": "mark",
@@ -833,7 +875,8 @@ window.SCENE = {
    "pt": "homem / marido",
    "ar": "رجل، زوج",
    "pl": "mężczyzna / mąż",
-   "ru": "мужчина, муж"
+   "ru": "мужчина, муж",
+   "es": "el hombre, el esposo"
   },
   {
    "id": "pullover",
@@ -862,7 +905,8 @@ window.SCENE = {
    "pt": "suéter",
    "ar": "كنزة صوف",
    "pl": "sweter",
-   "ru": "свитер"
+   "ru": "свитер",
+   "es": "el suéter"
   },
   {
    "id": "schal",
@@ -891,7 +935,8 @@ window.SCENE = {
    "pt": "cachecol",
    "ar": "وشاح، شال",
    "pl": "szalik",
-   "ru": "шарф"
+   "ru": "шарф",
+   "es": "la bufanda"
   },
   {
    "id": "jacke",
@@ -920,7 +965,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "rucksack",
@@ -949,7 +995,8 @@ window.SCENE = {
    "pt": "mochila",
    "ar": "حقيبة ظهر",
    "pl": "plecak",
-   "ru": "рюкзак"
+   "ru": "рюкзак",
+   "es": "la mochila"
   },
   {
    "id": "kaffee",
@@ -978,7 +1025,8 @@ window.SCENE = {
    "pt": "café",
    "ar": "قهوة",
    "pl": "kawa",
-   "ru": "кофе"
+   "ru": "кофе",
+   "es": "el café"
   },
   {
    "id": "fahrkarte",
@@ -1007,7 +1055,8 @@ window.SCENE = {
    "pt": "passagem, bilhete",
    "ar": "تذكرة السفر",
    "pl": "bilet",
-   "ru": "билет (на проезд)"
+   "ru": "билет (на проезд)",
+   "es": "el boleto (de tren o autobús)"
   },
   {
    "id": "hose",
@@ -1036,7 +1085,8 @@ window.SCENE = {
    "pt": "calça",
    "ar": "بنطال",
    "pl": "spodnie",
-   "ru": "брюки"
+   "ru": "брюки",
+   "es": "el pantalón"
   },
   {
    "id": "turnschuh",
@@ -1060,7 +1110,8 @@ window.SCENE = {
      "pt": "sapato",
      "ar": "حذاء",
      "pl": "but",
-     "ru": "ботинок, туфля"
+     "ru": "ботинок, туфля",
+     "es": "el zapato"
     }
    ],
    "sur": "mark",
@@ -1087,7 +1138,8 @@ window.SCENE = {
    "pt": "tênis (calçado)",
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
-   "ru": "кроссовки, кеды"
+   "ru": "кроссовки, кеды",
+   "es": "el tenis (zapato deportivo)"
   },
   {
    "id": "bahnsteig",
@@ -1122,7 +1174,8 @@ window.SCENE = {
    "pt": "plataforma (da estação)",
    "ar": "رصيف المحطة",
    "pl": "peron",
-   "ru": "перрон, платформа"
+   "ru": "перрон, платформа",
+   "es": "el andén"
   }
  ],
  "grosPlans": [],
@@ -2084,6 +2137,75 @@ window.SCENE = {
     "C1 | Die Frau könnte zum Flughafen fahren.": "Возможно, дама едет в аэропорт.",
     "C1 | Der Hund dürfte der Frau gehören.": "Пёс, наверное, принадлежит даме.",
     "C1 | Diese U-Bahn-Station soll über hundert Jahre alt sein.": "Говорят, этой станции метро больше ста лет."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Mark en una estación de metro de Berlín, una mañana entre semana: con un pie ya levantado hacia la puerta abierta del tren amarillo, un pequeño boleto blanco en una mano y un café para llevar en la otra, se da vuelta con una sonrisa; lleva una chaqueta acolchada azul marino sobre una sudadera gris con capucha, una bufanda verde, jeans, tenis blancos y una mochila negra; en el tren, pasajeros sentados; a lo largo de la pared de azulejos verdes, un basurero verde, un banco donde una señora mayor con impermeable beige espera con su maleta, un paraguas rojo y un perrito, el quiosco con sus pretzels y sus periódicos, un músico callejero que toca la guitarra delante de su estuche abierto donde brillan algunas monedas, y la escalera que sube a la calle; en el techo, un reloj, una pantalla apagada y lámparas largas.",
+    "consigne": "Mark toma el metro. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — las preposiciones",
+    "B1": "Las conjunciones: und, aber, oder, denn, sondern",
+    "B2": "La condición: wenn, falls",
+    "C1": "Suposiciones"
+   },
+   "questions": {
+    "A2 | Die Uhr hängt an der Decke.": "die Decke → an <b>der</b> Decke: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Die Frau sitzt auf der Bank.": "die Bank → auf <b>der</b> Bank: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "A2 | Der Koffer steht vor der Bank.": "<b>vor</b> + dativo (Wo?): die Bank → vor <b>der</b> Bank.",
+    "A2 | Die Brezeln liegen im Kiosk.": "<b>im</b> = in + <b>dem</b>: der Kiosk → im Kiosk.",
+    "A2 | Die Münzen liegen im Koffer.": "<b>im</b> = in + <b>dem</b>: der Koffer → im Koffer.",
+    "A2 | Der Hund sitzt neben der Bank.": "<b>neben</b> = al lado de. die Bank → neben <b>der</b> Bank.",
+    "A2 | Die U-Bahn steht am Bahnsteig.": "<b>am</b> = an + <b>dem</b>: der Bahnsteig → am Bahnsteig.",
+    "A2 | Die Fahrgäste sitzen in der U-Bahn.": "die U-Bahn → in <b>der</b> U-Bahn: en dativo, el femenino <b>die</b> se vuelve <b>der</b>.",
+    "B1 | Mark hat eine Fahrkarte und einen Kaffee.": "<b>und</b> = y: une dos elementos.",
+    "B1 | Mark beeilt sich, denn die U-Bahn fährt gleich ab.": "<b>denn</b> = pues, porque: da la razón; el verbo se queda en 2.ª posición (die U-Bahn <b>fährt</b>).",
+    "B1 | Der Mann singt nicht, sondern er spielt Gitarre.": "Después de una negación, para corregir: <b>sondern</b> = sino.",
+    "B1 | Möchtest du eine Brezel oder eine Zeitung?": "<b>oder</b> = o: una elección.",
+    "B1 | Der Kiosk ist klein, aber er hat viele Brezeln.": "<b>aber</b> = pero: una oposición.",
+    "B1 | Die Frau hat einen Regenschirm, denn draußen regnet es.": "<b>denn</b> + orden normal: draußen <b>regnet</b> es.",
+    "B1 | Der Hund bellt nicht, sondern er sitzt ruhig neben der Bank.": "nicht …, <b>sondern</b> … = no …, sino …: la segunda parte reemplaza a la primera.",
+    "B1 | Mark trinkt Kaffee und steigt in die U-Bahn.": "<b>und</b> puede unir dos verbos que tienen el mismo sujeto.",
+    "B2 | Falls die U-Bahn Verspätung hat, nimmt Mark den Bus.": "<b>falls</b> = en caso de que: una condición posible; el verbo va al final.",
+    "B2 | Wenn Mark nicht schnell einsteigt, verpasst er die U-Bahn.": "En la subordinada, el verbo separable se vuelve a unir al final: wenn er <b>einsteigt</b>.",
+    "B2 | Wenn es regnet, nimmt die Frau ihren Regenschirm.": "Después de la subordinada, la principal empieza por el <b>verbo</b>: …, <b>nimmt</b> die Frau.",
+    "B2 | Falls du Hunger hast, kauf dir eine Brezel!": "Una condición seguida de un consejo: imperativo <b>kauf</b> dir …",
+    "B2 | Wenn Mark einen Sitzplatz findet, trinkt er seinen Kaffee.": "<b>wenn</b> = si, cuando: una condición real.",
+    "B2 | Man darf nur einsteigen, wenn man eine Fahrkarte hat.": "Condición real → <b>indicativo</b>, como en español: wenn man eine Fahrkarte <b>hat</b>.",
+    "C1 | Er muss gute Laune haben.": "<b>müssen</b> = deducción casi segura, como «debe de estar».",
+    "C1 | Die Frau könnte zum Flughafen fahren.": "<b>könnte</b> = una posibilidad entre otras.",
+    "C1 | Der Hund dürfte der Frau gehören.": "<b>dürfte</b> = probable, sin estar seguro.",
+    "C1 | Diese U-Bahn-Station soll über hundert Jahre alt sein.": "<b>sollen</b> = según dicen: un rumor, no una deducción."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Decke.": "El reloj cuelga del techo.",
+    "A2 | Die Frau sitzt auf der Bank.": "La señora está sentada en el banco.",
+    "A2 | Der Koffer steht vor der Bank.": "La maleta está delante del banco.",
+    "A2 | Die Brezeln liegen im Kiosk.": "Los pretzels están en el quiosco.",
+    "A2 | Die Münzen liegen im Koffer.": "Las monedas están en el estuche.",
+    "A2 | Der Hund sitzt neben der Bank.": "El perro está sentado al lado del banco.",
+    "A2 | Die U-Bahn steht am Bahnsteig.": "El metro está en el andén.",
+    "A2 | Die Fahrgäste sitzen in der U-Bahn.": "Los pasajeros están sentados en el metro.",
+    "B1 | Mark hat eine Fahrkarte und einen Kaffee.": "Mark tiene un boleto y un café.",
+    "B1 | Mark beeilt sich, denn die U-Bahn fährt gleich ab.": "Mark se apura, porque el metro ya va a salir.",
+    "B1 | Der Mann singt nicht, sondern er spielt Gitarre.": "El hombre no canta, sino que toca la guitarra.",
+    "B1 | Möchtest du eine Brezel oder eine Zeitung?": "¿Quieres un pretzel o un periódico?",
+    "B1 | Der Kiosk ist klein, aber er hat viele Brezeln.": "El quiosco es pequeño, pero tiene muchos pretzels.",
+    "B1 | Die Frau hat einen Regenschirm, denn draußen regnet es.": "La señora tiene un paraguas, porque afuera está lloviendo.",
+    "B1 | Der Hund bellt nicht, sondern er sitzt ruhig neben der Bank.": "El perro no ladra, sino que está sentado tranquilo al lado del banco.",
+    "B1 | Mark trinkt Kaffee und steigt in die U-Bahn.": "Mark toma café y se sube al metro.",
+    "B2 | Falls die U-Bahn Verspätung hat, nimmt Mark den Bus.": "En caso de que el metro se retrase, Mark toma el autobús.",
+    "B2 | Wenn Mark nicht schnell einsteigt, verpasst er die U-Bahn.": "Si Mark no se sube rápido, pierde el metro.",
+    "B2 | Wenn es regnet, nimmt die Frau ihren Regenschirm.": "Cuando llueve, la señora toma su paraguas.",
+    "B2 | Falls du Hunger hast, kauf dir eine Brezel!": "Si tienes hambre, ¡cómprate un pretzel!",
+    "B2 | Wenn Mark einen Sitzplatz findet, trinkt er seinen Kaffee.": "Si Mark encuentra un asiento, se toma su café.",
+    "B2 | Man darf nur einsteigen, wenn man eine Fahrkarte hat.": "Solo se puede subir si se tiene boleto.",
+    "C1 | Er muss gute Laune haben.": "Debe de estar de buen humor.",
+    "C1 | Die Frau könnte zum Flughafen fahren.": "La señora podría ir al aeropuerto.",
+    "C1 | Der Hund dürfte der Frau gehören.": "El perro probablemente es de la señora.",
+    "C1 | Diese U-Bahn-Station soll über hundert Jahre alt sein.": "Dicen que esta estación de metro tiene más de cien años."
    }
   }
  }

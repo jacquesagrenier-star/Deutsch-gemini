@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "relógio",
    "ar": "ساعة حائط",
    "pl": "zegar",
-   "ru": "часы"
+   "ru": "часы",
+   "es": "el reloj"
   },
   {
    "id": "fenster",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "spender",
@@ -203,7 +205,8 @@ window.SCENE = {
    "pt": "cama",
    "ar": "سرير",
    "pl": "łóżko",
-   "ru": "кровать"
+   "ru": "кровать",
+   "es": "la cama"
   },
   {
    "id": "nachttisch",
@@ -232,7 +235,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "wasserglas",
@@ -319,7 +323,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "hoergeraet",
@@ -401,7 +406,8 @@ window.SCENE = {
      "pt": "cama",
      "ar": "سرير",
      "pl": "łóżko",
-     "ru": "кровать"
+     "ru": "кровать",
+     "es": "la cama"
     }
    ],
    "sur": null,
@@ -480,7 +486,8 @@ window.SCENE = {
    "pt": "controle remoto",
    "ar": "جهاز التحكّم عن بعد",
    "pl": "pilot (do telewizora)",
-   "ru": "пульт дистанционного управления"
+   "ru": "пульт дистанционного управления",
+   "es": "el control remoto"
   },
   {
    "id": "urinbeutel",
@@ -538,7 +545,8 @@ window.SCENE = {
    "pt": "cadeira de rodas",
    "ar": "كرسي متحرّك",
    "pl": "wózek inwalidzki",
-   "ru": "инвалидная коляска"
+   "ru": "инвалидная коляска",
+   "es": "la silla de ruedas"
   },
   {
    "id": "kissen",
@@ -567,7 +575,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "patient",
@@ -591,7 +600,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     }
    ],
    "sur": null,
@@ -612,7 +622,8 @@ window.SCENE = {
    "pt": "paciente",
    "ar": "مريض",
    "pl": "pacjent",
-   "ru": "пациент, больной"
+   "ru": "пациент, больной",
+   "es": "el paciente"
   },
   {
    "id": "schlafanzug",
@@ -641,7 +652,8 @@ window.SCENE = {
    "pt": "pijama",
    "ar": "بيجامة",
    "pl": "piżama",
-   "ru": "пижама"
+   "ru": "пижама",
+   "es": "la piyama"
   },
   {
    "id": "nasenbrille",
@@ -786,7 +798,8 @@ window.SCENE = {
    "pt": "campainha",
    "ar": "جرس",
    "pl": "dzwonek",
-   "ru": "звонок"
+   "ru": "звонок",
+   "es": "el timbre"
   },
   {
    "id": "rollator",
@@ -1767,6 +1780,75 @@ window.SCENE = {
     "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Мне очень жаль. Если боль усилится, сразу скажите мне, пожалуйста.",
     "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Мне очень жаль, господин Брандт. Где именно болит?",
     "SIT | Seit wann sind die Schmerzen so stark?": "С какого времени боль такая сильная?"
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación doble de hospital, en la mañana: Herr Brandt, de 82 años, está semisentado en su cama hospitalaria, con una cánula nasal de oxígeno bajo la nariz y un suero; al lado, la mesita de noche, el andador, la silla de ruedas; al fondo, la ventana, el biombo y la segunda cama, vacía.",
+    "consigne": "Toca un objeto de la habitación, o a Herr Brandt.",
+    "nom_vue": "La habitación"
+   },
+   "couches": {
+    "A1": "Los objetos de la habitación",
+    "A2": "Wo? — junto a la cama del paciente",
+    "B1": "El imperativo de cortesía — Sie",
+    "B2": "La pasiva en los cuidados",
+    "C1": "El estilo de los registros de enfermería",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Der Rollator steht neben dem Bett.": "<b>neben</b> + dativo: das Bett → neben <b>dem</b> Bett.",
+    "A2 | Die Infusion hängt am Infusionsständer.": "<b>am</b> = an + <b>dem</b>: der Infusionsständer → am Infusionsständer.",
+    "A2 | Die Klingel liegt auf der Bettdecke.": "Femenino en dativo: die Bettdecke → auf <b>der</b> Bettdecke.",
+    "A2 | Die Hausschuhe stehen auf dem Boden.": "Los zapatos <b>stehen</b> (de pie sobre su suela), un objeto acostado <b>liegt</b>. El español dice «están» para los dos.",
+    "A2 | Der Sichtschutz steht zwischen den Betten.": "<b>zwischen</b> + dativo plural: die Betten → zwischen <b>den</b> Betten (la -n del dativo plural).",
+    "A2 | Der Desinfektionsmittelspender hängt an der Wand.": "<b>an der Wand</b>: contra una superficie vertical se dice <b>an</b>, nunca auf, aunque el español diga «en» para las dos.",
+    "B1 | Setzen Sie sich bitte auf.": "Con un paciente: <b>Sie</b>. El verbo primero, luego Sie, luego el pronombre reflexivo; la partícula <b>auf</b> va al final.",
+    "B1 | Klingeln Sie bitte, wenn Sie Hilfe brauchen.": "Después de <b>wenn</b>, el verbo conjugado va al final: wenn Sie Hilfe <b>brauchen</b>.",
+    "B1 | Nehmen Sie bitte den Rollator.": "El imperativo de Sie conserva la forma del infinitivo (<b>nehmen</b> Sie, nunca nimm); nehmen + acusativo: <b>den</b> Rollator.",
+    "B1 | Trinken Sie bitte noch einen Schluck.": "<b>bitte</b> suaviza la orden; con un paciente se propone, no se amenaza.",
+    "B1 | Bleiben Sie bitte liegen, ich komme gleich wieder.": "Dos oraciones principales: el verbo conjugado se queda en 2.ª posición (ich <b>komme</b> gleich wieder).",
+    "B2 | Das Kopfteil ist schon hochgestellt: Herr Brandt sitzt halb aufrecht.": "<b>sein</b> + participio = la pasiva de ESTADO, el resultado (ya levantada), como «estar» + participio. <b>werden</b> + participio = la acción que se está haciendo.",
+    "B2 | Die Infusion muss um zehn Uhr gewechselt werden.": "Pasiva con verbo modal: modal conjugado + participio + <b>werden</b> al final.",
+    "B2 | Das Bettgitter wird nur mit Einwilligung des Patienten hochgezogen.": "Pasiva en presente: <b>werden</b> + participio, para una regla. ⚕️ La baranda de la cama priva de la libertad: hace falta el consentimiento del paciente o, si no puede darlo, la autorización del juzgado (salvo urgencia).",
+    "B2 | Die Hände werden vor und nach jedem Patientenkontakt desinfiziert.": "El sujeto está en plural (die Hände): <b>werden</b>, no wird.",
+    "B2 | Herr Brandt wurde vorgestern an der Hüfte operiert.": "Pasiva en pasado: <b>wurde</b> + participio (al hablar también: ist … operiert worden).",
+    "B2 | Herr Brandt möchte, dass das Fenster geöffnet wird.": "Después de <b>dass</b>, el verbo conjugado de la pasiva (<b>wird</b>) va al final de todo.",
+    "C1 | Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.": "Un registro es objetivo y nominal (<b>Mobilisation … abgelehnt</b>): la causa (<b>aufgrund von</b> + dativo) y la medida tomada, nunca un estado de ánimo.",
+    "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "<b>auf Wunsch</b> + genitivo: el motivo jurídico primero. ⚕️ Sin consentimiento ni autorización, la baranda es una medida privativa de la libertad.",
+    "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "El sustantivo compuesto (<b>Sauerstoffgabe</b>) reemplaza una oración; se escribe lo que se observa (atmet ruhig), no lo que se cree. ⚕️ El flujo se anota según la indicación médica.",
+    "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Estilo de los registros: el título (<b>Sturzprophylaxe</b>), luego las medidas sin verbo conjugado. <b>griffbereit</b> = al alcance de la mano.",
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "<b>Se dice «aus der Türkei».</b> Para el país de donde uno viene: «aus» + dativo. Algunos países llevan artículo: die Türkei → aus der Türkei, die Schweiz → aus der Schweiz.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "<b>Primero, muestra que escuchaste: «Das tut mir leid».</b> Decirle «no es para tanto» a alguien que tiene dolor lo ofende, aunque sea con buena intención.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "<b>«weh» no es un sustantivo: se dice «Wo tut es weh?» o «Wo haben Sie Schmerzen?».</b> «wehtun» es un verbo (es tut weh); «der Schmerz, die Schmerzen» es el sustantivo.",
+    "SIT | Seit wann sind die Schmerzen so stark?": "<b>Se dice «Seit wann …?» o «Wie lange schon …?».</b> «Seit wie lange» es una mezcla de las dos, que los alemanes notan enseguida."
+   },
+   "sens": {
+    "A2 | Der Rollator steht neben dem Bett.": "El andador está al lado de la cama.",
+    "A2 | Die Infusion hängt am Infusionsständer.": "El suero cuelga del portasueros.",
+    "A2 | Die Klingel liegt auf der Bettdecke.": "El timbre está sobre la cobija.",
+    "A2 | Die Hausschuhe stehen auf dem Boden.": "Las pantuflas están en el piso.",
+    "A2 | Der Sichtschutz steht zwischen den Betten.": "El biombo está entre las camas.",
+    "A2 | Der Desinfektionsmittelspender hängt an der Wand.": "El dispensador de desinfectante está colgado en la pared.",
+    "B1 | Setzen Sie sich bitte auf.": "Incorpórese, por favor.",
+    "B1 | Klingeln Sie bitte, wenn Sie Hilfe brauchen.": "Toque el timbre, por favor, si necesita ayuda.",
+    "B1 | Nehmen Sie bitte den Rollator.": "Tome el andador, por favor.",
+    "B1 | Trinken Sie bitte noch einen Schluck.": "Beba un trago más, por favor.",
+    "B1 | Bleiben Sie bitte liegen, ich komme gleich wieder.": "Quédese acostado, por favor, ya vuelvo.",
+    "B2 | Das Kopfteil ist schon hochgestellt: Herr Brandt sitzt halb aufrecht.": "La cabecera ya está levantada: el Sr. Brandt está semisentado.",
+    "B2 | Die Infusion muss um zehn Uhr gewechselt werden.": "El suero debe cambiarse a las diez.",
+    "B2 | Das Bettgitter wird nur mit Einwilligung des Patienten hochgezogen.": "La baranda de la cama solo se sube con el consentimiento del paciente.",
+    "B2 | Die Hände werden vor und nach jedem Patientenkontakt desinfiziert.": "Las manos se desinfectan antes y después de cada contacto con un paciente.",
+    "B2 | Herr Brandt wurde vorgestern an der Hüfte operiert.": "Al Sr. Brandt lo operaron de la cadera anteayer.",
+    "B2 | Herr Brandt möchte, dass das Fenster geöffnet wird.": "El Sr. Brandt quisiera que abrieran la ventana.",
+    "C1 | Mobilisation aufgrund von Schmerzen abgelehnt, Ärztin informiert.": "Movilización rechazada por dolor, doctora informada.",
+    "C1 | Bettgitter auf Wunsch des Pat. hochgezogen, Einwilligung dokumentiert.": "Baranda de la cama subida a petición del pac., consentimiento documentado.",
+    "C1 | Sauerstoffgabe über Nasenbrille, Pat. atmet ruhig, keine Atemnot.": "Oxígeno por cánula nasal, pac. respira tranquilo, sin disnea.",
+    "C1 | Sturzprophylaxe: Rollator in Reichweite, Klingel griffbereit.": "Prevención de caídas: andador al alcance, timbre a la mano.",
+    "SIT | Ja, ich arbeite seit vier Monaten hier. Ich komme aus der Türkei, aus Izmir.": "Sí, trabajo aquí desde hace cuatro meses. Vengo de Turquía, de Izmir.",
+    "SIT | Das tut mir leid. Wenn die Schmerzen stark werden, sagen Sie es mir bitte sofort.": "Lo siento. Si el dolor se vuelve fuerte, dígamelo enseguida, por favor.",
+    "SIT | Das tut mir leid, Herr Brandt. Wo genau tut es weh?": "Lo siento, señor Brandt. ¿Dónde le duele exactamente?",
+    "SIT | Seit wann sind die Schmerzen so stark?": "¿Desde cuándo es tan fuerte el dolor?"
    }
   }
  }

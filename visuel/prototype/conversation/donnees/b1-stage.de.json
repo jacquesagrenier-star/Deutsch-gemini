@@ -1,0 +1,158 @@
+{
+ "id": "b1-stage",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "L'entretien pour un stage"},
+ "intro": {"fr": "Tu passes un entretien pour un stage de trois mois à la réception d'un petit hôtel de Berlin. La réceptionniste, qui encadre les stagiaires, te reçoit."},
+ "personnes": ["rezeptionistin"],
+ "debut": "begruessung",
+ "noeuds": {
+  "begruessung": {
+   "dit": [
+    {"recit": {"fr": "Un petit hôtel, dans une rue calme de Berlin. La réceptionniste t'invite à t'asseoir dans le salon, à côté de l'accueil."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Guten Tag, ich bin Frau Seidel. Ich arbeite hier seit Jahren am Empfang und betreue unsere Praktikanten. Erzählen Sie mir bitte kurz etwas über sich.", "fr": "Bonjour, je suis Mme Seidel. Je travaille ici à la réception depuis des années et j'encadre nos stagiaires. Parlez-moi un peu de vous, s'il vous plaît."}
+   ],
+   "choix": [
+    {"t": "Gern. Ich studiere Tourismus und brauche für mein Studium ein Praktikum von drei Monaten.", "fr": "Volontiers. J'étudie le tourisme et j'ai besoin d'un stage de trois mois pour mes études.", "pose": {"profil": "studium"}, "va": "warum",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ein Pflichtpraktikum also. Das kennen wir gut.", "fr": "Un stage obligatoire, donc. Nous connaissons bien."}]},
+    {"t": "Gern. Ich habe zehn Jahre im Verkauf gearbeitet. Jetzt mache ich eine Umschulung und möchte im Hotel arbeiten.", "fr": "Volontiers. J'ai travaillé dix ans dans la vente. Maintenant, je fais une reconversion et j'aimerais travailler dans l'hôtellerie.", "pose": {"profil": "umschulung"}, "va": "warum",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ein neuer Beruf, das finde ich mutig.", "fr": "Un nouveau métier, je trouve ça courageux."}]},
+    {"faux": true, "t": "Gern. Ich suche einen Stage von drei Monaten.", "fr": "Volontiers. Je cherche un « stage » de trois mois.",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "Einen … Stage? Ach, Sie meinen ein Praktikum!", "fr": "Un… « Stage » ? Ah, vous voulez dire un stage !"}],
+     "aide": {"fr": "<b>Le stage se dit « das Praktikum »</b>, et le stagiaire « der Praktikant ». Le mot « Stage » n'existe pas dans ce sens en allemand. Dis : « Ich suche ein Praktikum von drei Monaten »."}}
+   ]
+  },
+  "warum": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Und warum möchten Sie Ihr Praktikum gerade bei uns machen?", "fr": "Et pourquoi souhaitez-vous faire votre stage chez nous, justement ?"}],
+   "choix": [
+    {"t": "Ich mag den Kontakt mit Gästen. In einem kleinen Hotel lernt man alle Aufgaben kennen.", "fr": "J'aime le contact avec les clients. Dans un petit hôtel, on découvre toutes les tâches.", "va": "erfahrung",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Das stimmt. Bei uns macht jeder ein bisschen alles.", "fr": "C'est vrai. Chez nous, chacun fait un peu de tout."}]},
+    {"t": "Ich möchte die Arbeit an der Rezeption richtig lernen. Außerdem spreche ich Französisch und Englisch.", "fr": "Je voudrais vraiment apprendre le travail de la réception. En plus, je parle français et anglais.", "va": "erfahrung",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Das ist ein Vorteil: Wir haben viele Gäste aus Frankreich und aus der Schweiz.", "fr": "C'est un atout : nous avons beaucoup de clients de France et de Suisse."}]},
+    {"faux": true, "t": "Weil ich liebe den Kontakt mit Gästen.", "fr": "Parce que j'aime le contact avec les clients (verbe mal placé).",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Den Kontakt mit Gästen, ich verstehe. Sagen Sie es ruhig noch einmal, wir haben Zeit.", "fr": "Le contact avec les clients, je comprends. Redites-le tranquillement, nous avons le temps."}],
+     "aide": {"fr": "<b>Après « weil », le verbe va à la fin</b> : « Weil ich den Kontakt mit Gästen liebe ». Plus simple, sans « weil » : « Ich mag den Kontakt mit Gästen »."}}
+   ]
+  },
+  "erfahrung": {
+   "dit": [
+    {"si": {"profil": "studium"}, "qui": "rezeptionistin", "air": "question", "t": "Viele Studenten haben einen Nebenjob. Haben Sie schon einmal mit Kunden gearbeitet?", "fr": "Beaucoup d'étudiants ont un petit boulot. Avez-vous déjà travaillé avec des clients ?"},
+    {"si": {"profil": "umschulung"}, "qui": "rezeptionistin", "air": "question", "t": "Im Verkauf hatten Sie sicher viel mit Kunden zu tun. Erzählen Sie mal.", "fr": "Dans la vente, vous avez sûrement eu beaucoup affaire aux clients. Racontez-moi."}
+   ],
+   "choix": [
+    {"si": {"profil": "studium"}, "t": "Ja, ich habe zwei Jahre neben dem Studium in einem Café gearbeitet.", "fr": "Oui, j'ai travaillé deux ans dans un café à côté de mes études.", "va": "staerken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Im Café lernt man viel: schnell sein und trotzdem freundlich bleiben.", "fr": "Dans un café, on apprend beaucoup : être rapide et rester aimable quand même."}]},
+    {"si": {"profil": "umschulung"}, "t": "Ja, im Geschäft habe ich jeden Tag Kunden beraten, auch schwierige.", "fr": "Oui, au magasin, je conseillais des clients tous les jours, même des difficiles.", "va": "staerken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Schwierige Kunden gibt es im Hotel auch, keine Sorge.", "fr": "Des clients difficiles, il y en a aussi à l'hôtel, ne vous inquiétez pas."}]},
+    {"t": "Ja. Ich habe gelernt, freundlich zu bleiben, auch wenn viel los ist.", "fr": "Oui. J'ai appris à rester aimable, même quand il y a beaucoup de monde.", "va": "staerken",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Genau das brauchen wir am Empfang.", "fr": "C'est exactement ce qu'il nous faut à la réception."}]},
+    {"faux": true, "t": "Ja, ich habe viel Erfahrung in Kunden.", "fr": "Oui, j'ai beaucoup d'expérience « dans les clients ».",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "In Kunden? Sie meinen: Erfahrung im Umgang mit Kunden?", "fr": "« Dans les clients » ? Vous voulez dire : de l'expérience avec les clients ?"}],
+     "aide": {"fr": "<b>« Erfahrung mit »</b> : on a de l'expérience « avec » quelqu'un ou quelque chose. Dis : « Ich habe viel Erfahrung mit Kunden »."}}
+   ]
+  },
+  "staerken": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Was ist Ihre größte Stärke? Und haben Sie auch eine Schwäche?", "fr": "Quel est votre plus grand point fort ? Et avez-vous aussi un point faible ?"}],
+   "choix": [
+    {"t": "Ich bin geduldig und bleibe ruhig. Meine Schwäche: Am Telefon bin ich auf Deutsch noch nicht ganz sicher.", "fr": "Je suis patient et je reste calme. Mon point faible : au téléphone, je ne suis pas encore tout à fait sûr de moi en allemand.", "va": "gast",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Das lernt man bei uns schnell. Das Telefon klingelt den ganzen Tag.", "fr": "Ça s'apprend vite chez nous. Le téléphone sonne toute la journée."}]},
+    {"t": "Ich kann gut organisieren. Aber manchmal will ich alles allein machen und frage zu spät.", "fr": "Je sais bien m'organiser. Mais parfois je veux tout faire sans aide et je demande trop tard.", "va": "gast",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Gut, dass Sie das wissen. Bei uns fragt man lieber einmal zu viel.", "fr": "C'est bien de le savoir. Chez nous, mieux vaut demander une fois de trop."}]},
+    {"faux": true, "t": "Ich bin sehr seriös und pünktlich.", "fr": "Je suis très « sérieux » et ponctuel.",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "Seriös? Das hoffe ich doch! Meinen Sie vielleicht zuverlässig?", "fr": "« Seriös » ? Je l'espère bien ! Vous voulez peut-être dire fiable ?"}],
+     "aide": {"fr": "<b>« seriös »</b> est un faux ami : il se dit d'une entreprise ou d'une offre honnête, digne de confiance. Pour une personne sérieuse dans son travail : « zuverlässig ». Dis : « Ich bin zuverlässig und pünktlich »."}}
+   ]
+  },
+  "gast": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "Stellen Sie sich vor: Ein Gast kommt an die Rezeption und ist sehr verärgert, weil sein Zimmer noch nicht fertig ist. Was machen Sie?", "fr": "Imaginez : un client arrive à la réception, très fâché parce que sa chambre n'est pas encore prête. Que faites-vous ?"}],
+   "choix": [
+    {"t": "Ich höre zuerst zu und entschuldige mich. Dann biete ich ihm einen Kaffee an, während er wartet.", "fr": "D'abord j'écoute et je m'excuse. Ensuite je lui propose un café pendant qu'il attend.", "va": "gast_gut",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sehr gut. Zuhören ist das Wichtigste.", "fr": "Très bien. Écouter, c'est le plus important."}]},
+    {"t": "Ich bleibe ruhig und hole sofort eine Kollegin oder Sie.", "fr": "Je reste calme et je vais tout de suite chercher une collègue ou vous.", "va": "gast_hilfe",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Hilfe holen ist richtig, vor allem am Anfang.", "fr": "Aller chercher de l'aide, c'est juste, surtout au début."}]},
+    {"faux": true, "t": "Ich erkläre dem Gast, dass er nicht recht hat.", "fr": "J'explique au client qu'il a tort.",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Oh. Auch wenn es stimmt: So sagen wir das einem Gast nie.", "fr": "Oh. Même si c'est vrai : on ne dit jamais cela ainsi à un client."}],
+     "aide": {"fr": "<b>À un client mécontent, on ne dit pas qu'il a tort</b> : on écoute, on s'excuse, on propose quelque chose. Par exemple : « Ich höre zuerst zu und entschuldige mich »."}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie die Situation bitte noch einmal erklären?", "fr": "Excusez-moi, pourriez-vous expliquer la situation encore une fois ?", "va": "gast",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Natürlich. Ein Gast ist da, aber sein Zimmer ist noch nicht sauber. Er ist böse.", "fr": "Bien sûr. Un client est là, mais sa chambre n'est pas encore propre. Il est en colère."}]}
+   ]
+  },
+  "gast_gut": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Und wenn der Gast trotzdem laut wird?", "fr": "Et si le client hausse le ton malgré tout ?"}],
+   "choix": [
+    {"t": "Dann bleibe ich höflich und rufe Sie oder eine Kollegin.", "fr": "Alors je reste poli et je vous appelle, vous ou une collègue.", "va": "zeiten",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Richtig. Niemand muss so eine Situation allein lösen.", "fr": "Exact. Personne n'a à régler seul une situation pareille."}]},
+    {"t": "Ich sage ruhig, dass ich ihn verstehe, und suche eine Lösung, zum Beispiel ein anderes Zimmer.", "fr": "Je dis calmement que je le comprends et je cherche une solution, par exemple une autre chambre.", "va": "zeiten",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ein anderes Zimmer: gute Idee. Daran denken nicht alle.", "fr": "Une autre chambre : bonne idée. Tout le monde n'y pense pas."}]}
+   ]
+  },
+  "gast_hilfe": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Aber was sagen Sie dem Gast, bevor Sie gehen?", "fr": "Mais que dites-vous au client avant de partir ?"}],
+   "choix": [
+    {"t": "Ich sage: Es tut mir sehr leid, ich kümmere mich sofort darum.", "fr": "Je dis : je suis vraiment désolé, je m'en occupe tout de suite.", "va": "zeiten",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Genau so. Dann fühlt sich der Gast ernst genommen.", "fr": "Exactement. Le client se sent alors pris au sérieux."}]},
+    {"t": "Ich entschuldige mich und bitte ihn um einen Moment Geduld.", "fr": "Je m'excuse et je lui demande un instant de patience.", "va": "zeiten",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sehr gut. Kurz, höflich, klar.", "fr": "Très bien. Court, poli, clair."}]},
+    {"faux": true, "t": "Ich sage: Warte bitte einen Moment.", "fr": "Je dis : attends un instant, s'il te plaît.",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "«Warte»? Einen Gast duzen wir nie.", "fr": "« Warte » ? On ne tutoie jamais un client."}],
+     "aide": {"fr": "<b>« Warte »</b> est un impératif au « du ». À un client, toujours le « Sie » : « Warten Sie bitte einen Moment » ou « Einen Moment, bitte »."}}
+   ]
+  },
+  "zeiten": {
+   "dit": [{"qui": "rezeptionistin", "air": "attentive", "t": "Wir arbeiten im Schichtdienst: Frühschicht von sechs bis zwei, Spätschicht von zwei bis zehn, auch am Wochenende. Wäre das für Sie möglich?", "fr": "Nous travaillons par roulement : équipe du matin de six heures à quatorze heures, équipe du soir de quatorze heures à vingt-deux heures, le week-end aussi. Ce serait possible pour vous ?"}],
+   "choix": [
+    {"t": "Ja, das ist kein Problem. Ich bin flexibel.", "fr": "Oui, ce n'est pas un problème. Je suis flexible.", "va": "fragen",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Schön, das macht die Planung leichter.", "fr": "Bien, cela facilite le planning."}]},
+    {"t": "Im Prinzip ja. Aber am Dienstagabend habe ich einen Deutschkurs.", "fr": "En principe oui. Mais le mardi soir, j'ai un cours d'allemand.", "pose": {"wunsch": "kurs"}, "va": "absprache",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Den Deutschkurs sollen Sie natürlich weitermachen.", "fr": "Votre cours d'allemand, il faut bien sûr le continuer."}]},
+    {"t": "Die Schichten sind in Ordnung. Aber jedes Wochenende wäre schwierig für mich.", "fr": "Les horaires me vont. Mais tous les week-ends, ce serait difficile pour moi.", "pose": {"wunsch": "wochenende"}, "va": "absprache",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Keine Sorge, jedes Wochenende arbeitet bei uns niemand.", "fr": "Ne vous inquiétez pas, personne ne travaille tous les week-ends chez nous."}]}
+   ]
+  },
+  "absprache": {
+   "dit": [
+    {"si": {"wunsch": "kurs"}, "qui": "rezeptionistin", "air": "question", "t": "Dienstags könnten Sie immer die Frühschicht machen. Passt das?", "fr": "Le mardi, vous pourriez toujours faire l'équipe du matin. Cela vous convient ?"},
+    {"si": {"wunsch": "wochenende"}, "qui": "rezeptionistin", "air": "question", "t": "Es wären zwei Wochenenden im Monat, und dafür haben Sie zwei freie Tage in der Woche. Passt das?", "fr": "Ce serait deux week-ends par mois, et en échange vous avez deux jours libres dans la semaine. Cela vous convient ?"}
+   ],
+   "choix": [
+    {"t": "Ja, das passt sehr gut. Vielen Dank!", "fr": "Oui, cela me convient très bien. Merci beaucoup !", "va": "fragen",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Gern. Dann schreibe ich mir das auf.", "fr": "Je vous en prie. Alors je le note."}]},
+    {"t": "Das wäre perfekt. Danke für Ihr Verständnis.", "fr": "Ce serait parfait. Merci de votre compréhension.", "va": "fragen",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Das ist doch selbstverständlich.", "fr": "C'est tout naturel."}]}
+   ]
+  },
+  "fragen": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Haben Sie noch Fragen an mich?", "fr": "Avez-vous encore des questions pour moi ?"}],
+   "choix": [
+    {"t": "Ja. Was werde ich in den drei Monaten lernen?", "fr": "Oui. Qu'est-ce que j'apprendrai pendant ces trois mois ?", "va": "beginn",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Check-in und Check-out, Reservierungen, das Telefon. Am Ende machen Sie eine Schicht fast allein.", "fr": "L'arrivée et le départ des clients, les réservations, le téléphone. À la fin, vous assurez un service presque seul."}]},
+    {"t": "Ja. Wer hilft mir, wenn ich Fragen habe?", "fr": "Oui. Qui m'aide quand j'ai des questions ?", "va": "beginn",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Ich selbst. Und in der Spätschicht mein Kollege, Herr Aydin.", "fr": "Moi-même. Et dans l'équipe du soir, mon collègue, M. Aydin."}]},
+    {"t": "Ja. Ist das Praktikum bezahlt?", "fr": "Oui. Le stage est-il rémunéré ?", "va": "beginn",
+     "puis": [
+      {"si": {"profil": "studium"}, "qui": "rezeptionistin", "air": "attentive", "t": "Ja, es gibt eine Praktikumsvergütung: fünfhundert Euro im Monat, und das Mittagessen ist frei.", "fr": "Oui, il y a une gratification de stage : cinq cents euros par mois, et le déjeuner est offert."},
+      {"si": {"profil": "umschulung"}, "qui": "rezeptionistin", "air": "attentive", "t": "Bei einer Umschulung zahlt meistens die Agentur für Arbeit weiter. Von uns bekommen Sie das Mittagessen und eine Monatskarte.", "fr": "Pendant une reconversion, c'est en général l'agence pour l'emploi qui continue de payer. De notre côté, vous recevez le déjeuner et un abonnement mensuel de transport."}
+     ]},
+    {"faux": true, "t": "Ja. Und du, wie lange arbeitest du schon hier?", "fr": "Oui. Et toi, tu travailles ici depuis combien de temps ?",
+     "puis": [{"qui": "rezeptionistin", "air": "surprise", "t": "Wir bleiben bitte beim Sie. Ich bin seit zwölf Jahren hier am Empfang.", "fr": "Restons au « Sie », s'il vous plaît. Je suis à la réception ici depuis douze ans."}],
+     "aide": {"fr": "<b>Dans un entretien, on reste au « Sie »</b> tant que l'autre ne propose pas le « du ». Dis : « Und Sie, wie lange arbeiten Sie schon hier? »."}}
+   ]
+  },
+  "beginn": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Eine letzte Frage: Ab wann könnten Sie anfangen?", "fr": "Une dernière question : à partir de quand pourriez-vous commencer ?"}],
+   "choix": [
+    {"si": {"profil": "studium"}, "t": "Ab Anfang März. Dann habe ich keine Kurse mehr an der Uni.", "fr": "À partir de début mars. Je n'aurai alors plus de cours à l'université.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Gut. Wir melden uns nächste Woche bei Ihnen. Vielen Dank für das Gespräch!", "fr": "Bien. Nous vous recontacterons la semaine prochaine. Merci beaucoup pour cet entretien !"}]},
+    {"si": {"profil": "umschulung"}, "t": "Ab dem ersten März. Die Agentur für Arbeit braucht nur noch den Vertrag.", "fr": "À partir du premier mars. L'agence pour l'emploi n'a plus besoin que du contrat.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Gut. Wir melden uns nächste Woche bei Ihnen. Vielen Dank für das Gespräch!", "fr": "Bien. Nous vous recontacterons la semaine prochaine. Merci beaucoup pour cet entretien !"}]},
+    {"t": "Ich könnte schon nächsten Monat anfangen.", "fr": "Je pourrais commencer dès le mois prochain.", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sehr schön. Wir melden uns nächste Woche bei Ihnen. Vielen Dank für das Gespräch!", "fr": "Très bien. Nous vous recontacterons la semaine prochaine. Merci beaucoup pour cet entretien !"}]},
+    {"faux": true, "t": "Ich kann in zwei Wochen anfangen, wenn Sie wollen mich.", "fr": "Je peux commencer dans deux semaines, si vous me voulez (verbe mal placé).",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "Wenn wir Sie nehmen, meinen Sie? Das sehen wir nächste Woche.", "fr": "Si nous vous prenons, vous voulez dire ? Nous verrons cela la semaine prochaine."}],
+     "aide": {"fr": "<b>Après « wenn », le verbe va à la fin</b>, et « vouloir de quelqu'un » pour un poste se dit « nehmen » : « …, wenn Sie mich nehmen ». Plus simple : « Ich könnte in zwei Wochen anfangen »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es présenté, tu as expliqué ta motivation, répondu à la question du client mécontent, réglé les horaires et posé ta question : l'hôtel te rappelle la semaine prochaine."}
+}

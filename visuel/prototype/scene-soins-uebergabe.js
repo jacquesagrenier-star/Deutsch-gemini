@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "janela",
    "ar": "نافذة",
    "pl": "okno",
-   "ru": "окно"
+   "ru": "окно",
+   "es": "la ventana"
   },
   {
    "id": "schrank",
@@ -58,7 +59,8 @@ window.SCENE = {
    "pt": "armário",
    "ar": "خزانة",
    "pl": "szafa",
-   "ru": "шкаф"
+   "ru": "шкаф",
+   "es": "el armario, el clóset"
   },
   {
    "id": "blume",
@@ -87,7 +89,8 @@ window.SCENE = {
    "pt": "flor",
    "ar": "زهرة",
    "pl": "kwiat",
-   "ru": "цветок"
+   "ru": "цветок",
+   "es": "la flor"
   },
   {
    "id": "vase",
@@ -116,7 +119,8 @@ window.SCENE = {
    "pt": "vaso (de flores)",
    "ar": "مزهرية",
    "pl": "wazon",
-   "ru": "ваза"
+   "ru": "ваза",
+   "es": "el florero"
   },
   {
    "id": "nachttisch",
@@ -145,7 +149,8 @@ window.SCENE = {
    "pt": "criado-mudo",
    "ar": "طاولة جانب السرير",
    "pl": "szafka nocna",
-   "ru": "прикроватная тумбочка"
+   "ru": "прикроватная тумбочка",
+   "es": "la mesa de noche"
   },
   {
    "id": "prothesendose",
@@ -290,7 +295,8 @@ window.SCENE = {
    "pt": "caneta esferográfica",
    "ar": "قلم حبر جاف",
    "pl": "długopis",
-   "ru": "шариковая ручка"
+   "ru": "шариковая ручка",
+   "es": "el bolígrafo (de tinta)"
   },
   {
    "id": "pulsoximeter",
@@ -348,7 +354,8 @@ window.SCENE = {
    "pt": "mesa",
    "ar": "طاولة",
    "pl": "stół",
-   "ru": "стол"
+   "ru": "стол",
+   "es": "la mesa"
   },
   {
    "id": "patientin",
@@ -377,7 +384,8 @@ window.SCENE = {
    "pt": "paciente (mulher)",
    "ar": "مريضة",
    "pl": "pacjentka",
-   "ru": "пациентка"
+   "ru": "пациентка",
+   "es": "la paciente"
   },
   {
    "id": "brille",
@@ -406,7 +414,8 @@ window.SCENE = {
    "pt": "óculos",
    "ar": "نظّارة",
    "pl": "okulary",
-   "ru": "очки"
+   "ru": "очки",
+   "es": "los lentes"
   },
   {
    "id": "patientenarmband",
@@ -485,15 +494,16 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "pansement ; fédération",
-   "en": "bandage; association",
+   "fr": "pansement",
+   "en": "bandage",
    "tr": "sargı",
-   "uk": "повʼязка; спілка",
-   "fa": "باند زخم؛ اتحادیه",
-   "pt": "curativo, atadura; associação",
-   "ar": "ضمادة؛ اتحاد، جمعية",
-   "pl": "opatrunek, bandaż; związek, stowarzyszenie",
-   "ru": "повязка; союз, объединение"
+   "uk": "повʼязка",
+   "fa": "باند زخم",
+   "pt": "curativo, atadura",
+   "ar": "ضمادة",
+   "pl": "opatrunek, bandaż",
+   "ru": "повязка",
+   "es": "el vendaje"
   },
   {
    "id": "kissen",
@@ -522,7 +532,8 @@ window.SCENE = {
    "pt": "almofada",
    "ar": "وسادة",
    "pl": "poduszka",
-   "ru": "подушка"
+   "ru": "подушка",
+   "es": "el cojín, la almohada"
   },
   {
    "id": "bettdecke",
@@ -667,7 +678,8 @@ window.SCENE = {
    "pt": "tablet",
    "ar": "جهاز لوحي",
    "pl": "tablet",
-   "ru": "планшет"
+   "ru": "планшет",
+   "es": "la tableta"
   },
   {
    "id": "pflegefachmann",
@@ -754,7 +766,8 @@ window.SCENE = {
    "pt": "filha",
    "ar": "ابنة",
    "pl": "córka",
-   "ru": "дочь"
+   "ru": "дочь",
+   "es": "la hija"
   },
   {
    "id": "regenjacke",
@@ -783,7 +796,8 @@ window.SCENE = {
    "pt": "capa de chuva",
    "ar": "سترة واقية من المطر",
    "pl": "kurtka przeciwdeszczowa",
-   "ru": "дождевик"
+   "ru": "дождевик",
+   "es": "el impermeable"
   }
  ],
  "grosPlans": [],
@@ -1727,6 +1741,78 @@ window.SCENE = {
     "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Начну с 14-й палаты. госпожа Леман, 74 года, поступила с раной на правой стопе на фоне диабета.",
     "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Сахар крови в 7:00 — 180. Она получила инсулин по схеме. В полдень было 140.",
     "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Мобилизация сегодня отклонена из-за страха повторного падения. Задокументировано, врач в курсе."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Una habitación de hospital, a primera hora de la tarde: la señora Lehmann está sentada en su cama, con el pie vendado apoyado en un cojín; Elif, la enfermera de la mañana, tiene la tableta y le entrega el turno a Jonas, que empieza el turno de la tarde con su tabla con clip; la hija de la señora Lehmann escucha, sentada cerca de la ventana; sobre la mesita de la cama, el vaso con boquilla, el vaso de agua, el registro de líquidos y el oxímetro; a los pies de la cama, la hoja de control.",
+    "consigne": "Toca un objeto de la habitación, a la señora Lehmann, a su hija, a Elif o a Jonas."
+   },
+   "couches": {
+    "A1": "Los objetos de la entrega de turno",
+    "A2": "El Perfekt",
+    "B1": "Perfekt y Präteritum de la entrega de turno",
+    "B2": "Las relativas de la entrega de turno",
+    "C1": "La entrega de turno en el orden SBAR",
+    "SIT": "¿Qué respondes?"
+   },
+   "questions": {
+    "A2 | Frau Lehmann hat gut geschlafen.": "<b>schlafen</b> forma su Perfekt con <b>haben</b>: sie <b>hat</b> geschlafen.",
+    "A2 | Sie ist heute Morgen zweimal aufgestanden.": "Un cambio de lugar o de posición: <b>sein</b> → sie <b>ist</b> aufgestanden.",
+    "A2 | Sie hat den ganzen Tee getrunken.": "<b>trinken</b> es un verbo fuerte: <b>getrunken</b>.",
+    "A2 | Elif hat den Verband um acht Uhr gewechselt.": "Un verbo débil: <b>ge</b>…<b>t</b> → <b>gewechselt</b>.",
+    "A2 | Die Tochter ist um elf Uhr gekommen.": "<b>kommen</b> → <b>sein</b>: sie <b>ist</b> gekommen.",
+    "A2 | Haben Sie heute Mittag schon etwas gegessen?": "<b>essen</b> → <b>gegessen</b>, con una g de más en medio.",
+    "B1 | Heute Nacht hatte sie keine Schmerzen.": "Con <b>haben</b> y <b>sein</b>, incluso al hablar, se prefiere el Präteritum: sie <b>hatte</b>, sie <b>war</b>.",
+    "B1 | Der Blutzucker war heute Morgen zu hoch.": "<b>war</b>: el Präteritum de sein, la forma normal de una entrega de turno. <b>wäre</b> querría decir «estaría».",
+    "B1 | Bis jetzt hat sie anderthalb Liter getrunken.": "Lo que ha tomado se anota en el <b>Trinkprotokoll</b>. <b>trinken</b> → haben.",
+    "B1 | Sie konnte allein zur Toilette gehen.": "Los modales también se dicen en Präteritum: sie <b>konnte</b>, sie <b>wollte</b>, sie <b>musste</b>.",
+    "B1 | Der Verband wurde heute um acht Uhr gewechselt.": "La pasiva en pasado: <b>wurde</b> + participio. La entrega de turno dice lo que se hizo, no necesariamente quién lo hizo.",
+    "B1 | Um zehn Uhr hat die Tochter angerufen.": "<b>anrufen</b> → <b>haben</b>: hat an<b>ge</b>rufen (el ge entre la partícula y el verbo).",
+    "B2 | Die Patientin, deren Wunde heute verbunden wurde, hat keine Schmerzen.": "<b>deren</b> = cuyo, cuya…, cuando quien posee es una mujer o un plural; <b>dessen</b>, cuando es un hombre o un neutro.",
+    "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: por un hombre (der Herr), aunque el sustantivo que sigue sea femenino (die Hüfte). Al revés que «cuyo», que concuerda con lo poseído.",
+    "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "El relativo toma el género del sustantivo (das Protokoll) y el caso de su función: <b>das</b>, complemento de weiterführen. Entre colegas: <b>du</b>.",
+    "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Preposición + relativo: <b>mit der</b> (mit + dativo; die Tochter → <b>der</b>).",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + dativo (¿dónde?, sin movimiento): auf <b>dem</b>. El pie en alto forma parte de la indicación ⚕️.",
+    "B2 | Alles, was du wissen musst, steht in der Akte.": "Después de <b>alles</b>, <b>etwas</b>, <b>nichts</b>, el relativo es <b>was</b>.",
+    "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: quién es la persona y por qué se habla de ella ahora.",
+    "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, en alemán <b>Hintergrund</b>.",
+    "C1 | Dann folgt die Einschätzung: Wie schätze ich die Lage ein?": "<b>A</b> = Assessment, en alemán <b>Einschätzung</b> (de <b>einschätzen</b>, evaluar).",
+    "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "<b>R</b> = Recommendation, en alemán <b>Empfehlung</b>: lo que la colega debe hacer.",
+    "C1 | Das gehört zur Einschätzung.": "Lo que se observó y lo que se piensa de ello: la <b>Einschätzung</b>. <b>reizlos</b> = sin signos de inflamación ⚕️.",
+    "C1 | Das gehört zur Empfehlung.": "Lo que queda por hacer: la <b>Empfehlung</b>, con una hora precisa ⚕️.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "<b>Una entrega de turno tiene un orden: quién, por qué, qué pasó, qué queda por hacer.</b> Empieza por la habitación, el nombre, la edad y el motivo de ingreso. Lo demás viene después, si importa para el cuidado.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "<b>Un valor se transmite con su cifra y su hora.</b> «Blutzucker um 7 Uhr: 180». Si no lo recuerdas, vuelve a leer el expediente antes de la entrega de turno. ⚕️",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "<b>Una entrega de turno es objetiva: hechos, no juicios.</b> Di lo que pasó y la razón que dio el paciente: «Mobilisation abgelehnt, wegen Angst vor einem Sturz»."
+   },
+   "sens": {
+    "A2 | Frau Lehmann hat gut geschlafen.": "La Sra. Lehmann durmió bien.",
+    "A2 | Sie ist heute Morgen zweimal aufgestanden.": "Se levantó dos veces esta mañana.",
+    "A2 | Sie hat den ganzen Tee getrunken.": "Se tomó todo el té.",
+    "A2 | Elif hat den Verband um acht Uhr gewechselt.": "Elif cambió el vendaje a las ocho.",
+    "A2 | Die Tochter ist um elf Uhr gekommen.": "La hija llegó a las once.",
+    "A2 | Haben Sie heute Mittag schon etwas gegessen?": "¿Ya comió algo hoy al mediodía?",
+    "B1 | Heute Nacht hatte sie keine Schmerzen.": "Anoche no tuvo dolor.",
+    "B1 | Der Blutzucker war heute Morgen zu hoch.": "La glucosa estaba demasiado alta esta mañana.",
+    "B1 | Bis jetzt hat sie anderthalb Liter getrunken.": "Hasta ahora ha tomado un litro y medio.",
+    "B1 | Sie konnte allein zur Toilette gehen.": "Pudo ir sola al baño.",
+    "B1 | Der Verband wurde heute um acht Uhr gewechselt.": "El vendaje se cambió hoy a las ocho.",
+    "B1 | Um zehn Uhr hat die Tochter angerufen.": "A las diez llamó la hija.",
+    "B2 | Die Patientin, deren Wunde heute verbunden wurde, hat keine Schmerzen.": "La paciente, cuya herida fue vendada hoy, no tiene dolor.",
+    "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "El señor, cuya cadera fue operada, está en la habitación doce.",
+    "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Este es el registro de líquidos, que por favor sigues llenando.",
+    "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "La hija, con la que hablé hace un rato, vuelve a las tres.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "La almohada sobre la que descansa el pie debe quedarse así.",
+    "B2 | Alles, was du wissen musst, steht in der Akte.": "Todo lo que tienes que saber está en el expediente.",
+    "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Primero viene la situación: quién, dónde, qué está pasando ahora.",
+    "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Después viene el contexto: diagnóstico, antecedentes, lo que ya se hizo.",
+    "C1 | Dann folgt die Einschätzung: Wie schätze ich die Lage ein?": "Luego sigue la evaluación: ¿cómo valoro la situación?",
+    "C1 | Zum Schluss die Empfehlung: Was soll als Nächstes passieren?": "Por último, la recomendación: ¿qué debe pasar a continuación?",
+    "C1 | Das gehört zur Einschätzung.": "Eso forma parte de la evaluación.",
+    "C1 | Das gehört zur Empfehlung.": "Eso forma parte de la recomendación.",
+    "SIT | Ich fange mit Zimmer vierzehn an. Frau Lehmann, vierundsiebzig Jahre, aufgenommen wegen einer Wunde am rechten Fuß bei Diabetes.": "Empiezo con la habitación 14. La Sra. Lehmann, 74 años, ingresada por una herida en el pie derecho, con diabetes.",
+    "SIT | Blutzucker um sieben Uhr: hundertachtzig. Sie hat nach Schema Insulin bekommen. Mittags lag er bei hundertvierzig.": "Glucosa a las 7:00: 180. Recibió insulina según el esquema. Al mediodía estaba en 140.",
+    "SIT | Mobilisation heute abgelehnt, wegen Angst vor einem erneuten Sturz. Es ist dokumentiert, und die Ärztin weiß Bescheid.": "Movilización rechazada hoy, por miedo a una nueva caída. Está documentado, y la doctora está enterada."
    }
   }
  }

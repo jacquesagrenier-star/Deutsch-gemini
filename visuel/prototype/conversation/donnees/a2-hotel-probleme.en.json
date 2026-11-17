@@ -1,0 +1,100 @@
+{
+ "id": "a2-hotel-probleme",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Un problème à l'hôtel"},
+ "intro": {"fr": "Le soir, dans ton hôtel de Boston. Quelque chose ne va pas dans ta chambre : tu redescends à la réception."},
+ "personnes": ["rezeptionistin"],
+ "debut": "desk",
+ "textes": {
+  "souci_fr": {"cle": "souci", "wifi": "le wifi qui ne marchait pas", "window": "la fenêtre qui ne fermait pas"}
+ },
+ "noeuds": {
+  "desk": {
+   "dit": [
+    {"recit": {"fr": "Tu redescends à la réception de l'hôtel."}},
+    {"qui": "rezeptionistin", "air": "sourire", "t": "Good evening! How can I help you?", "fr": "Bonsoir ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Good evening. I'm in room twelve, and I have a small problem.", "fr": "Bonsoir. Je suis dans la chambre douze, et j'ai un petit problème.", "va": "problem",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Oh, I'm sorry to hear that.", "fr": "Oh, j'en suis désolée."}]},
+    {"t": "Hi. There's a small problem in my room. It's room twelve.", "fr": "Bonsoir. Il y a un petit problème dans ma chambre. C'est la chambre douze.", "va": "problem",
+     "puis": [{"qui": "rezeptionistin", "air": "attentive", "t": "Oh, I'm sorry to hear that.", "fr": "Oh, j'en suis désolée."}]},
+    {"faux": true, "t": "Good evening. I have a small problem in my chamber.", "fr": "Bonsoir. J'ai un petit problème dans mes appartements.",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "Your chamber? Like in a castle? Oh, in your room!", "fr": "Vos appartements ? Comme dans un château ? Ah, dans votre chambre !"}],
+     "aide": {"fr": "<b>« a chamber » est un mot ancien, pour un château ou un tribunal.</b> Une chambre d'hôtel se dit « a room » : « I have a problem in my room »."}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "What's the problem?", "fr": "Quel est le problème ?"}],
+   "choix": [
+    {"t": "The Wi-Fi doesn't work in my room.", "fr": "Le wifi ne marche pas dans ma chambre.", "pose": {"souci": "wifi"}, "va": "fix"},
+    {"t": "The window doesn't close, and it's cold.", "fr": "La fenêtre ne ferme pas, et il fait froid.", "pose": {"souci": "window"}, "va": "fix"},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "problem",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Of course. What is wrong in your room?", "fr": "Bien sûr. Qu'est-ce qui ne va pas dans votre chambre ?"}]}
+   ]
+  },
+  "fix": {
+   "dit": [
+    {"si": {"souci": "wifi"}, "qui": "rezeptionistin", "air": "attentive", "t": "I'm sorry about that. There's a new password today. Would you like me to write it down?", "fr": "Je suis désolée. Il y a un nouveau mot de passe aujourd'hui. Voulez-vous que je vous l'écrive ?"},
+    {"si": {"souci": "window"}, "qui": "rezeptionistin", "air": "attentive", "t": "I'm so sorry. I'll send someone up to fix it. Will you be in your room in 10 minutes?", "fr": "Je suis vraiment désolée. J'envoie quelqu'un la réparer. Serez-vous dans votre chambre dans 10 minutes ?", "dit": "I'm so sorry. I'll send someone up to fix it. Will you be in your room in ten minutes?"}
+   ],
+   "choix": [
+    {"si": {"souci": "wifi"}, "t": "Yes, please. That's easier.", "fr": "Oui, s'il vous plaît. C'est plus facile.", "va": "towels",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Here you go. It should work now.", "fr": "Voilà. Ça devrait marcher maintenant."}]},
+    {"si": {"souci": "wifi"}, "t": "No, thanks. Could you spell it for me?", "fr": "Non, merci. Pourriez-vous me l'épeler ?", "va": "towels",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sure: B-O-S-T-O-N, all capital letters. It should work now.", "fr": "Bien sûr : B-O-S-T-O-N, tout en majuscules. Ça devrait marcher maintenant."}]},
+    {"si": {"souci": "window"}, "t": "Yes, I'll be there.", "fr": "Oui, j'y serai.", "va": "towels",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. He'll be right up.", "fr": "Très bien. Il monte tout de suite."}]},
+    {"si": {"souci": "window"}, "t": "Yes. I'm going back up now.", "fr": "Oui. Je remonte maintenant.", "va": "towels",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Great. He'll be right up.", "fr": "Très bien. Il monte tout de suite."}]}
+   ]
+  },
+  "towels": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Is everything else okay in the room?", "fr": "Tout le reste va bien dans la chambre ?"}],
+   "choix": [
+    {"t": "No. There are no towels in the bathroom.", "fr": "Non. Il n'y a pas de serviettes dans la salle de bains.", "va": "breakfast",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Oh! I'll send some up right away.", "fr": "Oh ! Je vous en fais monter tout de suite."}]},
+    {"t": "Almost. Could I have two more towels, please?", "fr": "Presque. Je pourrais avoir deux serviettes de plus, s'il vous plaît ?", "va": "breakfast",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Of course. I'll send some up right away.", "fr": "Bien sûr. Je vous en fais monter tout de suite."}]},
+    {"faux": true, "t": "Almost. Can I have more napkins, please?", "fr": "Presque. Je peux avoir d'autres serviettes de table, s'il vous plaît ?",
+     "puis": [{"qui": "rezeptionistin", "air": "perplexe", "t": "Napkins? Are you eating in your room? Oh, towels, for the bathroom!", "fr": "Des serviettes de table ? Vous mangez dans votre chambre ? Ah, des serviettes de bain !"}],
+     "aide": {"fr": "<b>« a napkin », c'est la serviette de table.</b> La serviette de bain se dit « a towel » : « Could I have two more towels, please? »."}}
+   ]
+  },
+  "breakfast": {
+   "dit": [{"qui": "rezeptionistin", "air": "question", "t": "Is there anything else I can help you with tonight?", "fr": "Puis-je vous aider pour autre chose ce soir ?"}],
+   "choix": [
+    {"t": "Yes. What time is breakfast?", "fr": "Oui. À quelle heure est le petit-déjeuner ?", "va": "checkout",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "From 6:30 to 10:00, right here on the first floor.", "t_gb": "From 6:30 to 10:00, right here on the ground floor.", "fr": "De 6 h 30 à 10 h, ici même, au rez-de-chaussée.", "dit": "From six thirty to ten, right here on the first floor.", "dit_gb": "From six thirty to ten, right here on the ground floor."}]},
+    {"t": "Yes. Where is breakfast tomorrow?", "fr": "Oui. Où est le petit-déjeuner demain ?", "va": "checkout",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Right here on the first floor, from 6:30 to 10:00.", "t_gb": "Right here on the ground floor, from 6:30 to 10:00.", "fr": "Ici même, au rez-de-chaussée, de 6 h 30 à 10 h.", "dit": "Right here on the first floor, from six thirty to ten.", "dit_gb": "Right here on the ground floor, from six thirty to ten."}]},
+    {"faux": true, "t": "Yes. What time is the little breakfast?", "fr": "Oui. À quelle heure est le petit petit-déjeuner ?",
+     "puis": [{"qui": "rezeptionistin", "air": "amuse", "t": "A little breakfast? You can have a big one, too! Oh, you just mean breakfast.", "fr": "Un petit petit-déjeuner ? Vous pouvez aussi en prendre un grand ! Ah, vous voulez dire le petit-déjeuner."}],
+     "aide": {"fr": "<b>Le petit-déjeuner se dit « breakfast », tout court.</b> « little » le rendrait vraiment petit. Dis : « What time is breakfast? »."}}
+   ]
+  },
+  "checkout": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "And checkout is at 11:00.", "fr": "Et il faut libérer la chambre à 11 h.", "dit": "And checkout is at eleven."}],
+   "choix": [
+    {"t": "Could I check out a little later? My train is in the afternoon.", "fr": "Je pourrais partir un peu plus tard ? Mon train est l'après-midi.", "va": "bye",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Let me check … yes, you can stay until noon. No extra charge.", "fr": "Je regarde… oui, vous pouvez rester jusqu'à midi. Sans supplément."}]},
+    {"t": "Is a later checkout possible? At noon, maybe?", "fr": "Un départ plus tard, c'est possible ? À midi, peut-être ?", "va": "bye",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Let me check … yes, noon is fine. No extra charge.", "fr": "Je regarde… oui, midi, c'est possible. Sans supplément."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "checkout",
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Sure. Tomorrow, you have to leave your room by 11:00.", "fr": "Bien sûr. Demain, vous devez quitter votre chambre avant 11 h.", "dit": "Sure. Tomorrow, you have to leave your room by eleven."}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "rezeptionistin", "air": "sourire", "t": "Your towels are on their way up. Is that everything?", "fr": "Vos serviettes arrivent. Ce sera tout ?"}],
+   "choix": [
+    {"t": "Yes, that's everything. Thank you. Good night!", "fr": "Oui, c'est tout. Merci. Bonne nuit !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "Good night! Sleep well.", "fr": "Bonne nuit ! Dormez bien."}]},
+    {"t": "Yes. Thanks for your help. Have a good night!", "fr": "Oui. Merci pour votre aide. Bonne nuit !", "va": null,
+     "puis": [{"qui": "rezeptionistin", "air": "sourire", "t": "You too! Sleep well.", "fr": "Vous aussi ! Dormez bien."}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as signalé {souci_fr}, demandé des serviettes, l'heure du petit-déjeuner et un départ plus tard : tu peux rester jusqu'à midi."}
+}

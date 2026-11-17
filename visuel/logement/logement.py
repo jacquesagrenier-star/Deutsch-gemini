@@ -121,8 +121,8 @@ ORTS = {
 # ---------------------------------------------------------------------------------------------------------------
 # LES LOGEMENTS : leur nom dans les phrases, et le PLAN (dessine par la page, en unites ; x, y, largeur, hauteur)
 LOGEMENTS = {
-    "mark": {"de": "in Marks WG", "es": "del piso de Mark", "fr": "de la colocation de Mark", "en": "in Mark's shared apartment", "pt": "do apartamento do Mark",
-             "titre": {"de": "Marks WG", "es": "El piso de Mark", "fr": "La colocation de Mark", "en": "Mark's shared apartment", "pt": "O apartamento do Mark"},
+    "mark": {"de": "in Marks WG", "es": "del piso de Mark", "fr": "de la colocation de Mark", "en": "in Mark's shared apartment", "pt": "do apartamento compartilhado do Mark",
+             "titre": {"de": "Marks WG", "es": "El piso de Mark", "fr": "La colocation de Mark", "en": "Mark's shared apartment", "pt": "O apartamento compartilhado do Mark"},
              "plan": [("zimmer-mark", "zimmer", 0, 0, 3.4, 3.2), ("bad", "bad", 3.4, 0, 2.4, 3.2), ("kueche", "kueche", 5.8, 0, 4.2, 3.2),
                       ("flur", "flur", 0, 3.2, 10, 1.4), ("wohnzimmer", "wohnzimmer", 0, 4.6, 6, 3.6), ("zimmer-2", "zimmer", 6, 4.6, 4, 3.6)]},
     "anna": {"de": "in Annas Wohnung", "es": "del piso de Anna", "fr": "de l'appartement d'Anna", "en": "in Anna's apartment", "pt": "do apartamento da Anna",

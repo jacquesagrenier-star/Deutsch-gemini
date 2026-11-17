@@ -40,7 +40,7 @@ import sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FICHIERS = {
-    "de": {"chemin": "a1-voyage.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]},
+    "de": {"chemin": "a1-voyage.json", "langues": ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "es"]},
     "es": {"chemin": os.path.join("espanol", "datos", "a1-voyage.json"), "langues": ["fr", "en", "pt", "ar", "de"]},
 }
 NB_ESCALES, NB_TOURISTIQUES, NB_INSTALLE, NB_SUITE = 12, 2, 2, 8

@@ -1,0 +1,67 @@
+{
+ "id": "a1-laverie",
+ "langue": "de",
+ "niveau": "A1",
+ "registre": "Sie",
+ "titre": {"fr": "À la laverie"},
+ "intro": {"fr": "Pas encore de machine à laver chez toi : tu vas au Waschsalon, la laverie du coin. Un habitué t'explique comment ça marche."},
+ "personnes": ["waschsalon_kunde"],
+ "debut": "hilfe",
+ "noeuds": {
+  "hilfe": {
+   "dit": [
+    {"recit": {"fr": "Au Waschsalon, avec ton grand sac de linge. Les machines ont l'air compliquées. Un homme attend sur un banc."}},
+    {"qui": "waschsalon_kunde", "air": "question", "t": "Brauchen Sie Hilfe?", "fr": "Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte. Wie funktioniert die Maschine?", "fr": "Oui, s'il vous plaît. Comment fonctionne la machine ?", "va": "waschmittel",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Ganz einfach. Ich zeige es Ihnen.", "fr": "C'est très simple. Je vais vous montrer."}]},
+    {"t": "Ja, gern. Ich bin zum ersten Mal hier.", "fr": "Oui, volontiers. C'est la première fois que je viens ici.", "va": "waschmittel",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Kein Problem. Ich zeige es Ihnen.", "fr": "Pas de problème. Je vais vous montrer."}]}
+   ]
+  },
+  "waschmittel": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "attentive", "t": "Zuerst: Haben Sie Waschmittel?", "fr": "D'abord : vous avez de la lessive ?"}],
+   "choix": [
+    {"t": "Nein. Wo kann ich Waschmittel kaufen?", "fr": "Non. Où est-ce que je peux acheter de la lessive ?", "va": "grad",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Da, am Automaten. Eine Packung kostet einen Euro.", "fr": "Là, au distributeur. Un paquet coûte un euro."}]},
+    {"t": "Ja, hier, in meiner Tasche.", "fr": "Oui, là, dans mon sac.", "va": "grad",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Sehr gut.", "fr": "Très bien."}]},
+    {"repete": true, "t": "Wie bitte? Was ist Waschmittel?", "fr": "Pardon ? C'est quoi, « Waschmittel » ?", "va": "waschmittel",
+     "puis": [{"qui": "waschsalon_kunde", "air": "amuse", "t": "Das hier: für die Wäsche. Haben Sie das?", "fr": "Ça, là : pour le linge. Vous en avez ?"}]}
+   ]
+  },
+  "grad": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "question", "t": "Was waschen Sie? Für Handtücher nimmt man sechzig Grad, für Pullover dreißig.", "fr": "Qu'est-ce que vous lavez ? Pour les serviettes, on prend soixante degrés ; pour les pulls, trente."}],
+   "choix": [
+    {"t": "Handtücher. Also sechzig Grad.", "fr": "Des serviettes. Donc soixante degrés.", "va": "start"},
+    {"t": "Pullover und T-Shirts. Also dreißig Grad.", "fr": "Des pulls et des t-shirts. Donc trente degrés.", "va": "start"}
+   ]
+  },
+  "start": {
+   "dit": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Jetzt bezahlen Sie hier: vier Euro. Und dann drücken Sie auf Start. Das dauert etwa eine Stunde.", "fr": "Maintenant, vous payez ici : quatre euros. Et puis vous appuyez sur Start. Ça dure environ une heure."}],
+   "choix": [
+    {"t": "Eine Stunde? Gibt es hier ein Café?", "fr": "Une heure ? Il y a un café, par ici ?", "va": "danke",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Ja, gleich nebenan. Der Kaffee ist gut!", "fr": "Oui, juste à côté. Le café est bon !"}]},
+    {"t": "Gut, dann warte ich hier.", "fr": "Bien, alors j'attends ici.", "va": "danke",
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Ich auch. Meine Wäsche ist bald fertig.", "fr": "Moi aussi. Mon linge est bientôt prêt."}]}
+   ]
+  },
+  "danke": {
+   "dit": [
+    {"recit": {"fr": "La machine tourne. Tu te tournes vers ton voisin de banc."}},
+    {"qui": "waschsalon_kunde", "air": "sourire", "t": "Sehen Sie? Kein Problem!", "fr": "Vous voyez ? Pas de problème !"}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für Ihre Hilfe! Sie sind sehr nett.", "fr": "Merci beaucoup pour votre aide ! Vous êtes très gentil.", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Gern geschehen! Bis zum nächsten Mal!", "fr": "De rien ! À la prochaine !"}]},
+    {"t": "Danke schön! Schönen Tag noch!", "fr": "Merci beaucoup ! Bonne journée !", "va": null,
+     "puis": [{"qui": "waschsalon_kunde", "air": "sourire", "t": "Danke, Ihnen auch!", "fr": "Merci, à vous aussi !"}]},
+    {"faux": true, "t": "Danke, du bist sehr nett!", "fr": "Merci, tu es très gentil !",
+     "puis": [{"qui": "waschsalon_kunde", "air": "amuse", "t": "Gern. Aber wir kennen uns noch nicht, oder?", "fr": "Avec plaisir. Mais on ne se connaît pas encore, si ?"}],
+     "aide": {"fr": "<b>Avec un inconnu, on dit « Sie »</b> : « <b>Sie sind</b> sehr nett ». Le « du », c'est pour les amis, la famille, les enfants."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as demandé comment marche la machine, trouvé la lessive, choisi la température et remercié ton voisin… en le vouvoyant."}
+}

@@ -1,0 +1,138 @@
+{
+ "id": "b1-aide-emploi",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Premier rendez-vous au Jobcenter"},
+ "intro": {"fr": "Tu es sans travail depuis l'été. Au Jobcenter, ta conseillère te reçoit pour la première fois : ta situation, tes candidatures, un cours ou une formation, et le plan pour la suite."},
+ "personnes": ["b11_conseillere"],
+ "debut": "empfang",
+ "noeuds": {
+  "empfang": {
+   "dit": [
+    {"recit": {"fr": "Deuxième étage du Jobcenter. Ta conseillère ouvre la porte de son bureau."}},
+    {"qui": "b11_conseillere", "air": "sourire", "t": "Guten Tag, kommen Sie herein. Heute lernen wir uns erst einmal kennen. Erzählen Sie mal: Was haben Sie zuletzt gearbeitet?", "fr": "Bonjour, entrez. Aujourd'hui, nous faisons d'abord connaissance. Racontez-moi : quel a été votre dernier travail ?"}
+   ],
+   "choix": [
+    {"t": "Ich habe in einem Restaurant gearbeitet, aber es hat im Sommer geschlossen.", "fr": "J'ai travaillé dans un restaurant, mais il a fermé cet été.", "va": "bewerbungen",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Das tut mir leid. In der Gastronomie werden aber immer Leute gesucht.", "fr": "Je suis désolée. Mais dans la restauration, on cherche toujours du monde."}]},
+    {"t": "Ich habe in einem Lager gearbeitet, aber mein Vertrag war nur für ein Jahr.", "fr": "J'ai travaillé dans un entrepôt, mais mon contrat n'était que d'un an.", "va": "bewerbungen",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Verstehe, ein befristeter Vertrag. Das kommt leider oft vor.", "fr": "Je comprends, un contrat à durée déterminée. C'est hélas fréquent."}]},
+    {"faux": true, "t": "Ich habe in ein Restaurant gearbeitet.", "fr": "J'ai travaillé dans un restaurant.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "In einem Restaurant, gut. Und warum arbeiten Sie dort nicht mehr?", "fr": "Dans un restaurant, bien. Et pourquoi n'y travaillez-vous plus ?"}],
+     "aide": {"fr": "Pour dire où l'on a travaillé (sans mouvement), <b>« in »</b> prend le datif : « in <b>einem</b> Restaurant ». Et dis ce qui s'est passé : « …, aber es hat im Sommer geschlossen. »"}}
+   ]
+  },
+  "bewerbungen": {
+   "dit": [{"qui": "b11_conseillere", "air": "question", "t": "Und haben Sie seitdem schon Bewerbungen geschrieben?", "fr": "Et depuis, avez-vous déjà envoyé des candidatures ?"}],
+   "choix": [
+    {"t": "Ja, ich habe schon fünf Bewerbungen geschickt, aber nur Absagen bekommen.", "fr": "Oui, j'ai déjà envoyé cinq candidatures, mais je n'ai reçu que des refus.", "va": "nachweise"},
+    {"t": "Nein, noch nicht. Ich weiß nicht genau, wie man das in Deutschland macht.", "fr": "Non, pas encore. Je ne sais pas exactement comment on fait ça en Allemagne.", "va": "angebote",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Das ist nicht schlimm, dafür sind wir ja da. Dabei helfen wir Ihnen.", "fr": "Ce n'est pas grave, nous sommes là pour ça. Nous allons vous aider."}]},
+    {"faux": true, "t": "Ja, ich habe fünf Kandidaturen geschickt.", "fr": "Oui, j'ai envoyé cinq candidatures.",
+     "puis": [{"qui": "b11_conseillere", "air": "amuse", "t": "Kandidaturen? Wollen Sie Bürgermeister werden? Ach, Sie meinen Bewerbungen!", "fr": "« Kandidaturen » ? Vous voulez devenir maire ? Ah, vous voulez dire des candidatures à un emploi !"}],
+     "aide": {"fr": "<b>« Kandidatur »</b> ne se dit que pour une élection. Pour un emploi : <b>« die Bewerbung »</b>. « Ich habe fünf Bewerbungen geschickt. »"}}
+   ]
+  },
+  "nachweise": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Fünf, das ist ein guter Anfang. Haben Sie Kopien davon? Die brauche ich als Nachweis.", "fr": "Cinq, c'est un bon début. En avez-vous des copies ? J'en ai besoin comme justificatif."}],
+   "choix": [
+    {"t": "Ja, ich habe alle E-Mails ausgedruckt. Hier, bitte.", "fr": "Oui, j'ai imprimé tous les courriels. Les voici.", "va": "angebote",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "Oh, sehr ordentlich! So macht mir die Arbeit Spaß.", "fr": "Oh, très ordonné ! Comme ça, mon travail est un plaisir."}]},
+    {"t": "Heute nicht, aber ich kann sie Ihnen morgen schicken.", "fr": "Pas aujourd'hui, mais je peux vous les envoyer demain.", "va": "angebote",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "In Ordnung, schicken Sie sie mir einfach per E-Mail.", "fr": "D'accord, envoyez-les-moi simplement par courriel."}]},
+    {"faux": true, "t": "Nein, ich habe sie zu Hause vergisst.", "fr": "Non, je les ai oubliées à la maison.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Vergessen? Kein Problem, das passiert.", "fr": "Oubliées ? Pas de problème, ça arrive."}],
+     "aide": {"fr": "Le participe de « vergessen » est <b>« vergessen »</b> : « Ich habe sie zu Hause vergessen. » Puis propose une solution : « Ich kann sie Ihnen morgen schicken. »"}}
+   ]
+  },
+  "angebote": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Ich sehe zwei Möglichkeiten für Sie: einen Berufssprachkurs, damit Ihr Deutsch für die Arbeit sicherer wird, oder ein Bewerbungstraining, in dem wir Ihren Lebenslauf verbessern. Was wäre Ihnen wichtiger?", "fr": "Je vois deux possibilités pour vous : un cours d'allemand professionnel, pour que votre allemand soit plus sûr au travail, ou un atelier de candidature, où nous améliorons votre CV. Qu'est-ce qui compterait le plus pour vous ?"}],
+   "choix": [
+    {"t": "Der Sprachkurs. Ich möchte bei der Arbeit besser Deutsch sprechen.", "fr": "Le cours de langue. J'aimerais mieux parler allemand au travail.", "pose": {"kurs": "sprache"}, "va": "problem",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Gute Wahl. Der Kurs dauert ungefähr vier Monate, und am Ende machen Sie eine Prüfung.", "fr": "Bon choix. Le cours dure environ quatre mois, et vous passez un examen à la fin."}]},
+    {"t": "Lieber das Bewerbungstraining. Mein Lebenslauf ist noch nicht gut genug.", "fr": "Plutôt l'atelier de candidature. Mon CV n'est pas encore assez bon.", "pose": {"kurs": "training"}, "va": "problem",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Einverstanden. Das Training dauert zwei Wochen, und danach haben Sie eine fertige Bewerbung.", "fr": "D'accord. L'atelier dure deux semaines, et vous en sortez avec une candidature prête."}]},
+    {"faux": true, "t": "Ich möchte eine Formation machen.", "fr": "J'aimerais faire une formation.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Eine Formation? … Sie meinen einen Kurs oder eine Ausbildung? Welchen von beiden möchten Sie?", "fr": "« Eine Formation » ?… Vous voulez dire un cours ou une formation professionnelle ? Lequel des deux souhaitez-vous ?"}],
+     "aide": {"fr": "<b>« Formation »</b> est un faux ami (une formation de musiciens, de soldats). Une formation se dit <b>« Kurs »</b>, « Weiterbildung » ou « Ausbildung ». Ici : « Ich möchte den Sprachkurs machen. »"}}
+   ]
+  },
+  "problem": {
+   "dit": [{"qui": "b11_conseillere", "air": "question", "t": "Gibt es etwas, das die Arbeitssuche für Sie schwierig macht?", "fr": "Y a-t-il quelque chose qui rend la recherche d'emploi difficile pour vous ?"}],
+   "choix": [
+    {"t": "Ja. Mein Kind ist erst vier, deshalb kann ich nur vormittags arbeiten.", "fr": "Oui. Mon enfant n'a que quatre ans, c'est pourquoi je ne peux travailler que le matin.", "va": "kinder"},
+    {"t": "Ja. Ich habe in meiner Heimat studiert, aber mein Abschluss wird hier nicht anerkannt.", "fr": "Oui. J'ai fait des études dans mon pays, mais mon diplôme n'est pas reconnu ici.", "va": "anerkennung"},
+    {"faux": true, "t": "Ja. Nachmittags muss ich mein Kind suchen.", "fr": "Oui. L'après-midi, je dois aller chercher mon enfant.",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "Suchen? Ist Ihr Kind denn verschwunden? Ach so, Sie müssen es abholen!", "fr": "Le chercher ? Votre enfant a disparu ? Ah, vous devez aller le chercher !"}],
+     "aide": {"fr": "<b>« suchen »</b>, c'est chercher ce qu'on a perdu. Aller chercher quelqu'un se dit <b>« abholen »</b> : « Nachmittags muss ich mein Kind abholen. »"}}
+   ]
+  },
+  "kinder": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Gut, dass Sie das sagen. Dann suchen wir Teilzeitstellen am Vormittag. Hat Ihr Kind schon einen Kitaplatz?", "fr": "Vous faites bien de le dire. Nous chercherons donc des postes à temps partiel le matin. Votre enfant a-t-il déjà une place en garderie ?"}],
+   "choix": [
+    {"t": "Ja, aber die Kita ist nur bis zum frühen Nachmittag geöffnet.", "fr": "Oui, mais la garderie n'est ouverte que jusqu'au début de l'après-midi.", "va": "plan",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Das reicht für eine Stelle am Vormittag. Ich notiere: Teilzeit, bis dreizehn Uhr.", "fr": "C'est suffisant pour un poste le matin. Je note : temps partiel, jusqu'à treize heures."}]},
+    {"t": "Nein, wir stehen leider noch auf der Warteliste.", "fr": "Non, nous sommes malheureusement encore sur la liste d'attente.", "va": "plan",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Dann fragen Sie bitte beim Jugendamt nach, das kann bei der Suche helfen. Ich notiere erst einmal: Teilzeit, vormittags.", "fr": "Alors renseignez-vous auprès du service de la jeunesse, il peut aider à trouver une place. Je note pour l'instant : temps partiel, le matin."}]},
+    {"faux": true, "t": "Nein, wir warten für einen Platz.", "fr": "Non, nous attendons une place.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Sie warten noch auf einen Platz, verstehe.", "fr": "Vous attendez encore une place, je comprends."}],
+     "aide": {"fr": "« Attendre quelque chose » se dit <b>« warten auf »</b> + accusatif : « Wir warten <b>auf</b> einen Platz. »"}}
+   ]
+  },
+  "anerkennung": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Das lässt sich oft ändern. In Berlin gibt es eine Beratung für die Anerkennung von ausländischen Abschlüssen. Was haben Sie denn gelernt?", "fr": "Ça peut souvent s'arranger. À Berlin, il existe un service de conseil pour la reconnaissance des diplômes étrangers. Quelle est votre formation ?"}],
+   "choix": [
+    {"t": "Ich habe Buchhaltung studiert und vier Jahre in diesem Beruf gearbeitet.", "fr": "J'ai étudié la comptabilité et j'ai travaillé quatre ans dans ce métier.", "va": "plan",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "Buchhaltung? Das wird überall gesucht! Ich gebe Ihnen die Adresse der Beratungsstelle, dort prüft man Ihre Zeugnisse.", "fr": "La comptabilité ? On en cherche partout ! Je vous donne l'adresse du service de conseil ; on y examinera vos diplômes."}]},
+    {"t": "Ich habe eine Ausbildung in der Pflege gemacht und im Krankenhaus gearbeitet.", "fr": "J'ai fait une formation en soins infirmiers et j'ai travaillé à l'hôpital.", "va": "plan",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "In der Pflege? Das wird überall gesucht! Ich gebe Ihnen die Adresse der Beratungsstelle, dort prüft man Ihre Zeugnisse.", "fr": "Dans les soins ? On en cherche partout ! Je vous donne l'adresse du service de conseil ; on y examinera vos diplômes."}]},
+    {"faux": true, "t": "Ich habe Buchhaltung gestudiert.", "fr": "J'ai étudié la comptabilité.",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Studiert, ja. Buchhaltung also – und haben Sie auch in dem Beruf gearbeitet?", "fr": "Étudié, oui. La comptabilité, donc : et avez-vous aussi exercé ce métier ?"}],
+     "aide": {"fr": "Les verbes en <b>-ieren</b> forment leur participe sans « ge- » : studiert, telefoniert, repariert. « Ich habe Buchhaltung <b>studiert</b>. »"}}
+   ]
+  },
+  "plan": {
+   "dit": [
+    {"qui": "b11_conseillere", "air": "sourire", "si": {"kurs": "sprache"}, "t": "Gut. Das alles schreiben wir jetzt gemeinsam in Ihren Kooperationsplan: den Berufssprachkurs und Ihre nächsten Schritte.", "fr": "Bien. Nous inscrivons maintenant tout cela ensemble dans votre plan de coopération : le cours d'allemand professionnel et vos prochaines étapes."},
+    {"qui": "b11_conseillere", "air": "sourire", "si": {"kurs": "training"}, "t": "Gut. Das alles schreiben wir jetzt gemeinsam in Ihren Kooperationsplan: das Bewerbungstraining und Ihre nächsten Schritte.", "fr": "Bien. Nous inscrivons maintenant tout cela ensemble dans votre plan de coopération : l'atelier de candidature et vos prochaines étapes."}
+   ],
+   "choix": [
+    {"t": "Was muss ich zum nächsten Termin mitbringen?", "fr": "Que dois-je apporter au prochain rendez-vous ?", "va": "termin",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Bringen Sie bitte Ihre Zeugnisse und Ihren Lebenslauf mit. Und schreiben Sie bis dahin drei Bewerbungen.", "fr": "Apportez vos diplômes et votre CV, s'il vous plaît. Et d'ici là, écrivez trois candidatures."}]},
+    {"t": "Und was soll ich bis zum nächsten Mal machen?", "fr": "Et que dois-je faire d'ici la prochaine fois ?", "va": "termin",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Schreiben Sie bitte drei Bewerbungen. Und bringen Sie Ihre Zeugnisse und Ihren Lebenslauf mit.", "fr": "Écrivez trois candidatures, s'il vous plaît. Et apportez vos diplômes et votre CV."}]},
+    {"faux": true, "t": "Was muss ich nächstes Mal nehmen?", "fr": "Qu'est-ce que je dois prendre la prochaine fois ?",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Nehmen? … Ach, was Sie mitbringen sollen!", "fr": "Prendre ?… Ah, ce que vous devez apporter !"}],
+     "aide": {"fr": "« Apporter » se dit <b>« mitbringen »</b>, pas « nehmen » : « Was muss ich zum nächsten Termin mitbringen? »"}}
+   ]
+  },
+  "termin": {
+   "dit": [{"qui": "b11_conseillere", "air": "attentive", "t": "Unser nächster Termin ist am 14. um 9:30 Uhr, wieder hier in Zimmer 212.", "dit": "Unser nächster Termin ist am Vierzehnten um neun Uhr dreißig, wieder hier in Zimmer zweihundertzwölf.", "fr": "Notre prochain rendez-vous est le 14 à 9 h 30, de nouveau ici, bureau 212."}],
+   "choix": [
+    {"t": "Am Vierzehnten um halb zehn, das passt. Ich schreibe es mir auf.", "fr": "Le 14 à neuf heures et demie, ça me convient. Je le note.", "va": "ende",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Sehr gut. Sie bekommen die Einladung auch noch mit der Post.", "fr": "Très bien. Vous recevrez aussi la convocation par la poste."}]},
+    {"t": "Gut, das habe ich notiert. Was mache ich, wenn ich krank bin?", "fr": "Bien, c'est noté. Que dois-je faire si je suis malade ?", "va": "ende",
+     "puis": [{"qui": "b11_conseillere", "air": "attentive", "t": "Dann rufen Sie bitte vorher an und schicken mir die Krankschreibung. Einfach nicht kommen, das geht nicht.", "fr": "Dans ce cas, appelez avant, s'il vous plaît, et envoyez-moi l'arrêt de travail. Ne pas venir sans prévenir, ça ne va pas."}]},
+    {"faux": true, "t": "Um halb zehn, also zehn Uhr dreißig. Das passt.", "fr": "À « halb zehn », donc dix heures trente. Ça me convient.",
+     "puis": [{"qui": "b11_conseillere", "air": "perplexe", "t": "Vorsicht: Halb zehn ist neun Uhr dreißig, nicht zehn Uhr dreißig!", "fr": "Attention : « halb zehn », c'est neuf heures trente, pas dix heures trente !"}],
+     "aide": {"fr": "<b>« halb zehn »</b> veut dire neuf heures et demie : la moitié du chemin vers dix heures. « Am Vierzehnten um halb zehn. »"}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie den Termin bitte wiederholen?", "fr": "Pardon, pourriez-vous répéter la date, s'il vous plaît ?", "va": "termin",
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Gern: am Vierzehnten, um halb zehn am Vormittag, in meinem Zimmer.", "fr": "Volontiers : le 14, à neuf heures et demie du matin, dans mon bureau."}]}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "b11_conseillere", "air": "sourire", "t": "Dann wünsche ich Ihnen viel Erfolg. Sie schaffen das!", "fr": "Alors je vous souhaite bonne chance. Vous allez y arriver !"}],
+   "choix": [
+    {"t": "Vielen Dank für Ihre Hilfe. Bis zum nächsten Termin!", "fr": "Merci beaucoup pour votre aide. Au prochain rendez-vous !", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "Gern. Auf Wiedersehen!", "fr": "Avec plaisir. Au revoir !"}]},
+    {"t": "Danke, jetzt habe ich einen klaren Plan. Auf Wiedersehen!", "fr": "Merci, maintenant j'ai un plan clair. Au revoir !", "va": null,
+     "puis": [{"qui": "b11_conseillere", "air": "sourire", "t": "So soll es sein. Auf Wiedersehen!", "fr": "C'est le but. Au revoir !"}]},
+    {"faux": true, "t": "Danke, du bist sehr nett.", "fr": "Merci, tu es très gentille.",
+     "puis": [{"qui": "b11_conseillere", "air": "surprise", "t": "Oh, danke! Aber im Amt bleiben wir beim Sie.", "fr": "Oh, merci ! Mais dans une administration, on en reste au « Sie »."}],
+     "aide": {"fr": "<b>« du »</b>, c'est le tutoiement. Dans une administration, on vouvoie toujours : « Sie sind sehr nett » ou, mieux, « Vielen Dank für Ihre Hilfe. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as eu ton premier rendez-vous au Jobcenter : tu as expliqué ta situation, choisi entre le cours de langue et l'atelier de candidature, parlé de ce qui te freine et noté ce que tu dois apporter la prochaine fois."}
+}

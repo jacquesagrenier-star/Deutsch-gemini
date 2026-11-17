@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Les démarches</title>
 <!--
@@ -135,11 +136,12 @@ html.nuit .papier .case .val{color:#9CC3FF}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/tirage.js?v=3"></script>
+<script src="themes/tirage.js?v=4"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
 <script src="themes/voix.js?v=7"></script>
 <script src="themes/fin.js?v=2"></script>
+<script src="demarches/langues.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (4 nov. 2026, « il manque beaucoup de themes en anglais ») : Mark a Boston, sans le Buergeramt ; variante=gb
@@ -201,7 +203,12 @@ function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).f
 
 // ---------- la donnee (demarches.json) ----------
 let D = null, LX, HO, DOC, DEM, CH, FO, AV, TE, CJ;
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe aussi pour qui apprend l'allemand, et l'arabe pour
+// qui apprend l'espagnol (demarches/langues.js, lot 4 de l'alignement des themes, 16 nov. 2026) : leurs morceaux sont
+// poses dans la donnee au chargement, et LDM[langue] assemble les phrases que la grammaire de la langue demande
+let LDM = {};
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const TL = PHRASE_TRADUITE ? LANGUE : null;                  // la langue des phrases traduites, sinon rien
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 
@@ -612,6 +619,7 @@ function docTrad(k){
   if (!TL) return null;
   const t = DOC[k].trad[TL]; if (!t) return null;
   if (EN_) return TL === "fr" ? (DOC[k].pl ? "Ce sont " : "C'est ") + t + "." : null;
+  if (LDM[TL]) return LDM[TL].doc(k, t, (DOC[k].genreTrad || {})[TL]);
   return {fr: "C'est " + t + ".", en: "This is " + t + ".", pt: "É " + t + ".", de: "Das ist " + t + "."}[TL];
 }
 const docDit = k => docAff(k);
@@ -632,7 +640,7 @@ function viser(w){ motQ = w ? {mot: w.mot, genre: w.genre || null, cat: w.cat ||
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }
+  parler("exercice", Tirage.question({juste: ok})); if (ok){ parler("bonne"); Voix.bravo(); }
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -770,6 +778,7 @@ const tradChamp = (c, i) => TL ? (CH[c].t[TL] || [])[i] : null;
 const valTrad = (c, v) => {
   if (!TL) return null;
   if (v === CH[c].v) return tradChamp(c, 2) || v;
+  if (LDM[TL]) return ((CH[c].tfl || {})[TL] || {})[v] || v;
   const tf = (CH[c].tf || {})[v]; if (!tf) return v;
   return tf[{fr: 0, en: 1, pt: 2, de: 3}[TL]] || null;
 };
@@ -778,6 +787,7 @@ function tradChampPhrase(c, v){
   if (!TL) return null;
   if (EN_){ const vt = valTrad(c, v); return TL === "fr" && CH[c].phrFr && vt !== null ? CH[c].phrFr.replace("{v}", vt) : null; }
   const l = tradChamp(c, 0), vt = valTrad(c, v); if (!l || vt === null) return null;
+  if (LDM[TL]) return l.replace("{v}", vt);
   if (TL === "fr") return cap(l) + " de Mark est " + vt + ".";
   if (TL === "en") return "Mark's " + l + " is " + vt + ".";
   if (TL === "pt") return cap(l) + " do Mark é " + vt + ".";
@@ -795,7 +805,7 @@ function champPhrase(c, v){
   return "Marks " + x.label + " ist " + (v === x.v && x.satz ? x.satz : (c === "geburtsdatum" ? "der " + v : v)) + ".";
 }
 const champCourt = (c, v) => CH[c].label + ": " + (CH[c].signature ? "Mark Garnier" : v);
-const champCourtTrad = (c, v) => TL && tradChamp(c, 1) ? tradChamp(c, 1) + (TL === "fr" ? " : " : ": ") + (CH[c].signature ? "Mark Garnier" : valTrad(c, v)) : null;
+const champCourtTrad = (c, v) => TL && tradChamp(c, 1) ? tradChamp(c, 1) + (TL === "fr" ? " : " : ": ") + (CH[c].signature ? (LDM[TL] ? LDM[TL].nom : "Mark Garnier") : valTrad(c, v)) : null;
 const GROUPES = [["geburtsdatum", "datum"], ["nacimiento", "fecha"], ["ort", "geburtsort", "adresse"], ["municipio", "lugar", "direccion"], ["familienname", "vorname"], ["nombre", "apellidos"],
                  ["dob", "date"], ["city", "pob", "address", "nationality"], ["lastname", "firstname"],   // l'anglais
                  ["nascimento", "data"], ["localidade", "local", "morada", "nacionalidade"], ["nome", "apelido"], ["telemovel", "nif"]];   // le portugais
@@ -806,6 +816,7 @@ function avisTrad(a, k){
   if (!TL) return null;
   const p = a.t[TL], d = DOC[k].trad[TL]; if (!p || !d) return null;
   if (EN_) return TL === "fr" ? p + ", il faut " + DOC[k].accFr + "." : null;
+  if (LDM[TL]) return LDM[TL].avis(p, k, d, (DOC[k].genreTrad || {})[TL]);
   if (TL === "fr") return p + ", il faut " + d + ".";
   if (TL === "en") return p + ", you need " + d + ".";
   if (TL === "pt") return p + ", você precisa " + d.replace(/^o /, "do ").replace(/^a /, "da ").replace(/^uma /, "de uma ").replace(/^um /, "de um ") + ".";
@@ -822,6 +833,7 @@ function horairePhrase(k, j, h, forme){
 function horaireTrad(k, j, h, ouvert){
   if (!TL) return null;
   const lt = LX[k].trad[TL]; if (!lt) return null;
+  if (LDM[TL]) return LDM[TL].horaire(lt, j, h, ouvert);
   const adj = D.ouvertTrad[TL][ouvert ? "o" : "f"][lt[2] ? 1 : 0];
   if (TL === "fr") return "Le " + jour(j, "fr") + " à " + h + " h, " + lt[0] + " est " + adj + ".";
   if (TL === "en") return "On " + jour(j, "en") + " at " + h + ":00, " + lt[0] + " is " + adj + ".";
@@ -841,6 +853,7 @@ const terminPhrase = t => PT_ ? "A consulta " + MARKde + " é " + jourArticlePt(
 function terminTrad(t){
   if (!TL) return null;
   const lt = LX[t.k].trad[TL]; if (!lt) return null;
+  if (LDM[TL]) return LDM[TL].termin(lt, t.j, t.h);
   if (EN_) return TL === "fr" ? "Mark a rendez-vous " + lt[1] + " le " + jour(t.j, "fr") + " " + dateDiteFr(t.date.getDate(), t.date.getMonth()) + " à " + heureFr(t.h) + "." : null;
   if (TL === "fr") return "Le rendez-vous de Mark est " + jour(t.j, "fr") + " à " + heureMin(t.h, "fr") + ", " + lt[1] + ".";
   if (TL === "en") return "Mark's appointment is on " + jour(t.j, "en") + " at " + heureMin(t.h, "en") + " " + lt[1] + ".";
@@ -1281,7 +1294,7 @@ function decouvrir(){
 
 // ---------- LA PARTIE : recopiee de contrarios.html (identique d'un theme a l'autre) ----------
 const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
-let vus = new Set(), sorteCourante = null, derniereSorte = null;
+let vus = Tirage.vus(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce"), pa = z.querySelector(".papier");
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + (pa ? pa.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
@@ -1357,14 +1370,14 @@ const boutonsBas = () => '<div class="bas">' + boutonEncore() + '<button type="b
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
-  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(null);
   montrer();
 }
 async function demarrer(){
   const mots = motsDuTheme();
   const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
-  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null; Tirage.docPose(null);
+  file = plan.file; rang = 0; bons = 0; vus = Tirage.vus(); derniereSorte = null; Tirage.docPose(null);
   if (!file.length) return toutRevu(plan.prochaine);
   montrer();
 }
@@ -1376,6 +1389,7 @@ document.title = T("titre");
 function preparer(d){
   if (EN_) preparerAnglais(d);
   if (PT_) preparerPortugais(d);
+  if (typeof installerLanguesDemarches === "function") LDM = installerLanguesDemarches(d) || {};
   D = d; LX = D.lieux[APPRENDRE]; HO = D.horaires[APPRENDRE]; DOC = D.docs[APPRENDRE]; DEM = D.demarches[APPRENDRE];
   CH = D.champs[APPRENDRE]; FO = D.formulaires[APPRENDRE]; AV = D.avis[APPRENDRE]; TE = D.termin[APPRENDRE]; CJ = D.conj[APPRENDRE];
 }

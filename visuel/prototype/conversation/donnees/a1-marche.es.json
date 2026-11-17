@@ -1,0 +1,76 @@
+{
+ "id": "a1-marche",
+ "langue": "es",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "marche",
+ "registre": "usted",
+ "titre": {"fr": "Au marché : le kilo et le prix"},
+ "intro": {"fr": "Samedi, au marché couvert du quartier. Tu attends ton tour, tu demandes le prix au kilo, tu goûtes et tu paies… en espèces."},
+ "personnes": ["marktverkaeufer"],
+ "debut": "turno",
+ "prix": {"naranjas": 180, "fresas_medio": 200, "fresas_kilo": 400, "limones": 90},
+ "panier": ["fruta", "mas"],
+ "noeuds": {
+  "turno": {
+   "dit": [
+    {"recit": {"fr": "Samedi matin, le marché couvert du quartier. Il y a du monde devant l'étal de fruits. Enfin, c'est ton tour."}},
+    {"qui": "marktverkaeufer", "air": "sourire", "t": "¡Buenos días! ¿A quién le toca?", "fr": "Bonjour ! C'est à qui ?"}
+   ],
+   "choix": [
+    {"t": "A mí. Buenos días.", "fr": "À moi. Bonjour.", "va": "pedir"},
+    {"t": "Me toca a mí, creo.", "fr": "C'est à moi, je crois.", "va": "pedir"},
+    {"repete": true, "t": "¿Perdón?", "fr": "Pardon ?", "va": "turno",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¿Quién va ahora? ¿Usted?", "fr": "Qui passe maintenant ? Vous ?"}]}
+   ]
+  },
+  "pedir": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "¿Qué le pongo?", "fr": "Qu'est-ce que je vous sers ?"}],
+   "choix": [
+    {"t": "¿A cuánto están las fresas?", "fr": "À combien sont les fraises ?", "va": "fresas",
+     "puis": [{"qui": "marktverkaeufer", "air": "attentive", "t": "A cuatro euros el kilo. ¡Están muy dulces!", "fr": "À quatre euros le kilo. Elles sont très sucrées !"}]},
+    {"t": "Un kilo de naranjas, por favor.", "fr": "Un kilo d'oranges, s'il vous plaît.", "pose": {"fruta": "naranjas"}, "va": "mas",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Muy bien. Son de Valencia, muy buenas.", "fr": "Très bien. Elles viennent de Valence, elles sont très bonnes."}]},
+    {"faux": true, "t": "¿Puedo gustar una fresa?", "fr": "Je peux goûter une fraise ? (avec le mauvais verbe)",
+     "puis": [{"qui": "marktverkaeufer", "air": "amuse", "t": "¿Gustar? ¡Ah, probar! Claro, pruebe, pruebe.", "fr": "« Gustar » ? Ah, goûter ! Bien sûr, goûtez, goûtez."}],
+     "aide": {"fr": "<b>« goûter » se dit « probar » :</b> « ¿Puedo probar una? ». « gustar » veut dire « plaire » : « Me gustan las fresas »."}}
+   ]
+  },
+  "fresas": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "¿Cuántas le pongo?", "fr": "Je vous en mets combien ?"}],
+   "choix": [
+    {"t": "Medio kilo, por favor.", "fr": "Un demi-kilo, s'il vous plaît.", "pose": {"fruta": "fresas_medio"}, "va": "mas"},
+    {"t": "Un kilo, por favor. Me gustan mucho las fresas.", "fr": "Un kilo, s'il vous plaît. J'aime beaucoup les fraises.", "pose": {"fruta": "fresas_kilo"}, "va": "mas"},
+    {"repete": true, "t": "¿Puedo probar una?", "fr": "Je peux en goûter une ?", "va": "fresas",
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¡Claro! Pruebe, pruebe… Están buenas, ¿eh?", "fr": "Bien sûr ! Goûtez, goûtez… Elles sont bonnes, hein ?"},
+              {"recit": {"fr": "Tu goûtes : la fraise est très sucrée."}}]}
+   ]
+  },
+  "mas": {
+   "dit": [{"qui": "marktverkaeufer", "air": "question", "t": "¿Algo más?", "fr": "Autre chose ?"}],
+   "choix": [
+    {"t": "Sí, tres limones, por favor.", "fr": "Oui, trois citrons, s'il vous plaît.", "pose": {"mas": "limones"}, "va": "pagar"},
+    {"t": "No, nada más, gracias.", "fr": "Non, rien d'autre, merci.", "va": "pagar"}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "marktverkaeufer", "air": "attentive", "t": "Son {a_payer}.", "fr": "Ça fait {a_payer}.", "dit": "Son {a_payer:mots}."}],
+   "choix": [
+    {"t": "¿Puedo pagar con tarjeta?", "fr": "Je peux payer par carte ?", "va": "efectivo",
+     "puis": [{"qui": "marktverkaeufer", "air": "perplexe", "t": "Lo siento, aquí solo efectivo.", "fr": "Désolé, ici, c'est seulement en espèces."}]},
+    {"t": "Aquí tiene. Muchas gracias.", "fr": "Voilà. Merci beaucoup.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¡A usted! ¡Buen fin de semana!", "fr": "Merci à vous ! Bon week-end !"}]}
+   ]
+  },
+  "efectivo": {
+   "dit": [],
+   "choix": [
+    {"t": "Vale, no pasa nada. Aquí tiene un billete de diez.", "fr": "D'accord, pas de problème. Voici un billet de dix.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "Gracias. Aquí tiene la vuelta. ¡Buen fin de semana!", "fr": "Merci. Voici votre monnaie. Bon week-end !"}]},
+    {"t": "Vale. Tengo monedas. Aquí tiene.", "fr": "D'accord. J'ai des pièces. Voilà.", "va": null,
+     "puis": [{"qui": "marktverkaeufer", "air": "sourire", "t": "¡Perfecto, gracias! ¡Buen fin de semana!", "fr": "Parfait, merci ! Bon week-end !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as attendu ton tour, demandé le prix au kilo, acheté tes fruits et payé {a_payer}."}
+}

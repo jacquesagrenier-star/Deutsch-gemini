@@ -1,0 +1,141 @@
+{
+ "id": "b1-entretien",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "L'entretien d'embauche à la boulangerie"},
+ "intro": {"fr": "Une boulangerie de ton quartier, à Pankow, cherche quelqu'un pour la vente. Le patron te reçoit pour un entretien : présente-toi, réponds à ses questions et pose les tiennes."},
+ "personnes": ["b11_patron"],
+ "debut": "ankunft",
+ "noeuds": {
+  "ankunft": {
+   "dit": [
+    {"recit": {"fr": "Quatorze heures, la boulangerie est calme. Le patron t'attend à une petite table, au fond."}},
+    {"qui": "b11_patron", "air": "sourire", "t": "Guten Tag! Schön, dass Sie da sind. Haben Sie gut hergefunden?", "fr": "Bonjour ! Content que vous soyez là. Vous avez trouvé facilement ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag! Ja, danke, ich wohne ganz in der Nähe.", "fr": "Bonjour ! Oui, merci, j'habite tout près.", "va": "vorstellen",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Ah, aus dem Kiez! Das ist praktisch.", "fr": "Ah, du quartier ! C'est pratique."}]},
+    {"t": "Ja, kein Problem. Ich bin mit dem Fahrrad gekommen.", "fr": "Oui, sans problème. Je suis venu(e) à vélo.", "va": "vorstellen",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sehr gut, mit dem Rad ist man hier am schnellsten.", "fr": "Très bien, à vélo, c'est le plus rapide ici."}]},
+    {"faux": true, "t": "Ja, danke. Wie geht es dir?", "fr": "Oui, merci. Comment vas-tu ?",
+     "puis": [{"qui": "b11_patron", "air": "surprise", "t": "Äh … gut, danke. Aber wir bleiben erst einmal beim Sie, ja?", "fr": "Euh… bien, merci. Mais on en reste au « Sie » pour l'instant, d'accord ?"}],
+     "aide": {"fr": "<b>« dir »</b>, c'est le tutoiement. À un entretien, on vouvoie toujours le patron : « Wie geht es Ihnen? ». Ici, dis plutôt : « Ja, danke, ich wohne ganz in der Nähe. »"}}
+   ]
+  },
+  "vorstellen": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Setzen Sie sich doch. Erzählen Sie mal ein bisschen von sich: Was haben Sie bisher gearbeitet?", "fr": "Asseyez-vous donc. Parlez-moi un peu de vous : qu'est-ce que vous avez fait comme travail jusqu'ici ?"}],
+   "choix": [
+    {"t": "Ich habe zwei Jahre in einem Supermarkt an der Kasse gearbeitet.", "fr": "J'ai travaillé deux ans à la caisse d'un supermarché.", "pose": {"erfahrung": "verkauf"}, "va": "staerken",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Im Verkauf also, sehr gut. Dann kennen Sie den Umgang mit Kunden schon.", "fr": "Dans la vente, donc, très bien. Alors vous avez déjà l'habitude des clients."}]},
+    {"t": "Ich habe in einem Café im Service gearbeitet.", "fr": "J'ai travaillé au service dans un café.", "pose": {"erfahrung": "cafe"}, "va": "staerken",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Im Café? Prima, dann sind Sie Stress am Morgen ja gewohnt.", "fr": "Dans un café ? Parfait, alors le stress du matin, vous connaissez."}]},
+    {"t": "Im Verkauf habe ich noch keine Erfahrung, aber ich lerne schnell.", "fr": "Je n'ai pas encore d'expérience dans la vente, mais j'apprends vite.", "pose": {"erfahrung": "keine"}, "va": "motivation"},
+    {"faux": true, "t": "Ich bin seit zwei Jahren im Supermarkt gearbeitet.", "fr": "Je suis travaillé au supermarché depuis deux ans.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Moment … Arbeiten Sie noch dort, oder haben Sie dort gearbeitet?", "fr": "Attendez… Vous y travaillez encore, ou vous y avez travaillé ?"}],
+     "aide": {"fr": "<b>« arbeiten »</b> forme son parfait avec « haben », jamais avec « sein ». Pour une période terminée : « Ich habe zwei Jahre in einem Supermarkt gearbeitet. » Si ça dure encore : « Ich arbeite seit zwei Jahren… »"}}
+   ]
+  },
+  "motivation": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "Das macht nichts, das kann man lernen. Aber warum möchten Sie gerade in einer Bäckerei arbeiten?", "fr": "Ce n'est pas grave, ça s'apprend. Mais pourquoi voulez-vous travailler justement dans une boulangerie ?"}],
+   "choix": [
+    {"t": "Weil ich gern mit Menschen arbeite und kein Problem mit dem frühen Aufstehen habe.", "fr": "Parce que j'aime travailler avec les gens et que me lever tôt ne me pose aucun problème.", "va": "staerken",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Früh aufstehen – das ist bei uns schon die halbe Arbeit!", "fr": "Se lever tôt : chez nous, c'est déjà la moitié du travail !"}]},
+    {"t": "Ich kaufe oft hier ein, und die Stimmung im Laden gefällt mir sehr.", "fr": "Je fais souvent mes achats ici, et l'ambiance du magasin me plaît beaucoup.", "va": "staerken",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Das freut mich! Eine gute Stimmung ist mir wichtig.", "fr": "Ça me fait plaisir ! Une bonne ambiance, c'est important pour moi."}]},
+    {"faux": true, "t": "Weil ich arbeite gern mit Menschen.", "fr": "Parce que j'aime travailler avec les gens.",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Ich verstehe schon: weil Sie gern mit Menschen arbeiten.", "fr": "Je comprends bien : parce que vous aimez travailler avec les gens."}],
+     "aide": {"fr": "Après <b>« weil »</b>, le verbe conjugué va à la fin : « Weil ich gern mit Menschen <b>arbeite</b>. »"}}
+   ]
+  },
+  "staerken": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Und was sind Ihre Stärken? Was können Sie besonders gut?", "fr": "Et quels sont vos points forts ? Qu'est-ce que vous savez particulièrement bien faire ?"}],
+   "choix": [
+    {"t": "Ich bin pünktlich und zuverlässig, und ich bleibe auch im Stress ruhig.", "fr": "Je suis ponctuel(le) et fiable, et je reste calme même dans le stress.", "va": "kunde",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Pünktlich und ruhig – genau das brauche ich morgens um sieben.", "fr": "Ponctuel et calme : c'est exactement ce qu'il me faut à sept heures du matin."}]},
+    {"t": "Ich bin freundlich zu den Kunden und arbeite gern im Team.", "fr": "Je suis aimable avec les clients et j'aime travailler en équipe.", "va": "kunde",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sehr schön. Freundlichkeit ist bei uns das Wichtigste.", "fr": "Très bien. L'amabilité, c'est le plus important chez nous."}]},
+    {"faux": true, "t": "Ich kann gut mit die Kunden sprechen.", "fr": "Je sais bien parler avec les clients.",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Mit den Kunden, ja. Das ist hier wirklich wichtig.", "fr": "Avec les clients, oui. C'est vraiment important ici."}],
+     "aide": {"fr": "<b>« mit »</b> est toujours suivi du datif : « mit <b>den</b> Kunden ». Dis plutôt : « Ich bin freundlich zu den Kunden. »"}}
+   ]
+  },
+  "kunde": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Stellen Sie sich vor: Ein Kunde ist unfreundlich, weil seine Lieblingsbrötchen ausverkauft sind. Was machen Sie?", "fr": "Imaginez : un client est désagréable parce qu'il n'y a plus ses petits pains préférés. Que faites-vous ?"}],
+   "choix": [
+    {"t": "Ich bleibe ruhig und höflich und biete ihm etwas anderes an.", "fr": "Je reste calme et poli(e), et je lui propose autre chose.", "va": "zeiten",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Genau so. Die meisten gehen dann doch zufrieden nach Hause.", "fr": "Exactement. La plupart repartent quand même contents."}]},
+    {"t": "Ich entschuldige mich und frage, ob er andere Brötchen probieren möchte.", "fr": "Je m'excuse et je lui demande s'il veut goûter d'autres petits pains.", "va": "zeiten",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Gute Antwort. So verkauft man sogar noch etwas Neues.", "fr": "Bonne réponse. Comme ça, on vend même quelque chose de nouveau."}]},
+    {"faux": true, "t": "Ich sage ihm, dass es tut mir leid.", "fr": "Je lui dis que je suis désolé(e).",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Hm … Sie sagen ihm, dass es Ihnen leidtut? Gut, und dann?", "fr": "Hum… Vous lui dites que vous êtes désolé(e) ? Bien, et ensuite ?"}],
+     "aide": {"fr": "Après <b>« dass »</b>, le verbe va à la fin : « Ich sage ihm, dass es mir <b>leidtut</b>. » Et propose une solution : « Ich biete ihm etwas anderes an. »"}}
+   ]
+  },
+  "zeiten": {
+   "dit": [{"qui": "b11_patron", "air": "attentive", "t": "Jetzt zu den Arbeitszeiten: Wir öffnen um sechs, die Frühschicht beginnt um halb sechs. Samstags haben wir auch auf, und sonntags bis zwölf. Passt das für Sie?", "fr": "Passons aux horaires : nous ouvrons à six heures, l'équipe du matin commence à cinq heures et demie. Nous sommes aussi ouverts le samedi, et le dimanche jusqu'à midi. Ça vous convient ?"}],
+   "choix": [
+    {"t": "Ja, das passt gut. Ich kann auch am Wochenende arbeiten.", "fr": "Oui, ça me convient. Je peux aussi travailler le week-end.", "va": "fragen",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Wunderbar, das hört man als Chef gern!", "fr": "Formidable, voilà ce qu'un patron aime entendre !"}]},
+    {"t": "Morgens und samstags ja, aber sonntags kann ich leider nicht.", "fr": "Le matin et le samedi, oui, mais le dimanche, malheureusement, je ne peux pas.", "va": "sonntag"},
+    {"faux": true, "t": "Ja, ich bin immer disponibel.", "fr": "Oui, je suis toujours disponible.",
+     "puis": [{"qui": "b11_patron", "air": "perplexe", "t": "Disponibel? … Ach, Sie meinen, Sie haben immer Zeit?", "fr": "« Disponibel » ?… Ah, vous voulez dire que vous avez toujours le temps ?"}],
+     "aide": {"fr": "<b>« disponibel »</b> ne se dit pas pour une personne. Dis plutôt : « Ich habe immer Zeit » ou « Ich bin flexibel ». Ici : « Ja, das passt gut. »"}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie die Zeiten bitte wiederholen?", "fr": "Pardon, pourriez-vous répéter les horaires, s'il vous plaît ?", "va": "zeiten",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Natürlich. Die Frühschicht beginnt um halb sechs, und wir arbeiten auch samstags und am Sonntagvormittag.", "fr": "Bien sûr. L'équipe du matin commence à cinq heures et demie, et nous travaillons aussi le samedi et le dimanche matin."}]}
+   ]
+  },
+  "sonntag": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Darf ich fragen, warum? Nur, damit ich besser planen kann.", "fr": "Je peux vous demander pourquoi ? Juste pour que je puisse mieux m'organiser."}],
+   "choix": [
+    {"t": "Sonntags kümmere ich mich um meine Kinder.", "fr": "Le dimanche, je m'occupe de mes enfants.", "va": "fragen",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Verstehe, Familie geht vor. Sonntags hilft sowieso meistens mein Neffe aus.", "fr": "Je comprends, la famille d'abord. Le dimanche, de toute façon, c'est surtout mon neveu qui donne un coup de main."}]},
+    {"t": "Sonntags brauche ich Zeit, um für meine Deutschprüfung zu lernen.", "fr": "Le dimanche, j'ai besoin de temps pour préparer mon examen d'allemand.", "va": "fragen",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Das finde ich gut! Sonntags hilft sowieso meistens mein Neffe aus.", "fr": "Je trouve ça bien ! Le dimanche, de toute façon, c'est surtout mon neveu qui donne un coup de main."}]},
+    {"faux": true, "t": "Sonntags ich bin bei meiner Familie.", "fr": "Le dimanche, je suis avec ma famille.",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sonntags sind Sie bei der Familie – alles klar.", "fr": "Le dimanche, vous êtes en famille, c'est noté."}],
+     "aide": {"fr": "En allemand, le verbe est toujours en <b>deuxième position</b> : après « Sonntags », il vient tout de suite. « Sonntags <b>bin</b> ich bei meiner Familie. »"}}
+   ]
+  },
+  "fragen": {
+   "dit": [{"qui": "b11_patron", "air": "question", "t": "Haben Sie denn noch Fragen an mich?", "fr": "Et vous, avez-vous des questions à me poser ?"}],
+   "choix": [
+    {"t": "Ja. Wie viele Stunden pro Woche wären das, und wie hoch ist der Lohn?", "fr": "Oui. Ce serait combien d'heures par semaine, et quel est le salaire ?", "va": "probetag",
+     "puis": [{"qui": "b11_patron", "air": "attentive", "t": "Es ist eine Teilzeitstelle mit zwanzig Stunden pro Woche. Am Anfang zahlen wir etwas mehr als den Mindestlohn, nach der Probezeit sprechen wir noch einmal darüber.", "fr": "C'est un poste à temps partiel, vingt heures par semaine. Au début, nous payons un peu plus que le salaire minimum ; après la période d'essai, nous en reparlerons."}]},
+    {"t": "Ja. Wer zeigt mir am Anfang die Arbeit?", "fr": "Oui. Qui me montrera le travail, au début ?", "va": "probetag",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "In den ersten zwei Wochen arbeiten Sie immer mit einer erfahrenen Kollegin zusammen. Sie zeigt Ihnen alles: die Kasse, die Brotsorten, die Bestellungen.", "fr": "Les deux premières semaines, vous travaillez toujours avec une collègue expérimentée. Elle vous montre tout : la caisse, les sortes de pain, les commandes."}]},
+    {"t": "Ja. Wie groß ist denn das Team?", "fr": "Oui. L'équipe est grande ?", "va": "probetag",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Wir sind zu sechst: zwei Bäcker in der Backstube und vier Leute im Verkauf. Alle sehr nett, Sie werden sehen.", "fr": "Nous sommes six : deux boulangers au fournil et quatre personnes à la vente. Tous très sympathiques, vous verrez."}]},
+    {"faux": true, "t": "Ja. Wie viel gewinne ich pro Stunde?", "fr": "Oui. Combien est-ce que je gagne de l'heure ?",
+     "puis": [{"qui": "b11_patron", "air": "amuse", "t": "Gewinnen? Wir sind doch keine Lotterie! Sie meinen, was Sie verdienen?", "fr": "« Gewinnen » ? Ce n'est pas une loterie, ici ! Vous voulez dire ce que vous allez toucher ?"}],
+     "aide": {"fr": "<b>« gewinnen »</b>, c'est gagner à un jeu. Gagner de l'argent en travaillant : <b>« verdienen »</b>. Dis plutôt : « Wie hoch ist der Lohn? » ou « Wie viel verdiene ich pro Stunde? »"}}
+   ]
+  },
+  "probetag": {
+   "dit": [{"qui": "b11_patron", "air": "sourire", "t": "Also, ich habe einen guten Eindruck von Ihnen. Ich schlage vor, Sie kommen einen Tag zum Probearbeiten. Dann sehen wir beide, ob es passt. Ginge es bei Ihnen am Donnerstag oder am Freitag?", "fr": "Bon, vous me faites bonne impression. Je vous propose de venir une journée à l'essai. Comme ça, nous verrons tous les deux si ça colle. Jeudi ou vendredi, ce serait possible pour vous ?"}],
+   "choix": [
+    {"t": "Am Donnerstag passt es mir sehr gut.", "fr": "Jeudi, ça me convient très bien.", "pose": {"tag": "do"}, "va": "ende"},
+    {"t": "Freitag wäre mir lieber, wenn das möglich ist.", "fr": "Je préférerais vendredi, si c'est possible.", "pose": {"tag": "fr"}, "va": "ende"},
+    {"faux": true, "t": "Ich will Freitag.", "fr": "Je veux vendredi.",
+     "puis": [{"qui": "b11_patron", "air": "surprise", "t": "Oh … gut. Sie wissen aber genau, was Sie wollen!", "fr": "Oh… bon. Vous, au moins, vous savez ce que vous voulez !"}],
+     "aide": {"fr": "<b>« Ich will »</b> sonne sec, presque comme un ordre. Avec un futur patron : « Freitag wäre mir lieber » ou « Am Freitag passt es mir gut »."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "b11_patron", "air": "sourire", "si": {"tag": "do"}, "t": "Abgemacht, dann am Donnerstag. Kommen Sie bitte um halb sechs, eine Schürze bekommen Sie von uns.", "fr": "Entendu, jeudi alors. Venez à cinq heures et demie, s'il vous plaît ; nous vous donnerons un tablier."},
+    {"qui": "b11_patron", "air": "sourire", "si": {"tag": "fr"}, "t": "Abgemacht, dann am Freitag. Kommen Sie bitte um halb sechs, eine Schürze bekommen Sie von uns.", "fr": "Entendu, vendredi alors. Venez à cinq heures et demie, s'il vous plaît ; nous vous donnerons un tablier."}
+   ],
+   "choix": [
+    {"t": "Vielen Dank für das Gespräch. Ich freue mich auf den Probetag!", "fr": "Merci beaucoup pour cet entretien. J'ai hâte de faire cette journée d'essai !", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Ich mich auch. Bis dann – und bringen Sie gute Laune mit!", "fr": "Moi aussi. À bientôt, et venez de bonne humeur !"}]},
+    {"t": "Danke schön! Ich werde pünktlich da sein. Auf Wiedersehen!", "fr": "Merci bien ! Je serai à l'heure. Au revoir !", "va": null,
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Davon bin ich überzeugt. Auf Wiedersehen!", "fr": "J'en suis convaincu. Au revoir !"}]},
+    {"faux": true, "t": "Danke. Ich freue mich für den Probetag.", "fr": "Merci. Je me réjouis pour la journée d'essai.",
+     "puis": [{"qui": "b11_patron", "air": "sourire", "t": "Sie freuen sich auf den Probetag? Das freut mich auch!", "fr": "Vous avez hâte d'y être ? Ça me fait plaisir aussi !"}],
+     "aide": {"fr": "Se réjouir de quelque chose qui va arriver : <b>« sich freuen auf »</b> + accusatif. « Ich freue mich <b>auf</b> den Probetag. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as passé un entretien d'embauche en allemand : tu as parlé de ton expérience et de tes points forts, réglé la question des horaires, posé ta question et obtenu une journée d'essai."}
+}

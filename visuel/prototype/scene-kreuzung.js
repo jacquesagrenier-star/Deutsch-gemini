@@ -24,7 +24,8 @@ window.SCENE = {
      "pt": "casa",
      "ar": "بيت، منزل",
      "pl": "dom",
-     "ru": "дом"
+     "ru": "дом",
+     "es": "la casa"
     }
    ],
    "sur": null,
@@ -45,7 +46,8 @@ window.SCENE = {
    "pt": "prédio, edifício",
    "ar": "مبنى",
    "pl": "budynek",
-   "ru": "здание"
+   "ru": "здание",
+   "es": "el edificio"
   },
   {
    "id": "strasse",
@@ -69,7 +71,8 @@ window.SCENE = {
      "pt": "cruzamento",
      "ar": "تقاطع",
      "pl": "skrzyżowanie",
-     "ru": "перекрёсток"
+     "ru": "перекрёсток",
+     "es": "el cruce, la intersección"
     }
    ],
    "sur": null,
@@ -96,7 +99,8 @@ window.SCENE = {
    "pt": "rua",
    "ar": "شارع",
    "pl": "ulica",
-   "ru": "улица"
+   "ru": "улица",
+   "es": "la calle"
   },
   {
    "id": "buergersteig",
@@ -113,14 +117,15 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "verkehr_b1",
      "fr": "trottoir",
-     "en": "pavement",
+     "en": "sidewalk",
      "tr": "kaldırım",
      "uk": "тротуар (австр.)",
      "fa": "پیاده‌رو (واژهٔ اتریشی)",
      "pt": "calçada (Áustria, sul da Alemanha)",
      "ar": "رصيف المشاة (نمساوية)",
      "pl": "chodnik (Austria)",
-     "ru": "тротуар (австр.)"
+     "ru": "тротуар (австр.)",
+     "es": "la acera, la banqueta"
     }
    ],
    "sur": null,
@@ -141,7 +146,8 @@ window.SCENE = {
    "pt": "calçada",
    "ar": "رصيف المشاة",
    "pl": "chodnik",
-   "ru": "тротуар"
+   "ru": "тротуар",
+   "es": "la acera"
   },
   {
    "id": "baeckerei",
@@ -170,7 +176,8 @@ window.SCENE = {
    "pt": "padaria",
    "ar": "مخبز",
    "pl": "piekarnia",
-   "ru": "булочная, пекарня"
+   "ru": "булочная, пекарня",
+   "es": "la panadería"
   },
   {
    "id": "brot",
@@ -194,7 +201,8 @@ window.SCENE = {
      "pt": "pretzel",
      "ar": "بريتزل (خبز معقود)",
      "pl": "precel",
-     "ru": "брецель (крендель)"
+     "ru": "брецель (крендель)",
+     "es": "el pretzel"
     },
     {
      "mot": "Brötchen",
@@ -209,7 +217,8 @@ window.SCENE = {
      "pt": "pãozinho",
      "ar": "خبز صغير (كعك)",
      "pl": "bułka",
-     "ru": "булочка"
+     "ru": "булочка",
+     "es": "el panecillo"
     },
     {
      "mot": "Schaufenster",
@@ -224,7 +233,8 @@ window.SCENE = {
      "pt": "vitrine",
      "ar": "واجهة المحلّ",
      "pl": "wystawa sklepowa, witryna",
-     "ru": "витрина"
+     "ru": "витрина",
+     "es": "la vitrina, el aparador"
     }
    ],
    "sur": "baeckerei",
@@ -245,7 +255,8 @@ window.SCENE = {
    "pt": "pão",
    "ar": "خبز",
    "pl": "chleb",
-   "ru": "хлеб"
+   "ru": "хлеб",
+   "es": "el pan"
   },
   {
    "id": "apotheke",
@@ -274,7 +285,8 @@ window.SCENE = {
    "pt": "farmácia",
    "ar": "صيدلية",
    "pl": "apteka",
-   "ru": "аптека"
+   "ru": "аптека",
+   "es": "la farmacia"
   },
   {
    "id": "post",
@@ -303,7 +315,8 @@ window.SCENE = {
    "pt": "correio",
    "ar": "بريد، مكتب البريد",
    "pl": "poczta",
-   "ru": "почта"
+   "ru": "почта",
+   "es": "el correo, la oficina de correos"
   },
   {
    "id": "briefkasten-post",
@@ -332,7 +345,8 @@ window.SCENE = {
    "pt": "caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
-   "ru": "почтовый ящик"
+   "ru": "почтовый ящик",
+   "es": "el buzón"
   },
   {
    "id": "cafe",
@@ -356,7 +370,8 @@ window.SCENE = {
      "pt": "mesa",
      "ar": "طاولة",
      "pl": "stół",
-     "ru": "стол"
+     "ru": "стол",
+     "es": "la mesa"
     },
     {
      "mot": "Stuhl",
@@ -371,7 +386,8 @@ window.SCENE = {
      "pt": "cadeira",
      "ar": "كرسي",
      "pl": "krzesło",
-     "ru": "стул"
+     "ru": "стул",
+     "es": "la silla"
     }
    ],
    "sur": null,
@@ -392,7 +408,8 @@ window.SCENE = {
    "pt": "café (o lugar), cafeteria",
    "ar": "مقهى",
    "pl": "kawiarnia",
-   "ru": "кафе"
+   "ru": "кафе",
+   "es": "el café, la cafetería"
   },
   {
    "id": "markise",
@@ -421,7 +438,8 @@ window.SCENE = {
    "pt": "toldo",
    "ar": "مظلّة (قماشية)",
    "pl": "markiza",
-   "ru": "маркиза, навес"
+   "ru": "маркиза, навес",
+   "es": "el toldo"
   },
   {
    "id": "bus",
@@ -450,7 +468,8 @@ window.SCENE = {
    "pt": "ônibus",
    "ar": "حافلة",
    "pl": "autobus",
-   "ru": "автобус"
+   "ru": "автобус",
+   "es": "el autobús"
   },
   {
    "id": "wartehaeuschen",
@@ -479,7 +498,8 @@ window.SCENE = {
    "pt": "abrigo do ponto de ônibus",
    "ar": "مظلّة موقف الحافلة",
    "pl": "wiata przystankowa",
-   "ru": "павильон остановки"
+   "ru": "павильон остановки",
+   "es": "la caseta de la parada (de autobús)"
   },
   {
    "id": "haltestelle",
@@ -503,7 +523,8 @@ window.SCENE = {
      "pt": "placa",
      "ar": "لافتة",
      "pl": "tabliczka, szyld",
-     "ru": "табличка, вывеска"
+     "ru": "табличка, вывеска",
+     "es": "el letrero"
     }
    ],
    "sur": null,
@@ -524,7 +545,8 @@ window.SCENE = {
    "pt": "ponto (de ônibus)",
    "ar": "موقف (حافلات)",
    "pl": "przystanek",
-   "ru": "остановка"
+   "ru": "остановка",
+   "es": "la parada"
   },
   {
    "id": "frau-rot",
@@ -553,7 +575,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "auto-dunkel",
@@ -577,7 +600,8 @@ window.SCENE = {
      "pt": "estacionamento, vaga",
      "ar": "موقف سيارات",
      "pl": "parking, miejsce parkingowe",
-     "ru": "парковка, место для стоянки"
+     "ru": "парковка, место для стоянки",
+     "es": "el estacionamiento"
     }
    ],
    "sur": null,
@@ -598,7 +622,8 @@ window.SCENE = {
    "pt": "carro",
    "ar": "سيارة",
    "pl": "samochód",
-   "ru": "машина, автомобиль"
+   "ru": "машина, автомобиль",
+   "es": "el carro"
   },
   {
    "id": "auto-silber",
@@ -622,7 +647,8 @@ window.SCENE = {
      "pt": "estacionamento, vaga",
      "ar": "موقف سيارات",
      "pl": "parking, miejsce parkingowe",
-     "ru": "парковка, место для стоянки"
+     "ru": "парковка, место для стоянки",
+     "es": "el estacionamiento"
     }
    ],
    "sur": null,
@@ -643,7 +669,8 @@ window.SCENE = {
    "pt": "carro",
    "ar": "سيارة",
    "pl": "samochód",
-   "ru": "машина, автомобиль"
+   "ru": "машина, автомобиль",
+   "es": "el carro"
   },
   {
    "id": "parkuhr",
@@ -672,7 +699,8 @@ window.SCENE = {
    "pt": "parquímetro",
    "ar": "عدّاد الوقوف",
    "pl": "parkometr",
-   "ru": "паркомат"
+   "ru": "паркомат",
+   "es": "el parquímetro"
   },
   {
    "id": "schild-klein",
@@ -696,7 +724,8 @@ window.SCENE = {
      "pt": "placa",
      "ar": "لافتة",
      "pl": "tabliczka, szyld",
-     "ru": "табличка, вывеска"
+     "ru": "табличка, вывеска",
+     "es": "el letrero"
     }
    ],
    "sur": null,
@@ -717,7 +746,8 @@ window.SCENE = {
    "pt": "placa de trânsito",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
-   "ru": "дорожный знак"
+   "ru": "дорожный знак",
+   "es": "la señal de tránsito"
   },
   {
    "id": "schild-gross",
@@ -741,7 +771,8 @@ window.SCENE = {
      "pt": "placa",
      "ar": "لافتة",
      "pl": "tabliczka, szyld",
-     "ru": "табличка, вывеска"
+     "ru": "табличка, вывеска",
+     "es": "el letrero"
     }
    ],
    "sur": null,
@@ -762,7 +793,8 @@ window.SCENE = {
    "pt": "placa de trânsito",
    "ar": "إشارة مرور (لافتة)",
    "pl": "znak drogowy",
-   "ru": "дорожный знак"
+   "ru": "дорожный знак",
+   "es": "la señal de tránsito"
   },
   {
    "id": "ampel-mitte",
@@ -791,7 +823,8 @@ window.SCENE = {
    "pt": "semáforo, farol",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
-   "ru": "светофор"
+   "ru": "светофор",
+   "es": "el semáforo"
   },
   {
    "id": "ampel-seite",
@@ -820,7 +853,8 @@ window.SCENE = {
    "pt": "semáforo, farol",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
-   "ru": "светофор"
+   "ru": "светофор",
+   "es": "el semáforo"
   },
   {
    "id": "lieferwagen",
@@ -837,14 +871,15 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "verkehr_b1",
      "fr": "poids lourd, camion",
-     "en": "lorry, truck",
+     "en": "truck",
      "tr": "ağır vasıta",
      "uk": "вантажний автомобіль",
      "fa": "کامیون سنگین",
      "pt": "caminhão",
      "ar": "شاحنة (اختصار)",
      "pl": "samochód ciężarowy, TIR",
-     "ru": "грузовик"
+     "ru": "грузовик",
+     "es": "el camión (de carga)"
     },
     {
      "mot": "Laster",
@@ -852,14 +887,15 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "verkehr_b1",
      "fr": "camion",
-     "en": "lorry, truck",
+     "en": "truck",
      "tr": "kamyon",
      "uk": "вантажівка",
      "fa": "کامیون",
      "pt": "caminhão (coloquial)",
      "ar": "شاحنة",
      "pl": "ciężarówka",
-     "ru": "грузовик"
+     "ru": "грузовик",
+     "es": "el camión (coloquial)"
     }
    ],
    "sur": null,
@@ -880,7 +916,8 @@ window.SCENE = {
    "pt": "furgão, van de entrega",
    "ar": "شاحنة توصيل صغيرة",
    "pl": "samochód dostawczy",
-   "ru": "фургон для доставки"
+   "ru": "фургон для доставки",
+   "es": "la camioneta de reparto"
   },
   {
    "id": "zebrastreifen",
@@ -902,14 +939,15 @@ window.SCENE = {
     ]
    ],
    "fr": "passage piéton",
-   "en": "zebra crossing",
+   "en": "crosswalk",
    "tr": "yaya geçidi",
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
    "pt": "faixa de pedestres",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
-   "ru": "пешеходный переход, «зебра»"
+   "ru": "пешеходный переход, «зебра»",
+   "es": "el paso peatonal, el paso de cebra"
   },
   {
    "id": "zebrastreifen-2",
@@ -931,14 +969,15 @@ window.SCENE = {
     ]
    ],
    "fr": "passage piéton",
-   "en": "zebra crossing",
+   "en": "crosswalk",
    "tr": "yaya geçidi",
    "uk": "пішохідний перехід",
    "fa": "خط عابر پیاده",
    "pt": "faixa de pedestres",
    "ar": "ممرّ المشاة",
    "pl": "przejście dla pieszych, zebra",
-   "ru": "пешеходный переход, «зебра»"
+   "ru": "пешеходный переход, «зебра»",
+   "es": "el paso peatonal, el paso de cebra"
   },
   {
    "id": "fussgaenger",
@@ -962,7 +1001,8 @@ window.SCENE = {
      "pt": "homem / marido",
      "ar": "رجل، زوج",
      "pl": "mężczyzna / mąż",
-     "ru": "мужчина, муж"
+     "ru": "мужчина, муж",
+     "es": "el hombre, el esposo"
     },
     {
      "mot": "Rucksack",
@@ -977,7 +1017,8 @@ window.SCENE = {
      "pt": "mochila",
      "ar": "حقيبة ظهر",
      "pl": "plecak",
-     "ru": "рюкзак"
+     "ru": "рюкзак",
+     "es": "la mochila"
     }
    ],
    "sur": null,
@@ -998,7 +1039,8 @@ window.SCENE = {
    "pt": "pedestre",
    "ar": "راجل، ماشٍ",
    "pl": "pieszy",
-   "ru": "пешеход"
+   "ru": "пешеход",
+   "es": "el peatón"
   },
   {
    "id": "frau-tasche",
@@ -1022,7 +1064,8 @@ window.SCENE = {
      "pt": "bolsa",
      "ar": "حقيبة",
      "pl": "torba, torebka",
-     "ru": "сумка"
+     "ru": "сумка",
+     "es": "la bolsa, el bolso"
     }
    ],
    "sur": null,
@@ -1043,7 +1086,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "taxi",
@@ -1067,7 +1111,8 @@ window.SCENE = {
      "pt": "carro",
      "ar": "سيارة",
      "pl": "samochód",
-     "ru": "машина, автомобиль"
+     "ru": "машина, автомобиль",
+     "es": "el carro"
     }
    ],
    "sur": null,
@@ -1088,7 +1133,8 @@ window.SCENE = {
    "pt": "táxi",
    "ar": "سيارة أجرة",
    "pl": "taksówka",
-   "ru": "такси"
+   "ru": "такси",
+   "es": "el taxi"
   },
   {
    "id": "strassenbahn",
@@ -1112,7 +1158,8 @@ window.SCENE = {
      "pt": "bonde",
      "ar": "ترام",
      "pl": "tramwaj",
-     "ru": "трамвай"
+     "ru": "трамвай",
+     "es": "el tranvía (forma corta)"
     }
    ],
    "sur": null,
@@ -1133,7 +1180,8 @@ window.SCENE = {
    "pt": "bonde",
    "ar": "ترام",
    "pl": "tramwaj",
-   "ru": "трамвай"
+   "ru": "трамвай",
+   "es": "el tranvía"
   },
   {
    "id": "motorrad",
@@ -1162,7 +1210,8 @@ window.SCENE = {
    "pt": "moto",
    "ar": "درّاجة نارية",
    "pl": "motocykl",
-   "ru": "мотоцикл"
+   "ru": "мотоцикл",
+   "es": "la moto, la motocicleta"
   },
   {
    "id": "radweg",
@@ -1191,7 +1240,8 @@ window.SCENE = {
    "pt": "ciclovia",
    "ar": "مسار الدرّاجات",
    "pl": "ścieżka rowerowa",
-   "ru": "велосипедная дорожка"
+   "ru": "велосипедная дорожка",
+   "es": "la ciclovía"
   },
   {
    "id": "radfahrer",
@@ -1215,7 +1265,8 @@ window.SCENE = {
      "pt": "bicicleta",
      "ar": "درّاجة",
      "pl": "rower",
-     "ru": "велосипед"
+     "ru": "велосипед",
+     "es": "la bicicleta"
     }
    ],
    "sur": null,
@@ -1236,7 +1287,8 @@ window.SCENE = {
    "pt": "ciclista",
    "ar": "راكب دراجة",
    "pl": "rowerzysta",
-   "ru": "велосипедист"
+   "ru": "велосипедист",
+   "es": "el ciclista"
   },
   {
    "id": "jacke",
@@ -1265,7 +1317,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "helm",
@@ -1294,7 +1347,8 @@ window.SCENE = {
    "pt": "capacete",
    "ar": "خوذة",
    "pl": "kask",
-   "ru": "шлем"
+   "ru": "шлем",
+   "es": "el casco"
   },
   {
    "id": "kiosk",
@@ -1323,7 +1377,8 @@ window.SCENE = {
    "pt": "banca, quiosque",
    "ar": "كشك",
    "pl": "kiosk",
-   "ru": "киоск"
+   "ru": "киоск",
+   "es": "el quiosco"
   },
   {
    "id": "flasche",
@@ -1352,7 +1407,8 @@ window.SCENE = {
    "pt": "garrafa",
    "ar": "زجاجة",
    "pl": "butelka",
-   "ru": "бутылка"
+   "ru": "бутылка",
+   "es": "la botella"
   },
   {
    "id": "briefkasten",
@@ -1381,7 +1437,8 @@ window.SCENE = {
    "pt": "caixa de correio",
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
-   "ru": "почтовый ящик"
+   "ru": "почтовый ящик",
+   "es": "el buzón"
   },
   {
    "id": "laterne",
@@ -1410,7 +1467,8 @@ window.SCENE = {
    "pt": "poste de luz",
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
-   "ru": "фонарь"
+   "ru": "фонарь",
+   "es": "el farol, el poste de luz"
   },
   {
    "id": "anna",
@@ -1434,7 +1492,8 @@ window.SCENE = {
      "pt": "celular",
      "ar": "هاتف محمول",
      "pl": "komórka, telefon komórkowy",
-     "ru": "мобильный телефон"
+     "ru": "мобильный телефон",
+     "es": "el celular"
     }
    ],
    "sur": null,
@@ -1455,7 +1514,8 @@ window.SCENE = {
    "pt": "mulher / esposa",
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
-   "ru": "женщина, жена"
+   "ru": "женщина, жена",
+   "es": "la mujer, la esposa"
   },
   {
    "id": "jacke-2",
@@ -1484,7 +1544,8 @@ window.SCENE = {
    "pt": "jaqueta",
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
-   "ru": "куртка"
+   "ru": "куртка",
+   "es": "la chaqueta"
   },
   {
    "id": "ampel-vorne",
@@ -1513,7 +1574,8 @@ window.SCENE = {
    "pt": "semáforo, farol",
    "ar": "إشارة مرور",
    "pl": "sygnalizacja świetlna, światła",
-   "ru": "светофор"
+   "ru": "светофор",
+   "es": "el semáforo"
   },
   {
    "id": "fahrradstaender",
@@ -1537,7 +1599,8 @@ window.SCENE = {
      "pt": "bicicleta",
      "ar": "درّاجة",
      "pl": "rower",
-     "ru": "велосипед"
+     "ru": "велосипед",
+     "es": "la bicicleta"
     }
    ],
    "sur": null,
@@ -1558,7 +1621,8 @@ window.SCENE = {
    "pt": "bicicletário",
    "ar": "حامل الدرّاجات",
    "pl": "stojak na rowery",
-   "ru": "велопарковка"
+   "ru": "велопарковка",
+   "es": "el soporte para bicicletas"
   },
   {
    "id": "haus",
@@ -1587,7 +1651,8 @@ window.SCENE = {
    "pt": "casa",
    "ar": "بيت، منزل",
    "pl": "dom",
-   "ru": "дом"
+   "ru": "дом",
+   "es": "la casa"
   }
  ],
  "grosPlans": [],
@@ -2447,7 +2512,7 @@ window.SCENE = {
     "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Passe pela farmácia e você chegou.",
     "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "A van sai da rua lateral.",
     "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Os pedestres atravessam na faixa de pedestres.",
-    "B1 | Gleich geht Anna in die Bäckerei.": "Anna vai já entrar na padaria.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna já vai entrar na padaria.",
     "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Por favor, não atravesse a rua no vermelho!",
     "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "O café fica na esquina, logo ao lado da rua lateral.",
     "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Ao longo da calçada passa uma ciclovia vermelha.",
@@ -2614,6 +2679,83 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "Недавно, должно быть, шёл дождь.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Если бы светофор был зелёным, Анна уже перешла бы улицу.",
     "C1 | Er könnte Waren für das Café bringen.": "Он, возможно, привозит товар для кафе."
+   }
+  },
+  "es": {
+   "champs": {
+    "alt": "Un cruce de Berlín visto desde un primer piso: panadería, farmacia, correo y café, una parada de autobús, un tranvía, un taxi, peatones en el paso peatonal, un ciclista en la ciclovía roja; en primer plano, Anna busca el camino en su celular, entre el quiosco, el buzón y las bicicletas.",
+    "consigne": "Anna busca el camino en Berlín. Toca un edificio, un vehículo o a una persona."
+   },
+   "couches": {
+    "A1": "Sustantivos y artículos",
+    "A2": "Wo? — en la ciudad",
+    "B1": "Indicar el camino",
+    "B2": "Genitivo y relativas",
+    "C1": "Hipótesis"
+   },
+   "questions": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "<b>zwischen</b> + dativo para los dos: zwischen <b>der</b> Bäckerei und <b>der</b> Post.",
+    "A2 | Das Café ist an der Ecke.": "En la esquina: <b>an der</b> Ecke (die Ecke, dativo).",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "<b>gegenüber</b> = frente a, siempre con dativo: gegenüber <b>dem</b> Kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "<b>vor</b> + dativo: die Post → vor <b>der</b> Post.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "En la parada: <b>an der</b> Haltestelle. Y <b>im</b> roten Mantel = in dem.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "<b>auf</b> + dativo (Wo?): der Radweg → auf <b>dem</b> Radweg.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "<b>zwischen</b> + dativo: zwischen <b>der</b> Laterne und <b>der</b> Ampel.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "<b>am</b> = an + dem. Dativo: der Fahrradständer → <b>am</b> Fahrradständer.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "<b>auf</b> + dativo: der Zebrastreifen → auf <b>dem</b> Zebrastreifen.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "<b>auf</b> + dativo: der Bürgersteig → auf <b>dem</b> Bürgersteig.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Hacia un lugar: <b>zu</b> + dativo. zu + der = <b>zur</b>. <b>nach</b> solo sirve para ciudades y países; el español dice «a» en los dos casos.",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Cruzar: <b>über</b> + acusativo (un movimiento) — über <b>die</b> Straße.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Ponerse, volverse: <b>werden</b>. La subordinada manda el verbo al final: bis die Ampel grün <b>wird</b>.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Frente a usted: <b>vor</b> + dativo → vor <b>Ihnen</b>.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "<b>an</b> + dativo <b>… vorbei</b> = pasar por delante de: an <b>der</b> Apotheke vorbei.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "<b>aus</b> siempre va con dativo, incluso para un movimiento: aus <b>der</b> Seitenstraße.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Cruzan (Wohin?) → acusativo: über <b>den</b> Zebrastreifen.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Wohin? → acusativo: in <b>die</b> Bäckerei. <b>in der</b> Bäckerei respondería a Wo?",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "El imperativo de cortesía (usted): primero el verbo, luego <b>Sie</b>, que no se omite — <b>Gehen Sie</b>.",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Un estado (Wo?) → dativo: die Ecke → an <b>der</b> Ecke.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "<b>entlang</b> delante del sustantivo pide genitivo: entlang <b>des</b> Bürgersteigs. Detrás, acusativo: den Bürgersteig entlang.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "<b>unweit</b> (no lejos de) + genitivo: unweit <b>des</b> Kiosks.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "<b>trotz</b> + genitivo: die Straße → trotz <b>der</b> nassen Straße (genitivo femenino = der).",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Posesión, antecedente femenino (die Frau) → <b>deren</b> (cuyo abrigo).",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Sujeto de la relativa, masculino → <b>der</b>.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "<b>vor</b> + relativo, un estado (Wo?) → dativo: das Café → <b>vor dem</b>.",
+    "C1 | Sie dürfte sich verlaufen haben.": "<b>dürfte</b> + infinitivo pasado = probablemente: se le nota en la cara.",
+    "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + infinitivo pasado = casi seguro, deducido de lo que se ve: la calle mojada. Como «debe de haber llovido».",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Irreal del pasado con un verbo de movimiento: <b>sein</b> → <b>wäre</b> … gegangen. El español siempre usa «haber».",
+    "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = es posible, sin pruebas. <b>muss</b> sería una certeza."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "La farmacia está entre la panadería y el correo.",
+    "A2 | Das Café ist an der Ecke.": "El café está en la esquina.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "La panadería está frente al quiosco.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "El buzón pequeño está frente al correo.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "La mujer del abrigo rojo espera en la parada.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "El ciclista va por la ciclovía.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Anna está de pie entre el farol y el semáforo.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "Las bicicletas están en el soporte para bicicletas.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Los peatones están en el paso peatonal.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "El quiosco está en la acera.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Disculpe, ¿cómo llego a la farmacia?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Cruce la calle, allí, por el paso peatonal.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Espere a que el semáforo se ponga en verde.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Entonces la farmacia queda justo frente a usted.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Pase por delante de la farmacia y ya habrá llegado.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "La camioneta de reparto sale de la calle lateral.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Los peatones cruzan por el paso peatonal.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna está por entrar a la panadería.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "¡Por favor, no cruce la calle con el semáforo en rojo!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "El café está en la esquina, justo al lado de la calle lateral.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "A lo largo de la acera pasa una ciclovía roja.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "No lejos del quiosco hay un buzón amarillo.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "A pesar de la calle mojada, el ciclista va rápido.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "La mujer cuyo abrigo es rojo espera el autobús.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "El hombre que lleva una mochila cruza por el paso peatonal.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "El café frente al cual hay mesas tiene un toldo rojo.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Probablemente se perdió.",
+    "C1 | Es muss vorhin geregnet haben.": "Debe de haber llovido hace un rato.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.",
+    "C1 | Er könnte Waren für das Café bringen.": "Podría estar trayendo mercancía para el café."
    }
   }
  }

@@ -1,0 +1,203 @@
+{
+ "id": "b1-mon-pays",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Présenter mon pays au cours"},
+ "intro": {"fr": "Dans ton école de langues, à Madrid, la professeure te demande de présenter ton pays à la classe. Tu réponds à ses questions et tu compares avec l'Espagne."},
+ "personnes": ["b13_kursleiterin"],
+ "debut": "pais",
+ "noeuds": {
+  "pais": {
+   "dit": [
+    {"recit": {"fr": "Jeudi soir, dans une école de langues du centre de Madrid. Aujourd'hui, c'est ton tour : tu es devant la classe, à côté de la carte."}},
+    {"qui": "b13_kursleiterin", "air": "sourire", "t": "Bueno, hoy le toca a usted presentarnos su país. ¿De dónde es?", "fr": "Bon, aujourd'hui, c'est à vous de nous présenter votre pays. D'où êtes-vous ?"}
+   ],
+   "choix": [
+    {"t": "Soy de Canadá, de la provincia de Quebec.", "fr": "Je suis du Canada, de la province de Québec.", "pose": {"pays": "canada"}, "va": "donde",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "¡De Canadá! ¡Qué lejos!", "fr": "Du Canada ! Que c'est loin !"}]},
+    {"t": "Soy de Francia.", "fr": "Je suis de France.", "pose": {"pays": "francia"}, "va": "donde",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "¡Ah, nuestros vecinos del norte! Muy bien.", "fr": "Ah, nos voisins du nord ! Très bien."}]},
+    {"t": "Soy de Bélgica.", "fr": "Je suis de Belgique.", "pose": {"pays": "belgica"}, "va": "donde",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "¡De Bélgica! Estuve en Brujas hace años y me encantó.", "fr": "De Belgique ! J'ai été à Bruges il y a des années et j'ai adoré."}]},
+    {"t": "Soy de Suiza.", "fr": "Je suis de Suisse.", "pose": {"pays": "suiza"}, "va": "donde",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "¡De Suiza! De la parte francesa, me imagino.", "fr": "De Suisse ! De la partie francophone, j'imagine."}]},
+    {"faux": true, "t": "Soy de la Suiza.", "fr": "Je suis de « la » Suisse.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "De Suiza, sin artículo. Muy bien, ¡de Suiza!", "fr": "« De Suiza », sans article. Très bien, de Suisse !"}],
+     "aide": {"fr": "<b>En espagnol, les noms de pays se disent presque toujours sans article</b> : « Soy de Suiza », « de Francia », « de Bélgica », « de Canadá »."}},
+    {"faux": true, "t": "Soy canadiano, de Quebec.", "fr": "Je suis « canadiano », du Québec.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Canadiense, se dice. Es igual para hombres y mujeres.", "fr": "On dit « canadiense ». C'est pareil pour les hommes et pour les femmes."}],
+     "aide": {"fr": "<b>« canadien » se dit « canadiense »</b>, au masculin comme au féminin. De même : « belga » (belge), pour un homme ou une femme."}}
+   ]
+  },
+  "donde": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y de qué parte exactamente? Enséñenoslo en el mapa, por favor.", "fr": "Et de quel endroit exactement ? Montrez-le-nous sur la carte, s'il vous plaît."}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "Soy de Montreal, en el este de Canadá. Allí se habla francés.", "fr": "Je suis de Montréal, dans l'est du Canada. On y parle français.", "va": "clima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Es verdad, en Quebec se habla francés. Aquí no lo sabe todo el mundo.", "fr": "C'est vrai, au Québec on parle français. Ici, tout le monde ne le sait pas."}]},
+    {"si": {"pays": "francia"}, "t": "Soy de Lyon. Está en el sureste, no muy lejos de los Alpes.", "fr": "Je suis de Lyon. C'est dans le sud-est, pas très loin des Alpes.", "va": "clima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Lyon… Dicen que allí se come de maravilla.", "fr": "Lyon… On dit qu'on y mange à merveille."}]},
+    {"si": {"pays": "belgica"}, "t": "Soy de Lieja, en el este de Bélgica, cerca de Alemania.", "fr": "Je suis de Liège, dans l'est de la Belgique, près de l'Allemagne.", "va": "clima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Lieja, no la conozco. Ya tengo una razón para volver a Bélgica.", "fr": "Liège, je ne connais pas. J'ai déjà une raison de retourner en Belgique."}]},
+    {"si": {"pays": "suiza"}, "t": "Soy de Lausana. Está en el oeste, al lado de un lago muy grande.", "fr": "Je suis de Lausanne. C'est à l'ouest, au bord d'un très grand lac.", "va": "clima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Un lago y montañas… ¡Qué envidia!", "fr": "Un lac et des montagnes… Quelle chance !"}]},
+    {"t": "Soy de una ciudad pequeña, a unas dos horas de la capital.", "fr": "Je suis d'une petite ville, à environ deux heures de la capitale.", "va": "clima",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Ah, más o menos por aquí. ¡Gracias!", "fr": "Ah, à peu près par ici. Merci !"}]},
+    {"faux": true, "t": "Estoy de una ciudad pequeña, cerca de la capital.", "fr": "Je suis (estar) d'une petite ville, près de la capitale.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Soy de una ciudad pequeña… Para el origen, siempre «ser».", "fr": "« Soy de una ciudad pequeña »… Pour l'origine, toujours « ser »."}],
+     "aide": {"fr": "<b>L'origine se dit avec « ser »</b> : « Soy de una ciudad pequeña. » « estar » sert à dire où l'on se trouve : « Ahora estoy en Madrid. »"}},
+    {"repete": true, "t": "Perdone, ¿puede repetir la pregunta, por favor?", "fr": "Excusez-moi, pouvez-vous répéter la question, s'il vous plaît ?", "va": "donde",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Claro. ¿De qué ciudad o de qué región es usted?", "fr": "Bien sûr. De quelle ville ou de quelle région êtes-vous ?"}]}
+   ]
+  },
+  "clima": {
+   "dit": [
+    {"si": {"pays": "canada"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "Yo, cuando pienso en Canadá, pienso en nieve.", "fr": "Moi, quand je pense au Canada, je pense à la neige."},
+    {"qui": "b13_kursleiterin", "air": "question", "t": "¿Qué tiempo hace en su país? ¿Como en Madrid?", "fr": "Quel temps fait-il dans votre pays ? Comme à Madrid ?"}
+   ],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "En invierno hace muchísimo frío, a veces treinta grados bajo cero, y nieva durante meses.", "fr": "En hiver, il fait extrêmement froid, parfois moins trente, et il neige pendant des mois.", "va": "comida",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "¡Treinta bajo cero! Aquí, con dos grados, ya no sale nadie de casa.", "fr": "Moins trente ! Ici, à deux degrés, plus personne ne sort de chez soi."}]},
+    {"si": {"pays": "francia"}, "t": "Depende de la región. En el sur hace calor, como aquí, pero en el norte llueve mucho más.", "fr": "Ça dépend de la région. Dans le sud, il fait chaud, comme ici, mais dans le nord, il pleut beaucoup plus.", "va": "comida",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Como en España, entonces: el norte verde y el sur seco.", "fr": "Comme en Espagne, alors : le nord vert et le sud sec."}]},
+    {"si": {"pays": "belgica"}, "t": "Llueve mucho y casi nunca hace tanto calor como en Madrid. Siempre llevamos paraguas.", "fr": "Il pleut beaucoup et il ne fait presque jamais aussi chaud qu'à Madrid. Nous avons toujours un parapluie.", "va": "comida",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Pues aquí el paraguas lo va a usar poco.", "fr": "Eh bien, ici, le parapluie, vous n'allez pas beaucoup vous en servir."}]},
+    {"si": {"pays": "suiza"}, "t": "En las montañas nieva mucho en invierno y mucha gente esquía. Cerca del lago hace menos frío.", "fr": "En montagne, il neige beaucoup en hiver et beaucoup de gens font du ski. Près du lac, il fait moins froid.", "va": "comida",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Nieve de verdad. Aquí hay que subir a la sierra para verla.", "fr": "De la vraie neige. Ici, il faut monter dans la sierra pour en voir."}]},
+    {"t": "En mi país los veranos son más suaves. Aquí en Madrid, en cambio, en agosto no se puede salir a la calle.", "fr": "Dans mon pays, les étés sont plus doux. Ici à Madrid, en revanche, en août, on ne peut pas mettre le nez dehors.", "va": "comida",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Por eso en agosto Madrid se queda vacío: nos vamos todos a la playa.", "fr": "C'est pour ça qu'en août Madrid se vide : nous partons tous à la plage."}]},
+    {"faux": true, "t": "En invierno es muy frío.", "fr": "En hiver, « c'est » très froid.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Hace mucho frío, quiere decir. Sí, me lo imagino.", "fr": "« Hace mucho frío », vous voulez dire. Oui, j'imagine."}],
+     "aide": {"fr": "<b>Pour le temps qu'il fait, l'espagnol dit « hacer » + nom</b> : « hace frío », « hace calor », avec « mucho » et non « muy » : « En invierno hace mucho frío. »"}}
+   ]
+  },
+  "comida": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Ahora, lo más importante: ¿qué se come en su país? ¿Hay algún plato típico?", "fr": "Maintenant, le plus important : qu'est-ce qu'on mange dans votre pays ? Y a-t-il un plat typique ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "El plato típico es la poutine: patatas fritas con queso y salsa. También hacemos jarabe de arce.", "fr": "Le plat typique, c'est la poutine : des frites avec du fromage et de la sauce. Nous faisons aussi du sirop d'érable.", "va": "fiesta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "¿Patatas con queso y salsa? Eso lo quiero probar yo.", "fr": "Des frites avec du fromage et de la sauce ? Ça, je veux y goûter."}]},
+    {"si": {"pays": "francia"}, "t": "Comemos mucho queso, siempre con pan, antes del postre. Hay cientos de quesos diferentes.", "fr": "Nous mangeons beaucoup de fromage, toujours avec du pain, avant le dessert. Il existe des centaines de fromages différents.", "va": "fiesta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aquí, en cambio, el queso se toma al principio, de aperitivo.", "fr": "Ici, en revanche, le fromage se prend au début, à l'apéritif."}]},
+    {"si": {"pays": "belgica"}, "t": "Somos famosos por las patatas fritas, los gofres y el chocolate.", "fr": "Nous sommes célèbres pour les frites, les gaufres et le chocolat.", "va": "fiesta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Patatas, gofres y chocolate… Ya tenemos todos hambre.", "fr": "Frites, gaufres et chocolat… Nous avons déjà tous faim."}]},
+    {"si": {"pays": "suiza"}, "t": "En invierno comemos fondue o raclette, siempre con amigos o con la familia.", "fr": "En hiver, nous mangeons de la fondue ou de la raclette, toujours entre amis ou en famille.", "va": "fiesta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Queso caliente con amigos. ¡Qué buen plan!", "fr": "Du fromage chaud entre amis. Quel beau programme !"}]},
+    {"t": "Hay muchos platos típicos. Si quiere, la semana que viene traigo algo para probar.", "fr": "Il y a beaucoup de plats typiques. Si vous voulez, la semaine prochaine, j'apporte quelque chose à goûter.", "pose": {"probar": "si"}, "va": "fiesta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "¡Uy, sí, por favor! Me lo apunto.", "fr": "Oh oui, s'il vous plaît ! Je le note."}]},
+    {"faux": true, "t": "Es un plato sencillo, pero tiene mucho suceso.", "fr": "C'est un plat simple, mais il a beaucoup de « suceso ».",
+     "puis": [{"qui": "b13_kursleiterin", "air": "perplexe", "t": "¿Un suceso? ¿Ha pasado algo? Ah, que tiene mucho éxito.", "fr": "Un « suceso » ? Il s'est passé quelque chose ? Ah, il a beaucoup de succès."}],
+     "aide": {"fr": "<b>« suceso » est un faux ami</b> : c'est un événement, un fait divers. Le succès se dit « éxito » : « Tiene mucho éxito. »"}}
+   ]
+  },
+  "fiesta": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y hay alguna fiesta o alguna tradición especial?", "fr": "Et y a-t-il une fête ou une tradition particulière ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "El veinticuatro de junio es la fiesta nacional de Quebec. Hay música y fuegos por todas partes.", "fr": "Le vingt-quatre juin, c'est la fête nationale du Québec. Il y a de la musique et des feux partout.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "¡Anda, como nuestra noche de San Juan, con sus hogueras!", "fr": "Tiens, comme notre nuit de la Saint-Jean, avec ses feux de joie !"}]},
+    {"si": {"pays": "francia"}, "t": "El catorce de julio es la fiesta nacional. Por la noche hay fuegos artificiales y la gente baila en la calle.", "fr": "Le quatorze juillet, c'est la fête nationale. Le soir, il y a des feux d'artifice et les gens dansent dans la rue.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Bailar en la calle… Eso a los españoles nos gusta.", "fr": "Danser dans la rue… Ça, nous les Espagnols, on aime."}]},
+    {"si": {"pays": "belgica"}, "t": "El seis de diciembre viene San Nicolás y trae regalos a los niños.", "fr": "Le six décembre, saint Nicolas vient apporter des cadeaux aux enfants.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aquí los traen los Reyes Magos, el seis de enero. ¡Un mes más de espera!", "fr": "Ici, ce sont les Rois mages qui les apportent, le six janvier. Un mois d'attente en plus !"}]},
+    {"si": {"pays": "suiza"}, "t": "El uno de agosto es la fiesta nacional. Por la noche se encienden fuegos en las montañas.", "fr": "Le premier août, c'est la fête nationale. Le soir, on allume des feux dans les montagnes.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Fuegos en las montañas… Tiene que ser precioso.", "fr": "Des feux dans les montagnes… Ça doit être magnifique."}]},
+    {"t": "La Navidad es muy importante. Toda la familia cena junta el veinticuatro de diciembre.", "fr": "Noël est très important. Toute la famille dîne ensemble le vingt-quatre décembre.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Como aquí en Nochebuena. En eso nos parecemos.", "fr": "Comme ici pour le réveillon. Là-dessus, nous nous ressemblons."}]},
+    {"faux": true, "t": "El Navidad es muy importante en mi país.", "fr": "« Le » Noël est très important dans mon pays.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "La Navidad, en femenino. ¿Y cómo la celebran?", "fr": "« La Navidad », au féminin. Et comment la fêtez-vous ?"}],
+     "aide": {"fr": "<b>« Navidad » est féminin</b>, contrairement à « Noël » : « la Navidad », « en Navidad », « ¡Feliz Navidad! »."}}
+   ]
+  },
+  "sorpresa": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "Usted ya lleva un tiempo viviendo en Madrid. ¿Qué es lo que más le ha sorprendido de España?", "fr": "Vous vivez à Madrid depuis un moment déjà. Qu'est-ce qui vous a le plus étonné en Espagne ?"}],
+   "choix": [
+    {"t": "Los horarios. Aquí se come a las dos y media y se cena a las diez de la noche.", "fr": "Les horaires. Ici, on déjeune à deux heures et demie et on dîne à dix heures du soir.", "va": "horarios",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "¡Eso se lo oigo a todos mis alumnos!", "fr": "Ça, je l'entends de tous mes élèves !"}]},
+    {"t": "Que la gente se da dos besos para saludarse, incluso cuando no se conoce.", "fr": "Que les gens se font deux bises pour se saluer, même quand ils ne se connaissent pas.", "va": "besos",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Sí, aquí somos muy de besos.", "fr": "Oui, ici, nous sommes très bises."}]},
+    {"t": "Que la gente vive en la calle. A medianoche las terrazas siguen llenas, incluso con niños.", "fr": "Que les gens vivent dans la rue. À minuit, les terrasses sont encore pleines, même avec des enfants.", "va": "calle",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Es que en casa hace calor, y en la calle se está mejor.", "fr": "C'est qu'à la maison il fait chaud, et dans la rue on est mieux."}]},
+    {"faux": true, "t": "Me sorprende que la gente cena tan tarde.", "fr": "Ça m'étonne que les gens dînent (indicatif) si tard.",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Que la gente cene tan tarde. Con «me sorprende que», subjuntivo.", "fr": "« Que la gente cene tan tarde. » Avec « me sorprende que », le subjonctif."}],
+     "aide": {"fr": "<b>Après « me sorprende que », le verbe est au subjonctif</b> : « Me sorprende que la gente cene tan tarde. »"}},
+    {"repete": true, "t": "¿Perdón? No he entendido bien la pregunta.", "fr": "Pardon ? Je n'ai pas bien compris la question.", "va": "sorpresa",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "No pasa nada. ¿Qué cosas de España son nuevas o extrañas para usted?", "fr": "Ce n'est rien. Quelles choses de l'Espagne sont nouvelles ou étranges pour vous ?"}]}
+   ]
+  },
+  "horarios": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y a qué hora se cena en su país?", "fr": "Et à quelle heure dîne-t-on dans votre pays ?"}],
+   "choix": [
+    {"t": "En mi país se cena a las seis o a las siete. Aquí, en cambio, a esa hora todavía se merienda.", "fr": "Dans mon pays, on dîne à six ou sept heures. Ici, en revanche, à cette heure-là, on en est encore au goûter.", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "¡A las seis! A esa hora yo todavía estoy trabajando.", "fr": "À six heures ! À cette heure-là, moi, je travaille encore."}]},
+    {"t": "Mucho más temprano. Al principio tenía hambre toda la tarde, pero ya me he acostumbrado.", "fr": "Beaucoup plus tôt. Au début, j'avais faim tout l'après-midi, mais je m'y suis habitué (habituée).", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Para eso inventamos las tapas.", "fr": "C'est pour ça que nous avons inventé les tapas."}]}
+   ]
+  },
+  "besos": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y en su país cómo se saluda la gente?", "fr": "Et dans votre pays, comment les gens se saluent-ils ?"}],
+   "choix": [
+    {"t": "Con los amigos también nos damos besos, pero a la gente que no conocemos le damos la mano.", "fr": "Entre amis, nous nous faisons aussi la bise, mais aux gens que nous ne connaissons pas, nous serrons la main.", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Aquí dar la mano es para el banco o para una entrevista de trabajo.", "fr": "Ici, serrer la main, c'est pour la banque ou pour un entretien d'embauche."}]},
+    {"t": "En mi país somos un poco más fríos al principio. Aquí me gusta que la gente sea tan abierta.", "fr": "Dans mon pays, nous sommes un peu plus froids au début. Ici, j'aime que les gens soient si ouverts.", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Me alegro de que le guste.", "fr": "Je suis contente que ça vous plaise."}]}
+   ]
+  },
+  "calle": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y le gusta, o prefiere la tranquilidad?", "fr": "Et ça vous plaît, ou vous préférez la tranquillité ?"}],
+   "choix": [
+    {"t": "Me encanta. En mi país, a las nueve de la noche ya no hay nadie en la calle.", "fr": "J'adore. Dans mon pays, à neuf heures du soir, il n'y a plus personne dans la rue.", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "surprise", "t": "¡A las nueve! Aquí a esa hora estamos saliendo de casa.", "fr": "À neuf heures ! Ici, à cette heure-là, nous sortons de chez nous."}]},
+    {"t": "Me gusta mucho, pero a veces hay demasiado ruido para dormir.", "fr": "Ça me plaît beaucoup, mais parfois il y a trop de bruit pour dormir.", "va": "falta",
+     "puis": [{"qui": "b13_kursleiterin", "air": "amuse", "t": "Ya… En eso tiene usted toda la razón.", "fr": "Eh oui… Là-dessus, vous avez tout à fait raison."}]}
+   ]
+  },
+  "falta": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Y qué es lo que más echa de menos de su país?", "fr": "Et qu'est-ce qui vous manque le plus de votre pays ?"}],
+   "choix": [
+    {"t": "Echo de menos a mi familia y a mis amigos.", "fr": "Ma famille et mes amis me manquent.", "va": "familia",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "Claro, es normal.", "fr": "Bien sûr, c'est normal."}]},
+    {"t": "La comida de mi casa. Aquí se come muy bien, pero no es lo mismo.", "fr": "La cuisine de chez moi. Ici, on mange très bien, mais ce n'est pas pareil.", "va": "visita",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Eso dicen todos en esta clase. La comida de casa es la comida de casa.", "fr": "C'est ce que tout le monde dit dans cette classe. La cuisine de la maison, c'est la cuisine de la maison."}]},
+    {"t": "La verdad es que poca cosa. Estoy muy a gusto en Madrid.", "fr": "À vrai dire, pas grand-chose. Je me sens très bien à Madrid.", "va": "visita",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "¡Cuánto me alegro!", "fr": "Comme ça me fait plaisir !"}]},
+    {"faux": true, "t": "Echo de menos mi familia.", "fr": "Ma famille me manque (sans le « a »).",
+     "puis": [{"qui": "b13_kursleiterin", "air": "attentive", "t": "A su familia, claro. Con personas, no olvide la «a».", "fr": "« A su familia », bien sûr. Avec des personnes, n'oubliez pas le « a »."}],
+     "aide": {"fr": "<b>Devant un complément qui désigne des personnes, l'espagnol met « a »</b> : « Echo de menos a mi familia. » Pour une chose, pas de « a » : « Echo de menos el pan de mi país. »"}}
+   ]
+  },
+  "familia": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "¿Los ve a menudo?", "fr": "Vous les voyez souvent ?"}],
+   "choix": [
+    {"t": "Voy dos veces al año, en verano y en Navidad.", "fr": "J'y vais deux fois par an, en été et à Noël.", "va": "visita",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Entonces esas semanas serán muy especiales.", "fr": "Alors ces semaines-là doivent être très spéciales."}]},
+    {"t": "No mucho, pero hablamos por videollamada todos los domingos.", "fr": "Pas beaucoup, mais nous nous parlons en appel vidéo tous les dimanches.", "va": "visita",
+     "puis": [{"qui": "b13_kursleiterin", "air": "sourire", "t": "Menos mal que existen las videollamadas.", "fr": "Heureusement que les appels vidéo existent."}]}
+   ]
+  },
+  "visita": {
+   "dit": [{"qui": "b13_kursleiterin", "air": "question", "t": "La última pregunta: ¿cuándo nos recomienda visitar su país?", "fr": "Dernière question : quand nous conseillez-vous de visiter votre pays ?"}],
+   "choix": [
+    {"si": {"pays": "canada"}, "t": "En otoño, cuando los bosques están rojos y amarillos. Es precioso.", "fr": "En automne, quand les forêts sont rouges et jaunes. C'est magnifique.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "¡Qué ganas de verlo! Muchas gracias, ha sido una presentación estupenda.", "fr": "Comme j'ai envie de voir ça ! Merci beaucoup, c'était une excellente présentation."},
+      {"si": {"probar": "si"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "¡Y no se olvide de traer algo para probar la semana que viene!", "fr": "Et n'oubliez pas d'apporter quelque chose à goûter la semaine prochaine !"}]},
+    {"si": {"pays": "francia"}, "t": "En primavera o en septiembre, porque hace buen tiempo y hay menos turistas.", "fr": "Au printemps ou en septembre, parce qu'il fait beau et qu'il y a moins de touristes.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Buen consejo. Muchas gracias, ha sido una presentación estupenda.", "fr": "Bon conseil. Merci beaucoup, c'était une excellente présentation."},
+      {"si": {"probar": "si"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "¡Y no se olvide de traer algo para probar la semana que viene!", "fr": "Et n'oubliez pas d'apporter quelque chose à goûter la semaine prochaine !"}]},
+    {"si": {"pays": "belgica"}, "t": "En verano, porque los días son largos y se puede estar en las terrazas.", "fr": "En été, parce que les journées sont longues et qu'on peut rester en terrasse.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Terrazas sin cuarenta grados… ¡Me apunto! Muchas gracias, ha sido una presentación estupenda.", "fr": "Des terrasses sans quarante degrés… J'en suis ! Merci beaucoup, c'était une excellente présentation."},
+      {"si": {"probar": "si"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "¡Y no se olvide de traer algo para probar la semana que viene!", "fr": "Et n'oubliez pas d'apporter quelque chose à goûter la semaine prochaine !"}]},
+    {"si": {"pays": "suiza"}, "t": "En invierno para esquiar o en verano para caminar por la montaña.", "fr": "En hiver pour skier ou en été pour marcher en montagne.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "Entonces habrá que ir dos veces. Muchas gracias, ha sido una presentación estupenda.", "fr": "Alors il faudra y aller deux fois. Merci beaucoup, c'était une excellente présentation."},
+      {"si": {"probar": "si"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "¡Y no se olvide de traer algo para probar la semana que viene!", "fr": "Et n'oubliez pas d'apporter quelque chose à goûter la semaine prochaine !"}]},
+    {"t": "Vengan en verano. Les enseño mi ciudad con mucho gusto.", "fr": "Venez en été. Je vous montrerai ma ville avec grand plaisir.", "va": null,
+     "puis": [
+      {"qui": "b13_kursleiterin", "air": "sourire", "t": "¡Aceptamos la invitación! Muchas gracias, ha sido una presentación estupenda.", "fr": "Nous acceptons l'invitation ! Merci beaucoup, c'était une excellente présentation."},
+      {"si": {"probar": "si"}, "qui": "b13_kursleiterin", "air": "amuse", "t": "¡Y no se olvide de traer algo para probar la semana que viene!", "fr": "Et n'oubliez pas d'apporter quelque chose à goûter la semaine prochaine !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as présenté ton pays en espagnol : où il se trouve, son climat, ce qu'on y mange, une fête, et ce qui t'étonne en Espagne."}
+}

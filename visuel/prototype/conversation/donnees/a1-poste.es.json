@@ -1,0 +1,63 @@
+{
+ "id": "a1-poste",
+ "langue": "es",
+ "niveau": "A1",
+ "registre": "usted",
+ "titre": {"fr": "Un colis chez Correos"},
+ "intro": {"fr": "Tu envoies un colis à ta famille. Au guichet de Correos (la poste espagnole), à Madrid, il faut dire où il va, ce qu'il contient, et choisir la vitesse."},
+ "personnes": ["post_schalter"],
+ "debut": "ventanilla",
+ "prix": {"francia": 1890, "canada": 3990, "normal": 0, "urgente": 1000, "sello": 185, "ninguno": 0},
+ "panier": ["pais", "envio", "sello"],
+ "textes": {"pais_fr": {"cle": "pais", "francia": "en France", "canada": "au Canada"}},
+ "noeuds": {
+  "ventanilla": {
+   "dit": [
+    {"recit": {"fr": "Au bureau de Correos. Tu as pris un ticket ; ton numéro s'affiche."}},
+    {"qui": "post_schalter", "air": "sourire", "t": "Buenos días. ¿Qué desea?", "fr": "Bonjour. Que désirez-vous ?"}
+   ],
+   "choix": [
+    {"t": "Quiero enviar este paquete a Francia.", "fr": "Je veux envoyer ce colis en France.", "pose": {"pais": "francia"}, "va": "dentro"},
+    {"t": "Quiero enviar este paquete a Canadá.", "fr": "Je veux envoyer ce colis au Canada.", "pose": {"pais": "canada"}, "va": "dentro"},
+    {"faux": true, "t": "Quiero enviar este paquete en Francia.", "fr": "Je veux envoyer ce colis en France.",
+     "puis": [{"qui": "post_schalter", "air": "perplexe", "t": "¿En Francia? Pero estamos en Madrid…", "fr": "En France ? Mais nous sommes à Madrid…"}],
+     "aide": {"fr": "Pour la destination : <b>a</b> Francia, <b>a</b> Canadá. « en Francia », c'est être en France : le « en France » du français trompe."}}
+   ]
+  },
+  "dentro": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Póngalo aquí, en la báscula. ¿Qué hay dentro?", "fr": "Posez-le ici, sur la balance. Qu'est-ce qu'il y a dedans ?"}],
+   "choix": [
+    {"t": "Ropa y libros.", "fr": "Des vêtements et des livres.", "va": "rapido"},
+    {"t": "Un regalo para mi madre.", "fr": "Un cadeau pour ma mère.", "va": "rapido",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "¡Qué bonito!", "fr": "Comme c'est gentil !"}]},
+    {"repete": true, "t": "Perdone, no entiendo.", "fr": "Pardon, je ne comprends pas.", "va": "dentro",
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "¿Qué hay en el paquete? ¿Ropa, libros…?", "fr": "Qu'est-ce qu'il y a dans le colis ? Des vêtements, des livres… ?"}]}
+   ]
+  },
+  "rapido": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "¿Normal o urgente? El normal tarda una semana, más o menos.", "fr": "Normal ou urgent ? Le normal met une semaine, à peu près."}],
+   "choix": [
+    {"t": "Normal, por favor. No tengo prisa.", "fr": "Normal, s'il vous plaît. Je ne suis pas pressé(e).", "pose": {"envio": "normal"}, "va": "sellos"},
+    {"t": "Urgente, por favor. ¿Cuánto cuesta?", "fr": "Urgent, s'il vous plaît. Combien ça coûte ?", "pose": {"envio": "urgente"}, "va": "sellos",
+     "puis": [{"qui": "post_schalter", "air": "attentive", "t": "Diez euros más.", "fr": "Dix euros de plus."}]}
+   ]
+  },
+  "sellos": {
+   "dit": [{"qui": "post_schalter", "air": "question", "t": "¿Algo más? ¿Necesita sellos?", "fr": "Autre chose ? Vous avez besoin de timbres ?"}],
+   "choix": [
+    {"t": "Sí, un sello para una postal, por favor.", "fr": "Oui, un timbre pour une carte postale, s'il vous plaît.", "pose": {"sello": "sello"}, "va": "pagar"},
+    {"t": "No, gracias. Nada más.", "fr": "Non, merci. Rien d'autre.", "pose": {"sello": "ninguno"}, "va": "pagar"}
+   ]
+  },
+  "pagar": {
+   "dit": [{"qui": "post_schalter", "air": "attentive", "t": "Son {a_payer}.", "dit": "Son {a_payer:mots}.", "fr": "Ça fait {a_payer}."}],
+   "choix": [
+    {"t": "Con tarjeta, por favor.", "fr": "Par carte, s'il vous plaît.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Aquí tiene su resguardo. ¡Que tenga un buen día!", "fr": "Voici votre reçu. Bonne journée !"}]},
+    {"t": "En efectivo. Aquí tiene.", "fr": "En espèces. Tenez.", "va": null,
+     "puis": [{"qui": "post_schalter", "air": "sourire", "t": "Gracias. ¡Hasta luego!", "fr": "Merci. Au revoir !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as envoyé ton colis {pais_fr}, dit ce qu'il contenait, choisi la vitesse et payé {a_payer}."}
+}

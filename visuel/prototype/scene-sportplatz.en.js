@@ -148,9 +148,9 @@ window.SCENE = {
   },
   {
    "id": "bank",
-   "mot": "bank",
+   "mot": "bench",
    "genre": "",
-   "pluriel": "banks",
+   "pluriel": "benches",
    "niveau": "A1",
    "theme": "city_a1",
    "personne": null,
@@ -165,8 +165,9 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la banque",
-   "es": "el banco"
+   "fr": "le banc",
+   "es": "la banca, el banco (para sentarse)",
+   "esp": "el banco (para sentarse)"
   },
   {
    "id": "mann",
@@ -334,7 +335,7 @@ window.SCENE = {
   },
   {
    "id": "hose",
-   "mot": "pants",
+   "mot": "shorts",
    "genre": "",
    "niveau": "A1",
    "theme": "clothes_a1",
@@ -350,12 +351,9 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "pantalon",
-   "es": "el pantalón, los pantalones",
-   "gb": {
-    "mot": "trousers",
-    "pluriel": null
-   }
+   "fr": "short, pantalon court",
+   "es": "los shorts, el pantalón corto",
+   "esp": "el pantalón corto"
   },
   {
    "id": "socke",
@@ -451,7 +449,7 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "la pipe, le sifflet",
+   "fr": "le sifflet",
    "es": "el silbato"
   },
   {

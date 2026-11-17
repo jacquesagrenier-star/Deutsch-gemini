@@ -1,0 +1,93 @@
+{
+ "id": "a2-correspondance",
+ "langue": "en",
+ "niveau": "A2",
+ "registre": "poli",
+ "titre": {"fr": "Un train en retard, une correspondance"},
+ "intro": {"fr": "Tu vas de Boston à Harrisburg, avec un changement à New York. Ton train a du retard : tu en parles au contrôleur."},
+ "personnes": ["zugbegleiter"],
+ "debut": "ticket",
+ "noeuds": {
+  "ticket": {
+   "dit": [
+    {"recit": {"fr": "Dans le train de Boston à New York. À New York, tu dois prendre un autre train pour Harrisburg. Le contrôleur arrive."}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Tickets, please!", "fr": "Billets, s'il vous plaît !"}
+   ],
+   "choix": [
+    {"t": "Here you are.", "fr": "Voici.", "va": "late",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Thank you.", "fr": "Merci."}]},
+    {"t": "Here is my ticket. I'm going to Harrisburg.", "fr": "Voici mon billet. Je vais à Harrisburg.", "va": "late",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Thank you. Harrisburg, with a change in New York.", "fr": "Merci. Harrisburg, avec un changement à New York."}]}
+   ]
+  },
+  "late": {
+   "dit": [{"recit": {"fr": "Le train roule très lentement depuis un moment. Tu t'inquiètes."}}],
+   "choix": [
+    {"t": "Excuse me, is the train late?", "fr": "Excusez-moi, le train est en retard ?", "va": "connection",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Yes, I'm afraid so. We're about 30 minutes late.", "fr": "Oui, malheureusement. Nous avons environ 30 minutes de retard.", "dit": "Yes, I'm afraid so. We're about thirty minutes late."}]},
+    {"t": "Excuse me, are we late?", "fr": "Excusez-moi, nous sommes en retard ?", "va": "connection",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Yes, I'm afraid so. We're about 30 minutes late.", "fr": "Oui, malheureusement. Nous avons environ 30 minutes de retard.", "dit": "Yes, I'm afraid so. We're about thirty minutes late."}]}
+   ]
+  },
+  "connection": {
+   "dit": [{"qui": "zugbegleiter", "air": "question", "t": "What time is your connection in New York?", "fr": "À quelle heure est votre correspondance à New York ?"}],
+   "choix": [
+    {"t": "At four fifteen. I think I'll miss it.", "fr": "À quatre heures et quart. Je crois que je vais la rater.", "va": "next",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Hmm, yes. We arrive at 4:30.", "fr": "Hum, oui. Nous arrivons à 16 h 30.", "dit": "Hmm, yes. We arrive at four thirty."}]},
+    {"t": "My train to Harrisburg leaves at four fifteen.", "fr": "Mon train pour Harrisburg part à quatre heures et quart.", "va": "next",
+     "puis": [{"qui": "zugbegleiter", "air": "attentive", "t": "Hmm. We arrive at 4:30, so you'll miss that one.", "fr": "Hum. Nous arrivons à 16 h 30, donc vous allez rater celui-là.", "dit": "Hmm. We arrive at four thirty, so you'll miss that one."}]},
+    {"faux": true, "t": "At four fifteen. I will lose my connection.", "fr": "À quatre heures et quart. Je vais égarer ma correspondance.",
+     "puis": [{"qui": "zugbegleiter", "air": "perplexe", "t": "Lose it? Did you drop something? Oh, you mean you'll miss your train!", "fr": "L'égarer ? Vous avez fait tomber quelque chose ? Ah, vous voulez dire que vous allez rater votre train !"}],
+     "aide": {"fr": "<b>« to lose », c'est perdre un objet ou un match.</b> Rater un train se dit « to miss » : « I'll miss my connection »."}}
+   ]
+  },
+  "next": {
+   "dit": [
+    {"recit": {"fr": "Il regarde sur son appareil."}},
+    {"qui": "zugbegleiter", "air": "sourire", "t": "Don't worry. The next train to Harrisburg leaves at 5:10.", "fr": "Ne vous inquiétez pas. Le prochain train pour Harrisburg part à 17 h 10.", "dit": "Don't worry. The next train to Harrisburg leaves at five ten."}
+   ],
+   "choix": [
+    {"t": "Okay. Which track does it leave from?", "t_gb": "Okay. Which platform does it leave from?", "fr": "D'accord. Il part de quelle voie ?", "va": "valid",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Track 12. But check the big board in the station, too.", "t_gb": "Platform 12. But check the big board in the station, too.", "fr": "Voie 12. Mais regardez aussi le grand tableau dans la gare.", "dit": "Track twelve. But check the big board in the station, too.", "dit_gb": "Platform twelve. But check the big board in the station, too."}]},
+    {"t": "Good. And where do I find that train?", "fr": "Bien. Et où est-ce que je trouve ce train ?", "va": "valid",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "On track 12. But check the big board in the station, too.", "t_gb": "On platform 12. But check the big board in the station, too.", "fr": "Voie 12. Mais regardez aussi le grand tableau dans la gare.", "dit": "On track twelve. But check the big board in the station, too.", "dit_gb": "On platform twelve. But check the big board in the station, too."}]},
+    {"faux": true, "t": "Okay. On which quay?", "fr": "D'accord. Sur quel quai (du port) ?",
+     "puis": [{"qui": "zugbegleiter", "air": "amuse", "t": "A quay? That's for boats! You mean the track.", "t_gb": "A quay? That's for boats! You mean the platform.", "fr": "Un quai ? C'est pour les bateaux ! Vous voulez dire la voie."}],
+     "aide": {"fr": "<b>« a quay », c'est un quai de port, pour les bateaux.</b> À la gare, on dit « the track » aux États-Unis et « the platform » en anglais britannique : « Which track does it leave from? »."}}
+   ]
+  },
+  "valid": {
+   "dit": [{"qui": "zugbegleiter", "air": "question", "t": "Is there anything else I can help you with?", "fr": "Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "Yes. Can I use my ticket on the next train?", "fr": "Oui. Je peux utiliser mon billet dans le train suivant ?", "va": "extra",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Yes, you can. I'll make a note on your ticket. There.", "fr": "Oui, bien sûr. Je mets un mot sur votre billet. Voilà."}]},
+    {"t": "Yes. Do I need a new ticket?", "fr": "Oui. Est-ce qu'il me faut un nouveau billet ?", "va": "extra",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "No, you don't. I'll make a note on your ticket. There.", "fr": "Non, pas du tout. Je mets un mot sur votre billet. Voilà."}]},
+    {"faux": true, "t": "Yes. Is my ticket always good?", "fr": "Oui. Mon billet est-il bon pour toujours ?",
+     "puis": [{"qui": "zugbegleiter", "air": "amuse", "t": "Always? No, not forever! But yes, it's still good today.", "fr": "Pour toujours ? Non, pas éternellement ! Mais oui, il est encore valable aujourd'hui."}],
+     "aide": {"fr": "<b>« always » veut dire « à chaque fois, tout le temps ».</b> « Toujours » au sens de « encore » se dit « still » : « Is my ticket still good? »."}}
+   ]
+  },
+  "extra": {
+   "dit": [{"qui": "zugbegleiter", "air": "sourire", "t": "And because of the delay, you get a free drink in the café car. Coffee, tea, or water?", "t_gb": "And because of the delay, you get a free drink in the buffet car. Coffee, tea or water?", "fr": "Et à cause du retard, vous avez droit à une boisson gratuite à la voiture-bar. Café, thé ou eau ?"}],
+   "choix": [
+    {"t": "A coffee would be nice. Thank you!", "fr": "Un café, ce serait bien. Merci !", "va": "bye",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Good choice.", "fr": "Bon choix."}]},
+    {"t": "Just water, please. That's very kind.", "fr": "Juste de l'eau, s'il vous plaît. C'est très gentil.", "va": "bye",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Water it is.", "fr": "De l'eau, alors."}]},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "extra",
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "Sure. The train is late, so you get a free drink. Coffee, tea, or water?", "t_gb": "Sure. The train is late, so you get a free drink. Coffee, tea or water?", "fr": "Bien sûr. Le train est en retard, donc vous avez une boisson gratuite. Café, thé ou eau ?"}]}
+   ]
+  },
+  "bye": {
+   "dit": [{"qui": "zugbegleiter", "air": "sourire", "t": "Just show your ticket in the café car. And sorry again for the delay.", "t_gb": "Just show your ticket in the buffet car. And sorry again for the delay.", "fr": "Montrez simplement votre billet à la voiture-bar. Et encore désolé pour le retard."}],
+   "choix": [
+    {"t": "No problem. Thank you for your help!", "fr": "Pas de problème. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "You're welcome. Have a good trip!", "t_gb": "You're welcome. Have a good journey!", "fr": "Je vous en prie. Bon voyage !"}]},
+    {"t": "Thanks a lot. Have a good day!", "fr": "Merci beaucoup. Bonne journée !", "va": null,
+     "puis": [{"qui": "zugbegleiter", "air": "sourire", "t": "You too. Have a good trip!", "t_gb": "You too. Have a good journey!", "fr": "Vous aussi. Bon voyage !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Ton train avait trente minutes de retard. Tu as trouvé le train suivant pour Harrisburg (cinq heures dix, voie douze), gardé ton billet et obtenu une boisson gratuite."}
+}

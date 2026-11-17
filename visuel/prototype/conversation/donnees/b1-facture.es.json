@@ -1,0 +1,127 @@
+{
+ "id": "b1-facture",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Réclamation sur une facture"},
+ "intro": {"fr": "Il y a une erreur sur ta facture de téléphone mobile. Tu appelles le service client de ton opérateur pour la faire corriger."},
+ "bilan": {"fr": "Tu as fait une réclamation au téléphone en espagnol : expliquer l'erreur, insister poliment, choisir le remboursement et demander une confirmation écrite."},
+ "personnes": ["b11_service_client"],
+ "debut": "cliente",
+ "noeuds": {
+  "cliente": {
+   "dit": [
+    {"recit": {"fr": "Tu regardes ta facture de téléphone : quelque chose ne va pas. Tu appelles le service client. Après deux minutes de musique, quelqu'un décroche."}},
+    {"qui": "b11_service_client", "air": "sourire", "t": "Telesol, atención al cliente, buenos días. ¿Me dice su número de cliente, por favor?", "fr": "Telesol, service client, bonjour. Pouvez-vous me donner votre numéro de client, s'il vous plaît ?"}
+   ],
+   "choix": [
+    {"t": "Buenos días. Sí, es el cuatro, cinco, cero, siete, dos, uno.", "fr": "Bonjour. Oui, c'est le quatre, cinq, zéro, sept, deux, un.", "va": "problema",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Cuatro, cinco, cero, siete, dos, uno… Gracias, ya veo su contrato.", "fr": "Quatre, cinq, zéro, sept, deux, un… Merci, je vois votre contrat."}]},
+    {"t": "Buenos días. Un momento, que lo busco… Cuatro, cinco, cero, siete, dos, uno.", "fr": "Bonjour. Un instant, je le cherche… Quatre, cinq, zéro, sept, deux, un.", "va": "problema",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Cuatro, cinco, cero, siete, dos, uno… Gracias, ya veo su contrato.", "fr": "Quatre, cinq, zéro, sept, deux, un… Merci, je vois votre contrat."}]},
+    {"faux": true, "t": "Buenos días. Mi número está el cuatro, cinco, cero, siete, dos, uno.", "fr": "Bonjour. Mon numéro est le quatre, cinq, zéro, sept, deux, un.",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Perdone, ¿me lo repite? ¿Su número es el…?", "fr": "Pardon, vous pouvez répéter ? Votre numéro est le… ?"}],
+     "aide": {"fr": "Pour dire ce qu'est une chose (un numéro, un nom), on emploie « ser » : <b>« mi número es el… »</b>, jamais « está ». Dis plutôt : « Es el cuatro, cinco, cero, siete, dos, uno »."}}
+   ]
+  },
+  "problema": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "¿En qué puedo ayudarle?", "fr": "En quoi puis-je vous aider ?"}],
+   "choix": [
+    {"t": "Llamo porque este mes me han cobrado la factura dos veces.", "fr": "J'appelle parce que ce mois-ci, on m'a prélevé la facture deux fois.", "pose": {"problema": "doble"}, "va": "verificar"},
+    {"t": "En mi factura aparece un servicio de pago que nunca he contratado.", "fr": "Sur ma facture apparaît un service payant que je n'ai jamais souscrit.", "pose": {"problema": "servicio"}, "va": "verificar"},
+    {"faux": true, "t": "Llamo porque hay un error sobre mi factura.", "fr": "J'appelle parce qu'il y a une erreur sur ma facture.",
+     "puis": [{"qui": "b11_service_client", "air": "question", "t": "¿Un error en la factura? ¿Qué error, exactamente?", "fr": "Une erreur sur la facture ? Quelle erreur, exactement ?"}],
+     "aide": {"fr": "« Sur la facture » se dit <b>« en la factura »</b> ; « sobre » voudrait dire « posé dessus » ou « au sujet de ». Et dis tout de suite laquelle : « Me han cobrado la factura dos veces »."}}
+   ]
+  },
+  "verificar": {
+   "dit": [
+    {"si": {"problema": "doble"}, "qui": "b11_service_client", "air": "attentive", "t": "A ver… Sí, veo dos cargos de veintinueve euros, el día tres y el día cinco. Puede que el segundo sea una factura anterior que estaba pendiente.", "fr": "Voyons… Oui, je vois deux prélèvements de vingt-neuf euros, le trois et le cinq. Il se peut que le second soit une facture antérieure restée impayée."},
+    {"si": {"problema": "servicio"}, "qui": "b11_service_client", "air": "attentive", "t": "A ver… Sí, aparece un servicio de música de siete euros con noventa y nueve al mes. Aquí figura que se activó desde su móvil.", "fr": "Voyons… Oui, il y a un service de musique à sept euros quatre-vingt-dix-neuf par mois. Il est indiqué ici qu'il a été activé depuis votre mobile."}
+   ],
+   "choix": [
+    {"si": {"problema": "doble"}, "t": "No puede ser. La factura anterior ya estaba pagada, lo he comprobado en el banco.", "fr": "Ce n'est pas possible. La facture précédente était déjà payée, je l'ai vérifié à la banque.", "va": "devolucion",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Un momento, que lo compruebo… Tiene usted razón: ha sido un error nuestro. Le pido disculpas.", "fr": "Un instant, je vérifie… Vous avez raison : c'est une erreur de notre part. Je vous présente mes excuses."}]},
+    {"si": {"problema": "servicio"}, "t": "Le aseguro que nunca he pedido ese servicio.", "fr": "Je vous assure que je n'ai jamais demandé ce service.", "va": "devolucion",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Un momento, que lo compruebo… Tiene usted razón: se activó por error. Le pido disculpas y lo doy de baja ahora mismo.", "fr": "Un instant, je vérifie… Vous avez raison : il a été activé par erreur. Je vous présente mes excuses et je le résilie tout de suite."}]},
+    {"t": "Perdone, pero eso no es posible. ¿Podría comprobarlo otra vez?", "fr": "Excusez-moi, mais ce n'est pas possible. Pourriez-vous vérifier à nouveau ?", "va": "devolucion",
+     "puis": [{"qui": "b11_service_client", "air": "attentive", "t": "Claro, un momento… Tiene usted razón: ha sido un error nuestro. Le pido disculpas, ya está corregido.", "fr": "Bien sûr, un instant… Vous avez raison : c'est une erreur de notre part. Je vous présente mes excuses, c'est corrigé."}]},
+    {"faux": true, "t": "Eso no es verdadero.", "fr": "Ce n'est pas vrai.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "¿Quiere decir que no es correcto? Explíqueme, por favor.", "fr": "Vous voulez dire que ce n'est pas correct ? Expliquez-moi, s'il vous plaît."}],
+     "aide": {"fr": "« Ce n'est pas vrai » se dit <b>« no es verdad »</b> ou « no es cierto » ; « verdadero » qualifie un nom (« una historia verdadera »). Et pour rester poli : « Perdone, pero eso no es posible »."}}
+   ]
+  },
+  "devolucion": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Le devolvemos el importe, por supuesto. ¿Prefiere un abono en la próxima factura o una transferencia a su cuenta?", "fr": "Nous vous remboursons le montant, bien entendu. Préférez-vous un avoir sur la prochaine facture ou un virement sur votre compte ?"}],
+   "choix": [
+    {"t": "Prefiero que me lo descuenten de la próxima factura.", "fr": "Je préfère que vous le déduisiez de la prochaine facture.", "va": "confirmacion",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Hecho. Lo verá en la factura del mes que viene.", "fr": "C'est fait. Vous le verrez sur la facture du mois prochain."}]},
+    {"t": "Prefiero la transferencia, si es posible.", "fr": "Je préfère le virement, si c'est possible.", "va": "cuenta"},
+    {"faux": true, "t": "Me gustaría mejor una transferencia.", "fr": "J'aimerais mieux un virement.",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "¿Prefiere la transferencia, entonces?", "fr": "Vous préférez le virement, alors ?"}],
+     "aide": {"fr": "<b>« Me gustaría mejor »</b> calque « j'aimerais mieux ». En espagnol, on dit simplement « prefiero ». Dis plutôt : « Prefiero la transferencia, si es posible »."}}
+   ]
+  },
+  "cuenta": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "Sin problema. ¿La hacemos a la misma cuenta donde cobramos las facturas?", "fr": "Sans problème. Nous le faisons sur le compte où nous prélevons les factures ?"}],
+   "choix": [
+    {"t": "Sí, a la misma cuenta, por favor.", "fr": "Oui, sur le même compte, s'il vous plaît.", "va": "confirmacion",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Perfecto. Lo recibirá dentro de tres a cinco días hábiles.", "fr": "Parfait. Vous le recevrez d'ici trois à cinq jours ouvrables."}]},
+    {"t": "Sí. ¿Cuántos días tarda en llegar el dinero?", "fr": "Oui. En combien de jours l'argent arrive-t-il ?", "va": "confirmacion",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "De tres a cinco días hábiles, como mucho.", "fr": "De trois à cinq jours ouvrables, au maximum."}]},
+    {"faux": true, "t": "Sí, en el mismo cuento, por favor.", "fr": "Oui, sur le même compte, s'il vous plaît.",
+     "puis": [{"qui": "b11_service_client", "air": "amuse", "t": "¿En el mismo cuento? Será en la misma cuenta, ¿no?", "fr": "Dans le même conte ? Sur le même compte, plutôt, non ?"}],
+     "aide": {"fr": "<b>« El cuento »</b>, c'est le conte, l'histoire. Le compte en banque est « la cuenta », et on vire « a » un compte. Dis plutôt : « Sí, a la misma cuenta, por favor »."}}
+   ]
+  },
+  "confirmacion": {
+   "dit": [{"qui": "b11_service_client", "air": "question", "t": "¿Puedo ayudarle en algo más?", "fr": "Puis-je vous aider pour autre chose ?"}],
+   "choix": [
+    {"t": "Sí. ¿Podría enviarme una confirmación por correo electrónico?", "fr": "Oui. Pourriez-vous m'envoyer une confirmation par courriel ?", "va": "oferta",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Claro. Se la envío ahora mismo a la dirección que tenemos en su ficha.", "fr": "Bien sûr. Je vous l'envoie tout de suite à l'adresse que nous avons dans votre dossier."}]},
+    {"t": "Me gustaría tenerlo por escrito. ¿Me manda un correo?", "fr": "J'aimerais l'avoir par écrit. Vous m'envoyez un courriel ?", "va": "oferta",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Por supuesto. Lo recibirá dentro de unos minutos.", "fr": "Bien entendu. Vous le recevrez dans quelques minutes."}]},
+    {"faux": true, "t": "Sí. Envíame una confirmación por correo.", "fr": "Oui. Envoie-moi une confirmation par courriel.",
+     "puis": [{"qui": "b11_service_client", "air": "surprise", "t": "Eh… sí, claro, ahora se la envío.", "fr": "Euh… oui, bien sûr, je vous l'envoie tout de suite."}],
+     "aide": {"fr": "<b>« Envíame »</b> est un impératif au tutoiement. Au usted, on dit « envíeme », et une question est plus polie. Dis plutôt : « ¿Podría enviarme una confirmación por correo electrónico? »."}}
+   ]
+  },
+  "oferta": {
+   "dit": [{"qui": "b11_service_client", "air": "sourire", "t": "Por cierto, veo que paga veintinueve euros al mes. Ahora tenemos una tarifa con más datos por veinticuatro. ¿Le interesa?", "fr": "Au fait, je vois que vous payez vingt-neuf euros par mois. Nous avons maintenant un forfait avec plus de données pour vingt-quatre. Cela vous intéresse ?"}],
+   "choix": [
+    {"t": "Puede ser. ¿Esa tarifa tiene permanencia?", "fr": "Peut-être. Ce forfait a-t-il une durée d'engagement ?", "va": "permanencia"},
+    {"t": "No, gracias. Me quedo con la tarifa que tengo.", "fr": "Non, merci. Je garde le forfait que j'ai.", "va": "incidencia",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Como prefiera, sin problema.", "fr": "Comme vous préférez, sans problème."}]},
+    {"faux": true, "t": "No, gracias, no soy interesante.", "fr": "Non, merci, je ne suis pas intéressant.",
+     "puis": [{"qui": "b11_service_client", "air": "amuse", "t": "Seguro que sí lo es… Pero entiendo que la oferta no le interesa.", "fr": "Je suis sûre que si… Mais je comprends que l'offre ne vous intéresse pas."}],
+     "aide": {"fr": "<b>« No soy interesante »</b> veut dire « je ne suis pas quelqu'un d'intéressant ». Dis plutôt : « No me interesa, gracias » ou « Me quedo con la tarifa que tengo »."}}
+   ]
+  },
+  "permanencia": {
+   "dit": [{"qui": "b11_service_client", "air": "attentive", "t": "Sí, doce meses. Pero mantiene su número y tiene llamadas ilimitadas.", "fr": "Oui, douze mois. Mais vous gardez votre numéro et vous avez les appels illimités."}],
+   "choix": [
+    {"t": "Entonces prefiero pensarlo unos días, gracias.", "fr": "Alors je préfère y réfléchir quelques jours, merci.", "va": "incidencia",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Como prefiera. La oferta es válida hasta final de mes.", "fr": "Comme vous préférez. L'offre est valable jusqu'à la fin du mois."}]},
+    {"t": "Doce meses me parece bien. Envíeme la información por correo, por favor.", "fr": "Douze mois, cela me convient. Envoyez-moi les informations par courriel, s'il vous plaît.", "va": "incidencia",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Muy bien, se la envío con la confirmación. Así la lee con calma.", "fr": "Très bien, je vous les envoie avec la confirmation. Ainsi, vous les lirez tranquillement."}]},
+    {"faux": true, "t": "Tengo que reflejar un poco.", "fr": "Je dois réfléchir un peu.",
+     "puis": [{"qui": "b11_service_client", "air": "perplexe", "t": "¿Reflejar? Ah, que quiere pensarlo.", "fr": "Refléter ? Ah, vous voulez y réfléchir."}],
+     "aide": {"fr": "<b>« Reflejar »</b> veut dire « refléter », comme un miroir. Réfléchir à quelque chose se dit « pensarlo ». Dis plutôt : « Prefiero pensarlo unos días »."}}
+   ]
+  },
+  "incidencia": {
+   "dit": [{"qui": "b11_service_client", "air": "sourire", "t": "Para terminar, le doy el número de incidencia, por si tiene que volver a llamar: tres, ocho, dos, seis, uno.", "fr": "Pour finir, je vous donne le numéro de dossier, au cas où vous devriez rappeler : trois, huit, deux, six, un."}],
+   "choix": [
+    {"t": "Lo apunto: tres, ocho, dos, seis, uno. Muchas gracias por su ayuda.", "fr": "Je le note : trois, huit, deux, six, un. Merci beaucoup pour votre aide.", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Gracias a usted por su paciencia. Que tenga un buen día.", "fr": "Merci à vous pour votre patience. Bonne journée."}]},
+    {"t": "Tres, ocho, dos, seis, uno. Gracias, ha sido usted muy amable.", "fr": "Trois, huit, deux, six, un. Merci, vous avez été très aimable.", "va": null,
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Gracias a usted, y disculpe las molestias. Que tenga un buen día.", "fr": "Merci à vous, et veuillez nous excuser pour le désagrément. Bonne journée."}]},
+    {"repete": true, "t": "Perdone, ¿puede repetir el número más despacio?", "fr": "Pardon, pouvez-vous répéter le numéro plus lentement ?", "va": "incidencia",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "Claro: tres… ocho… dos… seis… uno.", "fr": "Bien sûr : trois… huit… deux… six… un."}]},
+    {"faux": true, "t": "Tres, ocho, dos, seis, uno. Muchas gracias para su ayuda.", "fr": "Trois, huit, deux, six, un. Merci beaucoup pour votre aide.",
+     "puis": [{"qui": "b11_service_client", "air": "sourire", "t": "No hay de qué. Que tenga un buen día.", "fr": "Il n'y a pas de quoi. Bonne journée."}],
+     "aide": {"fr": "Pour remercier de quelque chose, c'est <b>« gracias por »</b>, jamais « gracias para ». Dis plutôt : « Muchas gracias por su ayuda »."}}
+   ]
+  }
+ }
+}

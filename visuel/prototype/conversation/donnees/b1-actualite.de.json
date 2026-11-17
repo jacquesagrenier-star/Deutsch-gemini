@@ -1,0 +1,143 @@
+{
+ "id": "b1-actualite",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "du",
+ "titre": {"fr": "Les nouvelles du jour, entre amis"},
+ "intro": {"fr": "Tu prends un café avec ton amie Nele pendant sa pause. Elle a lu les nouvelles : demain, les transports de Berlin sont en grève."},
+ "personnes": ["b13_freundin"],
+ "debut": "news",
+ "noeuds": {
+  "news": {
+   "dit": [
+    {"recit": {"fr": "Un café de Friedrichshain, en début d'après-midi. Nele pose son téléphone à côté de sa tasse."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "Hast du schon gehört? Morgen ist Warnstreik bei der BVG. Keine U-Bahn, keine Tram, kein Bus – den ganzen Tag!", "fr": "Tu es au courant ? Demain, il y a une grève d'avertissement à la BVG. Pas de métro, pas de tram, pas de bus, toute la journée !"}
+   ],
+   "choix": [
+    {"t": "Nein, das wusste ich noch nicht! Fährt wenigstens die S-Bahn?", "fr": "Non, je ne le savais pas encore ! Le S-Bahn roule, au moins ?", "va": "meinung",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ja, die S-Bahn fährt, die gehört ja zur Deutschen Bahn. Aber die wird furchtbar voll sein.", "fr": "Oui, le S-Bahn roule, il dépend de la Deutsche Bahn. Mais il sera affreusement plein."}]},
+    {"t": "Ja, ich habe es heute Morgen im Radio gehört. So ein Ärger!", "fr": "Oui, je l'ai entendu ce matin à la radio. Quelle plaie !", "va": "meinung",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Und die S-Bahn fährt zwar, aber die wird furchtbar voll sein.", "fr": "Et le S-Bahn roule, certes, mais il sera affreusement plein."}]},
+    {"faux": true, "t": "Nein, ich habe nicht die Nachrichten gesehen.", "fr": "Non, je n'ai pas les nouvelles vu.",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Du hast die Nachrichten nicht gesehen? Dann pass auf: Morgen fährt bei der BVG nichts.", "fr": "Tu n'as pas vu les nouvelles ? Alors écoute bien : demain, rien ne roule à la BVG."}],
+     "aide": {"fr": "<b>La place de « nicht » :</b> après le complément défini, avant le participe. « Ich habe die Nachrichten nicht gesehen » (ou « Ich habe keine Nachrichten gesehen »)."}},
+    {"repete": true, "t": "Wie bitte? Was ist morgen?", "fr": "Pardon ? Qu'est-ce qu'il y a demain ?", "va": "news",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Morgen streikt die BVG: keine U-Bahn, keine Tram, kein Bus.", "fr": "Demain, la BVG fait grève : pas de métro, pas de tram, pas de bus."}]}
+   ]
+  },
+  "meinung": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Was hältst du davon? Das ist schon der zweite Streik in diesem Monat!", "fr": "Tu en penses quoi ? C'est déjà la deuxième grève ce mois-ci !"}],
+   "choix": [
+    {"t": "Ich finde, dass die Fahrer recht haben. Sie arbeiten viel und verdienen zu wenig.", "fr": "Je trouve que les conducteurs ont raison. Ils travaillent beaucoup et gagnent trop peu.", "va": "weg",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Das sehe ich auch so. Aber für meine Kundinnen ist es trotzdem blöd: Die Hälfte sagt morgen bestimmt ab.", "fr": "Je le vois comme toi. Mais pour mes clientes, c'est quand même bête : la moitié va sûrement annuler demain."}]},
+    {"t": "Einerseits verstehe ich sie, andererseits ist es für alle sehr anstrengend.", "fr": "D'un côté je les comprends, de l'autre c'est très pénible pour tout le monde.", "va": "weg",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Genau. Und im Salon sagt morgen bestimmt die Hälfte der Kundinnen ab.", "fr": "Exactement. Et au salon, la moitié des clientes va sûrement annuler demain."}]},
+    {"t": "Meiner Meinung nach ist das zu viel. Zwei Streiks in einem Monat!", "fr": "À mon avis, c'est trop. Deux grèves en un mois !", "va": "contra"},
+    {"faux": true, "t": "Ich denke, dass die Fahrer haben recht.", "fr": "Je pense que les conducteurs ont raison (verbe mal placé).",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Du denkst, dass sie recht haben? Ja, kann sein.", "fr": "Tu penses qu'ils ont raison ? Oui, peut-être."}],
+     "aide": {"fr": "<b>Après « dass », le verbe conjugué va à la fin :</b> « Ich denke, dass die Fahrer recht haben. »"}}
+   ]
+  },
+  "contra": {
+   "dit": [{"qui": "b13_freundin", "air": "attentive", "t": "Na ja, aber wie sollen sie sonst mehr Geld bekommen? Ohne Streik hört ihnen doch niemand zu.", "fr": "Bon, mais comment obtiendraient-ils plus d'argent autrement ? Sans grève, personne ne les écoute."}],
+   "choix": [
+    {"t": "Da hast du auch wieder recht. Trotzdem ist es hart für alle, die zur Arbeit müssen.", "fr": "Là, tu n'as pas tort. C'est quand même dur pour tous ceux qui doivent aller travailler.", "va": "weg",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Das stimmt. Wir zwei zum Beispiel.", "fr": "C'est vrai. Nous deux, par exemple."}]},
+    {"t": "Vielleicht. Aber sie könnten zuerst länger miteinander sprechen.", "fr": "Peut-être. Mais ils pourraient d'abord discuter plus longtemps entre eux.", "va": "weg",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Sie reden seit Monaten! Na gut, wir werden uns da nicht einig.", "fr": "Ils discutent depuis des mois ! Bon, on ne tombera pas d'accord là-dessus."}]},
+    {"faux": true, "t": "Du hast recht. Ich bin einverstanden zu dir.", "fr": "Tu as raison. Je suis d'accord à toi.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Zu mir? Mit mir, meinst du! Na, das freut mich.", "fr": "« Zu mir » ? Avec moi, tu veux dire ! Eh bien, ça me fait plaisir."}],
+     "aide": {"fr": "<b>« d'accord avec » = « einverstanden mit »</b> (+ datif). Entre amis, on dit plus souvent : « Da hast du recht » ou « Das sehe ich auch so ». "}}
+   ]
+  },
+  "weg": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Und wie kommst du morgen zur Arbeit?", "fr": "Et tu vas au travail comment, demain ?"}],
+   "choix": [
+    {"t": "Ich fahre mit dem Fahrrad. Es sind nur acht Kilometer.", "fr": "J'y vais à vélo. Ce n'est que huit kilomètres.", "pose": {"weg": "rad"}, "va": "rad"},
+    {"t": "Ich frage meinen Chef, ob ich von zu Hause arbeiten darf.", "fr": "Je vais demander à mon chef si je peux travailler de chez moi.", "pose": {"weg": "home"}, "va": "homeoffice"},
+    {"t": "Du fährst doch mit dem Auto zum Salon, oder? Kannst du mich vielleicht mitnehmen?", "fr": "Tu vas au salon en voiture, non ? Tu pourrais peut-être m'emmener ?", "pose": {"weg": "auto"}, "va": "auto",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Klar, dein Büro liegt ja fast auf meinem Weg.", "fr": "Bien sûr, ton bureau est presque sur mon chemin."}]},
+    {"faux": true, "t": "Ich gehe bei Fuß.", "fr": "J'y vais « au pied ».",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "«Bei Fuß» sagt man zu einem Hund! Du gehst zu Fuß? So weit?", "fr": "« Bei Fuß », ça se dit à un chien ! Tu y vas à pied ? Aussi loin ?"}],
+     "aide": {"fr": "<b>« à pied » = « zu Fuß » :</b> « Ich gehe zu Fuß. » « Bei Fuß! » est l'ordre qu'on donne à un chien."}}
+   ]
+  },
+  "rad": {
+   "dit": [{"qui": "b13_freundin", "air": "surprise", "t": "Mit dem Rad? Morgen soll es den ganzen Tag regnen!", "fr": "À vélo ? Il paraît qu'il va pleuvoir toute la journée, demain !"}],
+   "choix": [
+    {"t": "Das macht nichts. Ich habe eine gute Regenjacke.", "fr": "Ça ne fait rien. J'ai une bonne veste de pluie.", "va": "mieten",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Respekt! Du bist ja schon ein echter Berliner Radfahrer.", "fr": "Chapeau ! Tu es déjà un vrai cycliste berlinois."}]},
+    {"t": "Oh nein. Dann frage ich lieber meinen Chef, ob ich zu Hause bleiben kann.", "fr": "Oh non. Alors je préfère demander à mon chef si je peux rester à la maison.", "pose": {"weg": "home"}, "va": "mieten",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Du hast es gut! Ich kann leider nicht von zu Hause Haare schneiden.", "fr": "Tu as de la chance ! Moi, je ne peux pas couper les cheveux depuis chez moi."}]}
+   ]
+  },
+  "homeoffice": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Du hast es gut, ich kann nicht von zu Hause Haare schneiden! Aber hattest du morgen nicht diese wichtige Sitzung?", "fr": "Tu as de la chance, moi je ne peux pas couper les cheveux depuis chez moi ! Mais tu n'avais pas cette réunion importante, demain ?"}],
+   "choix": [
+    {"t": "Stimmt. Dann nehme ich online teil, das geht auch.", "fr": "C'est vrai. Alors j'y participerai en ligne, ça marche aussi.", "va": "mieten",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Im Pullover und in Hausschuhen. Ich bin neidisch!", "fr": "En pull et en pantoufles. Je suis jalouse !"}]},
+    {"t": "Ach ja! Dann muss ich doch ins Büro. Kannst du mich im Auto mitnehmen?", "fr": "Ah oui ! Alors il faut quand même que j'aille au bureau. Tu peux m'emmener en voiture ?", "pose": {"weg": "auto"}, "va": "auto",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Klar, dein Büro liegt ja fast auf meinem Weg.", "fr": "Bien sûr, ton bureau est presque sur mon chemin."}]},
+    {"faux": true, "t": "Stimmt. Dann assistiere ich online.", "fr": "C'est vrai. Alors j'« assiste » en ligne.",
+     "puis": [{"qui": "b13_freundin", "air": "perplexe", "t": "Du assistierst? Wem denn? Ach so, du nimmst online teil!", "fr": "Tu assistes ? Qui donc ? Ah, tu y participes en ligne !"}],
+     "aide": {"fr": "<b>« assistieren » est un faux ami :</b> il veut dire « aider, seconder ». Assister à une réunion : « an der Sitzung teilnehmen ». Dis : « Dann nehme ich online teil. »"}}
+   ]
+  },
+  "auto": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Ich mache den Salon um halb neun auf, also fahre ich um halb acht los. Ist das zu früh für dich?", "fr": "J'ouvre le salon à huit heures et demie, donc je pars à sept heures et demie. C'est trop tôt pour toi ?"}],
+   "choix": [
+    {"t": "Nein, das passt. Wo soll ich auf dich warten?", "fr": "Non, ça me va. Je t'attends où ?", "va": "mieten",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "An der Warschauer Straße, vor dem Supermarkt. Sei pünktlich, ich kann da nicht parken!", "fr": "À la Warschauer Straße, devant le supermarché. Sois à l'heure, je ne peux pas me garer là !"}]},
+    {"t": "Halb acht ist früh, aber besser als zu Fuß. Ich bringe Kaffee mit!", "fr": "Sept heures et demie, c'est tôt, mais c'est mieux qu'à pied. J'apporte le café !", "va": "mieten",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Abgemacht! Ich hole dich vor deiner Haustür ab.", "fr": "Marché conclu ! Je passe te prendre devant chez toi."}]},
+    {"faux": true, "t": "Nein, das passt. Ich warte dich an der Ecke.", "fr": "Non, ça me va. Je t'attends au coin (sans préposition).",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Du wartest auf mich, meinst du? Gut – aber an welcher Ecke?", "fr": "Tu m'attends, tu veux dire ? Bien, mais à quel coin ?"}],
+     "aide": {"fr": "<b>« attendre quelqu'un » = « auf jemanden warten »</b> (+ accusatif) : « Ich warte auf dich. »"}}
+   ]
+  },
+  "mieten": {
+   "dit": [
+    {"recit": {"fr": "Nele reprend son téléphone et fait défiler les titres."}},
+    {"qui": "b13_freundin", "air": "surprise", "t": "Und hast du das gelesen? Die Mieten in Berlin sind schon wieder gestiegen. Ein WG-Zimmer kostet jetzt im Durchschnitt 650 Euro!", "dit": "Und hast du das gelesen? Die Mieten in Berlin sind schon wieder gestiegen. Ein WG-Zimmer kostet jetzt im Durchschnitt sechshundertfünfzig Euro!", "fr": "Et tu as lu ça ? Les loyers ont encore augmenté à Berlin. Une chambre en colocation coûte maintenant 650 euros en moyenne !"}
+   ],
+   "choix": [
+    {"t": "Das ist ja verrückt! Als ich gekommen bin, habe ich lange nach einer Wohnung gesucht.", "fr": "C'est fou ! Quand je suis arrivé, j'ai cherché un appartement pendant longtemps.", "va": "loesung",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ich weiß. Meine Schwester sucht seit einem Jahr und findet nichts.", "fr": "Je sais. Ma sœur cherche depuis un an et ne trouve rien."}]},
+    {"t": "Das überrascht mich nicht. Ich zahle selbst fast die Hälfte von meinem Gehalt für die Miete.", "fr": "Ça ne m'étonne pas. Moi-même, je paie presque la moitié de mon salaire pour le loyer.", "va": "loesung",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ich auch. Und die Miete für den Salon steigt nächstes Jahr auch noch.", "fr": "Moi aussi. Et le loyer du salon augmente encore l'an prochain."}]},
+    {"faux": true, "t": "Verrückt! Wenn ich gekommen bin, habe ich lange gesucht.", "fr": "C'est fou ! Quand (chaque fois que) je suis arrivé, j'ai cherché longtemps.",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Als du gekommen bist, meinst du? Ja, damals war es auch schon schwer.", "fr": "Quand tu es arrivé, tu veux dire ? Oui, à l'époque c'était déjà difficile."}],
+     "aide": {"fr": "<b>« quand » au passé, pour un événement unique = « als » :</b> « Als ich gekommen bin, … ». « Wenn » sert au présent, au futur, ou pour « chaque fois que ». "}}
+   ]
+  },
+  "loesung": {
+   "dit": [{"qui": "b13_freundin", "air": "question", "t": "Was meinst du: Was sollte die Stadt tun?", "fr": "À ton avis, que devrait faire la ville ?"}],
+   "choix": [
+    {"t": "Sie sollte mehr Wohnungen bauen, vor allem billige.", "fr": "Elle devrait construire plus de logements, surtout des logements bon marché.", "va": "schluss",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Ja, aber wo? Niemand will ein Hochhaus vor dem Fenster.", "fr": "Oui, mais où ? Personne ne veut d'une tour devant sa fenêtre."}]},
+    {"t": "Meiner Meinung nach sollten die Mieten nicht so schnell steigen dürfen.", "fr": "À mon avis, les loyers ne devraient pas avoir le droit d'augmenter aussi vite.", "va": "schluss",
+     "puis": [{"qui": "b13_freundin", "air": "attentive", "t": "Dafür gibt es ja schon ein Gesetz. Nur hält sich kaum jemand daran.", "fr": "Il y a déjà une loi pour ça. Sauf que presque personne ne la respecte."}]},
+    {"t": "Ehrlich gesagt weiß ich es nicht. Das Problem ist kompliziert.", "fr": "Franchement, je ne sais pas. Le problème est compliqué.", "va": "schluss",
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Stimmt. Beim Kaffee lösen wir das heute nicht mehr.", "fr": "C'est vrai. Ce n'est pas autour d'un café qu'on va régler ça aujourd'hui."}]},
+    {"faux": true, "t": "Die Stadt sollte mehr Wohnungen konstruieren.", "fr": "La ville devrait « construire » plus de logements.",
+     "puis": [{"qui": "b13_freundin", "air": "amuse", "t": "Konstruieren? Du klingst wie ein Ingenieur. Bauen, meinst du!", "fr": "« Konstruieren » ? On dirait un ingénieur. Tu veux dire « bauen » !"}],
+     "aide": {"fr": "<b>Construire une maison, un logement = « bauen ».</b> « Konstruieren » se dit pour une machine, un pont dessiné par un ingénieur. Dis : « Die Stadt sollte mehr Wohnungen bauen. »"}}
+   ]
+  },
+  "schluss": {
+   "dit": [
+    {"recit": {"fr": "Nele regarde l'heure et finit son café d'un trait."}},
+    {"si": {"weg": "auto"}, "qui": "b13_freundin", "air": "sourire", "t": "Oh, schon so spät! Meine nächste Kundin kommt gleich. Also, morgen um halb acht – nicht verschlafen!", "fr": "Oh, déjà si tard ! Ma prochaine cliente arrive. Alors, demain à sept heures et demie, et ne te réveille pas en retard !"},
+    {"si": {"weg": "rad"}, "qui": "b13_freundin", "air": "sourire", "t": "Oh, schon so spät! Meine nächste Kundin kommt gleich. Und du: Fahr morgen vorsichtig im Regen!", "fr": "Oh, déjà si tard ! Ma prochaine cliente arrive. Et toi : sois prudent demain sous la pluie !"},
+    {"si": {"weg": "home"}, "qui": "b13_freundin", "air": "sourire", "t": "Oh, schon so spät! Meine nächste Kundin kommt gleich. Und du: Viel Spaß morgen zu Hause!", "fr": "Oh, déjà si tard ! Ma prochaine cliente arrive. Et toi : amuse-toi bien demain à la maison !"}
+   ],
+   "choix": [
+    {"t": "Bis bald! Und danke, dass du mir Bescheid gesagt hast.", "fr": "À bientôt ! Et merci de m'avoir prévenu.", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Gern! Tschüss, mach's gut!", "fr": "De rien ! Salut, porte-toi bien !"}]},
+    {"t": "Tschüss, Nele! Ich schreibe dir, wenn sich morgen etwas ändert.", "fr": "Salut, Nele ! Je t'écris si quelque chose change demain.", "va": null,
+     "puis": [{"qui": "b13_freundin", "air": "sourire", "t": "Mach das. Bis bald!", "fr": "Fais ça. À bientôt !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as commenté les nouvelles du jour avec une amie : tu as donné ton avis sur la grève et sur les loyers, et tu t'es organisé pour demain."}
+}

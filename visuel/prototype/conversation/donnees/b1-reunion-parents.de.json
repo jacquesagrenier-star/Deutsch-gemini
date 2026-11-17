@@ -1,0 +1,124 @@
+{
+ "id": "b1-reunion-parents",
+ "langue": "de",
+ "niveau": "B1",
+ "registre": "Sie",
+ "titre": {"fr": "Le rendez-vous avec l'institutrice"},
+ "intro": {"fr": "Ta fille Lina, neuf ans, est en quatrième année de l'école primaire. Son institutrice, Mme Keller, te reçoit pour faire le point : les résultats, la lecture, les devoirs et la classe verte."},
+ "personnes": ["b11_institutrice"],
+ "debut": "begruessung",
+ "noeuds": {
+  "begruessung": {
+   "dit": [
+    {"recit": {"fr": "Seize heures, dans la salle de classe vide. Mme Keller t'attend à une petite table."}},
+    {"qui": "b11_institutrice", "air": "sourire", "t": "Guten Tag! Schön, dass Sie gekommen sind. Nehmen Sie doch Platz.", "fr": "Bonjour ! C'est bien que vous soyez venu(e). Asseyez-vous donc."}
+   ],
+   "choix": [
+    {"t": "Guten Tag, Frau Keller. Danke, dass Sie sich Zeit für mich nehmen.", "fr": "Bonjour, madame Keller. Merci de prendre du temps pour moi.", "va": "bericht"},
+    {"t": "Guten Tag. Ich bin gespannt, was Sie mir über Lina erzählen.", "fr": "Bonjour. J'ai hâte d'entendre ce que vous allez me dire de Lina.", "va": "bericht"},
+    {"faux": true, "t": "Hallo! Danke für deine Zeit.", "fr": "Salut ! Merci pour ton temps.",
+     "puis": [{"qui": "b11_institutrice", "air": "surprise", "t": "Oh … gern. Aber bleiben wir doch lieber beim Sie.", "fr": "Oh… avec plaisir. Mais restons-en plutôt au « Sie »."}],
+     "aide": {"fr": "<b>« deine »</b>, c'est le tutoiement. Avec l'institutrice de ton enfant, on se vouvoie : « Danke, dass <b>Sie</b> sich Zeit nehmen. »"}}
+   ]
+  },
+  "bericht": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "Zuerst das Gute: In Mathe ist Lina richtig stark. Aber beim Lesen hat sie Schwierigkeiten, und sie ist morgens oft sehr müde. Haben Sie eine Idee, woran das liegen könnte?", "fr": "D'abord la bonne nouvelle : en maths, Lina est vraiment forte. Mais en lecture, elle a des difficultés, et elle est souvent très fatiguée le matin. Avez-vous une idée d'où ça pourrait venir ?"}],
+   "choix": [
+    {"t": "Zu Hause sprechen wir Französisch. Deutsch liest sie nur in der Schule.", "fr": "À la maison, nous parlons français. Elle ne lit en allemand qu'à l'école.", "pose": {"grund": "sprache"}, "va": "vorschlag",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Das erklärt einiges. Zwei Sprachen sind ein Geschenk, aber das Lesen braucht dann etwas mehr Übung.", "fr": "Voilà qui explique bien des choses. Deux langues, c'est un cadeau, mais la lecture demande alors un peu plus d'entraînement."}]},
+    {"t": "Sie geht oft zu spät ins Bett, weil sie nicht einschlafen kann.", "fr": "Elle se couche souvent trop tard, parce qu'elle n'arrive pas à s'endormir.", "pose": {"grund": "spaet"}, "va": "vorschlag",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "Ach so. In ihrem Alter braucht sie noch viel Schlaf. Vielleicht hilft es, abends zusammen zu lesen – das ist ruhig und übt gleichzeitig.", "fr": "Ah, d'accord. À son âge, elle a encore besoin de beaucoup de sommeil. Lire ensemble le soir aiderait peut-être : c'est calme, et ça entraîne en même temps."}]},
+    {"t": "Ich glaube, sie hat Streit mit einer Mitschülerin und schläft deshalb schlecht.", "fr": "Je crois qu'elle s'est disputée avec une camarade de classe et que c'est pour ça qu'elle dort mal.", "pose": {"grund": "streit"}, "va": "streit"},
+    {"faux": true, "t": "Sie hat neun Jahre und spielt abends lange.", "fr": "Elle a neuf ans et joue longtemps le soir.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sie ist neun Jahre alt, ja. Und sie geht abends spät ins Bett, meinen Sie?", "fr": "Elle a neuf ans, oui. Et elle se couche tard le soir, vous voulez dire ?"}],
+     "aide": {"fr": "L'âge se dit avec <b>« sein »</b>, pas avec « haben » : « Sie <b>ist</b> neun Jahre alt. » Pour expliquer la fatigue : « Sie geht oft zu spät ins Bett. »"}}
+   ]
+  },
+  "streit": {
+   "dit": [{"qui": "b11_institutrice", "air": "surprise", "t": "Oh, das wusste ich nicht. Hat Lina Ihnen erzählt, was passiert ist?", "fr": "Oh, je ne le savais pas. Lina vous a-t-elle raconté ce qui s'est passé ?"}],
+   "choix": [
+    {"t": "Ein Mädchen aus der Klasse lässt sie in der Pause nicht mitspielen.", "fr": "Une fille de la classe ne la laisse pas jouer avec les autres à la récréation.", "va": "vorschlag",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "Danke, dass Sie mir das sagen. Ich achte in der Pause darauf und spreche mit beiden Mädchen.", "fr": "Merci de me le dire. J'y ferai attention à la récréation et je parlerai aux deux filles."}]},
+    {"t": "Sie sagt nicht viel, aber sie kommt oft traurig nach Hause.", "fr": "Elle ne dit pas grand-chose, mais elle rentre souvent triste à la maison.", "va": "vorschlag",
+     "puis": [{"qui": "b11_institutrice", "air": "attentive", "t": "Danke, dass Sie mir das sagen. Ich achte in der Pause darauf und spreche in Ruhe mit Lina.", "fr": "Merci de me le dire. J'y ferai attention à la récréation et je parlerai tranquillement avec Lina."}]},
+    {"faux": true, "t": "Ein Mädchen ist nicht nett mit sie.", "fr": "Une fille n'est pas gentille avec elle.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Ein Mädchen ist nicht nett zu ihr? Was macht es denn?", "fr": "Une fille n'est pas gentille avec elle ? Que fait-elle donc ?"}],
+     "aide": {"fr": "« Gentil avec quelqu'un » se dit <b>« nett zu »</b> + datif : « Ein Mädchen ist nicht nett <b>zu ihr</b>. »"}}
+   ]
+  },
+  "vorschlag": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Fürs Lesen habe ich zwei Vorschläge: Lesen Sie jeden Tag eine Viertelstunde mit Lina, und gehen Sie zusammen in die Bibliothek. Außerdem gibt es bei uns am Dienstagnachmittag eine Leseförderung in einer kleinen Gruppe.", "fr": "Pour la lecture, j'ai deux propositions : lisez chaque jour un quart d'heure avec Lina, et allez ensemble à la bibliothèque. De plus, nous avons le mardi après-midi un soutien en lecture, en petit groupe."}],
+   "choix": [
+    {"t": "Das klingt gut. Kostet die Leseförderung etwas?", "fr": "Ça me paraît bien. Le soutien en lecture est-il payant ?", "va": "hausaufgaben",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Nein, sie ist kostenlos. Sie müssen Lina nur anmelden, das Formular gebe ich Ihnen gleich mit.", "fr": "Non, il est gratuit. Il suffit d'inscrire Lina ; je vous donne le formulaire tout à l'heure."}]},
+    {"t": "Um wie viel Uhr ist die Leseförderung, und wie lange dauert sie?", "fr": "À quelle heure a lieu le soutien en lecture, et combien de temps dure-t-il ?", "va": "hausaufgaben",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Dienstags von vierzehn bis fünfzehn Uhr, gleich nach dem Mittagessen. Das Formular für die Anmeldung gebe ich Ihnen mit.", "fr": "Le mardi de quatorze à quinze heures, juste après le déjeuner. Je vous donne le formulaire d'inscription."}]},
+    {"faux": true, "t": "Wenn ist die Leseförderung genau?", "fr": "Quand a lieu le soutien en lecture, exactement ?",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Wann sie ist, meinen Sie? Dienstags nach dem Mittagessen.", "fr": "Quand il a lieu, vous voulez dire ? Le mardi, après le déjeuner."}],
+     "aide": {"fr": "Dans une question, « quand » se dit <b>« wann »</b> : « Wann ist die Leseförderung? ». « Wenn » ne sert que dans une subordonnée (si, quand)."}},
+    {"repete": true, "t": "Entschuldigung, könnten Sie mir das mit der Leseförderung noch einmal erklären?", "fr": "Excusez-moi, pourriez-vous m'expliquer encore une fois ce soutien en lecture ?", "va": "vorschlag",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Gern. Das ist ein kleiner Extrakurs: Eine Kollegin liest am Dienstagnachmittag mit vier oder fünf Kindern und übt mit ihnen.", "fr": "Volontiers. C'est un petit cours en plus : une collègue lit le mardi après-midi avec quatre ou cinq enfants et s'exerce avec eux."}]}
+   ]
+  },
+  "hausaufgaben": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "Noch etwas: Lina vergisst ziemlich oft ihre Hausaufgaben. Diese Woche schon zweimal.", "fr": "Autre chose : Lina oublie assez souvent ses devoirs. Déjà deux fois cette semaine."}],
+   "choix": [
+    {"t": "Das wusste ich nicht. Ich schaue ab jetzt jeden Abend ins Hausaufgabenheft.", "fr": "Je ne le savais pas. À partir de maintenant, je regarde chaque soir le cahier de textes.", "va": "klassenfahrt",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Das wäre eine große Hilfe. Ich lasse die Kinder die Aufgaben immer ins Heft schreiben.", "fr": "Ce serait d'une grande aide. Je fais toujours noter les devoirs dans le cahier."}]},
+    {"t": "Oh, das tut mir leid. Ich werde jeden Abend kontrollieren, ob sie alles gemacht hat.", "fr": "Oh, je suis désolé(e). Je vérifierai chaque soir si elle a tout fait.", "va": "klassenfahrt",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Das wäre eine große Hilfe. Die Aufgaben stehen immer im Hausaufgabenheft.", "fr": "Ce serait d'une grande aide. Les devoirs sont toujours notés dans le cahier de textes."}]},
+    {"faux": true, "t": "Ich werde ihre Hausaufgaben jeden Abend machen.", "fr": "Je ferai ses devoirs chaque soir.",
+     "puis": [{"qui": "b11_institutrice", "air": "amuse", "t": "Nein, nein – machen soll Lina sie selbst! Aber kontrollieren dürfen Sie sie gern.", "fr": "Non, non : c'est Lina qui doit les faire elle-même ! Mais vous pouvez volontiers les vérifier."}],
+     "aide": {"fr": "<b>« die Hausaufgaben machen »</b>, c'est les faire soi-même. Pour dire que tu vérifies : « Ich werde jeden Abend <b>kontrollieren</b>, ob sie alles gemacht hat. »"}}
+   ]
+  },
+  "klassenfahrt": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Und dann machen wir im Mai unsere Klassenfahrt an die Ostsee, drei Tage. Sie kostet hundertzwanzig Euro pro Kind.", "fr": "Et puis, en mai, nous partons en classe verte au bord de la Baltique, trois jours. Elle coûte cent vingt euros par enfant."}],
+   "choix": [
+    {"t": "Das ist in Ordnung. Lina freut sich bestimmt sehr darauf.", "fr": "C'est d'accord. Lina s'en réjouit sûrement beaucoup.", "va": "termin",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Oh ja, die Kinder reden schon von nichts anderem! Den Zettel für die Anmeldung gebe ich Lina morgen mit.", "fr": "Oh oui, les enfants ne parlent déjà plus que de ça ! Je donnerai demain la fiche d'inscription à Lina."}]},
+    {"t": "Hundertzwanzig Euro sind im Moment schwierig für uns. Gibt es eine Unterstützung?", "fr": "Cent vingt euros, c'est difficile pour nous en ce moment. Existe-t-il une aide ?", "va": "hilfe"},
+    {"faux": true, "t": "Kein Problem, ich bezahle die Reise in Mai.", "fr": "Pas de problème, je paie le voyage en mai.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Im Mai fahren wir. Bezahlen müssten Sie aber schon bis Ende März.", "fr": "C'est en mai que nous partons. Mais il faudrait payer avant fin mars."}],
+     "aide": {"fr": "Devant un mois, on dit <b>« im »</b> : « im Mai ». Pour accepter simplement : « Das ist in Ordnung. »"}}
+   ]
+  },
+  "hilfe": {
+   "dit": [{"qui": "b11_institutrice", "air": "attentive", "t": "Ja, die gibt es. Wenn Sie zum Beispiel Wohngeld oder Bürgergeld bekommen, kann das Bildungspaket die Kosten für die Klassenfahrt übernehmen. Den Antrag bekommen Sie bei uns im Sekretariat.", "fr": "Oui, il y en a une. Si vous touchez par exemple l'aide au logement ou le revenu citoyen, le « Bildungspaket » (une aide pour l'école et les loisirs) peut prendre en charge les frais de la classe verte. Vous trouverez la demande chez nous, au secrétariat."}],
+   "choix": [
+    {"t": "Das ist gut zu wissen. Ich hole mir morgen den Antrag im Sekretariat.", "fr": "C'est bon à savoir. J'irai chercher la demande demain au secrétariat.", "va": "termin",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Machen Sie das. Und keine Sorge: Viele Familien nutzen das.", "fr": "Faites donc. Et ne vous inquiétez pas : beaucoup de familles y ont recours."}]},
+    {"t": "Vielen Dank. Kann mir jemand beim Ausfüllen helfen?", "fr": "Merci beaucoup. Quelqu'un peut-il m'aider à la remplir ?", "va": "termin",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Natürlich, unsere Sekretärin hilft Ihnen gern. Es ist nur eine Seite.", "fr": "Bien sûr, notre secrétaire vous aidera volontiers. Il n'y a qu'une page."}]},
+    {"faux": true, "t": "Danke. Ich will die Hilfe morgen fragen.", "fr": "Merci. Je veux demander l'aide demain.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Fragen? … Ach, Sie möchten sie beantragen! Ja, im Sekretariat.", "fr": "Poser une question ?… Ah, vous voulez en faire la demande ! Oui, au secrétariat."}],
+     "aide": {"fr": "<b>« fragen »</b>, c'est poser une question. Demander une aide officielle se dit <b>« beantragen »</b> : « Ich möchte die Hilfe beantragen », ou « Ich hole mir den Antrag »."}}
+   ]
+  },
+  "termin": {
+   "dit": [{"qui": "b11_institutrice", "air": "question", "t": "Ich schlage vor, wir sprechen in zwei Monaten noch einmal und schauen, wie es mit dem Lesen läuft. Einverstanden?", "fr": "Je propose que nous nous reparlions dans deux mois pour voir où en est la lecture. D'accord ?"}],
+   "choix": [
+    {"t": "Ja, gern. Dann sehen wir, ob es besser geworden ist.", "fr": "Oui, volontiers. Nous verrons alors si ça s'est amélioré.", "va": "ende",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Genau. Ich schreibe Ihnen den Termin ins Hausaufgabenheft.", "fr": "Exactement. Je vous noterai la date dans le cahier de textes."}]},
+    {"t": "Sehr gern. Schreiben Sie mir bitte, wann es Ihnen passt.", "fr": "Très volontiers. Écrivez-moi quand cela vous convient, s'il vous plaît.", "va": "ende",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Mache ich. Ich schreibe Ihnen den Termin ins Hausaufgabenheft.", "fr": "Entendu. Je vous noterai la date dans le cahier de textes."}]},
+    {"faux": true, "t": "Ja, vor zwei Monaten sehen wir uns wieder.", "fr": "Oui, il y a deux mois, nous nous revoyons.",
+     "puis": [{"qui": "b11_institutrice", "air": "perplexe", "t": "Vor zwei Monaten? Das ist ja schon vorbei! In zwei Monaten, meinen Sie.", "fr": "Il y a deux mois ? Mais c'est déjà passé ! Dans deux mois, vous voulez dire."}],
+     "aide": {"fr": "<b>« vor zwei Monaten »</b> veut dire « il y a deux mois ». « Dans deux mois » se dit <b>« in zwei Monaten »</b>."}}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "b11_institutrice", "air": "sourire", "t": "Dann danke ich Ihnen für das Gespräch. Und sagen Sie Lina bitte: In Mathe bin ich sehr stolz auf sie!", "fr": "Alors merci pour cet échange. Et dites à Lina, s'il vous plaît : en maths, je suis très fière d'elle !"}],
+   "choix": [
+    {"t": "Das sage ich ihr gern. Vielen Dank für Ihre Hilfe!", "fr": "Je le lui dirai avec plaisir. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Sehr gern. Auf Wiedersehen!", "fr": "Avec plaisir. Au revoir !"}]},
+    {"t": "Da wird sie sich freuen. Auf Wiedersehen, Frau Keller!", "fr": "Elle sera contente. Au revoir, madame Keller !", "va": null,
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Auf Wiedersehen, und viele Grüße an Lina!", "fr": "Au revoir, et bien le bonjour à Lina !"}]},
+    {"faux": true, "t": "Danke, ich sage sie das.", "fr": "Merci, je lui dis ça.",
+     "puis": [{"qui": "b11_institutrice", "air": "sourire", "t": "Ja, sagen Sie es ihr bitte!", "fr": "Oui, dites-le-lui, s'il vous plaît !"}],
+     "aide": {"fr": "« Dire à quelqu'un » demande le datif : <b>« ihr »</b>, pas « sie ». « Das sage ich <b>ihr</b> gern. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait le point avec l'institutrice de Lina : tu as expliqué sa fatigue, posé une question sur le soutien en lecture, promis de vérifier les devoirs et réglé la question de la classe verte."}
+}

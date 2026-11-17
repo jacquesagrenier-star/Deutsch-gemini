@@ -1,0 +1,66 @@
+{
+ "id": "a1-cours",
+ "langue": "en",
+ "niveau": "A1",
+ "registre": "poli",
+ "titre": {"fr": "S'inscrire à un cours d'anglais"},
+ "intro": {"fr": "Tu veux suivre un cours d'anglais près de chez toi. Au centre de cours pour adultes du quartier, une enseignante s'occupe des inscriptions."},
+ "personnes": ["kursleiterin_sprachschule"],
+ "debut": "hi",
+ "noeuds": {
+  "hi": {
+   "dit": [
+    {"recit": {"fr": "Dans un centre de cours pour adultes de ton quartier, à Boston. Une femme à lunettes t'accueille au bureau des inscriptions."}},
+    {"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Hi there! Can I help you?", "fr": "Bonjour ! Je peux vous aider ?"}
+   ],
+   "choix": [
+    {"t": "Yes, please. I'd like to sign up for an English class.", "t_gb": "Yes, please. I'd like to sign up for an English course.", "fr": "Oui, s'il vous plaît. Je voudrais m'inscrire à un cours d'anglais.", "va": "level",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Of course! I'm Marta, I teach here.", "fr": "Bien sûr ! Je suis Marta, j'enseigne ici."}]},
+    {"t": "Hi. Do you have English classes for beginners?", "t_gb": "Hello. Do you have English courses for beginners?", "fr": "Bonjour. Vous avez des cours d'anglais pour débutants ?", "va": "level",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Yes, we do! I'm Marta, I teach here.", "fr": "Oui ! Je suis Marta, j'enseigne ici."}]},
+    {"faux": true, "t": "Yes. I want to follow an English class.", "fr": "Oui. Je veux suivre un cours d'anglais.",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "perplexe", "t": "Follow…? Oh, you want to take a class!", "fr": "Suivre… ? Ah, vous voulez prendre un cours !"}],
+     "aide": {"fr": "« Suivre un cours » ne se dit pas « follow » (suivre quelqu'un dans la rue) : <b>take a class</b>, ou <b>sign up for a class</b> pour s'inscrire."}}
+   ]
+  },
+  "level": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Do you speak some English?", "fr": "Vous parlez un peu anglais ?"}],
+   "choix": [
+    {"t": "Yes, a little. I started two months ago.", "fr": "Oui, un peu. J'ai commencé il y a deux mois.", "va": "time",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "I can tell! The beginner class is perfect for you.", "fr": "Ça s'entend ! Le cours pour débutants est parfait pour vous."}]},
+    {"t": "Just a little. I'm a beginner.", "fr": "Juste un peu. Je suis débutant(e).", "va": "time",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "That's fine. The class is for beginners.", "fr": "Très bien. Le cours est pour les débutants."}]},
+    {"repete": true, "t": "Slowly, please.", "fr": "Lentement, s'il vous plaît.", "va": "level",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Sure. Do… you… speak… some English?", "fr": "Bien sûr. Vous… parlez… un peu… anglais ?"}]}
+   ]
+  },
+  "time": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "We have a morning class and an evening class. Which is better for you?", "fr": "Nous avons un cours le matin et un cours le soir. Lequel vous convient le mieux ?"}],
+   "choix": [
+    {"t": "The evening, please. I work during the day.", "fr": "Le soir, s'il vous plaît. Je travaille la journée.", "va": "questions",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Okay: Mondays and Wednesdays, from 6 to 8 p.m.", "dit": "Okay: Mondays and Wednesdays, from six to eight in the evening.", "fr": "D'accord : le lundi et le mercredi, de 18 h à 20 h."}]},
+    {"t": "The morning, please.", "fr": "Le matin, s'il vous plaît.", "va": "questions",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Okay: Monday to Friday, from 9 to 12.", "dit": "Okay: Monday to Friday, from nine to twelve.", "fr": "D'accord : du lundi au vendredi, de 9 h à 12 h."}]}
+   ]
+  },
+  "questions": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "question", "t": "Any questions?", "fr": "Des questions ?"}],
+   "choix": [
+    {"t": "Yes. How much is the class?", "t_gb": "Yes. How much is the course?", "fr": "Oui. Combien coûte le cours ?", "va": "form",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "It's free! It's a city program.", "fr": "C'est gratuit ! C'est un programme de la ville."}]},
+    {"t": "Yes. When does it start?", "fr": "Oui. Ça commence quand ?", "va": "form",
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "attentive", "t": "On Monday, December 7th.", "dit": "On Monday, December seventh.", "fr": "Le lundi 7 décembre."}]}
+   ]
+  },
+  "form": {
+   "dit": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Then please fill out this form: your name, address and phone number.", "t_gb": "Then please fill in this form: your name, address and phone number.", "fr": "Alors remplissez ce formulaire, s'il vous plaît : votre nom, votre adresse et votre numéro de téléphone."}],
+   "choix": [
+    {"t": "Sure. Do you have a pen?", "t_gb": "Of course. Have you got a pen?", "fr": "Bien sûr. Vous avez un stylo ?", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "Here you go. See you in class!", "fr": "Tenez. À bientôt en cours !"}]},
+    {"t": "Okay. Thank you for your help!", "fr": "D'accord. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "kursleiterin_sprachschule", "air": "sourire", "t": "You're welcome. See you on Monday!", "fr": "Je vous en prie. À lundi !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu t'es inscrit(e) au cours d'anglais de Marta : ton niveau, le matin ou le soir, le prix ou la date de début, et le formulaire."}
+}

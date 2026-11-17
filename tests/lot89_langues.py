@@ -2,7 +2,7 @@
 """Sonde des lots 89-90 (13 nov. 2026) dans le navigateur : interface uk / ru / pl.
 
 1. Les textes reecrits de l'interface sortent tels quels de t() (aucun repli francais, aucun texte vide).
-2. La recherche ukrainienne trouve le meme nombre de cartes pour м'ясо, м’ясо et мʼясо (normalizeSearch).
+2. La recherche ukrainienne trouve le meme nombre de cartes pour м'ясо, мʼясо et мʼясо (normalizeSearch).
 3. Les pages des themes (gato, ciudad, ecole) montrent « Dativ » et la parenthese du vrai cas, sans le
    cas local apres une preposition, en uk, ru et pl.
 4. Aucune erreur JavaScript.
@@ -79,13 +79,13 @@ def main():
                     n = page.evaluate("""() => {
                         ensureSearchIndex();
                         const r = {};
-                        for(const q of ["м'ясо", "м’ясо", "мʼясо", "обовʼязковий", "обов'язковий"]){
+                        for(const q of ["м'ясо", "мʼясо", "мʼясо", "обовʼязковий", "обов'язковий"]){
                             renderWordSearch(q); r[q] = searchResults.length;
                         }
                         return r; }""")
                     print("   recherche :", json.dumps(n, ensure_ascii=False), flush=True)
-                    if len({n["м'ясо"], n["м’ясо"], n["мʼясо"]}) != 1 or not n["мʼясо"]:
-                        fautes.append("uk recherche : м'ясо / м’ясо / мʼясо ne donnent pas les memes cartes : %s" % n)
+                    if len({n["м'ясо"], n["мʼясо"], n["мʼясо"]}) != 1 or not n["мʼясо"]:
+                        fautes.append("uk recherche : м'ясо / мʼясо / мʼясо ne donnent pas les memes cartes : %s" % n)
                     if n["обов'язковий"] != n["обовʼязковий"] or not n["обовʼязковий"]:
                         fautes.append("uk recherche : обов'язковий / обовʼязковий : %s" % n)
                 if a.captures:

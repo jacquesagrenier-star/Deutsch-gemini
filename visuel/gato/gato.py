@@ -452,7 +452,35 @@ def construire():
         d["images"][id] = e
     gloses(d)
     groupes(d)
+    langues_natives(d)
     return d
+
+
+def langues_natives(d):
+    """Le turc, l'ukrainien, le polonais et le russe (visuel/gato/langues.py, lot 1 de l'alignement, 14 nov. 2026) :
+    chaque phrase allemande et chaque groupe allemand recoit sa traduction, fabriquee avec la grammaire de la langue.
+    Une phrase ou un groupe sans traduction arrete le script : une langue ne doit pas retomber sur la glose seule."""
+    import langues as LG
+    tr, g = d["trad"]["de"], d["groupes"]["de"]
+    for id, p in P.items():
+        prep, nom, vWo, vWohin = p["de"][:4]
+        pl = len(p["de"]) > 4 and p["de"][4]
+        de = d["places"][id]["de"]
+        for lg in LG.LANGUES:
+            pos, mv = LG.place(lg, id, prep, nom, vWo, vWohin, pl)
+            tr[de["phrase"]][lg], tr[de["mouvement"]][lg] = pos, mv
+    for phrase, t in LG.PHRASES.items():
+        tr[phrase].update(t)
+    for groupe, e in g.items():
+        if groupe in LG.GROUPES:
+            e.update(LG.GROUPES[groupe])
+        elif "cas" in e:
+            nom, pl = GROUPE_NOM[groupe]
+            for lg in LG.LANGUES:
+                e[lg] = LG.lieu(lg, e["prep"], nom, e["cas"], pl)
+    manque = [(k, lg) for dico in (tr, g) for k, v in dico.items() for lg in LG.LANGUES if not v.get(lg)]
+    if manque:
+        raise SystemExit("langues natives : %d traductions absentes, dont %s" % (len(manque), manque[:5]))
 
 
 def gloses(d):
@@ -480,11 +508,19 @@ def gloses(d):
             for v in o: parcourir(v, fn)
     parcourir(verbes, lambda w: w["infinitif"] in ("liegen", "legen", "sitzen", "setzen") and w["infinitif"] not in d["gloses"]["de"] and pose("de", w["infinitif"], w))
     te = json.load(io.open(os.path.join(RACINE, "espanol", "datos", "temas.json"), encoding="utf-8"))["themes"]
-    for t in te:
-        for w in t.get("mots", []):
-            for k, (de, es) in NOMS.items():
-                if w.get("mot") == es[1] and w.get("genre") == es[0] and es[1] not in d["gloses"]["es"]:
-                    pose("es", es[1], w)
+    # 15 nov. 2026 (revue des traductions) : un mot espagnol a parfois deux entrees (« la planta » = l'etage dans
+    # el_hotel, la plante dans nom_casa) : d'abord l'entree dont la traduction allemande est le mot de la scene
+    # (die Pflanze), ensuite seulement la premiere venue
+    for meme_sens in (True, False):
+        for t in te:
+            for w in t.get("mots", []):
+                for k, (de, es) in NOMS.items():
+                    if w.get("mot") == es[1] and w.get("genre") == es[0] and es[1] not in d["gloses"]["es"] \
+                            and (not meme_sens or de[1] in (w.get("traduction_de") or "")):
+                        pose("es", es[1], w)
+    # « la caja » de la scene est la boite (der Karton) ; le corpus n'a que la caisse du magasin (las_compras)
+    d["gloses"]["es"]["caja"] = {"fr": "la boîte, le carton", "en": "the box", "ar": "صندوق، علبة", "pt": "a caixa",
+                                 "de": "der Karton, die Schachtel"}
     ve = json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"), encoding="utf-8"))
     parcourir(ve, lambda w: w["infinitif"] == "estar" and "estar" not in d["gloses"]["es"] and pose("es", "estar", w))
     # les prepositions espagnoles : funcionales.json d'abord ; « al lado de » et « dentro de » n'y sont pas, leurs
@@ -560,6 +596,9 @@ def lieu_pt(prep, nom, pl=False):
     return p + " " + a + " " + m
 
 
+GROUPE_NOM = {}      # le groupe allemand -> (nom, pluriel), pour les langues natives (langues_natives)
+
+
 def groupes(d):
     g = {"de": {}, "es": {}}
     pluriels = ("stuhl", "kissen")
@@ -569,6 +608,7 @@ def groupes(d):
                 t = {"fr": lieu_fr(prep, nom, pl), "en": lieu_en(prep, nom, pl), "pt": lieu_pt(prep, nom, pl), "prep": prep}
                 for cas in ("dat", "akk"):
                     g["de"][groupe_de(prep, nom, cas, pl)] = dict(t, cas=cas)
+                    GROUPE_NOM[groupe_de(prep, nom, cas, pl)] = (nom, pl)
                 # les formes entieres que les choix proposent aussi (« auf dem Sofa » est deja la ; « auf das Sofa »)
             for prep in PREP_ES:
                 pd = "an" if (prep == "en" and nom in ("wand", "fenster")) else ES_DE[prep]

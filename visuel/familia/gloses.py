@@ -55,6 +55,12 @@ DESC_ES_A = ["negro", "castaño", "rubio", "rojo", "liso", "rizado", "corto", "l
 # Le sens de la TAILLE d'une personne, la ou le corpus donne le sens general (3 nov. 2026, relecture qualite :
 # « büyük » et « великий » disent « gros, grand en volume », pas « de grande taille »). Le corpus garde son sens.
 SENS_TAILLE = {"groß": {"tr": "uzun boylu", "uk": "високий"}, "klein": {"tr": "kısa boylu", "uk": "невисокий"}}
+# Le sens des CHEVEUX (15 nov. 2026, revue des traductions) : le corpus donne « liso » / « glatt » au sens de lisse,
+# glissant (« smooth, slippery », « слизький ») ; la page dit « les cheveux longs et raides ». Le corpus garde son sens.
+SENS_CHEVEUX = {
+    "es": {"liso": {"fr": "raide (cheveux)", "en": "straight (hair)", "pt": "liso", "ar": "ناعم (الشعر)", "de": "glatt (Haare)"}},
+    "de": {"glatt": {"fr": "raide (cheveux)", "en": "straight (hair)", "pt": "liso (cabelo)", "ar": "ناعم (الشعر)",
+                     "tr": "düz (saç)", "uk": "пряме (волосся)", "fa": "صاف (مو)", "pl": "proste (włosy)", "ru": "прямые (волосы)"}}}
 
 
 def main():
@@ -63,6 +69,9 @@ def main():
             "es": dict(table(noms("espanol/datos/temas.json"), LANGUES_ES, DESC_ES_N), **table(adjectifs("espanol/datos/adjetivos.json"), LANGUES_ES, DESC_ES_A))}
     for m, t in SENS_TAILLE.items():
         desc["de"].setdefault(m, {}).update(t)
+    for l, mots in SENS_CHEVEUX.items():
+        for m, t in mots.items():
+            desc[l][m] = dict(t)
     for nom, d, voulus in (("familia", fam, {"de": FAMILLE_DE, "es": FAMILLE_ES}), ("descripcion", desc, {"de": DESC_DE_N + DESC_DE_A, "es": DESC_ES_N + DESC_ES_A})):
         for l in d:
             trouves = {k.split(" ", 1)[-1] for k in d[l]}

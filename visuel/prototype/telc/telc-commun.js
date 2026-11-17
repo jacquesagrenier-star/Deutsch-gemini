@@ -52,9 +52,9 @@ function objetTelc(o){
 // les deux-points, les guillemets et les dates selon la langue d'interface
 const DEUX_POINTS_TELC = LANGUE === "fr" ? " : " : ": ";
 const GUILLEMETS_TELC = ({ fr: ["« ", " »"], en: ["“", "”"], pt: ["“", "”"], tr: ["“", "”"], pl: ["„", "”"],
-                           uk: ["«", "»"], ru: ["«", "»"], fa: ["«", "»"], ar: ["«", "»"] })[LANGUE] || ["“", "”"];
+                           uk: ["«", "»"], ru: ["«", "»"], fa: ["«", "»"], ar: ["«", "»"], es: ["«", "»"] })[LANGUE] || ["“", "”"];
 const DATE_TELC = ({ fr: "fr-FR", en: "en-GB", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR",
-                     pl: "pl-PL", ru: "ru-RU" })[LANGUE] || "fr-FR";
+                     pl: "pl-PL", ru: "ru-RU", es: "es-MX" })[LANGUE] || "fr-FR";
 
 const TELC = {
   epreuves: [],

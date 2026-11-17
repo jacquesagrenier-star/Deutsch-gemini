@@ -1,0 +1,158 @@
+{
+ "id": "b1-fete-quartier",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "tú",
+ "titre": {"fr": "La fête de la rue"},
+ "intro": {"fr": "Le boulanger de ton quartier, à Madrid, organise la fête de la rue. Il t'invite : dis-lui ce que tu peux apporter ou faire, pose tes questions et mets-toi d'accord avec lui pour samedi."},
+ "bilan": {"fr": "Samedi, tu vas à la fête de la rue : {ayuda_fr}, {trae_fr}, et tu distribues les affichettes dans ton immeuble. Tu vas connaître tout le quartier."},
+ "personnes": ["baecker_fest"],
+ "debut": "invitacion",
+ "textes": {
+  "ayuda_fr": {"cle": "ayuda", "cocina": "tu apportes un plat de ton pays", "montaje": "tu aides à monter les tables dès dix heures", "musica": "tu t'occupes de la musique"},
+  "trae_fr": {"cle": "trae", "sillas": "tu descends quatre chaises pliantes", "alargador": "tu prêtes ta rallonge", "puesto": "tu tiens le stand de gâteaux pendant une heure"}
+ },
+ "noeuds": {
+  "invitacion": {
+   "dit": [
+    {"recit": {"fr": "Tu achètes ton pain, comme tous les jours. Le boulanger pose une affichette sur le comptoir."}},
+    {"qui": "baecker_fest", "air": "sourire", "t": "¡Hola! Oye, el sábado hacemos la fiesta de la calle, como todos los años. Viene todo el barrio. ¿Te apuntas?", "fr": "Salut ! Dis, samedi, on fait la fête de la rue, comme tous les ans. Tout le quartier vient. Tu en es ?"}
+   ],
+   "choix": [
+    {"t": "¡Claro que me apunto! ¿A qué hora empieza?", "fr": "Bien sûr que j'en suis ! Ça commence à quelle heure ?", "va": "ayuda",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "A las dos, con la comida. Y dura hasta que el cuerpo aguante.", "fr": "À deux heures, avec le repas. Et ça dure tant qu'on tient debout."}]},
+    {"t": "Me encantaría. Todavía no conozco a casi nadie en el barrio.", "fr": "J'adorerais. Je ne connais encore presque personne dans le quartier.", "va": "ayuda",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Pues el sábado conoces a todo el mundo. Empezamos a las dos, con la comida.", "fr": "Eh bien, samedi, tu connaîtras tout le monde. On commence à deux heures, avec le repas."}]},
+    {"faux": true, "t": "Sí, quiero venir en la fiesta.", "fr": "Oui, je veux venir à la fête.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "¿«En» la fiesta? A la fiesta, querrás decir. ¡Pues claro que vienes!", "fr": "« En » la fiesta ? « A » la fiesta, tu veux dire. Bien sûr que tu viens !"}],
+     "aide": {"fr": "<b>Le lieu où l'on va prend « a », jamais « en » :</b> « Quiero ir a la fiesta », « Voy a la fiesta »."}}
+   ]
+  },
+  "ayuda": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Aquí cada vecino pone algo. Nos falta comida, gente para montar las mesas por la mañana y alguien que se ocupe de la música. ¿Tú qué podrías hacer?", "fr": "Ici, chaque voisin apporte quelque chose. Il nous manque de la nourriture, des gens pour monter les tables le matin et quelqu'un qui s'occupe de la musique. Toi, qu'est-ce que tu pourrais faire ?"}
+   ],
+   "choix": [
+    {"t": "Puedo preparar un plato típico de mi país para compartir.", "fr": "Je peux préparer un plat typique de mon pays à partager.", "pose": {"ayuda": "cocina"}, "va": "cocina"},
+    {"t": "Puedo ir temprano y ayudaros a montar las mesas y las sillas.", "fr": "Je peux venir tôt et vous aider à monter les tables et les chaises.", "pose": {"ayuda": "montaje"}, "va": "montaje"},
+    {"t": "Yo me encargo de la música: tengo un buen altavoz y muchas canciones.", "fr": "Je me charge de la musique : j'ai une bonne enceinte et beaucoup de chansons.", "pose": {"ayuda": "musica"}, "va": "musica"},
+    {"faux": true, "t": "Puedo montar las tablas por la mañana.", "fr": "Je peux monter les tables le matin.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "¿Las tablas? ¿Qué tablas, de madera? Ah, ¡las mesas!", "fr": "Les planches ? Quelles planches, en bois ? Ah, les tables !"}],
+     "aide": {"fr": "<b>Une table = una mesa.</b> « Una tabla » est une planche. « Puedo ayudaros a montar las mesas. »"}},
+    {"repete": true, "t": "Perdona, ¿qué es lo que falta? Hablas un poco rápido para mí.", "fr": "Excuse-moi, qu'est-ce qui manque ? Tu parles un peu vite pour moi.", "va": "ayuda",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Perdona. Faltan tres cosas: comida, gente para montar las mesas y alguien para la música. ¿Qué prefieres?", "fr": "Pardon. Il manque trois choses : de la nourriture, des gens pour monter les tables et quelqu'un pour la musique. Qu'est-ce que tu préfères ?"}]}
+   ]
+  },
+  "cocina": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "¡Estupendo! ¿Y qué plato es? ¿Para cuánta gente?", "fr": "Formidable ! Et c'est quel plat ? Pour combien de personnes ?"}
+   ],
+   "choix": [
+    {"t": "Una tarta salada de verduras, bien grande, para unas quince personas.", "fr": "Une tarte salée aux légumes, bien grande, pour une quinzaine de personnes.", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Qué buena pinta! Eso aquí no lo hace nadie.", "fr": "Ça a l'air délicieux ! Ici, personne ne fait ça."}]},
+    {"t": "Un postre: una tarta de manzana como la que hacía mi abuela.", "fr": "Un dessert : une tarte aux pommes comme celle que faisait ma grand-mère.", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "¡Uy, competencia para el panadero! Me parece muy bien: el postre es lo primero que se acaba.", "fr": "Oh là, de la concurrence pour le boulanger ! Très bien : le dessert, c'est ce qui part en premier."}]},
+    {"faux": true, "t": "Voy a hacer un gato de chocolate.", "fr": "Je vais faire un « gato » au chocolat.",
+     "puis": [{"qui": "baecker_fest", "air": "surprise", "t": "¿Un gato de chocolate? ¡Pobre animal! Un pastel, ¿no?", "fr": "Un chat au chocolat ? Pauvre bête ! Un gâteau, non ?"}],
+     "aide": {"fr": "<b>Un gâteau = un pastel, una tarta, un bizcocho.</b> « Un gato », c'est un chat."}}
+   ]
+  },
+  "montaje": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "¡Eso sí que hace falta! Quedamos a las 10 delante de la panadería: hay que montar 20 mesas. ¿Podrás?", "dit": "¡Eso sí que hace falta! Quedamos a las diez delante de la panadería: hay que montar veinte mesas. ¿Podrás?", "fr": "Ça, on en a vraiment besoin ! Rendez-vous à 10 heures devant la boulangerie : il faut monter 20 tables. Tu pourras ?"}
+   ],
+   "choix": [
+    {"t": "Sí, a las diez estaré allí. ¿Hay que llevar herramientas?", "fr": "Oui, à dix heures, j'y serai. Faut-il apporter des outils ?", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "No, solo ganas. Y unos guantes, si tienes.", "fr": "Non, juste de la bonne volonté. Et des gants, si tu en as."}]},
+    {"t": "Claro. Si hace falta, puedo quedarme también para recoger al final.", "fr": "Bien sûr. S'il le faut, je peux aussi rester pour ranger à la fin.", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Así da gusto! Para recoger nunca se queda nadie.", "fr": "Ça fait plaisir ! Pour ranger, il ne reste jamais personne."}]},
+    {"faux": true, "t": "Sí, puedo ayudar a vosotros toda la mañana.", "fr": "Oui, je peux vous aider toute la matinée.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "«Puedo ayudaros», mejor. Entonces, ¿a las diez te va bien?", "fr": "« Puedo ayudaros », plutôt. Alors, à dix heures, ça te va ?"}],
+     "aide": {"fr": "<b>« Vous aider » (à plusieurs personnes qu'on tutoie) = ayudaros.</b> Le pronom « os » se colle à l'infinitif : « Puedo ayudaros »."}}
+   ]
+  },
+  "musica": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "¡Por fin alguien! El año pasado la música fue un desastre. ¿Qué vas a poner? Piensa que hay niños y abuelos.", "fr": "Enfin quelqu'un ! L'an dernier, la musique a été une catastrophe. Qu'est-ce que tu vas mettre ? Pense qu'il y a des enfants et des grands-parents."}
+   ],
+   "choix": [
+    {"t": "Un poco de todo: canciones españolas para bailar y algo de mi país.", "fr": "Un peu de tout : des chansons espagnoles pour danser et quelque chose de mon pays.", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Perfecto. Y que no falte un pasodoble, o los abuelos protestan.", "fr": "Parfait. Et qu'il ne manque pas un paso doble, sinon les grands-parents protestent."}]},
+    {"t": "Música tranquila durante la comida, y después algo más animado.", "fr": "De la musique calme pendant le repas, et ensuite quelque chose de plus entraînant.", "va": "falta",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Así me gusta. Y que no falte un pasodoble, o los abuelos protestan.", "fr": "Ça me plaît. Et qu'il ne manque pas un paso doble, sinon les grands-parents protestent."}]},
+    {"faux": true, "t": "Y también puedo jugar la guitarra.", "fr": "Et je peux aussi jouer de la guitare.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "¿Jugar la guitarra? ¿Como un juguete? Tocar la guitarra, será. Pero dime, ¿qué música vas a poner?", "fr": "« Jugar » la guitare ? Comme un jouet ? Jouer de la guitare, plutôt. Mais dis-moi, quelle musique vas-tu mettre ?"}],
+     "aide": {"fr": "<b>Jouer d'un instrument = tocar.</b> « Jugar » ne vaut que pour un jeu ou un sport : « tocar la guitarra », « jugar al fútbol »."}}
+   ]
+  },
+  "falta": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Otra cosa: todavía nos faltan sillas, un alargador largo y alguien para el puesto de pasteles. ¿Puedes ayudarnos con algo de eso?", "fr": "Autre chose : il nous manque encore des chaises, une longue rallonge et quelqu'un pour le stand de gâteaux. Tu peux nous aider pour l'une de ces choses ?"}
+   ],
+   "choix": [
+    {"t": "Tengo cuatro sillas plegables. Las bajo el sábado por la mañana.", "fr": "J'ai quatre chaises pliantes. Je les descends samedi matin.", "pose": {"trae": "sillas"}, "va": "lluvia",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Genial! Ponles tu nombre por debajo, que luego se mezclan todas.", "fr": "Génial ! Mets ton nom dessous, parce qu'après elles se mélangent toutes."}]},
+    {"t": "Sillas no, pero tengo un alargador de diez metros. Mañana te lo traigo.", "fr": "Des chaises, non, mais j'ai une rallonge de dix mètres. Je te l'apporte demain.", "pose": {"trae": "alargador"}, "va": "lluvia",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Diez metros! Justo lo que necesitábamos.", "fr": "Dix mètres ! Exactement ce qu'il nous fallait."}]},
+    {"t": "De eso no tengo nada, pero puedo ocuparme del puesto de pasteles un rato.", "fr": "Je n'ai rien de tout ça, mais je peux m'occuper du stand de gâteaux un moment.", "pose": {"trae": "puesto"}, "va": "puesto"},
+    {"faux": true, "t": "No tengo, pero puedo emprestar sillas a mi vecina.", "fr": "Je n'en ai pas, mais je peux emprunter des chaises à ma voisine.",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "¿«Emprestar»? Pedirle prestadas las sillas a tu vecina, querrás decir.", "fr": "« Emprestar » ? Emprunter les chaises à ta voisine, tu veux dire."}],
+     "aide": {"fr": "<b>Emprunter = pedir prestado.</b> L'espagnol n'a pas de verbe simple : « Puedo pedirle prestadas las sillas a mi vecina ». « Prestar », c'est prêter."}}
+   ]
+  },
+  "puesto": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "sourire", "t": "¡Mejor todavía! Nadie quería. Los pasteles los pongo yo; solo hay que servir y cobrar un euro por trozo. ¿De cinco a seis te viene bien?", "fr": "Encore mieux ! Personne ne voulait. Les gâteaux, c'est moi qui les fournis ; il faut juste servir et encaisser un euro la part. De cinq à six, ça te convient ?"}
+   ],
+   "choix": [
+    {"t": "De cinco a seis, perfecto. Así practico los números en español.", "fr": "De cinq à six, parfait. Comme ça, je m'exerce aux nombres en espagnol.", "va": "lluvia",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "¡Y la paciencia! Los niños vuelven cinco veces.", "fr": "Et à la patience ! Les enfants reviennent cinq fois."}]},
+    {"t": "Preferiría más temprano, de cuatro a cinco, si no te importa.", "fr": "Je préférerais plus tôt, de quatre à cinq, si ça ne te dérange pas.", "va": "lluvia",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "De cuatro a cinco, hecho. Te apunto.", "fr": "De quatre à cinq, entendu. Je te note."}]}
+   ]
+  },
+  "lluvia": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Bueno, pues ya casi está todo. ¿Tienes alguna pregunta?", "fr": "Bon, eh bien presque tout est prêt. Tu as une question ?"}
+   ],
+   "choix": [
+    {"t": "Sí: ¿qué pasa si llueve el sábado?", "fr": "Oui : que se passe-t-il s'il pleut samedi ?", "va": "carteles",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Si llueve, nos dejan el patio cubierto del colegio. Y el Ayuntamiento ya nos ha dado el permiso para cortar la calle.", "fr": "S'il pleut, on nous prête le préau de l'école. Et la mairie nous a déjà donné l'autorisation de fermer la rue."}]},
+    {"t": "¿Y si hace mal tiempo? ¿Se cancela la fiesta?", "fr": "Et s'il fait mauvais ? La fête est annulée ?", "va": "carteles",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Qué va! Si llueve, nos vamos al patio cubierto del colegio. Y si hace sol, tenemos permiso del Ayuntamiento para cortar la calle.", "fr": "Pas du tout ! S'il pleut, on va sous le préau de l'école. Et s'il fait beau, on a l'autorisation de la mairie pour fermer la rue."}]},
+    {"faux": true, "t": "Sí: ¿qué pasa si lloverá?", "fr": "Oui : que se passe-t-il s'il pleuvra ?",
+     "puis": [{"qui": "baecker_fest", "air": "perplexe", "t": "¿«Si lloverá»? Si llueve, querrás decir. ¡Ni lo nombres!", "fr": "« Si lloverá » ? S'il pleut, tu veux dire. N'en parle même pas !"}],
+     "aide": {"fr": "<b>Après « si », jamais de futur : le présent.</b> « ¿Qué pasa si llueve? », comme en français « s'il pleut »."}}
+   ]
+  },
+  "carteles": {
+   "dit": [
+    {"qui": "baecker_fest", "air": "question", "t": "Una última cosa: ¿podrías repartir estos carteles en tu portal? Así se enteran todos tus vecinos.", "fr": "Une dernière chose : tu pourrais distribuer ces affichettes dans ton immeuble ? Comme ça, tous tes voisins seront au courant."}
+   ],
+   "choix": [
+    {"t": "Claro, dame veinte. Los dejo en los buzones esta misma tarde.", "fr": "Bien sûr, donne-m'en vingt. Je les mets dans les boîtes aux lettres dès cet après-midi.", "va": "sabado"},
+    {"t": "Sí, y además pongo uno en el ascensor para que lo vea todo el mundo.", "fr": "Oui, et en plus j'en mets une dans l'ascenseur pour que tout le monde la voie.", "va": "sabado"},
+    {"faux": true, "t": "Sí, los voy a dar a todo el mundo en mi inmueble.", "fr": "Oui, je vais les donner à tout le monde dans mon immeuble.",
+     "puis": [{"qui": "baecker_fest", "air": "amuse", "t": "¿Tu «inmueble»? ¡Hablas como un notario! Tu edificio, tu portal…", "fr": "Ton « inmueble » ? Tu parles comme un notaire ! Ton « edificio », ton « portal »…"}],
+     "aide": {"fr": "<b>Un immeuble (où l'on habite) = un edificio ; à Madrid on dit aussi « mi portal ».</b> « Inmueble » est un mot de notaire ou d'agence."}}
+   ]
+  },
+  "sabado": {
+   "dit": [
+    {"si": {"ayuda": "cocina"}, "qui": "baecker_fest", "air": "sourire", "t": "Entonces, hasta el sábado, con tu plato. ¡Tengo ganas de probarlo!", "fr": "Alors à samedi, avec ton plat. J'ai hâte de le goûter !"},
+    {"si": {"ayuda": "montaje"}, "qui": "baecker_fest", "air": "sourire", "t": "Entonces, el sábado a las diez, a montar mesas. ¡El desayuno lo pongo yo!", "fr": "Alors, samedi à dix heures, on monte les tables. Le petit-déjeuner, c'est moi qui l'offre !"},
+    {"si": {"ayuda": "musica"}, "qui": "baecker_fest", "air": "sourire", "t": "Entonces, el sábado con el altavoz. ¡Va a ser la mejor fiesta en años!", "fr": "Alors, samedi avec l'enceinte. Ça va être la meilleure fête depuis des années !"},
+    {"qui": "baecker_fest", "air": "sourire", "t": "Toma, tu barra de pan. Hoy invita la casa.", "fr": "Tiens, ta baguette. Aujourd'hui, c'est la maison qui offre."}
+   ],
+   "choix": [
+    {"t": "¡Muchas gracias! Hasta el sábado, entonces.", "fr": "Merci beaucoup ! À samedi, alors.", "va": null,
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "¡Hasta el sábado!", "fr": "À samedi !"}]},
+    {"t": "Gracias. Me alegro de que en este barrio se hagan estas cosas.", "fr": "Merci. Ça me fait plaisir qu'on fasse ce genre de choses dans ce quartier.", "va": null,
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "Aquí somos así. ¡Hasta el sábado!", "fr": "Ici, on est comme ça. À samedi !"}]},
+    {"faux": true, "t": "Gracias. ¡A sábado!", "fr": "Merci. À samedi !",
+     "puis": [{"qui": "baecker_fest", "air": "sourire", "t": "«Hasta el sábado», se dice. ¡Venga, hasta el sábado!", "fr": "On dit « hasta el sábado ». Allez, à samedi !"}],
+     "aide": {"fr": "<b>À samedi = hasta el sábado.</b> Pour dire au revoir : « hasta » + le moment (« hasta luego », « hasta mañana »), avec l'article devant le jour."}}
+   ]
+  }
+ }
+}

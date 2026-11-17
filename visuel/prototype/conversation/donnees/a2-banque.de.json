@@ -1,0 +1,97 @@
+{
+ "id": "a2-banque",
+ "langue": "de",
+ "niveau": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "Ouvrir un compte à la banque"},
+ "intro": {"fr": "Tu habites Berlin depuis peu et tu as besoin d'un compte en banque allemand. Tu as rendez-vous avec une conseillère."},
+ "personnes": ["bankberaterin"],
+ "debut": "hallo",
+ "noeuds": {
+  "hallo": {
+   "dit": [
+    {"recit": {"fr": "Une agence bancaire à Mitte. Pour ton salaire et ton loyer, il te faut un compte allemand."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Guten Tag! Was kann ich für Sie tun?", "fr": "Bonjour ! Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Ich möchte ein Konto eröffnen.", "fr": "Bonjour. Je voudrais ouvrir un compte.", "va": "seit"},
+    {"t": "Guten Tag. Ich brauche ein Konto für mein Gehalt.", "fr": "Bonjour. J'ai besoin d'un compte pour mon salaire.", "va": "seit"},
+    {"faux": true, "t": "Guten Tag. Ich möchte einen Konto eröffnen.", "fr": "Bonjour. Je voudrais ouvrir un compte (avec « einen »).",
+     "puis": [{"qui": "bankberaterin", "air": "perplexe", "t": "Ein Konto? Ja, gern.", "fr": "Un compte ? Oui, volontiers."}],
+     "aide": {"fr": "<b>das Konto</b> est neutre : « ein Konto », jamais « einen Konto ». Dis : « Ich möchte ein Konto eröffnen »."}}
+   ]
+  },
+  "seit": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Sehr gern. Wohnen Sie schon lange in Deutschland?", "fr": "Très volontiers. Vous habitez en Allemagne depuis longtemps ?"}
+   ],
+   "choix": [
+    {"t": "Nein, ich wohne seit zwei Monaten in Berlin.", "fr": "Non, j'habite à Berlin depuis deux mois.", "va": "beruf",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Dann herzlich willkommen in Berlin!", "fr": "Alors bienvenue à Berlin !"}]},
+    {"t": "Nein, erst seit zwei Monaten.", "fr": "Non, depuis deux mois seulement.", "va": "beruf",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ah, dann ist alles noch neu für Sie!", "fr": "Ah, alors tout est encore nouveau pour vous !"}]},
+    {"repete": true, "t": "Entschuldigung, können Sie bitte langsamer sprechen?", "fr": "Pardon, vous pouvez parler plus lentement, s'il vous plaît ?", "va": "seit",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Natürlich. Wohnen Sie schon lange hier?", "fr": "Bien sûr. Vous habitez ici depuis longtemps ?"}]}
+   ]
+  },
+  "beruf": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "question", "t": "Und was machen Sie beruflich?", "fr": "Et que faites-vous dans la vie ?"}
+   ],
+   "choix": [
+    {"t": "Ich arbeite in einem Hotel.", "fr": "Je travaille dans un hôtel.", "va": "papiere"},
+    {"t": "Ich mache einen Deutschkurs und arbeite in einem Café.", "fr": "Je suis un cours d'allemand et je travaille dans un café.", "va": "papiere"}
+   ]
+  },
+  "papiere": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "Gut. Dann brauche ich Ihren Pass und Ihre Meldebescheinigung.", "fr": "Bien. Alors il me faut votre passeport et votre attestation de domicile."}
+   ],
+   "choix": [
+    {"t": "Hier ist mein Pass. Und hier ist die Meldebescheinigung.", "fr": "Voici mon passeport. Et voici l'attestation de domicile.", "va": "kosten"},
+    {"t": "Hier, bitte. Brauchen Sie auch meinen Arbeitsvertrag?", "fr": "Voilà. Vous avez aussi besoin de mon contrat de travail ?", "va": "kosten",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Nein, danke, das ist nicht nötig.", "fr": "Non, merci, ce n'est pas nécessaire."}]},
+    {"repete": true, "t": "Entschuldigung, was brauchen Sie?", "fr": "Pardon, de quoi avez-vous besoin ?", "va": "papiere",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ihren Pass und Ihre Meldebescheinigung. Das ist das Papier vom Bürgeramt.", "fr": "Votre passeport et votre attestation de domicile. C'est le papier du Bürgeramt."}]}
+   ]
+  },
+  "kosten": {
+   "dit": [
+    {"recit": {"fr": "Elle tape longtemps sur son clavier."}},
+    {"qui": "bankberaterin", "air": "sourire", "t": "Danke. So, Ihr Konto ist fast fertig. Haben Sie noch Fragen?", "fr": "Merci. Voilà, votre compte est presque prêt. Vous avez encore des questions ?"}
+   ],
+   "choix": [
+    {"t": "Ja. Was kostet das Konto?", "fr": "Oui. Combien coûte le compte ?", "va": "karte",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Das Girokonto kostet 4,90 Euro im Monat.", "fr": "Le compte courant coûte 4,90 euros par mois.", "dit": "Das Girokonto kostet vier Euro neunzig im Monat."}]},
+    {"t": "Muss ich jeden Monat etwas bezahlen?", "fr": "Je dois payer quelque chose tous les mois ?", "va": "karte",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ja, 4,90 Euro im Monat. Das ist bei uns das Girokonto.", "fr": "Oui, 4,90 euros par mois. C'est notre compte courant.", "dit": "Ja, vier Euro neunzig im Monat. Das ist bei uns das Girokonto."}]}
+   ]
+  },
+  "karte": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "attentive", "t": "Ihre Karte kommt in ein paar Tagen mit der Post. Die PIN bekommen Sie in einem anderen Brief.", "fr": "Votre carte arrive par la poste dans quelques jours. Le code secret, vous le recevez dans une autre lettre."}
+   ],
+   "choix": [
+    {"t": "Gut. Kann ich auch mit dem Handy bezahlen?", "fr": "D'accord. Je peux aussi payer avec mon portable ?", "va": "unterschrift",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ja, mit unserer App. Das zeige ich Ihnen gleich.", "fr": "Oui, avec notre application. Je vous montre ça tout de suite."}]},
+    {"t": "Alles klar. Wie lange dauert das ungefähr?", "fr": "Entendu. Ça prend combien de temps, à peu près ?", "va": "unterschrift",
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ungefähr eine Woche.", "fr": "Environ une semaine."}]}
+   ]
+  },
+  "unterschrift": {
+   "dit": [
+    {"qui": "bankberaterin", "air": "sourire", "t": "Jetzt brauche ich nur noch Ihre Unterschrift, hier unten.", "fr": "Maintenant, il ne me manque que votre signature, ici en bas."}
+   ],
+   "choix": [
+    {"t": "Hier? … So, fertig. Vielen Dank!", "fr": "Ici ? … Voilà, c'est fait. Merci beaucoup !", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Ich danke Ihnen! Willkommen bei unserer Bank.", "fr": "C'est moi qui vous remercie ! Bienvenue dans notre banque."}]},
+    {"t": "Gern. Danke für Ihre Hilfe!", "fr": "Volontiers. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "bankberaterin", "air": "sourire", "t": "Gern geschehen. Einen schönen Tag noch!", "fr": "Avec plaisir. Bonne journée !"}]},
+    {"faux": true, "t": "Gut, ich signiere hier.", "fr": "D'accord, je signe ici (avec le mot « signieren »).",
+     "puis": [{"qui": "bankberaterin", "air": "amuse", "t": "Signieren? Wie ein Star? … Sie unterschreiben einfach hier, das reicht.", "fr": "Dédicacer ? Comme une star ? … Vous signez simplement ici, ça suffit."}],
+     "aide": {"fr": "<b>signieren</b>, c'est dédicacer (un livre, une photo). Un contrat ou un formulaire, on le <b>unterschreibt</b> : « Ich unterschreibe hier »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as ouvert un compte à la banque : tu as dit depuis quand tu vis à Berlin, montré tes papiers, demandé le prix et signé."}
+}

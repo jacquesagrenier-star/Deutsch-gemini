@@ -1,0 +1,115 @@
+{
+ "id": "a2-internet",
+ "langue": "de",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "Sie",
+ "titre": {"fr": "La hotline : internet ne marche plus"},
+ "intro": {"fr": "Depuis hier soir, tu n'as plus internet. Tu appelles le service client de ton fournisseur : tu expliques la panne, tu suis ses consignes et tu prends rendez-vous avec un technicien."},
+ "personnes": ["hotline_agentin"],
+ "debut": "anruf",
+ "textes": {
+  "termin_fr": {"cle": "termin", "morgen": "demain matin", "freitag": "vendredi après-midi"}
+ },
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {"recit": {"fr": "Depuis hier soir, ton internet ne marche plus. Tu appelles le service client de ton fournisseur, Spreenetz. Après un peu de musique, quelqu'un décroche."}},
+    {"qui": "hotline_agentin", "air": "sourire", "t": "Spreenetz Kundenservice, mein Name ist Krüger. Was kann ich für Sie tun?", "fr": "Service client Spreenetz, madame Krüger à l'appareil. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag. Mein Internet funktioniert seit gestern Abend nicht.", "fr": "Bonjour. Mon internet ne marche plus depuis hier soir.", "va": "kunde",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Oh, das tut mir leid. Das schauen wir uns gleich an.", "fr": "Oh, je suis désolée. Nous allons regarder ça tout de suite."}]},
+    {"t": "Hallo. Ich habe seit gestern Abend kein Internet mehr.", "fr": "Bonjour. Je n'ai plus internet depuis hier soir.", "va": "kunde",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Seit gestern schon? Das tut mir leid. Das schauen wir uns gleich an.", "fr": "Depuis hier déjà ? Je suis désolée. Nous allons regarder ça tout de suite."}]},
+    {"faux": true, "t": "Guten Tag. Mein Internet marschiert nicht.", "fr": "Bonjour. Mon internet ne « marche » pas (au pas, comme un soldat).",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "Es marschiert nicht? Ach so, Sie meinen: Es funktioniert nicht!", "fr": "Il ne marche pas au pas ? Ah, vous voulez dire : il ne fonctionne pas !"}],
+     "aide": {"fr": "<b>Un appareil ne « marche » pas en allemand : il « funktioniert » ou il « geht ».</b> « marschieren », c'est marcher au pas. Dis : « Mein Internet funktioniert nicht » ou « Mein Internet geht nicht »."}}
+   ]
+  },
+  "kunde": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Haben Sie Ihre Kundennummer zur Hand?", "fr": "Avez-vous votre numéro de client sous la main ?"}],
+   "choix": [
+    {"t": "Ja. Vier, sieben, null, zwei, neun, eins.", "fr": "Oui. Quatre, sept, zéro, deux, neuf, un.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Danke. Ja, ich sehe Ihren Vertrag: Bergmannstraße, in Kreuzberg.", "fr": "Merci. Oui, je vois votre contrat : Bergmannstraße, à Kreuzberg."}]},
+    {"t": "Nein, die habe ich gerade nicht hier.", "fr": "Non, je ne l'ai pas ici en ce moment.", "va": "adresse"},
+    {"repete": true, "t": "Wie bitte? Können Sie das wiederholen?", "fr": "Pardon ? Vous pouvez répéter ?", "va": "kunde",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Natürlich. Ich brauche Ihre Kundennummer. Die Nummer steht auf Ihrer Rechnung.", "fr": "Bien sûr. J'ai besoin de votre numéro de client. Le numéro est sur votre facture."}]}
+   ]
+  },
+  "adresse": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "Kein Problem. Dann brauche ich Ihren Namen und Ihre Adresse.", "fr": "Pas de problème. Alors il me faut votre nom et votre adresse."}],
+   "choix": [
+    {"t": "Mein Name ist Martin. Ich wohne in der Bergmannstraße zwölf.", "fr": "Je m'appelle Martin. J'habite au douze, Bergmannstraße.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Danke. Ja, jetzt sehe ich Ihren Vertrag.", "fr": "Merci. Oui, maintenant je vois votre contrat."}]},
+    {"t": "Martin, Bergmannstraße zwölf, in Kreuzberg.", "fr": "Martin, douze Bergmannstraße, à Kreuzberg.", "va": "router",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Danke. Ja, jetzt sehe ich Ihren Vertrag.", "fr": "Merci. Oui, maintenant je vois votre contrat."}]},
+    {"faux": true, "t": "Mein Name ist Martin. Ich wohne in Bergmannstraße zwölf.", "fr": "Je m'appelle Martin. J'habite « dans Bergmannstraße » douze.",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "In der Bergmannstraße zwölf, richtig?", "fr": "Au douze de la Bergmannstraße, c'est bien ça ?"}],
+     "aide": {"fr": "<b>Un nom de rue prend l'article : « in der Bergmannstraße ».</b> « die Straße » est féminin, et après « wohnen in » on met le datif : « Ich wohne in der Bergmannstraße zwölf »."}}
+   ]
+  },
+  "router": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Schauen Sie bitte auf Ihren Router. Welche Farbe haben die Lampen?", "fr": "Regardez votre box, s'il vous plaît. De quelle couleur sont les voyants ?"}],
+   "choix": [
+    {"t": "Eine Lampe ist rot.", "fr": "Un voyant est rouge.", "pose": {"lampe": "rot"}, "va": "neustart",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Aha, rot. Dann kommt bei Ihnen kein Signal an.", "fr": "Ah, rouge. Alors aucun signal n'arrive chez vous."}]},
+    {"t": "Alle Lampen sind grün, aber nichts funktioniert.", "fr": "Tous les voyants sont verts, mais rien ne marche.", "pose": {"lampe": "gruen"}, "va": "neustart",
+     "puis": [{"qui": "hotline_agentin", "air": "surprise", "t": "Alles grün? Hm, das ist komisch.", "fr": "Tout est vert ? Hum, c'est bizarre."}]},
+    {"faux": true, "t": "Eine Lampe ist rote.", "fr": "Un voyant est « rouge » (adjectif accordé, comme en français).",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Eine rote …? Ach so: Eine Lampe ist rot!", "fr": "Une… rouge ? Ah, d'accord : un voyant est rouge !"}],
+     "aide": {"fr": "<b>Après « sein », l'adjectif ne s'accorde pas.</b> On dit « Die Lampe ist rot », sans terminaison. L'adjectif ne prend une terminaison que devant le nom : « eine rote Lampe »."}}
+   ]
+  },
+  "neustart": {
+   "dit": [{"qui": "hotline_agentin", "air": "attentive", "t": "Wir machen einen Neustart: Ziehen Sie bitte den Stecker, warten Sie dreißig Sekunden und stecken Sie ihn wieder ein.", "fr": "Nous allons la redémarrer : débranchez la prise, attendez trente secondes et rebranchez-la."}],
+   "choix": [
+    {"t": "Das habe ich schon gemacht. Es hilft nicht.", "fr": "Je l'ai déjà fait. Ça ne change rien.", "va": "techniker",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Ich verstehe. Dann muss ein Techniker kommen.", "fr": "Je comprends. Alors il faut qu'un technicien vienne."}]},
+    {"t": "Okay, einen Moment … Nein, es geht immer noch nicht.", "fr": "D'accord, un instant… Non, ça ne marche toujours pas.", "va": "techniker",
+     "puis": [{"qui": "hotline_agentin", "air": "attentive", "t": "Schade. Dann schicke ich Ihnen einen Techniker.", "fr": "Dommage. Alors je vous envoie un technicien."}]},
+    {"faux": true, "t": "Ich habe gemacht das schon.", "fr": "Je l'ai déjà fait (participe au milieu, comme en français).",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Wie bitte? Ach so, das haben Sie schon gemacht!", "fr": "Pardon ? Ah, vous l'avez déjà fait !"}],
+     "aide": {"fr": "<b>Au Perfekt, le participe va à la fin de la phrase.</b> « Ich habe das schon gemacht » ou « Das habe ich schon gemacht » : « habe » en deuxième position, « gemacht » tout au bout."}},
+    {"repete": true, "t": "Wie bitte? Können Sie das langsamer sagen?", "fr": "Pardon ? Vous pouvez le dire plus lentement ?", "va": "neustart",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Gern. Erstens: den Stecker ziehen. Zweitens: dreißig Sekunden warten. Drittens: den Stecker wieder einstecken.", "fr": "Volontiers. Un : débrancher la prise. Deux : attendre trente secondes. Trois : rebrancher la prise."}]}
+   ]
+  },
+  "techniker": {
+   "dit": [
+    {"qui": "hotline_agentin", "air": "attentive", "si": {"lampe": "rot"}, "t": "Bei einer roten Lampe ist das Problem oft die Leitung im Haus.", "fr": "Avec un voyant rouge, le problème vient souvent de la ligne dans l'immeuble."},
+    {"qui": "hotline_agentin", "air": "attentive", "si": {"lampe": "gruen"}, "t": "Wenn alles grün ist, ist vielleicht der Router kaputt. Der Techniker bringt einen neuen mit.", "fr": "Si tout est vert, c'est peut-être la box qui est en panne. Le technicien en apportera une neuve."},
+    {"qui": "hotline_agentin", "air": "question", "t": "Ich habe zwei Termine frei: morgen Vormittag oder Freitagnachmittag. Was passt Ihnen besser?", "fr": "J'ai deux créneaux libres : demain matin ou vendredi après-midi. Qu'est-ce qui vous convient le mieux ?"}
+   ],
+   "choix": [
+    {"t": "Morgen Vormittag, bitte.", "fr": "Demain matin, s'il vous plaît.", "pose": {"termin": "morgen"}, "va": "handy",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Gut. Der Techniker kommt morgen zwischen acht und zwölf Uhr.", "fr": "Bien. Le technicien viendra demain entre huit heures et midi."}]},
+    {"t": "Freitagnachmittag passt mir besser.", "fr": "Vendredi après-midi me convient mieux.", "pose": {"termin": "freitag"}, "va": "handy",
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Gut. Der Techniker kommt am Freitag zwischen dreizehn und siebzehn Uhr.", "fr": "Bien. Le technicien viendra vendredi entre treize et dix-sept heures."}]},
+    {"faux": true, "t": "Morgen Morgen, bitte.", "fr": "Demain matin, s'il vous plaît (mot à mot : « demain demain »).",
+     "puis": [{"qui": "hotline_agentin", "air": "amuse", "t": "Morgen Morgen? Ach, Sie meinen: morgen früh! Oder morgen Vormittag.", "fr": "« Demain demain » ? Ah, vous voulez dire : demain matin !"}],
+     "aide": {"fr": "<b>« Demain matin » ne se dit pas « morgen Morgen ».</b> « morgen » veut dire demain et « der Morgen » le matin : on évite de les coller. Dis : « morgen früh » ou « morgen Vormittag »."}}
+   ]
+  },
+  "handy": {
+   "dit": [{"qui": "hotline_agentin", "air": "question", "t": "Der Techniker ruft Sie kurz vorher an. Wie ist Ihre Handynummer?", "fr": "Le technicien vous appellera juste avant. Quel est votre numéro de portable ?"}],
+   "choix": [
+    {"t": "Null eins sieben sechs, vier vier zwei, null neun eins.", "fr": "Zéro un sept six, quatre quatre deux, zéro neuf un.", "va": "ende"},
+    {"t": "Meine Nummer ist null eins sieben sechs, vier vier zwei, null neun eins.", "fr": "Mon numéro est le zéro un sept six, quatre quatre deux, zéro neuf un.", "va": "ende"}
+   ]
+  },
+  "ende": {
+   "dit": [{"qui": "hotline_agentin", "air": "sourire", "t": "Danke, ich habe alles notiert. Haben Sie noch eine Frage?", "fr": "Merci, j'ai tout noté. Avez-vous encore une question ?"}],
+   "choix": [
+    {"t": "Ja. Kostet der Techniker etwas?", "fr": "Oui. Est-ce que le technicien est payant ?", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Nein, das ist für Sie kostenlos. Einen schönen Tag noch. Auf Wiederhören!", "fr": "Non, c'est gratuit pour vous. Bonne journée. Au revoir !"}]},
+    {"t": "Nein, vielen Dank für Ihre Hilfe. Auf Wiederhören!", "fr": "Non, merci beaucoup pour votre aide. Au revoir !", "va": null,
+     "puis": [{"qui": "hotline_agentin", "air": "sourire", "t": "Sehr gern. Einen schönen Tag noch. Auf Wiederhören!", "fr": "Avec plaisir. Bonne journée. Au revoir !"}]},
+    {"faux": true, "t": "Ja. Ist der Techniker zahlend?", "fr": "Oui. Le technicien est-il « payant » ?",
+     "puis": [{"qui": "hotline_agentin", "air": "perplexe", "t": "Zahlend? Ach so, Sie meinen: Kostet das etwas? Nein, nein.", "fr": "« Payant » ? Ah, vous voulez dire : est-ce que ça coûte quelque chose ? Non, non."}],
+     "aide": {"fr": "<b>« C'est payant ? » se dit avec le verbe « kosten ».</b> « zahlend » ne s'emploie pas ainsi. Dis : « Kostet das etwas? » ou « Muss ich das bezahlen? » ; et pour « gratuit » : « kostenlos »."}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as expliqué une panne au téléphone, suivi les consignes de la conseillère et obtenu un technicien {termin_fr}."}
+}

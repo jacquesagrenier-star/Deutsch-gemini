@@ -1,0 +1,150 @@
+{
+ "id": "b1-urgences",
+ "langue": "en",
+ "niveau": "B1",
+ "registre": "poli",
+ "titre": {"fr": "Appeler les urgences"},
+ "intro": {"fr": "Ta voisine âgée est tombée dans l'escalier de ton immeuble, à Boston. Tu appelles le 911 et tu réponds aux questions du standard."},
+ "personnes": ["b13_notruf"],
+ "debut": "address",
+ "noeuds": {
+  "address": {
+   "dit": [
+    {"recit": {"fr": "Dans l'escalier de ton immeuble, dans le North End, ta voisine, Mrs. Walsh, est tombée. Elle ne peut pas se relever. Tu composes le 911."}},
+    {"qui": "b13_notruf", "air": "attentive", "t": "911, what's the address of your emergency?", "dit": "Nine-one-one, what's the address of your emergency?", "fr": "911, quelle est l'adresse de l'urgence ?"}
+   ],
+   "choix": [
+    {"t": "Forty-two Hanover Street, in the North End. We're on the stairs, on the third floor.", "fr": "Quarante-deux Hanover Street, dans le North End. Nous sommes dans l'escalier, au troisième niveau.", "va": "what",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "42 Hanover Street, third floor, on the stairs. Got it.", "dit": "Forty-two Hanover Street, third floor, on the stairs. Got it.", "fr": "42 Hanover Street, troisième niveau, dans l'escalier. C'est noté."}]},
+    {"t": "I'm at forty-two Hanover Street, in Boston. I live in apartment three B, and she's on the stairs outside my door.", "t_gb": "I'm at forty-two Hanover Street, in Boston. I live in flat three B, and she's on the stairs outside my door.", "fr": "Je suis au quarante-deux Hanover Street, à Boston. J'habite l'appartement trois B, et elle est dans l'escalier, devant ma porte.", "va": "what",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "42 Hanover Street, apartment 3B. Got it.", "dit": "Forty-two Hanover Street, apartment three B. Got it.", "t_gb": "42 Hanover Street, flat 3B. Got it.", "dit_gb": "Forty-two Hanover Street, flat three B. Got it.", "fr": "42 Hanover Street, appartement 3B. C'est noté."}]},
+    {"faux": true, "t": "Forty-two Hanover Street. We're at the third stage.", "fr": "Quarante-deux Hanover Street. Nous sommes au troisième « étage » (faux ami).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "The third … stage? Do you mean the third floor?", "fr": "Le troisième… « stage » ? Vous voulez dire le troisième niveau ?"}],
+     "aide": {"fr": "<b>« stage »</b>, c'est une scène de théâtre ou une étape. L'étage se dit « floor » : « on the third floor ». Attention : aux États-Unis, le rez-de-chaussée est déjà le « first floor »."}},
+    {"repete": true, "t": "Sorry, could you say that again, please?", "fr": "Pardon, vous pouvez répéter, s'il vous plaît ?", "va": "address",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Sure. Where are you? Give me the street and the number.", "fr": "Bien sûr. Où êtes-vous ? Donnez-moi la rue et le numéro."}]}
+   ]
+  },
+  "what": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Okay, tell me exactly what happened.", "fr": "D'accord, dites-moi exactement ce qui s'est passé."}],
+   "choix": [
+    {"t": "My neighbor fell down the stairs. She can't get up.", "t_gb": "My neighbour fell down the stairs. She can't get up.", "fr": "Ma voisine est tombée dans l'escalier. Elle n'arrive pas à se relever.", "va": "awake",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Okay. I'm sending an ambulance right now. Stay on the line with me.", "fr": "D'accord. J'envoie une ambulance tout de suite. Restez en ligne avec moi."}]},
+    {"t": "An older woman in my building fell on the stairs. She's lying on the floor.", "fr": "Une dame âgée de mon immeuble est tombée dans l'escalier. Elle est étendue par terre.", "va": "awake",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Okay. I'm sending an ambulance right now. Stay on the line with me.", "fr": "D'accord. J'envoie une ambulance tout de suite. Restez en ligne avec moi."}]},
+    {"faux": true, "t": "My neighbor is falling down the stairs.", "t_gb": "My neighbour is falling down the stairs.", "fr": "Ma voisine est en train de tomber dans l'escalier.",
+     "puis": [{"qui": "b13_notruf", "air": "surprise", "t": "She's falling right now? Or she fell, and she's on the ground?", "fr": "Elle tombe en ce moment ? Ou elle est tombée, et elle est par terre ?"}],
+     "aide": {"fr": "<b>« is falling »</b> décrit ce qui se passe à l'instant même. Pour ce qui vient d'arriver, on prend le prétérit : « She fell down the stairs. »"}},
+    {"faux": true, "t": "My neighbor fell in the stairs.", "t_gb": "My neighbour fell in the stairs.", "fr": "Ma voisine est tombée « dans » l'escalier (mauvaise préposition).",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "She fell down the stairs, okay. Is she still lying there?", "fr": "Elle est tombée dans l'escalier, d'accord. Elle est toujours étendue là ?"}],
+     "aide": {"fr": "<b>En anglais, on est « on the stairs »</b>, et l'on tombe « down the stairs » : « She fell down the stairs. »"}}
+   ]
+  },
+  "awake": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Is she awake? Is she talking to you?", "fr": "Est-elle éveillée ? Est-ce qu'elle vous parle ?"}],
+   "choix": [
+    {"t": "Yes, she's awake and she's talking to me. But her leg hurts a lot.", "fr": "Oui, elle est éveillée et elle me parle. Mais sa jambe lui fait très mal.", "pose": {"where": "leg"}, "va": "bleed",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Good. If she's talking, that's a good sign.", "fr": "Bien. Si elle parle, c'est bon signe."}]},
+    {"t": "Yes, she answers me. She says she has a terrible pain in her hip.", "fr": "Oui, elle me répond. Elle dit qu'elle a une douleur terrible à la hanche.", "pose": {"where": "hip"}, "va": "bleed",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Good. If she's answering you, that's a good sign.", "fr": "Bien. Si elle vous répond, c'est bon signe."}]},
+    {"faux": true, "t": "Yes, she is conscient.", "fr": "Oui, elle est « consciente » (mot français).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "Sorry? Oh, she's conscious. So she's awake and talking?", "fr": "Pardon ? Ah, elle est consciente. Donc elle est éveillée et elle parle ?"}],
+     "aide": {"fr": "<b>« conscient » se dit « conscious »</b> en anglais. Au téléphone avec les secours, le plus simple reste : « She's awake. »"}}
+   ]
+  },
+  "bleed": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "Is she breathing normally? And is she bleeding anywhere?", "fr": "Respire-t-elle normalement ? Et saigne-t-elle quelque part ?"}],
+   "choix": [
+    {"t": "She's breathing normally. But her head is bleeding a little.", "fr": "Elle respire normalement. Mais sa tête saigne un peu.", "pose": {"blood": "yes"}, "va": "pressure"},
+    {"t": "Yes, she's breathing fine. And no, I don't see any blood.", "fr": "Oui, elle respire bien. Et non, je ne vois pas de sang.", "pose": {"blood": "no"}, "va": "age",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Okay, good.", "fr": "D'accord, bien."}]},
+    {"t": "She's breathing okay, but her knee is bleeding.", "fr": "Elle respire bien, mais son genou saigne.", "pose": {"blood": "yes"}, "va": "pressure"},
+    {"faux": true, "t": "She breathes well, but she is bleeding of the head.", "fr": "Elle respire bien, mais elle saigne « de la » tête.",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "She's bleeding from her head? Okay. Is it a lot, or just a little?", "fr": "Elle saigne de la tête ? D'accord. Beaucoup, ou juste un peu ?"}],
+     "aide": {"fr": "<b>On saigne « from » une partie du corps</b>, et l'anglais met le possessif : « She's bleeding from her head », ou « Her head is bleeding a little. »"}}
+   ]
+  },
+  "pressure": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "Okay. Take a clean cloth or a towel and press it firmly on the wound. Do you have something like that nearby?", "fr": "D'accord. Prenez un linge propre ou une serviette et appuyez fermement sur la plaie. Avez-vous quelque chose comme ça près de vous ?"}],
+   "choix": [
+    {"t": "Yes, I have a clean towel. I'm pressing on the wound now.", "fr": "Oui, j'ai une serviette propre. J'appuie sur la plaie maintenant.", "va": "age",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Perfect. Keep pressing, and don't lift it to look.", "fr": "Parfait. Continuez d'appuyer, et ne la soulevez pas pour regarder."}]},
+    {"t": "I only have my scarf. Is that okay?", "fr": "Je n'ai que mon écharpe. Ça va ?", "va": "age",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Yes, that works. Press hard, and don't lift it to look.", "fr": "Oui, ça convient. Appuyez fort, et ne la soulevez pas pour regarder."}]}
+   ]
+  },
+  "age": {
+   "dit": [{"qui": "b13_notruf", "air": "question", "t": "About how old is she? And do you know if she takes any medications?", "t_gb": "About how old is she? And do you know if she takes any medication?", "fr": "Quel âge a-t-elle, à peu près ? Et savez-vous si elle prend des médicaments ?"}],
+   "choix": [
+    {"t": "She's about eighty. I think she has diabetes.", "fr": "Elle a environ quatre-vingts ans. Je crois qu'elle est diabétique.", "pose": {"meds": "yes"}, "va": "cover",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Thank you, that's important. I'll let the crew know.", "fr": "Merci, c'est important. Je préviens l'équipe."}]},
+    {"t": "Around eighty, I think. I don't know what medicine she takes.", "fr": "Environ quatre-vingts ans, je crois. Je ne sais pas quels médicaments elle prend.", "pose": {"meds": "no"}, "va": "cover",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "That's okay. The crew will check when they get there.", "fr": "Ce n'est pas grave. L'équipe vérifiera en arrivant."}]},
+    {"t": "Over eighty, I believe. She takes pills for her heart. She told me once.", "fr": "Plus de quatre-vingts ans, je crois. Elle prend des comprimés pour le cœur. Elle me l'a dit un jour.", "pose": {"meds": "yes"}, "va": "cover",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "Thank you, that's important. I'll let the crew know.", "fr": "Merci, c'est important. Je préviens l'équipe."}]},
+    {"faux": true, "t": "She has about eighty years.", "fr": "Elle « a » environ quatre-vingts ans.",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "She's about eighty, okay. And does she take any medications?", "t_gb": "She's about eighty, okay. And does she take any medication?", "fr": "Elle a environ quatre-vingts ans, d'accord. Et prend-elle des médicaments ?"}],
+     "aide": {"fr": "<b>L'âge se dit avec « to be »</b>, jamais avec « to have » : « She's about eighty » ou « She's about eighty years old ». "}}
+   ]
+  },
+  "cover": {
+   "dit": [
+    {"qui": "b13_notruf", "air": "attentive", "t": "Now listen carefully. Don't move her, even if she wants to get up. And cover her with a blanket or a coat to keep her warm.", "fr": "Maintenant, écoutez bien. Ne la déplacez pas, même si elle veut se lever. Et couvrez-la d'une couverture ou d'un manteau pour la garder au chaud."},
+    {"si": {"where": "leg"}, "qui": "b13_notruf", "air": "attentive", "t": "Her leg needs to stay completely still.", "fr": "Sa jambe doit rester parfaitement immobile."},
+    {"si": {"where": "hip"}, "qui": "b13_notruf", "air": "attentive", "t": "With a hip injury, that's really important.", "fr": "Avec une blessure à la hanche, c'est vraiment important."}
+   ],
+   "choix": [
+    {"t": "Okay, I won't move her. I'll get a blanket from my apartment. It's right here.", "t_gb": "Okay, I won't move her. I'll get a blanket from my flat. It's right here.", "fr": "D'accord, je ne la déplace pas. Je vais chercher une couverture chez moi. C'est juste ici.", "va": "door",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Good. Do that, and go right back to her.", "fr": "Bien. Faites-le, et retournez tout de suite auprès d'elle."}]},
+    {"t": "All right. I'm putting my coat over her. Can I give her some water?", "fr": "Très bien. Je mets mon manteau sur elle. Est-ce que je peux lui donner de l'eau ?", "va": "door",
+     "puis": [{"qui": "b13_notruf", "air": "attentive", "t": "No, don't give her anything to eat or drink. The coat is great.", "fr": "Non, ne lui donnez rien à manger ni à boire. Le manteau, c'est très bien."}]},
+    {"faux": true, "t": "Okay, I'll carry her to her bed. She'll be warmer there.", "fr": "D'accord, je la porte dans son lit. Elle y aura plus chaud.",
+     "puis": [{"qui": "b13_notruf", "air": "surprise", "t": "No, please don't! Leave her right where she is. Just cover her.", "fr": "Non, surtout pas ! Laissez-la exactement où elle est. Couvrez-la seulement."}],
+     "aide": {"fr": "<b>« Don't move her »</b> veut dire « ne la déplacez pas », et « cover her », « couvrez-la ». Réponds que tu la laisses où elle est : « I won't move her. »"}}
+   ]
+  },
+  "door": {
+   "dit": [
+    {"si": {"blood": "yes"}, "qui": "b13_notruf", "air": "attentive", "t": "And keep pressing on the wound.", "fr": "Et continuez d'appuyer sur la plaie."},
+    {"qui": "b13_notruf", "air": "question", "t": "The ambulance is on its way. Is there someone who can let the EMTs in downstairs?", "t_gb": "The ambulance is on its way. Is there someone who can let the paramedics in downstairs?", "fr": "L'ambulance est en route. Y a-t-il quelqu'un qui puisse ouvrir aux secouristes, en bas ?"}
+   ],
+   "choix": [
+    {"t": "Yes, another neighbor just came out. He's going down to open the front door.", "t_gb": "Yes, another neighbour just came out. He's going down to open the front door.", "fr": "Oui, un autre voisin vient de sortir de chez lui. Il descend ouvrir la porte d'entrée.", "va": "end",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Great. Ask him to wait there and show them the way.", "fr": "Parfait. Demandez-lui d'attendre là et de leur montrer le chemin."}]},
+    {"t": "No, I'm alone with her, and the front door is locked.", "fr": "Non, il n'y a qu'elle et moi, et la porte d'entrée est fermée à clé.", "va": "buzzer"},
+    {"faux": true, "t": "Yes, I will attend them downstairs.", "fr": "Oui, je vais les « attendre » en bas (faux ami).",
+     "puis": [{"qui": "b13_notruf", "air": "perplexe", "t": "You'll … wait for them? No, please stay with her. Is anyone else in the building?", "fr": "Vous allez… les attendre ? Non, restez avec elle, s'il vous plaît. Y a-t-il quelqu'un d'autre dans l'immeuble ?"}],
+     "aide": {"fr": "<b>« attendre » se dit « to wait for »</b> : « I'll wait for them. » « To attend », c'est assister à (une réunion, un cours). Et ici, mieux vaut rester près d'elle : dis qui peut ouvrir, ou que la porte est fermée."}}
+   ]
+  },
+  "buzzer": {
+   "dit": [{"qui": "b13_notruf", "air": "attentive", "t": "That's okay. Which buzzer should they ring? And can you let them in from upstairs?", "fr": "Ce n'est pas grave. À quelle sonnette doivent-ils sonner ? Et pouvez-vous leur ouvrir d'en haut ?"}],
+   "choix": [
+    {"t": "They can ring three B. My door is open, so I can let them in from there.", "fr": "Ils peuvent sonner au trois B. Ma porte est ouverte, je peux donc leur ouvrir de là.", "va": "end",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Three B, got it. I'll let the crew know.", "fr": "Trois B, c'est noté. Je préviens l'équipe."}]},
+    {"t": "Apartment three B. My name is on the buzzer. I'll open the door as soon as they ring.", "t_gb": "Flat three B. My name is on the buzzer. I'll open the door as soon as they ring.", "fr": "Appartement trois B. Mon nom est sur l'interphone. J'ouvre la porte dès qu'ils sonnent.", "va": "end",
+     "puis": [{"qui": "b13_notruf", "air": "sourire", "t": "Three B. Got it. I'll let the crew know.", "fr": "Trois B. C'est noté. Je préviens l'équipe."}]}
+   ]
+  },
+  "end": {
+   "dit": [
+    {"recit": {"fr": "L'opérateur reste en ligne avec toi. Quelques minutes plus tard, tu entends une sirène dans la rue."}},
+    {"qui": "b13_notruf", "air": "sourire", "t": "They should be pulling up right now. Can you hear the siren?", "fr": "Ils devraient arriver à l'instant. Vous entendez la sirène ?"}
+   ],
+   "choix": [
+    {"t": "Yes, I can hear it. The EMTs are coming up the stairs. Thank you so much for your help!", "t_gb": "Yes, I can hear it. The paramedics are coming up the stairs. Thank you so much for your help!", "fr": "Oui, je l'entends. Les secouristes montent l'escalier. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [
+      {"si": {"meds": "yes"}, "qui": "b13_notruf", "air": "attentive", "t": "Remember to tell them about her medications.", "t_gb": "Remember to tell them about her medication.", "fr": "N'oubliez pas de leur parler de ses médicaments."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "You did a great job. I hope your neighbor feels better soon.", "t_gb": "You did a great job. I hope your neighbour feels better soon.", "fr": "Vous avez très bien réagi. J'espère que votre voisine se remettra vite."}]},
+    {"t": "Yes, they're here. Thank you for staying on the phone with me.", "fr": "Oui, ils sont là. Merci d'être resté en ligne avec moi.", "va": null,
+     "puis": [
+      {"si": {"meds": "yes"}, "qui": "b13_notruf", "air": "attentive", "t": "Remember to tell them about her medications.", "t_gb": "Remember to tell them about her medication.", "fr": "N'oubliez pas de leur parler de ses médicaments."},
+      {"qui": "b13_notruf", "air": "sourire", "t": "You're welcome. You did a great job. I hope your neighbor feels better soon.", "t_gb": "You're welcome. You did a great job. I hope your neighbour feels better soon.", "fr": "Je vous en prie. Vous avez très bien réagi. J'espère que votre voisine se remettra vite."}]},
+    {"faux": true, "t": "Yes, they are arrived. Thank you for your help!", "fr": "Oui, ils « sont arrivés » (calque du français). Merci pour votre aide !",
+     "puis": [{"qui": "b13_notruf", "air": "amuse", "t": "They've arrived? Great!", "fr": "Ils sont arrivés ? Parfait !"}],
+     "aide": {"fr": "<b>En anglais, le passé ne se forme jamais avec « to be »</b> : « They have arrived » ou, plus simple, « They're here. »"}}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as donné l'adresse, décrit l'état de ta voisine et suivi les consignes jusqu'à l'arrivée de l'ambulance."}
+}

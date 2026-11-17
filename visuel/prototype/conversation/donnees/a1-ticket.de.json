@@ -1,0 +1,86 @@
+{
+ "id": "a1-ticket",
+ "langue": "de",
+ "niveau": "A1",
+ "parcours": "voyage",
+ "escale": "ville",
+ "registre": "Sie",
+ "titre": {"fr": "Le ticket de métro"},
+ "intro": {"fr": "Devant un distributeur de tickets de Berlin, tout est en allemand. Un voyageur t'aide à choisir la zone et le ticket… et te rappelle le geste que tous les touristes oublient."},
+ "personnes": ["fahrgast"],
+ "debut": "automat",
+ "prix": {"ab": 380, "abc": 470, "tag_ab": 1060, "tag_abc": 1230},
+ "panier": ["ticket"],
+ "textes": {
+  "ticket_fr": {"cle": "ticket", "ab": "un aller simple, zones AB", "abc": "un aller simple, zones ABC", "tag_ab": "un ticket journée, zones AB", "tag_abc": "un ticket journée, zones ABC"}
+ },
+ "noeuds": {
+  "automat": {
+   "dit": [
+    {"recit": {"fr": "Une station de U-Bahn. Tu es devant le distributeur de tickets : beaucoup de boutons, et tout est en allemand. Un homme attend derrière toi."}},
+    {"qui": "fahrgast", "air": "question", "t": "Brauchen Sie Hilfe?", "fr": "Vous avez besoin d'aide ?"}
+   ],
+   "choix": [
+    {"t": "Ja, bitte. Ich möchte ein Ticket kaufen.", "fr": "Oui, s'il vous plaît. Je voudrais acheter un ticket.", "va": "wohin",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Kein Problem. Das ist ganz einfach.", "fr": "Pas de problème. C'est tout simple."}]},
+    {"t": "Ja, gern. Wie funktioniert der Automat?", "fr": "Oui, volontiers. Comment marche la machine ?", "va": "wohin",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Ganz einfach. Ich zeige es Ihnen.", "fr": "C'est tout simple. Je vais vous montrer."}]},
+    {"faux": true, "t": "Ja, bitte. Ich brauche ein Billett.", "fr": "Oui, s'il vous plaît. J'ai besoin d'un billet (mot suisse).",
+     "puis": [{"qui": "fahrgast", "air": "amuse", "t": "Ein Billett? Sind Sie aus der Schweiz? Hier sagen wir Ticket oder Fahrkarte.", "fr": "Un « Billett » ? Vous venez de Suisse ? Ici, on dit « Ticket » ou « Fahrkarte »."}],
+     "aide": {"fr": "<b>En Allemagne, le billet se dit « das Ticket » ou « die Fahrkarte ».</b> « das Billett » ne s'entend qu'en Suisse."}}
+   ]
+  },
+  "wohin": {
+   "dit": [{"qui": "fahrgast", "air": "question", "t": "Wohin fahren Sie?", "fr": "Vous allez où ?"}],
+   "choix": [
+    {"t": "Zum Alexanderplatz.", "fr": "À l'Alexanderplatz.", "pose": {"ziel": "stadt"}, "va": "fahrten",
+     "puis": [{"qui": "fahrgast", "air": "attentive", "t": "Dann brauchen Sie Berlin AB. Das ist die Stadt.", "fr": "Alors il vous faut Berlin AB. C'est la ville."}]},
+    {"t": "Zum Flughafen BER.", "fr": "À l'aéroport BER.", "pose": {"ziel": "flughafen"}, "va": "fahrten",
+     "puis": [{"qui": "fahrgast", "air": "attentive", "t": "Zum Flughafen? Dann brauchen Sie Berlin ABC. Der Flughafen ist in der Zone C.", "fr": "À l'aéroport ? Alors il vous faut Berlin ABC. L'aéroport est en zone C."}]}
+   ]
+  },
+  "fahrten": {
+   "dit": [{"qui": "fahrgast", "air": "question", "t": "Fahren Sie heute nur einmal, oder öfter?", "fr": "Vous prenez les transports une seule fois aujourd'hui, ou plusieurs ?"}],
+   "choix": [
+    {"si": {"ziel": "stadt"}, "t": "Nur einmal, bitte.", "fr": "Une seule fois, s'il vous plaît.", "pose": {"ticket": "ab"}, "va": "zahlen"},
+    {"si": {"ziel": "stadt"}, "t": "Ich fahre heute viel. Gibt es eine Tageskarte?", "fr": "Je me déplace beaucoup aujourd'hui. Il y a un ticket pour la journée ?", "pose": {"ticket": "tag_ab"}, "va": "zahlen",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Ja, hier: die Tageskarte. Die ist dann billiger.", "fr": "Oui, ici : le ticket journée. Comme ça, c'est moins cher."}]},
+    {"si": {"ziel": "flughafen"}, "t": "Nur einmal, bitte.", "fr": "Une seule fois, s'il vous plaît.", "pose": {"ticket": "abc"}, "va": "zahlen"},
+    {"si": {"ziel": "flughafen"}, "t": "Ich fahre heute viel. Gibt es eine Tageskarte?", "fr": "Je me déplace beaucoup aujourd'hui. Il y a un ticket pour la journée ?", "pose": {"ticket": "tag_abc"}, "va": "zahlen",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Ja, hier: die Tageskarte ABC. Die ist dann billiger.", "fr": "Oui, ici : le ticket journée ABC. Comme ça, c'est moins cher."}]},
+    {"repete": true, "t": "Wie bitte?", "fr": "Pardon ?", "va": "fahrten",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Eine Fahrt … oder viele Fahrten heute?", "fr": "Un trajet… ou beaucoup de trajets aujourd'hui ?"}]}
+   ]
+  },
+  "zahlen": {
+   "dit": [{"qui": "fahrgast", "air": "attentive", "t": "So. Das macht {a_payer}. Der Automat nimmt Karte oder Münzen.", "fr": "Voilà. Ça fait {a_payer}. La machine prend la carte ou les pièces.", "dit": "So. Das macht {a_payer:mots}. Der Automat nimmt Karte oder Münzen."}],
+   "choix": [
+    {"t": "Ich bezahle mit Karte.", "fr": "Je paie par carte.", "va": "stempel"},
+    {"t": "Ich habe nur zwanzig Euro. Geht das?", "fr": "Je n'ai que vingt euros. Ça marche ?", "va": "stempel",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Ja, kein Problem. Der Automat gibt Wechselgeld.", "fr": "Oui, pas de problème. La machine rend la monnaie."}]}
+   ]
+  },
+  "stempel": {
+   "dit": [
+    {"recit": {"fr": "Le ticket sort de la machine."}},
+    {"qui": "fahrgast", "air": "attentive", "t": "Und ganz wichtig: Sie müssen das Ticket noch entwerten. Da, an dem kleinen Automaten.", "fr": "Et c'est très important : il faut encore composter le ticket. Là, à la petite machine."}
+   ],
+   "choix": [
+    {"t": "Entwerten? Was heißt das?", "fr": "Composter ? Qu'est-ce que ça veut dire ?", "va": "ende",
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Sie stempeln das Ticket, dann gilt es. Ohne Stempel kostet die Kontrolle sechzig Euro!", "fr": "Vous tamponnez le ticket, et il est valable. Sans tampon, le contrôle coûte soixante euros !"}]},
+    {"t": "Ah, gut. Vielen Dank für Ihre Hilfe!", "fr": "Ah, bien. Merci beaucoup pour votre aide !", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Gern! Gute Fahrt!", "fr": "Avec plaisir ! Bon trajet !"}]}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Sechzig Euro? Oh! Danke, das ist sehr nett!", "fr": "Soixante euros ? Oh ! Merci, c'est très gentil !", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Gern geschehen. Gute Fahrt!", "fr": "Je vous en prie. Bon trajet !"}]},
+    {"t": "Gut, ich stempele es jetzt. Vielen Dank!", "fr": "Bien, je le composte tout de suite. Merci beaucoup !", "va": null,
+     "puis": [{"qui": "fahrgast", "air": "sourire", "t": "Sehr gut. Gute Fahrt!", "fr": "Très bien. Bon trajet !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as acheté {ticket_fr} pour {a_payer}, et tu sais qu'à Berlin un ticket se composte."}
+}

@@ -1,0 +1,130 @@
+{
+ "id": "b1-vol-annule",
+ "langue": "es",
+ "niveau": "B1",
+ "registre": "usted",
+ "titre": {"fr": "Mon vol est annulé"},
+ "intro": {"fr": "Fin d'un séjour de quelques jours à Madrid. À l'aéroport de Barajas, ton vol pour Bruxelles vient d'être annulé. Au comptoir de la compagnie, tu te fais replacer sur un autre vol et tu demandes à quoi tu as droit."},
+ "personnes": ["b13_fluggesellschaft"],
+ "debut": "mostrador",
+ "noeuds": {
+  "mostrador": {
+   "dit": [
+    {"recit": {"fr": "Terminal 4 de Barajas, en fin d'après-midi. Sur l'écran, à côté de ton vol pour Bruxelles : « cancelado ». Tu fais la queue au comptoir de la compagnie."}},
+    {"qui": "b13_fluggesellschaft", "air": "question", "t": "Buenas tardes. Dígame.", "fr": "Bonjour. Je vous écoute."}
+   ],
+   "choix": [
+    {"t": "Buenas tardes. Han cancelado mi vuelo a Bruselas. ¿Qué puedo hacer?", "fr": "Bonjour. On a annulé mon vol pour Bruxelles. Qu'est-ce que je peux faire ?", "va": "motivo"},
+    {"t": "Buenas tardes. Mi vuelo a Bruselas está cancelado y necesito otro vuelo.", "fr": "Bonjour. Mon vol pour Bruxelles est annulé et j'ai besoin d'un autre vol.", "va": "motivo"},
+    {"faux": true, "t": "Buenas tardes. He perdido mi vuelo a Bruselas.", "fr": "Bonjour. J'ai raté mon vol pour Bruxelles.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "surprise", "t": "¿Lo ha perdido? Pero si ese vuelo está cancelado: no ha salido.", "fr": "Vous l'avez raté ? Mais ce vol est annulé : il n'est pas parti."}],
+     "aide": {"fr": "<b>« perder el vuelo »</b>, c'est le rater (arriver trop tard). Un vol annulé : « Han cancelado mi vuelo » ou « Mi vuelo está cancelado »."}}
+   ]
+  },
+  "motivo": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Sí, lo siento mucho. El avión tiene una avería y esta tarde no tenemos otro. ¿Me deja su tarjeta de embarque o el código de la reserva?", "fr": "Oui, je suis vraiment désolée. L'avion est en panne et nous n'en avons pas d'autre ce soir. Vous me donnez votre carte d'embarquement ou le code de la réservation ?"}],
+   "choix": [
+    {"t": "Claro, aquí tiene mi tarjeta de embarque.", "fr": "Bien sûr, voici ma carte d'embarquement.", "va": "opciones"},
+    {"t": "¡Qué mala suerte! Bueno, no es culpa suya. Aquí tiene el código de la reserva.", "fr": "Quelle malchance ! Bon, ce n'est pas votre faute. Voici le code de la réservation.", "va": "opciones"},
+    {"repete": true, "t": "Perdone, ¿puede hablar más despacio, por favor?", "fr": "Pardon, pouvez-vous parler plus lentement, s'il vous plaît ?", "va": "motivo",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Claro. El avión está roto y hoy no puede volar. Necesito su tarjeta de embarque, por favor.", "fr": "Bien sûr. L'avion est en panne et ne peut pas voler aujourd'hui. J'ai besoin de votre carte d'embarquement, s'il vous plaît."}]}
+   ]
+  },
+  "opciones": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Gracias. Le puedo ofrecer dos opciones: esta noche a las 20:10 con escala en Barcelona, o mañana a las 7:25, directo.", "dit": "Gracias. Le puedo ofrecer dos opciones: esta noche a las ocho y diez con escala en Barcelona, o mañana a las siete y veinticinco, directo.", "fr": "Merci. Je peux vous proposer deux options : ce soir à 20 h 10 avec une escale à Barcelone, ou demain à 7 h 25, en direct."}],
+   "choix": [
+    {"t": "Prefiero el vuelo directo de mañana por la mañana.", "fr": "Je préfère le vol direct de demain matin.", "pose": {"vuelo": "manana"}, "va": "hotel"},
+    {"t": "Necesito llegar hoy. Póngame en el vuelo de esta noche, por favor.", "fr": "J'ai besoin d'arriver aujourd'hui. Mettez-moi sur le vol de ce soir, s'il vous plaît.", "pose": {"vuelo": "hoy"}, "va": "escala"},
+    {"faux": true, "t": "Entonces quiero cancelar mi billete y salir mañana por la mañana.", "fr": "Alors je veux annuler mon billet et partir demain matin.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "¿Cancelar el billete? Entonces le devolvemos el dinero, pero no vuela. ¿No prefiere que le cambie el vuelo?", "fr": "Annuler le billet ? Alors nous vous remboursons, mais vous ne partez pas. Vous ne préférez pas que je change votre vol ?"}],
+     "aide": {"fr": "<b>« cancelar el billete »</b>, c'est renoncer au voyage. Pour partir sur un autre vol : « cambiar el vuelo ». Dis : « Prefiero el vuelo de mañana por la mañana »."}}
+   ]
+  },
+  "hotel": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Muy bien, le cambio al vuelo de mañana. ¿Necesita hotel para esta noche? Lo pagamos nosotros.", "fr": "Très bien, je vous mets sur le vol de demain. Avez-vous besoin d'un hôtel pour cette nuit ? C'est nous qui payons."}],
+   "choix": [
+    {"t": "Sí, por favor. No conozco a nadie en Madrid.", "fr": "Oui, s'il vous plaît. Je ne connais personne à Madrid.", "pose": {"hotel": "si"}, "va": "equipaje",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Aquí tiene un vale para un hotel cerca del aeropuerto, con cena y desayuno. El autobús del hotel sale de la planta de llegadas.", "fr": "Voici un bon pour un hôtel près de l'aéroport, avec dîner et petit-déjeuner. La navette de l'hôtel part du niveau des arrivées."}]},
+    {"t": "No hace falta, gracias. Puedo dormir en casa de unos amigos.", "fr": "Ce n'est pas la peine, merci. Je peux dormir chez des amis.", "pose": {"hotel": "no"}, "va": "equipaje",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Perfecto. Entonces le doy solo un vale de comida de 15 euros. Y guarde el recibo del taxi: se lo devolvemos.", "dit": "Perfecto. Entonces le doy solo un vale de comida de quince euros. Y guarde el recibo del taxi: se lo devolvemos.", "fr": "Parfait. Alors je vous donne seulement un bon de repas de 15 euros. Et gardez le reçu du taxi : nous vous le remboursons."}]},
+    {"faux": true, "t": "No, gracias. Puedo dormir a casa de unos amigos.", "fr": "Non, merci. Je peux dormir chez des amis.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "¿En casa de unos amigos, dice? Entonces, ¿no necesita el hotel?", "fr": "Chez des amis, vous dites ? Alors vous n'avez pas besoin de l'hôtel ?"}],
+     "aide": {"fr": "<b>« chez » sans mouvement se dit « en casa de »</b> : « Puedo dormir en casa de unos amigos ». « a casa de » ne va qu'avec un déplacement (« voy a casa de unos amigos »)."}}
+   ]
+  },
+  "escala": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "De acuerdo. En Barcelona tiene 55 minutos para cambiar de avión. Es un poco justo, pero suficiente. ¿Le parece bien?", "dit": "De acuerdo. En Barcelona tiene cincuenta y cinco minutos para cambiar de avión. Es un poco justo, pero suficiente. ¿Le parece bien?", "fr": "D'accord. À Barcelone, vous avez 55 minutes pour changer d'avion. C'est un peu juste, mais suffisant. Cela vous convient ?"}],
+   "choix": [
+    {"t": "Sí, está bien. ¿Y qué pasa si pierdo el segundo vuelo?", "fr": "Oui, c'est bon. Et que se passe-t-il si je rate le deuxième vol ?", "va": "equipaje",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Entonces le ponemos en el siguiente vuelo sin coste y le damos hotel en Barcelona.", "fr": "Alors nous vous mettons sur le vol suivant sans frais et nous vous donnons un hôtel à Barcelone."}]},
+    {"t": "Sí, me parece bien. Lo importante es llegar hoy.", "fr": "Oui, ça me convient. L'important, c'est d'arriver aujourd'hui.", "va": "equipaje",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Lo entiendo. Ahora mismo le hago el cambio.", "fr": "Je comprends. Je fais le changement tout de suite."}]},
+    {"faux": true, "t": "Sí, es bien.", "fr": "Oui, c'est bien.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "¿Cómo dice? ¿Que le parece bien el vuelo con escala?", "fr": "Comment ? Que le vol avec escale vous convient ?"}],
+     "aide": {"fr": "<b>« C'est bien » se dit « está bien »</b>, jamais « es bien » : « bien » va avec estar. « Sí, está bien » ou « Sí, me parece bien »."}}
+   ]
+  },
+  "equipaje": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Bueno, ya está cambiado. ¿Ha facturado equipaje?", "fr": "Bien, c'est changé. Avez-vous enregistré des bagages ?"}],
+   "choix": [
+    {"t": "Sí, una maleta. ¿Qué pasa con ella?", "fr": "Oui, une valise. Qu'est-ce qu'elle devient ?", "va": "pregunta",
+     "puis": [
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"vuelo": "manana"}, "t": "Se queda aquí y mañana la cargan en su nuevo vuelo. No tiene que hacer nada.", "fr": "Elle reste ici et demain on la charge dans votre nouveau vol. Vous n'avez rien à faire."},
+      {"qui": "b13_fluggesellschaft", "air": "sourire", "si": {"vuelo": "hoy"}, "t": "La pasan directamente al otro avión. La recoge en Bruselas.", "fr": "On la transfère directement dans l'autre avion. Vous la récupérez à Bruxelles."}
+     ]},
+    {"si": {"vuelo": "manana"}, "t": "Sí, una maleta, pero la necesito esta noche. ¿Puedo recuperarla?", "fr": "Oui, une valise, mais j'en ai besoin ce soir. Est-ce que je peux la récupérer ?", "va": "maleta"},
+    {"t": "No, solo llevo equipaje de mano.", "fr": "Non, je n'ai qu'un bagage à main.", "va": "pregunta",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Mejor, así es todo más fácil.", "fr": "Tant mieux, comme ça tout est plus simple."}]},
+    {"faux": true, "t": "Sí, he registrado una maleta.", "fr": "Oui, j'ai enregistré une valise.",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "¿Registrado? Ah, quiere decir que ha facturado una maleta.", "fr": "« Registrado » ? Ah, vous voulez dire que vous avez enregistré une valise."}],
+     "aide": {"fr": "<b>Enregistrer un bagage : « facturar ».</b> « registrar una maleta », c'est la fouiller. « Sí, he facturado una maleta. »"}}
+   ]
+  },
+  "maleta": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Se puede, pero tarda una hora más o menos. La recoge en la sala de llegadas y mañana la vuelve a facturar. ¿Quiere que la pida?", "fr": "C'est possible, mais cela prend à peu près une heure. Vous la récupérez dans le hall des arrivées et demain vous l'enregistrez de nouveau. Voulez-vous que je la demande ?"}],
+   "choix": [
+    {"t": "Sí, por favor. Llevo mis medicinas dentro.", "fr": "Oui, s'il vous plaît. Mes médicaments sont dedans.", "va": "pregunta",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Entendido. Vaya dentro de una hora a la cinta 8 de la sala de llegadas.", "dit": "Entendido. Vaya dentro de una hora a la cinta ocho de la sala de llegadas.", "fr": "Entendu. Allez dans une heure au tapis 8 du hall des arrivées."}]},
+    {"t": "No, una hora es demasiado. Prefiero dejarla aquí.", "fr": "Non, une heure, c'est trop. Je préfère la laisser ici.", "va": "pregunta",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Como quiera. Aquí está segura.", "fr": "Comme vous voulez. Ici, elle est en sécurité."}]}
+   ]
+  },
+  "pregunta": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "question", "t": "Aquí tiene su nueva tarjeta de embarque. ¿Alguna pregunta más?", "fr": "Voici votre nouvelle carte d'embarquement. Une autre question ?"}],
+   "choix": [
+    {"t": "Sí. ¿Tengo derecho a una indemnización?", "fr": "Oui. Est-ce que j'ai droit à une indemnisation ?", "va": "derecho"},
+    {"t": "Sí. ¿Me devuelven algo de dinero por la cancelación?", "fr": "Oui. Est-ce qu'on me rend de l'argent pour l'annulation ?", "va": "derecho"},
+    {"t": "No, gracias, eso es todo.", "fr": "Non, merci, c'est tout.", "va": "despedida"},
+    {"faux": true, "t": "Sí. ¿Puedo preguntar una indemnización?", "fr": "Oui. Puis-je demander une indemnisation ?",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "perplexe", "t": "¿Preguntar…? Ah, ¿quiere saber si puede pedir una indemnización?", "fr": "« Preguntar »… ? Ah, vous voulez savoir si vous pouvez demander une indemnisation ?"}],
+     "aide": {"fr": "<b>« preguntar »</b>, c'est poser une question ; demander quelque chose, c'est « pedir ». « ¿Puedo pedir una indemnización? » ou « ¿Tengo derecho a una indemnización? »."}}
+   ]
+  },
+  "derecho": {
+   "dit": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Sí. Como es una avería, tiene derecho a 250 euros según la normativa europea. Tiene que rellenar el formulario de reclamación en nuestra web.", "dit": "Sí. Como es una avería, tiene derecho a doscientos cincuenta euros según la normativa europea. Tiene que rellenar el formulario de reclamación en nuestra web.", "fr": "Oui. Comme c'est une panne, vous avez droit à 250 euros selon la réglementation européenne. Vous devez remplir le formulaire de réclamation sur notre site."}],
+   "choix": [
+    {"t": "¿Y cuánto tardan en contestar?", "fr": "Et combien de temps mettez-vous à répondre ?", "va": "despedida",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "attentive", "t": "Normalmente un mes. Si no le contestamos, puede reclamar ante AESA, la agencia de seguridad aérea.", "fr": "En général un mois. Si nous ne vous répondons pas, vous pouvez réclamer auprès de l'AESA, l'agence de sécurité aérienne."}]},
+    {"t": "¿Qué documentos necesito para la reclamación?", "fr": "De quels documents ai-je besoin pour la réclamation ?", "va": "despedida",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Solo la tarjeta de embarque y el código de la reserva. Guarde también todos los recibos.", "fr": "Seulement la carte d'embarquement et le code de la réservation. Gardez aussi tous les reçus."}]},
+    {"faux": true, "t": "¿Es necesario de rellenar el formulario hoy?", "fr": "Est-il nécessaire de remplir le formulaire aujourd'hui ?",
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "¿Si es necesario rellenarlo hoy? No, no hace falta. Puede hacerlo desde casa.", "fr": "S'il est nécessaire de le remplir aujourd'hui ? Non, ce n'est pas la peine. Vous pouvez le faire de chez vous."}],
+     "aide": {"fr": "<b>« es necesario » + infinitif, sans « de »</b> : « ¿Es necesario rellenar el formulario hoy? ». Plus courant : « ¿Tengo que rellenarlo hoy? »."}}
+   ]
+  },
+  "despedida": {
+   "dit": [
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"vuelo": "manana"}, "t": "Entonces, todo listo para mañana. Esté en la puerta de embarque a las 6:40 como muy tarde.", "dit": "Entonces, todo listo para mañana. Esté en la puerta de embarque a las siete menos veinte como muy tarde.", "fr": "Alors tout est prêt pour demain. Soyez à la porte d'embarquement à 6 h 40 au plus tard."},
+    {"qui": "b13_fluggesellschaft", "air": "attentive", "si": {"vuelo": "hoy"}, "t": "Su vuelo sale de la puerta K 82. El embarque empieza a las 19:30.", "dit": "Su vuelo sale de la puerta K ochenta y dos. El embarque empieza a las siete y media.", "fr": "Votre vol part de la porte K 82. L'embarquement commence à 19 h 30."},
+    {"qui": "b13_fluggesellschaft", "air": "sourire", "t": "Y de nuevo, disculpe las molestias.", "fr": "Et encore une fois, veuillez nous excuser pour le désagrément."}
+   ],
+   "choix": [
+    {"t": "Muchas gracias por su ayuda. ¡Buenas tardes!", "fr": "Merci beaucoup pour votre aide. Bonne fin de journée !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "A usted. ¡Buen viaje!", "fr": "C'est moi qui vous remercie. Bon voyage !"}]},
+    {"t": "Gracias, ha sido usted muy amable. ¡Adiós!", "fr": "Merci, vous avez été très aimable. Au revoir !", "va": null,
+     "puis": [{"qui": "b13_fluggesellschaft", "air": "sourire", "t": "No hay de qué. ¡Buen viaje!", "fr": "Il n'y a pas de quoi. Bon voyage !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as fait changer ton vol annulé, réglé la nuit et les bagages, et demandé à quoi tu avais droit."}
+}

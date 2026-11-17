@@ -1,0 +1,111 @@
+{
+ "id": "a2-assurance",
+ "langue": "en",
+ "niveau": "A2",
+ "parcours": "A2",
+ "registre": "poli",
+ "titre": {"fr": "À l'agence d'assurances"},
+ "intro": {"fr": "Tu viens d'emménager à Boston et ton propriétaire te demande une assurance de locataire (« renters insurance »). Tu entres dans une agence : tu expliques ce qu'il te faut, tu compares deux formules et tu choisis."},
+ "personnes": ["versicherung_beraterin"],
+ "debut": "welcome",
+ "prix": {"basic": 1500, "plus": 2500},
+ "panier": ["formule"],
+ "textes": {
+  "formule_fr": {"cle": "formule", "basic": "Basic", "plus": "Plus"}
+ },
+ "noeuds": {
+  "welcome": {
+   "dit": [
+    {"recit": {"fr": "Tu viens d'emménager. Ton propriétaire te demande une assurance pour l'appartement. Tu entres dans une petite agence de ton quartier."}},
+    {"qui": "versicherung_beraterin", "air": "sourire", "t": "Good morning! Please, have a seat. What can I do for you?", "fr": "Bonjour ! Asseyez-vous, je vous en prie. Que puis-je faire pour vous ?"}
+   ],
+   "choix": [
+    {"t": "Hello. I'd like renters insurance for my new apartment.", "t_gb": "Hello. I'd like contents insurance for my new flat.", "fr": "Bonjour. Je voudrais une assurance de locataire pour mon nouvel appartement.", "va": "home",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sure, I can help you with that.", "fr": "Bien sûr, je peux vous aider."}]},
+    {"t": "Hi. My landlord is asking for renters insurance.", "t_gb": "Hi. My landlord is asking for contents insurance.", "fr": "Bonjour. Mon propriétaire me demande une assurance de locataire.", "va": "home",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Yes, most landlords in Boston ask for it. I can help you.", "fr": "Oui, la plupart des propriétaires le demandent à Boston. Je peux vous aider."}]},
+    {"faux": true, "t": "Hello. I search an assurance for my apartment.", "fr": "Bonjour. Je cherche une « assurance » pour mon appartement.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "An … assurance? Oh, you're looking for insurance!", "fr": "Une… « assurance » ? Ah, vous cherchez une assurance !"}],
+     "aide": {"fr": "<b>Une assurance se dit « insurance »</b> (sans article), et « chercher » se dit « look for ». Dis : « I'm looking for insurance » ou « I'd like renters insurance »."}}
+   ]
+  },
+  "home": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "First, a few questions. Do you live alone, or with other people?", "fr": "D'abord, quelques questions. Vous vivez seul(e) ou avec d'autres personnes ?"}],
+   "choix": [
+    {"t": "I live alone.", "fr": "Je vis seul(e).", "pose": {"foyer": "seul"}, "va": "things",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "OK, that makes it simple.", "fr": "D'accord, ça simplifie les choses."}]},
+    {"t": "I live with two roommates.", "t_gb": "I live with two flatmates.", "fr": "Je vis avec deux colocataires.", "pose": {"foyer": "coloc"}, "va": "roommates"},
+    {"faux": true, "t": "I live only.", "fr": "Je vis seulement.",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "You live … only? Oh, you live alone!", "fr": "Vous vivez… seulement ? Ah, vous vivez seul(e) !"}],
+     "aide": {"fr": "<b>« seul » se dit « alone ».</b> « only » veut dire « seulement ». Dis : « I live alone »."}}
+   ]
+  },
+  "roommates": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "I see. Do your roommates have their own insurance?", "t_gb": "I see. Do your flatmates have their own insurance?", "fr": "Je vois. Vos colocataires ont-ils leur propre assurance ?"}],
+   "choix": [
+    {"t": "Yes, they both have insurance.", "fr": "Oui, ils en ont une tous les deux.", "va": "things",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Good. Then this one is only for you and your things.", "fr": "Bien. Alors celle-ci ne sera que pour vous et vos affaires."}]},
+    {"t": "I don't know. I'll ask them tonight.", "fr": "Je ne sais pas. Je leur demanderai ce soir.", "va": "things",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Good idea. This one is only for you and your things.", "fr": "Bonne idée. Celle-ci ne sera que pour vous et vos affaires."}]}
+   ]
+  },
+  "things": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "And do you have anything expensive at home? A bike, a computer?", "fr": "Et avez-vous des objets de valeur chez vous ? Un vélo, un ordinateur ?"}],
+   "choix": [
+    {"t": "Yes, I have a laptop and a new bike.", "fr": "Oui, j'ai un ordinateur portable et un vélo neuf.", "va": "plans"},
+    {"t": "Not really. Only my computer and my clothes.", "fr": "Pas vraiment. Seulement mon ordinateur et mes vêtements.", "va": "plans"},
+    {"faux": true, "t": "Yes, I have a computer portable.", "fr": "Oui, j'ai un ordinateur portable (dans l'ordre du français).",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "A computer … portable? Ah, a laptop!", "fr": "Un ordinateur… portable ? Ah, un « laptop » !"}],
+     "aide": {"fr": "<b>Un ordinateur portable se dit « a laptop ».</b> Et en anglais l'adjectif se place avant le nom : « a new bike », jamais « a bike new »."}}
+   ]
+  },
+  "plans": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "OK. We have two plans. Basic is $15 a month. Plus is $25 a month, and it covers more.", "dit": "OK. We have two plans. Basic is fifteen dollars a month. Plus is twenty-five dollars a month, and it covers more.", "fr": "Bien. Nous avons deux formules. Basic coûte 15 $ par mois. Plus coûte 25 $ par mois et couvre davantage."}],
+   "choix": [
+    {"t": "And if someone steals my bike?", "fr": "Et si on me vole mon vélo ?", "va": "choose",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "At home, both plans cover it. On the street, only Plus covers it.", "fr": "Chez vous, les deux formules le couvrent. Dans la rue, seule la formule Plus le couvre."}]},
+    {"t": "And if there is a water problem in my apartment?", "t_gb": "And if there is a water problem in my flat?", "fr": "Et s'il y a un problème d'eau dans mon appartement ?", "va": "choose",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Both plans pay for your things. Plus also pays for a hotel if you can't stay at home.", "fr": "Les deux formules remboursent vos affaires. Plus paie aussi l'hôtel si vous ne pouvez pas rester chez vous."}]},
+    {"faux": true, "t": "And if someone flies my bike?", "fr": "Et si quelqu'un fait voler mon vélo (dans les airs) ?",
+     "puis": [{"qui": "versicherung_beraterin", "air": "amuse", "t": "Flies your bike? Oh, if someone steals it!", "fr": "Fait voler votre vélo ? Ah, si quelqu'un le vole !"}],
+     "aide": {"fr": "<b>« voler » a deux traductions.</b> « fly », c'est voler dans les airs ; prendre le bien de quelqu'un, c'est « steal » : « if someone steals my bike »."}},
+    {"repete": true, "t": "Sorry, could you say that again?", "fr": "Pardon, vous pouvez répéter ?", "va": "plans",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Of course. Basic: fifteen dollars a month. Plus: twenty-five dollars a month, and it covers more things.", "fr": "Bien sûr. Basic : quinze dollars par mois. Plus : vingt-cinq dollars par mois, et elle couvre plus de choses."}]}
+   ]
+  },
+  "choose": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "question", "t": "So, which plan would you like?", "fr": "Alors, quelle formule souhaitez-vous ?"}],
+   "choix": [
+    {"t": "I'll take the Basic plan, please.", "fr": "Je vais prendre la formule Basic, s'il vous plaît.", "pose": {"formule": "basic"}, "va": "papers",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Basic it is.", "fr": "Va pour Basic."}]},
+    {"t": "I'd like the Plus plan. I ride my bike every day.", "fr": "Je voudrais la formule Plus. Je prends mon vélo tous les jours.", "pose": {"formule": "plus"}, "va": "papers",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Good choice.", "fr": "Bon choix."}]},
+    {"faux": true, "t": "I will take the most cheap.", "fr": "Je vais prendre la « plus bon marché ».",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "The most cheap …? Ah, the cheapest one. Basic, then?", "fr": "La « most cheap »… ? Ah, la moins chère. Basic, alors ?"}],
+     "aide": {"fr": "<b>Les adjectifs courts font leur superlatif en « -est ».</b> « cheap » → « the cheapest » (et « cheaper » pour comparer), jamais « the most cheap »."}}
+   ]
+  },
+  "papers": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "attentive", "t": "Great. Now I need a photo ID and your bank information for the monthly payment.", "t_gb": "Great. Now I need a photo ID and your bank details for the monthly payment.", "fr": "Parfait. Il me faut maintenant une pièce d'identité avec photo et vos coordonnées bancaires pour le paiement mensuel."}],
+   "choix": [
+    {"t": "Here is my passport. Can I send the bank information by email?", "t_gb": "Here is my passport. Can I send the bank details by email?", "fr": "Voici mon passeport. Je peux envoyer les coordonnées bancaires par e-mail ?", "va": "end",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Sure. Here's my card with my email address.", "fr": "Bien sûr. Voici ma carte avec mon adresse e-mail."}]},
+    {"t": "Here is my ID. Can I pay with my bank card?", "fr": "Voici ma pièce d'identité. Je peux payer avec ma carte bancaire ?", "va": "end",
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Yes, that works too.", "fr": "Oui, ça marche aussi."}]},
+    {"faux": true, "t": "Here is my piece of identity.", "fr": "Voici ma « pièce d'identité » (mot à mot).",
+     "puis": [{"qui": "versicherung_beraterin", "air": "perplexe", "t": "Your piece of …? Oh, your ID! Thank you.", "fr": "Votre morceau de… ? Ah, votre pièce d'identité ! Merci."}],
+     "aide": {"fr": "<b>Une pièce d'identité se dit « an ID »</b> (ou « a photo ID »). « piece of identity » est un calque du français. Dis : « Here is my ID » ou « Here is my passport »."}}
+   ]
+  },
+  "end": {
+   "dit": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "Perfect. That's {a_payer} a month, and your insurance starts today. I'll email you the papers for your landlord. Any other questions?", "dit": "Perfect. That's {a_payer:mots} a month, and your insurance starts today. I'll email you the papers for your landlord. Any other questions?", "fr": "Parfait. Cela fait {a_payer} par mois, et votre assurance commence aujourd'hui. Je vous envoie par e-mail les papiers pour votre propriétaire. D'autres questions ?"}],
+   "choix": [
+    {"t": "No, that's everything. Thank you for your help!", "fr": "Non, c'est tout. Merci pour votre aide !", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "My pleasure. Enjoy your new apartment!", "t_gb": "My pleasure. Enjoy your new flat!", "fr": "Avec plaisir. Profitez bien de votre nouvel appartement !"}]},
+    {"t": "No, thank you very much. Goodbye!", "fr": "Non, merci beaucoup. Au revoir !", "va": null,
+     "puis": [{"qui": "versicherung_beraterin", "air": "sourire", "t": "You're welcome. Have a nice day!", "fr": "Je vous en prie. Bonne journée !"}]}
+   ]
+  }
+ },
+ "bilan": {"fr": "Tu as pris une assurance de locataire pour ton appartement : la formule {formule_fr}, à {a_payer} par mois. Tu as su demander ce qu'elle couvre avant de choisir."}
+}
