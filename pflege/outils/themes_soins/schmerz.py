@@ -61,7 +61,7 @@ IMAGES = [
     ("schulze", "bauch",   "Herr Schulze, assis sur une chaise, les deux mains sur le ventre, un peu courbé."),
     ("schulze", "hals",    "Herr Schulze, assis, la main sur la gorge, l'air de mal avaler."),
     ("kowalski", "bein",   "Frau Kowalski, dans son fauteuil, chez elle, la main sur le bas de la jambe."),
-    ("kowalski", "arm",    "Frau Kowalski, assise, tient son bras droit plié contre elle."),
+    ("kowalski", "arm",    "Frau Kowalski, assise dans son fauteuil, le bras gauche allongé sur l'accoudoir, la manche relevée ; de l'autre main, elle le tient près du coude."),
 ]
 for p, k, alt in IMAGES:
     T.image(p + "-" + k, alt, personne=p, endroit=k)
