@@ -9368,6 +9368,13 @@ body[data-theme="dark"] .fin-tableau-bas b{color:#EEF2F5;}
 .fh-compte{font-size:26px; font-weight:900; line-height:1; color:#1C2430; font-variant-numeric:tabular-nums; direction:ltr; text-align:left;}
 html[dir="rtl"] .fh-compte{text-align:right;}
 .fh-compte small{font-size:15px; font-weight:700; color:#5A4A44;}
+.fh-compte{white-space:nowrap;}
+@media (max-width:360px){
+    .fh-plaque{gap:10px; margin:0 10px 10px; padding:10px;}
+    .fh-cadre canvas{width:84px;}
+    .fh-compte{font-size:21px;} .fh-compte small{font-size:13px;}
+    .fh-titre{letter-spacing:.08em;}
+}
 .fh-jauge{height:5px; border-radius:3px; background:rgba(28,36,48,.14); overflow:hidden;}
 .fh-jauge i{display:block; height:100%; background:#B86A14;}
 .fh-ligne{font-size:13px; font-weight:700; color:#3A2E2A; line-height:1.3; text-wrap:balance;}
@@ -9859,7 +9866,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1222</span>
+        <span class="subtitle-version">v1223</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -62945,7 +62952,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1222;
+const APP_VERSION = 1223;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -91,6 +91,7 @@ async ([cas, appris, theme]) => {
              encoreDansCiel: !!(enc && ciel && ciel.contains(enc) && !enc.classList.contains('hidden')),
              compte: (plaque.querySelector('.fh-compte, .fin-tableau-bas') || {}).textContent || '', titre: (plaque.querySelector('.fh-titre') || {}).textContent || '',
              lignes, pleine, deborde,
+             compteUneLigne: (() => { const c = plaque.querySelector('.fh-compte'); if(!c) return true; return c.getBoundingClientRect().height <= parseFloat(getComputedStyle(c).fontSize) * 1.5; })(),
              dedans: !rc || (rp.left >= rc.left - 1 && rp.right <= rc.right + 1 && rp.top >= rc.top - 1 && rp.bottom <= rc.bottom + 1),
              couleur: plaque.querySelector('.fh-ligne, .fh-titre') ? getComputedStyle(plaque.querySelector('.fh-titre')).color : '',
              jauge: plaque.querySelector('.fh-jauge i') ? plaque.querySelector('.fh-jauge i').style.width : '',
@@ -145,6 +146,8 @@ def juger(cas, theme, r):
         f.append("la plaque n'est pas au-dessus de « Encore une seance »")
     if not tard["dedans"]:
         f.append("la plaque deborde de la carte du ciel")
+    if not tard.get("compteUneLigne", True):
+        f.append("le compte se coupe sur deux lignes")
     if tard["deborde"]:
         f.append("un texte de la plaque deborde")
     if not tard["pleine"]:
