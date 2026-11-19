@@ -272,7 +272,7 @@ def bilan(chapitres, donnees):
             out += ["### %s (%d)" % (titre, len(lignes)), ""]
             for i, (_, corr, raison) in lignes:
                 l = par_id.get(i)
-                ou = ("%s · %s" % (l[0], plat(l[1]))) if l else "ligne disparue depuis la relecture"
+                ou = ("%s · %s" % (l[0], plat(l[1]))) if l else "ligne corrigée ou retirée depuis la relecture"
                 de = plat(l[2].split("\n")[0])[:220] if l else ""
                 out.append("- `%s` %s%s — %s%s" % (i, ou, (" : « %s »" % de) if de else "", raison,
                                                    (" **Proposition :** « %s »" % corr) if corr else ""))
