@@ -9387,7 +9387,11 @@ body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{--fil-carte:r
     background:linear-gradient(145deg,rgba(255,220,170,.14) 0%,rgba(255,220,170,0) 35%),#7A4618 !important;}
 .sp-fili{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; overflow:hidden;
     -webkit-clip-path:inset(0 round 30px); clip-path:inset(0 round 30px);}
-.sp-fili-cadre{position:fixed; left:0; top:0; width:100%; height:100vh; height:100lvh;}
+/* Ligne 143 (19 nov. 2026, F4 de la revue A a Z) : le cadre ROGNE sa bande. Dans la visite guidee, la carte de
+   seance vit sous un ancetre qui devient le repere de « fixed » : le cadre n'est plus fixe sur l'ecran, et la
+   bande du monde (.spf-piste, 2 880 px) elargissait la page a 1 628 px pour 360 -- un geste de cote la faisait
+   glisser dans le vide. Le clip-path de .sp-fili decoupe le dessin, pas la largeur de defilement. */
+.sp-fili-cadre{position:fixed; left:0; top:0; width:100%; height:100vh; height:100lvh; overflow:hidden;}
 /* ⚠️ Un ancetre avec un flou (backdrop-filter), un transform ou un filter devient le repere de « fixed » : la
    copie se decalerait de la position de la carte et la suivrait au defilement. L'enveloppe .orb-seance portait
    un flou de 18 px (regle generale des .orb, oubliee par la v1014) : on l'enleve -- la carte est opaque, il ne
@@ -9449,6 +9453,35 @@ body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46
 .fin-tableau-bas b{font-weight:800; color:#1C2430;}
 body[data-theme="dark"] .fin-tableau-bas{color:#A9B8C4;}
 body[data-theme="dark"] .fin-tableau-bas b{color:#EEF2F5;}
+/* Le tableau sur l'horizon du ciel (choix A de Jacques, 19 nov. 2026) : une plaque claire dans la lumiere chaude du bas
+   de la carte, le ciel un peu plus bas pour lui laisser sa place. Encre sur fond clair le jour, clair sur verre la nuit. */
+.fin-ciel.avec-tableau .fc-cst{height:226px;}
+.fh-plaque{display:flex; align-items:center; gap:14px; margin:0 14px 12px; padding:12px; border-radius:16px; text-align:start;
+    background:rgba(255,250,242,.62); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 10px 26px rgba(60,30,20,.18);}
+.fh-cadre{flex:0 0 auto; padding:5px; background:#F6EFE3; border-radius:4px; box-shadow:0 6px 14px rgba(40,20,10,.28); line-height:0;}
+.fh-cadre canvas{display:block; width:min(122px, 32vw); height:auto; border-radius:2px;}
+.fh-texte{flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:5px;}
+.fh-titre{font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#5A4A44;}
+.fh-compte{font-size:26px; font-weight:900; line-height:1; color:#1C2430; font-variant-numeric:tabular-nums; direction:ltr; text-align:left;}
+html[dir="rtl"] .fh-compte{text-align:right;}
+.fh-compte small{font-size:15px; font-weight:700; color:#5A4A44;}
+.fh-compte{white-space:nowrap;}
+@media (max-width:360px){
+    .fh-plaque{gap:10px; margin:0 10px 10px; padding:10px;}
+    .fh-cadre canvas{width:84px;}
+    .fh-compte{font-size:21px;} .fh-compte small{font-size:13px;}
+    .fh-titre{letter-spacing:.08em;}
+}
+.fh-jauge{height:5px; border-radius:3px; background:rgba(28,36,48,.14); overflow:hidden;}
+.fh-jauge i{display:block; height:100%; background:#B86A14;}
+.fh-ligne{font-size:13px; font-weight:700; color:#3A2E2A; line-height:1.3; text-wrap:balance;}
+body[data-theme="dark"] .fh-plaque{background:rgba(255,255,255,.06); box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 10px 26px rgba(0,0,0,.35);}
+body[data-theme="dark"] .fh-cadre{background:#5E503E; box-shadow:0 6px 14px rgba(0,0,0,.45);}
+body[data-theme="dark"] .fh-titre, body[data-theme="dark"] .fh-compte small{color:#A9B8C4;}
+body[data-theme="dark"] .fh-compte{color:#F3F5F8;}
+body[data-theme="dark"] .fh-jauge{background:rgba(238,242,245,.16);}
+body[data-theme="dark"] .fh-jauge i{background:#F0B456;}
+body[data-theme="dark"] .fh-ligne{color:rgba(236,239,242,.86);}
 /* LE CIEL DE L'ECRAN DE FIN (8 nov. 2026) : proposition B de la maquette, le soir en clair, la nuit en sombre. */
 #flashcardEnd.avec-ciel{padding:12px;}
 #flashcardEnd.avec-ciel #flashEndAnneau, #flashcardEnd.avec-ciel #flashEndTitre{display:none !important;}
@@ -9930,7 +9963,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1220</span>
+        <span class="subtitle-version">v1224</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -13272,7 +13305,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
 <!-- v867 (essai feuilles_conj) : « Mes feuilles » -- les feuilles de
      conjugaison du niveau, vues ou a venir. Rempli par ouvrirMesFeuilles(). -->
 <section id="mesFeuilles" class="screen">
-    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <button class="back" onclick="retourMesFeuilles()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="title-row">
         <div>
             <div class="kicker" data-i18n="fc_kicker">Conjugaison</div>
@@ -15910,6 +15943,7 @@ const I18N = {
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
         myvocab_title: "Mots du dictionnaire",
+        myvocab_nom: "Mon vocabulaire",
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
@@ -16434,6 +16468,8 @@ const I18N = {
         presente_bulle: "Un mot nouveau : écoute-le et lis-le. Il reviendra en question dans quelques cartes.",
         presente_toucher: "Ce mot est nouveau : il est déjà retourné. Écoute-le, puis choisis Continuer.",
         legere_fin_une: "Ta séance du jour est faite.",
+        fin_tableau_seance: "Cette séance : +{n}",
+        fin_tableau_presque: "Il est presque à toi.",
         fin_rev_titre: "Tes mots manqués sont revus.",
         fin_rev_question: "Continuer avec une nouvelle séance ?",
         fin_rev_oui: "Oui, une nouvelle séance",
@@ -16465,7 +16501,7 @@ const I18N = {
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
-        reperes_seance: "Ta séance du jour : chaque jour, touche ▶. Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser.",
+        reperes_seance: "Ta séance du jour : chaque jour, touche « Commencer la séance ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser.",
         reperes_niveau: "Ton niveau : les nouveaux mots viennent du niveau choisi ici (touche « A1 ▾ »), de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux.",
         reperes_gardes: "Mis de côté : les mots que tu mets de côté pour les retravailler t'attendent ici.",
         gardes_explication: "« Mis de côté » : pendant ta séance du jour, quand un mot te résiste, touche « {bouton} » sur sa carte. Il se retrouve ici, et tu le retravailles quand tu veux.",
@@ -16785,6 +16821,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCICES : QUEL CAS APRÈS CE VERBE ? →",
         kicker_verb_rektion: "Cas gouverné par le verbe",
         alert_no_rektion_available: "Aucun verbe avec cas gouverné chargé pour l'instant. Réessaie dans un instant.",
+        rektion_question: "Quel cas est-ce que « {v} » gouverne ?",
+        rektion_explication: "« {v} » ({t}) gouverne le {c}.",
         verbenniveau_exercises_btn: "EXERCICES PRÄSENS →",
 
         kicker_integrated_vocab: "Vocabulaire Intégré",
@@ -17805,6 +17843,7 @@ const I18N = {
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
         myvocab_title: "Dictionary words",
+        myvocab_nom: "My vocabulary",
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
@@ -18328,6 +18367,8 @@ const I18N = {
         presente_bulle: "A new word: listen to it and read it. It will come back as a question in a few cards.",
         presente_toucher: "This word is new: it's already turned over. Listen to it, then choose Continue.",
         legere_fin_une: "Today's session is done.",
+        fin_tableau_seance: "This session: +{n}",
+        fin_tableau_presque: "It's almost yours.",
         fin_rev_titre: "Your missed words are reviewed.",
         fin_rev_question: "Continue with a new session?",
         fin_rev_oui: "Yes, a new session",
@@ -18359,7 +18400,7 @@ const I18N = {
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
         sec_pratique: "Practice",
-        reperes_seance: "Today's session: every day, tap ▶. A few new words, and reviews that come back at the right moment. It's the easiest way to make progress.",
+        reperes_seance: "Today's session: every day, tap “Start the session.” A few new words, and reviews that come back at the right moment. It's the easiest way to make progress.",
         reperes_niveau: "Your level: new words come from the level chosen here (tap “A1 ▾”), from A1 (beginner) to C1 (advanced). You can change it whenever you like.",
         reperes_gardes: "Set aside: the words you set aside to work on again are waiting for you here.",
         gardes_explication: "“Set aside”: during today's session, when a word gives you trouble, tap “{bouton}” on its card. It ends up here, and you can practice it again whenever you like.",
@@ -18677,6 +18718,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCISES: WHICH CASE DOES THIS VERB GOVERN? →",
         kicker_verb_rektion: "Verb case government",
         alert_no_rektion_available: "No tagged verbs loaded yet. Try again in a moment.",
+        rektion_question: "Which case does “{v}” govern?",
+        rektion_explication: "“{v}” ({t}) governs the {c}.",
         verbenniveau_exercises_btn: "PRÄSENS EXERCISES →",
 
         kicker_integrated_vocab: "Built-in Vocabulary",
@@ -19701,6 +19744,7 @@ const I18N = {
         label_english_pitfall: "Tuzak",
         label_english_forms: "Biçimler",
         myvocab_title: "Sözlük kelimeleri",
+        myvocab_nom: "Kelimelerim",
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
@@ -19812,6 +19856,8 @@ const I18N = {
         presente_bulle: "Yeni bir kelime: dinle ve oku. Birkaç kart sonra soru olarak geri gelecek.",
         presente_toucher: "Bu kelime yeni: zaten çevrilmiş durumda. Dinle, sonra Devam'ı seç.",
         legere_fin_une: "Bugünkü oturumun bitti.",
+        fin_tableau_seance: "Bu oturum: +{n}",
+        fin_tableau_presque: "Neredeyse senin.",
         fin_rev_titre: "Kaçırdığın kelimeler tekrar edildi.",
         fin_rev_question: "Yeni bir oturumla devam etmek ister misin?",
         fin_rev_oui: "Evet, yeni bir oturum",
@@ -20199,7 +20245,7 @@ const I18N = {
         sec_mots: "Kelime çalışması",
         sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
-        reperes_seance: "Bugünkü oturumun: her gün ▶ düğmesine dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu.",
+        reperes_seance: "Bugünkü oturumun: her gün “Oturumu başlat” düğmesine dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu.",
         reperes_niveau: "Seviyen: yeni kelimeler burada seçtiğin seviyeden gelir («A1 ▾» simgesine dokun), A1'den (başlangıç) C1'e (ileri) kadar. İstediğin zaman değiştirebilirsin.",
         reperes_gardes: "Kenara ayrılanlar: yeniden çalışmak için kenara ayırdığın kelimeler seni burada bekliyor.",
         gardes_explication: "« Kenara ayrılanlar »: bugünkü oturumunda bir kelime seni zorlarsa, kartındaki « {bouton} » düğmesine dokun. Kelime buraya gelir, istediğin zaman yeniden çalışırsın.",
@@ -20517,6 +20563,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ALIŞTIRMA: BU FİİL HANGİ HALİ ALIR? →",
         kicker_verb_rektion: "Fiilin hal yönetimi",
         alert_no_rektion_available: "Henüz etiketli fiil yüklenmedi. Birazdan tekrar dene.",
+        rektion_question: "“{v}” fiili hangi hali ister?",
+        rektion_explication: "“{v}” ({t}) fiili şu hali ister: {c}.",
         verbenniveau_exercises_btn: "PRÄSENS ALIŞTIRMALARI →",
 
         kicker_integrated_vocab: "Yerleşik Kelime",
@@ -22020,6 +22068,7 @@ const I18N = {
         onboarding_home_button: "Як почати? (менше хвилини)",
         onboarding_close: "ЗРОЗУМІЛО",
         myvocab_title: "Слова зі словника",
+        myvocab_nom: "Мій словник",
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
@@ -22131,6 +22180,8 @@ const I18N = {
         presente_bulle: "Нове слово: послухай його й прочитай. За кілька карток воно повернеться як запитання.",
         presente_toucher: "Це слово нове: картку вже перевернуто. Послухай його, а тоді вибери «Далі».",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
+        fin_tableau_seance: "Це заняття: +{n}",
+        fin_tableau_presque: "Картина майже твоя.",
         fin_rev_titre: "Пропущені слова повторено.",
         fin_rev_question: "Продовжити новим заняттям?",
         fin_rev_oui: "Так, нове заняття",
@@ -22488,7 +22539,7 @@ const I18N = {
         sec_mots: "Робота зі словами",
         sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
-        reperes_seance: "Твоє заняття на сьогодні: щодня торкайся ▶. Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися.",
+        reperes_seance: "Твоє заняття на сьогодні: щодня торкайся «Почати заняття». Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися.",
         reperes_niveau: "Твій рівень: нові слова беруться з рівня, обраного тут (торкнися «A1 ▾»), від A1 (початковий) до C1 (просунутий). Його можна змінити будь-коли.",
         reperes_gardes: "Відкладені: слова, які ти відкладаєш, щоб попрацювати з ними знову, чекають тут.",
         gardes_explication: "«Відкладені»: під час сьогоднішнього заняття, якщо слово дається важко, торкнися «{bouton}» на його картці. Воно опиниться тут, і ти повернешся до нього, коли захочеш.",
@@ -22688,6 +22739,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} засвоєних слів повертаються на повторення.",
         alert_maitrises_aucun: "Наразі немає засвоєних слів.",
         alert_no_rektion_available: "Поки не завантажено жодного дієслова з фіксованим відмінком. Спробуй за мить.",
+        rektion_question: "Якого відмінка вимагає дієслово «{v}»?",
+        rektion_explication: "Дієслово «{v}» ({t}) вимагає: {c}.",
         alert_no_dictation_available: "Спершу відкрий набір лексики (Wortschatz), щоб потренувати диктант.",
         alert_valid_email: "Введи, будь ласка, дійсну адресу електронної пошти.",
         alert_enter_password: "Введи, будь ласка, пароль.",
@@ -24359,6 +24412,8 @@ const I18N = {
         verbenniveau_rektion_btn: "تمرین: پس از این فعل چه حالتی؟ →",
         kicker_verb_rektion: "حالتی که فعل می‌طلبد",
         alert_no_rektion_available: "فعلاً هیچ فعلی با حالت معیّن بارگذاری نشده است. کمی بعد دوباره تلاش کن.",
+        rektion_question: "\u2067فعل «{v}» چه حالتی می‌طلبد؟\u2069",
+        rektion_explication: "فعل «{v}» ({t}) این حالت را می‌طلبد: {c}.",
         verbenniveau_exercises_btn: "تمرین‌های PRÄSENS →",
         kicker_integrated_vocab: "واژگان یکپارچه",
         nomen_title: "اسم‌ها و موضوع‌ها",
@@ -24682,6 +24737,7 @@ const I18N = {
         label_english_pitfall: "دام",
         label_english_forms: "صورت‌ها",
         myvocab_title: "واژه‌های واژه‌نامه",
+        myvocab_nom: "واژگان من",
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
@@ -24793,6 +24849,8 @@ const I18N = {
         presente_bulle: "یک واژهٔ تازه: گوشش کن و بخوانش. چند کارت بعد به‌صورت پرسش برمی‌گردد.",
         presente_toucher: "این واژه تازه است: کارتش از قبل برگشته است. گوشش کن، بعد «ادامه» را انتخاب کن.",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
+        fin_tableau_seance: "این جلسه: +{n}",
+        fin_tableau_presque: "تابلو تقریباً مال توست.",
         fin_rev_titre: "واژه‌هایی که جا انداخته بودی مرور شد.",
         fin_rev_question: "با یک جلسهٔ تازه ادامه می‌دهی؟",
         fin_rev_oui: "بله، یک جلسهٔ تازه",
@@ -25178,7 +25236,7 @@ const I18N = {
         sec_mots: "کار روی واژه‌ها",
         sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
-        reperes_seance: "جلسهٔ امروزت: هر روز ▶ را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است.",
+        reperes_seance: "جلسهٔ امروزت: هر روز «شروع جلسه» را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است.",
         reperes_niveau: "سطح تو: واژه‌های تازه از سطحی می‌آیند که این‌جا انتخاب می‌کنی («A1 ▾» را بزن)، از A1 (مبتدی) تا C1 (پیشرفته). هر وقت خواستی می‌توانی عوضش کنی.",
         reperes_gardes: "کنارگذاشته‌ها: واژه‌هایی که برای کار دوباره کنار می‌گذاری این‌جا منتظرت هستند.",
         gardes_explication: "«کنارگذاشته‌ها»: در جلسهٔ امروزت، وقتی واژه‌ای برایت سخت است، روی کارتش «{bouton}» را بزن. به این‌جا می‌آید و هر وقت خواستی دوباره تمرینش می‌کنی.",
@@ -26336,6 +26394,8 @@ const I18N = {
         verbenniveau_rektion_btn: "تمارين: أي حالة بعد هذا الفعل؟ ←",
         kicker_verb_rektion: "الحالة التي يقتضيها الفعل",
         alert_no_rektion_available: "لا فعل بحالة مقتضاة محمَّل حالياً. أعد المحاولة بعد لحظة.",
+        rektion_question: "\u2067أي حالة يقتضيها الفعل «{v}»؟\u2069",
+        rektion_explication: "الفعل «{v}» ({t}) يقتضي: {c}.",
         verbenniveau_exercises_btn: "تمارين PRÄSENS ←",
         kicker_integrated_vocab: "المفردات المدمجة",
         nomen_title: "الأسماء والمواضيع",
@@ -26693,6 +26753,7 @@ const I18N = {
         label_english_pitfall: "مَزلق",
         label_english_forms: "الصيغ",
         myvocab_title: "كلمات القاموس",
+        myvocab_nom: "قاموسي",
         home_daily_goal_label_court: "اليوم",
         compte_rencontres: "كلمة صادفتها",
         examen_titre: "مفردات الامتحان",
@@ -26804,6 +26865,8 @@ const I18N = {
         presente_bulle: "كلمة جديدة: استمع إليها واقرأها. ستعود سؤالًا بعد بضع بطاقات.",
         presente_toucher: "هذه الكلمة جديدة: البطاقة مقلوبة مسبقًا. استمع إليها، ثم اختر «متابعة».",
         legere_fin_une: "انتهت حصة اليوم.",
+        fin_tableau_seance: "هذه الحصة: +{n}",
+        fin_tableau_presque: "اللوحة أصبحت لك تقريباً.",
         fin_rev_titre: "تمت مراجعة الكلمات التي فاتتك.",
         fin_rev_question: "هل تتابع بحصة جديدة؟",
         fin_rev_oui: "نعم، حصة جديدة",
@@ -27178,7 +27241,7 @@ const I18N = {
         sec_mots: "العمل على الكلمات",
         sec_phrase: "العمل على الجملة",
         sec_pratique: "التدرّب",
-        reperes_seance: "جلستك اليوم: كل يوم، المس ▶. بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم.",
+        reperes_seance: "جلستك اليوم: كل يوم، المس «ابدأ الجلسة». بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم.",
         reperes_niveau: "مستواك: تأتي الكلمات الجديدة من المستوى الذي تختاره هنا (المس «A1 ▾»)، من A1 (مبتدئ) إلى C1 (متقدّم). يمكنك تغييره متى شئت.",
         reperes_gardes: "الموضوعة جانبًا: الكلمات التي تضعها جانبًا لتعيد العمل عليها تنتظرك هنا.",
         gardes_explication: "«الموضوعة جانبًا»: خلال جلستك اليوم، حين تصعب عليك كلمة، المس «{bouton}» على بطاقتها. ستجدها هنا، وتعيد التدرّب عليها متى شئت.",
@@ -27217,6 +27280,7 @@ const I18N = {
         label_english_pitfall: "Armadilha",
         label_english_forms: "Formas",
         myvocab_title: "Palavras do dicionário",
+        myvocab_nom: "Meu vocabulário",
         home_daily_goal_label_court: "Hoje",
         compte_rencontres: "palavras vistas",
         examen_titre: "Vocabulário de prova",
@@ -27328,6 +27392,8 @@ const I18N = {
         presente_bulle: "Uma palavra nova: ouça e leia. Ela volta como pergunta daqui a algumas cartas.",
         presente_toucher: "Esta palavra é nova: o cartão já está virado. Ouça e depois escolha Continuar.",
         legere_fin_une: "Sua sessão de hoje está concluída.",
+        fin_tableau_seance: "Esta sessão: +{n}",
+        fin_tableau_presque: "Ele já é quase seu.",
         fin_rev_titre: "As palavras que você errou foram revisadas.",
         fin_rev_question: "Continuar com uma nova sessão?",
         fin_rev_oui: "Sim, uma nova sessão",
@@ -27715,7 +27781,7 @@ const I18N = {
         sec_mots: "Trabalhar as palavras",
         sec_phrase: "Trabalhar a frase",
         sec_pratique: "Praticar",
-        reperes_seance: "A sua sessão do dia: todos os dias, toque em ▶. Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir.",
+        reperes_seance: "A sua sessão do dia: todos os dias, toque em “Começar a sessão”. Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir.",
         reperes_niveau: "O seu nível: as palavras novas vêm do nível escolhido aqui (toque em «A1 ▾»), de A1 (iniciante) a C1 (avançado). Você pode mudar quando quiser.",
         reperes_gardes: "Separadas: as palavras que você separa para trabalhar de novo esperam por você aqui.",
         gardes_explication: "« Separadas »: durante a sua sessão do dia, quando uma palavra for difícil, toque em « {bouton} » no cartão dela. Ela vem para cá, e você pratica de novo quando quiser.",
@@ -28029,6 +28095,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCÍCIOS: QUAL CASO DEPOIS DESTE VERBO? →",
         kicker_verb_rektion: "Caso exigido pelo verbo",
         alert_no_rektion_available: "Nenhum verbo com caso exigido carregado por enquanto. Tente de novo daqui a pouco.",
+        rektion_question: "Que caso o verbo “{v}” exige?",
+        rektion_explication: "O verbo “{v}” ({t}) exige o {c}.",
         verbenniveau_exercises_btn: "EXERCÍCIOS DE PRÄSENS →",
         kicker_integrated_vocab: "Vocabulário integrado",
         nomen_title: "Substantivos & Temas",
@@ -29116,6 +29184,7 @@ const I18N = {
         label_english_pitfall: "Pułapka",
         label_english_forms: "Formy",
         myvocab_title: "Słowa ze słownika",
+        myvocab_nom: "Moje słownictwo",
         home_daily_goal_label_court: "Dziś",
         compte_rencontres: "poznane słowa",
         examen_titre: "Słownictwo egzaminacyjne",
@@ -29227,6 +29296,8 @@ const I18N = {
         presente_bulle: "Nowe słowo: posłuchaj i przeczytaj. Za kilka kart wróci jako pytanie.",
         presente_toucher: "To słowo jest nowe: karta jest już odwrócona. Posłuchaj go, a potem wybierz „Dalej”.",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
+        fin_tableau_seance: "Ta sesja: +{n}",
+        fin_tableau_presque: "Obraz jest już prawie twój.",
         fin_rev_titre: "Słowa, które ci umknęły, są powtórzone.",
         fin_rev_question: "Kontynuować nową sesją?",
         fin_rev_oui: "Tak, nowa sesja",
@@ -29614,7 +29685,7 @@ const I18N = {
         sec_mots: "Praca nad słowami",
         sec_phrase: "Praca nad zdaniem",
         sec_pratique: "Ćwiczenia",
-        reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij ▶. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy.",
+        reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij „Zacznij sesję”. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy.",
         reperes_niveau: "Twój poziom: nowe słowa pochodzą z poziomu wybranego tutaj (dotknij „A1 ▾”), od A1 (początkujący) do C1 (zaawansowany). Możesz go zmienić w dowolnej chwili.",
         reperes_gardes: "Odłożone: słowa, które odkładasz, żeby do nich wrócić, czekają tutaj.",
         gardes_explication: "„Odłożone”: podczas dzisiejszej sesji, gdy słowo sprawia ci trudność, dotknij „{bouton}” na jego karcie. Trafi tutaj i wrócisz do niego, kiedy zechcesz.",
@@ -29928,6 +29999,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ĆWICZENIA: JAKI PRZYPADEK PO TYM CZASOWNIKU? →",
         kicker_verb_rektion: "Przypadek wymagany przez czasownik",
         alert_no_rektion_available: "Na razie nie wczytano żadnego czasownika z przypisanym przypadkiem. Spróbuj za chwilę.",
+        rektion_question: "Jakiego przypadka wymaga czasownik „{v}”?",
+        rektion_explication: "Czasownik „{v}” ({t}) wymaga: {c}.",
         verbenniveau_exercises_btn: "ĆWICZENIA PRÄSENS →",
         kicker_integrated_vocab: "Wbudowane słownictwo",
         nomen_title: "Rzeczowniki i tematy",
@@ -31015,6 +31088,7 @@ const I18N = {
         label_english_pitfall: "Ловушка",
         label_english_forms: "Формы",
         myvocab_title: "Слова из словаря",
+        myvocab_nom: "Мой словарь",
         home_daily_goal_label_court: "Сегодня",
         compte_rencontres: "слов встречено",
         examen_titre: "Словарь для экзамена",
@@ -31126,6 +31200,8 @@ const I18N = {
         presente_bulle: "Новое слово: послушай его и прочитай. Через несколько карточек оно вернётся вопросом.",
         presente_toucher: "Это слово новое: карточка уже перевёрнута. Послушай его, а потом выбери «Дальше».",
         legere_fin_une: "Сегодняшнее занятие завершено.",
+        fin_tableau_seance: "Это занятие: +{n}",
+        fin_tableau_presque: "Картина почти твоя.",
         fin_rev_titre: "Пропущенные слова повторены.",
         fin_rev_question: "Продолжить новым занятием?",
         fin_rev_oui: "Да, новое занятие",
@@ -31513,7 +31589,7 @@ const I18N = {
         sec_mots: "Работа со словами",
         sec_phrase: "Работа с предложением",
         sec_pratique: "Практика",
-        reperes_seance: "Твоё занятие на сегодня: каждый день нажимай ▶. Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд.",
+        reperes_seance: "Твоё занятие на сегодня: каждый день нажимай «Начать занятие». Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд.",
         reperes_niveau: "Твой уровень: новые слова берутся с уровня, выбранного здесь (нажми «A1 ▾»), от A1 (начальный) до C1 (продвинутый). Его можно сменить в любой момент.",
         reperes_gardes: "Отложенные: слова, которые ты откладываешь, чтобы поработать над ними снова, ждут тебя здесь.",
         gardes_explication: "«Отложенные»: во время занятия на сегодня, если слово даётся с трудом, нажми «{bouton}» на его карточке. Оно окажется здесь, и ты вернёшься к нему, когда захочешь.",
@@ -31830,6 +31906,8 @@ const I18N = {
         verbenniveau_rektion_btn: "УПРАЖНЕНИЯ: КАКОЙ ПАДЕЖ ПОСЛЕ ГЛАГОЛА? →",
         kicker_verb_rektion: "Управление глагола",
         alert_no_rektion_available: "Глаголы с управлением ещё не загружены. Попробуй через минуту.",
+        rektion_question: "Какого падежа требует глагол «{v}»?",
+        rektion_explication: "Глагол «{v}» ({t}) требует: {c}.",
         verbenniveau_exercises_btn: "УПРАЖНЕНИЯ: PRÄSENS →",
         kicker_integrated_vocab: "Встроенный словарь",
         nomen_title: "Существительные и темы",
@@ -32917,6 +32995,7 @@ const I18N = {
         label_english_pitfall: "Stolperfalle",
         label_english_forms: "Formen",
         myvocab_title: "Wörter aus dem Wörterbuch",
+        myvocab_nom: "Mein Wortschatz",
         home_daily_goal_label_court: "Heute",
         compte_rencontres: "Wörter gesehen",
         examen_titre: "Prüfungswortschatz",
@@ -33028,6 +33107,8 @@ const I18N = {
         presente_bulle: "Ein neues Wort: hör es dir an und lies es. In ein paar Karten kommt es als Frage wieder.",
         presente_toucher: "Dieses Wort ist neu: Die Karte ist schon umgedreht. Hör es dir an und wähle dann „Weiter“.",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
+        fin_tableau_seance: "Diese Einheit: +{n}",
+        fin_tableau_presque: "Das Gemälde ist fast deins.",
         fin_rev_titre: "Deine verpassten Wörter sind wiederholt.",
         fin_rev_question: "Mit einer neuen Einheit weitermachen?",
         fin_rev_oui: "Ja, eine neue Einheit",
@@ -33414,7 +33495,7 @@ const I18N = {
         sec_mots: "An den Wörtern arbeiten",
         sec_phrase: "Am Satz arbeiten",
         sec_pratique: "Anwenden",
-        reperes_seance: "Deine Lerneinheit heute: Tippe jeden Tag auf ▶. Ein paar neue Wörter und die Wiederholungen, die genau zur rechten Zeit wiederkommen. So kommst du am einfachsten voran.",
+        reperes_seance: "Deine Lerneinheit heute: Tippe jeden Tag auf „Lerneinheit starten“. Ein paar neue Wörter und die Wiederholungen, die genau zur rechten Zeit wiederkommen. So kommst du am einfachsten voran.",
         reperes_niveau: "Dein Niveau: Die neuen Wörter kommen aus dem hier gewählten Niveau (tippe auf „A1 ▾“), von A1 (Einstieg) bis C1 (fortgeschritten). Du kannst es jederzeit ändern.",
         reperes_gardes: "Zurückgelegt: Die Wörter, die du zum späteren Üben zurücklegst, warten hier auf dich.",
         gardes_explication: "„Zurückgelegt“: Wenn dir in deiner Lerneinheit ein Wort Mühe macht, tippe auf seiner Karte auf „{bouton}“. Es landet hier, und du übst es, wann du willst.",
@@ -33728,6 +33809,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ÜBUNGEN: WELCHER KASUS NACH DIESEM VERB? →",
         kicker_verb_rektion: "Der vom Verb verlangte Kasus",
         alert_no_rektion_available: "Im Moment ist kein Verb mit festem Kasus geladen. Versuch es gleich noch einmal.",
+        rektion_question: "Welchen Kasus verlangt „{v}“?",
+        rektion_explication: "„{v}“ ({t}) verlangt den {c}.",
         verbenniveau_exercises_btn: "ÜBUNGEN PRÄSENS →",
         kicker_integrated_vocab: "Integrierter Wortschatz",
         nomen_title: "Nomen & Themen",
@@ -34779,6 +34862,7 @@ const I18N = {
         label_english_pitfall: "Trampa",
         label_english_forms: "Formas",
         myvocab_title: "Palabras del diccionario",
+        myvocab_nom: "Mi vocabulario",
         home_daily_goal_label_court: "Hoy",
         compte_rencontres: "palabras vistas",
         examen_titre: "Vocabulario de examen",
@@ -34890,6 +34974,8 @@ const I18N = {
         presente_bulle: "Una palabra nueva: escúchala y léela. Volverá como pregunta dentro de unas tarjetas.",
         presente_toucher: "Esta palabra es nueva: la tarjeta ya está girada. Escúchala y luego elige Continuar.",
         legere_fin_une: "Tu práctica de hoy está hecha.",
+        fin_tableau_seance: "Esta práctica: +{n}",
+        fin_tableau_presque: "Ya casi es tuyo.",
         fin_rev_titre: "Tus palabras falladas están repasadas.",
         fin_rev_question: "¿Seguir con una práctica nueva?",
         fin_rev_oui: "Sí, una práctica nueva",
@@ -35276,7 +35362,7 @@ const I18N = {
         sec_mots: "Trabajar las palabras",
         sec_phrase: "Trabajar la frase",
         sec_pratique: "Practicar",
-        reperes_seance: "Tu práctica de hoy: cada día, toca ▶. Unas pocas palabras nuevas, y los repasos que vuelven en el momento justo. Es lo más sencillo para progresar.",
+        reperes_seance: "Tu práctica de hoy: cada día, toca «Empezar la práctica». Unas pocas palabras nuevas, y los repasos que vuelven en el momento justo. Es lo más sencillo para progresar.",
         reperes_niveau: "Tu nivel: las palabras nuevas vienen del nivel elegido aquí (toca «A1 ▾»), de A1 (principiante) a C1 (avanzado). Puedes cambiarlo cuando quieras.",
         reperes_gardes: "Apartadas: las palabras que apartas para trabajarlas más te esperan aquí.",
         gardes_explication: "«Apartadas»: durante tu práctica de hoy, cuando una palabra se te resiste, toca «{bouton}» en su tarjeta. Queda aquí, y la trabajas cuando quieras.",
@@ -35590,6 +35676,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EJERCICIOS: ¿QUÉ CASO VA DESPUÉS DE ESTE VERBO? →",
         kicker_verb_rektion: "Caso regido por el verbo",
         alert_no_rektion_available: "Ningún verbo con caso regido cargado por ahora. Vuelve a intentarlo en un momento.",
+        rektion_question: "¿Qué caso rige «{v}»?",
+        rektion_explication: "«{v}» ({t}) rige el {c}.",
         verbenniveau_exercises_btn: "EJERCICIOS PRÄSENS →",
         kicker_integrated_vocab: "Vocabulario integrado",
         nomen_title: "Sustantivos & Temas",
@@ -39679,6 +39767,20 @@ const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ }
                    : LANGUE_APPRISE === "pt" ? { rang: 62, peintre: /Malhoa/ }
                    : { rang: 61, peintre: /Faistauer/ };
 
+const SUITE_TABLEAU_MS = 1500;
+// Le tableau de la visite et son etiquette, ramenes au-dessus du bas de l'ecran (marge), et au-dessus du
+// bouton flottant quand il est la. Un tableau cache a un rectangle nul : rien ne bouge.
+function garderTableauEnVue(marge){
+    const zone = document.getElementById("decouverteMosaique");
+    if(!zone) return;
+    // ligne 143 (A5) : le bouton est la des le debut -- l'etiquette reste au-dessus de lui
+    const suite = document.getElementById("decouverteSuite");
+    if(suite && !suite.classList.contains("hidden")) marge = Math.max(marge, 96);
+    const depasse = zone.getBoundingClientRect().bottom - (window.innerHeight - marge);
+    if(depasse <= 0) return;
+    const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
+}
 function montrerTableauDecouverte(){
     const zone = document.getElementById("decouverteMosaique");
     const toile = document.getElementById("decouverteToile");
@@ -39695,7 +39797,16 @@ function montrerTableauDecouverte(){
         if(ailleurs()) return;
         const suite = document.getElementById("decouverteSuite");
         if(suite) suite.classList.remove("hidden");
+        // le bouton vient de se poser en bas de l'ecran : en francais, a 360 x 740, il couvrait l'etiquette
+        // du tableau (deux lignes) jusqu'a la fin de la voix
+        garderTableauEnVue(96);
     };
+    // Ligne 143 (19 nov. 2026, A5 de la revue A a Z) : « Continuer » arrive tout de suite. Il n'arrivait qu'a la
+    // fin de la demonstration, 26 a 27 s plus tard, avec « Passer » pour seule sortie : une personne pressee
+    // pouvait croire l'ecran bloque. La demonstration continue pour qui la regarde ; la quitter l'arrete
+    // (finVisiteDecouverte() change le passage et coupe la voix). Un court delai, parce que ce bouton est au
+    // meme endroit que celui de l'etape d'avant : un double toucher ne doit pas sauter le tableau.
+    setTimeout(montrerFin, SUITE_TABLEAU_MS);
     // La voix d'abord : la demonstration attend qu'elle ait fini sa phrase.
     moi.voixTableau = narrerDecouverte("t4");
     if(!zone || !toile){ montrerFin(); return; }
@@ -39743,14 +39854,7 @@ function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette,
     // LE TABLEAU ET SON ETIQUETTE RESTENT A L'ECRAN (v706). Sur un petit
     // telephone, le texte de l'etape pousse l'etiquette sous le bord : on la
     // ramene en vue, au-dessus du bouton flottant quand il est la (marge).
-    const garderEnVue = (marge) => {
-        const zone = document.getElementById("decouverteMosaique");
-        if(!zone) return;
-        const depasse = zone.getBoundingClientRect().bottom - (window.innerHeight - marge);
-        if(depasse <= 0) return;
-        const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-        window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
-    };
+    const garderEnVue = garderTableauEnVue;
     const afficher = (i) => {
         dessinerMosaique(toile, imgDemo, PALIERS[i], total, i === PALIERS.length - 1);
         etiquette.textContent = t(CLES[i]);
@@ -39772,6 +39876,7 @@ function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette,
     };
     tailleToileMosaique(toile, demo);
     afficher(0);
+    garderEnVue(16);
     Promise.all([moi.voixTableau || Promise.resolve(), attendre(1600)]).then(() => palier(0));
 }
 
@@ -52026,7 +52131,7 @@ function panneauBlocExamen(ex){
         icon:"dossier", title:t("op_pruefung_c1bloc_title"), sub:t("op_pruefung_c1bloc_sub"),
         options:[comprendre, ep("lesen"), ep("hoeren"), ep("schreiben"), ep("sprechen"),
             { icon:"exercice", title:t("op_pruefung_feuilles_t"), desc:t("op_pruefung_feuilles_d"),
-              action:"ouvrirMesFeuilles", section:"pratique" }]
+              action:"ouvrirFeuillesExamen", section:"pratique" }]
     };
 }
 // LA PAGE DU TELC (visuel/prototype/telc/telc.html), dans le cadre des scenes comme l'oral du DTZ. Elle repose sur
@@ -52309,7 +52414,9 @@ function myVocabFreqLabel(r){
 
 const monVocabTheme = {
     id: "mon_vocabulaire",
-    name: "Mon vocabulaire",
+    // Le grand titre de l'ecran des cartes (setFlashHeader lit currentTheme.name) restait « Mon vocabulaire » en
+    // francais dans toutes les langues d'interface, sous un surtitre traduit (revue A a Z, F7, 19 nov. 2026).
+    get name(){ return t("myvocab_nom"); },
     svg: '<svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg>',
     words: []
 };
@@ -53377,6 +53484,11 @@ function showScreen(id){
         try{ majCompteDuJour(); }catch(e){}
         try{ majTitrePorteMots(); }catch(e){}
         try{ majTitrePilule(); }catch(e){}
+        // LA CARTE DU VOCABULAIRE AUSSI (revue A a Z, F6, 19 nov. 2026) : juste apres « Terminer », l'accueil disait
+        // la seance faite mais la carte affichait encore « 0 / 1259 · en cours 0 », puis « 13 / 1259 » apres une
+        // relance. Elle n'etait repeinte que par majCarteProgression(), le changement de langue et le toucher
+        // d'une ligne. Elle lit l'etat des mots d'un niveau (de tous, si la liste est depliee) : quelques ms.
+        try{ majCarteVocab(); }catch(e){}
         // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
@@ -56321,6 +56433,8 @@ function basculerEssai(nom){
 const REPERES = [
     // v882 : la pilule (v881) a remplace « Commencer » par le rond ▶ ; la
     // bulle visait l'ancien bouton, cache, et flottait en haut de l'ecran.
+    // Ligne 143 (A6) : le rond ▶ est redevenu un bouton a texte (v1003) ; la bulle le nomme
+    // (« touche « Commencer la seance » », le libelle de seance_commencer_long), plus « touche ▶ ».
     { id: "seance", sel: "#home #seancePilule .pa-play",
       cle: "reperes_seance" },
     // v800 : APRES les pastilles, et non dans « Ton niveau » : dans l'etiquette,
@@ -61789,11 +61903,22 @@ function contexteEcran(){
                  + (q ? " « " + q + " »" : "");
         }
         if(ecran === "flashcards" && currentCards[currentFlashcard]){
-            const w = currentCards[currentFlashcard].word;
-            const mot = Array.isArray(w) ? w[0] : (typeof w === "string" ? w : "");
+            const c = currentCards[currentFlashcard];
+            const w = c.word;
+            let mot = Array.isArray(w) ? w[0] : (typeof w === "string" ? w : "");
+            // 17 nov. 2026 : UNE CARTE-PHRASE CACHE SON MOT (une dictee n'a pas de « word »), et le retour « Il n'y a
+            // pas de son » du 16 nov. ne disait donc ni la forme ni le mot : « carte nomen 4/10 ». La forme, puis le
+            // mot dicte ou la phrase. Sans crochets : tests/retours.js decoupe les en-tetes sur « [ ... ] ».
+            let forme = "";
+            if(c.forme){
+                forme = " " + c.forme;
+                if(!mot){
+                    try{ mot = c.forme === "dictee_mot" && c.cible ? motDictee(c.cible) : ((c.phrase && c.phrase.de) || ""); }catch(e){}
+                }
+            }
             return "carte " + flashcardMode + " "
-                 + (currentFlashcard + 1) + "/" + currentCards.length
-                 + (mot ? " « " + mot + " »" : "");
+                 + (currentFlashcard + 1) + "/" + currentCards.length + forme
+                 + (mot ? " « " + String(mot).replace(/[\[\]]/g, "").slice(0, 60) + " »" : "");
         }
         if(ecran === "orbPanel" && openOrbId) return "panneau " + openOrbId;
     }catch(e){}   // Un contexte incomplet ne doit JAMAIS empecher un envoi.
@@ -61874,7 +61999,10 @@ function finDuJournalAudio(){
         // PRECHARGE ; la ligne qui explique la carte muette, ecrite deux cartes plus tot, en sortait. Les six dernieres
         // lignes d'echec des dix minutes s'ajoutent, et une ligne dit l'appareil (systeme, app posee ou navigateur) :
         // sans elle, un « iPhone » se devinait au mieux.
-        const echec = e => e && /^(MUET|BASCULE|IGNORE|SAUTE|BLOQUE|SANS-VOIX|NATIF-ERR)$/.test(e.source);
+        // 17 nov. 2026 : TRANSIT aussi (« son coupe », « retabli en quittant la seance »). Le mode sans son se
+        // retablit des qu'on ouvre les reglages pour signaler : a l'envoi il est toujours eteint, et seule sa ligne
+        // de journal dit qu'une carte muette l'etait parce que le son etait coupe. REDIT : la dictee redite au retour.
+        const echec = e => e && /^(MUET|BASCULE|IGNORE|SAUTE|BLOQUE|SANS-VOIX|NATIF-ERR|TRANSIT|REDIT)$/.test(e.source);
         const echecs = journalAudio.filter(e => echec(e) && e.t >= depuis && lignes.indexOf(e) < 0).slice(-6);
         lignes = mesures.concat(echecs.concat(lignes).sort((a, b) => a.t - b.t));
         if(!lignes.length) return "";
@@ -63983,7 +64111,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1220;
+const APP_VERSION = 1224;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -64298,7 +64426,11 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
 //      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
 //      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
-const AUDIO_REVISION = "15";
+//  16  L'ALPHABET ALLEMAND REFAIT EN PORTEUSE (17 nov. 2026, retour de Jacques : « le C n'est pas prononce comme il
+//      faut »). Les lettres des reperes (Ah, Beh, Zeh...) avaient ete generees seules : C et Z sortaient en [z] au
+//      lieu de [ts] (0 ms de souffle sourd, contre 125 a 205 pour Zug, Zahn, Zeit), O et U a l'anglaise. 28 lettres
+//      refaites dans « Wort: ... » (Hah garde : sa prise en porteuse etait chuchotee), plus Zehe, Zoo, Zins.
+const AUDIO_REVISION = "16";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -66987,13 +67119,28 @@ function rendreCielFin(fin){
     }
     return true;
 }
-// La ou il n'y a pas de ciel (A2 et plus) : le tableau qui avance, a l'ecran de fin, sans palier (le chef, 8 nov. 2026).
+// Le tableau qui avance, a l'ecran de fin, sans palier (le chef, 8 nov. 2026) : seul la ou il n'y a pas de ciel (A2 et
+// plus), sur l'horizon du ciel la ou il y en a un (19 nov. 2026, rendreTableauHorizon).
 let CARREAUX_DEBUT = null;
 function noterCarreauxDebut(){
     try{ const v = etatMosaique(); CARREAUX_DEBUT = { r: v.r, c: v.c, t: v.t, b: v.b, cn: v.cn }; }catch(e){ CARREAUX_DEBUT = null; }
 }
-function rendreTableauFin(fin){
+// v-A, « L'HORIZON » (choix de Jacques du 19 nov. 2026, maquette Fh1Z3mFTWtATYYqjLcp3Kb). Son retour du 17 nov. : « on ne
+// voit plus le tableau quand je termine une seance ; on voit que ca avance sur l'etoile, mais je devrais aussi voir la
+// progression de mon tableau ». La ou il y a un ciel, le tableau se pose dans la carte du ciel, sur l'horizon, au-dessus
+// de « Encore une seance » : la toile encadree, « TON TABLEAU », le compte, la jauge, ce que la seance a ajoute. Ses
+// carreaux ne s'affinent qu'APRES le trait de l'etoile (jouerTableauFin, appelee par le ciel) : un mouvement a la fois.
+// La fete du tableau garde la priorite : le ciel attend qu'elle se ferme (quandPlusDeFete), le tableau attend le ciel.
+let jouerTableauFin = null;
+// Il reste au plus ce nombre de carreaux : « Il est presque a toi. » (une phrase sans nombre, rien a accorder).
+const TABLEAU_FIN_PRESQUE = 30;
+// Le temps du trait vers l'etoile (.fc-joue .fc-nouveau : 0,15 s + 1,35 s) : les carreaux partent ensuite.
+const TABLEAU_APRES_CIEL_MS = 1500;
+function rendreTableauFin(fin, ciel){
+    jouerTableauFin = null;
+    try{ const c0 = document.getElementById("finCiel"); if(c0) c0.classList.remove("avec-tableau"); }catch(e){}
     if(!(etoilesDeLaSeance() && objectifRetire())) return;
+    if(ciel) return rendreTableauHorizon(fin, ciel);
     const montrer = () => {
         const v = etatMosaique();
         const trophee = v.t > 0 || !!v.b;
@@ -67035,6 +67182,73 @@ function rendreTableauFin(fin){
         }).catch(() => {});
     };
     chargerMosaiques().then(montrer).catch(() => {});
+}
+// Le tableau sur l'horizon du ciel (voir rendreTableauFin). Meme compte que l'ecran sans ciel : pendant le trophee, c'est
+// le tableau SUIVANT qui se construit (`cn`, v1061), et c'est lui qu'on montre.
+function rendreTableauHorizon(fin, ciel){
+    let demande = false, pret = null;
+    jouerTableauFin = () => { demande = true; if(pret){ const p = pret; pret = null; p(); } };
+    chargerMosaiques().then(() => {
+        const v = etatMosaique();
+        const trophee = v.t > 0 || !!v.b;
+        const jusqua = Math.min(MOSAIQUE_CARREAUX, trophee ? (v.cn || 0) : v.c), rang = trophee ? v.r + 1 : v.r;
+        const m = trophee ? (MOSAIQUES && MOSAIQUES.length ? MOSAIQUES[(rang - 1) % MOSAIQUES.length] : null) : mosaiqueCourante();
+        if(!m) return;
+        const d0 = CARREAUX_DEBUT, memeTableau = d0 && d0.r === v.r && !!(d0.t > 0 || d0.b) === trophee;
+        const avant = Math.min(jusqua, memeTableau ? (trophee ? (d0.cn || 0) : d0.c) : 0);
+        const depuis = Math.max(avant, jusqua - 60);
+        return imageMosaique(m).then(img => {
+            if(fin.classList.contains("hidden") || !ciel.isConnected || ciel.classList.contains("hidden") || document.getElementById("finTableau")) return;
+            const bloc = document.createElement("div");
+            bloc.id = "finTableau";
+            bloc.className = "fh-plaque";
+            const cadre = document.createElement("div");
+            cadre.className = "fh-cadre";
+            const toile = document.createElement("canvas");
+            toile.width = 240;
+            toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
+            cadre.appendChild(toile);
+            bloc.appendChild(cadre);
+            const texte = document.createElement("div");
+            texte.className = "fh-texte";
+            const ligne = (cls, contenu) => { const d = document.createElement("div"); d.className = cls; if(contenu != null) d.textContent = contenu; texte.appendChild(d); return d; };
+            ligne("fh-titre", t("tableau_tuile"));
+            const compte = ligne("fh-compte");
+            const nb = document.createElement("b"); nb.textContent = String(depuis);
+            const sur = document.createElement("small"); sur.textContent = " / " + MOSAIQUE_CARREAUX;
+            compte.appendChild(nb); compte.appendChild(sur);
+            const jauge = ligne("fh-jauge"), plein = document.createElement("i");
+            jauge.appendChild(plein);
+            const remplir = n => { plein.style.width = (100 * n / MOSAIQUE_CARREAUX).toFixed(1) + "%"; };
+            remplir(depuis);
+            if(jusqua > avant) ligne("fh-ligne", tf("fin_tableau_seance", { n: jusqua - avant }));
+            const reste = MOSAIQUE_CARREAUX - jusqua;
+            if(reste > 0 && reste <= TABLEAU_FIN_PRESQUE) ligne("fh-ligne", t("fin_tableau_presque"));
+            bloc.appendChild(texte);
+            bloc.setAttribute("aria-label", t("tableau_tuile") + " : " + jusqua + " / " + MOSAIQUE_CARREAUX);
+            // Au-dessus de « Encore une seance » quand il est dans le ciel, sinon tout en bas de la carte.
+            const encore = document.getElementById("encoreNeufsBtn");
+            if(encore && encore.parentNode === ciel) ciel.insertBefore(bloc, encore); else ciel.appendChild(bloc);
+            ciel.classList.add("avec-tableau");
+            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false, rang);
+            const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const finir = () => { dessinerMosaique(toile, img, jusqua, MOSAIQUE_CARREAUX, jusqua >= MOSAIQUE_CARREAUX, rang); nb.textContent = String(jusqua); remplir(jusqua); };
+            if(reduit || jusqua <= depuis){ finir(); return; }
+            const animer = () => {
+                let i = depuis;
+                const pas = Math.max(45, Math.min(110, 2200 / (jusqua - depuis)));
+                const tic = setInterval(() => {
+                    if(!bloc.isConnected){ clearInterval(tic); return; }
+                    i++;
+                    dessinerMosaique(toile, img, i, MOSAIQUE_CARREAUX, i >= MOSAIQUE_CARREAUX, rang);
+                    nb.textContent = String(i);
+                    remplir(i);
+                    if(i >= jusqua) clearInterval(tic);
+                }, pas);
+            };
+            if(demande) animer(); else pret = animer;
+        });
+    }).catch(() => {});
 }
 function jouerCielFin(){
     const el = document.getElementById("finCiel");
@@ -71865,6 +72079,37 @@ function direPhrase(item){
 function direMotPhrase(item){
     try{ direAllemand(motDictee(item.cible), { rate: 0.9 }); }catch(e){}
 }
+// ⚠️ UNE DICTEE NE DIT SON MOT QU'UNE FOIS, A L'AFFICHAGE (Jacques, 16 nov. 2026, espagnol : « Il n'y a pas de son »).
+// Le journal joint montrait l'app revenue au premier plan apres 45 minutes, puis aucune demande de son : le mot avait
+// ete dit avant le depart, et la carte attendait, muette, une reponse a un mot oublie. Au retour au premier plan apres
+// une minute ou plus, sur une dictee (mot ou phrase) restee sans reponse, le PREMIER TOUCHER redit le mot -- un
+// toucher, parce que l'iPhone ne laisse pas parler une page sans geste. Pas si le toucher est sur Ecouter ou la tortue
+// (ils parlent eux-memes), ni le son coupe, ni si la carte a change entre-temps.
+(function(){
+    let cacheDepuis = 0;
+    const enDictee = () => {
+        const it = CARTE_PHRASE_AFFICHEE, el = document.getElementById("cartePhrase");
+        if(!it || (it.forme !== "dictee" && it.forme !== "dictee_mot")) return null;
+        if(!el || el.classList.contains("hidden") || el.querySelector(".cp-retour:not(.hidden)")) return null;
+        const ecran = document.querySelector(".screen.active");
+        return (ecran && ecran.id === "flashcards") ? it : null;
+    };
+    document.addEventListener("visibilitychange", () => {
+        if(document.hidden){ cacheDepuis = Date.now(); return; }
+        const absence = cacheDepuis ? Date.now() - cacheDepuis : 0;
+        cacheDepuis = 0;
+        const carte = enDictee();
+        if(absence < 60000 || !carte) return;
+        const redire = ev => {
+            document.removeEventListener("click", redire, true);
+            if(enDictee() !== carte || transitSansSon()) return;
+            if(ev && ev.target && ev.target.closest && ev.target.closest(".cp-ecouter")) return;
+            try{ noterAudio(carte.forme, "REDIT", "dictee redite au premier toucher, apres " + Math.round(absence / 1000) + " s en arriere-plan"); }catch(e){}
+            if(carte.forme === "dictee_mot") direMotPhrase(carte); else direPhrase(carte);
+        };
+        document.addEventListener("click", redire, true);
+    });
+})();
 
 // L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
 // Parler) ; la piste est rendue des l'arret, l'URL revoquee a la carte suivante.
@@ -71991,7 +72236,19 @@ function motsLibresOral(attendu){
     return libres;
 }
 
-function scoreOral(attendu, entendus, chiffres){
+// ⚠️ UN ARTICLE NE FAIT PAS ECHOUER UN MOT (Jacques, 14 nov. 2026, en espagnol : « Il n'a pas reconnu TREN »). La carte
+// attend « el tren » ; la reconnaissance rend souvent le nom sans son petit mot (« tren »), la phrase tombe a 50 % et
+// sort « presque » alors que le mot est bien dit. Comme un nom propre (motsLibresOral) : l'article compte s'il est
+// entendu, il n'est jamais exige, jamais demande seul, et ne retient pas l'arret automatique. SAUF la ou l'article
+// est justement ce qu'on apprend : les reperes du genre et du pluriel (« der Tisch », « die Tische »), qui passent
+// articlesExiges. Une phrase faite seulement d'articles se juge entiere, comme avant.
+const ARTICLES_ORAL = {
+    de: ["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"],
+    es: ["el", "la", "los", "las", "un", "una", "unos", "unas"],
+    en: ["the", "a", "an"],
+    pt: ["o", "a", "os", "as", "um", "uma", "uns", "umas"]
+};
+function scoreOral(attendu, entendus, chiffres, articlesExiges){
     if(LANGUE_APPRISE === "ja") return scoreOralJaponais(attendu, entendus);
     const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
     // v879 (les reperes) : dire « einundzwanzig », la reconnaissance ecrit
@@ -72006,6 +72263,7 @@ function scoreOral(attendu, entendus, chiffres){
     const cible = mots(attendu);
     // Les noms propres (voir NOMS_PROPRES_ORAL) : comptes s'ils sont reconnus, ignores sinon.
     const noms = motsLibresOral(attendu);
+    if(!articlesExiges) (ARTICLES_ORAL[LANGUE_APPRISE] || ARTICLES_ORAL.de).forEach(a => noms.add(a));
     const libre = m => noms.has(m) && !cible.every(x => noms.has(x));
     let meilleur = { ratio: 0, manques: cible.filter(m => !libre(m)), libres: cible.filter(libre), texte: "" };
     (entendus || []).forEach(tx => {
@@ -73121,6 +73379,8 @@ function montrerCartePhrase(item){
         // restent verts dans la phrase.
         const v2 = essaiActif("oral_v2");
         let cible = item.phrase.de;
+        // 17 nov. 2026 : l'article n'est exige que la ou on l'apprend (reperes du genre et du pluriel) -- voir ARTICLES_ORAL.
+        const articleAppris = item.rpType === "genre" || item.rpType === "pluriel";
         let dernierManques = [];
         const reussis = [];
         let eclatDonne = false;
@@ -73292,7 +73552,7 @@ function montrerCartePhrase(item){
         // v845 : les mots s'allument a mesure que la reconnaissance les entend.
         const eclairer = () => {
             if(!v2 || !essai || cible !== item.phrase.de) return;
-            const sc = scoreOral(item.phrase.de, essai.textes, item.oralChiffres);
+            const sc = scoreOral(item.phrase.de, essai.textes, item.oralChiffres, articleAppris);
             const reste = sc.manques.slice(), libres = sc.libres || [];
             // v852 : TOUS LES MOTS VERTS = REUSSI, l'enregistrement s'arrete seul
             // (Jacques). Un court delai laisse arriver le dernier resultat.
@@ -73361,7 +73621,7 @@ function montrerCartePhrase(item){
                 journal("verdict", "sans reconnaissance");
                 return;
             }
-            const s = scoreOral(cible, essai.textes, item.oralChiffres);
+            const s = scoreOral(cible, essai.textes, item.oralChiffres, articleAppris);
             journal("verdict", (cible === item.phrase.de ? "" : "mot " + cible + " : ") + s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »"
                 + (essai.natif ? " · partiels " + (essai.nbPartiels || 0) + ", micro max " + Math.round(100 * (essai.pic || 0)) + " %" : ""));
             if(v2 && cible !== item.phrase.de){
@@ -75350,8 +75610,30 @@ function construireTableau(tab){
 }
 // « Mes feuilles » : par niveau, les feuilles vues (a rouvrir), « a revoir »,
 // et celles a venir, grisees.
-async function ouvrirMesFeuilles(){
+// Ligne 143 (19 nov. 2026, E11 de la revue A a Z) : « Les feuilles de conjugaison -- Les temps du B2 et du C1 »
+// (Se preparer au C1) ouvrait « Mes feuilles » au niveau du compte : pour un compte A2, douze feuilles A2 grisees
+// « Bientot », aucune du B2 ni du C1. Depuis un examen, l'ecran montre les niveaux de l'examen, toutes les
+// feuilles CONSULTABLES (tableau, lignes dites, M'entrainer), vues ou non ; rien n'est note comme vu, la seance
+// garde son ordre. FEUILLES_VUE retient cette vue pour le retour d'une serie et pour « ‹ », qui ramene au panneau.
+let FEUILLES_VUE = null;
+function ouvrirFeuillesExamen(){
+    return ouvrirMesFeuilles({ niveaux: ["B2", "C1"], panneau: PANNEAU_DORIGINE || openOrbId || null });
+}
+function rouvrirMesFeuilles(){ return ouvrirMesFeuilles(FEUILLES_VUE); }
+function retourMesFeuilles(){
+    const v = FEUILLES_VUE;
+    FEUILLES_VUE = null;
+    if(v && v.panneau){ try{ openOrbPanel(v.panneau); return; }catch(e){} }
+    goHome();
+}
+async function ouvrirMesFeuilles(vue){
+    const examen = (vue && Array.isArray(vue.niveaux)) ? vue : null;
+    FEUILLES_VUE = examen;
     await chargerFeuilles();
+    const ecran = document.getElementById("mesFeuilles");
+    const h2 = ecran && ecran.querySelector("h2"), sous = ecran && ecran.querySelector(".carnet-sous");
+    if(h2) h2.textContent = t(examen ? "op_pruefung_feuilles_t" : "fc_titre");
+    if(sous) sous.textContent = t(examen ? "op_pruefung_feuilles_d" : "fc_sous");
     const box = document.getElementById("feuillesListe");
     if(box){
         box.textContent = "";
@@ -75363,7 +75645,7 @@ async function ouvrirMesFeuilles(){
             const vues = new Set((etat[niv] && etat[niv].v) || []);
             let courant = "A1";
             try{ courant = niveauSeance(); }catch(e){}
-            if(!vues.size && niv !== courant) return;
+            if(examen ? examen.niveaux.indexOf(niv) < 0 : (!vues.size && niv !== courant)) return;
             rien = false;
             const revoir = new Set(feuillesARevoir(niv).map(f => f.id));
             const h = document.createElement("div");
@@ -75374,16 +75656,17 @@ async function ouvrirMesFeuilles(){
                 const vue = vues.has(f.id);
                 const b = document.createElement("button");
                 b.type = "button";
-                b.className = "fc-ligne" + (!vue ? " fc-a-venir" : (revoir.has(f.id) ? " fc-revoir" : ""));
+                const ouverte = vue || !!examen;
+                b.className = "fc-ligne" + (!ouverte ? " fc-a-venir" : (vue && revoir.has(f.id) ? " fc-revoir" : ""));
                 const tx = document.createElement("span");
                 const ti = document.createElement("b");
                 ti.textContent = (i + 1) + ". " + sensPremiersPas(f.t);
                 tx.appendChild(ti);
                 const et = document.createElement("i");
-                et.textContent = !vue ? t("fc_bientot") : (revoir.has(f.id) ? t("fc_a_revoir") : "✓ " + t("fc_vue"));
+                et.textContent = !vue ? (examen ? "" : t("fc_bientot")) : (revoir.has(f.id) ? t("fc_a_revoir") : "✓ " + t("fc_vue"));
                 b.appendChild(tx); b.appendChild(et);
                 box.appendChild(b);
-                if(!vue){ b.disabled = true; return; }
+                if(!ouverte){ b.disabled = true; return; }
                 const detail = document.createElement("div");
                 detail.className = "fc-detail hidden";
                 b.addEventListener("click", () => {
@@ -75422,7 +75705,7 @@ async function ouvrirMesFeuilles(){
 // (Perfekt, Prateritum..., et les series espagnoles) passent par la ligne
 // generique, deja lancees ailleurs.
 function lancerSerieFeuille(serie){
-    const retour = () => { ouvrirMesFeuilles(); };
+    const retour = () => { rouvrirMesFeuilles(); };
     const relancer = () => lancerSerieFeuille(serie);
     switch(serie){
         case "passivExercises": return startExerciseSetMelange("passivExercises", "fc_kicker", retour, relancer);
@@ -79249,7 +79532,15 @@ function showFlashcardEnd(){
     let ciel = false;
     try{ ciel = rendreCielFin(fin); }catch(e){ console.warn("ciel", e); }
     if(seanceLegereDuJour()){ try{ fetesFinSeanceLegere(); }catch(e){} }
-    if(ciel) quandPlusDeFete(fetePrevue, fin, jouerCielFin);
+    // 19 nov. 2026 (choix A de Jacques) : le ciel ET le tableau. Le tableau se pose tout de suite, ses carreaux
+    // s'affinent apres le trait de l'etoile ; une fete en attente passe avant les deux.
+    if(ciel){
+        try{ rendreTableauFin(fin, document.getElementById("finCiel")); }catch(e){}
+        quandPlusDeFete(fetePrevue, fin, () => {
+            jouerCielFin();
+            setTimeout(() => { try{ if(jouerTableauFin) jouerTableauFin(); }catch(e){} }, TABLEAU_APRES_CIEL_MS);
+        });
+    }
     else { try{ rendreTableauFin(fin); }catch(e){} }
     return true;
 }
@@ -80526,7 +80817,14 @@ function nextFlashcard(){
         // pas seulement dans les categories recentes.
         // Un paquet qui a son theme finit sur lui (Jacques, 8 nov. 2026) : ce qui devait revenir est passe avant
         // (rattraperFinDePartie, ligne 98), et ce qui devient du pendant le theme ouvrira la seance suivante.
-        const finitSurTheme = currentCards.some(c => c && c.forme === "theme_arret");
+        // La reprise d'apres-seance (« Les refaire », « Revoir les cartes ») finit sur SA question, elle aussi sans
+        // rattrapage (Jacques, 18 nov. 2026, es, v1219 : apres ses mots rates, « une tres longue seance avec juste
+        // une barre de progression »). Son paquet n'a pas de theme : a sa derniere carte, cartesRevenues() ramenait
+        // tout ce qui etait du dans currentCardsFull -- l'arriere du niveau entier, d'un bloc, sous une seule barre
+        // -- et la question « Continuer avec une nouvelle seance ? » n'etait jamais posee. Un « Encore » donne
+        // pendant la reprise y est deja revenu (remettreEnFile) ; le reste ouvrira la seance suivante.
+        const repriseApres = !!(REPRISE_ERREURS && currentCards === REPRISE_ERREURS);
+        const finitSurTheme = repriseApres || currentCards.some(c => c && c.forme === "theme_arret");
         const rattrapage = cartes => {
             if(SEANCE_PARTS) SEANCE_PARTS.rattrapage = true;   // la fin de ce paquet est bien celle de la seance
             // La seance en cours (reprise du 14 nov.) suit son rattrapage : sortir pendant lui y ramene.
@@ -80790,6 +81088,30 @@ function startInfinitivExercise(){
 // sont donc pas inclus dans ce quiz précis.
 const VERB_REKTION_OPTIONS = ["Akkusativ", "Dativ", "Akkusativ + Dativ", "Nominativ"];
 
+// Ligne 143 (19 nov. 2026, F10 de la revue A a Z) : la question, la traduction, l'indice et l'explication dans
+// CHAQUE langue d'interface. Seuls le francais et l'anglais existaient (question / question_en) : les sept autres
+// langues recevaient l'anglais par le repli de texteTraduit(). Le gabarit vit dans I18N (rektion_question,
+// rektion_explication : {v} le verbe, {t} son sens, {c} le cas) ; la phrase d'exemple et le sens du verbe viennent
+// de verbe.json (exemple_<langue>, traduction_<langue>). Un champ absent laisse le repli habituel faire.
+function champsRektion(card, correct){
+    const out = {};
+    Object.keys(SUFFIXE_LANGUE).forEach(code => {
+        const fr = code === "fr", s = fr ? "" : SUFFIXE_LANGUE[code];
+        const g = I18N[code] || {};
+        const trad = fr ? card.traduction : (card["traduction" + s] || (code === "en" ? card.traduction : ""));
+        const phrase = fr ? card.exemple_fr : card["exemple" + s];
+        const remplir = txt => txt.replace("{v}", () => card.infinitif).replace("{t}", () => trad).replace("{c}", () => correct);
+        if(g.rektion_question) out["question" + s] = card.exemple + " — " + remplir(g.rektion_question);
+        if(phrase) out["translation" + s] = phrase;
+        if(trad){
+            out["hint" + s] = "(" + trad + ")";
+            if(g.rektion_explication) out["explanation" + s] = remplir(g.rektion_explication);
+        }
+    });
+    if(!out.translation) out.translation = "";
+    return out;
+}
+
 function buildVerbRektionExercises(){
     const seen = new Set();
     const list = [];
@@ -80797,22 +81119,13 @@ function buildVerbRektionExercises(){
         if(!card.rektion || seen.has(card.infinitif)) return;
         seen.add(card.infinitif);
         const correct = card.rektion.replace("+", " + ");
-        const traductionEn = card.traduction_en || card.traduction;
-        list.push({
+        list.push(Object.assign({
             topic: "Régime des verbes",
-            question: `${card.exemple} — Quel cas est-ce que « ${card.infinitif} » gouverne ?`,
-            question_en: `${card.exemple} — Which case does "${card.infinitif}" govern?`,
-            translation: card.exemple_fr || "",
-            translation_en: card.exemple_en || card.exemple_fr || "",
-            hint: `(${card.traduction})`,
-            hint_en: `(${traductionEn})`,
             answers: [correct.toLowerCase()],
             correct: correct,
             correctEn: correct,
-            explanation: `« ${card.infinitif} » (${card.traduction}) gouverne le ${correct}.`,
-            explanation_en: `"${card.infinitif}" (${traductionEn}) governs the ${correct}.`,
             options: VERB_REKTION_OPTIONS
-        });
+        }, champsRektion(card, correct)));
     });
     return list;
 }

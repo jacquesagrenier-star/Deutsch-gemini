@@ -16,9 +16,13 @@ l'accueil, ou la sonde lit le bouton et la ligne de la carte de la seance :
                    l'ecran court ne repete pas le compte du jour ;
   deux           : la seance finie, l'accueil, « Encore une seance » de l'accueil -> la meme seance que « Encore une
                    seance » de l'ecran de fin (meme taille, a une carte pres), jamais une seance de 3 cartes.
+  refaire-retard : un compte EN RETARD (60 mots de l'A1 commences et dus depuis hier), « Les refaire » -> la reprise
+                   finit sur sa question, elle n'enchaine pas sur l'arriere du niveau (Jacques, 18 nov. 2026, es,
+                   v1219 : apres ses mots rates, « une tres longue seance avec juste une barre de progression » --
+                   les autres chemins partent d'un compte sans rien de du, ou le defaut ne se voyait pas).
 Plus : le passage jour / nuit pendant la seance redessine le fond de chaque partie, dans les deux sens ; « Revoir les
 cartes maitrisees » n'apparait pas sans carte maitrisee.
-Usage : python tests/revision_apres_seance.py [--racine DOSSIER] [--port 8809] [--captures DOSSIER]
+Usage : python tests/revision_apres_seance.py [--racine DOSSIER] [--port 8809] [--captures DOSSIER] [--chemins refaire-retard] [--langues es,de]
 Sous le verrou du navigateur (~/.wortando/verrou-parcours).
 """
 import argparse, functools, http.server, json, os, socketserver, sys, threading
@@ -31,6 +35,17 @@ except Exception:
 PREPARER = """
 () => { localStorage.setItem(AIDE_CONTINUER_KEY, '1'); localStorage.setItem(AIDE_TRANSIT_KEY, '1');
         localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false, p: 999, fini: true })); }
+"""
+
+# Un compte en retard : 60 mots de l'A1 deja commences, dus depuis hier. La seance en prend une partie ; le reste
+# est ce que le rattrapage de fin de paquet allait chercher a la fin de la reprise.
+RETARD = r"""
+() => {
+  const p = paquetDuNiveau('A1').slice(0, 60);
+  const hier = Date.now() - 86400000;
+  p.forEach(it => { const st = getWordState(it.themeId, it.index); st.srsHits = 2; st.reviews = 2; st.vu = hier; st.due = hier; setWordState(it.themeId, it.index, st); });
+  return cartesRevenues(paquetDuNiveau('A1')).length;
+}
 """
 
 ETAT = r"""
@@ -124,7 +139,11 @@ def main():
     ap.add_argument("--racine", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--port", type=int, default=8809)
     ap.add_argument("--captures")
+    ap.add_argument("--chemins", help="seulement ces chemins, separes par des virgules (et pas le passage jour / nuit)")
+    ap.add_argument("--langues", default="es,de")
+    ap.add_argument("--page", default="index.html", help="la page a ouvrir, pour comparer avec une ancienne (dans la racine)")
     a = ap.parse_args()
+    seuls = [c for c in (a.chemins or "").split(",") if c]
 
     class Serveur(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *x, **k):
@@ -150,7 +169,7 @@ def main():
         err = []
         page.on("pageerror", lambda e: err.append(str(e).split("\n")[0]))
         page.on("dialog", lambda d: d.dismiss())
-        page.goto("http://127.0.0.1:%d/index.html%s" % (a.port, "?apprendre=es" if appris == "es" else ""))
+        page.goto("http://127.0.0.1:%d/%s%s" % (a.port, a.page, "?apprendre=es" if appris == "es" else ""))
         page.wait_for_load_state("networkidle")
         page.evaluate(PREPARER)
         page.reload()
@@ -169,22 +188,26 @@ def main():
 
     with sync_playwright() as p:
         nav = p.chromium.launch()
-        for appris in ("es", "de"):
+        for appris in [x for x in a.langues.split(",") if x]:
             # le passage jour / nuit pendant la seance
-            ctx, page, err = ouvrir(nav, appris)
-            jn = page.evaluate(JOUR_NUIT)
-            mauvais = [k for k, v in jn.items() if not (v["change"] and v["revient"] and v["inverse"])]
-            page.evaluate("async () => { setAppTheme('light'); PAYSAGE_MONTRE = null; paysageSeance('rev'); await new Promise(r => setTimeout(r, 100)); setAppTheme('dark'); }")
-            page.wait_for_timeout(400)
-            if a.captures:
-                page.screenshot(path=os.path.join(a.captures, "%s-jour-nuit-revisions.png" % appris))
-            fautes += 1 if mauvais else 0
-            print("== %s jour-nuit     %s" % (appris, "ok" if not mauvais else "FAUTE, fond inchange : " + ", ".join(mauvais)), flush=True)
-            ctx.close()
+            if not seuls:
+                ctx, page, err = ouvrir(nav, appris)
+                jn = page.evaluate(JOUR_NUIT)
+                mauvais = [k for k, v in jn.items() if not (v["change"] and v["revient"] and v["inverse"])]
+                page.evaluate("async () => { setAppTheme('light'); PAYSAGE_MONTRE = null; paysageSeance('rev'); await new Promise(r => setTimeout(r, 100)); setAppTheme('dark'); }")
+                page.wait_for_timeout(400)
+                if a.captures:
+                    page.screenshot(path=os.path.join(a.captures, "%s-jour-nuit-revisions.png" % appris))
+                fautes += 1 if mauvais else 0
+                print("== %s jour-nuit     %s" % (appris, "ok" if not mauvais else "FAUTE, fond inchange : " + ", ".join(mauvais)), flush=True)
+                ctx.close()
 
             tailles = {}
-            for chemin in ("sans", "refaire-non", "revoir-non", "revoir-oui", "milieu", "deux-accueil", "deux-fin"):
+            for chemin in ("sans", "refaire-non", "revoir-non", "revoir-oui", "milieu", "deux-accueil", "deux-fin", "refaire-retard"):
+                if seuls and chemin not in seuls:
+                    continue
                 ctx, page, err = ouvrir(nav, appris)
+                dus = page.evaluate(RETARD) if chemin == "refaire-retard" else 0
 
                 def cap(nom):
                     if a.captures:
@@ -222,8 +245,8 @@ def main():
                         nm = page.evaluate("() => (typeof cartesDeLaSeanceFinie === 'function' ? cartesDeLaSeanceFinie() : (currentCardsFull || [])).filter(it => getWordState(it.themeId, it.index).mastered).length")
                         if vm and not nm:
                             juge.append("« Revoir les cartes maitrisees » affiche sans carte maitrisee")
-                    if chemin in ("refaire-non", "revoir-non", "revoir-oui"):
-                        sel = ".fin-erreurs-refaire" if chemin == "refaire-non" else "#flashcardEnd button[onclick='retryUnmastered()']"
+                    if chemin in ("refaire-non", "revoir-non", "revoir-oui", "refaire-retard"):
+                        sel = ".fin-erreurs-refaire" if chemin in ("refaire-non", "refaire-retard") else "#flashcardEnd button[onclick='retryUnmastered()']"
                         if not page.evaluate(CLIC, sel):
                             juge.append("bouton introuvable (%s)" % sel)
                         page.wait_for_timeout(900)
@@ -237,8 +260,19 @@ def main():
                             juge.append("%d carte(s) hors de la seance (%d en tout)" % (rep["horsSeance"], rep["n"]))
                         if page.evaluate("() => t('seance_titre')") in (e2["kicker"] or "") or page.evaluate("() => t('seance_titre')") in (e2["titre"] or ""):
                             juge.append("la reprise garde le titre de la seance (%s · %s)" % (e2["kicker"], e2["titre"]))
-                        page.evaluate(JOUER, [0, 0])
-                        e3 = page.evaluate(ETAT)
+                        if chemin == "refaire-retard":
+                            # la reprise carte par carte : le paquet ne doit jamais devenir un autre (l'arriere du niveau)
+                            reste = page.evaluate("() => cartesRevenues(currentCardsFull || []).length")
+                            lignes.append(("retard", {"dus au depart": dus, "encore dus a la reprise": reste}))
+                            if not reste:
+                                juge.append("le cas ne prouve rien : plus rien de du a la reprise")
+                            page.evaluate(JOUER, [0, rep["n"]])
+                            e3 = page.evaluate(ETAT)
+                            if e3["cartes"] > rep["n"] + 2 or (not e3["question"] and e3["ecran"] == "flashcards" and not e3["finPaquet"]):
+                                juge.append("la reprise enchaine sur l'arriere du niveau (%d cartes au lieu de %d, « %s »)" % (e3["cartes"], rep["n"], e3["kicker"]))
+                        else:
+                            page.evaluate(JOUER, [0, 0])
+                            e3 = page.evaluate(ETAT)
                         cap("3-fin-reprise")
                         lignes.append(("reprise finie", e3))
                         if not e3["question"]:
@@ -287,6 +321,8 @@ def main():
                 if er:
                     print("   erreurs JS :", er[:3], flush=True)
                 ctx.close()
+            if seuls and not ("deux-accueil" in seuls and "deux-fin" in seuls):
+                continue
             ta, tf_ = tailles.get("accueil"), tailles.get("fin")
             ok = ta is not None and tf_ is not None and abs(ta - tf_) <= 1 and ta >= 8
             fautes += 0 if ok else 1
