@@ -20,7 +20,7 @@ THEME = {
     "base": "soins_vitalzeichen",
     "nom_theme": "Vitalzeichen und Krankenbeobachtung",
     "nom_theme_fr": "Les signes vitaux et la surveillance",
-    "nom_theme_trad": {"fr": "Les signes vitaux et la surveillance", "en": "Vital signs and patient observation", "tr": "Yaşam bulguları ve hasta gözlemi", "uk": "Життєві показники та спостереження за пацієнтом", "fa": "علائم حیاتی و مشاهدهٔ بیمار", "pt": "Sinais vitais e observação do paciente", "ar": "العلامات الحيوية ومراقبة المريض", "pl": "Parametry życiowe i obserwacja chorego", "ru": "Жизненные показатели и наблюдение за пациентом"},
+    "nom_theme_trad": {"fr": "Les signes vitaux et la surveillance", "en": "Vital signs and patient observation", "tr": "Yaşam bulguları ve hasta gözlemi", "uk": "Життєві показники та спостереження за пацієнтом", "fa": "علائم حیاتی و مشاهدهٔ بیمار", "pt": "Sinais vitais e observação do paciente", "ar": "العلامات الحيوية ومراقبة المريض", "pl": "Parametry życiowe i obserwacja chorego", "ru": "Жизненные показатели и наблюдение за пациентом", "es": "Los signos vitales y la observación del paciente"},
     # un coeur et une ligne de pouls, au trait, comme les icones des themes
     "svg": '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-9.6A4 4 0 0 1 12 7.6a4 4 0 0 1 7 2.8C19 15.7 12 20 12 20z"/><path d="M3 12h4l1.5-2.5 2 5 1.5-2.5H21"/></svg>',
 }
@@ -37,6 +37,7 @@ MOTS = [
         "ar": ("ميزان الحرارة", "ميزان الحرارة على الطاولة بجانب السرير."),
         "pl": ("termometr", "Termometr leży na szafce nocnej."),
         "ru": ("термометр", "Термометр лежит на прикроватной тумбочке."),
+        "es": ("el termómetro", "El termómetro se encuentra en la mesa de noche."),
     }, "Das Fieberthermometer liegt auf dem Nachttisch.", ""),
     ("A2", "die", "Körpergröße", "Körpergrößen", "la ", {
         "fr": ("taille", "À l'admission, nous mesurons le poids et la taille."),
@@ -48,6 +49,7 @@ MOTS = [
         "ar": ("طول القامة", "عند الدخول نقيس الوزن وطول القامة."),
         "pl": ("wzrost", "Przy przyjęciu mierzymy wagę i wzrost."),
         "ru": ("рост", "При поступлении мы измеряем вес и рост."),
+        "es": ("la estatura (la talla)", "Al ingreso medimos el peso y la estatura."),
     }, "Bei der Aufnahme messen wir Gewicht und Körpergröße.", ""),
     ("A2", "die", "Messung", "Messungen", "la ", {
         "fr": ("mesure", "La deuxième mesure est normale."),
@@ -59,6 +61,7 @@ MOTS = [
         "ar": ("قياس", "القياس الثاني طبيعي."),
         "pl": ("pomiar", "Drugi pomiar jest prawidłowy."),
         "ru": ("измерение", "Второе измерение в норме."),
+        "es": ("la medición", "La segunda medición es normal."),
     }, "Die zweite Messung ist normal.", ""),
     ("A2", "die", "Atmung", "—", "la ", {
         "fr": ("respiration", "La respiration est calme et régulière."),
@@ -70,6 +73,7 @@ MOTS = [
         "ar": ("التنفس", "التنفس هادئ ومنتظم."),
         "pl": ("oddychanie", "Oddech jest spokojny i regularny."),
         "ru": ("дыхание", "Дыхание спокойное и ровное."),
+        "es": ("la respiración", "La respiración es tranquila y regular."),
     }, "Die Atmung ist ruhig und regelmäßig.", ""),
     ("A2", "der", "Herzschlag", "Herzschläge", "le ", {
         "fr": ("battement de cœur", "Avec le stéthoscope, la médecin écoute les battements du cœur."),
@@ -81,6 +85,7 @@ MOTS = [
         "ar": ("نبض القلب", "تستمع الطبيبة إلى نبض القلب بالسماعة."),
         "pl": ("bicie serca", "Lekarka słucha bicia serca stetoskopem."),
         "ru": ("сердцебиение", "Врач слушает сердцебиение стетоскопом."),
+        "es": ("el latido cardíaco", "Con el estetoscopio, la médica ausculta los latidos del corazón."),
     }, "Die Ärztin hört den Herzschlag mit dem Stethoskop ab.", ""),
     ("A2", "die", "Hautfarbe", "Hautfarben", "le ", {
         "fr": ("teint", "Le teint est pâle aujourd'hui."),
@@ -92,6 +97,7 @@ MOTS = [
         "ar": ("لون البشرة", "لون البشرة شاحب اليوم."),
         "pl": ("kolor skóry", "Skóra jest dziś blada."),
         "ru": ("цвет кожи", "Сегодня кожа бледная."),
+        "es": ("el color de la piel", "Hoy el color de la piel se ve pálido."),
     }, "Die Hautfarbe ist heute blass.",
         "⚕️ En soins, « Hautfarbe » = le teint observé (blass, gerötet, bläulich) ; le mot désigne aussi la couleur de peau d'une personne : vérifier que l'exemple ne prête à aucune confusion."),
 
@@ -106,6 +112,7 @@ MOTS = [
         "ar": ("علامة حيوية", "أتحقق من العلامات الحيوية ثلاث مرات يوميًا."),
         "pl": ("parametr życiowy", "Kontroluję parametry życiowe trzy razy dziennie."),
         "ru": ("жизненный показатель", "Я проверяю жизненные показатели три раза в день."),
+        "es": ("el signo vital", "Controlo los signos vitales tres veces al día."),
     }, "Ich kontrolliere die Vitalzeichen dreimal täglich.", ""),
     ("B1", "das", "Blutdruckmessgerät", "Blutdruckmessgeräte", "le ", {
         "fr": ("tensiomètre", "Le tensiomètre est au poste de soins."),
@@ -117,6 +124,7 @@ MOTS = [
         "ar": ("جهاز قياس الضغط", "جهاز قياس الضغط في غرفة التمريض."),
         "pl": ("ciśnieniomierz", "Ciśnieniomierz stoi w dyżurce."),
         "ru": ("тонометр", "Тонометр стоит на посту медсестры."),
+        "es": ("el tensiómetro (baumanómetro)", "El tensiómetro se guarda en la estación de enfermería."),
     }, "Das Blutdruckmessgerät steht im Stationszimmer.", ""),
     ("B1", "die", "Manschette", "Manschetten", "le ", {
         "fr": ("brassard", "Je vous mets le brassard sur le haut du bras."),
@@ -128,6 +136,7 @@ MOTS = [
         "ar": ("كفّة جهاز الضغط", "سأضع الكفّة على أعلى ذراعك."),
         "pl": ("mankiet", "Zakładam mankiet na ramię."),
         "ru": ("манжета", "Я надеваю вам манжету на плечо."),
+        "es": ("el brazalete (manguito)", "Le pongo el brazalete en la parte superior del brazo."),
     }, "Ich lege Ihnen die Manschette am Oberarm an.", ""),
     ("B1", "der", "Blutzucker", "—", "la ", {
         "fr": ("glycémie", "Avant le petit-déjeuner, je mesure la glycémie."),
@@ -139,6 +148,7 @@ MOTS = [
         "ar": ("سكر الدم", "قبل الفطور أقيس سكر الدم."),
         "pl": ("poziom cukru", "Przed śniadaniem mierzę poziom cukru."),
         "ru": ("сахар в крови", "Перед завтраком я измеряю сахар в крови."),
+        "es": ("la glucosa (glucemia capilar)", "Antes del desayuno mido la glucosa."),
     }, "Vor dem Frühstück messe ich den Blutzucker.", ""),
     ("B1", "das", "Blutzuckermessgerät", "Blutzuckermessgeräte", "le ", {
         "fr": ("lecteur de glycémie", "Le lecteur de glycémie a besoin de nouvelles bandelettes."),
@@ -150,6 +160,7 @@ MOTS = [
         "ar": ("جهاز قياس السكر", "جهاز قياس السكر يحتاج إلى شرائط اختبار جديدة."),
         "pl": ("glukometr", "Do glukometru potrzebne są nowe paski testowe."),
         "ru": ("глюкометр", "Для глюкометра нужны новые тест-полоски."),
+        "es": ("el glucómetro", "Al glucómetro le hacen falta tiras reactivas nuevas."),
     }, "Das Blutzuckermessgerät braucht neue Teststreifen.", ""),
     ("B1", "die", "Atemfrequenz", "Atemfrequenzen", "la ", {
         "fr": ("fréquence respiratoire", "Je compte la fréquence respiratoire pendant une minute."),
@@ -161,6 +172,7 @@ MOTS = [
         "ar": ("معدل التنفس", "أعدّ معدل التنفس لمدة دقيقة واحدة."),
         "pl": ("częstość oddechów", "Liczę oddechy przez minutę."),
         "ru": ("частота дыхания", "Я считаю частоту дыхания в течение минуты."),
+        "es": ("la frecuencia respiratoria", "Cuento la frecuencia respiratoria durante un minuto."),
     }, "Ich zähle die Atemfrequenz eine Minute lang.", ""),
     ("B1", "die", "Herzfrequenz", "Herzfrequenzen", "la ", {
         "fr": ("fréquence cardiaque", "La fréquence cardiaque est plus élevée après la marche."),
@@ -172,6 +184,7 @@ MOTS = [
         "ar": ("معدل ضربات القلب", "معدل ضربات القلب مرتفع بعد المشي."),
         "pl": ("częstość akcji serca", "Po chodzeniu częstość akcji serca jest podwyższona."),
         "ru": ("частота сердечных сокращений", "После ходьбы частота сердечных сокращений повышена."),
+        "es": ("la frecuencia cardíaca", "Después de caminar, la frecuencia cardíaca sube."),
     }, "Nach dem Gehen ist die Herzfrequenz erhöht.", ""),
     ("B1", "die", "Sauerstoffsättigung", "—", "la ", {
         "fr": ("saturation en oxygène", "La saturation en oxygène est trop basse, je préviens la médecin."),
@@ -183,6 +196,7 @@ MOTS = [
         "ar": ("تشبّع الأكسجين", "تشبّع الأكسجين منخفض جدًا، سأبلغ الطبيبة."),
         "pl": ("saturacja", "Saturacja jest za niska, informuję lekarkę."),
         "ru": ("насыщение кислородом", "Насыщение кислородом слишком низкое, я сообщу врачу."),
+        "es": ("la saturación de oxígeno", "La saturación de oxígeno es demasiado baja, le aviso a la médica."),
     }, "Die Sauerstoffsättigung ist zu niedrig, ich informiere die Ärztin.",
         "⚕️ La conduite à tenir (seuil, qui prévenir) suit la procédure du service."),
     ("B1", "das", "Pulsoximeter", "Pulsoximeter", "l'", {
@@ -195,6 +209,7 @@ MOTS = [
         "ar": ("مقياس التأكسج النبضي", "يوضع مقياس التأكسج على الإصبع."),
         "pl": ("pulsoksymetr", "Pulsoksymetr zakłada się na palec."),
         "ru": ("пульсоксиметр", "Пульсоксиметр надевают на палец."),
+        "es": ("el oxímetro de pulso (pulsioxímetro)", "El oxímetro se coloca en el dedo."),
     }, "Das Pulsoximeter kommt an den Finger.", ""),
     ("B1", "der", "Messwert", "Messwerte", "la ", {
         "fr": ("valeur mesurée", "Je note toutes les valeurs dans la feuille de surveillance."),
@@ -206,6 +221,7 @@ MOTS = [
         "ar": ("قيمة القياس", "أسجّل كل قيم القياس في ورقة المتابعة."),
         "pl": ("wynik pomiaru", "Wpisuję wszystkie wyniki pomiarów do karty obserwacji."),
         "ru": ("результат измерения", "Я вношу все результаты измерений в лист наблюдения."),
+        "es": ("el valor medido", "Anoto todos los valores medidos en el expediente."),
     }, "Ich trage alle Messwerte in die Kurve ein.", ""),
     ("B1", "die", "Fieberkurve", "Fieberkurven", "la ", {
         "fr": ("feuille de surveillance", "La feuille de surveillance indique aussi les médicaments."),
@@ -217,6 +233,7 @@ MOTS = [
         "ar": ("مخطط الحرارة", "في مخطط الحرارة توجد الأدوية أيضًا."),
         "pl": ("karta gorączkowa", "W karcie gorączkowej są też leki."),
         "ru": ("температурный лист", "В температурном листе указаны и лекарства."),
+        "es": ("la hoja de signos vitales (gráfica de temperatura)", "En la hoja de signos vitales también aparecen los medicamentos."),
     }, "In der Fieberkurve stehen auch die Medikamente.",
         "⚕️ Vérifier qu'en Allemagne la « Kurve » (Fieberkurve, Kurvenblatt) porte bien aussi les médicaments, et le terme le plus courant aujourd'hui."),
     ("B1", "der", "Schüttelfrost", "—", "les ", {
@@ -229,6 +246,7 @@ MOTS = [
         "ar": ("قشعريرة", "المريضة تعاني من الحمى والقشعريرة."),
         "pl": ("dreszcze", "Pacjentka ma gorączkę i dreszcze."),
         "ru": ("озноб", "У пациентки температура и озноб."),
+        "es": ("los escalofríos", "La paciente tiene fiebre y escalofríos."),
     }, "Die Patientin hat Fieber und Schüttelfrost.", ""),
     ("B1", "das", "Bewusstsein", "—", "la ", {
         "fr": ("conscience", "Après la chute, il a perdu connaissance un court instant."),
@@ -240,6 +258,7 @@ MOTS = [
         "ar": ("الوعي", "بعد السقوط فقد وعيه لفترة قصيرة."),
         "pl": ("przytomność", "Po upadku na chwilę stracił przytomność."),
         "ru": ("сознание", "После падения он ненадолго потерял сознание."),
+        "es": ("la conciencia (el conocimiento)", "Después de la caída perdió el conocimiento un momento."),
     }, "Nach dem Sturz hat er kurz das Bewusstsein verloren.", ""),
     ("B1", "der", "Bluthochdruck", "—", "l'", {
         "fr": ("hypertension", "M. Brandt prend des comprimés contre l'hypertension."),
@@ -251,6 +270,7 @@ MOTS = [
         "ar": ("ارتفاع ضغط الدم", "يتناول السيد براندت أقراصًا لعلاج ارتفاع ضغط الدم."),
         "pl": ("nadciśnienie", "Pan Brandt bierze tabletki na nadciśnienie."),
         "ru": ("высокое давление", "Господин Брандт принимает таблетки от высокого давления."),
+        "es": ("la presión alta (hipertensión)", "El señor Brandt toma pastillas para la presión alta."),
     }, "Herr Brandt nimmt Tabletten gegen Bluthochdruck.", ""),
     ("B1", "die", "Unterzuckerung", "Unterzuckerungen", "l'", {
         "fr": ("hypoglycémie", "Tremblements et sueurs peuvent être des signes d'hypoglycémie."),
@@ -262,6 +282,7 @@ MOTS = [
         "ar": ("انخفاض السكر في الدم", "قد تكون الرعشة والتعرّق علامتين على انخفاض السكر في الدم."),
         "pl": ("hipoglikemia", "Drżenie i pocenie się mogą być objawami hipoglikemii."),
         "ru": ("гипогликемия", "Дрожь и потливость могут быть признаками гипогликемии."),
+        "es": ("la baja de azúcar (hipoglucemia)", "Los temblores y el sudor pueden ser signos de una baja de azúcar."),
     }, "Zittern und Schwitzen können Zeichen einer Unterzuckerung sein.",
         "⚕️ Les signes cités (zittern, schwitzen) : justes et suffisants pour l'exemple ?"),
 
@@ -276,6 +297,7 @@ MOTS = [
         "ar": ("فرط ضغط الدم", "في السوابق المرضية يُذكر فرط ضغط دم معروف."),
         "pl": ("nadciśnienie tętnicze", "W wywiadzie odnotowano znane nadciśnienie tętnicze."),
         "ru": ("артериальная гипертензия", "В анамнезе указана известная артериальная гипертензия."),
+        "es": ("la hipertensión arterial", "En la historia clínica consta una hipertensión conocida."),
     }, "In der Anamnese steht eine bekannte Hypertonie.", ""),
     ("B2", "die", "Hypotonie", "—", "l'", {
         "fr": ("hypotension", "À cause de l'hypotension, elle doit se lever lentement."),
@@ -287,6 +309,7 @@ MOTS = [
         "ar": ("انخفاض ضغط الدم", "بسبب انخفاض ضغط الدم يجب أن تنهض ببطء."),
         "pl": ("niedociśnienie", "Z powodu niedociśnienia powinna wstawać powoli."),
         "ru": ("гипотония", "Из-за гипотонии ей нужно вставать медленно."),
+        "es": ("la hipotensión", "Por la hipotensión, debe levantarse despacio."),
     }, "Wegen der Hypotonie soll sie langsam aufstehen.", ""),
     ("B2", "die", "Tachykardie", "Tachykardien", "la ", {
         "fr": ("tachycardie", "En cas de tachycardie, le cœur bat trop vite."),
@@ -298,6 +321,7 @@ MOTS = [
         "ar": ("تسرّع القلب", "في تسرّع القلب ينبض القلب بسرعة كبيرة."),
         "pl": ("tachykardia", "Przy tachykardii serce bije za szybko."),
         "ru": ("тахикардия", "При тахикардии сердце бьётся слишком быстро."),
+        "es": ("la taquicardia", "En la taquicardia, el corazón late demasiado rápido."),
     }, "Bei einer Tachykardie schlägt das Herz zu schnell.", ""),
     ("B2", "die", "Bradykardie", "Bradykardien", "la ", {
         "fr": ("bradycardie", "En cas de bradycardie, le cœur bat trop lentement."),
@@ -309,6 +333,7 @@ MOTS = [
         "ar": ("بطء القلب", "في بطء القلب ينبض القلب ببطء شديد."),
         "pl": ("bradykardia", "Przy bradykardii serce bije za wolno."),
         "ru": ("брадикардия", "При брадикардии сердце бьётся слишком медленно."),
+        "es": ("la bradicardia", "En la bradicardia, el corazón late demasiado lento."),
     }, "Bei einer Bradykardie schlägt das Herz zu langsam.", ""),
     ("B2", "die", "Hyperglykämie", "Hyperglykämien", "l'", {
         "fr": ("hyperglycémie", "Une soif intense peut indiquer une hyperglycémie."),
@@ -320,6 +345,7 @@ MOTS = [
         "ar": ("فرط سكر الدم", "قد يشير العطش الشديد إلى فرط سكر الدم."),
         "pl": ("hiperglikemia", "Silne pragnienie może wskazywać na hiperglikemię."),
         "ru": ("гипергликемия", "Сильная жажда может указывать на гипергликемию."),
+        "es": ("la hiperglucemia", "Una sed intensa puede indicar una hiperglucemia."),
     }, "Großer Durst kann auf eine Hyperglykämie hinweisen.", ""),
     ("B2", "die", "Bewusstseinslage", "Bewusstseinslagen", "l'", {
         "fr": ("état de conscience", "L'état de conscience est contrôlé toutes les heures."),
@@ -331,6 +357,7 @@ MOTS = [
         "ar": ("مستوى الوعي", "يُفحص مستوى الوعي كل ساعة."),
         "pl": ("stan świadomości", "Stan świadomości jest kontrolowany co godzinę."),
         "ru": ("уровень сознания", "Уровень сознания проверяют каждый час."),
+        "es": ("el estado de conciencia", "El estado de conciencia se controla cada hora."),
     }, "Die Bewusstseinslage wird stündlich kontrolliert.", ""),
     ("B2", "die", "Flüssigkeitsbilanz", "Flüssigkeitsbilanzen", "le ", {
         "fr": ("bilan hydrique", "Pour M. Brandt, nous tenons un bilan hydrique."),
@@ -342,6 +369,7 @@ MOTS = [
         "ar": ("توازن السوائل", "نسجّل توازن السوائل للسيد براندت."),
         "pl": ("bilans płynów", "U pana Brandta prowadzimy bilans płynów."),
         "ru": ("водный баланс", "Для господина Брандта мы ведём учёт водного баланса."),
+        "es": ("el balance hídrico", "Al señor Brandt le llevamos un balance hídrico."),
     }, "Bei Herrn Brandt führen wir eine Flüssigkeitsbilanz.",
         "⚕️ « eine Flüssigkeitsbilanz führen » : la tournure usuelle ? (ou « bilanzieren »)"),
     ("B2", "der", "Normbereich", "Normbereiche", "les ", {
@@ -354,6 +382,7 @@ MOTS = [
         "ar": ("النطاق الطبيعي", "عاد ضغط الدم إلى النطاق الطبيعي."),
         "pl": ("zakres normy", "Ciśnienie jest znów w normie."),
         "ru": ("пределы нормы", "Давление снова в пределах нормы."),
+        "es": ("el rango normal (valores normales)", "La presión arterial volvió al rango normal."),
     }, "Der Blutdruck liegt wieder im Normbereich.", ""),
     ("B2", "der", "Grenzwert", "Grenzwerte", "le ", {
         "fr": ("seuil", "Au-dessus de ce seuil, nous devons appeler le médecin."),
@@ -365,6 +394,7 @@ MOTS = [
         "ar": ("القيمة الحدّية", "فوق هذه القيمة الحدّية يجب أن نستدعي الطبيب."),
         "pl": ("wartość graniczna", "Powyżej tej wartości granicznej musimy wezwać lekarza."),
         "ru": ("пороговое значение", "Выше этого порогового значения нужно вызвать врача."),
+        "es": ("el valor límite (umbral)", "Por encima de este valor límite tenemos que llamar al médico."),
     }, "Über diesem Grenzwert müssen wir den Arzt rufen.", ""),
     ("B2", "die", "Krankenbeobachtung", "—", "la ", {
         "fr": ("surveillance du patient", "Une bonne surveillance repère tôt les changements."),
@@ -376,6 +406,7 @@ MOTS = [
         "ar": ("مراقبة المريض", "المراقبة الجيدة للمريض تكشف التغيّرات مبكرًا."),
         "pl": ("obserwacja pacjenta", "Dobra obserwacja pacjenta wcześnie wychwytuje zmiany."),
         "ru": ("наблюдение за пациентом", "Хорошее наблюдение за пациентом рано замечает изменения."),
+        "es": ("la observación del paciente", "Una buena observación del paciente detecta pronto los cambios."),
     }, "Eine gute Krankenbeobachtung erkennt Veränderungen früh.", ""),
 ]
 

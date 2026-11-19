@@ -1,0 +1,74 @@
+# Espagnol du vocabulaire des Soins : à relire par un natif
+
+Second avis (Sonnet) sur la traduction du 16 nov. 2026 : propositions NON appliquées (doute, nuance,
+variante régionale). Chaque ligne : l'entrée, le champ, l'allemand, l'espagnol retenu, la proposition.
+
+- **t01_koerper#34** `es_ex` — allemand : « Sie spürt einen ziehenden Schmerz im Bein. »
+  - retenu : « Siente un dolor tirante en la pierna. »
+  - proposé : « Siente un dolor como de tirón en la pierna. » — Dolor « tirante » est peu usité en espagnol latino-américain ; « como de tirón » dit ziehend plus naturellement.
+- **t01_koerper#62** `es_ex` — allemand : « Die Beinödeme sind seit der Entwässerung zurückgegangen. »
+  - retenu : « Los edemas de las piernas disminuyeron desde que empezó el diurético. »
+  - proposé : « Los edemas de las piernas disminuyeron desde el tratamiento diurético. » — Entwässerung est le traitement diurétique ; « desde que empezó el diurético » ajoute un détail absent de l'allemand.
+- **t12_sprache#10** `es_ex_patient` — allemand : « Mir ist so schlecht, ich kann nichts essen. »
+  - retenu : « Me siento tan mal que no puedo comer nada. »
+  - proposé : « Tengo tantas náuseas que no puedo comer nada. » — L'allemand dit « Mir ist so schlecht » (nausée) ; « me siento tan mal » perd le sens de nausée donné par es_trad_patient.
+- **t08_team#32** `es_ex` — allemand : « In der Bezugspflege bleibt ein Patient während des ganzen Aufenthalts bei derselben Pflegekraft, in der Bereichspflege übernimmt jede Pflegekraft pro Schicht die Zimmer eines Bereichs. »
+  - retenu : « En la enfermería de referencia, el paciente tiene al mismo enfermero durante toda su estancia; en la atención por sectores, cada enfermero se hace cargo, en cada turno, de las habitaciones de un sector. »
+  - proposé : « En la enfermería de referencia, el paciente tiene a la misma persona de enfermería durante toda su estancia; en la atención por sectores, cada persona de enfermería se hace cargo, en cada turno, de las habitaciones de un sector. » — Pflegekraft = el personal de enfermería (consignes) ; « enfermero » suppose un genre masculin.
+- **t09_dokumentation#45** `es_ex` — allemand : « Der BZ war vor dem Frühstück zweihundertzehn, ich habe nach Schema gespritzt. »
+  - retenu : « Antes del desayuno, la glucosa estaba en doscientos diez; apliqué la insulina según el esquema. »
+  - proposé : « Antes del desayuno, la glucosa estaba en doscientos diez; apliqué según el esquema. » — L'allemand dit seulement « nach Schema gespritzt » ; « la insulina » est une déduction ajoutée.
+- **t09_dokumentation#63** `es_ex` — allemand : « Bitte in zwei Stunden den Blutzucker nachmessen und gegebenenfalls die Ärztin anrufen. »
+  - retenu : « Por favor, vuelve a medir la glucosa en dos horas y, dado el caso, llama a la doctora. »
+  - proposé : « Por favor, vuelve a medir la glucosa en dos horas y, si hace falta, llama a la doctora. » — « dado el caso » est un calque peu naturel pour gegebenenfalls ; « si hace falta » est courant.
+- **t09_dokumentation#68** `es_ex` — allemand : « Der Hb-Wert ist auf sieben Komma acht gefallen, die Ärztin bestellt zwei Blutkonserven. »
+  - retenu : « La hemoglobina bajó a siete punto ocho; la doctora pide dos unidades de glóbulos rojos. »
+  - proposé : « La hemoglobina bajó a siete punto ocho; la doctora pide dos unidades de sangre. » — Blutkonserven = unités de sang ; « glóbulos rojos » restreint au concentré érythrocytaire (paquete globular est possible mais plus précis que l'allemand).
+- **t02_grundpflege#28** `es_ex` — allemand : « Wir lagern ihn regelmäßig um, damit keine Druckstellen entstehen. »
+  - retenu : « Lo cambiamos de posición con regularidad para que no se formen zonas de presión. »
+  - proposé : « Lo cambiamos de posición con regularidad para que no se formen lesiones por presión. » — « zonas de presión » est peu clair pour Druckstellen (lésions de pression).
+- **t02_grundpflege#18** `es_ex` — allemand : « Heute Morgen bekommt {Herr Schulze} eine Ganzkörperwäsche im Bett. »
+  - retenu : « Esta mañana, a {Herr Schulze} le hacemos el aseo completo en la cama. »
+  - proposé : « Esta mañana, {Herr Schulze} recibe el aseo completo en la cama. » — « a {Herr Schulze} » donne « a el Sr. Schulze » à la construction : le gabarit doit rester en tête de phrase ou sans préposition « a ».
+- **t02_grundpflege#36** `es_ex` — allemand : « Die Inkontinenzeinlage wechsle ich, sobald sie nass ist. »
+  - retenu : « Cambio la toalla para incontinencia en cuanto se moja. »
+  - proposé : « Cambio el protector para incontinencia en cuanto se moja. » — « toalla » évoque la toalla sanitaria (menstruelle) en Amérique latine ; « protector » est plus clair.
+- **t02_grundpflege#1** `es_ex` — allemand : « Heute können Sie duschen, das Wasser ist schon warm. »
+  - retenu : « Hoy puede ducharse; ya hay agua caliente. »
+  - proposé : « Hoy puede ducharse; el agua ya está tibia. » — L'allemand dit « warm » ; « agua caliente » pourrait dire chaude (brûlante).
+- **t11_szenen#24** `es_ex` — allemand : « {Jonas} nimmt das Klemmbrett mit zur Visite. »
+  - retenu : « {Jonas} lleva el portapapeles al pase de visita. »
+  - proposé : « {Jonas} lleva la tablilla con sujetapapeles al pase de visita. » — « portapapeles » désigne surtout le presse-papiers informatique ; usage régional pour l'objet physique.
+- **t02_grundpflege#40** `es_trad` — allemand : « die Gehhilfe »
+  - retenu : « el auxiliar de marcha (bastón, andador) »
+  - proposé : « la ayuda para caminar (bastón, andador) » — « auxiliar de marcha » est peu naturel en espagnol latino-américain ; « ayuda para caminar » (ou « ayuda técnica ») est plus courant, mais c'est une nuance de terme, à confirmer par un natif.
+- **t06_ernaehrung#10** `es_ex` — allemand : « Müssen Sie auf die Toilette gehen? Ich begleite Sie. »
+  - retenu : « ¿Necesita ir al baño? Le acompaño. »
+  - proposé : « ¿Necesita ir al baño? La acompaño. » — En Amérique latine on dit plutôt « lo / la acompaño » que le leísmo « le acompaño » ; le genre du patient étant inconnu, c'est un choix régional à trancher.
+- **t06_ernaehrung#19** `es_ex` — allemand : « Sie hat sich beim Trinken verschluckt und hustet stark. »
+  - retenu : « Se atragantó al tomar agua y tose mucho. »
+  - proposé : « Se atragantó al beber y tose mucho. » — L'allemand dit seulement « beim Trinken » ; « agua » est un ajout.
+- **t06_ernaehrung#34** `es_trad` — allemand : « die Exsikkose »
+  - retenu : « la deshidratación (exsicosis; sinónimo: die Dehydratation) »
+  - proposé : « la deshidratación (exsicosis; en alemán también Dehydratation) » — Le synonyme allemand est glissé tel quel dans une parenthèse espagnole avec « die » ; à clarifier que c'est le mot allemand.
+- **t08_team#2** `es_ex` — allemand : « Heute Nacht ist nur eine Pflegekraft auf der Station. »
+  - retenu : « Esta noche hay una sola enfermera en el área. »
+  - proposé : « Esta noche hay una sola persona de enfermería en el área. » — Pflegekraft est neutre en allemand ; « enfermera » suppose une femme (nuance de genre, à trancher en relecture native).
+- **t08_team#61** `es_ex` — allemand : « Fast hätte {Yusuf} die Infusion dem falschen Patienten angehängt; dieses Beinahe-Ereignis meldet er anonym im CIRS. »
+  - retenu : « {Yusuf} casi le conecta el suero al paciente equivocado; este cuasi incidente lo reporta de forma anónima en el CIRS. »
+  - proposé : « {Yusuf} casi le conectó el suero al paciente equivocado; este cuasi incidente lo reporta de forma anónima en el CIRS. » — « Fast hätte ... angehängt » est un passé évité de justesse ; le présent « casi le conecta » est un présent narratif, acceptable mais moins net.
+- **t11_szenen#28** `es_ex` — allemand : « Nehmen Sie sich einen Becher, das Wasser ist frisch. »
+  - retenu : « Tome un vaso; el agua la acabamos de cambiar. »
+  - proposé : « Tome un vaso; el agua está fresca. » — L'allemand dit seulement que l'eau est fraîche (frisch) ; « la acabamos de cambiar » ajoute une information.
+- **t09_dokumentation#9** `es_ex` — allemand : « Ich trage die Trinkmenge ins Protokoll ein. »
+  - retenu : « Registro en la hoja de control la cantidad de líquido que tomó. »
+  - proposé : « Registro en la hoja de control la cantidad de líquido ingerido. » — L'allemand ne donne pas de sujet (la quantité bue) ; « que tomó » en suppose un.
+- **t12_sprache#123** `es_ex` — allemand : « Begleiteter Toilettengang alle drei Stunden, nachts Toilettenstuhl am Bett. »
+  - retenu : « Acompañamiento al baño cada tres horas; por la noche, silla cómodo junto a la cama. »
+  - proposé : « Acompañamiento al baño cada tres horas; por la noche, silla con inodoro junto a la cama. » — Toilettenstuhl : « silla cómodo » est une formulation douteuse, « silla con inodoro » (ou « silla sanitaria ») est plus claire ; terme à confirmer par un natif.
+- **t12_sprache#67** `es_trad_patient` — allemand : « der Blutverdünner »
+  - retenu : « la pastilla para adelgazar la sangre »
+  - proposé : « el medicamento para adelgazar la sangre » — L'allemand dit seulement « Blutverdünner » (pas forcément un comprimé) ; « pastilla » ajoute un détail, mais le choix reste défendable.
+- **t12_sprache#111** `es_ex_patient` — allemand : « Darf ich morgen endlich nach Hause? Meine Katze wartet. »
+  - retenu : « ¿Por fin me puedo ir a casa mañana? Mi gato me espera. »
+  - proposé : « ¿Por fin me puedo ir a casa mañana? Mi gata me espera. » — « Katze » est féminin en allemand ; « gato » est un choix générique acceptable, nuance seulement.

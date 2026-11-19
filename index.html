@@ -9930,7 +9930,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1218</span>
+        <span class="subtitle-version">v1219</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -63983,7 +63983,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1218;
+const APP_VERSION = 1219;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -74405,41 +74405,54 @@ function etapeAfficheeA1V(s){
     const n = s.fin ? (s.k || 0) : (s.e || 0);
     return etapeFinieA1V(s) ? n + 1 : n;
 }
-// Avance l'escale (ou l'etape) quand tout y est fait : plus de mot neuf, le
-// tableau, les phrases et le dialogue vus -- ou sa carte de fin vue (ligne 112).
+// Avance l'escale (ou l'etape) quand sa carte de fin a ete vue (ligne 112 ; seule voie depuis la ligne 133).
 // Appelee a l'ouverture de la seance.
+// Ligne 133 (16 nov. 2026, B11 de la revue : en espagnol, l'etape 7 de la suite close en silence a l'ouverture d'une
+// seance, Hatysa comptee sans fete, l'etape 8 jamais montree, Orion de 6 a 8 en une seance). UNE ETAPE N'AVANCE PLUS
+// QUE FINIE : kf / ef, poses par sa carte de fin (marquerCarteA1V) ou par le rattrapage de la ligne 123. Avant, une
+// etape sans neuve, au tableau vu (et, a phrases, au dialogue fait) avancait a l'ouverture sans carte ni fete : ses
+// neuves pouvaient s'epuiser hors de la seance (theme illustre, scene, seance quittee avant sa derniere carte). La
+// carte de fin vient desormais des que l'etape est prete (insererA1Voyage), et le garde-fou de preparerA1Voyage
+// l'amene meme si les neuves n'avancent plus : aucune etape ne reste bloquee faute de carte.
 function avancerA1Voyage(base){
     const s = lireA1Voyage();
     let change = false;
+    const suivante = () => { s.t = false; s.b = 0; s.d = false; delete s.nr; delete s.ns; change = true; };
     if(!s.fin){
         const esc = escalesA1Voyage();
         s.e = s.e || 0;
         while(s.e < esc.length){
-            const e = esc[s.e];
-            const finie = etapeFinieA1V(s);
-            const reste = poolEscale(base, e).some(estNeuveCarte);
-            if(!finie && (reste || !s.t || (s.b || 0) < (e.blocs || []).length || !s.d)) break;
-            if(finie) reviserMotsVusA1V(poolEscale(base, e));
-            s.e++; s.t = false; s.b = 0; s.d = false; change = true;
+            if(!etapeFinieA1V(s)) break;
+            reviserMotsVusA1V(poolEscale(base, esc[s.e]));
+            s.e++; suivante();
         }
-        if(s.e >= esc.length){ s.fin = true; s.t = false; s.b = 0; s.d = false; s.k = 0; change = true; }
+        if(s.e >= esc.length){ s.fin = true; s.k = 0; suivante(); }
     }
     if(s.fin && !s.sf){
         const suite = suiteA1Voyage();
         s.k = s.k || 0;
         while(s.k < suite.length){
-            const et = suite[s.k];
-            const phrases = (et.blocs || []).length;
-            const finie = etapeFinieA1V(s);
-            if(!finie){
-                if(poolSuite(base, s.k).some(estNeuveCarte) || !s.t) break;
-                if(phrases && ((s.b || 0) < phrases || !s.d)) break;
-            } else reviserMotsVusA1V(poolSuite(base, s.k));
-            s.k++; s.t = false; s.b = 0; s.d = false; change = true;
+            if(!etapeFinieA1V(s)) break;
+            reviserMotsVusA1V(poolSuite(base, s.k));
+            s.k++; suivante();
         }
     }
     if(change) ecrireA1Voyage(s);
     return s;
+}
+// LE GARDE-FOU (ligne 133) : nr, les neuves du lieu a l'ouverture de la seance precedente ; ns, le nombre de seances
+// ouvertes de suite sur cette etape sans qu'une seule neuve du lieu soit vue entre-temps. A GARDE_FOU_A1V, la seance
+// porte la carte de fin (et, a phrases, le dialogue) comme si les neuves etaient epuisees : les restantes ne sont pas
+// perdues, elles redeviennent des mots de l'A1 comme les autres. Une seance reprise (reprendreSeanceDuJour) ne
+// repasse pas par ici ; une etape qui avance remet nr et ns a zero (avancerA1Voyage).
+const GARDE_FOU_A1V = 3;
+function gardeFouA1V(s, pool){
+    const reste = pool.filter(estNeuveCarte).length;
+    if(!reste){ delete s.nr; delete s.ns; return false; }
+    if(s.nr === reste) s.ns = (s.ns || 0) + 1;
+    else { s.nr = reste; s.ns = 0; }
+    ecrireA1Voyage(s);
+    return s.ns >= GARDE_FOU_A1V;
 }
 // Ce que la seance du jour doit savoir : le reservoir du neuf et la scene.
 async function preparerA1Voyage(base){
@@ -74450,14 +74463,16 @@ async function preparerA1Voyage(base){
     if(!s.fin){
         const esc = escalesA1Voyage();
         const e = esc[s.e];
+        const pool = poolEscale(base, e);
         return { lieu: e, enSuite: false, n: s.e, total: esc.length, suivant: esc[s.e + 1] || null,
-                 pool: poolEscale(base, e), scene: sceneDuLieu(e), etat: s };
+                 pool: pool, scene: sceneDuLieu(e), etat: s, gardeFou: gardeFouA1V(s, pool) };
     }
     const suite = suiteA1Voyage();
     if(s.k >= suite.length) return { finA1: true, pool: base, scene: null, etat: s };
     const et = suite[s.k];
+    const pool = poolSuite(base, s.k);
     return { lieu: et, enSuite: true, n: s.k, total: suite.length, suivant: suite[s.k + 1] || null,
-             pool: poolSuite(base, s.k), scene: sceneDuLieu(et), etat: s };
+             pool: pool, scene: sceneDuLieu(et), etat: s, gardeFou: gardeFouA1V(s, pool) };
 }
 function badgeA1V(av){
     return av.enSuite ? tf("av_suite_badge", { n: av.n + 1 }) : tf("av_badge", { n: av.n + 1 });
@@ -74490,9 +74505,12 @@ function insererA1Voyage(seance, av){
         // Le dialogue : quand les phrases sont toutes vues et que le neuf du
         // lieu s'epuise dans cette seance.
         const dansSeance = new Set(seance.map(cle));
-        const neufsApres = av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
-        if(deja + montres.length >= blocs.length && neufsApres === 0 && !s.d){
-            dialogueA1V(av, badge).forEach(it => sortie.push(it));
+        const neufsApres = av.gardeFou ? 0 : av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
+        // Ligne 133 : la carte de fin revient aussi quand le dialogue est deja fait (seance quittee entre le dialogue et
+        // la carte de fin) -- sans redire le dialogue ; jusqu'ici elle ne venait qu'avec lui, et l'etape se fermait
+        // ensuite en silence.
+        if(deja + montres.length >= blocs.length && neufsApres === 0 && !etapeFinieA1V(s)){
+            if(!s.d) dialogueA1V(av, badge).forEach(it => sortie.push(it));
             const jalon = !av.enSuite && av.n >= av.total - 1;
             sortie.push(itemA1V(jalon ? "av_jalon" : "av_escale_fin", { n: av.n, lieu: lieu, suivant: av.suivant, enSuite: av.enSuite }));
         }
@@ -74502,7 +74520,7 @@ function insererA1Voyage(seance, av){
         // vue. La carte vient a la meme condition que pour les autres etapes : plus de neuve du lieu hors de cette
         // seance. Elle pose kf (marquerCarteA1V) ; un compte qui l'a deja vue (kf de cette etape) ne la revoit pas.
         const dansSeance = new Set(seance.map(cle));
-        const neufsApres = av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
+        const neufsApres = av.gardeFou ? 0 : av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
         if(neufsApres === 0) sortie.push(itemA1V("av_escale_fin", { n: av.n, lieu: lieu, suivant: av.suivant, enSuite: true }));
     }
     return tete.concat(sortie);

@@ -115,8 +115,8 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
-<script src="themes/tirage.js?v=4"></script>
-<script src="themes/voix.js?v=7"></script>
+<script src="themes/tirage.js?v=5"></script>
+<script src="themes/voix.js?v=8"></script>
 <script src="themes/fin.js?v=2"></script>
 <script src="themes/zoom.js?v=4"></script>
 <script src="themes/verre.js?v=8"></script>
@@ -194,7 +194,10 @@ const lotPrincipal = id => { const l = lotsDu(id); return l[Math.floor(l.length 
 const memeRel = (a, b) => JSON.stringify(a) === JSON.stringify(b) || (a[0] === "zwischen" && b[0] === "zwischen" && a[1] === b[2] && a[2] === b[1]);
 const vraiPourLot = (rel, l) => l.rels.some(r => memeRel(r, rel));
 const vraiPourLieu = (rel, id) => lotsDu(id).some(l => vraiPourLot(rel, l));
-const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+// lot 14 des langues des themes (16 nov. 2026) : le turc, l'ukrainien, le polonais, le russe, le persan et l'arabe pour
+// qui apprend l'allemand, l'arabe pour qui apprend l'espagnol (visuel/ciudad/langues.py)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")
+  || (["tr", "uk", "pl", "ru", "fa", "ar"].includes(LANGUE) && APPRENDRE === "de") || (LANGUE === "ar" && APPRENDRE === "es"));
 const tradPhrase = p => PHRASE_TRADUITE ? (((D.trad[APPRENDRE] || {})[p] || {})[LANGUE] || null) : null;
 const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
 const glose = m => { const g = (D.gloses[APPRENDRE] || {})[m] || {}; return LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || ""); };

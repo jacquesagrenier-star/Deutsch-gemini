@@ -125,3 +125,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Le week-end** : « شنبه و یکشنبه تعطیلات آخر هفته‌اند. » traduit l'allemand (en Iran, le week-end est le vendredi) ; la tournure est-elle claire ?
 3. **Les mois grégoriens** : ژانویه، فوریه … دسامبر ; « بعد از آوریل، مه می‌آید. ».
 4. **L'agenda** : « کلاس یوگا دوشنبه ساعت ۹:۰۰ است. », « کلاس یوگا دو ساعت طول می‌کشد. », « وقت دکتر » pour le rendez-vous chez le médecin.
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **Les groupes** : « کنار بانک »، « روبه‌روی اداره پست »، « بین نانوایی و بانک »، « در نبش Bergstraße و Lindenstraße ».
+2. **L'itinéraire** : « از خیابان اول به چپ بپیچید. »، « تا چهارراه دوم بروید و آنجا به چپ بپیچید. ».
+3. **Les rues en lettres latines** dans la phrase persane (comme sur le plan) : à vérifier à l'écran, de droite à gauche.
+4. **La fin** : « هتل سمت راست است. »، sans lieu « سمت چپ است. ».
