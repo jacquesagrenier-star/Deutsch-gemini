@@ -49,8 +49,8 @@ Les réponses complètes sont dans `pflege/relecture/second-avis/<chapitre>.txt`
 
 ### À corriger selon lui (2)
 
-- `ch07-862220` Mots · soins_koerper_b1 : « die Hüfte » — MINEURE : on croise « die Beine » (übereinanderschlagen, überkreuzen), pas « das Bein » ; et la consigne dépend de la voie d'abord et du chirurgien, certaines cliniques ne l'imposent plus. **Proposition :** « Nach der Operation an der Hüfte darf er die Beine nicht übereinanderschlagen. »
-- `ch07-553c80` Mots · soins_koerper_b2 : « die Zyanose » — MINEURE : la cyanose est le signe observé lui-même (coloration bleutée), on ne la « soupçonne » pas ; et avant d'appeler on mesure la saturation. **Proposition :** « Die Lippen sind bläulich verfärbt (Zyanose). Ich messe die Sauerstoffsättigung und rufe sofort den Arzt. »
+- `ch07-862220` ligne corrigée ou retirée depuis la relecture — MINEURE : on croise « die Beine » (übereinanderschlagen, überkreuzen), pas « das Bein » ; et la consigne dépend de la voie d'abord et du chirurgien, certaines cliniques ne l'imposent plus. **Proposition :** « Nach der Operation an der Hüfte darf er die Beine nicht übereinanderschlagen. »
+- `ch07-553c80` ligne corrigée ou retirée depuis la relecture — MINEURE : la cyanose est le signe observé lui-même (coloration bleutée), on ne la « soupçonne » pas ; et avant d'appeler on mesure la saturation. **Proposition :** « Die Lippen sind bläulich verfärbt (Zyanose). Ich messe die Sauerstoffsättigung und rufe sofort den Arzt. »
 
 ### À nuancer (27)
 
