@@ -22,7 +22,7 @@ l'accueil, ou la sonde lit le bouton et la ligne de la carte de la seance :
                    les autres chemins partent d'un compte sans rien de du, ou le defaut ne se voyait pas).
 Plus : le passage jour / nuit pendant la seance redessine le fond de chaque partie, dans les deux sens ; « Revoir les
 cartes maitrisees » n'apparait pas sans carte maitrisee.
-Usage : python tests/revision_apres_seance.py [--racine DOSSIER] [--port 8809] [--captures DOSSIER]
+Usage : python tests/revision_apres_seance.py [--racine DOSSIER] [--port 8809] [--captures DOSSIER] [--chemins refaire-retard] [--langues es,de]
 Sous le verrou du navigateur (~/.wortando/verrou-parcours).
 """
 import argparse, functools, http.server, json, os, socketserver, sys, threading
@@ -139,7 +139,10 @@ def main():
     ap.add_argument("--racine", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--port", type=int, default=8809)
     ap.add_argument("--captures")
+    ap.add_argument("--chemins", help="seulement ces chemins, separes par des virgules (et pas le passage jour / nuit)")
+    ap.add_argument("--langues", default="es,de")
     a = ap.parse_args()
+    seuls = [c for c in (a.chemins or "").split(",") if c]
 
     class Serveur(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *x, **k):
@@ -184,21 +187,24 @@ def main():
 
     with sync_playwright() as p:
         nav = p.chromium.launch()
-        for appris in ("es", "de"):
+        for appris in [x for x in a.langues.split(",") if x]:
             # le passage jour / nuit pendant la seance
-            ctx, page, err = ouvrir(nav, appris)
-            jn = page.evaluate(JOUR_NUIT)
-            mauvais = [k for k, v in jn.items() if not (v["change"] and v["revient"] and v["inverse"])]
-            page.evaluate("async () => { setAppTheme('light'); PAYSAGE_MONTRE = null; paysageSeance('rev'); await new Promise(r => setTimeout(r, 100)); setAppTheme('dark'); }")
-            page.wait_for_timeout(400)
-            if a.captures:
-                page.screenshot(path=os.path.join(a.captures, "%s-jour-nuit-revisions.png" % appris))
-            fautes += 1 if mauvais else 0
-            print("== %s jour-nuit     %s" % (appris, "ok" if not mauvais else "FAUTE, fond inchange : " + ", ".join(mauvais)), flush=True)
-            ctx.close()
+            if not seuls:
+                ctx, page, err = ouvrir(nav, appris)
+                jn = page.evaluate(JOUR_NUIT)
+                mauvais = [k for k, v in jn.items() if not (v["change"] and v["revient"] and v["inverse"])]
+                page.evaluate("async () => { setAppTheme('light'); PAYSAGE_MONTRE = null; paysageSeance('rev'); await new Promise(r => setTimeout(r, 100)); setAppTheme('dark'); }")
+                page.wait_for_timeout(400)
+                if a.captures:
+                    page.screenshot(path=os.path.join(a.captures, "%s-jour-nuit-revisions.png" % appris))
+                fautes += 1 if mauvais else 0
+                print("== %s jour-nuit     %s" % (appris, "ok" if not mauvais else "FAUTE, fond inchange : " + ", ".join(mauvais)), flush=True)
+                ctx.close()
 
             tailles = {}
             for chemin in ("sans", "refaire-non", "revoir-non", "revoir-oui", "milieu", "deux-accueil", "deux-fin", "refaire-retard"):
+                if seuls and chemin not in seuls:
+                    continue
                 ctx, page, err = ouvrir(nav, appris)
                 dus = page.evaluate(RETARD) if chemin == "refaire-retard" else 0
 
@@ -314,6 +320,8 @@ def main():
                 if er:
                     print("   erreurs JS :", er[:3], flush=True)
                 ctx.close()
+            if seuls and not ("deux-accueil" in seuls and "deux-fin" in seuls):
+                continue
             ta, tf_ = tailles.get("accueil"), tailles.get("fin")
             ok = ta is not None and tf_ is not None and abs(ta - tf_) <= 1 and ta >= 8
             fautes += 0 if ok else 1
