@@ -89,6 +89,15 @@ les données sont listés ci-dessous. À vérifier en priorité :
 - **Oral** : les réponses modèles de 1B (mesurer à nouveau, prévenir le médecin) et de l'exposé sur la fin de vie
   (douleur, essoufflement, soins de bouche). Dans l'exposé sur les soins et les cultures : « Kinder sollten
   möglichst nicht übersetzen ».
+- **Les 7 photos de l'oral** (19 nov. 2026, `img/m2-*.webp`), à regarder avec l'œil du métier :
+  - 2A fin de vie, photo 2 : le soin de bouche (bâtonnet, petit gobelet, gants) est-il montré comme on le fait ?
+    Le résident y est torse nu sous la couverture, ce qu'un service éviterait sans doute : à refaire si l'infirmière
+    le juge gênant ;
+  - 1A : le brassard du tensiomètre posé au niveau du coude, le résident assis au bord du lit ;
+  - 2A cultures, photo 1 : l'infirmière porte une montre au poignet (elle vient de son portrait maître) ; le vernis
+    de son pouce a été retiré par retouche ;
+  - retouches gratuites (`*-zones.json`, originaux `-brut.png` hors dépôt) : l'étiquette de la sonnette (1A), la
+    feuille de la table (fin de vie, photo 3), l'en-tête du calendrier (cultures, photo 3).
 
 Pour un natif allemand : dans les éléments de langue 1 (42-49), deux trous (43, 44) ne se tranchent qu'au fil du
 récit.
