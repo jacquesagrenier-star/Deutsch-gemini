@@ -53,7 +53,7 @@ POSES = {
         ("schulze", "bauch"): "sits on a chair, slightly hunched forward, both hands laid flat on his stomach.",
         ("schulze", "hals"): "sits on a chair, one hand laid at the front of his throat, as if swallowing hurt.",
         ("kowalski", "bein"): "sits in her armchair, leaning forward, both hands holding her lower leg just below the knee.",
-        ("kowalski", "arm"): "sits alone in her armchair, her right arm bent at the elbow and raised in front of her chest, her left hand gripping the right forearm just below the elbow; her hands do not touch her stomach. No other person and no part of another person is anywhere in the picture.",
+        ("kowalski", "arm"): "sits upright in her armchair, seen from the front, the whole armchair in the picture. The arm nearer the bed lies stretched along the armrest of the armchair, its sleeve pushed up to the elbow, the bare forearm in full view; her other hand reaches across and grips that bare forearm halfway between the wrist and the elbow, and she looks down at it for a moment before looking up. Her lap lies free under the smooth dressing gown. To the right of the armchair stand the small wooden side table with its coffee cup and the open kitchen doorway; to the left, the care bed with its flowered cover; in front of the armchair, the bare wooden floorboards.",
     },
 }
 EXPRESSION = ("The face shows clear, real pain, the way a patient looks when telling the nurse where it hurts: the eyebrows "
