@@ -770,6 +770,20 @@ if ECRIT:
     sans_es = sum(1 for s in sujets if isinstance(s.get("consigne"), dict) and "es" not in s["consigne"])
     notes.append("ecrit : %d sujet(s) lisibles par ?sujet=%s" % (len(sujets), (" ; %d sans espagnol (repli sur le francais)" % sans_es) if sans_es else ""))
 
+# 12. l'apostrophe ukrainienne est U+02BC (regle de la v1187, tests/verifier.py) : jamais ' ni ’ entre deux lettres
+# cyrilliques, dans les donnees de l'examen, du manuel et les cartes de tournures ecrites pour lui
+APOSTROPHE_UK = re.compile("(?<=[Ѐ-ӿ])['’](?=[Ѐ-ӿ])")
+for dossier, _, noms in list(os.walk(DONNEES)) + [(os.path.join(DEPOT, "pflege", "sources", "redemittel"), [], None)]:
+    if noms is None:
+        noms = os.listdir(dossier) if os.path.isdir(dossier) else []
+    for nom in sorted(noms):
+        if not nom.endswith(".json") or "-Jacques" in nom:
+            continue
+        with io.open(os.path.join(dossier, nom), encoding="utf-8") as f:
+            n = len(APOSTROPHE_UK.findall(f.read()))
+        if n:
+            faute("%s : %d apostrophe(s) droite(s) ou courbe(s) entre lettres cyrilliques (l'ukrainien ecrit ʼ, U+02BC)" % (nom, n))
+
 for n in notes:
     print("· " + n)
 if fautes:
