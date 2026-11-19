@@ -9294,7 +9294,11 @@ body[data-theme="dark"] :is(#home, #decouverteScene) #seancePilule{--fil-carte:r
     background:linear-gradient(145deg,rgba(255,220,170,.14) 0%,rgba(255,220,170,0) 35%),#7A4618 !important;}
 .sp-fili{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; overflow:hidden;
     -webkit-clip-path:inset(0 round 30px); clip-path:inset(0 round 30px);}
-.sp-fili-cadre{position:fixed; left:0; top:0; width:100%; height:100vh; height:100lvh;}
+/* Ligne 143 (19 nov. 2026, F4 de la revue A a Z) : le cadre ROGNE sa bande. Dans la visite guidee, la carte de
+   seance vit sous un ancetre qui devient le repere de « fixed » : le cadre n'est plus fixe sur l'ecran, et la
+   bande du monde (.spf-piste, 2 880 px) elargissait la page a 1 628 px pour 360 -- un geste de cote la faisait
+   glisser dans le vide. Le clip-path de .sp-fili decoupe le dessin, pas la largeur de defilement. */
+.sp-fili-cadre{position:fixed; left:0; top:0; width:100%; height:100vh; height:100lvh; overflow:hidden;}
 /* ⚠️ Un ancetre avec un flou (backdrop-filter), un transform ou un filter devient le repere de « fixed » : la
    copie se decalerait de la position de la carte et la suivrait au defilement. L'enveloppe .orb-seance portait
    un flou de 18 px (regle generale des .orb, oubliee par la v1014) : on l'enleve -- la carte est opaque, il ne
@@ -16684,6 +16688,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCICES : QUEL CAS APRÈS CE VERBE ? →",
         kicker_verb_rektion: "Cas gouverné par le verbe",
         alert_no_rektion_available: "Aucun verbe avec cas gouverné chargé pour l'instant. Réessaie dans un instant.",
+        rektion_question: "Quel cas est-ce que « {v} » gouverne ?",
+        rektion_explication: "« {v} » ({t}) gouverne le {c}.",
         verbenniveau_exercises_btn: "EXERCICES PRÄSENS →",
 
         kicker_integrated_vocab: "Vocabulaire Intégré",
@@ -18527,6 +18533,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCISES: WHICH CASE DOES THIS VERB GOVERN? →",
         kicker_verb_rektion: "Verb case government",
         alert_no_rektion_available: "No tagged verbs loaded yet. Try again in a moment.",
+        rektion_question: "Which case does “{v}” govern?",
+        rektion_explication: "“{v}” ({t}) governs the {c}.",
         verbenniveau_exercises_btn: "PRÄSENS EXERCISES →",
 
         kicker_integrated_vocab: "Built-in Vocabulary",
@@ -20318,6 +20326,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ALIŞTIRMA: BU FİİL HANGİ HALİ ALIR? →",
         kicker_verb_rektion: "Fiilin hal yönetimi",
         alert_no_rektion_available: "Henüz etiketli fiil yüklenmedi. Birazdan tekrar dene.",
+        rektion_question: "“{v}” fiili hangi hali ister?",
+        rektion_explication: "“{v}” ({t}) fiili şu hali ister: {c}.",
         verbenniveau_exercises_btn: "PRÄSENS ALIŞTIRMALARI →",
 
         kicker_integrated_vocab: "Yerleşik Kelime",
@@ -22440,6 +22450,8 @@ const I18N = {
         alert_maitrises_revoir: "{n} засвоєних слів повертаються на повторення.",
         alert_maitrises_aucun: "Наразі немає засвоєних слів.",
         alert_no_rektion_available: "Поки не завантажено жодного дієслова з фіксованим відмінком. Спробуй за мить.",
+        rektion_question: "Якого відмінка вимагає дієслово «{v}»?",
+        rektion_explication: "Дієслово «{v}» ({t}) вимагає: {c}.",
         alert_no_dictation_available: "Спершу відкрий набір лексики (Wortschatz), щоб потренувати диктант.",
         alert_valid_email: "Введи, будь ласка, дійсну адресу електронної пошти.",
         alert_enter_password: "Введи, будь ласка, пароль.",
@@ -24007,6 +24019,8 @@ const I18N = {
         verbenniveau_rektion_btn: "تمرین: پس از این فعل چه حالتی؟ →",
         kicker_verb_rektion: "حالتی که فعل می‌طلبد",
         alert_no_rektion_available: "فعلاً هیچ فعلی با حالت معیّن بارگذاری نشده است. کمی بعد دوباره تلاش کن.",
+        rektion_question: "\u2067فعل «{v}» چه حالتی می‌طلبد؟\u2069",
+        rektion_explication: "فعل «{v}» ({t}) این حالت را می‌طلبد: {c}.",
         verbenniveau_exercises_btn: "تمرین‌های PRÄSENS →",
         kicker_integrated_vocab: "واژگان یکپارچه",
         nomen_title: "اسم‌ها و موضوع‌ها",
@@ -25935,6 +25949,8 @@ const I18N = {
         verbenniveau_rektion_btn: "تمارين: أي حالة بعد هذا الفعل؟ ←",
         kicker_verb_rektion: "الحالة التي يقتضيها الفعل",
         alert_no_rektion_available: "لا فعل بحالة مقتضاة محمَّل حالياً. أعد المحاولة بعد لحظة.",
+        rektion_question: "\u2067أي حالة يقتضيها الفعل «{v}»؟\u2069",
+        rektion_explication: "الفعل «{v}» ({t}) يقتضي: {c}.",
         verbenniveau_exercises_btn: "تمارين PRÄSENS ←",
         kicker_integrated_vocab: "المفردات المدمجة",
         nomen_title: "الأسماء والمواضيع",
@@ -27634,6 +27650,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EXERCÍCIOS: QUAL CASO DEPOIS DESTE VERBO? →",
         kicker_verb_rektion: "Caso exigido pelo verbo",
         alert_no_rektion_available: "Nenhum verbo com caso exigido carregado por enquanto. Tente de novo daqui a pouco.",
+        rektion_question: "Que caso o verbo “{v}” exige?",
+        rektion_explication: "O verbo “{v}” ({t}) exige o {c}.",
         verbenniveau_exercises_btn: "EXERCÍCIOS DE PRÄSENS →",
         kicker_integrated_vocab: "Vocabulário integrado",
         nomen_title: "Substantivos & Temas",
@@ -29484,6 +29502,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ĆWICZENIA: JAKI PRZYPADEK PO TYM CZASOWNIKU? →",
         kicker_verb_rektion: "Przypadek wymagany przez czasownik",
         alert_no_rektion_available: "Na razie nie wczytano żadnego czasownika z przypisanym przypadkiem. Spróbuj za chwilę.",
+        rektion_question: "Jakiego przypadka wymaga czasownik „{v}”?",
+        rektion_explication: "Czasownik „{v}” ({t}) wymaga: {c}.",
         verbenniveau_exercises_btn: "ĆWICZENIA PRÄSENS →",
         kicker_integrated_vocab: "Wbudowane słownictwo",
         nomen_title: "Rzeczowniki i tematy",
@@ -31337,6 +31357,8 @@ const I18N = {
         verbenniveau_rektion_btn: "УПРАЖНЕНИЯ: КАКОЙ ПАДЕЖ ПОСЛЕ ГЛАГОЛА? →",
         kicker_verb_rektion: "Управление глагола",
         alert_no_rektion_available: "Глаголы с управлением ещё не загружены. Попробуй через минуту.",
+        rektion_question: "Какого падежа требует глагол «{v}»?",
+        rektion_explication: "Глагол «{v}» ({t}) требует: {c}.",
         verbenniveau_exercises_btn: "УПРАЖНЕНИЯ: PRÄSENS →",
         kicker_integrated_vocab: "Встроенный словарь",
         nomen_title: "Существительные и темы",
@@ -33186,6 +33208,8 @@ const I18N = {
         verbenniveau_rektion_btn: "ÜBUNGEN: WELCHER KASUS NACH DIESEM VERB? →",
         kicker_verb_rektion: "Der vom Verb verlangte Kasus",
         alert_no_rektion_available: "Im Moment ist kein Verb mit festem Kasus geladen. Versuch es gleich noch einmal.",
+        rektion_question: "Welchen Kasus verlangt „{v}“?",
+        rektion_explication: "„{v}“ ({t}) verlangt den {c}.",
         verbenniveau_exercises_btn: "ÜBUNGEN PRÄSENS →",
         kicker_integrated_vocab: "Integrierter Wortschatz",
         nomen_title: "Nomen & Themen",
@@ -35051,6 +35075,8 @@ const I18N = {
         verbenniveau_rektion_btn: "EJERCICIOS: ¿QUÉ CASO VA DESPUÉS DE ESTE VERBO? →",
         kicker_verb_rektion: "Caso regido por el verbo",
         alert_no_rektion_available: "Ningún verbo con caso regido cargado por ahora. Vuelve a intentarlo en un momento.",
+        rektion_question: "¿Qué caso rige «{v}»?",
+        rektion_explication: "«{v}» ({t}) rige el {c}.",
         verbenniveau_exercises_btn: "EJERCICIOS PRÄSENS →",
         kicker_integrated_vocab: "Vocabulario integrado",
         nomen_title: "Sustantivos & Temas",
@@ -79810,6 +79836,30 @@ function startInfinitivExercise(){
 // sont donc pas inclus dans ce quiz précis.
 const VERB_REKTION_OPTIONS = ["Akkusativ", "Dativ", "Akkusativ + Dativ", "Nominativ"];
 
+// Ligne 143 (19 nov. 2026, F10 de la revue A a Z) : la question, la traduction, l'indice et l'explication dans
+// CHAQUE langue d'interface. Seuls le francais et l'anglais existaient (question / question_en) : les sept autres
+// langues recevaient l'anglais par le repli de texteTraduit(). Le gabarit vit dans I18N (rektion_question,
+// rektion_explication : {v} le verbe, {t} son sens, {c} le cas) ; la phrase d'exemple et le sens du verbe viennent
+// de verbe.json (exemple_<langue>, traduction_<langue>). Un champ absent laisse le repli habituel faire.
+function champsRektion(card, correct){
+    const out = {};
+    Object.keys(SUFFIXE_LANGUE).forEach(code => {
+        const fr = code === "fr", s = fr ? "" : SUFFIXE_LANGUE[code];
+        const g = I18N[code] || {};
+        const trad = fr ? card.traduction : (card["traduction" + s] || (code === "en" ? card.traduction : ""));
+        const phrase = fr ? card.exemple_fr : card["exemple" + s];
+        const remplir = txt => txt.replace("{v}", () => card.infinitif).replace("{t}", () => trad).replace("{c}", () => correct);
+        if(g.rektion_question) out["question" + s] = card.exemple + " — " + remplir(g.rektion_question);
+        if(phrase) out["translation" + s] = phrase;
+        if(trad){
+            out["hint" + s] = "(" + trad + ")";
+            if(g.rektion_explication) out["explanation" + s] = remplir(g.rektion_explication);
+        }
+    });
+    if(!out.translation) out.translation = "";
+    return out;
+}
+
 function buildVerbRektionExercises(){
     const seen = new Set();
     const list = [];
@@ -79817,22 +79867,13 @@ function buildVerbRektionExercises(){
         if(!card.rektion || seen.has(card.infinitif)) return;
         seen.add(card.infinitif);
         const correct = card.rektion.replace("+", " + ");
-        const traductionEn = card.traduction_en || card.traduction;
-        list.push({
+        list.push(Object.assign({
             topic: "Régime des verbes",
-            question: `${card.exemple} — Quel cas est-ce que « ${card.infinitif} » gouverne ?`,
-            question_en: `${card.exemple} — Which case does "${card.infinitif}" govern?`,
-            translation: card.exemple_fr || "",
-            translation_en: card.exemple_en || card.exemple_fr || "",
-            hint: `(${card.traduction})`,
-            hint_en: `(${traductionEn})`,
             answers: [correct.toLowerCase()],
             correct: correct,
             correctEn: correct,
-            explanation: `« ${card.infinitif} » (${card.traduction}) gouverne le ${correct}.`,
-            explanation_en: `"${card.infinitif}" (${traductionEn}) governs the ${correct}.`,
             options: VERB_REKTION_OPTIONS
-        });
+        }, champsRektion(card, correct)));
     });
     return list;
 }
