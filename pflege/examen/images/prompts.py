@@ -207,14 +207,20 @@ PHOTOS.update({
     },
     "m2-lebensende-2": {
         "refs": ["perso:arun", "scene:soins-altenheim"],
-        "texte": TETE.format(quoi="a nurse giving gentle mouth care to an old man lying on his side in his bed in a care home",
+        # 19 nov. 2026, 2e prise (accord de Jacques, « Oui, refaire ») : la 1re rendait le resident TORSE NU sous la
+        # couverture, et sur le dos alors que le prompt le voulait sur le cote. On decrit donc ce qu'il PORTE, des
+        # poignets au col, et on garde la pose que le modele a choisie (la description allemande la suit).
+        "texte": TETE.format(quoi="a nurse giving gentle mouth care to an old man lying in his bed in a care home",
                              lumiere="soft daylight through light curtains") +
         MAISON.format(ref="second", piece="a resident's bedroom") +
-        "AN OLD MAN of about eighty-five, very thin, with short white hair, lies on his side in a bed in the middle of "
-        "the picture, facing the left of the picture, a rolled pillow behind his back, his eyes closed, a cream "
-        "blanket over him.\n\n" + ARUN + " He also wears thin blue disposable gloves. He bends over the bed from the "
-        "left of the picture and gently moistens the old man's lips with a pink foam mouth swab on a small stick, a "
-        "small cup of water in his other hand, his eyes on the old man's mouth.\n\n"
+        "AN OLD MAN of about eighty-five, very thin, with short white hair, lies on his back in a bed in the middle of "
+        "the picture, his head raised on two white pillows, his eyes closed. He is fully dressed for bed: a "
+        "long-sleeved light-blue cotton pyjama top, buttoned up to the collar, covers his chest, his shoulders and "
+        "his arms down to the wrists; of his body we see only his face, his neck and his hands. A cream blanket "
+        "covers him up to the chest, and both his arms, in their pyjama sleeves, rest on top of the blanket.\n\n" +
+        ARUN + " He also wears thin blue disposable gloves. He stands beside the bed, on the right of the picture, "
+        "bending a little over the old man, and gently moistens the old man's lips with a pink foam mouth swab on a "
+        "small stick, a small clear plastic cup of water in his other hand, his eyes on the old man's mouth.\n\n"
         "THE ROOM: warm white walls, a window with light curtains, a small bedside cabinet." + SANS_TEXTE,
     },
     "m2-lebensende-3": {

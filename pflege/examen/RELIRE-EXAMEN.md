@@ -91,8 +91,8 @@ les données sont listés ci-dessous. À vérifier en priorité :
   möglichst nicht übersetzen ».
 - **Les 7 photos de l'oral** (19 nov. 2026, `img/m2-*.webp`), à regarder avec l'œil du métier :
   - 2A fin de vie, photo 2 : le soin de bouche (bâtonnet, petit gobelet, gants) est-il montré comme on le fait ?
-    Le résident y est torse nu sous la couverture, ce qu'un service éviterait sans doute : à refaire si l'infirmière
-    le juge gênant ;
+    (2e prise du 19 nov. : la 1re montrait le résident torse nu sous la couverture, il porte maintenant un haut de
+    pyjama ; la 1re prise est gardée hors dépôt, `m2-lebensende-2-prise1.png`) ;
   - 1A : le brassard du tensiomètre posé au niveau du coude, le résident assis au bord du lit ;
   - 2A cultures, photo 1 : l'infirmière porte une montre au poignet (elle vient de son portrait maître) ; le vernis
     de son pouce a été retiré par retouche ;
