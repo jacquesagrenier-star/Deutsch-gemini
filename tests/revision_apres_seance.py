@@ -141,6 +141,7 @@ def main():
     ap.add_argument("--captures")
     ap.add_argument("--chemins", help="seulement ces chemins, separes par des virgules (et pas le passage jour / nuit)")
     ap.add_argument("--langues", default="es,de")
+    ap.add_argument("--page", default="index.html", help="la page a ouvrir, pour comparer avec une ancienne (dans la racine)")
     a = ap.parse_args()
     seuls = [c for c in (a.chemins or "").split(",") if c]
 
@@ -168,7 +169,7 @@ def main():
         err = []
         page.on("pageerror", lambda e: err.append(str(e).split("\n")[0]))
         page.on("dialog", lambda d: d.dismiss())
-        page.goto("http://127.0.0.1:%d/index.html%s" % (a.port, "?apprendre=es" if appris == "es" else ""))
+        page.goto("http://127.0.0.1:%d/%s%s" % (a.port, a.page, "?apprendre=es" if appris == "es" else ""))
         page.wait_for_load_state("networkidle")
         page.evaluate(PREPARER)
         page.reload()
