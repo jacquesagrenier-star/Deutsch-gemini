@@ -1,0 +1,428 @@
+{
+ "_langue": "pt",
+ "_source": "pflege/sources/dialogues/d47-labor-anrufen.json",
+ "cles": {
+  "titre": {
+   "fr": "Appeler le laboratoire",
+   "de": "Im Labor nachfragen",
+   "pt": "Ligar para o laboratório"
+  },
+  "intro": {
+   "fr": "Mercredi 11 novembre, neuf heures et demie. À 7 heures, on a fait une prise de sang à {brandt}, après sa nuit difficile : numération et CRP. {sommer} attend les résultats, mais ils ne sont pas encore dans l'ordinateur. {brandt} est parti au scanner. Tu joues {elif} : appelle le laboratoire, présente-toi, dis de quel patient il s'agit et ce que tu cherches, puis relis ce qu'on te répond.",
+   "pt": "Quarta-feira, 11 de novembro, nove e meia. Às 7 horas, foi feita uma coleta de sangue do {brandt}, depois da noite difícil dele: hemograma e PCR. A {sommer} está esperando os resultados, mas eles ainda não estão no computador. O {brandt} foi para a tomografia. Você faz o papel de {elif}: ligue para o laboratório, apresente-se, diga de que paciente se trata e o que você está procurando, e depois repita o que lhe responderem."
+  },
+  "but": {
+   "fr": "Appeler un autre service : se présenter avec son nom et son service ; identifier le patient par son nom et sa date de naissance ; demander poliment avec une question indirecte (« Können Sie mir sagen, ob … ») ; comprendre un délai et le relire avant de raccrocher.",
+   "pt": "Ligar para outro setor: apresentar-se com o nome e o setor; identificar o paciente pelo nome e pela data de nascimento; perguntar com educação, com uma pergunta indireta (“Können Sie mir sagen, ob …”); entender um prazo e repeti-lo antes de desligar."
+  },
+  "relire_notes": {
+   "fr": "Prise de sang du mercredi 11 à 7 h (numération et CRP) après la nuit du dialogue 7 (fièvre 38,4 °C, essoufflement), scanner vers 9 h (dialogue 15) ; délai plausible d'une numération et d'une CRP au laboratoire central (échantillon arrivé à 7 h 50, résultat vers 10 h) ; identification du patient au téléphone par le nom et la date de naissance (né le 03.05.1944, comme dans e01) ; le laboratoire téléphone lui-même les valeurs critiques (comme au dialogue 19).",
+   "pt": "Coleta de sangue da quarta-feira, 11, às 7 h (hemograma e PCR) depois da noite do diálogo 7 (febre de 38,4 °C, falta de ar), tomografia por volta das 9 h (diálogo 15); prazo plausível de um hemograma e de uma PCR no laboratório central (amostra recebida às 7h50, resultado por volta das 10 h); identificação do paciente ao telefone pelo nome e pela data de nascimento (nascido em 03.05.1944, como em e01); o próprio laboratório comunica por telefone os valores críticos (como no diálogo 19)."
+  },
+  "redemittel.0": {
+   "fr": "Ici {elif}, du {station}, j'appelle au sujet d'une prise de sang.",
+   "de": "Hier ist {elif} von der {station}, ich rufe wegen einer Blutprobe an.",
+   "pt": "Aqui é {elif}, da {station}, estou ligando por causa de uma amostra de sangue."
+  },
+  "redemittel.1": {
+   "fr": "C'est pour {brandt}, né le 3 mai 1944.",
+   "de": "Es geht um {brandt:akk}, geboren am 3. Mai 1944.",
+   "pt": "É sobre o {brandt}, nascido em 3 de maio de 1944."
+  },
+  "redemittel.2": {
+   "fr": "Pouvez-vous me dire si l'échantillon est arrivé chez vous ?",
+   "de": "Können Sie mir sagen, ob die Probe bei Ihnen angekommen ist?",
+   "pt": "A senhora pode me dizer se a amostra chegou aí?"
+  },
+  "redemittel.3": {
+   "fr": "Dans le système, je ne vois pas encore de résultat.",
+   "de": "Im System sehe ich noch kein Ergebnis.",
+   "pt": "No sistema, ainda não vejo nenhum resultado."
+  },
+  "redemittel.4": {
+   "fr": "Savez-vous à peu près quand le résultat sera prêt ?",
+   "de": "Wissen Sie, wann das Ergebnis ungefähr fertig ist?",
+   "pt": "A senhora sabe mais ou menos quando o resultado fica pronto?"
+  },
+  "redemittel.5": {
+   "fr": "Je répète : le résultat sera dans le système vers dix heures.",
+   "de": "Ich wiederhole: Das Ergebnis steht gegen zehn Uhr im System.",
+   "pt": "Vou repetir: o resultado vai estar no sistema por volta das dez horas."
+  },
+  "redemittel.6": {
+   "fr": "Merci d'avoir regardé, vous m'avez beaucoup aidée.",
+   "de": "Danke fürs Nachschauen, Sie haben mir sehr geholfen.",
+   "pt": "Obrigada por verificar, a senhora me ajudou muito."
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Neuf heures et demie, au poste de soins. {elif} regarde encore une fois l'écran : pas de résultat pour {brandt}. Elle prend le téléphone et compose le numéro du laboratoire central.",
+   "pt": "Nove e meia, no posto de enfermagem. {elif} olha mais uma vez para a tela: nenhum resultado do {brandt}. Ela pega o telefone e disca o número do laboratório central."
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Laboratoire central, {aksoy:famille}, bonjour.",
+   "de": "Zentrallabor, {aksoy:famille}, guten Morgen.",
+   "pt": "Laboratório central, {aksoy:famille}, bom dia."
+  },
+  "noeuds.start.choix.0": {
+   "fr": "Bonjour, ici {elif}, du {station}. J'appelle au sujet d'une prise de sang de ce matin.",
+   "de": "Guten Morgen, hier ist {elif} von der {station}. Ich rufe wegen einer Blutprobe von heute Morgen an.",
+   "pt": "Bom dia, aqui é {elif}, da {station}. Estou ligando por causa de uma amostra de sangue de hoje de manhã."
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "Bonjour. C'est pour quel patient ?",
+   "de": "Guten Morgen. Um welchen Patienten geht es denn?",
+   "pt": "Bom dia. De que paciente se trata?"
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Bonjour, {elif}, {station}. J'aurais une question sur une prise de sang de ce matin.",
+   "de": "Guten Morgen, {elif}, {station}. Ich hätte eine Frage zu einer Blutabnahme von heute früh.",
+   "pt": "Bom dia, {elif}, {station}. Eu teria uma pergunta sobre uma coleta de sangue de hoje cedo."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "Bonjour. C'est pour quel patient ?",
+   "de": "Guten Morgen. Um welchen Patienten geht es denn?",
+   "pt": "Bom dia. De que paciente se trata?"
+  },
+  "noeuds.start.choix.2": {
+   "fr": "Allô, où est la CRP de la chambre 12 ?",
+   "de": "Hallo, wo ist das CRP von Zimmer zwölf?",
+   "pt": "Alô, cadê a PCR do quarto 12?"
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "Euh, bonjour… À qui est-ce que je parle, et de quel service ?",
+   "de": "Äh, guten Morgen … Mit wem spreche ich denn, und von welcher Station?",
+   "pt": "Hã, bom dia… Com quem eu estou falando, e de que setor?"
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>Quand tu appelles un autre service, tu te présentes d'abord : ton nom et ton service.</b> « Guten Morgen, hier ist … von der Station … » Ensuite seulement, tu dis pourquoi tu appelles.",
+   "pt": "<b>Quando você liga para outro setor, primeiro se apresenta: o seu nome e o seu setor.</b> “Guten Morgen, hier ist … von der Station …” Só depois você diz por que está ligando."
+  },
+  "noeuds.patient.choix.0": {
+   "fr": "Pour {brandt}, né le 3 mai 1944.",
+   "de": "Um {brandt:akk}, geboren am 3. Mai 1944.",
+   "pt": "Do {brandt}, nascido em 3 de maio de 1944."
+  },
+  "noeuds.patient.choix.0.puis.0": {
+   "fr": "Un instant… {brandt}, 3 mai 44. Oui, je l'ai. De quoi avez-vous besoin ?",
+   "de": "Moment … {brandt}, dritter Mai vierundvierzig. Ja, ich hab ihn. Was brauchen Sie?",
+   "pt": "Um momento… {brandt}, 3 de maio de 44. Sim, achei. Do que a senhora precisa?"
+  },
+  "noeuds.patient.choix.1": {
+   "fr": "Il s'agit de {brandt}. Sa date de naissance est le 3 mai 1944.",
+   "de": "Es geht um {brandt:akk}. Sein Geburtsdatum ist der 3. Mai 1944.",
+   "pt": "Trata-se do {brandt}. A data de nascimento dele é 3 de maio de 1944."
+  },
+  "noeuds.patient.choix.1.puis.0": {
+   "fr": "Un instant… {brandt}, 3 mai 44. Oui, je l'ai. De quoi avez-vous besoin ?",
+   "de": "Moment … {brandt}, dritter Mai vierundvierzig. Ja, ich hab ihn. Was brauchen Sie?",
+   "pt": "Um momento… {brandt}, 3 de maio de 44. Sim, achei. Do que a senhora precisa?"
+  },
+  "noeuds.patient.choix.2": {
+   "fr": "Pour le patient de la chambre 12, celui avec la nouvelle hanche.",
+   "de": "Um den Patient in Zimmer zwölf, mit der neuen Hüfte.",
+   "pt": "Do paciente do quarto 12, o da prótese nova de quadril."
+  },
+  "noeuds.patient.choix.2.puis.0": {
+   "fr": "Vos chambres, je ne les vois pas ici, seulement des noms. Comment s'appelle le patient, et quelle est sa date de naissance ?",
+   "de": "Ihre Zimmer sehe ich hier leider nicht, nur Namen. Wie heißt der Patient, und wann ist er geboren?",
+   "pt": "Os quartos de vocês eu infelizmente não vejo aqui, só os nomes. Como se chama o paciente, e quando ele nasceu?"
+  },
+  "noeuds.patient.choix.2.aide": {
+   "fr": "<b>Le laboratoire ne connaît pas tes chambres : il cherche par le nom et la date de naissance.</b> « Um Herrn …, geboren am … » Et attention : « den Patienten », avec -en, comme « den Kollegen ».",
+   "pt": "<b>O laboratório não conhece os seus quartos: ele procura pelo nome e pela data de nascimento.</b> “Um Herrn …, geboren am …” E atenção: “den Patienten”, com -en, como “den Kollegen”."
+  },
+  "noeuds.frage.choix.0": {
+   "fr": "Ce matin à 7 heures, on lui a fait une prise de sang, numération et CRP. Pouvez-vous me dire si l'échantillon est arrivé chez vous ? Dans le système, je ne vois encore rien.",
+   "de": "Heute um sieben Uhr wurde ihm Blut abgenommen, kleines Blutbild und CRP. Können Sie mir sagen, ob die Probe bei Ihnen angekommen ist? Im System sehe ich noch nichts.",
+   "pt": "Hoje às 7 horas foi colhido sangue dele, hemograma e PCR. A senhora pode me dizer se a amostra chegou aí? No sistema, ainda não vejo nada."
+  },
+  "noeuds.frage.choix.0.puis.0": {
+   "fr": "Je regarde. Un instant, s'il vous plaît.",
+   "de": "Ich schaue mal nach. Einen Augenblick, bitte.",
+   "pt": "Vou verificar. Um instante, por favor."
+  },
+  "noeuds.frage.choix.1": {
+   "fr": "On a prélevé à 7 heures une numération et une CRP. J'aimerais savoir si l'échantillon est déjà chez vous, car le résultat n'est pas encore dans l'ordinateur.",
+   "de": "Wir haben um sieben ein kleines Blutbild und ein CRP abgenommen. Ich wüsste gern, ob die Probe schon bei Ihnen ist, denn das Ergebnis steht noch nicht im Computer.",
+   "pt": "Nós colhemos às 7 horas um hemograma e uma PCR. Eu gostaria de saber se a amostra já está aí, porque o resultado ainda não está no computador."
+  },
+  "noeuds.frage.choix.1.puis.0": {
+   "fr": "Je regarde. Un instant, s'il vous plaît.",
+   "de": "Ich schaue mal nach. Einen Augenblick, bitte.",
+   "pt": "Vou verificar. Um instante, por favor."
+  },
+  "noeuds.frage.choix.2": {
+   "fr": "Pouvez-vous me dire si « est » le résultat déjà prêt ? (mal dit)",
+   "de": "Können Sie mir sagen, ob ist das Ergebnis schon fertig?",
+   "pt": "A senhora pode me dizer se “está” o resultado já pronto? (dito errado)"
+  },
+  "noeuds.frage.choix.2.puis.0": {
+   "fr": "Quel résultat voulez-vous dire ? Qu'est-ce qui a été prélevé, et quand ?",
+   "de": "Welches Ergebnis meinen Sie? Was wurde denn abgenommen, und wann?",
+   "pt": "De que resultado a senhora está falando? O que foi colhido, e quando?"
+  },
+  "noeuds.frage.choix.2.aide": {
+   "fr": "<b>Après « ob », le verbe va à la fin : « … ob die Probe angekommen ist ».</b> Et dis précisément ce que tu cherches : ce qui a été prélevé (kleines Blutbild, CRP) et à quelle heure.",
+   "pt": "<b>Depois de “ob”, o verbo vai para o final: “… ob die Probe angekommen ist”.</b> E diga com precisão o que você está procurando: o que foi colhido (kleines Blutbild, CRP) e a que horas."
+  },
+  "noeuds.zeit.dit.0.recit": {
+   "fr": "On entend des touches de clavier. Puis {aksoy} revient au téléphone.",
+   "pt": "Ouvem-se teclas de computador. Depois a {aksoy} volta ao telefone."
+  },
+  "noeuds.zeit.dit.1": {
+   "fr": "Voilà, je l'ai. L'échantillon est arrivé chez nous à 8 heures moins dix. L'automate tourne en ce moment, le résultat arrive dans une demi-heure environ.",
+   "de": "So, da ist sie. Die Probe ist um zehn vor acht bei uns angekommen. Das Gerät läuft gerade, das Ergebnis kommt in etwa einer halben Stunde.",
+   "pt": "Pronto, achei. A amostra chegou aqui às dez para as 8. O aparelho está rodando agora, o resultado sai em mais ou menos meia hora."
+  },
+  "noeuds.zeit.choix.0": {
+   "fr": "Merci d'avoir regardé. Le résultat sera donc là vers dix heures, c'est bien ça ?",
+   "de": "Danke fürs Nachschauen. Dann ist das Ergebnis ungefähr um zehn Uhr da, richtig?",
+   "pt": "Obrigada por verificar. Então o resultado sai por volta das dez horas, certo?"
+  },
+  "noeuds.zeit.choix.0.puis.0": {
+   "fr": "Oui, vers dix heures. C'est urgent ?",
+   "de": "Ja, gegen zehn. Ist es dringend?",
+   "pt": "Sim, por volta das dez. É urgente?"
+  },
+  "noeuds.zeit.choix.1": {
+   "fr": "Bien, l'échantillon est arrivé. Savez-vous à peu près quand le résultat sera prêt ? Vers dix heures ?",
+   "de": "Gut, dass die Probe da ist. Wissen Sie, wann das Ergebnis ungefähr fertig ist? Gegen zehn?",
+   "pt": "Que bom que a amostra chegou. A senhora sabe mais ou menos quando o resultado fica pronto? Por volta das dez?"
+  },
+  "noeuds.zeit.choix.1.puis.0": {
+   "fr": "Oui, vers dix heures. C'est urgent ?",
+   "de": "Ja, gegen zehn. Ist es dringend?",
+   "pt": "Sim, por volta das dez. É urgente?"
+  },
+  "noeuds.zeit.choix.2": {
+   "fr": "Une demi-heure ? C'est trop long, la médecin veut les valeurs maintenant !",
+   "de": "Eine halbe Stunde? Das ist zu lang, die Ärztin will die Werte jetzt!",
+   "pt": "Meia hora? É tempo demais, a médica quer os valores agora!"
+  },
+  "noeuds.zeit.choix.2.puis.0": {
+   "fr": "Je comprends. Mais l'automate a besoin de son temps, ça ne peut malheureusement pas aller plus vite.",
+   "de": "Das verstehe ich. Aber das Gerät braucht seine Zeit, schneller geht es leider nicht.",
+   "pt": "Eu entendo. Mas o aparelho precisa do tempo dele, infelizmente não dá para ir mais rápido."
+  },
+  "noeuds.zeit.choix.2.aide": {
+   "fr": "<b>Le laboratoire ne peut pas accélérer une analyse : on remercie, et on s'organise.</b> Une question polie suffit : « Wissen Sie, wann das Ergebnis ungefähr fertig ist? »",
+   "pt": "<b>O laboratório não pode acelerar um exame: a gente agradece e se organiza.</b> Uma pergunta educada basta: “Wissen Sie, wann das Ergebnis ungefähr fertig ist?”"
+  },
+  "noeuds.dringend.choix.0": {
+   "fr": "Assez, oui. Il a eu de la fièvre et du mal à respirer cette nuit, et la médecin voudrait savoir si les marqueurs de l'inflammation sont élevés.",
+   "de": "Ziemlich, ja. Er hatte heute Nacht Fieber und Atemnot, und die Ärztin möchte wissen, ob die Entzündungswerte erhöht sind.",
+   "pt": "Bastante, sim. Ele teve febre e falta de ar esta noite, e a médica quer saber se os marcadores de inflamação estão elevados."
+  },
+  "noeuds.dringend.choix.0.puis.0": {
+   "fr": "Je comprends. Si une valeur est critique, on vous appelle de toute façon tout de suite. Sinon, tout sera dans le système vers dix heures.",
+   "de": "Verstehe. Wenn ein Wert kritisch ist, rufen wir Sie sowieso sofort an. Sonst steht alles gegen zehn im System.",
+   "pt": "Entendo. Se algum valor for crítico, nós ligamos para vocês na hora, de qualquer jeito. Senão, tudo vai estar no sistema por volta das dez."
+  },
+  "noeuds.dringend.choix.1": {
+   "fr": "Un peu. Comme il a eu de la fièvre cette nuit, la médecin attend la CRP.",
+   "de": "Ein bisschen. Weil er heute Nacht Fieber hatte, wartet die Ärztin auf das CRP.",
+   "pt": "Um pouco. Como ele teve febre esta noite, a médica está esperando a PCR."
+  },
+  "noeuds.dringend.choix.1.puis.0": {
+   "fr": "Je comprends. Si une valeur est critique, on vous appelle de toute façon tout de suite. Sinon, tout sera dans le système vers dix heures.",
+   "de": "Verstehe. Wenn ein Wert kritisch ist, rufen wir Sie sowieso sofort an. Sonst steht alles gegen zehn im System.",
+   "pt": "Entendo. Se algum valor for crítico, nós ligamos para vocês na hora, de qualquer jeito. Senão, tudo vai estar no sistema por volta das dez."
+  },
+  "noeuds.dringend.choix.2": {
+   "fr": "Oui, il a sûrement une pneumonie.",
+   "de": "Ja, er hat bestimmt eine Lungenentzündung.",
+   "pt": "Sim, ele com certeza está com pneumonia."
+  },
+  "noeuds.dringend.choix.2.puis.0": {
+   "fr": "Ça, je ne peux pas en juger, je ne vois que les valeurs. C'est la médecin qui l'a dit ?",
+   "de": "Das kann ich nicht beurteilen, ich sehe nur die Werte. Hat die Ärztin das gesagt?",
+   "pt": "Isso eu não posso avaliar, só vejo os valores. Foi a médica que disse isso?"
+  },
+  "noeuds.dringend.choix.2.aide": {
+   "fr": "<b>Dis ce que tu as observé, pas un diagnostic que tu supposes.</b> « Er hatte heute Nacht Fieber und Atemnot. » Le diagnostic, c'est la médecin qui le pose.",
+   "pt": "<b>Diga o que você observou, não um diagnóstico que você supõe.</b> “Er hatte heute Nacht Fieber und Atemnot.” O diagnóstico, quem dá é a médica."
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Je répète : l'échantillon est arrivé, le résultat sera dans le système vers dix heures, et une valeur critique, vous la signalez tout de suite par téléphone.",
+   "de": "Ich wiederhole: Die Probe ist angekommen, das Ergebnis steht gegen zehn Uhr im System, und einen kritischen Wert melden Sie sofort telefonisch.",
+   "pt": "Vou repetir: a amostra chegou, o resultado vai estar no sistema por volta das dez horas, e um valor crítico vocês comunicam na hora por telefone."
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "Exactement. Autre chose ?",
+   "de": "Genau so. Sonst noch etwas?",
+   "pt": "Exatamente. Mais alguma coisa?"
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Alors je résume : l'échantillon est là, le résultat arrive dans une demi-heure environ, et s'il y a une valeur critique, vous appelez.",
+   "de": "Dann fasse ich kurz zusammen: Die Probe ist da, in etwa einer halben Stunde kommt das Ergebnis, und bei einem kritischen Wert rufen Sie an.",
+   "pt": "Então vou resumir rapidinho: a amostra está aí, o resultado sai em mais ou menos meia hora e, se houver um valor crítico, vocês ligam."
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Exactement. Autre chose ?",
+   "de": "Genau so. Sonst noch etwas?",
+   "pt": "Exatamente. Mais alguma coisa?"
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "Donc le résultat arrive à neuf heures et demie.",
+   "de": "Also kommt das Ergebnis um halb zehn.",
+   "pt": "Então o resultado sai às nove e meia."
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Non, pas à neuf heures et demie : dans une demi-heure, donc vers dix heures.",
+   "de": "Nein, nicht um halb zehn: in einer halben Stunde, also gegen zehn.",
+   "pt": "Não, não às nove e meia: em meia hora, ou seja, por volta das dez."
+  },
+  "noeuds.wiederholen.choix.2.aide": {
+   "fr": "<b>« in einer halben Stunde » = dans une demi-heure ; « um halb zehn » = à 9 h 30.</b> « halb zehn » se compte vers l'heure qui vient : la moitié du chemin vers dix heures. Il est déjà 9 h 30 : le résultat vient vers dix heures.",
+   "pt": "<b>“in einer halben Stunde” = em meia hora; “um halb zehn” = às 9h30.</b> “halb zehn” se conta em direção à hora que vem: a metade do caminho até as dez. Já são 9h30: o resultado sai por volta das dez."
+  },
+  "noeuds.notiz.choix.0": {
+   "fr": "Non, merci. Je note seulement avec qui j'ai parlé : {aksoy}, laboratoire central, c'est bien ça ?",
+   "de": "Nein, danke. Ich notiere mir nur noch, mit wem ich gesprochen habe: {aksoy}, Zentrallabor, richtig?",
+   "pt": "Não, obrigada. Só vou anotar com quem eu falei: {aksoy}, laboratório central, certo?"
+  },
+  "noeuds.notiz.choix.0.puis.0": {
+   "fr": "C'est ça. Vous êtes nouvelle au 4B, non ? Je ne connais pas encore votre voix.",
+   "de": "Richtig. Sie sind neu auf der Vier B, oder? Ich kenne Ihre Stimme noch nicht.",
+   "pt": "Certo. A senhora é nova na 4B, não é? Ainda não conheço a sua voz."
+  },
+  "noeuds.notiz.choix.1": {
+   "fr": "Non, c'est tout. Pour ma note : j'ai parlé avec {aksoy}, du laboratoire central.",
+   "de": "Nein, das war alles. Für meine Notiz: Ich habe mit {aksoy} aus dem Zentrallabor gesprochen.",
+   "pt": "Não, era só isso. Para a minha anotação: falei com a {aksoy}, do laboratório central."
+  },
+  "noeuds.notiz.choix.1.puis.0": {
+   "fr": "C'est ça. Vous êtes nouvelle au 4B, non ? Je ne connais pas encore votre voix.",
+   "de": "Richtig. Sie sind neu auf der Vier B, oder? Ich kenne Ihre Stimme noch nicht.",
+   "pt": "Certo. A senhora é nova na 4B, não é? Ainda não conheço a sua voz."
+  },
+  "noeuds.notiz.choix.2": {
+   "fr": "Non. Et toi, tu t'appelles comment ?",
+   "de": "Nein. Und wie heißt du?",
+   "pt": "Não. E você, como se chama?"
+  },
+  "noeuds.notiz.choix.2.puis.0": {
+   "fr": "On ne se connaît pas encore… {aksoy:famille}, je l'ai dit au début.",
+   "de": "Wir kennen uns ja noch gar nicht … {aksoy:famille}, hatte ich am Anfang gesagt.",
+   "pt": "Nós ainda nem nos conhecemos… {aksoy:famille}, eu disse no começo."
+  },
+  "noeuds.notiz.choix.2.aide": {
+   "fr": "<b>Au téléphone avec un autre service, on reste au « Sie » tant qu'on ne se connaît pas.</b> Et le nom a été dit au début : on le relit pour sa note. « Ich notiere mir: Frau …, Zentrallabor, richtig? »",
+   "pt": "<b>Ao telefone com outro setor, mantém-se o “Sie” enquanto as pessoas não se conhecem.</b> E o nome foi dito no começo: a gente o repete para a anotação. “Ich notiere mir: Frau …, Zentrallabor, richtig?”"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Oui, depuis lundi. Merci beaucoup, vous m'avez beaucoup aidée. Au revoir !",
+   "de": "Ja, seit Montag. Vielen Dank, Sie haben mir sehr geholfen. Auf Wiederhören!",
+   "pt": "Sim, desde segunda-feira. Muito obrigada, a senhora me ajudou muito. Até logo!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Avec plaisir, et bienvenue ! Au revoir.",
+   "de": "Gern geschehen, und herzlich willkommen! Auf Wiederhören.",
+   "pt": "Por nada, e seja bem-vinda! Até logo."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "C'est ça, je suis là depuis lundi. Merci pour votre aide et bonne journée. Au revoir !",
+   "de": "Genau, ich bin seit Montag da. Danke für Ihre Hilfe und einen schönen Tag noch. Auf Wiederhören!",
+   "pt": "Isso mesmo, estou aqui desde segunda-feira. Obrigada pela ajuda e tenha um bom dia. Até logo!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Avec plaisir, et bienvenue ! Au revoir.",
+   "de": "Gern geschehen, und herzlich willkommen! Auf Wiederhören.",
+   "pt": "Por nada, e seja bem-vinda! Até logo."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Oui. Merci, au revoir ! (formule du face-à-face)",
+   "de": "Ja. Danke, auf Wiedersehen!",
+   "pt": "Sim. Obrigada, até a vista! (fórmula de quem se vê pessoalmente)"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Au téléphone, on ne va sans doute pas se voir, mais avec plaisir !",
+   "de": "Sehen werden wir uns am Telefon wohl nicht, aber gern!",
+   "pt": "Ver, a gente não deve se ver pelo telefone, mas tudo bem!"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Au téléphone, on dit « Auf Wiederhören » : on s'entend, on ne se voit pas.</b> « Auf Wiedersehen » n'est pas grave, mais « Auf Wiederhören » est la formule du téléphone.",
+   "pt": "<b>Ao telefone, diz-se “Auf Wiederhören”: as pessoas se ouvem, não se veem.</b> “Auf Wiedersehen” não é grave, mas “Auf Wiederhören” é a fórmula do telefone."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {elif} appelle-t-elle le laboratoire ?",
+   "de": "Warum ruft {elif} im Labor an?",
+   "pt": "Por que {elif} liga para o laboratório?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Le résultat de {brandt} n'est pas encore dans l'ordinateur.",
+   "de": "Das Ergebnis von {brandt:dat} steht noch nicht im Computer.",
+   "pt": "O resultado do {brandt} ainda não está no computador."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Elle veut commander une nouvelle prise de sang.",
+   "de": "Sie möchte eine neue Blutabnahme bestellen.",
+   "pt": "Ela quer pedir uma nova coleta de sangue."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Le laboratoire a signalé une valeur critique.",
+   "de": "Das Labor hat einen kritischen Wert gemeldet.",
+   "pt": "O laboratório comunicou um valor crítico."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand l'échantillon est-il arrivé au laboratoire ?",
+   "de": "Wann ist die Probe im Labor angekommen?",
+   "pt": "Quando a amostra chegou ao laboratório?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "À 7 heures.",
+   "de": "Um sieben Uhr.",
+   "pt": "Às 7 horas."
+  },
+  "ecouter.1.options.1": {
+   "fr": "À 8 heures moins dix.",
+   "de": "Um zehn vor acht.",
+   "pt": "Às dez para as 8."
+  },
+  "ecouter.1.options.2": {
+   "fr": "À 9 h 30.",
+   "de": "Um halb zehn.",
+   "pt": "Às 9h30."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand le résultat sera-t-il à peu près dans le système ?",
+   "de": "Wann steht das Ergebnis ungefähr im System?",
+   "pt": "Quando, mais ou menos, o resultado vai estar no sistema?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Demain matin.",
+   "de": "Morgen früh.",
+   "pt": "Amanhã cedo."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Tout de suite.",
+   "de": "Sofort.",
+   "pt": "Imediatamente."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Vers dix heures.",
+   "de": "Gegen zehn Uhr.",
+   "pt": "Por volta das dez horas."
+  },
+  "ecouter.3.q": {
+   "fr": "Que fait le laboratoire en cas de valeur critique ?",
+   "de": "Was macht das Labor bei einem kritischen Wert?",
+   "pt": "O que o laboratório faz quando há um valor crítico?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Il envoie un courriel à la médecin.",
+   "de": "Es schickt eine E-Mail an die Ärztin.",
+   "pt": "Manda um e-mail para a médica."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Il appelle tout de suite le service.",
+   "de": "Es ruft sofort auf der Station an.",
+   "pt": "Liga imediatamente para o setor."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Il attend la visite.",
+   "de": "Es wartet auf die Visite.",
+   "pt": "Espera a visita médica."
+  }
+ }
+}

@@ -1,0 +1,503 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d43-biografiegespraech.json",
+ "cles": {
+  "titre": {
+   "fr": "L'entretien biographique avec la famille",
+   "de": "Das Biografiegespräch",
+   "es": "La conversación biográfica con la familia"
+  },
+  "intro": {
+   "fr": "Samedi 14 novembre, quinze heures, au {heim}. {schulze_tochter} vient pour l'entretien biographique de son père, {schulze}. Sa fiche biographique est restée presque vide, et depuis ses nuits agitées, l'équipe veut mieux le connaître. Tu joues {arun} : explique à quoi sert l'entretien, demande la permission de noter, pose des questions ouvertes sur sa vie, son métier, ses habitudes et ce qui le calme, reformule sans juger, puis dis ce que l'équipe en fera.",
+   "es": "Sábado 14 de noviembre, las tres de la tarde, en {heim}. {schulze_tochter} viene para la conversación biográfica sobre su padre, {schulze}. Su ficha biográfica quedó casi vacía, y desde sus noches inquietas, el equipo quiere conocerlo mejor. Juegas el papel de {arun}: explica para qué sirve la conversación, pide permiso para tomar notas, haz preguntas abiertas sobre su vida, su profesión, sus costumbres y lo que lo tranquiliza, resume sin juzgar, y luego di qué va a hacer el equipo con eso."
+  },
+  "but": {
+   "fr": "Mener un entretien biographique avec une proche : expliquer le but (pour les soins, pas pour l'administration) ; demander la permission de noter et dire où vont les notes ; poser des questions ouvertes et indirectes (Wissen Sie, was er gelernt hat?) ; reformuler sans juger ; parler du passé au bon temps (Perfekt à l'oral, Präteritum dans la note) ; utiliser des relatives (Gibt es Dinge, die ihm Angst machen?) ; dire ce qui change dans les soins.",
+   "es": "Llevar una conversación biográfica con una familiar: explicar el objetivo (para los cuidados, no para la administración); pedir permiso para tomar notas y decir adónde van las notas; hacer preguntas abiertas e indirectas (Wissen Sie, was er gelernt hat?); resumir sin juzgar; hablar del pasado en el tiempo correcto (Perfekt al hablar, Präteritum en la nota); usar oraciones de relativo (Gibt es Dinge, die ihm Angst machen?); decir qué cambia en los cuidados."
+  },
+  "relire_notes": {
+   "fr": "Entretien biographique et démence : but (soins centrés sur la personne, repères, prévenir l'agitation) ; consentement et confidentialité des notes (dossier de soins, équipe qui s'occupe de lui ; pas d'enregistrement sur un téléphone privé) ; ce qu'on tire de la biographie pour les soins (lever tôt respecté, le tram comme sujet qui apaise, petite lumière la nuit, camomille le soir, calme plutôt qu'agitation, la casquette de service) ; le deuil de l'épouse ; la religion abordée avec tact. Tout doit concorder avec la fiche biographique (écrit e05).",
+   "es": "Conversación biográfica y demencia: objetivo (cuidados centrados en la persona, puntos de referencia, prevenir la inquietud); consentimiento y confidencialidad de las notas (expediente de enfermería, equipo que lo atiende; nada de grabaciones en un teléfono personal); lo que se deduce de la biografía para los cuidados (se respeta que se levante temprano, el tranvía como tema que lo tranquiliza, lucecita en la noche, té de manzanilla por la noche, calma en lugar de prisa, la gorra de servicio); el duelo por la esposa; la religión tratada con tacto. Todo debe coincidir con la ficha biográfica (escrito e05)."
+  },
+  "redemittel.0": {
+   "fr": "Nous voudrions mieux connaître votre père, pour pouvoir bien l'accompagner.",
+   "de": "Wir möchten Ihren Vater besser kennenlernen, damit wir ihn gut begleiten können.",
+   "es": "Queremos conocer mejor a su padre, para poder acompañarlo bien."
+  },
+  "redemittel.1": {
+   "fr": "Êtes-vous d'accord pour que je prenne des notes pendant l'entretien ?",
+   "de": "Ist es Ihnen recht, wenn ich mir dabei Notizen mache?",
+   "es": "¿Le parece bien si tomo notas mientras hablamos?"
+  },
+  "redemittel.2": {
+   "fr": "Les notes vont dans son dossier de soins.",
+   "de": "Die Notizen kommen in seine Pflegedokumentation.",
+   "es": "Las notas van a su expediente de enfermería."
+  },
+  "redemittel.3": {
+   "fr": "Racontez-moi, tout simplement : où votre père a-t-il grandi ?",
+   "de": "Erzählen Sie doch einfach mal: Wo ist Ihr Vater aufgewachsen?",
+   "es": "Cuénteme, sin más: ¿dónde creció su padre?"
+  },
+  "redemittel.4": {
+   "fr": "Savez-vous quel métier il a appris après l'école ?",
+   "de": "Wissen Sie, was er nach der Schule gelernt hat?",
+   "es": "¿Sabe usted qué oficio aprendió después de la escuela?"
+  },
+  "redemittel.5": {
+   "fr": "Si je vous comprends bien, le tramway, c'était sa vie.",
+   "de": "Wenn ich Sie richtig verstehe, war die Straßenbahn sein Leben.",
+   "es": "Si le entiendo bien, el tranvía era su vida."
+  },
+  "redemittel.6": {
+   "fr": "Y a-t-il des choses qui lui font peur, ou qu'il n'aime pas du tout ?",
+   "de": "Gibt es Dinge, die ihm Angst machen oder die er gar nicht mag?",
+   "es": "¿Hay cosas que le den miedo o que no le gusten para nada?"
+  },
+  "redemittel.7": {
+   "fr": "D'après votre expérience, qu'est-ce qui l'apaise ?",
+   "de": "Was beruhigt ihn, Ihrer Erfahrung nach?",
+   "es": "Según su experiencia, ¿qué lo tranquiliza?"
+  },
+  "redemittel.8": {
+   "fr": "Je l'inscris aujourd'hui même dans son plan de soins.",
+   "de": "Das trage ich heute noch in seine Pflegeplanung ein.",
+   "es": "Esto lo anoto hoy mismo en su plan de cuidados."
+  },
+  "noeuds.empfang.dit.0.recit": {
+   "fr": "Samedi, quinze heures. {schulze_tochter} entre dans le petit bureau du service, un vieil album photo sous le bras. Sur la table : deux tasses de café et la fiche biographique de son père, presque vide.",
+   "es": "Sábado, las tres de la tarde. {schulze_tochter} entra a la pequeña oficina del área, con un viejo álbum de fotos bajo el brazo. Sobre la mesa: dos tazas de café y la ficha biográfica de su padre, casi vacía."
+  },
+  "noeuds.empfang.dit.1": {
+   "fr": "Bonjour, {arun}. D'habitude, je viens le dimanche, mais aujourd'hui ça m'arrangeait mieux. Au fait, à quoi ça vous sert, tout ça ?",
+   "de": "Guten Tag, {arun}. Normalerweise komme ich ja sonntags, aber heute hat es besser gepasst. Wofür brauchen Sie das alles eigentlich?",
+   "es": "Buenas tardes, {arun}. Normalmente vengo los domingos, pero hoy me quedaba mejor. A todo esto, ¿para qué necesitan todo eso?"
+  },
+  "noeuds.empfang.choix.0": {
+   "fr": "Merci d'être venue, {schulze_tochter:voc}. Nous voudrions mieux connaître votre père : ce qui comptait pour lui, ce qu'il aime et ce qui l'apaise. Justement parce qu'il est parfois agité la nuit, ça nous aide beaucoup.",
+   "de": "Danke, dass Sie gekommen sind, {schulze_tochter}. Wir möchten Ihren Vater besser kennenlernen: was ihm wichtig war, was er gern mag und was ihn beruhigt. Gerade weil er nachts manchmal unruhig ist, hilft uns das sehr.",
+   "es": "Gracias por venir, {schulze_tochter:voc}. Queremos conocer mejor a su padre: qué era importante para él, qué le gusta y qué lo tranquiliza. Justamente porque en las noches a veces está inquieto, eso nos ayuda mucho."
+  },
+  "noeuds.empfang.choix.0.puis.0": {
+   "fr": "Je comprends. Lui-même ne peut plus très bien le raconter.",
+   "de": "Das leuchtet mir ein. Er kann es ja selbst nicht mehr so gut erzählen.",
+   "es": "Tiene sentido. Él mismo ya no puede contarlo tan bien."
+  },
+  "noeuds.empfang.choix.1": {
+   "fr": "Je suis content que vous soyez là. Plus nous en savons sur la vie de votre père, mieux nous pouvons répondre à ses besoins, par exemple quand il s'agite.",
+   "de": "Schön, dass Sie da sind. Je mehr wir über das Leben Ihres Vaters wissen, desto besser können wir auf ihn eingehen, zum Beispiel, wenn er unruhig wird.",
+   "es": "Qué gusto que esté aquí. Cuanto más sepamos de la vida de su padre, mejor podemos responder a lo que necesita, por ejemplo cuando se pone inquieto."
+  },
+  "noeuds.empfang.choix.1.puis.0": {
+   "fr": "Je comprends. Lui-même ne peut plus très bien le raconter.",
+   "de": "Das leuchtet mir ein. Er kann es ja selbst nicht mehr so gut erzählen.",
+   "es": "Tiene sentido. Él mismo ya no puede contarlo tan bien."
+  },
+  "noeuds.empfang.choix.2": {
+   "fr": "C'est le règlement. Chaque résident doit avoir une fiche biographique.",
+   "de": "Das ist Vorschrift. Jeder Bewohner muss einen Biografiebogen haben.",
+   "es": "Es el reglamento. Cada residente tiene que tener una ficha biográfica."
+  },
+  "noeuds.empfang.choix.2.puis.0": {
+   "fr": "Ah bon. Juste pour le dossier, alors ? Dans ce cas, je vais faire court.",
+   "de": "Ach so. Nur für die Akte also? Dann halte ich mich kurz.",
+   "es": "Ah, ya. ¿O sea que solo es para el archivo? Entonces voy a ser breve."
+  },
+  "noeuds.empfang.choix.2.aide": {
+   "fr": "<b>Explique à quoi sert l'entretien pour son père, pas pour l'administration.</b> Une proche raconte volontiers quand elle sait que ça l'aidera : « Wir möchten Ihren Vater besser kennenlernen, damit wir ihn gut begleiten können. »",
+   "es": "<b>Explica para qué le sirve la conversación a su padre, no a la administración.</b> Una familiar cuenta con gusto cuando sabe que eso lo va a ayudar: «Wir möchten Ihren Vater besser kennenlernen, damit wir ihn gut begleiten können.»"
+  },
+  "noeuds.notizen.choix.0": {
+   "fr": "Êtes-vous d'accord pour que je prenne des notes ? Elles vont dans son dossier de soins, que seuls lisent les soignants qui s'occupent de lui.",
+   "de": "Ist es Ihnen recht, wenn ich mir dabei Notizen mache? Die Notizen kommen in seine Pflegedokumentation, und die lesen nur die Pflegekräfte, die ihn betreuen.",
+   "es": "¿Le parece bien si tomo notas mientras hablamos? Las notas van a su expediente de enfermería, y solo las lee el personal de enfermería que lo atiende."
+  },
+  "noeuds.notizen.choix.0.puis.0": {
+   "fr": "Bien sûr, notez donc. On commence par quoi ?",
+   "de": "Natürlich, schreiben Sie ruhig mit. Wo fangen wir an?",
+   "es": "Por supuesto, anote con confianza. ¿Por dónde empezamos?"
+  },
+  "noeuds.notizen.choix.1": {
+   "fr": "Je peux prendre des notes ? Je ne veux rien oublier, et comme ça mes collègues seront aussi au courant.",
+   "de": "Darf ich mitschreiben? Ich möchte nichts vergessen, und so wissen auch meine Kolleginnen und Kollegen Bescheid.",
+   "es": "¿Me permite ir anotando? No quiero olvidar nada, y así también se enteran mis colegas."
+  },
+  "noeuds.notizen.choix.1.puis.0": {
+   "fr": "Bien sûr, notez donc. On commence par quoi ?",
+   "de": "Natürlich, schreiben Sie ruhig mit. Wo fangen wir an?",
+   "es": "Por supuesto, anote con confianza. ¿Por dónde empezamos?"
+  },
+  "noeuds.notizen.choix.2": {
+   "fr": "J'enregistre la conversation avec mon portable, tout simplement, ça va plus vite.",
+   "de": "Ich nehme das Gespräch einfach mit meinem Handy auf, das geht schneller.",
+   "es": "Simplemente grabo la conversación con mi celular, así es más rápido."
+  },
+  "noeuds.notizen.choix.2.puis.0": {
+   "fr": "Avec votre portable ? Non, je ne veux pas.",
+   "de": "Mit Ihrem Handy? Nein, das möchte ich nicht.",
+   "es": "¿Con su celular? No, eso no lo quiero."
+  },
+  "noeuds.notizen.choix.2.aide": {
+   "fr": "<b>Demande la permission de noter, et dis où vont les notes.</b> Enregistrer une conversation sur un téléphone privé, c'est interdit : protection des données. « Ist es Ihnen recht, wenn ich mir Notizen mache? Die kommen in seine Pflegedokumentation. »",
+   "es": "<b>Pide permiso para tomar notas, y di adónde van.</b> Grabar una conversación en un teléfono personal está prohibido: protección de datos. «Ist es Ihnen recht, wenn ich mir Notizen mache? Die kommen in seine Pflegedokumentation.»"
+  },
+  "noeuds.kindheit.choix.0": {
+   "fr": "Racontez-moi, tout simplement, depuis le début : où votre père a-t-il grandi ?",
+   "de": "Erzählen Sie doch einfach mal von Anfang an: Wo ist Ihr Vater aufgewachsen?",
+   "es": "Cuénteme, sin más, desde el principio: ¿dónde creció su padre?"
+  },
+  "noeuds.kindheit.choix.0.puis.0": {
+   "fr": "À Leipzig, il y est né en 1939. C'était le plus jeune, avec deux sœurs aînées. Elles l'ont pas mal mené à la baguette, il le racontait toujours.",
+   "de": "In Leipzig, da ist er 1939 geboren. Er war der Jüngste, mit zwei älteren Schwestern. Die haben ihn ganz schön herumkommandiert, hat er immer erzählt.",
+   "es": "En Leipzig, ahí nació en 1939. Era el menor, con dos hermanas mayores. Ellas lo mandaban de un lado para otro, eso contaba siempre."
+  },
+  "noeuds.kindheit.choix.1": {
+   "fr": "Que savez-vous de son enfance ? Où et comment a-t-il grandi ?",
+   "de": "Was wissen Sie über seine Kindheit? Wo und wie ist er groß geworden?",
+   "es": "¿Qué sabe usted de su infancia? ¿Dónde y cómo creció?"
+  },
+  "noeuds.kindheit.choix.1.puis.0": {
+   "fr": "À Leipzig, il y est né en 1939. C'était le plus jeune, avec deux sœurs aînées. Elles l'ont pas mal mené à la baguette, il le racontait toujours.",
+   "de": "In Leipzig, da ist er 1939 geboren. Er war der Jüngste, mit zwei älteren Schwestern. Die haben ihn ganz schön herumkommandiert, hat er immer erzählt.",
+   "es": "En Leipzig, ahí nació en 1939. Era el menor, con dos hermanas mayores. Ellas lo mandaban de un lado para otro, eso contaba siempre."
+  },
+  "noeuds.kindheit.choix.2": {
+   "fr": "Lieu de naissance ? Frères et sœurs ? École ?",
+   "de": "Geburtsort? Geschwister? Schule?",
+   "es": "¿Lugar de nacimiento? ¿Hermanos? ¿Escuela?"
+  },
+  "noeuds.kindheit.choix.2.puis.0": {
+   "fr": "Euh… Leipzig. Deux sœurs. L'école élémentaire. C'est un interrogatoire, ici ?",
+   "de": "Äh … Leipzig. Zwei Schwestern. Volksschule. Ist das hier ein Verhör?",
+   "es": "Eh… Leipzig. Dos hermanas. Escuela primaria. ¿Esto es un interrogatorio?"
+  },
+  "noeuds.kindheit.choix.2.aide": {
+   "fr": "<b>Un entretien biographique n'est pas un interrogatoire : pose des questions ouvertes.</b> « Erzählen Sie doch einfach mal: Wo ist Ihr Vater aufgewachsen? » La proche raconte, et tu y trouves bien plus que les cases de la fiche.",
+   "es": "<b>Una conversación biográfica no es un interrogatorio: haz preguntas abiertas.</b> «Erzählen Sie doch einfach mal: Wo ist Ihr Vater aufgewachsen?» La familiar cuenta, y ahí encuentras mucho más que las casillas de la ficha."
+  },
+  "noeuds.beruf.choix.0": {
+   "fr": "Et après l'école : savez-vous quel métier il a appris ?",
+   "de": "Und nach der Schule: Wissen Sie, was er gelernt hat?",
+   "es": "Y después de la escuela: ¿sabe usted qué oficio aprendió?"
+  },
+  "noeuds.beruf.choix.0.puis.0": {
+   "fr": "Après l'école élémentaire, il a fait un apprentissage d'électricien. Mais en 1959, il est entré au tramway, et il y est resté, quarante ans, jusqu'en 1999. Le plus souvent, il conduisait la ligne 4.",
+   "de": "Nach der Volksschule hat er eine Lehre als Elektriker gemacht. Aber 1959 ist er zur Straßenbahn gegangen, und da ist er geblieben, vierzig Jahre lang, bis 1999. Meistens ist er die Linie 4 gefahren.",
+   "es": "Después de la escuela primaria hizo una formación de electricista. Pero en 1959 entró a trabajar en el tranvía, y ahí se quedó, cuarenta años, hasta 1999. Casi siempre manejaba la línea 4."
+  },
+  "noeuds.beruf.choix.1": {
+   "fr": "Et après l'école, comment ça s'est passé, côté métier ?",
+   "de": "Wie ging es nach der Schule weiter, beruflich?",
+   "es": "¿Y cómo siguió después de la escuela, en lo profesional?"
+  },
+  "noeuds.beruf.choix.1.puis.0": {
+   "fr": "Après l'école élémentaire, il a fait un apprentissage d'électricien. Mais en 1959, il est entré au tramway, et il y est resté, quarante ans, jusqu'en 1999. Le plus souvent, il conduisait la ligne 4.",
+   "de": "Nach der Volksschule hat er eine Lehre als Elektriker gemacht. Aber 1959 ist er zur Straßenbahn gegangen, und da ist er geblieben, vierzig Jahre lang, bis 1999. Meistens ist er die Linie 4 gefahren.",
+   "es": "Después de la escuela primaria hizo una formación de electricista. Pero en 1959 entró a trabajar en el tranvía, y ahí se quedó, cuarenta años, hasta 1999. Casi siempre manejaba la línea 4."
+  },
+  "noeuds.beruf.choix.2": {
+   "fr": "Savez-vous quel métier a-t-il appris après l'école ? (mal dit)",
+   "de": "Wissen Sie, was hat er nach der Schule gelernt?",
+   "es": "¿Sabe usted «¿qué aprendió él después de la escuela?»? (dicho incorrectamente)"
+  },
+  "noeuds.beruf.choix.2.puis.0": {
+   "fr": "Si je sais quel métier il a appris ? Oui, bien sûr que je le sais.",
+   "de": "Ob ich weiß, was er gelernt hat? Ja, natürlich weiß ich das.",
+   "es": "¿Que si sé qué oficio aprendió? Sí, claro que lo sé."
+  },
+  "noeuds.beruf.choix.2.aide": {
+   "fr": "<b>Après « Wissen Sie », le verbe conjugué va à la fin : « Wissen Sie, was er nach der Schule gelernt hat? »</b> Une question indirecte garde l'ordre d'une subordonnée : le mot interrogatif d'abord, le verbe conjugué en dernier.",
+   "es": "<b>Después de «Wissen Sie», el verbo conjugado va al final: «Wissen Sie, was er nach der Schule gelernt hat?»</b> Una pregunta indirecta conserva el orden de una subordinada: primero la palabra interrogativa, el verbo conjugado al último."
+  },
+  "noeuds.reformulieren.choix.0": {
+   "fr": "Si je vous comprends bien, le tramway, c'était sa vie : quarante ans, surtout sur la ligne quatre.",
+   "de": "Wenn ich Sie richtig verstehe, war die Straßenbahn sein Leben: vierzig Jahre, meistens die Linie vier.",
+   "es": "Si le entiendo bien, el tranvía era su vida: cuarenta años, casi siempre en la línea 4."
+  },
+  "noeuds.reformulieren.choix.0.puis.0": {
+   "fr": "Oui, exactement. Et toujours en horaires postés. C'est pour ça qu'aujourd'hui encore, il se lève à cinq heures. Et sa vieille casquette de service, il ne s'en sépare pas, il la porte tous les jours.",
+   "de": "Ja, genau. Und immer Schichtdienst. Deshalb steht er bis heute um fünf auf. Und seine alte Dienstmütze gibt er nicht her, die trägt er jeden Tag.",
+   "es": "Sí, exacto. Y siempre trabajo por turnos. Por eso hasta la fecha se levanta a las cinco. Y su vieja gorra de servicio no la suelta: la usa todos los días."
+  },
+  "noeuds.reformulieren.choix.1": {
+   "fr": "Quarante ans sur la ligne quatre, ça marque une personne. Je note : de 1959 à 1999, il a travaillé comme conducteur de tramway, surtout sur la ligne 4. C'est bien ça ?",
+   "de": "Vierzig Jahre auf der Linie vier, das prägt einen Menschen. Ich notiere: Von 1959 bis 1999 arbeitete er als Straßenbahnfahrer, meist auf der Linie 4. Stimmt das so?",
+   "es": "Cuarenta años en la línea 4, eso marca a una persona. Anoto: de 1959 a 1999 trabajó como conductor de tranvía, casi siempre en la línea 4. ¿Está bien así?"
+  },
+  "noeuds.reformulieren.choix.1.puis.0": {
+   "fr": "Oui, exactement. Et toujours en horaires postés. C'est pour ça qu'aujourd'hui encore, il se lève à cinq heures. Et sa vieille casquette de service, il ne s'en sépare pas, il la porte tous les jours.",
+   "de": "Ja, genau. Und immer Schichtdienst. Deshalb steht er bis heute um fünf auf. Und seine alte Dienstmütze gibt er nicht her, die trägt er jeden Tag.",
+   "es": "Sí, exacto. Y siempre trabajo por turnos. Por eso hasta la fecha se levanta a las cinco. Y su vieja gorra de servicio no la suelta: la usa todos los días."
+  },
+  "noeuds.reformulieren.choix.2": {
+   "fr": "Je note : il est conducteur de tramway, sur la ligne 4.",
+   "de": "Ich notiere: Er ist Straßenbahnfahrer, auf der Linie 4.",
+   "es": "Anoto: es conductor de tranvía, en la línea 4."
+  },
+  "noeuds.reformulieren.choix.2.puis.0": {
+   "fr": "Était. Il était conducteur de tramway. Il est à la retraite depuis 1999, même si la nuit, il l'oublie parfois.",
+   "de": "War. Er war Straßenbahnfahrer. Seit 1999 ist er in Rente, auch wenn er das nachts manchmal vergisst.",
+   "es": "Era. Él era conductor de tranvía. Está jubilado desde 1999, aunque en las noches a veces se le olvida."
+  },
+  "noeuds.reformulieren.choix.2.aide": {
+   "fr": "<b>Ce qui est fini se dit au passé : « Er war Straßenbahnfahrer. »</b> À l'oral, le Perfekt ou « war » ; dans la note, le Präteritum : « Von 1959 bis 1999 arbeitete er als Straßenbahnfahrer. » Le présent ferait croire qu'il travaille encore.",
+   "es": "<b>Lo que ya terminó se dice en pasado: «Er war Straßenbahnfahrer.»</b> Al hablar, el Perfekt o «war»; en la nota, el Präteritum: «Von 1959 bis 1999 arbeitete er als Straßenbahnfahrer.» El presente haría creer que todavía trabaja."
+  },
+  "noeuds.familie.choix.0": {
+   "fr": "Puis-je aussi vous poser une question sur votre mère ? Dans le dossier, il est écrit que votre père est veuf.",
+   "de": "Darf ich auch nach Ihrer Mutter fragen? In der Akte steht, dass Ihr Vater verwitwet ist.",
+   "es": "¿Me permite preguntarle también por su madre? En el expediente dice que su padre es viudo."
+  },
+  "noeuds.familie.choix.0.puis.0": {
+   "fr": "Ma mère s'appelait Erika. Ils se sont mariés en 1962. Elle est morte en 2020. Depuis, il n'est plus le même.",
+   "de": "Meine Mutter hieß Erika. Sie haben 1962 geheiratet. 2020 ist sie gestorben. Seitdem ist er nicht mehr derselbe.",
+   "es": "Mi madre se llamaba Erika. Se casaron en 1962. Ella murió en 2020. Desde entonces él ya no es el mismo."
+  },
+  "noeuds.familie.choix.1": {
+   "fr": "Et sa femme, votre mère : voulez-vous me parler un peu d'elle ?",
+   "de": "Und seine Frau, Ihre Mutter: Möchten Sie mir etwas über sie erzählen?",
+   "es": "Y su esposa, la madre de usted: ¿quisiera contarme algo de ella?"
+  },
+  "noeuds.familie.choix.1.puis.0": {
+   "fr": "Ma mère s'appelait Erika. Ils se sont mariés en 1962. Elle est morte en 2020. Depuis, il n'est plus le même.",
+   "de": "Meine Mutter hieß Erika. Sie haben 1962 geheiratet. 2020 ist sie gestorben. Seitdem ist er nicht mehr derselbe.",
+   "es": "Mi madre se llamaba Erika. Se casaron en 1962. Ella murió en 2020. Desde entonces él ya no es el mismo."
+  },
+  "noeuds.trauer.choix.0": {
+   "fr": "Je suis désolé. Ça a sûrement été une période difficile, pour lui et pour vous. Puis-je vous demander ce qui fait, pour lui, une bonne journée ?",
+   "de": "Das tut mir leid. Das war sicher eine schwere Zeit, für ihn und für Sie. Darf ich fragen, was für ihn zu einem guten Tag gehört?",
+   "es": "Lo siento mucho. Seguro fue una época difícil, para él y para usted. ¿Puedo preguntarle qué es para él parte de un buen día?"
+  },
+  "noeuds.trauer.choix.0.puis.0": {
+   "fr": "Se lever tôt, un café, et la radio allumée, de la musique populaire. Le soir, sa camomille. Et la soupe de pommes de terre : il pourrait en manger tous les jours. De la cuisine familiale, quoi. Seulement le poisson : il n'y touche pas.",
+   "de": "Früh aufstehen, Kaffee, und das Radio an, Volksmusik. Abends sein Kamillentee. Und Kartoffelsuppe, die könnte er jeden Tag essen. Hausmannskost eben. Nur Fisch, den rührt er nicht an.",
+   "es": "Levantarse temprano, café, y la radio prendida, con música folclórica. En la noche, su té de manzanilla. Y la sopa de papa: esa la podría comer todos los días. Comida casera, pues. Solo el pescado: ese ni lo toca."
+  },
+  "noeuds.trauer.choix.1": {
+   "fr": "Toutes mes condoléances, même si cela fait déjà quelques années. Et à quoi ressemblait une journée tout à fait ordinaire chez votre père ?",
+   "de": "Mein Beileid, auch wenn es schon ein paar Jahre her ist. Wie sah denn ein ganz normaler Tag bei Ihrem Vater aus?",
+   "es": "Mi más sentido pésame, aunque ya hayan pasado algunos años. ¿Y cómo era un día de lo más normal para su padre?"
+  },
+  "noeuds.trauer.choix.1.puis.0": {
+   "fr": "Se lever tôt, un café, et la radio allumée, de la musique populaire. Le soir, sa camomille. Et la soupe de pommes de terre : il pourrait en manger tous les jours. De la cuisine familiale, quoi. Seulement le poisson : il n'y touche pas.",
+   "de": "Früh aufstehen, Kaffee, und das Radio an, Volksmusik. Abends sein Kamillentee. Und Kartoffelsuppe, die könnte er jeden Tag essen. Hausmannskost eben. Nur Fisch, den rührt er nicht an.",
+   "es": "Levantarse temprano, café, y la radio prendida, con música folclórica. En la noche, su té de manzanilla. Y la sopa de papa: esa la podría comer todos los días. Comida casera, pues. Solo el pescado: ese ni lo toca."
+  },
+  "noeuds.trauer.choix.2": {
+   "fr": "D'accord, veuf. Point suivant : les repas.",
+   "de": "Okay, verwitwet. Nächster Punkt: Essen.",
+   "es": "Okey, viudo. Siguiente punto: la comida."
+  },
+  "noeuds.trauer.choix.2.puis.0": {
+   "fr": "… Oui. Point suivant.",
+   "de": "… Ja. Nächster Punkt.",
+   "es": "… Sí. Siguiente punto."
+  },
+  "noeuds.trauer.choix.2.aide": {
+   "fr": "<b>Quand on parle d'un deuil, on s'arrête un instant.</b> « Das tut mir leid » montre que tu as entendu. Passer tout de suite à la case suivante fait de la vie d'une famille un formulaire.",
+   "es": "<b>Cuando se habla de un duelo, uno se detiene un momento.</b> «Das tut mir leid» muestra que escuchaste. Pasar enseguida a la casilla siguiente convierte la vida de una familia en un formulario."
+  },
+  "noeuds.glaube.choix.0": {
+   "fr": "Soupe de pommes de terre et pas de poisson : je le transmets à la cuisine. Puis-je encore vous demander si la foi compte pour lui ?",
+   "de": "Kartoffelsuppe und keinen Fisch, das gebe ich an die Küche weiter. Darf ich noch fragen, ob ihm der Glaube etwas bedeutet?",
+   "es": "Sopa de papa y nada de pescado: se lo comunico a la cocina. ¿Puedo preguntarle también si la fe significa algo para él?"
+  },
+  "noeuds.glaube.choix.0.puis.0": {
+   "fr": "Il est protestant, mais il ne va plus à l'église depuis longtemps. Il préférait jouer au skat avec ses amis. Et à la cave, il avait un train miniature : il y passait des heures.",
+   "de": "Er ist evangelisch, aber in die Kirche geht er schon lange nicht mehr. Lieber hat er mit seinen Freunden Skat gespielt. Und im Keller hatte er eine Modelleisenbahn, da war er stundenlang.",
+   "es": "Es protestante, pero hace mucho que ya no va a la iglesia. Prefería jugar skat con sus amigos. Y en el sótano tenía un tren a escala; ahí se pasaba horas."
+  },
+  "noeuds.glaube.choix.1": {
+   "fr": "Je le note, pour la cuisine aussi. La religion joue-t-elle un rôle pour lui ?",
+   "de": "Das notiere ich, auch für die Küche. Spielt Religion für ihn eine Rolle?",
+   "es": "Lo anoto, también para la cocina. ¿La religión tiene importancia para él?"
+  },
+  "noeuds.glaube.choix.1.puis.0": {
+   "fr": "Il est protestant, mais il ne va plus à l'église depuis longtemps. Il préférait jouer au skat avec ses amis. Et à la cave, il avait un train miniature : il y passait des heures.",
+   "de": "Er ist evangelisch, aber in die Kirche geht er schon lange nicht mehr. Lieber hat er mit seinen Freunden Skat gespielt. Und im Keller hatte er eine Modelleisenbahn, da war er stundenlang.",
+   "es": "Es protestante, pero hace mucho que ya no va a la iglesia. Prefería jugar skat con sus amigos. Y en el sótano tenía un tren a escala; ahí se pasaba horas."
+  },
+  "noeuds.glaube.choix.2": {
+   "fr": "Il est sûrement catholique, non ?",
+   "de": "Er ist doch sicher katholisch, oder?",
+   "es": "Seguro es católico, ¿no?"
+  },
+  "noeuds.glaube.choix.2.puis.0": {
+   "fr": "Catholique ? Non, protestant. Qu'est-ce qui vous fait dire ça ?",
+   "de": "Katholisch? Nein, evangelisch. Wie kommen Sie darauf?",
+   "es": "¿Católico? No, protestante. ¿Por qué lo dice?"
+  },
+  "noeuds.glaube.choix.2.aide": {
+   "fr": "<b>Ne devine pas, demande.</b> La religion est un sujet personnel : une question ouverte et polie, « Darf ich fragen, ob ihm der Glaube etwas bedeutet? », laisse la proche répondre comme elle le veut.",
+   "es": "<b>No adivines, pregunta.</b> La religión es un tema personal: una pregunta abierta y cortés, «Darf ich fragen, ob ihm der Glaube etwas bedeutet?», deja que la familiar conteste como ella quiera."
+  },
+  "noeuds.aengste.choix.0": {
+   "fr": "Le skat et un train miniature, ça lui ressemble bien. Et à l'inverse : y a-t-il des choses qui lui font peur, ou qu'il n'aime pas du tout ?",
+   "de": "Skat und eine Modelleisenbahn, das passt zu ihm. Und umgekehrt: Gibt es Dinge, die ihm Angst machen oder die er gar nicht mag?",
+   "es": "El skat y un tren a escala, eso va muy bien con él. Y al contrario: ¿hay cosas que le den miedo o que no le gusten para nada?"
+  },
+  "noeuds.aengste.choix.0.puis.0": {
+   "fr": "L'obscurité. Ça a toujours été comme ça : à la maison, la nuit, il laissait toujours une petite lumière allumée dans le couloir. Et l'agitation. Quand tout le monde parle en même temps et qu'il faut aller vite, il devient nerveux.",
+   "de": "Dunkelheit. Das war schon immer so, zu Hause hatte er nachts immer ein kleines Licht im Flur an. Und Hektik. Wenn alle durcheinanderreden und es schnell gehen muss, wird er nervös.",
+   "es": "La oscuridad. Siempre fue así: en casa, de noche siempre tenía una lucecita encendida en el pasillo. Y la prisa. Cuando todos hablan al mismo tiempo y hay que hacer todo rápido, se pone nervioso."
+  },
+  "noeuds.aengste.choix.1": {
+   "fr": "On trouvera peut-être même une partie de skat pour lui ici. Et qu'est-ce qui l'agite ? De quoi a-t-il peur ?",
+   "de": "Vielleicht finden wir hier sogar eine Skatrunde für ihn. Und was macht ihn unruhig? Wovor hat er Angst?",
+   "es": "A lo mejor aquí hasta le encontramos un grupo para jugar skat. ¿Y qué lo pone inquieto? ¿A qué le tiene miedo?"
+  },
+  "noeuds.aengste.choix.1.puis.0": {
+   "fr": "L'obscurité. Ça a toujours été comme ça : à la maison, la nuit, il laissait toujours une petite lumière allumée dans le couloir. Et l'agitation. Quand tout le monde parle en même temps et qu'il faut aller vite, il devient nerveux.",
+   "de": "Dunkelheit. Das war schon immer so, zu Hause hatte er nachts immer ein kleines Licht im Flur an. Und Hektik. Wenn alle durcheinanderreden und es schnell gehen muss, wird er nervös.",
+   "es": "La oscuridad. Siempre fue así: en casa, de noche siempre tenía una lucecita encendida en el pasillo. Y la prisa. Cuando todos hablan al mismo tiempo y hay que hacer todo rápido, se pone nervioso."
+  },
+  "noeuds.aengste.choix.2": {
+   "fr": "Y a-t-il des choses « qui » lui font peur ? (pronom relatif faux)",
+   "de": "Gibt es Dinge, der ihm Angst machen?",
+   "es": "¿Hay cosas «el que» le dan miedo? (pronombre relativo equivocado)"
+  },
+  "noeuds.aengste.choix.2.puis.0": {
+   "fr": "Des choses qui lui font peur ? Oui, bien sûr.",
+   "de": "Dinge, die ihm Angst machen? Ja, schon.",
+   "es": "¿Cosas que le dan miedo? Sí, claro."
+  },
+  "noeuds.aengste.choix.2.aide": {
+   "fr": "<b>Le pronom relatif s'accorde avec le nom qu'il reprend : « Dinge, die … » (pluriel).</b> der Mann, der … ; die Frau, die … ; das Licht, das … ; die Dinge, die … Le verbe va ensuite à la fin : « Gibt es Dinge, die ihm Angst machen? »",
+   "es": "<b>El pronombre relativo concuerda con el sustantivo al que se refiere: «Dinge, die …» (plural).</b> der Mann, der …; die Frau, die …; das Licht, das …; die Dinge, die … Después el verbo va al final: «Gibt es Dinge, die ihm Angst machen?»"
+  },
+  "noeuds.beruhigen.choix.0": {
+   "fr": "Ça nous aide beaucoup, surtout la nuit. Et s'il s'agite quand même : d'après votre expérience, qu'est-ce qui l'apaise ?",
+   "de": "Das hilft uns sehr, besonders nachts. Und wenn er doch unruhig wird: Was beruhigt ihn, Ihrer Erfahrung nach?",
+   "es": "Eso nos ayuda mucho, sobre todo en la noche. Y si de todos modos se pone inquieto: según su experiencia, ¿qué lo tranquiliza?"
+  },
+  "noeuds.beruhigen.choix.0.puis.0": {
+   "fr": "Parler du tramway. Demandez-lui la ligne 4, les arrêts. Là, il est tout de suite lui-même.",
+   "de": "Über die Straßenbahn reden. Fragen Sie ihn nach der Linie 4, nach den Haltestellen. Dann ist er sofort ganz bei sich.",
+   "es": "Hablar del tranvía. Pregúntele por la línea 4, por las paradas. Entonces enseguida vuelve a ser él mismo."
+  },
+  "noeuds.beruhigen.choix.1": {
+   "fr": "Y a-t-il quelque chose qui l'apaise quand il devient nerveux ?",
+   "de": "Gibt es etwas, das ihn beruhigt, wenn er nervös wird?",
+   "es": "¿Hay algo que lo tranquilice cuando se pone nervioso?"
+  },
+  "noeuds.beruhigen.choix.1.puis.0": {
+   "fr": "Parler du tramway. Demandez-lui la ligne 4, les arrêts. Là, il est tout de suite lui-même.",
+   "de": "Über die Straßenbahn reden. Fragen Sie ihn nach der Linie 4, nach den Haltestellen. Dann ist er sofort ganz bei sich.",
+   "es": "Hablar del tranvía. Pregúntele por la línea 4, por las paradas. Entonces enseguida vuelve a ser él mismo."
+  },
+  "noeuds.beruhigen.choix.2": {
+   "fr": "C'est donc un résident difficile, surtout la nuit.",
+   "de": "Er ist also ein schwieriger Bewohner, vor allem nachts.",
+   "es": "Entonces es un residente difícil, sobre todo en la noche."
+  },
+  "noeuds.beruhigen.choix.2.puis.0": {
+   "fr": "Difficile ? Il a peur, ce n'est pas la même chose !",
+   "de": "Schwierig? Er hat Angst, das ist etwas anderes!",
+   "es": "¿Difícil? ¡Tiene miedo, eso es otra cosa!"
+  },
+  "noeuds.beruhigen.choix.2.aide": {
+   "fr": "<b>Note des faits et des besoins, pas un jugement.</b> « schwierig » ne dit rien d'utile à l'équipe et blesse la famille. Demande plutôt ce qui l'aide : « Was beruhigt ihn, Ihrer Erfahrung nach? »",
+   "es": "<b>Anota hechos y necesidades, no un juicio.</b> «schwierig» no le dice nada útil al equipo y hiere a la familia. Mejor pregunta qué lo ayuda: «Was beruhigt ihn, Ihrer Erfahrung nach?»"
+  },
+  "noeuds.abschluss.choix.0": {
+   "fr": "Nous l'avons remarqué aussi : l'autre nuit, il voulait aller au dépôt, et quand nous avons parlé de la ligne quatre, il s'est calmé. J'inscris tout cela aujourd'hui même dans son plan de soins : nous le laissons se lever tôt, la nuit une petite lumière reste allumée, le soir il a sa camomille, et quand il est agité, nous parlons du tramway.",
+   "de": "Das haben wir auch schon gemerkt: Neulich nachts wollte er zum Depot, und als wir über die Linie vier gesprochen haben, ist er ruhig geworden. Ich trage das alles heute noch in seine Pflegeplanung ein: Wir lassen ihn früh aufstehen, nachts bleibt ein kleines Licht an, abends bekommt er seinen Kamillentee, und wenn er unruhig ist, sprechen wir über die Straßenbahn.",
+   "es": "Eso también ya lo notamos: la otra noche quería ir al depósito, y cuando hablamos de la línea 4, se tranquilizó. Todo esto lo anoto hoy mismo en su plan de cuidados: lo dejamos levantarse temprano, en la noche se queda una lucecita encendida, por la noche recibe su té de manzanilla, y cuando está inquieto, hablamos del tranvía."
+  },
+  "noeuds.abschluss.choix.0.puis.0": {
+   "fr": "Merci, {arun}. Ça fait du bien que quelqu'un s'intéresse autant à lui. Je vous montre encore les photos ?",
+   "de": "Danke, {arun}. Es tut gut, dass sich jemand so für ihn interessiert. Soll ich Ihnen noch die Fotos zeigen?",
+   "es": "Gracias, {arun}. Hace bien que alguien se interese tanto por él. ¿Quiere que le muestre las fotos?"
+  },
+  "noeuds.abschluss.choix.1": {
+   "fr": "Merci beaucoup. Beaucoup de vos réponses vont entrer dans ses soins : le lever matinal, la petite lumière la nuit, la camomille, le calme plutôt que l'agitation, et le tramway comme sujet de conversation. Je l'inscris aujourd'hui même, pour que tous mes collègues le sachent.",
+   "de": "Vielen Dank. Vieles aus Ihren Antworten fließt in seine Pflege ein: das frühe Aufstehen, das kleine Licht in der Nacht, der Kamillentee, Ruhe statt Hektik, und die Straßenbahn als Gesprächsthema. Ich trage das heute noch ein, damit alle Kolleginnen und Kollegen es wissen.",
+   "es": "Muchas gracias. Mucho de lo que me contestó va a entrar en sus cuidados: levantarse temprano, la lucecita en la noche, el té de manzanilla, calma en lugar de prisa, y el tranvía como tema de conversación. Lo anoto hoy mismo, para que todas las colegas y todos los colegas lo sepan."
+  },
+  "noeuds.abschluss.choix.1.puis.0": {
+   "fr": "Merci, {arun}. Ça fait du bien que quelqu'un s'intéresse autant à lui. Je vous montre encore les photos ?",
+   "de": "Danke, {arun}. Es tut gut, dass sich jemand so für ihn interessiert. Soll ich Ihnen noch die Fotos zeigen?",
+   "es": "Gracias, {arun}. Hace bien que alguien se interese tanto por él. ¿Quiere que le muestre las fotos?"
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle ligne {schulze} conduisait-il le plus souvent ?",
+   "de": "Welche Linie ist {schulze} meistens gefahren?",
+   "es": "¿Qué línea manejaba {schulze} casi siempre?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "La ligne 4.",
+   "de": "Die Linie vier.",
+   "es": "La línea 4."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La ligne 2.",
+   "de": "Die Linie zwei.",
+   "es": "La línea 2."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La ligne 12.",
+   "de": "Die Linie zwölf.",
+   "es": "La línea 12."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {schulze} se lève-t-il si tôt ?",
+   "de": "Warum steht {schulze} so früh auf?",
+   "es": "¿Por qué {schulze} se levanta tan temprano?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Parce qu'il dort mal.",
+   "de": "Weil er schlecht schläft.",
+   "es": "Porque duerme mal."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Parce qu'il veut prendre son petit-déjeuner tôt.",
+   "de": "Weil er früh frühstücken will.",
+   "es": "Porque quiere desayunar temprano."
+  },
+  "ecouter.1.options.2": {
+   "fr": "C'est une habitude de ses horaires postés.",
+   "de": "Das ist eine Gewohnheit aus dem Schichtdienst.",
+   "es": "Es una costumbre del trabajo por turnos."
+  },
+  "ecouter.2.q": {
+   "fr": "Qu'est-ce que {schulze} n'aime pas du tout ?",
+   "de": "Was mag {schulze} gar nicht?",
+   "es": "¿Qué es lo que no le gusta para nada {schulze:a}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "La soupe de pommes de terre.",
+   "de": "Kartoffelsuppe.",
+   "es": "La sopa de papa."
+  },
+  "ecouter.2.options.1": {
+   "fr": "L'obscurité et l'agitation.",
+   "de": "Dunkelheit und Hektik.",
+   "es": "La oscuridad y la prisa."
+  },
+  "ecouter.2.options.2": {
+   "fr": "La musique populaire à la radio.",
+   "de": "Volksmusik im Radio.",
+   "es": "La música folclórica en la radio."
+  },
+  "ecouter.3.q": {
+   "fr": "Qu'est-ce qui apaise {schulze} quand il est agité ?",
+   "de": "Was beruhigt {schulze:akk}, wenn er unruhig ist?",
+   "es": "¿Qué tranquiliza {schulze:a} cuando está inquieto?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Une promenade dans le jardin.",
+   "de": "Ein Spaziergang im Garten.",
+   "es": "Un paseo por el jardín."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Un café.",
+   "de": "Ein Kaffee.",
+   "es": "Un café."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Parler du tramway.",
+   "de": "Über die Straßenbahn zu sprechen.",
+   "es": "Hablar del tranvía."
+  }
+ }
+}

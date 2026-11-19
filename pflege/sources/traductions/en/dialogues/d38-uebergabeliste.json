@@ -1,0 +1,442 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d38-uebergabeliste.json",
+ "cles": {
+  "titre": {
+   "fr": "La liste de relève : des mots-clés aux phrases",
+   "de": "Die Übergabeliste",
+   "en": "The handoff list: from keywords to sentences"
+  },
+  "intro": {
+   "fr": "Mardi 10 novembre, treize heures quinze, deuxième jour d'{elif} au {station}. Avant la relève de 13 h 30, {jonas}, son tuteur, pose devant elle la liste de relève, écrite en style télégraphique : des abréviations, des chiffres, pas de verbes. Entre collègues, on se dit « du ». Tu joues {elif} : demande ce que tu ne comprends pas, puis dis chaque ligne en phrases complètes, comme à une vraie relève. À la fin, {jonas} te fait faire l'inverse : écrire une ligne courte.",
+   "en": "Tuesday, November 10, 13:15, {elif}'s second day on {station}. Before the 13:30 handoff, {jonas}, her mentor, puts the handoff list in front of her, written in telegraphic style: abbreviations, numbers, no verbs. Between colleagues, you say “du”. You play {elif}: ask about what you don't understand, then say each line in complete sentences, as at a real handoff. At the end, {jonas} has you do the reverse: write a short line."
+  },
+  "but": {
+   "fr": "Lire une liste de relève en style télégraphique (Z. n., re., NRS, RR, VB, DK, n. AO) et la dire en phrases complètes : un verbe dans chaque phrase, le passif au passé pour ce qu'on a fait au patient (« ist operiert worden »), des verbes plutôt que le style nominal à l'oral ; demander une abréviation au lieu de la deviner ; et, à l'inverse, écrire une ligne brève et exacte.",
+   "en": "Read a handoff list in telegraphic style (Z. n., re., NRS, RR, VB, DK, n. AO) and say it in complete sentences: a verb in every sentence, the passive in the past for what was done to the patient (“ist operiert worden”), verbs rather than noun style when speaking; ask about an abbreviation instead of guessing it; and, the other way around, write a short, exact line."
+  },
+  "relire_notes": {
+   "fr": "Abréviations selon l'usage du service : Z. n. (Zustand nach), re. (rechts), NRS (échelle numérique de la douleur), RR (tension artérielle), VB tr. (pansement sec), DK (sonde urinaire à demeure), Mob. n. AO (mobilisation selon la prescription médicale), Exanthem, BZ, n. Schema, VW erf. ; le jour de l'opération de {brandt} : prothèse totale de hanche droite le mardi 10 au matin, pansement sec, sonde urinaire (retirée le vendredi 13, dialogue 17), alité le jour même, mobilisation selon la prescription ; allergie à la pénicilline (éruption) ; {lehmann}, admise le lundi 9 : glycémie 162 mg/dl à 11 h 30 et insuline selon le schéma, pansement refait, plaie calme ; bilan hydrique de {brandt} (e01 : objectif 1,5 l par jour) : 200 ml de thé à 13 h, pas de nausée après l'anesthésie.",
+   "en": "Abbreviations as used on the ward: Z. n. (Zustand nach), re. (rechts), NRS (numeric rating scale for pain), RR (blood pressure), VB tr. (dressing dry), DK (indwelling urinary catheter), Mob. n. AO (mobilization as ordered by the doctor), Exanthem, BZ, n. Schema, VW erf.; the day of {brandt}'s surgery: total replacement of the right hip on the morning of Tuesday the 10th, dressing dry, urinary catheter (removed on Friday the 13th, dialogue 17), bed rest that day, mobilization as ordered; penicillin allergy (rash); {lehmann}, admitted on Monday the 9th: blood glucose 162 mg/dl at 11:30 and insulin per sliding scale, dressing redone, wound free of irritation; {brandt}'s fluid intake chart (e01: target 1.5 l a day): 200 ml of tea at 13:00, no nausea after the anesthesia."
+  },
+  "redemittel.0": {
+   "fr": "Je peux demander ce que veut dire « Z. n. » ?",
+   "de": "Darf ich kurz fragen, wofür „Z. n.“ steht?",
+   "en": "May I quickly ask what “Z. n.” stands for?"
+  },
+  "redemittel.1": {
+   "fr": "Il a été opéré de la hanche droite ce matin.",
+   "de": "Er ist heute Vormittag an der rechten Hüfte operiert worden.",
+   "en": "He had surgery on his right hip this morning."
+  },
+  "redemittel.2": {
+   "fr": "Sa douleur est à trois sur dix.",
+   "de": "Seine Schmerzen liegen bei drei von zehn.",
+   "en": "His pain is at three out of ten."
+  },
+  "redemittel.3": {
+   "fr": "Sa tension est de 135/80.",
+   "de": "Sein Blutdruck beträgt 135 zu 80.",
+   "en": "His blood pressure is 135 over 80."
+  },
+  "redemittel.4": {
+   "fr": "Il est mobilisé selon la prescription médicale.",
+   "de": "Er wird nach ärztlicher Anordnung mobilisiert.",
+   "en": "He is mobilized as ordered by the doctor."
+  },
+  "redemittel.5": {
+   "fr": "Il est allergique à la pénicilline, ça lui donne une éruption.",
+   "de": "Er ist allergisch gegen Penicillin, davon bekommt er einen Hautausschlag.",
+   "en": "He's allergic to penicillin; it gives him a rash."
+  },
+  "redemittel.6": {
+   "fr": "« n. AO », ça veut dire « selon la prescription médicale » ?",
+   "de": "Heißt „n. AO“ „nach ärztlicher Anordnung“?",
+   "en": "Does “n. AO” mean “nach ärztlicher Anordnung”, as ordered by the doctor?"
+  },
+  "redemittel.7": {
+   "fr": "13 h : 200 ml de thé bus, pas de nausée.",
+   "de": "13:00 Uhr: 200 ml Tee getrunken, keine Übelkeit.",
+   "en": "13:00: drank 200 ml of tea, no nausea."
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Mardi, treize heures quinze, au poste de soins. {jonas} pose la liste de relève devant {elif}. À la ligne de la chambre 12 : « Zi. 12 – {brandt:famille}, 82 J. – Z. n. Hüft-TEP re. 10.11. – NRS 3, RR 135/80 – VB tr., DK – Bettruhe, Mob. n. AO – Allergie: Penicillin (Exanthem)! »",
+   "en": "Tuesday, 13:15, at the nurses' station. {jonas} puts the handoff list in front of {elif}. On the line for room 12: “Zi. 12 – {brandt:famille}, 82 J. – Z. n. Hüft-TEP re. 10.11. – NRS 3, RR 135/80 – VB tr., DK – Bettruhe, Mob. n. AO – Allergie: Penicillin (Exanthem)!”"
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Bon, {elif} : voici notre liste de relève. Tout y est en mots-clés, mais à la relève, on parle en phrases complètes. Commence par la chambre douze.",
+   "de": "So, {elif}: Das ist unsere Übergabeliste. Hier steht alles in Stichworten, aber bei der Übergabe sprechen wir in ganzen Sätzen. Fang mal mit Zimmer zwölf an.",
+   "en": "So, {elif}: this is our handoff list. Everything here is in keywords, but at handoff we speak in complete sentences. Go ahead and start with room twelve."
+  },
+  "noeuds.start.choix.0": {
+   "fr": "D'accord. Je peux d'abord demander ce que veut dire « Z. n. » ?",
+   "de": "Okay. Darf ich vorher kurz fragen, wofür „Z. n.“ steht?",
+   "en": "Okay. May I quickly ask first what “Z. n.” stands for?"
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "« Zustand nach », c'est-à-dire « état après » : c'est déjà arrivé. Et le 10, c'est aujourd'hui. Alors : qu'est-ce qui est arrivé à {brandt} ?",
+   "de": "„Zustand nach“. Das heißt: Es ist schon passiert. Und der Zehnte, das ist heute. Also: Was ist mit {brandt:dat} passiert?",
+   "en": "“Zustand nach”, “status post”. That means: it has already happened. And the 10th, that's today. So: what happened to {brandt}?"
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Volontiers. Mais d'abord une question : que veut dire « Z. n. » ? Je ne veux pas deviner.",
+   "de": "Gern. Aber eine Frage zuerst: Was bedeutet „Z. n.“? Ich möchte nicht raten.",
+   "en": "Gladly. But one question first: what does “Z. n.” mean? I don't want to guess."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "« Zustand nach », c'est-à-dire « état après » : c'est déjà arrivé. Et le 10, c'est aujourd'hui. Alors : qu'est-ce qui est arrivé à {brandt} ?",
+   "de": "„Zustand nach“. Das heißt: Es ist schon passiert. Und der Zehnte, das ist heute. Also: Was ist mit {brandt:dat} passiert?",
+   "en": "“Zustand nach”, “status post”. That means: it has already happened. And the 10th, that's today. So: what happened to {brandt}?"
+  },
+  "noeuds.start.choix.2": {
+   "fr": "« Z. n. », ça veut sûrement dire « chambre nouvelle ». Donc : nouvelle chambre, prothèse de hanche.",
+   "de": "„Z. n.“ heißt bestimmt „Zimmer neu“. Also: neues Zimmer, Hüft-TEP.",
+   "en": "“Z. n.” surely means “Zimmer neu”. So: new room, hip replacement."
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "« Chambre nouvelle » ? Jolie idée, mais non.",
+   "de": "Zimmer neu? Schöne Idee, aber nein.",
+   "en": "“Zimmer neu”, new room? Nice idea, but no."
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>Une abréviation qu'on ne connaît pas se demande ; elle ne se devine pas.</b> Une erreur de lecture dans une liste de relève peut changer tout le sens. « Darf ich fragen, wofür „Z. n.“ steht? »",
+   "en": "<b>You ask about an abbreviation you don't know; you don't guess it.</b> A misreading in a handoff list can change the whole meaning. “Darf ich fragen, wofür „Z. n.“ steht?”"
+  },
+  "noeuds.tep.choix.0": {
+   "fr": "{brandt} a été opéré de la hanche droite ce matin. Il a reçu une prothèse totale de hanche, une hanche artificielle.",
+   "de": "{brandt} ist heute Vormittag an der rechten Hüfte operiert worden. Er hat eine Hüft-TEP bekommen, also ein künstliches Hüftgelenk.",
+   "en": "{brandt} had surgery on his right hip this morning. He got a Hüft-TEP, a total hip replacement, in other words an artificial hip joint."
+  },
+  "noeuds.tep.choix.0.puis.0": {
+   "fr": "Exactement. Et ensuite, les valeurs ?",
+   "de": "Genau. Und weiter, die Werte?",
+   "en": "Exactly. And next, the values?"
+  },
+  "noeuds.tep.choix.1": {
+   "fr": "Ce matin, on a posé à {brandt} une hanche artificielle à droite, une prothèse totale de hanche.",
+   "de": "Bei {brandt:dat} ist heute Vormittag rechts ein künstliches Hüftgelenk eingesetzt worden, eine Hüft-TEP.",
+   "en": "This morning {brandt} had an artificial hip joint put in on the right, a total hip replacement."
+  },
+  "noeuds.tep.choix.1.puis.0": {
+   "fr": "Exactement. Et ensuite, les valeurs ?",
+   "de": "Genau. Und weiter, die Werte?",
+   "en": "Exactly. And next, the values?"
+  },
+  "noeuds.tep.choix.2": {
+   "fr": "« Z. n. Hüft-TEP re., dix onze. » (lu tel quel)",
+   "de": "Z. n. Hüft-TEP re., zehnter Elfter.",
+   "en": "“Z. n. Hüft-TEP re., tenth eleventh.” (read out as written)"
+  },
+  "noeuds.tep.choix.2.puis.0": {
+   "fr": "On dirait un code. Qui comprend ça au téléphone ? Dis-le en une phrase, avec un verbe.",
+   "de": "Das klingt wie ein Code. Wer versteht das am Telefon? Sag es in einem Satz, mit Verb.",
+   "en": "That sounds like a code. Who understands that on the phone? Say it in a sentence, with a verb."
+  },
+  "noeuds.tep.choix.2.aide": {
+   "fr": "<b>Les abréviations se lisent, elles ne se disent pas : à l'oral, on fait une phrase avec un verbe.</b> « Er ist heute Vormittag an der rechten Hüfte operiert worden. » Et une date de la liste devient un mot : le 10.11, c'est « heute ».",
+   "en": "<b>Abbreviations are for reading, not for saying: when you speak, you make a sentence with a verb.</b> “Er ist heute Vormittag an der rechten Hüfte operiert worden.” And a date on the list becomes a word: 10.11. is “heute”."
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Sa douleur est à trois sur dix, et sa tension est de 135/80.",
+   "de": "Seine Schmerzen liegen bei drei von zehn, und sein Blutdruck beträgt 135 zu 80.",
+   "en": "His pain is at three out of ten, and his blood pressure is 135 over 80."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Très bien, avec un verbe. Et les mots-clés suivants ?",
+   "de": "Sehr gut, mit Verb. Und die nächsten Stichworte?",
+   "en": "Very good, with a verb. And the next keywords?"
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Il a une douleur à trois sur l'échelle de zéro à dix, et sa tension est à 135/80.",
+   "de": "Er hat Schmerzen von drei auf der Skala von null bis zehn, und sein Blutdruck liegt bei 135 zu 80.",
+   "en": "He has pain of three on the scale from zero to ten, and his blood pressure is at 135 over 80."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Très bien, avec un verbe. Et les mots-clés suivants ?",
+   "de": "Sehr gut, mit Verb. Und die nächsten Stichworte?",
+   "en": "Very good, with a verb. And the next keywords?"
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Douleur trois, tension 135/80.",
+   "de": "Schmerzen drei, Blutdruck 135 zu 80.",
+   "en": "Pain three, blood pressure 135 over 80."
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "C'est encore la liste. Où est ton verbe ?",
+   "de": "Das ist immer noch die Liste. Wo ist dein Verb?",
+   "en": "That's still the list. Where's your verb?"
+  },
+  "noeuds.werte.choix.2.aide": {
+   "fr": "<b>Une phrase complète a un verbe : « Seine Schmerzen liegen bei drei », « Sein Blutdruck beträgt 135 zu 80 ».</b> Sans verbe, tu lis la liste au lieu de la transmettre.",
+   "en": "<b>A complete sentence has a verb: “Seine Schmerzen liegen bei drei”, “Sein Blutdruck beträgt 135 zu 80”.</b> Without a verb, you are reading the list out instead of handing off."
+  },
+  "noeuds.verband.dit.0.recit": {
+   "fr": "La ligne continue : « VB tr., DK – Bettruhe, Mob. n. AO ».",
+   "en": "The line continues: “VB tr., DK – Bettruhe, Mob. n. AO”."
+  },
+  "noeuds.verband.choix.0": {
+   "fr": "Le pansement est sec, et il a une sonde urinaire. Aujourd'hui, il est alité ; il sera mobilisé selon la prescription médicale.",
+   "de": "Der Verband ist trocken, und er hat einen Blasenkatheter. Heute hat er Bettruhe; er wird nach ärztlicher Anordnung mobilisiert.",
+   "en": "The dressing is dry, and he has a urinary catheter. Today he's on bed rest; he will be mobilized as ordered by the doctor."
+  },
+  "noeuds.verband.choix.0.puis.0": {
+   "fr": "Exactement. Et maintenant, le plus important de la ligne : ce qui a un point d'exclamation.",
+   "de": "Genau. Und jetzt das Wichtigste in der Zeile, das mit dem Ausrufezeichen.",
+   "en": "Exactly. And now the most important thing on the line, the part with the exclamation mark."
+  },
+  "noeuds.verband.choix.1": {
+   "fr": "Le pansement est sec, il a une sonde à demeure et il reste alité aujourd'hui. Seulement « n. AO », je ne connais pas : ça veut dire « selon la prescription médicale » ?",
+   "de": "Der Verband ist trocken, er hat einen Dauerkatheter und heute Bettruhe. Nur „n. AO“ kenne ich nicht: Heißt das „nach ärztlicher Anordnung“?",
+   "en": "The dressing is dry, he has an indwelling catheter and is on bed rest today. The only one I don't know is “n. AO”: does that mean “nach ärztlicher Anordnung”, as ordered by the doctor?"
+  },
+  "noeuds.verband.choix.1.puis.0": {
+   "fr": "C'est ça, et tu as bien fait de demander : il sera mobilisé quand la médecin le prescrira. Et maintenant, le plus important de la ligne : ce qui a un point d'exclamation.",
+   "de": "Richtig, und gut, dass du fragst: Er wird mobilisiert, wenn die Ärztin es anordnet. Und jetzt das Wichtigste in der Zeile, das mit dem Ausrufezeichen.",
+   "en": "Right, and good that you asked: he'll be mobilized when the doctor orders it. And now the most important thing on the line, the part with the exclamation mark."
+  },
+  "noeuds.verband.choix.2": {
+   "fr": "Le pansement est sec. Il est alité et « mobilise » selon la prescription. (mal dit)",
+   "de": "Der Verband ist trocken. Er hat Bettruhe und mobilisiert nach Anordnung.",
+   "en": "The dressing is dry. He's on bed rest and “mobilizes” as ordered. (said wrong: active instead of passive)"
+  },
+  "noeuds.verband.choix.2.puis.0": {
+   "fr": "Il mobilise ? Qui donc, la kinésithérapeute ?",
+   "de": "Er mobilisiert? Wen denn, die Physiotherapeutin?",
+   "en": "He mobilizes? Whom, the physical therapist?"
+  },
+  "noeuds.verband.choix.2.aide": {
+   "fr": "<b>Ce qu'on fait au patient se dit au passif : « Er wird mobilisiert ».</b> « Er mobilisiert » voudrait dire qu'il mobilise quelqu'un d'autre. De même : « Er ist operiert worden », pas « er hat operiert ».",
+   "en": "<b>What is done to the patient is said in the passive: “Er wird mobilisiert”.</b> “Er mobilisiert” would mean that he mobilizes somebody else. Likewise: “Er ist operiert worden”, not “er hat operiert”."
+  },
+  "noeuds.allergie.choix.0": {
+   "fr": "Et très important : il est allergique à la pénicilline, ça lui donne une éruption.",
+   "de": "Und ganz wichtig: Er ist allergisch gegen Penicillin, davon bekommt er einen Hautausschlag.",
+   "en": "And very important: he's allergic to penicillin; it gives him a rash."
+  },
+  "noeuds.allergie.choix.0.puis.0": {
+   "fr": "C'est ça. Tu le dis à chaque relève, même si tout le monde le sait déjà. Maintenant, la chambre 14.",
+   "de": "Richtig. Das sagst du bei jeder Übergabe, auch wenn alle es schon wissen. Jetzt Zimmer 14.",
+   "en": "Right. You say that at every handoff, even if everybody already knows. Now room 14."
+  },
+  "noeuds.allergie.choix.1": {
+   "fr": "Il a une allergie à la pénicilline. Il y réagit par une éruption cutanée, un exanthème.",
+   "de": "Er hat eine Penicillinallergie. Darauf reagiert er mit einem Hautausschlag, einem Exanthem.",
+   "en": "He has a penicillin allergy. He reacts to it with a skin rash, an exanthem."
+  },
+  "noeuds.allergie.choix.1.puis.0": {
+   "fr": "C'est ça. Tu le dis à chaque relève, même si tout le monde le sait déjà. Maintenant, la chambre 14.",
+   "de": "Richtig. Das sagst du bei jeder Übergabe, auch wenn alle es schon wissen. Jetzt Zimmer 14.",
+   "en": "Right. You say that at every handoff, even if everybody already knows. Now room 14."
+  },
+  "noeuds.allergie.choix.2": {
+   "fr": "Et : il a de la pénicilline.",
+   "de": "Und: Er hat Penicillin.",
+   "en": "And: he has penicillin."
+  },
+  "noeuds.allergie.choix.2.puis.0": {
+   "fr": "Il a de la pénicilline ? Grands dieux, c'est le contraire : il ne doit pas en recevoir !",
+   "de": "Er hat Penicillin? Um Gottes willen, im Gegenteil: Er darf keins bekommen!",
+   "en": "He has penicillin? For heaven's sake, the opposite: he mustn't be given any!"
+  },
+  "noeuds.allergie.choix.2.aide": {
+   "fr": "<b>Un mot oublié peut inverser le sens : « Er hat Penicillin » veut dire qu'il en reçoit.</b> Dis le mot qui compte : « Er ist allergisch gegen Penicillin », « Er hat eine Penicillinallergie ».",
+   "en": "<b>One forgotten word can reverse the meaning: “Er hat Penicillin” means he is getting it.</b> Say the word that matters: “Er ist allergisch gegen Penicillin”, “Er hat eine Penicillinallergie”."
+  },
+  "noeuds.lehmann.dit.0.recit": {
+   "fr": "Ligne suivante : « Zi. 14 – {lehmann:famille}, 74 J. – Diab. Fuß re., Aufn. 9.11. – BZ 11:30: 162, Insulin n. Schema – VW erf., Wunde reizlos ».",
+   "en": "Next line: “Zi. 14 – {lehmann:famille}, 74 J. – Diab. Fuß re., Aufn. 9.11. – BZ 11:30: 162, Insulin n. Schema – VW erf., Wunde reizlos”."
+  },
+  "noeuds.lehmann.choix.0": {
+   "fr": "{lehmann}, 74 ans, a été admise hier pour un pied diabétique droit. À onze heures et demie, sa glycémie était à 162, elle a eu son insuline selon le schéma. Le pansement a été changé, la plaie est calme.",
+   "de": "{lehmann}, 74 Jahre, ist gestern wegen eines diabetischen Fußes rechts aufgenommen worden. Um halb zwölf lag ihr Blutzucker bei 162, sie hat nach Schema Insulin bekommen. Der Verband ist gewechselt worden, die Wunde ist reizlos.",
+   "en": "{lehmann}, 74 years old, was admitted yesterday for a diabetic foot on the right. At half past eleven her blood sugar was 162, and she got insulin per the sliding scale. The dressing has been changed, and the wound is free of irritation."
+  },
+  "noeuds.lehmann.choix.0.puis.0": {
+   "fr": "Super. Tu entends comme c'est plus clair que la liste ?",
+   "de": "Super. Hörst du, wie viel klarer das klingt als die Liste?",
+   "en": "Great. Do you hear how much clearer that sounds than the list?"
+  },
+  "noeuds.lehmann.choix.1": {
+   "fr": "Dans la chambre 14, il y a {lehmann}, 74 ans. Elle est chez nous depuis hier, pour une plaie au pied droit sur un diabète. Sa glycémie était à 162 à onze heures et demie, elle a donc eu de l'insuline selon le schéma. Le pansement a été changé aujourd'hui, la plaie a l'air calme.",
+   "de": "In Zimmer 14 liegt {lehmann}, 74. Sie ist seit gestern bei uns, wegen einer Wunde am rechten Fuß bei Diabetes. Ihr Blutzucker war um halb zwölf 162, deshalb hat sie Insulin nach Schema bekommen. Der Verband wurde heute gewechselt, die Wunde sieht ruhig aus.",
+   "en": "In room 14 we have {lehmann}, 74. She has been with us since yesterday, for a wound on her right foot related to diabetes. Her blood sugar was 162 at half past eleven, so she got insulin per the sliding scale. The dressing was changed today, and the wound looks calm."
+  },
+  "noeuds.lehmann.choix.1.puis.0": {
+   "fr": "Super. Tu entends comme c'est plus clair que la liste ?",
+   "de": "Super. Hörst du, wie viel klarer das klingt als die Liste?",
+   "en": "Great. Do you hear how much clearer that sounds than the list?"
+  },
+  "noeuds.lehmann.choix.2": {
+   "fr": "Chez la patiente, il a été procédé, après mesure de la glycémie à 162, à l'administration d'insuline selon le schéma ainsi qu'à la réalisation d'un changement de pansement.",
+   "de": "Bei der Patientin erfolgte nach BZ-Messung von 162 die Gabe von Insulin nach Schema sowie die Durchführung eines Verbandswechsels.",
+   "en": "In the patient, following blood glucose measurement of 162, administration of insulin per sliding scale as well as performance of a dressing change took place."
+  },
+  "noeuds.lehmann.choix.2.puis.0": {
+   "fr": "On dirait une lettre de l'administration. Dis-le plus simplement : qui a reçu quoi ?",
+   "de": "Das klingt wie ein Brief vom Amt. Sag's einfacher: Wer hat was bekommen?",
+   "en": "That sounds like a letter from a government office. Say it more simply: who got what?"
+  },
+  "noeuds.lehmann.choix.2.aide": {
+   "fr": "<b>À l'oral, défais le style nominal : « Sie hat Insulin bekommen » plutôt que « erfolgte die Gabe von Insulin ».</b> Les noms en « -ung », « Gabe », « Durchführung », « erfolgte » appartiennent à l'écrit officiel ; à la relève, on parle avec des verbes.",
+   "en": "<b>When you speak, undo the noun style: “Sie hat Insulin bekommen” rather than “erfolgte die Gabe von Insulin”.</b> Nouns in “-ung”, “Gabe”, “Durchführung”, “erfolgte” belong to official writing; at handoff, you speak with verbs."
+  },
+  "noeuds.doku.dit.0": {
+   "fr": "Maintenant, l'inverse. À 13 h, tu as donné du thé à {brandt} : 200 millilitres, et il n'avait pas de nausée. Comment tu l'écris en bref dans la liste ?",
+   "de": "Jetzt umgekehrt. Du hast {brandt:dat} um 13 Uhr Tee gegeben: 200 Milliliter, und übel war ihm nicht. Wie schreibst du das kurz in die Liste?",
+   "en": "Now the other way around. You gave {brandt} tea at 13:00: 200 milliliters, and he wasn't nauseous. How do you write that briefly on the list?"
+  },
+  "noeuds.doku.choix.0": {
+   "fr": "13 h : 200 ml de thé bus, pas de nausée.",
+   "de": "13:00 Uhr: 200 ml Tee getrunken, keine Übelkeit.",
+   "en": "13:00: drank 200 ml of tea, no nausea."
+  },
+  "noeuds.doku.choix.0.puis.0": {
+   "fr": "Exactement. Court, avec l'heure et la quantité.",
+   "de": "Genau so. Kurz, mit Uhrzeit und Menge.",
+   "en": "Just like that. Short, with the time and the amount."
+  },
+  "noeuds.doku.choix.1": {
+   "fr": "Bilan hydrique : 13 h, 200 ml de thé. Pas de nausée.",
+   "de": "Trinkprotokoll: 13 Uhr, 200 ml Tee. Keine Übelkeit.",
+   "en": "Fluid intake chart: 13:00, 200 ml of tea. No nausea."
+  },
+  "noeuds.doku.choix.1.puis.0": {
+   "fr": "Exactement. Court, avec l'heure et la quantité.",
+   "de": "Genau so. Kurz, mit Uhrzeit und Menge.",
+   "en": "Just like that. Short, with the time and the amount."
+  },
+  "noeuds.doku.choix.2": {
+   "fr": "À une heure, il a bu du thé avec moi, pas mal, et il allait bien, je crois.",
+   "de": "Um eins hat er bei mir Tee getrunken, ziemlich viel, und es ging ihm, glaube ich, gut.",
+   "en": "At one he drank tea with me, quite a lot, and he was fine, I think."
+  },
+  "noeuds.doku.choix.2.puis.0": {
+   "fr": "Trop long. Et « pas mal » et « je crois » n'ont rien à faire dans le dossier. Combien exactement ? Il avait la nausée ?",
+   "de": "Zu lang. Und „ziemlich viel“ und „glaube ich“ gehören nicht in die Doku. Wie viel genau? War ihm übel?",
+   "en": "Too long. And “quite a lot” and “I think” don't belong in the documentation. How much exactly? Was he nauseous?"
+  },
+  "noeuds.doku.choix.2.aide": {
+   "fr": "<b>Dans la liste : l'heure, la quantité, le fait observé, en peu de mots.</b> « 13:00 Uhr: 200 ml Tee getrunken, keine Übelkeit. » Pas de « je crois », pas de « pas mal » : un chiffre.",
+   "en": "<b>On the list: the time, the amount, the observed fact, in few words.</b> “13:00 Uhr: 200 ml Tee getrunken, keine Übelkeit.” No “I think”, no “quite a lot”: a number."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Parfait. Retiens : dans la liste, on écrit court. À la relève et dans le rapport, on parle et on écrit en phrases complètes. Qu'est-ce que tu retiens ?",
+   "de": "Prima. Merk dir: In die Liste schreiben wir kurz. Bei der Übergabe und im Bericht sprechen und schreiben wir in ganzen Sätzen. Was nimmst du mit?",
+   "en": "Great. Remember: on the list, we write short. At handoff and in the report, we speak and write in complete sentences. What are you taking away from this?"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Les abréviations que je ne connais pas, je les demande au lieu de deviner. Et quand je parle, chaque information a son verbe.",
+   "de": "Abkürzungen, die ich nicht kenne, frage ich nach, statt zu raten. Und beim Sprechen bekommt jede Information ein Verb.",
+   "en": "Abbreviations I don't know, I ask about instead of guessing. And when I speak, every piece of information gets a verb."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Parfait. Alors on y va, la vraie relève nous attend.",
+   "de": "Perfekt. Dann los, die echte Übergabe wartet.",
+   "en": "Perfect. Let's go then, the real handoff is waiting."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je lis en mots-clés, mais je parle en phrases. Et l'allergie, je la dis toujours, même si tout le monde la connaît.",
+   "de": "Ich lese in Stichworten, aber ich spreche in Sätzen. Und die Allergie sage ich immer, auch wenn alle sie kennen.",
+   "en": "I read in keywords, but I speak in sentences. And I always mention the allergy, even if everybody knows about it."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Parfait. Alors on y va, la vraie relève nous attend.",
+   "de": "Perfekt. Dann los, die echte Übergabe wartet.",
+   "en": "Perfect. Let's go then, the real handoff is waiting."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "J'apprends toutes les abréviations par cœur, comme ça je peux simplement les lire à voix haute.",
+   "de": "Ich lerne alle Abkürzungen auswendig, dann kann ich sie einfach vorlesen.",
+   "en": "I'll learn all the abbreviations by heart, then I can simply read them out."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Les apprendre par cœur, c'est bien. Mais les lire telles quelles ? La relève n'est pas un code.",
+   "de": "Auswendig lernen ist gut. Aber vorlesen? Die Übergabe ist doch kein Code.",
+   "en": "Learning them by heart is good. But reading them out? A handoff isn't a code."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Connaître les abréviations sert à lire la liste ; à l'oral, on les transforme en phrases.</b> Le collègue qui écoute n'a pas la liste sous les yeux : il a besoin d'un sujet, d'un verbe et de l'heure.",
+   "en": "<b>Knowing the abbreviations helps you read the list; when you speak, you turn them into sentences.</b> The colleague who is listening doesn't have the list in front of them: they need a subject, a verb and the time."
+  },
+  "ecouter.0.q": {
+   "fr": "Que veut dire « Z. n. » ?",
+   "de": "Was bedeutet „Z. n.“?",
+   "en": "What does “Z. n.” mean?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Chambre nouvelle.",
+   "de": "Zimmer neu.",
+   "en": "New room."
+  },
+  "ecouter.0.options.1": {
+   "fr": "État après (déjà arrivé).",
+   "de": "Zustand nach.",
+   "en": "Status post (it has already happened)."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Noter l'heure.",
+   "de": "Zeit notieren.",
+   "en": "Note the time."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand {brandt} a-t-il été opéré ?",
+   "de": "Wann ist {brandt} operiert worden?",
+   "en": "When did {brandt} have his surgery?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Hier soir.",
+   "de": "Gestern Abend.",
+   "en": "Last night."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Vendredi.",
+   "de": "Am Freitag.",
+   "en": "On Friday."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Ce matin.",
+   "de": "Heute Vormittag.",
+   "en": "This morning."
+  },
+  "ecouter.2.q": {
+   "fr": "Qu'est-ce que {brandt} ne doit en aucun cas recevoir ?",
+   "de": "Was darf {brandt} auf keinen Fall bekommen?",
+   "en": "What must {brandt} never be given?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "De la pénicilline.",
+   "de": "Penicillin.",
+   "en": "Penicillin."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Du thé.",
+   "de": "Tee.",
+   "en": "Tea."
+  },
+  "ecouter.2.options.2": {
+   "fr": "De l'insuline.",
+   "de": "Insulin.",
+   "en": "Insulin."
+  },
+  "ecouter.3.q": {
+   "fr": "Comment écrit-on dans la liste de relève ?",
+   "de": "Wie schreibt man in die Übergabeliste?",
+   "en": "How do you write on the handoff list?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "En longues phrases, avec tous les détails.",
+   "de": "In langen Sätzen, mit allen Details.",
+   "en": "In long sentences, with all the details."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Court, avec l'heure et la quantité.",
+   "de": "Kurz, mit Uhrzeit und Menge.",
+   "en": "Short, with the time and the amount."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Sans chiffres.",
+   "de": "Ohne Zahlen.",
+   "en": "Without numbers."
+  }
+ }
+}

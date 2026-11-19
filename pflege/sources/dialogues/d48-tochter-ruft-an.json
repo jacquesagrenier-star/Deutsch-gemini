@@ -1,0 +1,649 @@
+{
+ "id": "d48-tochter-ruft-an",
+ "numero": 48,
+ "niveau": "B1",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "olena",
+ "personnes": [
+  "schulze_tochter"
+ ],
+ "titre": {
+  "t": "Die Tochter ruft an",
+  "fr": "La fille d'un résident au téléphone"
+ },
+ "intro": {
+  "fr": "Samedi 14 novembre, huit heures et demie, au {heim}. Le téléphone du service sonne. C'est {schulze_tochter} : elle veut savoir comment son père, {schulze}, a passé la nuit. Le rapport de nuit dit qu'il s'est réveillé, agité, vers trois heures. Tu joues {olena} : présente-toi, vérifie qui appelle avant de donner des nouvelles, dis simplement ce qui s'est passé, sans enjoliver ni dramatiser, et demande si elle passe aujourd'hui."
+ },
+ "but": {
+  "fr": "Répondre au téléphone dans une maison de retraite : se présenter (le lieu, son nom) ; vérifier l'identité et l'autorisation avant d'informer ; raconter la nuit au Perfekt, simplement et honnêtement (er ist aufgewacht, er hat Milch getrunken, er ist wieder eingeschlafen) ; ne pas deviner une cause ; demander poliment (Könnten Sie … ?, Würden Sie … ?) ; finir par « Auf Wiederhören »."
+ },
+ "grammaire": [
+  "g13",
+  "g07"
+ ],
+ "telc": [
+  "hoeren",
+  "oral-1"
+ ],
+ "relire_notes": {
+  "fr": "Secret professionnel au téléphone en maison de retraite : vérifier dans le dossier que l'appelante est autorisée à recevoir des informations, puis une question de contrôle (la date de naissance du résident, 12.03.1939 d'après l'écrit e05) ; ce que la soignante peut dire de la nuit (ce qui est noté au rapport) ; le lait chaud la nuit (selon le plan de soins) ; ne pas avancer de cause à l'agitation ; documenter l'appel."
+ },
+ "redemittel": [
+  {
+   "t": "{heim}, guten Morgen. Hier spricht {olena} aus der Pflege.",
+   "fr": "{heim}, bonjour. Ici {olena}, de l'équipe soignante.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Bevor ich Ihnen Auskunft gebe, schaue ich kurz in die Akte.",
+   "fr": "Avant de vous donner des informations, je regarde rapidement dans le dossier.",
+   "fonction": "annoncer"
+  },
+  {
+   "t": "Zur Sicherheit: Können Sie mir das Geburtsdatum Ihres Vaters sagen?",
+   "fr": "Par sécurité : pouvez-vous me dire la date de naissance de votre père ?",
+   "fonction": "demander"
+  },
+  {
+   "t": "Ihr Vater ist gegen drei Uhr aufgewacht und war unruhig.",
+   "fr": "Votre père s'est réveillé vers trois heures et il était agité.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Nach einem Glas warmer Milch ist er wieder eingeschlafen.",
+   "fr": "Après un verre de lait chaud, il s'est rendormi.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Warum er wach war, wissen wir noch nicht genau.",
+   "fr": "Pourquoi il était réveillé, nous ne le savons pas encore exactement.",
+   "fonction": "transmettre"
+  },
+  {
+   "t": "Kommen Sie heute bei Ihrem Vater vorbei?",
+   "fr": "Vous passez voir votre père aujourd'hui ?",
+   "fonction": "demander"
+  },
+  {
+   "t": "Könnten Sie vielleicht ein paar alte Fotos mitbringen?",
+   "fr": "Pourriez-vous peut-être apporter quelques vieilles photos ?",
+   "fonction": "demander"
+  },
+  {
+   "t": "Ich richte ihm aus, dass Sie heute Nachmittag kommen.",
+   "fr": "Je lui dis que vous venez cet après-midi.",
+   "fonction": "transmettre"
+  }
+ ],
+ "debut": "anruf",
+ "noeuds": {
+  "anruf": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "Samedi, huit heures et demie. Le petit-déjeuner est fini. Dans le bureau du service, le téléphone sonne. {olena} décroche."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "{heim}, guten Morgen. Hier spricht {olena} aus der Pflege. Was kann ich für Sie tun?",
+     "fr": "{heim}, bonjour. Ici {olena}, de l'équipe soignante. Que puis-je faire pour vous ?",
+     "va": "pruefen",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "question",
+       "t": "Guten Morgen, hier spricht {schulze_tochter}, die Tochter von {schulze:dat}. Ich wollte fragen, wie mein Vater die Nacht verbracht hat.",
+       "fr": "Bonjour, ici {schulze_tochter}, la fille de {schulze}. Je voulais savoir comment mon père a passé la nuit."
+      }
+     ]
+    },
+    {
+     "t": "Guten Morgen, Sie sprechen mit {olena} vom {heim}. Wie kann ich Ihnen helfen?",
+     "fr": "Bonjour, vous êtes en ligne avec {olena}, du {heim}. Comment puis-je vous aider ?",
+     "va": "pruefen",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "question",
+       "t": "Guten Morgen, hier spricht {schulze_tochter}, die Tochter von {schulze:dat}. Ich wollte fragen, wie mein Vater die Nacht verbracht hat.",
+       "fr": "Bonjour, ici {schulze_tochter}, la fille de {schulze}. Je voulais savoir comment mon père a passé la nuit."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja? Hallo?",
+     "fr": "Oui ? Allô ?",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "Äh … bin ich da richtig im {heim}?",
+       "fr": "Euh… je suis bien au {heim} ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Au téléphone, on se présente tout de suite : le lieu, son nom, une offre d'aide.</b> La personne ne te voit pas : « {heim}, guten Morgen. Hier spricht {olena} aus der Pflege. Was kann ich für Sie tun? »"
+     }
+    }
+   ]
+  },
+  "pruefen": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Guten Morgen, {schulze_tochter}. Bevor ich Ihnen Auskunft gebe, schaue ich kurz in die Akte. Einen Moment, bitte.",
+     "fr": "Bonjour, {schulze_tochter:voc}. Avant de vous donner des informations, je regarde rapidement dans le dossier. Un instant, s'il vous plaît.",
+     "va": "geburtsdatum",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Natürlich. Gut, dass Sie das machen.",
+       "fr": "Bien sûr. C'est bien que vous le fassiez."
+      }
+     ]
+    },
+    {
+     "t": "Gern. Am Telefon muss ich aber zuerst sicher sein, mit wem ich spreche. Darf ich kurz in der Akte nachsehen?",
+     "fr": "Volontiers. Mais au téléphone, je dois d'abord être sûre de savoir à qui je parle. Je peux regarder rapidement dans le dossier ?",
+     "va": "geburtsdatum",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Natürlich. Gut, dass Sie das machen.",
+       "fr": "Bien sûr. C'est bien que vous le fassiez."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ach, {schulze}! Der war heute Nacht wieder unruhig, wie immer.",
+     "fr": "Ah, {schulze} ! Il était encore agité cette nuit, comme toujours.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "surprise",
+       "t": "Wie immer? … Moment, wissen Sie überhaupt, mit wem Sie sprechen?",
+       "fr": "Comme toujours ? … Attendez, vous savez seulement à qui vous parlez ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Au téléphone, aucune nouvelle avant de savoir qui appelle.</b> N'importe qui peut se dire « la fille ». Regarde d'abord dans le dossier qui peut recevoir des informations, puis pose une question de contrôle. Et « wie immer » est un jugement, pas une information."
+     }
+    }
+   ]
+  },
+  "geburtsdatum": {
+   "dit": [
+    {
+     "recit": {
+      "fr": "{olena} ouvre le dossier : {schulze_tochter}, sa fille, est inscrite comme personne à contacter, autorisée à recevoir des informations."
+     }
+    }
+   ],
+   "choix": [
+    {
+     "t": "Danke, Sie stehen bei uns in der Akte. Zur Sicherheit noch eine Frage: Können Sie mir das Geburtsdatum Ihres Vaters sagen?",
+     "fr": "Merci, vous êtes bien inscrite dans le dossier. Par sécurité, encore une question : pouvez-vous me dire la date de naissance de votre père ?",
+     "va": "nacht",
+     "relire": true,
+     "relire_note": "Vérification de l'identité au téléphone : personne autorisée au dossier, puis question de contrôle.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Am 12. März 1939.",
+       "dit": "Am zwölften März neunzehnhundertneununddreißig.",
+       "fr": "Le 12 mars 1939."
+      }
+     ]
+    },
+    {
+     "t": "Sie sind als Ansprechpartnerin eingetragen, danke. Darf ich trotzdem noch kurz nach dem Geburtsdatum Ihres Vaters fragen?",
+     "fr": "Vous êtes inscrite comme personne à contacter, merci. Puis-je quand même encore vous demander la date de naissance de votre père ?",
+     "va": "nacht",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Am 12. März 1939.",
+       "dit": "Am zwölften März neunzehnhundertneununddreißig.",
+       "fr": "Le 12 mars 1939."
+      }
+     ]
+    }
+   ]
+  },
+  "nacht": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Danke, das stimmt. Die Nacht war nicht ganz ruhig: Ihr Vater ist gegen drei Uhr aufgewacht und war unruhig. Die Kollegin vom Nachtdienst hat ihm ein Glas warme Milch gebracht, danach ist er wieder eingeschlafen.",
+     "fr": "Merci, c'est exact. La nuit n'a pas été tout à fait calme : votre père s'est réveillé vers trois heures et il était agité. La collègue de nuit lui a apporté un verre de lait chaud, ensuite il s'est rendormi.",
+     "va": "sturz",
+     "relire": true,
+     "relire_note": "Lait chaud la nuit selon le plan de soins.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "question",
+       "t": "Oh nein. Ist er aufgestanden? Ist er gestürzt?",
+       "fr": "Oh non. Il s'est levé ? Il est tombé ?"
+      }
+     ]
+    },
+    {
+     "t": "Das passt, danke. Im Nachtbericht steht: Gegen drei Uhr ist er wach geworden und war unruhig. Nach einem Glas warmer Milch ist er wieder eingeschlafen.",
+     "fr": "C'est bon, merci. Dans le rapport de nuit, il est écrit : vers trois heures, il s'est réveillé et il était agité. Après un verre de lait chaud, il s'est rendormi.",
+     "va": "sturz",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "question",
+       "t": "Oh nein. Ist er aufgestanden? Ist er gestürzt?",
+       "fr": "Oh non. Il s'est levé ? Il est tombé ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Danke. Alles super, er hat die ganze Nacht gut geschlafen.",
+     "fr": "Merci. Tout va super, il a bien dormi toute la nuit.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "Wirklich? Er schläft doch sonst nie durch. Steht das so im Bericht?",
+       "fr": "Vraiment ? D'habitude, il ne fait jamais ses nuits. C'est ce qui est écrit dans le rapport ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Des nouvelles simples et vraies, même quand elles ne sont pas parfaites.</b> Enjoliver casse la confiance : la famille finit par savoir. Dis ce qui est noté : « Er ist gegen drei Uhr aufgewacht und war unruhig. Danach ist er wieder eingeschlafen. »"
+     }
+    }
+   ]
+  },
+  "sturz": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Nein, gestürzt ist er nicht. Er ist aufgestanden und wollte in den Flur, aber die Kollegin ist bei ihm geblieben, bis er wieder ruhig war.",
+     "fr": "Non, il n'est pas tombé. Il s'est levé et voulait aller dans le couloir, mais la collègue est restée avec lui jusqu'à ce qu'il soit de nouveau calme.",
+     "va": "morgen",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "attentive",
+       "t": "Gott sei Dank. Und heute Morgen? Wie geht es ihm jetzt?",
+       "fr": "Dieu merci. Et ce matin ? Comment va-t-il maintenant ?"
+      }
+     ]
+    },
+    {
+     "t": "Nein, er ist nicht gestürzt. Er ist kurz aufgestanden, und die Kollegin war die ganze Zeit bei ihm.",
+     "fr": "Non, il n'est pas tombé. Il s'est levé un moment, et la collègue est restée avec lui tout le temps.",
+     "va": "morgen",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "attentive",
+       "t": "Gott sei Dank. Und heute Morgen? Wie geht es ihm jetzt?",
+       "fr": "Dieu merci. Et ce matin ? Comment va-t-il maintenant ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Nein, er hat nicht gestürzt. Er hat nur ein bisschen im Flur gelaufen.",
+     "fr": "Non, il « n'a pas tombé ». Il « a marché » un peu dans le couloir. (mal dit)",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "Er hat nicht gestürzt? … Sie meinen, er ist nicht gestürzt?",
+       "fr": "Il « n'a pas tombé » ? … Vous voulez dire qu'il n'est pas tombé ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>« stürzen », « aufstehen » et « laufen » font leur Perfekt avec « sein ».</b> « Er ist nicht gestürzt. Er ist ein bisschen im Flur gelaufen. » Les verbes de déplacement et de changement d'état prennent « sein »."
+     }
+    }
+   ]
+  },
+  "morgen": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Heute Morgen ist er um fünf aufgestanden, wie jeden Morgen, und hat gut gefrühstückt. Jetzt sitzt er im Aufenthaltsraum und hört Radio.",
+     "fr": "Ce matin, il s'est levé à cinq heures, comme chaque matin, et il a bien pris son petit-déjeuner. Maintenant, il est assis dans la salle commune et il écoute la radio.",
+     "va": "warum",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Mit seiner Dienstmütze, wette ich. … Wissen Sie denn, warum er nachts so unruhig ist?",
+       "fr": "Avec sa casquette de service, je parie. … Est-ce qu'on sait pourquoi il est si agité la nuit ?"
+      }
+     ]
+    },
+    {
+     "t": "Jetzt geht es ihm gut. Er hat gefrühstückt und sitzt mit seiner Mütze im Aufenthaltsraum, am Radio.",
+     "fr": "Maintenant, il va bien. Il a pris son petit-déjeuner et il est assis avec sa casquette dans la salle commune, près de la radio.",
+     "va": "warum",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Ja, die Mütze … Wissen Sie denn, warum er nachts so unruhig ist?",
+       "fr": "Oui, la casquette… Est-ce qu'on sait pourquoi il est si agité la nuit ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Aktuell ist er orientiert und vitalstabil.",
+     "fr": "Actuellement, il est orienté et ses constantes sont stables.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "Vital… was? Heißt das, es geht ihm gut?",
+       "fr": "Constantes… quoi ? Ça veut dire qu'il va bien ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Avec la famille, des mots de tous les jours.</b> Les termes du dossier (orientiert, vitalstabil) ne disent rien à une fille inquiète. Dis ce qu'il fait : « Er hat gut gefrühstückt und sitzt im Aufenthaltsraum. »"
+     }
+    }
+   ]
+  },
+  "warum": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Das wissen wir noch nicht genau. Wir schreiben jede Nacht auf, wann er wach wird und was ihm hilft. Heute Nacht hat die warme Milch geholfen.",
+     "fr": "Nous ne le savons pas encore exactement. Nous notons chaque nuit à quelle heure il se réveille et ce qui l'aide. Cette nuit, c'est le lait chaud qui a aidé.",
+     "va": "besuch",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "attentive",
+       "t": "Zu Hause hat er abends immer einen Kamillentee getrunken. Vielleicht hilft das ja auch.",
+       "fr": "À la maison, le soir, il buvait toujours une camomille. Ça aiderait peut-être aussi."
+      }
+     ]
+    },
+    {
+     "t": "Warum er wach war, wissen wir noch nicht genau. Wir beobachten es weiter und notieren jede Nacht, was ihn beruhigt.",
+     "fr": "Pourquoi il était réveillé, nous ne le savons pas encore exactement. Nous continuons à observer, et nous notons chaque nuit ce qui l'apaise.",
+     "va": "besuch",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "attentive",
+       "t": "Zu Hause hat er abends immer einen Kamillentee getrunken. Vielleicht hilft das ja auch.",
+       "fr": "À la maison, le soir, il buvait toujours une camomille. Ça aiderait peut-être aussi."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ich glaube, er hat Schmerzen. Deshalb wird er nachts wach.",
+     "fr": "Je crois qu'il a mal. C'est pour ça qu'il se réveille la nuit.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "surprise",
+       "t": "Schmerzen? Hat das ein Arzt gesagt?",
+       "fr": "Il a mal ? C'est un médecin qui l'a dit ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>Ne devine pas une cause au téléphone : dis ce qui est noté, et ce que tu ne sais pas.</b> Une supposition devient vite, pour la famille, un diagnostic. « Warum er wach war, wissen wir noch nicht genau. Wir beobachten es weiter. »"
+     }
+    }
+   ]
+  },
+  "besuch": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Das ist ein guter Hinweis, den schreibe ich auf. Kommen Sie heute bei Ihrem Vater vorbei?",
+     "fr": "C'est une bonne indication, je la note. Vous passez voir votre père aujourd'hui ?",
+     "va": "fotos",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Ja, um drei. Normalerweise komme ich ja sonntags, aber heute ist doch das Gespräch über seine Biografie. Mit Ihnen, oder?",
+       "fr": "Oui, à trois heures. D'habitude, je viens le dimanche, mais aujourd'hui, il y a l'entretien sur sa biographie. Avec vous, c'est ça ?"
+      }
+     ]
+    },
+    {
+     "t": "Danke, das notiere ich gleich. Darf ich fragen, ob Sie heute vorbeikommen?",
+     "fr": "Merci, je le note tout de suite. Puis-je vous demander si vous passez aujourd'hui ?",
+     "va": "fotos",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Ja, um drei. Normalerweise komme ich ja sonntags, aber heute ist doch das Gespräch über seine Biografie. Mit Ihnen, oder?",
+       "fr": "Oui, à trois heures. D'habitude, je viens le dimanche, mais aujourd'hui, il y a l'entretien sur sa biographie. Avec vous, c'est ça ?"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Sie kommen heute, oder? Sonst hat er heute Nacht bestimmt wieder Angst.",
+     "fr": "Vous venez aujourd'hui, n'est-ce pas ? Sinon, il aura sûrement encore peur cette nuit.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "surprise",
+       "t": "Wollen Sie damit sagen, dass es meine Schuld ist?",
+       "fr": "Vous voulez dire que c'est ma faute ?"
+      }
+     ],
+     "aide": {
+      "fr": "<b>On ne culpabilise jamais la famille.</b> Une question simple suffit : « Kommen Sie heute bei Ihrem Vater vorbei? » Ses visites ne sont ni un devoir ni la cause de ses nuits."
+     }
+    }
+   ]
+  },
+  "fotos": {
+   "dit": [],
+   "choix": [
+    {
+     "t": "Genau, um fünfzehn Uhr mit meinem Kollegen {arun}. Könnten Sie vielleicht ein paar alte Fotos mitbringen? Von der Straßenbahn oder von früher. Das hilft uns beim Gespräch.",
+     "fr": "C'est ça, à quinze heures, avec mon collègue {arun}. Pourriez-vous peut-être apporter quelques vieilles photos ? Du tramway, ou d'autrefois. Ça nous aidera pendant l'entretien.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Gern. Ich habe ein ganzes Album, mit ihm vor seiner Bahn.",
+       "fr": "Volontiers. J'ai tout un album, avec lui devant son tram."
+      }
+     ]
+    },
+    {
+     "t": "Richtig, das Gespräch haben Sie mit meinem Kollegen {arun}. Würden Sie vielleicht ein paar Fotos von früher mitbringen? Ihr Vater erzählt dann oft mehr.",
+     "fr": "Exact, vous avez l'entretien avec mon collègue {arun}. Est-ce que vous voudriez bien apporter quelques photos d'autrefois ? Votre père raconte souvent plus, avec des photos.",
+     "va": "ende",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Gern. Ich habe ein ganzes Album, mit ihm vor seiner Bahn.",
+       "fr": "Volontiers. J'ai tout un album, avec lui devant son tram."
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja. Bringen Sie Fotos mit.",
+     "fr": "Oui. Apportez des photos.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "Fotos? … Das klingt ja wie ein Befehl.",
+       "fr": "Des photos ? … On dirait un ordre."
+      }
+     ],
+     "aide": {
+      "fr": "<b>Une demande à la famille se dit au conditionnel poli : « Könnten Sie … ? », « Würden Sie … ? ».</b> L'impératif sec sonne comme un ordre. Et dis pourquoi : « Könnten Sie vielleicht ein paar alte Fotos mitbringen? Das hilft uns beim Gespräch. »"
+     }
+    }
+   ]
+  },
+  "ende": {
+   "dit": [
+    {
+     "qui": "schulze_tochter",
+     "air": "sourire",
+     "t": "Gut, dann bis heute Nachmittag. Sagen Sie ihm bitte, dass ich komme?",
+     "fr": "Bien, alors à cet après-midi. Vous lui direz que je viens, s'il vous plaît ?"
+    }
+   ],
+   "choix": [
+    {
+     "t": "Mache ich gern. Ich richte ihm aus, dass Sie heute Nachmittag kommen. Auf Wiederhören, {schulze_tochter}!",
+     "fr": "Volontiers. Je lui dis que vous venez cet après-midi. Au revoir, {schulze_tochter:voc} !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Danke, {olena}. Auf Wiederhören!",
+       "fr": "Merci, {olena}. Au revoir !"
+      }
+     ]
+    },
+    {
+     "t": "Natürlich, das sage ich ihm gleich. Danke für Ihren Anruf, und bis später. Auf Wiederhören!",
+     "fr": "Bien sûr, je le lui dis tout de suite. Merci pour votre appel, et à plus tard. Au revoir !",
+     "va": null,
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "sourire",
+       "t": "Danke, {olena}. Auf Wiederhören!",
+       "fr": "Merci, {olena}. Au revoir !"
+      }
+     ]
+    },
+    {
+     "faux": true,
+     "t": "Ja, ja. Tschüss.",
+     "fr": "Ouais, ouais. Salut.",
+     "puis": [
+      {
+       "qui": "schulze_tochter",
+       "air": "perplexe",
+       "t": "… Tschüss.",
+       "fr": "… Salut."
+      }
+     ],
+     "aide": {
+      "fr": "<b>On finit un appel professionnel poliment : remercier, redire ce qui est convenu, « Auf Wiederhören ».</b> « Tschüss » va entre collègues ou amis, pas avec la famille d'un résident."
+     }
+    }
+   ]
+  }
+ },
+ "ecouter": [
+  {
+   "q": {
+    "t": "Wann ist {schulze} in der Nacht aufgewacht?",
+    "fr": "À quelle heure {schulze} s'est-il réveillé dans la nuit ?"
+   },
+   "options": [
+    {
+     "t": "Gegen Mitternacht.",
+     "fr": "Vers minuit."
+    },
+    {
+     "t": "Gegen drei Uhr.",
+     "fr": "Vers trois heures."
+    },
+    {
+     "t": "Gegen fünf Uhr.",
+     "fr": "Vers cinq heures."
+    }
+   ],
+   "juste": 1
+  },
+  {
+   "q": {
+    "t": "Was hat ihm geholfen, wieder einzuschlafen?",
+    "fr": "Qu'est-ce qui l'a aidé à se rendormir ?"
+   },
+   "options": [
+    {
+     "t": "Ein Glas warme Milch.",
+     "fr": "Un verre de lait chaud."
+    },
+    {
+     "t": "Eine Schlaftablette.",
+     "fr": "Un somnifère."
+    },
+    {
+     "t": "Ein Kamillentee.",
+     "fr": "Une camomille."
+    }
+   ],
+   "juste": 0
+  },
+  {
+   "q": {
+    "t": "Wann kommt {schulze_tochter} heute?",
+    "fr": "À quelle heure {schulze_tochter} vient-elle aujourd'hui ?"
+   },
+   "options": [
+    {
+     "t": "Um zehn Uhr.",
+     "fr": "À dix heures."
+    },
+    {
+     "t": "Am Abend.",
+     "fr": "Le soir."
+    },
+    {
+     "t": "Um drei Uhr nachmittags.",
+     "fr": "À trois heures de l'après-midi."
+    }
+   ],
+   "juste": 2
+  },
+  {
+   "q": {
+    "t": "Was soll sie mitbringen?",
+    "fr": "Qu'est-ce qu'elle doit apporter ?"
+   },
+   "options": [
+    {
+     "t": "Kamillentee.",
+     "fr": "De la camomille."
+    },
+    {
+     "t": "Alte Fotos.",
+     "fr": "De vieilles photos."
+    },
+    {
+     "t": "Seine Brille.",
+     "fr": "Ses lunettes."
+    }
+   ],
+   "juste": 1
+  }
+ ]
+}

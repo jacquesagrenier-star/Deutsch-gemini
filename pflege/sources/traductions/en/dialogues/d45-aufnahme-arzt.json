@@ -1,0 +1,497 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d45-aufnahme-arzt.json",
+ "cles": {
+  "titre": {
+   "fr": "Présenter une admission à la médecin",
+   "de": "Die Neuaufnahme an die Ärztin übergeben",
+   "en": "Handing over the new admission to the doctor"
+  },
+  "intro": {
+   "fr": "Lundi 9 novembre, douze heures trente, au poste de soins. {sommer} a été retenue toute la matinée aux urgences : elle n'a pas encore vu {lehmann}, arrivée à 10 h 15. {elif} a fait l'entretien d'admission (dialogue 13) et rempli la fiche. Tu joues {elif} : présente la patiente à la médecin avec des valeurs précises (constantes, glycémie, plaie, allergies, traitement de la maison, risque de chute, peau), réponds à ses questions, puis dis ce qui reste à faire.",
+   "en": "Monday, November 9, 12:30, at the nurses' station. {sommer} was held up in the emergency department all morning: she hasn't yet seen {lehmann}, who arrived at 10:15. {elif} did the admission interview (dialogue 13) and filled in the form. You play {elif}: present the patient to the doctor with precise values (vital signs, blood sugar, wound, allergies, home medications, fall risk, skin), answer her questions, then say what still has to be done."
+  },
+  "but": {
+   "fr": "Faire un rapport oral à une médecin : dans l'ordre, en phrases complètes, avec des valeurs et leur unité ; décrire une plaie sans poser de diagnostic ; dire ce qui a été fait au passif (wurde fotografiert, ist angeordnet) ; distinguer ce qu'on sait de ce qu'on suppose ; nommer ce qui reste à faire et le demander poliment.",
+   "en": "Give an oral report to a doctor: in order, in full sentences, with values and their units; describe a wound without making a diagnosis; say what has been done in the passive (wurde fotografiert, ist angeordnet); distinguish what you know from what you assume; name what still has to be done and ask for it politely."
+  },
+  "relire_notes": {
+   "fr": "Valeurs inventées pour le cas, cohérentes avec e02 et le dialogue 13 : TA 150/85 mmHg (hypertension connue), pouls 78 régulier, T 36,8 °C, glycémie 245 mg/dl à 11 h (insuline du matin faite à 7 h à la maison). Pas d'insuline de correction tant qu'aucun schéma n'est prescrit. Plaie : ulcère de l'avant-pied droit d'environ 2 × 1,5 cm, bord légèrement rouge, sans pus ni odeur ; photo, pansement stérile, chaussure de décharge. Traitement personnel : insuline matin et soir (dose modifiée la semaine précédente, prise sur le plan de la médecin traitante, jamais de mémoire), un antihypertenseur ; à prescrire et signer par la médecin. Risque de chute (canne, chaussure de décharge, polyneuropathie, deux levers la nuit) : lit en position basse, sonnette, veilleuse. Peau sèche aux jambes, intacte ; échelle de Braden sans risque accru. Conseil diabétologique. Levée du secret pour la fille.",
+   "en": "Values invented for the case, consistent with e02 and dialogue 13: BP 150/85 mmHg (known hypertension), pulse 78 regular, T 36.8 °C, blood sugar 245 mg/dl at 11:00 (morning insulin injected at 07:00 at home). No correction insulin as long as no sliding scale has been ordered. Wound: ulcer on the right forefoot, about 2 × 1.5 cm, edge slightly red, no pus or odor; photo, sterile dressing, offloading shoe. Home medications: insulin morning and evening (dose changed the week before, taken from the family doctor's plan, never from memory), one blood pressure medication; to be ordered and signed by the doctor. Fall risk (walking stick, offloading shoe, polyneuropathy, gets up twice at night): bed in low position, call bell, night light. Dry skin on the lower legs, intact; Braden scale shows no increased risk. Diabetes education. Confidentiality waiver for the daughter."
+  },
+  "redemittel.0": {
+   "fr": "Puis-je vous présenter rapidement la nouvelle admission de la chambre 14 ?",
+   "de": "Darf ich Ihnen kurz die Neuaufnahme aus Zimmer 14 vorstellen?",
+   "en": "May I briefly present the new admission in room 14 to you?"
+  },
+  "redemittel.1": {
+   "fr": "Elle a été adressée ce matin par sa médecin traitante.",
+   "de": "Sie wurde heute Vormittag von ihrer Hausärztin eingewiesen.",
+   "en": "She was referred this morning by her family doctor."
+  },
+  "redemittel.2": {
+   "fr": "J'ai mesuré la glycémie à onze heures.",
+   "de": "Den Blutzucker habe ich um elf Uhr gemessen.",
+   "en": "I measured her blood sugar at 11:00."
+  },
+  "redemittel.3": {
+   "fr": "Je n'ai pas encore donné d'insuline, parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.",
+   "en": "I haven't given any insulin yet, because no sliding scale has been ordered yet."
+  },
+  "redemittel.4": {
+   "fr": "La plaie a été photographiée et couverte d'un pansement stérile.",
+   "de": "Die Wunde wurde fotografiert und steril abgedeckt.",
+   "en": "The wound was photographed and covered with a sterile dressing."
+  },
+  "redemittel.5": {
+   "fr": "Son risque de chute est augmenté.",
+   "de": "Ihr Sturzrisiko ist erhöht.",
+   "en": "Her fall risk is increased."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous prescrire et signer le traitement personnel, s'il vous plaît ?",
+   "de": "Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?",
+   "en": "Could you please order and sign her home medications?"
+  },
+  "redemittel.7": {
+   "fr": "J'aimerais demander le conseil en diabétologie.",
+   "de": "Ich würde gern die Diabetesberatung anmelden.",
+   "en": "I'd like to request the diabetes education."
+  },
+  "redemittel.8": {
+   "fr": "La levée du secret professionnel pour la fille est au dossier.",
+   "de": "Eine Schweigepflichtentbindung für die Tochter liegt vor.",
+   "en": "There is a confidentiality waiver for the daughter on file."
+  },
+  "noeuds.anfang.dit.0.recit": {
+   "fr": "Douze heures trente, au poste de soins. {sommer} revient des urgences, une tasse de café à la main. {elif} a devant elle la fiche d'admission de {lehmann}.",
+   "en": "12:30, at the nurses' station. {sommer} comes back from the emergency department, a cup of coffee in her hand. {elif} has {lehmann}'s admission form in front of her."
+  },
+  "noeuds.anfang.dit.1": {
+   "fr": "{elif}, c'est vous qui avez fait l'admission de la quatorze ? Je vais la voir tout de suite. Qu'est-ce que je dois savoir avant ?",
+   "de": "{elif}, Sie haben die Aufnahme in der Vierzehn gemacht? Ich gehe gleich zu ihr. Was muss ich vorher wissen?",
+   "en": "{elif}, you did the admission in fourteen? I'm about to go and see her. What do I need to know first?"
+  },
+  "noeuds.anfang.choix.0": {
+   "fr": "Oui. Chambre 14, {lehmann}, 74 ans. Elle est arrivée aujourd'hui à 10 h 15, adressée par sa médecin traitante, pour un ulcère de l'avant-pied droit. Elle a un diabète de type 2 depuis quinze ans et s'injecte de l'insuline.",
+   "de": "Ja. Zimmer 14, {lehmann}, 74 Jahre. Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. Sie hat seit fünfzehn Jahren Diabetes Typ 2 und spritzt Insulin.",
+   "en": "Yes. Room 14, {lehmann}, 74 years old. She came in today at 10:15, referred by her family doctor, because of an ulcer on her right forefoot. She has had type 2 diabetes for fifteen years and injects insulin."
+  },
+  "noeuds.anfang.choix.0.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "en": "Good. What were the vital signs?"
+  },
+  "noeuds.anfang.choix.1": {
+   "fr": "{lehmann}, 74 ans, a été adressée ce matin par sa médecin traitante. Le motif d'admission est un ulcère de l'avant-pied droit, sur un diabète de type 2 traité par insuline depuis quinze ans.",
+   "de": "{lehmann}, 74 Jahre, wurde heute Vormittag von ihrer Hausärztin eingewiesen. Aufnahmegrund ist ein Ulkus am rechten Vorfuß bei einem Diabetes Typ 2, der seit fünfzehn Jahren mit Insulin behandelt wird.",
+   "en": "{lehmann}, 74 years old, was referred this morning by her family doctor. The reason for admission is an ulcer on the right forefoot, with type 2 diabetes that has been treated with insulin for fifteen years."
+  },
+  "noeuds.anfang.choix.1.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "en": "Good. What were the vital signs?"
+  },
+  "noeuds.anfang.choix.2": {
+   "fr": "Quatorze : ulcère avant-pied dr., DT, sinon RAS.",
+   "de": "Vierzehn: Ulkus Vorfuß re., DM, sonst o. B.",
+   "en": "Fourteen: ulcer forefoot R, DM, otherwise WNL."
+  },
+  "noeuds.anfang.choix.2.puis.0": {
+   "fr": "« RAS », pour une nouvelle admission que je n'ai pas encore vue ? En phrases complètes, s'il vous plaît.",
+   "de": "„O. B.“, bei einer Neuaufnahme, die ich noch nicht gesehen habe? In ganzen Sätzen, bitte.",
+   "en": "“WNL” (“o. B.”), for a new admission I haven't seen yet? In full sentences, please."
+  },
+  "noeuds.anfang.choix.2.aide": {
+   "fr": "<b>Le style télégraphique est pour la fiche ; à l'oral, une admission se présente en phrases.</b> Qui (nom, âge, chambre), depuis quand, envoyée par qui, pourquoi : « Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. » Et « o. B. » (rien de particulier) ne résume pas un patient qu'on présente.",
+   "en": "<b>Telegram style is for the form; out loud, an admission is presented in sentences.</b> Who (name, age, room), since when, sent by whom, why: “Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß.” And “o. B.” (nothing abnormal) doesn't sum up a patient you are presenting."
+  },
+  "noeuds.vital.choix.0": {
+   "fr": "Tension 150 sur 85, pouls 78 et régulier, température 36,8 degrés. J'ai mesuré la glycémie à onze heures : 245 milligrammes par décilitre.",
+   "de": "Blutdruck 150 zu 85, Puls 78 und regelmäßig, Temperatur 36,8 Grad. Den Blutzucker habe ich um elf Uhr gemessen: 245 Milligramm pro Deziliter.",
+   "en": "Blood pressure 150 over 85, pulse 78 and regular, temperature 36.8 degrees. I measured her blood sugar at 11:00: 245 milligrams per deciliter."
+  },
+  "noeuds.vital.choix.0.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "en": "Two hundred forty-five, that's too high. Have you given any insulin yet?"
+  },
+  "noeuds.vital.choix.1": {
+   "fr": "La tension était un peu élevée, à 150 sur 85 ; une hypertension est connue. Pouls 78, pas de fièvre, 36,8 degrés. Glycémie à onze heures : 245.",
+   "de": "Der Blutdruck war mit 150 zu 85 etwas erhöht; eine Hypertonie ist bekannt. Puls 78, kein Fieber, 36,8 Grad. Blutzucker um elf Uhr: 245.",
+   "en": "Her blood pressure was slightly elevated at 150 over 85; she has known hypertension. Pulse 78, no fever, 36.8 degrees. Blood sugar at 11:00: 245."
+  },
+  "noeuds.vital.choix.1.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "en": "Two hundred forty-five, that's too high. Have you given any insulin yet?"
+  },
+  "noeuds.vital.choix.2": {
+   "fr": "Les valeurs étaient toutes normales, je crois. Juste le sucre était un peu élevé.",
+   "de": "Die Werte waren eigentlich alle normal, glaube ich. Nur der Zucker war ein bisschen hoch.",
+   "en": "The values were actually all normal, I think. Only her sugar was a bit high."
+  },
+  "noeuds.vital.choix.2.puis.0": {
+   "fr": "« Je crois » et « un peu » ? Qu'est-ce qu'il y a sur la fiche ?",
+   "de": "„Glaube ich“ und „ein bisschen“? Was steht denn auf dem Bogen?",
+   "en": "“I think” and “a bit”? So what does it say on the form?"
+  },
+  "noeuds.vital.choix.2.aide": {
+   "fr": "<b>À une médecin, on donne les valeurs, avec l'heure et l'unité, pas une impression.</b> « Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter. » « Normal » et « un peu », c'est à elle d'en juger.",
+   "en": "<b>You give a doctor the values, with the time and the unit, not an impression.</b> “Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter.” “Normal” and “a bit” are for her to judge."
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "Non. Aucun schéma n'est encore prescrit, c'est pourquoi je n'ai rien donné. Son insuline, elle l'a faite ce matin à sept heures à la maison.",
+   "de": "Nein. Es ist noch kein Schema angeordnet, deshalb habe ich nichts gegeben. Ihr Insulin hat sie heute Morgen um sieben zu Hause gespritzt.",
+   "en": "No. No sliding scale has been ordered yet, so I haven't given anything. She injected her insulin at home this morning at 07:00."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "en": "Quite right. I'll order a sliding scale right away. Does she have a medication plan with her?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "Pas encore, parce qu'il n'y a encore aucune prescription pour elle. Selon ses propres dires, elle a fait sa dose du matin à sept heures à la maison.",
+   "de": "Noch nicht, weil für sie noch keine Anordnung vorliegt. Die Morgendosis hat sie laut eigener Aussage um sieben Uhr zu Hause gespritzt.",
+   "en": "Not yet, because there is no order for her yet. By her own account, she injected her morning dose at home at 07:00."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "en": "Quite right. I'll order a sliding scale right away. Does she have a medication plan with her?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "Oui, je lui ai déjà donné quatre unités. Ça convient en général.",
+   "de": "Ja, ich habe ihr schon mal vier Einheiten gegeben. Das passt meistens.",
+   "en": "Yes, I've gone ahead and given her four units. That usually fits."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "Sans prescription ? Ce n'est pas possible, {elif}. Qui l'a prescrit ?",
+   "de": "Ohne Anordnung? Das geht nicht, {elif}. Wer hat das verordnet?",
+   "en": "Without an order? That won't do, {elif}. Who prescribed that?"
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Pas d'insuline sans prescription, même quand la glycémie est haute.</b> On donne la valeur à la médecin et on attend le schéma : « Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist. » « Ça convient en général » ne vaut rien pour une patiente qu'on ne connaît pas.",
+   "en": "<b>No insulin without an order, even when the blood sugar is high.</b> You give the doctor the value and wait for the sliding scale: “Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.” “That usually fits” is worth nothing for a patient you don't know."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Oui, le plan de sa médecin traitante est dans le dossier : insuline matin et soir, la dose a été modifiée la semaine dernière, et un comprimé contre l'hypertension. Elle-même n'était pas sûre de sa dose d'insuline, c'est pourquoi je me suis fiée au plan.",
+   "de": "Ja, der Plan ihrer Hausärztin liegt in der Akte: Insulin morgens und abends, die Dosis wurde letzte Woche geändert, und eine Tablette gegen den Bluthochdruck. Sie selbst war bei der Insulindosis unsicher, deshalb habe ich mich an den Plan gehalten.",
+   "en": "Yes, her family doctor's plan is in her file: insulin morning and evening, the dose was changed last week, and one tablet for high blood pressure. She herself wasn't sure about the insulin dose, so I went by the plan."
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "en": "Good that you went by the plan. And the foot?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Son plan de médicaments est dans le dossier. Elle s'injecte de l'insuline matin et soir et prend un médicament pour la tension. Comme elle n'était pas sûre de la nouvelle dose, je n'ai repris que le plan, pas ce qu'elle m'a dit.",
+   "de": "Ihr Medikamentenplan ist in der Akte. Sie spritzt morgens und abends Insulin und nimmt ein Blutdruckmittel. Weil sie sich bei der neuen Dosis nicht sicher war, habe ich nur den Plan übernommen, nicht ihre Angabe.",
+   "en": "Her medication plan is in the file. She injects insulin morning and evening and takes a blood pressure medication. Because she wasn't sure about the new dose, I took over only the plan, not what she told me."
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "en": "Good that you went by the plan. And the foot?"
+  },
+  "noeuds.medikamente.choix.2": {
+   "fr": "Elle s'injecte douze ou quatorze unités, elle ne savait pas exactement. J'ai noté douze, pour l'instant.",
+   "de": "Sie spritzt zwölf oder vierzehn Einheiten, sie wusste es nicht genau. Ich habe mal zwölf aufgeschrieben.",
+   "en": "She injects twelve or fourteen units, she didn't know exactly. I've put down twelve for now."
+  },
+  "noeuds.medikamente.choix.2.puis.0": {
+   "fr": "« Douze, pour l'instant » ? Il n'y a pas de plan de la médecin traitante ?",
+   "de": "„Mal zwölf“? Gibt es denn keinen Plan von der Hausärztin?",
+   "en": "“Twelve for now”? Isn't there a plan from the family doctor?"
+  },
+  "noeuds.medikamente.choix.2.aide": {
+   "fr": "<b>Une dose dont la patiente n'est pas sûre ne se rapporte pas comme un fait : on dit d'où vient l'information.</b> Ici, le plan de la médecin traitante fait foi : « Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher. »",
+   "en": "<b>A dose the patient isn't sure of is not reported as a fact: you say where the information comes from.</b> Here, the family doctor's plan is what counts: “Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher.”"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Un ulcère de l'avant-pied droit, d'environ deux centimètres sur un et demi. Le bord est légèrement rouge, pas de pus, pas d'odeur. La plaie a été photographiée et couverte d'un pansement stérile. Elle n'a presque pas mal, un sur dix, parce qu'elle sent peu ses pieds.",
+   "de": "Ein Ulkus am rechten Vorfuß, etwa zwei mal anderthalb Zentimeter. Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch. Die Wunde wurde fotografiert und steril abgedeckt. Schmerzen hat sie kaum, eine Eins, weil sie die Füße wenig spürt.",
+   "en": "An ulcer on the right forefoot, about two by one and a half centimeters. The wound edge is slightly red, no pus, no odor. The wound was photographed and covered with a sterile dressing. She has hardly any pain, a one out of ten, because she has little feeling in her feet."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "en": "I'll take a look at it in a moment. Allergies?"
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "La plaie mesure environ deux centimètres sur un et demi, le bord est légèrement rouge, elle n'est pas fibrineuse et ne sent pas. Elle a été photographiée et couverte d'un pansement stérile, et la chaussure de décharge est mise.",
+   "de": "Die Wunde ist etwa zwei mal anderthalb Zentimeter groß, der Rand ist leicht gerötet, sie ist nicht belegt und riecht nicht. Sie ist fotografiert und mit einem sterilen Verband versorgt worden, und der Verbandsschuh ist angezogen.",
+   "en": "The wound is about two by one and a half centimeters, the edge is slightly red, there is no slough and no odor. It has been photographed and covered with a sterile dressing, and the offloading shoe is on."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "en": "I'll take a look at it in a moment. Allergies?"
+  },
+  "noeuds.wunde.choix.2": {
+   "fr": "La plaie est infectée. Elle a sûrement besoin d'un antibiotique.",
+   "de": "Die Wunde ist entzündet. Sie braucht bestimmt ein Antibiotikum.",
+   "en": "The wound is infected. She's sure to need an antibiotic."
+  },
+  "noeuds.wunde.choix.2.puis.0": {
+   "fr": "Ça, je le déciderai quand je l'aurai vue. Décrivez-moi, s'il vous plaît, ce que vous avez vu.",
+   "de": "Das entscheide ich, wenn ich sie gesehen habe. Beschreiben Sie mir bitte, was Sie gesehen haben.",
+   "en": "I'll decide that once I've seen it. Please describe to me what you saw."
+  },
+  "noeuds.wunde.choix.2.aide": {
+   "fr": "<b>Décris la plaie, ne pose pas de diagnostic.</b> Taille, bord, pus, odeur : « Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch. » Puis ce qui a été fait, au passif : « Die Wunde wurde fotografiert und steril abgedeckt. » Le diagnostic et le traitement reviennent à la médecin.",
+   "en": "<b>Describe the wound, don't make a diagnosis.</b> Size, edge, pus, odor: “Der Wundrand ist leicht gerötet, kein Eiter, kein Geruch.” Then what was done, in the passive: “Die Wunde wurde fotografiert und steril abgedeckt.” Diagnosis and treatment are up to the doctor."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Aucune connue. J'ai demandé expressément pour les médicaments, les pansements et les aliments.",
+   "de": "Keine bekannt. Ich habe ausdrücklich nach Medikamenten, Pflastern und Lebensmitteln gefragt.",
+   "en": "None known. I asked specifically about medications, adhesive bandages and foods."
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "en": "Good. How mobile is she?"
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Aucune allergie connue, pas non plus aux pansements ni aux désinfectants. J'ai demandé exprès.",
+   "de": "Allergien sind keine bekannt, auch nicht gegen Pflaster oder Desinfektionsmittel. Ich habe extra nachgefragt.",
+   "en": "No known allergies, not to adhesive bandages or disinfectants either. I made a point of asking."
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "en": "Good. How mobile is she?"
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Je n'ai pas demandé directement, mais elle n'a rien dit.",
+   "de": "Ich habe nicht direkt gefragt, aber sie hat nichts gesagt.",
+   "en": "I didn't ask directly, but she didn't say anything."
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Alors on ne le sait pas. Demandez-lui, s'il vous plaît, avant que je prescrive quoi que ce soit.",
+   "de": "Dann wissen wir es nicht. Fragen Sie bitte nach, bevor ich etwas anordne.",
+   "en": "Then we don't know. Please ask her before I order anything."
+  },
+  "noeuds.allergien.choix.2.aide": {
+   "fr": "<b>« Elle n'a rien dit » n'est pas « aucune allergie » : une allergie se demande, toujours.</b> Médicaments, pansements, aliments. Puis on rapporte : « Keine bekannt. Ich habe ausdrücklich nachgefragt. »",
+   "en": "<b>“She didn't say anything” is not “no allergies”: you always ask about an allergy.</b> Medications, adhesive bandages, foods. Then you report: “Keine bekannt. Ich habe ausdrücklich nachgefragt.”"
+  },
+  "noeuds.sturz.choix.0": {
+   "fr": "Elle marche avec une canne et porte la chaussure de décharge à droite. À cause de la polyneuropathie, et parce qu'elle va deux fois aux toilettes la nuit, son risque de chute est augmenté. Le lit a été mis en position basse, la sonnette lui a été expliquée, et la nuit une veilleuse reste allumée.",
+   "de": "Sie geht mit einem Gehstock und trägt rechts den Verbandsschuh. Wegen der Polyneuropathie und weil sie nachts zweimal zur Toilette geht, ist ihr Sturzrisiko erhöht. Das Bett wurde ganz nach unten gestellt, die Klingel ist erklärt, und nachts bleibt ein Licht an.",
+   "en": "She walks with a walking stick and wears the offloading shoe on the right. Because of the polyneuropathy, and because she goes to the bathroom twice a night, her fall risk is increased. The bed has been set to its lowest position, the call bell has been explained, and a light stays on at night."
+  },
+  "noeuds.sturz.choix.0.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "en": "Very good. And her skin?"
+  },
+  "noeuds.sturz.choix.1": {
+   "fr": "Avec sa canne, elle se déplace seule. Elle risque quand même de tomber : elle sent peu ses pieds, porte la chaussure de décharge et se lève deux fois la nuit. Lit en position basse, sonnette à portée de main, veilleuse allumée.",
+   "de": "Mit dem Gehstock ist sie selbstständig mobil. Sturzgefährdet ist sie trotzdem: Sie spürt die Füße wenig, trägt den Verbandsschuh und steht nachts zweimal auf. Bett tief gestellt, Klingel in Reichweite, Nachtlicht an.",
+   "en": "With the walking stick she gets around on her own. She's still at risk of falling: she has little feeling in her feet, wears the offloading shoe and gets up twice a night. Bed in low position, call bell within reach, night light on."
+  },
+  "noeuds.sturz.choix.1.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "en": "Very good. And her skin?"
+  },
+  "noeuds.sturz.choix.2": {
+   "fr": "Elle marche bien toute seule. Il n'y a pas de problème.",
+   "de": "Sie läuft gut allein. Da gibt es kein Problem.",
+   "en": "She walks fine on her own. There's no problem there."
+  },
+  "noeuds.sturz.choix.2.puis.0": {
+   "fr": "Avec une polyneuropathie et une chaussure de décharge ? Et la nuit ?",
+   "de": "Mit einer Polyneuropathie und einem Verbandsschuh? Und nachts?",
+   "en": "With polyneuropathy and an offloading shoe? And at night?"
+  },
+  "noeuds.sturz.choix.2.aide": {
+   "fr": "<b>« Elle marche bien » ne dit rien du risque : nomme les facteurs, puis les mesures.</b> Canne, chaussure de décharge, pieds qui sentent mal, levers la nuit : « Ihr Sturzrisiko ist erhöht. » Puis ce qui a été fait : lit en bas, sonnette, veilleuse.",
+   "en": "<b>“She walks fine” says nothing about the risk: name the factors, then the measures.</b> Walking stick, offloading shoe, feet with poor sensation, getting up at night: “Ihr Sturzrisiko ist erhöht.” Then what has been done: bed lowered, call bell, night light."
+  },
+  "noeuds.haut.choix.0": {
+   "fr": "La peau est sèche, surtout aux jambes, mais intacte. Pas d'escarre, et selon l'échelle de Braden, elle n'a pas de risque accru.",
+   "de": "Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt. Kein Dekubitus, und nach der Braden-Skala hat sie kein erhöhtes Risiko.",
+   "en": "Her skin is dry, especially on the lower legs, but intact. No pressure ulcer, and according to the Braden scale she has no increased risk."
+  },
+  "noeuds.haut.choix.0.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "en": "Good. Is anything still outstanding?"
+  },
+  "noeuds.haut.choix.1": {
+   "fr": "Sèche sur les deux jambes, intacte par ailleurs, pas de rougeur d'appui. D'après l'échelle de Braden, il n'y a pas de risque d'escarre.",
+   "de": "Trocken an beiden Unterschenkeln, sonst intakt, keine Druckstellen. Ein Dekubitusrisiko besteht laut Braden-Skala nicht.",
+   "en": "Dry on both lower legs, otherwise intact, no pressure marks. According to the Braden scale, there is no pressure ulcer risk."
+  },
+  "noeuds.haut.choix.1.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "en": "Good. Is anything still outstanding?"
+  },
+  "noeuds.haut.choix.2": {
+   "fr": "La peau est assez mauvaise.",
+   "de": "Die Haut ist ziemlich schlecht.",
+   "en": "Her skin is pretty bad."
+  },
+  "noeuds.haut.choix.2.puis.0": {
+   "fr": "Mauvaise ? Ça veut dire quoi exactement : sèche, rouge, ouverte ?",
+   "de": "Schlecht? Was heißt das genau: trocken, gerötet, offen?",
+   "en": "Bad? What does that mean exactly: dry, red, broken?"
+  },
+  "noeuds.haut.choix.2.aide": {
+   "fr": "<b>« Mauvaise » est un jugement ; la médecin a besoin d'une description.</b> Où, comment, intacte ou non : « Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt. »",
+   "en": "<b>“Bad” is a judgment; the doctor needs a description.</b> Where, how, intact or not: “Die Haut ist trocken, vor allem an den Unterschenkeln, aber intakt.”"
+  },
+  "noeuds.offen.choix.0": {
+   "fr": "Deux choses. Pourriez-vous, s'il vous plaît, prescrire et signer le traitement personnel et le schéma d'insuline ? Et j'aimerais demander le conseil en diabétologie, parce qu'elle aime les sucreries.",
+   "de": "Zwei Dinge. Könnten Sie bitte die Hausmedikation und das Insulinschema anordnen und unterschreiben? Und ich würde gern die Diabetesberatung anmelden, weil sie gern Süßes isst.",
+   "en": "Two things. Could you please order and sign her home medications and the insulin sliding scale? And I'd like to request the diabetes education, because she likes to eat sweets."
+  },
+  "noeuds.offen.choix.0.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "en": "I'll do that as soon as I've seen her. Please go ahead and request the diabetes education. Anything else?"
+  },
+  "noeuds.offen.choix.1": {
+   "fr": "Oui. Le traitement personnel n'est pas encore prescrit ; pour ça, j'aurais besoin de votre signature. Je propose aussi de faire appel au conseil en diabétologie : elle a dit elle-même qu'elle aimait les sucreries.",
+   "de": "Ja. Die Hausmedikation ist noch nicht angeordnet; dafür bräuchte ich Ihre Unterschrift. Außerdem schlage ich vor, die Diabetesberatung einzuschalten: Sie hat selbst gesagt, dass sie gern Süßes isst.",
+   "en": "Yes. Her home medications haven't been ordered yet; I'd need your signature for that. I'd also suggest bringing in the diabetes education team: she said herself that she likes to eat sweets."
+  },
+  "noeuds.offen.choix.1.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "en": "I'll do that as soon as I've seen her. Please go ahead and request the diabetes education. Anything else?"
+  },
+  "noeuds.offen.choix.2": {
+   "fr": "Non, tout est fait.",
+   "de": "Nein, es ist alles erledigt.",
+   "en": "No, everything's taken care of."
+  },
+  "noeuds.offen.choix.2.puis.0": {
+   "fr": "Et le traitement personnel ? Il n'est pas encore prescrit.",
+   "de": "Und die Hausmedikation? Die ist doch noch gar nicht angeordnet.",
+   "en": "And her home medications? They haven't been ordered at all yet."
+  },
+  "noeuds.offen.choix.2.aide": {
+   "fr": "<b>Un bon rapport finit par ce qui reste à faire, et par qui.</b> « Könnten Sie die Hausmedikation bitte anordnen und unterschreiben? » Tant que ce n'est pas prescrit et signé, l'équipe ne peut pas donner le traitement de la patiente.",
+   "en": "<b>A good report ends with what still has to be done, and by whom.</b> “Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?” As long as it hasn't been ordered and signed, the team can't give the patient her own medications."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Juste une chose encore : sa fille, {lehmann_tochter}, vient tous les jours. La levée du secret professionnel pour elle est au dossier.",
+   "de": "Nur noch eins: Ihre Tochter, {lehmann_tochter}, kommt jeden Tag. Eine Schweigepflichtentbindung für sie liegt vor.",
+   "en": "Just one more thing: her daughter, {lehmann_tochter}, comes every day. There is a confidentiality waiver for her on file."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "en": "Good to know. Thank you, {elif}, that was a complete handoff. I'll go and see her now."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Oui : la fille peut être informée, la levée du secret professionnel est dans le dossier. Elle vient cet après-midi.",
+   "de": "Ja: Die Tochter darf informiert werden, die Schweigepflichtentbindung ist in der Akte. Sie kommt heute Nachmittag.",
+   "en": "Yes: the daughter may be informed, the confidentiality waiver is in the file. She's coming this afternoon."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "en": "Good to know. Thank you, {elif}, that was a complete handoff. I'll go and see her now."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "La fille a le droit de tout savoir, je crois.",
+   "de": "Die Tochter darf alles wissen, glaube ich.",
+   "en": "The daughter is allowed to know everything, I think."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "« Je crois » ? La levée du secret est au dossier, oui ou non ?",
+   "de": "„Glaube ich“? Liegt eine Schweigepflichtentbindung vor oder nicht?",
+   "en": "“I think”? Is there a confidentiality waiver on file or not?"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Le secret professionnel ne se devine pas : on vérifie le dossier.</b> « Eine Schweigepflichtentbindung für die Tochter liegt vor. » Sans ce papier, l'équipe ne peut rien dire à la famille.",
+   "en": "<b>Confidentiality is not something you guess: you check the file.</b> “Eine Schweigepflichtentbindung für die Tochter liegt vor.” Without that paper, the team can't tell the family anything."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle était la glycémie à onze heures ?",
+   "de": "Wie hoch war der Blutzucker um elf Uhr?",
+   "en": "How high was the blood sugar at 11:00?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Cent quarante.",
+   "de": "Hundertvierzig.",
+   "en": "One hundred forty."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Deux cent quarante-cinq.",
+   "de": "Zweihundertfünfundvierzig.",
+   "en": "Two hundred forty-five."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Cent quatre-vingts.",
+   "de": "Hundertachtzig.",
+   "en": "One hundred eighty."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {elif} n'a-t-elle pas encore donné d'insuline ?",
+   "de": "Warum hat {elif} noch kein Insulin gegeben?",
+   "en": "Why hasn't {elif} given any insulin yet?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Weil noch kein Schema angeordnet ist.",
+   "en": "Because no sliding scale has been ordered yet."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Parce que la glycémie était normale.",
+   "de": "Weil der Blutzucker normal war.",
+   "en": "Because the blood sugar was normal."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Parce que {lehmann} ne voulait pas d'insuline.",
+   "de": "Weil {lehmann} kein Insulin wollte.",
+   "en": "Because {lehmann} didn't want any insulin."
+  },
+  "ecouter.2.q": {
+   "fr": "Pourquoi le risque de chute de {lehmann} est-il augmenté ?",
+   "de": "Warum ist das Sturzrisiko von {lehmann} erhöht?",
+   "en": "Why is {lehmann}'s fall risk increased?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Parce qu'elle prend des somnifères.",
+   "de": "Weil sie Schlafmittel nimmt.",
+   "en": "Because she takes sleeping pills."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Parce qu'elle voit mal et n'a pas de lunettes.",
+   "de": "Weil sie schlecht sieht und keine Brille hat.",
+   "en": "Because she has poor eyesight and no glasses."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À cause de la polyneuropathie, de la chaussure de décharge et parce qu'elle se lève la nuit.",
+   "de": "Wegen der Polyneuropathie, des Verbandsschuhs und weil sie nachts aufsteht.",
+   "en": "Because of the polyneuropathy, the offloading shoe, and because she gets up at night."
+  },
+  "ecouter.3.q": {
+   "fr": "Que demande {elif} à la fin ?",
+   "de": "Worum bittet {elif} am Ende?",
+   "en": "What does {elif} ask for at the end?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Que {sommer} appelle la fille.",
+   "de": "Dass {sommer} die Tochter anruft.",
+   "en": "That {sommer} call the daughter."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Que {sommer} prescrive et signe le traitement personnel.",
+   "de": "Dass {sommer} die Hausmedikation anordnet und unterschreibt.",
+   "en": "That {sommer} order and sign the home medications."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Que {sommer} fasse le pansement.",
+   "de": "Dass {sommer} die Wunde verbindet.",
+   "en": "That {sommer} dress the wound."
+  }
+ }
+}

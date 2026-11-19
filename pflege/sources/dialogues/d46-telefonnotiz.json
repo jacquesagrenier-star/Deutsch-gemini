@@ -1,0 +1,159 @@
+{
+ "id": "d46-telefonnotiz",
+ "numero": 46,
+ "niveau": "A2",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["lehmann_tochter"],
+ "titre": {"t": "Eine Nachricht am Telefon", "fr": "Prendre un message au téléphone"},
+ "intro": {"fr": "Mardi 10 novembre, dix heures quinze. Au poste de soins du {station}, le téléphone sonne. {sommer} est en visite, elle ne peut pas répondre. Tu joues {elif} : réponds au téléphone, puis prends un message pour la médecin : le nom (fais-le épeler), le numéro (chiffre par chiffre, et relis-le), et quand rappeler. Termine poliment."},
+ "but": {"fr": "Répondre au téléphone au travail ; dire qu'une personne n'est pas là et proposer un message ; faire épeler un nom ; faire dire un numéro chiffre par chiffre et le relire ; demander quand rappeler ; finir par « Auf Wiederhören »."},
+ "grammaire": ["g01", "g06"],
+ "telc": ["hoeren", "oral-1"],
+ "relire_notes": {"fr": "Au téléphone, prendre un message ne demande pas de vérifier l'identité (aucune information sur la patiente n'est donnée) ; si la personne demande des nouvelles, vérifier d'abord qui appelle (dialogue 23). Ne pas promettre l'heure du rappel à la place de la médecin."},
+ "redemittel": [
+  {"t": "Guten Tag, {station}, hier spricht {elif}.", "dit": "Guten Tag, {station:dit}, hier spricht {elif}.", "fr": "Bonjour, {station}, {elif} à l'appareil.", "fonction": "annoncer"},
+  {"t": "{sommer} ist gerade bei der Visite.", "fr": "{sommer} est en visite en ce moment.", "fonction": "transmettre"},
+  {"t": "Kann ich ihr etwas ausrichten?", "fr": "Je peux lui transmettre un message ?", "fonction": "demander"},
+  {"t": "Können Sie Ihren Namen bitte buchstabieren?", "fr": "Pouvez-vous épeler votre nom, s'il vous plaît ?", "fonction": "redemander"},
+  {"t": "Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?", "fr": "Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?", "fonction": "redemander"},
+  {"t": "Ich wiederhole die Nummer: …", "fr": "Je répète le numéro : …", "fonction": "reformuler"},
+  {"t": "Bis wann sind Sie unter dieser Nummer erreichbar?", "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?", "fonction": "demander"},
+  {"t": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch.", "fr": "Je pose le message sur le bureau de {sommer}.", "fonction": "transmettre"},
+  {"t": "Danke für Ihren Anruf. Auf Wiederhören!", "fr": "Merci de votre appel. Au revoir !", "fonction": "annoncer"}
+ ],
+ "debut": "klingeln",
+ "noeuds": {
+  "klingeln": {
+   "dit": [
+    {"recit": {"fr": "Dix heures quinze, au poste de soins. Le téléphone sonne. {elif} est seule : tous les autres sont en visite avec {sommer}."}}
+   ],
+   "choix": [
+    {"t": "Guten Tag, {station}, hier spricht {elif}.", "dit": "Guten Tag, {station:dit}, hier spricht {elif}.", "fr": "Bonjour, {station}, {elif} à l'appareil.", "va": "visite",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.", "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît."}]},
+    {"t": "{station}, {elif} am Telefon. Guten Tag!", "dit": "{station:dit}, {elif} am Telefon. Guten Tag!", "fr": "{station}, {elif} au téléphone. Bonjour !", "va": "visite",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.", "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît."}]},
+    {"faux": true, "t": "Hallo? Wer ist da?", "fr": "Allô ? Qui est là ?",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Äh … Bin ich da richtig im Krankenhaus?", "fr": "Euh… Je suis bien à l'hôpital ?"}],
+     "aide": {"fr": "<b>Au travail, on répond avec le nom du service et son prénom.</b> « Guten Tag, Station …, hier spricht {elif}. » Comme ça, la personne sait tout de suite où elle appelle et à qui elle parle."}}
+   ]
+  },
+  "visite": {
+   "dit": [],
+   "choix": [
+    {"t": "Das tut mir leid, {sommer} ist gerade bei der Visite. Kann ich ihr etwas ausrichten?", "fr": "Je suis désolée, {sommer} est en visite en ce moment. Je peux lui transmettre un message ?", "va": "name",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.", "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze."}]},
+    {"t": "{sommer} ist im Moment nicht da, sie macht Visite. Soll sie Sie zurückrufen?", "fr": "{sommer} n'est pas là pour le moment, elle fait la visite. Voulez-vous qu'elle vous rappelle ?", "va": "name",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.", "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze."}]},
+    {"faux": true, "t": "{sommer} ist nicht da. Rufen Sie später an.", "fr": "{sommer} n'est pas là. Rappelez plus tard.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Später? Wann denn? Ich bin bei der Arbeit.", "fr": "Plus tard ? Quand ça ? Je suis au travail."}],
+     "aide": {"fr": "<b>Quand la personne n'est pas là, propose un message.</b> « Sie ist gerade bei der Visite. Kann ich ihr etwas ausrichten? » ou « Soll sie Sie zurückrufen? » Ne renvoie pas la personne sans solution."}}
+   ]
+  },
+  "name": {
+   "dit": [
+    {"recit": {"fr": "{elif} prend un bloc et un stylo. Elle n'a pas bien entendu le nom au début."}}
+   ],
+   "choix": [
+    {"t": "Gern. Wie ist Ihr Name, bitte? Können Sie ihn bitte buchstabieren?", "fr": "Volontiers. Quel est votre nom, s'il vous plaît ? Pouvez-vous l'épeler ?", "va": "nachlesen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.", "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille."}]},
+    {"t": "Einen Moment, ich schreibe mit. Wie war Ihr Name? Buchstabieren Sie bitte.", "fr": "Un instant, je note. Quel était votre nom ? Épelez-le, s'il vous plaît.", "va": "nachlesen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.", "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille."}]},
+    {"faux": true, "t": "Okay. Und wie ist dein Name?", "fr": "D'accord. Et c'est quoi, ton nom ?",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "„Dein“? Wir kennen uns doch gar nicht.", "fr": "« Ton » ? Mais on ne se connaît pas."}],
+     "aide": {"fr": "<b>Au téléphone aussi, c'est « Sie » : « Wie ist Ihr Name, bitte? »</b> Et pour être sûre de l'écrire juste : « Können Sie ihn bitte buchstabieren? »"}}
+   ]
+  },
+  "nachlesen": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke. Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig?", "fr": "Merci. Je répète : K – R – Ü – G – E – R. C'est juste ?", "va": "nummer",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, genau. Mit Ü.", "fr": "Oui, c'est ça. Avec un Ü."}]},
+    {"t": "Also {lehmann_tochter:famille} mit Ü, K – R – Ü – G – E – R. Richtig?", "fr": "Donc {lehmann_tochter:famille} avec un Ü, K – R – Ü – G – E – R. C'est ça ?", "va": "nummer",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, genau. Mit Ü.", "fr": "Oui, c'est ça. Avec un Ü."}]},
+    {"faux": true, "t": "Danke. K – R – U – G – E – R.", "fr": "Merci. K – R – U – G – E – R.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Nein, nicht U. Ü, mit zwei Punkten!", "fr": "Non, pas U. Ü, avec deux points !"}],
+     "aide": {"fr": "<b>Relis le nom lettre par lettre, et fais attention aux Umlaute : Ü n'est pas U.</b> « Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig? » Un nom mal écrit, et le message n'arrive pas."}}
+   ]
+  },
+  "nummer": {
+   "dit": [],
+   "choix": [
+    {"t": "Unter welcher Nummer kann {sommer} Sie erreichen?", "fr": "À quel numéro {sommer} peut-elle vous joindre ?", "va": "zahlen",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ich bin im Büro. Die Nummer ist 47 39 25.", "dit": "Ich bin im Büro. Die Nummer ist siebenundvierzig, neununddreißig, fünfundzwanzig.", "fr": "Je suis au bureau. Le numéro est le 47 39 25."}]},
+    {"t": "Und Ihre Telefonnummer, bitte?", "fr": "Et votre numéro de téléphone, s'il vous plaît ?", "va": "zahlen",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ich bin im Büro. Die Nummer ist 47 39 25.", "dit": "Ich bin im Büro. Die Nummer ist siebenundvierzig, neununddreißig, fünfundzwanzig.", "fr": "Je suis au bureau. Le numéro est le 47 39 25."}]},
+    {"faux": true, "t": "Ihre Nummer haben wir bestimmt schon.", "fr": "Votre numéro, on l'a sûrement déjà.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Nein, ich bin heute im Büro. Das ist eine andere Nummer.", "fr": "Non, aujourd'hui je suis au bureau. C'est un autre numéro."}],
+     "aide": {"fr": "<b>Ne devine pas : demande le numéro pour ce rappel.</b> « Unter welcher Nummer kann die Ärztin Sie erreichen? » La personne n'est peut-être pas chez elle aujourd'hui."}}
+   ]
+  },
+  "zahlen": {
+   "dit": [
+    {"recit": {"fr": "{lehmann_tochter} a dit le numéro très vite, par paires. {elif} n'a pas tout noté."}}
+   ],
+   "choix": [
+    {"t": "Entschuldigung, das war ein bisschen schnell. Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?", "fr": "Pardon, c'était un peu rapide. Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?", "va": "wiederholen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.", "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq."}]},
+    {"t": "Können Sie die Zahlen bitte einzeln sagen? Dann schreibe ich sie richtig auf.", "fr": "Pouvez-vous dire les chiffres un par un, s'il vous plaît ? Comme ça, je les note correctement.", "va": "wiederholen",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.", "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq."}]},
+    {"faux": true, "t": "Okay … siebenundvierzig … neunundfünfzig … Ja, ich habe es.", "fr": "D'accord… quarante-sept… cinquante-neuf… Oui, je l'ai.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Neunundfünfzig? Nein, neununddreißig!", "fr": "Cinquante-neuf ? Non, trente-neuf !"}],
+     "aide": {"fr": "<b>Si tu n'as pas tout compris, ne devine pas : demande les chiffres un par un.</b> « Können Sie die Nummer bitte langsam sagen, Zahl für Zahl? » Un seul chiffre faux, et la médecin ne peut pas rappeler."}}
+   ]
+  },
+  "wiederholen": {
+   "dit": [],
+   "choix": [
+    {"t": "Danke. Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das?", "fr": "Merci. Je répète : quatre, sept, trois, neuf, deux, cinq. C'est bien ça ?", "va": "wann",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, das stimmt.", "fr": "Oui, c'est juste."}]},
+    {"t": "Ich lese noch einmal vor: vier – sieben – drei – neun – zwei – fünf. Richtig?", "fr": "Je relis encore une fois : quatre – sept – trois – neuf – deux – cinq. C'est ça ?", "va": "wann",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, das stimmt.", "fr": "Oui, c'est juste."}]},
+    {"faux": true, "t": "Gut, danke. Ich habe die Nummer.", "fr": "Bien, merci. J'ai le numéro.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Möchten Sie sie nicht lieber noch einmal vorlesen? Am Telefon versteht man schnell etwas falsch.", "fr": "Vous ne voulez pas me la relire ? Au téléphone, on comprend vite de travers."}],
+     "aide": {"fr": "<b>Un numéro se relit toujours.</b> « Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das? » Au téléphone, on dit souvent « zwo » pour « zwei », pour ne pas le confondre avec « drei »."}}
+   ]
+  },
+  "wann": {
+   "dit": [],
+   "choix": [
+    {"t": "Bis wann sind Sie unter dieser Nummer erreichbar?", "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.", "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère."}]},
+    {"t": "Bis wann können wir Sie im Büro erreichen? Die Visite dauert meistens bis halb zwölf.", "fr": "Jusqu'à quand peut-on vous joindre au bureau ? La visite dure en général jusqu'à onze heures et demie.", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.", "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère."}]},
+    {"faux": true, "t": "{sommer} ruft Sie um elf Uhr an.", "fr": "{sommer} vous appelle à onze heures.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Ganz sicher um elf? Dann warte ich am Telefon.", "fr": "À onze heures, c'est sûr ? Alors j'attends près du téléphone."}],
+     "aide": {"fr": "<b>Ne promets pas une heure à la place de la médecin : demande quand la personne est joignable.</b> « Bis wann sind Sie unter dieser Nummer erreichbar? » La médecin rappellera dans ce créneau, si elle peut."}}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut. Ich gebe die Nachricht an {sommer:voc} weiter: Sie bitten um einen Rückruf bis zwölf Uhr. Danke für Ihren Anruf. Auf Wiederhören!", "fr": "Bien. Je transmets le message à {sommer} : vous demandez à être rappelée avant midi. Merci de votre appel. Au revoir !", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Vielen Dank. Auf Wiederhören!", "fr": "Merci beaucoup. Au revoir !"}]},
+    {"t": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch. Auf Wiederhören, {lehmann_tochter}!", "fr": "Je pose le message sur le bureau de {sommer}. Au revoir, {lehmann_tochter:voc} !", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Vielen Dank. Auf Wiederhören!", "fr": "Merci beaucoup. Au revoir !"}]},
+    {"faux": true, "t": "Gut. Gute Besserung!", "fr": "Bien. Bon rétablissement !",
+     "puis": [{"qui": "lehmann_tochter", "air": "amuse", "t": "Gute Besserung? Mir geht es gut, danke. Meine Mutter ist die Patientin.", "fr": "Bon rétablissement ? Je vais bien, merci. C'est ma mère, la patiente."}],
+     "aide": {"fr": "<b>« Gute Besserung » se dit à une personne malade.</b> Pour finir un appel : « Danke für Ihren Anruf. Auf Wiederhören! » Au téléphone, on dit « Auf Wiederhören » (on ne se voit pas)."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wen möchte {lehmann_tochter} sprechen?", "fr": "À qui {lehmann_tochter} veut-elle parler ?"},
+   "options": [{"t": "Ihre Mutter.", "fr": "À sa mère."}, {"t": "{sommer:voc}.", "fr": "À {sommer}."}, {"t": "Die Stationsleitung.", "fr": "À la cadre du service."}],
+   "juste": 1},
+  {"q": {"t": "Warum kann {sommer} nicht ans Telefon kommen?", "fr": "Pourquoi {sommer} ne peut-elle pas venir au téléphone ?"},
+   "options": [{"t": "Sie ist bei der Visite.", "fr": "Elle est en visite."}, {"t": "Sie hat heute frei.", "fr": "Elle est en congé aujourd'hui."}, {"t": "Sie ist im Operationssaal.", "fr": "Elle est au bloc opératoire."}],
+   "juste": 0},
+  {"q": {"t": "Wie ist die Telefonnummer von {lehmann_tochter}?", "fr": "Quel est le numéro de téléphone de {lehmann_tochter} ?"},
+   "options": [{"t": "Sieben, vier, drei, neun, zwei, fünf.", "fr": "Sept, quatre, trois, neuf, deux, cinq."}, {"t": "Vier, sieben, drei, fünf, zwei, neun.", "fr": "Quatre, sept, trois, cinq, deux, neuf."}, {"t": "Vier, sieben, drei, neun, zwei, fünf.", "fr": "Quatre, sept, trois, neuf, deux, cinq."}],
+   "juste": 2},
+  {"q": {"t": "Bis wann ist {lehmann_tochter} im Büro erreichbar?", "fr": "Jusqu'à quand peut-on joindre {lehmann_tochter} au bureau ?"},
+   "options": [{"t": "Bis zehn Uhr.", "fr": "Jusqu'à dix heures."}, {"t": "Bis zwölf Uhr.", "fr": "Jusqu'à midi."}, {"t": "Bis vier Uhr.", "fr": "Jusqu'à quatre heures."}],
+   "juste": 1}
+ ]
+}

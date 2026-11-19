@@ -1,0 +1,489 @@
+{
+ "_langue": "ar",
+ "_source": "pflege/sources/dialogues/d44-aufnahme-nachts.json",
+ "cles": {
+  "titre": {
+   "fr": "Une admission la nuit",
+   "de": "Aufnahme in der Nacht",
+   "ar": "دخول مريض في الليل"
+  },
+  "intro": {
+   "fr": "Jeudi 12 novembre, vingt-trois heures trente. {pohl}, 67 ans, arrive des urgences au {station} : des calculs dans la vésicule biliaire. Il sera opéré demain à huit heures, et il a peur. Tu joues {yusuf}, de nuit : accueille-le, vérifie son identité, rassure-le sans rien promettre, explique clairement ce qui est interdit à partir de minuit, ce qu'il doit faire pour ne pas tomber et ce qui se passera le matin.",
+   "ar": "الخميس 12 نوفمبر، الساعة الحادية عشرة والنصف ليلًا. {pohl}، 67 سنة، يصل من الطوارئ إلى {station}: حصى في المرارة. ستُجرى له العملية غدًا في الثامنة، وهو خائف. أنت تؤدي دور {yusuf} في المناوبة الليلية: استقبله، وتحقق من هويته، وطمئنه من دون أن تعده بشيء، واشرح له بوضوح ما هو ممنوع ابتداءً من منتصف الليل، وما عليه أن يفعله حتى لا يسقط، وما الذي سيجري في الصباح."
+  },
+  "but": {
+   "fr": "Accueillir un patient inquiet la nuit ; vérifier l'identité par une question ouverte ; rassurer sans mentir ; dire une règle clairement (« darf nicht », le passif avec un modal : « darf nicht geraucht werden ») ; annoncer le déroulement avec des subordonnées de temps (bevor, sobald) ; respecter une demande légitime.",
+   "ar": "استقبال مريض قلق في الليل؛ والتحقق من الهوية بسؤال مفتوح؛ والطمأنة من دون كذب؛ وقول القاعدة بوضوح («darf nicht»، والمبني للمجهول مع فعل مساعد: «darf nicht geraucht werden»)؛ وإعلان سير الأمور بجمل الزمان التابعة (bevor، sobald)؛ واحترام طلب مشروع."
+  },
+  "relire_notes": {
+   "fr": "Cholécystectomie le vendredi 13 à 8 h ; à jeun à partir de minuit : rien manger, rien boire, ne pas fumer, pas de chewing-gum (règle simplifiée : selon le protocole de l'anesthésie, des liquides clairs peuvent être permis jusqu'à 2 h avant) ; quelques gorgées d'eau permises jusqu'à minuit ? ; antidouleur fort reçu aux urgences (à confirmer) d'où vertiges et risque de chute : se lever seulement avec de l'aide, sonner avant ; le matin : chemise d'opération, bijoux, lunettes et prothèse dentaire retirés, départ au bloc vers 7 h 30 ; vérification de l'identité par question ouverte (nom et date de naissance comparés au bracelet) ; pas de somnifère sans prescription.",
+   "ar": "استئصال المرارة يوم الجمعة 13 في الساعة 8؛ الصيام ابتداءً من منتصف الليل: لا أكل، لا شرب، لا تدخين، لا علكة (قاعدة مبسَّطة: بحسب بروتوكول التخدير قد يُسمح بالسوائل الصافية حتى ساعتين (2) قبل العملية)؛ هل يُسمح ببضع رشفات من الماء حتى منتصف الليل؟؛ مسكّن قوي أُعطي في الطوارئ (يجب التأكد)، ومنه الدوخة وخطر السقوط: لا ينهض إلا بمساعدة، ويقرع الجرس قبل ذلك؛ في الصباح: قميص العمليات، نزع الحليّ والنظارة وطقم الأسنان، الانتقال إلى غرفة العمليات نحو الساعة 7:30؛ التحقق من الهوية بسؤال مفتوح (الاسم وتاريخ الميلاد يُقارَنان بالسوار)؛ لا حبة منوّمة من دون أمر طبي."
+  },
+  "redemittel.0": {
+   "fr": "Bienvenue au {station}. Cette nuit, c'est moi qui m'occupe de vous.",
+   "de": "Herzlich willkommen auf der {station}. Ich bin heute Nacht für Sie da.",
+   "ar": "أهلًا بكَ في {station}. أنا المسؤول عنكَ هذه الليلة."
+  },
+  "redemittel.1": {
+   "fr": "Pourriez-vous me dire votre nom et votre date de naissance, s'il vous plaît ?",
+   "de": "Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen?",
+   "ar": "هل تتفضل بأن تقول لي اسمكَ وتاريخ ميلادكَ؟"
+  },
+  "redemittel.2": {
+   "fr": "Je ne peux rien vous promettre, mais cette opération se fait très souvent.",
+   "de": "Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht.",
+   "ar": "لا أستطيع أن أعدكَ بشيء، لكن هذه العملية تُجرى كثيرًا جدًا."
+  },
+  "redemittel.3": {
+   "fr": "À partir de minuit, vous ne devez plus rien manger ni boire.",
+   "de": "Ab Mitternacht dürfen Sie nichts mehr essen und nichts mehr trinken.",
+   "ar": "ابتداءً من منتصف الليل لا يجوز لكَ أن تأكل أو تشرب شيئًا."
+  },
+  "redemittel.4": {
+   "fr": "Avant l'anesthésie, on ne doit plus fumer.",
+   "de": "Vor der Narkose darf nicht mehr geraucht werden.",
+   "ar": "قبل التخدير يُمنع التدخين."
+  },
+  "redemittel.5": {
+   "fr": "Avant de vous lever, sonnez, s'il vous plaît. Cette nuit, vous ne devez pas vous lever seul.",
+   "de": "Bevor Sie aufstehen, klingeln Sie bitte. Allein dürfen Sie heute Nacht nicht aufstehen.",
+   "ar": "قبل أن تنهض، اقرع الجرس من فضلكَ. لا يجوز لكَ أن تنهض وحدكَ هذه الليلة."
+  },
+  "redemittel.6": {
+   "fr": "À sept heures et demie, on viendra vous chercher pour l'opération.",
+   "de": "Um halb acht werden Sie zur Operation abgeholt.",
+   "ar": "في السابعة والنصف سيأتون لأخذكَ إلى العملية."
+  },
+  "redemittel.7": {
+   "fr": "Cette nuit, je passerai vous voir régulièrement.",
+   "de": "Ich schaue heute Nacht regelmäßig nach Ihnen.",
+   "ar": "سأمرّ عليكَ بانتظام هذه الليلة."
+  },
+  "noeuds.ankommen.dit.0.recit": {
+   "fr": "Vingt-trois heures trente. Un brancardier amène {pohl} des urgences dans un fauteuil roulant. Il serre un sac de sport sur ses genoux et regarde partout autour de lui.",
+   "ar": "الساعة الحادية عشرة والنصف ليلًا. ناقل المرضى يُحضر {pohl} من الطوارئ على كرسي متحرك. يضمّ حقيبة رياضية على ركبتيه وينظر حوله في كل اتجاه."
+  },
+  "noeuds.ankommen.dit.1": {
+   "fr": "Bonsoir… Je suis au bon endroit ? On m'a dit que je serai opéré demain matin.",
+   "de": "Guten Abend … Bin ich hier richtig? Man hat mir gesagt, ich werde morgen früh operiert.",
+   "ar": "مساء الخير… هل أنا في المكان الصحيح؟ قيل لي إن العملية ستُجرى لي غدًا صباحًا."
+  },
+  "noeuds.ankommen.choix.0": {
+   "fr": "Bonsoir, {pohl:voc}. Oui, vous êtes au bon endroit. Bienvenue au {station}. Je suis {yusuf}, cette nuit c'est moi qui m'occupe de vous.",
+   "de": "Guten Abend, {pohl}. Ja, Sie sind hier richtig. Herzlich willkommen auf der {station}. Ich bin {yusuf}, ich bin heute Nacht für Sie da.",
+   "ar": "مساء الخير يا {pohl:voc}. نعم، أنتَ في المكان الصحيح. أهلًا بكَ في {station}. أنا {yusuf}، وأنا المسؤول عنكَ هذه الليلة."
+  },
+  "noeuds.ankommen.choix.0.puis.0": {
+   "fr": "Je suis bien content. En bas, c'était une de ces pagailles.",
+   "de": "Da bin ich aber froh. Unten war so ein Durcheinander.",
+   "ar": "كم أنا مرتاح لذلك. في الأسفل كانت فوضى عارمة."
+  },
+  "noeuds.ankommen.choix.1": {
+   "fr": "Bonsoir ! Oui, c'est bien ça, on vous attend. Je m'appelle {yusuf}, je suis le soignant de nuit.",
+   "de": "Guten Abend! Ja, genau, Sie werden schon erwartet. Mein Name ist {yusuf}, ich bin die Pflegekraft im Nachtdienst.",
+   "ar": "مساء الخير! نعم، بالضبط، نحن في انتظاركَ. اسمي {yusuf}، وأنا الممرض في المناوبة الليلية."
+  },
+  "noeuds.ankommen.choix.1.puis.0": {
+   "fr": "Je suis bien content. En bas, c'était une de ces pagailles.",
+   "de": "Da bin ich aber froh. Unten war so ein Durcheinander.",
+   "ar": "كم أنا مرتاح لذلك. في الأسفل كانت فوضى عارمة."
+  },
+  "noeuds.ankommen.choix.2": {
+   "fr": "Oui. Nom ?",
+   "de": "Ja. Name?",
+   "ar": "نعم. الاسم؟"
+  },
+  "noeuds.ankommen.choix.2.puis.0": {
+   "fr": "Euh… {pohl:famille}. Et vous êtes qui ?",
+   "de": "Äh … {pohl:famille}. Und wer sind Sie?",
+   "ar": "آه… {pohl:famille}. ومن أنتَ؟"
+  },
+  "noeuds.ankommen.choix.2.aide": {
+   "fr": "<b>Un patient qui arrive la nuit a d'abord besoin d'un accueil : un bonsoir, ton nom, ta fonction.</b> « Guten Abend. Herzlich willkommen auf unserer Station. Ich bin …, ich bin heute Nacht für Sie da. » Un mot sec augmente l'inquiétude.",
+   "ar": "<b>المريض الذي يصل في الليل يحتاج أولًا إلى استقبال: تحية المساء، واسمك، ووظيفتك.</b> «Guten Abend. Herzlich willkommen auf unserer Station. Ich bin …, ich bin heute Nacht für Sie da.» الكلمة الجافة تزيد القلق."
+  },
+  "noeuds.identitaet.dit.0.recit": {
+   "fr": "{yusuf} voit le bracelet d'identification au poignet de {pohl}.",
+   "ar": "يرى {yusuf} سوار التعريف في معصم {pohl}."
+  },
+  "noeuds.identitaet.choix.0": {
+   "fr": "Avant de vous montrer votre chambre : pourriez-vous me dire votre nom et votre date de naissance, s'il vous plaît ? Je compare avec votre bracelet.",
+   "de": "Bevor ich Ihnen Ihr Zimmer zeige: Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen? Ich vergleiche das mit Ihrem Armband.",
+   "ar": "قبل أن أريكَ غرفتكَ: هل تتفضل بأن تقول لي اسمكَ وتاريخ ميلادكَ؟ سأقارن ذلك بسواركَ."
+  },
+  "noeuds.identitaet.choix.0.puis.0": {
+   "fr": "{pohl:famille}, né le 3 mai 1959. C'est bon ?",
+   "de": "{pohl:fiche}, geboren am dritten Mai neunzehnhundertneunundfünfzig. Stimmt's?",
+   "ar": "{pohl:famille}، مولود في 3 مايو 1959. صحيح؟"
+  },
+  "noeuds.identitaet.choix.0.puis.1": {
+   "fr": "Dites-moi… franchement : je dois avoir peur pour demain ? Je n'ai jamais été opéré.",
+   "de": "Sagen Sie mal … ehrlich: Muss ich Angst haben vor morgen? Ich bin noch nie operiert worden.",
+   "ar": "قل لي… بصراحة: هل عليّ أن أخاف من الغد؟ لم تُجرَ لي عملية في حياتي."
+  },
+  "noeuds.identitaet.choix.1": {
+   "fr": "Pourriez-vous d'abord me donner votre nom complet et votre date de naissance ? On doit le contrôler à chaque admission.",
+   "de": "Könnten Sie mir zuerst noch Ihren vollständigen Namen und Ihr Geburtsdatum nennen? Das muss bei jeder Aufnahme kontrolliert werden.",
+   "ar": "هل يمكنكَ أولًا أن تذكر لي اسمكَ الكامل وتاريخ ميلادكَ؟ يجب التحقق من ذلك عند كل دخول."
+  },
+  "noeuds.identitaet.choix.1.puis.0": {
+   "fr": "{pohl:famille}, né le 3 mai 1959. C'est bon ?",
+   "de": "{pohl:fiche}, geboren am dritten Mai neunzehnhundertneunundfünfzig. Stimmt's?",
+   "ar": "{pohl:famille}، مولود في 3 مايو 1959. صحيح؟"
+  },
+  "noeuds.identitaet.choix.1.puis.1": {
+   "fr": "Dites-moi… franchement : je dois avoir peur pour demain ? Je n'ai jamais été opéré.",
+   "de": "Sagen Sie mal … ehrlich: Muss ich Angst haben vor morgen? Ich bin noch nie operiert worden.",
+   "ar": "قل لي… بصراحة: هل عليّ أن أخاف من الغد؟ لم تُجرَ لي عملية في حياتي."
+  },
+  "noeuds.identitaet.choix.2": {
+   "fr": "Vous êtes {pohl}, c'est ça ?",
+   "de": "Sie sind {pohl}, richtig?",
+   "ar": "أنتَ {pohl}، أليس كذلك؟"
+  },
+  "noeuds.identitaet.choix.2.puis.0": {
+   "fr": "Oui, oui… Je suis tellement fatigué que je dirais oui à n'importe quoi.",
+   "de": "Ja, ja … Ich bin so müde, ich würde gerade zu allem Ja sagen.",
+   "ar": "نعم، نعم… أنا متعب إلى حدّ أنني قد أقول «نعم» لأي شيء الآن."
+  },
+  "noeuds.identitaet.choix.2.aide": {
+   "fr": "<b>L'identité se vérifie par une question ouverte, jamais par un « oui » à donner.</b> Un patient fatigué ou anxieux répond « oui » à tout. « Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen? » Puis on compare avec le bracelet.",
+   "ar": "<b>الهوية يُتحقَّق منها بسؤال مفتوح، لا بسؤال جوابه «نعم».</b> المريض المتعب أو القلق يجيب بـ«نعم» عن كل شيء. «Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen?» ثم نقارن بالسوار."
+  },
+  "noeuds.angst.choix.0": {
+   "fr": "Je comprends bien que vous ayez peur. Je ne peux rien vous promettre, mais cette opération se fait très souvent. Je note vos questions, et demain matin l'équipe médicale y répondra.",
+   "de": "Ich verstehe gut, dass Sie Angst haben. Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht. Ihre Fragen schreibe ich mir auf, und morgen früh beantwortet sie Ihnen das Ärzteteam.",
+   "ar": "أفهم جيدًا أنكَ خائف. لا أستطيع أن أعدكَ بشيء، لكن هذه العملية تُجرى كثيرًا جدًا. سأدوّن أسئلتكَ، وغدًا صباحًا يجيبكَ عنها الفريق الطبي."
+  },
+  "noeuds.angst.choix.0.puis.0": {
+   "fr": "Hum. C'est honnête, au moins. Dites, j'ai la bouche tellement sèche. Je peux encore boire quelque chose ?",
+   "de": "Hm. Das ist ehrlich, wenigstens. Sagen Sie, ich habe so einen trockenen Mund. Darf ich noch was trinken?",
+   "ar": "همم. هذا كلام صادق على الأقل. قل لي، فمي جاف جدًا. هل يجوز لي أن أشرب شيئًا بعد؟"
+  },
+  "noeuds.angst.choix.1": {
+   "fr": "C'est tout à fait normal avant une première opération. Je ne peux pas vous dire qu'il ne peut rien arriver, mais l'ablation de la vésicule est une intervention de routine. Qu'est-ce qui vous inquiète le plus ?",
+   "de": "Das ist ganz normal vor einer ersten Operation. Ich kann Ihnen nicht sagen, dass nichts passieren kann, aber die Entfernung der Gallenblase ist ein Routineeingriff. Was macht Ihnen am meisten Sorgen?",
+   "ar": "هذا طبيعي تمامًا قبل أول عملية. لا أستطيع أن أقول لكَ إنه لا يمكن أن يحدث شيء، لكن استئصال المرارة عملية روتينية. ما أكثر شيء يقلقكَ؟"
+  },
+  "noeuds.angst.choix.1.puis.0": {
+   "fr": "L'anesthésie, je crois. Mais bon. Dites, j'ai la bouche tellement sèche. Je peux encore boire quelque chose ?",
+   "de": "Die Narkose, glaube ich. Aber gut. Sagen Sie, ich habe so einen trockenen Mund. Darf ich noch was trinken?",
+   "ar": "التخدير، على ما أظن. لكن لا بأس. قل لي، فمي جاف جدًا. هل يجوز لي أن أشرب شيئًا بعد؟"
+  },
+  "noeuds.angst.choix.2": {
+   "fr": "Ne vous inquiétez pas, il ne peut absolument rien arriver. Demain à la même heure, tout sera fini.",
+   "de": "Keine Sorge, da kann überhaupt nichts passieren. Morgen um diese Zeit ist alles vorbei.",
+   "ar": "لا تقلق، لا يمكن أن يحدث أي شيء إطلاقًا. غدًا في مثل هذا الوقت يكون كل شيء قد انتهى."
+  },
+  "noeuds.angst.choix.2.puis.0": {
+   "fr": "Absolument rien ? Pour une opération ? Je ne vous crois pas tout à fait.",
+   "de": "Überhaupt nichts? Bei einer Operation? Das glaube ich Ihnen nicht so ganz.",
+   "ar": "أي شيء إطلاقًا؟ في عملية جراحية؟ لا أصدّقكَ تمامًا."
+  },
+  "noeuds.angst.choix.2.aide": {
+   "fr": "<b>Rassurer, ce n'est pas promettre : on reconnaît la peur et on dit ce qui est vrai.</b> « Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht. » Une promesse impossible fait perdre la confiance, et les questions médicales vont à l'équipe médicale.",
+   "ar": "<b>الطمأنة ليست وعدًا: نعترف بالخوف ونقول ما هو صحيح.</b> «Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht.» الوعد المستحيل يُفقد الثقة، والأسئلة الطبية تذهب إلى الفريق الطبي."
+  },
+  "noeuds.trinken.dit.0.recit": {
+   "fr": "Il est vingt-trois heures quarante.",
+   "ar": "الساعة الحادية عشرة وأربعون دقيقة ليلًا."
+  },
+  "noeuds.trinken.choix.0": {
+   "fr": "Jusqu'à minuit, vous pouvez encore boire quelques gorgées d'eau. Mais à partir de minuit, vous devez rester à jeun : vous ne devez plus rien manger ni boire, pas de chewing-gum non plus.",
+   "de": "Bis Mitternacht dürfen Sie noch ein paar Schlucke Wasser trinken. Aber ab Mitternacht müssen Sie nüchtern bleiben: Sie dürfen nichts mehr essen, nichts mehr trinken und auch keinen Kaugummi kauen.",
+   "ar": "حتى منتصف الليل يجوز لكَ أن تشرب بضع رشفات من الماء. لكن ابتداءً من منتصف الليل يجب أن تبقى صائمًا: لا يجوز لكَ أن تأكل أو تشرب شيئًا، ولا أن تمضغ علكة."
+  },
+  "noeuds.trinken.choix.0.puis.0": {
+   "fr": "Bon, alors je bois vite maintenant. Et une cigarette ? Rien qu'une, je suis tellement nerveux.",
+   "de": "Gut, dann trinke ich jetzt noch schnell. Und eine Zigarette? Nur eine, ich bin so nervös.",
+   "ar": "جيد، إذن أشرب الآن سريعًا. وسيجارة؟ واحدة فقط، فأنا متوتر جدًا."
+  },
+  "noeuds.trinken.choix.1": {
+   "fr": "Quelques gorgées d'eau, oui, mais seulement jusqu'à minuit. Après, on ne doit plus rien manger ni boire, sinon l'anesthésie peut devenir dangereuse.",
+   "de": "Ein paar Schlucke Wasser, ja, aber nur noch bis Mitternacht. Danach darf nichts mehr gegessen oder getrunken werden, sonst kann die Narkose gefährlich werden.",
+   "ar": "بضع رشفات من الماء، نعم، لكن حتى منتصف الليل فقط. بعد ذلك يُمنع الأكل والشرب، وإلا فقد يصبح التخدير خطرًا."
+  },
+  "noeuds.trinken.choix.1.puis.0": {
+   "fr": "Bon, alors je bois vite maintenant. Et une cigarette ? Rien qu'une, je suis tellement nerveux.",
+   "de": "Gut, dann trinke ich jetzt noch schnell. Und eine Zigarette? Nur eine, ich bin so nervös.",
+   "ar": "جيد، إذن أشرب الآن سريعًا. وسيجارة؟ واحدة فقط، فأنا متوتر جدًا."
+  },
+  "noeuds.trinken.choix.2": {
+   "fr": "À partir de minuit, vous devriez peut-être plutôt ne plus trop manger ni boire.",
+   "de": "Ab Mitternacht sollten Sie vielleicht lieber nicht mehr so viel essen und trinken.",
+   "ar": "ابتداءً من منتصف الليل ربما يُستحسن ألا تأكل وتشرب كثيرًا."
+  },
+  "noeuds.trinken.choix.2.puis.0": {
+   "fr": "« Pas trop » ? Donc un petit pain, ça va encore ?",
+   "de": "„Nicht so viel“? Also ein kleines Brot geht noch?",
+   "ar": "«ليس كثيرًا»؟ إذن رغيف صغير ما زال مسموحًا؟"
+  },
+  "noeuds.trinken.choix.2.aide": {
+   "fr": "<b>Une règle de sécurité ne se dit pas comme un conseil : « dürfen nicht », pas « sollten vielleicht lieber ».</b> « Ab Mitternacht dürfen Sie nichts mehr essen und nichts mehr trinken. » La politesse est dans le ton et l'explication, pas dans le flou.",
+   "ar": "<b>قاعدة السلامة لا تُقال كنصيحة: «dürfen nicht»، لا «sollten vielleicht lieber».</b> «Ab Mitternacht dürfen Sie nichts mehr essen und nichts mehr trinken.» اللباقة تكون في النبرة وفي الشرح، لا في الغموض."
+  },
+  "noeuds.rauchen.choix.0": {
+   "fr": "Je comprends que vous soyez nerveux. Mais avant l'anesthésie, on ne doit plus fumer. Si vous voulez, je reste encore un moment avec vous.",
+   "de": "Ich verstehe, dass Sie nervös sind. Aber vor der Narkose darf nicht mehr geraucht werden. Wenn Sie möchten, bleibe ich noch einen Moment bei Ihnen.",
+   "ar": "أفهم أنكَ متوتر. لكن قبل التخدير يُمنع التدخين. إن شئتَ، أبقى معكَ لحظة أخرى."
+  },
+  "noeuds.rauchen.choix.0.puis.0": {
+   "fr": "Ça va, je tiendrai le coup. Mais là, il faut vraiment que j'aille aux toilettes. J'y vais vite tout seul.",
+   "de": "Schon gut, ich halte das aus. Aber jetzt muss ich mal dringend auf die Toilette. Ich gehe schnell allein.",
+   "ar": "لا بأس، سأتحمّل. لكنني الآن بحاجة ملحّة إلى المرحاض. سأذهب سريعًا وحدي."
+  },
+  "noeuds.rauchen.choix.1": {
+   "fr": "Malheureusement non. Fumer non plus n'est pas permis avant l'opération, parce que ça peut gêner la respiration sous anesthésie. Je sais, c'est dur cette nuit.",
+   "de": "Leider nein. Auch Rauchen ist vor der Operation nicht erlaubt, weil es die Atmung in der Narkose stören kann. Ich weiß, das ist hart heute Nacht.",
+   "ar": "للأسف لا. التدخين أيضًا غير مسموح قبل العملية، لأنه قد يؤثر في التنفس تحت التخدير. أعرف أن هذا صعب هذه الليلة."
+  },
+  "noeuds.rauchen.choix.1.puis.0": {
+   "fr": "Ça va, je tiendrai le coup. Mais là, il faut vraiment que j'aille aux toilettes. J'y vais vite tout seul.",
+   "de": "Schon gut, ich halte das aus. Aber jetzt muss ich mal dringend auf die Toilette. Ich gehe schnell allein.",
+   "ar": "لا بأس، سأتحمّل. لكنني الآن بحاجة ملحّة إلى المرحاض. سأذهب سريعًا وحدي."
+  },
+  "noeuds.rauchen.choix.2": {
+   "fr": "Non ! Ici, il est strictement interdit de fumer !",
+   "de": "Nein! Rauchen ist hier streng verboten!",
+   "ar": "لا! التدخين ممنوع هنا منعًا باتًّا!"
+  },
+  "noeuds.rauchen.choix.2.puis.0": {
+   "fr": "Ça va, ça va. Pas la peine de me crier dessus.",
+   "de": "Schon gut, schon gut. Sie müssen mich nicht gleich anschreien.",
+   "ar": "طيب، طيب. لا داعي لأن تصرخ في وجهي."
+  },
+  "noeuds.rauchen.choix.2.aide": {
+   "fr": "<b>Un refus clair passe mieux avec une raison et un geste.</b> « Ich verstehe, dass Sie nervös sind. Aber vor der Narkose darf nicht mehr geraucht werden. » Puis propose quelque chose : rester un moment avec lui.",
+   "ar": "<b>الرفض الواضح يُقبل أسهل إذا رافقه سبب ولفتة.</b> «Ich verstehe, dass Sie nervös sind. Aber vor der Narkose darf nicht mehr geraucht werden.» ثم اقترح شيئًا: أن تبقى معه لحظة."
+  },
+  "noeuds.aufstehen.dit.0.recit": {
+   "fr": "{pohl} pose déjà les mains sur les accoudoirs du fauteuil pour se lever.",
+   "ar": "{pohl} يضع يديه على مسندَي الكرسي ليقوم."
+  },
+  "noeuds.aufstehen.choix.0": {
+   "fr": "Attendez, je vous aide. Aux urgences, vous avez eu un antidouleur fort, ça peut donner des vertiges. Cette nuit, avant de vous lever, sonnez, s'il vous plaît. Voici la sonnette.",
+   "de": "Moment, ich helfe Ihnen. Sie haben in der Notaufnahme ein starkes Schmerzmittel bekommen, davon kann einem schwindelig werden. Bevor Sie heute Nacht aufstehen, klingeln Sie bitte. Hier ist die Klingel.",
+   "ar": "لحظة، سأساعدكَ. في الطوارئ أُعطيتَ مسكّنًا قويًا، وهذا قد يسبّب الدوخة. قبل أن تنهض هذه الليلة، اقرع الجرس من فضلكَ. هذا هو الجرس."
+  },
+  "noeuds.aufstehen.choix.0.puis.0": {
+   "fr": "Des vertiges, c'est même un peu vrai. Bon, d'accord, je sonnerai. Et qu'est-ce qui se passe demain matin ?",
+   "de": "Schwindelig, das stimmt sogar ein bisschen. Na gut, dann klingele ich eben. Und was passiert morgen früh?",
+   "ar": "الدوخة، هذا صحيح قليلًا فعلًا. طيب، سأقرع الجرس إذن. وماذا سيجري غدًا صباحًا؟"
+  },
+  "noeuds.aufstehen.choix.1": {
+   "fr": "Attendez, s'il vous plaît, je vous accompagne. Cette nuit, vous ne devez pas vous lever seul : après l'antidouleur des urgences, le risque de chute est trop grand. Dès que vous voulez vous lever, appuyez ici, s'il vous plaît.",
+   "de": "Warten Sie bitte, ich begleite Sie. Allein dürfen Sie heute Nacht nicht aufstehen: Nach dem Schmerzmittel aus der Notaufnahme ist das Sturzrisiko zu hoch. Sobald Sie aufstehen möchten, drücken Sie bitte hier.",
+   "ar": "انتظر من فضلكَ، سأرافقكَ. لا يجوز لكَ أن تنهض وحدكَ هذه الليلة: بعد المسكّن الذي أخذته في الطوارئ يكون خطر السقوط كبيرًا جدًا. حالما تريد أن تنهض، اضغط هنا من فضلكَ."
+  },
+  "noeuds.aufstehen.choix.1.puis.0": {
+   "fr": "C'est vrai que j'ai un peu la tête qui tourne. Bon, d'accord, je sonnerai. Et qu'est-ce qui se passe demain matin ?",
+   "de": "Schwindelig bin ich tatsächlich ein bisschen. Na gut, dann klingele ich eben. Und was passiert morgen früh?",
+   "ar": "أنا فعلًا أشعر بدوخة خفيفة. طيب، سأقرع الجرس إذن. وماذا سيجري غدًا صباحًا؟"
+  },
+  "noeuds.aufstehen.choix.2": {
+   "fr": "Oui, allez-y. Les toilettes sont juste ici, à gauche.",
+   "de": "Ja, gehen Sie ruhig. Die Toilette ist gleich hier links.",
+   "ar": "نعم، تفضل اذهب. المرحاض هنا إلى اليسار مباشرة."
+  },
+  "noeuds.aufstehen.choix.2.puis.0": {
+   "fr": "Oh là… Tout tourne. Vous pouvez me tenir ?",
+   "de": "Hoppla … Mir dreht sich alles. Können Sie mich mal festhalten?",
+   "ar": "أوه… كل شيء يدور بي. هل يمكنكَ أن تمسكني؟"
+  },
+  "noeuds.aufstehen.choix.2.aide": {
+   "fr": "<b>Nuit, lieu inconnu, antidouleur fort : le risque de chute est grand. On accompagne, et on explique la sonnette.</b> « Bevor Sie heute Nacht aufstehen, klingeln Sie bitte. » Donne la raison, pour qu'il respecte la consigne quand tu n'es pas là.",
+   "ar": "<b>ليل، ومكان غير مألوف، ومسكّن قوي: خطر السقوط كبير. نرافق المريض ونشرح له الجرس.</b> «Bevor Sie heute Nacht aufstehen, klingeln Sie bitte.» اذكر السبب، حتى يلتزم بالتعليمات حين لا تكون موجودًا."
+  },
+  "noeuds.morgen.choix.0": {
+   "fr": "Vers cinq heures et demie, je repasse vous voir. Avant qu'on vienne vous chercher à sept heures et demie pour l'opération, vous mettez la chemise d'opération, et il faut enlever les bijoux et les lunettes, ainsi que la prothèse dentaire s'il y en a une.",
+   "de": "Gegen halb sechs komme ich noch einmal zu Ihnen. Bevor Sie um halb acht zur Operation abgeholt werden, ziehen Sie das Operationshemd an, und Schmuck und Brille müssen abgelegt und eine Zahnprothese muss herausgenommen werden.",
+   "ar": "نحو الخامسة والنصف سأمرّ عليكَ مرة أخرى. قبل أن يأتوا لأخذكَ إلى العملية في السابعة والنصف، تلبس قميص العمليات، ويجب نزع الحليّ والنظارة، وإخراج طقم الأسنان إن وُجد."
+  },
+  "noeuds.morgen.choix.0.puis.0": {
+   "fr": "De prothèse, je n'en ai pas, tout est encore d'origine. Je peux appeler ma femme avant ? Elle attend sûrement des nouvelles.",
+   "de": "Zahnprothese habe ich keine, alles noch echt. Darf ich vorher noch meine Frau anrufen? Sie wartet bestimmt auf eine Nachricht.",
+   "ar": "طقم أسنان ليس عندي، كلها ما زالت أصلية. هل يجوز لي أن أتصل بزوجتي قبل ذلك؟ هي بالتأكيد تنتظر خبرًا."
+  },
+  "noeuds.morgen.choix.1": {
+   "fr": "À sept heures et demie, on viendra vous chercher pour l'opération. Dès que vous serez réveillé, ma collègue du matin vous aidera à mettre la chemise d'opération. Les bijoux et les lunettes seront enlevés avant et mis sous clé ici.",
+   "de": "Um halb acht werden Sie zur Operation abgeholt. Sobald Sie wach sind, hilft Ihnen meine Kollegin vom Frühdienst beim Anziehen des Operationshemds. Schmuck und Brille werden vorher abgenommen und hier eingeschlossen.",
+   "ar": "في السابعة والنصف سيأتون لأخذكَ إلى العملية. حالما تستيقظ، تساعدكَ زميلتي من المناوبة الصباحية في لبس قميص العمليات. الحليّ والنظارة تُنزع قبل ذلك وتُحفظ هنا في مكان مقفل."
+  },
+  "noeuds.morgen.choix.1.puis.0": {
+   "fr": "Bien. Je peux appeler ma femme avant ? Elle attend sûrement des nouvelles.",
+   "de": "Gut. Darf ich vorher noch meine Frau anrufen? Sie wartet bestimmt auf eine Nachricht.",
+   "ar": "جيد. هل يجوز لي أن أتصل بزوجتي قبل ذلك؟ هي بالتأكيد تنتظر خبرًا."
+  },
+  "noeuds.morgen.choix.2": {
+   "fr": "À sept heures et demie, vous « allez chercher » à l'opération. (mal dit)",
+   "de": "Um halb acht holen Sie zur Operation ab.",
+   "ar": "في السابعة والنصف «تأتي أنتَ لتأخذ» إلى العملية. (تعبير خاطئ)"
+  },
+  "noeuds.morgen.choix.2.puis.0": {
+   "fr": "Je vais chercher qui ? Je croyais que c'était moi qu'on opérait.",
+   "de": "Ich hole wen ab? Ich dachte, ich werde operiert.",
+   "ar": "آخذ مَن؟ ظننت أنني أنا من ستُجرى له العملية."
+  },
+  "noeuds.morgen.choix.2.aide": {
+   "fr": "<b>Le patient ne va chercher personne : on vient le chercher. C'est le passif : « Sie werden abgeholt ».</b> « Um halb acht werden Sie zur Operation abgeholt. » Avec un modal : « Die Brille muss abgelegt werden ».",
+   "ar": "<b>المريض لا يأتي ليأخذ أحدًا: هم يأتون لأخذه. هذا هو المبني للمجهول: «Sie werden abgeholt».</b> «Um halb acht werden Sie zur Operation abgeholt.» ومع فعل مساعد: «Die Brille muss abgelegt werden»."
+  },
+  "noeuds.frau.choix.0": {
+   "fr": "Bien sûr, appelez-la. Voulez-vous que je sorte votre portable du sac ? Les autres patients dorment déjà, alors je vous demanderais de parler doucement.",
+   "de": "Natürlich, rufen Sie sie ruhig an. Soll ich Ihnen das Handy aus der Tasche holen? Die anderen Patienten schlafen schon, deshalb würde ich Sie bitten, leise zu sprechen.",
+   "ar": "بالطبع، اتصل بها بكل راحة. هل أُخرج لكَ الهاتف من الحقيبة؟ المرضى الآخرون نائمون، لذلك أرجو منكَ أن تتكلم بصوت منخفض."
+  },
+  "noeuds.frau.choix.0.puis.0": {
+   "fr": "Merci. Elle sera contente d'entendre ma voix.",
+   "de": "Danke. Sie wird froh sein, meine Stimme zu hören.",
+   "ar": "شكرًا. ستفرح بسماع صوتي."
+  },
+  "noeuds.frau.choix.1": {
+   "fr": "Bien sûr. Si vous voulez, vous pouvez téléphoner tranquillement avant de vous coucher. Je vous laisse seul quelques minutes.",
+   "de": "Selbstverständlich. Wenn Sie möchten, können Sie in Ruhe telefonieren, bevor Sie sich hinlegen. Ich lasse Sie ein paar Minuten allein.",
+   "ar": "بكل تأكيد. إن شئتَ، يمكنكَ أن تتصل بهدوء قبل أن تستلقي. سأترككَ وحدكَ بضع دقائق."
+  },
+  "noeuds.frau.choix.1.puis.0": {
+   "fr": "Merci. Elle sera contente d'entendre ma voix.",
+   "de": "Danke. Sie wird froh sein, meine Stimme zu hören.",
+   "ar": "شكرًا. ستفرح بسماع صوتي."
+  },
+  "noeuds.frau.choix.2": {
+   "fr": "Encore maintenant ? Il est presque minuit. Appelez-la plutôt demain.",
+   "de": "Jetzt noch? Es ist fast Mitternacht. Rufen Sie sie lieber morgen an.",
+   "ar": "الآن؟ الساعة تقارب منتصف الليل. الأفضل أن تتصل بها غدًا."
+  },
+  "noeuds.frau.choix.2.puis.0": {
+   "fr": "Demain, je serai au bloc ! Elle s'inquiète, voyons.",
+   "de": "Morgen bin ich im OP! Sie macht sich doch Sorgen.",
+   "ar": "غدًا أكون في غرفة العمليات! وهي قلقة عليّ!"
+  },
+  "noeuds.frau.choix.2.aide": {
+   "fr": "<b>Appeler sa femme avant une opération est une demande légitime : on l'accepte et on aide.</b> « Natürlich, rufen Sie sie ruhig an. » Si besoin, demande poliment de parler doucement : « Ich würde Sie bitten, leise zu sprechen. »",
+   "ar": "<b>الاتصال بالزوجة قبل العملية طلب مشروع: نقبله ونساعد.</b> «Natürlich, rufen Sie sie ruhig an.» وعند اللزوم اطلب بأدب أن يتكلم بصوت منخفض: «Ich würde Sie bitten, leise zu sprechen.»"
+  },
+  "noeuds.ende.dit.0.recit": {
+   "fr": "Minuit moins dix. {pohl} a parlé à sa femme. Il est couché, la sonnette à portée de main.",
+   "ar": "منتصف الليل إلا عشر دقائق. تحدث {pohl} مع زوجته. هو مستلقٍ، والجرس في متناول يده."
+  },
+  "noeuds.ende.dit.1": {
+   "fr": "Voilà. Maintenant je suis un peu plus calme. Mais je crois que je dormirai mal quand même.",
+   "de": "So. Jetzt bin ich ein bisschen ruhiger. Schlafen werde ich trotzdem schlecht, glaube ich.",
+   "ar": "هكذا. الآن أنا أهدأ قليلًا. ومع ذلك أظن أنني سأنام نومًا سيئًا."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "C'est tout à fait normal avant une opération. Cette nuit, je passerai vous voir régulièrement. Bonne nuit, {pohl:voc}.",
+   "de": "Das ist vor einer Operation ganz normal. Ich schaue heute Nacht regelmäßig nach Ihnen. Gute Nacht, {pohl}.",
+   "ar": "هذا طبيعي تمامًا قبل العملية. سأمرّ عليكَ بانتظام هذه الليلة. تصبح على خير يا {pohl:voc}."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, {yusuf}. Bonne nuit.",
+   "de": "Danke, {yusuf}. Gute Nacht.",
+   "ar": "شكرًا يا {yusuf}. تصبح على خير."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je comprends. Si vous n'arrivez pas à dormir ou si vous avez besoin de quelque chose, sonnez, tout simplement. Je suis dans le service toute la nuit.",
+   "de": "Das verstehe ich. Wenn Sie nicht schlafen können oder etwas brauchen, klingeln Sie einfach. Ich bin die ganze Nacht auf der Station.",
+   "ar": "أفهم ذلك. إن لم تستطع النوم أو احتجتَ إلى شيء، فاقرع الجرس ببساطة. أنا في القسم طوال الليل."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci, {yusuf}. Bonne nuit.",
+   "de": "Danke, {yusuf}. Gute Nacht.",
+   "ar": "شكرًا يا {yusuf}. تصبح على خير."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Je vous apporte un somnifère, comme ça vous dormirez bien, c'est sûr.",
+   "de": "Ich bringe Ihnen eine Schlaftablette, dann schlafen Sie sicher gut.",
+   "ar": "سأحضر لكَ حبة منوّمة، وهكذا تنام جيدًا بالتأكيد."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "J'ai le droit d'en prendre un, avant l'anesthésie ?",
+   "de": "Darf ich die denn nehmen, vor der Narkose?",
+   "ar": "وهل يجوز لي أن آخذها قبل التخدير؟"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Un somnifère est un médicament : pas sans prescription, surtout la veille d'une anesthésie.</b> Rassure plutôt et dis que tu es là : « Ich schaue heute Nacht regelmäßig nach Ihnen. »",
+   "ar": "<b>الحبة المنوّمة دواء: لا تُعطى من دون أمر طبي، وخصوصًا عشية التخدير.</b> الأفضل أن تطمئنه وتقول إنك موجود: «Ich schaue heute Nacht regelmäßig nach Ihnen.»"
+  },
+  "ecouter.0.q": {
+   "fr": "À partir de quand {pohl} ne doit-il plus rien manger ni boire ?",
+   "de": "Ab wann darf {pohl} nichts mehr essen und trinken?",
+   "ar": "منذ متى لا يجوز لـ{pohl} أن يأكل أو يشرب شيئًا؟"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À partir de sept heures et demie.",
+   "de": "Ab halb acht.",
+   "ar": "ابتداءً من السابعة والنصف."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À partir de minuit.",
+   "de": "Ab Mitternacht.",
+   "ar": "ابتداءً من منتصف الليل."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À partir de maintenant.",
+   "de": "Ab sofort.",
+   "ar": "ابتداءً من الآن."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {pohl} ne doit-il pas se lever seul la nuit ?",
+   "de": "Warum soll {pohl} nachts nicht allein aufstehen?",
+   "ar": "لماذا يجب ألا ينهض {pohl} وحده في الليل؟"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Parce qu'il est à jeun.",
+   "de": "Weil er nüchtern ist.",
+   "ar": "لأنه صائم."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Parce que les toilettes sont loin.",
+   "de": "Weil die Toilette weit weg ist.",
+   "ar": "لأن المرحاض بعيد."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Parce que l'antidouleur peut lui donner des vertiges.",
+   "de": "Weil ihm vom Schmerzmittel schwindelig werden kann.",
+   "ar": "لأن المسكّن قد يسبّب له الدوخة."
+  },
+  "ecouter.2.q": {
+   "fr": "Quand vient-on chercher {pohl} pour l'opération ?",
+   "de": "Wann wird {pohl} zur Operation abgeholt?",
+   "ar": "متى يأتون لأخذ {pohl} إلى العملية؟"
+  },
+  "ecouter.2.options.0": {
+   "fr": "À sept heures et demie.",
+   "de": "Um halb acht.",
+   "ar": "في السابعة والنصف."
+  },
+  "ecouter.2.options.1": {
+   "fr": "À cinq heures et demie.",
+   "de": "Um halb sechs.",
+   "ar": "في الخامسة والنصف."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À huit heures.",
+   "de": "Um acht.",
+   "ar": "في الثامنة."
+  },
+  "ecouter.3.q": {
+   "fr": "Qui {pohl} veut-il encore appeler ?",
+   "de": "Wen möchte {pohl} noch anrufen?",
+   "ar": "بمن يريد {pohl} أن يتصل بعد؟"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Son médecin traitant.",
+   "de": "Seinen Hausarzt.",
+   "ar": "بطبيب العائلة."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Sa femme.",
+   "de": "Seine Frau.",
+   "ar": "بزوجته."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Sa fille.",
+   "de": "Seine Tochter.",
+   "ar": "بابنته."
+  }
+ }
+}

@@ -1,0 +1,165 @@
+{
+ "id": "d40-einzug",
+ "numero": 40,
+ "niveau": "A2",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "arun",
+ "personnes": ["winkler"],
+ "titre": {"t": "Der Einzug", "fr": "L'arrivée d'une nouvelle résidente"},
+ "intro": {"fr": "Lundi 16 novembre, dix heures, au {heim}. {winkler}, 84 ans, emménage aujourd'hui. Elle marche avec un déambulateur, porte des lunettes et un appareil auditif. Tu joues {arun} : accueille-la, présente-toi, montre-lui sa chambre, la sonnette et la salle de bains, dis-lui les heures des repas et où ranger ses affaires. Des phrases courtes, et beaucoup de chaleur."},
+ "but": {"fr": "Accueillir une nouvelle résidente : se présenter, guider avec l'impératif poli (Kommen Sie bitte mit), montrer la chambre, la sonnette et la salle de bains, donner les heures des repas avec « um », aider à ranger ses affaires (verbes séparables : auspacken, einräumen, sich ausruhen)."},
+ "grammaire": ["g01", "g04"],
+ "telc": ["oral-1"],
+ "relire_notes": {"fr": "Accueil en maison de retraite : sonnette au lit et dans la salle de bains, à utiliser pour tout besoin, de jour comme de nuit ; barres d'appui dans la salle de bains ; heures des repas (8 h, 12 h, 18 h, café et gâteau à 15 h : à adapter à l'établissement) ; parler à une personne malentendante (face à elle, lentement, sans crier) ; noter ses habitudes (le thé) pour la cuisine."},
+ "redemittel": [
+  {"t": "Herzlich willkommen im {heim}! Schön, dass Sie da sind.", "fr": "Bienvenue au {heim} ! Je suis content que vous soyez là.", "fonction": "annoncer"},
+  {"t": "Ich spreche langsam. Sagen Sie mir bitte, wenn Sie etwas nicht verstehen.", "fr": "Je parle lentement. Dites-moi, s'il vous plaît, si vous ne comprenez pas quelque chose.", "fonction": "rassurer"},
+  {"t": "Kommen Sie bitte mit, ich zeige Ihnen Ihr Zimmer.", "fr": "Venez avec moi, s'il vous plaît, je vous montre votre chambre.", "fonction": "annoncer"},
+  {"t": "Hier am Bett ist Ihre Klingel. Drücken Sie einfach, wenn Sie Hilfe brauchen.", "fr": "Ici, près du lit, il y a votre sonnette. Appuyez, tout simplement, si vous avez besoin d'aide.", "fonction": "annoncer"},
+  {"t": "Sie können immer klingeln, auch nachts.", "fr": "Vous pouvez toujours sonner, même la nuit.", "fonction": "rassurer"},
+  {"t": "Das Mittagessen gibt es um zwölf Uhr.", "fr": "Le déjeuner est servi à midi.", "fonction": "annoncer"},
+  {"t": "Soll ich Ihnen beim Auspacken helfen?", "fr": "Voulez-vous que je vous aide à défaire vos bagages ?", "fonction": "demander"},
+  {"t": "Ruhen Sie sich jetzt ein bisschen aus.", "fr": "Reposez-vous un peu, maintenant.", "fonction": "annoncer"}
+ ],
+ "debut": "tuer",
+ "noeuds": {
+  "tuer": {
+   "dit": [
+    {"recit": {"fr": "Lundi, dix heures. Une petite dame entre lentement dans le hall du {heim}, avec son déambulateur. Le chauffeur du transport pose une valise et un carton à côté d'elle."}},
+    {"qui": "winkler", "air": "question", "t": "Guten Tag. Ich bin {winkler}. Ich ziehe heute hier ein. Bin ich hier richtig?", "fr": "Bonjour. Je suis {winkler}. J'emménage ici aujourd'hui. Je suis au bon endroit ?"}
+   ],
+   "choix": [
+    {"t": "Guten Tag, {winkler}! Herzlich willkommen im {heim}. Mein Name ist {arun}, ich arbeite hier in der Pflege.", "fr": "Bonjour, {winkler:voc} ! Bienvenue au {heim}. Je m'appelle {arun}, je travaille ici dans les soins.", "va": "hoeren",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Wie war Ihr Name? Entschuldigung, ich höre nicht mehr so gut.", "fr": "Quel était votre nom ? Excusez-moi, je n'entends plus très bien."}]},
+    {"t": "Ja, Sie sind hier richtig. Willkommen, {winkler}! Schön, dass Sie da sind. Ich bin {arun}.", "fr": "Oui, vous êtes au bon endroit. Bienvenue, {winkler:voc} ! Je suis content que vous soyez là. Je suis {arun}.", "va": "hoeren",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Wie war Ihr Name? Entschuldigung, ich höre nicht mehr so gut.", "fr": "Quel était votre nom ? Excusez-moi, je n'entends plus très bien."}]},
+    {"faux": true, "t": "Ah, Sie sind die Neue! Kommen Sie, kommen Sie, schnell.", "fr": "Ah, c'est vous, la nouvelle ! Venez, venez, vite.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Die Neue? Und so schnell kann ich mit meinem Rollator nicht.", "fr": "La nouvelle ? Et je ne peux pas aller si vite avec mon déambulateur."}],
+     "aide": {"fr": "<b>On accueille une nouvelle résidente par son nom, avec « Herzlich willkommen ».</b> « die Neue » sonne irrespectueux, et « schnell » la presse. Dis ton nom et prends ton temps : elle marche avec un déambulateur."}}
+   ]
+  },
+  "hoeren": {
+   "dit": [
+    {"recit": {"fr": "{arun} remarque le petit appareil auditif derrière son oreille droite."}}
+   ],
+   "choix": [
+    {"t": "Kein Problem. Ich stehe hier vor Ihnen und spreche langsam. Ich heiße {arun}. A-R-U-N.", "fr": "Pas de problème. Je me mets ici, devant vous, et je parle lentement. Je m'appelle {arun}. A-R-U-N.", "va": "zimmer",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "{arun}. Jetzt habe ich es verstanden. Ein schöner Name.", "fr": "{arun}. Là, j'ai compris. C'est un joli prénom."}]},
+    {"t": "Ich spreche langsam. Mein Name ist {arun}. Sagen Sie mir bitte, wenn Sie etwas nicht verstehen.", "fr": "Je parle lentement. Je m'appelle {arun}. Dites-moi, s'il vous plaît, si vous ne comprenez pas quelque chose.", "va": "zimmer",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "{arun}. Jetzt habe ich es verstanden. Danke, junger Mann.", "fr": "{arun}. Là, j'ai compris. Merci, jeune homme."}]},
+    {"faux": true, "t": "Dann spreche ich jetzt ganz laut! Hören Sie mich so besser?", "fr": "Alors je vais parler très fort ! Vous m'entendez mieux comme ça ?",
+     "puis": [{"qui": "winkler", "air": "surprise", "t": "Sie müssen doch nicht schreien, junger Mann! Sprechen Sie einfach langsam.", "fr": "Vous n'avez pas besoin de crier, jeune homme ! Parlez lentement, tout simplement."}],
+     "aide": {"fr": "<b>Crier n'aide pas : la voix se déforme, et la personne se sent gênée.</b> Mets-toi face à elle, pour qu'elle voie ta bouche, et parle lentement et clairement : « Ich spreche langsam. »"}}
+   ]
+  },
+  "zimmer": {
+   "dit": [],
+   "choix": [
+    {"t": "Kommen Sie bitte mit, ich zeige Ihnen Ihr Zimmer. Ihren Koffer nehme ich.", "fr": "Venez avec moi, s'il vous plaît, je vous montre votre chambre. Je prends votre valise.", "va": "klingel",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Danke. Aber langsam, bitte.", "fr": "Merci. Mais doucement, s'il vous plaît."}]},
+    {"t": "Ihr Zimmer ist hier vorne, gleich links. Gehen wir zusammen hin? Den Koffer trage ich.", "fr": "Votre chambre est juste là, tout de suite à gauche. On y va ensemble ? Je porte la valise.", "va": "klingel",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Gern. Aber langsam, bitte.", "fr": "Volontiers. Mais doucement, s'il vous plaît."}]},
+    {"faux": true, "t": "Bitte mitkommen Sie. Ich zeige Ihnen Ihr Zimmer.", "fr": "« Venez avec », s'il vous plaît (mal dit). Je vous montre votre chambre.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Mitkommen Sie? … Ach so, ich soll mitkommen.", "fr": "« Venez avec » ? … Ah, je dois venir avec vous."}],
+     "aide": {"fr": "<b>À l'impératif poli, la particule va à la fin : « Kommen Sie bitte mit. »</b> « mitkommen » est un verbe séparable : le verbe en tête, puis « Sie », puis « mit » tout à la fin. De même : Setzen Sie sich bitte hin. Ruhen Sie sich aus."}}
+   ]
+  },
+  "klingel": {
+   "dit": [
+    {"recit": {"fr": "La chambre est claire : un lit, une armoire, un fauteuil, une petite table, et une fenêtre sur le jardin."}},
+    {"qui": "winkler", "air": "sourire", "t": "Oh, schön hell! Und ein Fenster zum Garten.", "fr": "Oh, c'est bien clair ! Et une fenêtre sur le jardin."}
+   ],
+   "choix": [
+    {"t": "Ja, es ist schön hell. Und das hier ist die Klingel. Wenn Sie Hilfe brauchen, drücken Sie hier.", "fr": "Oui, c'est bien clair. Et ça, c'est la sonnette. Si vous avez besoin d'aide, appuyez ici.", "va": "bad",
+     "puis": [{"qui": "winkler", "air": "question", "t": "Auch in der Nacht? Ich möchte niemanden wecken.", "fr": "La nuit aussi ? Je ne voudrais réveiller personne."}]},
+    {"t": "Schön, nicht wahr? Schauen Sie, hier am Bett ist Ihre Klingel. Drücken Sie einfach, wenn Sie etwas brauchen.", "fr": "C'est joli, n'est-ce pas ? Regardez, ici, près du lit, il y a votre sonnette. Appuyez, tout simplement, si vous avez besoin de quelque chose.", "va": "bad",
+     "puis": [{"qui": "winkler", "air": "question", "t": "Auch in der Nacht? Ich möchte niemanden wecken.", "fr": "La nuit aussi ? Je ne voudrais réveiller personne."}]},
+    {"faux": true, "t": "Hier ist die Klingel. Aber bitte drücken Sie nur im Notfall.", "fr": "Voici la sonnette. Mais appuyez seulement en cas d'urgence, s'il vous plaît.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Nur im Notfall? Und wenn ich Hilfe beim Anziehen brauche?", "fr": "Seulement en cas d'urgence ? Et si j'ai besoin d'aide pour m'habiller ?"}],
+     "aide": {"fr": "<b>La sonnette sert pour tout besoin, pas seulement pour les urgences.</b> Sinon, une résidente n'ose pas sonner et se lève seule, au risque de tomber. Dis : « Wenn Sie Hilfe brauchen, drücken Sie hier. »"}}
+   ]
+  },
+  "bad": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, auch nachts. Das ist kein Problem, wir sind immer da. Kommen Sie, hier ist Ihr Bad, mit Toilette und Dusche. Hier ist auch eine Klingel.", "fr": "Oui, la nuit aussi. Ce n'est pas un problème, nous sommes toujours là. Venez, voici votre salle de bains, avec les toilettes et la douche. Ici aussi, il y a une sonnette.", "va": "essen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Und Griffe an der Wand. Das ist gut, zu Hause hatte ich keine.", "fr": "Et des poignées au mur. C'est bien, à la maison, je n'en avais pas."}]},
+    {"t": "Natürlich auch nachts, dafür sind wir da. Ich zeige Ihnen jetzt das Bad. Hier sind Griffe zum Festhalten.", "fr": "Bien sûr, la nuit aussi, nous sommes là pour ça. Je vous montre maintenant la salle de bains. Ici, il y a des poignées pour se tenir.", "va": "essen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Griffe zum Festhalten, das ist gut. Zu Hause hatte ich keine.", "fr": "Des poignées pour se tenir, c'est bien. À la maison, je n'en avais pas."}]},
+    {"faux": true, "t": "Nachts sind wir nur zwei. Bitte warten Sie lieber bis zum Morgen.", "fr": "La nuit, nous ne sommes que deux. Attendez plutôt le matin, s'il vous plaît.",
+     "puis": [{"qui": "winkler", "air": "surprise", "t": "Bis zum Morgen warten? Aber nachts muss ich manchmal zur Toilette!", "fr": "Attendre le matin ? Mais la nuit, je dois parfois aller aux toilettes !"}],
+     "aide": {"fr": "<b>Une résidente doit pouvoir sonner jour et nuit.</b> Si elle attend, elle risque de se lever seule et de tomber. Rassure-la : « Ja, auch nachts. Wir sind immer da. »"}}
+   ]
+  },
+  "essen": {
+   "dit": [
+    {"qui": "winkler", "air": "question", "t": "Und wann gibt es hier Essen?", "fr": "Et à quelle heure mange-t-on, ici ?"}
+   ],
+   "choix": [
+    {"t": "Frühstück gibt es um acht, Mittagessen um zwölf und Abendessen um sechs. Und um drei gibt es Kaffee und Kuchen.", "fr": "Le petit-déjeuner est à huit heures, le déjeuner à midi et le dîner à six heures. Et à trois heures, il y a café et gâteau.", "va": "tee",
+     "puis": [{"qui": "winkler", "air": "amuse", "t": "Kaffee? Ich trinke lieber Tee. Kaffee mag ich gar nicht.", "fr": "Du café ? Je préfère le thé. Le café, je n'aime pas du tout."}]},
+    {"t": "Das Frühstück ist um acht Uhr, das Mittagessen um zwölf Uhr und das Abendessen um achtzehn Uhr. Am Nachmittag gibt es Kaffee und Kuchen.", "fr": "Le petit-déjeuner est à 8 h, le déjeuner à 12 h et le dîner à 18 h. L'après-midi, il y a café et gâteau.", "va": "tee",
+     "puis": [{"qui": "winkler", "air": "amuse", "t": "Kaffee? Ich trinke lieber Tee. Kaffee mag ich gar nicht.", "fr": "Du café ? Je préfère le thé. Le café, je n'aime pas du tout."}]},
+    {"faux": true, "t": "Das Frühstück ist am acht Uhr und das Mittagessen am zwölf Uhr.", "fr": "Le petit-déjeuner est « le » huit heures et le déjeuner « le » midi. (mal dit)",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Am acht Uhr? Sie meinen um acht, oder?", "fr": "« Le » huit heures ? Vous voulez dire à huit heures, non ?"}],
+     "aide": {"fr": "<b>Avec l'heure, on dit « um » : um acht Uhr, um zwölf Uhr.</b> « am » sert pour le jour et le moment de la journée : am Montag, am Nachmittag, am Abend."}}
+   ]
+  },
+  "tee": {
+   "dit": [],
+   "choix": [
+    {"t": "Kein Problem. Ich sage es der Küche: Für Sie gibt es immer Tee.", "fr": "Pas de problème. Je le dis à la cuisine : pour vous, ce sera toujours du thé.", "va": "sachen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Schwarzen Tee, mit ein bisschen Milch. Danke, das ist nett.", "fr": "Du thé noir, avec un peu de lait. Merci, c'est gentil."}]},
+    {"t": "Dann bekommen Sie natürlich Tee. Welchen Tee trinken Sie gern?", "fr": "Alors vous aurez du thé, bien sûr. Quel thé aimez-vous ?", "va": "sachen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Schwarzen Tee, mit ein bisschen Milch. Danke, das ist nett.", "fr": "Du thé noir, avec un peu de lait. Merci, c'est gentil."}]},
+    {"faux": true, "t": "Unser Kaffee ist aber sehr gut. Probieren Sie ihn mal!", "fr": "Mais notre café est très bon. Goûtez-le donc !",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Nein danke. Seit sechzig Jahren trinke ich Tee.", "fr": "Non merci. Je bois du thé depuis soixante ans."}],
+     "aide": {"fr": "<b>Ici, c'est chez elle : on respecte ses habitudes.</b> Retiens ce qu'elle aime et transmets-le : « Ich sage es der Küche. » Ou demande : « Welchen Tee trinken Sie gern? »"}}
+   ]
+  },
+  "sachen": {
+   "dit": [
+    {"recit": {"fr": "De retour dans la chambre, {winkler} regarde sa valise et le carton posés près de l'armoire."}},
+    {"qui": "winkler", "air": "question", "t": "Und wohin mit meinen Sachen? In dem Karton ist meine Nähmaschine. Ich war Schneiderin, wissen Sie.", "fr": "Et où est-ce que je mets mes affaires ? Dans le carton, il y a ma machine à coudre. J'étais couturière, vous savez."}
+   ],
+   "choix": [
+    {"t": "Ihre Kleider hängen wir in den Schrank. Die Nähmaschine stellen wir auf den Tisch am Fenster. Soll ich Ihnen beim Auspacken helfen?", "fr": "Vos vêtements, on les suspend dans l'armoire. La machine à coudre, on la pose sur la table près de la fenêtre. Voulez-vous que je vous aide à défaire vos bagages ?", "va": "ende",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Ja, gern. Die Nähmaschine am Fenster, das ist schön. Da habe ich gutes Licht.", "fr": "Oui, volontiers. La machine à coudre près de la fenêtre, c'est bien. J'aurai une bonne lumière."}]},
+    {"t": "Eine Schneiderin! Dann bekommt die Nähmaschine einen schönen Platz, auf dem Tisch am Fenster. Ich helfe Ihnen gleich beim Einräumen.", "fr": "Une couturière ! Alors la machine à coudre aura une belle place, sur la table près de la fenêtre. Je vous aide tout de suite à ranger.", "va": "ende",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Ja, gern. Die Nähmaschine am Fenster, das ist schön. Da habe ich gutes Licht.", "fr": "Oui, volontiers. La machine à coudre près de la fenêtre, c'est bien. J'aurai une bonne lumière."}]},
+    {"faux": true, "t": "Ich einräume jetzt Ihre Kleider in den Schrank.", "fr": "Je « dans-range » maintenant vos vêtements dans l'armoire. (mal dit)",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Wie bitte? Sie räumen meine Kleider ein?", "fr": "Pardon ? Vous rangez mes vêtements ?"}],
+     "aide": {"fr": "<b>« einräumen » est séparable : « Ich räume jetzt Ihre Kleider in den Schrank ein. »</b> Le verbe conjugué en deuxième place, la particule « ein » à la fin. De même : Ich packe Ihren Koffer aus. Ich hänge die Bluse auf."}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "Une demi-heure plus tard, la valise est vide. La machine à coudre est sur la table, près de la fenêtre."}},
+    {"qui": "winkler", "air": "sourire", "t": "So. Jetzt sieht es hier fast aus wie zu Hause.", "fr": "Voilà. Maintenant, ça ressemble presque à chez moi."}
+   ],
+   "choix": [
+    {"t": "Das freut mich. Ruhen Sie sich jetzt ein bisschen aus. Um elf kommt meine Kollegin {olena} zu Ihnen, für ein Gespräch.", "fr": "J'en suis content. Reposez-vous un peu, maintenant. À onze heures, ma collègue {olena} viendra vous voir, pour un entretien.", "va": null,
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Gut. Danke, {arun}. Sie haben mich sehr nett empfangen.", "fr": "Bien. Merci, {arun}. Vous m'avez très gentiment accueillie."}]},
+    {"t": "Schön! Ihre Brille legen Sie am besten hier auf den Nachttisch, neben die Klingel. Und jetzt ruhen Sie sich ein bisschen aus.", "fr": "C'est bien ! Vos lunettes, posez-les plutôt ici, sur la table de nuit, à côté de la sonnette. Et maintenant, reposez-vous un peu.", "va": null,
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Gut. Danke, {arun}. Sie haben mich sehr nett empfangen.", "fr": "Bien. Merci, {arun}. Vous m'avez très gentiment accueillie."}]}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was war {winkler} von Beruf?", "fr": "Quel était le métier de {winkler} ?"},
+   "options": [{"t": "Lehrerin.", "fr": "Institutrice."}, {"t": "Schneiderin.", "fr": "Couturière."}, {"t": "Verkäuferin.", "fr": "Vendeuse."}],
+   "juste": 1},
+  {"q": {"t": "Wann gibt es das Mittagessen?", "fr": "À quelle heure est le déjeuner ?"},
+   "options": [{"t": "Um zwölf Uhr.", "fr": "À midi."}, {"t": "Um acht Uhr.", "fr": "À huit heures."}, {"t": "Um drei Uhr.", "fr": "À trois heures."}],
+   "juste": 0},
+  {"q": {"t": "Was trinkt {winkler} lieber als Kaffee?", "fr": "Que préfère boire {winkler} plutôt que du café ?"},
+   "options": [{"t": "Wasser.", "fr": "De l'eau."}, {"t": "Milch.", "fr": "Du lait."}, {"t": "Tee.", "fr": "Du thé."}],
+   "juste": 2},
+  {"q": {"t": "Wohin kommt die Nähmaschine?", "fr": "Où va la machine à coudre ?"},
+   "options": [{"t": "In den Schrank.", "fr": "Dans l'armoire."}, {"t": "Auf den Tisch am Fenster.", "fr": "Sur la table près de la fenêtre."}, {"t": "Ins Bad.", "fr": "Dans la salle de bains."}],
+   "juste": 1}
+ ]
+}
