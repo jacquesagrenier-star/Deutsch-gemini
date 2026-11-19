@@ -4,9 +4,10 @@
   "Image : visuel/scenes/baeckerei.png, PHOTO du 17 oct. 2026 (fal, 0,15 $, memes prompt et action, refs Anna-troisquarts.png + anna-20260908-0439.png) : Jacques voulait des photos, pas des peintures. L'ancienne image peinte du 15 oct. est rangee en visuel/scenes/baeckerei-v1.png. Les chiffres rouges de l'ecran du four (et le petit mot dessous) sont effaces gratuitement (visuel/effacer_texte.py, baeckerei-effacer.json) : le webp vient de baeckerei-propre.png. Le titre du journal n'est fait que de pseudo-lettres illisibles a l'echelle de l'app : garde, comme les lignes grises.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
   "Histoire des personnages : le vieux monsieur est der Nachbar (aussi der Mann), le voisin d'Anna dans le Kiez ; la vendeuse die Frau (aussi Verkaeuferin). Le comptoir-vitrine est der Schalter (el mostrador, surcharge) ; le four der Backofen (aussi Ofen) ; la piece die Muenze (aussi Geld) ; la canne der Stock ; le gilet gris du voisin die Jacke. Deux plantes : pflanze (par terre, devant a droite) et pflanze-2 (sur le rebord de la fenetre). Trois gateaux dans la vitrine : torte (aux fraises), kuchen (la part aux pommes), kuchen-2 (aux noix) ; kuchen-4 est la part du voisin.",
-  "SANS ZONE bien que visibles (a signaler) : la planche a decouper (Brett manque au corpus allemand), le plateau des bretzels (Tablett manque au corpus allemand), le tablier de la vendeuse (Schuerze manque au corpus allemand), la chaise du voisin (presque cachee), les assiettes de la vitrine (on touche les gateaux), les carreaux du sol (Fliese manque).",
+  "SANS ZONE bien que visibles (a signaler) : la planche a decouper (Brett manque au corpus allemand), le plateau des bretzels (Tablett manque au corpus allemand), le tablier de la vendeuse (Schuerze manque au corpus allemand), la chaise du voisin (presque cachee), les carreaux du sol (Fliese manque).",
   "Mesures relues sur la grille en % du 17 oct. 2026 (nouvelle image).",
-  "17 oct. 2026, nouvelle image : toutes les zones remesurees, memes id ; detourer.py relance en entier. RETIREES : blume et glas (plus de vase de jonquilles), blume-2 (plus de fleurs sur la table), kuchen-3 (trois gateaux seulement dans la vitrine), heizkoerper (plus de radiateur visible). AJOUTEES : stuhl (la chaise vide a droite), pflanze-2 (la plante de la fenetre), jacke et hose-2 (le gilet et le pantalon du voisin). broetchen-2 sont maintenant les petits pains qui depassent du sachet. La canne (stock) est une chaine d'ellipses : SAM la confondait avec le pied de la table. Couches relues contre la photo (.claude/outils-scenes/couches_photos.py) : en allemand, le chien est « auf dem Boden » (plus sous la table), les fleurs du verre deviennent la part de gateau sur l'assiette, la plante est « am Fenster » (pflanze-2) ; en espagnol, « al lado del vecino » et « la tarta en el plato »."
+  "17 oct. 2026, nouvelle image : toutes les zones remesurees, memes id ; detourer.py relance en entier. RETIREES : blume et glas (plus de vase de jonquilles), blume-2 (plus de fleurs sur la table), kuchen-3 (trois gateaux seulement dans la vitrine), heizkoerper (plus de radiateur visible). AJOUTEES : stuhl (la chaise vide a droite), pflanze-2 (la plante de la fenetre), jacke et hose-2 (le gilet et le pantalon du voisin). broetchen-2 sont maintenant les petits pains qui depassent du sachet. La canne (stock) est une chaine d'ellipses : SAM la confondait avec le pied de la table. Couches relues contre la photo (.claude/outils-scenes/couches_photos.py) : en allemand, le chien est « auf dem Boden » (plus sous la table), les fleurs du verre deviennent la part de gateau sur l'assiette, la plante est « am Fenster » (pflanze-2) ; en espagnol, « al lado del vecino » et « la tarta en el plato ».",
+  "18 nov. 2026 (Jacques, espagnol, v1219 : on demande el plato, il y a plusieurs assiettes, et toucher les autres ne marche pas) : une zone Teller par assiette de la vitrine -- teller-2 (l'assiette blanche de la part aux pommes), teller-3 (celle du gateau aux noix), teller-4 (le plat de la torte aux fraises) -- et les trois gateaux sont « sur » leur assiette : toucher le gateau vaut pour l'assiette, jamais l'inverse. Les points_sam gardent le bord visible de l'assiette et ecartent le gateau. La soucoupe du cafe reste dans la zone de la tasse (die Untertasse n'est pas der Teller)."
  ],
  "image": "baeckerei.webp",
  "source": "../scenes/baeckerei-propre.png",
@@ -1584,6 +1585,7 @@
    "aussi": [
     "Kuchen"
    ],
+   "sur": "teller-4",
    "boite": [
     10.5,
     67.3,
@@ -1605,6 +1607,7 @@
   {
    "id": "kuchen",
    "mot": "Kuchen",
+   "sur": "teller-2",
    "boite": [
     29.5,
     65.5,
@@ -1615,11 +1618,108 @@
   {
    "id": "kuchen-2",
    "mot": "Kuchen",
+   "sur": "teller-3",
    "boite": [
     38.3,
     62,
     13.8,
     5.2
+   ]
+  },
+  {
+   "id": "teller-2",
+   "mot": "Teller",
+   "boite": [
+    27.8,
+    66.8,
+    14.6,
+    4.2
+   ],
+   "points_sam": [
+    [
+     29.2,
+     68.6,
+     1
+    ],
+    [
+     40.6,
+     69.4,
+     1
+    ],
+    [
+     35,
+     70.3,
+     1
+    ],
+    [
+     34,
+     67.6,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "teller-3",
+   "mot": "Teller",
+   "boite": [
+    37,
+    63.5,
+    16.8,
+    4.3
+   ],
+   "points_sam": [
+    [
+     38,
+     65.6,
+     1
+    ],
+    [
+     45,
+     67.2,
+     1
+    ],
+    [
+     52.8,
+     66.3,
+     1
+    ],
+    [
+     45,
+     64,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "teller-4",
+   "mot": "Teller",
+   "boite": [
+    9.5,
+    69.5,
+    19.5,
+    6.5
+   ],
+   "points_sam": [
+    [
+     20,
+     75.4,
+     1
+    ],
+    [
+     27.6,
+     72.6,
+     1
+    ],
+    [
+     11.5,
+     74.6,
+     1
+    ],
+    [
+     19,
+     70,
+     0
+    ]
    ]
   },
   {

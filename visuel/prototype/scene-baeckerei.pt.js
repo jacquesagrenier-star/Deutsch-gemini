@@ -1244,7 +1244,7 @@ window.SCENE = {
      "fr": "gâteau"
     }
    ],
-   "sur": null,
+   "sur": "teller-4",
    "devant": 0,
    "boites": [
     [
@@ -1286,7 +1286,7 @@ window.SCENE = {
    "theme": "comida_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-2",
    "devant": 0,
    "boites": [
     [
@@ -1307,7 +1307,7 @@ window.SCENE = {
    "theme": "comida_pt",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-3",
    "devant": 0,
    "boites": [
     [
@@ -1318,6 +1318,69 @@ window.SCENE = {
     ]
    ],
    "fr": "gâteau"
+  },
+  {
+   "id": "teller-2",
+   "mot": "prato",
+   "genre": "o",
+   "pluriel": "os pratos",
+   "niveau": "A1",
+   "theme": "comida_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.8,
+     66.8,
+     14.6,
+     4.2
+    ]
+   ],
+   "fr": "assiette"
+  },
+  {
+   "id": "teller-3",
+   "mot": "prato",
+   "genre": "o",
+   "pluriel": "os pratos",
+   "niveau": "A1",
+   "theme": "comida_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     37,
+     63.5,
+     16.8,
+     4.3
+    ]
+   ],
+   "fr": "assiette"
+  },
+  {
+   "id": "teller-4",
+   "mot": "prato",
+   "genre": "o",
+   "pluriel": "os pratos",
+   "niveau": "A1",
+   "theme": "comida_pt",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     9.5,
+     69.5,
+     19.5,
+     6.5
+    ]
+   ],
+   "fr": "assiette"
   },
   {
    "id": "schalter",

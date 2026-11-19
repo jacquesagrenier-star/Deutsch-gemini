@@ -1763,7 +1763,7 @@ window.SCENE = {
      "es": "el pastel"
     }
    ],
-   "sur": null,
+   "sur": "teller-4",
    "devant": 0,
    "boites": [
     [
@@ -1823,7 +1823,7 @@ window.SCENE = {
    "theme": "essen_trinken_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-2",
    "devant": 0,
    "boites": [
     [
@@ -1853,7 +1853,7 @@ window.SCENE = {
    "theme": "essen_trinken_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-3",
    "devant": 0,
    "boites": [
     [
@@ -1873,6 +1873,96 @@ window.SCENE = {
    "pl": "ciasto",
    "ru": "пирог, торт",
    "es": "el pastel"
+  },
+  {
+   "id": "teller-2",
+   "mot": "Teller",
+   "genre": "der",
+   "pluriel": "Teller",
+   "niveau": "A1",
+   "theme": "kueche_kochen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.8,
+     66.8,
+     14.6,
+     4.2
+    ]
+   ],
+   "fr": "assiette",
+   "en": "plate",
+   "tr": "tabak",
+   "uk": "тарілка",
+   "fa": "بشقاب",
+   "pt": "prato",
+   "ar": "صحن",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "es": "el plato"
+  },
+  {
+   "id": "teller-3",
+   "mot": "Teller",
+   "genre": "der",
+   "pluriel": "Teller",
+   "niveau": "A1",
+   "theme": "kueche_kochen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     37,
+     63.5,
+     16.8,
+     4.3
+    ]
+   ],
+   "fr": "assiette",
+   "en": "plate",
+   "tr": "tabak",
+   "uk": "тарілка",
+   "fa": "بشقاب",
+   "pt": "prato",
+   "ar": "صحن",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "es": "el plato"
+  },
+  {
+   "id": "teller-4",
+   "mot": "Teller",
+   "genre": "der",
+   "pluriel": "Teller",
+   "niveau": "A1",
+   "theme": "kueche_kochen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     9.5,
+     69.5,
+     19.5,
+     6.5
+    ]
+   ],
+   "fr": "assiette",
+   "en": "plate",
+   "tr": "tabak",
+   "uk": "тарілка",
+   "fa": "بشقاب",
+   "pt": "prato",
+   "ar": "صحن",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "es": "el plato"
   },
   {
    "id": "schalter",

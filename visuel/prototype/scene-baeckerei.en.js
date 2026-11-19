@@ -1307,7 +1307,7 @@ window.SCENE = {
      "esp": "la tarta"
     }
    ],
-   "sur": null,
+   "sur": "teller-4",
    "devant": 0,
    "boites": [
     [
@@ -1355,7 +1355,7 @@ window.SCENE = {
    "theme": "food_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-2",
    "devant": 0,
    "boites": [
     [
@@ -1378,7 +1378,7 @@ window.SCENE = {
    "theme": "food_a1",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-3",
    "devant": 0,
    "boites": [
     [
@@ -1391,6 +1391,72 @@ window.SCENE = {
    "fr": "gâteau",
    "es": "el pastel",
    "esp": "la tarta"
+  },
+  {
+   "id": "teller-2",
+   "mot": "plate",
+   "genre": "",
+   "pluriel": "plates",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.8,
+     66.8,
+     14.6,
+     4.2
+    ]
+   ],
+   "fr": "assiette",
+   "es": "el plato"
+  },
+  {
+   "id": "teller-3",
+   "mot": "plate",
+   "genre": "",
+   "pluriel": "plates",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     37,
+     63.5,
+     16.8,
+     4.3
+    ]
+   ],
+   "fr": "assiette",
+   "es": "el plato"
+  },
+  {
+   "id": "teller-4",
+   "mot": "plate",
+   "genre": "",
+   "pluriel": "plates",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     9.5,
+     69.5,
+     19.5,
+     6.5
+    ]
+   ],
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "schalter",
