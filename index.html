@@ -39492,7 +39492,7 @@ function revoirDecouverte(reponse){
 // relancer le script et monter VOIX_VISITE.revision.
 // ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
 // l'element deja debloque qui peut jouer sans nouveau geste.
-const VOIX_VISITE = { revision: "13", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
+const VOIX_VISITE = { revision: "14", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
 // Les clips gardent leur nom d'avant la v806 (t5 = la seance, t6 = la fin) :
 // ce sont les noms des fichiers de voix-visite/. La scene (5) dit « scene ».
 // v895 : t5 (la seance) ouvre la visite, t4 (le tableau) la clot ; « ecoute »
@@ -39509,7 +39509,10 @@ const CLIPS_PROPRES_ES = ["t4", "d5", "mots", "mot_peu"];
 // pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
 // 12 nov. 2026 (revue d'usage) : l'intro, les scenes, l'ecoute et la fin decrivent l'accueil en tuiles ; leurs
 // clips disaient l'ancien accueil (« juste sous ta seance », « en dessous, l'ecoute »).
-const CLIPS_VISITE_A_REFAIRE = ["intro", "scene", "ecoute", "t6"];
+// 19 nov. 2026 (ligne 144, accord de Jacques) : la voix de la visite ENTIEREMENT refaite, revision 14 -- ces quatre
+// clips, t5 (qui disait encore « Elle a son objectif du jour », retire le 8 nov., et « la fleche la lance ») et
+// six petits clips en retard. La liste est vide : plus aucune etape muette. Controle : tests/visite_voix.py.
+const CLIPS_VISITE_A_REFAIRE = [];
 const CLIPS_EN_ATTENTE = { de: CLIPS_VISITE_A_REFAIRE.slice(), es: CLIPS_VISITE_A_REFAIRE.slice(),
                            pt: CLIPS_PROPRES_ES.concat(CLIPS_VISITE_A_REFAIRE) };
 // Le portugais (lot P1) : ses clips propres (les mots et leur genre, le tableau) ne sont pas enregistres --
