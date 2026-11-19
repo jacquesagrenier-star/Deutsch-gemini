@@ -15777,6 +15777,7 @@ const I18N = {
         label_english_pitfall: "Piège",
         label_english_forms: "Formes",
         myvocab_title: "Mots du dictionnaire",
+        myvocab_nom: "Mon vocabulaire",
         home_daily_goal_label_court: "Aujourd'hui",
         compte_rencontres: "mots rencontrés",
         examen_titre: "Vocabulaire d'examen",
@@ -17620,6 +17621,7 @@ const I18N = {
         label_english_pitfall: "Trap",
         label_english_forms: "Forms",
         myvocab_title: "Dictionary words",
+        myvocab_nom: "My vocabulary",
         home_daily_goal_label_court: "Today",
         compte_rencontres: "words met",
         examen_titre: "Exam vocabulary",
@@ -19464,6 +19466,7 @@ const I18N = {
         label_english_pitfall: "Tuzak",
         label_english_forms: "Biçimler",
         myvocab_title: "Sözlük kelimeleri",
+        myvocab_nom: "Kelimelerim",
         home_daily_goal_label_court: "Bugün",
         compte_rencontres: "karşılaşılan kelime",
         examen_titre: "Sınav kelimeleri",
@@ -21731,6 +21734,7 @@ const I18N = {
         onboarding_home_button: "Як почати? (менше хвилини)",
         onboarding_close: "ЗРОЗУМІЛО",
         myvocab_title: "Слова зі словника",
+        myvocab_nom: "Мій словник",
         home_daily_goal_label_court: "Сьогодні",
         compte_rencontres: "слів побачено",
         examen_titre: "Лексика іспиту",
@@ -24289,6 +24293,7 @@ const I18N = {
         label_english_pitfall: "دام",
         label_english_forms: "صورت‌ها",
         myvocab_title: "واژه‌های واژه‌نامه",
+        myvocab_nom: "واژگان من",
         home_daily_goal_label_court: "امروز",
         compte_rencontres: "واژه‌های دیده‌شده",
         examen_titre: "واژگان آزمون",
@@ -26248,6 +26253,7 @@ const I18N = {
         label_english_pitfall: "مَزلق",
         label_english_forms: "الصيغ",
         myvocab_title: "كلمات القاموس",
+        myvocab_nom: "قاموسي",
         home_daily_goal_label_court: "اليوم",
         compte_rencontres: "كلمة صادفتها",
         examen_titre: "مفردات الامتحان",
@@ -26772,6 +26778,7 @@ const I18N = {
         label_english_pitfall: "Armadilha",
         label_english_forms: "Formas",
         myvocab_title: "Palavras do dicionário",
+        myvocab_nom: "Meu vocabulário",
         home_daily_goal_label_court: "Hoje",
         compte_rencontres: "palavras vistas",
         examen_titre: "Vocabulário de prova",
@@ -28619,6 +28626,7 @@ const I18N = {
         label_english_pitfall: "Pułapka",
         label_english_forms: "Formy",
         myvocab_title: "Słowa ze słownika",
+        myvocab_nom: "Moje słownictwo",
         home_daily_goal_label_court: "Dziś",
         compte_rencontres: "poznane słowa",
         examen_titre: "Słownictwo egzaminacyjne",
@@ -30466,6 +30474,7 @@ const I18N = {
         label_english_pitfall: "Ловушка",
         label_english_forms: "Формы",
         myvocab_title: "Слова из словаря",
+        myvocab_nom: "Мой словарь",
         home_daily_goal_label_court: "Сегодня",
         compte_rencontres: "слов встречено",
         examen_titre: "Словарь для экзамена",
@@ -32316,6 +32325,7 @@ const I18N = {
         label_english_pitfall: "Stolperfalle",
         label_english_forms: "Formen",
         myvocab_title: "Wörter aus dem Wörterbuch",
+        myvocab_nom: "Mein Wortschatz",
         home_daily_goal_label_court: "Heute",
         compte_rencontres: "Wörter gesehen",
         examen_titre: "Prüfungswortschatz",
@@ -34178,6 +34188,7 @@ const I18N = {
         label_english_pitfall: "Trampa",
         label_english_forms: "Formas",
         myvocab_title: "Palabras del diccionario",
+        myvocab_nom: "Mi vocabulario",
         home_daily_goal_label_court: "Hoy",
         compte_rencontres: "palabras vistas",
         examen_titre: "Vocabulario de examen",
@@ -51654,7 +51665,9 @@ function myVocabFreqLabel(r){
 
 const monVocabTheme = {
     id: "mon_vocabulaire",
-    name: "Mon vocabulaire",
+    // Le grand titre de l'ecran des cartes (setFlashHeader lit currentTheme.name) restait « Mon vocabulaire » en
+    // francais dans toutes les langues d'interface, sous un surtitre traduit (revue A a Z, F7, 19 nov. 2026).
+    get name(){ return t("myvocab_nom"); },
     svg: '<svg viewBox="0 0 24 24"><path d="M6 4h11a2 2 0 012 2v14l-6-3-6 3V6a2 2 0 011-2z"/></svg>',
     words: []
 };
@@ -52722,6 +52735,11 @@ function showScreen(id){
         try{ majCompteDuJour(); }catch(e){}
         try{ majTitrePorteMots(); }catch(e){}
         try{ majTitrePilule(); }catch(e){}
+        // LA CARTE DU VOCABULAIRE AUSSI (revue A a Z, F6, 19 nov. 2026) : juste apres « Terminer », l'accueil disait
+        // la seance faite mais la carte affichait encore « 0 / 1259 · en cours 0 », puis « 13 / 1259 » apres une
+        // relance. Elle n'etait repeinte que par majCarteProgression(), le changement de langue et le toucher
+        // d'une ligne. Elle lit l'etat des mots d'un niveau (de tous, si la liste est depliee) : quelques ms.
+        try{ majCarteVocab(); }catch(e){}
         // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
