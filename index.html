@@ -39115,6 +39115,19 @@ const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ }
                    : { rang: 61, peintre: /Faistauer/ };
 
 const SUITE_TABLEAU_MS = 1500;
+// Le tableau de la visite et son etiquette, ramenes au-dessus du bas de l'ecran (marge), et au-dessus du
+// bouton flottant quand il est la. Un tableau cache a un rectangle nul : rien ne bouge.
+function garderTableauEnVue(marge){
+    const zone = document.getElementById("decouverteMosaique");
+    if(!zone) return;
+    // ligne 143 (A5) : le bouton est la des le debut -- l'etiquette reste au-dessus de lui
+    const suite = document.getElementById("decouverteSuite");
+    if(suite && !suite.classList.contains("hidden")) marge = Math.max(marge, 96);
+    const depasse = zone.getBoundingClientRect().bottom - (window.innerHeight - marge);
+    if(depasse <= 0) return;
+    const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
+}
 function montrerTableauDecouverte(){
     const zone = document.getElementById("decouverteMosaique");
     const toile = document.getElementById("decouverteToile");
@@ -39131,6 +39144,9 @@ function montrerTableauDecouverte(){
         if(ailleurs()) return;
         const suite = document.getElementById("decouverteSuite");
         if(suite) suite.classList.remove("hidden");
+        // le bouton vient de se poser en bas de l'ecran : en francais, a 360 x 740, il couvrait l'etiquette
+        // du tableau (deux lignes) jusqu'a la fin de la voix
+        garderTableauEnVue(96);
     };
     // Ligne 143 (19 nov. 2026, A5 de la revue A a Z) : « Continuer » arrive tout de suite. Il n'arrivait qu'a la
     // fin de la demonstration, 26 a 27 s plus tard, avec « Passer » pour seule sortie : une personne pressee
@@ -39185,17 +39201,7 @@ function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette,
     // LE TABLEAU ET SON ETIQUETTE RESTENT A L'ECRAN (v706). Sur un petit
     // telephone, le texte de l'etape pousse l'etiquette sous le bord : on la
     // ramene en vue, au-dessus du bouton flottant quand il est la (marge).
-    const garderEnVue = (marge) => {
-        const zone = document.getElementById("decouverteMosaique");
-        if(!zone) return;
-        // ligne 143 (A5) : le bouton est la des le debut -- l'etiquette reste au-dessus de lui
-        const suite = document.getElementById("decouverteSuite");
-        if(suite && !suite.classList.contains("hidden")) marge = Math.max(marge, 96);
-        const depasse = zone.getBoundingClientRect().bottom - (window.innerHeight - marge);
-        if(depasse <= 0) return;
-        const doux = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-        window.scrollBy({ top: depasse, behavior: doux ? "smooth" : "auto" });
-    };
+    const garderEnVue = garderTableauEnVue;
     const afficher = (i) => {
         dessinerMosaique(toile, imgDemo, PALIERS[i], total, i === PALIERS.length - 1);
         etiquette.textContent = t(CLES[i]);
@@ -39217,6 +39223,7 @@ function demontrerTableauDecouverte(toile, imgDemo, demo, total, moi, etiquette,
     };
     tailleToileMosaique(toile, demo);
     afficher(0);
+    garderEnVue(16);
     Promise.all([moi.voixTableau || Promise.resolve(), attendre(1600)]).then(() => palier(0));
 }
 
