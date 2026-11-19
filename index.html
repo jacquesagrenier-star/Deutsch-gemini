@@ -9356,6 +9356,28 @@ body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46
 .fin-tableau-bas b{font-weight:800; color:#1C2430;}
 body[data-theme="dark"] .fin-tableau-bas{color:#A9B8C4;}
 body[data-theme="dark"] .fin-tableau-bas b{color:#EEF2F5;}
+/* Le tableau sur l'horizon du ciel (choix A de Jacques, 19 nov. 2026) : une plaque claire dans la lumiere chaude du bas
+   de la carte, le ciel un peu plus bas pour lui laisser sa place. Encre sur fond clair le jour, clair sur verre la nuit. */
+.fin-ciel.avec-tableau .fc-cst{height:226px;}
+.fh-plaque{display:flex; align-items:center; gap:14px; margin:0 14px 12px; padding:12px; border-radius:16px; text-align:start;
+    background:rgba(255,250,242,.62); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 10px 26px rgba(60,30,20,.18);}
+.fh-cadre{flex:0 0 auto; padding:5px; background:#F6EFE3; border-radius:4px; box-shadow:0 6px 14px rgba(40,20,10,.28); line-height:0;}
+.fh-cadre canvas{display:block; width:min(122px, 32vw); height:auto; border-radius:2px;}
+.fh-texte{flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:5px;}
+.fh-titre{font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#5A4A44;}
+.fh-compte{font-size:26px; font-weight:900; line-height:1; color:#1C2430; font-variant-numeric:tabular-nums; direction:ltr; text-align:left;}
+html[dir="rtl"] .fh-compte{text-align:right;}
+.fh-compte small{font-size:15px; font-weight:700; color:#5A4A44;}
+.fh-jauge{height:5px; border-radius:3px; background:rgba(28,36,48,.14); overflow:hidden;}
+.fh-jauge i{display:block; height:100%; background:#B86A14;}
+.fh-ligne{font-size:13px; font-weight:700; color:#3A2E2A; line-height:1.3; text-wrap:balance;}
+body[data-theme="dark"] .fh-plaque{background:rgba(255,255,255,.06); box-shadow:inset 0 1px 0 rgba(255,255,255,.16), 0 10px 26px rgba(0,0,0,.35);}
+body[data-theme="dark"] .fh-cadre{background:#5E503E; box-shadow:0 6px 14px rgba(0,0,0,.45);}
+body[data-theme="dark"] .fh-titre, body[data-theme="dark"] .fh-compte small{color:#A9B8C4;}
+body[data-theme="dark"] .fh-compte{color:#F3F5F8;}
+body[data-theme="dark"] .fh-jauge{background:rgba(238,242,245,.16);}
+body[data-theme="dark"] .fh-jauge i{background:#F0B456;}
+body[data-theme="dark"] .fh-ligne{color:rgba(236,239,242,.86);}
 /* LE CIEL DE L'ECRAN DE FIN (8 nov. 2026) : proposition B de la maquette, le soir en clair, la nuit en sombre. */
 #flashcardEnd.avec-ciel{padding:12px;}
 #flashcardEnd.avec-ciel #flashEndAnneau, #flashcardEnd.avec-ciel #flashEndTitre{display:none !important;}
@@ -16302,6 +16324,8 @@ const I18N = {
         presente_bulle: "Un mot nouveau : écoute-le et lis-le. Il reviendra en question dans quelques cartes.",
         presente_toucher: "Ce mot est nouveau : il est déjà retourné. Écoute-le, puis choisis Continuer.",
         legere_fin_une: "Ta séance du jour est faite.",
+        fin_tableau_seance: "Cette séance : +{n}",
+        fin_tableau_presque: "Il est presque à toi.",
         fin_rev_titre: "Tes mots manqués sont revus.",
         fin_rev_question: "Continuer avec une nouvelle séance ?",
         fin_rev_oui: "Oui, une nouvelle séance",
@@ -18145,6 +18169,8 @@ const I18N = {
         presente_bulle: "A new word: listen to it and read it. It will come back as a question in a few cards.",
         presente_toucher: "This word is new: it's already turned over. Listen to it, then choose Continue.",
         legere_fin_une: "Today's session is done.",
+        fin_tableau_seance: "This session: +{n}",
+        fin_tableau_presque: "It's almost yours.",
         fin_rev_titre: "Your missed words are reviewed.",
         fin_rev_question: "Continue with a new session?",
         fin_rev_oui: "Yes, a new session",
@@ -19578,6 +19604,8 @@ const I18N = {
         presente_bulle: "Yeni bir kelime: dinle ve oku. Birkaç kart sonra soru olarak geri gelecek.",
         presente_toucher: "Bu kelime yeni: zaten çevrilmiş durumda. Dinle, sonra Devam'ı seç.",
         legere_fin_une: "Bugünkü oturumun bitti.",
+        fin_tableau_seance: "Bu oturum: +{n}",
+        fin_tableau_presque: "Neredeyse senin.",
         fin_rev_titre: "Kaçırdığın kelimeler tekrar edildi.",
         fin_rev_question: "Yeni bir oturumla devam etmek ister misin?",
         fin_rev_oui: "Evet, yeni bir oturum",
@@ -21846,6 +21874,8 @@ const I18N = {
         presente_bulle: "Нове слово: послухай його й прочитай. За кілька карток воно повернеться як запитання.",
         presente_toucher: "Це слово нове: картку вже перевернуто. Послухай його, а тоді вибери «Далі».",
         legere_fin_une: "Сьогоднішнє заняття завершено.",
+        fin_tableau_seance: "Це заняття: +{n}",
+        fin_tableau_presque: "Картина майже твоя.",
         fin_rev_titre: "Пропущені слова повторено.",
         fin_rev_question: "Продовжити новим заняттям?",
         fin_rev_oui: "Так, нове заняття",
@@ -24405,6 +24435,8 @@ const I18N = {
         presente_bulle: "یک واژهٔ تازه: گوشش کن و بخوانش. چند کارت بعد به‌صورت پرسش برمی‌گردد.",
         presente_toucher: "این واژه تازه است: کارتش از قبل برگشته است. گوشش کن، بعد «ادامه» را انتخاب کن.",
         legere_fin_une: "جلسهٔ امروزت تمام شد.",
+        fin_tableau_seance: "این جلسه: +{n}",
+        fin_tableau_presque: "تابلو تقریباً مال توست.",
         fin_rev_titre: "واژه‌هایی که جا انداخته بودی مرور شد.",
         fin_rev_question: "با یک جلسهٔ تازه ادامه می‌دهی؟",
         fin_rev_oui: "بله، یک جلسهٔ تازه",
@@ -26365,6 +26397,8 @@ const I18N = {
         presente_bulle: "كلمة جديدة: استمع إليها واقرأها. ستعود سؤالًا بعد بضع بطاقات.",
         presente_toucher: "هذه الكلمة جديدة: البطاقة مقلوبة مسبقًا. استمع إليها، ثم اختر «متابعة».",
         legere_fin_une: "انتهت حصة اليوم.",
+        fin_tableau_seance: "هذه الحصة: +{n}",
+        fin_tableau_presque: "اللوحة أصبحت لك تقريباً.",
         fin_rev_titre: "تمت مراجعة الكلمات التي فاتتك.",
         fin_rev_question: "هل تتابع بحصة جديدة؟",
         fin_rev_oui: "نعم، حصة جديدة",
@@ -26890,6 +26924,8 @@ const I18N = {
         presente_bulle: "Uma palavra nova: ouça e leia. Ela volta como pergunta daqui a algumas cartas.",
         presente_toucher: "Esta palavra é nova: o cartão já está virado. Ouça e depois escolha Continuar.",
         legere_fin_une: "Sua sessão de hoje está concluída.",
+        fin_tableau_seance: "Esta sessão: +{n}",
+        fin_tableau_presque: "Ele já é quase seu.",
         fin_rev_titre: "As palavras que você errou foram revisadas.",
         fin_rev_question: "Continuar com uma nova sessão?",
         fin_rev_oui: "Sim, uma nova sessão",
@@ -28738,6 +28774,8 @@ const I18N = {
         presente_bulle: "Nowe słowo: posłuchaj i przeczytaj. Za kilka kart wróci jako pytanie.",
         presente_toucher: "To słowo jest nowe: karta jest już odwrócona. Posłuchaj go, a potem wybierz „Dalej”.",
         legere_fin_une: "Dzisiejsza sesja gotowa.",
+        fin_tableau_seance: "Ta sesja: +{n}",
+        fin_tableau_presque: "Obraz jest już prawie twój.",
         fin_rev_titre: "Słowa, które ci umknęły, są powtórzone.",
         fin_rev_question: "Kontynuować nową sesją?",
         fin_rev_oui: "Tak, nowa sesja",
@@ -30586,6 +30624,8 @@ const I18N = {
         presente_bulle: "Новое слово: послушай его и прочитай. Через несколько карточек оно вернётся вопросом.",
         presente_toucher: "Это слово новое: карточка уже перевёрнута. Послушай его, а потом выбери «Дальше».",
         legere_fin_une: "Сегодняшнее занятие завершено.",
+        fin_tableau_seance: "Это занятие: +{n}",
+        fin_tableau_presque: "Картина почти твоя.",
         fin_rev_titre: "Пропущенные слова повторены.",
         fin_rev_question: "Продолжить новым занятием?",
         fin_rev_oui: "Да, новое занятие",
@@ -32437,6 +32477,8 @@ const I18N = {
         presente_bulle: "Ein neues Wort: hör es dir an und lies es. In ein paar Karten kommt es als Frage wieder.",
         presente_toucher: "Dieses Wort ist neu: Die Karte ist schon umgedreht. Hör es dir an und wähle dann „Weiter“.",
         legere_fin_une: "Deine heutige Einheit ist geschafft.",
+        fin_tableau_seance: "Diese Einheit: +{n}",
+        fin_tableau_presque: "Das Gemälde ist fast deins.",
         fin_rev_titre: "Deine verpassten Wörter sind wiederholt.",
         fin_rev_question: "Mit einer neuen Einheit weitermachen?",
         fin_rev_oui: "Ja, eine neue Einheit",
@@ -34300,6 +34342,8 @@ const I18N = {
         presente_bulle: "Una palabra nueva: escúchala y léela. Volverá como pregunta dentro de unas tarjetas.",
         presente_toucher: "Esta palabra es nueva: la tarjeta ya está girada. Escúchala y luego elige Continuar.",
         legere_fin_une: "Tu práctica de hoy está hecha.",
+        fin_tableau_seance: "Esta práctica: +{n}",
+        fin_tableau_presque: "Ya casi es tuyo.",
         fin_rev_titre: "Tus palabras falladas están repasadas.",
         fin_rev_question: "¿Seguir con una práctica nueva?",
         fin_rev_oui: "Sí, una práctica nueva",
@@ -65907,13 +65951,28 @@ function rendreCielFin(fin){
     }
     return true;
 }
-// La ou il n'y a pas de ciel (A2 et plus) : le tableau qui avance, a l'ecran de fin, sans palier (le chef, 8 nov. 2026).
+// Le tableau qui avance, a l'ecran de fin, sans palier (le chef, 8 nov. 2026) : seul la ou il n'y a pas de ciel (A2 et
+// plus), sur l'horizon du ciel la ou il y en a un (19 nov. 2026, rendreTableauHorizon).
 let CARREAUX_DEBUT = null;
 function noterCarreauxDebut(){
     try{ const v = etatMosaique(); CARREAUX_DEBUT = { r: v.r, c: v.c, t: v.t, b: v.b, cn: v.cn }; }catch(e){ CARREAUX_DEBUT = null; }
 }
-function rendreTableauFin(fin){
+// v-A, « L'HORIZON » (choix de Jacques du 19 nov. 2026, maquette Fh1Z3mFTWtATYYqjLcp3Kb). Son retour du 17 nov. : « on ne
+// voit plus le tableau quand je termine une seance ; on voit que ca avance sur l'etoile, mais je devrais aussi voir la
+// progression de mon tableau ». La ou il y a un ciel, le tableau se pose dans la carte du ciel, sur l'horizon, au-dessus
+// de « Encore une seance » : la toile encadree, « TON TABLEAU », le compte, la jauge, ce que la seance a ajoute. Ses
+// carreaux ne s'affinent qu'APRES le trait de l'etoile (jouerTableauFin, appelee par le ciel) : un mouvement a la fois.
+// La fete du tableau garde la priorite : le ciel attend qu'elle se ferme (quandPlusDeFete), le tableau attend le ciel.
+let jouerTableauFin = null;
+// Il reste au plus ce nombre de carreaux : « Il est presque a toi. » (une phrase sans nombre, rien a accorder).
+const TABLEAU_FIN_PRESQUE = 30;
+// Le temps du trait vers l'etoile (.fc-joue .fc-nouveau : 0,15 s + 1,35 s) : les carreaux partent ensuite.
+const TABLEAU_APRES_CIEL_MS = 1500;
+function rendreTableauFin(fin, ciel){
+    jouerTableauFin = null;
+    try{ const c0 = document.getElementById("finCiel"); if(c0) c0.classList.remove("avec-tableau"); }catch(e){}
     if(!(etoilesDeLaSeance() && objectifRetire())) return;
+    if(ciel) return rendreTableauHorizon(fin, ciel);
     const montrer = () => {
         const v = etatMosaique();
         const trophee = v.t > 0 || !!v.b;
@@ -65955,6 +66014,73 @@ function rendreTableauFin(fin){
         }).catch(() => {});
     };
     chargerMosaiques().then(montrer).catch(() => {});
+}
+// Le tableau sur l'horizon du ciel (voir rendreTableauFin). Meme compte que l'ecran sans ciel : pendant le trophee, c'est
+// le tableau SUIVANT qui se construit (`cn`, v1061), et c'est lui qu'on montre.
+function rendreTableauHorizon(fin, ciel){
+    let demande = false, pret = null;
+    jouerTableauFin = () => { demande = true; if(pret){ const p = pret; pret = null; p(); } };
+    chargerMosaiques().then(() => {
+        const v = etatMosaique();
+        const trophee = v.t > 0 || !!v.b;
+        const jusqua = Math.min(MOSAIQUE_CARREAUX, trophee ? (v.cn || 0) : v.c), rang = trophee ? v.r + 1 : v.r;
+        const m = trophee ? (MOSAIQUES && MOSAIQUES.length ? MOSAIQUES[(rang - 1) % MOSAIQUES.length] : null) : mosaiqueCourante();
+        if(!m) return;
+        const d0 = CARREAUX_DEBUT, memeTableau = d0 && d0.r === v.r && !!(d0.t > 0 || d0.b) === trophee;
+        const avant = Math.min(jusqua, memeTableau ? (trophee ? (d0.cn || 0) : d0.c) : 0);
+        const depuis = Math.max(avant, jusqua - 60);
+        return imageMosaique(m).then(img => {
+            if(fin.classList.contains("hidden") || !ciel.isConnected || ciel.classList.contains("hidden") || document.getElementById("finTableau")) return;
+            const bloc = document.createElement("div");
+            bloc.id = "finTableau";
+            bloc.className = "fh-plaque";
+            const cadre = document.createElement("div");
+            cadre.className = "fh-cadre";
+            const toile = document.createElement("canvas");
+            toile.width = 240;
+            toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
+            cadre.appendChild(toile);
+            bloc.appendChild(cadre);
+            const texte = document.createElement("div");
+            texte.className = "fh-texte";
+            const ligne = (cls, contenu) => { const d = document.createElement("div"); d.className = cls; if(contenu != null) d.textContent = contenu; texte.appendChild(d); return d; };
+            ligne("fh-titre", t("tableau_tuile"));
+            const compte = ligne("fh-compte");
+            const nb = document.createElement("b"); nb.textContent = String(depuis);
+            const sur = document.createElement("small"); sur.textContent = " / " + MOSAIQUE_CARREAUX;
+            compte.appendChild(nb); compte.appendChild(sur);
+            const jauge = ligne("fh-jauge"), plein = document.createElement("i");
+            jauge.appendChild(plein);
+            const remplir = n => { plein.style.width = (100 * n / MOSAIQUE_CARREAUX).toFixed(1) + "%"; };
+            remplir(depuis);
+            if(jusqua > avant) ligne("fh-ligne", tf("fin_tableau_seance", { n: jusqua - avant }));
+            const reste = MOSAIQUE_CARREAUX - jusqua;
+            if(reste > 0 && reste <= TABLEAU_FIN_PRESQUE) ligne("fh-ligne", t("fin_tableau_presque"));
+            bloc.appendChild(texte);
+            bloc.setAttribute("aria-label", t("tableau_tuile") + " : " + jusqua + " / " + MOSAIQUE_CARREAUX);
+            // Au-dessus de « Encore une seance » quand il est dans le ciel, sinon tout en bas de la carte.
+            const encore = document.getElementById("encoreNeufsBtn");
+            if(encore && encore.parentNode === ciel) ciel.insertBefore(bloc, encore); else ciel.appendChild(bloc);
+            ciel.classList.add("avec-tableau");
+            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false, rang);
+            const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const finir = () => { dessinerMosaique(toile, img, jusqua, MOSAIQUE_CARREAUX, jusqua >= MOSAIQUE_CARREAUX, rang); nb.textContent = String(jusqua); remplir(jusqua); };
+            if(reduit || jusqua <= depuis){ finir(); return; }
+            const animer = () => {
+                let i = depuis;
+                const pas = Math.max(45, Math.min(110, 2200 / (jusqua - depuis)));
+                const tic = setInterval(() => {
+                    if(!bloc.isConnected){ clearInterval(tic); return; }
+                    i++;
+                    dessinerMosaique(toile, img, i, MOSAIQUE_CARREAUX, i >= MOSAIQUE_CARREAUX, rang);
+                    nb.textContent = String(i);
+                    remplir(i);
+                    if(i >= jusqua) clearInterval(tic);
+                }, pas);
+            };
+            if(demande) animer(); else pret = animer;
+        });
+    }).catch(() => {});
 }
 function jouerCielFin(){
     const el = document.getElementById("finCiel");
@@ -78121,7 +78247,15 @@ function showFlashcardEnd(){
     let ciel = false;
     try{ ciel = rendreCielFin(fin); }catch(e){ console.warn("ciel", e); }
     if(seanceLegereDuJour()){ try{ fetesFinSeanceLegere(); }catch(e){} }
-    if(ciel) quandPlusDeFete(fetePrevue, fin, jouerCielFin);
+    // 19 nov. 2026 (choix A de Jacques) : le ciel ET le tableau. Le tableau se pose tout de suite, ses carreaux
+    // s'affinent apres le trait de l'etoile ; une fete en attente passe avant les deux.
+    if(ciel){
+        try{ rendreTableauFin(fin, document.getElementById("finCiel")); }catch(e){}
+        quandPlusDeFete(fetePrevue, fin, () => {
+            jouerCielFin();
+            setTimeout(() => { try{ if(jouerTableauFin) jouerTableauFin(); }catch(e){} }, TABLEAU_APRES_CIEL_MS);
+        });
+    }
     else { try{ rendreTableauFin(fin); }catch(e){} }
     return true;
 }
