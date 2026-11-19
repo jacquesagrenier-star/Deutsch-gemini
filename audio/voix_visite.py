@@ -24,8 +24,12 @@ SORTIE = RACINE / "voix-visite"
 VOIX = "XB0fDUnXU5powFXDhCwa"   # Charlotte
 LANGUES = ["fr", "en", "tr", "uk", "fa", "ar", "pt"]   # celles qui ont une voix
 # L'ordre des blocs de I18N, toutes langues : le polonais et le russe (v778,
-# v779) ont leurs textes mais pas encore de voix de visite.
-BLOCS = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"]
+# v779) ont leurs textes mais pas encore de voix de visite ; de meme l'allemand
+# (langue d'interface de l'espagnol, 1er nov. 2026) et l'espagnol (langue
+# d'interface de l'allemand, v1205). Sans eux le script s'arretait : « 11 valeurs
+# au lieu de 9 ». ⚠️ Un bloc ajoute a I18N s'ajoute ICI, a sa place ; LANGUES ne
+# change que le jour ou la langue recoit une voix.
+BLOCS = ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de", "es"]
 MODELE = {"fa": "eleven_v3"}
 MODELE_DEFAUT = "eleven_multilingual_v2"
 
