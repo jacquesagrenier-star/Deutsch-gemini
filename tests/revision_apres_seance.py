@@ -16,6 +16,10 @@ l'accueil, ou la sonde lit le bouton et la ligne de la carte de la seance :
                    l'ecran court ne repete pas le compte du jour ;
   deux           : la seance finie, l'accueil, « Encore une seance » de l'accueil -> la meme seance que « Encore une
                    seance » de l'ecran de fin (meme taille, a une carte pres), jamais une seance de 3 cartes.
+  refaire-retard : un compte EN RETARD (60 mots de l'A1 commences et dus depuis hier), « Les refaire » -> la reprise
+                   finit sur sa question, elle n'enchaine pas sur l'arriere du niveau (Jacques, 18 nov. 2026, es,
+                   v1219 : apres ses mots rates, « une tres longue seance avec juste une barre de progression » --
+                   les autres chemins partent d'un compte sans rien de du, ou le defaut ne se voyait pas).
 Plus : le passage jour / nuit pendant la seance redessine le fond de chaque partie, dans les deux sens ; « Revoir les
 cartes maitrisees » n'apparait pas sans carte maitrisee.
 Usage : python tests/revision_apres_seance.py [--racine DOSSIER] [--port 8809] [--captures DOSSIER]
@@ -31,6 +35,17 @@ except Exception:
 PREPARER = """
 () => { localStorage.setItem(AIDE_CONTINUER_KEY, '1'); localStorage.setItem(AIDE_TRANSIT_KEY, '1');
         localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false, p: 999, fini: true })); }
+"""
+
+# Un compte en retard : 60 mots de l'A1 deja commences, dus depuis hier. La seance en prend une partie ; le reste
+# est ce que le rattrapage de fin de paquet allait chercher a la fin de la reprise.
+RETARD = r"""
+() => {
+  const p = paquetDuNiveau('A1').slice(0, 60);
+  const hier = Date.now() - 86400000;
+  p.forEach(it => { const st = getWordState(it.themeId, it.index); st.srsHits = 2; st.reviews = 2; st.vu = hier; st.due = hier; setWordState(it.themeId, it.index, st); });
+  return cartesRevenues(paquetDuNiveau('A1')).length;
+}
 """
 
 ETAT = r"""
@@ -183,8 +198,9 @@ def main():
             ctx.close()
 
             tailles = {}
-            for chemin in ("sans", "refaire-non", "revoir-non", "revoir-oui", "milieu", "deux-accueil", "deux-fin"):
+            for chemin in ("sans", "refaire-non", "revoir-non", "revoir-oui", "milieu", "deux-accueil", "deux-fin", "refaire-retard"):
                 ctx, page, err = ouvrir(nav, appris)
+                dus = page.evaluate(RETARD) if chemin == "refaire-retard" else 0
 
                 def cap(nom):
                     if a.captures:
@@ -222,8 +238,8 @@ def main():
                         nm = page.evaluate("() => (typeof cartesDeLaSeanceFinie === 'function' ? cartesDeLaSeanceFinie() : (currentCardsFull || [])).filter(it => getWordState(it.themeId, it.index).mastered).length")
                         if vm and not nm:
                             juge.append("« Revoir les cartes maitrisees » affiche sans carte maitrisee")
-                    if chemin in ("refaire-non", "revoir-non", "revoir-oui"):
-                        sel = ".fin-erreurs-refaire" if chemin == "refaire-non" else "#flashcardEnd button[onclick='retryUnmastered()']"
+                    if chemin in ("refaire-non", "revoir-non", "revoir-oui", "refaire-retard"):
+                        sel = ".fin-erreurs-refaire" if chemin in ("refaire-non", "refaire-retard") else "#flashcardEnd button[onclick='retryUnmastered()']"
                         if not page.evaluate(CLIC, sel):
                             juge.append("bouton introuvable (%s)" % sel)
                         page.wait_for_timeout(900)
@@ -237,8 +253,19 @@ def main():
                             juge.append("%d carte(s) hors de la seance (%d en tout)" % (rep["horsSeance"], rep["n"]))
                         if page.evaluate("() => t('seance_titre')") in (e2["kicker"] or "") or page.evaluate("() => t('seance_titre')") in (e2["titre"] or ""):
                             juge.append("la reprise garde le titre de la seance (%s · %s)" % (e2["kicker"], e2["titre"]))
-                        page.evaluate(JOUER, [0, 0])
-                        e3 = page.evaluate(ETAT)
+                        if chemin == "refaire-retard":
+                            # la reprise carte par carte : le paquet ne doit jamais devenir un autre (l'arriere du niveau)
+                            reste = page.evaluate("() => cartesRevenues(currentCardsFull || []).length")
+                            lignes.append(("retard", {"dus au depart": dus, "encore dus a la reprise": reste}))
+                            if not reste:
+                                juge.append("le cas ne prouve rien : plus rien de du a la reprise")
+                            page.evaluate(JOUER, [0, rep["n"]])
+                            e3 = page.evaluate(ETAT)
+                            if e3["cartes"] > rep["n"] + 2 or (not e3["question"] and e3["ecran"] == "flashcards" and not e3["finPaquet"]):
+                                juge.append("la reprise enchaine sur l'arriere du niveau (%d cartes au lieu de %d, « %s »)" % (e3["cartes"], rep["n"], e3["kicker"]))
+                        else:
+                            page.evaluate(JOUER, [0, 0])
+                            e3 = page.evaluate(ETAT)
                         cap("3-fin-reprise")
                         lignes.append(("reprise finie", e3))
                         if not e3["question"]:

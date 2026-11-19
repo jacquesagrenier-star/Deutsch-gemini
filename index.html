@@ -79380,7 +79380,14 @@ function nextFlashcard(){
         // pas seulement dans les categories recentes.
         // Un paquet qui a son theme finit sur lui (Jacques, 8 nov. 2026) : ce qui devait revenir est passe avant
         // (rattraperFinDePartie, ligne 98), et ce qui devient du pendant le theme ouvrira la seance suivante.
-        const finitSurTheme = currentCards.some(c => c && c.forme === "theme_arret");
+        // La reprise d'apres-seance (« Les refaire », « Revoir les cartes ») finit sur SA question, elle aussi sans
+        // rattrapage (Jacques, 18 nov. 2026, es, v1219 : apres ses mots rates, « une tres longue seance avec juste
+        // une barre de progression »). Son paquet n'a pas de theme : a sa derniere carte, cartesRevenues() ramenait
+        // tout ce qui etait du dans currentCardsFull -- l'arriere du niveau entier, d'un bloc, sous une seule barre
+        // -- et la question « Continuer avec une nouvelle seance ? » n'etait jamais posee. Un « Encore » donne
+        // pendant la reprise y est deja revenu (remettreEnFile) ; le reste ouvrira la seance suivante.
+        const repriseApres = !!(REPRISE_ERREURS && currentCards === REPRISE_ERREURS);
+        const finitSurTheme = repriseApres || currentCards.some(c => c && c.forme === "theme_arret");
         const rattrapage = cartes => {
             if(SEANCE_PARTS) SEANCE_PARTS.rattrapage = true;   // la fin de ce paquet est bien celle de la seance
             // La seance en cours (reprise du 14 nov.) suit son rattrapage : sortir pendant lui y ramene.
