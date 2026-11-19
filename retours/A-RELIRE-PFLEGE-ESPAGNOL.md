@@ -40,6 +40,9 @@ doucher…).
 | Notfallwagen | el carro de paro | el carro de paradas (Espagne) |
 | Intensivstation | cuidados intensivos | terapia intensiva (Mexique) |
 | « Hallo? » au téléphone | ¿Aló? | ¿Bueno? (Mexique), ¿Diga? (Espagne) |
+| Urinflasche, Steckbecken (d41) | el orinal, el cómodo | el pato (Colombie, Mexique), la chata (Cône Sud), la cuña (Espagne) |
+| Sensormatte (cartes de la relève) | la alfombra con sensor | el tapete (Mexique, Colombie) |
+| Krankentransport (cartes du téléphone) | el traslado de paciente | la ambulancia de traslado, el transporte sanitario (Espagne) |
 | décimales | 6,2 (virgule, comme l'allemand) | 6.2 (Mexique) |
 
 ## Doutes de sens signalés par les traducteurs
