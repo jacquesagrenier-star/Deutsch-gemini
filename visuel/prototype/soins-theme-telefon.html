@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<script src="themes/acces.js?v=1"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Am Telefon</title>
+<!--
+  LE TELEPHONE (theme illustre des Soins, chapitre 10 de « Ma journee au service », 16 nov. 2026). Ou le patient a mal,
+  combien sur l'echelle de 0 a 10, comment ca fait mal, et les deux langues (ce que dit le patient, ce qu'ecrit le
+  service). La banque de questions, ses phrases et leurs traductions : pflege/outils/themes_soins/telefon.py ->
+  soins-theme-telefon/donnees.json. Le moteur commun des themes de soins : themes/soins.js.
+  Ouverte par l'app dans le cadre des scenes, elle parle comme une scene : « exercice », « bonne », « reponse »
+  {mot, genre, cat, theme, juste}, « fini », « fermer ». Parametres : lang=<interface>, nuit=1, seance=1, nb=.
+-->
+<link rel="stylesheet" href="themes/soins.css?v=1">
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script>const CLE = "telefon", VERSION_DONNEES = 1;</script>
+<script src="themes/tirage.js?v=4"></script>
+<script src="themes/zoom.js?v=4"></script>
+<script src="themes/verre.js?v=8"></script>
+<script src="themes/voix.js?v=7"></script>
+<script src="themes/fin.js?v=2"></script>
+<script src="themes/soins.js?v=1"></script>
+</body>
+</html>
