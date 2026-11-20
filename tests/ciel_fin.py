@@ -10,7 +10,8 @@ Sur un navigateur vierge, donc un compte qui n'est PAS admin (essai seance_leger
   - A1 voyage : les Gemeaux, « Encore une seance », l'etoile filante des la 2e seance seulement ;
   - la fin d'une etape : le plein ecran, une seule fete, puis le trait vers l'etoile suivante ;
   - le plus charge (9 etoiles sur 12) : les noms ne se chevauchent ni ne se coupent ;
-  - le son : rien en transit sans son.
+  - le son : rien en transit sans son ;
+  - au-dessus de l'A1 aussi, le ciel (ligne 158, les etoiles suivent les seances) et le tableau dans sa carte.
 Il appelle les fonctions de la page. Il ouvre un navigateur : a lancer SOUS LE VERROU des parcours
 (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
@@ -132,23 +133,24 @@ async ([cas]) => {
     note = 'niveau ' + niveauSeance() + ', ciel_av ' + !!CIEL_AV;
     finir(); await pause(2500);
     const f = document.getElementById('finTableau');
-    return { cas, r: { ciel: false, sansCiel: !lire().ciel, tableau: !!f, texte: f ? f.textContent : '', anneau: document.getElementById('flashEndAnneau').textContent, mot: document.getElementById('flashEndObjectif').textContent, bouton: document.getElementById('encoreNeufsBtn').textContent }, note, legere };
+    const fc = document.getElementById('finCiel');
+    return { cas, r: { ciel: !!lire().ciel, dansCiel: !!(f && fc && fc.contains(f)), tableau: !!f, texte: f ? f.textContent : '', anneau: document.getElementById('flashEndAnneau').textContent, mot: document.getElementById('flashEndObjectif').textContent, bouton: document.getElementById('encoreNeufsBtn').textContent }, note, legere };
   }
   if(cas === 'a2_deux_seances'){
-    // Sans ciel (A2 et plus) : la meme phrase sous le tableau, et l'anneau de fin sans « ×2 ».
+    // A2 et plus (ligne 158 : le ciel aussi) : la phrase dans le titre du ciel, et l'anneau de fin sans « ×2 ».
     sansPP();
     localStorage.setItem(NIVEAU_SEANCE_KEY, 'A2');
     await ouvrirSeanceDuJour(); await pause(900);
     finir(); await pause(300);
     const anneau = () => document.getElementById('flashEndAnneau').textContent;
-    const mot = () => document.getElementById('flashEndObjectif').textContent;
+    const mot = () => { const c = document.querySelector('#finCiel:not(.hidden) .fc-titre'); return c ? c.textContent : document.getElementById('flashEndObjectif').textContent; };
     const un = { mot: mot(), anneau: anneau() };
     const ouvert = currentCards;
     document.getElementById('encoreNeufsBtn').click();
     for(let k = 0; k < 60 && currentCards === ouvert; k++) await pause(100);
     await pause(700);
     finir(); await pause(300);
-    return { cas, r: { ciel: false, un, mot: mot(), anneau: anneau() }, attendu: tf('legere_fin_n', { n: 2 }), une: t('legere_fin_une'), note, legere };
+    return { cas, r: { ciel: !!document.querySelector('#finCiel:not(.hidden) .fc-titre'), un, mot: mot(), anneau: anneau() }, attendu: tf('legere_fin_n', { n: 2 }), une: t('legere_fin_une'), note, legere };
   }
   if(cas === 'dictee_cartes'){
     // La dictee de la v1141, jouee en cartes : elle compte dans le compte du jour, sans palier ni fete, meme objectif bas.
@@ -336,7 +338,7 @@ def main():
                     r = res.get("r") or {}
                     ok = r.get("ciel") and not r.get("chev") and not r.get("coup") and res.get("legere")
                     if cas == "a2_tableau":
-                        ok = r.get("sansCiel") and r.get("tableau")
+                        ok = r.get("ciel") and r.get("tableau") and r.get("dansCiel")
                     if cas == "dictee_cartes":
                         ok = r.get("possible") and r.get("forme") == "dictee_mot" and r.get("compte") == 40 and not r.get("retours") and not r.get("fetes")
                     if cas == "a1_deux_seances":
@@ -344,7 +346,7 @@ def main():
                         ok = ok and res["un"].get("titre") == res.get("une") and r.get("titre") == res.get("attendu")
                         ok = ok and not r.get("pastille") and "×" not in (r.get("anneauFin") or "")
                     if cas == "a2_deux_seances":
-                        ok = r["un"]["mot"] == res.get("une") and r.get("mot") == res.get("attendu") and "×" not in r.get("anneau", "")
+                        ok = r.get("ciel") and r["un"]["mot"] == res.get("une") and r.get("mot") == res.get("attendu") and "×" not in r.get("anneau", "")
                     if not ok:
                         fautes += 1
                     print("  %-16s %s %s" % (cas, "ok" if ok else "FAUTE", json.dumps({k: v for k, v in res.items() if k not in ("cas", "legere")}, ensure_ascii=False)[:900]), flush=True)
