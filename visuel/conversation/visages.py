@@ -131,8 +131,8 @@ LOT2_SOURIRES = {n: ["sourire"] for n in ("Bruno", "Carlos", "Hugo", "Irene", "M
                                           "Silvia")}
 # Ce que Jacques a accorde (rempli APRES son mot dans la fenetre de la session, jamais avant) : les parties du lot
 # et le plafond en dollars, reprises comprises. Tant que PLAFOND_LOT2 vaut 0, le script refuse de payer le lot 2.
-LOT2_ACCORDE = ()            # par exemple ("base", "emprunts", "sourires")
-PLAFOND_LOT2 = 0.0
+LOT2_ACCORDE = ("base", "emprunts", "sourires")   # Jacques, 20 nov. 2026 : « Tout : 204, 33,60 $ max »
+PLAFOND_LOT2 = 33.60
 LOT2 = {"base": LOT2_BASE, "emprunts": LOT2_EMPRUNTS, "sourires": LOT2_SOURIRES}
 
 # Les sources : le portrait carre des 27 (portraits.py), l'image en pied des reserves et des douze de Descripcion.
