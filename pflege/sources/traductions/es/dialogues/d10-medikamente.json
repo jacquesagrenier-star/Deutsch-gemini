@@ -1,0 +1,329 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d10-medikamente.json",
+ "cles": {
+  "titre": {
+   "fr": "« À quoi sert ce comprimé ? »",
+   "de": "Medikamente erklären",
+   "es": "«¿Para qué es esta pastilla?»"
+  },
+  "intro": {
+   "fr": "Huit heures, visite à domicile. {kowalski} vit seule avec son chat ; son médecin traitant lui a prescrit un nouveau comprimé. Tu joues {amira} : explique à quoi il sert en mots simples et quand le prendre, d'après le plan de médication, et sache renvoyer au pharmacien ou au médecin.",
+   "es": "Las ocho, visita a domicilio. {kowalski} vive sola con su gato; su médico de cabecera le recetó una pastilla nueva. Juegas el papel de {amira}: explica para qué sirve con palabras sencillas y cuándo tomarla, según el plan de medicación, y aprende a remitir al farmacéutico o al médico."
+  },
+  "but": {
+   "fr": "Nommer un médicament et dire à quoi il sert en mots simples ; lire le plan de médication (quand, comment) ; reconnaître ce qu'on ne sait pas et renvoyer au pharmacien ou au médecin ; enchaîner glycémie, insuline et repas.",
+   "es": "Nombrar un medicamento y decir para qué sirve con palabras sencillas; leer el plan de medicación (cuándo, cómo); reconocer lo que no se sabe y remitir al farmacéutico o al médico; encadenar glucosa, insulina y comida."
+  },
+  "relire_notes": {
+   "fr": "Exemple de médicament (ramipril, contre l'hypertension, une fois par jour selon le plan) ; ne pas écraser sans avis ; limite de ce que la soignante explique ; ordre glycémie → insuline → repas (selon l'insuline prescrite) ; pas d'hypoglycémie.",
+   "es": "Ejemplo de medicamento (ramipril, contra la hipertensión, una vez al día según el plan); no triturar sin consultar; límite de lo que explica la enfermera; orden glucosa → insulina → comida (según la insulina indicada); evitar la hipoglucemia."
+  },
+  "redemittel.0": {
+   "fr": "C'est votre comprimé pour la tension.",
+   "de": "Das ist Ihre Tablette für den Blutdruck.",
+   "es": "Esta es su pastilla para la presión."
+  },
+  "redemittel.1": {
+   "fr": "Vous le prenez une fois par jour, le matin après le petit-déjeuner.",
+   "de": "Die nehmen Sie einmal täglich, morgens nach dem Frühstück.",
+   "es": "La toma una vez al día, en la mañana después del desayuno."
+  },
+  "redemittel.2": {
+   "fr": "C'est ce qui est écrit dans votre plan de médication.",
+   "de": "So steht es in Ihrem Medikamentenplan.",
+   "es": "Así está escrito en su plan de medicación."
+  },
+  "redemittel.3": {
+   "fr": "Vous ne devez pas écraser ce comprimé.",
+   "de": "Diese Tablette dürfen Sie nicht zerkleinern.",
+   "es": "Esta pastilla no la debe triturar."
+  },
+  "redemittel.4": {
+   "fr": "Le mieux, c'est de demander à la pharmacie.",
+   "de": "Das fragen wir am besten in der Apotheke.",
+   "es": "Lo mejor es preguntarlo en la farmacia."
+  },
+  "redemittel.5": {
+   "fr": "D'abord je mesure votre glycémie, ensuite vous recevez votre insuline.",
+   "de": "Zuerst messe ich Ihren Blutzucker, dann bekommen Sie Ihr Insulin.",
+   "es": "Primero le mido la glucosa, después recibe su insulina."
+  },
+  "noeuds.tuer.dit.0.recit": {
+   "fr": "Huit heures. {amira} sonne chez {kowalski}. Un gros chat gris tigré est couché devant la porte de l'appartement.",
+   "es": "Las ocho. {amira} toca el timbre en casa {kowalski:de}. Un gato grande, gris atigrado, está echado delante de la puerta del departamento."
+  },
+  "noeuds.tuer.dit.1": {
+   "fr": "Ah, {amira}, entrez. Attention, le chat est encore couché devant la porte.",
+   "de": "Ach, {amira}, kommen Sie rein. Passen Sie auf, der Kater liegt wieder vor der Tür.",
+   "es": "Ah, {amira}, pase. Cuidado, el gato está otra vez echado delante de la puerta."
+  },
+  "noeuds.tuer.choix.0": {
+   "fr": "Bonjour, {kowalski:voc}. Bonjour, minou ! Comment allez-vous aujourd'hui ?",
+   "de": "Guten Morgen, {kowalski}. Hallo, Mieze! Wie geht es Ihnen heute?",
+   "es": "Buenos días, {kowalski:voc}. ¡Hola, minino! ¿Cómo está usted hoy?"
+  },
+  "noeuds.tuer.choix.0.puis.0": {
+   "fr": "Bien, merci. Mais j'ai une question sur mon nouveau comprimé.",
+   "de": "Gut, danke. Aber ich hab eine Frage zu meiner neuen Tablette.",
+   "es": "Bien, gracias. Pero tengo una pregunta sobre mi pastilla nueva."
+  },
+  "noeuds.tuer.choix.1": {
+   "fr": "Bonjour ! Ne vous inquiétez pas, je fais attention. Comment allez-vous ?",
+   "de": "Guten Morgen! Keine Sorge, ich passe auf. Wie geht es Ihnen?",
+   "es": "¡Buenos días! No se preocupe, tengo cuidado. ¿Cómo está usted?"
+  },
+  "noeuds.tuer.choix.1.puis.0": {
+   "fr": "Bien, merci. Mais j'ai une question sur mon nouveau comprimé.",
+   "de": "Gut, danke. Aber ich hab eine Frage zu meiner neuen Tablette.",
+   "es": "Bien, gracias. Pero tengo una pregunta sobre mi pastilla nueva."
+  },
+  "noeuds.frage.dit.0": {
+   "fr": "Le médecin traitant me l'a prescrit. Il sert à quoi ?",
+   "de": "Der Hausarzt hat sie mir aufgeschrieben. Wofür ist die denn?",
+   "es": "Me la recetó el médico de cabecera. ¿Para qué es?"
+  },
+  "noeuds.frage.choix.0": {
+   "fr": "Montrez-moi… C'est du ramipril. C'est votre comprimé pour la tension.",
+   "de": "Zeigen Sie mal … Das ist Ramipril. Das ist Ihre Tablette für den Blutdruck.",
+   "es": "A ver, muéstreme… Es ramipril. Es su pastilla para la presión."
+  },
+  "noeuds.frage.choix.0.puis.0": {
+   "fr": "Pour la tension ? Je croyais que c'était pour le cœur.",
+   "de": "Für den Blutdruck? Ich dachte, für das Herz.",
+   "es": "¿Para la presión? Yo pensaba que era para el corazón."
+  },
+  "noeuds.frage.choix.1": {
+   "fr": "Je peux voir la boîte ? Ah, du ramipril. C'est contre l'hypertension.",
+   "de": "Darf ich mal die Packung sehen? Ah, Ramipril. Die ist gegen hohen Blutdruck.",
+   "es": "¿Puedo ver la caja? Ah, ramipril. Es contra la presión alta."
+  },
+  "noeuds.frage.choix.1.puis.0": {
+   "fr": "Pour la tension ? Je croyais que c'était pour le cœur.",
+   "de": "Für den Blutdruck? Ich dachte, für das Herz.",
+   "es": "¿Para la presión? Yo pensaba que era para el corazón."
+  },
+  "noeuds.frage.choix.2": {
+   "fr": "Aucune idée. Prenez-le, tout simplement.",
+   "de": "Keine Ahnung. Nehmen Sie sie einfach.",
+   "es": "Ni idea. Tómesela y ya."
+  },
+  "noeuds.frage.choix.2.puis.0": {
+   "fr": "Comme ça ? Sans savoir à quoi il sert ?",
+   "de": "Einfach so? Ohne zu wissen, wofür?",
+   "es": "¿Así nada más? ¿Sin saber para qué es?"
+  },
+  "noeuds.frage.choix.2.aide": {
+   "fr": "<b>Lis la boîte et le plan de médication, puis explique en mots simples : « für den Blutdruck ».</b> Si tu ne sais pas, dis-le et propose de demander : ne réponds jamais « nehmen Sie sie einfach ».",
+   "es": "<b>Lee la caja y el plan de medicación, y después explica con palabras sencillas: «für den Blutdruck».</b> Si no sabes, dilo y propón preguntar: nunca respondas «nehmen Sie sie einfach»."
+  },
+  "noeuds.herz.choix.0": {
+   "fr": "Une tension trop haute est mauvaise pour le cœur. Le comprimé fait baisser la tension et protège donc aussi le cœur.",
+   "de": "Ein hoher Blutdruck ist schlecht für das Herz. Die Tablette senkt den Blutdruck und schützt so auch das Herz.",
+   "es": "La presión alta es mala para el corazón. La pastilla baja la presión y así también protege el corazón."
+  },
+  "noeuds.herz.choix.0.puis.0": {
+   "fr": "Ah bon. Et je le prends quand ?",
+   "de": "Ach so. Und wann nehme ich sie?",
+   "es": "Ah, ya. ¿Y cuándo la tomo?"
+  },
+  "noeuds.herz.choix.1": {
+   "fr": "C'est lié : quand la tension est bien réglée, le cœur est soulagé.",
+   "de": "Das hängt zusammen: Wenn der Blutdruck gut eingestellt ist, wird das Herz entlastet.",
+   "es": "Las dos cosas van juntas: cuando la presión está bien controlada, el corazón trabaja menos."
+  },
+  "noeuds.herz.choix.1.puis.0": {
+   "fr": "Ah bon. Et je le prends quand ?",
+   "de": "Ach so. Und wann nehme ich sie?",
+   "es": "Ah, ya. ¿Y cuándo la tomo?"
+  },
+  "noeuds.wann.choix.0": {
+   "fr": "D'après le plan de médication, une fois par jour, le matin après le petit-déjeuner, avec un verre d'eau.",
+   "de": "Laut Medikamentenplan einmal täglich, morgens nach dem Frühstück, mit einem Glas Wasser.",
+   "es": "Según el plan de medicación, una vez al día, en la mañana después del desayuno, con un vaso de agua."
+  },
+  "noeuds.wann.choix.0.puis.0": {
+   "fr": "Et je peux l'écraser ? Il est si gros.",
+   "de": "Und kann ich sie zerkleinern? Die ist so groß.",
+   "es": "¿Y la puedo triturar? Es tan grande."
+  },
+  "noeuds.wann.choix.1": {
+   "fr": "Vous le prenez une fois par jour, le matin. C'est écrit ici, dans votre plan.",
+   "de": "Die nehmen Sie einmal am Tag, morgens. So steht es hier in Ihrem Plan.",
+   "es": "La toma una vez al día, en la mañana. Así está escrito aquí, en su plan."
+  },
+  "noeuds.wann.choix.1.puis.0": {
+   "fr": "Et je peux l'écraser ? Il est si gros.",
+   "de": "Und kann ich sie zerkleinern? Die ist so groß.",
+   "es": "¿Y la puedo triturar? Es tan grande."
+  },
+  "noeuds.wann.choix.2": {
+   "fr": "Vous le prenez quand vous voulez.",
+   "de": "Die nehmen Sie, wann Sie wollen.",
+   "es": "La toma cuando usted quiera."
+  },
+  "noeuds.wann.choix.2.puis.0": {
+   "fr": "Quand je veux ? Même le soir à onze heures ?",
+   "de": "Wann ich will? Auch abends um elf?",
+   "es": "¿Cuando yo quiera? ¿También a las once de la noche?"
+  },
+  "noeuds.wann.choix.2.aide": {
+   "fr": "<b>Le moment de la prise est dans le plan de médication : lis-le.</b> « Laut Medikamentenplan einmal täglich, morgens. » Chaque médicament a son heure, et ce n'est pas à la soignante de la choisir.",
+   "es": "<b>El momento de la toma está en el plan de medicación: léelo.</b> «Laut Medikamentenplan einmal täglich, morgens.» Cada medicamento tiene su hora, y no le corresponde a la enfermera elegirla."
+  },
+  "noeuds.teilen.choix.0": {
+   "fr": "Je n'en suis pas sûre. Le mieux, c'est de demander à la pharmacie ou à votre médecin traitant.",
+   "de": "Das weiß ich nicht sicher. Das fragen wir am besten in der Apotheke oder bei Ihrem Hausarzt.",
+   "es": "No lo sé con seguridad. Lo mejor es preguntarlo en la farmacia o a su médico de cabecera."
+  },
+  "noeuds.teilen.choix.0.puis.0": {
+   "fr": "D'accord. Vous appelez pour moi ?",
+   "de": "Gut. Rufen Sie für mich an?",
+   "es": "Bien. ¿Usted llama por mí?"
+  },
+  "noeuds.teilen.choix.1": {
+   "fr": "Certains comprimés ne doivent pas être écrasés. Je demande à la pharmacie avant que vous le fassiez.",
+   "de": "Manche Tabletten darf man nicht zerkleinern. Ich frage in der Apotheke nach, bevor Sie das machen.",
+   "es": "Algunas pastillas no se deben triturar. Pregunto en la farmacia antes de que usted lo haga."
+  },
+  "noeuds.teilen.choix.1.puis.0": {
+   "fr": "D'accord. Vous appelez pour moi ?",
+   "de": "Gut. Rufen Sie für mich an?",
+   "es": "Bien. ¿Usted llama por mí?"
+  },
+  "noeuds.teilen.choix.2": {
+   "fr": "Oui, bien sûr, on peut toujours écraser un comprimé.",
+   "de": "Ja, klar, Tabletten kann man immer zerkleinern.",
+   "es": "Sí, claro, las pastillas siempre se pueden triturar."
+  },
+  "noeuds.teilen.choix.2.puis.0": {
+   "fr": "Toujours ? Même ceux qui ont un enrobage ?",
+   "de": "Immer? Auch die mit der Schicht drum?",
+   "es": "¿Siempre? ¿También las que tienen una capa alrededor?"
+  },
+  "noeuds.teilen.choix.2.aide": {
+   "fr": "<b>Certains comprimés ne s'écrasent pas (enrobage, libération prolongée).</b> Quand tu ne sais pas, renvoie à la pharmacie : « Das fragen wir am besten in der Apotheke. » C'est une réponse professionnelle.",
+   "es": "<b>Algunas pastillas no se trituran (recubrimiento, liberación prolongada).</b> Cuando no sabes, remite a la farmacia: «Das fragen wir am besten in der Apotheke.» Es una respuesta profesional."
+  },
+  "noeuds.anrufen.choix.0": {
+   "fr": "Oui, j'appelle la pharmacie ce midi et je vous dis demain.",
+   "de": "Ja, ich rufe heute Mittag in der Apotheke an und sage Ihnen morgen Bescheid.",
+   "es": "Sí, hoy al mediodía llamo a la farmacia y mañana le aviso."
+  },
+  "noeuds.anrufen.choix.0.puis.0": {
+   "fr": "Merci. Et n'oubliez pas mon insuline !",
+   "de": "Danke. Und vergessen Sie mein Insulin nicht!",
+   "es": "Gracias. ¡Y no se olvide de mi insulina!"
+  },
+  "noeuds.anrufen.choix.1": {
+   "fr": "Je règle ça aujourd'hui et j'écris la réponse dans votre classeur de soins.",
+   "de": "Ich kläre das heute und schreibe die Antwort in Ihre Pflegemappe.",
+   "es": "Hoy lo aclaro y escribo la respuesta en su carpeta de cuidados."
+  },
+  "noeuds.anrufen.choix.1.puis.0": {
+   "fr": "Merci. Et n'oubliez pas mon insuline !",
+   "de": "Danke. Und vergessen Sie mein Insulin nicht!",
+   "es": "Gracias. ¡Y no se olvide de mi insulina!"
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "Bien sûr que non. D'abord je mesure votre glycémie, ensuite vous recevez votre insuline.",
+   "de": "Natürlich nicht. Zuerst messe ich Ihren Blutzucker, dann bekommen Sie Ihr Insulin.",
+   "es": "Claro que no. Primero le mido la glucosa, después recibe su insulina."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "Et après, je peux prendre mon petit-déjeuner ?",
+   "de": "Und danach darf ich frühstücken?",
+   "es": "¿Y después puedo desayunar?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "Ne vous inquiétez pas. Je mesure le sucre maintenant, et ensuite il y a l'insuline, comme dans le plan.",
+   "de": "Keine Sorge. Ich messe jetzt den Zucker, und dann gibt es das Insulin, wie im Plan.",
+   "es": "No se preocupe. Ahora le mido el azúcar y después viene la insulina, como en el plan."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "Et après, je peux prendre mon petit-déjeuner ?",
+   "de": "Und danach darf ich frühstücken?",
+   "es": "¿Y después puedo desayunar?"
+  },
+  "noeuds.fruehstueck.choix.0": {
+   "fr": "Oui, prenez votre petit-déjeuner rapidement, pour que le sucre ne baisse pas trop. Et après le petit-déjeuner, le nouveau comprimé.",
+   "de": "Ja, frühstücken Sie bitte bald, damit der Zucker nicht zu tief fällt. Und nach dem Frühstück kommt die neue Tablette.",
+   "es": "Sí, desayune pronto, por favor, para que el azúcar no baje demasiado. Y después del desayuno viene la pastilla nueva."
+  },
+  "noeuds.fruehstueck.choix.0.puis.0": {
+   "fr": "Et le chat aura quelque chose aussi. Sinon il râle.",
+   "de": "Und der Kater bekommt auch was. Sonst schimpft er.",
+   "es": "Y al gato también le toca algo. Si no, protesta."
+  },
+  "noeuds.fruehstueck.choix.1": {
+   "fr": "Oui, juste après. Et pensez au nouveau comprimé après le petit-déjeuner.",
+   "de": "Ja, gleich danach. Und denken Sie an die neue Tablette nach dem Frühstück.",
+   "es": "Sí, enseguida después. Y acuérdese de la pastilla nueva después del desayuno."
+  },
+  "noeuds.fruehstueck.choix.1.puis.0": {
+   "fr": "Et le chat aura quelque chose aussi. Sinon il râle.",
+   "de": "Und der Kater bekommt auch was. Sonst schimpft er.",
+   "es": "Y al gato también le toca algo. Si no, protesta."
+  },
+  "ecouter.0.q": {
+   "fr": "À quoi sert le nouveau comprimé ?",
+   "de": "Wofür ist die neue Tablette?",
+   "es": "¿Para qué es la pastilla nueva?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Pour la tension.",
+   "de": "Für den Blutdruck.",
+   "es": "Para la presión."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Pour l'estomac.",
+   "de": "Für den Magen.",
+   "es": "Para el estómago."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Contre la douleur.",
+   "de": "Gegen Schmerzen.",
+   "es": "Contra el dolor."
+  },
+  "ecouter.1.q": {
+   "fr": "Que veut faire {kowalski} avec le comprimé ?",
+   "de": "Was möchte {kowalski} mit der Tablette machen?",
+   "es": "¿Qué quiere hacer {kowalski} con la pastilla?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Le prendre le soir.",
+   "de": "Sie abends nehmen.",
+   "es": "Tomarla en la noche."
+  },
+  "ecouter.1.options.1": {
+   "fr": "L'écraser.",
+   "de": "Sie zerkleinern.",
+   "es": "Triturarla."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Ne plus le prendre.",
+   "de": "Sie nicht mehr nehmen.",
+   "es": "Dejar de tomarla."
+  },
+  "ecouter.2.q": {
+   "fr": "Qui a prescrit le comprimé ?",
+   "de": "Wer hat die Tablette verschrieben?",
+   "es": "¿Quién recetó la pastilla?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "La pharmacie.",
+   "de": "Die Apotheke.",
+   "es": "La farmacia."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un cardiologue à l'hôpital.",
+   "de": "Ein Kardiologe im Krankenhaus.",
+   "es": "Un cardiólogo del hospital."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Le médecin traitant.",
+   "de": "Der Hausarzt.",
+   "es": "El médico de cabecera."
+  }
+ }
+}

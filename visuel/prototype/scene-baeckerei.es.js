@@ -1612,7 +1612,7 @@ window.SCENE = {
    "theme": "la_comida",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-4",
    "devant": 0,
    "boites": [
     [
@@ -1668,7 +1668,7 @@ window.SCENE = {
    "theme": "la_comida",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-2",
    "devant": 0,
    "boites": [
     [
@@ -1696,7 +1696,7 @@ window.SCENE = {
    "theme": "la_comida",
    "personne": null,
    "aussi": [],
-   "sur": null,
+   "sur": "teller-3",
    "devant": 0,
    "boites": [
     [
@@ -1713,6 +1713,90 @@ window.SCENE = {
    "pl": "ciasto",
    "ru": "пирог, торт",
    "de": "der Kuchen, die Torte",
+   "latam": null
+  },
+  {
+   "id": "teller-2",
+   "mot": "plato",
+   "genre": "el",
+   "pluriel": "los platos",
+   "niveau": "A1",
+   "theme": "la_comida",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.8,
+     66.8,
+     14.6,
+     4.2
+    ]
+   ],
+   "fr": "l'assiette, le plat",
+   "en": "plate, dish",
+   "pt": "o prato",
+   "ar": "صحن، طبق",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "de": "der Teller, das Gericht",
+   "latam": null
+  },
+  {
+   "id": "teller-3",
+   "mot": "plato",
+   "genre": "el",
+   "pluriel": "los platos",
+   "niveau": "A1",
+   "theme": "la_comida",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     37,
+     63.5,
+     16.8,
+     4.3
+    ]
+   ],
+   "fr": "l'assiette, le plat",
+   "en": "plate, dish",
+   "pt": "o prato",
+   "ar": "صحن، طبق",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "de": "der Teller, das Gericht",
+   "latam": null
+  },
+  {
+   "id": "teller-4",
+   "mot": "plato",
+   "genre": "el",
+   "pluriel": "los platos",
+   "niveau": "A1",
+   "theme": "la_comida",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     9.5,
+     69.5,
+     19.5,
+     6.5
+    ]
+   ],
+   "fr": "l'assiette, le plat",
+   "en": "plate, dish",
+   "pt": "o prato",
+   "ar": "صحن، طبق",
+   "pl": "talerz",
+   "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {

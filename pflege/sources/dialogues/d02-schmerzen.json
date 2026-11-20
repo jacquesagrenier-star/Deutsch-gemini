@@ -12,7 +12,7 @@
  "but": {"fr": "Localiser, chiffrer et décrire une douleur ; proposer l'antalgique prescrit « si besoin » ; installer le patient ; prévoir la réévaluation et la noter."},
  "grammaire": ["g05", "g06", "g09"],
  "telc": ["oral-1", "oral-3", "hoeren", "schreiben"],
- "relire_notes": {"fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit, dans le cadre de compétence d'une assistante de soins en cours de reconnaissance ; délai de réévaluation (30 min après une prise orale ici)."},
+ "relire_notes": {"fr": "Échelle numérique 0-10 (NRS) ; antalgique « bei Bedarf » donné seulement s'il est prescrit ; une assistante de soins en cours de reconnaissance ne décide pas seule de le donner : elle prévient l'infirmier, qui vérifie la prescription (délégation selon l'établissement) ; délai de réévaluation (30 à 60 min après une prise orale, selon le médicament et le standard de la maison)."},
  "redemittel": [
   {"t": "Haben Sie Schmerzen?", "fr": "Avez-vous mal ?", "fonction": "demander"},
   {"t": "Wo genau tut es weh?", "fr": "Où avez-vous mal, exactement ?", "fonction": "demander"},
@@ -21,7 +21,7 @@
   {"t": "Ist der Schmerz eher stechend oder eher dumpf?", "fr": "La douleur est-elle plutôt lancinante (en coups de couteau) ou plutôt sourde ?", "fonction": "demander"},
   {"t": "Seit wann haben Sie die Schmerzen?", "fr": "Depuis quand avez-vous mal ?", "fonction": "demander"},
   {"t": "Der Arzt hat Ihnen ein Schmerzmittel bei Bedarf verordnet.", "fr": "Le médecin vous a prescrit un antidouleur si besoin.", "relire": true, "relire_note": "Formule courante ; vérifier qu'elle convient pour une prescription « bei Bedarf ».", "fonction": "annoncer"},
-  {"t": "Ich komme in einer halben Stunde wieder und frage noch einmal nach.", "fr": "Je reviens dans une demi-heure et je vous redemande.", "relire": true, "relire_note": "Délai de réévaluation après un antalgique oral.", "fonction": "annoncer"}
+  {"t": "Ich komme in dreißig bis sechzig Minuten wieder und frage noch einmal nach.", "fr": "Je reviens dans 30 à 60 minutes et je vous redemande.", "relire": true, "relire_note": "Délai de réévaluation après un antalgique oral : 30 à 60 min, selon le médicament et le standard de la maison.", "fonction": "annoncer"}
  ],
  "debut": "klingel",
  "noeuds": {
@@ -79,7 +79,7 @@
   },
   "mittel": {
    "dit": [
-    {"recit": {"fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin »."}, "relire": true, "relire_note": "Une assistante de soins en attente de reconnaissance peut-elle préparer et donner un antalgique prescrit « si besoin » ? Sinon, prévoir qu'elle prévienne Jonas."}
+    {"recit": {"fr": "{elif} regarde la feuille de prescription : {sommer} a prescrit un antidouleur en comprimé, « si besoin »."}, "relire": true, "relire_note": "Donner un médicament « si besoin » revient à la Pflegefachkraft ; une assistante de soins en attente de reconnaissance ne le fait que sur délégation, selon l'établissement. Ici, elle prévient Jonas, qui vérifie la prescription et lui remet le comprimé (récit du nœud suivant) : à confirmer."}
    ],
    "choix": [
     {"t": "{sommer} hat Ihnen ein Schmerzmittel bei Bedarf verordnet. Möchten Sie es haben?", "fr": "{sommer} vous a prescrit un antidouleur si besoin. Vous voulez le prendre ?", "va": "spritze",
@@ -102,7 +102,7 @@
   },
   "lage": {
    "dit": [
-    {"recit": {"fr": "{elif} revient avec le comprimé. {brandt} l'avale et soupire. Il est mal installé, de travers dans son lit."}}
+    {"recit": {"fr": "{elif} prévient {jonas}, l'infirmier : il vérifie la prescription et lui remet le comprimé. Elle revient auprès de {brandt}, qui avale le comprimé et soupire. Il est mal installé, de travers dans son lit."}}
    ],
    "choix": [
     {"t": "Soll ich Ihr Kissen anders hinlegen? Vielleicht liegen Sie dann bequemer.", "fr": "Voulez-vous que je remette votre oreiller autrement ? Vous serez peut-être mieux installé.", "va": "zurueck",
@@ -117,11 +117,11 @@
   "zurueck": {
    "dit": [],
    "choix": [
-    {"t": "Ich komme in einer halben Stunde wieder und frage Sie noch einmal nach den Schmerzen.", "fr": "Je reviens dans une demi-heure et je vous redemande pour la douleur.", "va": "doku",
-     "relire": true, "relire_note": "Réévaluation 30 min après une prise orale.",
+    {"t": "Ich komme in dreißig bis sechzig Minuten wieder und frage Sie noch einmal nach den Schmerzen.", "fr": "Je reviens dans 30 à 60 minutes et je vous redemande pour la douleur.", "va": "doku",
+     "relire": true, "relire_note": "Réévaluation 30 à 60 min après une prise orale, selon le médicament et le standard de la maison.",
      "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut. Und wenn es schlimmer wird, klingle ich.", "fr": "Bien. Et si ça empire, je sonne."}]},
-    {"t": "In 30 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "dit": "In dreißig Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "fr": "Dans 30 minutes, je repasse vous voir. Vous me redonnerez un chiffre.", "va": "doku",
-     "relire": true, "relire_note": "Réévaluation 30 min après une prise orale.",
+    {"t": "In 30 bis 60 Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "dit": "In dreißig bis sechzig Minuten schaue ich wieder nach Ihnen. Dann sagen Sie mir wieder eine Zahl.", "fr": "Dans 30 à 60 minutes, je repasse vous voir. Vous me redonnerez un chiffre.", "va": "doku",
+     "relire": true, "relire_note": "Réévaluation 30 à 60 min après une prise orale, selon le médicament et le standard de la maison.",
      "puis": [{"qui": "brandt", "air": "sourire", "t": "Gut. Und wenn es schlimmer wird, klingle ich.", "fr": "Bien. Et si ça empire, je sonne."}]}
    ]
   },

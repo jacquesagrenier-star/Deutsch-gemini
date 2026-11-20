@@ -86,6 +86,8 @@ def controle_dialogue(ident, d, ids_grammaire):
     niv = d.get("niveau")
     if niv not in NIVEAUX:
         E("%s : niveau « %s » (A2, B1 ou B2)" % (ou, niv))
+    if "porte" in d and (d["porte"] not in T.PORTES or (d["porte"], niv) in (("commence", "B2"), ("examen", "A2"))):
+        E("%s : porte « %s » au %s (commence : A2-B1 ; examen : B1-B2)" % (ou, d["porte"], niv))
     pers = table["de"]
     for p in [d.get("role")] + d.get("personnes", []):
         if p not in pers:
@@ -278,7 +280,7 @@ def controle_ecrit(ident, d):
             E("%s : %s « %s » absente" % (ou, ref, g))
     if d.get("examen") and (d.get("grille") != "grille-telc-pflege" or "modele_b1" not in d):
         E("%s : une tâche d'examen a la grille telc et un modèle B1" % ou)
-    if d.get("genre") not in ("aufnahmebericht", "biografiebericht", "pflegebericht", "sturzprotokoll", "nachricht"):
+    if d.get("genre") not in tuple(T.TYPE_ECRIT):
         E("%s : genre « %s » inconnu" % (ou, d.get("genre")))
 
 
@@ -395,7 +397,7 @@ def controle_cartes(export):
 
 QUI_CONTRAT = {"elif", "jonas", "hoffmann", "sommer", "brandt", "lehmann", "lehmann_tochter", "schulze", "weber",
                "kowalski", "amira", "arun", "yusuf", "olena", "kraemer",
-               "aksoy", "richter", "schulze_tochter"}   # les trois derniers : roles de l'examen repris par d19, d24, d26 (a ajouter au contrat, demande)
+               "aksoy", "richter", "schulze_tochter", "winkler", "pohl"}   # les trois derniers : roles de l'examen repris par d19, d24, d26 (a ajouter au contrat, demande)
 
 
 def controle_contrat(export):
@@ -453,7 +455,7 @@ def controle_contrat(export):
         langues(p, ou)
     for s in export["ecrit"]["sujets"]:
         ou = s.get("id", "?")
-        if not re.fullmatch(r"soins_ecrit_(aufnahme|biografie|pflegebericht|sturz|nachricht)_\d\d", ou):
+        if not re.fullmatch(r"soins_ecrit_(aufnahme|biografie|pflegebericht|sturz|nachricht|schmerz|telefon)_\d\d", ou):
             E("écrit : id hors contrat %r" % ou)
         for k in ("type", "niveau", "consigne", "fiche", "briques", "corrige_de", "points_cles", "relire"):
             if k not in s:

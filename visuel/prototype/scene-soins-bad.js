@@ -29,7 +29,8 @@ window.SCENE = {
    "pt": "cordão de chamada de emergência",
    "ar": "حبل نداء الطوارئ",
    "pl": "linka przywołania alarmowego",
-   "ru": "шнур экстренного вызова"
+   "ru": "шнур экстренного вызова",
+   "es": "el cordón de llamada de emergencia"
   },
   {
    "id": "spiegel",
@@ -88,7 +89,8 @@ window.SCENE = {
    "pt": "barra de apoio",
    "ar": "مقبض الإمساك",
    "pl": "uchwyt (poręcz łazienkowa)",
-   "ru": "опорный поручень"
+   "ru": "опорный поручень",
+   "es": "la barra de apoyo (agarradera)"
   },
   {
    "id": "toilettensitzerhoehung",
@@ -117,7 +119,8 @@ window.SCENE = {
    "pt": "assento sanitário elevado",
    "ar": "مقعد مرحاض مرتفع",
    "pl": "nakładka podwyższająca na sedes",
-   "ru": "насадка для подъёма сиденья унитаза"
+   "ru": "насадка для подъёма сиденья унитаза",
+   "es": "el elevador de inodoro (asiento elevado)"
   },
   {
    "id": "toilette",
@@ -176,7 +179,8 @@ window.SCENE = {
    "pt": "loção de limpeza (sabonete líquido suave)",
    "ar": "غسول الجسم",
    "pl": "emulsja do mycia",
-   "ru": "моющий лосьон"
+   "ru": "моющий лосьон",
+   "es": "el jabón líquido suave (loción limpiadora)"
   },
   {
    "id": "hautcreme",
@@ -205,7 +209,8 @@ window.SCENE = {
    "pt": "creme para a pele (hidratante)",
    "ar": "كريم البشرة",
    "pl": "krem do skóry",
-   "ru": "крем для кожи"
+   "ru": "крем для кожи",
+   "es": "la crema para la piel (crema hidratante)"
   },
   {
    "id": "kamm",
@@ -234,7 +239,8 @@ window.SCENE = {
    "pt": "pente",
    "ar": "المشط",
    "pl": "grzebień",
-   "ru": "расчёска"
+   "ru": "расчёска",
+   "es": "el peine"
   },
   {
    "id": "prothesendose",
@@ -263,7 +269,8 @@ window.SCENE = {
    "pt": "caixinha da prótese dentária",
    "ar": "علبة طقم الأسنان",
    "pl": "pojemnik na protezę zębową",
-   "ru": "контейнер для зубного протеза"
+   "ru": "контейнер для зубного протеза",
+   "es": "el estuche para la prótesis dental"
   },
   {
    "id": "rasierapparat",
@@ -292,7 +299,8 @@ window.SCENE = {
    "pt": "barbeador elétrico",
    "ar": "ماكينة الحلاقة",
    "pl": "maszynka do golenia (elektryczna)",
-   "ru": "электробритва"
+   "ru": "электробритва",
+   "es": "la máquina de afeitar eléctrica (rasuradora)"
   },
   {
    "id": "zahnbuerste",
@@ -381,7 +389,8 @@ window.SCENE = {
    "pt": "pia",
    "ar": "المغسلة",
    "pl": "umywalka",
-   "ru": "раковина"
+   "ru": "раковина",
+   "es": "el lavamanos"
   },
   {
    "id": "patientin",
@@ -470,7 +479,8 @@ window.SCENE = {
    "pt": "luva de banho",
    "ar": "قفاز الغسيل، ليفة",
    "pl": "myjka",
-   "ru": "рукавица для мытья, мочалка"
+   "ru": "рукавица для мытья, мочалка",
+   "es": "la toallita de baño, el paño para lavar"
   },
   {
    "id": "bademantel",
@@ -559,7 +569,8 @@ window.SCENE = {
    "pt": "cadeira de banho",
    "ar": "كرسي الاستحمام",
    "pl": "krzesło prysznicowe",
-   "ru": "стул для душа"
+   "ru": "стул для душа",
+   "es": "la silla de baño (silla para ducha)"
   },
   {
    "id": "schuh",
@@ -618,7 +629,8 @@ window.SCENE = {
    "pt": "chinelo, pantufa",
    "ar": "خُفّ، شبشب منزلي",
    "pl": "kapeć",
-   "ru": "тапочка"
+   "ru": "тапочка",
+   "es": "la pantufla"
   },
   {
    "id": "antirutschmatte",
@@ -647,7 +659,8 @@ window.SCENE = {
    "pt": "tapete antiderrapante",
    "ar": "سجّادة مانعة للانزلاق",
    "pl": "mata antypoślizgowa",
-   "ru": "противоскользящий коврик"
+   "ru": "противоскользящий коврик",
+   "es": "el tapete antideslizante"
   },
   {
    "id": "pflegefachfrau",
@@ -676,7 +689,8 @@ window.SCENE = {
    "pt": "enfermeira",
    "ar": "ممرّضة مؤهّلة",
    "pl": "pielęgniarka (dyplomowana)",
-   "ru": "медсестра (дипломированная)"
+   "ru": "медсестра (дипломированная)",
+   "es": "la enfermera (titulada; título alemán desde 2020)"
   },
   {
    "id": "handschuh",
@@ -735,7 +749,8 @@ window.SCENE = {
    "pt": "bacia de banho",
    "ar": "طست الغسل",
    "pl": "miska do mycia",
-   "ru": "таз для умывания"
+   "ru": "таз для умывания",
+   "es": "la palangana (para el aseo)"
   },
   {
    "id": "hocker",
@@ -794,7 +809,8 @@ window.SCENE = {
    "pt": "toalha de banho",
    "ar": "منشفة الحمّام",
    "pl": "ręcznik kąpielowy",
-   "ru": "банное полотенце"
+   "ru": "банное полотенце",
+   "es": "la toalla de baño"
   },
   {
    "id": "waeschesack",
@@ -823,7 +839,8 @@ window.SCENE = {
    "pt": "saco de roupa suja",
    "ar": "كيس الغسيل المتّسخ",
    "pl": "worek na brudną bieliznę",
-   "ru": "мешок для грязного белья"
+   "ru": "мешок для грязного белья",
+   "es": "la bolsa de ropa sucia"
   },
   {
    "id": "tuer",

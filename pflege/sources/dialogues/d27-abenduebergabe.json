@@ -1,0 +1,125 @@
+{
+ "id": "d27-abenduebergabe",
+ "numero": 27,
+ "niveau": "B1",
+ "porte": "commence",
+ "registre": "du",
+ "lieu": "klinikum",
+ "scene_annexe": 4,
+ "role": "arun",
+ "personnes": ["yusuf"],
+ "titre": {"t": "Die Übergabe am Abend", "fr": "La relève du soir"},
+ "intro": {"fr": "Jeudi 12 novembre, vingt et une heures quinze. {arun} a fini son service de l'après-midi, {yusuf} commence la nuit. Une relève courte : deux patients, ce qui s'est passé et ce que {yusuf} doit surveiller cette nuit. Entre collègues, on se dit « du ». Tu joues {arun}."},
+ "but": {"fr": "Faire une relève courte et ordonnée ; dire ce qui s'est passé au Perfekt ; donner une valeur avec l'heure ; dire clairement ce qu'il faut faire pendant la nuit, et à partir de quand."},
+ "grammaire": ["g13", "g12", "g21"],
+ "telc": ["hoeren", "oral-1"],
+ "relire_notes": {"fr": "Kaliémie 6,2 mmol/l à midi (dialogue 19), traitement prescrit par la médecin, contrôle prélevé à 20 h, appeler tout de suite le médecin de garde si la valeur reste au-dessus de 6 (seuil fixé par la prescription de la médecin) ; métamizole 1 g à 18 h, pas avant minuit (dialogue 18 : au plus tôt toutes les six heures) ; premier lever le matin (dialogue 14), quelques pas avec la kinésithérapeute l'après-midi ; ne pas se lever seul la nuit."},
+ "redemittel": [
+  {"t": "Ich fange mit Zimmer 14 an, mit {lehmann}.", "dit": "Ich fange mit Zimmer vierzehn an, mit {lehmann}.", "fr": "Je commence par la chambre 14, {lehmann}.", "fonction": "transmettre"},
+  {"t": "Heute Mittag war das Kalium zu hoch.", "fr": "À midi, le potassium était trop élevé.", "fonction": "transmettre"},
+  {"t": "Das Ergebnis ist noch nicht da.", "fr": "Le résultat n'est pas encore arrivé.", "fonction": "transmettre"},
+  {"t": "Bitte schau um 22 Uhr nach dem Laborwert.", "dit": "Bitte schau um zweiundzwanzig Uhr nach dem Laborwert.", "fr": "Regarde la valeur du labo à 22 h, s'il te plaît.", "fonction": "transmettre"},
+  {"t": "Laut ärztlicher Anordnung: Wenn der Wert noch über 6 ist, ruf bitte sofort den Dienstarzt an.", "dit": "Laut ärztlicher Anordnung: Wenn der Wert noch über sechs ist, ruf bitte sofort den Dienstarzt an.", "fr": "Selon la prescription médicale : si la valeur est encore au-dessus de 6, appelle tout de suite le médecin de garde, s'il te plaît.", "fonction": "transmettre", "relire": true, "relire_note": "Seuil d'appel du médecin de garde pour la kaliémie de contrôle, présenté comme une prescription médicale."},
+  {"t": "Das nächste Schmerzmittel darf er frühestens um Mitternacht bekommen.", "fr": "Il peut avoir le prochain antidouleur à minuit au plus tôt.", "fonction": "transmettre"},
+  {"t": "Er soll nachts nicht allein aufstehen.", "fr": "La nuit, il ne doit pas se lever seul.", "fonction": "transmettre"},
+  {"t": "Das war's von mir. Ich wünsch dir eine ruhige Nacht!", "fr": "C'est tout pour moi. Je te souhaite une nuit calme !", "fonction": "annoncer"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Vingt et une heures quinze, au poste de soins. {yusuf} pose son sac et prend la liste de relève."}},
+    {"qui": "yusuf", "air": "sourire", "t": "Hallo, {arun}! Na, wie war der Spätdienst? Was muss ich heute Nacht wissen?", "fr": "Salut, {arun} ! Alors, ce service de l'après-midi ? Qu'est-ce que je dois savoir cette nuit ?"}
+   ],
+   "choix": [
+    {"t": "Ich fange mit Zimmer 14 an, mit {lehmann}. Bei ihr ist heute etwas passiert.", "dit": "Ich fange mit Zimmer vierzehn an, mit {lehmann}. Bei ihr ist heute etwas passiert.", "fr": "Je commence par la chambre 14, {lehmann}. Il s'est passé quelque chose chez elle aujourd'hui.", "va": "kalium",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Okay. Was denn?", "fr": "D'accord. Quoi donc ?"}]},
+    {"t": "Zimmer 14, {lehmann}: Bei ihr ist heute etwas passiert, das musst du wissen.", "dit": "Zimmer vierzehn, {lehmann}: Bei ihr ist heute etwas passiert, das musst du wissen.", "fr": "Chambre 14, {lehmann} : il s'est passé quelque chose chez elle aujourd'hui, tu dois le savoir.", "va": "kalium",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Okay. Was denn?", "fr": "D'accord. Quoi donc ?"}]},
+    {"faux": true, "t": "Ach, es war ein langer Tag. Ich bin total müde.", "fr": "Oh, la journée a été longue. Je suis complètement crevé.",
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "Glaub ich dir. Aber erzähl mir erst von den Patienten.", "fr": "Je te crois. Mais parle-moi d'abord des patients."}],
+     "aide": {"fr": "<b>Une relève commence par les patients, pas par sa journée.</b> Dis la chambre et le nom, puis ce qui compte pour la nuit."}}
+   ]
+  },
+  "kalium": {
+   "dit": [],
+   "choix": [
+    {"t": "Heute Mittag war ihr Kalium zu hoch, 6,2. Die Ärztin hat ein Medikament angeordnet, und um 20 Uhr wurde noch einmal Blut abgenommen.", "dit": "Heute Mittag war ihr Kalium zu hoch, sechs Komma zwei. Die Ärztin hat ein Medikament angeordnet, und um zwanzig Uhr wurde noch einmal Blut abgenommen.", "fr": "À midi, son potassium était trop élevé, 6,2. La médecin a prescrit un médicament, et à 20 h on a refait une prise de sang.", "va": "ergebnis", "relire": true, "relire_note": "Traitement de l'hyperkaliémie laissé général (« un médicament »).",
+     "puis": [{"qui": "yusuf", "air": "question", "t": "Und? Wie ist der neue Wert?", "fr": "Et alors ? Quelle est la nouvelle valeur ?"}]},
+    {"t": "Das Labor hat heute Mittag angerufen: Kalium 6,2. Sie hat ein Medikament dagegen bekommen, und um 20 Uhr haben wir eine Kontrolle abgenommen.", "dit": "Das Labor hat heute Mittag angerufen: Kalium sechs Komma zwei. Sie hat ein Medikament dagegen bekommen, und um zwanzig Uhr haben wir eine Kontrolle abgenommen.", "fr": "Le labo a appelé à midi : potassium 6,2. Elle a eu un médicament contre, et à 20 h on a prélevé un contrôle.", "va": "ergebnis",
+     "puis": [{"qui": "yusuf", "air": "question", "t": "Und? Wie ist der neue Wert?", "fr": "Et alors ? Quelle est la nouvelle valeur ?"}]},
+    {"faux": true, "t": "Heute Mittag ist ihr Kalium zu hoch.", "fr": "À midi, son potassium « est » trop élevé. (mal dit)",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Jetzt oder heute Mittag?", "fr": "Maintenant ou à midi ?"}],
+     "aide": {"fr": "<b>Ce qui s'est passé se dit au passé : « war », « hat … angeordnet », « wurde … abgenommen ».</b> « Heute Mittag war ihr Kalium zu hoch. » Le présent ferait croire que c'est encore le cas."}}
+   ]
+  },
+  "ergebnis": {
+   "dit": [],
+   "choix": [
+    {"t": "Das Ergebnis ist noch nicht da. Bitte schau um 22 Uhr nach dem Laborwert. Wenn er noch über 6 ist, ruf bitte sofort den Dienstarzt an. Das hat die Ärztin so angeordnet.", "dit": "Das Ergebnis ist noch nicht da. Bitte schau um zweiundzwanzig Uhr nach dem Laborwert. Wenn er noch über sechs ist, ruf bitte sofort den Dienstarzt an. Das hat die Ärztin so angeordnet.", "fr": "Le résultat n'est pas encore arrivé. Regarde la valeur du labo à 22 h, s'il te plaît. Si elle est encore au-dessus de 6, appelle tout de suite le médecin de garde. C'est ce que la médecin a prescrit.", "va": "brandt", "relire": true, "relire_note": "Seuil d'appel du médecin de garde, fixé par la prescription de la médecin.",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Um zehn ins Labor schauen, über sechs den Dienstarzt anrufen. Notiert. Und sonst?", "fr": "À dix heures regarder le labo, au-dessus de six appeler le médecin de garde. Noté. Et à part ça ?"}]},
+    {"t": "Noch nicht. Schau bitte um 22 Uhr nach. Laut ärztlicher Anordnung: Ist der Wert noch über 6, informierst du sofort den Dienstarzt.", "dit": "Noch nicht. Schau bitte um zweiundzwanzig Uhr nach. Laut ärztlicher Anordnung: Ist der Wert noch über sechs, informierst du sofort den Dienstarzt.", "fr": "Pas encore. Regarde à 22 h, s'il te plaît. Selon la prescription médicale : si la valeur est encore au-dessus de 6, tu préviens tout de suite le médecin de garde.", "va": "brandt",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Um zehn ins Labor schauen, über sechs den Dienstarzt anrufen. Notiert. Und sonst?", "fr": "À dix heures regarder le labo, au-dessus de six appeler le médecin de garde. Noté. Et à part ça ?"}]},
+    {"faux": true, "t": "Weiß ich nicht. Du kannst ja mal schauen.", "fr": "Je ne sais pas. Tu peux toujours regarder.",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Wann soll ich schauen? Und was mache ich, wenn er hoch ist?", "fr": "Je regarde quand ? Et je fais quoi s'il est élevé ?"}],
+     "aide": {"fr": "<b>Ce qui reste à faire se dit avec une heure et une limite.</b> « Bitte schau um 22 Uhr nach dem Laborwert. Wenn er noch über 6 ist, ruf bitte sofort den Dienstarzt an. » La limite, c'est la médecin qui l'a prescrite."}}
+   ]
+  },
+  "brandt": {
+   "dit": [],
+   "choix": [
+    {"t": "Zimmer 12, {brandt}, die neue Hüfte. Er ist heute Morgen zum ersten Mal aufgestanden, und am Nachmittag ist er mit der Physiotherapie ein paar Schritte gegangen.", "dit": "Zimmer zwölf, {brandt}, die neue Hüfte. Er ist heute Morgen zum ersten Mal aufgestanden, und am Nachmittag ist er mit der Physiotherapie ein paar Schritte gegangen.", "fr": "Chambre 12, {brandt}, la nouvelle hanche. Il s'est levé pour la première fois ce matin, et l'après-midi il a fait quelques pas avec la kinésithérapeute.", "va": "schmerz",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Super. Und wie sind seine Schmerzen?", "fr": "Super. Et ses douleurs ?"}]},
+    {"t": "Dann Zimmer 12, {brandt}. Heute ist er zum ersten Mal aufgestanden und ist am Nachmittag mit der Physiotherapeutin ein paar Schritte gegangen.", "dit": "Dann Zimmer zwölf, {brandt}. Heute ist er zum ersten Mal aufgestanden und ist am Nachmittag mit der Physiotherapeutin ein paar Schritte gegangen.", "fr": "Ensuite la chambre 12, {brandt}. Aujourd'hui il s'est levé pour la première fois et l'après-midi il a fait quelques pas avec la kinésithérapeute.", "va": "schmerz",
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Super. Und wie sind seine Schmerzen?", "fr": "Super. Et ses douleurs ?"}]},
+    {"faux": true, "t": "Zimmer 12, {brandt}. Er hat heute zum ersten Mal aufgestanden.", "dit": "Zimmer zwölf, {brandt}. Er hat heute zum ersten Mal aufgestanden.", "fr": "Chambre 12, {brandt}. Il « a levé » pour la première fois aujourd'hui. (mal dit)",
+     "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Er „hat aufgestanden“? Du meinst, er ist aufgestanden.", "fr": "Il « a levé » ? Tu veux dire qu'il s'est levé."}],
+     "aide": {"fr": "<b>« aufstehen » et « gehen » font leur Perfekt avec « sein » : « er ist aufgestanden », « er ist gegangen ».</b> Les verbes de déplacement et de changement d'état prennent « sein »."}}
+   ]
+  },
+  "schmerz": {
+   "dit": [],
+   "choix": [
+    {"t": "Um 18 Uhr hatte er eine Vier. Er hat ein Gramm Metamizol bekommen, danach war es eine Zwei. Das nächste darf er frühestens um Mitternacht bekommen.", "dit": "Um achtzehn Uhr hatte er eine Vier. Er hat ein Gramm Metamizol bekommen, danach war es eine Zwei. Das nächste darf er frühestens um Mitternacht bekommen.", "fr": "À 18 h, il était à 4. Il a eu un gramme de métamizole, ensuite il était à 2. Il peut avoir le suivant à minuit au plus tôt.", "va": "nacht", "relire": true, "relire_note": "Métamizole 1 g si douleur au-dessus de 3, au plus tôt toutes les six heures (dialogue 18).",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Vier, Metamizol um sechs, dann zwei. Nächstes ab Mitternacht. Gut.", "fr": "Quatre, métamizole à six heures, puis deux. Le suivant à partir de minuit. Bien."}]},
+    {"t": "Am Abend lag er bei vier. Um 18 Uhr hat er sein Metamizol bekommen, ein Gramm, dann war er bei zwei. Vor Mitternacht bitte kein neues.", "dit": "Am Abend lag er bei vier. Um achtzehn Uhr hat er sein Metamizol bekommen, ein Gramm, dann war er bei zwei. Vor Mitternacht bitte kein neues.", "fr": "Le soir, il était à quatre. À 18 h, il a eu son métamizole, un gramme, ensuite il était à deux. Pas de nouveau avant minuit, s'il te plaît.", "va": "nacht",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Vier, Metamizol um sechs, dann zwei. Nächstes ab Mitternacht. Gut.", "fr": "Quatre, métamizole à six heures, puis deux. Le suivant à partir de minuit. Bien."}]},
+    {"faux": true, "t": "Er hat ein bisschen Schmerzen, aber nicht so schlimm.", "fr": "Il a un peu mal, mais pas trop.",
+     "puis": [{"qui": "yusuf", "air": "question", "t": "Wie viel ist „ein bisschen“? Und hat er was bekommen?", "fr": "C'est combien, « un peu » ? Et il a eu quelque chose ?"}],
+     "aide": {"fr": "<b>À la relève, une douleur se dit avec un chiffre et une heure.</b> « Um 18 Uhr hatte er eine Vier. » Puis ce qu'il a reçu, l'effet, et quand il peut en avoir de nouveau."}}
+   ]
+  },
+  "nacht": {
+   "dit": [],
+   "choix": [
+    {"t": "Und ganz wichtig: Er soll nachts nicht allein aufstehen. Die Klingel liegt neben ihm, er weiß Bescheid.", "fr": "Et très important : la nuit, il ne doit pas se lever seul. La sonnette est à côté de lui, il est au courant.", "va": "ende",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Verstanden. Wenn er klingelt, gehe ich sofort hin.", "fr": "Compris. S'il sonne, j'y vais tout de suite."}]},
+    {"t": "Noch etwas: Er darf in der Nacht nicht allein aufstehen, nur mit Hilfe. Ich habe ihm die Klingel hingelegt.", "fr": "Autre chose : la nuit, il ne doit pas se lever seul, seulement avec de l'aide. Je lui ai mis la sonnette à portée de main.", "va": "ende",
+     "puis": [{"qui": "yusuf", "air": "attentive", "t": "Verstanden. Wenn er klingelt, gehe ich sofort hin.", "fr": "Compris. S'il sonne, j'y vais tout de suite."}]},
+    {"faux": true, "t": "Er geht nachts allein zur Toilette, das kann er schon.", "fr": "La nuit, il va seul aux toilettes, il sait déjà le faire.",
+     "puis": [{"qui": "yusuf", "air": "surprise", "t": "Allein? Am ersten Tag nach dem Aufstehen? Das ist aber gefährlich.", "fr": "Seul ? Le premier jour où il s'est levé ? C'est dangereux, ça."}],
+     "aide": {"fr": "<b>Le premier jour du lever, le risque de chute est grand, surtout la nuit.</b> Transmets la consigne de sécurité : « Er soll nachts nicht allein aufstehen. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "yusuf", "air": "sourire", "t": "Danke, {arun}, das war klar und kurz. Noch was?", "fr": "Merci, {arun}, c'était clair et court. Autre chose ?"}
+   ],
+   "choix": [
+    {"t": "Nein, das war's von mir. Ich wünsch dir eine ruhige Nacht!", "fr": "Non, c'est tout pour moi. Je te souhaite une nuit calme !",
+     "va": null, "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke! Und dir einen schönen Feierabend.", "fr": "Merci ! Et bonne soirée à toi."}]},
+    {"t": "Nein, sonst ist alles ruhig. Gute Nacht und bis morgen!", "fr": "Non, à part ça tout est calme. Bonne nuit et à demain !",
+     "va": null, "puis": [{"qui": "yusuf", "air": "sourire", "t": "Danke! Und dir einen schönen Feierabend.", "fr": "Merci ! Et bonne soirée à toi."}]},
+    {"faux": true, "t": "Nein. Gute Nacht, Herr Kollege.", "fr": "Non. Bonne nuit, cher collègue (trop formel).",
+     "puis": [{"qui": "yusuf", "air": "amuse", "t": "„Herr Kollege“? Seit wann sind wir so förmlich?", "fr": "« Cher collègue » ? Depuis quand on est si formels ?"}],
+     "aide": {"fr": "<b>Entre collègues au « du », on finit simplement : « Gute Nacht! », « Ich wünsch dir eine ruhige Nacht! ».</b> « Herr Kollege » sonne froid ou ironique."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Was ist bei {lehmann} heute Mittag passiert?", "fr": "Que s'est-il passé chez {lehmann} à midi ?"}, "options": [{"t": "Ihr Kalium war zu hoch.", "fr": "Son potassium était trop élevé."}, {"t": "Sie ist gestürzt.", "fr": "Elle est tombée."}, {"t": "Sie hatte Fieber.", "fr": "Elle avait de la fièvre."}], "juste": 0},
+  {"q": {"t": "Wann muss {yusuf} nach dem Laborwert schauen?", "fr": "Quand {yusuf} doit-il regarder la valeur du labo ?"}, "options": [{"t": "Um Mitternacht.", "fr": "À minuit."}, {"t": "Um zweiundzwanzig Uhr.", "fr": "À 22 heures."}, {"t": "Um sechs Uhr morgens.", "fr": "À 6 heures du matin."}], "juste": 1},
+  {"q": {"t": "Ab wann darf {brandt} das nächste Schmerzmittel bekommen?", "fr": "À partir de quand {brandt} peut-il avoir le prochain antidouleur ?"}, "options": [{"t": "Sofort, wenn er klingelt.", "fr": "Tout de suite, s'il sonne."}, {"t": "Um zweiundzwanzig Uhr.", "fr": "À 22 heures."}, {"t": "Frühestens um Mitternacht.", "fr": "À minuit au plus tôt."}], "juste": 2},
+  {"q": {"t": "Was darf {brandt} in der Nacht nicht?", "fr": "Qu'est-ce que {brandt} n'a pas le droit de faire la nuit ?"}, "options": [{"t": "Allein aufstehen.", "fr": "Se lever seul."}, {"t": "Klingeln.", "fr": "Sonner."}, {"t": "Wasser trinken.", "fr": "Boire de l'eau."}], "juste": 0}
+ ]
+}

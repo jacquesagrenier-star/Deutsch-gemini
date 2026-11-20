@@ -1,0 +1,137 @@
+{
+ "id": "d30-schmerz-nachts-arzt",
+ "numero": 30,
+ "niveau": "B2",
+ "porte": "examen",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "yusuf",
+ "personnes": ["kraemer"],
+ "titre": {"t": "Nachts Schmerzen: den Dienstarzt anrufen", "fr": "Une douleur la nuit : appeler le médecin de garde"},
+ "intro": {"fr": "Nuit du mercredi 11 au jeudi 12 novembre, deux heures dix. {brandt} s'est réveillé avec une forte douleur à la hanche opérée. Dans son dossier, un antidouleur a été prescrit la veille au soir « si besoin », mais sans dose : {yusuf} n'a pas le droit de le donner. Il appelle le médecin de garde, {kraemer}. Tu joues {yusuf} : décris la douleur avec précision, dis le problème de la prescription, demande une consigne claire, relis-la mot pour mot et dis ce que tu fais ensuite."},
+ "but": {"fr": "Décrire une douleur au téléphone (où, combien, comment, depuis quand) avec les constantes ; rapporter les paroles du patient (Konjunktiv I) ; signaler une prescription incomplète sans la deviner ; relire une prescription orale sans rien y ajouter ; annoncer la réévaluation et la documentation."},
+ "grammaire": ["g09", "g18", "g06"],
+ "telc": ["oral-3", "hoeren"],
+ "relire_notes": {"fr": "TOUT le dialogue. Douleur 8/10 à la hanche droite opérée (prothèse posée le mardi 10), coup de poignard à chaque mouvement, irradiant vers la cuisse, depuis 1 h 30 environ ; constantes de la nuit : TA 150/85, pouls 96, T 37,8 °C, SpO2 94 % sous 2 l/min d'O2 (suite de la nuit du dialogue 7 : à confirmer) ; contrôles infirmiers (pansement sec, pied chaud et rose, orteils mobiles, sensibilité, jambe ni raccourcie ni tournée) ; métamizole « bei Bedarf » sans dose : ne pas le donner (dialogue 18 le fera corriger le lendemain à 7 h 40) ; prescription téléphonique du médecin de garde : métamizole 1 g en gouttes, dose UNIQUE (forme et voie à valider ; nombre de gouttes selon la concentration du produit, non chiffré), signée par le médecin le matin ; la prescription « si besoin » reste à fixer par la médecin du service ; réévaluation à 30 minutes, dans la fourchette de 30 à 60 min selon le médicament et le standard de la maison (douleur et tension, le métamizole pouvant faire baisser la tension) ; rappeler si pas de mieux."},
+ "redemittel": [
+  {"t": "Ich rufe an, weil {brandt} starke Schmerzen hat, Zimmer 12.", "dit": "Ich rufe an, weil {brandt} starke Schmerzen hat, Zimmer zwölf.", "fr": "J'appelle parce que {brandt} a très mal, chambre 12.", "fonction": "transmettre"},
+  {"t": "Er gibt die Schmerzen mit acht von zehn an.", "fr": "Il évalue sa douleur à huit sur dix.", "fonction": "transmettre"},
+  {"t": "Er sagt, der Schmerz sei stechend und ziehe bis in den Oberschenkel.", "fr": "Il dit que la douleur est en coup de poignard et qu'elle descend jusque dans la cuisse.", "fonction": "transmettre"},
+  {"t": "In der Kurve steht Metamizol bei Bedarf, aber ohne Dosis.", "fr": "Dans le dossier, il y a du métamizole si besoin, mais sans dose.", "fonction": "transmettre", "relire": true, "relire_note": "Prescription si besoin incomplète."},
+  {"t": "Könnten Sie mir bitte sagen, wie viel ich ihm geben darf?", "fr": "Pourriez-vous me dire combien je peux lui donner, s'il vous plaît ?", "fonction": "redemander"},
+  {"t": "Ich wiederhole: einmalig ein Gramm Metamizol als Tropfen.", "fr": "Je répète : une seule fois un gramme de métamizole en gouttes.", "fonction": "reformuler", "relire": true, "relire_note": "Prescription téléphonique du cas."},
+  {"t": "In einer halben Stunde frage ich noch einmal nach der Schmerzstärke.", "fr": "Dans une demi-heure, je lui redemande l'intensité de la douleur.", "fonction": "annoncer"},
+  {"t": "Ich dokumentiere das als telefonische Anordnung, mit Uhrzeit und Ihrem Namen.", "fr": "Je le note comme prescription téléphonique, avec l'heure et votre nom.", "fonction": "annoncer"}
+ ],
+ "debut": "melden",
+ "noeuds": {
+  "melden": {
+   "dit": [
+    {"recit": {"fr": "Deux heures dix, au poste de soins. {brandt} a sonné : sa hanche lui fait très mal, il ne peut plus dormir. {yusuf} est allé le voir, a mesuré les constantes et ouvert le dossier. Puis il compose le numéro du médecin de garde."}},
+    {"qui": "kraemer", "air": "question", "t": "{kraemer:famille}, Dienstarzt. Ja?", "fr": "{kraemer:famille}, médecin de garde. Oui ?"}
+   ],
+   "choix": [
+    {"t": "{kraemer:voc}, hier ist {yusuf} von der {station}. Ich rufe an, weil {brandt} starke Schmerzen hat, Zimmer 12.", "dit": "{kraemer:voc}, hier ist {yusuf} von der {station:dit}. Ich rufe an, weil {brandt} starke Schmerzen hat, Zimmer zwölf.", "fr": "{kraemer:voc}, ici {yusuf}, du {station}. J'appelle parce que {brandt} a très mal, chambre 12.", "va": "wo",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "{brandt}, die Hüfte von Dienstag? Den kenne ich von gestern Nacht. Was hat er?", "fr": "{brandt}, la hanche de mardi ? Je le connais, de la nuit dernière. Qu'est-ce qu'il a ?"}]},
+    {"t": "Entschuldigen Sie die späte Störung. {yusuf}, {station}. Es geht um {brandt:akk} in Zimmer 12: Er hat seit etwa einer Stunde starke Schmerzen.", "dit": "Entschuldigen Sie die späte Störung. {yusuf}, {station:dit}. Es geht um {brandt:akk} in Zimmer zwölf: Er hat seit etwa einer Stunde starke Schmerzen.", "fr": "Excusez-moi de vous déranger si tard. {yusuf}, {station}. C'est au sujet de {brandt}, chambre 12 : il a très mal depuis environ une heure.", "va": "wo",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "{brandt}, die Hüfte von Dienstag? Den kenne ich von gestern Nacht. Was hat er?", "fr": "{brandt}, la hanche de mardi ? Je le connais, de la nuit dernière. Qu'est-ce qu'il a ?"}]},
+    {"faux": true, "t": "Hallo, hier ist die Nachtschicht. Ein Patient hat Schmerzen, können Sie was geben?", "fr": "Allô, c'est l'équipe de nuit. Un patient a mal, vous pouvez donner quelque chose ?",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Wer spricht da? Und welcher Patient, auf welcher Station?", "fr": "Qui est à l'appareil ? Et quel patient, dans quel service ?"}],
+     "aide": {"fr": "<b>Au téléphone, le médecin ne te voit pas : ton nom, ton service, le patient et sa chambre, d'abord.</b> « Hier ist … von der Station … Ich rufe an, weil der Patient in Zimmer 12 starke Schmerzen hat. » Puis seulement le problème."}}
+   ]
+  },
+  "wo": {
+   "dit": [],
+   "choix": [
+    {"t": "Er hat Schmerzen in der rechten Hüfte, an der Operationswunde. Er gibt sie mit acht von zehn an.", "fr": "Il a mal à la hanche droite, au niveau de la cicatrice. Il évalue sa douleur à huit sur dix.", "va": "wie",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Acht, das ist viel. Was für ein Schmerz ist das, und seit wann?", "fr": "Huit, c'est beaucoup. C'est quel genre de douleur, et depuis quand ?"}]},
+    {"t": "Es ist die operierte Hüfte, rechts. Auf der Skala von null bis zehn sagt er acht.", "fr": "C'est la hanche opérée, à droite. Sur l'échelle de zéro à dix, il dit huit.", "va": "wie",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Acht, das ist viel. Was für ein Schmerz ist das, und seit wann?", "fr": "Huit, c'est beaucoup. C'est quel genre de douleur, et depuis quand ?"}]},
+    {"faux": true, "t": "Er hat sehr, sehr starke Schmerzen. Er leidet wirklich.", "fr": "Il a très, très mal. Il souffre vraiment.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Das glaube ich Ihnen. Aber wo genau? Und wie stark, auf der Skala?", "fr": "Je vous crois. Mais où exactement ? Et quelle intensité, sur l'échelle ?"}],
+     "aide": {"fr": "<b>Une douleur se transmet avec des faits : l'endroit et le chiffre que donne le patient.</b> « Er hat Schmerzen in der rechten Hüfte. Er gibt sie mit acht von zehn an. » « Il souffre vraiment » ne dit pas au médecin ce qu'il doit faire."}}
+   ]
+  },
+  "wie": {
+   "dit": [],
+   "choix": [
+    {"t": "Er sagt, der Schmerz sei stechend und ziehe bis in den Oberschenkel. Bei jeder Bewegung werde es schlimmer. Er ist gegen halb zwei davon aufgewacht.", "fr": "Il dit que la douleur est en coup de poignard et qu'elle descend jusque dans la cuisse. À chaque mouvement, c'est pire. Il s'est réveillé à cause d'elle vers une heure et demie.", "va": "werte",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Und die Vitalwerte? Haben Sie sich das Bein angesehen?", "fr": "Et les constantes ? Vous avez regardé la jambe ?"}]},
+    {"t": "Laut {brandt:dat} ist es ein stechender Schmerz, der in den Oberschenkel ausstrahlt, vor allem wenn er sich bewegt. Angefangen hat es gegen halb zwei, er ist davon wach geworden.", "fr": "D'après {brandt}, c'est une douleur en coup de poignard qui irradie dans la cuisse, surtout quand il bouge. Ça a commencé vers une heure et demie, ça l'a réveillé.", "va": "werte",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Und die Vitalwerte? Haben Sie sich das Bein angesehen?", "fr": "Et les constantes ? Vous avez regardé la jambe ?"}]},
+    {"faux": true, "t": "Er sagt, der Schmerz ist stechend. Ich glaube, er hat sich im Schlaf falsch gedreht.", "fr": "Il dit que la douleur est en coup de poignard. Je crois qu'il s'est mal tourné en dormant.",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Das glauben Sie, oder hat er das gesagt? Seit wann hat er die Schmerzen?", "fr": "C'est ce que vous croyez, ou c'est ce qu'il a dit ? Depuis quand a-t-il mal ?"}],
+     "aide": {"fr": "<b>Rapporte ce que dit le patient (Konjunktiv I), et ne remplace pas un fait par une supposition.</b> « Er sagt, der Schmerz sei stechend und ziehe bis in den Oberschenkel. » Ajoute depuis quand : « Er ist gegen halb zwei davon aufgewacht. » Ce que tu crois, dis-le à part, comme une hypothèse."}}
+   ]
+  },
+  "werte": {
+   "dit": [],
+   "choix": [
+    {"t": "Blutdruck 150 zu 85, Puls 96, Temperatur 37,8. Sättigung 94 Prozent mit zwei Litern Sauerstoff, wie am Abend. Der Verband ist trocken, der Fuß ist warm und rosig, er kann die Zehen bewegen und spürt alles. Das Bein ist nicht verkürzt und nicht verdreht.", "dit": "Blutdruck hundertfünfzig zu fünfundachtzig, Puls sechsundneunzig, Temperatur siebenunddreißig Komma acht. Sättigung vierundneunzig Prozent mit zwei Litern Sauerstoff, wie am Abend. Der Verband ist trocken, der Fuß ist warm und rosig, er kann die Zehen bewegen und spürt alles. Das Bein ist nicht verkürzt und nicht verdreht.", "fr": "Tension 150/85, pouls 96, température 37,8. Saturation 94 % avec deux litres d'oxygène, comme le soir. Le pansement est sec, le pied est chaud et rose, il bouge les orteils et il sent tout. La jambe n'est ni raccourcie ni tournée.", "va": "problem", "relire": true, "relire_note": "Constantes de la nuit et contrôles de la jambe opérée (pied chaud et rose, position de la jambe).",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Gut, das klingt nicht nach einer Komplikation. Es ist doch etwas gegen die Schmerzen angeordnet, oder? Warum geben Sie es ihm nicht?", "fr": "Bien, ça ne ressemble pas à une complication. Il y a pourtant quelque chose de prescrit contre la douleur, non ? Pourquoi vous ne le lui donnez pas ?"}]},
+    {"t": "Die Werte sind stabil: Blutdruck 150 zu 85, Puls 96, 37,8 Grad, Sättigung 94 Prozent unter zwei Litern. Am Bein habe ich nichts Neues gesehen: Verband trocken, Durchblutung, Motorik und Sensibilität in Ordnung.", "dit": "Die Werte sind stabil: Blutdruck hundertfünfzig zu fünfundachtzig, Puls sechsundneunzig, siebenunddreißig Komma acht Grad, Sättigung vierundneunzig Prozent unter zwei Litern. Am Bein habe ich nichts Neues gesehen: Verband trocken, Durchblutung, Motorik und Sensibilität in Ordnung.", "fr": "Les valeurs sont stables : tension 150/85, pouls 96, 37,8 °C, saturation 94 % sous deux litres. À la jambe, je n'ai rien vu de nouveau : pansement sec, circulation, mobilité et sensibilité normales.", "va": "problem", "relire": true, "relire_note": "Contrôle « DMS » (Durchblutung, Motorik, Sensibilität) de la jambe opérée.",
+     "puis": [{"qui": "kraemer", "air": "question", "t": "Gut, das klingt nicht nach einer Komplikation. Es ist doch etwas gegen die Schmerzen angeordnet, oder? Warum geben Sie es ihm nicht?", "fr": "Bien, ça ne ressemble pas à une complication. Il y a pourtant quelque chose de prescrit contre la douleur, non ? Pourquoi vous ne le lui donnez pas ?"}]},
+    {"faux": true, "t": "Die Werte habe ich noch nicht gemessen. Ich wollte Sie zuerst anrufen.", "fr": "Je n'ai pas encore pris les constantes. Je voulais d'abord vous appeler.",
+     "puis": [{"qui": "kraemer", "air": "surprise", "t": "Dann messen Sie bitte erst und rufen Sie mich danach wieder an.", "fr": "Alors mesurez d'abord, s'il vous plaît, et rappelez-moi ensuite."}],
+     "aide": {"fr": "<b>Avant d'appeler, on a les constantes et on a regardé la zone qui fait mal.</b> Tu les as mesurées : donne-les. « Blutdruck 150 zu 85, Puls 96 … Der Verband ist trocken, der Fuß ist warm und rosig. » Le médecin en a besoin pour décider."}}
+   ]
+  },
+  "problem": {
+   "dit": [],
+   "choix": [
+    {"t": "Das ist das Problem: In der Kurve steht seit dem Abend nur „Metamizol bei Bedarf“, ohne Dosis. So darf ich es nicht geben. Könnten Sie mir bitte sagen, wie viel er bekommen soll?", "fr": "C'est justement le problème : dans le dossier, depuis ce soir, il n'y a que « métamizole si besoin », sans dose. Comme ça, je n'ai pas le droit de le donner. Pourriez-vous me dire combien il doit recevoir, s'il vous plaît ?", "va": "zuruecklesen", "relire": true, "relire_note": "Refus de donner un médicament prescrit sans dose.",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ach so, da fehlt die Dosis. Dann geben Sie ihm jetzt einmalig ein Gramm Metamizol als Tropfen. Die Tropfenzahl richtet sich nach der Konzentration des Präparats. Die Bedarfsanordnung soll morgen {sommer} bei der Visite festlegen. Ich komme gegen sieben vorbei und unterschreibe die Anordnung.", "fr": "Ah, la dose manque. Alors donnez-lui maintenant, une seule fois, un gramme de métamizole en gouttes. Le nombre de gouttes dépend de la concentration du produit. La prescription « si besoin », {sommer} la fixera demain à la visite. Je passe vers sept heures et je signe la prescription.", "relire": true, "relire_note": "Prescription téléphonique du cas : dose unique ; le nombre de gouttes dépend de la concentration du produit (volontairement non chiffré)."}]},
+    {"t": "Angeordnet ist Metamizol bei Bedarf, aber es fehlen die Einzeldosis und die Höchstmenge. Ich möchte nicht raten. Ich wollte Sie fragen, ob Sie mir eine Dosis anordnen können.", "fr": "Il y a du métamizole si besoin, mais il manque la dose par prise et le maximum. Je ne veux pas deviner. Je voulais vous demander si vous pouvez me prescrire une dose.", "va": "zuruecklesen",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ach so, da fehlt die Dosis. Dann geben Sie ihm jetzt einmalig ein Gramm Metamizol als Tropfen. Die Tropfenzahl richtet sich nach der Konzentration des Präparats. Die Bedarfsanordnung soll morgen {sommer} bei der Visite festlegen. Ich komme gegen sieben vorbei und unterschreibe die Anordnung.", "fr": "Ah, la dose manque. Alors donnez-lui maintenant, une seule fois, un gramme de métamizole en gouttes. Le nombre de gouttes dépend de la concentration du produit. La prescription « si besoin », {sommer} la fixera demain à la visite. Je passe vers sept heures et je signe la prescription.", "relire": true, "relire_note": "Prescription téléphonique du cas : dose unique ; le nombre de gouttes dépend de la concentration du produit (volontairement non chiffré)."}]},
+    {"faux": true, "t": "Da steht nur „bei Bedarf“. Ich gebe ihm dann ein Gramm, das ist ja die normale Dosis, oder?", "fr": "Il n'y a que « si besoin ». Je lui donne un gramme, alors, c'est la dose normale, non ?",
+     "puis": [{"qui": "kraemer", "air": "surprise", "t": "Moment. Die „normale Dosis“ gibt es nicht. Eine Dosis ordne ich an, die raten Sie nicht.", "fr": "Attendez. La « dose normale », ça n'existe pas. Une dose, c'est moi qui la prescris, vous ne la devinez pas."}],
+     "aide": {"fr": "<b>Une prescription sans dose ne se complète pas soi-même, même avec une dose « habituelle ».</b> Dis ce qui manque et demande : « Es fehlen die Einzeldosis und die Höchstmenge. Könnten Sie mir bitte sagen, wie viel er bekommen soll? »"}}
+   ]
+  },
+  "zuruecklesen": {
+   "dit": [
+    {"recit": {"fr": "{yusuf} écrit sur la feuille de prescription : la date, l'heure, le nom du médecin, ce qu'il a dit."}}
+   ],
+   "choix": [
+    {"t": "Ich wiederhole: einmalig ein Gramm Metamizol als Tropfen, jetzt. Die Bedarfsanordnung legt {sommer} morgen fest, und Sie unterschreiben die Anordnung gegen sieben.", "fr": "Je répète : une seule fois un gramme de métamizole en gouttes, maintenant. La prescription « si besoin », {sommer} la fixe demain, et vous signez la prescription vers sept heures.", "va": "kontrolle", "relire": true, "relire_note": "Relecture de la prescription téléphonique.",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Richtig. Und was machen Sie danach?", "fr": "C'est juste. Et qu'est-ce que vous faites ensuite ?"}]},
+    {"t": "Ich wiederhole, damit nichts falsch verstanden wird: Metamizol, ein Gramm, als Tropfen, nur diese eine Gabe. Sie unterschreiben morgen früh.", "fr": "Je répète, pour qu'il n'y ait pas de malentendu : métamizole, un gramme, en gouttes, seulement cette dose-là. Vous signez demain matin.", "va": "kontrolle",
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Richtig. Und was machen Sie danach?", "fr": "C'est juste. Et qu'est-ce que vous faites ensuite ?"}]},
+    {"faux": true, "t": "Also: ein Gramm Metamizol bei Bedarf, alle sechs Stunden. Gut.", "fr": "Donc : un gramme de métamizole si besoin, toutes les six heures. Bien.",
+     "puis": [{"qui": "kraemer", "air": "surprise", "t": "Nein! Einmalig, habe ich gesagt. Alle sechs Stunden habe ich nicht angeordnet.", "fr": "Non ! Une seule fois, j'ai dit. Je n'ai pas prescrit « toutes les six heures »."}],
+     "aide": {"fr": "<b>On relit une prescription orale mot pour mot, sans rien y ajouter.</b> Le médecin a dit « einmalig » (une seule fois) : « Ich wiederhole: einmalig ein Gramm Metamizol als Tropfen. » Ajouter un intervalle, c'est inventer une prescription."}}
+   ]
+  },
+  "kontrolle": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich gebe ihm die Tropfen gleich. In einer halben Stunde frage ich noch einmal nach der Schmerzstärke und messe den Blutdruck.", "fr": "Je lui donne les gouttes tout de suite. Dans une demi-heure, je lui redemande l'intensité de la douleur et je prends sa tension.", "va": "doku", "relire": true, "relire_note": "Réévaluation à 30 minutes (douleur, tension).",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Gut. Wenn er dann immer noch über fünf liegt oder der Blutdruck abfällt, rufen Sie mich wieder an.", "fr": "Bien. Si à ce moment-là il est encore au-dessus de cinq ou si la tension baisse, rappelez-moi.", "relire": true, "relire_note": "Seuil de rappel du médecin."}]},
+    {"t": "Nach der Gabe schaue ich in dreißig Minuten wieder nach ihm: Schmerzskala und Blutdruck. Soll ich Sie anrufen, wenn es nicht besser wird?", "fr": "Après la prise, je retourne le voir dans trente minutes : échelle de la douleur et tension. Je vous appelle si ça ne va pas mieux ?", "va": "doku",
+     "puis": [{"qui": "kraemer", "air": "attentive", "t": "Gut. Wenn er dann immer noch über fünf liegt oder der Blutdruck abfällt, rufen Sie mich wieder an.", "fr": "Bien. Si à ce moment-là il est encore au-dessus de cinq ou si la tension baisse, rappelez-moi.", "relire": true, "relire_note": "Seuil de rappel du médecin."}]},
+    {"faux": true, "t": "Ich gebe ihm die Tropfen, dann kann er schlafen. Morgen früh sieht der Tagdienst nach ihm.", "fr": "Je lui donne les gouttes, comme ça il peut dormir. Demain matin, l'équipe du jour passera le voir.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Erst morgen früh? Und wenn das Mittel nicht wirkt?", "fr": "Seulement demain matin ? Et si le médicament ne fait pas effet ?"}],
+     "aide": {"fr": "<b>Après un antidouleur, on réévalue : l'effet se vérifie, il ne se suppose pas.</b> « In einer halben Stunde frage ich noch einmal nach der Schmerzstärke und messe den Blutdruck. »"}}
+   ]
+  },
+  "doku": {
+   "dit": [],
+   "choix": [
+    {"t": "Mache ich. Ich dokumentiere das als telefonische Anordnung, mit Uhrzeit und Ihrem Namen. Und bei der Übergabe sage ich, dass die Bedarfsanordnung noch fehlt.", "fr": "D'accord. Je le note comme prescription téléphonique, avec l'heure et votre nom. Et à la relève, je dirai que la prescription « si besoin » manque encore.", "va": null,
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Sehr gut. Danke, dass Sie nachgefragt haben. Bis später.", "fr": "Très bien. Merci d'avoir demandé. À plus tard."}]},
+    {"t": "In Ordnung. Ich trage die Anordnung jetzt als telefonische Anordnung in die Kurve ein und gebe morgen früh weiter, dass {sommer} die Dosis festlegen muss. Danke und gute Nacht.", "fr": "Entendu. J'inscris maintenant la prescription au dossier comme prescription téléphonique, et je transmets demain matin que {sommer} doit fixer la dose. Merci et bonne nuit.", "va": null,
+     "puis": [{"qui": "kraemer", "air": "sourire", "t": "Sehr gut. Danke, dass Sie nachgefragt haben. Bis später.", "fr": "Très bien. Merci d'avoir demandé. À plus tard."}]},
+    {"faux": true, "t": "Okay, danke. Das schreibe ich morgen auf, wenn ich Zeit habe.", "fr": "OK, merci. Je l'écrirai demain, quand j'aurai le temps.",
+     "puis": [{"qui": "kraemer", "air": "perplexe", "t": "Morgen? Bitte jetzt, sonst weiß der Tagdienst nicht, was er bekommen hat.", "fr": "Demain ? Maintenant, s'il vous plaît, sinon l'équipe du jour ne saura pas ce qu'il a reçu."}],
+     "aide": {"fr": "<b>Une prescription téléphonique se documente tout de suite : l'heure, le médecin, le médicament, la dose.</b> « Ich dokumentiere das als telefonische Anordnung, mit Uhrzeit und Ihrem Namen. » Le médecin la signe ensuite."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wie stark sind die Schmerzen von {brandt}?", "fr": "Quelle est l'intensité de la douleur de {brandt} ?"}, "options": [{"t": "Drei von zehn.", "fr": "Trois sur dix."}, {"t": "Acht von zehn.", "fr": "Huit sur dix."}, {"t": "Fünf von zehn.", "fr": "Cinq sur dix."}], "juste": 1},
+  {"q": {"t": "Warum gibt {yusuf} das Schmerzmittel nicht sofort?", "fr": "Pourquoi {yusuf} ne donne-t-il pas tout de suite l'antidouleur ?"}, "options": [{"t": "In der Kurve fehlt die Dosis.", "fr": "Dans le dossier, la dose manque."}, {"t": "{brandt} möchte keine Tropfen.", "fr": "{brandt} ne veut pas de gouttes."}, {"t": "Der Blutdruck ist zu niedrig.", "fr": "La tension est trop basse."}], "juste": 0},
+  {"q": {"t": "Was ordnet {kraemer} an?", "fr": "Que prescrit {kraemer} ?"}, "options": [{"t": "Metamizol alle sechs Stunden.", "fr": "Du métamizole toutes les six heures."}, {"t": "Zwei Gramm Metamizol als Infusion.", "fr": "Deux grammes de métamizole en perfusion."}, {"t": "Einmalig ein Gramm Metamizol als Tropfen.", "fr": "Une seule fois un gramme de métamizole en gouttes."}], "juste": 2},
+  {"q": {"t": "Wann ruft {yusuf} den Arzt wieder an?", "fr": "Quand {yusuf} rappellera-t-il le médecin ?"}, "options": [{"t": "Morgen um sieben Uhr.", "fr": "Demain à sept heures."}, {"t": "Wenn die Schmerzen nach einer halben Stunde noch über fünf liegen.", "fr": "Si la douleur est encore au-dessus de cinq après une demi-heure."}, {"t": "Wenn {brandt} schläft.", "fr": "Si {brandt} dort."}], "juste": 1}
+ ]
+}

@@ -1,0 +1,531 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d35-uebergabe-am-bett.json",
+ "cles": {
+  "titre": {
+   "fr": "La relève au lit du patient",
+   "de": "Die Übergabe am Bett",
+   "es": "La entrega de turno junto a la cama"
+  },
+  "intro": {
+   "fr": "Samedi 14 novembre, treize heures trente. {elif} finit son service du matin, {jonas} prend l'après-midi. Aujourd'hui, la relève se fait dans la chambre 12, au lit de {brandt} : devant lui, et avec lui. Avec {jonas}, on se dit « du » ; avec {brandt}, c'est « Sie ». Tu joues {elif} : demande-lui son accord, parle de lui comme d'une personne et non d'un dossier, écoute-le quand il te corrige, et laisse-le dire lui-même comment il va.",
+   "es": "Sábado 14 de noviembre, la una y media de la tarde. {elif} termina su turno de mañana, {jonas} toma el de tarde. Hoy la entrega de turno se hace en la habitación 12, junto a la cama {brandt:de}: delante de él, y con él. Con {jonas} se usa «du»; con {brandt}, «Sie». Juegas el papel de {elif}: pídele su consentimiento, habla de él como de una persona y no como de un expediente, escúchalo cuando te corrija, y deja que él mismo diga cómo está."
+  },
+  "but": {
+   "fr": "Faire une relève au lit : demander l'accord du patient ; passer du « du » (au collègue) au « Sie » (au patient) d'une phrase à l'autre ; parler du patient par son nom ; accepter sa correction et la reprendre au Perfekt ; l'inviter à dire lui-même sa douleur et à poser ses questions.",
+   "es": "Hacer una entrega de turno junto a la cama: pedir el consentimiento del paciente; pasar del «du» (al colega) al «Sie» (al paciente) de una oración a otra; hablar del paciente por su nombre; aceptar su corrección y retomarla en Perfekt; invitarlo a decir él mismo su dolor y a hacer sus preguntas."
+  },
+  "relire_notes": {
+   "fr": "Relève au lit (Übergabe am Bett) : accord du patient, rien de confidentiel devant un voisin de chambre (le lit voisin est vide ici) ; quatrième jour après la prothèse totale de hanche droite (opéré le mardi 10) ; pneumonie droite sous antibiotique depuis le jeudi 12 (dialogues 17 et 18), plus de fièvre le samedi matin (37,1 °C) ; marche avec déambulateur jusqu'à la porte et retour, avec la kinésithérapeute, deuxième séance l'après-midi (dialogue 17 : kiné deux fois par jour) ; métamizole 1 g à 10 h avant la kinésithérapie, douleur à 4, prochain au plus tôt à 16 h (dialogue 18 : 1 g si douleur au-dessus de 3, au plus tôt toutes les six heures) ; douleur 2/10 assis, 4/10 à la marche.",
+   "es": "Entrega de turno junto a la cama (Übergabe am Bett): consentimiento del paciente, nada confidencial delante de un compañero de habitación (aquí la cama de al lado está vacía); cuarto día después de la prótesis total de cadera derecha (operado el martes 10); neumonía derecha con antibiótico desde el jueves 12 (diálogos 17 y 18), ya sin fiebre el sábado en la mañana (37,1 °C); marcha con andador hasta la puerta y de regreso, con la fisioterapeuta, segunda sesión en la tarde (diálogo 17: fisioterapia dos veces al día); metamizol 1 g a las 10 h antes de la fisioterapia, dolor en 4, el siguiente no antes de las 16 h (diálogo 18: 1 g si el dolor está por arriba de 3, como mínimo cada seis horas); dolor 2/10 sentado, 4/10 al caminar."
+  },
+  "redemittel.0": {
+   "fr": "Est-ce que ça vous convient qu'on fasse la relève ici, avec vous ?",
+   "de": "Ist es Ihnen recht, dass wir die Übergabe hier bei Ihnen machen?",
+   "es": "¿Le parece bien que hagamos la entrega de turno aquí, con usted?"
+  },
+  "redemittel.1": {
+   "fr": "Mon collègue {jonas} s'occupe de vous cet après-midi.",
+   "de": "Mein Kollege {jonas} ist heute Nachmittag für Sie da.",
+   "es": "Mi colega {jonas} está con usted hoy en la tarde."
+  },
+  "redemittel.2": {
+   "fr": "On fait la relève ici, avec vous : comme ça, vous pouvez donner votre avis.",
+   "de": "Wir machen die Übergabe hier bei Ihnen, dann können Sie mitreden.",
+   "es": "Hacemos la entrega de turno aquí, con usted; así usted también puede opinar."
+  },
+  "redemittel.3": {
+   "fr": "Merci de me le dire ! Je le corrige tout de suite.",
+   "de": "Danke, dass Sie das sagen! Das korrigiere ich sofort.",
+   "es": "¡Gracias por decírmelo! Lo corrijo enseguida."
+  },
+  "redemittel.4": {
+   "fr": "Il est allé avec le déambulateur jusqu'à la porte, et retour.",
+   "de": "Er ist mit dem Rollator bis zur Tür und zurück gegangen.",
+   "es": "Fue con el andador hasta la puerta y de regreso."
+  },
+  "redemittel.5": {
+   "fr": "Vous voulez dire vous-même à {jonas} comment ça va, côté douleur ?",
+   "de": "Möchten Sie {jonas} selbst sagen, wie es mit den Schmerzen ist?",
+   "es": "¿Quiere decirle usted mismo a {jonas} cómo va con el dolor?"
+  },
+  "redemittel.6": {
+   "fr": "J'ai oublié quelque chose ? C'est vous qui vous connaissez le mieux.",
+   "de": "Habe ich etwas vergessen? Sie kennen sich selbst am besten.",
+   "es": "¿Se me olvidó algo? Usted es quien mejor se conoce."
+  },
+  "redemittel.7": {
+   "fr": "Il peut avoir la prochaine dose à 16 h au plus tôt.",
+   "de": "Die nächste Gabe darf er frühestens um 16 Uhr bekommen.",
+   "es": "La siguiente dosis la puede recibir a las 16 h, no antes."
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Samedi, treize heures vingt-cinq. {jonas} arrive pour le service de l'après-midi. Il retrouve {elif} au poste de soins, la feuille de relève à la main.",
+   "es": "Sábado, la una y veinticinco de la tarde. {jonas} llega para el turno de tarde. Encuentra a {elif} en la estación de enfermería, con la hoja de entrega de turno en la mano."
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Salut, {elif} ! Aujourd'hui, faisons la relève au lit, chez {brandt}. Tu fais la relève, moi j'écoute.",
+   "de": "Hallo, {elif}! Lass uns die Übergabe heute mal am Bett machen, bei {brandt:dat}. Du übergibst, ich höre zu.",
+   "es": "¡Hola, {elif}! Hoy hagamos la entrega de turno junto a la cama, con {brandt}. Tú entregas, yo escucho."
+  },
+  "noeuds.start.choix.0": {
+   "fr": "Volontiers. Mais d'abord, on lui demande s'il est d'accord, non ?",
+   "de": "Gern. Aber zuerst fragen wir ihn, ob er einverstanden ist, oder?",
+   "es": "Con gusto. Pero primero le preguntamos si está de acuerdo, ¿no?"
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "Exactement. Alors viens.",
+   "de": "Genau so. Dann komm.",
+   "es": "Exactamente. Ven, vamos."
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Bonne idée. Je lui demande d'abord si ça lui convient.",
+   "de": "Gute Idee. Ich frage ihn als Erstes, ob es ihm recht ist.",
+   "es": "Buena idea. Lo primero que hago es preguntarle si le parece bien."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "Exactement. Alors viens.",
+   "de": "Genau so. Dann komm.",
+   "es": "Exactamente. Ven, vamos."
+  },
+  "noeuds.start.choix.2": {
+   "fr": "D'accord. Mais on parle bas, pour qu'il n'entende pas tout.",
+   "de": "Okay. Aber wir reden leise, damit er nicht alles hört.",
+   "es": "Okey. Pero hablamos bajito, para que no oiga todo."
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "Bas ? Mais justement, il doit tout entendre. C'est de lui qu'il s'agit !",
+   "de": "Leise? Er soll doch gerade alles hören. Es geht um ihn!",
+   "es": "¿Bajito? Si justamente tiene que oír todo. ¡Se trata de él!"
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>La relève au lit se fait avec le patient, pas dans son dos.</b> Il entend ce qu'on dit de lui, il peut corriger une erreur et poser ses questions. Seul ce qui est délicat, ou ce qu'un voisin de chambre ne doit pas entendre, se dit ailleurs.",
+   "es": "<b>La entrega de turno junto a la cama se hace con el paciente, no a sus espaldas.</b> Él oye lo que se dice de él, puede corregir un error y hacer sus preguntas. Solo lo delicado, o lo que un compañero de habitación no debe oír, se dice en otro lugar."
+  },
+  "noeuds.fragen.dit.0.recit": {
+   "fr": "Chambre 12. {brandt} est assis dans le fauteuil près de la fenêtre, le journal sur les genoux. Le lit voisin est vide.",
+   "es": "Habitación 12. {brandt} está sentado en el sillón junto a la ventana, con el periódico sobre las piernas. La cama de al lado está vacía."
+  },
+  "noeuds.fragen.dit.1": {
+   "fr": "Tiens, à deux d'un coup ? J'ai fait une bêtise ?",
+   "de": "Nanu, gleich zu zweit? Hab ich was ausgefressen?",
+   "es": "¿Y eso, los dos juntos? ¿Hice alguna travesura?"
+  },
+  "noeuds.fragen.choix.0": {
+   "fr": "Non, ne vous inquiétez pas, {brandt:voc}. Mon service se termine, et mon collègue {jonas} s'occupe de vous cet après-midi. Est-ce que ça vous convient qu'on fasse la relève ici, avec vous ?",
+   "de": "Nein, keine Sorge, {brandt}. Mein Dienst ist gleich zu Ende, und mein Kollege {jonas} ist heute Nachmittag für Sie da. Ist es Ihnen recht, dass wir die Übergabe hier bei Ihnen machen?",
+   "es": "No, no se preocupe, {brandt:voc}. Mi turno ya casi termina, y mi colega {jonas} está con usted hoy en la tarde. ¿Le parece bien que hagamos la entrega de turno aquí, con usted?"
+  },
+  "noeuds.fragen.choix.0.puis.0": {
+   "fr": "Je peux même donner mon avis ? Bon, d'accord. Au moins, je saurai ce que vous racontez sur moi.",
+   "de": "Mitreden darf ich auch? Na, von mir aus. Dann weiß ich wenigstens, was Sie über mich erzählen.",
+   "es": "¿Y hasta puedo opinar? Bueno, por mí está bien. Así por lo menos sé qué cuentan de mí."
+  },
+  "noeuds.fragen.choix.1": {
+   "fr": "Bien au contraire ! Voici {jonas}, il prend le relais. Nous aimerions faire la relève ici, avec vous : comme ça, vous pouvez donner votre avis. Vous êtes d'accord ?",
+   "de": "Ganz im Gegenteil! Das ist {jonas}, er übernimmt jetzt. Wir möchten die Übergabe gern hier bei Ihnen machen, dann können Sie mitreden. Sind Sie einverstanden?",
+   "es": "¡Todo lo contrario! Él es {jonas}, ahora él toma el turno. Nos gustaría hacer la entrega de turno aquí, con usted; así usted también puede opinar. ¿Está de acuerdo?"
+  },
+  "noeuds.fragen.choix.1.puis.0": {
+   "fr": "Je peux même donner mon avis ? Bon, d'accord. Au moins, je saurai ce que vous racontez sur moi.",
+   "de": "Mitreden darf ich auch? Na, von mir aus. Dann weiß ich wenigstens, was Sie über mich erzählen.",
+   "es": "¿Y hasta puedo opinar? Bueno, por mí está bien. Así por lo menos sé qué cuentan de mí."
+  },
+  "noeuds.fragen.choix.2": {
+   "fr": "Non, non, reste assis. On fait juste vite la relève.",
+   "de": "Nein, nein, bleib sitzen. Wir machen nur schnell die Übergabe.",
+   "es": "No, no, quédate sentado. Solo hacemos rápido la entrega de turno."
+  },
+  "noeuds.fragen.choix.2.puis.0": {
+   "fr": "« Reste assis » ? Depuis quand on se tutoie ?",
+   "de": "„Bleib sitzen“? Seit wann duzen wir uns denn?",
+   "es": "¿«Quédate sentado»? ¿Desde cuándo nos tuteamos?"
+  },
+  "noeuds.fragen.choix.2.aide": {
+   "fr": "<b>Avec le patient, c'est « Sie », même au milieu d'une relève entre collègues : « Bleiben Sie sitzen ».</b> Tu passes du « du » (à ton collègue) au « Sie » (au patient) d'une phrase à l'autre. Et avant de parler de lui devant lui, tu lui demandes s'il est d'accord.",
+   "es": "<b>Con el paciente es «Sie», incluso en medio de una entrega de turno entre colegas: «Bleiben Sie sitzen».</b> Pasas del «du» (a tu colega) al «Sie» (al paciente) de una oración a otra. Y antes de hablar de él delante de él, le preguntas si está de acuerdo."
+  },
+  "noeuds.vorstellen.choix.0": {
+   "fr": "Alors, {jonas} : {brandt} a été opéré de la hanche droite mardi, aujourd'hui c'est le quatrième jour. Pour sa pneumonie, il reçoit un antibiotique depuis jeudi. Ce matin, il n'avait plus de fièvre.",
+   "de": "Also, {jonas}: {brandt} ist am Dienstag an der rechten Hüfte operiert worden, heute ist der vierte Tag. Wegen der Lungenentzündung bekommt er seit Donnerstag ein Antibiotikum. Heute früh hatte er kein Fieber mehr.",
+   "es": "Bueno, {jonas}: {brandt} fue operado de la cadera derecha el martes; hoy es el cuarto día. Por la neumonía, recibe un antibiótico desde el jueves. Hoy temprano ya no tenía fiebre."
+  },
+  "noeuds.vorstellen.choix.0.puis.0": {
+   "fr": "D'accord. Et la matinée ?",
+   "de": "Okay. Und wie war der Vormittag?",
+   "es": "Okey. ¿Y cómo estuvo la mañana?"
+  },
+  "noeuds.vorstellen.choix.1": {
+   "fr": "{brandt} a une nouvelle hanche depuis mardi, à droite. Il a une pneumonie et reçoit un antibiotique depuis jeudi. Ce matin, la température était normale, 37,1.",
+   "de": "{brandt} hat seit Dienstag eine neue Hüfte, rechts. Er hat eine Lungenentzündung und bekommt seit Donnerstag ein Antibiotikum. Die Temperatur heute früh war normal, 37,1.",
+   "es": "{brandt} tiene una cadera nueva desde el martes, la derecha. Tiene neumonía y recibe un antibiótico desde el jueves. La temperatura de hoy temprano era normal, 37,1."
+  },
+  "noeuds.vorstellen.choix.1.puis.0": {
+   "fr": "D'accord. Et la matinée ?",
+   "de": "Okay. Und wie war der Vormittag?",
+   "es": "Okey. ¿Y cómo estuvo la mañana?"
+  },
+  "noeuds.vorstellen.choix.2": {
+   "fr": "Bon : lui, c'est celui de la hanche et du poumon.",
+   "de": "Also: Der hier ist der mit der Hüfte und der Lunge.",
+   "es": "Bueno: este de aquí es el de la cadera y el pulmón."
+  },
+  "noeuds.vorstellen.choix.2.puis.0": {
+   "fr": "« Lui » ? Je suis {brandt}, jeune femme, pas « celui de la hanche ».",
+   "de": "„Der hier“? Ich bin {brandt}, junge Frau, nicht „der mit der Hüfte“.",
+   "es": "¿«Este de aquí»? Yo soy {brandt}, señorita, no «el de la cadera»."
+  },
+  "noeuds.vorstellen.choix.2.aide": {
+   "fr": "<b>Devant le patient, on parle de lui par son nom, comme d'une personne, pas comme d'un diagnostic.</b> « der hier », « der mit der Hüfte » : ce jargon de couloir blesse, surtout quand le patient l'entend. Dis son nom, puis ce qui compte : l'opération, le jour, le traitement.",
+   "es": "<b>Delante del paciente se habla de él por su nombre, como de una persona, no como de un diagnóstico.</b> «der hier», «der mit der Hüfte»: esa jerga de pasillo hiere, sobre todo cuando el paciente la oye. Di su nombre, y luego lo que importa: la operación, el día, el tratamiento."
+  },
+  "noeuds.vormittag.choix.0": {
+   "fr": "Ce matin, il a fait quelques pas avec le déambulateur, avec la kinésithérapeute.",
+   "de": "Heute Vormittag hat er mit der Physiotherapeutin ein paar Schritte mit dem Rollator gemacht.",
+   "es": "Hoy en la mañana dio unos pasos con el andador, con la fisioterapeuta."
+  },
+  "noeuds.vormittag.choix.0.puis.0": {
+   "fr": "Minute ! Quelques pas ? Je suis allé jusqu'à la porte, et retour !",
+   "de": "Moment mal! Ein paar Schritte? Bis zur Tür bin ich gelaufen, und wieder zurück!",
+   "es": "¡Un momento! ¿Unos pasos? ¡Caminé hasta la puerta, y de regreso!"
+  },
+  "noeuds.vormittag.choix.1": {
+   "fr": "Ce matin, il a fait quelques pas avec la kinésithérapie, avec le déambulateur.",
+   "de": "Er ist heute Vormittag mit der Physiotherapie ein paar Schritte gegangen, mit dem Rollator.",
+   "es": "Hoy en la mañana caminó unos pasos con fisioterapia, con el andador."
+  },
+  "noeuds.vormittag.choix.1.puis.0": {
+   "fr": "Minute ! Quelques pas ? Je suis allé jusqu'à la porte, et retour !",
+   "de": "Moment mal! Ein paar Schritte? Bis zur Tür bin ich gelaufen, und wieder zurück!",
+   "es": "¡Un momento! ¿Unos pasos? ¡Caminé hasta la puerta, y de regreso!"
+  },
+  "noeuds.vormittag.choix.2": {
+   "fr": "Ce matin, il a « marché » quelques pas avec le déambulateur. (participe faux)",
+   "de": "Er ist heute Vormittag mit dem Rollator ein paar Schritte gelauft.",
+   "es": "Hoy en la mañana «caminió» unos pasos con el andador. (participio incorrecto)"
+  },
+  "noeuds.vormittag.choix.2.puis.0": {
+   "fr": "« Gelauft » ? Tu veux dire : il a marché, « er ist gelaufen ».",
+   "de": "„Gelauft“? Du meinst: Er ist gelaufen.",
+   "es": "¿«Gelauft»? Quieres decir: caminó, «er ist gelaufen»."
+  },
+  "noeuds.vormittag.choix.2.aide": {
+   "fr": "<b>« laufen » est irrégulier : « er ist gelaufen », avec « sein ».</b> De même « gehen → gegangen », « kommen → gekommen ». Les verbes de déplacement font leur Perfekt avec « sein ».",
+   "es": "<b>«laufen» es irregular: «er ist gelaufen», con «sein».</b> Igual «gehen → gegangen», «kommen → gekommen». Los verbos de desplazamiento forman el Perfekt con «sein»."
+  },
+  "noeuds.korrektur.choix.0": {
+   "fr": "Jusqu'à la porte et retour ? Pardon, alors je l'ai mal noté. C'est formidable, {brandt:voc} !",
+   "de": "Bis zur Tür und zurück? Entschuldigung, dann habe ich das falsch notiert. Das ist ja toll, {brandt}!",
+   "es": "¿Hasta la puerta y de regreso? Perdón, entonces lo anoté mal. ¡Eso es estupendo, {brandt:voc}!"
+  },
+  "noeuds.korrektur.choix.0.puis.0": {
+   "fr": "Eh bien voilà. Et sans pause ! La kiné dit que je suis son meilleur élève.",
+   "de": "Na also. Und ohne Pause! Die Physiotherapeutin sagt, ich bin ihr bester Schüler.",
+   "es": "Ahí está. ¡Y sin descansar! La fisioterapeuta dice que soy su mejor alumno."
+  },
+  "noeuds.korrektur.choix.1": {
+   "fr": "Merci de me le dire ! Je le corrige tout de suite. Jusqu'à la porte, c'est un grand progrès.",
+   "de": "Danke, dass Sie das sagen! Das korrigiere ich sofort. Bis zur Tür, das ist ein großer Fortschritt.",
+   "es": "¡Gracias por decírmelo! Lo corrijo enseguida. Hasta la puerta: es un gran avance."
+  },
+  "noeuds.korrektur.choix.1.puis.0": {
+   "fr": "Eh bien voilà. Et sans pause ! La kiné dit que je suis son meilleur élève.",
+   "de": "Na also. Und ohne Pause! Die Physiotherapeutin sagt, ich bin ihr bester Schüler.",
+   "es": "Ahí está. ¡Y sin descansar! La fisioterapeuta dice que soy su mejor alumno."
+  },
+  "noeuds.korrektur.choix.2": {
+   "fr": "Bon, il exagère un peu. C'était quelques mètres au plus.",
+   "de": "Na ja, er übertreibt ein bisschen. Es waren höchstens ein paar Meter.",
+   "es": "Bueno, exagera un poco. Fueron como mucho unos metros."
+  },
+  "noeuds.korrektur.choix.2.puis.0": {
+   "fr": "Exagérer ? Demandez donc à la kiné !",
+   "de": "Übertreiben? Fragen Sie doch die Physiotherapeutin!",
+   "es": "¿Exagerar? ¡Pregúntele a la fisioterapeuta!"
+  },
+  "noeuds.korrektur.choix.2.aide": {
+   "fr": "<b>Quand le patient corrige, on le remercie et on vérifie ; on ne le contredit pas devant lui, à la troisième personne.</b> Il était là, toi non. Remercie-le, corrige ta transmission, et en cas de doute, demande à la kinésithérapeute.",
+   "es": "<b>Cuando el paciente corrige, se le agradece y se verifica; no se le contradice delante de él, en tercera persona.</b> Él estaba ahí, tú no. Agradécele, corrige tu entrega y, si hay duda, pregúntale a la fisioterapeuta."
+  },
+  "noeuds.korrigieren.choix.0": {
+   "fr": "Alors, {jonas}, je corrige : ce matin, il est allé avec le déambulateur jusqu'à la porte et retour, sans pause. L'après-midi, la kinésithérapie revient.",
+   "de": "Also, {jonas}, ich korrigiere: Er ist heute Vormittag mit dem Rollator bis zur Tür und zurück gegangen, ohne Pause. Am Nachmittag kommt die Physiotherapie noch einmal.",
+   "es": "Entonces, {jonas}, corrijo: hoy en la mañana fue con el andador hasta la puerta y de regreso, sin descansar. En la tarde viene fisioterapia otra vez."
+  },
+  "noeuds.korrigieren.choix.0.puis.0": {
+   "fr": "Super, je le note. Et côté douleur ?",
+   "de": "Super, das notiere ich. Und wie sieht's mit den Schmerzen aus?",
+   "es": "Excelente, lo anoto. ¿Y cómo va con el dolor?"
+  },
+  "noeuds.korrigieren.choix.1": {
+   "fr": "Donc, ce qui est juste : ce matin, avec le déambulateur, il a marché jusqu'à la porte de la chambre et retour. La kinésithérapeute revient cet après-midi.",
+   "de": "Richtig ist also: Mit dem Rollator ist er heute Vormittag bis zur Zimmertür und wieder zurück gelaufen. Die Physiotherapeutin kommt heute Nachmittag wieder.",
+   "es": "Entonces, lo correcto es: hoy en la mañana caminó con el andador hasta la puerta de la habitación y de regreso. La fisioterapeuta vuelve hoy en la tarde."
+  },
+  "noeuds.korrigieren.choix.1.puis.0": {
+   "fr": "Super, je le note. Et côté douleur ?",
+   "de": "Super, das notiere ich. Und wie sieht's mit den Schmerzen aus?",
+   "es": "Excelente, lo anoto. ¿Y cómo va con el dolor?"
+  },
+  "noeuds.korrigieren.choix.2": {
+   "fr": "Donc, il « va » ce matin jusqu'à la porte et retour. (présent)",
+   "de": "Also, er geht heute Vormittag bis zur Tür und zurück.",
+   "es": "Entonces, hoy en la mañana «va» hasta la puerta y regresa. (presente)"
+  },
+  "noeuds.korrigieren.choix.2.puis.0": {
+   "fr": "Il va ? Il doit encore le faire, ou c'est déjà fait ?",
+   "de": "Er geht? Muss er das noch machen, oder ist das schon passiert?",
+   "es": "¿Va? ¿Todavía lo tiene que hacer, o ya pasó?"
+  },
+  "noeuds.korrigieren.choix.2.aide": {
+   "fr": "<b>Ce qui est déjà fait se transmet au Perfekt : « Er ist bis zur Tür gegangen ».</b> Le présent ferait croire que c'est encore à faire.",
+   "es": "<b>Lo que ya se hizo se transmite en Perfekt: «Er ist bis zur Tür gegangen».</b> El presente haría pensar que todavía está por hacerse."
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "{brandt:voc}, quelle est l'intensité de votre douleur en ce moment, de zéro à dix ? Comme ça, {jonas} l'entend directement de vous.",
+   "de": "{brandt}, wie stark sind Ihre Schmerzen gerade, von null bis zehn? Dann hört {jonas} es direkt von Ihnen.",
+   "es": "{brandt:voc}, ¿qué tan fuerte es su dolor en este momento, de cero a diez? Así {jonas} lo oye directamente de usted."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Assis, deux. Quand je marche, quatre, mais je le supporte. Le comprimé de ce matin a bien aidé.",
+   "de": "Im Sitzen eine Zwei. Beim Laufen eine Vier, aber das halt ich aus. Die Tablette heute früh hat gut geholfen.",
+   "es": "Sentado, un dos. Al caminar, un cuatro, pero lo aguanto. La tableta de hoy temprano me ayudó bastante."
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "Vous voulez dire vous-même à {jonas} comment ça va, côté douleur ? De zéro à dix, assis et en marchant.",
+   "de": "Möchten Sie {jonas} selbst sagen, wie es mit den Schmerzen ist? Von null bis zehn, im Sitzen und beim Gehen.",
+   "es": "¿Quiere decirle usted mismo a {jonas} cómo va con el dolor? De cero a diez, sentado y al caminar."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Assis, deux. Quand je marche, quatre, mais je le supporte. Le comprimé de ce matin a bien aidé.",
+   "de": "Im Sitzen eine Zwei. Beim Laufen eine Vier, aber das halt ich aus. Die Tablette heute früh hat gut geholfen.",
+   "es": "Sentado, un dos. Al caminar, un cuatro, pero lo aguanto. La tableta de hoy temprano me ayudó bastante."
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Vous n'avez plus mal, n'est-ce pas ?",
+   "de": "Schmerzen haben Sie ja keine mehr, oder?",
+   "es": "Dolor ya no tiene, ¿verdad?"
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "Qui a dit ça ? Quand je marche, ça tire encore.",
+   "de": "Wer sagt das? Beim Laufen zieht's schon noch.",
+   "es": "¿Quién dice? Al caminar todavía siento un tirón."
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>Pour la douleur, une question ouverte, avec l'échelle : « Wie stark sind Ihre Schmerzen, von null bis zehn? »</b> « …, oder? » met la réponse dans la bouche du patient : il risque de dire oui pour faire plaisir.",
+   "es": "<b>Para el dolor, una pregunta abierta, con la escala: «Wie stark sind Ihre Schmerzen, von null bis zehn?»</b> «…, oder?» le pone la respuesta en la boca al paciente: puede decir que sí solo por complacer."
+  },
+  "noeuds.schmerz_doku.choix.0": {
+   "fr": "Il a eu un gramme de métamizole à 10 h, avant la kinésithérapie, il était à quatre. Il peut avoir le suivant à 16 h au plus tôt.",
+   "de": "Er hat um 10 Uhr vor der Physiotherapie ein Gramm Metamizol bekommen, da lag er bei vier. Das nächste darf er frühestens um 16 Uhr bekommen.",
+   "es": "A las 10 h, antes de la fisioterapia, recibió un gramo de metamizol; estaba en cuatro. El siguiente lo puede recibir a las 16 h, no antes."
+  },
+  "noeuds.schmerz_doku.choix.0.puis.0": {
+   "fr": "Deux au repos, quatre à la marche, métamizole à dix heures, le suivant à partir de seize heures. Merci.",
+   "de": "Zwei in Ruhe, vier beim Gehen, Metamizol um zehn, das nächste ab sechzehn Uhr. Danke.",
+   "es": "Dos en reposo, cuatro al caminar, metamizol a las diez, el siguiente a partir de las dieciséis horas. Gracias."
+  },
+  "noeuds.schmerz_doku.choix.1": {
+   "fr": "J'ajoute : métamizole un gramme à 10 h, avant la kiné. La prochaine dose est possible à 16 h au plus tôt.",
+   "de": "Dazu noch: Metamizol ein Gramm um 10 Uhr, vor der Physio. Die nächste Gabe ist frühestens um 16 Uhr möglich.",
+   "es": "Además: metamizol, un gramo a las 10 h, antes de la fisio. La siguiente dosis es posible a las 16 h, no antes."
+  },
+  "noeuds.schmerz_doku.choix.1.puis.0": {
+   "fr": "Deux au repos, quatre à la marche, métamizole à dix heures, le suivant à partir de seize heures. Merci.",
+   "de": "Zwei in Ruhe, vier beim Gehen, Metamizol um zehn, das nächste ab sechzehn Uhr. Danke.",
+   "es": "Dos en reposo, cuatro al caminar, metamizol a las diez, el siguiente a partir de las dieciséis horas. Gracias."
+  },
+  "noeuds.schmerz_doku.choix.2": {
+   "fr": "Il a eu un comprimé ce matin. S'il veut, il peut en avoir un autre quand il veut.",
+   "de": "Er hatte heute früh eine Tablette. Wenn er will, kann er jederzeit noch eine haben.",
+   "es": "Hoy temprano le dieron una tableta. Si quiere, puede recibir otra en cualquier momento."
+  },
+  "noeuds.schmerz_doku.choix.2.puis.0": {
+   "fr": "Quand il veut ? Pour le métamizole, il faut au moins six heures d'intervalle.",
+   "de": "Jederzeit? Bei Metamizol sind es mindestens sechs Stunden Abstand.",
+   "es": "¿En cualquier momento? Con el metamizol son por lo menos seis horas de intervalo."
+  },
+  "noeuds.schmerz_doku.choix.2.aide": {
+   "fr": "<b>Un antidouleur se transmet avec son nom, sa dose, l'heure, et le moment où le suivant est possible.</b> « Metamizol ein Gramm um 10 Uhr, das nächste frühestens um 16 Uhr. » « jederzeit » est faux, et dangereux.",
+   "es": "<b>Un analgésico se transmite con su nombre, su dosis, la hora y el momento en que es posible el siguiente.</b> «Metamizol ein Gramm um 10 Uhr, das nächste frühestens um 16 Uhr.» «jederzeit» es falso, y peligroso."
+  },
+  "noeuds.abschluss.choix.0": {
+   "fr": "Vous avez encore une question, {brandt:voc} ? Ou vous voulez dire encore quelque chose à {jonas} ?",
+   "de": "Haben Sie noch eine Frage an uns, {brandt}? Oder möchten Sie {jonas} noch etwas sagen?",
+   "es": "¿Tiene alguna otra pregunta para nosotros, {brandt:voc}? ¿O quiere decirle algo más a {jonas}?"
+  },
+  "noeuds.abschluss.choix.0.puis.0": {
+   "fr": "Juste une chose : le jeune homme m'apporte un café tout à l'heure ? Noir, s'il vous plaît.",
+   "de": "Nur eins: Bringt mir der junge Mann nachher einen Kaffee? Schwarz, bitte.",
+   "es": "Solo una cosa: ¿el joven me trae un café más tarde? Negro, por favor."
+  },
+  "noeuds.abschluss.choix.0.puis.1": {
+   "fr": "Noir, sans sucre. C'est noté, {brandt:voc}.",
+   "de": "Schwarz, ohne Zucker. Wird gemacht, {brandt}.",
+   "es": "Negro, sin azúcar. Cuente con eso, {brandt:voc}."
+  },
+  "noeuds.abschluss.choix.1": {
+   "fr": "J'ai oublié quelque chose, {brandt:voc} ? C'est vous qui vous connaissez le mieux.",
+   "de": "Habe ich etwas vergessen, {brandt}? Sie kennen sich selbst am besten.",
+   "es": "¿Se me olvidó algo, {brandt:voc}? Usted es quien mejor se conoce."
+  },
+  "noeuds.abschluss.choix.1.puis.0": {
+   "fr": "Juste une chose : le jeune homme m'apporte un café tout à l'heure ? Noir, s'il vous plaît.",
+   "de": "Nur eins: Bringt mir der junge Mann nachher einen Kaffee? Schwarz, bitte.",
+   "es": "Solo una cosa: ¿el joven me trae un café más tarde? Negro, por favor."
+  },
+  "noeuds.abschluss.choix.1.puis.1": {
+   "fr": "Noir, sans sucre. C'est noté, {brandt:voc}.",
+   "de": "Schwarz, ohne Zucker. Wird gemacht, {brandt}.",
+   "es": "Negro, sin azúcar. Cuente con eso, {brandt:voc}."
+  },
+  "noeuds.abschluss.choix.2": {
+   "fr": "Bon, fini. Viens, {jonas}, je te montre encore la feuille de soins.",
+   "de": "So, fertig. Komm, {jonas}, ich zeig dir noch die Kurve.",
+   "es": "Listo, terminamos. Ven, {jonas}, te enseño el expediente."
+  },
+  "noeuds.abschluss.choix.2.puis.0": {
+   "fr": "Et moi ? Plus personne ne me demande rien ?",
+   "de": "Und ich? Mich fragt wohl keiner mehr was?",
+   "es": "¿Y yo? ¿A mí ya nadie me pregunta nada?"
+  },
+  "noeuds.abschluss.choix.2.aide": {
+   "fr": "<b>Une relève au lit se termine avec le patient : on lui demande s'il a une question ou quelque chose à ajouter.</b> Ensuite seulement, on lui dit au revoir et on part avec le collègue.",
+   "es": "<b>Una entrega de turno junto a la cama se termina con el paciente: se le pregunta si tiene alguna duda o algo que agregar.</b> Solo después se despide uno de él y se va con el colega."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Alors je vous dis au revoir, {brandt:voc}. Je vous souhaite un bon week-end !",
+   "de": "Dann verabschiede ich mich jetzt, {brandt}. Ich wünsche Ihnen ein schönes Wochenende!",
+   "es": "Entonces me despido, {brandt:voc}. ¡Le deseo un buen fin de semana!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Au revoir, {elif}. Et merci de m'avoir laissé donner mon avis, pour une fois.",
+   "de": "Wiedersehen, {elif}. Und danke, dass ich mal mitreden durfte.",
+   "es": "Hasta luego, {elif}. Y gracias por dejarme opinar, por una vez."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Pour aujourd'hui, j'ai fini. Au revoir, {brandt:voc}, et continuez comme ça avec la marche !",
+   "de": "Für heute bin ich fertig. Auf Wiedersehen, {brandt}, und weiter so mit dem Laufen!",
+   "es": "Por hoy ya terminé. Hasta luego, {brandt:voc}, ¡y siga así con las caminatas!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Au revoir, {elif}. Et merci de m'avoir laissé donner mon avis, pour une fois.",
+   "de": "Wiedersehen, {elif}. Und danke, dass ich mal mitreden durfte.",
+   "es": "Hasta luego, {elif}. Y gracias por dejarme opinar, por una vez."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Bon, alors bonne fin de journée de travail, {brandt:voc} !",
+   "de": "So, dann schönen Feierabend, {brandt}!",
+   "es": "Bueno, ¡que disfrute su salida del trabajo, {brandt:voc}!"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Fin de journée ? Ici, je suis en congé jour et nuit, jeune femme.",
+   "de": "Feierabend? Ich hab hier rund um die Uhr frei, junge Frau.",
+   "es": "¿Salida del trabajo? Yo aquí estoy libre día y noche, señorita."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>« Feierabend » est la fin du travail : c'est toi qui as fini, pas lui.</b> Au patient, on souhaite « ein schönes Wochenende », « einen schönen Nachmittag », ou simplement « Auf Wiedersehen ».",
+   "es": "<b>«Feierabend» es el fin de la jornada de trabajo: quien terminó eres tú, no él.</b> Al paciente se le desea «ein schönes Wochenende», «einen schönen Nachmittag», o simplemente «Auf Wiedersehen»."
+  },
+  "ecouter.0.q": {
+   "fr": "À qui {elif} demande-t-elle d'abord si la relève au lit lui convient ?",
+   "de": "Wen fragt {elif} zuerst, ob die Übergabe am Bett in Ordnung ist?",
+   "es": "¿A quién le pregunta {elif} primero si está bien hacer la entrega de turno junto a la cama?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "{brandt}.",
+   "de": "{brandt}.",
+   "es": "{brandt:a}."
+  },
+  "ecouter.0.options.1": {
+   "fr": "La médecin.",
+   "de": "Die Ärztin.",
+   "es": "A la doctora."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La kinésithérapeute.",
+   "de": "Die Physiotherapeutin.",
+   "es": "A la fisioterapeuta."
+  },
+  "ecouter.1.q": {
+   "fr": "Jusqu'où {brandt} est-il allé ce matin ?",
+   "de": "Wie weit ist {brandt} heute Vormittag gegangen?",
+   "es": "¿Hasta dónde caminó {brandt} hoy en la mañana?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Seulement quelques pas.",
+   "de": "Nur ein paar Schritte.",
+   "es": "Solo unos pasos."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Jusqu'au bout du couloir.",
+   "de": "Bis zum Ende des Flurs.",
+   "es": "Hasta el final del pasillo."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Jusqu'à la porte et retour.",
+   "de": "Bis zur Tür und zurück.",
+   "es": "Hasta la puerta y de regreso."
+  },
+  "ecouter.2.q": {
+   "fr": "Quelle est l'intensité de sa douleur quand il marche ?",
+   "de": "Wie stark sind seine Schmerzen beim Laufen?",
+   "es": "¿Qué tan fuerte es su dolor al caminar?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Deux.",
+   "de": "Zwei.",
+   "es": "Dos."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Quatre.",
+   "de": "Vier.",
+   "es": "Cuatro."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Sept.",
+   "de": "Sieben.",
+   "es": "Siete."
+  },
+  "ecouter.3.q": {
+   "fr": "À partir de quand {brandt} peut-il avoir le prochain métamizole ?",
+   "de": "Ab wann darf {brandt} das nächste Metamizol bekommen?",
+   "es": "¿A partir de cuándo puede recibir {brandt} el siguiente metamizol?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Tout de suite.",
+   "de": "Sofort.",
+   "es": "De inmediato."
+  },
+  "ecouter.3.options.1": {
+   "fr": "À 10 heures.",
+   "de": "Um zehn Uhr.",
+   "es": "A las 10 h."
+  },
+  "ecouter.3.options.2": {
+   "fr": "À 16 heures.",
+   "de": "Um sechzehn Uhr.",
+   "es": "A las 16 h."
+  },
+  "ecouter.4.q": {
+   "fr": "Que demande {brandt} à {jonas}, à la fin ?",
+   "de": "Was möchte {brandt} am Ende von {jonas}?",
+   "es": "¿Qué le pide {brandt} a {jonas} al final?"
+  },
+  "ecouter.4.options.0": {
+   "fr": "Un café noir.",
+   "de": "Einen schwarzen Kaffee.",
+   "es": "Un café negro."
+  },
+  "ecouter.4.options.1": {
+   "fr": "Un journal.",
+   "de": "Eine Zeitung.",
+   "es": "Un periódico."
+  },
+  "ecouter.4.options.2": {
+   "fr": "Un comprimé.",
+   "de": "Eine Tablette.",
+   "es": "Una tableta."
+  }
+ }
+}

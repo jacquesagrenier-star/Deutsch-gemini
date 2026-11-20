@@ -1,0 +1,127 @@
+{
+ "id": "d49-krankmeldung",
+ "numero": 49,
+ "niveau": "B1",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 2,
+ "role": "elif",
+ "personnes": ["hoffmann"],
+ "titre": {"t": "Sich krankmelden", "fr": "Se déclarer malade"},
+ "intro": {"fr": "Mardi 24 novembre, cinq heures et demie. {elif} devait commencer à six heures, mais elle a passé une mauvaise nuit : fièvre, frissons, mal partout. Le thermomètre affiche 39,1. Elle appelle {hoffmann} sans attendre, avant le début du service : une maladie se signale dès qu'on sait qu'on ne pourra pas travailler. Tu joues {elif} : dis que tu ne viens pas, depuis quand tu es malade, que tu vas chez le médecin, comment arrive l'arrêt de travail et jusqu'à quand tu penses être absente ; puis réponds à la question de la cadre."},
+ "but": {"fr": "Se déclarer malade au téléphone, tôt et au « Sie » : se nommer, dire qu'on ne vient pas ; donner les symptômes avec un chiffre, pas un diagnostic ; dire ce qui suit avec « sobald » et « bis » ; savoir que l'arrêt de travail (« der gelbe Schein ») part aujourd'hui par voie électronique ; répondre à une demande sans promettre ce qu'on ne sait pas encore."},
+ "grammaire": ["g12", "g08"],
+ "telc": ["oral-1", "hoeren"],
+ "relire_notes": {"fr": "Prévenir l'employeur avant le début du service (ici 5 h 30 pour 6 h) ; l'arrêt de travail électronique (eAU) depuis 2023 : le cabinet le transmet à la caisse d'assurance maladie, l'employeur le consulte, plus de papier pour l'employeur (sauf assurance privée) ; certificat exigé dès le premier jour si le contrat ou l'employeur le demande (sinon à partir du 4e jour, § 5 EntgFG) ; 39,1 °C avec frissons : consulter ; on ne travaille pas pendant un arrêt ; la demande de la cadre (prendre un poste du dimanche contre un jour de repos) est une demande, pas une obligation."},
+ "redemittel": [
+  {"t": "Ich muss mich leider krankmelden.", "fr": "Je dois malheureusement me déclarer malade.", "fonction": "transmettre"},
+  {"t": "Entschuldigen Sie, dass ich so früh anrufe.", "fr": "Excusez-moi d'appeler si tôt.", "fonction": "annoncer"},
+  {"t": "Seit gestern Abend habe ich Fieber und Schüttelfrost.", "fr": "Depuis hier soir, j'ai de la fièvre et des frissons.", "fonction": "transmettre"},
+  {"t": "Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin.", "fr": "Dès que le cabinet ouvre, je vais chez ma médecin traitante.", "fonction": "annoncer"},
+  {"t": "Die Praxis schickt die Krankschreibung elektronisch an meine Krankenkasse.", "fr": "Le cabinet envoie l'arrêt de travail par voie électronique à ma caisse d'assurance maladie.", "fonction": "transmettre", "relire": true, "relire_note": "Arrêt de travail électronique (eAU)."},
+  {"t": "Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin.", "fr": "Je vous rappelle dès que je sais jusqu'à quand je suis en arrêt.", "fonction": "annoncer"},
+  {"t": "Grundsätzlich gern, aber zusagen kann ich es erst nach dem Arztbesuch.", "fr": "En principe volontiers, mais je ne pourrai le promettre qu'après la consultation.", "fonction": "refuser"},
+  {"t": "Es tut mir leid, dass Sie so kurzfristig Ersatz suchen müssen.", "fr": "Je suis désolée que vous deviez chercher un remplaçant si tard.", "fonction": "rassurer"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Cinq heures et demie. {elif} est assise au bord de son lit, une couverture sur les épaules. Elle compose le numéro de {hoffmann}. Ça sonne trois fois."}},
+    {"qui": "hoffmann", "air": "attentive", "t": "Ja, {hoffmann:famille}?", "fr": "Oui, {hoffmann:famille} ?"}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {hoffmann}, hier ist {elif}. Entschuldigen Sie, dass ich so früh anrufe. Ich muss mich leider krankmelden.", "fr": "Bonjour, {hoffmann:voc}, c'est {elif}. Excusez-moi d'appeler si tôt. Je dois malheureusement me déclarer malade.", "va": "symptome",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Oh je. Was ist denn los?", "fr": "Oh là là. Qu'est-ce qui se passe ?"}]},
+    {"t": "Guten Morgen, {hoffmann}. {elif} hier, von der {station}. Ich rufe an, weil ich heute leider nicht zum Frühdienst kommen kann: Ich bin krank.", "dit": "Guten Morgen, {hoffmann}. {elif} hier, von der {station:dit}. Ich rufe an, weil ich heute leider nicht zum Frühdienst kommen kann: Ich bin krank.", "fr": "Bonjour, {hoffmann:voc}. C'est {elif}, du {station}. J'appelle parce que je ne peux malheureusement pas venir au poste du matin aujourd'hui : je suis malade.", "va": "symptome",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Oh je. Was ist denn los?", "fr": "Oh là là. Qu'est-ce qui se passe ?"}]},
+    {"faux": true, "t": "Guten Morgen, {hoffmann}, hier ist {elif}. Ich bin heute krankgeschrieben.", "fr": "Bonjour, {hoffmann:voc}, c'est {elif}. Aujourd'hui, je suis en arrêt de travail (déjà signé par le médecin).",
+     "puis": [{"qui": "hoffmann", "air": "surprise", "t": "Krankgeschrieben? Um halb sechs waren Sie schon beim Arzt?", "fr": "En arrêt ? À cinq heures et demie, vous êtes déjà allée chez le médecin ?"}],
+     "aide": {"fr": "<b>« krankgeschrieben » veut dire que le médecin t'a déjà mise en arrêt.</b> Ce matin, tu te déclares malade toi-même : « Ich muss mich leider krankmelden » ou « Ich bin krank und kann heute nicht kommen »."}}
+   ]
+  },
+  "symptome": {
+   "dit": [],
+   "choix": [
+    {"t": "Seit gestern Abend habe ich Fieber und Schüttelfrost. Heute Morgen waren es 39,1. Mir tut alles weh.", "dit": "Seit gestern Abend habe ich Fieber und Schüttelfrost. Heute Morgen waren es neununddreißig Komma eins. Mir tut alles weh.", "fr": "Depuis hier soir, j'ai de la fièvre et des frissons. Ce matin, j'étais à 39,1. J'ai mal partout.", "va": "arzt",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Das klingt gar nicht gut. Gehen Sie zum Arzt?", "fr": "Ça n'a pas l'air bien du tout. Vous allez chez le médecin ?"}]},
+    {"t": "Ich habe seit gestern Abend hohes Fieber, gerade eben 39,1, und Gliederschmerzen. Ich habe kaum geschlafen.", "dit": "Ich habe seit gestern Abend hohes Fieber, gerade eben neununddreißig Komma eins, und Gliederschmerzen. Ich habe kaum geschlafen.", "fr": "J'ai une forte fièvre depuis hier soir, 39,1 à l'instant, et des courbatures. J'ai à peine dormi.", "va": "arzt",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Das klingt gar nicht gut. Gehen Sie zum Arzt?", "fr": "Ça n'a pas l'air bien du tout. Vous allez chez le médecin ?"}]},
+    {"faux": true, "t": "Ich habe die Grippe. Das weiß ich genau, ich bin ja vom Fach.", "fr": "J'ai la grippe. Je le sais très bien, je suis du métier.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Das kann gut sein, aber das sagt Ihnen die Ärztin. Was haben Sie denn genau?", "fr": "C'est bien possible, mais c'est la médecin qui vous le dira. Qu'est-ce que vous avez, exactement ?"}],
+     "aide": {"fr": "<b>Dis tes symptômes et depuis quand, avec un chiffre : pas un diagnostic.</b> « Seit gestern Abend habe ich Fieber und Schüttelfrost, heute Morgen 39,1. » Même soignante, tu ne te diagnostiques pas toi-même."}}
+   ]
+  },
+  "arzt": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja. Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin. Das ist um acht.", "fr": "Oui. Dès que le cabinet ouvre, je vais chez ma médecin traitante. C'est à huit heures.", "va": "schein",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut. Wir brauchen die Krankschreibung ab dem ersten Tag, den „gelben Schein“, wie man immer noch sagt.", "fr": "Bien. Il nous faut l'arrêt de travail dès le premier jour, le « papier jaune », comme on dit toujours."}]},
+    {"t": "Ja, ich rufe um acht in der Praxis an und gehe hin, sobald ich einen Termin habe.", "fr": "Oui, j'appelle le cabinet à huit heures et j'y vais dès que j'ai un rendez-vous.", "va": "schein",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut. Wir brauchen die Krankschreibung ab dem ersten Tag, den „gelben Schein“, wie man immer noch sagt.", "fr": "Bien. Il nous faut l'arrêt de travail dès le premier jour, le « papier jaune », comme on dit toujours."}]},
+    {"faux": true, "t": "Nein, ich bleibe einfach im Bett. Morgen komme ich bestimmt wieder.", "fr": "Non, je reste simplement au lit. Demain, je reviens sûrement.",
+     "puis": [{"qui": "hoffmann", "air": "surprise", "t": "Mit neununddreißig Grad Fieber? Bitte lassen Sie sich untersuchen.", "fr": "Avec trente-neuf de fièvre ? Faites-vous examiner, s'il vous plaît."}],
+     "aide": {"fr": "<b>Avec une forte fièvre, on va chez le médecin ; et l'employeur peut demander un arrêt de travail dès le premier jour.</b> « Sobald die Praxis aufmacht, gehe ich zu meiner Hausärztin. » Après « sobald », le verbe va à la fin."}}
+   ]
+  },
+  "schein": {
+   "dit": [],
+   "choix": [
+    {"t": "Natürlich. Die Praxis schickt die Krankschreibung elektronisch an meine Krankenkasse, und Sie können sie dort abrufen.", "fr": "Bien sûr. Le cabinet envoie l'arrêt de travail par voie électronique à ma caisse d'assurance maladie, et vous pouvez le consulter là-bas.", "va": "dauer", "relire": true, "relire_note": "Arrêt de travail électronique (eAU) : le cabinet à la caisse, l'employeur consulte.",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Genau. Haben Sie schon eine Ahnung, wie lange Sie ausfallen?", "fr": "Exactement. Vous avez déjà une idée de la durée de votre absence ?"}]},
+    {"t": "Ja, die bekomme ich heute. Den gelben Schein für den Arbeitgeber gibt es ja nicht mehr auf Papier: Die Praxis meldet die Krankschreibung direkt an die Krankenkasse.", "fr": "Oui, je l'aurai aujourd'hui. Le « papier jaune » pour l'employeur n'existe plus sur papier : le cabinet déclare l'arrêt directement à la caisse d'assurance maladie.", "va": "dauer",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Genau. Haben Sie schon eine Ahnung, wie lange Sie ausfallen?", "fr": "Exactement. Vous avez déjà une idée de la durée de votre absence ?"}]},
+    {"faux": true, "t": "Ja, ich bringe Ihnen den gelben Schein morgen auf Station.", "fr": "Oui, je vous apporte le papier jaune demain au service.",
+     "puis": [{"qui": "hoffmann", "air": "surprise", "t": "Bloß nicht! Mit Fieber bleiben Sie zu Hause. Und Papier brauchen wir nicht mehr, das läuft elektronisch.", "fr": "Surtout pas ! Avec de la fièvre, vous restez chez vous. Et on n'a plus besoin de papier, tout passe par voie électronique."}],
+     "aide": {"fr": "<b>Depuis 2023, l'arrêt de travail est électronique : le cabinet l'envoie à ta caisse, l'employeur le consulte là.</b> On dit encore « der gelbe Schein », mais tu n'as rien à apporter : tu préviens, et tu dis la durée."}}
+   ]
+  },
+  "dauer": {
+   "dit": [],
+   "choix": [
+    {"t": "Genau weiß ich es erst nach dem Arztbesuch. Ich denke, mindestens bis Donnerstag. Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin.", "fr": "Je ne le saurai exactement qu'après la consultation. Je pense au moins jusqu'à jeudi. Je vous rappelle dès que je sais jusqu'à quand je suis en arrêt.", "va": "tausch",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut, dann warte ich auf Ihren Anruf. Eine Frage hätte ich noch.", "fr": "Bien, alors j'attends votre appel. J'aurais encore une question."}]},
+    {"t": "Wahrscheinlich ein paar Tage. Ich rufe Sie heute Vormittag an, sobald ich bei der Ärztin war, und sage Ihnen das genaue Datum.", "fr": "Probablement quelques jours. Je vous appelle ce matin, dès que je suis passée chez la médecin, et je vous donne la date exacte.", "va": "tausch",
+     "puis": [{"qui": "hoffmann", "air": "attentive", "t": "Gut, dann warte ich auf Ihren Anruf. Eine Frage hätte ich noch.", "fr": "Bien, alors j'attends votre appel. J'aurais encore une question."}]},
+    {"faux": true, "t": "Keine Ahnung. Vielleicht eine Woche, vielleicht zwei, mal sehen.", "fr": "Aucune idée. Peut-être une semaine, peut-être deux, on verra.",
+     "puis": [{"qui": "hoffmann", "air": "perplexe", "t": "Für den Dienstplan brauche ich etwas Genaueres. Wann wissen Sie mehr?", "fr": "Pour le planning, il me faut quelque chose de plus précis. Quand en saurez-vous plus ?"}],
+     "aide": {"fr": "<b>Dis ce que tu sais, et quand tu donneras la durée exacte.</b> « Genau weiß ich es erst nach dem Arztbesuch. Ich melde mich, sobald ich weiß, bis wann ich krankgeschrieben bin. »"}}
+   ]
+  },
+  "tausch": {
+   "dit": [
+    {"qui": "hoffmann", "air": "question", "t": "Am Wochenende haben Sie eigentlich frei. Wenn Sie bis dahin wieder gesund sind: Könnten Sie den Frühdienst am Sonntag übernehmen? Dafür bekämen Sie nächste Woche einen Tag frei.", "fr": "Ce week-end, vous êtes normalement en repos. Si vous êtes guérie d'ici là : pourriez-vous prendre le poste du matin dimanche ? En échange, vous auriez un jour de repos la semaine prochaine."}
+   ],
+   "choix": [
+    {"t": "Grundsätzlich gern. Aber zusagen kann ich es erst, wenn ich weiß, wie lange ich krankgeschrieben bin. Darf ich Ihnen heute Vormittag Bescheid geben?", "fr": "En principe volontiers. Mais je ne pourrai le promettre que quand je saurai combien de temps je suis en arrêt. Est-ce que je peux vous donner la réponse ce matin ?", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das ist fair. Danke, dass Sie überhaupt darüber nachdenken.", "fr": "C'est honnête. Merci d'y réfléchir, déjà."}]},
+    {"t": "Wenn ich bis Sonntag wieder fit bin, mache ich das gern. Versprechen kann ich es aber noch nicht. Ich sage Ihnen nach dem Arztbesuch Bescheid.", "fr": "Si je suis remise d'ici dimanche, je le fais volontiers. Mais je ne peux pas encore le promettre. Je vous préviens après la consultation.", "va": "ende",
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das ist fair. Danke, dass Sie überhaupt darüber nachdenken.", "fr": "C'est honnête. Merci d'y réfléchir, déjà."}]},
+    {"faux": true, "t": "Ja, klar, am Sonntag komme ich, auch wenn ich noch krank bin.", "fr": "Oui, bien sûr, dimanche je viens, même si je suis encore malade.",
+     "puis": [{"qui": "hoffmann", "air": "surprise", "t": "Nein, das möchte ich auf keinen Fall. Krank kommen Sie bitte nicht zu den Patienten.", "fr": "Non, je ne le veux en aucun cas. Malade, vous ne venez pas voir les patients, s'il vous plaît."}],
+     "aide": {"fr": "<b>Pendant un arrêt de travail, on ne travaille pas ; et on ne promet rien avant de savoir.</b> On peut dire oui sous condition : « Grundsätzlich gern, aber zusagen kann ich es erst, wenn … »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "hoffmann", "air": "sourire", "t": "Dann ruhen Sie sich aus und trinken Sie viel. Gute Besserung, {elif}!", "fr": "Alors reposez-vous et buvez beaucoup. Bon rétablissement, {elif} !"}
+   ],
+   "choix": [
+    {"t": "Danke, {hoffmann}. Es tut mir leid, dass Sie jetzt so kurzfristig Ersatz suchen müssen.", "fr": "Merci, {hoffmann:voc}. Je suis désolée que vous deviez maintenant chercher un remplaçant si tard.", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das kriegen wir hin. Hauptsache, Sie werden wieder gesund. Bis später am Telefon!", "fr": "On va s'en sortir. Le principal, c'est que vous guérissiez. À plus tard au téléphone !"}]},
+    {"t": "Vielen Dank für Ihr Verständnis. Ich melde mich nach dem Arzttermin. Auf Wiederhören!", "fr": "Merci beaucoup pour votre compréhension. Je vous rappelle après le rendez-vous chez le médecin. Au revoir !", "va": null,
+     "puis": [{"qui": "hoffmann", "air": "sourire", "t": "Das kriegen wir hin. Hauptsache, Sie werden wieder gesund. Bis später am Telefon!", "fr": "On va s'en sortir. Le principal, c'est que vous guérissiez. À plus tard au téléphone !"}]},
+    {"faux": true, "t": "Danke. Entschuldigung für meine Krankheit.", "fr": "Merci. Pardon pour ma maladie.",
+     "puis": [{"qui": "hoffmann", "air": "amuse", "t": "Für eine Krankheit muss sich niemand entschuldigen, {elif}.", "fr": "Personne n'a à s'excuser d'être malade, {elif}."}],
+     "aide": {"fr": "<b>On ne s'excuse pas d'être malade ; on peut regretter le dérangement.</b> « Es tut mir leid, dass Sie so kurzfristig Ersatz suchen müssen. » ou « Vielen Dank für Ihr Verständnis. »"}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wie hoch war das Fieber von {elif} heute Morgen?", "fr": "Quelle était la fièvre d'{elif} ce matin ?"}, "options": [{"t": "Achtunddreißig Komma fünf.", "fr": "38,5."}, {"t": "Neununddreißig Komma eins.", "fr": "39,1."}, {"t": "Siebenunddreißig Komma acht.", "fr": "37,8."}], "juste": 1},
+  {"q": {"t": "Wann geht {elif} zur Ärztin?", "fr": "Quand {elif} va-t-elle chez la médecin ?"}, "options": [{"t": "Um acht, wenn die Praxis aufmacht.", "fr": "À huit heures, quand le cabinet ouvre."}, {"t": "Morgen früh.", "fr": "Demain matin."}, {"t": "Am Nachmittag, nach dem Dienst.", "fr": "L'après-midi, après le service."}], "juste": 0},
+  {"q": {"t": "Wie bekommt das Krankenhaus die Krankschreibung?", "fr": "Comment l'hôpital reçoit-il l'arrêt de travail ?"}, "options": [{"t": "Per Post.", "fr": "Par la poste."}, {"t": "{elif} bringt sie auf Station.", "fr": "{elif} l'apporte au service."}, {"t": "Elektronisch, über die Krankenkasse.", "fr": "Par voie électronique, par la caisse d'assurance maladie."}], "juste": 2},
+  {"q": {"t": "Was möchte {hoffmann} am Ende wissen?", "fr": "Que veut savoir {hoffmann} à la fin ?"}, "options": [{"t": "Ob {elif} heute Nachmittag kommen kann.", "fr": "Si {elif} peut venir cet après-midi."}, {"t": "Ob {elif} am Sonntag den Frühdienst übernehmen könnte.", "fr": "Si {elif} pourrait prendre le poste du matin dimanche."}, {"t": "Ob {elif} einen Test gemacht hat.", "fr": "Si {elif} a fait un test."}], "juste": 1}
+ ]
+}

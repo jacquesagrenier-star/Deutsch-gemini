@@ -1,0 +1,410 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d19-telefon.json",
+ "cles": {
+  "titre": {
+   "fr": "Au téléphone : le laboratoire et la pharmacie",
+   "de": "Am Telefon: Labor und Apotheke",
+   "es": "Al teléfono: el laboratorio y la farmacia"
+  },
+  "intro": {
+   "fr": "Fin de matinée au poste de soins. Le téléphone sonne : c'est {aksoy}, du laboratoire, avec une valeur critique pour {lehmann}. Tu joues {elif} : tu notes, tu vérifies l'identité de la patiente, tu relis la valeur et tu demandes le nom de ton interlocutrice. Puis tu appelles toi-même la pharmacie de l'hôpital, {richter}, pour commander de l'insuline et poser une question sur un comprimé.",
+   "es": "Final de la mañana en la estación de enfermería. Suena el teléfono: es {aksoy}, del laboratorio, con un valor crítico {lehmann:de}. Juegas el papel de {elif}: anotas, verificas la identidad de la paciente, repites el valor en voz alta y preguntas el nombre de quien te llama. Después llamas tú a la farmacia del hospital, {richter:a}, para pedir insulina y hacer una pregunta sobre una tableta."
+  },
+  "but": {
+   "fr": "Répondre au téléphone d'un service (nom du service, son nom) ; recevoir une valeur critique : identifier la patiente (nom, date de naissance), relire la valeur, demander le nom de la personne, dire ce qu'on fait ; appeler un service : se présenter, dire ce qu'on veut avec précision (produit, dosage), poser une question ; résumer avant de raccrocher.",
+   "es": "Contestar el teléfono de un área (nombre del área, tu nombre); recibir un valor crítico: identificar a la paciente (nombre, fecha de nacimiento), repetir el valor, preguntar el nombre de la persona, decir lo que vas a hacer; llamar a otro servicio: presentarse, decir con precisión lo que se quiere (producto, concentración), hacer una pregunta; resumir antes de colgar."
+  },
+  "relire_notes": {
+   "fr": "Valeur critique : potassium 6,2 mmol/l (seuil d'appel du laboratoire), échantillon non hémolysé, conduite (relire, noter l'heure et le nom, informer la médecin tout de suite) ; insuline lispro 100 UI/ml en stylo prérempli (cohérence avec le schéma de Frau Lehmann) ; un comprimé à libération prolongée (métoprolol retard) ne s'écrase pas : demander une autre forme à la médecin.",
+   "es": "Valor crítico: potasio 6,2 mmol/l (umbral de aviso del laboratorio), muestra no hemolizada, conducta (repetir, anotar la hora y el nombre, informar a la doctora de inmediato); insulina lispro 100 UI/ml en pluma precargada (coherencia con el esquema de Frau Lehmann); una tableta de liberación prolongada (metoprolol retard) no se tritura: pedir otra presentación a la doctora."
+  },
+  "redemittel.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "es": "{station}, habla {elif}, buenos días."
+  },
+  "redemittel.1": {
+   "fr": "Un instant, je prends de quoi écrire.",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben.",
+   "es": "Un momento, voy por algo para escribir."
+  },
+  "redemittel.2": {
+   "fr": "C'est pour quel patient ? Pouvez-vous me donner la date de naissance, s'il vous plaît ?",
+   "de": "Um welchen Patienten geht es? Können Sie mir bitte das Geburtsdatum sagen?",
+   "es": "¿De qué paciente se trata? ¿Me puede decir la fecha de nacimiento, por favor?"
+  },
+  "redemittel.3": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre.",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter.",
+   "es": "Repito: potasio seis coma dos milimoles por litro."
+  },
+  "redemittel.4": {
+   "fr": "Quel est votre nom, s'il vous plaît ?",
+   "de": "Wie war Ihr Name, bitte?",
+   "es": "¿Me repite su nombre, por favor?"
+  },
+  "redemittel.5": {
+   "fr": "Je transmets tout de suite la valeur à la médecin.",
+   "de": "Ich gebe den Wert sofort an die Ärztin weiter.",
+   "es": "Le paso el valor a la doctora de inmediato."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Könnten Sie uns heute noch welche liefern?",
+   "es": "¿Podrían enviarnos algunas hoy mismo?"
+  },
+  "redemittel.7": {
+   "fr": "A-t-on le droit d'écraser ce comprimé ?",
+   "de": "Darf man diese Tablette mörsern?",
+   "es": "¿Se puede triturar esta tableta?"
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "11 h 20, au poste de soins. {elif} est seule, ses collègues sont dans les chambres. Le téléphone sonne.",
+   "es": "11:20, en la estación de enfermería. {elif} está sola, sus colegas están en las habitaciones. Suena el teléfono."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "{station}, {elif} à l'appareil, bonjour.",
+   "de": "{station}, {elif} am Apparat, guten Tag.",
+   "es": "{station}, habla {elif}, buenos días."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "es": "Buenos días, habla {aksoy}, del laboratorio central. Tengo un valor crítico para ustedes."
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Bonjour, {station}, vous parlez à {elif}.",
+   "de": "Guten Tag, {station}, Sie sprechen mit {elif}.",
+   "es": "Buenos días, {station}, habla con {elif}."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "Bonjour, ici {aksoy}, du laboratoire central. J'ai une valeur critique pour vous.",
+   "de": "Guten Tag, hier ist {aksoy} aus dem Zentrallabor. Ich habe einen kritischen Wert für Sie.",
+   "es": "Buenos días, habla {aksoy}, del laboratorio central. Tengo un valor crítico para ustedes."
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Allô ?",
+   "de": "Hallo?",
+   "es": "¿Aló?"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Euh… je suis bien au service 4B ?",
+   "de": "Äh … bin ich auf der Station vier B?",
+   "es": "Eh… ¿hablo con el área 4B?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>Au téléphone de l'hôpital, on répond avec le service et son nom.</b> « Station 4B, Elif am Apparat, guten Tag. » La personne sait tout de suite qu'elle a le bon service et à qui elle parle.",
+   "es": "<b>En el teléfono del hospital se contesta con el área y el nombre.</b> «Station 4B, Elif am Apparat, guten Tag.» La persona sabe enseguida que llamó al área correcta y con quién habla."
+  },
+  "noeuds.patient.choix.0": {
+   "fr": "Un instant, je prends de quoi écrire. Voilà, c'est pour quel patient ?",
+   "de": "Einen Moment, ich nehme mir etwas zum Schreiben. So, um welchen Patienten geht es?",
+   "es": "Un momento, voy por algo para escribir. Ya, ¿de qué paciente se trata?"
+  },
+  "noeuds.patient.choix.0.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "es": "De {lehmann}, nacida el 21 de agosto de 1952."
+  },
+  "noeuds.patient.choix.1": {
+   "fr": "Un instant, s'il vous plaît, je note. Pouvez-vous me donner le nom et la date de naissance ?",
+   "de": "Moment bitte, ich schreibe mit. Können Sie mir den Namen und das Geburtsdatum sagen?",
+   "es": "Un momento, por favor, voy anotando. ¿Me puede decir el nombre y la fecha de nacimiento?"
+  },
+  "noeuds.patient.choix.1.puis.0": {
+   "fr": "Pour {lehmann}, née le 21 août 1952.",
+   "de": "Um {lehmann}, geboren am 21. August 1952.",
+   "es": "De {lehmann}, nacida el 21 de agosto de 1952."
+  },
+  "noeuds.patient.choix.2": {
+   "fr": "Oui, allez-y.",
+   "de": "Ja, sagen Sie.",
+   "es": "Sí, dígame."
+  },
+  "noeuds.patient.choix.2.puis.0": {
+   "fr": "Vous avez de quoi écrire ? C'est important.",
+   "de": "Haben Sie etwas zum Schreiben? Es ist wichtig.",
+   "es": "¿Tiene algo para escribir? Es importante."
+  },
+  "noeuds.patient.choix.2.aide": {
+   "fr": "<b>Une valeur critique ne se retient pas de tête : prends de quoi écrire, puis fais-toi dire le patient.</b> « Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es? »",
+   "es": "<b>Un valor crítico no se guarda en la memoria: busca algo para escribir y luego pregunta de qué paciente se trata.</b> «Einen Moment, ich nehme mir etwas zum Schreiben. Um welchen Patienten geht es?»"
+  },
+  "noeuds.identitaet.choix.0": {
+   "fr": "{lehmann}, née le 21 août 1952. Oui, c'est notre patiente. Quelle valeur ?",
+   "de": "{lehmann}, geboren am 21. August 1952. Ja, das ist unsere Patientin. Welcher Wert ist es?",
+   "es": "{lehmann}, nacida el 21 de agosto de 1952. Sí, es nuestra paciente. ¿Qué valor es?"
+  },
+  "noeuds.identitaet.choix.0.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "es": "El potasio: 6,2 milimoles por litro."
+  },
+  "noeuds.identitaet.choix.1": {
+   "fr": "J'ai {lehmann}, 21 août 52. C'est ça, elle est chez nous. Qu'est-ce qui est anormal ?",
+   "de": "Ich habe {lehmann}, einundzwanzigster August zweiundfünfzig. Stimmt, sie liegt bei uns. Was ist auffällig?",
+   "es": "Tengo {lehmann:a}, 21 de agosto del 52. Correcto, está con nosotros. ¿Qué salió alterado?"
+  },
+  "noeuds.identitaet.choix.1.puis.0": {
+   "fr": "Le potassium : 6,2 millimoles par litre.",
+   "de": "Das Kalium: 6,2 Millimol pro Liter.",
+   "es": "El potasio: 6,2 milimoles por litro."
+  },
+  "noeuds.identitaet.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Quelle était la date de naissance ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Wie war das Geburtsdatum?",
+   "es": "Disculpe, se oye mal. ¿Cuál era la fecha de nacimiento?"
+  },
+  "noeuds.identitaet.choix.2.puis.0": {
+   "fr": "Vingt et un août mille neuf cent cinquante-deux.",
+   "de": "Einundzwanzigster August neunzehnhundertzweiundfünfzig.",
+   "es": "Veintiuno de agosto de mil novecientos cincuenta y dos."
+  },
+  "noeuds.wert.choix.0": {
+   "fr": "Je répète : potassium six virgule deux millimoles par litre. Quel est votre nom, s'il vous plaît ?",
+   "de": "Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?",
+   "es": "Repito: potasio seis coma dos milimoles por litro. ¿Me repite su nombre, por favor?"
+  },
+  "noeuds.wert.choix.0.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur élevée ne vient donc pas d'une hémolyse.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, an einer Hämolyse liegt der hohe Wert also nicht.",
+   "es": "Correcto. {aksoy:famille}, laboratorio central. La muestra no está hemolizada, así que el valor alto no se debe a una hemólisis."
+  },
+  "noeuds.wert.choix.1": {
+   "fr": "Potassium six virgule deux, c'est noté. Et à qui ai-je parlé ?",
+   "de": "Kalium sechs Komma zwei, habe ich notiert. Und mit wem habe ich gesprochen?",
+   "es": "Potasio seis coma dos, ya lo anoté. ¿Y con quién hablé?"
+  },
+  "noeuds.wert.choix.1.puis.0": {
+   "fr": "C'est ça. {aksoy}, laboratoire central. L'échantillon n'est pas hémolysé, la valeur élevée ne vient donc pas d'une hémolyse.",
+   "de": "Richtig. {aksoy}, Zentrallabor. Die Probe ist nicht hämolysiert, an einer Hämolyse liegt der hohe Wert also nicht.",
+   "es": "Correcto. {aksoy:famille}, laboratorio central. La muestra no está hemolizada, así que el valor alto no se debe a una hemólisis."
+  },
+  "noeuds.wert.choix.2": {
+   "fr": "Oui oui, d'accord, je transmets. Salut !",
+   "de": "Ja ja, okay, ich sage es weiter. Tschüss!",
+   "es": "Sí, sí, está bien, yo aviso. ¡Chao!"
+  },
+  "noeuds.wert.choix.2.puis.0": {
+   "fr": "Attendez ! Répétez la valeur, s'il vous plaît, et notez mon nom.",
+   "de": "Moment! Wiederholen Sie bitte den Wert, und notieren Sie meinen Namen.",
+   "es": "¡Un momento! Repita el valor, por favor, y anote mi nombre."
+  },
+  "noeuds.wert.choix.2.aide": {
+   "fr": "<b>Une valeur critique se relit à voix haute, et on note qui l'a donnée et à quelle heure.</b> « Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte? » Au téléphone, c'est la seule façon de voir une erreur.",
+   "es": "<b>Un valor crítico se repite en voz alta, y se anota quién lo dio y a qué hora.</b> «Ich wiederhole: Kalium sechs Komma zwei Millimol pro Liter. Wie war Ihr Name, bitte?» Por teléfono, es la única manera de detectar un error."
+  },
+  "noeuds.weiter.choix.0": {
+   "fr": "Merci, {aksoy}. Je transmets tout de suite la valeur à la médecin.",
+   "de": "Danke, {aksoy}. Ich gebe den Wert sofort an die Ärztin weiter.",
+   "es": "Gracias, {aksoy:voc}. Le paso el valor a la doctora de inmediato."
+  },
+  "noeuds.weiter.choix.0.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "es": "Gracias. Hasta luego."
+  },
+  "noeuds.weiter.choix.1": {
+   "fr": "Merci beaucoup. Je préviens tout de suite la médecin du service et je note l'appel avec l'heure.",
+   "de": "Vielen Dank. Ich informiere gleich die Stationsärztin und dokumentiere den Anruf mit der Uhrzeit.",
+   "es": "Muchas gracias. Ahora mismo le aviso a la doctora del área y registro la llamada con la hora."
+  },
+  "noeuds.weiter.choix.1.puis.0": {
+   "fr": "Merci. Au revoir.",
+   "de": "Danke. Auf Wiederhören.",
+   "es": "Gracias. Hasta luego."
+  },
+  "noeuds.apotheke.dit.0.recit": {
+   "fr": "{elif} prévient tout de suite {sommer}, qui va voir {lehmann}. Puis elle prépare la commande : il ne reste qu'un stylo d'insuline pour {lehmann}. Elle appelle la pharmacie de l'hôpital.",
+   "es": "{elif} le avisa de inmediato {sommer:a}, que va a ver {lehmann:a}. Luego prepara el pedido: solo queda una pluma de insulina para {lehmann}. Llama a la farmacia del hospital."
+  },
+  "noeuds.apotheke.dit.1": {
+   "fr": "Pharmacie de l'hôpital, {richter:famille}, bonjour.",
+   "de": "Krankenhausapotheke, {richter:famille}, guten Tag.",
+   "es": "Farmacia del hospital, {richter:famille}, buenos días."
+  },
+  "noeuds.apotheke.choix.0": {
+   "fr": "Bonjour, {richter:voc}, ici {elif}, du {station}. Nous n'avons presque plus de stylos d'insuline pour une patiente. Pourriez-vous nous en livrer encore aujourd'hui ?",
+   "de": "Guten Tag, {richter}, hier ist {elif} von der {station}. Uns gehen die Insulinpens für eine Patientin aus. Könnten Sie uns heute noch welche liefern?",
+   "es": "Buenos días, {richter:voc}, le habla {elif}, desde {station}. Se nos están acabando las plumas de insulina de una paciente. ¿Podrían enviarnos algunas hoy mismo?"
+  },
+  "noeuds.apotheke.choix.0.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "es": "Sí se puede. ¿Qué insulina exactamente, y en qué concentración?"
+  },
+  "noeuds.apotheke.choix.1": {
+   "fr": "Ici {elif}, {station}. J'appelle pour une commande : nous avons besoin d'urgence de stylos d'insuline.",
+   "de": "Hier ist {elif}, {station}. Ich rufe wegen einer Bestellung an: Wir brauchen dringend Insulinpens.",
+   "es": "Habla {elif}, desde {station}. Llamo por un pedido: necesitamos plumas de insulina con urgencia."
+  },
+  "noeuds.apotheke.choix.1.puis.0": {
+   "fr": "C'est possible. Quelle insuline exactement, et à quelle concentration ?",
+   "de": "Das geht. Welches Insulin genau, und in welcher Konzentration?",
+   "es": "Sí se puede. ¿Qué insulina exactamente, y en qué concentración?"
+  },
+  "noeuds.apotheke.choix.2": {
+   "fr": "Oui, allô, on a besoin d'insuline.",
+   "de": "Ja, hallo, wir brauchen Insulin.",
+   "es": "Sí, hola, necesitamos insulina."
+  },
+  "noeuds.apotheke.choix.2.puis.0": {
+   "fr": "Et qui est « on » ? Vous appelez de quel service ?",
+   "de": "Und wer sind „wir“? Von welcher Station rufen Sie an?",
+   "es": "¿Y quiénes son «nosotros»? ¿De qué área llama?"
+  },
+  "noeuds.apotheke.choix.2.aide": {
+   "fr": "<b>Quand c'est toi qui appelles, dis d'abord qui tu es et d'où tu appelles, puis ce que tu veux.</b> « Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern? »",
+   "es": "<b>Cuando eres tú quien llama, di primero quién eres y de dónde llamas, y luego lo que quieres.</b> «Hier ist Elif von der Station 4B. Könnten Sie uns heute noch Insulinpens liefern?»"
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "De l'insuline lispro, 100 unités par millilitre, en stylo prérempli. Nous en voudrions cinq.",
+   "de": "Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. Wir hätten gern fünf Stück.",
+   "es": "Insulina lispro, 100 unidades por mililitro, en pluma precargada. Quisiéramos cinco."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "es": "Sí tenemos. Le mando cinco plumas con el transporte antes de las 14 horas. ¿Algo más?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "C'est de l'insuline lispro en stylo prérempli, 100 unités par millilitre. Cinq stylos, ce serait bien.",
+   "de": "Es ist Insulin lispro im Fertigpen, hundert Einheiten pro Milliliter. Fünf Pens wären gut.",
+   "es": "Es insulina lispro en pluma precargada, 100 unidades por mililitro. Cinco plumas estaría bien."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "On en a. Je vous envoie cinq stylos avec le transport avant 14 heures. Autre chose ?",
+   "de": "Haben wir da. Ich schicke Ihnen fünf Pens mit dem Transport vor vierzehn Uhr. Sonst noch etwas?",
+   "es": "Sí tenemos. Le mando cinco plumas con el transporte antes de las 14 horas. ¿Algo más?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "L'insuline normale, celle qu'elle a toujours.",
+   "de": "Das normale Insulin, das sie immer bekommt.",
+   "es": "La insulina normal, la que le ponen siempre."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "« La normale », ça n'existe pas chez nous. J'ai besoin du nom et de la concentration.",
+   "de": "„Das normale“ gibt es bei uns nicht. Ich brauche den Namen und die Konzentration.",
+   "es": "«La normal» no existe aquí. Necesito el nombre y la concentración."
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Un médicament se commande avec son nom exact, sa concentration et sa forme.</b> « Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen. » Lis-le sur l'emballage ou dans le dossier avant d'appeler.",
+   "es": "<b>Un medicamento se pide con su nombre exacto, su concentración y su presentación.</b> «Insulin lispro, hundert Einheiten pro Milliliter, als Fertigpen.» Léelo en el empaque o en el expediente antes de llamar."
+  },
+  "noeuds.moerser.choix.0": {
+   "fr": "Oui, encore une question : peut-on écraser des comprimés de métoprolol à libération prolongée ? Un patient avale mal depuis un AVC.",
+   "de": "Ja, eine Frage noch: Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann nach einem Schlaganfall schlecht schlucken.",
+   "es": "Sí, una pregunta más: ¿se pueden triturar las tabletas de metoprolol de liberación prolongada? Un paciente traga con dificultad después de un derrame cerebral."
+  },
+  "noeuds.moerser.choix.0.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "es": "No, una tableta de liberación prolongada no se tritura, por favor; si no, todo hace efecto de golpe. Pídale a la doctora otra presentación. Le mando por correo una lista de alternativas."
+  },
+  "noeuds.moerser.choix.1": {
+   "fr": "J'aurais encore une question : puis-je écraser un comprimé de métoprolol à libération prolongée ? Le patient a des troubles de la déglutition.",
+   "de": "Ich hätte noch eine Frage: Kann ich eine Retardtablette von Metoprolol zerkleinern? Der Patient hat Schluckstörungen.",
+   "es": "Tendría una pregunta más: ¿puedo triturar una tableta de metoprolol de liberación prolongada? El paciente tiene problemas para tragar."
+  },
+  "noeuds.moerser.choix.1.puis.0": {
+   "fr": "Non, un comprimé à libération prolongée ne s'écrase pas, sinon tout agit d'un coup. Demandez à la médecin une autre forme. Je vous envoie une liste des alternatives par mail.",
+   "de": "Nein, eine Retardtablette bitte nicht mörsern, sonst wirkt alles auf einmal. Fragen Sie die Ärztin nach einer anderen Darreichungsform. Ich schicke Ihnen eine Liste mit Alternativen per Mail.",
+   "es": "No, una tableta de liberación prolongada no se tritura, por favor; si no, todo hace efecto de golpe. Pídale a la doctora otra presentación. Le mando por correo una lista de alternativas."
+  },
+  "noeuds.moerser.choix.2": {
+   "fr": "Non, merci. Ah, au fait, on peut toujours écraser les comprimés, non ?",
+   "de": "Nein, danke. Ach so, Tabletten kann man doch immer mörsern, oder?",
+   "es": "No, gracias. Ah, por cierto, las tabletas siempre se pueden triturar, ¿no?"
+  },
+  "noeuds.moerser.choix.2.puis.0": {
+   "fr": "Surtout pas toujours ! Quel comprimé voulez-vous dire ?",
+   "de": "Auf keinen Fall immer! Welche Tablette meinen Sie?",
+   "es": "¡De ninguna manera siempre! ¿A qué tableta se refiere?"
+  },
+  "noeuds.moerser.choix.2.aide": {
+   "fr": "<b>Pose une question précise : quel médicament, quelle forme, pourquoi.</b> « Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken. » Un comprimé « retard » ne s'écrase pas : c'est la pharmacie ou la médecin qui donne une autre forme.",
+   "es": "<b>Haz una pregunta precisa: qué medicamento, qué presentación, por qué.</b> «Darf man Metoprolol-Retardtabletten mörsern? Ein Patient kann schlecht schlucken.» Una tableta «retard» no se tritura: la farmacia o la doctora indican otra presentación."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Donc : cinq stylos d'insuline lispro avant 14 heures, et on n'écrase pas les comprimés retard, j'en parle à la médecin. Merci beaucoup !",
+   "de": "Also: fünf Pens Insulin lispro vor vierzehn Uhr, und die Retardtabletten nicht mörsern, ich spreche mit der Ärztin. Vielen Dank!",
+   "es": "Entonces: cinco plumas de insulina lispro antes de las 14 horas, y las tabletas retard no se trituran; yo hablo con la doctora. ¡Muchas gracias!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Exactement. Avec plaisir, au revoir.",
+   "de": "Genau. Gern geschehen, auf Wiederhören.",
+   "es": "Exacto. Con gusto, hasta luego."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci, ça m'aide beaucoup. J'attends les stylos et la liste. Au revoir !",
+   "de": "Danke, das hilft mir sehr. Ich warte auf die Pens und die Liste. Auf Wiederhören!",
+   "es": "Gracias, me ayuda mucho. Espero las plumas y la lista. ¡Hasta luego!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Avec plaisir, au revoir.",
+   "de": "Gern geschehen, auf Wiederhören.",
+   "es": "Con gusto, hasta luego."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle valeur est critique chez {lehmann} ?",
+   "de": "Welcher Wert ist bei {lehmann} kritisch?",
+   "es": "¿Qué valor es crítico en el caso {lehmann:de}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "La glycémie.",
+   "de": "Der Blutzucker.",
+   "es": "La glucemia."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Le potassium.",
+   "de": "Das Kalium.",
+   "es": "El potasio."
+  },
+  "ecouter.0.options.2": {
+   "fr": "La tension.",
+   "de": "Der Blutdruck.",
+   "es": "La presión arterial."
+  },
+  "ecouter.1.q": {
+   "fr": "Que fait {elif} tout de suite après l'appel du laboratoire ?",
+   "de": "Was macht {elif} sofort nach dem Anruf des Labors?",
+   "es": "¿Qué hace {elif} inmediatamente después de la llamada del laboratorio?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle prévient la médecin.",
+   "de": "Sie informiert die Ärztin.",
+   "es": "Le avisa a la doctora."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle appelle la fille.",
+   "de": "Sie ruft die Tochter an.",
+   "es": "Llama a la hija."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle attend la visite.",
+   "de": "Sie wartet bis zur Visite.",
+   "es": "Espera hasta la visita médica."
+  },
+  "ecouter.2.q": {
+   "fr": "Que dit {richter} des comprimés à libération prolongée ?",
+   "de": "Was sagt {richter} über die Retardtabletten?",
+   "es": "¿Qué dice {richter} sobre las tabletas de liberación prolongada?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "On peut toujours les écraser.",
+   "de": "Man kann sie immer mörsern.",
+   "es": "Siempre se pueden triturar."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Il faut les dissoudre dans l'eau.",
+   "de": "Man soll sie in Wasser auflösen.",
+   "es": "Hay que disolverlas en agua."
+  },
+  "ecouter.2.options.2": {
+   "fr": "On ne doit pas les écraser.",
+   "de": "Man darf sie nicht mörsern.",
+   "es": "No se deben triturar."
+  }
+ }
+}

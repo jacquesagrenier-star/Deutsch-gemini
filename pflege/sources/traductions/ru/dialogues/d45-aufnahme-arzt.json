@@ -1,0 +1,497 @@
+{
+ "_langue": "ru",
+ "_source": "pflege/sources/dialogues/d45-aufnahme-arzt.json",
+ "cles": {
+  "titre": {
+   "fr": "Présenter une admission à la médecin",
+   "de": "Die Neuaufnahme an die Ärztin übergeben",
+   "ru": "Доложить врачу о новой пациентке"
+  },
+  "intro": {
+   "fr": "Lundi 9 novembre, douze heures trente, au poste de soins. {sommer} a été retenue toute la matinée aux urgences : elle n'a pas encore vu {lehmann}, arrivée à 10 h 15. {elif} a fait l'entretien d'admission (dialogue 13) et rempli la fiche. Tu joues {elif} : présente la patiente à la médecin avec des valeurs précises (constantes, glycémie, plaie, allergies, traitement de la maison, risque de chute, peau), réponds à ses questions, puis dis ce qui reste à faire.",
+   "ru": "Понедельник, 9 ноября, двенадцать тридцать, сестринский пост. {sommer} всё утро была занята в приёмном отделении: она ещё не видела {lehmann:acc}, поступившую в 10:15. {elif} провела беседу при поступлении (диалог 13) и заполнила бланк. Ты играешь роль {elif:gen}: доложи врачу о пациентке с точными значениями (жизненные показатели, сахар крови, рана, аллергии, домашние лекарства, риск падения, кожа), ответь на её вопросы, а затем скажи, что ещё осталось сделать."
+  },
+  "but": {
+   "fr": "Faire un rapport oral à une médecin : dans l'ordre, en phrases complètes, avec des valeurs et leur unité ; décrire une plaie sans poser de diagnostic ; dire ce qui a été fait au passif (wurde fotografiert, ist angeordnet) ; distinguer ce qu'on sait de ce qu'on suppose ; nommer ce qui reste à faire et le demander poliment.",
+   "ru": "Сделать устный доклад врачу: по порядку, полными предложениями, со значениями и их единицами; описать рану, не ставя диагноза; сказать в пассиве, что было сделано (wurde fotografiert, ist angeordnet); отличать то, что известно, от того, что предполагается; назвать то, что осталось сделать, и вежливо об этом попросить."
+  },
+  "relire_notes": {
+   "fr": "Valeurs inventées pour le cas, cohérentes avec e02 et le dialogue 13 : TA 150/85 mmHg (hypertension connue), pouls 78 régulier, T 36,8 °C, glycémie 245 mg/dl à 11 h (insuline du matin faite à 7 h à la maison). Pas d'insuline de correction tant qu'aucun schéma n'est prescrit. Plaie : ulcère de l'avant-pied droit d'environ 2 × 1,5 cm, pourtour de la plaie légèrement rouge, sans pus ni odeur ; photo, pansement stérile, chaussure de décharge. Traitement personnel : insuline matin et soir (dose modifiée la semaine précédente, prise sur le plan de la médecin traitante, jamais de mémoire), un antihypertenseur ; à prescrire et signer par la médecin. Risque de chute (canne, chaussure de décharge, polyneuropathie, deux levers la nuit) : lit en position basse, sonnette, veilleuse. Peau sèche aux jambes, intacte en dehors de l'ulcère ; risque d'escarre faible selon l'échelle de Braden, talons surveillés à cause de la polyneuropathie (l'échelle ne remplace pas le jugement clinique). Conseil diabétologique. Levée du secret pour la fille.",
+   "ru": "Значения придуманы для этого случая и согласованы с e02 и диалогом 13: АД 150/85 мм рт. ст. (известная гипертония), пульс 78, ритмичный, t 36,8 °C, сахар крови 245 мг/дл в 11:00 (утренний инсулин введён в 7:00 дома). Никакого корректирующего инсулина, пока не назначена схема. Рана: язва переднего отдела правой стопы примерно 2 × 1,5 см, кожа вокруг раны слегка покрасневшая, без гноя и запаха; фото, стерильная повязка, разгрузочная обувь. Домашние лекарства: инсулин утром и вечером (доза изменена на прошлой неделе, взята из плана семейного врача, никогда по памяти), средство от давления; врач должна их назначить и подписать. Риск падения (трость, разгрузочная обувь, полинейропатия, два подъёма за ночь): кровать в нижнем положении, кнопка вызова, ночник. Кожа на голенях сухая, целая, кроме язвы; риск пролежней по шкале Брейден низкий, за пятками наблюдают из-за полинейропатии (шкала не заменяет клинической оценки). Консультация по диабету. Освобождение от врачебной тайны для дочери."
+  },
+  "redemittel.0": {
+   "fr": "Puis-je vous présenter rapidement la nouvelle admission de la chambre 14 ?",
+   "de": "Darf ich Ihnen kurz die Neuaufnahme aus Zimmer 14 vorstellen?",
+   "ru": "Можно я коротко доложу вам о новой пациентке из палаты 14?"
+  },
+  "redemittel.1": {
+   "fr": "Elle a été adressée ce matin par sa médecin traitante.",
+   "de": "Sie wurde heute Vormittag von ihrer Hausärztin eingewiesen.",
+   "ru": "Её сегодня утром направила семейный врач."
+  },
+  "redemittel.2": {
+   "fr": "J'ai mesuré la glycémie à onze heures.",
+   "de": "Den Blutzucker habe ich um elf Uhr gemessen.",
+   "ru": "Сахар крови я измерила в одиннадцать часов."
+  },
+  "redemittel.3": {
+   "fr": "Je n'ai pas encore donné d'insuline, parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.",
+   "ru": "Инсулин я ещё не вводила, потому что схема ещё не назначена."
+  },
+  "redemittel.4": {
+   "fr": "La plaie a été photographiée et couverte d'un pansement stérile.",
+   "de": "Die Wunde wurde fotografiert und steril abgedeckt.",
+   "ru": "Рану сфотографировали и закрыли стерильной повязкой."
+  },
+  "redemittel.5": {
+   "fr": "Son risque de chute est augmenté.",
+   "de": "Ihr Sturzrisiko ist erhöht.",
+   "ru": "Риск падения у неё повышен."
+  },
+  "redemittel.6": {
+   "fr": "Pourriez-vous prescrire et signer le traitement personnel, s'il vous plaît ?",
+   "de": "Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?",
+   "ru": "Не могли бы вы назначить и подписать домашние лекарства?"
+  },
+  "redemittel.7": {
+   "fr": "J'aimerais demander le conseil en diabétologie.",
+   "de": "Ich würde gern die Diabetesberatung anmelden.",
+   "ru": "Я хотела бы записать её на консультацию по диабету."
+  },
+  "redemittel.8": {
+   "fr": "La levée du secret professionnel pour la fille est au dossier.",
+   "de": "Eine Schweigepflichtentbindung für die Tochter liegt vor.",
+   "ru": "Освобождение от врачебной тайны для дочери имеется."
+  },
+  "noeuds.anfang.dit.0.recit": {
+   "fr": "Douze heures trente, au poste de soins. {sommer} revient des urgences, une tasse de café à la main. {elif} a devant elle la fiche d'admission de {lehmann}.",
+   "ru": "Двенадцать тридцать, сестринский пост. {sommer} возвращается из приёмного отделения с чашкой кофе в руке. Перед {elif:ins} лежит бланк поступления {lehmann:gen}."
+  },
+  "noeuds.anfang.dit.1": {
+   "fr": "{elif}, c'est vous qui avez fait l'admission de la quatorze ? Je vais la voir tout de suite. Qu'est-ce que je dois savoir avant ?",
+   "de": "{elif}, Sie haben die Aufnahme in der Vierzehn gemacht? Ich gehe gleich zu ihr. Was muss ich vorher wissen?",
+   "ru": "{elif}, это вы принимали пациентку в четырнадцатой? Я сейчас к ней пойду. Что мне нужно знать заранее?"
+  },
+  "noeuds.anfang.choix.0": {
+   "fr": "Oui. Chambre 14, {lehmann}, 74 ans. Elle est arrivée aujourd'hui à 10 h 15, adressée par sa médecin traitante, pour un ulcère de l'avant-pied droit. Elle a un diabète de type 2 depuis quinze ans et s'injecte de l'insuline.",
+   "de": "Ja. Zimmer 14, {lehmann}, 74 Jahre. Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. Sie hat seit fünfzehn Jahren Diabetes Typ 2 und spritzt Insulin.",
+   "ru": "Да. Палата 14, {lehmann}, 74 года. Она поступила сегодня в 10:15 по направлению семейного врача, из-за язвы переднего отдела правой стопы. У неё пятнадцать лет диабет 2-го типа, она колет инсулин."
+  },
+  "noeuds.anfang.choix.0.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "ru": "Хорошо. Какими были жизненные показатели?"
+  },
+  "noeuds.anfang.choix.1": {
+   "fr": "{lehmann}, 74 ans, a été adressée ce matin par sa médecin traitante. Le motif d'admission est un ulcère de l'avant-pied droit, sur un diabète de type 2 traité par insuline depuis quinze ans.",
+   "de": "{lehmann}, 74 Jahre, wurde heute Vormittag von ihrer Hausärztin eingewiesen. Aufnahmegrund ist ein Ulkus am rechten Vorfuß bei einem Diabetes Typ 2, der seit fünfzehn Jahren mit Insulin behandelt wird.",
+   "ru": "{lehmann}, 74 года, сегодня утром направлена семейным врачом. Причина поступления — язва переднего отдела правой стопы на фоне диабета 2-го типа, который пятнадцать лет лечат инсулином."
+  },
+  "noeuds.anfang.choix.1.puis.0": {
+   "fr": "Bien. Et les constantes ?",
+   "de": "Gut. Wie waren die Vitalwerte?",
+   "ru": "Хорошо. Какими были жизненные показатели?"
+  },
+  "noeuds.anfang.choix.2": {
+   "fr": "Quatorze : ulcère avant-pied dr., DT, sinon RAS.",
+   "de": "Vierzehn: Ulkus Vorfuß re., DM, sonst o. B.",
+   "ru": "Четырнадцатая: язва пер. отд. стопы спр., СД, в остальном б/о."
+  },
+  "noeuds.anfang.choix.2.puis.0": {
+   "fr": "« RAS », pour une nouvelle admission que je n'ai pas encore vue ? En phrases complètes, s'il vous plaît.",
+   "de": "„O. B.“, bei einer Neuaufnahme, die ich noch nicht gesehen habe? In ganzen Sätzen, bitte.",
+   "ru": "«Б/о» — о новой пациентке, которую я ещё не видела? Полными предложениями, пожалуйста."
+  },
+  "noeuds.anfang.choix.2.aide": {
+   "fr": "<b>Le style télégraphique est pour la fiche ; à l'oral, une admission se présente en phrases.</b> Qui (nom, âge, chambre), depuis quand, envoyée par qui, pourquoi : « Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß. » Et « o. B. » (rien de particulier) ne résume pas un patient qu'on présente.",
+   "ru": "<b>Телеграфный стиль — для бланка; устно о поступившем пациенте докладывают предложениями.</b> Кто (фамилия, возраст, палата), с какого времени, кем направлена, почему: «Sie ist heute um 10:15 Uhr gekommen, eingewiesen von ihrer Hausärztin, wegen eines Ulkus am rechten Vorfuß.» А «o. B.» (без особенностей) не описывает пациента, о котором докладывают."
+  },
+  "noeuds.vital.choix.0": {
+   "fr": "Tension 150 sur 85, pouls 78 et régulier, température 36,8 degrés. J'ai mesuré la glycémie à onze heures : 245 milligrammes par décilitre.",
+   "de": "Blutdruck 150 zu 85, Puls 78 und regelmäßig, Temperatur 36,8 Grad. Den Blutzucker habe ich um elf Uhr gemessen: 245 Milligramm pro Deziliter.",
+   "ru": "Давление 150 на 85, пульс 78, ритмичный, температура 36,8 градуса. Сахар крови я измерила в одиннадцать часов: 245 миллиграммов на децилитр."
+  },
+  "noeuds.vital.choix.0.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "ru": "Двести сорок пять — это слишком много. Вы уже ввели инсулин?"
+  },
+  "noeuds.vital.choix.1": {
+   "fr": "La tension était un peu élevée, à 150 sur 85 ; une hypertension est connue. Pouls 78, pas de fièvre, 36,8 degrés. Glycémie à onze heures : 245.",
+   "de": "Der Blutdruck war mit 150 zu 85 etwas erhöht; eine Hypertonie ist bekannt. Puls 78, kein Fieber, 36,8 Grad. Blutzucker um elf Uhr: 245.",
+   "ru": "Давление было немного повышено — 150 на 85; гипертония известна. Пульс 78, температуры нет, 36,8 градуса. Сахар крови в одиннадцать часов: 245."
+  },
+  "noeuds.vital.choix.1.puis.0": {
+   "fr": "Deux cent quarante-cinq, c'est trop élevé. Vous avez déjà donné de l'insuline ?",
+   "de": "Zweihundertfünfundvierzig, das ist zu hoch. Haben Sie schon Insulin gegeben?",
+   "ru": "Двести сорок пять — это слишком много. Вы уже ввели инсулин?"
+  },
+  "noeuds.vital.choix.2": {
+   "fr": "Les valeurs étaient toutes normales, je crois. Juste le sucre était un peu élevé.",
+   "de": "Die Werte waren eigentlich alle normal, glaube ich. Nur der Zucker war ein bisschen hoch.",
+   "ru": "Показатели, в общем-то, все были в норме, кажется. Только сахар был немного высоковат."
+  },
+  "noeuds.vital.choix.2.puis.0": {
+   "fr": "« Je crois » et « un peu » ? Qu'est-ce qu'il y a sur la fiche ?",
+   "de": "„Glaube ich“ und „ein bisschen“? Was steht denn auf dem Bogen?",
+   "ru": "«Кажется» и «немного»? А что написано в бланке?"
+  },
+  "noeuds.vital.choix.2.aide": {
+   "fr": "<b>À une médecin, on donne les valeurs, avec l'heure et l'unité, pas une impression.</b> « Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter. » « Normal » et « un peu », c'est à elle d'en juger.",
+   "ru": "<b>Врачу называют значения, с временем и единицей, а не впечатление.</b> «Blutdruck 150 zu 85, Puls 78, Temperatur 36,8 Grad. Blutzucker um elf Uhr: 245 Milligramm pro Deziliter.» «В норме» и «немного» — об этом судить ей."
+  },
+  "noeuds.insulin.choix.0": {
+   "fr": "Non. Aucun schéma n'est encore prescrit, c'est pourquoi je n'ai rien donné. Son insuline, elle l'a faite ce matin à sept heures à la maison.",
+   "de": "Nein. Es ist noch kein Schema angeordnet, deshalb habe ich nichts gegeben. Ihr Insulin hat sie heute Morgen um sieben zu Hause gespritzt.",
+   "ru": "Нет. Схема ещё не назначена, поэтому я ничего не вводила. Свой инсулин она уколола сегодня утром в семь, дома."
+  },
+  "noeuds.insulin.choix.0.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "ru": "Правильно. Я сейчас назначу схему. У неё с собой есть план приёма лекарств?"
+  },
+  "noeuds.insulin.choix.1": {
+   "fr": "Pas encore, parce qu'il n'y a encore aucune prescription pour elle. Selon ses propres dires, elle a fait sa dose du matin à sept heures à la maison.",
+   "de": "Noch nicht, weil für sie noch keine Anordnung vorliegt. Die Morgendosis hat sie laut eigener Aussage um sieben Uhr zu Hause gespritzt.",
+   "ru": "Ещё нет, потому что для неё пока нет назначения. Утреннюю дозу она, по её собственным словам, уколола в семь часов дома."
+  },
+  "noeuds.insulin.choix.1.puis.0": {
+   "fr": "C'est bien. Je prescris un schéma tout de suite. Elle a un plan de médicaments sur elle ?",
+   "de": "Richtig so. Ich ordne gleich ein Schema an. Hat sie einen Medikamentenplan dabei?",
+   "ru": "Правильно. Я сейчас назначу схему. У неё с собой есть план приёма лекарств?"
+  },
+  "noeuds.insulin.choix.2": {
+   "fr": "Oui, je lui ai déjà donné quatre unités. Ça convient en général.",
+   "de": "Ja, ich habe ihr schon mal vier Einheiten gegeben. Das passt meistens.",
+   "ru": "Да, я ей пока ввела четыре единицы. Обычно это подходит."
+  },
+  "noeuds.insulin.choix.2.puis.0": {
+   "fr": "Sans prescription ? Ce n'est pas possible, {elif}. Qui l'a prescrit ?",
+   "de": "Ohne Anordnung? Das geht nicht, {elif}. Wer hat das verordnet?",
+   "ru": "Без назначения? Так нельзя, {elif}. Кто это назначил?"
+  },
+  "noeuds.insulin.choix.2.aide": {
+   "fr": "<b>Pas d'insuline sans prescription, même quand la glycémie est haute.</b> On donne la valeur à la médecin et on attend le schéma : « Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist. » « Ça convient en général » ne vaut rien pour une patiente qu'on ne connaît pas.",
+   "ru": "<b>Никакого инсулина без назначения, даже когда сахар крови высокий.</b> Врачу сообщают значение и ждут схему: «Ich habe noch kein Insulin gegeben, weil noch kein Schema angeordnet ist.» «Обычно это подходит» ничего не значит для пациентки, которую ты не знаешь."
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Oui, le plan de sa médecin traitante est dans le dossier : insuline matin et soir, la dose a été modifiée la semaine dernière, et un comprimé contre l'hypertension. Elle-même n'était pas sûre de sa dose d'insuline, c'est pourquoi j'ai repris la dose du plan. Le traitement personnel n'est pas encore prescrit.",
+   "de": "Ja, der Plan ihrer Hausärztin liegt in der Akte: Insulin morgens und abends, die Dosis wurde letzte Woche geändert, und eine Tablette gegen den Bluthochdruck. Sie selbst war bei der Insulindosis unsicher, deshalb habe ich die Dosis aus dem Plan übernommen. Angeordnet ist die Hausmedikation noch nicht.",
+   "ru": "Да, план её семейного врача лежит в истории болезни: инсулин утром и вечером, дозу изменили на прошлой неделе, и таблетка от повышенного давления. Сама она не была уверена в дозе инсулина, поэтому дозу я взяла из плана. Домашние лекарства ещё не назначены."
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "ru": "Хорошо, что вы взяли план. А стопа?"
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "Son plan de médicaments est dans le dossier. Elle s'injecte de l'insuline matin et soir et prend un médicament pour la tension. Comme elle n'était pas sûre de la nouvelle dose, je n'ai repris que le plan, pas ce qu'elle m'a dit.",
+   "de": "Ihr Medikamentenplan ist in der Akte. Sie spritzt morgens und abends Insulin und nimmt ein Blutdruckmittel. Weil sie sich bei der neuen Dosis nicht sicher war, habe ich nur den Plan übernommen, nicht ihre Angabe.",
+   "ru": "Её план приёма лекарств в истории болезни. Она колет инсулин утром и вечером и принимает средство от давления. Поскольку в новой дозе она не была уверена, я перенесла только план, а не её слова."
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "C'est bien d'avoir pris le plan. Et le pied ?",
+   "de": "Gut, dass Sie den Plan genommen haben. Und der Fuß?",
+   "ru": "Хорошо, что вы взяли план. А стопа?"
+  },
+  "noeuds.medikamente.choix.2": {
+   "fr": "Elle s'injecte douze ou quatorze unités, elle ne savait pas exactement. J'ai noté douze, pour l'instant.",
+   "de": "Sie spritzt zwölf oder vierzehn Einheiten, sie wusste es nicht genau. Ich habe mal zwölf aufgeschrieben.",
+   "ru": "Она колет двенадцать или четырнадцать единиц, точно она не знала. Я пока записала двенадцать."
+  },
+  "noeuds.medikamente.choix.2.puis.0": {
+   "fr": "« Douze, pour l'instant » ? Il n'y a pas de plan de la médecin traitante ?",
+   "de": "„Mal zwölf“? Gibt es denn keinen Plan von der Hausärztin?",
+   "ru": "«Пока двенадцать»? А плана от семейного врача разве нет?"
+  },
+  "noeuds.medikamente.choix.2.aide": {
+   "fr": "<b>Une dose dont la patiente n'est pas sûre ne se rapporte pas comme un fait : on dit d'où vient l'information.</b> Ici, le plan de la médecin traitante fait foi : « Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher. »",
+   "ru": "<b>Дозу, в которой пациентка не уверена, не передают как факт: говорят, откуда сведения.</b> Здесь решает план семейного врача: «Der Plan ihrer Hausärztin liegt in der Akte. Sie selbst war bei der Insulindosis unsicher.»"
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Un ulcère de l'avant-pied droit, d'environ deux centimètres sur un et demi. Le pourtour de la plaie est légèrement rouge, pas de pus, pas d'odeur. La plaie a été photographiée et couverte d'un pansement stérile. Elle n'a presque pas mal, un sur l'échelle de la douleur, parce qu'elle sent peu ses pieds.",
+   "de": "Ein Ulkus am rechten Vorfuß, etwa zwei mal anderthalb Zentimeter. Die Wundumgebung ist leicht gerötet, kein Eiter, kein Geruch. Die Wunde wurde fotografiert und steril abgedeckt. Schmerzen hat sie kaum, eine Eins auf der Schmerzskala, weil sie die Füße wenig spürt.",
+   "ru": "Язва переднего отдела правой стопы, примерно два на полтора сантиметра. Кожа вокруг раны слегка покрасневшая, гноя нет, запаха нет. Рану сфотографировали и закрыли стерильной повязкой. Боли у неё почти нет, единица по шкале боли, потому что она плохо чувствует стопы."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "ru": "Я её сейчас посмотрю. Аллергии?"
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "La plaie mesure environ deux centimètres sur un et demi, son pourtour est légèrement rouge, elle n'est pas fibrineuse et ne sent pas. Elle a été photographiée et couverte d'un pansement stérile, et la chaussure de décharge est mise.",
+   "de": "Die Wunde ist etwa zwei mal anderthalb Zentimeter groß, die Wundumgebung ist leicht gerötet, sie ist nicht belegt und riecht nicht. Sie ist fotografiert und mit einem sterilen Verband versorgt worden, und der Verbandsschuh ist angezogen.",
+   "ru": "Рана размером примерно два на полтора сантиметра, кожа вокруг слегка покрасневшая, налёта нет, запаха нет. Её сфотографировали и наложили стерильную повязку, разгрузочная обувь надета."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Je vais la regarder tout de suite. Des allergies ?",
+   "de": "Die schaue ich mir gleich an. Allergien?",
+   "ru": "Я её сейчас посмотрю. Аллергии?"
+  },
+  "noeuds.wunde.choix.2": {
+   "fr": "La plaie est infectée. Elle a sûrement besoin d'un antibiotique.",
+   "de": "Die Wunde ist entzündet. Sie braucht bestimmt ein Antibiotikum.",
+   "ru": "Рана воспалена. Ей наверняка нужен антибиотик."
+  },
+  "noeuds.wunde.choix.2.puis.0": {
+   "fr": "Ça, je le déciderai quand je l'aurai vue. Décrivez-moi, s'il vous plaît, ce que vous avez vu.",
+   "de": "Das entscheide ich, wenn ich sie gesehen habe. Beschreiben Sie mir bitte, was Sie gesehen haben.",
+   "ru": "Это я решу, когда её увижу. Опишите мне, пожалуйста, что вы видели."
+  },
+  "noeuds.wunde.choix.2.aide": {
+   "fr": "<b>Décris la plaie, ne pose pas de diagnostic.</b> Taille, pourtour, pus, odeur : « Die Wundumgebung ist leicht gerötet, kein Eiter, kein Geruch. » Puis ce qui a été fait, au passif : « Die Wunde wurde fotografiert und steril abgedeckt. » Le diagnostic et le traitement reviennent à la médecin.",
+   "ru": "<b>Описывай рану, не ставь диагноз.</b> Размер, кожа вокруг, гной, запах: «Die Wundumgebung ist leicht gerötet, kein Eiter, kein Geruch.» Затем — что было сделано, в пассиве: «Die Wunde wurde fotografiert und steril abgedeckt.» Диагноз и лечение — дело врача."
+  },
+  "noeuds.allergien.choix.0": {
+   "fr": "Aucune connue. J'ai demandé expressément pour les médicaments, les pansements et les aliments.",
+   "de": "Keine bekannt. Ich habe ausdrücklich nach Medikamenten, Pflastern und Lebensmitteln gefragt.",
+   "ru": "Неизвестны. Я специально спросила о лекарствах, пластырях и продуктах."
+  },
+  "noeuds.allergien.choix.0.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "ru": "Хорошо. Насколько она подвижна?"
+  },
+  "noeuds.allergien.choix.1": {
+   "fr": "Aucune allergie connue, pas non plus aux pansements ni aux désinfectants. J'ai demandé exprès.",
+   "de": "Allergien sind keine bekannt, auch nicht gegen Pflaster oder Desinfektionsmittel. Ich habe extra nachgefragt.",
+   "ru": "Аллергии неизвестны, в том числе на пластырь и дезинфицирующие средства. Я специально переспросила."
+  },
+  "noeuds.allergien.choix.1.puis.0": {
+   "fr": "Bien. Elle se déplace comment ?",
+   "de": "Gut. Wie mobil ist sie?",
+   "ru": "Хорошо. Насколько она подвижна?"
+  },
+  "noeuds.allergien.choix.2": {
+   "fr": "Je n'ai pas demandé directement, mais elle n'a rien dit.",
+   "de": "Ich habe nicht direkt gefragt, aber sie hat nichts gesagt.",
+   "ru": "Прямо я не спрашивала, но она ничего не сказала."
+  },
+  "noeuds.allergien.choix.2.puis.0": {
+   "fr": "Alors on ne le sait pas. Demandez-lui, s'il vous plaît, avant que je prescrive quoi que ce soit.",
+   "de": "Dann wissen wir es nicht. Fragen Sie bitte nach, bevor ich etwas anordne.",
+   "ru": "Значит, мы этого не знаем. Спросите, пожалуйста, прежде чем я что-либо назначу."
+  },
+  "noeuds.allergien.choix.2.aide": {
+   "fr": "<b>« Elle n'a rien dit » n'est pas « aucune allergie » : une allergie se demande, toujours.</b> Médicaments, pansements, aliments. Puis on rapporte : « Keine bekannt. Ich habe ausdrücklich nachgefragt. »",
+   "ru": "<b>«Она ничего не сказала» — не то же, что «аллергии нет»: об аллергии спрашивают всегда.</b> Лекарства, пластыри, продукты. Затем докладывают: «Keine bekannt. Ich habe ausdrücklich nachgefragt.»"
+  },
+  "noeuds.sturz.choix.0": {
+   "fr": "Elle marche avec une canne et porte la chaussure de décharge à droite. À cause de la polyneuropathie, et parce qu'elle va deux fois aux toilettes la nuit, son risque de chute est augmenté. Le lit a été mis en position basse, la sonnette lui a été expliquée, et la nuit une veilleuse reste allumée.",
+   "de": "Sie geht mit einem Gehstock und trägt rechts den Verbandsschuh. Wegen der Polyneuropathie und weil sie nachts zweimal zur Toilette geht, ist ihr Sturzrisiko erhöht. Das Bett wurde ganz nach unten gestellt, die Klingel ist erklärt, und nachts bleibt ein Licht an.",
+   "ru": "Она ходит с тростью и носит справа разгрузочную обувь. Из-за полинейропатии и потому, что ночью она дважды ходит в туалет, риск падения у неё повышен. Кровать опустили в самое нижнее положение, кнопку вызова ей объяснили, и ночью остаётся гореть свет."
+  },
+  "noeuds.sturz.choix.0.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "ru": "Очень хорошо. А кожа?"
+  },
+  "noeuds.sturz.choix.1": {
+   "fr": "Avec sa canne, elle se déplace seule. Elle risque quand même de tomber : elle sent peu ses pieds, porte la chaussure de décharge et se lève deux fois la nuit. Lit en position basse, sonnette à portée de main, veilleuse allumée.",
+   "de": "Mit dem Gehstock ist sie selbstständig mobil. Sturzgefährdet ist sie trotzdem: Sie spürt die Füße wenig, trägt den Verbandsschuh und steht nachts zweimal auf. Bett tief gestellt, Klingel in Reichweite, Nachtlicht an.",
+   "ru": "С тростью она передвигается самостоятельно. Но риск падения всё равно есть: она плохо чувствует стопы, носит разгрузочную обувь и дважды за ночь встаёт. Кровать опущена, кнопка вызова под рукой, ночник включён."
+  },
+  "noeuds.sturz.choix.1.puis.0": {
+   "fr": "Très bien. Et la peau ?",
+   "de": "Sehr gut. Und die Haut?",
+   "ru": "Очень хорошо. А кожа?"
+  },
+  "noeuds.sturz.choix.2": {
+   "fr": "Elle marche bien toute seule. Il n'y a pas de problème.",
+   "de": "Sie läuft gut allein. Da gibt es kein Problem.",
+   "ru": "Она хорошо ходит сама. Тут проблем нет."
+  },
+  "noeuds.sturz.choix.2.puis.0": {
+   "fr": "Avec une polyneuropathie et une chaussure de décharge ? Et la nuit ?",
+   "de": "Mit einer Polyneuropathie und einem Verbandsschuh? Und nachts?",
+   "ru": "С полинейропатией и в разгрузочной обуви? А ночью?"
+  },
+  "noeuds.sturz.choix.2.aide": {
+   "fr": "<b>« Elle marche bien » ne dit rien du risque : nomme les facteurs, puis les mesures.</b> Canne, chaussure de décharge, pieds qui sentent mal, levers la nuit : « Ihr Sturzrisiko ist erhöht. » Puis ce qui a été fait : lit en bas, sonnette, veilleuse.",
+   "ru": "<b>«Она хорошо ходит» ничего не говорит о риске: назови факторы, затем меры.</b> Трость, разгрузочная обувь, стопы, которые плохо чувствуют, подъёмы ночью: «Ihr Sturzrisiko ist erhöht.» Затем — что было сделано: кровать внизу, кнопка вызова, ночник."
+  },
+  "noeuds.haut.choix.0": {
+   "fr": "La peau est sèche, surtout aux jambes, mais intacte en dehors de l'ulcère. Pas d'escarre. D'après l'échelle de Braden, j'estime le risque d'escarre faible pour l'instant. Nous surveillons les talons à cause de la polyneuropathie.",
+   "de": "Die Haut ist trocken, vor allem an den Unterschenkeln, aber bis auf das Ulkus intakt. Kein Dekubitus. Das Dekubitusrisiko schätze ich nach der Braden-Skala derzeit als gering ein. Die Fersen beobachten wir wegen der Polyneuropathie.",
+   "ru": "Кожа сухая, особенно на голенях, но, кроме язвы, целая. Пролежней нет. Риск пролежней по шкале Брейден я сейчас оцениваю как низкий. За пятками мы наблюдаем из-за полинейропатии."
+  },
+  "noeuds.haut.choix.0.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "ru": "Хорошо. Что-нибудь ещё остаётся нерешённым?"
+  },
+  "noeuds.haut.choix.1": {
+   "fr": "Sèche sur les deux jambes, intacte par ailleurs, pas de rougeur d'appui. D'après l'échelle de Braden, le risque d'escarre est faible pour l'instant. Nous faisons attention aux talons à cause de la polyneuropathie.",
+   "de": "Trocken an beiden Unterschenkeln, sonst intakt, keine Druckstellen. Laut Braden-Skala ist das Dekubitusrisiko derzeit gering. Auf die Fersen achten wir wegen der Polyneuropathie.",
+   "ru": "Сухая на обеих голенях, в остальном целая, мест сдавления нет. По шкале Брейден риск пролежней сейчас низкий. За пятками мы следим из-за полинейропатии."
+  },
+  "noeuds.haut.choix.1.puis.0": {
+   "fr": "Bien. Il reste quelque chose en suspens ?",
+   "de": "Gut. Ist noch etwas offen?",
+   "ru": "Хорошо. Что-нибудь ещё остаётся нерешённым?"
+  },
+  "noeuds.haut.choix.2": {
+   "fr": "La peau est assez mauvaise.",
+   "de": "Die Haut ist ziemlich schlecht.",
+   "ru": "Кожа довольно плохая."
+  },
+  "noeuds.haut.choix.2.puis.0": {
+   "fr": "Mauvaise ? Ça veut dire quoi exactement : sèche, rouge, ouverte ?",
+   "de": "Schlecht? Was heißt das genau: trocken, gerötet, offen?",
+   "ru": "Плохая? Что это значит точно: сухая, покрасневшая, повреждённая?"
+  },
+  "noeuds.haut.choix.2.aide": {
+   "fr": "<b>« Mauvaise » est un jugement ; la médecin a besoin d'une description.</b> Où, comment, intacte ou non : « Die Haut ist trocken, vor allem an den Unterschenkeln, aber bis auf das Ulkus intakt. »",
+   "ru": "<b>«Плохая» — это оценка; врачу нужно описание.</b> Где, какая, целая или нет: «Die Haut ist trocken, vor allem an den Unterschenkeln, aber bis auf das Ulkus intakt.»"
+  },
+  "noeuds.offen.choix.0": {
+   "fr": "Deux choses. Pourriez-vous, s'il vous plaît, prescrire et signer le traitement personnel et le schéma d'insuline ? Et j'aimerais demander le conseil en diabétologie, parce qu'elle aime les sucreries.",
+   "de": "Zwei Dinge. Könnten Sie bitte die Hausmedikation und das Insulinschema anordnen und unterschreiben? Und ich würde gern die Diabetesberatung anmelden, weil sie gern Süßes isst.",
+   "ru": "Две вещи. Не могли бы вы, пожалуйста, назначить и подписать домашние лекарства и схему инсулина? И я хотела бы записать её на консультацию по диабету, потому что она любит сладкое."
+  },
+  "noeuds.offen.choix.0.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "ru": "Сделаю, как только побываю у неё. Запишите её, пожалуйста, на консультацию. Что-нибудь ещё?"
+  },
+  "noeuds.offen.choix.1": {
+   "fr": "Oui. Le traitement personnel n'est pas encore prescrit ; pour ça, j'aurais besoin de votre signature. Je propose aussi de faire appel au conseil en diabétologie : elle a dit elle-même qu'elle aimait les sucreries.",
+   "de": "Ja. Die Hausmedikation ist noch nicht angeordnet; dafür bräuchte ich Ihre Unterschrift. Außerdem schlage ich vor, die Diabetesberatung einzuschalten: Sie hat selbst gesagt, dass sie gern Süßes isst.",
+   "ru": "Да. Домашние лекарства ещё не назначены; для этого мне нужна была бы ваша подпись. Кроме того, я предлагаю подключить консультанта по диабету: она сама сказала, что любит сладкое."
+  },
+  "noeuds.offen.choix.1.puis.0": {
+   "fr": "Je le fais dès que je l'aurai vue. Demandez le conseil, s'il vous plaît. Autre chose ?",
+   "de": "Mache ich, sobald ich bei ihr war. Melden Sie die Beratung bitte an. Sonst noch etwas?",
+   "ru": "Сделаю, как только побываю у неё. Запишите её, пожалуйста, на консультацию. Что-нибудь ещё?"
+  },
+  "noeuds.offen.choix.2": {
+   "fr": "Non, tout est fait.",
+   "de": "Nein, es ist alles erledigt.",
+   "ru": "Нет, всё сделано."
+  },
+  "noeuds.offen.choix.2.puis.0": {
+   "fr": "Et le traitement personnel ? Il n'est pas encore prescrit.",
+   "de": "Und die Hausmedikation? Die ist doch noch gar nicht angeordnet.",
+   "ru": "А домашние лекарства? Они ведь ещё совсем не назначены."
+  },
+  "noeuds.offen.choix.2.aide": {
+   "fr": "<b>Un bon rapport finit par ce qui reste à faire, et par qui.</b> « Könnten Sie die Hausmedikation bitte anordnen und unterschreiben? » Tant que ce n'est pas prescrit et signé, l'équipe ne peut pas donner le traitement de la patiente.",
+   "ru": "<b>Хороший доклад заканчивается тем, что осталось сделать и кому.</b> «Könnten Sie die Hausmedikation bitte anordnen und unterschreiben?» Пока лекарства не назначены и назначение не подписано, команда не может давать пациентке её лекарства."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Juste une chose encore : sa fille, {lehmann_tochter}, vient tous les jours. La levée du secret professionnel pour elle est au dossier.",
+   "de": "Nur noch eins: Ihre Tochter, {lehmann_tochter}, kommt jeden Tag. Eine Schweigepflichtentbindung für sie liegt vor.",
+   "ru": "Только ещё одно: её дочь, {lehmann_tochter}, приходит каждый день. Освобождение от врачебной тайны для неё имеется."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "ru": "Полезно знать. Спасибо, {elif}, это был полный доклад. Теперь я иду к ней."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Oui : la fille peut être informée, la levée du secret professionnel est dans le dossier. Elle vient cet après-midi.",
+   "de": "Ja: Die Tochter darf informiert werden, die Schweigepflichtentbindung ist in der Akte. Sie kommt heute Nachmittag.",
+   "ru": "Да: дочери можно давать сведения, освобождение от врачебной тайны в истории болезни. Она придёт сегодня после обеда."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Bon à savoir. Merci, {elif}, c'était une transmission complète. Je vais la voir maintenant.",
+   "de": "Gut zu wissen. Danke, {elif}, das war eine vollständige Übergabe. Ich gehe jetzt zu ihr.",
+   "ru": "Полезно знать. Спасибо, {elif}, это был полный доклад. Теперь я иду к ней."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "La fille a le droit de tout savoir, je crois.",
+   "de": "Die Tochter darf alles wissen, glaube ich.",
+   "ru": "Дочери можно знать всё, кажется."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "« Je crois » ? La levée du secret est au dossier, oui ou non ?",
+   "de": "„Glaube ich“? Liegt eine Schweigepflichtentbindung vor oder nicht?",
+   "ru": "«Кажется»? Освобождение от врачебной тайны есть или нет?"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Le secret professionnel ne se devine pas : on vérifie le dossier.</b> « Eine Schweigepflichtentbindung für die Tochter liegt vor. » Sans ce papier, l'équipe ne peut rien dire à la famille.",
+   "ru": "<b>О врачебной тайне не гадают: проверяют историю болезни.</b> «Eine Schweigepflichtentbindung für die Tochter liegt vor.» Без этой бумаги команда ничего не может сказать семье."
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle était la glycémie à onze heures ?",
+   "de": "Wie hoch war der Blutzucker um elf Uhr?",
+   "ru": "Каким был сахар крови в одиннадцать часов?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Cent quarante.",
+   "de": "Hundertvierzig.",
+   "ru": "Сто сорок."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Deux cent quarante-cinq.",
+   "de": "Zweihundertfünfundvierzig.",
+   "ru": "Двести сорок пять."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Cent quatre-vingts.",
+   "de": "Hundertachtzig.",
+   "ru": "Сто восемьдесят."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {elif} n'a-t-elle pas encore donné d'insuline ?",
+   "de": "Warum hat {elif} noch kein Insulin gegeben?",
+   "ru": "Почему {elif} ещё не ввела инсулин?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Parce qu'aucun schéma n'est encore prescrit.",
+   "de": "Weil noch kein Schema angeordnet ist.",
+   "ru": "Потому что схема ещё не назначена."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Parce que la glycémie était normale.",
+   "de": "Weil der Blutzucker normal war.",
+   "ru": "Потому что сахар крови был в норме."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Parce que {lehmann} ne voulait pas d'insuline.",
+   "de": "Weil {lehmann} kein Insulin wollte.",
+   "ru": "Потому что {lehmann} не хотела инсулина."
+  },
+  "ecouter.2.q": {
+   "fr": "Pourquoi le risque de chute de {lehmann} est-il augmenté ?",
+   "de": "Warum ist das Sturzrisiko von {lehmann} erhöht?",
+   "ru": "Почему у {lehmann:gen} повышен риск падения?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Parce qu'elle prend des somnifères.",
+   "de": "Weil sie Schlafmittel nimmt.",
+   "ru": "Потому что она принимает снотворное."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Parce qu'elle voit mal et n'a pas de lunettes.",
+   "de": "Weil sie schlecht sieht und keine Brille hat.",
+   "ru": "Потому что она плохо видит и у неё нет очков."
+  },
+  "ecouter.2.options.2": {
+   "fr": "À cause de la polyneuropathie, de la chaussure de décharge et parce qu'elle se lève la nuit.",
+   "de": "Wegen der Polyneuropathie, des Verbandsschuhs und weil sie nachts aufsteht.",
+   "ru": "Из-за полинейропатии, разгрузочной обуви и потому, что она встаёт ночью."
+  },
+  "ecouter.3.q": {
+   "fr": "Que demande {elif} à la fin ?",
+   "de": "Worum bittet {elif} am Ende?",
+   "ru": "О чём {elif} просит в конце?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Que {sommer} appelle la fille.",
+   "de": "Dass {sommer} die Tochter anruft.",
+   "ru": "Чтобы {sommer} позвонила дочери."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Que {sommer} prescrive et signe le traitement personnel.",
+   "de": "Dass {sommer} die Hausmedikation anordnet und unterschreibt.",
+   "ru": "Чтобы {sommer} назначила и подписала домашние лекарства."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Que {sommer} fasse le pansement.",
+   "de": "Dass {sommer} die Wunde verbindet.",
+   "ru": "Чтобы {sommer} перевязала рану."
+  }
+ }
+}

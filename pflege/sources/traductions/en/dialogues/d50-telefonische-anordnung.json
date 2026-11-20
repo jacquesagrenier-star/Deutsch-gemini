@@ -1,0 +1,432 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d50-telefonische-anordnung.json",
+ "cles": {
+  "titre": {
+   "fr": "Une prescription par téléphone",
+   "de": "Eine telefonische Anordnung",
+   "en": "A telephone order"
+  },
+  "intro": {
+   "fr": "Nuit du vendredi 13 au samedi 14 novembre, une heure quarante. {pohl} a été opéré de la vésicule biliaire la veille à huit heures. Il a sonné : il tremble de froid, il a 38,9 °C. {yusuf} a pris les constantes et appelle le médecin de garde, {kraemer}, qui va donner une prescription par téléphone. Tu joues {yusuf} : présente le cas dans l'ordre, note la prescription, relis-la, demande ce qui manque et dis comment tu la documentes.",
+   "en": "The night of Friday, November 13 to Saturday, November 14, 01:40. {pohl} had gallbladder surgery the day before at 08:00. He rang: he's shaking with cold and has a temperature of 38.9 °C. {yusuf} has taken his vital signs and is calling the on-call doctor, {kraemer}, who is going to give an order over the phone. You play {yusuf}: present the case in order, write down the order, read it back, ask for what is missing and say how you'll document it."
+  },
+  "but": {
+   "fr": "Présenter un patient au téléphone dans l'ordre (situation, contexte, évaluation) ; rapporter ce que dit le patient (Konjunktiv I) ; vérifier dans le dossier au lieu de deviner ; noter et relire une prescription orale (« Ich lese Ihnen die Anordnung noch einmal vor ») ; demander ce qui manque (la vitesse, les limites pour rappeler) ; la documenter comme prescription téléphonique.",
+   "en": "Present a patient on the phone in order (situation, background, assessment); report what the patient says (Konjunktiv I); check in the chart instead of guessing; write down and read back a verbal order (“Ich lese Ihnen die Anordnung noch einmal vor”); ask for what is missing (the rate, the limits for calling back); document it as a telephone order."
+  },
+  "relire_notes": {
+   "fr": "TOUT le dialogue. Fièvre post-opératoire à J1 d'une cholécystectomie (cœlioscopie : à confirmer) : T 38,9 °C, frissons depuis une demi-heure, pouls 108 (84 à 22 h), TA 125/75, FR 22, SpO2 95 % à l'air ambiant, douleur abdominale 4/10, pansements secs ; poids 84 kg (paracétamol IV 1 g au-dessus de 50 kg) ; paracétamol 1 g per os à 18 h, intervalle avant la dose suivante ; prescription téléphonique : deux paires d'hémocultures sur deux ponctions veineuses différentes (qui les prélève, selon le service : la soignante formée ou le médecin), puis paracétamol 1 g en perfusion courte sur 15 minutes ; rappeler si T > 39,5 °C, TA systolique < 100 ou confusion ; le médecin vient dans l'heure ; la prescription téléphonique est notée (heure, nom du médecin, relue et confirmée) puis signée par le médecin à son arrivée.",
+   "en": "THE WHOLE dialogue. Postoperative fever on day 1 after a cholecystectomy (laparoscopic: to be confirmed): T 38.9 °C, chills for half an hour, pulse 108 (84 at 22:00), BP 125/75, RR 22, SpO2 95% on room air, abdominal pain 4/10, dressings dry; weight 84 kg (IV paracetamol 1 g above 50 kg); paracetamol 1 g by mouth at 18:00, interval before the next dose; telephone order: two sets of blood cultures from two different venipunctures (who draws them depends on the unit: the trained nurse or the doctor), then paracetamol 1 g as a short infusion over 15 minutes; call back if T > 39.5 °C, systolic BP < 100 or confusion; the doctor comes within the hour; the telephone order is written down (time, doctor's name, read back and confirmed) and then signed by the doctor when he arrives."
+  },
+  "redemittel.0": {
+   "fr": "J'appelle pour {pohl}, chambre 15. Il a une forte fièvre et des frissons.",
+   "de": "Ich rufe wegen {pohl:dat} an, Zimmer 15. Er hat hohes Fieber und Schüttelfrost.",
+   "en": "I'm calling about {pohl}, room 15. He has a high fever and chills."
+  },
+  "redemittel.1": {
+   "fr": "Il a été opéré de la vésicule biliaire hier matin.",
+   "de": "Er ist gestern Morgen an der Gallenblase operiert worden.",
+   "en": "He had gallbladder surgery yesterday morning."
+  },
+  "redemittel.2": {
+   "fr": "Il dit qu'il a froid et qu'il a mal au ventre.",
+   "de": "Er sagt, ihm sei kalt und er habe Schmerzen im Bauch.",
+   "en": "He says he's cold and has pain in his abdomen."
+  },
+  "redemittel.3": {
+   "fr": "Un instant, je regarde dans le dossier.",
+   "de": "Einen Moment, ich schaue in der Kurve nach.",
+   "en": "One moment, I'll check in the chart."
+  },
+  "redemittel.4": {
+   "fr": "Je vous relis la prescription.",
+   "de": "Ich lese Ihnen die Anordnung noch einmal vor.",
+   "en": "I'll read the order back to you."
+  },
+  "redemittel.5": {
+   "fr": "Sur combien de temps la perfusion courte doit-elle passer ?",
+   "de": "Über welchen Zeitraum soll die Kurzinfusion laufen?",
+   "en": "Over what period should the short infusion run?"
+  },
+  "redemittel.6": {
+   "fr": "À partir de quelle température dois-je vous rappeler ?",
+   "de": "Ab welcher Temperatur soll ich Sie wieder anrufen?",
+   "en": "From what temperature should I call you again?"
+  },
+  "redemittel.7": {
+   "fr": "Je l'inscris comme prescription téléphonique. Merci de la signer quand vous serez dans le service.",
+   "de": "Ich trage das als telefonische Anordnung ein. Bitte zeichnen Sie sie ab, wenn Sie auf Station sind.",
+   "en": "I'll enter that as a telephone order. Please sign it when you're on the ward."
+  },
+  "noeuds.melden.dit.0.recit": {
+   "fr": "Une heure quarante. {pohl} a sonné : il claque des dents, il a très froid. {yusuf} a mesuré : 38,9 °C, pouls 108, tension 125/75, 22 respirations par minute, saturation 95 % sans oxygène. Il prend le dossier, une feuille, un stylo, et appelle le médecin de garde.",
+   "en": "01:40. {pohl} rang: his teeth are chattering, he's very cold. {yusuf} took his readings: 38.9 °C, pulse 108, blood pressure 125/75, 22 breaths per minute, oxygen saturation 95% without oxygen. He takes the chart, a sheet of paper and a pen, and calls the on-call doctor."
+  },
+  "noeuds.melden.dit.1": {
+   "fr": "{kraemer:famille}.",
+   "de": "{kraemer:famille}.",
+   "en": "{kraemer:famille}."
+  },
+  "noeuds.melden.choix.0": {
+   "fr": "Excusez-moi de vous déranger, {kraemer:voc}. {yusuf}, {station}. J'appelle pour {pohl}, chambre 15. Il a une forte fièvre et des frissons.",
+   "de": "Entschuldigen Sie die Störung, {kraemer:voc}. {yusuf}, {station}. Ich rufe wegen {pohl:dat} an, Zimmer 15. Er hat hohes Fieber und Schüttelfrost.",
+   "en": "Sorry to disturb you, {kraemer:voc}. {yusuf}, {station}. I'm calling about {pohl}, room 15. He has a high fever and chills."
+  },
+  "noeuds.melden.choix.0.puis.0": {
+   "fr": "La fièvre est à combien, et depuis quand ? Et les autres valeurs ?",
+   "de": "Wie hoch ist das Fieber, und seit wann? Und die anderen Werte?",
+   "en": "How high is the fever, and since when? And the other values?"
+  },
+  "noeuds.melden.choix.1": {
+   "fr": "Ici {yusuf}, du {station}. C'est au sujet de {pohl}, chambre 15 : de la fièvre avec des frissons.",
+   "de": "Hier ist {yusuf} von der {station}. Es geht um {pohl:akk} in Zimmer 15: Fieber mit Schüttelfrost.",
+   "en": "This is {yusuf} from {station}. It's about {pohl} in room 15: fever with chills."
+  },
+  "noeuds.melden.choix.1.puis.0": {
+   "fr": "La fièvre est à combien, et depuis quand ? Et les autres valeurs ?",
+   "de": "Wie hoch ist das Fieber, und seit wann? Und die anderen Werte?",
+   "en": "How high is the fever, and since when? And the other values?"
+  },
+  "noeuds.melden.choix.2": {
+   "fr": "Ici {yusuf}. Alors, {pohl} est arrivé des urgences dans la nuit de jeudi, il avait des calculs biliaires, et puis il a été opéré hier, et…",
+   "de": "Hier ist {yusuf}. Also, {pohl} ist am Donnerstag in der Nacht von der Notaufnahme gekommen, er hatte Gallensteine, und dann ist er gestern operiert worden, und …",
+   "en": "This is {yusuf}. So, {pohl} came from the emergency department on Thursday night, he had gallstones, and then he had surgery yesterday, and…"
+  },
+  "noeuds.melden.choix.2.puis.0": {
+   "fr": "Attendez. Pourquoi m'appelez-vous ? Quel est le problème maintenant ?",
+   "de": "Moment. Warum rufen Sie an? Was ist jetzt das Problem?",
+   "en": "Hold on. Why are you calling? What is the problem right now?"
+  },
+  "noeuds.melden.choix.2.aide": {
+   "fr": "<b>D'abord la situation, ensuite le contexte : le médecin doit savoir tout de suite pourquoi tu appelles.</b> « Ich rufe wegen des Patienten in Zimmer 15 an. Er hat hohes Fieber und Schüttelfrost. » L'histoire de l'admission vient après, en deux phrases.",
+   "en": "<b>First the situation, then the background: the doctor has to know right away why you're calling.</b> “Ich rufe wegen des Patienten in Zimmer 15 an. Er hat hohes Fieber und Schüttelfrost.” The story of the admission comes afterward, in two sentences."
+  },
+  "noeuds.situation.choix.0": {
+   "fr": "38,9 °C, et il a des frissons depuis environ une demi-heure. Pouls 108, tension 125/75, fréquence respiratoire 22, saturation 95 % sans oxygène.",
+   "de": "38,9 Grad, und seit etwa einer halben Stunde hat er Schüttelfrost. Puls 108, Blutdruck 125 zu 75, Atemfrequenz 22, Sättigung 95 Prozent ohne Sauerstoff.",
+   "en": "38.9 degrees, and he's had chills for about half an hour. Pulse 108, blood pressure 125 over 75, respiratory rate 22, saturation 95 percent without oxygen."
+  },
+  "noeuds.situation.choix.0.puis.0": {
+   "fr": "Bien. Quel genre de patient est-ce ?",
+   "de": "Gut. Was ist das für ein Patient?",
+   "en": "Good. What kind of patient is this?"
+  },
+  "noeuds.situation.choix.1": {
+   "fr": "Température 38,9, frissons depuis une trentaine de minutes. Le pouls est à 108, la tension à 125/75. Il respire 22 fois par minute, saturation 95 % à l'air ambiant.",
+   "de": "Temperatur 38,9, Schüttelfrost seit ungefähr dreißig Minuten. Der Puls liegt bei 108, der Blutdruck bei 125 zu 75. Er atmet 22-mal pro Minute, Sättigung 95 Prozent bei Raumluft.",
+   "en": "Temperature 38.9, chills for about thirty minutes. His pulse is at 108, his blood pressure at 125 over 75. He's breathing 22 times a minute, saturation 95 percent on room air."
+  },
+  "noeuds.situation.choix.1.puis.0": {
+   "fr": "Bien. Quel genre de patient est-ce ?",
+   "de": "Gut. Was ist das für ein Patient?",
+   "en": "Good. What kind of patient is this?"
+  },
+  "noeuds.situation.choix.2": {
+   "fr": "38,9 °C. Il a dû prendre froid, il tremble tout le temps.",
+   "de": "38,9 Grad. Er hat sich wohl erkältet, er zittert die ganze Zeit.",
+   "en": "38.9 degrees. He's probably caught a cold, he's shivering the whole time."
+  },
+  "noeuds.situation.choix.2.puis.0": {
+   "fr": "Pris froid ? Vous voulez dire des frissons ? Et le pouls, la tension ?",
+   "de": "Erkältet? Sie meinen Schüttelfrost? Und wie sind Puls und Blutdruck?",
+   "en": "Caught a cold (“erkältet”)? You mean chills, “Schüttelfrost”? And what are his pulse and blood pressure?"
+  },
+  "noeuds.situation.choix.2.aide": {
+   "fr": "<b>« Schüttelfrost », ce sont des frissons de fièvre ; « sich erkälten », c'est attraper un rhume.</b> Ne pose pas de diagnostic : décris et donne toutes les valeurs. « Schüttelfrost seit einer halben Stunde, Puls 108, Blutdruck 125 zu 75 … »",
+   "en": "<b>“Schüttelfrost” means the chills that come with a fever; “sich erkälten” means catching a cold.</b> Don't make a diagnosis: describe, and give all the values. “Schüttelfrost seit einer halben Stunde, Puls 108, Blutdruck 125 zu 75 …”"
+  },
+  "noeuds.hintergrund.choix.0": {
+   "fr": "{pohl} a 67 ans et il a été opéré de la vésicule biliaire hier matin à huit heures. Il dit qu'il a froid et qu'il a mal au ventre, quatre sur dix. Les pansements sont secs.",
+   "de": "{pohl} ist 67 und ist gestern Morgen um acht an der Gallenblase operiert worden. Er sagt, ihm sei kalt und er habe Schmerzen im Bauch, vier von zehn. Die Verbände sind trocken.",
+   "en": "{pohl} is 67 and had gallbladder surgery yesterday morning at 08:00. He says he's cold and has pain in his abdomen, four out of ten. The dressings are dry."
+  },
+  "noeuds.hintergrund.choix.0.puis.0": {
+   "fr": "Premier jour après la vésicule. Et vous, qu'en pensez-vous ?",
+   "de": "Erster Tag nach der Galle. Und was denken Sie?",
+   "en": "Day one after the gallbladder. And what do you think?"
+  },
+  "noeuds.hintergrund.choix.1": {
+   "fr": "Il a 67 ans, on lui a enlevé la vésicule hier matin. D'après {pohl}, il a très froid et il a mal au ventre, environ quatre sur dix. Sur les pansements, je ne vois rien de particulier.",
+   "de": "Er ist 67 Jahre alt, gestern früh wurde ihm die Gallenblase entfernt. Laut {pohl:dat} friere er sehr, und der Bauch tue ihm weh, ungefähr vier von zehn. An den Verbänden sehe ich nichts Auffälliges.",
+   "en": "He's 67 years old, and his gallbladder was removed early yesterday. According to {pohl}, he's freezing and his abdomen hurts, about four out of ten. I can't see anything unusual on the dressings."
+  },
+  "noeuds.hintergrund.choix.1.puis.0": {
+   "fr": "Premier jour après la vésicule. Et vous, qu'en pensez-vous ?",
+   "de": "Erster Tag nach der Galle. Und was denken Sie?",
+   "en": "Day one after the gallbladder. And what do you think?"
+  },
+  "noeuds.hintergrund.choix.2": {
+   "fr": "Il a été opéré ce matin, de la vésicule. C'est sûrement juste la fièvre après l'opération, rien de grave.",
+   "de": "Er ist heute Morgen operiert worden, an der Galle. Das ist sicher nur das Fieber nach der Operation, nichts Schlimmes.",
+   "en": "He had surgery this morning, on his gallbladder. That's surely just the fever after the operation, nothing serious."
+  },
+  "noeuds.hintergrund.choix.2.puis.0": {
+   "fr": "Ce matin ? Il est presque deux heures du matin. Et si c'est grave, je préfère en juger moi-même.",
+   "de": "Heute Morgen? Es ist fast zwei Uhr nachts. Und ob es schlimm ist, sehe ich mir lieber selbst an.",
+   "en": "This morning? It's almost two in the morning. And whether it's serious, I'd rather see for myself."
+  },
+  "noeuds.hintergrund.choix.2.aide": {
+   "fr": "<b>Deux erreurs : la date, et un jugement à la place des faits.</b> À une heure quarante, l'opération de huit heures était « gestern Morgen ». Et rapporte ce que dit le patient au lieu de rassurer le médecin : « Er sagt, ihm sei kalt und er habe Schmerzen im Bauch. »",
+   "en": "<b>Two mistakes: the date, and a judgment in place of the facts.</b> At 01:40, the operation at 08:00 was “gestern Morgen”. And report what the patient says instead of reassuring the doctor: “Er sagt, ihm sei kalt und er habe Schmerzen im Bauch.”"
+  },
+  "noeuds.einschaetzung.choix.0": {
+   "fr": "Je suis inquiet : à 22 h, il avait encore 37,4 et un pouls à 84. Maintenant une forte fièvre avec des frissons, et le pouls a nettement augmenté.",
+   "de": "Ich mache mir Sorgen: Um 22 Uhr hatte er noch 37,4 und einen Puls von 84. Jetzt hohes Fieber mit Schüttelfrost, und der Puls ist deutlich gestiegen.",
+   "en": "I'm worried: at 22:00 he still had 37.4 and a pulse of 84. Now a high fever with chills, and his pulse has gone up markedly."
+  },
+  "noeuds.einschaetzung.choix.0.puis.0": {
+   "fr": "Je vois. Il a déjà eu du paracétamol aujourd'hui ? Et combien pèse-t-il ?",
+   "de": "Verstehe. Hat er heute schon Paracetamol bekommen? Und was wiegt er?",
+   "en": "I see. Has he already had paracetamol today? And how much does he weigh?"
+  },
+  "noeuds.einschaetzung.choix.1": {
+   "fr": "Le changement a été rapide : le soir à 22 h, il avait 37,4 °C et un pouls à 84. Je pense qu'un médecin devrait l'examiner encore cette nuit.",
+   "de": "Die Veränderung kam schnell: Am Abend um 22 Uhr waren es 37,4 Grad und Puls 84. Ich finde, er sollte heute Nacht noch von einem Arzt untersucht werden.",
+   "en": "The change came quickly: in the evening at 22:00 it was 37.4 degrees and pulse 84. I think he should be examined by a doctor tonight."
+  },
+  "noeuds.einschaetzung.choix.1.puis.0": {
+   "fr": "Je vois. Il a déjà eu du paracétamol aujourd'hui ? Et combien pèse-t-il ?",
+   "de": "Verstehe. Hat er heute schon Paracetamol bekommen? Und was wiegt er?",
+   "en": "I see. Has he already had paracetamol today? And how much does he weigh?"
+  },
+  "noeuds.einschaetzung.choix.2": {
+   "fr": "Je ne sais pas. Ça ira peut-être mieux tout seul.",
+   "de": "Ich weiß nicht. Vielleicht wird es von allein besser.",
+   "en": "I don't know. Maybe it'll get better on its own."
+  },
+  "noeuds.einschaetzung.choix.2.puis.0": {
+   "fr": "Et c'est pour ça que vous me réveillez ? Comment ça a évolué depuis le soir ?",
+   "de": "Und dafür wecken Sie mich? Wie hat es sich denn seit dem Abend verändert?",
+   "en": "And you're waking me up for that? How has it changed since the evening?"
+  },
+  "noeuds.einschaetzung.choix.2.aide": {
+   "fr": "<b>Ton évaluation se dit clairement, avec la comparaison qui la justifie.</b> « Um 22 Uhr hatte er noch 37,4 und Puls 84. Jetzt … Ich mache mir Sorgen. » L'évolution est une information précieuse pour le médecin.",
+   "en": "<b>You state your assessment clearly, with the comparison that justifies it.</b> “Um 22 Uhr hatte er noch 37,4 und Puls 84. Jetzt … Ich mache mir Sorgen.” The trend is valuable information for the doctor."
+  },
+  "noeuds.bisher.choix.0": {
+   "fr": "Un instant, je regarde dans le dossier. … À 18 h, il a eu un gramme de paracétamol en comprimé, rien depuis. D'après la fiche d'admission, il pèse 84 kilos.",
+   "de": "Einen Moment, ich schaue in der Kurve nach. … Um 18 Uhr hat er ein Gramm Paracetamol als Tablette bekommen, seitdem nichts. Laut Aufnahmebogen wiegt er 84 Kilo.",
+   "en": "One moment, I'll check in the chart. … At 18:00 he was given one gram of paracetamol as a tablet, nothing since. According to the admission form he weighs 84 kilos."
+  },
+  "noeuds.bisher.choix.0.puis.0": {
+   "fr": "Bien. Alors prélevez deux paires d'hémocultures, à deux points de ponction différents. Ensuite, il reçoit un gramme de paracétamol en perfusion courte. Je viens dans l'heure qui suit et je l'examine.",
+   "de": "Gut. Dann nehmen Sie bitte zwei Paar Blutkulturen ab, aus zwei verschiedenen Punktionsstellen. Danach bekommt er ein Gramm Paracetamol als Kurzinfusion. Ich komme innerhalb der nächsten Stunde und sehe ihn mir an.",
+   "en": "Good. Then please draw two sets of blood cultures, from two different puncture sites. After that he gets one gram of paracetamol as a short infusion. I'll come within the next hour and take a look at him."
+  },
+  "noeuds.bisher.choix.1": {
+   "fr": "Je vérifie tout de suite. … D'après le dossier : paracétamol un gramme par voie orale à 18 h, plus rien ensuite. Poids 84 kilos.",
+   "de": "Das sehe ich sofort nach. … Laut Kurve: Paracetamol ein Gramm oral um 18 Uhr, danach nichts mehr. Gewicht 84 Kilogramm.",
+   "en": "I'll check that right away. … According to the chart: paracetamol one gram by mouth at 18:00, nothing after that. Weight 84 kilograms."
+  },
+  "noeuds.bisher.choix.1.puis.0": {
+   "fr": "Bien. Alors prélevez deux paires d'hémocultures, à deux points de ponction différents. Ensuite, il reçoit un gramme de paracétamol en perfusion courte. Je viens dans l'heure qui suit et je l'examine.",
+   "de": "Gut. Dann nehmen Sie bitte zwei Paar Blutkulturen ab, aus zwei verschiedenen Punktionsstellen. Danach bekommt er ein Gramm Paracetamol als Kurzinfusion. Ich komme innerhalb der nächsten Stunde und sehe ihn mir an.",
+   "en": "Good. Then please draw two sets of blood cultures, from two different puncture sites. After that he gets one gram of paracetamol as a short infusion. I'll come within the next hour and take a look at him."
+  },
+  "noeuds.bisher.choix.2": {
+   "fr": "Je crois qu'il a eu quelque chose le soir. Et il pèse dans les quatre-vingts kilos, j'imagine.",
+   "de": "Ich glaube, am Abend hat er etwas bekommen. Und er wiegt so ungefähr achtzig Kilo, schätze ich.",
+   "en": "I think he was given something in the evening. And he weighs roughly eighty kilos, I'd guess."
+  },
+  "noeuds.bisher.choix.2.puis.0": {
+   "fr": "« Je crois », ça ne me suffit pas. Regardez dans le dossier, s'il vous plaît.",
+   "de": "„Ich glaube“ reicht mir nicht. Schauen Sie bitte in die Kurve.",
+   "en": "“I think” isn't enough for me. Please look in the chart."
+  },
+  "noeuds.bisher.choix.2.aide": {
+   "fr": "<b>Une dose et un poids ne se devinent pas : ils se vérifient dans le dossier.</b> « Einen Moment, ich schaue in der Kurve nach. » Le médecin attend volontiers quelques secondes pour une réponse juste.",
+   "en": "<b>A dose and a weight are not guessed: they are checked in the chart.</b> “Einen Moment, ich schaue in der Kurve nach.” The doctor is happy to wait a few seconds for a correct answer."
+  },
+  "noeuds.zuruecklesen.dit.0.recit": {
+   "fr": "{yusuf} a tout noté pendant que le médecin parlait.",
+   "en": "{yusuf} wrote everything down while the doctor was speaking."
+  },
+  "noeuds.zuruecklesen.choix.0": {
+   "fr": "Je vous relis la prescription : d'abord, on prélève deux paires d'hémocultures, à deux points de ponction différents. Ensuite, un gramme de paracétamol en perfusion courte. Vous venez dans l'heure.",
+   "de": "Ich lese Ihnen die Anordnung noch einmal vor: Zuerst werden zwei Paar Blutkulturen abgenommen, aus zwei verschiedenen Punktionsstellen. Danach ein Gramm Paracetamol als Kurzinfusion. Sie kommen innerhalb einer Stunde.",
+   "en": "I'll read the order back to you: first, two sets of blood cultures are drawn, from two different puncture sites. After that, one gram of paracetamol as a short infusion. You'll come within an hour."
+  },
+  "noeuds.zuruecklesen.choix.0.puis.0": {
+   "fr": "C'est juste.",
+   "de": "Richtig.",
+   "en": "Correct."
+  },
+  "noeuds.zuruecklesen.choix.1": {
+   "fr": "Je répète, pour être sûr : deux paires d'hémocultures à deux points de ponction, ensuite paracétamol un gramme par voie veineuse en perfusion courte. Vous venez le voir dans l'heure.",
+   "de": "Ich wiederhole zur Sicherheit: zwei Paar Blutkulturen aus zwei Punktionsstellen, anschließend Paracetamol ein Gramm intravenös als Kurzinfusion. Sie sehen ihn sich in der nächsten Stunde an.",
+   "en": "I'll repeat, to be safe: two sets of blood cultures from two puncture sites, then paracetamol one gram intravenously as a short infusion. You'll take a look at him within the next hour."
+  },
+  "noeuds.zuruecklesen.choix.1.puis.0": {
+   "fr": "C'est juste.",
+   "de": "Richtig.",
+   "en": "Correct."
+  },
+  "noeuds.zuruecklesen.choix.2": {
+   "fr": "Donc du paracétamol en perfusion courte, et deux poches de sang. Bien.",
+   "de": "Also Paracetamol als Kurzinfusion, und zwei Blutkonserven. Gut.",
+   "en": "So paracetamol as a short infusion, and two units of blood (“Blutkonserven”). Good."
+  },
+  "noeuds.zuruecklesen.choix.2.puis.0": {
+   "fr": "Des poches de sang ? Non ! Des hémocultures, pour le labo. Il n'a pas besoin de transfusion.",
+   "de": "Blutkonserven? Nein! Blutkulturen, fürs Labor. Er braucht doch keine Transfusion.",
+   "en": "“Blutkonserven”, units of blood? No! “Blutkulturen”, blood cultures, for the lab. He doesn't need a transfusion."
+  },
+  "noeuds.zuruecklesen.choix.2.aide": {
+   "fr": "<b>« Blutkulturen » (hémocultures) et « Blutkonserven » (poches de sang) n'ont rien à voir.</b> C'est pour ça qu'on relit tout, dans l'ordre : « Ich lese Ihnen die Anordnung noch einmal vor: Zuerst werden zwei Paar Blutkulturen abgenommen … »",
+   "en": "<b>“Blutkulturen” (blood cultures) and “Blutkonserven” (units of blood) have nothing to do with each other.</b> That's why you read everything back, in order: “Ich lese Ihnen die Anordnung noch einmal vor: Zuerst werden zwei Paar Blutkulturen abgenommen …”"
+  },
+  "noeuds.nachfragen.dit.0.recit": {
+   "fr": "En relisant ses notes, {yusuf} voit qu'il manque deux choses : la durée de la perfusion, et quand rappeler avant l'arrivée du médecin.",
+   "en": "Reading over his notes, {yusuf} sees that two things are missing: how long the infusion should run, and when to call back before the doctor arrives."
+  },
+  "noeuds.nachfragen.choix.0": {
+   "fr": "Je peux encore poser deux questions ? Sur combien de temps la perfusion courte doit-elle passer ? Et à partir de quelle température dois-je vous rappeler avant votre arrivée ?",
+   "de": "Darf ich noch zwei Dinge fragen? Über welchen Zeitraum soll die Kurzinfusion laufen? Und ab welcher Temperatur soll ich Sie wieder anrufen, bevor Sie da sind?",
+   "en": "May I ask two more things? Over what period should the short infusion run? And from what temperature should I call you again before you get here?"
+  },
+  "noeuds.nachfragen.choix.0.puis.0": {
+   "fr": "Sur quinze minutes. Et appelez-moi tout de suite si la fièvre dépasse trente-neuf virgule cinq, si la tension descend sous cent ou s'il semble confus.",
+   "de": "Über fünfzehn Minuten. Und rufen Sie mich sofort an, wenn das Fieber über neununddreißig Komma fünf steigt, der Blutdruck unter hundert fällt oder er verwirrt wirkt.",
+   "en": "Over fifteen minutes. And call me immediately if the fever rises above thirty-nine point five, the blood pressure drops below one hundred, or he seems confused."
+  },
+  "noeuds.nachfragen.choix.1": {
+   "fr": "Il me manque encore deux informations : la durée de la perfusion, et une limite à partir de laquelle je dois vous rappeler avant. Pourriez-vous me les donner, s'il vous plaît ?",
+   "de": "Mir fehlen noch zwei Angaben: die Laufzeit der Infusion und eine Grenze, ab der ich Sie vorher noch einmal anrufen soll. Könnten Sie mir das bitte sagen?",
+   "en": "I'm still missing two pieces of information: the infusion time, and a limit above which I should call you again beforehand. Could you please tell me those?"
+  },
+  "noeuds.nachfragen.choix.1.puis.0": {
+   "fr": "Sur quinze minutes. Et appelez-moi tout de suite si la fièvre dépasse trente-neuf virgule cinq, si la tension descend sous cent ou s'il semble confus.",
+   "de": "Über fünfzehn Minuten. Und rufen Sie mich sofort an, wenn das Fieber über neununddreißig Komma fünf steigt, der Blutdruck unter hundert fällt oder er verwirrt wirkt.",
+   "en": "Over fifteen minutes. And call me immediately if the fever rises above thirty-nine point five, the blood pressure drops below one hundred, or he seems confused."
+  },
+  "noeuds.nachfragen.choix.2": {
+   "fr": "Bon, alors je fais passer la perfusion aussi vite que possible.",
+   "de": "Gut, dann lasse ich die Infusion einfach so schnell laufen, wie es geht.",
+   "en": "Fine, then I'll just let the infusion run as fast as it will go."
+  },
+  "noeuds.nachfragen.choix.2.puis.0": {
+   "fr": "Non, surtout pas ! Demandez, s'il vous manque quelque chose.",
+   "de": "Nein, bitte nicht! Fragen Sie, wenn Ihnen etwas fehlt.",
+   "en": "No, please don't! Ask if you're missing something."
+  },
+  "noeuds.nachfragen.choix.2.aide": {
+   "fr": "<b>Ce qui manque dans une prescription se demande, poliment et précisément.</b> « Über welchen Zeitraum soll die Kurzinfusion laufen? » « Ab welcher Temperatur soll ich Sie wieder anrufen? » Une question indirecte (« Könnten Sie mir sagen, … ») est encore plus polie.",
+   "en": "<b>What is missing from an order is asked for, politely and precisely.</b> “Über welchen Zeitraum soll die Kurzinfusion laufen?” “Ab welcher Temperatur soll ich Sie wieder anrufen?” An indirect question (“Könnten Sie mir sagen, …”) is even more polite."
+  },
+  "noeuds.doku.choix.0": {
+   "fr": "Je répète : deux paires d'hémocultures à deux points de ponction différents, ensuite un gramme de paracétamol en perfusion courte sur quinze minutes ; rappeler au-dessus de 39,5 °C, tension sous 100 ou confusion. Je l'inscris comme prescription téléphonique, avec l'heure et votre nom. Merci de la signer quand vous serez dans le service.",
+   "de": "Ich wiederhole: zwei Paar Blutkulturen aus zwei verschiedenen Punktionsstellen, danach ein Gramm Paracetamol als Kurzinfusion über fünfzehn Minuten; anrufen bei über 39,5 Grad, Blutdruck unter 100 oder Verwirrtheit. Ich trage das als telefonische Anordnung ein, mit Uhrzeit und Ihrem Namen. Bitte zeichnen Sie sie ab, wenn Sie auf Station sind.",
+   "en": "I'll repeat: two sets of blood cultures from two different puncture sites, then one gram of paracetamol as a short infusion over fifteen minutes; call if over 39.5 degrees, blood pressure below 100 or confusion. I'll enter that as a telephone order, with the time and your name. Please sign it when you're on the ward."
+  },
+  "noeuds.doku.choix.0.puis.0": {
+   "fr": "Je le ferai. Bien joué, à tout de suite.",
+   "de": "Mache ich. Gut gemacht, bis gleich.",
+   "en": "I will. Well done, see you shortly."
+  },
+  "noeuds.doku.choix.1": {
+   "fr": "Compris : durée quinze minutes, et je vous appelle tout de suite au-dessus de 39,5 °C, systolique sous 100 ou s'il est confus. Je documente la prescription maintenant ; il ne reste plus qu'à vous de la signer.",
+   "de": "Verstanden: Laufzeit fünfzehn Minuten, und ich melde mich sofort bei über 39,5 Grad, systolisch unter 100 oder wenn er verwirrt ist. Die Anordnung dokumentiere ich jetzt; sie muss nur noch von Ihnen abgezeichnet werden.",
+   "en": "Understood: infusion time fifteen minutes, and I'll call right away if it's over 39.5 degrees, systolic below 100, or if he's confused. I'll document the order now; it then just needs to be signed by you."
+  },
+  "noeuds.doku.choix.1.puis.0": {
+   "fr": "Je le ferai. Bien joué, à tout de suite.",
+   "de": "Mache ich. Gut gemacht, bis gleich.",
+   "en": "I will. Well done, see you shortly."
+  },
+  "noeuds.doku.choix.2": {
+   "fr": "C'est bon. Vous n'avez rien à signer, j'ai tout noté.",
+   "de": "Alles klar. Unterschreiben müssen Sie nichts, ich habe ja alles aufgeschrieben.",
+   "en": "All right. You don't need to sign anything, I've written it all down."
+  },
+  "noeuds.doku.choix.2.puis.0": {
+   "fr": "Si, bien sûr que je la signe. Une prescription a besoin de la signature du médecin.",
+   "de": "Doch, natürlich zeichne ich das ab. Eine Anordnung braucht die Unterschrift des Arztes.",
+   "en": "Oh yes, of course I'll sign it. An order needs the doctor's signature."
+  },
+  "noeuds.doku.choix.2.aide": {
+   "fr": "<b>Une prescription téléphonique est notée par la soignante, puis signée par le médecin dès que possible.</b> « Ich trage das als telefonische Anordnung ein. Bitte zeichnen Sie sie ab, wenn Sie auf Station sind. »",
+   "en": "<b>A telephone order is written down by the nurse, then signed by the doctor as soon as possible.</b> “Ich trage das als telefonische Anordnung ein. Bitte zeichnen Sie sie ab, wenn Sie auf Station sind.”"
+  },
+  "ecouter.0.q": {
+   "fr": "Quelle est la température de {pohl} ?",
+   "de": "Wie hoch ist die Temperatur von {pohl}?",
+   "en": "How high is {pohl}'s temperature?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Trente-sept virgule quatre degrés.",
+   "de": "Siebenunddreißig Komma vier Grad.",
+   "en": "Thirty-seven point four degrees."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Trente-huit virgule neuf degrés.",
+   "de": "Achtunddreißig Komma neun Grad.",
+   "en": "Thirty-eight point nine degrees."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Trente-neuf virgule cinq degrés.",
+   "de": "Neununddreißig Komma fünf Grad.",
+   "en": "Thirty-nine point five degrees."
+  },
+  "ecouter.1.q": {
+   "fr": "Que doit faire {yusuf} en premier ?",
+   "de": "Was muss {yusuf} zuerst machen?",
+   "en": "What does {yusuf} have to do first?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Prélever deux paires d'hémocultures.",
+   "de": "Zwei Paar Blutkulturen abnehmen.",
+   "en": "Draw two sets of blood cultures."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Donner du paracétamol en comprimé.",
+   "de": "Paracetamol als Tablette geben.",
+   "en": "Give paracetamol as a tablet."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Préparer une transfusion.",
+   "de": "Eine Bluttransfusion vorbereiten.",
+   "en": "Prepare a blood transfusion."
+  },
+  "ecouter.2.q": {
+   "fr": "Combien de temps la perfusion courte doit-elle passer ?",
+   "de": "Wie lange soll die Kurzinfusion laufen?",
+   "en": "How long should the short infusion run?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Une heure.",
+   "de": "Eine Stunde.",
+   "en": "One hour."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Le plus vite possible.",
+   "de": "So schnell wie möglich.",
+   "en": "As fast as possible."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Quinze minutes.",
+   "de": "Fünfzehn Minuten.",
+   "en": "Fifteen minutes."
+  },
+  "ecouter.3.q": {
+   "fr": "Quand {yusuf} doit-il rappeler le médecin tout de suite ?",
+   "de": "Wann soll {yusuf} den Arzt sofort wieder anrufen?",
+   "en": "When should {yusuf} call the doctor again immediately?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Si {pohl} veut dormir.",
+   "de": "Wenn {pohl} schlafen möchte.",
+   "en": "If {pohl} wants to sleep."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Si la fièvre dépasse trente-neuf virgule cinq.",
+   "de": "Wenn das Fieber über neununddreißig Komma fünf steigt.",
+   "en": "If the fever rises above thirty-nine point five."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Quand la perfusion est terminée.",
+   "de": "Wenn die Infusion fertig ist.",
+   "en": "When the infusion is finished."
+  }
+ }
+}

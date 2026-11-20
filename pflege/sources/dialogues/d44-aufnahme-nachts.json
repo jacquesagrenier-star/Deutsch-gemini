@@ -1,0 +1,158 @@
+{
+ "id": "d44-aufnahme-nachts",
+ "numero": 44,
+ "niveau": "B2",
+ "porte": "examen",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 5,
+ "role": "yusuf",
+ "personnes": ["pohl"],
+ "titre": {"t": "Aufnahme in der Nacht", "fr": "Une admission la nuit"},
+ "intro": {"fr": "Jeudi 12 novembre, vingt-trois heures trente. {pohl}, 67 ans, arrive des urgences au {station} : des calculs dans la vésicule biliaire. Il sera opéré demain à huit heures, et il a peur. Tu joues {yusuf}, de nuit : accueille-le, vérifie son identité, rassure-le sans rien promettre, explique clairement ce qui est interdit à partir de minuit, ce qu'il doit faire pour ne pas tomber et ce qui se passera le matin."},
+ "but": {"fr": "Accueillir un patient inquiet la nuit ; vérifier l'identité par une question ouverte ; rassurer sans mentir ; dire une règle clairement (« darf nicht », le passif avec un modal : « darf nicht geraucht werden ») ; annoncer le déroulement avec des subordonnées de temps (bevor, sobald) ; respecter une demande légitime."},
+ "grammaire": ["g11", "g12", "g07"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Cholécystectomie le vendredi 13 à 8 h ; à jeun à partir de minuit : rien manger, rien boire, ne pas fumer, pas de chewing-gum (c'est la consigne de l'anesthésie pour ce patient, pas une règle universelle : manger et boire n'ont pas le même délai, le protocole de l'anesthésie fait foi) ; quelques gorgées d'eau permises jusqu'à minuit ? ; antidouleur fort reçu aux urgences (à confirmer) d'où vertiges et risque de chute : se lever seulement avec de l'aide, sonner avant ; le matin : chemise d'opération, bijoux, lunettes et prothèse dentaire retirés, départ au bloc vers 7 h 30 ; vérification de l'identité par question ouverte (nom et date de naissance comparés au bracelet) ; pas de somnifère sans prescription."},
+ "redemittel": [
+  {"t": "Herzlich willkommen auf der {station}. Ich bin heute Nacht für Sie da.", "dit": "Herzlich willkommen auf der {station:dit}. Ich bin heute Nacht für Sie da.", "fr": "Bienvenue au {station}. Cette nuit, c'est moi qui m'occupe de vous.", "fonction": "annoncer"},
+  {"t": "Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen?", "fr": "Pourriez-vous me dire votre nom et votre date de naissance, s'il vous plaît ?", "fonction": "demander"},
+  {"t": "Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht.", "fr": "Je ne peux rien vous promettre, mais cette opération se fait très souvent.", "fonction": "rassurer"},
+  {"t": "Ab Mitternacht dürfen Sie nichts mehr essen. Trinken dürfen Sie nur noch so lange, wie die Anästhesie es erlaubt hat.", "fr": "À partir de minuit, vous ne devez plus rien manger. Vous pouvez boire seulement aussi longtemps que l'anesthésie l'a permis.", "fonction": "annoncer", "relire": true, "relire_note": "Règle du jeûne avant l'anesthésie : fixée par l'anesthésie, manger et boire n'ont pas le même délai."},
+  {"t": "Vor der Narkose darf nicht mehr geraucht werden.", "fr": "Avant l'anesthésie, on ne doit plus fumer.", "fonction": "refuser"},
+  {"t": "Bevor Sie aufstehen, klingeln Sie bitte. Allein dürfen Sie heute Nacht nicht aufstehen.", "fr": "Avant de vous lever, sonnez, s'il vous plaît. Cette nuit, vous ne devez pas vous lever seul.", "fonction": "annoncer"},
+  {"t": "Um halb acht werden Sie zur Operation abgeholt.", "fr": "À sept heures et demie, on viendra vous chercher pour l'opération.", "fonction": "annoncer"},
+  {"t": "Ich schaue heute Nacht regelmäßig nach Ihnen.", "fr": "Cette nuit, je passerai vous voir régulièrement.", "fonction": "rassurer"}
+ ],
+ "debut": "ankommen",
+ "noeuds": {
+  "ankommen": {
+   "dit": [
+    {"recit": {"fr": "Vingt-trois heures trente. Un brancardier amène {pohl} des urgences dans un fauteuil roulant. Il serre un sac de sport sur ses genoux et regarde partout autour de lui."}},
+    {"qui": "pohl", "air": "question", "t": "Guten Abend … Bin ich hier richtig? Man hat mir gesagt, ich werde morgen früh operiert.", "fr": "Bonsoir… Je suis au bon endroit ? On m'a dit que je serai opéré demain matin."}
+   ],
+   "choix": [
+    {"t": "Guten Abend, {pohl}. Ja, Sie sind hier richtig. Herzlich willkommen auf der {station}. Ich bin {yusuf}, ich bin heute Nacht für Sie da.", "dit": "Guten Abend, {pohl}. Ja, Sie sind hier richtig. Herzlich willkommen auf der {station:dit}. Ich bin {yusuf}, ich bin heute Nacht für Sie da.", "fr": "Bonsoir, {pohl:voc}. Oui, vous êtes au bon endroit. Bienvenue au {station}. Je suis {yusuf}, cette nuit c'est moi qui m'occupe de vous.", "va": "identitaet",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Da bin ich aber froh. Unten war so ein Durcheinander.", "fr": "Je suis bien content. En bas, c'était une de ces pagailles."}]},
+    {"t": "Guten Abend! Ja, genau, Sie werden schon erwartet. Mein Name ist {yusuf}, ich bin die Pflegekraft im Nachtdienst.", "fr": "Bonsoir ! Oui, c'est bien ça, on vous attend. Je m'appelle {yusuf}, je suis le soignant de nuit.", "va": "identitaet",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Da bin ich aber froh. Unten war so ein Durcheinander.", "fr": "Je suis bien content. En bas, c'était une de ces pagailles."}]},
+    {"faux": true, "t": "Ja. Name?", "fr": "Oui. Nom ?",
+     "puis": [{"qui": "pohl", "air": "perplexe", "t": "Äh … {pohl:famille}. Und wer sind Sie?", "fr": "Euh… {pohl:famille}. Et vous êtes qui ?"}],
+     "aide": {"fr": "<b>Un patient qui arrive la nuit a d'abord besoin d'un accueil : un bonsoir, ton nom, ta fonction.</b> « Guten Abend. Herzlich willkommen auf unserer Station. Ich bin …, ich bin heute Nacht für Sie da. » Un mot sec augmente l'inquiétude."}}
+   ]
+  },
+  "identitaet": {
+   "dit": [
+    {"recit": {"fr": "{yusuf} voit le bracelet d'identification au poignet de {pohl}."}}
+   ],
+   "choix": [
+    {"t": "Bevor ich Ihnen Ihr Zimmer zeige: Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen? Ich vergleiche das mit Ihrem Armband.", "fr": "Avant de vous montrer votre chambre : pourriez-vous me dire votre nom et votre date de naissance, s'il vous plaît ? Je compare avec votre bracelet.", "va": "angst",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "{pohl:fiche}, geboren am dritten Mai neunzehnhundertneunundfünfzig. Stimmt's?", "fr": "{pohl:famille}, né le 3 mai 1959. C'est bon ?"},
+              {"qui": "pohl", "air": "question", "t": "Sagen Sie mal … ehrlich: Muss ich Angst haben vor morgen? Ich bin noch nie operiert worden.", "fr": "Dites-moi… franchement : je dois avoir peur pour demain ? Je n'ai jamais été opéré."}]},
+    {"t": "Könnten Sie mir zuerst noch Ihren vollständigen Namen und Ihr Geburtsdatum nennen? Das muss bei jeder Aufnahme kontrolliert werden.", "fr": "Pourriez-vous d'abord me donner votre nom complet et votre date de naissance ? On doit le contrôler à chaque admission.", "va": "angst",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "{pohl:fiche}, geboren am dritten Mai neunzehnhundertneunundfünfzig. Stimmt's?", "fr": "{pohl:famille}, né le 3 mai 1959. C'est bon ?"},
+              {"qui": "pohl", "air": "question", "t": "Sagen Sie mal … ehrlich: Muss ich Angst haben vor morgen? Ich bin noch nie operiert worden.", "fr": "Dites-moi… franchement : je dois avoir peur pour demain ? Je n'ai jamais été opéré."}]},
+    {"faux": true, "t": "Sie sind {pohl}, richtig?", "fr": "Vous êtes {pohl}, c'est ça ?",
+     "puis": [{"qui": "pohl", "air": "perplexe", "t": "Ja, ja … Ich bin so müde, ich würde gerade zu allem Ja sagen.", "fr": "Oui, oui… Je suis tellement fatigué que je dirais oui à n'importe quoi."}],
+     "aide": {"fr": "<b>L'identité se vérifie par une question ouverte, jamais par un « oui » à donner.</b> Un patient fatigué ou anxieux répond « oui » à tout. « Würden Sie mir bitte Ihren Namen und Ihr Geburtsdatum sagen? » Puis on compare avec le bracelet."}}
+   ]
+  },
+  "angst": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich verstehe gut, dass Sie Angst haben. Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht. Ihre Fragen schreibe ich mir auf, und morgen früh beantwortet sie Ihnen das Ärzteteam.", "fr": "Je comprends bien que vous ayez peur. Je ne peux rien vous promettre, mais cette opération se fait très souvent. Je note vos questions, et demain matin l'équipe médicale y répondra.", "va": "trinken",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "Hm. Das ist ehrlich, wenigstens. Sagen Sie, ich habe so einen trockenen Mund. Darf ich noch was trinken?", "fr": "Hum. C'est honnête, au moins. Dites, j'ai la bouche tellement sèche. Je peux encore boire quelque chose ?"}]},
+    {"t": "Das ist ganz normal vor einer ersten Operation. Ich kann Ihnen nicht sagen, dass nichts passieren kann, aber die Entfernung der Gallenblase ist ein Routineeingriff. Was macht Ihnen am meisten Sorgen?", "fr": "C'est tout à fait normal avant une première opération. Je ne peux pas vous dire qu'il ne peut rien arriver, mais l'ablation de la vésicule est une intervention de routine. Qu'est-ce qui vous inquiète le plus ?", "va": "trinken",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "Die Narkose, glaube ich. Aber gut. Sagen Sie, ich habe so einen trockenen Mund. Darf ich noch was trinken?", "fr": "L'anesthésie, je crois. Mais bon. Dites, j'ai la bouche tellement sèche. Je peux encore boire quelque chose ?"}]},
+    {"faux": true, "t": "Keine Sorge, da kann überhaupt nichts passieren. Morgen um diese Zeit ist alles vorbei.", "fr": "Ne vous inquiétez pas, il ne peut absolument rien arriver. Demain à la même heure, tout sera fini.",
+     "puis": [{"qui": "pohl", "air": "perplexe", "t": "Überhaupt nichts? Bei einer Operation? Das glaube ich Ihnen nicht so ganz.", "fr": "Absolument rien ? Pour une opération ? Je ne vous crois pas tout à fait."}],
+     "aide": {"fr": "<b>Rassurer, ce n'est pas promettre : on reconnaît la peur et on dit ce qui est vrai.</b> « Versprechen kann ich Ihnen nichts, aber diese Operation wird sehr oft gemacht. » Une promesse impossible fait perdre la confiance, et les questions médicales vont à l'équipe médicale."}}
+   ]
+  },
+  "trinken": {
+   "dit": [
+    {"recit": {"fr": "Il est vingt-trois heures quarante."}}
+   ],
+   "choix": [
+    {"t": "Ein paar Schlucke Wasser dürfen Sie noch trinken, aber nur bis Mitternacht: So hat es die Anästhesie für Sie festgelegt. Ab Mitternacht müssen Sie nüchtern bleiben: Sie dürfen nichts mehr essen, nichts mehr trinken und auch keinen Kaugummi kauen.", "fr": "Vous pouvez encore boire quelques gorgées d'eau, mais seulement jusqu'à minuit : c'est ce que l'anesthésie a fixé pour vous. À partir de minuit, vous devez rester à jeun : vous ne devez plus rien manger ni boire, pas de chewing-gum non plus.", "va": "rauchen", "relire": true, "relire_note": "Règle du jeûne avant l'anesthésie : la consigne de l'anesthésie pour ce patient (minuit), pas une règle universelle.",
+     "puis": [{"qui": "pohl", "air": "question", "t": "Gut, dann trinke ich jetzt noch schnell. Und eine Zigarette? Nur eine, ich bin so nervös.", "fr": "Bon, alors je bois vite maintenant. Et une cigarette ? Rien qu'une, je suis tellement nerveux."}]},
+    {"t": "Ein paar Schlucke Wasser, ja, aber nur noch bis Mitternacht. Danach darf nichts mehr gegessen oder getrunken werden, sonst kann die Narkose gefährlich werden.", "fr": "Quelques gorgées d'eau, oui, mais seulement jusqu'à minuit. Après, on ne doit plus rien manger ni boire, sinon l'anesthésie peut devenir dangereuse.", "va": "rauchen",
+     "puis": [{"qui": "pohl", "air": "question", "t": "Gut, dann trinke ich jetzt noch schnell. Und eine Zigarette? Nur eine, ich bin so nervös.", "fr": "Bon, alors je bois vite maintenant. Et une cigarette ? Rien qu'une, je suis tellement nerveux."}]},
+    {"faux": true, "t": "Ab Mitternacht sollten Sie vielleicht lieber nicht mehr so viel essen und trinken.", "fr": "À partir de minuit, vous devriez peut-être plutôt ne plus trop manger ni boire.",
+     "puis": [{"qui": "pohl", "air": "question", "t": "„Nicht so viel“? Also ein kleines Brot geht noch?", "fr": "« Pas trop » ? Donc un petit pain, ça va encore ?"}],
+     "aide": {"fr": "<b>Une règle de sécurité ne se dit pas comme un conseil : « dürfen nicht », pas « sollten vielleicht lieber ».</b> « Ab Mitternacht dürfen Sie nichts mehr essen. » La règle vient de l'anesthésie : dis-la telle qu'elle a été fixée pour ce patient. La politesse est dans le ton et l'explication, pas dans le flou."}}
+   ]
+  },
+  "rauchen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich verstehe, dass Sie nervös sind. Aber vor der Narkose darf nicht mehr geraucht werden. Wenn Sie möchten, bleibe ich noch einen Moment bei Ihnen.", "fr": "Je comprends que vous soyez nerveux. Mais avant l'anesthésie, on ne doit plus fumer. Si vous voulez, je reste encore un moment avec vous.", "va": "aufstehen",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Schon gut, ich halte das aus. Aber jetzt muss ich mal dringend auf die Toilette. Ich gehe schnell allein.", "fr": "Ça va, je tiendrai le coup. Mais là, il faut vraiment que j'aille aux toilettes. J'y vais vite tout seul."}]},
+    {"t": "Leider nein. Auch Rauchen ist vor der Operation nicht erlaubt, weil es die Atmung in der Narkose stören kann. Ich weiß, das ist hart heute Nacht.", "fr": "Malheureusement non. Fumer non plus n'est pas permis avant l'opération, parce que ça peut gêner la respiration sous anesthésie. Je sais, c'est dur cette nuit.", "va": "aufstehen",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Schon gut, ich halte das aus. Aber jetzt muss ich mal dringend auf die Toilette. Ich gehe schnell allein.", "fr": "Ça va, je tiendrai le coup. Mais là, il faut vraiment que j'aille aux toilettes. J'y vais vite tout seul."}]},
+    {"faux": true, "t": "Nein! Rauchen ist hier streng verboten!", "fr": "Non ! Ici, il est strictement interdit de fumer !",
+     "puis": [{"qui": "pohl", "air": "surprise", "t": "Schon gut, schon gut. Sie müssen mich nicht gleich anschreien.", "fr": "Ça va, ça va. Pas la peine de me crier dessus."}],
+     "aide": {"fr": "<b>Un refus clair passe mieux avec une raison et un geste.</b> « Ich verstehe, dass Sie nervös sind. Aber vor der Narkose darf nicht mehr geraucht werden. » Puis propose quelque chose : rester un moment avec lui."}}
+   ]
+  },
+  "aufstehen": {
+   "dit": [
+    {"recit": {"fr": "{pohl} pose déjà les mains sur les accoudoirs du fauteuil pour se lever."}}
+   ],
+   "choix": [
+    {"t": "Moment, ich helfe Ihnen. Sie haben in der Notaufnahme ein starkes Schmerzmittel bekommen, davon kann einem schwindelig werden. Bevor Sie heute Nacht aufstehen, klingeln Sie bitte. Hier ist die Klingel.", "fr": "Attendez, je vous aide. Aux urgences, vous avez eu un antidouleur fort, ça peut donner des vertiges. Cette nuit, avant de vous lever, sonnez, s'il vous plaît. Voici la sonnette.", "va": "morgen", "relire": true, "relire_note": "Antidouleur fort reçu aux urgences : à confirmer ; risque de chute.",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Schwindelig, das stimmt sogar ein bisschen. Na gut, dann klingele ich eben. Und was passiert morgen früh?", "fr": "Des vertiges, c'est même un peu vrai. Bon, d'accord, je sonnerai. Et qu'est-ce qui se passe demain matin ?"}]},
+    {"t": "Warten Sie bitte, ich begleite Sie. Allein dürfen Sie heute Nacht nicht aufstehen: Nach dem Schmerzmittel aus der Notaufnahme ist das Sturzrisiko zu hoch. Sobald Sie aufstehen möchten, drücken Sie bitte hier.", "fr": "Attendez, s'il vous plaît, je vous accompagne. Cette nuit, vous ne devez pas vous lever seul : après l'antidouleur des urgences, le risque de chute est trop grand. Dès que vous voulez vous lever, appuyez ici, s'il vous plaît.", "va": "morgen",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Schwindelig bin ich tatsächlich ein bisschen. Na gut, dann klingele ich eben. Und was passiert morgen früh?", "fr": "C'est vrai que j'ai un peu la tête qui tourne. Bon, d'accord, je sonnerai. Et qu'est-ce qui se passe demain matin ?"}]},
+    {"faux": true, "t": "Ja, gehen Sie ruhig. Die Toilette ist gleich hier links.", "fr": "Oui, allez-y. Les toilettes sont juste ici, à gauche.",
+     "puis": [{"qui": "pohl", "air": "surprise", "t": "Hoppla … Mir dreht sich alles. Können Sie mich mal festhalten?", "fr": "Oh là… Tout tourne. Vous pouvez me tenir ?"}],
+     "aide": {"fr": "<b>Nuit, lieu inconnu, antidouleur fort : le risque de chute est grand. On accompagne, et on explique la sonnette.</b> « Bevor Sie heute Nacht aufstehen, klingeln Sie bitte. » Donne la raison, pour qu'il respecte la consigne quand tu n'es pas là."}}
+   ]
+  },
+  "morgen": {
+   "dit": [],
+   "choix": [
+    {"t": "Gegen halb sechs komme ich noch einmal zu Ihnen. Bevor Sie um halb acht zur Operation abgeholt werden, ziehen Sie das Operationshemd an, und Schmuck und Brille müssen abgelegt und eine Zahnprothese muss herausgenommen werden.", "fr": "Vers cinq heures et demie, je repasse vous voir. Avant qu'on vienne vous chercher à sept heures et demie pour l'opération, vous mettez la chemise d'opération, et il faut enlever les bijoux et les lunettes, ainsi que la prothèse dentaire s'il y en a une.", "va": "frau", "relire": true, "relire_note": "Préparation du matin et heure de départ au bloc.",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "Zahnprothese habe ich keine, alles noch echt. Darf ich vorher noch meine Frau anrufen? Sie wartet bestimmt auf eine Nachricht.", "fr": "De prothèse, je n'en ai pas, tout est encore d'origine. Je peux appeler ma femme avant ? Elle attend sûrement des nouvelles."}]},
+    {"t": "Um halb acht werden Sie zur Operation abgeholt. Sobald Sie wach sind, hilft Ihnen meine Kollegin vom Frühdienst beim Anziehen des Operationshemds. Schmuck und Brille werden vorher abgenommen und hier eingeschlossen.", "fr": "À sept heures et demie, on viendra vous chercher pour l'opération. Dès que vous serez réveillé, ma collègue du matin vous aidera à mettre la chemise d'opération. Les bijoux et les lunettes seront enlevés avant et mis sous clé ici.", "va": "frau",
+     "puis": [{"qui": "pohl", "air": "attentive", "t": "Gut. Darf ich vorher noch meine Frau anrufen? Sie wartet bestimmt auf eine Nachricht.", "fr": "Bien. Je peux appeler ma femme avant ? Elle attend sûrement des nouvelles."}]},
+    {"faux": true, "t": "Um halb acht holen Sie zur Operation ab.", "fr": "À sept heures et demie, vous « allez chercher » à l'opération. (mal dit)",
+     "puis": [{"qui": "pohl", "air": "perplexe", "t": "Ich hole wen ab? Ich dachte, ich werde operiert.", "fr": "Je vais chercher qui ? Je croyais que c'était moi qu'on opérait."}],
+     "aide": {"fr": "<b>Le patient ne va chercher personne : on vient le chercher. C'est le passif : « Sie werden abgeholt ».</b> « Um halb acht werden Sie zur Operation abgeholt. » Avec un modal : « Die Brille muss abgelegt werden »."}}
+   ]
+  },
+  "frau": {
+   "dit": [],
+   "choix": [
+    {"t": "Natürlich, rufen Sie sie ruhig an. Soll ich Ihnen das Handy aus der Tasche holen? Die anderen Patienten schlafen schon, deshalb würde ich Sie bitten, leise zu sprechen.", "fr": "Bien sûr, appelez-la. Voulez-vous que je sorte votre portable du sac ? Les autres patients dorment déjà, alors je vous demanderais de parler doucement.", "va": "ende",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Danke. Sie wird froh sein, meine Stimme zu hören.", "fr": "Merci. Elle sera contente d'entendre ma voix."}]},
+    {"t": "Selbstverständlich. Wenn Sie möchten, können Sie in Ruhe telefonieren, bevor Sie sich hinlegen. Ich lasse Sie ein paar Minuten allein.", "fr": "Bien sûr. Si vous voulez, vous pouvez téléphoner tranquillement avant de vous coucher. Je vous laisse seul quelques minutes.", "va": "ende",
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Danke. Sie wird froh sein, meine Stimme zu hören.", "fr": "Merci. Elle sera contente d'entendre ma voix."}]},
+    {"faux": true, "t": "Jetzt noch? Es ist fast Mitternacht. Rufen Sie sie lieber morgen an.", "fr": "Encore maintenant ? Il est presque minuit. Appelez-la plutôt demain.",
+     "puis": [{"qui": "pohl", "air": "surprise", "t": "Morgen bin ich im OP! Sie macht sich doch Sorgen.", "fr": "Demain, je serai au bloc ! Elle s'inquiète, voyons."}],
+     "aide": {"fr": "<b>Appeler sa femme avant une opération est une demande légitime : on l'accepte et on aide.</b> « Natürlich, rufen Sie sie ruhig an. » Si besoin, demande poliment de parler doucement : « Ich würde Sie bitten, leise zu sprechen. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"recit": {"fr": "Minuit moins dix. {pohl} a parlé à sa femme. Il est couché, la sonnette à portée de main."}},
+    {"qui": "pohl", "air": "attentive", "t": "So. Jetzt bin ich ein bisschen ruhiger. Schlafen werde ich trotzdem schlecht, glaube ich.", "fr": "Voilà. Maintenant je suis un peu plus calme. Mais je crois que je dormirai mal quand même."}
+   ],
+   "choix": [
+    {"t": "Das ist vor einer Operation ganz normal. Ich schaue heute Nacht regelmäßig nach Ihnen. Gute Nacht, {pohl}.", "fr": "C'est tout à fait normal avant une opération. Cette nuit, je passerai vous voir régulièrement. Bonne nuit, {pohl:voc}.", "va": null,
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Danke, {yusuf}. Gute Nacht.", "fr": "Merci, {yusuf}. Bonne nuit."}]},
+    {"t": "Das verstehe ich. Wenn Sie nicht schlafen können oder etwas brauchen, klingeln Sie einfach. Ich bin die ganze Nacht auf der Station.", "fr": "Je comprends. Si vous n'arrivez pas à dormir ou si vous avez besoin de quelque chose, sonnez, tout simplement. Je suis dans le service toute la nuit.", "va": null,
+     "puis": [{"qui": "pohl", "air": "sourire", "t": "Danke, {yusuf}. Gute Nacht.", "fr": "Merci, {yusuf}. Bonne nuit."}]},
+    {"faux": true, "t": "Ich bringe Ihnen eine Schlaftablette, dann schlafen Sie sicher gut.", "fr": "Je vous apporte un somnifère, comme ça vous dormirez bien, c'est sûr.",
+     "puis": [{"qui": "pohl", "air": "question", "t": "Darf ich die denn nehmen, vor der Narkose?", "fr": "J'ai le droit d'en prendre un, avant l'anesthésie ?"}],
+     "aide": {"fr": "<b>Un somnifère est un médicament : pas sans prescription, surtout la veille d'une anesthésie.</b> Rassure plutôt et dis que tu es là : « Ich schaue heute Nacht regelmäßig nach Ihnen. »"}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Ab wann darf {pohl} nichts mehr essen und trinken?", "fr": "À partir de quand {pohl} ne doit-il plus rien manger ni boire ?"}, "options": [{"t": "Ab halb acht.", "fr": "À partir de sept heures et demie."}, {"t": "Ab Mitternacht.", "fr": "À partir de minuit."}, {"t": "Ab sofort.", "fr": "À partir de maintenant."}], "juste": 1},
+  {"q": {"t": "Warum soll {pohl} nachts nicht allein aufstehen?", "fr": "Pourquoi {pohl} ne doit-il pas se lever seul la nuit ?"}, "options": [{"t": "Weil er nüchtern ist.", "fr": "Parce qu'il est à jeun."}, {"t": "Weil die Toilette weit weg ist.", "fr": "Parce que les toilettes sont loin."}, {"t": "Weil ihm vom Schmerzmittel schwindelig werden kann.", "fr": "Parce que l'antidouleur peut lui donner des vertiges."}], "juste": 2},
+  {"q": {"t": "Wann wird {pohl} zur Operation abgeholt?", "fr": "Quand vient-on chercher {pohl} pour l'opération ?"}, "options": [{"t": "Um halb acht.", "fr": "À sept heures et demie."}, {"t": "Um halb sechs.", "fr": "À cinq heures et demie."}, {"t": "Um acht.", "fr": "À huit heures."}], "juste": 0},
+  {"q": {"t": "Wen möchte {pohl} noch anrufen?", "fr": "Qui {pohl} veut-il encore appeler ?"}, "options": [{"t": "Seinen Hausarzt.", "fr": "Son médecin traitant."}, {"t": "Seine Frau.", "fr": "Sa femme."}, {"t": "Seine Tochter.", "fr": "Sa fille."}], "juste": 1}
+ ]
+}

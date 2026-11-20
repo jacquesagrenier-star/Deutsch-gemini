@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "biombo",
    "ar": "حاجز الخصوصية",
    "pl": "parawan",
-   "ru": "ширма"
+   "ru": "ширма",
+   "es": "el biombo (la mampara)"
   },
   {
    "id": "nachttisch",
@@ -148,7 +149,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "schnabelbecher",
@@ -177,7 +179,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "brille-nt",
@@ -236,7 +239,8 @@ window.SCENE = {
    "pt": "prótese dentária, dentadura",
    "ar": "طقم أسنان، أسنان اصطناعية",
    "pl": "proteza zębowa",
-   "ru": "зубной протез"
+   "ru": "зубной протез",
+   "es": "la prótesis dental"
   },
   {
    "id": "pflegebett",
@@ -282,7 +286,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "sessel",
@@ -555,7 +560,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "ملفّ، حافظة أوراق",
    "pl": "teczka",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta, el fólder"
   },
   {
    "id": "tisch",
@@ -614,7 +620,8 @@ window.SCENE = {
    "pt": "aparelho de pressão",
    "ar": "جهاز قياس الضغط",
    "pl": "ciśnieniomierz",
-   "ru": "тонометр"
+   "ru": "тонометр",
+   "es": "el tensiómetro (baumanómetro)"
   },
   {
    "id": "allergiepass",
@@ -643,7 +650,8 @@ window.SCENE = {
    "pt": "carteira de alergia",
    "ar": "بطاقة الحساسية",
    "pl": "paszport alergiczny",
-   "ru": "паспорт аллергика"
+   "ru": "паспорт аллергика",
+   "es": "la tarjeta de alergias"
   },
   {
    "id": "karte",
@@ -702,7 +710,8 @@ window.SCENE = {
    "pt": "guia de internação (encaminhamento)",
    "ar": "ورقة الإحالة إلى المستشفى",
    "pl": "skierowanie do szpitala",
-   "ru": "направление на госпитализацию"
+   "ru": "направление на госпитализацию",
+   "es": "la orden de hospitalización (del médico de cabecera)"
   },
   {
    "id": "aufnahmebogen",
@@ -748,7 +757,8 @@ window.SCENE = {
    "pt": "ficha de admissão",
    "ar": "استمارة الدخول",
    "pl": "karta przyjęcia",
-   "ru": "лист поступления"
+   "ru": "лист поступления",
+   "es": "la hoja de ingreso"
   },
   {
    "id": "kugelschreiber",
@@ -807,7 +817,8 @@ window.SCENE = {
    "pt": "saco para objetos de valor",
    "ar": "كيس الأشياء الثمينة",
    "pl": "worek na rzeczy wartościowe",
-   "ru": "пакет для ценных вещей"
+   "ru": "пакет для ценных вещей",
+   "es": "la bolsa para objetos de valor"
   },
   {
    "id": "portemonnaie",
@@ -973,7 +984,8 @@ window.SCENE = {
    "pt": "bengala",
    "ar": "عكّاز",
    "pl": "laska",
-   "ru": "трость"
+   "ru": "трость",
+   "es": "el bastón"
   },
   {
    "id": "tasche",
@@ -1092,7 +1104,8 @@ window.SCENE = {
    "pt": "estadiômetro (régua de altura)",
    "ar": "مقياس الطول",
    "pl": "wzrostomierz",
-   "ru": "ростомер"
+   "ru": "ростомер",
+   "es": "el tallímetro, el estadímetro"
   },
   {
    "id": "schrank",
@@ -1438,14 +1451,14 @@ window.SCENE = {
     {
      "q": "Frau Krüger sagt: „Ich mache mir solche Sorgen. Gestern am Telefon war sie ganz durcheinander.“",
      "c": [
-      "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
+      "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.",
       "Keine Sorge, das ist normal bei alten Leuten.",
       "Das ist nicht schlimm."
      ],
      "f": "tochter",
      "type": "situation",
-     "phrase": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.",
-     "sens": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée.",
+     "phrase": "Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.",
+     "sens": "Je comprends très bien que vous vous fassiez du souci. Aujourd'hui, votre mère est bien réveillée et bien orientée. Je transmets à la médecin qu'elle était perdue hier au téléphone.",
      "n": "<b>Ne généralise pas (« bei alten Leuten ») et prends l'inquiétude au sérieux.</b> Une confusion nouvelle n'est pas « normale » : c'est un signe à transmettre au médecin. Dis plutôt ce que tu as observé aujourd'hui. ⚕️",
      "source": "d05-angehoerige/sorgen"
     },
@@ -1518,7 +1531,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: you offer the exact term. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Clarify without judging: the polite Konjunktiv II (<b>Könnten Sie</b>) and concrete options to choose from.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "You announce the summary (<b>Darf ich kurz zusammenfassen</b>), then ask for confirmation with a question.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Don't generalize (“bei alten Leuten”), and take the worry seriously.</b> New confusion is not “normal”: it's a sign to report to the doctor. Instead, say what you have observed today. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Don't generalize (“bei alten Leuten”), and take the worry seriously.</b> New confusion is not “normal”: it's a sign to report to the doctor. Instead, say what you have observed today. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Don't promise anything about the diagnosis or an operation.</b> It isn't your role, and a false promise destroys trust. Refer her to the doctor: “Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.” ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Offer your help to arrange the meeting.</b> “Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?”: “Soll ich …?” politely offers a service."
    },
@@ -1546,7 +1559,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "You mean you're allergic to penicillin?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Could you be more specific: for days, weeks or months?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "May I sum up: you live alone, and your daughter comes every day?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "I can really understand that you're worried. Today your mother is alert and well oriented.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "I can really understand that you're worried. Today your mother is alert and well oriented. I'll let the doctor know that she was confused on the phone yesterday.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "The doctor can tell you more about the test results and the treatment. What I can tell you is that we take care of the wound every day.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "Would you like me to arrange a meeting with Dr. Sommer for you? She usually has time after the ward round."
    }
@@ -1588,7 +1601,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: doğru terim önerilir. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Yargılamadan netleştirmek: kibar Konjunktiv II (<b>Könnten Sie</b>) ve önerilecek somut seçenekler.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Özet önceden duyurulur (<b>Darf ich kurz zusammenfassen</b>), sonra bir soruyla doğrulatılır.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Genelleme yapma (“bei alten Leuten”) ve endişeyi ciddiye al.</b> Yeni ortaya çıkan bir bilinç bulanıklığı “normal” değildir: doktora iletilmesi gereken bir belirtidir. Bunun yerine bugün ne gözlemlediğini söyle. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Genelleme yapma (“bei alten Leuten”) ve endişeyi ciddiye al.</b> Yeni ortaya çıkan bir bilinç bulanıklığı “normal” değildir: doktora iletilmesi gereken bir belirtidir. Bunun yerine bugün ne gözlemlediğini söyle. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Tanı ya da ameliyat konusunda hiçbir söz verme.</b> Bu senin görevin değil ve yanlış bir söz güveni yıkar. Doktora yönlendir: “Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.” ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Görüşmeyi ayarlamak için yardım teklif et.</b> “Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?”: “Soll ich …?” kibarca bir hizmet teklif eder."
    },
@@ -1616,7 +1629,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "Yani penisiline alerjiniz mi var?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Biraz daha açar mısınız: günlerdir mi, haftalardır mı, aylardır mı?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Kısaca özetleyebilir miyim: yalnız yaşıyorsunuz ve kızınız her gün geliyor?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Endişelenmenizi çok iyi anlıyorum. Anneniz bugün tamamen uyanık ve oryante.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Endişelenmenizi çok iyi anlıyorum. Anneniz bugün tamamen uyanık ve oryante. Dün telefonda kafasının karışık olduğunu doktora ileteceğim.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Tetkik sonuçları ve tedavi hakkında doktor size daha fazla bilgi verebilir. Size şunu söyleyebilirim: yaranın bakımını her gün yapıyoruz.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "Sizin için Dr. Sommer ile bir görüşme ayarlamamı ister misiniz? Viziteden sonra genellikle vakti olur."
    }
@@ -1658,7 +1671,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: пропонуємо точний термін. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Уточнювати, не осуджуючи: ввічливий Konjunktiv II (<b>Könnten Sie</b>) і конкретні варіанти на вибір.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Спершу оголошуємо підсумок (<b>Darf ich kurz zusammenfassen</b>), а потім просимо підтвердити його запитанням.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Не узагальнюй («bei alten Leuten») і сприймай тривогу всерйоз.</b> Нова сплутаність свідомості — не «норма»: це ознака, про яку треба повідомити лікаря. Краще скажи, що ти спостерігала сьогодні. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Не узагальнюй («bei alten Leuten») і сприймай тривогу всерйоз.</b> Нова сплутаність свідомості — не «норма»: це ознака, про яку треба повідомити лікаря. Краще скажи, що ти спостерігала сьогодні. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Нічого не обіцяй щодо діагнозу чи операції.</b> Це не твоя роль, а хибна обіцянка руйнує довіру. Направ до лікаря: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Запропонуй допомогу з організацією розмови.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» ввічливо пропонує послугу."
    },
@@ -1686,7 +1699,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "Ви маєте на увазі, що у вас алергія на пеніцилін?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Чи могли б ви уточнити: кілька днів, тижнів чи місяців?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Можна коротко підсумувати: ви живете самі, а донька приходить щодня?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Я дуже добре розумію, що ви хвилюєтеся. Сьогодні ваша мама бадьора й добре орієнтується.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Я дуже добре розумію, що ви хвилюєтеся. Сьогодні ваша мама бадьора й добре орієнтується. Те, що вчора по телефону вона була розгублена, я передам лікарці.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Щодо результатів обстежень і лікування лікарка зможе розповісти вам більше. Можу сказати вам, що ми щодня обробляємо рану.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "Домовитися для вас про розмову з лікаркою Зоммер? Після обходу в неї здебільшого є час."
    }
@@ -1728,7 +1741,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: واژهٔ دقیق را پیشنهاد می‌کنیم. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "روشن کردن بدونِ قضاوت: <span lang=\"de\">Konjunktiv II</span>ِ مؤدبانه (<b>Könnten Sie</b>) و گزینه‌های مشخص برای انتخاب.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "خلاصه را اعلام می‌کنیم (<b>Darf ich kurz zusammenfassen</b>)، بعد با یک پرسش می‌خواهیم تأییدش کند.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>تعمیم نده («bei alten Leuten») و نگرانی را جدی بگیر.</b> گیجی تازه «طبیعی» نیست: نشانه‌ای است که باید به پزشک گزارش شود. به جایش بگو امروز چه دیده‌ای. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>تعمیم نده («bei alten Leuten») و نگرانی را جدی بگیر.</b> گیجی تازه «طبیعی» نیست: نشانه‌ای است که باید به پزشک گزارش شود. به جایش بگو امروز چه دیده‌ای. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>درباره‌ی تشخیص یا جراحی هیچ قولی نده.</b> این نقش تو نیست، و قول نادرست اعتماد را از بین می‌برد. به پزشک ارجاع بده: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>برای ترتیب دادن گفت‌وگو، کمکت را پیشنهاد بده.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» مؤدبانه خدمتی را پیشنهاد می‌کند."
    },
@@ -1756,7 +1769,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "یعنی به پنی‌سیلین آلرژی دارید؟",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "می‌توانید دقیق‌تر بگویید: چند روز است، چند هفته یا چند ماه؟",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "اجازه هست خلاصه کنم: تنها زندگی می‌کنید و دخترتان هر روز می‌آید؟",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "کاملاً درک می‌کنم که نگران هستید. امروز مادرتان کاملاً هوشیار است و به زمان و مکان آگاه است.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "کاملاً درک می‌کنم که نگران هستید. امروز مادرتان کاملاً هوشیار است و به زمان و مکان آگاه است. اینکه دیروز پشت تلفن گیج بود را به خانم دکتر اطلاع می‌دهم.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "درباره‌ی نتایج آزمایش‌ها و درمان، خانم دکتر می‌تواند اطلاعات بیشتری به شما بدهد. چیزی که من می‌توانم بگویم این است که هر روز به زخم رسیدگی و پانسمانش می‌کنیم.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "می‌خواهید برایتان یک وقت گفت‌وگو با دکتر زومر هماهنگ کنم؟ بعد از راند معمولاً وقت دارد."
    }
@@ -1798,7 +1811,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<span lang=\"de\"><b>Sie meinen, …?</b></span>: نقترح المصطلح الدقيق. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "التدقيق دون حكم: <span lang=\"de\">Konjunktiv II</span> المهذّب (<b>Könnten Sie</b>) واقتراح خيارات ملموسة.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "نعلن عن التلخيص (<span lang=\"de\"><b>Darf ich kurz zusammenfassen</b></span>)، ثم نطلب تأكيده بسؤال.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>لا تعمّم («bei alten Leuten») وخذ القلق على محمل الجد.</b> التشوّش الذهني الجديد ليس «طبيعيًا»: إنه علامة يجب إبلاغ الطبيب بها. قل بدلًا من ذلك ما لاحظته اليوم. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>لا تعمّم («bei alten Leuten») وخذ القلق على محمل الجد.</b> التشوّش الذهني الجديد ليس «طبيعيًا»: إنه علامة يجب إبلاغ الطبيب بها. قل بدلًا من ذلك ما لاحظته اليوم. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>لا تعِد بشيء بشأن التشخيص أو العملية.</b> هذا ليس دورك، والوعد الكاذب يهدم الثقة. أحِل إلى الطبيب: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>اعرض مساعدتك في تنظيم اللقاء.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: صيغة «Soll ich …?» تعرض خدمة، بأدب."
    },
@@ -1826,7 +1839,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "تقصدين أنكِ مصابة بحساسية من البنسلين؟",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "هل يمكنكِ التوضيح أكثر: منذ أيام، أم أسابيع، أم أشهر؟",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "هل لي أن ألخّص: تعيشين وحدكِ، وتأتي ابنتكِ كل يوم؟",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "أفهم جيدًا أنك قلقة. اليوم والدتك يقظة تمامًا ومدركة للزمان والمكان.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "أفهم جيدًا أنك قلقة. اليوم والدتك يقظة تمامًا ومدركة للزمان والمكان. وسأبلّغ الطبيبة بأنها كانت مشوَّشة أمس على الهاتف.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "أما نتائج الفحوص والعلاج، فالطبيبة تستطيع أن تخبرك بالمزيد عنها. ما أستطيع قوله لك هو أننا نعتني بالجرح كل يوم.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "هل تريدين أن أرتّب لك لقاءً مع الدكتورة زومر؟ بعد الجولة الطبية يكون لديها وقت في الغالب."
    }
@@ -1868,7 +1881,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: propõe-se o termo exato. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Precisar sem julgar: o Konjunktiv II de cortesia (<b>Könnten Sie</b>) e opções concretas para escolher.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Anuncia-se o resumo (<b>Darf ich kurz zusammenfassen</b>) e depois se pede a confirmação com uma pergunta.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Não generalize (“bei alten Leuten”) e leve a preocupação a sério.</b> Uma confusão nova não é “normal”: é um sinal a ser comunicado ao médico. Diga, em vez disso, o que você observou hoje. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Não generalize (“bei alten Leuten”) e leve a preocupação a sério.</b> Uma confusão nova não é “normal”: é um sinal a ser comunicado ao médico. Diga, em vez disso, o que você observou hoje. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Não prometa nada sobre o diagnóstico nem sobre uma cirurgia.</b> Não é o seu papel, e uma promessa falsa destrói a confiança. Encaminhe à médica: “Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.” ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Ofereça ajuda para organizar a conversa.</b> “Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?”: “Soll ich …?” oferece um serviço, com educação."
    },
@@ -1896,7 +1909,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "A senhora quer dizer que é alérgica à penicilina?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Poderia ser mais precisa: há dias, há semanas ou há meses?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Posso resumir: a senhora mora sozinha, e a sua filha vem todos os dias?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Entendo muito bem que a senhora esteja preocupada. Hoje a sua mãe está bem desperta e bem orientada.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Entendo muito bem que a senhora esteja preocupada. Hoje a sua mãe está bem desperta e bem orientada. Vou avisar a médica de que ontem, ao telefone, ela estava confusa.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Sobre os resultados dos exames e o tratamento, a médica pode lhe dizer mais. O que posso lhe dizer é que cuidamos da ferida todos os dias.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "A senhora quer que eu marque uma conversa com a Dra. Sommer? Depois da visita médica, ela costuma ter tempo."
    }
@@ -1938,7 +1951,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: proponuje się dokładny termin. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Doprecyzować bez oceniania: grzeczny Konjunktiv II (<b>Könnten Sie</b>) i konkretne opcje do wyboru.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Zapowiada się podsumowanie (<b>Darf ich kurz zusammenfassen</b>), a potem prosi o potwierdzenie pytaniem.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Nie uogólniaj („bei alten Leuten”) i traktuj niepokój poważnie.</b> Nowe splątanie nie jest „normalne”: to objaw, który trzeba przekazać lekarzowi. Powiedz raczej, co zaobserwowałaś dzisiaj. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Nie uogólniaj („bei alten Leuten”) i traktuj niepokój poważnie.</b> Nowe splątanie nie jest „normalne”: to objaw, który trzeba przekazać lekarzowi. Powiedz raczej, co zaobserwowałaś dzisiaj. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Niczego nie obiecuj w sprawie diagnozy ani operacji.</b> To nie twoja rola, a fałszywa obietnica niszczy zaufanie. Odeślij do lekarza: „Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.” ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Zaproponuj pomoc w zorganizowaniu rozmowy.</b> „Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?”: „Soll ich …?” uprzejmie proponuje przysługę."
    },
@@ -1966,7 +1979,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "Chce pani powiedzieć, że jest pani uczulona na penicylinę?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Czy mogłaby pani to doprecyzować: od kilku dni, tygodni czy miesięcy?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Czy mogę krótko podsumować: mieszka pani sama, a córka przychodzi codziennie?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Bardzo dobrze rozumiem, że się pani martwi. Dzisiaj pani mama jest przytomna i dobrze zorientowana.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Bardzo dobrze rozumiem, że się pani martwi. Dzisiaj pani mama jest przytomna i dobrze zorientowana. To, że wczoraj przez telefon była zdezorientowana, przekażę lekarce.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Na temat wyników badań i leczenia więcej powie pani lekarka. Mogę pani powiedzieć, że codziennie opatrujemy ranę.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "Czy umówić panią na rozmowę z doktor Sommer? Po obchodzie zwykle ma czas."
    }
@@ -2008,7 +2021,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: предлагают точный термин. <b>allergisch gegen</b> + Akkusativ.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Уточнять, не осуждая: вежливый Konjunktiv II (<b>Könnten Sie</b>) и конкретные варианты на выбор.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Сначала объявляют резюме (<b>Darf ich kurz zusammenfassen</b>), затем просят подтвердить его вопросом.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>Не обобщай («bei alten Leuten») и отнесись к тревоге серьёзно.</b> Впервые появившаяся спутанность сознания — не «норма»: это признак, о котором надо сообщить врачу. Лучше скажи, что ты наблюдала сегодня. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>Не обобщай («bei alten Leuten») и отнесись к тревоге серьёзно.</b> Впервые появившаяся спутанность сознания — не «норма»: это признак, о котором надо сообщить врачу. Лучше скажи, что ты наблюдала сегодня. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>Ничего не обещай насчёт диагноза или операции.</b> Это не твоя роль, а ложное обещание разрушает доверие. Направь к врачу: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Предложи помочь организовать беседу.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» вежливо предлагает услугу."
    },
@@ -2036,7 +2049,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "Вы имеете в виду, что у вас аллергия на пенициллин?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Не могли бы вы уточнить: несколько дней, недель или месяцев?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Можно я кратко подытожу: вы живёте одна, а дочь приходит каждый день?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Я очень хорошо понимаю, что вы беспокоитесь. Сегодня ваша мама в ясном сознании и хорошо ориентируется.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Я очень хорошо понимаю, что вы беспокоитесь. Сегодня ваша мама в ясном сознании и хорошо ориентируется. О том, что вчера по телефону она была растеряна, я сообщу врачу.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "О результатах обследований и о лечении вам подробнее расскажет врач. Могу сказать, что мы каждый день обрабатываем рану.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "Договориться для вас о беседе с доктором Зоммер? После обхода у неё обычно есть время."
    }
@@ -2078,7 +2091,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: se propone el término exacto. <b>allergisch gegen</b> + acusativo.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Precisar sin juzgar: el Konjunktiv II de cortesía (<b>Könnten Sie</b>) y opciones concretas para proponer.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Se anuncia el resumen (<b>Darf ich kurz zusammenfassen</b>) y luego se pide confirmarlo con una pregunta.",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "<b>No generalices («bei alten Leuten») y toma en serio la preocupación.</b> Una confusión nueva no es «normal»: es un signo que hay que informar al médico. Mejor di lo que observaste hoy. ⚕️",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>No generalices («bei alten Leuten») y toma en serio la preocupación.</b> Una confusión nueva no es «normal»: es una señal que hay que reportarle a la médica. Mejor di lo que observaste hoy. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>No prometas nada sobre el diagnóstico ni sobre una operación.</b> No es tu función, y una promesa falsa destruye la confianza. Remite a la doctora: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Ofrece tu ayuda para organizar la conversación.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» ofrece un favor, con cortesía."
    },
@@ -2106,7 +2119,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "¿Quiere decir que es alérgica a la penicilina?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "¿Podría decirlo con un poco más de precisión: desde hace días, semanas o meses?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "¿Puedo resumir un momento: usted vive sola y su hija viene todos los días?",
-    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert.": "Entiendo muy bien que esté preocupada. Hoy su mamá está despierta y bien orientada.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Entiendo muy bien que esté preocupada. Hoy su mamá está despierta y bien orientada. Le voy a avisar a la doctora que ayer estaba confundida por teléfono.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Sobre los resultados de los exámenes y el tratamiento, la doctora puede decirle más. Yo puedo decirle que curamos la herida todos los días.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "¿Quiere que le programe una conversación con la Dra. Sommer? Después de la visita médica casi siempre tiene tiempo."
    }

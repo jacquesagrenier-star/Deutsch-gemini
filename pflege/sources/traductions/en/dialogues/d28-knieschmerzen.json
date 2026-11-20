@@ -1,0 +1,519 @@
+{
+ "_langue": "en",
+ "_source": "pflege/sources/dialogues/d28-knieschmerzen.json",
+ "cles": {
+  "titre": {
+   "fr": "Mal au genou",
+   "de": "Das Knie tut weh",
+   "en": "A sore knee"
+  },
+  "intro": {
+   "fr": "Mardi 10 novembre, huit heures, visite du matin chez {kowalski}. Elle ouvre la porte en boitant, sa canne à la main : son genou lui fait mal et elle a mal dormi. Tu joues {amira} : demande où elle a mal, depuis quand et combien, de 0 à 10, avec des mots simples ; regarde le genou ; propose ce qui soulage sans médicament, et dis quand tu appelles son médecin traitant.",
+   "en": "Tuesday, November 10, eight o'clock, the morning visit to {kowalski}. She opens the door limping, cane in hand: her knee hurts and she slept badly. You play {amira}: ask where it hurts, since when and how much, from 0 to 10, in simple words; look at the knee; suggest what brings relief without medication, and say when you will call her family doctor."
+  },
+  "but": {
+   "fr": "Poser les questions de base sur une douleur (où, depuis quand, combien, déjà un médicament ?) en phrases courtes ; demander la permission avant de regarder ; dire où on a mal (am Knie, am linken Knie) ; proposer du froid et la jambe surélevée ; dire quand on appelle le médecin.",
+   "en": "Ask the basic questions about pain (where, since when, how much, any medication yet?) in short sentences; ask permission before looking; say where it hurts (am Knie, am linken Knie); suggest cold and raising the leg; say when you will call the doctor."
+  },
+  "relire_notes": {
+   "fr": "Genou gauche douloureux depuis la veille au soir, après une longue marche, sans chute ; un peu gonflé, ni rouge ni chaud ; douleur 5 sur 10 le matin, 7 la nuit. À valider : les signes qui font appeler le médecin le jour même (rougeur, chaleur, gros gonflement, fièvre, impossibilité d'appuyer, chute) ; le froid (poche de froid enveloppée dans un linge, une vingtaine de minutes, jamais directement sur la peau, prudence chez une diabétique qui sent moins bien le froid) ; la jambe surélevée ; la soignante ne donne aucun antidouleur non prescrit (pas d'anti-inflammatoire en libre-service chez une personne âgée diabétique et hypertendue) ; la soignante prévient son service (Pflegefachkraft) le jour même ; appel au médecin traitant si ça ne va pas mieux le soir (à valider : avec 7 sur 10 la nuit, plutôt le jour même ?) ; la suite de la visite : glycémie puis insuline, comme d'habitude (dialogue 10).",
+   "en": "Left knee painful since the evening before, after a long walk, no fall; slightly swollen, neither red nor warm; pain 5 out of 10 in the morning, 7 at night. To be validated: the signs that mean calling the doctor the same day (redness, warmth, marked swelling, fever, unable to put weight on it, a fall); cold (cold pack wrapped in a cloth, about twenty minutes, never directly on the skin, caution with a diabetic patient who feels cold less well); raising the leg; the caregiver gives no painkiller that has not been prescribed (no over-the-counter anti-inflammatory for an elderly person with diabetes and high blood pressure); the caregiver informs her home care service (Pflegefachkraft) the same day; call to the family doctor if it is no better by the evening (to be validated: with 7 out of 10 at night, rather the same day?); the rest of the visit: blood sugar then insulin, as usual (dialogue 10)."
+  },
+  "redemittel.0": {
+   "fr": "Quel genou vous fait mal ? Montrez-moi où, s'il vous plaît.",
+   "de": "Welches Knie tut weh? Zeigen Sie mir bitte, wo.",
+   "en": "Which knee hurts? Please show me where."
+  },
+  "redemittel.1": {
+   "fr": "Depuis quand le genou vous fait-il mal ?",
+   "de": "Seit wann tut das Knie weh?",
+   "en": "Since when has your knee been hurting?"
+  },
+  "redemittel.2": {
+   "fr": "Zéro, c'est pas de douleur, dix, c'est très fort. C'est combien maintenant ?",
+   "de": "Null ist kein Schmerz, zehn ist ganz schlimm. Wie viel ist es jetzt?",
+   "en": "Zero is no pain, ten is really bad. How much is it now?"
+  },
+  "redemittel.3": {
+   "fr": "Est-ce que je peux regarder votre genou ?",
+   "de": "Darf ich mir Ihr Knie mal ansehen?",
+   "en": "May I take a look at your knee?"
+  },
+  "redemittel.4": {
+   "fr": "Vous avez déjà pris quelque chose contre la douleur ?",
+   "de": "Haben Sie schon etwas gegen die Schmerzen genommen?",
+   "en": "Have you already taken anything for the pain?"
+  },
+  "redemittel.5": {
+   "fr": "Je mets une poche de froid, avec une serviette entre les deux.",
+   "de": "Ich lege ein Kühlpack auf, mit einem Handtuch dazwischen.",
+   "en": "I'll put a cold pack on it, with a towel in between."
+  },
+  "redemittel.6": {
+   "fr": "Posez la jambe ici sur le tabouret, s'il vous plaît.",
+   "de": "Legen Sie das Bein bitte hier auf den Hocker.",
+   "en": "Please put your leg up here on the stool."
+  },
+  "redemittel.7": {
+   "fr": "Si ça ne va pas mieux ce soir, j'appelle votre médecin traitant.",
+   "de": "Wenn es heute Abend nicht besser ist, rufe ich Ihren Hausarzt an.",
+   "en": "If it's no better this evening, I'll call your family doctor."
+  },
+  "noeuds.tuer.dit.0.recit": {
+   "fr": "Mardi, huit heures. {amira} sonne chez {kowalski}. La porte s'ouvre lentement : {kowalski} boite, sa canne à la main. Derrière elle, le chat gris tigré attend sur le tapis.",
+   "en": "Tuesday, eight o'clock. {amira} rings {kowalski}'s doorbell. The door opens slowly: {kowalski} is limping, cane in hand. Behind her, the gray tabby cat is waiting on the rug."
+  },
+  "noeuds.tuer.dit.1": {
+   "fr": "Bonjour, {amira}. Entrez. Aujourd'hui, ça ne va pas très bien.",
+   "de": "Guten Morgen, {amira}. Kommen Sie rein. Heute geht es nicht so gut.",
+   "en": "Good morning, {amira}. Come in. I'm not doing so well today."
+  },
+  "noeuds.tuer.choix.0": {
+   "fr": "Bonjour, {kowalski:voc}. Je suis désolée. Qu'est-ce qui se passe ?",
+   "de": "Guten Morgen, {kowalski}. Das tut mir leid. Was ist los?",
+   "en": "Good morning, {kowalski:voc}. I'm sorry to hear that. What's wrong?"
+  },
+  "noeuds.tuer.choix.0.puis.0": {
+   "fr": "J'ai mal au genou. J'ai mal dormi cette nuit.",
+   "de": "Mein Knie tut weh. Ich habe heute Nacht schlecht geschlafen.",
+   "en": "My knee hurts. I slept badly last night."
+  },
+  "noeuds.tuer.choix.1": {
+   "fr": "Bonjour ! Vous marchez lentement aujourd'hui. Vous avez mal ?",
+   "de": "Guten Morgen! Sie gehen heute langsam. Haben Sie Schmerzen?",
+   "en": "Good morning! You're walking slowly today. Are you in pain?"
+  },
+  "noeuds.tuer.choix.1.puis.0": {
+   "fr": "Oui. J'ai mal au genou. J'ai à peine dormi cette nuit.",
+   "de": "Ja. Mein Knie tut weh. Ich habe heute Nacht kaum geschlafen.",
+   "en": "Yes. My knee hurts. I hardly slept last night."
+  },
+  "noeuds.tuer.choix.2": {
+   "fr": "Bonjour ! Pourquoi vous marchez si bizarrement ?",
+   "de": "Guten Morgen! Warum gehen Sie so komisch?",
+   "en": "Good morning! Why are you walking so funny?"
+  },
+  "noeuds.tuer.choix.2.puis.0": {
+   "fr": "Bizarrement ? Eh bien, merci beaucoup.",
+   "de": "Komisch? Na, danke schön.",
+   "en": "Funny? Well, thanks a lot."
+  },
+  "noeuds.tuer.choix.2.aide": {
+   "fr": "<b>Dis ce que tu vois avec douceur, sans « komisch ».</b> « komisch » (bizarre) vexe. Dis par exemple : « Sie gehen heute langsam. Haben Sie Schmerzen? »",
+   "en": "<b>Say what you see gently, without “komisch”.</b> “komisch” (funny, weird) is hurtful. Say, for example: “Sie gehen heute langsam. Haben Sie Schmerzen?”"
+  },
+  "noeuds.wo.dit.0.recit": {
+   "fr": "{kowalski} s'assoit lentement sur une chaise de la cuisine.",
+   "en": "{kowalski} slowly sits down on a kitchen chair."
+  },
+  "noeuds.wo.choix.0": {
+   "fr": "Quel genou vous fait mal ? Montrez-moi où, s'il vous plaît.",
+   "de": "Welches Knie tut weh? Zeigen Sie mir bitte, wo.",
+   "en": "Which knee hurts? Please show me where."
+  },
+  "noeuds.wo.choix.0.puis.0": {
+   "fr": "Le gauche. Ici, à l'intérieur, sur le côté.",
+   "de": "Das linke. Hier, innen an der Seite.",
+   "en": "The left one. Here, on the inside, at the side."
+  },
+  "noeuds.wo.choix.1": {
+   "fr": "Où exactement avez-vous mal ? Au genou gauche ou au droit ?",
+   "de": "Wo genau tut es weh? Am linken Knie oder am rechten?",
+   "en": "Where exactly does it hurt? In your left knee or your right?"
+  },
+  "noeuds.wo.choix.1.puis.0": {
+   "fr": "Au gauche. Ici, à l'intérieur, sur le côté.",
+   "de": "Am linken. Hier, innen an der Seite.",
+   "en": "The left. Here, on the inside, at the side."
+  },
+  "noeuds.wo.choix.2": {
+   "fr": "Vous avez mal au menton ? (mot pris pour un autre)",
+   "de": "Tut Ihr Kinn weh?",
+   "en": "Does your chin hurt? (wrong word)"
+  },
+  "noeuds.wo.choix.2.puis.0": {
+   "fr": "Mon menton ? Non, ma petite, le genou !",
+   "de": "Mein Kinn? Nein, Kindchen, das Knie!",
+   "en": "My chin? No, child, my knee!"
+  },
+  "noeuds.wo.choix.2.aide": {
+   "fr": "<b>« das Knie », c'est le genou ; « das Kinn », c'est le menton.</b> Les deux mots se ressemblent : dis-les lentement. Et pour savoir où : « Zeigen Sie mir bitte, wo. »",
+   "en": "<b>“das Knie” is the knee; “das Kinn” is the chin.</b> The two words sound alike: say them slowly. And to find out where: “Zeigen Sie mir bitte, wo.”"
+  },
+  "noeuds.seit.choix.0": {
+   "fr": "Depuis quand le genou vous fait-il mal ?",
+   "de": "Seit wann tut das Knie weh?",
+   "en": "Since when has your knee been hurting?"
+  },
+  "noeuds.seit.choix.0.puis.0": {
+   "fr": "Depuis hier soir. L'après-midi, je suis allée faire les courses avec ma voisine. On a beaucoup marché.",
+   "de": "Seit gestern Abend. Am Nachmittag war ich mit meiner Nachbarin einkaufen. Wir sind viel gelaufen.",
+   "en": "Since last night. In the afternoon I went shopping with my neighbor. We walked a lot."
+  },
+  "noeuds.seit.choix.1": {
+   "fr": "Quand la douleur a-t-elle commencé ?",
+   "de": "Wann hat der Schmerz angefangen?",
+   "en": "When did the pain start?"
+  },
+  "noeuds.seit.choix.1.puis.0": {
+   "fr": "Hier soir. L'après-midi, je suis allée faire les courses avec ma voisine. On a beaucoup marché.",
+   "de": "Gestern Abend. Am Nachmittag war ich mit meiner Nachbarin einkaufen. Wir sind viel gelaufen.",
+   "en": "Last night. In the afternoon I went shopping with my neighbor. We walked a lot."
+  },
+  "noeuds.seit.choix.2": {
+   "fr": "C'est sûrement le temps, non ? Il fait si froid.",
+   "de": "Das ist bestimmt das Wetter, oder? Es ist so kalt.",
+   "en": "It must be the weather, right? It's so cold."
+  },
+  "noeuds.seit.choix.2.puis.0": {
+   "fr": "Le temps ? Je ne sais pas…",
+   "de": "Das Wetter? Ich weiß nicht …",
+   "en": "The weather? I don't know…"
+  },
+  "noeuds.seit.choix.2.aide": {
+   "fr": "<b>Ne devine pas la cause : pose la question.</b> « Seit wann tut das Knie weh? » La réponse aide le médecin, une supposition non.",
+   "en": "<b>Don't guess the cause: ask the question.</b> “Seit wann tut das Knie weh?” The answer helps the doctor; a guess doesn't."
+  },
+  "noeuds.skala.choix.0": {
+   "fr": "Quelle est la force de la douleur ? Zéro, c'est pas de douleur, dix, c'est très fort. C'est combien maintenant ?",
+   "de": "Wie stark ist der Schmerz? Null ist kein Schmerz, zehn ist ganz schlimm. Wie viel ist es jetzt?",
+   "en": "How bad is the pain? Zero is no pain, ten is really bad. How much is it now?"
+  },
+  "noeuds.skala.choix.0.puis.0": {
+   "fr": "Maintenant un cinq. Cette nuit, c'était un sept.",
+   "de": "Jetzt eine Fünf. Heute Nacht war es eine Sieben.",
+   "en": "A five now. Last night it was a seven."
+  },
+  "noeuds.skala.choix.1": {
+   "fr": "Dites-moi un chiffre de zéro à dix. Zéro : pas du tout. Dix : très, très fort.",
+   "de": "Sagen Sie mir eine Zahl von null bis zehn. Null: gar nicht. Zehn: sehr, sehr stark.",
+   "en": "Give me a number from zero to ten. Zero: not at all. Ten: very, very bad."
+  },
+  "noeuds.skala.choix.1.puis.0": {
+   "fr": "Maintenant un cinq. Cette nuit, c'était un sept.",
+   "de": "Jetzt eine Fünf. Heute Nacht war es eine Sieben.",
+   "en": "A five now. Last night it was a seven."
+  },
+  "noeuds.skala.choix.2": {
+   "fr": "C'est « beaucoup mal » ou « peu mal » ? (mal dit)",
+   "de": "Ist es viel weh oder wenig weh?",
+   "en": "Is it “much hurt” or “little hurt”? (said wrong)"
+  },
+  "noeuds.skala.choix.2.puis.0": {
+   "fr": "Beaucoup mal ? … Ça fait mal, voilà.",
+   "de": "Viel weh? … Es tut eben weh.",
+   "en": "Much hurt? … It just hurts."
+  },
+  "noeuds.skala.choix.2.aide": {
+   "fr": "<b>« weh » ne se compte pas : on demande la force de la douleur avec un chiffre.</b> « Wie stark ist der Schmerz? Null ist kein Schmerz, zehn ist ganz schlimm. » Un chiffre se compare d'une visite à l'autre.",
+   "en": "<b>“weh” can't be counted: you ask how strong the pain is, with a number.</b> “Wie stark ist der Schmerz? Null ist kein Schmerz, zehn ist ganz schlimm.” A number can be compared from one visit to the next."
+  },
+  "noeuds.ansehen.choix.0": {
+   "fr": "Est-ce que je peux regarder votre genou ?",
+   "de": "Darf ich mir Ihr Knie mal ansehen?",
+   "en": "May I take a look at your knee?"
+  },
+  "noeuds.ansehen.choix.0.puis.0": {
+   "fr": "Oui, bien sûr. Mais ne riez pas, mes jambes sont vieilles.",
+   "de": "Ja, natürlich. Aber nicht lachen, meine Beine sind alt.",
+   "en": "Yes, of course. But don't laugh, my legs are old."
+  },
+  "noeuds.ansehen.choix.1": {
+   "fr": "Je voudrais regarder rapidement le genou. Remontez votre jambe de pantalon, s'il vous plaît.",
+   "de": "Ich möchte das Knie kurz ansehen. Schieben Sie bitte das Hosenbein hoch.",
+   "en": "I'd like to take a quick look at the knee. Please pull up your pant leg."
+  },
+  "noeuds.ansehen.choix.1.puis.0": {
+   "fr": "Oui, bien sûr. Mais ne riez pas, mes jambes sont vieilles.",
+   "de": "Ja, natürlich. Aber nicht lachen, meine Beine sind alt.",
+   "en": "Yes, of course. But don't laugh, my legs are old."
+  },
+  "noeuds.ansehen.choix.2": {
+   "fr": "Baissez le pantalon. Je dois voir ça.",
+   "de": "Hose runter, bitte. Ich muss das sehen.",
+   "en": "Pants down, please. I have to see this."
+  },
+  "noeuds.ansehen.choix.2.puis.0": {
+   "fr": "Pardon ? Pas si vite avec moi !",
+   "de": "Wie bitte? So schnell geht das bei mir nicht!",
+   "en": "Excuse me? Not so fast with me!"
+  },
+  "noeuds.ansehen.choix.2.aide": {
+   "fr": "<b>Avant de regarder ou de toucher, demande la permission.</b> « Darf ich mir Ihr Knie mal ansehen? » Et à l'impératif poli, le verbe en tête, puis « Sie » et « bitte » : « Schieben Sie bitte das Hosenbein hoch. »",
+   "en": "<b>Before you look or touch, ask permission.</b> “Darf ich mir Ihr Knie mal ansehen?” And in the polite imperative, the verb comes first, then “Sie” and “bitte”: “Schieben Sie bitte das Hosenbein hoch.”"
+  },
+  "noeuds.befund.dit.0.recit": {
+   "fr": "{amira} regarde le genou gauche : il est un peu gonflé. La peau n'est pas rouge et pas chaude.",
+   "en": "{amira} looks at the left knee: it is slightly swollen. The skin is not red and not warm."
+  },
+  "noeuds.befund.dit.1": {
+   "fr": "Alors ? C'est grave ?",
+   "de": "Und? Ist es schlimm?",
+   "en": "Well? Is it bad?"
+  },
+  "noeuds.befund.choix.0": {
+   "fr": "Le genou est un peu gonflé, mais pas rouge et pas chaud. Vous êtes tombée hier ?",
+   "de": "Das Knie ist ein bisschen dick, aber nicht rot und nicht warm. Sind Sie gestern gefallen?",
+   "en": "The knee is a little swollen, but not red and not warm. Did you fall yesterday?"
+  },
+  "noeuds.befund.choix.0.puis.0": {
+   "fr": "Non, je ne suis pas tombée. Ça a commencé comme ça.",
+   "de": "Nein, ich bin nicht gefallen. Es hat einfach angefangen.",
+   "en": "No, I didn't fall. It just started."
+  },
+  "noeuds.befund.choix.1": {
+   "fr": "Il est un peu enflé. Il n'est pas rouge. Vous vous êtes cognée, ou vous êtes tombée ?",
+   "de": "Es ist etwas geschwollen. Rot ist es nicht. Haben Sie sich gestoßen oder sind Sie gestürzt?",
+   "en": "It's somewhat swollen. It isn't red. Did you bump it, or did you have a fall?"
+  },
+  "noeuds.befund.choix.1.puis.0": {
+   "fr": "Non, rien. Ça a commencé comme ça.",
+   "de": "Nein, nichts. Es hat einfach angefangen.",
+   "en": "No, nothing. It just started."
+  },
+  "noeuds.befund.choix.2": {
+   "fr": "Oh là là, ça a l'air grave !",
+   "de": "Oh je, das sieht aber schlimm aus!",
+   "en": "Oh dear, that looks bad!"
+  },
+  "noeuds.befund.choix.2.puis.0": {
+   "fr": "Grave ? Là, j'ai peur.",
+   "de": "Schlimm? Jetzt habe ich aber Angst.",
+   "en": "Bad? Now I'm scared."
+  },
+  "noeuds.befund.choix.2.aide": {
+   "fr": "<b>Dis ce que tu vois, sans faire peur : « ein bisschen dick, nicht rot, nicht warm ».</b> Dire si c'est grave, c'est le rôle du médecin. Demande aussi s'il y a eu une chute.",
+   "en": "<b>Say what you see, without frightening her: “ein bisschen dick, nicht rot, nicht warm”.</b> Saying whether it is serious is the doctor's job. Also ask whether there was a fall."
+  },
+  "noeuds.tablette.choix.0": {
+   "fr": "Vous avez déjà pris quelque chose contre la douleur ?",
+   "de": "Haben Sie schon etwas gegen die Schmerzen genommen?",
+   "en": "Have you already taken anything for the pain?"
+  },
+  "noeuds.tablette.choix.0.puis.0": {
+   "fr": "Non, rien. Je prends déjà tellement de comprimés.",
+   "de": "Nein, nichts. Ich nehme schon so viele Tabletten.",
+   "en": "No, nothing. I already take so many pills."
+  },
+  "noeuds.tablette.choix.1": {
+   "fr": "Vous avez pris un comprimé cette nuit ?",
+   "de": "Haben Sie heute Nacht eine Tablette genommen?",
+   "en": "Did you take a pill last night?"
+  },
+  "noeuds.tablette.choix.1.puis.0": {
+   "fr": "Non. Je prends déjà tellement de comprimés.",
+   "de": "Nein. Ich nehme schon so viele Tabletten.",
+   "en": "No. I already take so many pills."
+  },
+  "noeuds.tablette.choix.2": {
+   "fr": "J'ai de l'ibuprofène dans mon sac. Prenez-en un !",
+   "de": "Ich habe Ibuprofen in der Tasche. Nehmen Sie doch eine!",
+   "en": "I have ibuprofen in my bag. Go ahead and take one!"
+  },
+  "noeuds.tablette.choix.2.puis.0": {
+   "fr": "J'ai le droit ? Avec mes autres comprimés ?",
+   "de": "Darf ich das denn? Mit meinen anderen Tabletten?",
+   "en": "Am I allowed to? With my other pills?"
+  },
+  "noeuds.tablette.choix.2.aide": {
+   "fr": "<b>Ne donne jamais un médicament qui n'est pas prescrit, même un « petit » antidouleur.</b> Avec ses autres médicaments, il peut être dangereux. Demande ce qu'elle a déjà pris ; c'est le médecin qui décide.",
+   "en": "<b>Never give a medication that hasn't been prescribed, not even a “little” painkiller.</b> With her other medications, it can be dangerous. Ask what she has already taken; the doctor is the one who decides."
+  },
+  "noeuds.kuehlen.choix.0": {
+   "fr": "On va refroidir le genou. Je mets une poche de froid, avec une serviette. Et vous surélevez la jambe.",
+   "de": "Wir kühlen das Knie. Ich lege ein Kühlpack auf, mit einem Handtuch. Und Sie legen das Bein hoch.",
+   "en": "We'll cool the knee. I'll put a cold pack on it, with a towel. And you put your leg up."
+  },
+  "noeuds.kuehlen.choix.0.puis.0": {
+   "fr": "Il y a une poche de froid dans le congélateur. À gauche, à côté du pain.",
+   "de": "Ein Kühlpack ist im Gefrierfach. Links, neben dem Brot.",
+   "en": "There's a cold pack in the freezer. On the left, next to the bread."
+  },
+  "noeuds.kuehlen.choix.1": {
+   "fr": "Posez la jambe ici sur le tabouret, s'il vous plaît. Ensuite on refroidit le genou, vingt minutes, avec un linge entre les deux.",
+   "de": "Legen Sie das Bein bitte hier auf den Hocker. Dann kühlen wir das Knie, zwanzig Minuten, mit einem Tuch dazwischen.",
+   "en": "Please put your leg up here on the stool. Then we'll cool the knee, twenty minutes, with a cloth in between."
+  },
+  "noeuds.kuehlen.choix.1.puis.0": {
+   "fr": "Il y a une poche de froid dans le congélateur. À gauche, à côté du pain.",
+   "de": "Ein Kühlpack ist im Gefrierfach. Links, neben dem Brot.",
+   "en": "There's a cold pack in the freezer. On the left, next to the bread."
+  },
+  "noeuds.kuehlen.choix.2": {
+   "fr": "Je mets la glace directement sur la peau. Comme ça, ça aide plus vite.",
+   "de": "Ich lege das Eis direkt auf die Haut. So hilft es am schnellsten.",
+   "en": "I'll put the ice directly on your skin. That's how it works fastest."
+  },
+  "noeuds.kuehlen.choix.2.puis.0": {
+   "fr": "Directement ? Mais c'est glacé !",
+   "de": "Direkt? Das ist doch eiskalt!",
+   "en": "Directly? But that's ice-cold!"
+  },
+  "noeuds.kuehlen.choix.2.aide": {
+   "fr": "<b>Jamais de glace directement sur la peau : on met un linge entre les deux.</b> Le froid direct peut abîmer la peau, surtout chez une personne diabétique, qui sent moins bien le froid. Une vingtaine de minutes suffit.",
+   "en": "<b>Never put ice directly on the skin: put a cloth in between.</b> Direct cold can damage the skin, especially in a person with diabetes, who feels cold less well. About twenty minutes is enough."
+  },
+  "noeuds.arzt.dit.0": {
+   "fr": "Est-ce que je dois aller chez le médecin ?",
+   "de": "Muss ich zum Arzt?",
+   "en": "Do I have to go to the doctor?"
+  },
+  "noeuds.arzt.choix.0": {
+   "fr": "Je préviens le service de soins aujourd'hui. Je reviens ce soir. Si ça ne va pas mieux, j'appelle votre médecin traitant.",
+   "de": "Ich sage heute im Pflegedienst Bescheid. Heute Abend komme ich wieder. Wenn es dann nicht besser ist, rufe ich Ihren Hausarzt an.",
+   "en": "I'll let the home care service know today. I'll be back this evening. If it's no better by then, I'll call your family doctor."
+  },
+  "noeuds.arzt.choix.0.puis.0": {
+   "fr": "Bien. Alors j'attends ce soir.",
+   "de": "Gut. Dann warte ich bis heute Abend.",
+   "en": "All right. Then I'll wait until this evening."
+  },
+  "noeuds.arzt.choix.1": {
+   "fr": "Pas encore. Mais si le genou devient rouge, chaud ou plus gonflé, ou si vous avez de la fièvre, appelez-nous tout de suite, s'il vous plaît. Alors j'appellerai votre médecin traitant.",
+   "de": "Noch nicht. Aber wenn das Knie rot, heiß oder dicker wird oder wenn Sie Fieber bekommen, rufen Sie uns bitte sofort an. Dann rufe ich Ihren Hausarzt an.",
+   "en": "Not yet. But if the knee turns red, hot or more swollen, or if you get a fever, please call us right away. Then I'll call your family doctor."
+  },
+  "noeuds.arzt.choix.1.puis.0": {
+   "fr": "Bien. Le numéro du service de soins est accroché au frigo.",
+   "de": "Gut. Die Nummer vom Pflegedienst hängt am Kühlschrank.",
+   "en": "All right. The home care service's number is on the fridge."
+  },
+  "noeuds.arzt.choix.2": {
+   "fr": "Non, c'est juste l'âge. On n'y peut rien.",
+   "de": "Nein, das ist nur das Alter. Da kann man nichts machen.",
+   "en": "No, it's just old age. There's nothing to be done."
+  },
+  "noeuds.arzt.choix.2.puis.0": {
+   "fr": "Juste l'âge ? Hier, ça allait encore.",
+   "de": "Nur das Alter? Gestern ging es doch noch.",
+   "en": "Just old age? Yesterday it was still fine."
+  },
+  "noeuds.arzt.choix.2.aide": {
+   "fr": "<b>« C'est l'âge » n'est pas une réponse : une douleur nouvelle se surveille.</b> Dis ce que tu fais et quand : « Heute Abend komme ich wieder. Wenn es dann nicht besser ist, rufe ich Ihren Hausarzt an. »",
+   "en": "<b>“It's old age” is not an answer: a new pain has to be watched.</b> Say what you will do and when: “Heute Abend komme ich wieder. Wenn es dann nicht besser ist, rufe ich Ihren Hausarzt an.”"
+  },
+  "noeuds.ende.dit.0.recit": {
+   "fr": "La jambe est posée sur le tabouret, la poche de froid sur le genou, dans une serviette. Le chat vient se coucher contre la chaise.",
+   "en": "The leg is resting on the stool, the cold pack on the knee, wrapped in a towel. The cat comes and lies down against the chair."
+  },
+  "noeuds.ende.dit.1": {
+   "fr": "Comme ça, c'est mieux. Et maintenant ? Ma glycémie ?",
+   "de": "So ist es besser. Und jetzt? Mein Blutzucker?",
+   "en": "That's better. And now? My blood sugar?"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Exactement. Vous restez assise, je mesure ici, à la table. Ensuite vous aurez votre insuline.",
+   "de": "Genau. Sie bleiben sitzen, ich messe hier am Tisch. Danach bekommen Sie Ihr Insulin.",
+   "en": "Exactly. You stay seated, I'll measure it here at the table. After that you'll get your insulin."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, {amira}. Et le chat aussi vous dit merci.",
+   "de": "Danke, {amira}. Und der Kater sagt auch danke.",
+   "en": "Thank you, {amira}. And the cat says thank you too."
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Oui, maintenant la glycémie. Restez assise tranquillement, la jambe reste en haut.",
+   "de": "Ja, jetzt der Blutzucker. Bleiben Sie ruhig sitzen, das Bein bleibt oben.",
+   "en": "Yes, now your blood sugar. Just stay seated, the leg stays up."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci, {amira}. Et le chat aussi vous dit merci.",
+   "de": "Danke, {amira}. Und der Kater sagt auch danke.",
+   "en": "Thank you, {amira}. And the cat says thank you too."
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Levez-vous et allez chercher votre lecteur de glycémie, s'il vous plaît.",
+   "de": "Stehen Sie bitte auf und holen Sie Ihr Messgerät.",
+   "en": "Please get up and fetch your glucose meter."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Maintenant ? Avec la poche de froid sur le genou ?",
+   "de": "Jetzt? Mit dem Kühlpack auf dem Knie?",
+   "en": "Now? With the cold pack on my knee?"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Elle doit garder la jambe au repos : c'est toi qui te déplaces.</b> « Sie bleiben sitzen, ich messe hier am Tisch. »",
+   "en": "<b>She has to keep her leg rested: you are the one who moves.</b> “Sie bleiben sitzen, ich messe hier am Tisch.”"
+  },
+  "ecouter.0.q": {
+   "fr": "Quel genou fait mal ?",
+   "de": "Welches Knie tut weh?",
+   "en": "Which knee hurts?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Le genou gauche.",
+   "de": "Das linke Knie.",
+   "en": "The left knee."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Le genou droit.",
+   "de": "Das rechte Knie.",
+   "en": "The right knee."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Les deux genoux.",
+   "de": "Beide Knie.",
+   "en": "Both knees."
+  },
+  "ecouter.1.q": {
+   "fr": "Depuis quand {kowalski} a-t-elle mal ?",
+   "de": "Seit wann hat {kowalski} Schmerzen?",
+   "en": "Since when has {kowalski} been in pain?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Depuis une semaine.",
+   "de": "Seit einer Woche.",
+   "en": "For a week."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Depuis hier soir.",
+   "de": "Seit gestern Abend.",
+   "en": "Since last night."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Depuis ce matin.",
+   "de": "Seit heute Morgen.",
+   "en": "Since this morning."
+  },
+  "ecouter.2.q": {
+   "fr": "Quelle était la force de la douleur la nuit ?",
+   "de": "Wie stark war der Schmerz in der Nacht?",
+   "en": "How bad was the pain during the night?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Un cinq.",
+   "de": "Eine Fünf.",
+   "en": "A five."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Un trois.",
+   "de": "Eine Drei.",
+   "en": "A three."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Un sept.",
+   "de": "Eine Sieben.",
+   "en": "A seven."
+  },
+  "ecouter.3.q": {
+   "fr": "Que fait {amira} contre la douleur ?",
+   "de": "Was macht {amira} gegen den Schmerz?",
+   "en": "What does {amira} do for the pain?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Elle refroidit le genou, et la jambe est surélevée.",
+   "de": "Sie kühlt das Knie, und das Bein liegt hoch.",
+   "en": "She cools the knee, and the leg is raised."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Elle lui donne un comprimé.",
+   "de": "Sie gibt ihr eine Tablette.",
+   "en": "She gives her a pill."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Elle appelle tout de suite le médecin.",
+   "de": "Sie ruft sofort den Arzt.",
+   "en": "She calls the doctor right away."
+  }
+ }
+}

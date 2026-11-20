@@ -9,12 +9,13 @@
   "pt",
   "ar",
   "pl",
-  "ru"
+  "ru",
+  "es"
  ],
  "complet_si": {
   "scenes": 1,
   "theme_illustre": 1,
-  "dialogues": 2,
+  "dialogues": 8,
   "ecrits": 1,
   "mots": 20
  },
@@ -33,7 +34,8 @@
     "pt": "A admissão",
     "ar": "استقبال المريض",
     "pl": "Przyjęcie pacjenta",
-    "ru": "Поступление пациента"
+    "ru": "Поступление пациента",
+    "es": "La admisión"
    },
    "sous_titre": {
     "fr": "Accueillir, questionner, noter",
@@ -44,22 +46,265 @@
     "pt": "Acolher, perguntar, registrar",
     "ar": "الترحيب، السؤال، التسجيل",
     "pl": "Przywitać, zapytać, zapisać",
-    "ru": "Встретить, расспросить, записать"
+    "ru": "Встретить, расспросить, записать",
+    "es": "Recibir, preguntar, anotar"
    },
    "scenes": [
     "soins-aufnahme"
    ],
    "scene_provisoire": false,
-   "theme_illustre": null,
+   "theme_illustre": "soins-theme-aufnahme.html",
    "dialogues": [
     "soins_dlg_13_aufnahmegespraech",
-    "soins_dlg_01_vorstellung"
+    "soins_dlg_01_vorstellung",
+    "soins_dlg_40_einzug",
+    "soins_dlg_41_wertsachen",
+    "soins_dlg_42_pflegeanamnese",
+    "soins_dlg_43_biografiegespraech",
+    "soins_dlg_44_aufnahme_nachts",
+    "soins_dlg_45_aufnahme_arzt"
+   ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_13_aufnahmegespraech",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Das Aufnahmegespräch",
+     "titre": {
+      "fr": "L'entretien d'admission",
+      "en": "The admission interview",
+      "tr": "Kabul görüşmesi",
+      "uk": "Бесіда при госпіталізації",
+      "fa": "مصاحبه‌ی پذیرش",
+      "pt": "A entrevista de admissão",
+      "ar": "مقابلة الاستقبال (القبول)",
+      "pl": "Wywiad przy przyjęciu",
+      "ru": "Беседа при поступлении",
+      "es": "La entrevista de ingreso"
+     },
+     "avec": "lehmann",
+     "avec_nom": "Frau Lehmann",
+     "visage": "conversation/soins/lehmann.webp"
+    },
+    {
+     "id": "soins_dlg_01_vorstellung",
+     "niveau": "A2",
+     "porte": "commence",
+     "de": "Begrüßung und Vorstellung",
+     "titre": {
+      "fr": "Se présenter à un patient",
+      "en": "Introducing yourself to a patient",
+      "tr": "Bir hastaya kendini tanıtmak",
+      "uk": "Представитися пацієнтові",
+      "fa": "سلام و معرفی خود به بیمار",
+      "pt": "Apresentar-se a um paciente",
+      "ar": "التعريف بنفسك أمام مريض",
+      "pl": "Powitanie i przedstawienie się pacjentowi",
+      "ru": "Представиться пациенту",
+      "es": "Presentarse a un paciente"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    },
+    {
+     "id": "soins_dlg_40_einzug",
+     "niveau": "A2",
+     "porte": "commence",
+     "de": "Der Einzug",
+     "titre": {
+      "fr": "L'arrivée d'une nouvelle résidente",
+      "en": "A new resident moves in",
+      "tr": "Yeni bir sakinin gelişi",
+      "uk": "Приїзд нової мешканки",
+      "fa": "ورود یک سالمند تازه",
+      "pt": "A mudança para a casa de repouso",
+      "ar": "وصول مقيمة جديدة",
+      "pl": "Przyjazd nowej mieszkanki",
+      "ru": "Заселение новой проживающей",
+      "es": "La llegada de una nueva residente"
+     },
+     "avec": "winkler",
+     "avec_nom": "Frau Winkler",
+     "visage": "conversation/soins/winkler.webp"
+    },
+    {
+     "id": "soins_dlg_41_wertsachen",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Wertsachen und Armband",
+     "titre": {
+      "fr": "L'inventaire à l'arrivée",
+      "en": "The inventory on arrival",
+      "tr": "Yatışta eşya dökümü",
+      "uk": "Опис речей під час госпіталізації",
+      "fa": "فهرست وسایل هنگام ورود",
+      "pt": "Objetos de valor e pulseira",
+      "ar": "جرد الأغراض عند الوصول",
+      "pl": "Spis rzeczy przy przyjęciu",
+      "ru": "Опись вещей при поступлении",
+      "es": "El inventario al ingreso"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    },
+    {
+     "id": "soins_dlg_42_pflegeanamnese",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Pflegeanamnese",
+     "titre": {
+      "fr": "L'entretien d'admission d'une résidente",
+      "en": "A resident's nursing admission assessment",
+      "tr": "Yeni bir sakinle kabul görüşmesi",
+      "uk": "Сестринський анамнез: бесіда з новою мешканкою",
+      "fa": "گفت‌وگوی پذیرش یک سالمند",
+      "pt": "A anamnese de enfermagem",
+      "ar": "مقابلة الدخول مع مقيمة",
+      "pl": "Wywiad pielęgniarski przy przyjęciu mieszkanki",
+      "ru": "Беседа при поступлении новой проживающей",
+      "es": "La valoración de enfermería de una residente"
+     },
+     "avec": "winkler",
+     "avec_nom": "Frau Winkler",
+     "visage": "conversation/soins/winkler.webp"
+    },
+    {
+     "id": "soins_dlg_43_biografiegespraech",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Das Biografiegespräch",
+     "titre": {
+      "fr": "L'entretien biographique avec la famille",
+      "en": "The life-history interview with the family",
+      "tr": "Aileyle biyografi görüşmesi",
+      "uk": "Біографічна бесіда з родиною",
+      "fa": "گفت‌وگوی زندگی‌نامه‌ای با خانواده",
+      "pt": "A conversa biográfica",
+      "ar": "حديث السيرة مع العائلة",
+      "pl": "Rozmowa biograficzna z rodziną",
+      "ru": "Биографическая беседа с семьёй",
+      "es": "La conversación biográfica con la familia"
+     },
+     "avec": "schulze_tochter",
+     "avec_nom": "Frau Schulze",
+     "visage": "conversation/soins/schulze_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_44_aufnahme_nachts",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Aufnahme in der Nacht",
+     "titre": {
+      "fr": "Une admission la nuit",
+      "en": "An admission at night",
+      "tr": "Gece yatışı",
+      "uk": "Госпіталізація вночі",
+      "fa": "پذیرش در شب",
+      "pt": "Uma admissão à noite",
+      "ar": "دخول مريض في الليل",
+      "pl": "Przyjęcie w nocy",
+      "ru": "Поступление ночью",
+      "es": "Un ingreso en la noche"
+     },
+     "avec": "pohl",
+     "avec_nom": "Herr Pohl",
+     "visage": "conversation/soins/pohl.webp"
+    },
+    {
+     "id": "soins_dlg_45_aufnahme_arzt",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Neuaufnahme an die Ärztin übergeben",
+     "titre": {
+      "fr": "Présenter une admission à la médecin",
+      "en": "Handing over the new admission to the doctor",
+      "tr": "Yeni yatan hastayı doktora sunmak",
+      "uk": "Доповісти лікарці про нову пацієнтку",
+      "fa": "معرفی بیمار تازه‌پذیرش‌شده به پزشک",
+      "pt": "Passar a nova admissão para a médica",
+      "ar": "عرض مريضة جديدة على الطبيبة",
+      "pl": "Przekazanie nowego przyjęcia lekarce",
+      "ru": "Доложить врачу о новой пациентке",
+      "es": "Presentar un ingreso a la médica"
+     },
+     "avec": "sommer",
+     "avec_nom": "Dr. Sommer",
+     "visage": "conversation/soins/sommer.webp"
+    }
    ],
    "ecrits": [
     "soins_ecrit_aufnahme_01",
     "soins_ecrit_aufnahme_02",
     "soins_ecrit_aufnahme_03",
     "soins_ecrit_aufnahme_04"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_aufnahme_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport d'admission : M. Brandt",
+      "en": "Admission report: Mr. Brandt",
+      "tr": "Yatış raporu: Bay Brandt",
+      "uk": "Звіт про госпіталізацію: пан Брандт",
+      "fa": "گزارش پذیرش: آقای برانت",
+      "pt": "Relatório de admissão: Sr. Brandt",
+      "ar": "تقرير الدخول: السيد برانت",
+      "pl": "Raport przyjęcia: pan Brandt",
+      "ru": "Отчёт о поступлении: господин Брандт",
+      "es": "Informe de ingreso: el Sr. Brandt"
+     }
+    },
+    {
+     "id": "soins_ecrit_aufnahme_02",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport d'admission : Mme Lehmann",
+      "en": "Admission report: Mrs. Lehmann",
+      "tr": "Yatış raporu: Bayan Lehmann",
+      "uk": "Звіт про госпіталізацію: пані Леман",
+      "fa": "گزارش پذیرش: خانم لمان",
+      "pt": "Relatório de admissão: Sra. Lehmann",
+      "ar": "تقرير الدخول: السيدة ليمان",
+      "pl": "Raport przyjęcia: pani Lehmann",
+      "ru": "Отчёт о поступлении: госпожа Леман",
+      "es": "Informe de ingreso: la Sra. Lehmann"
+     }
+    },
+    {
+     "id": "soins_ecrit_aufnahme_03",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport d'admission : Mme Weber",
+      "en": "Admission report: Mrs. Weber",
+      "tr": "Yatış raporu: Bayan Weber",
+      "uk": "Звіт про прийом: пані Вебер",
+      "fa": "گزارش پذیرش: خانم وبر",
+      "pt": "Relatório de admissão: Sra. Weber",
+      "ar": "تقرير الدخول: السيدة فيبر",
+      "pl": "Raport przyjęcia: pani Weber",
+      "ru": "Отчёт о поступлении: госпожа Вебер",
+      "es": "Informe de ingreso: la Sra. Weber"
+     }
+    },
+    {
+     "id": "soins_ecrit_aufnahme_04",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport d'admission en soins à domicile : Mme Kowalski",
+      "en": "Admission report in home care: Mrs. Kowalski",
+      "tr": "Evde bakımda kabul raporu: Bayan Kowalski",
+      "uk": "Звіт про прийом у службі домашнього догляду: пані Ковальскі",
+      "fa": "گزارش پذیرش در مراقبت در منزل: خانم کوالسکی",
+      "pt": "Relatório de admissão no atendimento domiciliar: Sra. Kowalski",
+      "ar": "تقرير الدخول في الرعاية المنزلية: السيدة كوفالسكي",
+      "pl": "Raport przyjęcia w opiece domowej: pani Kowalska",
+      "ru": "Отчёт о поступлении в службе ухода на дому: госпожа Ковальски",
+      "es": "Informe de ingreso en atención domiciliaria: la Sra. Kowalski"
+     }
+    }
    ],
    "voir_aussi": {
     "dialogues": [],
@@ -71,10 +316,59 @@
     "soins_gr_06_zeit_dosis",
     "soins_gr_01_sie_imperativ",
     "soins_gr_02_ankuendigen",
-    "soins_gr_04_trennbare_verben"
+    "soins_gr_04_trennbare_verben",
+    "soins_gr_08_modalverben",
+    "soins_gr_16_relativsaetze",
+    "soins_gr_13_perfekt_praeteritum_doku",
+    "soins_gr_11_passiv_modal",
+    "soins_gr_12_temporalsaetze",
+    "soins_gr_20_telegrammstil",
+    "soins_gr_10_passiv_praesens",
+    "soins_gr_14_passiv_vergangenheit"
    ],
-   "mots": [],
-   "paires": [],
+   "mots": [
+    "soins_team_a2:5",
+    "soins_team_a2:6",
+    "soins_team_a2:7",
+    "soins_dokumentation_a2:1",
+    "soins_dokumentation_a2:2",
+    "soins_dokumentation_a2:5",
+    "soins_dokumentation_a2:6",
+    "soins_dokumentation_b1:8",
+    "soins_dokumentation_b1:39",
+    "soins_dokumentation_b1:40",
+    "soins_dokumentation_b1:41",
+    "soins_dokumentation_b1:42",
+    "soins_dokumentation_b1:43",
+    "soins_dokumentation_b1:44",
+    "soins_dokumentation_b1:45",
+    "soins_dokumentation_b1:46",
+    "soins_dokumentation_b1:47",
+    "soins_dokumentation_b2:0",
+    "soins_dokumentation_b2:2",
+    "soins_dokumentation_b2:3",
+    "soins_dokumentation_b2:31",
+    "soins_dokumentation_b2:32",
+    "soins_dokumentation_b2:33",
+    "soins_dokumentation_b2:34",
+    "soins_dokumentation_b2:41",
+    "soins_dokumentation_b2:42",
+    "soins_szenen_a2:4",
+    "soins_szenen_a2:5",
+    "soins_szenen_b1:6",
+    "soins_szenen_b1:8",
+    "soins_szenen_b1:9",
+    "soins_szenen_b1:10",
+    "soins_szenen_b1:11",
+    "soins_szenen_b1:12",
+    "soins_szenen_b2:2"
+   ],
+   "paires": [
+    "soins_sprache_b1:35",
+    "soins_sprache_b1:37",
+    "soins_sprache_b1:40",
+    "soins_sprache_b2:61"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_01_0",
@@ -82,33 +376,81 @@
     "soins_rm_01_4",
     "soins_rm_01_6",
     "soins_rm_01_7",
+    "soins_rm_40_0",
+    "soins_rm_40_2",
+    "soins_rm_40_3",
+    "soins_rm_40_5",
+    "soins_rm_40_7",
     "soins_rm_13_0",
     "soins_rm_13_7",
+    "soins_rm_41_0",
+    "soins_rm_41_1",
+    "soins_rm_41_2",
+    "soins_rm_41_3",
+    "soins_rm_41_5",
+    "soins_rm_42_0",
+    "soins_rm_42_2",
+    "soins_rm_43_0",
+    "soins_rm_43_2",
+    "soins_rm_44_0",
+    "soins_rm_44_3",
+    "soins_rm_44_5",
+    "soins_rm_44_6",
+    "soins_rm_45_0",
+    "soins_rm_45_7",
     "soins_rm_01_2",
     "soins_rm_01_5",
+    "soins_rm_40_6",
     "soins_rm_13_1",
     "soins_rm_13_2",
     "soins_rm_13_3",
     "soins_rm_13_5",
+    "soins_rm_41_6",
+    "soins_rm_42_1",
+    "soins_rm_42_3",
+    "soins_rm_42_4",
+    "soins_rm_42_5",
+    "soins_rm_42_7",
+    "soins_rm_43_1",
+    "soins_rm_43_3",
+    "soins_rm_43_4",
+    "soins_rm_43_6",
+    "soins_rm_43_7",
+    "soins_rm_44_1",
+    "soins_rm_45_6",
     "soins_rm_01_3",
+    "soins_rm_40_1",
+    "soins_rm_40_4",
+    "soins_rm_41_4",
+    "soins_rm_42_6",
+    "soins_rm_44_2",
+    "soins_rm_44_7",
+    "soins_rm_41_7",
+    "soins_rm_44_4",
     "soins_rm_13_6",
+    "soins_rm_42_8",
+    "soins_rm_43_5",
+    "soins_rm_43_8",
+    "soins_rm_45_1",
+    "soins_rm_45_2",
+    "soins_rm_45_3",
+    "soins_rm_45_4",
+    "soins_rm_45_5",
+    "soins_rm_45_8",
     "soins_rm_13_4"
    ],
    "comptes": {
     "scenes": 1,
-    "theme_illustre": 0,
-    "dialogues": 2,
+    "theme_illustre": 1,
+    "dialogues": 8,
     "ecrits": 4,
-    "mots": 0,
-    "paires": 0,
+    "mots": 35,
+    "paires": 4,
     "abreviations": 0,
-    "cartes": 16
+    "cartes": 67
    },
-   "complet": false,
-   "manque": [
-    "theme_illustre",
-    "mots"
-   ]
+   "complet": true,
+   "manque": []
   },
   {
    "id": "ch02_morgenpflege",
@@ -124,7 +466,8 @@
     "pt": "Os cuidados da manhã",
     "ar": "الرعاية الصباحية",
     "pl": "Poranna pielęgnacja",
-    "ru": "Утренний уход"
+    "ru": "Утренний уход",
+    "es": "Los cuidados de la mañana"
    },
    "sous_titre": {
     "fr": "Laver, habiller, expliquer",
@@ -135,7 +478,8 @@
     "pt": "Lavar, vestir, explicar",
     "ar": "الغسل، الإلباس، الشرح",
     "pl": "Umyć, ubrać, wyjaśnić",
-    "ru": "Помыть, одеть, объяснить"
+    "ru": "Помыть, одеть, объяснить",
+    "es": "Asear, vestir, explicar"
    },
    "scenes": [
     "soins-bad",
@@ -147,7 +491,52 @@
     "soins_dlg_03_verbandswechsel",
     "soins_dlg_04_ablehnung"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_03_verbandswechsel",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Eine Maßnahme erklären",
+     "titre": {
+      "fr": "Expliquer un soin avant de le faire",
+      "en": "Explaining a procedure before you do it",
+      "tr": "Bir bakım işlemini yapmadan önce açıklamak",
+      "uk": "Пояснити процедуру, перш ніж її виконати",
+      "fa": "توضیح دادن یک کار مراقبتی پیش از انجام آن",
+      "pt": "Explicar um cuidado antes de realizá-lo",
+      "ar": "شرح إجراء تمريضي قبل القيام به",
+      "pl": "Wyjaśnić czynność, zanim się ją wykona",
+      "ru": "Объяснить процедуру перед её выполнением",
+      "es": "Explicar un procedimiento antes de hacerlo"
+     },
+     "avec": "lehmann",
+     "avec_nom": "Frau Lehmann",
+     "visage": "conversation/soins/lehmann.webp"
+    },
+    {
+     "id": "soins_dlg_04_ablehnung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Ablehnung",
+     "titre": {
+      "fr": "Quand le patient refuse",
+      "en": "When the patient refuses",
+      "tr": "Hasta reddettiğinde",
+      "uk": "Коли пацієнт відмовляється",
+      "fa": "وقتی بیمار امتناع می‌کند",
+      "pt": "Quando o paciente recusa",
+      "ar": "عندما يرفض المريض",
+      "pl": "Kiedy pacjent odmawia",
+      "ru": "Когда пациент отказывается",
+      "es": "Cuando el paciente se niega"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": [
@@ -174,10 +563,6 @@
     "soins_grundpflege_a2:8",
     "soins_grundpflege_a2:9",
     "soins_grundpflege_a2:10",
-    "soins_grundpflege_a2:11",
-    "soins_grundpflege_a2:12",
-    "soins_grundpflege_a2:13",
-    "soins_grundpflege_a2:14",
     "soins_grundpflege_a2:15",
     "soins_grundpflege_a2:16",
     "soins_grundpflege_a2:17",
@@ -195,44 +580,17 @@
     "soins_grundpflege_b1:7",
     "soins_grundpflege_b1:8",
     "soins_grundpflege_b1:9",
-    "soins_grundpflege_b1:10",
-    "soins_grundpflege_b1:11",
-    "soins_grundpflege_b1:12",
-    "soins_grundpflege_b1:13",
-    "soins_grundpflege_b1:14",
-    "soins_grundpflege_b1:15",
-    "soins_grundpflege_b1:16",
-    "soins_grundpflege_b1:17",
     "soins_grundpflege_b1:18",
     "soins_grundpflege_b1:19",
     "soins_grundpflege_b1:20",
-    "soins_grundpflege_b1:21",
-    "soins_grundpflege_b1:22",
-    "soins_grundpflege_b1:23",
     "soins_grundpflege_b1:24",
     "soins_grundpflege_b1:25",
     "soins_grundpflege_b1:26",
-    "soins_grundpflege_b2:0",
-    "soins_grundpflege_b2:1",
     "soins_grundpflege_b2:2",
     "soins_grundpflege_b2:3",
-    "soins_grundpflege_b2:4",
-    "soins_grundpflege_b2:5",
-    "soins_grundpflege_b2:6",
-    "soins_grundpflege_b2:7",
-    "soins_grundpflege_b2:8",
-    "soins_grundpflege_b2:9",
-    "soins_grundpflege_b2:10",
-    "soins_grundpflege_b2:11",
-    "soins_grundpflege_b2:12",
-    "soins_grundpflege_b2:13",
     "soins_grundpflege_b2:14",
     "soins_grundpflege_b2:15",
     "soins_grundpflege_b2:16",
-    "soins_grundpflege_b2:17",
-    "soins_grundpflege_b2:18",
-    "soins_grundpflege_b2:19",
-    "soins_grundpflege_b2:20",
     "soins_hygiene_a2:0",
     "soins_hygiene_a2:1",
     "soins_hygiene_a2:2",
@@ -280,9 +638,44 @@
     "soins_hygiene_b2:15",
     "soins_hygiene_b2:16",
     "soins_hygiene_b2:17",
-    "soins_hygiene_b2:18"
+    "soins_hygiene_b2:18",
+    "soins_szenen_a2:1",
+    "soins_szenen_a2:2",
+    "soins_szenen_b1:3",
+    "soins_szenen_b1:5",
+    "soins_szenen_b1:7",
+    "soins_szenen_b1:19",
+    "soins_szenen_b1:20",
+    "soins_szenen_b1:21",
+    "soins_szenen_b1:22",
+    "soins_szenen_b1:23",
+    "soins_szenen_b2:4"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_a2:0",
+    "soins_sprache_b1:1",
+    "soins_sprache_b1:3",
+    "soins_sprache_b1:4",
+    "soins_sprache_b1:10",
+    "soins_sprache_b1:11",
+    "soins_sprache_b1:16",
+    "soins_sprache_b1:17",
+    "soins_sprache_b1:23",
+    "soins_sprache_b1:31",
+    "soins_sprache_b1:32",
+    "soins_sprache_b1:33",
+    "soins_sprache_b1:34",
+    "soins_sprache_b1:46",
+    "soins_sprache_b2:1",
+    "soins_sprache_b2:2",
+    "soins_sprache_b2:12",
+    "soins_sprache_b2:13",
+    "soins_sprache_b2:14",
+    "soins_sprache_b2:15",
+    "soins_sprache_b2:19",
+    "soins_sprache_b2:26",
+    "soins_sprache_b2:27"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_03_0",
@@ -305,14 +698,15 @@
     "theme_illustre": 0,
     "dialogues": 2,
     "ecrits": 0,
-    "mots": 118,
-    "paires": 0,
+    "mots": 98,
+    "paires": 23,
     "abreviations": 0,
     "cartes": 14
    },
    "complet": false,
    "manque": [
     "theme_illustre",
+    "dialogues",
     "ecrits"
    ]
   },
@@ -330,7 +724,8 @@
     "pt": "Movimentar-se e levantar",
     "ar": "الحركة والنهوض",
     "pl": "Ruch i wstawanie",
-    "ru": "Движение и подъём"
+    "ru": "Движение и подъём",
+    "es": "Moverse y levantarse"
    },
    "sous_titre": {
     "fr": "Aider à se lever, à marcher, à s'installer",
@@ -341,7 +736,8 @@
     "pt": "Ajudar a levantar, andar, se acomodar",
     "ar": "المساعدة على النهوض والمشي والجلوس",
     "pl": "Pomóc wstać, chodzić, usiąść",
-    "ru": "Помочь встать, ходить, устроиться"
+    "ru": "Помочь встать, ходить, устроиться",
+    "es": "Ayudar a levantarse, a caminar, a acomodarse"
    },
    "scenes": [
     "soins-zimmer-aufstehen"
@@ -351,7 +747,31 @@
    "dialogues": [
     "soins_dlg_14_mobilisation"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_14_mobilisation",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Aufstehen und in den Sessel",
+     "titre": {
+      "fr": "Se lever et aller au fauteuil",
+      "en": "Getting up and into the chair",
+      "tr": "Ayağa kalkmak ve koltuğa geçmek",
+      "uk": "Устати й пересісти в крісло",
+      "fa": "بلند شدن و رفتن روی مبل",
+      "pt": "Levantar e ir para a poltrona",
+      "ar": "النهوض والانتقال إلى الكرسي",
+      "pl": "Wstać i przejść na fotel",
+      "ru": "Встать и пересесть в кресло",
+      "es": "Levantarse e ir al sillón"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -361,8 +781,55 @@
     "soins_gr_01_sie_imperativ",
     "soins_gr_12_temporalsaetze"
    ],
-   "mots": [],
-   "paires": [],
+   "mots": [
+    "soins_grundpflege_a2:11",
+    "soins_grundpflege_a2:12",
+    "soins_grundpflege_a2:13",
+    "soins_grundpflege_a2:14",
+    "soins_grundpflege_b1:10",
+    "soins_grundpflege_b1:11",
+    "soins_grundpflege_b1:12",
+    "soins_grundpflege_b1:13",
+    "soins_grundpflege_b1:14",
+    "soins_grundpflege_b1:15",
+    "soins_grundpflege_b1:16",
+    "soins_grundpflege_b1:17",
+    "soins_grundpflege_b1:21",
+    "soins_grundpflege_b1:22",
+    "soins_grundpflege_b1:23",
+    "soins_grundpflege_b2:0",
+    "soins_grundpflege_b2:1",
+    "soins_grundpflege_b2:4",
+    "soins_grundpflege_b2:5",
+    "soins_grundpflege_b2:6",
+    "soins_grundpflege_b2:7",
+    "soins_grundpflege_b2:8",
+    "soins_grundpflege_b2:9",
+    "soins_grundpflege_b2:10",
+    "soins_grundpflege_b2:11",
+    "soins_grundpflege_b2:12",
+    "soins_grundpflege_b2:13",
+    "soins_grundpflege_b2:17",
+    "soins_grundpflege_b2:18",
+    "soins_grundpflege_b2:19",
+    "soins_grundpflege_b2:20",
+    "soins_szenen_a2:3",
+    "soins_szenen_a2:8",
+    "soins_szenen_b1:0",
+    "soins_szenen_b1:1",
+    "soins_szenen_b1:2",
+    "soins_szenen_b1:18"
+   ],
+   "paires": [
+    "soins_sprache_a2:1",
+    "soins_sprache_b1:29",
+    "soins_sprache_b1:30",
+    "soins_sprache_b1:39",
+    "soins_sprache_b1:43",
+    "soins_sprache_b2:62",
+    "soins_sprache_b2:63",
+    "soins_sprache_b2:64"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_14_0",
@@ -378,8 +845,8 @@
     "theme_illustre": 0,
     "dialogues": 1,
     "ecrits": 0,
-    "mots": 0,
-    "paires": 0,
+    "mots": 37,
+    "paires": 8,
     "abreviations": 0,
     "cartes": 7
    },
@@ -387,8 +854,7 @@
    "manque": [
     "theme_illustre",
     "dialogues",
-    "ecrits",
-    "mots"
+    "ecrits"
    ]
   },
   {
@@ -405,7 +871,8 @@
     "pt": "As refeições e a hidratação",
     "ar": "الطعام والشراب",
     "pl": "Posiłki i picie",
-    "ru": "Еда и питьё"
+    "ru": "Еда и питьё",
+    "es": "Las comidas y la hidratación"
    },
    "sous_titre": {
     "fr": "Aider à manger, faire boire, noter",
@@ -416,7 +883,8 @@
     "pt": "Ajudar a comer, oferecer líquidos, registrar",
     "ar": "المساعدة على الأكل، تقديم السوائل، التسجيل",
     "pl": "Pomóc w jedzeniu, podać do picia, zapisać",
-    "ru": "Помочь поесть, дать попить, записать"
+    "ru": "Помочь поесть, дать попить, записать",
+    "es": "Ayudar a comer, dar de beber, anotar"
    },
    "scenes": [
     "soins-altenheim"
@@ -426,7 +894,31 @@
    "dialogues": [
     "soins_dlg_09_essen_anreichen"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_09_essen_anreichen",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Essen anreichen",
+     "titre": {
+      "fr": "Aider à manger",
+      "en": "Helping a resident eat",
+      "tr": "Yemek yemeye yardım etmek",
+      "uk": "Допомогти поїсти",
+      "fa": "کمک به غذا خوردن",
+      "pt": "Ajudar a comer",
+      "ar": "المساعدة على الأكل",
+      "pl": "Pomoc przy jedzeniu",
+      "ru": "Помощь при приёме пищи",
+      "es": "Ayudar a comer"
+     },
+     "avec": "schulze",
+     "avec_nom": "Herr Schulze",
+     "visage": "conversation/soins/schulze.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -488,9 +980,22 @@
     "soins_ernaehrung_b2:15",
     "soins_ernaehrung_b2:16",
     "soins_ernaehrung_b2:17",
-    "soins_ernaehrung_b2:18"
+    "soins_ernaehrung_b2:18",
+    "soins_szenen_a2:0",
+    "soins_szenen_a2:7",
+    "soins_szenen_b1:17"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b1:8",
+    "soins_sprache_b1:19",
+    "soins_sprache_b1:36",
+    "soins_sprache_b2:16",
+    "soins_sprache_b2:20",
+    "soins_sprache_b2:35",
+    "soins_sprache_b2:57",
+    "soins_sprache_b2:59",
+    "soins_sprache_b2:60"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_09_0",
@@ -505,8 +1010,8 @@
     "theme_illustre": 0,
     "dialogues": 1,
     "ecrits": 0,
-    "mots": 52,
-    "paires": 0,
+    "mots": 55,
+    "paires": 9,
     "abreviations": 0,
     "cartes": 6
    },
@@ -531,7 +1036,8 @@
     "pt": "Os medicamentos",
     "ar": "الأدوية",
     "pl": "Leki",
-    "ru": "Лекарства"
+    "ru": "Лекарства",
+    "es": "Los medicamentos"
    },
    "sous_titre": {
     "fr": "Préparer, donner, expliquer, redemander",
@@ -542,7 +1048,8 @@
     "pt": "Preparar, administrar, explicar, confirmar",
     "ar": "التحضير، الإعطاء، الشرح، الاستيضاح",
     "pl": "Przygotować, podać, wyjaśnić, dopytać",
-    "ru": "Подготовить, дать, объяснить, переспросить"
+    "ru": "Подготовить, дать, объяснить, переспросить",
+    "es": "Preparar, administrar, explicar, volver a preguntar"
    },
    "scenes": [
     "soins-stationszimmer",
@@ -554,7 +1061,52 @@
     "soins_dlg_10_medikamente",
     "soins_dlg_18_unklare_anordnung"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_10_medikamente",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Medikamente erklären",
+     "titre": {
+      "fr": "« À quoi sert ce comprimé ? »",
+      "en": "“What is this pill for?”",
+      "tr": "“Bu tablet ne işe yarıyor?”",
+      "uk": "«Навіщо ця таблетка?»",
+      "fa": "«این قرص برای چیست؟»",
+      "pt": "“Para que serve este comprimido?”",
+      "ar": "«لماذا هذا القرص؟»",
+      "pl": "„Na co jest ta tabletka?”",
+      "ru": "«Для чего эта таблетка?»",
+      "es": "«¿Para qué es esta pastilla?»"
+     },
+     "avec": "kowalski",
+     "avec_nom": "Frau Kowalski",
+     "visage": "conversation/soins/kowalski.webp"
+    },
+    {
+     "id": "soins_dlg_18_unklare_anordnung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Eine unklare Anordnung",
+     "titre": {
+      "fr": "Une prescription floue : redemander, refuser poliment",
+      "en": "An unclear order: ask again, refuse politely",
+      "tr": "Belirsiz bir talimat: yeniden sormak, kibarca reddetmek",
+      "uk": "Нечітке призначення: перепитати, ввічливо відмовити",
+      "fa": "دستوری مبهم: دوباره پرسیدن، مؤدبانه نپذیرفتن",
+      "pt": "Uma prescrição vaga: perguntar de novo, recusar com educação",
+      "ar": "أمر طبي غير واضح: الاستفسار من جديد والرفض بأدب",
+      "pl": "Niejasne zlecenie: dopytać, grzecznie odmówić",
+      "ru": "Неясное назначение: переспросить, вежливо отказать",
+      "es": "Una indicación poco clara: volver a preguntar, negarse con cortesía"
+     },
+     "avec": "sommer",
+     "avec_nom": "Dr. Sommer",
+     "visage": "conversation/soins/sommer.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -629,9 +1181,27 @@
     "soins_medikamente_b2:23",
     "soins_medikamente_b2:24",
     "soins_medikamente_b2:25",
-    "soins_medikamente_b2:26"
+    "soins_medikamente_b2:26",
+    "soins_szenen_b1:4",
+    "soins_szenen_b1:15",
+    "soins_szenen_b1:16",
+    "soins_szenen_b2:3"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b1:24",
+    "soins_sprache_b2:0",
+    "soins_sprache_b2:42",
+    "soins_sprache_b2:43",
+    "soins_sprache_b2:44",
+    "soins_sprache_b2:45",
+    "soins_sprache_b2:46",
+    "soins_sprache_b2:47",
+    "soins_sprache_b2:48",
+    "soins_sprache_b2:49",
+    "soins_sprache_b2:50",
+    "soins_sprache_b2:51",
+    "soins_sprache_b2:66"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_10_0",
@@ -653,14 +1223,15 @@
     "theme_illustre": 0,
     "dialogues": 2,
     "ecrits": 0,
-    "mots": 63,
-    "paires": 0,
+    "mots": 67,
+    "paires": 13,
     "abreviations": 0,
     "cartes": 13
    },
    "complet": false,
    "manque": [
     "theme_illustre",
+    "dialogues",
     "ecrits"
    ]
   },
@@ -678,7 +1249,8 @@
     "pt": "A visita médica",
     "ar": "جولة الطبيب",
     "pl": "Obchód lekarski",
-    "ru": "Врачебный обход"
+    "ru": "Врачебный обход",
+    "es": "La visita médica"
    },
    "sous_titre": {
     "fr": "Présenter un patient, noter les ordres",
@@ -689,7 +1261,8 @@
     "pt": "Apresentar um paciente, anotar as prescrições",
     "ar": "تقديم المريض، تدوين التعليمات",
     "pl": "Przedstawić pacjenta, zanotować zlecenia",
-    "ru": "Представить пациента, записать назначения"
+    "ru": "Представить пациента, записать назначения",
+    "es": "Presentar a un paciente, anotar las indicaciones"
    },
    "scenes": [
     "soins-visite"
@@ -699,7 +1272,31 @@
    "dialogues": [
     "soins_dlg_17_visite"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_17_visite",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Visite",
+     "titre": {
+      "fr": "La visite : présenter un patient",
+      "en": "The ward round",
+      "tr": "Vizit: hastayı sunmak",
+      "uk": "Обхід: представити пацієнта",
+      "fa": "ویزیت پزشک: معرفی بیمار",
+      "pt": "A visita médica: apresentar um paciente",
+      "ar": "الجولة الطبية: عرض حالة مريض",
+      "pl": "Obchód: przedstawić pacjenta",
+      "ru": "Врачебный обход",
+      "es": "La visita médica: presentar a un paciente"
+     },
+     "avec": "sommer",
+     "avec_nom": "Dr. Sommer",
+     "visage": "conversation/soins/sommer.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -767,28 +1364,84 @@
     "soins_vitalzeichen_b2:17",
     "soins_vitalzeichen_b2:18",
     "soins_vitalzeichen_b2:19",
-    "soins_vitalzeichen_b2:20"
+    "soins_vitalzeichen_b2:20",
+    "soins_team_a2:1",
+    "soins_team_b1:15",
+    "soins_szenen_b1:24",
+    "soins_szenen_b1:25",
+    "soins_szenen_b2:0",
+    "soins_szenen_b2:1"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b1:2",
+    "soins_sprache_b1:25",
+    "soins_sprache_b1:26",
+    "soins_sprache_b1:27",
+    "soins_sprache_b1:28",
+    "soins_sprache_b1:38",
+    "soins_sprache_b1:41",
+    "soins_sprache_b2:3",
+    "soins_sprache_b2:5",
+    "soins_sprache_b2:6",
+    "soins_sprache_b2:7",
+    "soins_sprache_b2:9",
+    "soins_sprache_b2:23",
+    "soins_sprache_b2:31",
+    "soins_sprache_b2:32",
+    "soins_sprache_b2:33",
+    "soins_sprache_b2:52",
+    "soins_sprache_b2:53",
+    "soins_sprache_b2:54",
+    "soins_sprache_b2:55",
+    "soins_sprache_b2:56",
+    "soins_sprache_b2:58",
+    "soins_sprache_b2:65"
+   ],
    "abreviations": [],
    "cartes": [
+    "soins_rm_visite_21",
+    "soins_rm_visite_22",
     "soins_rm_17_3",
     "soins_rm_17_6",
+    "soins_rm_visite_0",
+    "soins_rm_visite_8",
+    "soins_rm_visite_9",
+    "soins_rm_visite_10",
+    "soins_rm_visite_11",
+    "soins_rm_visite_12",
+    "soins_rm_visite_13",
+    "soins_rm_visite_14",
+    "soins_rm_visite_20",
+    "soins_rm_visite_25",
+    "soins_rm_visite_15",
+    "soins_rm_visite_24",
     "soins_rm_17_5",
+    "soins_rm_visite_16",
+    "soins_rm_visite_17",
     "soins_rm_17_0",
     "soins_rm_17_1",
     "soins_rm_17_2",
-    "soins_rm_17_4"
+    "soins_rm_visite_1",
+    "soins_rm_visite_2",
+    "soins_rm_visite_3",
+    "soins_rm_visite_4",
+    "soins_rm_visite_5",
+    "soins_rm_visite_6",
+    "soins_rm_visite_23",
+    "soins_rm_visite_7",
+    "soins_rm_17_4",
+    "soins_rm_visite_18",
+    "soins_rm_visite_19"
    ],
    "comptes": {
     "scenes": 1,
     "theme_illustre": 0,
     "dialogues": 1,
     "ecrits": 0,
-    "mots": 58,
-    "paires": 0,
+    "mots": 64,
+    "paires": 23,
     "abreviations": 0,
-    "cartes": 7
+    "cartes": 33
    },
    "complet": false,
    "manque": [
@@ -811,7 +1464,8 @@
     "pt": "A dor",
     "ar": "الألم",
     "pl": "Ból",
-    "ru": "Боль"
+    "ru": "Боль",
+    "es": "El dolor"
    },
    "sous_titre": {
     "fr": "Demander, évaluer, noter",
@@ -822,18 +1476,215 @@
     "pt": "Perguntar, avaliar, registrar",
     "ar": "السؤال، التقييم، التسجيل",
     "pl": "Zapytać, ocenić, zapisać",
-    "ru": "Спросить, оценить, записать"
+    "ru": "Спросить, оценить, записать",
+    "es": "Preguntar, evaluar, anotar"
    },
    "scenes": [
     "soins-zimmer"
    ],
    "scene_provisoire": false,
-   "theme_illustre": null,
+   "theme_illustre": "soins-theme-schmerz.html",
    "dialogues": [
     "soins_dlg_02_schmerzen",
-    "soins_dlg_15_angst_vor_untersuchung"
+    "soins_dlg_15_angst_vor_untersuchung",
+    "soins_dlg_28_knieschmerzen",
+    "soins_dlg_29_schmerz_demenz",
+    "soins_dlg_30_schmerz_nachts_arzt",
+    "soins_dlg_31_angst_vor_abhaengigkeit",
+    "soins_dlg_32_handgelenk",
+    "soins_dlg_33_tochter_schmerzen"
    ],
-   "ecrits": [],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_02_schmerzen",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Schmerzen erfragen",
+     "titre": {
+      "fr": "La douleur, de 0 à 10",
+      "en": "Pain, from 0 to 10",
+      "tr": "Ağrı, 0'dan 10'a",
+      "uk": "Біль від 0 до 10",
+      "fa": "درد، از 0 تا 10",
+      "pt": "A dor, de 0 a 10",
+      "ar": "الألم، من 0 إلى 10",
+      "pl": "Ból w skali od 0 do 10",
+      "ru": "Боль от 0 до 10",
+      "es": "El dolor, de 0 a 10"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    },
+    {
+     "id": "soins_dlg_15_angst_vor_untersuchung",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Angst vor der Untersuchung",
+     "titre": {
+      "fr": "Rassurer avant un examen",
+      "en": "Fear of the scan",
+      "tr": "Tetkikten önce hastayı rahatlatmak",
+      "uk": "Заспокоїти перед обстеженням",
+      "fa": "آرام کردن بیمار پیش از معاینه",
+      "pt": "Tranquilizar antes de um exame",
+      "ar": "طمأنة المريض قبل الفحص",
+      "pl": "Uspokoić przed badaniem",
+      "ru": "Страх перед обследованием",
+      "es": "Tranquilizar antes de un estudio"
+     },
+     "avec": "brandt",
+     "avec_nom": "Herr Brandt",
+     "visage": "conversation/soins/brandt.webp"
+    },
+    {
+     "id": "soins_dlg_28_knieschmerzen",
+     "niveau": "A2",
+     "porte": "commence",
+     "de": "Das Knie tut weh",
+     "titre": {
+      "fr": "Mal au genou",
+      "en": "A sore knee",
+      "tr": "Diz ağrıyor",
+      "uk": "Болить коліно",
+      "fa": "زانو درد می‌کند",
+      "pt": "Dor no joelho",
+      "ar": "الركبة تؤلم",
+      "pl": "Boli kolano",
+      "ru": "Болит колено",
+      "es": "Me duele la rodilla"
+     },
+     "avec": "kowalski",
+     "avec_nom": "Frau Kowalski",
+     "visage": "conversation/soins/kowalski.webp"
+    },
+    {
+     "id": "soins_dlg_29_schmerz_demenz",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Schmerzen, die keiner ausspricht",
+     "titre": {
+      "fr": "Une douleur qui ne se dit pas",
+      "en": "Pain that no one puts into words",
+      "tr": "Dile getirilmeyen ağrı",
+      "uk": "Біль, про який не кажуть",
+      "fa": "دردی که به زبان نمی‌آید",
+      "pt": "Uma dor que ninguém diz",
+      "ar": "ألم لا ينطق به أحد",
+      "pl": "Ból, o którym nikt nie mówi",
+      "ru": "Боль, о которой не говорят",
+      "es": "Un dolor que nadie dice"
+     },
+     "avec": "schulze",
+     "avec_nom": "Herr Schulze",
+     "visage": "conversation/soins/schulze.webp"
+    },
+    {
+     "id": "soins_dlg_30_schmerz_nachts_arzt",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Nachts Schmerzen: den Dienstarzt anrufen",
+     "titre": {
+      "fr": "Une douleur la nuit : appeler le médecin de garde",
+      "en": "Pain at night: calling the on-call doctor",
+      "tr": "Gece ağrısı: nöbetçi doktoru aramak",
+      "uk": "Біль уночі: зателефонувати черговому лікареві",
+      "fa": "درد در شب: تماس با پزشک کشیک",
+      "pt": "Dor à noite: ligar para o médico de plantão",
+      "ar": "ألم في الليل: الاتصال بالطبيب المناوب",
+      "pl": "Ból w nocy: telefon do lekarza dyżurnego",
+      "ru": "Боль ночью: звонок дежурному врачу",
+      "es": "Dolor en la noche: llamar al médico de guardia"
+     },
+     "avec": "kraemer",
+     "avec_nom": "Dr. Krämer",
+     "visage": "conversation/soins/kraemer.webp"
+    },
+    {
+     "id": "soins_dlg_31_angst_vor_abhaengigkeit",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "„Davon wird man abhängig“",
+     "titre": {
+      "fr": "« On en devient dépendant »",
+      "en": "“That stuff is addictive”",
+      "tr": "“Bu bağımlılık yapar”",
+      "uk": "«Від цього стають залежними»",
+      "fa": "«آدم به آن وابسته می‌شود»",
+      "pt": "“Isso vicia”",
+      "ar": "«هذا يسبّب الإدمان»",
+      "pl": "„Od tego się uzależnia”",
+      "ru": "«От этого возникает зависимость»",
+      "es": "«Eso crea dependencia»"
+     },
+     "avec": "lehmann",
+     "avec_nom": "Frau Lehmann",
+     "visage": "conversation/soins/lehmann.webp"
+    },
+    {
+     "id": "soins_dlg_32_handgelenk",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Das Handgelenk am Tag danach",
+     "titre": {
+      "fr": "Le poignet, le lendemain",
+      "en": "The wrist, the day after",
+      "tr": "Bir gün sonra el bileği",
+      "uk": "Запʼястя наступного дня",
+      "fa": "مچ دست، فردای آن روز",
+      "pt": "O punho, no dia seguinte",
+      "ar": "الرسغ في اليوم التالي",
+      "pl": "Nadgarstek dzień później",
+      "ru": "Запястье на следующий день",
+      "es": "La muñeca, al día siguiente"
+     },
+     "avec": "weber",
+     "avec_nom": "Frau Weber",
+     "visage": "conversation/soins/weber.webp"
+    },
+    {
+     "id": "soins_dlg_33_tochter_schmerzen",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "„Niemand tut etwas!“",
+     "titre": {
+      "fr": "« Personne ne fait rien ! »",
+      "en": "“Nobody is doing anything!”",
+      "tr": "“Kimse bir şey yapmıyor!”",
+      "uk": "«Ніхто нічого не робить!»",
+      "fa": "«هیچ‌کس کاری نمی‌کند!»",
+      "pt": "“Ninguém faz nada!”",
+      "ar": "«لا أحد يفعل شيئًا!»",
+      "pl": "„Nikt nic nie robi!”",
+      "ru": "«Никто ничего не делает!»",
+      "es": "«¡Nadie hace nada!»"
+     },
+     "avec": "lehmann_tochter",
+     "avec_nom": "Frau Krüger",
+     "visage": "conversation/soins/lehmann_tochter.webp"
+    }
+   ],
+   "ecrits": [
+    "soins_ecrit_schmerz_01"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_schmerz_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Documenter la douleur : M. Brandt",
+      "en": "Documenting pain: Mr. Brandt",
+      "tr": "Ağrı kaydı: Bay Brandt",
+      "uk": "Документування болю: пан Брандт",
+      "fa": "ثبت درد: آقای برانت",
+      "pt": "Registrar a dor: Sr. Brandt",
+      "ar": "توثيق الألم: السيد برانت",
+      "pl": "Dokumentacja bólu: pan Brandt",
+      "ru": "Документация боли: господин Брандт",
+      "es": "Documentar el dolor: el Sr. Brandt"
+     }
+    }
+   ],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -844,7 +1695,12 @@
     "soins_gr_09_indirekte_fragen",
     "soins_gr_07_konjunktiv_bitte",
     "soins_gr_17_kausal_konzessiv",
-    "soins_gr_12_temporalsaetze"
+    "soins_gr_12_temporalsaetze",
+    "soins_gr_01_sie_imperativ",
+    "soins_gr_21_du_sie_team",
+    "soins_gr_18_konjunktiv_i",
+    "soins_gr_08_modalverben",
+    "soins_gr_03_reflexiv_koerper"
    ],
    "mots": [
     "soins_koerper_a2:0",
@@ -897,6 +1753,11 @@
     "soins_koerper_b1:24",
     "soins_koerper_b1:25",
     "soins_koerper_b1:26",
+    "soins_koerper_b1:27",
+    "soins_koerper_b1:28",
+    "soins_koerper_b1:29",
+    "soins_koerper_b1:30",
+    "soins_koerper_b1:31",
     "soins_koerper_b2:0",
     "soins_koerper_b2:1",
     "soins_koerper_b2:2",
@@ -915,14 +1776,48 @@
     "soins_koerper_b2:15",
     "soins_koerper_b2:16",
     "soins_koerper_b2:17",
-    "soins_koerper_b2:18"
+    "soins_koerper_b2:18",
+    "soins_koerper_b2:19",
+    "soins_koerper_b2:20",
+    "soins_koerper_b2:21"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b1:0",
+    "soins_sprache_b1:5",
+    "soins_sprache_b1:6",
+    "soins_sprache_b1:9",
+    "soins_sprache_b1:12",
+    "soins_sprache_b1:13",
+    "soins_sprache_b1:14",
+    "soins_sprache_b1:18",
+    "soins_sprache_b2:4",
+    "soins_sprache_b2:17",
+    "soins_sprache_b2:18",
+    "soins_sprache_b2:25",
+    "soins_sprache_b2:36"
+   ],
    "abreviations": [],
    "cartes": [
+    "soins_rm_28_5",
+    "soins_rm_28_6",
+    "soins_rm_28_7",
     "soins_rm_02_6",
     "soins_rm_02_7",
     "soins_rm_15_1",
+    "soins_rm_32_2",
+    "soins_rm_32_3",
+    "soins_rm_32_4",
+    "soins_rm_32_6",
+    "soins_rm_30_6",
+    "soins_rm_30_7",
+    "soins_rm_31_0",
+    "soins_rm_31_6",
+    "soins_rm_33_7",
+    "soins_rm_28_0",
+    "soins_rm_28_1",
+    "soins_rm_28_2",
+    "soins_rm_28_3",
+    "soins_rm_28_4",
     "soins_rm_02_0",
     "soins_rm_02_1",
     "soins_rm_02_2",
@@ -930,27 +1825,58 @@
     "soins_rm_02_4",
     "soins_rm_02_5",
     "soins_rm_15_3",
+    "soins_rm_32_0",
+    "soins_rm_32_1",
+    "soins_rm_29_0",
+    "soins_rm_29_2",
+    "soins_rm_29_3",
+    "soins_rm_29_6",
+    "soins_rm_31_1",
+    "soins_rm_31_4",
+    "soins_rm_33_6",
     "soins_rm_15_0",
     "soins_rm_15_2",
     "soins_rm_15_4",
+    "soins_rm_32_5",
+    "soins_rm_32_7",
+    "soins_rm_31_2",
+    "soins_rm_31_5",
+    "soins_rm_31_9",
+    "soins_rm_33_0",
+    "soins_rm_33_8",
     "soins_rm_15_5",
-    "soins_rm_15_6"
+    "soins_rm_31_3",
+    "soins_rm_31_7",
+    "soins_rm_33_4",
+    "soins_rm_15_6",
+    "soins_rm_29_1",
+    "soins_rm_30_5",
+    "soins_rm_33_1",
+    "soins_rm_29_4",
+    "soins_rm_29_5",
+    "soins_rm_29_7",
+    "soins_rm_30_0",
+    "soins_rm_30_1",
+    "soins_rm_30_2",
+    "soins_rm_30_3",
+    "soins_rm_31_8",
+    "soins_rm_33_2",
+    "soins_rm_33_3",
+    "soins_rm_33_5",
+    "soins_rm_30_4"
    ],
    "comptes": {
     "scenes": 1,
-    "theme_illustre": 0,
-    "dialogues": 2,
-    "ecrits": 0,
-    "mots": 69,
-    "paires": 0,
+    "theme_illustre": 1,
+    "dialogues": 8,
+    "ecrits": 1,
+    "mots": 77,
+    "paires": 13,
     "abreviations": 0,
-    "cartes": 15
+    "cartes": 66
    },
-   "complet": false,
-   "manque": [
-    "theme_illustre",
-    "ecrits"
-   ]
+   "complet": true,
+   "manque": []
   },
   {
    "id": "ch08_uebergabe",
@@ -966,7 +1892,8 @@
     "pt": "A passagem de plantão",
     "ar": "تسليم المناوبة",
     "pl": "Przekazanie dyżuru",
-    "ru": "Передача смены"
+    "ru": "Передача смены",
+    "es": "El cambio de turno"
    },
    "sous_titre": {
     "fr": "Transmettre l'essentiel, à l'oral",
@@ -977,18 +1904,214 @@
     "pt": "Transmitir o essencial, em voz alta",
     "ar": "نقل الأهم شفهيًا",
     "pl": "Ustnie przekazać to, co najważniejsze",
-    "ru": "Устно передать главное"
+    "ru": "Устно передать главное",
+    "es": "Transmitir lo esencial, de viva voz"
    },
    "scenes": [
     "soins-uebergabe"
    ],
    "scene_provisoire": false,
-   "theme_illustre": null,
+   "theme_illustre": "soins-theme-uebergabe.html",
    "dialogues": [
-    "soins_dlg_06_uebergabe"
+    "soins_dlg_06_uebergabe",
+    "soins_dlg_27_abenduebergabe",
+    "soins_dlg_34_morgenuebergabe",
+    "soins_dlg_35_uebergabe_am_bett",
+    "soins_dlg_36_uebergabe_altenheim",
+    "soins_dlg_37_uebergabe_nachfragen",
+    "soins_dlg_38_uebergabeliste",
+    "soins_dlg_39_teambesprechung"
+   ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_06_uebergabe",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Übergabe",
+     "titre": {
+      "fr": "La relève orale",
+      "en": "The verbal handoff",
+      "tr": "Sözlü nöbet teslimi",
+      "uk": "Усна передача зміни",
+      "fa": "تحویل شیفت شفاهی",
+      "pt": "A passagem de plantão",
+      "ar": "تسليم المناوبة شفهيًا",
+      "pl": "Raport ustny przy przekazaniu dyżuru",
+      "ru": "Устная передача смены",
+      "es": "La entrega de turno oral"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_27_abenduebergabe",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Die Übergabe am Abend",
+     "titre": {
+      "fr": "La relève du soir",
+      "en": "The evening handoff",
+      "tr": "Akşam nöbet teslimi",
+      "uk": "Вечірня передача зміни",
+      "fa": "تحویل شیفت شب",
+      "pt": "A passagem de plantão da noite",
+      "ar": "تسليم المناوبة في المساء",
+      "pl": "Wieczorne przekazanie dyżuru",
+      "ru": "Вечерняя передача смены",
+      "es": "La entrega de turno de la noche"
+     },
+     "avec": "yusuf",
+     "avec_nom": "Yusuf",
+     "visage": "conversation/soins/yusuf.webp"
+    },
+    {
+     "id": "soins_dlg_34_morgenuebergabe",
+     "niveau": "A2",
+     "porte": "commence",
+     "de": "Die Übergabe am Morgen: nachfragen",
+     "titre": {
+      "fr": "La relève du matin : redemander",
+      "en": "The morning handoff: asking again",
+      "tr": "Sabah nöbet teslimi: tekrar sormak",
+      "uk": "Ранкова передача зміни: перепитати",
+      "fa": "تحویل شیفت صبح: دوباره پرسیدن",
+      "pt": "A passagem de plantão da manhã: perguntar de novo",
+      "ar": "تسليم المناوبة في الصباح: الاستفسار",
+      "pl": "Poranne przekazanie dyżuru: dopytywać",
+      "ru": "Утренняя передача смены: переспрашивать",
+      "es": "La entrega de turno de la mañana: volver a preguntar"
+     },
+     "avec": "yusuf",
+     "avec_nom": "Yusuf",
+     "visage": "conversation/soins/yusuf.webp"
+    },
+    {
+     "id": "soins_dlg_35_uebergabe_am_bett",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Die Übergabe am Bett",
+     "titre": {
+      "fr": "La relève au lit du patient",
+      "en": "The bedside handoff",
+      "tr": "Hasta başında nöbet teslimi",
+      "uk": "Передача зміни біля ліжка",
+      "fa": "تحویل شیفت کنار تخت بیمار",
+      "pt": "A passagem de plantão à beira do leito",
+      "ar": "تسليم المناوبة عند سرير المريض",
+      "pl": "Przekazanie dyżuru przy łóżku pacjenta",
+      "ru": "Передача смены у постели пациента",
+      "es": "La entrega de turno junto a la cama"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_36_uebergabe_altenheim",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Die Übergabe im Lindenhof",
+     "titre": {
+      "fr": "La relève au Lindenhof",
+      "en": "The handoff at Lindenhof",
+      "tr": "Lindenhof'ta nöbet teslimi",
+      "uk": "Передача зміни в Лінденгофі",
+      "fa": "تحویل شیفت در لیندن‌هوف",
+      "pt": "A passagem de plantão no Lindenhof",
+      "ar": "تسليم المناوبة في ليندنهوف",
+      "pl": "Przekazanie dyżuru w Lindenhofie",
+      "ru": "Передача смены в «Линденхофе»",
+      "es": "La entrega de turno en el Lindenhof"
+     },
+     "avec": "arun",
+     "avec_nom": "Arun",
+     "visage": "conversation/soins/arun.webp"
+    },
+    {
+     "id": "soins_dlg_37_uebergabe_nachfragen",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Nachfragen bei der Übergabe",
+     "titre": {
+      "fr": "La relève : les questions du collègue",
+      "en": "The handoff: your colleague's questions",
+      "tr": "Nöbet teslimi: meslektaşın soruları",
+      "uk": "Передача зміни: запитання колеги",
+      "fa": "تحویل شیفت: سؤال‌های همکار",
+      "pt": "Perguntas na passagem de plantão",
+      "ar": "تسليم المناوبة: أسئلة الزميل",
+      "pl": "Przekazanie dyżuru: pytania kolegi",
+      "ru": "Передача смены: вопросы коллеги",
+      "es": "La entrega de turno: las preguntas del colega"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_38_uebergabeliste",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Übergabeliste",
+     "titre": {
+      "fr": "La liste de relève : des mots-clés aux phrases",
+      "en": "The handoff list: from keywords to sentences",
+      "tr": "Nöbet teslim listesi: anahtar kelimelerden cümlelere",
+      "uk": "Список передачі зміни: від ключових слів до речень",
+      "fa": "فهرست تحویل شیفت: از کلیدواژه تا جمله",
+      "pt": "A folha de passagem de plantão",
+      "ar": "قائمة التسليم: من الكلمات المفتاحية إلى الجمل",
+      "pl": "Lista przekazania dyżuru: od haseł do zdań",
+      "ru": "Лист передачи смены: от ключевых слов к предложениям",
+      "es": "La lista de entrega de turno: de las palabras clave a las oraciones"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_39_teambesprechung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Teambesprechung am Morgen",
+     "titre": {
+      "fr": "La réunion d'équipe du matin",
+      "en": "The morning team meeting",
+      "tr": "Sabah ekip toplantısı",
+      "uk": "Ранкова нарада команди",
+      "fa": "جلسه‌ی صبحگاهی تیم",
+      "pt": "A reunião de equipe da manhã",
+      "ar": "اجتماع الفريق في الصباح",
+      "pl": "Poranna odprawa zespołu",
+      "ru": "Утреннее совещание команды",
+      "es": "La reunión de equipo de la mañana"
+     },
+     "avec": "hoffmann",
+     "avec_nom": "Frau Hoffmann",
+     "visage": "conversation/soins/hoffmann.webp"
+    }
    ],
    "ecrits": [
     "soins_ecrit_pflegebericht_01"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_pflegebericht_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Transmissions écrites : le service du matin de Mme Lehmann",
+      "en": "Nursing notes: Mrs. Lehmann's early shift",
+      "tr": "Bakım raporu: Bayan Lehmann'ın sabah vardiyası",
+      "uk": "Записи догляду: ранкова зміна в пані Леман",
+      "fa": "گزارش پرستاری: شیفت صبح نزد خانم لمان",
+      "pt": "Evolução de enfermagem: o turno da manhã da Sra. Lehmann",
+      "ar": "التقرير التمريضي: المناوبة الصباحية لدى السيدة ليمان",
+      "pl": "Raport pielęgniarski: ranny dyżur u pani Lehmann",
+      "ru": "Записи в дневник ухода: утренняя смена у госпожи Леман",
+      "es": "Notas de enfermería: el turno de mañana con la Sra. Lehmann"
+     }
+    }
    ],
    "voir_aussi": {
     "dialogues": [],
@@ -997,10 +2120,54 @@
    "grammaire": [
     "soins_gr_13_perfekt_praeteritum_doku",
     "soins_gr_10_passiv_praesens",
-    "soins_gr_20_telegrammstil"
+    "soins_gr_20_telegrammstil",
+    "soins_gr_12_temporalsaetze",
+    "soins_gr_21_du_sie_team",
+    "soins_gr_06_zeit_dosis",
+    "soins_gr_14_passiv_vergangenheit",
+    "soins_gr_09_indirekte_fragen",
+    "soins_gr_19_nominalstil",
+    "soins_gr_17_kausal_konzessiv"
    ],
-   "mots": [],
-   "paires": [],
+   "mots": [
+    "soins_team_b1:0",
+    "soins_team_b1:1",
+    "soins_team_b1:2",
+    "soins_team_b2:0",
+    "soins_team_b2:1",
+    "soins_team_b2:2",
+    "soins_dokumentation_b1:4",
+    "soins_dokumentation_b1:5",
+    "soins_dokumentation_b1:11",
+    "soins_dokumentation_b1:12",
+    "soins_dokumentation_b1:14",
+    "soins_dokumentation_b1:15",
+    "soins_dokumentation_b1:48",
+    "soins_dokumentation_b1:49",
+    "soins_dokumentation_b1:50",
+    "soins_dokumentation_b2:6",
+    "soins_dokumentation_b2:7",
+    "soins_dokumentation_b2:43",
+    "soins_dokumentation_b2:44",
+    "soins_dokumentation_b2:45",
+    "soins_dokumentation_b2:46",
+    "soins_dokumentation_b2:47",
+    "soins_dokumentation_b2:48",
+    "soins_szenen_a2:9",
+    "soins_szenen_b1:13",
+    "soins_szenen_b1:14"
+   ],
+   "paires": [
+    "soins_sprache_b1:21",
+    "soins_sprache_b2:10",
+    "soins_sprache_b2:21",
+    "soins_sprache_b2:22",
+    "soins_sprache_b2:34",
+    "soins_sprache_b2:38",
+    "soins_sprache_b2:39",
+    "soins_sprache_b2:40",
+    "soins_sprache_b2:41"
+   ],
    "abreviations": [
     "soins_dokumentation_b1:16",
     "soins_dokumentation_b1:17",
@@ -1039,30 +2206,111 @@
     "soins_dokumentation_b2:30"
    ],
    "cartes": [
+    "soins_rm_34_7",
+    "soins_rm_27_7",
+    "soins_rm_35_1",
+    "soins_rm_35_2",
+    "soins_rm_36_7",
+    "soins_rm_releve_0",
+    "soins_rm_37_2",
+    "soins_rm_37_4",
+    "soins_rm_37_8",
+    "soins_rm_39_0",
+    "soins_rm_39_7",
+    "soins_rm_34_2",
+    "soins_rm_35_0",
+    "soins_rm_35_5",
+    "soins_rm_35_6",
     "soins_rm_06_5",
+    "soins_rm_39_6",
+    "soins_rm_releve_22",
+    "soins_rm_releve_25",
+    "soins_rm_34_6",
+    "soins_rm_35_3",
+    "soins_rm_27_0",
+    "soins_rm_27_1",
+    "soins_rm_27_2",
+    "soins_rm_27_3",
+    "soins_rm_27_4",
+    "soins_rm_27_5",
+    "soins_rm_27_6",
+    "soins_rm_35_4",
+    "soins_rm_35_7",
+    "soins_rm_36_0",
+    "soins_rm_36_1",
+    "soins_rm_36_2",
+    "soins_rm_36_3",
+    "soins_rm_36_4",
+    "soins_rm_36_5",
+    "soins_rm_36_6",
+    "soins_rm_releve_1",
+    "soins_rm_releve_3",
     "soins_rm_06_0",
     "soins_rm_06_1",
     "soins_rm_06_2",
     "soins_rm_06_3",
     "soins_rm_06_4",
-    "soins_rm_06_6"
+    "soins_rm_06_6",
+    "soins_rm_37_0",
+    "soins_rm_37_1",
+    "soins_rm_37_3",
+    "soins_rm_37_5",
+    "soins_rm_37_6",
+    "soins_rm_37_7",
+    "soins_rm_38_1",
+    "soins_rm_38_2",
+    "soins_rm_38_3",
+    "soins_rm_38_4",
+    "soins_rm_38_5",
+    "soins_rm_38_7",
+    "soins_rm_39_1",
+    "soins_rm_39_2",
+    "soins_rm_39_3",
+    "soins_rm_39_4",
+    "soins_rm_39_5",
+    "soins_rm_releve_2",
+    "soins_rm_releve_4",
+    "soins_rm_releve_5",
+    "soins_rm_releve_7",
+    "soins_rm_releve_8",
+    "soins_rm_releve_9",
+    "soins_rm_releve_10",
+    "soins_rm_releve_11",
+    "soins_rm_releve_12",
+    "soins_rm_releve_13",
+    "soins_rm_releve_14",
+    "soins_rm_releve_15",
+    "soins_rm_releve_16",
+    "soins_rm_releve_17",
+    "soins_rm_releve_18",
+    "soins_rm_releve_19",
+    "soins_rm_releve_20",
+    "soins_rm_releve_21",
+    "soins_rm_releve_23",
+    "soins_rm_releve_24",
+    "soins_rm_releve_6",
+    "soins_rm_34_0",
+    "soins_rm_34_1",
+    "soins_rm_34_3",
+    "soins_rm_34_4",
+    "soins_rm_34_5",
+    "soins_rm_38_0",
+    "soins_rm_38_6",
+    "soins_rm_releve_26",
+    "soins_rm_releve_27"
    ],
    "comptes": {
     "scenes": 1,
-    "theme_illustre": 0,
-    "dialogues": 1,
+    "theme_illustre": 1,
+    "dialogues": 8,
     "ecrits": 1,
-    "mots": 0,
-    "paires": 0,
+    "mots": 26,
+    "paires": 9,
     "abreviations": 35,
-    "cartes": 7
+    "cartes": 92
    },
-   "complet": false,
-   "manque": [
-    "theme_illustre",
-    "dialogues",
-    "mots"
-   ]
+   "complet": true,
+   "manque": []
   },
   {
    "id": "ch09_dokumentation",
@@ -1078,7 +2326,8 @@
     "pt": "A documentação",
     "ar": "التوثيق",
     "pl": "Dokumentacja",
-    "ru": "Документация"
+    "ru": "Документация",
+    "es": "La documentación"
    },
    "sous_titre": {
     "fr": "Écrire juste, court et daté",
@@ -1089,7 +2338,8 @@
     "pt": "Escrever com precisão, de forma breve e com data",
     "ar": "كتابة دقيقة وموجزة ومؤرَّخة",
     "pl": "Pisać dokładnie, krótko i z datą",
-    "ru": "Писать точно, кратко и с датой"
+    "ru": "Писать точно, кратко и с датой",
+    "es": "Escribir con precisión, breve y con fecha"
    },
    "scenes": [
     "soins-stationszimmer"
@@ -1099,11 +2349,100 @@
    "dialogues": [
     "soins_dlg_21_beinahe_fehler"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_21_beinahe_fehler",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Einen Beinahe-Fehler melden",
+     "titre": {
+      "fr": "Signaler un presque-incident",
+      "en": "Reporting a near miss",
+      "tr": "Ramak kala bir hatayı bildirmek",
+      "uk": "Повідомити про ледь не допущену помилку",
+      "fa": "گزارش یک خطای نزدیک به وقوع",
+      "pt": "Notificar um quase erro",
+      "ar": "الإبلاغ عن خطأ كاد يقع",
+      "pl": "Zgłosić błąd, którego udało się uniknąć",
+      "ru": "Сообщить о едва не случившейся ошибке",
+      "es": "Informar un cuasi incidente"
+     },
+     "avec": "hoffmann",
+     "avec_nom": "Frau Hoffmann",
+     "visage": "conversation/soins/hoffmann.webp"
+    }
+   ],
    "ecrits": [
     "soins_ecrit_biografie_01",
     "soins_ecrit_biografie_02",
     "soins_ecrit_biografie_03",
     "soins_ecrit_biografie_04"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_biografie_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport biographique : M. Schulze",
+      "en": "Life-history report: Mr. Schulze",
+      "tr": "Biyografi raporu: Bay Schulze",
+      "uk": "Біографічний звіт: пан Шульце",
+      "fa": "گزارش زندگی‌نامه‌ای: آقای شولتسه",
+      "pt": "Relatório biográfico: Sr. Schulze",
+      "ar": "تقرير السيرة: السيد شولتسه",
+      "pl": "Raport biograficzny: pan Schulze",
+      "ru": "Биографический отчёт: господин Шульце",
+      "es": "Informe biográfico: el Sr. Schulze"
+     }
+    },
+    {
+     "id": "soins_ecrit_biografie_02",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport biographique : Mme Weber",
+      "en": "Life-history report: Mrs. Weber",
+      "tr": "Biyografi raporu: Bayan Weber",
+      "uk": "Біографічний звіт: пані Вебер",
+      "fa": "گزارش زندگی‌نامه‌ای: خانم وبر",
+      "pt": "Relatório biográfico: Sra. Weber",
+      "ar": "تقرير السيرة: السيدة فيبر",
+      "pl": "Raport biograficzny: pani Weber",
+      "ru": "Биографический отчёт: госпожа Вебер",
+      "es": "Informe biográfico: la Sra. Weber"
+     }
+    },
+    {
+     "id": "soins_ecrit_biografie_03",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport biographique : Mme Kowalski",
+      "en": "Life-history report: Mrs. Kowalski",
+      "tr": "Biyografi raporu: Bayan Kowalski",
+      "uk": "Біографічний звіт: пані Ковальскі",
+      "fa": "گزارش زندگی‌نامه‌ای: خانم کوالسکی",
+      "pt": "Relatório biográfico: Sra. Kowalski",
+      "ar": "تقرير السيرة: السيدة كوفالسكي",
+      "pl": "Raport biograficzny: pani Kowalska",
+      "ru": "Биографический отчёт: госпожа Ковальски",
+      "es": "Informe biográfico: la Sra. Kowalski"
+     }
+    },
+    {
+     "id": "soins_ecrit_biografie_04",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport biographique : M. Brandt",
+      "en": "Life-history report: Mr. Brandt",
+      "tr": "Biyografi raporu: Bay Brandt",
+      "uk": "Біографічний звіт: пан Брандт",
+      "fa": "گزارش زندگی‌نامه‌ای: آقای برانت",
+      "pt": "Relatório biográfico: Sr. Brandt",
+      "ar": "تقرير السيرة: السيد برانت",
+      "pl": "Raport biograficzny: pan Brandt",
+      "ru": "Биографический отчёт: господин Брандт",
+      "es": "Informe biográfico: el Sr. Brandt"
+     }
+    }
    ],
    "voir_aussi": {
     "dialogues": [],
@@ -1116,57 +2455,28 @@
    ],
    "mots": [
     "soins_dokumentation_a2:0",
-    "soins_dokumentation_a2:1",
-    "soins_dokumentation_a2:2",
     "soins_dokumentation_a2:3",
     "soins_dokumentation_a2:4",
-    "soins_dokumentation_a2:5",
-    "soins_dokumentation_a2:6",
     "soins_dokumentation_b1:0",
     "soins_dokumentation_b1:1",
     "soins_dokumentation_b1:2",
     "soins_dokumentation_b1:3",
-    "soins_dokumentation_b1:4",
-    "soins_dokumentation_b1:5",
     "soins_dokumentation_b1:6",
     "soins_dokumentation_b1:7",
-    "soins_dokumentation_b1:8",
     "soins_dokumentation_b1:9",
     "soins_dokumentation_b1:10",
-    "soins_dokumentation_b1:11",
-    "soins_dokumentation_b1:12",
     "soins_dokumentation_b1:13",
-    "soins_dokumentation_b1:14",
-    "soins_dokumentation_b1:15",
-    "soins_dokumentation_b1:38",
-    "soins_dokumentation_b2:0",
+    "soins_dokumentation_b1:51",
+    "soins_dokumentation_b1:52",
     "soins_dokumentation_b2:1",
-    "soins_dokumentation_b2:2",
-    "soins_dokumentation_b2:3",
     "soins_dokumentation_b2:4",
     "soins_dokumentation_b2:5",
-    "soins_dokumentation_b2:6",
-    "soins_dokumentation_b2:7",
     "soins_dokumentation_b2:8",
-    "soins_dokumentation_b2:9",
     "soins_dokumentation_b2:10",
     "soins_dokumentation_b2:11",
-    "soins_dokumentation_b2:12",
-    "soins_dokumentation_b2:13",
-    "soins_dokumentation_b2:14",
-    "soins_dokumentation_b2:15",
-    "soins_dokumentation_b2:16",
-    "soins_dokumentation_b2:17",
-    "soins_dokumentation_b2:31",
-    "soins_dokumentation_b2:32",
-    "soins_dokumentation_b2:33",
-    "soins_dokumentation_b2:34",
-    "soins_dokumentation_b2:35",
-    "soins_dokumentation_b2:36",
-    "soins_dokumentation_b2:37",
-    "soins_dokumentation_b2:38",
-    "soins_dokumentation_b2:39",
-    "soins_dokumentation_b2:40"
+    "soins_dokumentation_b2:49",
+    "soins_dokumentation_b2:50",
+    "soins_dokumentation_b2:51"
    ],
    "paires": [],
    "abreviations": [],
@@ -1184,7 +2494,7 @@
     "theme_illustre": 0,
     "dialogues": 1,
     "ecrits": 4,
-    "mots": 52,
+    "mots": 23,
     "paires": 0,
     "abreviations": 0,
     "cartes": 7
@@ -1209,7 +2519,8 @@
     "pt": "Ao telefone",
     "ar": "على الهاتف",
     "pl": "Przy telefonie",
-    "ru": "Телефон"
+    "ru": "Телефон",
+    "es": "Al teléfono"
    },
    "sous_titre": {
     "fr": "Appeler le médecin, le labo, la famille",
@@ -1220,19 +2531,215 @@
     "pt": "Ligar para o médico, o laboratório, a família",
     "ar": "الاتصال بالطبيب والمختبر والعائلة",
     "pl": "Zadzwonić do lekarza, laboratorium, rodziny",
-    "ru": "Позвонить врачу, в лабораторию, родственникам"
+    "ru": "Позвонить врачу, в лабораторию, родственникам",
+    "es": "Llamar al médico, al laboratorio, a la familia"
    },
    "scenes": [
     "soins-telefon"
    ],
    "scene_provisoire": false,
-   "theme_illustre": null,
+   "theme_illustre": "soins-theme-telefon.html",
    "dialogues": [
     "soins_dlg_07_sbar",
     "soins_dlg_19_telefon",
-    "soins_dlg_23_schweigepflicht"
+    "soins_dlg_23_schweigepflicht",
+    "soins_dlg_46_telefonnotiz",
+    "soins_dlg_47_labor_anrufen",
+    "soins_dlg_48_tochter_ruft_an",
+    "soins_dlg_49_krankmeldung",
+    "soins_dlg_50_telefonische_anordnung"
    ],
-   "ecrits": [],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_07_sbar",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Den Arzt anrufen (SBAR)",
+     "titre": {
+      "fr": "Appeler le médecin de garde",
+      "en": "Calling the on-call doctor (SBAR)",
+      "tr": "Nöbetçi doktoru aramak",
+      "uk": "Зателефонувати черговому лікареві (SBAR)",
+      "fa": "تماس با پزشک کشیک",
+      "pt": "Ligar para o médico de plantão",
+      "ar": "الاتصال بالطبيب المناوب",
+      "pl": "Telefon do lekarza dyżurnego",
+      "ru": "Позвонить дежурному врачу (SBAR)",
+      "es": "Llamar al médico de guardia (SBAR)"
+     },
+     "avec": "kraemer",
+     "avec_nom": "Dr. Krämer",
+     "visage": "conversation/soins/kraemer.webp"
+    },
+    {
+     "id": "soins_dlg_19_telefon",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Am Telefon: Labor und Apotheke",
+     "titre": {
+      "fr": "Au téléphone : le laboratoire et la pharmacie",
+      "en": "On the phone: the lab and the pharmacy",
+      "tr": "Telefonda: laboratuvar ve eczane",
+      "uk": "Телефоном: лабораторія та аптека",
+      "fa": "پشت تلفن: آزمایشگاه و داروخانه",
+      "pt": "Ao telefone: o laboratório e a farmácia",
+      "ar": "على الهاتف: المختبر والصيدلية",
+      "pl": "Przez telefon: laboratorium i apteka",
+      "ru": "По телефону: лаборатория и аптека",
+      "es": "Al teléfono: el laboratorio y la farmacia"
+     },
+     "avec": "aksoy",
+     "avec_nom": "Frau Aksoy",
+     "visage": "conversation/soins/aksoy.webp"
+    },
+    {
+     "id": "soins_dlg_23_schweigepflicht",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Angehörige am Telefon: die Schweigepflicht",
+     "titre": {
+      "fr": "La famille au téléphone : le secret professionnel",
+      "en": "A relative on the phone: patient confidentiality",
+      "tr": "Telefondaki hasta yakını: meslek sırrı",
+      "uk": "Родичі на телефоні: професійна таємниця",
+      "fa": "خانواده پشت تلفن: رازداری حرفه‌ای",
+      "pt": "A família ao telefone: o sigilo profissional",
+      "ar": "الأهل على الهاتف: السرّ المهني",
+      "pl": "Rodzina przy telefonie: tajemnica zawodowa",
+      "ru": "Родственники по телефону: врачебная тайна",
+      "es": "Familiares al teléfono: el secreto profesional"
+     },
+     "avec": "lehmann_tochter",
+     "avec_nom": "Frau Krüger",
+     "visage": "conversation/soins/lehmann_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_46_telefonnotiz",
+     "niveau": "A2",
+     "porte": "commence",
+     "de": "Eine Nachricht am Telefon",
+     "titre": {
+      "fr": "Prendre un message au téléphone",
+      "en": "Taking a message on the phone",
+      "tr": "Telefonda mesaj almak",
+      "uk": "Прийняти повідомлення телефоном",
+      "fa": "پیغام گرفتن پشت تلفن",
+      "pt": "Anotar um recado ao telefone",
+      "ar": "أخذ رسالة على الهاتف",
+      "pl": "Wiadomość przez telefon",
+      "ru": "Принять сообщение по телефону",
+      "es": "Tomar un mensaje por teléfono"
+     },
+     "avec": "lehmann_tochter",
+     "avec_nom": "Frau Krüger",
+     "visage": "conversation/soins/lehmann_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_47_labor_anrufen",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Im Labor nachfragen",
+     "titre": {
+      "fr": "Appeler le laboratoire",
+      "en": "Calling the lab",
+      "tr": "Laboratuvarı arayıp sormak",
+      "uk": "Дзвінок до лабораторії",
+      "fa": "پیگیری از آزمایشگاه",
+      "pt": "Ligar para o laboratório",
+      "ar": "الاتصال بالمختبر",
+      "pl": "Telefon do laboratorium",
+      "ru": "Позвонить в лабораторию",
+      "es": "Llamar al laboratorio"
+     },
+     "avec": "aksoy",
+     "avec_nom": "Frau Aksoy",
+     "visage": "conversation/soins/aksoy.webp"
+    },
+    {
+     "id": "soins_dlg_48_tochter_ruft_an",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Die Tochter ruft an",
+     "titre": {
+      "fr": "La fille d'un résident au téléphone",
+      "en": "The daughter calls",
+      "tr": "Kızı telefonda",
+      "uk": "Телефонує донька мешканця",
+      "fa": "دختر یکی از سالمندان زنگ می‌زند",
+      "pt": "A filha liga",
+      "ar": "ابنة أحد المقيمين على الهاتف",
+      "pl": "Córka mieszkańca dzwoni",
+      "ru": "Звонит дочь проживающего",
+      "es": "La hija de un residente al teléfono"
+     },
+     "avec": "schulze_tochter",
+     "avec_nom": "Frau Schulze",
+     "visage": "conversation/soins/schulze_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_49_krankmeldung",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Sich krankmelden",
+     "titre": {
+      "fr": "Se déclarer malade",
+      "en": "Calling in sick",
+      "tr": "Hasta olduğunu bildirmek",
+      "uk": "Повідомити про хворобу",
+      "fa": "اعلام بیماری به محل کار",
+      "pt": "Avisar que está doente",
+      "ar": "الإبلاغ عن المرض",
+      "pl": "Zgłoszenie choroby w pracy",
+      "ru": "Сообщить о болезни",
+      "es": "Avisar que no vas a trabajar por enfermedad"
+     },
+     "avec": "hoffmann",
+     "avec_nom": "Frau Hoffmann",
+     "visage": "conversation/soins/hoffmann.webp"
+    },
+    {
+     "id": "soins_dlg_50_telefonische_anordnung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Eine telefonische Anordnung",
+     "titre": {
+      "fr": "Une prescription par téléphone",
+      "en": "A telephone order",
+      "tr": "Telefon istemi",
+      "uk": "Телефонне призначення",
+      "fa": "یک دستور تلفنی",
+      "pt": "Uma prescrição por telefone",
+      "ar": "أمر طبي هاتفي",
+      "pl": "Zlecenie telefoniczne",
+      "ru": "Телефонное назначение",
+      "es": "Una indicación por teléfono"
+     },
+     "avec": "kraemer",
+     "avec_nom": "Dr. Krämer",
+     "visage": "conversation/soins/kraemer.webp"
+    }
+   ],
+   "ecrits": [
+    "soins_ecrit_telefon_01"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_telefon_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Note d'appel : une valeur critique du labo",
+      "en": "Phone note: a critical lab value",
+      "tr": "Telefon notu: kritik bir laboratuvar değeri",
+      "uk": "Телефонна нотатка: критичний лабораторний показник",
+      "fa": "یادداشت تماس تلفنی: یک مقدار بحرانی آزمایشگاه",
+      "pt": "Registro de ligação: um valor crítico do laboratório",
+      "ar": "مذكّرة هاتفية: قيمة مخبرية حرجة",
+      "pl": "Notatka telefoniczna: krytyczny wynik laboratoryjny",
+      "ru": "Телефонная заметка: критический лабораторный показатель",
+      "es": "Nota de llamada: un valor crítico de laboratorio"
+     }
+    }
+   ],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -1244,26 +2751,121 @@
     "soins_gr_07_konjunktiv_bitte",
     "soins_gr_18_konjunktiv_i",
     "soins_gr_08_modalverben",
-    "soins_gr_16_relativsaetze"
+    "soins_gr_16_relativsaetze",
+    "soins_gr_01_sie_imperativ",
+    "soins_gr_13_perfekt_praeteritum_doku",
+    "soins_gr_12_temporalsaetze",
+    "soins_gr_11_passiv_modal"
    ],
-   "mots": [],
+   "mots": [
+    "soins_dokumentation_b1:38",
+    "soins_dokumentation_b1:53",
+    "soins_dokumentation_b1:54",
+    "soins_dokumentation_b1:55",
+    "soins_dokumentation_b1:56",
+    "soins_dokumentation_b1:57",
+    "soins_dokumentation_b1:58",
+    "soins_dokumentation_b1:59",
+    "soins_dokumentation_b1:60",
+    "soins_dokumentation_b1:61",
+    "soins_dokumentation_b1:62",
+    "soins_dokumentation_b1:63",
+    "soins_dokumentation_b1:64",
+    "soins_dokumentation_b2:9",
+    "soins_dokumentation_b2:12",
+    "soins_dokumentation_b2:17",
+    "soins_dokumentation_b2:35",
+    "soins_dokumentation_b2:36",
+    "soins_dokumentation_b2:37",
+    "soins_dokumentation_b2:38",
+    "soins_dokumentation_b2:52",
+    "soins_dokumentation_b2:53",
+    "soins_dokumentation_b2:54",
+    "soins_dokumentation_b2:55",
+    "soins_angehoerige_b2:16"
+   ],
    "paires": [],
    "abreviations": [],
    "cartes": [
+    "soins_rm_46_0",
+    "soins_rm_46_8",
+    "soins_rm_47_0",
+    "soins_rm_48_0",
+    "soins_rm_48_1",
+    "soins_rm_49_1",
+    "soins_rm_49_3",
+    "soins_rm_49_5",
+    "soins_rm_telephone_0",
+    "soins_rm_telephone_2",
+    "soins_rm_telephone_27",
     "soins_rm_19_0",
     "soins_rm_19_1",
     "soins_rm_23_1",
     "soins_rm_23_6",
+    "soins_rm_50_3",
+    "soins_rm_50_7",
+    "soins_rm_sbar_5",
+    "soins_rm_sbar_26",
+    "soins_rm_sbar_27",
+    "soins_rm_telephone_1",
+    "soins_rm_telephone_12",
+    "soins_rm_telephone_16",
+    "soins_rm_telephone_20",
+    "soins_rm_telephone_24",
+    "soins_rm_telephone_26",
+    "soins_rm_46_2",
+    "soins_rm_46_6",
+    "soins_rm_47_2",
+    "soins_rm_47_4",
+    "soins_rm_48_2",
+    "soins_rm_48_6",
+    "soins_rm_48_7",
     "soins_rm_07_5",
     "soins_rm_19_2",
     "soins_rm_19_6",
     "soins_rm_19_7",
     "soins_rm_23_0",
+    "soins_rm_sbar_19",
+    "soins_rm_sbar_20",
+    "soins_rm_sbar_21",
+    "soins_rm_sbar_22",
+    "soins_rm_sbar_23",
+    "soins_rm_telephone_3",
+    "soins_rm_telephone_4",
+    "soins_rm_telephone_9",
+    "soins_rm_telephone_10",
+    "soins_rm_telephone_11",
+    "soins_rm_telephone_13",
+    "soins_rm_telephone_14",
+    "soins_rm_telephone_15",
+    "soins_rm_telephone_19",
+    "soins_rm_telephone_22",
+    "soins_rm_telephone_25",
+    "soins_rm_47_6",
+    "soins_rm_49_7",
     "soins_rm_23_4",
+    "soins_rm_telephone_21",
+    "soins_rm_49_6",
     "soins_rm_23_3",
     "soins_rm_23_5",
+    "soins_rm_46_5",
+    "soins_rm_47_5",
     "soins_rm_07_6",
     "soins_rm_19_3",
+    "soins_rm_50_4",
+    "soins_rm_sbar_24",
+    "soins_rm_telephone_8",
+    "soins_rm_46_1",
+    "soins_rm_46_7",
+    "soins_rm_47_1",
+    "soins_rm_47_3",
+    "soins_rm_48_3",
+    "soins_rm_48_4",
+    "soins_rm_48_5",
+    "soins_rm_48_8",
+    "soins_rm_49_0",
+    "soins_rm_49_2",
+    "soins_rm_49_4",
     "soins_rm_07_0",
     "soins_rm_07_1",
     "soins_rm_07_2",
@@ -1271,24 +2873,52 @@
     "soins_rm_07_4",
     "soins_rm_19_5",
     "soins_rm_23_2",
-    "soins_rm_19_4"
+    "soins_rm_50_0",
+    "soins_rm_50_1",
+    "soins_rm_50_2",
+    "soins_rm_sbar_0",
+    "soins_rm_sbar_1",
+    "soins_rm_sbar_2",
+    "soins_rm_sbar_3",
+    "soins_rm_sbar_4",
+    "soins_rm_sbar_6",
+    "soins_rm_sbar_7",
+    "soins_rm_sbar_8",
+    "soins_rm_sbar_9",
+    "soins_rm_sbar_10",
+    "soins_rm_sbar_11",
+    "soins_rm_sbar_12",
+    "soins_rm_sbar_13",
+    "soins_rm_sbar_14",
+    "soins_rm_sbar_15",
+    "soins_rm_sbar_16",
+    "soins_rm_sbar_17",
+    "soins_rm_telephone_17",
+    "soins_rm_telephone_18",
+    "soins_rm_telephone_23",
+    "soins_rm_sbar_18",
+    "soins_rm_46_3",
+    "soins_rm_46_4",
+    "soins_rm_19_4",
+    "soins_rm_50_5",
+    "soins_rm_50_6",
+    "soins_rm_sbar_25",
+    "soins_rm_telephone_5",
+    "soins_rm_telephone_6",
+    "soins_rm_telephone_7"
    ],
    "comptes": {
     "scenes": 1,
-    "theme_illustre": 0,
-    "dialogues": 3,
-    "ecrits": 0,
-    "mots": 0,
+    "theme_illustre": 1,
+    "dialogues": 8,
+    "ecrits": 1,
+    "mots": 25,
     "paires": 0,
     "abreviations": 0,
-    "cartes": 22
+    "cartes": 119
    },
-   "complet": false,
-   "manque": [
-    "theme_illustre",
-    "ecrits",
-    "mots"
-   ]
+   "complet": true,
+   "manque": []
   },
   {
    "id": "ch11_angehoerige",
@@ -1304,7 +2934,8 @@
     "pt": "A família do paciente",
     "ar": "عائلة المريض",
     "pl": "Rodzina pacjenta",
-    "ru": "Родственники пациента"
+    "ru": "Родственники пациента",
+    "es": "La familia del paciente"
    },
    "sous_titre": {
     "fr": "Informer, rassurer, garder le secret",
@@ -1315,7 +2946,8 @@
     "pt": "Informar, tranquilizar, manter o sigilo",
     "ar": "الإعلام، الطمأنة، حفظ السر",
     "pl": "Informować, uspokajać, zachować tajemnicę",
-    "ru": "Сообщить, успокоить, сохранить тайну"
+    "ru": "Сообщить, успокоить, сохранить тайну",
+    "es": "Informar, tranquilizar, guardar el secreto"
    },
    "scenes": [
     "soins-altenheim"
@@ -1327,7 +2959,73 @@
     "soins_dlg_24_beschwerde",
     "soins_dlg_26_lebensende"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_05_angehoerige",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Gespräch mit Angehörigen",
+     "titre": {
+      "fr": "Parler à la famille",
+      "en": "Talking to the family",
+      "tr": "Hasta yakınlarıyla konuşmak",
+      "uk": "Розмова з родичами",
+      "fa": "گفت‌وگو با خانواده‌ی بیمار",
+      "pt": "Conversar com a família",
+      "ar": "التحدث مع أهل المريض",
+      "pl": "Rozmowa z rodziną",
+      "ru": "Разговор с родственниками",
+      "es": "Hablar con la familia"
+     },
+     "avec": "lehmann_tochter",
+     "avec_nom": "Frau Krüger",
+     "visage": "conversation/soins/lehmann_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_24_beschwerde",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Eine Beschwerde annehmen",
+     "titre": {
+      "fr": "Recevoir une plainte de la famille",
+      "en": "Handling a complaint from a relative",
+      "tr": "Bir yakının şikâyetini karşılamak",
+      "uk": "Прийняти скаргу від родичів",
+      "fa": "پذیرفتن شکایت خانواده",
+      "pt": "Receber uma reclamação da família",
+      "ar": "تلقّي شكوى من الأهل",
+      "pl": "Przyjąć skargę od rodziny",
+      "ru": "Принять жалобу",
+      "es": "Recibir una queja de la familia"
+     },
+     "avec": "schulze_tochter",
+     "avec_nom": "Frau Schulze",
+     "visage": "conversation/soins/schulze_tochter.webp"
+    },
+    {
+     "id": "soins_dlg_26_lebensende",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Am Lebensende begleiten",
+     "titre": {
+      "fr": "Accompagner la fin de vie",
+      "en": "End-of-life care",
+      "tr": "Yaşamın sonunda eşlik etmek",
+      "uk": "Супровід наприкінці життя",
+      "fa": "همراهی در پایان زندگی",
+      "pt": "Acompanhar o fim da vida",
+      "ar": "المرافقة في نهاية الحياة",
+      "pl": "Towarzyszenie u kresu życia",
+      "ru": "Сопровождение в конце жизни",
+      "es": "Acompañar al final de la vida"
+     },
+     "avec": "schulze_tochter",
+     "avec_nom": "Frau Schulze",
+     "visage": "conversation/soins/schulze_tochter.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [
      "soins_dlg_23_schweigepflicht"
@@ -1384,24 +3082,33 @@
     "soins_angehoerige_b2:13",
     "soins_angehoerige_b2:14",
     "soins_angehoerige_b2:15",
-    "soins_angehoerige_b2:16",
     "soins_angehoerige_b2:17",
     "soins_angehoerige_b2:18",
     "soins_angehoerige_b2:19",
     "soins_angehoerige_b2:20",
-    "soins_angehoerige_b2:21",
     "soins_angehoerige_b2:22"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b2:24",
+    "soins_sprache_b2:68",
+    "soins_sprache_b2:69",
+    "soins_sprache_b2:71",
+    "soins_sprache_b2:72",
+    "soins_sprache_b2:73"
+   ],
    "abreviations": [],
    "cartes": [
+    "soins_rm_famille_0",
     "soins_rm_24_4",
     "soins_rm_24_5",
     "soins_rm_26_5",
     "soins_rm_26_7",
+    "soins_rm_famille_3",
     "soins_rm_05_3",
     "soins_rm_24_0",
     "soins_rm_26_0",
+    "soins_rm_famille_2",
+    "soins_rm_famille_7",
     "soins_rm_05_0",
     "soins_rm_05_5",
     "soins_rm_24_2",
@@ -1410,28 +3117,36 @@
     "soins_rm_26_2",
     "soins_rm_26_3",
     "soins_rm_26_6",
+    "soins_rm_famille_4",
+    "soins_rm_famille_5",
+    "soins_rm_famille_9",
     "soins_rm_05_2",
     "soins_rm_26_4",
+    "soins_rm_famille_1",
     "soins_rm_24_1",
+    "soins_rm_famille_8",
+    "soins_rm_famille_6",
     "soins_rm_05_1",
     "soins_rm_05_4",
     "soins_rm_24_6",
-    "soins_rm_26_1"
+    "soins_rm_26_1",
+    "soins_rm_famille_10"
    ],
    "comptes": {
     "scenes": 0,
     "theme_illustre": 0,
     "dialogues": 3,
     "ecrits": 0,
-    "mots": 48,
-    "paires": 0,
+    "mots": 46,
+    "paires": 6,
     "abreviations": 0,
-    "cartes": 22
+    "cartes": 33
    },
    "complet": false,
    "manque": [
     "scenes",
     "theme_illustre",
+    "dialogues",
     "ecrits"
    ]
   },
@@ -1449,7 +3164,8 @@
     "pt": "A emergência",
     "ar": "الحالة الطارئة",
     "pl": "Nagły wypadek",
-    "ru": "Неотложная ситуация"
+    "ru": "Неотложная ситуация",
+    "es": "La urgencia"
    },
    "sous_titre": {
     "fr": "Alerter, agir, rendre compte",
@@ -1460,7 +3176,8 @@
     "pt": "Dar o alarme, agir, relatar",
     "ar": "إطلاق الإنذار، التصرف، الإبلاغ",
     "pl": "Zaalarmować, działać, zdać relację",
-    "ru": "Поднять тревогу, действовать, доложить"
+    "ru": "Поднять тревогу, действовать, доложить",
+    "es": "Dar la alarma, actuar, informar"
    },
    "scenes": [
     "soins-telefon"
@@ -1472,8 +3189,91 @@
     "soins_dlg_08_sturz",
     "soins_dlg_12_nachts_demenz"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_16_notfall",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Notfall im Zimmer",
+     "titre": {
+      "fr": "L'urgence : appeler à l'aide, réanimer",
+      "en": "Emergency in the room",
+      "tr": "Acil durum: yardım çağırmak, resüsitasyon yapmak",
+      "uk": "Невідкладний стан: покликати на допомогу, реанімувати",
+      "fa": "اورژانس: کمک خواستن، احیا کردن",
+      "pt": "A emergência: pedir ajuda, reanimar",
+      "ar": "الطوارئ: طلب النجدة والإنعاش",
+      "pl": "Nagły wypadek: wezwać pomoc, reanimować",
+      "ru": "Экстренная ситуация в палате: позвать на помощь, реанимировать",
+      "es": "La emergencia: pedir ayuda, reanimar"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_08_sturz",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Der Sturz",
+     "titre": {
+      "fr": "Une résidente au sol",
+      "en": "A resident on the floor",
+      "tr": "Yere düşen bir bakımevi sakini",
+      "uk": "Мешканка на підлозі",
+      "fa": "سالمندی که روی زمین افتاده",
+      "pt": "Uma residente no chão",
+      "ar": "مقيمة على الأرض",
+      "pl": "Mieszkanka na podłodze",
+      "ru": "Падение",
+      "es": "La caída"
+     },
+     "avec": "weber",
+     "avec_nom": "Frau Weber",
+     "visage": "conversation/soins/weber.webp"
+    },
+    {
+     "id": "soins_dlg_12_nachts_demenz",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Nachts bei Demenz",
+     "titre": {
+      "fr": "Un résident désorienté, la nuit",
+      "en": "A disoriented resident at night",
+      "tr": "Gece, yönelimi bozulmuş bir sakin",
+      "uk": "Дезорієнтований мешканець уночі",
+      "fa": "سالمند دچار سردرگمی، در شب",
+      "pt": "Um residente desorientado, à noite",
+      "ar": "مقيم مشوّش الإدراك، في الليل",
+      "pl": "Zdezorientowany mieszkaniec w nocy",
+      "ru": "Ночью с дезориентированным проживающим",
+      "es": "De noche, con demencia"
+     },
+     "avec": "schulze",
+     "avec_nom": "Herr Schulze",
+     "visage": "conversation/soins/schulze.webp"
+    }
+   ],
    "ecrits": [
     "soins_ecrit_sturz_01"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_sturz_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Rapport de chute : Mme Weber",
+      "en": "Fall report: Mrs. Weber",
+      "tr": "Düşme raporu: Bayan Weber",
+      "uk": "Протокол падіння: пані Вебер",
+      "fa": "گزارش زمین خوردن: خانم وبر",
+      "pt": "Registro de queda: Sra. Weber",
+      "ar": "محضر السقوط: السيدة فيبر",
+      "pl": "Protokół upadku: pani Weber",
+      "ru": "Протокол падения: госпожа Вебер",
+      "es": "Informe de caída: la Sra. Weber"
+     }
+    }
    ],
    "voir_aussi": {
     "dialogues": [],
@@ -1538,7 +3338,20 @@
     "soins_notfaelle_b2:20",
     "soins_notfaelle_b2:21"
    ],
-   "paires": [],
+   "paires": [
+    "soins_sprache_b1:7",
+    "soins_sprache_b1:15",
+    "soins_sprache_b1:20",
+    "soins_sprache_b1:22",
+    "soins_sprache_b1:45",
+    "soins_sprache_b2:8",
+    "soins_sprache_b2:11",
+    "soins_sprache_b2:28",
+    "soins_sprache_b2:29",
+    "soins_sprache_b2:30",
+    "soins_sprache_b2:37",
+    "soins_sprache_b2:70"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_08_6",
@@ -1570,13 +3383,14 @@
     "dialogues": 3,
     "ecrits": 1,
     "mots": 49,
-    "paires": 0,
+    "paires": 12,
     "abreviations": 0,
     "cartes": 22
    },
    "complet": false,
    "manque": [
-    "theme_illustre"
+    "theme_illustre",
+    "dialogues"
    ]
   },
   {
@@ -1593,7 +3407,8 @@
     "pt": "A alta do paciente",
     "ar": "خروج المريض",
     "pl": "Wypis",
-    "ru": "Выписка"
+    "ru": "Выписка",
+    "es": "El alta del paciente"
    },
    "sous_titre": {
     "fr": "Préparer le retour à la maison",
@@ -1604,7 +3419,8 @@
     "pt": "Preparar a volta para casa",
     "ar": "التحضير للعودة إلى المنزل",
     "pl": "Przygotować powrót do domu",
-    "ru": "Подготовить возвращение домой"
+    "ru": "Подготовить возвращение домой",
+    "es": "Preparar el regreso a casa"
    },
    "scenes": [
     "soins-ambulant"
@@ -1614,7 +3430,31 @@
    "dialogues": [
     "soins_dlg_25_entlassung"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_25_entlassung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Die Entlassung",
+     "titre": {
+      "fr": "La sortie : préparer le retour à la maison",
+      "en": "Discharge: preparing to go home",
+      "tr": "Taburculuk: eve dönüşü hazırlamak",
+      "uk": "Виписка: підготовка до повернення додому",
+      "fa": "ترخیص: آماده شدن برای بازگشت به خانه",
+      "pt": "A alta hospitalar: preparar a volta para casa",
+      "ar": "الخروج من المستشفى: التحضير للعودة إلى البيت",
+      "pl": "Wypis: przygotowanie powrotu do domu",
+      "ru": "Выписка",
+      "es": "El alta: preparar el regreso a casa"
+     },
+     "avec": "lehmann",
+     "avec_nom": "Frau Lehmann",
+     "visage": "conversation/soins/lehmann.webp"
+    }
+   ],
    "ecrits": [],
+   "ecrits_info": [],
    "voir_aussi": {
     "dialogues": [],
     "ecrits": []
@@ -1624,8 +3464,42 @@
     "soins_gr_06_zeit_dosis",
     "soins_gr_12_temporalsaetze"
    ],
-   "mots": [],
-   "paires": [],
+   "mots": [
+    "soins_dokumentation_b1:65",
+    "soins_dokumentation_b1:66",
+    "soins_dokumentation_b1:67",
+    "soins_dokumentation_b1:68",
+    "soins_dokumentation_b1:69",
+    "soins_dokumentation_b1:70",
+    "soins_dokumentation_b1:71",
+    "soins_dokumentation_b1:72",
+    "soins_dokumentation_b1:73",
+    "soins_dokumentation_b1:74",
+    "soins_dokumentation_b1:75",
+    "soins_dokumentation_b2:13",
+    "soins_dokumentation_b2:14",
+    "soins_dokumentation_b2:15",
+    "soins_dokumentation_b2:16",
+    "soins_dokumentation_b2:39",
+    "soins_dokumentation_b2:40",
+    "soins_dokumentation_b2:56",
+    "soins_dokumentation_b2:57",
+    "soins_dokumentation_b2:58",
+    "soins_dokumentation_b2:59",
+    "soins_dokumentation_b2:60",
+    "soins_dokumentation_b2:61",
+    "soins_dokumentation_b2:62",
+    "soins_dokumentation_b2:63",
+    "soins_dokumentation_b2:64",
+    "soins_dokumentation_b2:65",
+    "soins_angehoerige_b2:21"
+   ],
+   "paires": [
+    "soins_sprache_b1:42",
+    "soins_sprache_b1:44",
+    "soins_sprache_b2:67",
+    "soins_sprache_b2:74"
+   ],
    "abreviations": [],
    "cartes": [
     "soins_rm_25_0",
@@ -1641,8 +3515,8 @@
     "theme_illustre": 0,
     "dialogues": 1,
     "ecrits": 0,
-    "mots": 0,
-    "paires": 0,
+    "mots": 28,
+    "paires": 4,
     "abreviations": 0,
     "cartes": 7
    },
@@ -1650,8 +3524,7 @@
    "manque": [
     "theme_illustre",
     "dialogues",
-    "ecrits",
-    "mots"
+    "ecrits"
    ]
   },
   {
@@ -1668,7 +3541,8 @@
     "pt": "A sala de descanso",
     "ar": "غرفة الاستراحة",
     "pl": "Pokój socjalny",
-    "ru": "Комната отдыха"
+    "ru": "Комната отдыха",
+    "es": "La sala de descanso"
    },
    "sous_titre": {
     "fr": "L'équipe, le planning, les échanges",
@@ -1679,7 +3553,8 @@
     "pt": "A equipe, a escala, as trocas de plantão",
     "ar": "الفريق، جدول المناوبات، تبادل المناوبات",
     "pl": "Zespół, grafik, zamiana dyżurów",
-    "ru": "Команда, график, обмен сменами"
+    "ru": "Команда, график, обмен сменами",
+    "es": "El equipo, los turnos, los cambios de turno"
    },
    "scenes": [
     "soins-pause"
@@ -1691,9 +3566,108 @@
     "soins_dlg_20_praxisanleitung",
     "soins_dlg_22_kritik_im_team"
    ],
+   "dialogues_info": [
+    {
+     "id": "soins_dlg_11_dienst_tauschen",
+     "niveau": "B1",
+     "porte": "commence",
+     "de": "Den Dienst tauschen",
+     "titre": {
+      "fr": "Échanger un poste, se déclarer malade",
+      "en": "Swapping a shift, calling in sick",
+      "tr": "Vardiya değiştirmek, hastalık bildirmek",
+      "uk": "Помінятися зміною, повідомити про хворобу",
+      "fa": "جابه‌جا کردن شیفت، اعلام بیماری",
+      "pt": "Trocar de plantão, avisar que está doente",
+      "ar": "تبديل مناوبة، والإبلاغ عن المرض",
+      "pl": "Zamiana dyżuru, zgłoszenie choroby",
+      "ru": "Поменяться сменой, сообщить о болезни",
+      "es": "Cambiar un turno, reportarse por enfermedad"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_20_praxisanleitung",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Das Gespräch mit dem Praxisanleiter",
+     "titre": {
+      "fr": "La première semaine : l'entretien avec le tuteur",
+      "en": "The first week: the review with your mentor",
+      "tr": "İlk hafta: uygulama rehberiyle görüşme",
+      "uk": "Перший тиждень: розмова з наставником",
+      "fa": "گفت‌وگو با مربی بالینی",
+      "pt": "A primeira semana: a conversa com o preceptor",
+      "ar": "الأسبوع الأول: اللقاء مع المشرف على التدريب العملي",
+      "pl": "Pierwszy tydzień: rozmowa z opiekunem praktyk",
+      "ru": "Беседа с наставником",
+      "es": "La primera semana: la conversación con el tutor"
+     },
+     "avec": "jonas",
+     "avec_nom": "Jonas",
+     "visage": "conversation/soins/jonas.webp"
+    },
+    {
+     "id": "soins_dlg_22_kritik_im_team",
+     "niveau": "B2",
+     "porte": "examen",
+     "de": "Kritik unter Kollegen",
+     "titre": {
+      "fr": "Une critique entre collègues",
+      "en": "Criticism between colleagues",
+      "tr": "Meslektaşlar arasında eleştiri",
+      "uk": "Критика між колегами",
+      "fa": "انتقاد میان همکاران",
+      "pt": "Uma crítica entre colegas",
+      "ar": "نقد بين الزملاء",
+      "pl": "Krytyka między współpracownikami",
+      "ru": "Критика среди коллег",
+      "es": "Una crítica entre colegas"
+     },
+     "avec": "yusuf",
+     "avec_nom": "Yusuf",
+     "visage": "conversation/soins/yusuf.webp"
+    }
+   ],
    "ecrits": [
     "soins_ecrit_nachricht_01",
     "soins_ecrit_nachricht_02"
+   ],
+   "ecrits_info": [
+    {
+     "id": "soins_ecrit_nachricht_01",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Message à la cadre : un échange de poste",
+      "en": "Message to the nurse manager: a shift swap",
+      "tr": "Sorumlu hemşireye mesaj: vardiya değişimi",
+      "uk": "Повідомлення старшій медсестрі: обмін змінами",
+      "fa": "پیام به سرپرستار: جابه‌جایی شیفت",
+      "pt": "Mensagem à chefia do setor: uma troca de turno",
+      "ar": "رسالة إلى رئيسة التمريض: تبديل مناوبة",
+      "pl": "Wiadomość do oddziałowej: zamiana dyżuru",
+      "ru": "Письмо старшей медсестре: обмен сменами",
+      "es": "Mensaje a la jefa de enfermería: un cambio de turno"
+     }
+    },
+    {
+     "id": "soins_ecrit_nachricht_02",
+     "niveau": "B1",
+     "titre": {
+      "fr": "Message à la cadre : une formation continue",
+      "en": "Message to the nurse manager: a training course",
+      "tr": "Sorumlu hemşireye mesaj: bir hizmet içi eğitim",
+      "uk": "Повідомлення старшій медсестрі: курс підвищення кваліфікації",
+      "fa": "پیام به سرپرستار: یک دوره‌ی آموزشی",
+      "pt": "Mensagem à chefia do setor: um curso de atualização",
+      "ar": "رسالة إلى رئيسة التمريض: دورة تدريبية",
+      "pl": "Wiadomość do oddziałowej: szkolenie",
+      "ru": "Письмо старшей медсестре: курс повышения квалификации",
+      "es": "Mensaje a la jefa de enfermería: una capacitación"
+     }
+    }
    ],
    "voir_aussi": {
     "dialogues": [],
@@ -1708,13 +3682,9 @@
    ],
    "mots": [
     "soins_team_a2:0",
-    "soins_team_a2:1",
     "soins_team_a2:2",
     "soins_team_a2:3",
     "soins_team_a2:4",
-    "soins_team_a2:5",
-    "soins_team_a2:6",
-    "soins_team_a2:7",
     "soins_team_a2:8",
     "soins_team_a2:9",
     "soins_team_a2:10",
@@ -1722,9 +3692,6 @@
     "soins_team_a2:12",
     "soins_team_a2:13",
     "soins_team_a2:14",
-    "soins_team_b1:0",
-    "soins_team_b1:1",
-    "soins_team_b1:2",
     "soins_team_b1:3",
     "soins_team_b1:4",
     "soins_team_b1:5",
@@ -1737,7 +3704,6 @@
     "soins_team_b1:12",
     "soins_team_b1:13",
     "soins_team_b1:14",
-    "soins_team_b1:15",
     "soins_team_b1:16",
     "soins_team_b1:17",
     "soins_team_b1:18",
@@ -1745,9 +3711,6 @@
     "soins_team_b1:20",
     "soins_team_b1:21",
     "soins_team_b1:22",
-    "soins_team_b2:0",
-    "soins_team_b2:1",
-    "soins_team_b2:2",
     "soins_team_b2:3",
     "soins_team_b2:4",
     "soins_team_b2:5",
@@ -1772,7 +3735,11 @@
     "soins_team_b2:24",
     "soins_team_b2:25",
     "soins_team_b2:26",
-    "soins_team_b2:27"
+    "soins_team_b2:27",
+    "soins_szenen_a2:6",
+    "soins_szenen_a2:10",
+    "soins_szenen_a2:11",
+    "soins_szenen_a2:12"
    ],
    "paires": [],
    "abreviations": [],
@@ -1781,21 +3748,51 @@
     "soins_rm_20_3",
     "soins_rm_20_4",
     "soins_rm_22_6",
+    "soins_rm_collegues_2",
+    "soins_rm_negociation_4",
+    "soins_rm_negociation_8",
+    "soins_rm_negociation_20",
+    "soins_rm_negociation_21",
     "soins_rm_11_0",
     "soins_rm_11_1",
+    "soins_rm_collegues_0",
+    "soins_rm_collegues_1",
     "soins_rm_20_1",
     "soins_rm_20_5",
     "soins_rm_22_0",
     "soins_rm_22_5",
+    "soins_rm_negociation_0",
+    "soins_rm_negociation_1",
+    "soins_rm_negociation_3",
+    "soins_rm_negociation_7",
+    "soins_rm_negociation_15",
+    "soins_rm_negociation_19",
+    "soins_rm_negociation_23",
+    "soins_rm_negociation_11",
+    "soins_rm_negociation_18",
     "soins_rm_11_2",
     "soins_rm_11_5",
     "soins_rm_22_2",
     "soins_rm_22_4",
+    "soins_rm_negociation_12",
+    "soins_rm_collegues_3",
+    "soins_rm_negociation_5",
+    "soins_rm_negociation_13",
+    "soins_rm_negociation_14",
     "soins_rm_20_2",
     "soins_rm_22_3",
+    "soins_rm_collegues_5",
+    "soins_rm_negociation_16",
     "soins_rm_11_3",
     "soins_rm_20_0",
     "soins_rm_22_1",
+    "soins_rm_collegues_4",
+    "soins_rm_negociation_2",
+    "soins_rm_negociation_6",
+    "soins_rm_negociation_9",
+    "soins_rm_negociation_10",
+    "soins_rm_negociation_17",
+    "soins_rm_negociation_22",
     "soins_rm_20_6"
    ],
    "comptes": {
@@ -1803,20 +3800,21 @@
     "theme_illustre": 0,
     "dialogues": 3,
     "ecrits": 2,
-    "mots": 66,
+    "mots": 59,
     "paires": 0,
     "abreviations": 0,
-    "cartes": 20
+    "cartes": 50
    },
    "complet": false,
    "manque": [
-    "theme_illustre"
+    "theme_illustre",
+    "dialogues"
    ]
   }
  ],
  "a_ranger": {
-  "mots": 44,
-  "paires": 124,
+  "mots": 0,
+  "paires": 0,
   "cartes": 0
  }
 }

@@ -1,0 +1,366 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d23-schweigepflicht.json",
+ "cles": {
+  "titre": {
+   "fr": "La famille au téléphone : le secret professionnel",
+   "de": "Angehörige am Telefon: die Schweigepflicht",
+   "es": "Familiares al teléfono: el secreto profesional"
+  },
+  "intro": {
+   "fr": "Le soir, au poste de soins. Le téléphone sonne : c'est {lehmann_tochter}, la fille de {lehmann}. Elle a une levée du secret professionnel au dossier, mais au téléphone, {elif} ne voit pas qui appelle. Demain à dix heures, {lehmann_tochter} a déjà un entretien avec {sommer}. Tu joues {elif} : vérifier l'identité, dire ce qu'une soignante peut dire, renvoyer les résultats à la médecin, et ne rien dire des autres patients.",
+   "es": "Por la noche, en la estación de enfermería. Suena el teléfono: es {lehmann_tochter}, la hija {lehmann:de}. En el expediente hay una autorización para darle información, pero por teléfono {elif} no ve quién llama. Mañana a las diez, {lehmann_tochter} ya tiene una cita con {sommer}. Juegas el papel de {elif}: verificar la identidad, decir lo que una enfermera puede decir, remitir los resultados a la doctora y no decir nada de los demás pacientes."
+  },
+  "but": {
+   "fr": "Répondre à un proche au téléphone en respectant le secret professionnel (Schweigepflicht) : vérifier l'identité (le mot de passe convenu), donner des nouvelles qui relèvent des soins, ne pas interpréter un résultat (Die Laborwerte bespricht die Ärztin mit Ihnen), refuser poliment toute information sur un autre patient, rassurer sans promettre.",
+   "es": "Responder por teléfono a un familiar respetando el secreto profesional (Schweigepflicht): verificar la identidad (la palabra clave acordada), dar noticias que corresponden a los cuidados, no interpretar un resultado (Die Laborwerte bespricht die Ärztin mit Ihnen), negarse con amabilidad a dar información sobre otro paciente, tranquilizar sin prometer."
+  },
+  "relire_notes": {
+   "fr": "Secret professionnel (§ 203 StGB) et levée du secret (Schweigepflichtentbindung) au dossier ; vérifier l'identité au téléphone : mot de passe convenu à l'admission, ou rappel au numéro du dossier (selon la maison) ; ce qu'une assistante de soins peut dire (soins, repas, mobilité, humeur) et ce qui revient à la médecin (résultats, diagnostic) ; aucune information sur les autres patients.",
+   "es": "Secreto profesional (§ 203 StGB) y autorización para dar información (Schweigepflichtentbindung) en el expediente; verificar la identidad por teléfono: palabra clave acordada en el ingreso, o devolver la llamada al número del expediente (según la institución); lo que una auxiliar de enfermería puede decir (cuidados, comidas, movilidad, estado de ánimo) y lo que le corresponde a la doctora (resultados, diagnóstico); ninguna información sobre los demás pacientes."
+  },
+  "redemittel.0": {
+   "fr": "Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu, s'il vous plaît ?",
+   "de": "Bevor ich Ihnen etwas sage: Können Sie mir bitte das vereinbarte Kennwort nennen?",
+   "es": "Antes de decirle algo: ¿me puede dar la palabra clave acordada, por favor?"
+  },
+  "redemittel.1": {
+   "fr": "Au téléphone, je ne peux donner des informations que si je sais à qui je parle.",
+   "de": "Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche.",
+   "es": "Por teléfono solo puedo dar información si sé con quién hablo."
+  },
+  "redemittel.2": {
+   "fr": "Votre mère va plutôt bien aujourd'hui. Elle a bien mangé.",
+   "de": "Ihrer Mutter geht es heute ganz gut. Sie hat gut gegessen.",
+   "es": "Su mamá está bastante bien hoy. Comió bien."
+  },
+  "redemittel.3": {
+   "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous.",
+   "de": "Die Laborwerte bespricht die Ärztin mit Ihnen.",
+   "es": "Los resultados de laboratorio los comenta la doctora con usted."
+  },
+  "redemittel.4": {
+   "fr": "Je comprends que vous soyez inquiète.",
+   "de": "Ich verstehe, dass Sie sich Sorgen machen.",
+   "es": "Entiendo que esté preocupada."
+  },
+  "redemittel.5": {
+   "fr": "Je ne peux malheureusement rien vous dire sur les autres patients.",
+   "de": "Über andere Patienten darf ich Ihnen leider nichts sagen.",
+   "es": "Lamentablemente, no puedo decirle nada sobre otros pacientes."
+  },
+  "redemittel.6": {
+   "fr": "Je dirai à votre mère que vous avez appelé.",
+   "de": "Ich sage Ihrer Mutter, dass Sie angerufen haben.",
+   "es": "Le digo a su mamá que usted llamó."
+  },
+  "noeuds.anruf.dit.0.recit": {
+   "fr": "Dix-neuf heures, au poste de soins. Le téléphone sonne.",
+   "es": "Las siete de la noche, en la estación de enfermería. Suena el teléfono."
+  },
+  "noeuds.anruf.dit.1": {
+   "fr": "Bonsoir, ici {lehmann_tochter}, la fille de {lehmann}. Je suis passée un moment ce midi, mais je suis inquiète. Comment va ma mère ?",
+   "de": "Guten Abend, hier ist {lehmann_tochter}, die Tochter von {lehmann}. Ich war heute Mittag kurz da, aber ich mache mir Sorgen. Wie geht es meiner Mutter?",
+   "es": "Buenas noches, habla {lehmann_tochter}, la hija {lehmann:de}. Pasé un momento hoy al mediodía, pero estoy preocupada. ¿Cómo está mi mamá?"
+  },
+  "noeuds.anruf.choix.0": {
+   "fr": "Bonsoir, {lehmann_tochter:voc}. Ici {elif}, de l'équipe soignante, {station}. Avant de vous dire quoi que ce soit : pouvez-vous me donner le mot de passe convenu à l'admission, s'il vous plaît ?",
+   "de": "Guten Abend, {lehmann_tochter}. Hier ist {elif} von der Pflege, {station}. Bevor ich Ihnen etwas sage: Können Sie mir bitte das Kennwort nennen, das bei der Aufnahme vereinbart wurde?",
+   "es": "Buenas noches, {lehmann_tochter:voc}. Habla {elif}, de enfermería {station:de}. Antes de decirle algo: ¿me puede dar la palabra clave que se acordó en el ingreso, por favor?"
+  },
+  "noeuds.anruf.choix.0.puis.0": {
+   "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !",
+   "de": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!",
+   "es": "¿Una palabra clave? Ah, sí… «Sonnenblume». ¡Pero si usted me conoce!"
+  },
+  "noeuds.anruf.choix.1": {
+   "fr": "Bonsoir. {elif} à l'appareil, du {station}. Au téléphone, je ne peux donner des informations que si je sais à qui je parle. Quel est votre mot de passe, s'il vous plaît ?",
+   "de": "Guten Abend. Hier spricht {elif} von der {station}. Am Telefon darf ich nur Auskunft geben, wenn ich weiß, mit wem ich spreche. Wie lautet bitte Ihr Kennwort?",
+   "es": "Buenas noches. Habla {elif}, desde {station}. Por teléfono solo puedo dar información si sé con quién hablo. ¿Cuál es su palabra clave, por favor?"
+  },
+  "noeuds.anruf.choix.1.puis.0": {
+   "fr": "Un mot de passe ? Ah oui… « Sonnenblume ». Mais vous me connaissez, pourtant !",
+   "de": "Ein Kennwort? Ach ja … „Sonnenblume“. Aber Sie kennen mich doch!",
+   "es": "¿Una palabra clave? Ah, sí… «Sonnenblume». ¡Pero si usted me conoce!"
+  },
+  "noeuds.anruf.choix.2": {
+   "fr": "Bonsoir ! Votre mère va bien. Seul son potassium était trop élevé aujourd'hui, sinon tout va bien.",
+   "de": "Guten Abend! Ihrer Mutter geht es gut. Nur ihr Kalium war heute zu hoch, sonst ist alles okay.",
+   "es": "¡Buenas noches! Su mamá está bien. Solo el potasio le salió muy alto hoy; lo demás está bien."
+  },
+  "noeuds.anruf.choix.2.puis.0": {
+   "fr": "Le potassium ? Qu'est-ce que ça veut dire ? C'est dangereux ?",
+   "de": "Kalium? Was heißt das? Ist das gefährlich?",
+   "es": "¿El potasio? ¿Qué significa eso? ¿Es peligroso?"
+  },
+  "noeuds.anruf.choix.2.aide": {
+   "fr": "<b>Au téléphone, savoir d'abord qui appelle.</b> Même avec une levée du secret au dossier, on vérifie l'identité (le mot de passe convenu, ou on rappelle au numéro du dossier). Et un résultat de laboratoire, c'est la médecin qui l'explique.",
+   "es": "<b>Por teléfono, primero hay que saber quién llama.</b> Aunque haya una autorización en el expediente, se verifica la identidad (la palabra clave acordada, o se devuelve la llamada al número del expediente). Y un resultado de laboratorio lo explica la doctora."
+  },
+  "noeuds.kennwort.choix.0": {
+   "fr": "Oui, je reconnais votre voix. Mais au téléphone, n'importe qui peut appeler, et le mot de passe protège votre mère. Merci de votre compréhension.",
+   "de": "Ja, ich erkenne Ihre Stimme. Aber am Telefon kann jeder anrufen, und das Kennwort schützt Ihre Mutter. Danke für Ihr Verständnis.",
+   "es": "Sí, reconozco su voz. Pero por teléfono puede llamar cualquiera, y la palabra clave protege a su mamá. Gracias por su comprensión."
+  },
+  "noeuds.kennwort.choix.0.puis.0": {
+   "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?",
+   "de": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?",
+   "es": "Bueno, en el fondo así está bien. Entonces, ¿cómo está ella?"
+  },
+  "noeuds.kennwort.choix.1": {
+   "fr": "Le mot de passe est juste, merci. Nous faisons ainsi pour tous les appels, pour qu'aucun inconnu n'obtienne d'informations.",
+   "de": "Das Kennwort stimmt, danke. Wir machen das bei allen Anrufen so, damit keine Fremden Auskunft bekommen.",
+   "es": "La palabra clave es correcta, gracias. Lo hacemos así con todas las llamadas, para que ningún desconocido reciba información."
+  },
+  "noeuds.kennwort.choix.1.puis.0": {
+   "fr": "Bon, au fond, c'est très bien comme ça. Alors, comment va-t-elle ?",
+   "de": "Na gut, eigentlich ist das ja richtig so. Also, wie geht es ihr?",
+   "es": "Bueno, en el fondo así está bien. Entonces, ¿cómo está ella?"
+  },
+  "noeuds.kennwort.choix.2": {
+   "fr": "Pardon, la ligne est mauvaise. Pouvez-vous répéter le mot de passe, s'il vous plaît ?",
+   "de": "Entschuldigung, die Verbindung ist schlecht. Können Sie das Kennwort bitte noch einmal sagen?",
+   "es": "Disculpe, se oye mal. ¿Puede repetir la palabra clave, por favor?"
+  },
+  "noeuds.kennwort.choix.2.puis.0": {
+   "fr": "« Sonnenblume », comme la fleur (le tournesol).",
+   "de": "„Sonnenblume“. Wie die Blume.",
+   "es": "«Sonnenblume», como la flor (el girasol)."
+  },
+  "noeuds.befinden.choix.0": {
+   "fr": "Votre mère va plutôt bien aujourd'hui. Elle a mangé presque tout son dîner et elle a marché dans le couloir avec sa canne cet après-midi.",
+   "de": "Ihrer Mutter geht es heute ganz gut. Sie hat zu Abend fast alles gegessen und war am Nachmittag mit dem Gehstock auf dem Flur.",
+   "es": "Su mamá está bastante bien hoy. Se comió casi toda la cena y en la tarde caminó por el pasillo con su bastón."
+  },
+  "noeuds.befinden.choix.0.puis.0": {
+   "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin.",
+   "de": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.",
+   "es": "Me alegra. ¿Y los análisis de sangre? La doctora le sacó sangre hoy en la mañana."
+  },
+  "noeuds.befinden.choix.1": {
+   "fr": "Elle a bien participé aujourd'hui. Le pansement a été refait, et elle avait bon appétit au dîner.",
+   "de": "Sie hat heute gut mitgemacht. Der Verband wurde gewechselt, und beim Abendessen hatte sie guten Appetit.",
+   "es": "Hoy colaboró bien. Se le cambió el vendaje y en la cena tuvo buen apetito."
+  },
+  "noeuds.befinden.choix.1.puis.0": {
+   "fr": "Ça me fait plaisir. Et les analyses de sang ? La médecin lui a fait une prise de sang ce matin.",
+   "de": "Das freut mich. Und die Blutwerte? Die Ärztin hat heute Morgen Blut abgenommen.",
+   "es": "Me alegra. ¿Y los análisis de sangre? La doctora le sacó sangre hoy en la mañana."
+  },
+  "noeuds.befinden.choix.2": {
+   "fr": "Votre mère a une hyperkaliémie sur fond de polyneuropathie et de pied diabétique.",
+   "de": "Ihre Mutter hat eine Hyperkaliämie bei Polyneuropathie und diabetischem Fußsyndrom.",
+   "es": "Su mamá tiene una hiperpotasemia con polineuropatía y síndrome de pie diabético."
+  },
+  "noeuds.befinden.choix.2.puis.0": {
+   "fr": "Une quoi ? S'il vous plaît, dites-le de façon que je comprenne.",
+   "de": "Eine was? Bitte so, dass ich es auch verstehe.",
+   "es": "¿Una qué? Por favor, dígalo de manera que yo también lo entienda."
+  },
+  "noeuds.befinden.choix.2.aide": {
+   "fr": "<b>Avec la famille : des mots simples, et ce qui relève des soins.</b> Ce qu'elle a mangé, si elle a marché, comment elle se sent : « Sie hat gut gegessen und war auf dem Flur. » Les diagnostics, c'est la médecin qui les explique.",
+   "es": "<b>Con la familia: palabras sencillas, y lo que corresponde a los cuidados.</b> Lo que comió, si caminó, cómo se siente: «Sie hat gut gegessen und war auf dem Flur.» Los diagnósticos los explica la doctora."
+  },
+  "noeuds.werte.choix.0": {
+   "fr": "Les résultats de laboratoire, c'est la médecin qui en parlera avec vous. Vous avez justement demain à dix heures votre entretien avec {sommer}. Elle pourra tout vous expliquer en détail.",
+   "de": "Die Laborwerte bespricht die Ärztin mit Ihnen. Sie haben ja morgen um zehn das Gespräch mit {sommer}. Da kann sie Ihnen alles genau erklären.",
+   "es": "Los resultados de laboratorio los comenta la doctora con usted. Mañana a las diez tiene justamente la cita con {sommer}. Ahí ella le puede explicar todo con detalle."
+  },
+  "noeuds.werte.choix.0.puis.0": {
+   "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?",
+   "de": "Ja, schon … Aber ist denn etwas nicht in Ordnung?",
+   "es": "Sí, claro… Pero ¿es que hay algo que no está bien?"
+  },
+  "noeuds.werte.choix.1": {
+   "fr": "Là-dessus, je ne peux malheureusement rien vous dire, c'est du ressort de la médecin. Demain à dix heures, vous voyez {sommer} ; elle vous expliquera les résultats.",
+   "de": "Dazu darf ich Ihnen leider nichts sagen, das ist Sache der Ärztin. Morgen um zehn sehen Sie ja {sommer}; sie erklärt Ihnen die Werte.",
+   "es": "Sobre eso, lamentablemente, no puedo decirle nada; le corresponde a la doctora. Mañana a las diez usted ve {sommer:a}; ella le explicará los resultados."
+  },
+  "noeuds.werte.choix.1.puis.0": {
+   "fr": "Oui, bien sûr… Mais est-ce qu'il y a quelque chose qui ne va pas ?",
+   "de": "Ja, schon … Aber ist denn etwas nicht in Ordnung?",
+   "es": "Sí, claro… Pero ¿es que hay algo que no está bien?"
+  },
+  "noeuds.werte.choix.2": {
+   "fr": "Ils sont plutôt corrects, je crois.",
+   "de": "Die sind, glaube ich, ganz okay.",
+   "es": "Están más o menos bien, creo."
+  },
+  "noeuds.werte.choix.2.puis.0": {
+   "fr": "« Je crois » ? Alors, ils sont bons ou pas ?",
+   "de": "„Glaube ich“? Sind sie nun in Ordnung oder nicht?",
+   "es": "¿«Creo»? Entonces, ¿están bien o no?"
+  },
+  "noeuds.werte.choix.2.aide": {
+   "fr": "<b>Ne pas deviner, ne pas interpréter un résultat.</b> « Die Laborwerte bespricht die Ärztin mit Ihnen. » Puis proposer quelque chose de concret : l'entretien avec elle, demain.",
+   "es": "<b>No adivinar, no interpretar un resultado.</b> «Die Laborwerte bespricht die Ärztin mit Ihnen.» Luego, proponer algo concreto: la cita con ella, mañana."
+  },
+  "noeuds.sorge.choix.0": {
+   "fr": "Je comprends que vous soyez inquiète. La médecin a vu les résultats et elle s'en occupe. Demain, elle pourra répondre à toutes vos questions.",
+   "de": "Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin hat die Werte gesehen und kümmert sich darum. Morgen kann sie Ihnen alle Fragen beantworten.",
+   "es": "Entiendo que esté preocupada. La doctora vio los resultados y se está ocupando de eso. Mañana ella podrá responder todas sus preguntas."
+  },
+  "noeuds.sorge.choix.0.puis.0": {
+   "fr": "Bien. Ça me rassure un peu.",
+   "de": "Gut. Das beruhigt mich ein bisschen.",
+   "es": "Bien. Eso me tranquiliza un poco."
+  },
+  "noeuds.sorge.choix.1": {
+   "fr": "Votre mère est bien prise en charge, et la médecin est au courant. Notez vos questions pour demain, comme ça vous n'oublierez rien.",
+   "de": "Ihre Mutter ist gut versorgt, und die Ärztin weiß Bescheid. Schreiben Sie sich Ihre Fragen für morgen auf, dann vergessen Sie nichts.",
+   "es": "Su mamá está bien atendida, y la doctora está al tanto. Anote sus preguntas para mañana, así no se le olvida nada."
+  },
+  "noeuds.sorge.choix.1.puis.0": {
+   "fr": "Bonne idée. Ça me rassure un peu.",
+   "de": "Gute Idee. Das beruhigt mich ein bisschen.",
+   "es": "Buena idea. Eso me tranquiliza un poco."
+  },
+  "noeuds.sorge.choix.2": {
+   "fr": "Non, non, tout va très bien. Ne vous inquiétez pas !",
+   "de": "Nein, nein, es ist alles bestens. Keine Sorge!",
+   "es": "No, no, todo está perfecto. ¡No se preocupe!"
+  },
+  "noeuds.sorge.choix.2.puis.0": {
+   "fr": "Vraiment ? Alors pourquoi je dois parler à la médecin ?",
+   "de": "Wirklich? Warum soll ich dann mit der Ärztin sprechen?",
+   "es": "¿De verdad? Entonces, ¿por qué tengo que hablar con la doctora?"
+  },
+  "noeuds.sorge.choix.2.aide": {
+   "fr": "<b>Rassurer sans promettre.</b> Tu ne peux pas dire « alles bestens » sans le savoir. « Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin kümmert sich darum » rassure et reste vrai.",
+   "es": "<b>Tranquilizar sin prometer.</b> No puedes decir «alles bestens» sin saberlo. «Ich verstehe, dass Sie sich Sorgen machen. Die Ärztin kümmert sich darum» tranquiliza y sigue siendo verdad."
+  },
+  "noeuds.nachbar.dit.0": {
+   "fr": "Ah, et encore une chose : comment va le gentil monsieur d'à côté, {brandt} ? Ma mère dit qu'il a été très malade l'autre nuit.",
+   "de": "Ach, und noch etwas: Wie geht es eigentlich dem netten Herrn von nebenan, {brandt:dat}? Meine Mutter sagt, er war neulich nachts so krank.",
+   "es": "Ah, y otra cosa: ¿cómo sigue el señor tan amable de al lado, {brandt}? Mi mamá dice que la otra noche estuvo muy enfermo."
+  },
+  "noeuds.nachbar.choix.0": {
+   "fr": "C'est gentil de demander. Mais je ne peux malheureusement rien vous dire sur les autres patients. De la même façon, nous ne donnons aucune information sur votre mère à d'autres personnes.",
+   "de": "Das ist nett, dass Sie fragen. Aber über andere Patienten darf ich Ihnen leider nichts sagen. Genauso geben wir anderen auch keine Auskunft über Ihre Mutter.",
+   "es": "Qué amable que pregunte. Pero, lamentablemente, no puedo decirle nada sobre otros pacientes. De la misma manera, no damos a otras personas ninguna información sobre su mamá."
+  },
+  "noeuds.nachbar.choix.0.puis.0": {
+   "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère.",
+   "de": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.",
+   "es": "Claro, tiene razón. Yo tampoco querría que hablaran de mi mamá."
+  },
+  "noeuds.nachbar.choix.1": {
+   "fr": "Là-dessus, je ne peux malheureusement pas vous renseigner, je suis tenue au secret professionnel. Vous non plus, vous ne voudriez pas que je parle de votre mère à d'autres personnes.",
+   "de": "Dazu darf ich Ihnen leider keine Auskunft geben, ich habe Schweigepflicht. Sie möchten ja auch nicht, dass ich mit anderen über Ihre Mutter spreche.",
+   "es": "Sobre eso, lamentablemente, no puedo darle información: tengo que guardar el secreto profesional. Usted tampoco querría que yo hablara de su mamá con otras personas."
+  },
+  "noeuds.nachbar.choix.1.puis.0": {
+   "fr": "Bien sûr, vous avez raison. Je ne voudrais pas non plus qu'on parle de ma mère.",
+   "de": "Natürlich, Sie haben recht. Das würde ich ja auch nicht wollen.",
+   "es": "Claro, tiene razón. Yo tampoco querría que hablaran de mi mamá."
+  },
+  "noeuds.nachbar.choix.2": {
+   "fr": "Oh, il va déjà mieux. Il a eu une pneumonie.",
+   "de": "Ach, dem geht es schon besser. Er hatte eine Lungenentzündung.",
+   "es": "Ah, ya está mejor. Tuvo una neumonía."
+  },
+  "noeuds.nachbar.choix.2.puis.0": {
+   "fr": "Une pneumonie ? C'est contagieux ? Ma mère est en danger ?",
+   "de": "Eine Lungenentzündung? Ist das ansteckend? Ist meine Mutter in Gefahr?",
+   "es": "¿Una neumonía? ¿Eso es contagioso? ¿Mi mamá está en peligro?"
+  },
+  "noeuds.nachbar.choix.2.aide": {
+   "fr": "<b>Jamais d'information sur un autre patient, même demandée gentiment.</b> « Über andere Patienten darf ich Ihnen leider nichts sagen. » Le secret professionnel protège chaque patient, la mère de l'appelante aussi.",
+   "es": "<b>Nunca dar información sobre otro paciente, aunque la pidan con amabilidad.</b> «Über andere Patienten darf ich Ihnen leider nichts sagen.» El secreto profesional protege a cada paciente, también a la mamá de quien llama."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Alors à demain, dix heures. Je dirai à votre mère que vous avez appelé. Bonne soirée !",
+   "de": "Dann sehen wir uns morgen um zehn. Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch!",
+   "es": "Entonces nos vemos mañana a las diez. Le digo a su mamá que usted llamó. ¡Que tenga buena noche!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci, vous êtes très aimable. Bonne nuit !",
+   "de": "Danke, Sie sind sehr freundlich. Gute Nacht!",
+   "es": "Gracias, es usted muy amable. ¡Buenas noches!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je transmettrai vos amitiés à votre mère. À demain, et au revoir, {lehmann_tochter:voc}.",
+   "de": "Ich richte Ihrer Mutter liebe Grüße aus. Bis morgen, und auf Wiederhören, {lehmann_tochter}.",
+   "es": "Le doy sus saludos a su mamá. Hasta mañana, y hasta luego, {lehmann_tochter:voc}."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Au revoir, et merci beaucoup !",
+   "de": "Auf Wiederhören, und vielen Dank!",
+   "es": "¡Hasta luego, y muchas gracias!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "OK, salut !",
+   "de": "Okay, tschüss!",
+   "es": "¡Okey, chao!"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Euh… au revoir.",
+   "de": "Äh … tschüss.",
+   "es": "Eh… chao."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Finir l'appel comme on l'a commencé : poliment, avec la suite.</b> « Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch! » Au téléphone, on dit « Auf Wiederhören ».",
+   "es": "<b>Terminar la llamada como empezó: con cortesía y diciendo lo que sigue.</b> «Ich sage Ihrer Mutter, dass Sie angerufen haben. Einen schönen Abend noch!» Por teléfono se dice «Auf Wiederhören»."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {elif} demande-t-elle le mot de passe ?",
+   "de": "Warum fragt {elif} nach dem Kennwort?",
+   "es": "¿Por qué pide {elif} la palabra clave?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Parce qu'elle ne connaît pas la voix.",
+   "de": "Weil sie die Stimme nicht kennt.",
+   "es": "Porque no conoce la voz."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Parce qu'au téléphone, elle ne peut pas être sûre de qui appelle.",
+   "de": "Weil sie am Telefon nicht sicher wissen kann, wer anruft.",
+   "es": "Porque por teléfono no puede saber con seguridad quién llama."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Parce que la fille n'a pas de levée du secret.",
+   "de": "Weil die Tochter keine Schweigepflichtentbindung hat.",
+   "es": "Porque la hija no tiene autorización para recibir información."
+  },
+  "ecouter.1.q": {
+   "fr": "Qui explique les résultats sanguins de {lehmann} ?",
+   "de": "Wer erklärt die Blutwerte von {lehmann}?",
+   "es": "¿Quién explica los resultados de sangre {lehmann:de}?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "La médecin, demain à dix heures.",
+   "de": "Die Ärztin, morgen um zehn Uhr.",
+   "es": "La doctora, mañana a las diez."
+  },
+  "ecouter.1.options.1": {
+   "fr": "{elif}, tout de suite au téléphone.",
+   "de": "{elif}, gleich am Telefon.",
+   "es": "{elif}, enseguida por teléfono."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Le laboratoire, par une lettre.",
+   "de": "Das Labor, mit einem Brief.",
+   "es": "El laboratorio, con una carta."
+  },
+  "ecouter.2.q": {
+   "fr": "Que répond {elif} quand on lui demande des nouvelles de {brandt} ?",
+   "de": "Was antwortet {elif} auf die Frage nach {brandt:dat}?",
+   "es": "¿Qué responde {elif} cuando le preguntan por {brandt}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Qu'il va déjà mieux.",
+   "de": "Dass es ihm schon besser geht.",
+   "es": "Que ya está mejor."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Qu'il a eu une pneumonie.",
+   "de": "Dass er eine Lungenentzündung hatte.",
+   "es": "Que tuvo una neumonía."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Qu'elle ne peut rien dire sur les autres patients.",
+   "de": "Dass sie über andere Patienten nichts sagen darf.",
+   "es": "Que no puede decir nada sobre otros pacientes."
+  }
+ }
+}

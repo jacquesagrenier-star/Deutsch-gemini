@@ -21,7 +21,10 @@ qui gardent ce que le fichier derive laisse tomber (homographes, lectures du mot
      "lecture", un mot a chiffres sa "lecture_mot" (ou "lecture"), et une lecture n'a plus de chiffre ;
   7. l'ecriture de chaque langue : cyrillique en uk et ru (sans les lettres de l'autre), ecriture arabe
      en ar et fa (lettres persanes ی ک en fa, jamais en ar), apostrophe ukrainienne ʼ, « ؟ » en ar et
-     fa, une espace avant « ? » et « ! » en francais.
+     fa, une espace avant « ? » et « ! » en francais ; en espagnol (10e langue, 16 nov.), l'alphabet latin et
+     « ¿ … ? », « ¡ … ! » ;
+  8. le chapitre (« chapitre », 16 nov.) : un id de pflege/sources/chapitres.py.
+L'espagnol est exige partout depuis le 16 nov. (vocab_es.py pour en ajouter).
 """
 import importlib.util
 import os
@@ -87,6 +90,13 @@ def ecritures(echecs, ou, lang, champ, val):
             echecs.append("%s : %s fa : ي ou ك arabes (ی, ک attendus) : %s" % (ou, champ, val))
         if lang == "ar" and PERSAN.search(val):
             echecs.append("%s : %s ar : lettre persane : %s" % (ou, champ, val))
+    elif lang == "es":
+        if CYR.search(val) or ARABE.search(val):
+            echecs.append("%s : %s es n'est pas en alphabet latin : %s" % (ou, champ, val))
+        if "?" in val and "¿" not in val:
+            echecs.append("%s : %s es : « ¿ » attendu : %s" % (ou, champ, val))
+        if "!" in val and "¡" not in val:
+            echecs.append("%s : %s es : « ¡ » attendu : %s" % (ou, champ, val))
     elif lang == "fr" and re.search(r"\S[?!]", val):
         echecs.append("%s : %s fr : espace attendue avant ? ou ! : %s" % (ou, champ, val))
 
@@ -101,6 +111,11 @@ def main():
         echecs.append((p.stdout + p.stderr).strip().splitlines()[-1])
 
     C = charger_construire()
+    spec = importlib.util.spec_from_file_location("chapitres_src", os.path.join(RACINE, "pflege", "sources", "chapitres.py"))
+    CH = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(CH)
+    ids_chapitres = {c["id"] for c in CH.CHAPITRES}
+    avec_es = 0
     vus = {}
     comptes = {}
     for nom in C.THEMES:
@@ -111,7 +126,7 @@ def main():
         if not src.THEME.get("svg"):
             echecs.append("%s : svg absent" % nom)
         tt = src.THEME.get("nom_theme_trad") or {}
-        if sorted(tt) != sorted(LANGUES) or not all(tt.values()):
+        if sorted(tt) != sorted(LANGUES + ["es"]) or not all(tt.values()):
             echecs.append("%s : nom_theme_trad sans ses 9 langues" % nom)
         for ligne in src.MOTS:
             d = en_dict(ligne)
@@ -139,12 +154,26 @@ def main():
                 ecritures(echecs, ou, l, "traduction", t[0])
                 ecritures(echecs, ou, l, "exemple", t[1])
             ecritures(echecs, ou, "de", "exemple", d.get("exemple", ""))
+            if not trad.get("es"):
+                echecs.append("%s : sans espagnol (10e langue, obligatoire depuis le 16 nov.)" % ou)
+            else:
+                avec_es += 1
+                t = trad["es"]
+                if len(t) != 2 or not t[0] or not t[1]:
+                    echecs.append("%s : traduction ou exemple es vide" % ou)
+                else:
+                    ecritures(echecs, ou, "es", "traduction", t[0])
+                    ecritures(echecs, ou, "es", "exemple", t[1])
+                if sorte == "paire" and not (d.get("trad_patient") or {}).get("es"):
+                    echecs.append("%s : l'espagnol d'un cote de la paire seulement" % ou)
+            if d.get("chapitre") and d["chapitre"] not in ids_chapitres:
+                echecs.append("%s : chapitre inconnu %r" % (ou, d["chapitre"]))
             if sorte == "paire":
                 # le cote du patient : memes exigences que le cote du service
                 if not d.get("patient") or not d.get("exemple_patient"):
                     echecs.append("%s : paire sans « patient » ou « exemple_patient »" % ou)
                 tp = d.get("trad_patient") or {}
-                for l in LANGUES:
+                for l in LANGUES + (["es"] if tp.get("es") else []):
                     t = tp.get(l)
                     if not t or len(t) != 2 or not t[0] or not t[1]:
                         echecs.append("%s : traduction ou exemple du patient %s vide" % (ou, l))
@@ -194,7 +223,8 @@ def main():
 
     total = sum(c[0] for t in comptes.values() for c in t.values())
     repris = sum(c[1] for t in comptes.values() for c in t.values())
-    print("Vocabulaire des Soins : %d entrees, dont %d reprises du corpus ; %d a relire" % (total, repris, len(a_relire)))
+    print("Vocabulaire des Soins : %d entrees, dont %d reprises du corpus ; %d a relire ; %d avec l'espagnol"
+          % (total, repris, len(a_relire), avec_es))
     for nom in C.THEMES:
         ligne = "  %-14s" % nom
         for niv in ("A2", "B1", "B2"):

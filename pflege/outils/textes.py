@@ -16,7 +16,7 @@ PFLEGE = os.path.join(RACINE, "pflege")
 SOURCES = os.path.join(PFLEGE, "sources")
 TRAD = os.path.join(SOURCES, "traductions")
 DATOS = os.path.join(PFLEGE, "datos")
-LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru"]   # l'ordre du contrat (pflege/FORMAT-DONNEES.md)
+LANGUES = ["fr", "en", "tr", "uk", "fa", "pt", "ar", "pl", "ru", "es"]   # l'ordre du contrat (pflege/FORMAT-DONNEES.md) ; « es » ajoute le 16 nov. (decision de Jacques, 10e langue)
 AUTRES = LANGUES[1:]
 FAMILLES = ["dialogues", "grammaire", "ecrit", "redemittel"]
 # Les cartes-phrases (FORMAT-DONNEES.md, 2 bis) : les fonctions et les groupes (tenus ici), les cartes sans dialogue
@@ -27,7 +27,8 @@ GROUPE_DIALOGUE = {1: "patient", 2: "patient", 3: "patient", 4: "negociation", 5
                    8: "patient", 9: "patient", 10: "patient", 11: "collegues", 12: "patient", 13: "patient",
                    14: "patient", 15: "patient", 16: "collegues", 17: "visite", 18: "negociation", 19: "telephone",
                    20: "collegues", 21: "collegues", 22: "collegues", 23: "famille", 24: "famille", 25: "patient",
-                   26: "famille"}
+                   26: "famille", 27: "releve",
+    28: "patient", 29: "patient", 30: "telephone", 31: "patient", 32: "patient", 33: "famille", 34: "releve", 35: "releve", 36: "releve", 37: "releve", 38: "releve", 39: "releve", 40: "patient", 41: "patient", 42: "patient", 43: "famille", 44: "patient", 45: "visite", 46: "telephone", 47: "telephone", 48: "telephone", 49: "telephone", 50: "telephone"}
 GABARIT = re.compile(r"\{([a-z_]+)(?::([a-z]+))?\}")
 TUTOIEMENT = re.compile(r"\b(du|dich|dir|dein\w*)\b")
 # Cles qui ne sont jamais des textes a traduire, meme dans un objet qui a "fr".
@@ -270,19 +271,33 @@ SCENE = {1: "soins-zimmer", 2: "soins-zimmer", 3: "soins-zimmer", 4: "soins-zimm
          13: "soins-aufnahme", 14: "soins-zimmer", 15: "soins-zimmer", 16: "soins-zimmer", 17: "soins-visite",
          18: "soins-stationszimmer", 19: "soins-stationszimmer", 20: "soins-stationszimmer",
          21: "soins-stationszimmer", 22: "soins-uebergabe", 23: "soins-stationszimmer", 24: "soins-altenheim",
-         25: "soins-zimmer", 26: "soins-altenheim"}
+         25: "soins-zimmer", 26: "soins-altenheim", 27: "soins-uebergabe",
+    28: "soins-ambulant", 29: "soins-altenheim", 30: "soins-telefon", 31: "soins-zimmer", 32: "soins-altenheim", 33: "soins-stationszimmer", 34: "soins-uebergabe", 35: "soins-zimmer", 36: "soins-altenheim", 37: "soins-uebergabe", 38: "soins-uebergabe", 39: "soins-uebergabe", 40: "soins-altenheim", 41: "soins-aufnahme", 42: "soins-altenheim", 43: "soins-altenheim", 44: "soins-aufnahme", 45: "soins-stationszimmer", 46: "soins-telefon", 47: "soins-telefon", 48: "soins-telefon", 49: "soins-telefon", 50: "soins-telefon"}
 LIEU = {1: "chambre", 2: "chambre", 3: "chambre", 4: "chambre", 5: "couloir", 6: "poste de soins",
         7: "poste de soins, la nuit", 8: "maison de retraite, chambre", 9: "maison de retraite",
         10: "domicile", 11: "salle du personnel, téléphone", 12: "maison de retraite, couloir, la nuit",
         13: "admission", 14: "chambre", 15: "chambre", 16: "chambre, urgence", 17: "visite médicale",
         18: "poste de soins", 19: "poste de soins, téléphone", 20: "poste de soins", 21: "bureau de la cadre",
         22: "salle du personnel", 23: "poste de soins, téléphone", 24: "maison de retraite",
-        25: "chambre, sortie", 26: "maison de retraite, chambre"}
+        25: "chambre, sortie", 26: "maison de retraite, chambre",
+        27: "poste de soins, le soir",
+    28: "domicile", 29: "maison de retraite, chambre", 30: "poste de soins, la nuit, téléphone", 31: "chambre", 32: "maison de retraite, chambre", 33: "couloir", 34: "poste de soins, le matin", 35: "chambre, relève au lit", 36: "maison de retraite, salle du personnel", 37: "poste de soins", 38: "poste de soins", 39: "salle du personnel, réunion d'équipe", 40: "maison de retraite, chambre", 41: "admission", 42: "maison de retraite, chambre", 43: "maison de retraite", 44: "admission, la nuit", 45: "poste de soins", 46: "poste de soins, téléphone", 47: "poste de soins, téléphone", 48: "maison de retraite, téléphone", 49: "à la maison, téléphone", 50: "poste de soins, la nuit, téléphone"}
 PREPARE = {"oral-1": "sprechen_1", "oral-2": "sprechen_2", "oral-3": "sprechen_3", "hoeren": "hoeren_2",
            "lesen": "lesen_3", "schreiben": "schreiben"}
-PREPARE_HOEREN = {6: "hoeren_3", 7: "hoeren_1", 11: "hoeren_1", 19: "hoeren_1", 23: "hoeren_1"}   # relève = réunion d'équipe ; téléphone = messages
+PREPARE_HOEREN = {6: "hoeren_3", 7: "hoeren_1", 11: "hoeren_1", 19: "hoeren_1", 23: "hoeren_1", 27: "hoeren_3",
+    30: "hoeren_1", 34: "hoeren_3", 36: "hoeren_3", 37: "hoeren_3", 39: "hoeren_3", 46: "hoeren_1", 47: "hoeren_1", 48: "hoeren_1", 49: "hoeren_1", 50: "hoeren_1"}   # relève = réunion d'équipe ; téléphone = messages
 TYPE_ECRIT = {"aufnahmebericht": "aufnahme", "biografiebericht": "biografie", "pflegebericht": "pflegebericht",
-              "sturzprotokoll": "sturz", "nachricht": "nachricht"}
+              "sturzprotokoll": "sturz", "nachricht": "nachricht",
+              "schmerzprotokoll": "schmerz", "telefonnotiz": "telefon"}
+
+
+# Les deux portes de l'accueil Soins (decision de Jacques du 16 nov.) : « Je commence » (A2-B1) et « Je prepare
+# l'examen » (B1-B2). Un dialogue peut le dire (« porte ») ; sinon A2 et B1 -> commence, B2 -> examen.
+PORTES = ("commence", "examen")
+
+
+def porte_dialogue(d):
+    return d.get("porte") or ("examen" if d["niveau"] == "B2" else "commence")
 
 
 def trad(u):
@@ -355,6 +370,7 @@ def exporter(res):
                      for q in d["ecouter"]]
         dialogues.append({
             "id": ids_d[d["id"][:3]], "source": d["id"], "numero": n, "niveau": d["niveau"],
+            "porte": porte_dialogue(d),
             "titre_de": d["titre"]["t"], "titre": trad(d["titre"]), "lieu": LIEU[n], "scene": SCENE[n],
             "personnages": [d["role"]] + d["personnes"], "apprenant": d["role"], "registre": d["registre"],
             "intro": trad(d["intro"]), "but": trad(d["but"]),

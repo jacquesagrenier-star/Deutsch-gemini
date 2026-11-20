@@ -54,7 +54,8 @@ def construire():
 
     dialogues = lire("dialogues.json")["dialogues"]
     par_source = {d["source"]: d for d in dialogues}
-    ecrits = {e["id"] for e in lire("ecrit.json")["sujets"]}
+    sujets = {e["id"]: e for e in lire("ecrit.json")["sujets"]}
+    ecrits = set(sujets)
     themes = lire("themes.json")
     themes = themes if isinstance(themes, list) else themes["themes"]
     redemittel = lire("redemittel.json")
@@ -136,6 +137,19 @@ def construire():
             continue
         cartes[ch].append(k["id"])
 
+    # la personne en face dans un dialogue (pour la vignette de l'ecran du chapitre) : son id, son nom allemand
+    # (pflege/sources/noms.json), son visage s'il existe (visuel/prototype/conversation/soins/<id>.webp)
+    noms = json.load(open(os.path.join(RACINE, "pflege", "sources", "noms.json"), encoding="utf-8"))["personnes"]
+
+    def en_face(d):
+        autres = [p for p in d.get("personnages", []) if p != d.get("apprenant")]
+        if not autres:
+            return {}
+        q = autres[0]
+        nom = (noms.get(q, {}).get("de", {}) or {}).get("") or q
+        visage = os.path.exists(os.path.join(PROTO, "conversation", "soins", q + ".webp"))
+        return {"avec": q, "avec_nom": nom, "visage": ("conversation/soins/%s.webp" % q) if visage else None}
+
     sortie_ch = []
     for numero, c in enumerate(S.CHAPITRES, 1):
         dlg = [par_source[d]["id"] for d in c.get("dialogues", []) if d in par_source]
@@ -154,7 +168,18 @@ def construire():
             "scenes": c.get("scenes", []), "scene_provisoire": bool(c.get("scene_provisoire")),
             "theme_illustre": c.get("theme_illustre"),
             "dialogues": dlg,
+            # ce que l'accueil et l'ecran du chapitre affichent, sans charger dialogues.json ni ecrit.json
+            "dialogues_info": [dict({"id": par_source[d]["id"], "niveau": par_source[d].get("niveau"),
+                                     "porte": par_source[d].get("porte") or ("examen" if par_source[d].get("niveau") in ("B2", "C1") else "commence"),
+                                     "de": par_source[d].get("titre_de", ""),
+                                     "titre": {l: par_source[d]["titre"].get(l, "") for l in S.LANGUES if par_source[d]["titre"].get(l)}},
+                                    **en_face(par_source[d]))
+                               for d in c.get("dialogues", []) if d in par_source],
             "ecrits": c.get("ecrits", []),
+            "ecrits_info": [{"id": e, "niveau": sujets[e].get("niveau"),
+                             "titre": ({l: v for l, v in sujets[e]["titre"].items() if l in S.LANGUES and v}
+                                       if isinstance(sujets[e].get("titre"), dict) else {"fr": str(sujets[e].get("titre", ""))})}
+                            for e in c.get("ecrits", []) if e in sujets],
             "voir_aussi": {"dialogues": [par_source[d]["id"] for d in c.get("voir_aussi", {}).get("dialogues", []) if d in par_source],
                            "ecrits": c.get("voir_aussi", {}).get("ecrits", [])},
             "grammaire": grammaire,

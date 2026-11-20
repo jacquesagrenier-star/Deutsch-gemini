@@ -1,0 +1,598 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d37-uebergabe-nachfragen.json",
+ "cles": {
+  "titre": {
+   "fr": "La relève : les questions du collègue",
+   "de": "Nachfragen bei der Übergabe",
+   "es": "La entrega de turno: las preguntas del colega"
+  },
+  "intro": {
+   "fr": "Mercredi 11 novembre, treize heures trente. {elif} a fini son service du matin et fait la relève à {jonas}. La nuit dernière, {brandt} a manqué d'air ; ce matin, il a passé un scanner des poumons. {jonas} écoute, puis pose des questions précises auxquelles {elif} n'a pas pensé. Entre collègues, on se dit « du ». Tu joues {elif} : dis ce que tu sais, avoue ce que tu ne sais pas, vérifie dans le dossier, et ne devine jamais.",
+   "es": "Miércoles 11 de noviembre, la una y media de la tarde. {elif} terminó su turno de mañana y le hace la entrega de turno a {jonas}. Anoche {brandt:a} le faltó el aire; hoy en la mañana le hicieron una tomografía de los pulmones. {jonas} escucha, y luego hace preguntas precisas en las que {elif} no había pensado. Entre colegas se usa «du». Juegas el papel de {elif}: di lo que sabes, reconoce lo que no sabes, verifica en el expediente, y nunca adivines."
+  },
+  "but": {
+   "fr": "Transmettre au passé et au passif (« ist gebracht worden », « wurde gegeben ») ; dire « je ne sais pas » et vérifier au lieu de deviner ; employer l'interrogative indirecte (« Ich schaue nach, wann er es bekommen hat ») ; séparer ce qui est décidé de ce qui est seulement proposé, et les faits des impressions.",
+   "es": "Informar en pasado y en pasiva («ist gebracht worden», «wurde gegeben»); decir «no sé» y verificar en lugar de adivinar; usar la interrogativa indirecta («Ich schaue nach, wann er es bekommen hat»); separar lo que está decidido de lo que solo está propuesto, y los hechos de las impresiones."
+  },
+  "relire_notes": {
+   "fr": "Cohérence du cas : nuit du 10 au 11 (dialogue 7 : saturation 88 %, 38,4 °C, oxygène 2 l/min), scanner thoracique avec produit de contraste le 11 au matin (dialogue 15), résultat annoncé par la médecin seulement (dialogue 17 : pas d'embolie, pneumonie droite) ; valeurs de midi (saturation 93 % sous 2 l/min, 38,0 °C, douleur 3/10) ; antalgie : traitement fixe à 8 h et à 16 h, aucun « si besoin » prescrit le mercredi à midi (le métamizole « bei Bedarf » sans dose arrive le soir : dialogues 18 et 30) ; premier changement de pansement d'une prothèse de hanche le deuxième jour (prévu le jeudi 12), selon le protocole du service ; allergie à la pénicilline (éruption), produit de contraste bien toléré ; {lehmann} : brûlures nocturnes des pieds (neuropathie diabétique), antalgique refusé le matin, médecin informée, refus documenté (dialogue 31) ; glycémie de 11 h 30 à 148 mg/dl, insuline selon le schéma ; la fille fâchée à midi, entretien avec la médecin proposé, sans heure fixée (dialogue 33).",
+   "es": "Coherencia del caso: noche del 10 al 11 (diálogo 7: saturación 88 %, 38,4 °C, oxígeno 2 l/min), tomografía de tórax con medio de contraste el 11 en la mañana (diálogo 15), resultado comunicado solo por la doctora (diálogo 17: sin embolia, neumonía derecha); valores del mediodía (saturación 93 % con 2 l/min, 38,0 °C, dolor 3/10); analgesia: tratamiento fijo a las 8 h y a las 16 h, nada indicado «si es necesario» el miércoles al mediodía (el metamizol «bei Bedarf» sin dosis llega en la noche: diálogos 18 y 30); primer cambio de vendaje de una prótesis de cadera al segundo día (previsto para el jueves 12), según el protocolo del área; alergia a la penicilina (sarpullido), medio de contraste bien tolerado; {lehmann}: ardor nocturno en los pies (neuropatía diabética), analgésico rechazado en la mañana, doctora informada, negativa documentada (diálogo 31); glucemia de las 11:30 h en 148 mg/dl, insulina según el esquema; la hija, molesta al mediodía, conversación con la doctora propuesta, sin hora fijada (diálogo 33)."
+  },
+  "redemittel.0": {
+   "fr": "Ce matin, il a été emmené au scanner des poumons.",
+   "de": "Er ist heute Morgen zum CT der Lunge gebracht worden.",
+   "es": "Hoy en la mañana lo llevaron a la tomografía de los pulmones."
+  },
+  "redemittel.1": {
+   "fr": "{sommer} discute le résultat avec lui cet après-midi.",
+   "de": "Den Befund bespricht {sommer} heute Nachmittag mit ihm.",
+   "es": "{sommer} habla del resultado con él hoy en la tarde."
+  },
+  "redemittel.2": {
+   "fr": "Je ne l'ai pas en tête. Je regarde vite dans la feuille de soins.",
+   "de": "Das habe ich nicht im Kopf. Ich schaue kurz in der Kurve nach.",
+   "es": "No lo tengo en la cabeza. Lo reviso rápido en el expediente."
+  },
+  "redemittel.3": {
+   "fr": "Pour l'instant, rien n'est prescrit « si besoin ».",
+   "de": "Bei Bedarf ist im Moment nichts angeordnet.",
+   "es": "Por el momento no hay nada indicado «si es necesario»."
+  },
+  "redemittel.4": {
+   "fr": "J'aurais dû le dire tout de suite, au début.",
+   "de": "Das hätte ich gleich am Anfang sagen müssen.",
+   "es": "Eso lo debí haber dicho desde el principio."
+  },
+  "redemittel.5": {
+   "fr": "D'après la documentation, le pansement n'a pas été changé depuis l'opération.",
+   "de": "Laut Dokumentation ist der Verband seit der OP nicht gewechselt worden.",
+   "es": "Según la documentación, el vendaje no se ha cambiado desde la operación."
+  },
+  "redemittel.6": {
+   "fr": "Elle a refusé l'antidouleur parce qu'elle a peur de devenir dépendante.",
+   "de": "Sie hat das Schmerzmittel abgelehnt, weil sie Angst hat, abhängig zu werden.",
+   "es": "Rechazó el analgésico porque tiene miedo de volverse dependiente."
+  },
+  "redemittel.7": {
+   "fr": "Je lui ai proposé un entretien avec la médecin ; aucune heure n'est encore fixée.",
+   "de": "Ich habe ihr ein Gespräch mit der Ärztin angeboten; ein Termin steht noch nicht fest.",
+   "es": "Le ofrecí una conversación con la doctora; todavía no hay una hora fijada."
+  },
+  "redemittel.8": {
+   "fr": "Ce que je ne sais pas, je le dis, au lieu de deviner.",
+   "de": "Was ich nicht weiß, sage ich, statt zu raten.",
+   "es": "Lo que no sé, lo digo, en lugar de adivinar."
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Mercredi, treize heures trente, au poste de soins. {jonas} arrive pour le service de l'après-midi, un café à la main, et s'assoit à côté d'{elif}.",
+   "es": "Miércoles, la una y media de la tarde, en la estación de enfermería. {jonas} llega para el turno de tarde, con un café en la mano, y se sienta al lado de {elif}."
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Salut, {elif}. Alors, cette matinée ? Vas-y.",
+   "de": "Hallo, {elif}. Na, wie war der Vormittag? Leg los.",
+   "es": "Hola, {elif}. ¿Qué tal estuvo la mañana? Adelante."
+  },
+  "noeuds.start.choix.0": {
+   "fr": "Je commence par la chambre 12, {brandt}. Il a manqué d'air cette nuit, et ce matin il a été emmené au scanner des poumons, avec produit de contraste.",
+   "de": "Ich fange mit Zimmer 12 an, {brandt}. Er hatte heute Nacht Atemnot und ist heute Morgen zum CT der Lunge gebracht worden, mit Kontrastmittel.",
+   "es": "Empiezo con la habitación 12, {brandt}. Anoche le faltó el aire, y hoy en la mañana lo llevaron a la tomografía de los pulmones, con medio de contraste."
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "D'accord. Et ? Qu'est-ce que ça a donné ?",
+   "de": "Okay. Und? Was ist dabei rausgekommen?",
+   "es": "Okey. ¿Y? ¿Qué salió?"
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Chambre 12, {brandt} : après son essoufflement de cette nuit, on lui a fait ce matin un scanner des poumons, avec produit de contraste. Je l'ai accompagné.",
+   "de": "Zimmer 12, {brandt}: Nach der Atemnot heute Nacht wurde heute Morgen ein CT der Lunge gemacht, mit Kontrastmittel. Ich habe ihn hingebracht.",
+   "es": "Habitación 12, {brandt}: después de la falta de aire de anoche, hoy en la mañana se le hizo una tomografía de los pulmones, con medio de contraste. Yo lo llevé."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "D'accord. Et ? Qu'est-ce que ça a donné ?",
+   "de": "Okay. Und? Was ist dabei rausgekommen?",
+   "es": "Okey. ¿Y? ¿Qué salió?"
+  },
+  "noeuds.start.choix.2": {
+   "fr": "Chambre 12, {brandt}. Ce matin, il « a emmené » au scanner. (mal dit)",
+   "de": "Zimmer 12, {brandt}. Er hat heute Morgen ins CT gebracht.",
+   "es": "Habitación 12, {brandt}. Hoy en la mañana «llevó» a la tomografía. (dicho incorrectamente)"
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "Il a emmené qui ? Ah : il a été emmené au scanner.",
+   "de": "Er hat wen gebracht? Ach so: Er ist ins CT gebracht worden.",
+   "es": "¿Llevó a quién? Ah, ya: lo llevaron a la tomografía."
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>Ce qu'on a fait au patient se dit au passif : « Er ist ins CT gebracht worden » ou « Er wurde ins CT gebracht ».</b> « Er hat … gebracht » voudrait dire que c'est lui qui a emmené quelqu'un.",
+   "es": "<b>Lo que se le hizo al paciente se dice en pasiva: «Er ist ins CT gebracht worden» o «Er wurde ins CT gebracht».</b> «Er hat … gebracht» querría decir que fue él quien llevó a alguien."
+  },
+  "noeuds.ergebnis.choix.0": {
+   "fr": "Je ne sais pas encore. {sommer} n'a pas encore discuté le résultat avec lui, elle voulait passer le voir cet après-midi.",
+   "de": "Das weiß ich noch nicht. {sommer} hat den Befund noch nicht mit ihm besprochen, sie wollte heute Nachmittag zu ihm kommen.",
+   "es": "Eso todavía no lo sé. {sommer} aún no ha hablado del resultado con él; quería pasar a verlo hoy en la tarde."
+  },
+  "noeuds.ergebnis.choix.0.puis.0": {
+   "fr": "Bien, alors je lui demanderai tout à l'heure. Comment il va, maintenant ?",
+   "de": "Gut, dann frage ich sie nachher. Wie geht's ihm jetzt?",
+   "es": "Bien, entonces le pregunto más tarde. ¿Cómo está él ahora?"
+  },
+  "noeuds.ergebnis.choix.1": {
+   "fr": "Je n'ai pas encore le résultat. {sommer} en parle avec lui cet après-midi ; demande-le-lui ensuite, s'il te plaît.",
+   "de": "Der Befund liegt mir noch nicht vor. {sommer} bespricht ihn heute Nachmittag mit ihm; frag sie bitte danach.",
+   "es": "Todavía no tengo el resultado. {sommer} lo habla con él hoy en la tarde; pregúntale después, por favor."
+  },
+  "noeuds.ergebnis.choix.1.puis.0": {
+   "fr": "Bien, alors je lui demanderai tout à l'heure. Comment il va, maintenant ?",
+   "de": "Gut, dann frage ich sie nachher. Wie geht's ihm jetzt?",
+   "es": "Bien, entonces le pregunto más tarde. ¿Cómo está él ahora?"
+  },
+  "noeuds.ergebnis.choix.2": {
+   "fr": "Sûrement rien de grave, il avait l'air content après.",
+   "de": "Bestimmt nichts Schlimmes, er sah danach ganz zufrieden aus.",
+   "es": "Seguro que nada grave; después se veía muy contento."
+  },
+  "noeuds.ergebnis.choix.2.puis.0": {
+   "fr": "« Sûrement » ? Tu as lu le compte rendu ?",
+   "de": "„Bestimmt“? Hast du den Befund gelesen?",
+   "es": "¿«Seguro»? ¿Leíste el informe?"
+  },
+  "noeuds.ergebnis.choix.2.aide": {
+   "fr": "<b>Un résultat que tu n'as pas lu ne se devine pas : « Das weiß ich noch nicht ».</b> L'air du patient ne dit rien du scanner. Dis qui a le résultat, et quand il en sera question.",
+   "es": "<b>Un resultado que no has leído no se adivina: «Das weiß ich noch nicht».</b> La cara del paciente no dice nada de la tomografía. Di quién tiene el resultado y cuándo se va a hablar de él."
+  },
+  "noeuds.zustand.choix.0": {
+   "fr": "Il a toujours deux litres d'oxygène. À midi, la saturation était à 93 %, la température à 38,0 °C.",
+   "de": "Er bekommt weiter zwei Liter Sauerstoff. Um 12 Uhr lag die Sättigung bei 93 Prozent, die Temperatur bei 38,0 Grad.",
+   "es": "Sigue con dos litros de oxígeno. A las 12 h la saturación estaba en 93 % y la temperatura en 38,0 grados."
+  },
+  "noeuds.zustand.choix.0.puis.0": {
+   "fr": "D'accord. Quand a-t-il eu un antidouleur pour la dernière fois ?",
+   "de": "Okay. Wann hat er zuletzt etwas gegen die Schmerzen bekommen?",
+   "es": "Okey. ¿Cuándo fue la última vez que recibió algo para el dolor?"
+  },
+  "noeuds.zustand.choix.1": {
+   "fr": "J'ai mesuré à midi : saturation 93 % avec deux litres d'oxygène, température 38,0. Il est fatigué, mais plus calme que cette nuit.",
+   "de": "Um zwölf habe ich gemessen: Sättigung 93 Prozent mit zwei Litern Sauerstoff, Temperatur 38,0. Er ist müde, aber ruhiger als heute Nacht.",
+   "es": "A las doce medí: saturación de 93 % con dos litros de oxígeno, temperatura 38,0. Está cansado, pero más tranquilo que anoche."
+  },
+  "noeuds.zustand.choix.1.puis.0": {
+   "fr": "D'accord. Quand a-t-il eu un antidouleur pour la dernière fois ?",
+   "de": "Okay. Wann hat er zuletzt etwas gegen die Schmerzen bekommen?",
+   "es": "Okey. ¿Cuándo fue la última vez que recibió algo para el dolor?"
+  },
+  "noeuds.zustand.choix.2": {
+   "fr": "Il va déjà beaucoup mieux.",
+   "de": "Es geht ihm schon viel besser.",
+   "es": "Ya está mucho mejor."
+  },
+  "noeuds.zustand.choix.2.puis.0": {
+   "fr": "Mieux que cette nuit, j'espère. Mais quelles sont les valeurs ?",
+   "de": "Besser als heute Nacht, hoffe ich. Aber wie sind die Werte?",
+   "es": "Mejor que anoche, espero. Pero ¿cómo están los valores?"
+  },
+  "noeuds.zustand.choix.2.aide": {
+   "fr": "<b>« Besser » ne suffit pas à la relève : donne les valeurs et l'heure de la mesure.</b> « Um 12 Uhr lag die Sättigung bei 93 Prozent mit zwei Litern Sauerstoff. »",
+   "es": "<b>«Besser» no basta en la entrega de turno: da los valores y la hora de la medición.</b> «Um 12 Uhr lag die Sättigung bei 93 Prozent mit zwei Litern Sauerstoff.»"
+  },
+  "noeuds.schmerz.choix.0": {
+   "fr": "Bonne question, je ne l'ai pas en tête. Je regarde vite dans la feuille de soins quand il l'a eu.",
+   "de": "Gute Frage, das habe ich nicht im Kopf. Ich schaue kurz in der Kurve nach, wann er es bekommen hat.",
+   "es": "Buena pregunta, no lo tengo en la cabeza. Reviso rápido en el expediente cuándo lo recibió."
+  },
+  "noeuds.schmerz.choix.0.puis.0": {
+   "fr": "Bien sûr, vas-y.",
+   "de": "Klar, mach.",
+   "es": "Claro, adelante."
+  },
+  "noeuds.schmerz.choix.1": {
+   "fr": "Là, je ne veux pas dire de bêtise. Un instant, je regarde dans la feuille de soins.",
+   "de": "Da möchte ich nichts Falsches sagen. Moment, ich sehe in der Kurve nach.",
+   "es": "Ahí no quiero decir algo equivocado. Un momento, lo reviso en el expediente."
+  },
+  "noeuds.schmerz.choix.1.puis.0": {
+   "fr": "Bien sûr, vas-y.",
+   "de": "Klar, mach.",
+   "es": "Claro, adelante."
+  },
+  "noeuds.schmerz.choix.2": {
+   "fr": "Je ne sais pas quand « a-t-il » eu ça. (mal dit)",
+   "de": "Ich weiß nicht, wann hat er das bekommen.",
+   "es": "No sé «¿cuándo recibió él eso?». (dicho incorrectamente)"
+  },
+  "noeuds.schmerz.choix.2.puis.0": {
+   "fr": "« Quand il l'a eu », tu veux dire. Regarde, s'il te plaît.",
+   "de": "„Wann er es bekommen hat“, meinst du. Schau bitte nach.",
+   "es": "«Wann er es bekommen hat», quieres decir. Revísalo, por favor."
+  },
+  "noeuds.schmerz.choix.2.aide": {
+   "fr": "<b>Après « Ich weiß nicht, wann … » ou « Ich schaue nach, ob … », le verbe conjugué va à la fin : « wann er es bekommen hat ».</b> Dire « je ne sais pas » est juste ; il reste à vérifier dans la feuille de soins.",
+   "es": "<b>Después de «Ich weiß nicht, wann …» o «Ich schaue nach, ob …», el verbo conjugado va al final: «wann er es bekommen hat».</b> Decir «no sé» está bien; falta verificarlo en el expediente."
+  },
+  "noeuds.kurve.dit.0.recit": {
+   "fr": "{elif} ouvre la feuille de soins (die Kurve) de {brandt}, à la page des médicaments.",
+   "es": "{elif} abre el expediente (die Kurve) {brandt:de}, en la página de los medicamentos."
+  },
+  "noeuds.kurve.choix.0": {
+   "fr": "D'après la feuille de soins, il a eu son antidouleur fixe à 8 h, la prochaine prise est à 16 h. Rien n'est prescrit « si besoin ». À midi, il était à trois.",
+   "de": "Laut Kurve hat er um 8 Uhr seine feste Schmerzmedikation bekommen, die nächste Gabe ist um 16 Uhr. Bei Bedarf ist nichts angeordnet. Um 12 Uhr lag er bei drei.",
+   "es": "Según el expediente, a las 8 h recibió su analgésico fijo; la siguiente dosis es a las 16 h. No hay nada indicado «si es necesario». A las 12 h estaba en 3."
+  },
+  "noeuds.kurve.choix.0.puis.0": {
+   "fr": "Rien du tout « si besoin » ? Il faudra le dire aujourd'hui à {sommer}, la nuit est longue. Dis-moi : il a une allergie, d'ailleurs ?",
+   "de": "Gar nichts bei Bedarf? Das sollten wir {sommer} heute noch sagen, die Nacht ist lang. Sag mal: Hat er eigentlich eine Allergie?",
+   "es": "¿Nada de nada «si es necesario»? Eso se lo deberíamos decir hoy mismo {sommer:a}, la noche es larga. Oye, ¿y tiene alguna alergia?"
+  },
+  "noeuds.kurve.choix.1": {
+   "fr": "C'est écrit ici : l'antidouleur fixe lui a été donné à 8 h, le prochain est prévu à 16 h. Aucun traitement « si besoin » n'est prescrit.",
+   "de": "Hier steht es: Die feste Schmerzmedikation wurde ihm um 8 Uhr gegeben, die nächste ist für 16 Uhr geplant. Eine Bedarfsmedikation ist nicht angeordnet.",
+   "es": "Aquí está: el analgésico fijo se le dio a las 8 h, el siguiente está previsto para las 16 h. No hay ninguna medicación indicada «si es necesario»."
+  },
+  "noeuds.kurve.choix.1.puis.0": {
+   "fr": "Rien du tout « si besoin » ? Il faudra le dire aujourd'hui à {sommer}, la nuit est longue. Dis-moi : il a une allergie, d'ailleurs ?",
+   "de": "Gar nichts bei Bedarf? Das sollten wir {sommer} heute noch sagen, die Nacht ist lang. Sag mal: Hat er eigentlich eine Allergie?",
+   "es": "¿Nada de nada «si es necesario»? Eso se lo deberíamos decir hoy mismo {sommer:a}, la noche es larga. Oye, ¿y tiene alguna alergia?"
+  },
+  "noeuds.kurve.choix.2": {
+   "fr": "D'après la feuille de soins, il « a donné » son antidouleur à 8 h. (mal dit)",
+   "de": "Laut Kurve hat er um 8 Uhr seine Schmerzmedikation gegeben.",
+   "es": "Según el expediente, a las 8 h «dio» su analgésico. (dicho incorrectamente)"
+  },
+  "noeuds.kurve.choix.2.puis.0": {
+   "fr": "Il l'a donné ? À qui donc ? Tu veux dire : il l'a reçu.",
+   "de": "Er hat sie gegeben? Wem denn? Du meinst: Er hat sie bekommen.",
+   "es": "¿Él lo dio? ¿A quién? Quieres decir: lo recibió."
+  },
+  "noeuds.kurve.choix.2.aide": {
+   "fr": "<b>Le patient « bekommt » un médicament ; c'est la soignante qui le « gibt ».</b> Au passif : « Sie wurde ihm um 8 Uhr gegeben ».",
+   "es": "<b>El paciente «bekommt» un medicamento; quien lo «gibt» es la enfermera.</b> En pasiva: «Sie wurde ihm um 8 Uhr gegeben»."
+  },
+  "noeuds.allergie.choix.0": {
+   "fr": "Oui, à la pénicilline, ça lui donne une éruption. J'aurais dû le dire tout de suite, au début. Le produit de contraste de ce matin, il l'a bien supporté.",
+   "de": "Ja, gegen Penicillin, davon bekommt er einen Hautausschlag. Das hätte ich gleich am Anfang sagen müssen. Das Kontrastmittel heute hat er gut vertragen.",
+   "es": "Sí, a la penicilina; le provoca sarpullido. Eso lo debí haber dicho desde el principio. El medio de contraste de hoy lo toleró bien."
+  },
+  "noeuds.allergie.choix.0.puis.0": {
+   "fr": "Ça arrive. Mais la prochaine fois, tout en haut. Et le pansement de la hanche : quand a-t-il été changé pour la dernière fois ?",
+   "de": "Passiert. Aber nächstes Mal ganz nach oben damit. Und der Verband an der Hüfte: Wann wurde der zuletzt gewechselt?",
+   "es": "Pasa. Pero la próxima vez, eso va hasta arriba. Y el vendaje de la cadera: ¿cuándo se cambió por última vez?"
+  },
+  "noeuds.allergie.choix.1": {
+   "fr": "Oui : allergie à la pénicilline, avec éruption. Pardon, ça doit venir au début de la relève. Au produit de contraste, il n'a pas réagi.",
+   "de": "Ja: Penicillinallergie, mit Hautausschlag. Entschuldige, das gehört an den Anfang der Übergabe. Auf das Kontrastmittel hat er nicht reagiert.",
+   "es": "Sí: alergia a la penicilina, con sarpullido. Perdón, eso va al principio de la entrega de turno. Al medio de contraste no reaccionó."
+  },
+  "noeuds.allergie.choix.1.puis.0": {
+   "fr": "Ça arrive. Mais la prochaine fois, tout en haut. Et le pansement de la hanche : quand a-t-il été changé pour la dernière fois ?",
+   "de": "Passiert. Aber nächstes Mal ganz nach oben damit. Und der Verband an der Hüfte: Wann wurde der zuletzt gewechselt?",
+   "es": "Pasa. Pero la próxima vez, eso va hasta arriba. Y el vendaje de la cadera: ¿cuándo se cambió por última vez?"
+  },
+  "noeuds.allergie.choix.2": {
+   "fr": "Oui, au produit de contraste, je crois.",
+   "de": "Ja, gegen Kontrastmittel, glaube ich.",
+   "es": "Sí, al medio de contraste, creo."
+  },
+  "noeuds.allergie.choix.2.puis.0": {
+   "fr": "Au produit de contraste ? Mais il en a reçu ce matin !",
+   "de": "Gegen Kontrastmittel? Er hat doch heute Morgen Kontrastmittel bekommen!",
+   "es": "¿Al medio de contraste? ¡Pero si hoy en la mañana le pusieron medio de contraste!"
+  },
+  "noeuds.allergie.choix.2.aide": {
+   "fr": "<b>Une allergie ne se cite pas « je crois » : tu la connais, ou tu la lis dans le dossier.</b> Il a bien supporté le produit de contraste de ce matin ; son allergie, c'est la pénicilline (éruption). Et une allergie se dit au début de la relève.",
+   "es": "<b>Una alergia no se menciona con un «creo»: la conoces, o la lees en el expediente.</b> El medio de contraste de hoy en la mañana lo toleró bien; su alergia es a la penicilina (sarpullido). Y una alergia se dice al principio de la entrega de turno."
+  },
+  "noeuds.verband.choix.0": {
+   "fr": "Je ne sais pas. Ce matin, il était sec, mais je regarde dans la documentation de la plaie s'il a déjà été changé.",
+   "de": "Das weiß ich nicht. Heute Morgen war er trocken, aber ich schaue in der Wunddokumentation nach, ob er schon gewechselt worden ist.",
+   "es": "No lo sé. Hoy en la mañana estaba seco, pero reviso en el registro de la herida si ya se cambió."
+  },
+  "noeuds.verband.choix.0.puis.0": {
+   "fr": "Bien. J'attends.",
+   "de": "Gut. Ich warte.",
+   "es": "Bien. Espero."
+  },
+  "noeuds.verband.choix.1": {
+   "fr": "Honnêtement : aucune idée. J'ai seulement vu qu'il était sec. Je regarde tout de suite.",
+   "de": "Ehrlich gesagt: keine Ahnung. Ich habe nur gesehen, dass er trocken ist. Ich sehe sofort nach.",
+   "es": "La verdad: ni idea. Solo vi que está seco. Lo reviso ahora mismo."
+  },
+  "noeuds.verband.choix.1.puis.0": {
+   "fr": "Bien. J'attends.",
+   "de": "Gut. Ich warte.",
+   "es": "Bien. Espero."
+  },
+  "noeuds.verband.choix.2": {
+   "fr": "Ce matin, je crois. Le pansement est changé tous les jours.",
+   "de": "Heute Morgen, glaube ich. Der Verband wird ja jeden Tag gewechselt.",
+   "es": "Hoy en la mañana, creo. El vendaje se cambia todos los días."
+  },
+  "noeuds.verband.choix.2.puis.0": {
+   "fr": "Tous les jours ? Ça, c'est le pied de {lehmann}. Pour une hanche opérée hier ?",
+   "de": "Jeden Tag? Das ist der Fuß von {lehmann}. Bei einer Hüfte, die gestern operiert wurde?",
+   "es": "¿Todos los días? Ese es el pie {lehmann:de}. ¿En una cadera que operaron ayer?"
+  },
+  "noeuds.verband.choix.2.aide": {
+   "fr": "<b>Ne mélange pas deux patients : le pansement quotidien, c'est la plaie au pied de {lehmann}.</b> Pour {brandt}, tu ne sais pas : dis-le, et vérifie dans la documentation de la plaie.",
+   "es": "<b>No mezcles a dos pacientes: el vendaje diario es el de la herida del pie {lehmann:de}.</b> En el caso {brandt:de}, no lo sabes: dilo, y verifica en el registro de la herida."
+  },
+  "noeuds.verband_doku.dit.0.recit": {
+   "fr": "Dans la documentation de la plaie, à la date de mardi : « Verband nach OP trocken. » Et, en dessous : « 1. VW lt. AO am 12.11. »",
+   "es": "En el registro de la herida, con fecha del martes: «Verband nach OP trocken.» Y debajo: «1. VW lt. AO am 12.11.»"
+  },
+  "noeuds.verband_doku.choix.0": {
+   "fr": "D'après la documentation, le pansement n'a pas encore été changé depuis l'opération. Le premier changement est prescrit pour demain.",
+   "de": "Laut Dokumentation ist der Verband seit der OP noch nicht gewechselt worden. Der erste Wechsel ist für morgen angeordnet.",
+   "es": "Según la documentación, el vendaje todavía no se ha cambiado desde la operación. El primer cambio está indicado para mañana."
+  },
+  "noeuds.verband_doku.choix.0.puis.0": {
+   "fr": "Parfait, ça, c'est une réponse. Et la chambre 14 ?",
+   "de": "Perfekt, das ist eine Antwort. Und Zimmer 14?",
+   "es": "Perfecto, eso sí es una respuesta. ¿Y la habitación 14?"
+  },
+  "noeuds.verband_doku.choix.1": {
+   "fr": "C'est écrit ici : le pansement n'a pas été changé depuis l'opération, il est sec. Le premier changement de pansement est demain, c'est ce qui est prescrit.",
+   "de": "Hier steht: Der Verband wurde seit der Operation nicht gewechselt, er ist trocken. Der erste Verbandswechsel ist morgen, so ist es angeordnet.",
+   "es": "Aquí dice: el vendaje no se ha cambiado desde la operación, está seco. El primer cambio de vendaje es mañana, así está indicado."
+  },
+  "noeuds.verband_doku.choix.1.puis.0": {
+   "fr": "Parfait, ça, c'est une réponse. Et la chambre 14 ?",
+   "de": "Perfekt, das ist eine Antwort. Und Zimmer 14?",
+   "es": "Perfecto, eso sí es una respuesta. ¿Y la habitación 14?"
+  },
+  "noeuds.verband_doku.choix.2": {
+   "fr": "D'après la documentation, le premier changement de pansement a déjà eu lieu hier.",
+   "de": "Laut Dokumentation war der erste Verbandswechsel schon gestern.",
+   "es": "Según la documentación, el primer cambio de vendaje ya fue ayer."
+  },
+  "noeuds.verband_doku.choix.2.puis.0": {
+   "fr": "Hier ? Mais c'est écrit le 12. C'est demain.",
+   "de": "Gestern? Da steht doch der Zwölfte. Das ist morgen.",
+   "es": "¿Ayer? Pero si ahí dice el 12. Eso es mañana."
+  },
+  "noeuds.verband_doku.choix.2.aide": {
+   "fr": "<b>Relis la date avant de la transmettre : le 12 novembre, c'est demain.</b> « lt. AO am 12.11. » veut dire « selon la prescription, le 12 novembre » : c'est prévu, pas fait.",
+   "es": "<b>Vuelve a leer la fecha antes de comunicarla: el 12 de noviembre es mañana.</b> «lt. AO am 12.11.» quiere decir «según la indicación, el 12 de noviembre»: está previsto, no hecho."
+  },
+  "noeuds.lehmann.choix.0": {
+   "fr": "Chambre 14, {lehmann}. La nuit, elle a des brûlures dans les pieds, à cause du diabète. Ce matin, elle a refusé l'antidouleur, parce qu'elle a peur de devenir dépendante. {sommer} est informée, et je l'ai documenté.",
+   "de": "Zimmer 14, {lehmann}. Sie hat nachts brennende Schmerzen in den Füßen, wegen des Diabetes. Das Schmerzmittel hat sie heute Morgen abgelehnt, weil sie Angst hat, abhängig zu werden. {sommer} ist informiert, und ich habe es dokumentiert.",
+   "es": "Habitación 14, {lehmann}. En la noche tiene un dolor ardiente en los pies, por la diabetes. Hoy en la mañana rechazó el analgésico porque tiene miedo de volverse dependiente. {sommer} está informada, y lo documenté."
+  },
+  "noeuds.lehmann.choix.0.puis.0": {
+   "fr": "D'accord. Et sa glycémie de midi ?",
+   "de": "Okay. Und ihr Blutzucker heute Mittag?",
+   "es": "Okey. ¿Y su glucemia de hoy al mediodía?"
+  },
+  "noeuds.lehmann.choix.1": {
+   "fr": "Ensuite {lehmann} : la nuit, ses pieds la brûlent, ça vient du diabète. Ce matin, elle n'a pas voulu prendre l'antidouleur, elle a peur d'une dépendance. Je l'ai dit à {sommer} et je l'ai noté dans le dossier.",
+   "de": "Dann {lehmann}: Nachts brennen ihr die Füße, das kommt vom Diabetes. Heute früh wollte sie das Schmerzmittel nicht nehmen, sie hat Angst vor einer Abhängigkeit. Ich habe es {sommer} gesagt und in die Doku geschrieben.",
+   "es": "Luego {lehmann}: en la noche le arden los pies, eso viene de la diabetes. Hoy temprano no quiso tomar el analgésico; le tiene miedo a la dependencia. Se lo dije {sommer:a} y lo anoté en el expediente."
+  },
+  "noeuds.lehmann.choix.1.puis.0": {
+   "fr": "D'accord. Et sa glycémie de midi ?",
+   "de": "Okay. Und ihr Blutzucker heute Mittag?",
+   "es": "Okey. ¿Y su glucemia de hoy al mediodía?"
+  },
+  "noeuds.lehmann.choix.2": {
+   "fr": "Chambre 14, {lehmann}. Ce matin, elle « est refusé » l'antidouleur. (mal dit)",
+   "de": "Zimmer 14, {lehmann}. Sie ist heute Morgen das Schmerzmittel abgelehnt.",
+   "es": "Habitación 14, {lehmann}. Hoy en la mañana «fue rechazada» el analgésico. (dicho incorrectamente)"
+  },
+  "noeuds.lehmann.choix.2.puis.0": {
+   "fr": "« Elle est refusée » ? Tu veux dire : elle l'a refusé. Et pourquoi ?",
+   "de": "„Sie ist abgelehnt“? Du meinst: Sie hat es abgelehnt. Und warum?",
+   "es": "¿«Sie ist abgelehnt»? Quieres decir: ella lo rechazó, «sie hat es abgelehnt». ¿Y por qué?"
+  },
+  "noeuds.lehmann.choix.2.aide": {
+   "fr": "<b>« ablehnen » fait son Perfekt avec « haben » : « Sie hat das Schmerzmittel abgelehnt ».</b> Puis la raison donnée par la patiente, sans jugement, et qui est informé : « … weil sie Angst hat, abhängig zu werden. Die Ärztin ist informiert. »",
+   "es": "<b>«ablehnen» forma su Perfekt con «haben»: «Sie hat das Schmerzmittel abgelehnt».</b> Después, la razón que da la paciente, sin juzgar, y quién está informado: «… weil sie Angst hat, abhängig zu werden. Die Ärztin ist informiert.»"
+  },
+  "noeuds.bz.choix.0": {
+   "fr": "Je ne l'ai pas en tête, je regarde… À 11 h 30 : 148. Elle a eu son insuline selon le schéma.",
+   "de": "Den habe ich nicht im Kopf, ich schaue nach … Um 11:30 Uhr: 148. Sie hat nach Schema Insulin bekommen.",
+   "es": "Esa no la tengo en la cabeza, la reviso… A las 11:30 h: 148. Recibió insulina según el esquema."
+  },
+  "noeuds.bz.choix.0.puis.0": {
+   "fr": "Bien. Sa fille était assez bruyante dans le couloir tout à l'heure, non ? Qu'est-ce qui s'est passé ?",
+   "de": "Gut. Ihre Tochter war vorhin ziemlich laut auf dem Flur, oder? Was war da los?",
+   "es": "Bien. Su hija estuvo hablando bastante fuerte en el pasillo hace rato, ¿no? ¿Qué pasó?"
+  },
+  "noeuds.bz.choix.1": {
+   "fr": "Un instant, je préfère le lire : 148 à onze heures et demie, insuline donnée selon le schéma.",
+   "de": "Moment, das lese ich lieber ab: 148 um halb zwölf, Insulin nach Schema gegeben.",
+   "es": "Un momento, mejor lo leo: 148 a las once y media, insulina administrada según el esquema."
+  },
+  "noeuds.bz.choix.1.puis.0": {
+   "fr": "Bien. Sa fille était assez bruyante dans le couloir tout à l'heure, non ? Qu'est-ce qui s'est passé ?",
+   "de": "Gut. Ihre Tochter war vorhin ziemlich laut auf dem Flur, oder? Was war da los?",
+   "es": "Bien. Su hija estuvo hablando bastante fuerte en el pasillo hace rato, ¿no? ¿Qué pasó?"
+  },
+  "noeuds.bz.choix.2": {
+   "fr": "Dans les 150, je crois.",
+   "de": "So um die 150, glaube ich.",
+   "es": "Como 150, creo."
+  },
+  "noeuds.bz.choix.2.puis.0": {
+   "fr": "« Dans les cent cinquante », ce n'est pas un chiffre. Ce n'est pas dans la feuille de soins ?",
+   "de": "„Um die hundertfünfzig“ ist keine Zahl. Steht es nicht in der Kurve?",
+   "es": "«Como ciento cincuenta» no es una cifra. ¿No está en el expediente?"
+  },
+  "noeuds.bz.choix.2.aide": {
+   "fr": "<b>Une glycémie se transmet exacte, avec l'heure : lis-la, ne l'arrondis pas de mémoire.</b> L'insuline du soir se calcule sur ces chiffres.",
+   "es": "<b>Una glucemia se comunica exacta, con la hora: léela, no la redondees de memoria.</b> La insulina de la noche se calcula con esas cifras."
+  },
+  "noeuds.tochter.choix.0": {
+   "fr": "Oui. {lehmann_tochter} était très en colère à midi, parce que sa mère a mal. Je lui ai expliqué ce que nous faisons, et je lui ai proposé un entretien avec {sommer}. Aucune heure n'est encore fixée.",
+   "de": "Ja. {lehmann_tochter} war um zwölf sehr aufgebracht, weil ihre Mutter Schmerzen hat. Ich habe ihr erklärt, was wir machen, und ihr ein Gespräch mit {sommer} angeboten. Ein Termin steht noch nicht fest.",
+   "es": "Sí. {lehmann_tochter} estaba muy alterada a las doce, porque su mamá tiene dolor. Le expliqué lo que estamos haciendo y le ofrecí una conversación con {sommer}. Todavía no hay una hora fijada."
+  },
+  "noeuds.tochter.choix.0.puis.0": {
+   "fr": "D'accord, alors je demanderai ça aussi à {sommer} tout à l'heure.",
+   "de": "Okay, dann frage ich {sommer} nachher auch danach.",
+   "es": "Okey, entonces más tarde también le pregunto eso {sommer:a}."
+  },
+  "noeuds.tochter.choix.1": {
+   "fr": "{lehmann_tochter} s'est plainte que personne ne fait rien contre la douleur de sa mère. Je l'ai écoutée et je lui ai proposé un entretien avec {sommer}. {sommer} est au courant, il n'y a pas encore de rendez-vous.",
+   "de": "{lehmann_tochter} hat sich beschwert, dass niemand etwas gegen die Schmerzen ihrer Mutter tut. Ich habe ihr zugehört und ihr ein Gespräch mit {sommer} vorgeschlagen. {sommer} weiß Bescheid, einen Termin gibt es noch nicht.",
+   "es": "{lehmann_tochter} se quejó de que nadie hace nada contra el dolor de su mamá. La escuché y le propuse una conversación con {sommer}. {sommer} está enterada; todavía no hay cita."
+  },
+  "noeuds.tochter.choix.1.puis.0": {
+   "fr": "D'accord, alors je demanderai ça aussi à {sommer} tout à l'heure.",
+   "de": "Okay, dann frage ich {sommer} nachher auch danach.",
+   "es": "Okey, entonces más tarde también le pregunto eso {sommer:a}."
+  },
+  "noeuds.tochter.choix.2": {
+   "fr": "La fille a crié partout. Je crois qu'elle ne nous aime pas, c'est tout.",
+   "de": "Die Tochter hat rumgeschrien. Ich glaube, sie mag uns einfach nicht.",
+   "es": "La hija anduvo gritando. Yo creo que simplemente no le caemos bien."
+  },
+  "noeuds.tochter.choix.2.puis.0": {
+   "fr": "Possible. Mais qu'est-ce qu'elle voulait, et qu'est-ce que tu lui as proposé ?",
+   "de": "Kann sein. Aber was wollte sie, und was hast du ihr angeboten?",
+   "es": "Puede ser. Pero ¿qué quería ella, y qué le ofreciste?"
+  },
+  "noeuds.tochter.choix.2.aide": {
+   "fr": "<b>Transmets la demande de la famille et ce que tu as proposé, pas tes impressions.</b> « Sie war aufgebracht, weil ihre Mutter Schmerzen hat. Ich habe ihr ein Gespräch mit der Ärztin angeboten. » Et ce qui n'est que proposé ne se dit pas comme décidé.",
+   "es": "<b>Comunica lo que pide la familia y lo que tú ofreciste, no tus impresiones.</b> «Sie war aufgebracht, weil ihre Mutter Schmerzen hat. Ich habe ihr ein Gespräch mit der Ärztin angeboten.» Y lo que solo está propuesto no se dice como si estuviera decidido."
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Merci, {elif}. Tu as dû vérifier quelques points. Qu'est-ce que tu feras autrement, la prochaine fois ?",
+   "de": "Danke, {elif}. Ein paar Sachen musstest du nachschauen. Was machst du beim nächsten Mal anders?",
+   "es": "Gracias, {elif}. Tuviste que revisar algunas cosas. ¿Qué vas a hacer distinto la próxima vez?"
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Je prépare la relève avec la feuille de soins : d'abord les allergies, puis le dernier antidouleur et le pansement. Et ce que je ne sais pas, je le dis, au lieu de deviner.",
+   "de": "Ich bereite die Übergabe mit der Kurve vor: zuerst die Allergien, dann die letzte Schmerzmittelgabe und den Verband. Und was ich nicht weiß, sage ich, statt zu raten.",
+   "es": "Preparo la entrega de turno con el expediente: primero las alergias, luego la última dosis de analgésico y el vendaje. Y lo que no sé, lo digo, en lugar de adivinar."
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Exactement. Mieux vaut vérifier une fois que deviner une fois. Bonne fin de journée !",
+   "de": "Genau. Lieber einmal nachschauen als einmal raten. Schönen Feierabend!",
+   "es": "Exacto. Más vale revisar una vez que adivinar una vez. ¡Que descanses!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Avant, je parcours la feuille de soins et je note les allergies, les médicaments et les plaies. Si je ne sais pas quelque chose, je vérifie avant de parler.",
+   "de": "Ich gehe vorher die Kurve durch und schreibe mir Allergien, Medikamente und Wunden auf. Wenn ich etwas nicht weiß, schaue ich nach, bevor ich etwas sage.",
+   "es": "Antes repaso el expediente y me anoto las alergias, los medicamentos y las heridas. Si no sé algo, lo reviso antes de decir cualquier cosa."
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Exactement. Mieux vaut vérifier une fois que deviner une fois. Bonne fin de journée !",
+   "de": "Genau. Lieber einmal nachschauen als einmal raten. Schönen Feierabend!",
+   "es": "Exacto. Más vale revisar una vez que adivinar una vez. ¡Que descanses!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Rien, en fait. À la fin, j'ai tout trouvé.",
+   "de": "Nichts, eigentlich. Am Ende habe ich ja alles gefunden.",
+   "es": "Nada, en realidad. Al final encontré todo."
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "C'est vrai, mais ça a pris du temps. Et sans mes questions ?",
+   "de": "Stimmt, aber es hat gedauert. Und ohne meine Fragen?",
+   "es": "Cierto, pero tomó tiempo. ¿Y sin mis preguntas?"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>Après une relève, on retient ce qu'on fera mieux : la préparer avec la feuille de soins.</b> Allergies, dernier antidouleur, pansement, valeurs : ce que le collègue de la nuit ou de l'après-midi demandera, tu l'as sous les yeux avant de commencer.",
+   "es": "<b>Después de una entrega de turno, uno se queda con lo que hará mejor: prepararla con el expediente.</b> Alergias, último analgésico, vendaje, valores: lo que te va a preguntar el colega de la noche o de la tarde, lo tienes a la vista antes de empezar."
+  },
+  "ecouter.0.q": {
+   "fr": "Pourquoi {brandt} a-t-il passé un scanner ce matin ?",
+   "de": "Warum war {brandt} heute Morgen im CT?",
+   "es": "¿Por qué le hicieron una tomografía {brandt:a} hoy en la mañana?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À cause de son essoufflement de la nuit.",
+   "de": "Wegen der Atemnot in der Nacht.",
+   "es": "Por la falta de aire de la noche."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À cause de sa hanche.",
+   "de": "Wegen seiner Hüfte.",
+   "es": "Por su cadera."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À cause d'une allergie.",
+   "de": "Wegen einer Allergie.",
+   "es": "Por una alergia."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand {brandt} reçoit-il son prochain antidouleur fixe ?",
+   "de": "Wann bekommt {brandt} die nächste feste Schmerzmedikation?",
+   "es": "¿Cuándo recibe {brandt} su siguiente analgésico fijo?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "À 8 heures.",
+   "de": "Um acht Uhr.",
+   "es": "A las 8 horas."
+  },
+  "ecouter.1.options.1": {
+   "fr": "À midi.",
+   "de": "Um zwölf Uhr.",
+   "es": "A las 12 horas."
+  },
+  "ecouter.1.options.2": {
+   "fr": "À 16 heures.",
+   "de": "Um sechzehn Uhr.",
+   "es": "A las 16 horas."
+  },
+  "ecouter.2.q": {
+   "fr": "À quoi {brandt} est-il allergique ?",
+   "de": "Wogegen ist {brandt} allergisch?",
+   "es": "¿A qué es alérgico {brandt}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Au produit de contraste.",
+   "de": "Gegen Kontrastmittel.",
+   "es": "Al medio de contraste."
+  },
+  "ecouter.2.options.1": {
+   "fr": "À la pénicilline.",
+   "de": "Gegen Penicillin.",
+   "es": "A la penicilina."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Aux pansements adhésifs.",
+   "de": "Gegen Pflaster.",
+   "es": "A las curitas."
+  },
+  "ecouter.3.q": {
+   "fr": "Quand le pansement de la hanche sera-t-il changé pour la première fois ?",
+   "de": "Wann wird der Verband an der Hüfte zum ersten Mal gewechselt?",
+   "es": "¿Cuándo se cambia por primera vez el vendaje de la cadera?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Cet après-midi.",
+   "de": "Heute Nachmittag.",
+   "es": "Hoy en la tarde."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Il a été changé ce matin.",
+   "de": "Er wurde heute Morgen gewechselt.",
+   "es": "Se cambió hoy en la mañana."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Demain.",
+   "de": "Morgen.",
+   "es": "Mañana."
+  },
+  "ecouter.4.q": {
+   "fr": "Pourquoi {lehmann} a-t-elle refusé l'antidouleur ?",
+   "de": "Warum hat {lehmann} das Schmerzmittel abgelehnt?",
+   "es": "¿Por qué rechazó {lehmann} el analgésico?"
+  },
+  "ecouter.4.options.0": {
+   "fr": "Elle a peur de devenir dépendante.",
+   "de": "Sie hat Angst, abhängig zu werden.",
+   "es": "Tiene miedo de volverse dependiente."
+  },
+  "ecouter.4.options.1": {
+   "fr": "Elle n'a pas mal.",
+   "de": "Sie hat keine Schmerzen.",
+   "es": "No tiene dolor."
+  },
+  "ecouter.4.options.2": {
+   "fr": "Elle ne le supporte pas.",
+   "de": "Sie verträgt es nicht.",
+   "es": "No lo tolera."
+  }
+ }
+}

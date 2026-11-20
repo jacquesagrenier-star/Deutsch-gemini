@@ -161,3 +161,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Les jours** en minuscules hors d'une date : « Bugün salı. », « Dün pazartesiydi. », « Dün pazardı. ».
 3. **Les mois** : « Doğum günüm 3 Mayıs'ta. », « Doğum günüm mayısta. », « Nisandan sonra mayıs gelir. », « Hazirandan önce mayıs gelir. ».
 4. **Midi, minuit, l'agenda** : « Şu an öğle vakti. », « Şu an gece yarısı. », « Yoga dersi pazartesi günü. », « Yoga dersi saat 9.00 ile 11.00 arasında. », « Yoga dersi iki saat sürüyor. ».
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **Les rues du plan avec leur suffixe** : « Bergstraße'de », « Bergstraße ile Lindenstraße'nin köşesinde », « Lindenstraße'yi ve Schulstraße'yi geçin ».
+2. **Le vouvoiement** : « Birinci sokaktan sola dönün. », « İkinci kavşağa kadar gidin ve orada sola dönün. ».
+3. **La photo** : « Burası okul. » pour « Das ist die Schule. » ; la fin « Otel sağ tarafta. », sans lieu « Sol tarafta. ».
+4. **Les lieux** : « tren istasyonu », « belediye binası » (Rathaus), « karakol » (Polizei), « fırın » (Bäckerei).

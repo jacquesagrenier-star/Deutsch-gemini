@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "dispensador de álcool em gel",
    "ar": "موزّع المطهّر",
    "pl": "dozownik środka dezynfekcyjnego",
-   "ru": "дозатор антисептика"
+   "ru": "дозатор антисептика",
+   "es": "el dispensador de alcohol en gel (solución desinfectante)"
   },
   {
    "id": "infusionsstaender",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "suporte de soro",
    "ar": "حامل المحلول الوريدي",
    "pl": "stojak na kroplówkę",
-   "ru": "штатив для капельницы"
+   "ru": "штатив для капельницы",
+   "es": "el portasueros (el pie de suero)"
   },
   {
    "id": "infusion",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "soro, infusão",
    "ar": "محلول وريدي (تسريب)",
    "pl": "wlew, kroplówka",
-   "ru": "капельница, инфузия"
+   "ru": "капельница, инфузия",
+   "es": "la infusión (el suero, la venoclisis)"
   },
   {
    "id": "sichtschutz",
@@ -176,7 +179,8 @@ window.SCENE = {
    "pt": "biombo",
    "ar": "حاجز الخصوصية",
    "pl": "parawan",
-   "ru": "ширма"
+   "ru": "ширма",
+   "es": "el biombo (la mampara)"
   },
   {
    "id": "bett",
@@ -265,7 +269,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "schnabelbecher",
@@ -294,7 +299,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "brille",
@@ -353,7 +359,8 @@ window.SCENE = {
    "pt": "aparelho auditivo",
    "ar": "سمّاعة أذن طبية",
    "pl": "aparat słuchowy",
-   "ru": "слуховой аппарат"
+   "ru": "слуховой аппарат",
+   "es": "el audífono"
   },
   {
    "id": "prothesendose",
@@ -382,7 +389,8 @@ window.SCENE = {
    "pt": "prótese dentária, dentadura",
    "ar": "طقم أسنان، أسنان اصطناعية",
    "pl": "proteza zębowa",
-   "ru": "зубной протез"
+   "ru": "зубной протез",
+   "es": "la prótesis dental"
   },
   {
    "id": "pflegebett",
@@ -428,7 +436,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "bettgitter",
@@ -457,7 +466,8 @@ window.SCENE = {
    "pt": "grade da cama",
    "ar": "حاجز السرير",
    "pl": "barierka łóżka",
-   "ru": "боковое ограждение кровати"
+   "ru": "боковое ограждение кровати",
+   "es": "el barandal de la cama (la baranda)"
   },
   {
    "id": "fernbedienung",
@@ -516,7 +526,8 @@ window.SCENE = {
    "pt": "bolsa coletora de urina",
    "ar": "كيس البول",
    "pl": "worek na mocz",
-   "ru": "мешок для мочи (мочеприёмник)"
+   "ru": "мешок для мочи (мочеприёмник)",
+   "es": "la bolsa colectora de orina"
   },
   {
    "id": "rollstuhl",
@@ -682,7 +693,8 @@ window.SCENE = {
    "pt": "cateter nasal tipo óculos",
    "ar": "قُنية أنفية",
    "pl": "wąsy tlenowe (kaniula donosowa)",
-   "ru": "носовая канюля"
+   "ru": "носовая канюля",
+   "es": "la cánula nasal (puntas nasales)"
   },
   {
    "id": "armband-l",
@@ -711,7 +723,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "armband-r",
@@ -740,7 +753,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "bettdecke",
@@ -769,7 +783,8 @@ window.SCENE = {
    "pt": "cobertor, edredom",
    "ar": "لحاف، غطاء السرير",
    "pl": "kołdra",
-   "ru": "одеяло"
+   "ru": "одеяло",
+   "es": "la cobija, la frazada"
   },
   {
    "id": "klingel",
@@ -828,7 +843,8 @@ window.SCENE = {
    "pt": "andador com rodas",
    "ar": "مشّاية بعجلات",
    "pl": "rolator (balkonik na kółkach)",
-   "ru": "роллатор (ходунки на колёсах)"
+   "ru": "роллатор (ходунки на колёсах)",
+   "es": "el andador con ruedas"
   },
   {
    "id": "hausschuhe",
@@ -857,7 +873,8 @@ window.SCENE = {
    "pt": "chinelo, pantufa",
    "ar": "خُفّ، شبشب منزلي",
    "pl": "kapeć",
-   "ru": "тапочка"
+   "ru": "тапочка",
+   "es": "la pantufla"
   }
  ],
  "grosPlans": [],

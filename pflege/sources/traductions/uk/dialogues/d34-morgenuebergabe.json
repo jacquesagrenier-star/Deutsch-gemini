@@ -1,0 +1,494 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d34-morgenuebergabe.json",
+ "cles": {
+  "titre": {
+   "fr": "La relève du matin : redemander",
+   "de": "Die Übergabe am Morgen: nachfragen",
+   "uk": "Ранкова передача зміни: перепитати"
+  },
+  "intro": {
+   "fr": "Vendredi 13 novembre, six heures. {yusuf} a fait la nuit, il est fatigué et il parle vite. {elif} commence le service du matin. Il y a un patient nouveau. Entre collègues, on se dit « du ». Tu joues {elif} : écoute bien, et quand tu n'as pas compris, demande. Ne devine jamais.",
+   "uk": "Пʼятниця, 13 листопада, шоста ранку. {yusuf} відпрацював ніч, він утомлений і говорить швидко. {elif} починає ранкову зміну. Є новий пацієнт. Між колегами кажуть «du». Ти в ролі {elif}: слухай уважно, а коли чогось не розумієш — запитуй. Ніколи не вгадуй."
+  },
+  "but": {
+   "fr": "Écouter une relève courte ; redemander ce qu'on n'a pas compris : « Wie bitte? », « Welches Zimmer? », « Um wie viel Uhr? », « Kannst du das bitte wiederholen? » ; demander le sens d'un mot ; relire ses notes à la fin.",
+   "uk": "Вислухати коротку передачу зміни; перепитати те, чого не вдалося зрозуміти: «Wie bitte?», «Welches Zimmer?», «Um wie viel Uhr?», «Kannst du das bitte wiederholen?»; запитати значення слова; наприкінці перечитати свої нотатки вголос."
+  },
+  "relire_notes": {
+   "fr": "{pohl} : admis à 23 h 30 par les urgences (calculs biliaires), opéré à 8 h, à jeun depuis minuit (rien manger, rien boire, ne pas fumer : dit comme la consigne de l'anesthésie pour ce patient ; la règle dépend du protocole de la maison) ; {lehmann} : kaliémie de contrôle 5,4 mmol/l, résultat à 22 h (la veille 6,2, dialogue 19 ; seuil d'appel 6, dialogue 27) : « mieux », mais encore au-dessus de la norme, à transmettre à la médecin le matin même, au plus tard à la visite ; {brandt} : nuit calme, pas de douleur.",
+   "uk": "{pohl}: госпіталізований о 23:30 через приймальне відділення (жовчні камені), операція о 8:00, натще від півночі (нічого не їсти, не пити, не курити: подано як вказівку анестезіологів для цього пацієнта; правило залежить від протоколу закладу); {lehmann}: контрольний калій 5,4 ммоль/л, результат о 22:00 (напередодні 6,2, діалог 19; поріг для дзвінка лікареві 6, діалог 27): «краще», але ще вище норми, передати лікарці того ж ранку, найпізніше на обході; {brandt}: спокійна ніч, без болю."
+  },
+  "redemittel.0": {
+   "fr": "C'était trop rapide. Tu peux répéter, s'il te plaît ?",
+   "de": "Das war zu schnell. Kannst du das bitte wiederholen?",
+   "uk": "Це було надто швидко. Можеш, будь ласка, повторити?"
+  },
+  "redemittel.1": {
+   "fr": "Pardon ? Quelle chambre ?",
+   "de": "Wie bitte? Welches Zimmer?",
+   "uk": "Перепрошую? Яка палата?"
+  },
+  "redemittel.2": {
+   "fr": "L'opération est à quelle heure ?",
+   "de": "Um wie viel Uhr ist die Operation?",
+   "uk": "О котрій годині операція?"
+  },
+  "redemittel.3": {
+   "fr": "Que veut dire « nüchtern » (à jeun) ?",
+   "de": "Was bedeutet „nüchtern“?",
+   "uk": "Що означає «nüchtern» (натще)?"
+  },
+  "redemittel.4": {
+   "fr": "Tu peux redire le chiffre, s'il te plaît ?",
+   "de": "Kannst du die Zahl bitte noch einmal sagen?",
+   "uk": "Можеш, будь ласка, ще раз назвати число?"
+  },
+  "redemittel.5": {
+   "fr": "Il a sonné ou pas ?",
+   "de": "Hat er geklingelt oder nicht?",
+   "uk": "Він натискав на кнопку виклику чи ні?"
+  },
+  "redemittel.6": {
+   "fr": "Je relis ce que j'ai noté.",
+   "de": "Ich lese vor, was ich notiert habe.",
+   "uk": "Я прочитаю вголос те, що записала."
+  },
+  "redemittel.7": {
+   "fr": "Merci ! Dors bien !",
+   "de": "Danke dir! Schlaf gut!",
+   "uk": "Дякую тобі! Гарно виспись!"
+  },
+  "noeuds.start.dit.0.recit": {
+   "fr": "Six heures, au poste de soins. {yusuf} a les yeux rouges, il tient la liste de relève. {elif} pose son café.",
+   "uk": "Шоста ранку, сестринський пост. У {yusuf:gen} червоні очі, він тримає список для передачі зміни. {elif} ставить свою каву."
+  },
+  "noeuds.start.dit.1": {
+   "fr": "Bonjour, {elif} ! Tu as de quoi écrire ? On a un nouveau.",
+   "de": "Guten Morgen, {elif}! Hast du was zum Schreiben? Wir haben einen Neuen.",
+   "uk": "Доброго ранку, {elif}! Маєш чим писати? У нас новенький."
+  },
+  "noeuds.start.choix.0": {
+   "fr": "Bonjour, {yusuf} ! Oui, je prends des notes.",
+   "de": "Guten Morgen, {yusuf}! Ja, ich schreibe mit.",
+   "uk": "Доброго ранку, {yusuf:voc}! Так, я записую."
+  },
+  "noeuds.start.choix.0.puis.0": {
+   "fr": "Bien. Alors, le nouveau s'appelle {pohl}, il est arrivé cette nuit des urgences, avec des calculs biliaires, et il va être aujourd'hui…",
+   "de": "Gut. Also, der Neue heißt {pohl}, er ist heute Nacht von der Notaufnahme gekommen, mit Gallensteinen, und er wird heute …",
+   "uk": "Добре. Отже, новенького звати {pohl}, він надійшов цієї ночі з приймального відділення, із жовчними каменями, і сьогодні його…"
+  },
+  "noeuds.start.choix.1": {
+   "fr": "Salut ! Attends, je prends un stylo. Voilà, je t'écoute.",
+   "de": "Morgen! Moment, ich nehme einen Stift. So, ich höre.",
+   "uk": "Привіт! Зачекай, я візьму ручку. Все, слухаю."
+  },
+  "noeuds.start.choix.1.puis.0": {
+   "fr": "Bien. Alors, le nouveau s'appelle {pohl}, il est arrivé cette nuit des urgences, avec des calculs biliaires, et il va être aujourd'hui…",
+   "de": "Gut. Also, der Neue heißt {pohl}, er ist heute Nacht von der Notaufnahme gekommen, mit Gallensteinen, und er wird heute …",
+   "uk": "Добре. Отже, новенького звати {pohl}, він надійшов цієї ночі з приймального відділення, із жовчними каменями, і сьогодні його…"
+  },
+  "noeuds.start.choix.2": {
+   "fr": "Bonjour. Comment s'est passée votre nuit ?",
+   "de": "Guten Morgen. Wie war Ihre Nacht?",
+   "uk": "Доброго ранку. Як минула ваша ніч?"
+  },
+  "noeuds.start.choix.2.puis.0": {
+   "fr": "« Votre » nuit ? On se dit « du », {elif} !",
+   "de": "„Ihre“ Nacht? Wir sagen doch du, {elif}!",
+   "uk": "«Ваша» ніч? Ми ж на «du», {elif}!"
+  },
+  "noeuds.start.choix.2.aide": {
+   "fr": "<b>Dans l'équipe, on se dit « du » : « Wie war deine Nacht? ».</b> Avec les patients, c'est « Sie ». Entre collègues, « Sie » sonne froid.",
+   "uk": "<b>У команді кажуть «du»: «Wie war deine Nacht?».</b> З пацієнтами — «Sie». Між колегами «Sie» звучить холодно."
+  },
+  "noeuds.neu.dit.0.recit": {
+   "fr": "{yusuf} a parlé très vite. Tu as seulement compris « Notaufnahme ». Tu n'es pas sûre du nom.",
+   "uk": "{yusuf} говорив дуже швидко. Тобі вдалося зрозуміти лише «Notaufnahme». Щодо прізвища певності немає."
+  },
+  "noeuds.neu.choix.0": {
+   "fr": "Pardon, c'était trop rapide. Tu peux répéter, s'il te plaît ?",
+   "de": "Entschuldigung, das war zu schnell. Kannst du das bitte wiederholen?",
+   "uk": "Вибач, це було надто швидко. Можеш, будь ласка, повторити?"
+  },
+  "noeuds.neu.choix.0.puis.0": {
+   "fr": "Bien sûr, pardon. Lentement : le patient s'appelle {pohl}. Il a des calculs biliaires. Il est dans la chambre quinze.",
+   "de": "Klar, sorry. Langsam: Der Patient heißt {pohl}. Er hat Gallensteine. Er liegt in Zimmer fünfzehn.",
+   "uk": "Звісно, вибач. Повільно: пацієнта звати {pohl}. У нього жовчні камені. Він лежить у пʼятнадцятій палаті."
+  },
+  "noeuds.neu.choix.1": {
+   "fr": "Plus lentement, s'il te plaît ! Comment s'appelle le patient ?",
+   "de": "Langsam, bitte! Wie heißt der Patient?",
+   "uk": "Повільніше, будь ласка! Як звати пацієнта?"
+  },
+  "noeuds.neu.choix.1.puis.0": {
+   "fr": "Bien sûr, pardon. Lentement : le patient s'appelle {pohl}. Il a des calculs biliaires. Il est dans la chambre quinze.",
+   "de": "Klar, sorry. Langsam: Der Patient heißt {pohl}. Er hat Gallensteine. Er liegt in Zimmer fünfzehn.",
+   "uk": "Звісно, вибач. Повільно: пацієнта звати {pohl}. У нього жовчні камені. Він лежить у пʼятнадцятій палаті."
+  },
+  "noeuds.neu.choix.2": {
+   "fr": "Oui, oui. D'accord.",
+   "de": "Ja, ja. Okay.",
+   "uk": "Так, так. Окей."
+  },
+  "noeuds.neu.choix.2.puis.0": {
+   "fr": "D'accord ? Alors dis-moi : comment s'appelle le patient ?",
+   "de": "Okay? Dann sag mal: Wie heißt der Patient?",
+   "uk": "Окей? Тоді скажи: як звати пацієнта?"
+  },
+  "noeuds.neu.choix.2.aide": {
+   "fr": "<b>Ne fais pas semblant d'avoir compris.</b> À la relève, ce que tu n'as pas entendu manque ensuite au patient. Dis-le : « Das war zu schnell. Kannst du das bitte wiederholen? »",
+   "uk": "<b>Не вдавай, що розумієш.</b> Те, чого ти не чуєш на передачі зміни, потім бракуватиме пацієнтові. Скажи про це: «Das war zu schnell. Kannst du das bitte wiederholen?»"
+  },
+  "noeuds.zimmer.dit.0.recit": {
+   "fr": "Au même moment, une sonnette retentit dans le couloir. Tu n'as pas entendu le numéro de la chambre : « fünfzehn » ou « fünfzig » ?",
+   "uk": "Саме в цю мить у коридорі лунає сигнал виклику. Номера палати тобі не чути: «fünfzehn» чи «fünfzig»?"
+  },
+  "noeuds.zimmer.choix.0": {
+   "fr": "Pardon ? Quelle chambre ?",
+   "de": "Wie bitte? Welches Zimmer?",
+   "uk": "Перепрошую? Яка палата?"
+  },
+  "noeuds.zimmer.choix.0.puis.0": {
+   "fr": "Quinze. Un, cinq. Il est opéré aujourd'hui.",
+   "de": "Fünfzehn. Eins, fünf. Er wird heute operiert.",
+   "uk": "Пʼятнадцята. Один, пʼять. Його сьогодні оперують."
+  },
+  "noeuds.zimmer.choix.1": {
+   "fr": "Pardon, il est dans quelle chambre ? Quinze ou cinquante ?",
+   "de": "Entschuldigung, in welchem Zimmer liegt er? Fünfzehn oder fünfzig?",
+   "uk": "Вибач, у якій він палаті? У пʼятнадцятій чи в пʼятдесятій?"
+  },
+  "noeuds.zimmer.choix.1.puis.0": {
+   "fr": "Quinze. Un, cinq. Il est opéré aujourd'hui.",
+   "de": "Fünfzehn. Eins, fünf. Er wird heute operiert.",
+   "uk": "Пʼятнадцята. Один, пʼять. Його сьогодні оперують."
+  },
+  "noeuds.zimmer.choix.2": {
+   "fr": "Chambre cinquante, d'accord.",
+   "de": "Zimmer fünfzig, okay.",
+   "uk": "Пʼятдесята палата, окей."
+  },
+  "noeuds.zimmer.choix.2.puis.0": {
+   "fr": "Cinquante ? On n'a même pas autant de chambres ! Quinze !",
+   "de": "Fünfzig? So viele Zimmer haben wir gar nicht! Fünfzehn!",
+   "uk": "Пʼятдесята? У нас і палат стільки немає! Пʼятнадцята!"
+  },
+  "noeuds.zimmer.choix.2.aide": {
+   "fr": "<b>Ne devine pas un chiffre : demande.</b> « fünfzehn » (15) et « fünfzig » (50) se ressemblent beaucoup. « Wie bitte? Welches Zimmer? » ou « Fünfzehn oder fünfzig? »",
+   "uk": "<b>Не вгадуй число: запитай.</b> «fünfzehn» (15) і «fünfzig» (50) дуже схожі. «Wie bitte? Welches Zimmer?» або «Fünfzehn oder fünfzig?»"
+  },
+  "noeuds.op.choix.0": {
+   "fr": "L'opération est à quelle heure ?",
+   "de": "Um wie viel Uhr ist die Operation?",
+   "uk": "О котрій годині операція?"
+  },
+  "noeuds.op.choix.0.puis.0": {
+   "fr": "À huit heures. Il est à jeun depuis minuit.",
+   "de": "Um acht Uhr. Er ist nüchtern, seit Mitternacht.",
+   "uk": "О восьмій. Він натще, від півночі."
+  },
+  "noeuds.op.choix.1": {
+   "fr": "Quand exactement ? À quelle heure ?",
+   "de": "Wann genau? Um wie viel Uhr?",
+   "uk": "Коли саме? О котрій годині?"
+  },
+  "noeuds.op.choix.1.puis.0": {
+   "fr": "À huit heures. Il est à jeun depuis minuit.",
+   "de": "Um acht Uhr. Er ist nüchtern, seit Mitternacht.",
+   "uk": "О восьмій. Він натще, від півночі."
+  },
+  "noeuds.op.choix.2": {
+   "fr": "L'opération dure combien de temps ?",
+   "de": "Wie lange ist die Operation?",
+   "uk": "Як довго операція?"
+  },
+  "noeuds.op.choix.2.puis.0": {
+   "fr": "Combien de temps elle dure ? Aucune idée. Mais elle est à huit heures.",
+   "de": "Wie lange sie dauert? Keine Ahnung. Aber sie ist um acht.",
+   "uk": "Як довго вона триває? Гадки не маю. Але вона о восьмій."
+  },
+  "noeuds.op.choix.2.aide": {
+   "fr": "<b>« Wie lange? » demande une durée ; « Um wie viel Uhr? » demande l'heure.</b> Pour préparer le patient, tu as besoin de l'heure : « Um wie viel Uhr ist die Operation? »",
+   "uk": "<b>«Wie lange?» — це запитання про тривалість; «Um wie viel Uhr?» — про годину.</b> Щоб підготувати пацієнта, тобі потрібна година: «Um wie viel Uhr ist die Operation?»"
+  },
+  "noeuds.nuechtern.dit.0.recit": {
+   "fr": "Tu notes « 8 h ». Mais le mot « nüchtern », tu ne le connais pas bien.",
+   "uk": "Ти записуєш «8:00». Але слово «nüchtern» тобі не дуже знайоме."
+  },
+  "noeuds.nuechtern.choix.0": {
+   "fr": "Que veut dire « nüchtern » ?",
+   "de": "Was bedeutet „nüchtern“?",
+   "uk": "Що означає «nüchtern»?"
+  },
+  "noeuds.nuechtern.choix.0.puis.0": {
+   "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération. C'est l'anesthésie qui l'a prescrit.",
+   "de": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation. Das hat die Anästhesie so angeordnet.",
+   "uk": "Йому не можна нічого їсти й нічого пити. І курити теж. До операції. Так призначили анестезіологи."
+  },
+  "noeuds.nuechtern.choix.1": {
+   "fr": "« Nüchtern » ? Je ne connais pas ce mot. Tu peux me l'expliquer ?",
+   "de": "„Nüchtern“? Das Wort kenne ich nicht. Kannst du es mir erklären?",
+   "uk": "«Nüchtern»? Я не знаю цього слова. Можеш мені його пояснити?"
+  },
+  "noeuds.nuechtern.choix.1.puis.0": {
+   "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération. C'est l'anesthésie qui l'a prescrit.",
+   "de": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation. Das hat die Anästhesie so angeordnet.",
+   "uk": "Йому не можна нічого їсти й нічого пити. І курити теж. До операції. Так призначили анестезіологи."
+  },
+  "noeuds.nuechtern.choix.2": {
+   "fr": "Ah, « nüchtern » : il ne boit pas d'alcool. Bien.",
+   "de": "Ah, nüchtern: Er trinkt keinen Alkohol. Gut.",
+   "uk": "А, «nüchtern»: він не пʼє алкоголю. Добре."
+  },
+  "noeuds.nuechtern.choix.2.puis.0": {
+   "fr": "Ha ! Ça aussi. Mais ici, ça veut dire : ne rien manger et ne rien boire du tout.",
+   "de": "Ha! Das auch. Aber hier heißt es: gar nichts essen und trinken.",
+   "uk": "Ха! Це теж. Але тут це означає: зовсім нічого не їсти й не пити."
+  },
+  "noeuds.nuechtern.choix.2.aide": {
+   "fr": "<b>À l'hôpital, « nüchtern » veut dire « à jeun » : rien manger, rien boire.</b> À partir de quelle heure exactement, c'est l'anesthésie qui le fixe pour chaque patient. Dans la vie de tous les jours, « nüchtern » veut aussi dire « pas ivre ». Un mot que tu ne connais pas, demande-le : « Was bedeutet …? »",
+   "uk": "<b>У лікарні «nüchtern» означає «натще»: нічого не їсти, нічого не пити.</b> Від котрої саме години — це для кожного пацієнта визначають анестезіологи. У повсякденному житті «nüchtern» означає ще й «тверезий». Про слово, якого не знаєш, запитай: «Was bedeutet …?»"
+  },
+  "noeuds.lehmann.dit.0": {
+   "fr": "Ensuite {lehmann}, chambre quatorze. Le potassium était trop élevé hier, tu le sais. Le contrôle est meilleur : cinq virgule…",
+   "de": "Dann {lehmann}, Zimmer vierzehn. Das Kalium war gestern zu hoch, das weißt du. Die Kontrolle ist besser: fünf Komma …",
+   "uk": "Далі {lehmann}, чотирнадцята палата. Калій учора був зависокий, ти знаєш. Контроль кращий: пʼять кома…"
+  },
+  "noeuds.lehmann.dit.1.recit": {
+   "fr": "{yusuf} bâille au milieu du chiffre. Tu n'as pas entendu la fin.",
+   "uk": "{yusuf} позіхає посеред числа. Кінця тобі не чути."
+  },
+  "noeuds.lehmann.choix.0": {
+   "fr": "Pardon, combien ? Tu peux redire le chiffre, s'il te plaît ?",
+   "de": "Entschuldigung, wie viel? Kannst du die Zahl bitte noch einmal sagen?",
+   "uk": "Вибач, скільки? Можеш, будь ласка, ще раз назвати число?"
+  },
+  "noeuds.lehmann.choix.0.puis.0": {
+   "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. C'est encore un peu trop haut : dis-le à la médecin ce matin, s'il te plaît. Et elle a bien dormi.",
+   "de": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Das ist noch etwas zu hoch: Sag es bitte heute Morgen der Ärztin. Und sie hat gut geschlafen.",
+   "uk": "Пʼять кома чотири. Результат надійшов о двадцять другій. Це ще трохи зависоко: скажи, будь ласка, лікарці сьогодні вранці. І вона добре спала."
+  },
+  "noeuds.lehmann.choix.1": {
+   "fr": "Cinq virgule combien ? Je n'ai pas compris.",
+   "de": "Fünf Komma wie viel? Das habe ich nicht verstanden.",
+   "uk": "Пʼять кома скільки? Я не зрозуміла."
+  },
+  "noeuds.lehmann.choix.1.puis.0": {
+   "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. C'est encore un peu trop haut : dis-le à la médecin ce matin, s'il te plaît. Et elle a bien dormi.",
+   "de": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Das ist noch etwas zu hoch: Sag es bitte heute Morgen der Ärztin. Und sie hat gut geschlafen.",
+   "uk": "Пʼять кома чотири. Результат надійшов о двадцять другій. Це ще трохи зависоко: скажи, будь ласка, лікарці сьогодні вранці. І вона добре спала."
+  },
+  "noeuds.lehmann.choix.2": {
+   "fr": "Cinq. D'accord, alors tout va bien.",
+   "de": "Fünf. Okay, dann ist alles gut.",
+   "uk": "Пʼять. Окей, тоді все добре."
+  },
+  "noeuds.lehmann.choix.2.puis.0": {
+   "fr": "Pas cinq : cinq virgule quatre. Ce n'est pas pareil.",
+   "de": "Nicht fünf: fünf Komma vier. Das ist ein Unterschied.",
+   "uk": "Не пʼять: пʼять кома чотири. Це різниця."
+  },
+  "noeuds.lehmann.choix.2.aide": {
+   "fr": "<b>Une valeur se note en entier, avec ce qui vient après la virgule.</b> Si tu n'as pas entendu la fin, demande : « Kannst du die Zahl bitte noch einmal sagen? »",
+   "uk": "<b>Показник записують повністю, разом із тим, що після коми.</b> Якщо кінця не чути, запитай: «Kannst du die Zahl bitte noch einmal sagen?»"
+  },
+  "noeuds.brandt.dit.0": {
+   "fr": "Et {brandt}, chambre douze : une nuit calme. Il n'a pas sonné.",
+   "de": "Und {brandt}, Zimmer zwölf: eine ruhige Nacht. Er hat nicht geklingelt.",
+   "uk": "І {brandt}, дванадцята палата: спокійна ніч. Він не натискав на кнопку виклику."
+  },
+  "noeuds.brandt.choix.0": {
+   "fr": "Il n'a pas sonné ? Super. Et il a eu mal ?",
+   "de": "Er hat nicht geklingelt? Super. Und hatte er Schmerzen?",
+   "uk": "Він не викликав? Супер. А біль у нього був?"
+  },
+  "noeuds.brandt.choix.0.puis.0": {
+   "fr": "Non, pas de douleur. Il a dormi toute la nuit.",
+   "de": "Nein, keine Schmerzen. Er hat durchgeschlafen.",
+   "uk": "Ні, болю не було. Він проспав усю ніч."
+  },
+  "noeuds.brandt.choix.1": {
+   "fr": "Donc une nuit calme. Il n'a pas eu mal non plus ?",
+   "de": "Also eine ruhige Nacht. Hatte er auch keine Schmerzen?",
+   "uk": "Отже, спокійна ніч. Болю в нього теж не було?"
+  },
+  "noeuds.brandt.choix.1.puis.0": {
+   "fr": "Non, pas de douleur. Il a dormi toute la nuit.",
+   "de": "Nein, keine Schmerzen. Er hat durchgeschlafen.",
+   "uk": "Ні, болю не було. Він проспав усю ніч."
+  },
+  "noeuds.brandt.choix.2": {
+   "fr": "Il a sonné ? Pourquoi ?",
+   "de": "Er hat geklingelt? Warum?",
+   "uk": "Він викликав? Чому?"
+  },
+  "noeuds.brandt.choix.2.puis.0": {
+   "fr": "Non, il n'a pas sonné. Tout était calme.",
+   "de": "Nein, er hat nicht geklingelt. Alles ruhig.",
+   "uk": "Ні, він не викликав. Усе було спокійно."
+  },
+  "noeuds.brandt.choix.2.aide": {
+   "fr": "<b>Écoute bien le « nicht » : il change tout.</b> « Er hat nicht geklingelt » : il n'a pas sonné. Si tu n'es pas sûre, demande : « Hat er geklingelt oder nicht? »",
+   "uk": "<b>Уважно слухай «nicht»: воно змінює все.</b> «Er hat nicht geklingelt»: він не натискав на кнопку виклику. Якщо сумніваєшся, запитай: «Hat er geklingelt oder nicht?»"
+  },
+  "noeuds.notizen.dit.0": {
+   "fr": "C'est tout. Tu as tout ?",
+   "de": "Das war's. Hast du alles?",
+   "uk": "Це все. Усе записала?"
+  },
+  "noeuds.notizen.choix.0": {
+   "fr": "Je relis ce que j'ai noté : {pohl}, chambre 15, opération à huit heures, à jeun. {lehmann} : potassium cinq virgule quatre, le dire à la médecin. {brandt} : nuit calme.",
+   "de": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer 15, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier, der Ärztin sagen. {brandt}: ruhige Nacht.",
+   "uk": "Я прочитаю вголос те, що записала: {pohl}, палата 15, операція о восьмій, натще. {lehmann}: калій пʼять кома чотири, сказати лікарці. {brandt}: спокійна ніч."
+  },
+  "noeuds.notizen.choix.0.puis.0": {
+   "fr": "Parfait. Tout est juste.",
+   "de": "Perfekt. Alles richtig.",
+   "uk": "Чудово. Усе правильно."
+  },
+  "noeuds.notizen.choix.1": {
+   "fr": "Attends, je relis vite : chambre 15, {pohl}, opération à huit heures, à jeun. Chambre 14, potassium cinq virgule quatre, prévenir la médecin. Chambre 12, tout calme. C'est juste ?",
+   "de": "Moment, ich lese kurz vor: Zimmer 15, {pohl}, OP um acht Uhr, nüchtern. Zimmer 14, Kalium fünf Komma vier, Ärztin informieren. Zimmer 12, alles ruhig. Stimmt das?",
+   "uk": "Зачекай, я швидко прочитаю вголос: палата 15, {pohl}, операція о восьмій, натще. Палата 14, калій пʼять кома чотири, повідомити лікарку. Палата 12, усе спокійно. Правильно?"
+  },
+  "noeuds.notizen.choix.1.puis.0": {
+   "fr": "Parfait. Tout est juste.",
+   "de": "Perfekt. Alles richtig.",
+   "uk": "Чудово. Усе правильно."
+  },
+  "noeuds.notizen.choix.2": {
+   "fr": "Oui, tout. {pohl}, chambre 15, opération à neuf heures.",
+   "de": "Ja, alles. {pohl}, Zimmer 15, Operation um neun.",
+   "uk": "Так, усе. {pohl}, палата 15, операція о девʼятій."
+  },
+  "noeuds.notizen.choix.2.puis.0": {
+   "fr": "À neuf heures ? Non, à huit ! Heureusement que tu l'as dit.",
+   "de": "Um neun? Nein, um acht! Gut, dass du das gesagt hast.",
+   "uk": "О девʼятій? Ні, о восьмій! Добре, що ти це сказала."
+  },
+  "noeuds.notizen.choix.2.aide": {
+   "fr": "<b>Relis tes notes à voix haute, en entier : c'est là qu'on trouve les erreurs.</b> L'opération est à huit heures. « Ich lese vor, was ich notiert habe: … »",
+   "uk": "<b>Перечитуй свої нотатки вголос, повністю: саме так знаходять помилки.</b> Операція о восьмій. «Ich lese vor, was ich notiert habe: …»"
+  },
+  "noeuds.ende.dit.0": {
+   "fr": "Alors je rentre à la maison et je vais dormir.",
+   "de": "Dann gehe ich jetzt nach Hause und schlafe.",
+   "uk": "Тоді я йду додому спати."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Merci ! Dors bien !",
+   "de": "Danke dir! Schlaf gut!",
+   "uk": "Дякую тобі! Гарно виспись!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci ! Bon service !",
+   "de": "Danke! Einen guten Dienst!",
+   "uk": "Дякую! Гарної зміни!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Merci, {yusuf}. Dors bien et à demain matin !",
+   "de": "Danke, {yusuf}. Schlaf gut und bis morgen früh!",
+   "uk": "Дякую, {yusuf:voc}. Гарно виспись, і до завтрашнього ранку!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci ! Bon service !",
+   "de": "Danke! Einen guten Dienst!",
+   "uk": "Дякую! Гарної зміни!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Merci. Au revoir ! (au téléphone)",
+   "de": "Danke. Auf Wiederhören!",
+   "uk": "Дякую. До почутого! (так кажуть телефоном)"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "« Wiederhören » ? On n'est pas au téléphone !",
+   "de": "„Wiederhören“? Wir telefonieren doch nicht!",
+   "uk": "«Wiederhören»? Ми ж не телефоном говоримо!"
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>« Auf Wiederhören », c'est seulement au téléphone.</b> Face à face, on dit « Tschüss! » à un collègue, ou « Schlaf gut! » à quelqu'un qui rentre après la nuit.",
+   "uk": "<b>«Auf Wiederhören» кажуть лише телефоном.</b> Віч-на-віч колезі кажуть «Tschüss!», а тому, хто йде додому після нічної зміни, — «Schlaf gut!»."
+  },
+  "ecouter.0.q": {
+   "fr": "Dans quelle chambre est {pohl} ?",
+   "de": "In welchem Zimmer liegt {pohl}?",
+   "uk": "У якій палаті лежить {pohl}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Dans la chambre quinze.",
+   "de": "In Zimmer fünfzehn.",
+   "uk": "У пʼятнадцятій палаті."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Dans la chambre cinquante.",
+   "de": "In Zimmer fünfzig.",
+   "uk": "У пʼятдесятій палаті."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Dans la chambre douze.",
+   "de": "In Zimmer zwölf.",
+   "uk": "У дванадцятій палаті."
+  },
+  "ecouter.1.q": {
+   "fr": "À quelle heure {pohl} est-il opéré ?",
+   "de": "Um wie viel Uhr wird {pohl} operiert?",
+   "uk": "О котрій годині оперують {pohl:acc}?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "À neuf heures.",
+   "de": "Um neun Uhr.",
+   "uk": "О девʼятій."
+  },
+  "ecouter.1.options.1": {
+   "fr": "À minuit.",
+   "de": "Um Mitternacht.",
+   "uk": "Опівночі."
+  },
+  "ecouter.1.options.2": {
+   "fr": "À huit heures.",
+   "de": "Um acht Uhr.",
+   "uk": "О восьмій."
+  },
+  "ecouter.2.q": {
+   "fr": "Quel est maintenant le potassium de {lehmann} ?",
+   "de": "Wie hoch ist das Kalium von {lehmann} jetzt?",
+   "uk": "Який зараз калій у {lehmann}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Six virgule deux.",
+   "de": "Sechs Komma zwei.",
+   "uk": "Шість кома два."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Cinq virgule quatre.",
+   "de": "Fünf Komma vier.",
+   "uk": "Пʼять кома чотири."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Cinq.",
+   "de": "Fünf.",
+   "uk": "Пʼять."
+  },
+  "ecouter.3.q": {
+   "fr": "Comment s'est passée la nuit de {brandt} ?",
+   "de": "Wie war die Nacht von {brandt}?",
+   "uk": "Як минула ніч у {brandt:gen}?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Calme, il n'a pas sonné.",
+   "de": "Ruhig, er hat nicht geklingelt.",
+   "uk": "Спокійно, він не натискав на кнопку виклику."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Il avait très mal.",
+   "de": "Er hatte starke Schmerzen.",
+   "uk": "У нього був сильний біль."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Il a souvent sonné.",
+   "de": "Er hat oft geklingelt.",
+   "uk": "Він часто натискав на кнопку виклику."
+  }
+ }
+}

@@ -94,7 +94,42 @@ SOIGNANTS = {
                "blouse, dark-grey trousers and dark-grey trainers; a black stethoscope hangs around her neck."),
 }
 
+# LES VISAGES QUI MANQUAIENT (16 nov. 2026, chapitres « Ma journee au service ») : les personnes des dialogues sans
+# portrait maitre (pflege/outils/visages.py les montrait par leur initiale). Traits decides ici, comme ceux des
+# soignants ; Frau Kowalski, elle, est decoupee dans la scene soins-ambulant (personnages/frau-kowalski.png).
+AUTRES = {
+    "kraemer": ("German man of fifty, a hospital doctor on the night shift",
+                "HE is tall and broad, with fair skin, short greying brown hair, a neatly trimmed grey-brown beard, tired but alert "
+                "grey eyes behind rimless glasses, and a calm, serious, reassuring expression. He wears a white doctor's coat, "
+                "open, over light-blue hospital scrubs, white trainers; a black stethoscope hangs around his neck."),
+    "aksoy": ("woman of thirty-six, of Turkish origin, a technician in a hospital laboratory",
+              "SHE is of medium height and slim, with light olive skin, dark-brown eyes, shoulder-length dark-brown hair tied back "
+              "at the nape, small gold stud earrings and a precise, friendly expression. She wears a closed white laboratory coat "
+              "over a grey top, dark trousers and white closed shoes."),
+    "richter": ("German man of fifty-eight, a hospital pharmacist",
+                "HE is of medium height and slightly heavy, with fair skin, a high forehead, short white hair, round dark-framed "
+                "glasses and a kind, attentive smile. He wears an open white coat over a light-grey shirt and a dark tie, grey "
+                "trousers and black shoes."),
+    "monika": ("German woman of fifty-eight, visiting her elderly father in a care home",
+               "SHE is of medium height and solid build, with fair skin, short ash-blonde hair in a practical cut, blue eyes, "
+               "light expression lines and a warm but worried look. She wears a dark-green quilted jacket open over a cream "
+               "jumper, dark jeans and brown walking shoes; a brown shoulder bag hangs from one shoulder."),
+    # deux roles provisoires de la session dialogues (d40, d42 ; d44, d50), accord du chef du 16 nov. 2026
+    "winkler": ("German woman of eighty-four, a new resident of a care home on the day she arrives",
+                "SHE is small and slight, with short, neat white hair in a light perm, thin gold-rimmed glasses, a small hearing "
+                "aid behind her right ear, a soft face and lively eyes, a little shy. She wears a navy-blue cardigan over a light "
+                "blouse with a small collar, a small brooch on the cardigan, a grey skirt below the knee and closed shoes with "
+                "velcro straps."),
+    "pohl": ("German man of sixty-seven, admitted to hospital at night",
+             "HE is solid, with a slight belly, short thinning grey hair, two days of grey stubble and the strong hands of a "
+             "craftsman. He looks pale, tired and worried, tense rather than tearful. He wears a dark-blue polo shirt and grey "
+             "trousers from his day, a plain white plastic band around one wrist, and black shoes."),
+}
+
 if __name__ == "__main__":
+    for i, (qui, corps) in AUTRES.items():
+        io.open(os.path.join(ICI, "portrait-%s.prompt.txt" % i), "w", encoding="utf-8").write(
+            TETE.format(qui=qui) + corps + PIED + "\n")
     for i, (qui, corps) in SOIGNANTS.items():
         io.open(os.path.join(ICI, "portrait-%s.prompt.txt" % i), "w", encoding="utf-8").write(
             TETE.format(qui=qui) + corps + PIED + "\n")

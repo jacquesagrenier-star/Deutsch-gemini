@@ -159,3 +159,12 @@ Thème neuf. Ses phrases traduites sont fabriquées par `visuel/prototype/heure/
 2. **Hier** : « Учора був понеділок. », « Учора була середа. », « Учора була неділя. » (le genre du jour).
 3. **Les mois** : « Після квітня йде травень. », « Перед червнем іде травень. », « Мій день народження — 3 травня. », « … в травні. ».
 4. **Les mots** : « прийом у лікаря » (Termin beim Arzt), « заняття йогою триває дві години » ; « Зараз полудень. », « Зараз північ. ».
+
+## Lot 14, 16 nov. : « En ville : s'orienter »
+
+La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y aller, où il est, les itinéraires et les gestes au carrefour) et le groupe choisi : elles sont refaites par la grammaire de chaque langue dans `visuel/ciudad/langues.py`, versées dans `ciudad.json` par `ciudad.py`. Les noms des rues restent ceux du plan (Bergstraße, calle Mayor), comme en français. À relire :
+
+1. **Les cas** : « поруч із банком » (з + instrumental), « навпроти пошти », « між пекарнею та банком », « до аптеки ».
+2. **« й » après une voyelle** : « Ідіть прямо й поверніть… », « Дійдіть до першого перехрестя й там… ».
+3. **Les rues** : « на вулиці Gartenstraße », « на розі Bergstraße та Lindenstraße », « перейдіть Lindenstraße та Schulstraße ».
+4. **La fin** : « Вокзал ліворуч. », sans lieu « Це ліворуч. » ; la police « поліцейська дільниця ».

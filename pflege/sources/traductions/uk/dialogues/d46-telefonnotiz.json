@@ -1,0 +1,466 @@
+{
+ "_langue": "uk",
+ "_source": "pflege/sources/dialogues/d46-telefonnotiz.json",
+ "cles": {
+  "titre": {
+   "fr": "Prendre un message au téléphone",
+   "de": "Eine Nachricht am Telefon",
+   "uk": "Прийняти повідомлення телефоном"
+  },
+  "intro": {
+   "fr": "Mardi 10 novembre, dix heures quinze. Au poste de soins du {station}, le téléphone sonne. {sommer} est en visite, elle ne peut pas répondre. Tu joues {elif} : réponds au téléphone, puis prends un message pour la médecin : le nom (fais-le épeler), le numéro (chiffre par chiffre, et relis-le), et quand rappeler. Termine poliment.",
+   "uk": "Вівторок, 10 листопада, десята пʼятнадцять. На сестринському посту {station:gen} дзвонить телефон. {sommer} на обході, підійти вона не може. Ти в ролі {elif}: відповідай на дзвінок, а потім прийми повідомлення для лікарки: прізвище (попроси продиктувати по літерах), номер (цифра за цифрою, і зачитай його ще раз) і коли передзвонити. Заверши ввічливо."
+  },
+  "but": {
+   "fr": "Répondre au téléphone au travail ; dire qu'une personne n'est pas là et proposer un message ; faire épeler un nom ; faire dire un numéro chiffre par chiffre et le relire ; demander quand rappeler ; finir par « Auf Wiederhören ».",
+   "uk": "Відповідати на телефон на роботі; сказати, що людини немає, і запропонувати передати повідомлення; попросити продиктувати прізвище по літерах; попросити назвати номер цифра за цифрою й зачитати його ще раз; спитати, коли передзвонити; завершити словами «Auf Wiederhören»."
+  },
+  "relire_notes": {
+   "fr": "Au téléphone, prendre un message ne demande pas de vérifier l'identité (aucune information sur la patiente n'est donnée) ; si la personne demande des nouvelles, vérifier d'abord qui appelle (dialogue 23). Ne pas promettre l'heure du rappel à la place de la médecin.",
+   "uk": "Щоб прийняти повідомлення телефоном, перевіряти особу не потрібно (жодної інформації про пацієнтку не дають); якщо людина питає про стан пацієнтки, спершу перевірити, хто телефонує (діалог 23). Не обіцяти замість лікарки, о котрій вона передзвонить."
+  },
+  "redemittel.0": {
+   "fr": "Bonjour, {station}, {elif} à l'appareil.",
+   "de": "Guten Tag, {station}, hier spricht {elif}.",
+   "uk": "Добрий день, {station}, говорить {elif}."
+  },
+  "redemittel.1": {
+   "fr": "{sommer} est en visite en ce moment.",
+   "de": "{sommer} ist gerade bei der Visite.",
+   "uk": "{sommer} зараз на обході."
+  },
+  "redemittel.2": {
+   "fr": "Je peux lui transmettre un message ?",
+   "de": "Kann ich ihr etwas ausrichten?",
+   "uk": "Їй щось передати?"
+  },
+  "redemittel.3": {
+   "fr": "Pouvez-vous épeler votre nom, s'il vous plaît ?",
+   "de": "Können Sie Ihren Namen bitte buchstabieren?",
+   "uk": "Чи не могли б ви продиктувати своє прізвище по літерах?"
+  },
+  "redemittel.4": {
+   "fr": "Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?",
+   "de": "Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?",
+   "uk": "Чи не могли б ви назвати номер повільно, цифра за цифрою?"
+  },
+  "redemittel.5": {
+   "fr": "Je répète le numéro : …",
+   "de": "Ich wiederhole die Nummer: …",
+   "uk": "Я повторюю номер: …"
+  },
+  "redemittel.6": {
+   "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?",
+   "de": "Bis wann sind Sie unter dieser Nummer erreichbar?",
+   "uk": "До котрої години вам можна телефонувати на цей номер?"
+  },
+  "redemittel.7": {
+   "fr": "Je pose le message sur le bureau de {sommer}.",
+   "de": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch.",
+   "uk": "Я покладу повідомлення {sommer:dat} на стіл."
+  },
+  "redemittel.8": {
+   "fr": "Merci de votre appel. Au revoir !",
+   "de": "Danke für Ihren Anruf. Auf Wiederhören!",
+   "uk": "Дякую, що зателефонували. До побачення!"
+  },
+  "noeuds.klingeln.dit.0.recit": {
+   "fr": "Dix heures quinze, au poste de soins. Le téléphone sonne. {elif} est seule : tous les autres sont en visite avec {sommer}.",
+   "uk": "Десята пʼятнадцять, сестринський пост. Дзвонить телефон. {elif} сама: усі інші на обході з {sommer:ins}."
+  },
+  "noeuds.klingeln.choix.0": {
+   "fr": "Bonjour, {station}, {elif} à l'appareil.",
+   "de": "Guten Tag, {station}, hier spricht {elif}.",
+   "uk": "Добрий день, {station}, говорить {elif}."
+  },
+  "noeuds.klingeln.choix.0.puis.0": {
+   "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît.",
+   "de": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.",
+   "uk": "Добрий день, це {lehmann_tochter:famille}. Я хотіла б поговорити з {sommer:ins}."
+  },
+  "noeuds.klingeln.choix.1": {
+   "fr": "{station}, {elif} au téléphone. Bonjour !",
+   "de": "{station}, {elif} am Telefon. Guten Tag!",
+   "uk": "{station}, {elif} слухає. Добрий день!"
+  },
+  "noeuds.klingeln.choix.1.puis.0": {
+   "fr": "Bonjour, ici {lehmann_tochter}. Je voudrais parler à {sommer}, s'il vous plaît.",
+   "de": "Guten Tag, hier ist {lehmann_tochter:famille}. Ich möchte bitte {sommer:voc} sprechen.",
+   "uk": "Добрий день, це {lehmann_tochter:famille}. Я хотіла б поговорити з {sommer:ins}."
+  },
+  "noeuds.klingeln.choix.2": {
+   "fr": "Allô ? Qui est là ?",
+   "de": "Hallo? Wer ist da?",
+   "uk": "Алло? Хто це?"
+  },
+  "noeuds.klingeln.choix.2.puis.0": {
+   "fr": "Euh… Je suis bien à l'hôpital ?",
+   "de": "Äh … Bin ich da richtig im Krankenhaus?",
+   "uk": "Е-е… Я потрапила в лікарню?"
+  },
+  "noeuds.klingeln.choix.2.aide": {
+   "fr": "<b>Au travail, on répond avec le nom du service et son prénom.</b> « Guten Tag, Station …, hier spricht {elif}. » Comme ça, la personne sait tout de suite où elle appelle et à qui elle parle.",
+   "uk": "<b>На роботі на дзвінок відповідають, називаючи відділення та своє імʼя.</b> «Guten Tag, Station …, hier spricht {elif}.» Так людина одразу знає, куди вона потрапила і з ким говорить."
+  },
+  "noeuds.visite.choix.0": {
+   "fr": "Je suis désolée, {sommer} est en visite en ce moment. Je peux lui transmettre un message ?",
+   "de": "Das tut mir leid, {sommer} ist gerade bei der Visite. Kann ich ihr etwas ausrichten?",
+   "uk": "Мені шкода, {sommer} зараз на обході. Їй щось передати?"
+  },
+  "noeuds.visite.choix.0.puis.0": {
+   "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze.",
+   "de": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.",
+   "uk": "Так, будь ласка. Нехай вона мені передзвонить. Ідеться про мою маму, {lehmann}, палата чотирнадцять."
+  },
+  "noeuds.visite.choix.1": {
+   "fr": "{sommer} n'est pas là pour le moment, elle fait la visite. Voulez-vous qu'elle vous rappelle ?",
+   "de": "{sommer} ist im Moment nicht da, sie macht Visite. Soll sie Sie zurückrufen?",
+   "uk": "{sommer:gen} зараз немає на місці, вона на обході. Попросити її вам передзвонити?"
+  },
+  "noeuds.visite.choix.1.puis.0": {
+   "fr": "Oui, s'il vous plaît. Qu'elle me rappelle. C'est au sujet de ma mère, {lehmann}, chambre quatorze.",
+   "de": "Ja, bitte. Sie soll mich zurückrufen. Es geht um meine Mutter, {lehmann}, Zimmer vierzehn.",
+   "uk": "Так, будь ласка. Нехай вона мені передзвонить. Ідеться про мою маму, {lehmann}, палата чотирнадцять."
+  },
+  "noeuds.visite.choix.2": {
+   "fr": "{sommer} n'est pas là. Rappelez plus tard.",
+   "de": "{sommer} ist nicht da. Rufen Sie später an.",
+   "uk": "{sommer:gen} немає. Зателефонуйте пізніше."
+  },
+  "noeuds.visite.choix.2.puis.0": {
+   "fr": "Plus tard ? Quand ça ? Je suis au travail.",
+   "de": "Später? Wann denn? Ich bin bei der Arbeit.",
+   "uk": "Пізніше? А коли саме? Я на роботі."
+  },
+  "noeuds.visite.choix.2.aide": {
+   "fr": "<b>Quand la personne n'est pas là, propose un message.</b> « Sie ist gerade bei der Visite. Kann ich ihr etwas ausrichten? » ou « Soll sie Sie zurückrufen? » Ne renvoie pas la personne sans solution.",
+   "uk": "<b>Коли людини немає, запропонуй передати повідомлення.</b> «Sie ist gerade bei der Visite. Kann ich ihr etwas ausrichten?» або «Soll sie Sie zurückrufen?» Не відпускай людину без рішення."
+  },
+  "noeuds.name.dit.0.recit": {
+   "fr": "{elif} prend un bloc et un stylo. Elle n'a pas bien entendu le nom au début.",
+   "uk": "{elif} бере блокнот і ручку. На початку вона не розчула прізвища."
+  },
+  "noeuds.name.choix.0": {
+   "fr": "Volontiers. Quel est votre nom, s'il vous plaît ? Pouvez-vous l'épeler ?",
+   "de": "Gern. Wie ist Ihr Name, bitte? Können Sie ihn bitte buchstabieren?",
+   "uk": "Залюбки. Як ваше прізвище, будь ласка? Чи не могли б ви продиктувати його по літерах?"
+  },
+  "noeuds.name.choix.0.puis.0": {
+   "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille.",
+   "de": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.",
+   "uk": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Я донька."
+  },
+  "noeuds.name.choix.1": {
+   "fr": "Un instant, je note. Quel était votre nom ? Épelez-le, s'il vous plaît.",
+   "de": "Einen Moment, ich schreibe mit. Wie war Ihr Name? Buchstabieren Sie bitte.",
+   "uk": "Хвилинку, я записую. Як, ви сказали, ваше прізвище? Продиктуйте, будь ласка, по літерах."
+  },
+  "noeuds.name.choix.1.puis.0": {
+   "fr": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Je suis sa fille.",
+   "de": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Ich bin die Tochter.",
+   "uk": "{lehmann_tochter:famille}. K – R – Ü – G – E – R. Я донька."
+  },
+  "noeuds.name.choix.2": {
+   "fr": "D'accord. Et c'est quoi, ton nom ?",
+   "de": "Okay. Und wie ist dein Name?",
+   "uk": "Окей. А як твоє прізвище?"
+  },
+  "noeuds.name.choix.2.puis.0": {
+   "fr": "« Ton » ? Mais on ne se connaît pas.",
+   "de": "„Dein“? Wir kennen uns doch gar nicht.",
+   "uk": "«Твоє»? Ми ж зовсім не знайомі."
+  },
+  "noeuds.name.choix.2.aide": {
+   "fr": "<b>Au téléphone aussi, c'est « Sie » : « Wie ist Ihr Name, bitte? »</b> Et pour être sûre de l'écrire juste : « Können Sie ihn bitte buchstabieren? »",
+   "uk": "<b>Телефоном теж кажуть «Sie»: «Wie ist Ihr Name, bitte?»</b> А щоб напевно записати правильно: «Können Sie ihn bitte buchstabieren?»"
+  },
+  "noeuds.nachlesen.choix.0": {
+   "fr": "Merci. Je répète : K – R – Ü – G – E – R. C'est juste ?",
+   "de": "Danke. Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig?",
+   "uk": "Дякую. Я повторюю: K – R – Ü – G – E – R. Правильно?"
+  },
+  "noeuds.nachlesen.choix.0.puis.0": {
+   "fr": "Oui, c'est ça. Avec un Ü.",
+   "de": "Ja, genau. Mit Ü.",
+   "uk": "Так, саме так. З Ü."
+  },
+  "noeuds.nachlesen.choix.1": {
+   "fr": "Donc {lehmann_tochter:famille} avec un Ü, K – R – Ü – G – E – R. C'est ça ?",
+   "de": "Also {lehmann_tochter:famille} mit Ü, K – R – Ü – G – E – R. Richtig?",
+   "uk": "Отже, {lehmann_tochter:famille} з Ü, K – R – Ü – G – E – R. Так?"
+  },
+  "noeuds.nachlesen.choix.1.puis.0": {
+   "fr": "Oui, c'est ça. Avec un Ü.",
+   "de": "Ja, genau. Mit Ü.",
+   "uk": "Так, саме так. З Ü."
+  },
+  "noeuds.nachlesen.choix.2": {
+   "fr": "Merci. K – R – U – G – E – R.",
+   "de": "Danke. K – R – U – G – E – R.",
+   "uk": "Дякую. K – R – U – G – E – R."
+  },
+  "noeuds.nachlesen.choix.2.puis.0": {
+   "fr": "Non, pas U. Ü, avec deux points !",
+   "de": "Nein, nicht U. Ü, mit zwei Punkten!",
+   "uk": "Ні, не U. Ü, з двома крапками!"
+  },
+  "noeuds.nachlesen.choix.2.aide": {
+   "fr": "<b>Relis le nom lettre par lettre, et fais attention aux Umlaute : Ü n'est pas U.</b> « Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig? » Un nom mal écrit, et le message n'arrive pas.",
+   "uk": "<b>Зачитай прізвище літера за літерою і зважай на умлаути (Umlaute): Ü — це не U.</b> «Ich wiederhole: K – R – Ü – G – E – R. Ist das richtig?» Одна помилка в прізвищі — і повідомлення не дійде."
+  },
+  "noeuds.nummer.choix.0": {
+   "fr": "À quel numéro {sommer} peut-elle vous joindre ?",
+   "de": "Unter welcher Nummer kann {sommer} Sie erreichen?",
+   "uk": "За яким номером {sommer} може з вами звʼязатися?"
+  },
+  "noeuds.nummer.choix.0.puis.0": {
+   "fr": "Je suis au bureau. Le numéro est le 47 39 25.",
+   "de": "Ich bin im Büro. Die Nummer ist 47 39 25.",
+   "uk": "Я в офісі. Номер — 47 39 25."
+  },
+  "noeuds.nummer.choix.1": {
+   "fr": "Et votre numéro de téléphone, s'il vous plaît ?",
+   "de": "Und Ihre Telefonnummer, bitte?",
+   "uk": "А ваш номер телефону, будь ласка?"
+  },
+  "noeuds.nummer.choix.1.puis.0": {
+   "fr": "Je suis au bureau. Le numéro est le 47 39 25.",
+   "de": "Ich bin im Büro. Die Nummer ist 47 39 25.",
+   "uk": "Я в офісі. Номер — 47 39 25."
+  },
+  "noeuds.nummer.choix.2": {
+   "fr": "Votre numéro, on l'a sûrement déjà.",
+   "de": "Ihre Nummer haben wir bestimmt schon.",
+   "uk": "Ваш номер у нас напевно вже є."
+  },
+  "noeuds.nummer.choix.2.puis.0": {
+   "fr": "Non, aujourd'hui je suis au bureau. C'est un autre numéro.",
+   "de": "Nein, ich bin heute im Büro. Das ist eine andere Nummer.",
+   "uk": "Ні, сьогодні я в офісі. Це інший номер."
+  },
+  "noeuds.nummer.choix.2.aide": {
+   "fr": "<b>Ne devine pas : demande le numéro pour ce rappel.</b> « Unter welcher Nummer kann die Ärztin Sie erreichen? » La personne n'est peut-être pas chez elle aujourd'hui.",
+   "uk": "<b>Не вгадуй: спитай номер саме для цього дзвінка.</b> «Unter welcher Nummer kann die Ärztin Sie erreichen?» Можливо, людина сьогодні не вдома."
+  },
+  "noeuds.zahlen.dit.0.recit": {
+   "fr": "{lehmann_tochter} a dit le numéro très vite, par paires. {elif} n'a pas tout noté.",
+   "uk": "{lehmann_tochter} назвала номер дуже швидко, парами. {elif} не все встигла записати."
+  },
+  "noeuds.zahlen.choix.0": {
+   "fr": "Pardon, c'était un peu rapide. Pouvez-vous dire le numéro lentement, s'il vous plaît, chiffre par chiffre ?",
+   "de": "Entschuldigung, das war ein bisschen schnell. Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?",
+   "uk": "Вибачте, це було трохи зашвидко. Чи не могли б ви назвати номер повільно, цифра за цифрою?"
+  },
+  "noeuds.zahlen.choix.0.puis.0": {
+   "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq.",
+   "de": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.",
+   "uk": "Звісно. Чотири – сім – три – девʼять – два – пʼять."
+  },
+  "noeuds.zahlen.choix.1": {
+   "fr": "Pouvez-vous dire les chiffres un par un, s'il vous plaît ? Comme ça, je les note correctement.",
+   "de": "Können Sie die Zahlen bitte einzeln sagen? Dann schreibe ich sie richtig auf.",
+   "uk": "Чи не могли б ви назвати цифри по одній? Тоді я запишу їх правильно."
+  },
+  "noeuds.zahlen.choix.1.puis.0": {
+   "fr": "Bien sûr. Quatre – sept – trois – neuf – deux – cinq.",
+   "de": "Natürlich. Vier – sieben – drei – neun – zwo – fünf.",
+   "uk": "Звісно. Чотири – сім – три – девʼять – два – пʼять."
+  },
+  "noeuds.zahlen.choix.2": {
+   "fr": "D'accord… quarante-sept… cinquante-neuf… Oui, je l'ai.",
+   "de": "Okay … siebenundvierzig … neunundfünfzig … Ja, ich habe es.",
+   "uk": "Окей… сорок сім… пʼятдесят девʼять… Так, записала."
+  },
+  "noeuds.zahlen.choix.2.puis.0": {
+   "fr": "Cinquante-neuf ? Non, trente-neuf !",
+   "de": "Neunundfünfzig? Nein, neununddreißig!",
+   "uk": "Пʼятдесят девʼять? Ні, тридцять девʼять!"
+  },
+  "noeuds.zahlen.choix.2.aide": {
+   "fr": "<b>Si tu n'as pas tout compris, ne devine pas : demande les chiffres un par un.</b> « Können Sie die Nummer bitte langsam sagen, Zahl für Zahl? » Un seul chiffre faux, et la médecin ne peut pas rappeler.",
+   "uk": "<b>Якщо не все зрозуміло, не вгадуй: попроси назвати цифри по одній.</b> «Können Sie die Nummer bitte langsam sagen, Zahl für Zahl?» Одна хибна цифра — і лікарка не зможе передзвонити."
+  },
+  "noeuds.wiederholen.choix.0": {
+   "fr": "Merci. Je répète : quatre, sept, trois, neuf, deux, cinq. C'est bien ça ?",
+   "de": "Danke. Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das?",
+   "uk": "Дякую. Я повторюю: чотири, сім, три, девʼять, два, пʼять. Правильно?"
+  },
+  "noeuds.wiederholen.choix.0.puis.0": {
+   "fr": "Oui, c'est juste.",
+   "de": "Ja, das stimmt.",
+   "uk": "Так, правильно."
+  },
+  "noeuds.wiederholen.choix.1": {
+   "fr": "Je relis encore une fois : quatre – sept – trois – neuf – deux – cinq. C'est ça ?",
+   "de": "Ich lese noch einmal vor: vier – sieben – drei – neun – zwei – fünf. Richtig?",
+   "uk": "Я зачитаю ще раз: чотири – сім – три – девʼять – два – пʼять. Так?"
+  },
+  "noeuds.wiederholen.choix.1.puis.0": {
+   "fr": "Oui, c'est juste.",
+   "de": "Ja, das stimmt.",
+   "uk": "Так, правильно."
+  },
+  "noeuds.wiederholen.choix.2": {
+   "fr": "Bien, merci. J'ai le numéro.",
+   "de": "Gut, danke. Ich habe die Nummer.",
+   "uk": "Добре, дякую. Номер у мене є."
+  },
+  "noeuds.wiederholen.choix.2.puis.0": {
+   "fr": "Vous ne voulez pas me la relire ? Au téléphone, on comprend vite de travers.",
+   "de": "Möchten Sie sie nicht lieber noch einmal vorlesen? Am Telefon versteht man schnell etwas falsch.",
+   "uk": "А чи не краще вам зачитати його ще раз? Телефоном легко щось недочути."
+  },
+  "noeuds.wiederholen.choix.2.aide": {
+   "fr": "<b>Un numéro se relit toujours.</b> « Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das? » Au téléphone, on dit souvent « zwo » pour « zwei », pour ne pas le confondre avec « drei ».",
+   "uk": "<b>Номер завжди зачитують ще раз.</b> «Ich wiederhole: vier, sieben, drei, neun, zwei, fünf. Stimmt das?» Телефоном часто кажуть «zwo» замість «zwei», щоб не сплутати з «drei»."
+  },
+  "noeuds.wann.choix.0": {
+   "fr": "Jusqu'à quand peut-on vous joindre à ce numéro ?",
+   "de": "Bis wann sind Sie unter dieser Nummer erreichbar?",
+   "uk": "До котрої години вам можна телефонувати на цей номер?"
+  },
+  "noeuds.wann.choix.0.puis.0": {
+   "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère.",
+   "de": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.",
+   "uk": "До дванадцятої. По обіді я однаково прийду до мами."
+  },
+  "noeuds.wann.choix.1": {
+   "fr": "Jusqu'à quand peut-on vous joindre au bureau ? La visite dure en général jusqu'à onze heures et demie.",
+   "de": "Bis wann können wir Sie im Büro erreichen? Die Visite dauert meistens bis halb zwölf.",
+   "uk": "До котрої години ми можемо застати вас в офісі? Обхід зазвичай триває до пів на дванадцяту."
+  },
+  "noeuds.wann.choix.1.puis.0": {
+   "fr": "Jusqu'à midi. L'après-midi, je viens de toute façon voir ma mère.",
+   "de": "Bis zwölf Uhr. Am Nachmittag komme ich sowieso zu meiner Mutter.",
+   "uk": "До дванадцятої. По обіді я однаково прийду до мами."
+  },
+  "noeuds.wann.choix.2": {
+   "fr": "{sommer} vous appelle à onze heures.",
+   "de": "{sommer} ruft Sie um elf Uhr an.",
+   "uk": "{sommer} зателефонує вам об одинадцятій."
+  },
+  "noeuds.wann.choix.2.puis.0": {
+   "fr": "À onze heures, c'est sûr ? Alors j'attends près du téléphone.",
+   "de": "Ganz sicher um elf? Dann warte ich am Telefon.",
+   "uk": "Точно об одинадцятій? Тоді я чекатиму біля телефону."
+  },
+  "noeuds.wann.choix.2.aide": {
+   "fr": "<b>Ne promets pas une heure à la place de la médecin : demande quand la personne est joignable.</b> « Bis wann sind Sie unter dieser Nummer erreichbar? » La médecin rappellera dans ce créneau, si elle peut.",
+   "uk": "<b>Не обіцяй годину замість лікарки: спитай, коли з людиною можна звʼязатися.</b> «Bis wann sind Sie unter dieser Nummer erreichbar?» Лікарка передзвонить у цей проміжок часу, якщо зможе."
+  },
+  "noeuds.ende.choix.0": {
+   "fr": "Bien. Je transmets le message à {sommer} : vous demandez à être rappelée avant midi. Merci de votre appel. Au revoir !",
+   "de": "Gut. Ich gebe die Nachricht an {sommer:voc} weiter: Sie bitten um einen Rückruf bis zwölf Uhr. Danke für Ihren Anruf. Auf Wiederhören!",
+   "uk": "Добре. Я передам повідомлення {sommer:dat}: ви просите передзвонити вам до дванадцятої. Дякую, що зателефонували. До побачення!"
+  },
+  "noeuds.ende.choix.0.puis.0": {
+   "fr": "Merci beaucoup. Au revoir !",
+   "de": "Vielen Dank. Auf Wiederhören!",
+   "uk": "Щиро дякую. До побачення!"
+  },
+  "noeuds.ende.choix.1": {
+   "fr": "Je pose le message sur le bureau de {sommer}. Au revoir, {lehmann_tochter:voc} !",
+   "de": "Ich lege {sommer:voc} die Nachricht auf den Schreibtisch. Auf Wiederhören, {lehmann_tochter}!",
+   "uk": "Я покладу повідомлення {sommer:dat} на стіл. До побачення, {lehmann_tochter:voc}!"
+  },
+  "noeuds.ende.choix.1.puis.0": {
+   "fr": "Merci beaucoup. Au revoir !",
+   "de": "Vielen Dank. Auf Wiederhören!",
+   "uk": "Щиро дякую. До побачення!"
+  },
+  "noeuds.ende.choix.2": {
+   "fr": "Bien. Bon rétablissement !",
+   "de": "Gut. Gute Besserung!",
+   "uk": "Добре. Одужуйте!"
+  },
+  "noeuds.ende.choix.2.puis.0": {
+   "fr": "Bon rétablissement ? Je vais bien, merci. C'est ma mère, la patiente.",
+   "de": "Gute Besserung? Mir geht es gut, danke. Meine Mutter ist die Patientin.",
+   "uk": "Одужуйте? У мене все гаразд, дякую. Пацієнтка — моя мама."
+  },
+  "noeuds.ende.choix.2.aide": {
+   "fr": "<b>« Gute Besserung » se dit à une personne malade.</b> Pour finir un appel : « Danke für Ihren Anruf. Auf Wiederhören! » Au téléphone, on dit « Auf Wiederhören » (on ne se voit pas).",
+   "uk": "<b>«Gute Besserung» кажуть хворій людині.</b> Щоб завершити дзвінок: «Danke für Ihren Anruf. Auf Wiederhören!» Телефоном кажуть «Auf Wiederhören» (співрозмовники не бачать одне одного)."
+  },
+  "ecouter.0.q": {
+   "fr": "À qui {lehmann_tochter} veut-elle parler ?",
+   "de": "Wen möchte {lehmann_tochter} sprechen?",
+   "uk": "З ким хоче поговорити {lehmann_tochter}?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "À sa mère.",
+   "de": "Ihre Mutter.",
+   "uk": "Зі своєю мамою."
+  },
+  "ecouter.0.options.1": {
+   "fr": "À {sommer}.",
+   "de": "{sommer:voc}.",
+   "uk": "З {sommer:ins}."
+  },
+  "ecouter.0.options.2": {
+   "fr": "À la cadre du service.",
+   "de": "Die Stationsleitung.",
+   "uk": "З керівницею відділення."
+  },
+  "ecouter.1.q": {
+   "fr": "Pourquoi {sommer} ne peut-elle pas venir au téléphone ?",
+   "de": "Warum kann {sommer} nicht ans Telefon kommen?",
+   "uk": "Чому {sommer} не може підійти до телефону?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Elle est en visite.",
+   "de": "Sie ist bei der Visite.",
+   "uk": "Вона на обході."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Elle est en congé aujourd'hui.",
+   "de": "Sie hat heute frei.",
+   "uk": "У неї сьогодні вихідний."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Elle est au bloc opératoire.",
+   "de": "Sie ist im Operationssaal.",
+   "uk": "Вона в операційній."
+  },
+  "ecouter.2.q": {
+   "fr": "Quel est le numéro de téléphone de {lehmann_tochter} ?",
+   "de": "Wie ist die Telefonnummer von {lehmann_tochter}?",
+   "uk": "Який номер телефону в {lehmann_tochter}?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "Sept, quatre, trois, neuf, deux, cinq.",
+   "de": "Sieben, vier, drei, neun, zwei, fünf.",
+   "uk": "Сім, чотири, три, девʼять, два, пʼять."
+  },
+  "ecouter.2.options.1": {
+   "fr": "Quatre, sept, trois, cinq, deux, neuf.",
+   "de": "Vier, sieben, drei, fünf, zwei, neun.",
+   "uk": "Чотири, сім, три, пʼять, два, девʼять."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Quatre, sept, trois, neuf, deux, cinq.",
+   "de": "Vier, sieben, drei, neun, zwei, fünf.",
+   "uk": "Чотири, сім, три, девʼять, два, пʼять."
+  },
+  "ecouter.3.q": {
+   "fr": "Jusqu'à quand peut-on joindre {lehmann_tochter} au bureau ?",
+   "de": "Bis wann ist {lehmann_tochter} im Büro erreichbar?",
+   "uk": "До котрої години {lehmann_tochter} можна застати в офісі?"
+  },
+  "ecouter.3.options.0": {
+   "fr": "Jusqu'à dix heures.",
+   "de": "Bis zehn Uhr.",
+   "uk": "До десятої."
+  },
+  "ecouter.3.options.1": {
+   "fr": "Jusqu'à midi.",
+   "de": "Bis zwölf Uhr.",
+   "uk": "До дванадцятої."
+  },
+  "ecouter.3.options.2": {
+   "fr": "Jusqu'à quatre heures.",
+   "de": "Bis vier Uhr.",
+   "uk": "До четвертої."
+  }
+ }
+}

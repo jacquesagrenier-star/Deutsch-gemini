@@ -316,7 +316,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "bettdecke",
@@ -345,7 +346,8 @@ window.SCENE = {
    "pt": "cobertor, edredom",
    "ar": "لحاف، غطاء السرير",
    "pl": "kołdra",
-   "ru": "одеяло"
+   "ru": "одеяло",
+   "es": "la cobija, la frazada"
   },
   {
    "id": "kissen",
@@ -527,7 +529,8 @@ window.SCENE = {
    "pt": "cliente (do atendimento domiciliar)",
    "ar": "العميلة (في الرعاية المنزلية)",
    "pl": "podopieczna (opieki domowej)",
-   "ru": "клиентка (ухода на дому)"
+   "ru": "клиентка (ухода на дому)",
+   "es": "la clienta (de la atención domiciliaria)"
   },
   {
    "id": "bademantel",
@@ -586,7 +589,8 @@ window.SCENE = {
    "pt": "botão de chamada de emergência",
    "ar": "زر نداء الطوارئ",
    "pl": "przycisk alarmowy",
-   "ru": "кнопка экстренного вызова"
+   "ru": "кнопка экстренного вызова",
+   "es": "el botón de llamada de emergencia"
   },
   {
    "id": "hocker",
@@ -765,7 +769,8 @@ window.SCENE = {
    "pt": "caixa organizadora de comprimidos",
    "ar": "علبة الأدوية الأسبوعية",
    "pl": "dozownik na leki",
-   "ru": "таблетница"
+   "ru": "таблетница",
+   "es": "el pastillero (organizador de medicamentos)"
   },
   {
    "id": "insulinpen",
@@ -794,7 +799,8 @@ window.SCENE = {
    "pt": "caneta de insulina",
    "ar": "قلم الإنسولين",
    "pl": "pen insulinowy",
-   "ru": "инсулиновая шприц-ручка"
+   "ru": "инсулиновая шприц-ручка",
+   "es": "la pluma de insulina"
   },
   {
    "id": "blutzuckermessgeraet",
@@ -823,7 +829,8 @@ window.SCENE = {
    "pt": "glicosímetro",
    "ar": "جهاز قياس السكر",
    "pl": "glukometr",
-   "ru": "глюкометр"
+   "ru": "глюкометр",
+   "es": "el glucómetro"
   },
   {
    "id": "stuhl",
@@ -976,7 +983,8 @@ window.SCENE = {
    "pt": "meia de compressão",
    "ar": "جورب ضاغط",
    "pl": "pończocha uciskowa",
-   "ru": "компрессионный чулок"
+   "ru": "компрессионный чулок",
+   "es": "la media de compresión"
   },
   {
    "id": "kruecke",
@@ -1005,7 +1013,8 @@ window.SCENE = {
    "pt": "muleta",
    "ar": "عكّاز إبطي",
    "pl": "kula",
-   "ru": "костыль"
+   "ru": "костыль",
+   "es": "la muleta"
   },
   {
    "id": "rollator",
@@ -1034,7 +1043,8 @@ window.SCENE = {
    "pt": "andador com rodas",
    "ar": "مشّاية بعجلات",
    "pl": "rolator (balkonik na kółkach)",
-   "ru": "роллатор (ходунки на колёсах)"
+   "ru": "роллатор (ходунки на колёсах)",
+   "es": "el andador con ruedas"
   }
  ],
  "grosPlans": [],

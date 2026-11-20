@@ -8,8 +8,12 @@ puis controle par  python tests/pflege.py  et  python tests/pflege_vocabulaire.p
 Une entree = une carte. Les champs sont ecrits en une ligne, separes par « | », dans
 un ORDRE FIXE :
 
-  traductions (9) : fr | en | tr | uk | fa | ar | pt | pl | ru
-  exemple    (10) : de | fr | en | tr | uk | fa | ar | pt | pl | ru
+  traductions (9) : fr | en | tr | uk | fa | ar | pt | pl | ru  [| es]
+  exemple    (10) : de | fr | en | tr | uk | fa | ar | pt | pl | ru  [| es]
+
+- l'ESPAGNOL (10e langue d'interface, decision de Jacques du 16 nov. : « la traduction pour la
+  langue de l'apprenant dans toutes les langues ») s'ajoute EN DERNIER : 10 traductions et 11
+  exemples. Tout mot ne depuis le 16 nov. l'a ; les plus anciens le recevront par un lot a part ;
 
 - le francais d'un NOM porte son article (« l'escarre », « la toilette ») : le
   constructeur en tire article_fr, comme dans themes.json ;
@@ -38,8 +42,10 @@ Les constructeurs :
 Un verbe (et une reprise de verbe) donne son Perfekt : aux="haben"/"sein" et p2="gelagert", ou
 perfekt="hat sich verschlechtert / hat sich gebessert" en entier (paires).
 
-Options communes : relire=True (une infirmiere doit valider ; ⚕️ de l'annexe A),
+Options communes : chapitre="ch01_aufnahme" (le chapitre de « Ma journee au service »,
+pflege/sources/chapitres.py ; sinon chapitres_mots.py, sinon le chapitre du theme), relire=True (une infirmiere doit valider ; ⚕️ de l'annexe A),
 note="..." (pour la relectrice, en francais, jamais affichee),
+es_trad="..." (une reprise sans precision= dont la fiche du corpus n'a pas d'espagnol),
 sens_distinct="..." (le mot existe au corpus dans un AUTRE sens : on en fait une
 carte a part, et on dit lequel).
 """
@@ -50,6 +56,8 @@ NIVEAUX = ("A2", "B1", "B2")
 
 def _champs(texte, n, quoi, mot):
     parts = [p.strip() for p in texte.split("|")]
+    if len(parts) == n + 1:   # l'espagnol en dernier (16 nov.)
+        n += 1
     if len(parts) != n:
         raise ValueError("%s : %s attend %d champs, en a %d" % (mot, quoi, n, len(parts)))
     if any(not p for p in parts):
@@ -64,12 +72,13 @@ def _base(niveau, typ, mot, trad, ex, opts):
     if trad is not None:
         e["trad"] = _champs(trad, 9, "la traduction", mot)
     e["ex"] = _champs(ex, 10, "l'exemple", mot)
-    for k in ("relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source"):
+    for k in ("relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "chapitre",
+              "es_trad"):
         if opts.get(k):
             e[k] = opts[k]
     if opts.get("precision"):
         e["precision"] = _champs(opts["precision"], 9, "la precision", mot)
-    inconnus = set(opts) - {"relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "precision", "typ"}
+    inconnus = set(opts) - {"relire", "note", "sens_distinct", "aux", "p2", "perfekt", "feminin", "masculin", "source", "precision", "typ", "chapitre", "es_trad"}
     if inconnus:
         raise ValueError("%s : options inconnues %s" % (mot, sorted(inconnus)))
     return e

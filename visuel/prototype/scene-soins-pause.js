@@ -179,7 +179,8 @@ window.SCENE = {
    "pt": "mural de recados",
    "ar": "لوحة الإعلانات",
    "pl": "tablica korkowa",
-   "ru": "доска объявлений"
+   "ru": "доска объявлений",
+   "es": "el tablero de anuncios (de corcho)"
   },
   {
    "id": "dienstplan",
@@ -208,7 +209,8 @@ window.SCENE = {
    "pt": "escala de trabalho",
    "ar": "جدول المناوبات",
    "pl": "grafik dyżurów",
-   "ru": "график смен"
+   "ru": "график смен",
+   "es": "el rol de turnos (cuadro de turnos)"
   },
   {
    "id": "kaffeemaschine",
@@ -267,7 +269,8 @@ window.SCENE = {
    "pt": "a chaleira elétrica",
    "ar": "الغلّاية الكهربائية",
    "pl": "czajnik elektryczny",
-   "ru": "электрочайник"
+   "ru": "электрочайник",
+   "es": "el hervidor eléctrico (la tetera eléctrica)"
   },
   {
    "id": "mikrowelle",
@@ -386,7 +389,8 @@ window.SCENE = {
    "pt": "o armário (do vestiário)",
    "ar": "خزانة الملابس",
    "pl": "szafka (w szatni)",
-   "ru": "шкафчик (в раздевалке)"
+   "ru": "шкафчик (в раздевалке)",
+   "es": "el casillero (del vestidor)"
   },
   {
    "id": "regenjacke",
@@ -475,7 +479,8 @@ window.SCENE = {
    "pt": "enfermeira",
    "ar": "ممرّضة مؤهّلة",
    "pl": "pielęgniarka (dyplomowana)",
-   "ru": "медсестра (дипломированная)"
+   "ru": "медсестра (дипломированная)",
+   "es": "la enfermera (titulada; título alemán desde 2020)"
   },
   {
    "id": "pflegefachmann",
@@ -504,7 +509,8 @@ window.SCENE = {
    "pt": "enfermeiro",
    "ar": "ممرّض مؤهّل",
    "pl": "pielęgniarz (dyplomowany)",
-   "ru": "медбрат (дипломированный)"
+   "ru": "медбрат (дипломированный)",
+   "es": "el enfermero (titulado; título alemán desde 2020)"
   },
   {
    "id": "stationsleitung",
@@ -533,7 +539,8 @@ window.SCENE = {
    "pt": "coordenador(a) de enfermagem da unidade",
    "ar": "رئيس تمريض القسم",
    "pl": "pielęgniarka oddziałowa",
-   "ru": "старшая медсестра отделения"
+   "ru": "старшая медсестра отделения",
+   "es": "la jefa de enfermería (del área), el jefe de enfermería"
   },
   {
    "id": "papier",
@@ -772,7 +779,8 @@ window.SCENE = {
    "pt": "a marmita (a lancheira)",
    "ar": "علبة الطعام",
    "pl": "pudełko na kanapki (śniadaniówka)",
-   "ru": "ланч-бокс (контейнер для еды)"
+   "ru": "ланч-бокс (контейнер для еды)",
+   "es": "la lonchera (el táper)"
   },
   {
    "id": "tasse-l",

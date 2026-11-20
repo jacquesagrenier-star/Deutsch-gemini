@@ -1,0 +1,186 @@
+{
+ "id": "d42-pflegeanamnese",
+ "numero": 42,
+ "niveau": "B2",
+ "porte": "examen",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "olena",
+ "personnes": ["winkler"],
+ "titre": {"t": "Die Pflegeanamnese", "fr": "L'entretien d'admission d'une résidente"},
+ "intro": {"fr": "Lundi 16 novembre, onze heures, au {heim}. {winkler} est arrivée il y a une heure ; {arun} lui a montré sa chambre. Tu joues {olena} : tu mènes l'entretien d'admission (la Pflegeanamnese), rubrique par rubrique : voir et entendre, se déplacer, manger et boire, aller aux toilettes, dormir, se laver et s'habiller, ses habitudes. Adapte-toi à une résidente malentendante, pose la question délicate avec tact, reformule et note."},
+ "but": {"fr": "Mener une anamnèse de soins structurée (ici selon les AEDL ; beaucoup de maisons utilisent aujourd'hui la SIS du Strukturmodell) : annoncer le but et la durée ; poser des questions polies et indirectes (Würden Sie mir erzählen, wie … ? Könnten Sie mir sagen, wann … ?) ; s'adapter à une personne malentendante ; aborder l'incontinence avec tact, sans mot qui infantilise ; noter des faits, pas des étiquettes ; reformuler avec des relatives (alles, was Sie mir erzählt haben ; Gewohnheiten, die Ihnen wichtig sind)."},
+ "grammaire": ["g09", "g07", "g16"],
+ "telc": ["oral-2", "schreiben"],
+ "relire_notes": {"fr": "Les rubriques de l'anamnèse selon le modèle AEDL (Krohwinkel) et leur ordre (beaucoup de maisons documentent aujourd'hui avec la SIS du Strukturmodell) ; parler à une personne malentendante (lumière sur le visage de la soignante, lecture labiale, appareil à droite, aide pour changer les piles) ; chute de l'hiver dernier : le risque de chute s'évalue en équipe, sans retirer l'autonomie ; éclairage la nuit, pas de tapis ; boissons : ne jamais conseiller de ne plus boire le soir (déshydratation, vessie irritée), on garde la quantité de la journée et on la boit plus tôt ; incontinence : les mots (Einlagen, Inkontinenzmaterial, jamais « Windeln »), protections fournies par l'établissement, accompagnement aux toilettes la nuit, avis de la médecin traitante avec l'accord de la résidente ; pas de somnifère proposé par la soignante ; aide aux bas, chaussures et petits boutons, le reste fait seule (soins activants) ; discrétion de la documentation."},
+ "redemittel": [
+  {"t": "Ich würde Ihnen gern ein paar Fragen zu Ihrem Alltag stellen, damit wir Sie gut unterstützen können.", "fr": "J'aimerais vous poser quelques questions sur votre quotidien, pour que nous puissions bien vous aider.", "fonction": "annoncer"},
+  {"t": "Passt es Ihnen jetzt, oder sollen wir lieber später sprechen?", "fr": "Ça vous convient maintenant, ou préférez-vous qu'on en parle plus tard ?", "fonction": "demander"},
+  {"t": "Ich setze mich so, dass Sie mein Gesicht gut sehen.", "fr": "Je m'assois de façon à ce que vous voyiez bien mon visage.", "fonction": "annoncer"},
+  {"t": "Würden Sie mir erzählen, wie Sie zu Hause zurechtgekommen sind?", "fr": "Pourriez-vous me raconter comment vous vous débrouilliez à la maison ?", "fonction": "demander"},
+  {"t": "Darf ich Sie dazu etwas Persönliches fragen?", "fr": "Puis-je vous poser une question personnelle à ce sujet ?", "fonction": "demander"},
+  {"t": "Kommt es manchmal vor, dass Sie die Toilette nicht rechtzeitig erreichen?", "fr": "Vous arrive-t-il de ne pas arriver à temps aux toilettes ?", "fonction": "demander"},
+  {"t": "Das ist sehr häufig, dafür müssen Sie sich nicht schämen.", "fr": "C'est très fréquent, vous n'avez pas à en avoir honte.", "fonction": "rassurer"},
+  {"t": "Wobei möchten Sie Hilfe, und was machen Sie lieber selbst?", "fr": "Pour quoi souhaitez-vous de l'aide, et que préférez-vous faire vous-même ?", "fonction": "demander"},
+  {"t": "Darf ich Ihnen kurz vorlesen, was ich mir notiert habe?", "fr": "Puis-je vous relire rapidement ce que j'ai noté ?", "fonction": "reformuler"}
+ ],
+ "debut": "start",
+ "noeuds": {
+  "start": {
+   "dit": [
+    {"recit": {"fr": "Onze heures. {olena} frappe à la porte de {winkler}, un classeur sous le bras. La valise est vide ; la machine à coudre est déjà sur la table, près de la fenêtre."}},
+    {"qui": "winkler", "air": "sourire", "t": "Herein! Sie sind bestimmt die Kollegin, von der mir der junge Mann erzählt hat.", "fr": "Entrez ! Vous êtes sûrement la collègue dont le jeune homme m'a parlé."}
+   ],
+   "choix": [
+    {"t": "Genau, ich bin {olena}. Ich würde Ihnen gern ein paar Fragen zu Ihrem Alltag stellen: wie Sie gehen, essen, schlafen. Damit wir Sie so unterstützen können, wie Sie es brauchen. Das dauert etwa eine halbe Stunde. Passt es Ihnen jetzt?", "fr": "C'est bien moi, je suis {olena}. J'aimerais vous poser quelques questions sur votre quotidien : comment vous marchez, mangez, dormez. Pour que nous puissions vous aider comme vous en avez besoin. Ça dure environ une demi-heure. Ça vous convient maintenant ?", "va": "hoeren",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Ja, jetzt passt es gut. Fragen Sie nur, ich habe ja Zeit.", "fr": "Oui, maintenant, ça me va bien. Allez-y, j'ai le temps."}]},
+    {"t": "Ja, ich bin {olena}. Wenn es Ihnen recht ist, würde ich gern mit Ihnen besprechen, wobei Sie Hilfe brauchen und wobei nicht. Es dauert ungefähr eine halbe Stunde. Oder sollen wir lieber später sprechen?", "fr": "Oui, je suis {olena}. Si vous êtes d'accord, j'aimerais voir avec vous pour quoi vous avez besoin d'aide, et pour quoi non. Ça dure environ une demi-heure. Ou préférez-vous qu'on en parle plus tard ?", "va": "hoeren",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Nein, jetzt passt es gut. Fragen Sie nur, ich habe ja Zeit.", "fr": "Non, maintenant, ça me va bien. Allez-y, j'ai le temps."}]},
+    {"faux": true, "t": "Ja. Ich muss jetzt den Aufnahmebogen ausfüllen. Erster Punkt: Mobilität.", "fr": "Oui. Je dois remplir le formulaire d'admission maintenant. Premier point : mobilité.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Mobilität? Ach, Sie meinen, ob ich laufen kann? Muss das denn gleich sein?", "fr": "Mobilité ? Ah, vous voulez dire si je peux marcher ? Il faut faire ça tout de suite ?"}],
+     "aide": {"fr": "<b>Annonce le but de l'entretien avec les mots de la résidente, et demande si le moment lui convient.</b> Les rubriques du formulaire (Mobilität, Ausscheidung…) sont pour la fiche. Dis plutôt : « Ich würde Ihnen gern ein paar Fragen zu Ihrem Alltag stellen, damit wir Sie gut unterstützen können. Passt es Ihnen jetzt? »"}}
+   ]
+  },
+  "hoeren": {
+   "dit": [
+    {"recit": {"fr": "{olena} s'assoit sur la chaise près de la fenêtre, le dos à la lumière, et pose sa première question. {winkler} plisse les yeux."}},
+    {"qui": "winkler", "air": "perplexe", "t": "Entschuldigung, wie bitte? Mit dem Licht hinter Ihnen sehe ich Ihren Mund nicht.", "fr": "Excusez-moi, pardon ? Avec la lumière derrière vous, je ne vois pas votre bouche."}
+   ],
+   "choix": [
+    {"t": "Oh, Entschuldigung. Ich setze mich auf die andere Seite, so, dass Sie mein Gesicht gut sehen. Hören Sie mich jetzt besser?", "fr": "Oh, excusez-moi. Je m'assois de l'autre côté, pour que vous voyiez bien mon visage. Vous m'entendez mieux, maintenant ?", "va": "gehen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Viel besser, danke. Ich lese ein bisschen von den Lippen, wissen Sie. Rechts trage ich ein Hörgerät, aber die kleinen Batterien wechseln, das schaffe ich nicht mehr. Meine Finger wollen nicht mehr so. Und die Brille brauche ich nur zum Lesen.", "fr": "Beaucoup mieux, merci. Je lis un peu sur les lèvres, vous savez. À droite, je porte un appareil auditif, mais changer les petites piles, je n'y arrive plus. Mes doigts ne suivent plus. Et les lunettes, je n'en ai besoin que pour lire."}]},
+    {"t": "Das ist meine Schuld. Ich setze mich hierher, ins Licht, und spreche etwas langsamer. Ist es so besser?", "fr": "C'est ma faute. Je m'assois ici, dans la lumière, et je parle un peu plus lentement. C'est mieux comme ça ?", "va": "gehen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Viel besser, danke. Ich lese ein bisschen von den Lippen, wissen Sie. Rechts trage ich ein Hörgerät, aber die kleinen Batterien wechseln, das schaffe ich nicht mehr. Meine Finger wollen nicht mehr so. Und die Brille brauche ich nur zum Lesen.", "fr": "Beaucoup mieux, merci. Je lis un peu sur les lèvres, vous savez. À droite, je porte un appareil auditif, mais changer les petites piles, je n'y arrive plus. Mes doigts ne suivent plus. Et les lunettes, je n'en ai besoin que pour lire."}]},
+    {"faux": true, "t": "Dann frage ich das später lieber Ihre Tochter.", "fr": "Alors je poserai plutôt la question à votre fille, plus tard.",
+     "puis": [{"qui": "winkler", "air": "surprise", "t": "Meine Tochter? Die wohnt in Hamburg. Und antworten kann ich sehr gut selbst!", "fr": "Ma fille ? Elle habite à Hambourg. Et je peux très bien répondre moi-même !"}],
+     "aide": {"fr": "<b>Une résidente malentendante répond elle-même : c'est à toi de t'adapter.</b> Assieds-toi face à elle, le visage dans la lumière (elle lit sur les lèvres), et parle lentement. Ne passe pas par la famille à sa place."}}
+   ]
+  },
+  "gehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Beim Batteriewechsel helfen wir Ihnen gern, das notiere ich. Würden Sie mir erzählen, wie Sie zu Hause zurechtgekommen sind, zum Beispiel beim Gehen?", "fr": "Pour changer les piles, nous vous aiderons volontiers, je le note. Pourriez-vous me raconter comment vous vous débrouilliez à la maison, par exemple pour marcher ?", "va": "sturz",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "In der Wohnung ging es mit dem Rollator. Draußen auch, aber nicht mehr weit. Und letzten Winter bin ich gestürzt, nachts im Bad. Seitdem habe ich ein bisschen Angst.", "fr": "Dans l'appartement, ça allait avec le déambulateur. Dehors aussi, mais plus très loin. Et l'hiver dernier, je suis tombée, la nuit, dans la salle de bains. Depuis, j'ai un peu peur."}]},
+    {"t": "Die Batterien übernehmen wir, kein Problem. Und wie ist es mit dem Gehen: Kommen Sie mit dem Rollator gut zurecht?", "fr": "Les piles, on s'en charge, pas de problème. Et pour marcher : vous vous débrouillez bien avec le déambulateur ?", "va": "sturz",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "In der Wohnung ging es gut. Draußen auch, aber nicht mehr weit. Und letzten Winter bin ich gestürzt, nachts im Bad. Seitdem habe ich ein bisschen Angst.", "fr": "Dans l'appartement, ça allait bien. Dehors aussi, mais plus très loin. Et l'hiver dernier, je suis tombée, la nuit, dans la salle de bains. Depuis, j'ai un peu peur."}]},
+    {"repete": true, "t": "Entschuldigung, darf ich kurz nachfragen: Das Hörgerät tragen Sie rechts, und die Brille nur zum Lesen?", "fr": "Pardon, je peux vérifier : l'appareil auditif, vous le portez à droite, et les lunettes seulement pour lire ?", "va": "gehen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Ja, genau. Rechts das Hörgerät, und die Brille für meine Kreuzworträtsel.", "fr": "Oui, c'est ça. L'appareil à droite, et les lunettes pour mes mots croisés."}]}
+   ]
+  },
+  "sturz": {
+   "dit": [],
+   "choix": [
+    {"t": "Wenn ich Sie richtig verstehe, gehen Sie tagsüber mit dem Rollator sicher, aber nachts haben Sie Angst zu stürzen. Darf ich fragen, wie es damals passiert ist?", "fr": "Si je vous comprends bien, la journée, vous marchez en sécurité avec le déambulateur, mais la nuit, vous avez peur de tomber. Puis-je vous demander comment c'est arrivé, cette fois-là ?", "va": "trinken",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Es war dunkel, und ich musste dringend auf die Toilette. Da bin ich auf dem Badvorleger ausgerutscht. Gebrochen war zum Glück nichts.", "fr": "Il faisait noir, et je devais aller aux toilettes d'urgence. J'ai glissé sur le tapis de bain. Heureusement, je ne me suis rien cassé."}]},
+    {"t": "Das kann ich gut verstehen. Würden Sie mir erzählen, was damals genau passiert ist?", "fr": "Je le comprends bien. Pourriez-vous me raconter ce qui s'est passé exactement, cette fois-là ?", "va": "trinken",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Es war dunkel, und ich musste dringend auf die Toilette. Da bin ich auf dem Badvorleger ausgerutscht. Gebrochen war zum Glück nichts.", "fr": "Il faisait noir, et je devais aller aux toilettes d'urgence. J'ai glissé sur le tapis de bain. Heureusement, je ne me suis rien cassé."}]},
+    {"faux": true, "t": "Dann schreibe ich: hohe Sturzgefahr, darf nicht allein gehen.", "fr": "Alors je note : risque de chute élevé, ne doit pas marcher seule.",
+     "puis": [{"qui": "winkler", "air": "surprise", "t": "Nicht allein gehen? Ich gehe seit Jahren mit meinem Rollator! Ich bin doch kein Pflegefall.", "fr": "Ne pas marcher seule ? Je marche avec mon déambulateur depuis des années ! Je ne suis pas une personne dépendante, quand même."}],
+     "aide": {"fr": "<b>Note des faits, pas une conclusion qui lui retire son autonomie.</b> Une chute la nuit, il y a un an, ne veut pas dire qu'elle ne peut plus marcher seule. Le risque de chute s'évalue en équipe ; à l'entretien, on reformule et on demande ce qui s'est passé : « Darf ich fragen, wie es damals passiert ist? »"},
+     "relire": true, "relire_note": "Risque de chute : évaluation en équipe, sans restriction décidée à l'entretien."}
+   ]
+  },
+  "trinken": {
+   "dit": [],
+   "choix": [
+    {"t": "Gut, dass nichts gebrochen war. Nachts lassen wir Ihnen ein kleines Licht an, und im Bad liegt hier kein Teppich. Jetzt zum Essen und Trinken: Was trinken Sie am Tag, und wie viel ungefähr?", "fr": "Heureusement que vous ne vous êtes rien cassé. La nuit, nous vous laissons une petite lumière, et ici, il n'y a pas de tapis dans la salle de bains. Maintenant, les repas et les boissons : que buvez-vous dans la journée, et combien environ ?", "va": "toilette",
+     "relire": true, "relire_note": "Prévention des chutes la nuit : éclairage, sol sans tapis.",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Schwarzen Tee, mit Milch. Morgens zwei, drei Tassen. Aber ab dem Nachmittag trinke ich fast nichts mehr. Sonst muss ich nachts so oft raus.", "fr": "Du thé noir, avec du lait. Le matin, deux ou trois tasses. Mais à partir de l'après-midi, je ne bois presque plus rien. Sinon, je dois me lever si souvent la nuit."}]},
+    {"t": "Um das Licht in der Nacht kümmern wir uns, und Teppiche gibt es hier im Bad nicht. Darf ich jetzt fragen, was Sie gern essen und trinken, und wie viel Sie am Tag trinken?", "fr": "La lumière la nuit, on s'en occupe, et il n'y a pas de tapis dans la salle de bains ici. Puis-je vous demander maintenant ce que vous aimez manger et boire, et combien vous buvez par jour ?", "va": "toilette",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Essen tue ich fast alles. Und ich trinke schwarzen Tee, mit Milch, morgens zwei, drei Tassen. Aber ab dem Nachmittag fast nichts mehr. Sonst muss ich nachts so oft raus.", "fr": "Je mange presque de tout. Et je bois du thé noir, avec du lait, le matin deux ou trois tasses. Mais à partir de l'après-midi, presque plus rien. Sinon, je dois me lever si souvent la nuit."}]}
+   ]
+  },
+  "toilette": {
+   "dit": [],
+   "choix": [
+    {"t": "Das verstehe ich. Darf ich Sie dazu etwas Persönliches fragen? Viele Frauen in Ihrem Alter haben manchmal Probleme mit der Blase. Kommt es manchmal vor, dass Sie die Toilette nicht rechtzeitig erreichen?", "fr": "Je comprends. Puis-je vous poser une question personnelle à ce sujet ? Beaucoup de femmes de votre âge ont parfois des problèmes de vessie. Vous arrive-t-il de ne pas arriver à temps aux toilettes ?", "va": "einlagen",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "… Ja. Manchmal geht ein bisschen daneben, beim Husten oder wenn ich nicht schnell genug bin. Ich nehme Einlagen aus der Apotheke. Darüber spricht man ja nicht gern.", "fr": "… Oui. Parfois, il y a une petite fuite, quand je tousse ou quand je ne vais pas assez vite. Je prends des protections de la pharmacie. On n'aime pas en parler, vous savez."}]},
+    {"t": "Danke, dass Sie mir das sagen. Ich frage alle Bewohnerinnen und Bewohner danach, es ist also ganz normal: Haben Sie manchmal Schwierigkeiten, das Wasser zu halten?", "fr": "Merci de me le dire. Je pose la question à tous les résidents, c'est donc tout à fait normal : avez-vous parfois du mal à vous retenir ?", "va": "einlagen",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "… Ja. Manchmal geht ein bisschen daneben, beim Husten oder wenn ich nicht schnell genug bin. Ich nehme Einlagen aus der Apotheke. Darüber spricht man ja nicht gern.", "fr": "… Oui. Parfois, il y a une petite fuite, quand je tousse ou quand je ne vais pas assez vite. Je prends des protections de la pharmacie. On n'aime pas en parler, vous savez."}]},
+    {"faux": true, "t": "Ah, dann sind Sie also inkontinent. Brauchen Sie Windeln?", "fr": "Ah, donc vous êtes incontinente. Il vous faut des couches ?",
+     "puis": [{"qui": "winkler", "air": "surprise", "t": "Windeln? Ich bin doch kein Baby!", "fr": "Des couches ? Je ne suis pas un bébé !"}],
+     "aide": {"fr": "<b>Une question intime se pose avec tact, et sans mot qui infantilise.</b> « Windeln » blesse : on dit « Einlagen » ou « Inkontinenzmaterial ». Demande d'abord la permission, dis que c'est fréquent, puis décris une situation : « Kommt es manchmal vor, dass Sie die Toilette nicht rechtzeitig erreichen? »"}}
+   ]
+  },
+  "einlagen": {
+   "dit": [],
+   "choix": [
+    {"t": "Das ist sehr häufig, dafür müssen Sie sich nicht schämen. Einlagen bekommen Sie hier von uns, in der Größe, die Ihnen passt. Und bitte trinken Sie am Nachmittag ruhig weiter: Zu wenig zu trinken ist für die Blase eher schlecht. Wenn Sie einverstanden sind, sprechen wir auch mit Ihrer Hausärztin darüber.", "fr": "C'est très fréquent, vous n'avez pas à en avoir honte. Les protections, c'est nous qui vous les fournissons ici, dans la taille qui vous convient. Et l'après-midi, continuez à boire, s'il vous plaît : boire trop peu, c'est plutôt mauvais pour la vessie. Si vous êtes d'accord, nous en parlerons aussi à votre médecin traitante.", "va": "schlafen",
+     "relire": true, "relire_note": "Incontinence : protections fournies, ne pas restreindre les boissons, avis médical avec l'accord de la résidente.",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Wirklich? Das hätte ich nicht gedacht. Gut, dann trinke ich nachmittags wieder meinen Tee.", "fr": "Vraiment ? Je ne l'aurais pas cru. Bon, alors l'après-midi, je reprends mon thé."}]},
+    {"t": "Danke für Ihr Vertrauen. Ich notiere es in Ihrer Pflegedokumentation. Die ist vertraulich: Nur wer an Ihrer Pflege und Behandlung beteiligt ist, darf sie lesen. Einlagen stellen wir Ihnen ins Bad, und trinken Sie ruhig auch nachmittags: Nachts können Sie jederzeit klingeln, wenn Sie Begleitung zur Toilette möchten.", "fr": "Merci de votre confiance. Je le note dans votre dossier de soins. Il est confidentiel : seules les personnes qui participent à vos soins et à votre traitement ont le droit de le lire. Les protections, on vous les met dans la salle de bains, et buvez aussi l'après-midi, sans crainte : la nuit, vous pouvez sonner à tout moment si vous voulez qu'on vous accompagne aux toilettes.", "va": "schlafen",
+     "relire": true, "relire_note": "Accompagnement aux toilettes la nuit ; confidentialité du dossier.",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Das beruhigt mich. Gut, dann trinke ich nachmittags wieder meinen Tee.", "fr": "Ça me rassure. Bon, alors l'après-midi, je reprends mon thé."}]},
+    {"faux": true, "t": "Dann trinken Sie abends am besten gar nichts mehr. Das machen Sie schon richtig.", "fr": "Alors le soir, le mieux, c'est de ne plus rien boire du tout. Vous faites déjà bien.",
+     "puis": [{"qui": "winkler", "air": "question", "t": "Ja? Aber abends habe ich dann immer so einen trockenen Mund …", "fr": "Ah oui ? Mais le soir, j'ai toujours la bouche si sèche, alors…"}],
+     "aide": {"fr": "<b>Ne conseille jamais à une personne âgée de ne plus boire : elle se déshydrate vite.</b> Le manque d'eau donne confusion, vertiges et chutes, et irrite la vessie. Elle garde la quantité de la journée et la boit plus tôt, jusqu'au début de la soirée. Propose aussi des protections, la sonnette la nuit, et d'en parler à la médecin traitante."},
+     "relire": true, "relire_note": "Boissons et incontinence : vérifier l'aide."}
+   ]
+  },
+  "schlafen": {
+   "dit": [],
+   "choix": [
+    {"t": "Und wie schlafen Sie normalerweise? Gibt es Gewohnheiten am Abend, die Ihnen wichtig sind?", "fr": "Et comment dormez-vous, d'habitude ? Y a-t-il des habitudes du soir qui comptent pour vous ?", "va": "kleiden",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Ich gehe spät ins Bett, so gegen elf. Vorher löse ich noch ein Kreuzworträtsel. Und morgens schlafe ich gern bis acht. Hier, im neuen Zimmer, werde ich die ersten Nächte wohl schlecht schlafen.", "fr": "Je me couche tard, vers onze heures. Avant, je fais encore des mots croisés. Et le matin, j'aime dormir jusqu'à huit heures. Ici, dans la nouvelle chambre, je dormirai sans doute mal les premières nuits."}]},
+    {"t": "Würden Sie mir erzählen, wie Ihr Abend zu Hause aussah? Wann sind Sie ins Bett gegangen?", "fr": "Pourriez-vous me raconter comment se passait votre soirée à la maison ? À quelle heure alliez-vous au lit ?", "va": "kleiden",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Spät, so gegen elf. Vorher habe ich immer noch ein Kreuzworträtsel gelöst. Und morgens schlafe ich gern bis acht. Hier, im neuen Zimmer, werde ich die ersten Nächte wohl schlecht schlafen.", "fr": "Tard, vers onze heures. Avant, je faisais toujours des mots croisés. Et le matin, j'aime dormir jusqu'à huit heures. Ici, dans la nouvelle chambre, je dormirai sans doute mal les premières nuits."}]},
+    {"faux": true, "t": "Könnten Sie mir sagen, wann gehen Sie abends ins Bett?", "fr": "Pourriez-vous me dire à quelle heure allez-vous au lit le soir ? (mal dit)",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Wie bitte? … Ach so, wann ich ins Bett gehe.", "fr": "Pardon ? … Ah, à quelle heure je vais au lit."}],
+     "aide": {"fr": "<b>Dans une question indirecte, le verbe conjugué va à la fin : « Könnten Sie mir sagen, wann Sie abends ins Bett gehen? »</b> Après « Könnten Sie mir sagen », « Wissen Sie », « Darf ich fragen », le mot interrogatif (wann, wie, ob) envoie le verbe en dernière place."}}
+   ]
+  },
+  "kleiden": {
+   "dit": [],
+   "choix": [
+    {"t": "Das geht vielen so in den ersten Nächten. Wenn Sie nicht schlafen können, klingeln Sie ruhig. Und ausschlafen dürfen Sie hier natürlich. Wie ist es morgens mit dem Waschen und Anziehen: Wobei möchten Sie Hilfe, und was machen Sie lieber selbst?", "fr": "C'est le cas de beaucoup de gens les premières nuits. Si vous n'arrivez pas à dormir, sonnez sans hésiter. Et ici, vous pouvez bien sûr faire la grasse matinée. Et le matin, pour vous laver et vous habiller : pour quoi souhaitez-vous de l'aide, et que préférez-vous faire vous-même ?", "va": "gewohnheiten",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Waschen kann ich mich allein, im Sitzen. Nur die Strümpfe und die Schuhe, da komme ich nicht mehr runter. Und die Knöpfe! Ich war Schneiderin, und jetzt schaffe ich die kleinen Knöpfe nicht mehr.", "fr": "Me laver, je peux le faire seule, assise. Seulement les bas et les chaussures : je n'arrive plus à me pencher jusque-là. Et les boutons ! J'étais couturière, et maintenant je n'arrive plus aux petits boutons."}]},
+    {"t": "Ein neues Bett braucht ein paar Nächte. Wir schauen nachts kurz bei Ihnen herein, wenn Sie das möchten. Und morgens: Was können Sie beim Waschen und Anziehen gut allein, und wo dürfen wir helfen?", "fr": "Un nouveau lit, il faut quelques nuits pour s'y faire. Nous passerons jeter un œil la nuit, si vous le souhaitez. Et le matin : que pouvez-vous bien faire seule pour vous laver et vous habiller, et où pouvons-nous aider ?", "va": "gewohnheiten",
+     "puis": [{"qui": "winkler", "air": "attentive", "t": "Waschen kann ich mich allein, im Sitzen. Nur die Strümpfe und die Schuhe, da komme ich nicht mehr runter. Und die Knöpfe! Ich war Schneiderin, und jetzt schaffe ich die kleinen Knöpfe nicht mehr.", "fr": "Me laver, je peux le faire seule, assise. Seulement les bas et les chaussures : je n'arrive plus à me pencher jusque-là. Et les boutons ! J'étais couturière, et maintenant je n'arrive plus aux petits boutons."}]},
+    {"faux": true, "t": "Dann bekommen Sie abends eine Schlaftablette, dann schlafen Sie gut.", "fr": "Alors le soir, vous aurez un somnifère, comme ça vous dormirez bien.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Eine Schlaftablette? Die habe ich noch nie gebraucht.", "fr": "Un somnifère ? Je n'en ai jamais eu besoin."}],
+     "aide": {"fr": "<b>Un somnifère n'est pas une décision de la soignante.</b> Il se prescrit, et chez une personne âgée il augmente le risque de chute la nuit. Propose ce qui aide sans médicament : la sonnette, un thé, une petite lumière, un passage la nuit si elle le souhaite."},
+     "relire": true, "relire_note": "Somnifère et risque de chute chez la personne âgée."}
+   ]
+  },
+  "gewohnheiten": {
+   "dit": [],
+   "choix": [
+    {"t": "Dann helfen wir Ihnen bei den Strümpfen, den Schuhen und den kleinen Knöpfen, und alles andere machen Sie selbst. Und was gehört für Sie zu einem schönen Tag?", "fr": "Alors nous vous aiderons pour les bas, les chaussures et les petits boutons, et tout le reste, vous le faites vous-même. Et qu'est-ce qui fait, pour vous, une belle journée ?", "va": "zusammenfassen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Mein Tee am Nachmittag, mein Kreuzworträtsel, und ab und zu ein bisschen nähen. Die Nähmaschine habe ich ja mitgebracht.", "fr": "Mon thé de l'après-midi, mes mots croisés, et de temps en temps un peu de couture. J'ai apporté ma machine à coudre, d'ailleurs."}]},
+    {"t": "Gut, das notiere ich so: Hilfe bei Strümpfen, Schuhen und kleinen Knöpfen. Und womit verbringen Sie Ihren Tag am liebsten?", "fr": "Bien, je le note ainsi : aide pour les bas, les chaussures et les petits boutons. Et à quoi aimez-vous le plus passer votre journée ?", "va": "zusammenfassen",
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Mit meinem Tee am Nachmittag, mit Kreuzworträtseln, und ab und zu nähe ich ein bisschen. Die Nähmaschine habe ich ja mitgebracht.", "fr": "Avec mon thé de l'après-midi, avec des mots croisés, et de temps en temps je couds un peu. J'ai apporté ma machine à coudre, d'ailleurs."}]},
+    {"faux": true, "t": "Dann ziehen wir Sie morgens am besten ganz an, das geht schneller.", "fr": "Alors le mieux, c'est qu'on vous habille entièrement le matin, ça va plus vite.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "Ganz anziehen? Aber den Rest kann ich doch noch selbst!", "fr": "M'habiller entièrement ? Mais le reste, je peux encore le faire moi-même !"}],
+     "aide": {"fr": "<b>On aide pour ce qu'elle ne peut plus faire, pas pour le reste.</b> Faire à sa place ce qu'elle sait faire lui fait perdre ses capacités. Note précisément : « Hilfe bei Strümpfen, Schuhen und kleinen Knöpfen », et laisse-lui tout le reste."},
+     "relire": true, "relire_note": "Soins activants : ne pas faire à la place de la résidente."}
+   ]
+  },
+  "zusammenfassen": {
+   "dit": [],
+   "choix": [
+    {"t": "Darf ich Ihnen kurz vorlesen, was ich mir notiert habe? Sie gehen mit dem Rollator, nachts brauchen Sie Licht. Das Hörgerät tragen Sie rechts, und bei den Batterien helfen wir. Sie trinken gern schwarzen Tee mit Milch, auch nachmittags. Die Einlagen stellen wir ins Bad. Beim Anziehen helfen wir Ihnen bei Strümpfen, Schuhen und Knöpfen. Stimmt das so?", "fr": "Puis-je vous relire rapidement ce que j'ai noté ? Vous marchez avec le déambulateur, la nuit vous avez besoin de lumière. Vous portez l'appareil auditif à droite, et nous vous aidons pour les piles. Vous aimez le thé noir avec du lait, l'après-midi aussi. Les protections, nous les mettons dans la salle de bains. Pour vous habiller, nous vous aidons pour les bas, les chaussures et les boutons. C'est bien ça ?", "va": null,
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Ja, das stimmt. Sie haben sich alles gemerkt, was ich gesagt habe. Danke, {olena}.", "fr": "Oui, c'est exact. Vous avez retenu tout ce que j'ai dit. Merci, {olena}."}]},
+    {"t": "Vielen Dank für das offene Gespräch. Alles, was Sie mir erzählt haben, schreibe ich jetzt in Ihre Pflegeplanung, damit alle Kolleginnen und Kollegen Bescheid wissen. Wenn Ihnen später noch etwas einfällt, sagen Sie es mir einfach.", "fr": "Merci beaucoup pour cet entretien très ouvert. Tout ce que vous m'avez raconté, je l'inscris maintenant dans votre plan de soins, pour que tous mes collègues soient au courant. Si quelque chose vous revient plus tard, dites-le-moi, tout simplement.", "va": null,
+     "puis": [{"qui": "winkler", "air": "sourire", "t": "Das mache ich. Sie haben mir gut zugehört. Danke, {olena}.", "fr": "Je n'y manquerai pas. Vous m'avez bien écoutée. Merci, {olena}."}]},
+    {"faux": true, "t": "Ich fasse zusammen: Sie sind sturzgefährdet, schwerhörig und inkontinent.", "fr": "Je résume : vous êtes à risque de chute, malentendante et incontinente.",
+     "puis": [{"qui": "winkler", "air": "perplexe", "t": "So klingt das aber gar nicht schön. Bin ich das alles?", "fr": "Dit comme ça, ce n'est pas joli du tout. Je suis tout ça, moi ?"}],
+     "aide": {"fr": "<b>Reformule avec ses mots et ce qu'elle peut faire, pas avec une liste de diagnostics.</b> Les termes de la fiche (sturzgefährdet, schwerhörig) restent dans la documentation. À voix haute : « Sie gehen mit dem Rollator, nachts brauchen Sie Licht… Stimmt das so? »"}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum versteht {winkler} {olena} am Anfang nicht gut?", "fr": "Pourquoi {winkler} comprend-elle mal {olena} au début ?"},
+   "options": [{"t": "Sie hat ihr Hörgerät nicht an.", "fr": "Elle n'a pas mis son appareil auditif."}, {"t": "{olena} sitzt mit dem Licht im Rücken.", "fr": "{olena} est assise dos à la lumière."}, {"t": "{olena} spricht zu leise.", "fr": "{olena} parle trop bas."}],
+   "juste": 1},
+  {"q": {"t": "Wann ist {winkler} gestürzt?", "fr": "Quand {winkler} est-elle tombée ?"},
+   "options": [{"t": "Letzten Winter, nachts im Bad.", "fr": "L'hiver dernier, la nuit, dans la salle de bains."}, {"t": "Letzte Woche, beim Einkaufen.", "fr": "La semaine dernière, en faisant les courses."}, {"t": "Vor zwei Jahren, auf der Treppe.", "fr": "Il y a deux ans, dans l'escalier."}],
+   "juste": 0},
+  {"q": {"t": "Warum trinkt {winkler} ab dem Nachmittag fast nichts mehr?", "fr": "Pourquoi {winkler} ne boit-elle presque plus rien à partir de l'après-midi ?"},
+   "options": [{"t": "Sie mag keinen Tee.", "fr": "Elle n'aime pas le thé."}, {"t": "Sie hat keinen Durst.", "fr": "Elle n'a pas soif."}, {"t": "Sie will nachts nicht so oft zur Toilette.", "fr": "Elle ne veut pas aller si souvent aux toilettes la nuit."}],
+   "juste": 2},
+  {"q": {"t": "Wobei braucht {winkler} morgens Hilfe?", "fr": "Pour quoi {winkler} a-t-elle besoin d'aide le matin ?"},
+   "options": [{"t": "Beim Waschen.", "fr": "Pour se laver."}, {"t": "Bei den Strümpfen, den Schuhen und den kleinen Knöpfen.", "fr": "Pour les bas, les chaussures et les petits boutons."}, {"t": "Beim Frühstück.", "fr": "Pour le petit-déjeuner."}],
+   "juste": 1}
+ ]
+}

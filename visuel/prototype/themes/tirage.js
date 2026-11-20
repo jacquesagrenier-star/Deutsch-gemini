@@ -153,7 +153,9 @@ const Tirage = {
       }
       window.addEventListener("message", ecoute);
       // « sens » (3 nov.) : la traduction de l'entree voulue, pour un mot a deux entrees au corpus (rico : delicieux / riche)
-      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null, sens: m.sens || null}))}, "*"); }
+      // « theme » (16 nov. 2026, themes des Soins) : l'id du theme de soins avec son niveau (soins_koerper_a2), pour que
+      // l'app cherche d'abord la carte de SOINS (carteDeScene) ; absent des autres themes, il ne change rien pour eux
+      try{ window.parent.postMessage({source: "wortando-scene", type: "etats", mots: mots.map(m => ({mot: m.mot, genre: m.genre || null, cat: m.cat || null, sens: m.sens || null, theme: m.theme || null}))}, "*"); }
       catch(e){ clearTimeout(delai); fin(null); }
     });
   },
@@ -202,3 +204,116 @@ const TIRAGE_TEXTES = {
   encore:    {fr:"Encore des questions", en:"More questions", tr:"Daha fazla soru", uk:"Ще запитання", fa:"پرسش‌های بیشتر", ar:"مزيد من الأسئلة", pt:"Mais perguntas", pl:"Więcej pytań", ru:"Ещё вопросы", de:"Weitere Fragen"},
   prochaine: {fr:"Prochaine révision : {d}", en:"Next review: {d}", tr:"Sonraki tekrar: {d}", uk:"Наступне повторення: {d}", fa:"مرور بعدی: {d}", ar:"المراجعة التالية: {d}", pt:"Próxima revisão: {d}", pl:"Następna powtórka: {d}", ru:"Следующее повторение: {d}", de:"Nächste Wiederholung: {d}"}
 };
+
+// LES AIDES COMMUNES A TOUTES LES PAGES (17 nov. 2026, retours d'une testeuse anglophone).
+// 1. TOUCHER UNE IMAGE, PAS UN BOUTON. « It took me a while to realise I needed to click on the person » (Decrire une
+//    personne, la taille) : la consigne le disait deja, en petit et en gris. Quand la reponse se donne en touchant une
+//    personne, une image ou un point (aucun bouton de choix), la consigne passe a l'encre avec un repere, et ce qui se
+//    touche s'allume deux fois si rien n'est touche apres 3,5 s.
+// 2. LE MODE TRANSIT DES CARTES, ICI AUSSI (« somewhere crowded without earphones » ; Jacques : la meme approche partout).
+//    Le bouton haut-parleur de la barre des cartes (trSonBtn de index.html, meme icone), dans la barre du theme, devant le
+//    compteur. L'ETAT EST CELUI DE L'APP : la page est dans son cadre, de meme origine, et lit transitSansSon() / appelle
+//    basculerTransit("son") de la fenetre parente (comme themes/voix.js lui prend son de reussite et synthese) -- coupe dans
+//    les cartes, il l'est en entrant ici, et inversement. Seule (les controles), la page garde son propre etat.
+//    Son coupe : la voix et le son de reussite se taisent (themes/voix.js), une ecoute devient une lecture -- le texte
+//    s'ecrit a la place du haut-parleur -- sans rien retirer a la partie ni au score. Hors de la seance, il se retablit en
+//    quittant la page (eteindreTransitHorsSeance). Pas de bouton micro : aucun theme n'a de question orale.
+(() => {
+  const Q = new URLSearchParams(location.search);
+  const LG = (Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0];
+  const BTN_SON = {fr:"Couper ou rétablir le son", en:"Mute or unmute the sound", tr:"Sesi kapat ya da aç", uk:"Вимкнути або ввімкнути звук", fa:"قطع یا وصل کردن صدا", ar:"كتم الصوت أو تشغيله", pt:"Desligar ou religar o som", pl:"Wyłącz lub włącz dźwięk", ru:"Выключить или включить звук", de:"Ton aus- oder einschalten", es:"Silenciar o reactivar el sonido"};
+  const TOUCHABLES = ".arbre g.p:not(.ego), .rangee button, .corps .zone, .plan .cible";
+  const REPERE = '<svg class="t-repere" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="10.6" opacity=".4"/></svg>';
+  const ICONE_SON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="tr-ouvert" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="tr-coupe" d="M16 9l5 6M21 9l-5 6"/></svg>';
+  const st = document.createElement("style");
+  st.textContent = ".consigne.t-toucher{color:var(--encre);font-size:15px}"
+    + ".t-repere{width:20px;height:20px;vertical-align:-5px;margin-inline-end:6px;color:var(--ambre-f)}"
+    + "@keyframes tAllume{0%,100%{filter:none}50%{filter:drop-shadow(0 0 6px rgba(232,162,58,.95)) brightness(1.06)}}"
+    + ".t-allume{animation:tAllume .9s ease-in-out 2}"
+    + "@media (prefers-reduced-motion:reduce){.t-allume{animation:none}}"
+    // le bouton de la barre des cartes (.tr-btn de index.html), dans le verre des pages
+    + ".haut .tr-btn{display:inline-grid;place-items:center;width:34px;height:34px;padding:0;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);cursor:pointer;flex:none}"
+    + ".haut .tr-btn svg{width:17px;height:17px;fill:currentColor;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}"
+    + ".haut .tr-btn svg .tr-ouvert,.haut .tr-btn svg .tr-coupe{fill:none}"
+    + ".haut .tr-btn .tr-coupe{display:none}.haut .tr-btn.coupe .tr-ouvert{display:none}.haut .tr-btn.coupe .tr-coupe{display:inline}"
+    + ".haut .tr-btn.coupe{color:var(--ambre-f);border-color:var(--ambre-f)}"
+    + ".haut .tr-btn:focus-visible{outline:3px solid #E8A23A;outline-offset:2px}"
+    + ".t-lu{display:none;font-size:22px;font-weight:900;line-height:1.3;text-align:center;color:var(--encre);margin:10px 0 4px}"
+    + "html.t-sans-son .t-lu{display:block}"
+    + "html.t-sans-son .ecoute.grand{display:none}"
+    + "html.t-sans-son .ecoute,html.t-sans-son .v-redire{visibility:hidden}";
+  (document.head || document.documentElement).appendChild(st);
+  // l'app, quand la page est dans son cadre
+  const app = () => { try{ const a = window.parent; return a && a !== window && typeof a.transitSansSon === "function" && typeof a.basculerTransit === "function" ? a : null; }catch(e){ return null; } };
+  let seul = Q.get("sansson") === "1", etat = null, bouton = null, minuterie = null;
+  const coupe = () => { const a = app(); if (a){ try{ return !!a.transitSansSon(); }catch(e){} } return seul; };
+  function accorder(){
+    const v = coupe();
+    if (v !== etat){
+      etat = v; Tirage.sansSon = v;
+      document.documentElement.classList.toggle("t-sans-son", v);
+      try{ Voix.couper(v); }catch(e){}
+    }
+    if (bouton){ bouton.classList.toggle("coupe", v); bouton.setAttribute("aria-pressed", v ? "true" : "false"); }
+  }
+  function basculer(){
+    const a = app(), v = !coupe();
+    if (a){ try{ a.basculerTransit("son", v); }catch(e){ seul = v; } } else seul = v;
+    poser();
+  }
+  function poser(){
+    accorder();
+    const z = document.getElementById("zone"); if (!z) return;
+    // son coupe : le texte de l'ecoute, a la place du haut-parleur
+    const hp = z.querySelector(".ecoute.grand");
+    if (hp && etat && !z.querySelector(".t-lu")){
+      let t = ""; try{ t = Voix.dernier(); }catch(e){}
+      if (t){
+        const d = document.createElement("div"); d.className = "t-lu"; d.dir = "ltr";
+        d.lang = Q.get("apprendre") || "de"; d.textContent = t;
+        hp.insertAdjacentElement("afterend", d);
+      }
+    }
+    // toucher : la consigne en vue, et ce qui se touche s'allume si rien ne vient
+    // (des visages ou des personnes dans #choix comptent : ce sont des images, pas des boutons de texte)
+    const cons = z.querySelector(".consigne");
+    const choix = cons && !cons.classList.contains("t-toucher") ? Array.from(z.querySelectorAll("#choix button")) : [];
+    const images = choix.length > 0 && choix.every(b => b.querySelector("img, svg"));
+    if (cons && !cons.classList.contains("t-toucher") && !z.querySelector(".ordre") && (images || (!choix.length && z.querySelector(TOUCHABLES)))){
+      cons.classList.add("t-toucher");
+      cons.insertAdjacentHTML("afterbegin", REPERE);
+      clearTimeout(minuterie);
+      minuterie = setTimeout(() => {
+        let fait = false; try{ fait = repondu; }catch(e){}
+        if (fait || !cons.isConnected) return;
+        z.querySelectorAll(TOUCHABLES + (images ? ", #choix button" : "")).forEach(e => {
+          if (e.matches(".juste, .faux, [disabled]")) return;
+          e.classList.add("t-allume");
+          e.addEventListener("animationend", () => e.classList.remove("t-allume"), {once: true});
+        });
+      }, 3500);
+    }
+  }
+  Tirage.sansSon = false;
+  Tirage.basculerSon = basculer;
+  const brancher = () => {
+    const haut = document.querySelector(".haut"), compte = document.getElementById("compte");
+    if (haut && compte && !document.getElementById("trSonBtn")){
+      bouton = document.createElement("button");
+      bouton.type = "button"; bouton.className = "tr-btn"; bouton.id = "trSonBtn";
+      const nom = BTN_SON[LG] || BTN_SON.fr;
+      bouton.setAttribute("aria-label", nom); bouton.title = nom; bouton.innerHTML = ICONE_SON;
+      bouton.addEventListener("click", basculer);
+      haut.insertBefore(bouton, compte);
+    }
+    const z = document.getElementById("zone");
+    if (z) new MutationObserver(poser).observe(z, {childList: true, subtree: true});
+    poser();
+  };
+  if (document.readyState === "loading") addEventListener("DOMContentLoaded", brancher); else brancher();
+  // hors de la seance, le son se retablit en quittant le theme, comme les cartes en quittant la seance
+  addEventListener("pagehide", () => {
+    if (Q.get("seance") === "1") return;
+    try{ const a = app(); if (a && a.transitSansSon() && typeof a.eteindreTransitHorsSeance === "function") a.eteindreTransitHorsSeance("themes"); }catch(e){}
+  });
+})();

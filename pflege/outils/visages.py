@@ -10,7 +10,9 @@ Les portraits maîtres (en pied, fond de studio) vivent hors du dépôt, dans ~/
 480 px, centré sur le visage, comme les visages des conversations de Premiers pas.
 
 Un seul visage par personne (« sourire ») : le lecteur retombe sur lui pour toutes les expressions (REPLI).
-Dr. Krämer et Frau Kowalski n'ont pas de portrait maître : le lecteur montre leur initiale.
+Une personne sans portrait maître (Frau Neumann, Herr Lorenz…) : le lecteur montre son initiale. Dr. Krämer, Frau Aksoy,
+Herr Richter, Monika Schulze, Frau Winkler et Herr Pohl ont le leur depuis le 16 nov. 2026 ; Frau Kowalski est découpée
+dans la scène soins-ambulant.
 """
 import json
 import os
@@ -43,6 +45,16 @@ PORTRAITS = {
     "lehmann_tochter": ("frau-krueger.png", 330,  22, 247),
     "weber":           ("frau-weber.png",   397,  18, 187),
     "schulze":         ("herr-schulze.png", 199,  24, 211),
+    # les visages qui manquaient (16 nov. 2026, pflege/scenes/portraits.py, AUTRES) : portraits payes sur l'enveloppe des
+    # chapitres, Frau Kowalski decoupee dans la scene soins-ambulant ; Monika Schulze est « Frau Schulze » des dialogues
+    "kraemer":         ("kraemer.png",      884, 171, 330),
+    "kowalski":        ("frau-kowalski.png", 465, 85, 150),
+    "aksoy":           ("aksoy.png",        900, 260, 300),
+    "richter":         ("richter.png",      881, 224, 322),
+    "schulze_tochter": ("monika.png",       956, 223, 292),
+    # deux roles provisoires de la session des dialogues, pas encore dans noms.json : le visage est pret pour eux
+    "winkler":         ("winkler.png",      932, 358, 262),
+    "pohl":            ("pohl.png",         896, 194, 315),
 }
 
 

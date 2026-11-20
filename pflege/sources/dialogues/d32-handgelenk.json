@@ -1,0 +1,175 @@
+{
+ "id": "d32-handgelenk",
+ "numero": 32,
+ "niveau": "B1",
+ "porte": "commence",
+ "registre": "Sie",
+ "lieu": "altenheim",
+ "scene_annexe": 7,
+ "role": "olena",
+ "personnes": ["weber"],
+ "titre": {"t": "Das Handgelenk am Tag danach", "fr": "Le poignet, le lendemain"},
+ "intro": {"fr": "Samedi 14 novembre, neuf heures, au {heim}. Hier matin, {weber} est tombée dans sa chambre ; depuis, son poignet gauche lui fait mal. Elle prend son petit-déjeuner à sa table, de bonne humeur. Tu joues {olena} : demande comment va le poignet et combien elle a mal, regarde-le et compare avec hier, refroidis-le, installe le bras sur un coussin, encourage-la à boire, et explique quand le médecin traitant passe."},
+ "but": {"fr": "Suivre une douleur d'un jour à l'autre : demander un chiffre, observer et comparer avec la veille ; dire où et sur quoi (auf den Tisch, auf dem Kissen) ; installer avec des verbes réfléchis (sich zurücklehnen, es sich bequem machen) ; encourager à boire sans faire la morale ; dire quand le médecin passe et quand appeler avant (wenn, bis, bevor)."},
+ "grammaire": ["g05", "g03", "g12"],
+ "telc": ["oral-1"],
+ "relire_notes": {"fr": "Poignet gauche douloureux le lendemain d'une chute (dialogue 8, e10) chez une résidente atteinte d'ostéoporose (e03) : douleur 4 sur 10 au repos, plus en bougeant ; léger gonflement inchangé depuis la veille ; petit hématome apparu ; doigts chauds et roses. À valider : peut-on attendre la visite du médecin traitant le lundi (informé le vendredi, e10), ou faut-il une radio plus tôt (risque de fracture du poignet) ? Les signes qui font appeler le service médical de garde (116 117) avant lundi : douleur qui augmente, gonflement qui augmente ; doigts froids, pâles ou engourdis : le 112 tout de suite (comme dans le dialogue 36). Le froid (compresse enveloppée, une vingtaine de minutes, pas des heures), pas de chaleur les premiers jours ; le bras surélevé sur un coussin. La boisson : elle boit peu (environ 0,8 l, e03), plan de boisson ; ne pas réduire la boisson pour éviter les toilettes la nuit, plutôt boire dans la journée ; veilleuse et sonnette la nuit ; le tact sur l'incontinence (protections, e03)."},
+ "redemittel": [
+  {"t": "Wie geht es Ihrem Handgelenk heute?", "fr": "Comment va votre poignet aujourd'hui ?", "fonction": "demander"},
+  {"t": "Wie stark ist der Schmerz im Handgelenk jetzt, von null bis zehn?", "fr": "Quelle est la force de la douleur au poignet maintenant, de zéro à dix ?", "fonction": "demander"},
+  {"t": "Legen Sie den Arm bitte hier auf den Tisch.", "fr": "Posez le bras ici sur la table, s'il vous plaît.", "fonction": "annoncer"},
+  {"t": "Im Vergleich zu gestern ist die Schwellung gleich geblieben.", "fr": "Par rapport à hier, le gonflement n'a pas changé.", "fonction": "annoncer"},
+  {"t": "Wir kühlen das Handgelenk wieder, etwa zwanzig Minuten.", "fr": "On refroidit de nouveau le poignet, une vingtaine de minutes.", "fonction": "annoncer", "relire": true, "relire_note": "Durée du froid."},
+  {"t": "Lehnen Sie sich ruhig zurück, der Arm liegt auf dem Kissen.", "fr": "Appuyez-vous tranquillement en arrière, le bras est sur le coussin.", "fonction": "rassurer"},
+  {"t": "Trinken Sie lieber tagsüber mehr und abends weniger.", "fr": "Buvez plutôt plus dans la journée et moins le soir.", "fonction": "annoncer", "relire": true, "relire_note": "Répartition de la boisson dans la journée."},
+  {"t": "Die Hausärztin kommt am Montag und sieht sich Ihr Handgelenk an.", "fr": "La médecin traitante passe lundi et regardera votre poignet.", "fonction": "rassurer"}
+ ],
+ "debut": "morgen",
+ "noeuds": {
+  "morgen": {
+   "dit": [
+    {"recit": {"fr": "Samedi, neuf heures. {olena} frappe à la chambre sept. {weber} est assise à sa petite table, devant son petit-déjeuner ; sa main gauche reste posée sur ses genoux."}},
+    {"qui": "weber", "air": "amuse", "t": "Guten Morgen, {olena}! Sehen Sie, heute sitze ich am Tisch und nicht auf dem Boden.", "fr": "Bonjour, {olena} ! Vous voyez, aujourd'hui je suis assise à table, pas par terre."}
+   ],
+   "choix": [
+    {"t": "Guten Morgen, {weber}! Das freut mich. Wie geht es Ihrem Handgelenk heute?", "fr": "Bonjour, {weber:voc} ! Ça me fait plaisir. Comment va votre poignet aujourd'hui ?", "va": "skala",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Es tut noch weh. Aber weniger als gestern, glaube ich.", "fr": "Ça fait encore mal. Mais moins qu'hier, je crois."}]},
+    {"t": "Guten Morgen! Schön, dass Sie schon lachen. Was macht die linke Hand?", "fr": "Bonjour ! C'est bien que vous riiez déjà. Comment va la main gauche ?", "va": "skala",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Sie tut noch weh. Aber weniger als gestern, glaube ich.", "fr": "Elle fait encore mal. Mais moins qu'hier, je crois."}]},
+    {"faux": true, "t": "Guten Morgen! Wie geht es Ihre Hand heute?", "fr": "Bonjour ! Comment va « votre main » aujourd'hui ? (mauvais cas)",
+     "puis": [{"qui": "weber", "air": "amuse", "t": "Meiner Hand, meinen Sie? Der geht es so lala.", "fr": "« À ma main », vous voulez dire ? Elle va comme ci comme ça."}],
+     "aide": {"fr": "<b>Après « Wie geht es … », on met le datif : « Wie geht es Ihrer Hand? », « Wie geht es Ihrem Handgelenk? ».</b> Comme dans « Wie geht es Ihnen? »."}}
+   ]
+  },
+  "skala": {
+   "dit": [],
+   "choix": [
+    {"t": "Wie stark ist der Schmerz im Handgelenk jetzt, von null bis zehn?", "fr": "Quelle est la force de la douleur au poignet maintenant, de zéro à dix ?", "va": "ansehen",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Eine Vier, würde ich sagen. Wenn ich die Hand bewege, mehr.", "fr": "Un quatre, je dirais. Quand je bouge la main, plus."}]},
+    {"t": "Wenn null kein Schmerz ist und zehn der schlimmste: Welche Zahl passt jetzt?", "fr": "Si zéro, c'est pas de douleur, et dix, la pire : quel chiffre correspond maintenant ?", "va": "ansehen",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Eine Vier, würde ich sagen. Wenn ich die Hand bewege, mehr.", "fr": "Un quatre, je dirais. Quand je bouge la main, plus."}]},
+    {"faux": true, "t": "Haben Sie viele Schmerzen oder nur ein bisschen?", "fr": "Vous avez très mal ou juste un peu ?",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Na ja … mittel?", "fr": "Bah… moyen ?"}],
+     "aide": {"fr": "<b>Pour comparer avec hier, il faut un chiffre.</b> « un peu », « moyen » ne se comparent pas. Demande : « Wie stark ist der Schmerz jetzt, von null bis zehn? »"}}
+   ]
+  },
+  "ansehen": {
+   "dit": [],
+   "choix": [
+    {"t": "Darf ich mir Ihr Handgelenk ansehen? Legen Sie den Arm bitte hier auf den Tisch.", "fr": "Je peux regarder votre poignet ? Posez le bras ici sur la table, s'il vous plaît.", "va": "vergleich",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Bitte schön. Aber vorsichtig, ja?", "fr": "Je vous en prie. Mais doucement, hein ?"}]},
+    {"t": "Ich möchte mir das Handgelenk kurz ansehen. Schieben Sie bitte den Ärmel ein bisschen hoch, ganz langsam.", "fr": "Je voudrais regarder rapidement le poignet. Remontez un peu la manche, s'il vous plaît, tout doucement.", "va": "vergleich",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Bitte schön. Aber vorsichtig, ja?", "fr": "Je vous en prie. Mais doucement, hein ?"}]},
+    {"faux": true, "t": "Legen Sie den Arm bitte auf dem Tisch.", "fr": "Posez le bras « sur la table » (mauvais cas).",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Wohin? Auf den Tisch? Gut …", "fr": "Où ça ? Sur la table ? D'accord…"}],
+     "aide": {"fr": "<b>Avec un mouvement (wohin ?), « auf » prend l'accusatif : « auf den Tisch ».</b> « auf dem Tisch » (datif) dit où se trouve déjà quelque chose (wo ?) : « Der Arm liegt auf dem Tisch. »"}}
+   ]
+  },
+  "vergleich": {
+   "dit": [
+    {"recit": {"fr": "{olena} a lu le rapport d'hier : « léger gonflement, pas de plaie ». Aujourd'hui, le gonflement est le même. Sur le côté, un petit bleu est apparu. Les doigts sont chauds et roses."}}
+   ],
+   "choix": [
+    {"t": "Es ist noch ein bisschen geschwollen, so wie gestern, nicht mehr. Neu ist der kleine blaue Fleck hier an der Seite.", "fr": "C'est encore un peu gonflé, comme hier, pas plus. Ce qui est nouveau, c'est le petit bleu ici, sur le côté.", "va": "kuehlen",
+     "puis": [{"qui": "weber", "air": "amuse", "t": "Ein blauer Fleck? Na, der passt wenigstens zu meiner Bluse.", "fr": "Un bleu ? Eh bien, au moins il va avec mon chemisier."}]},
+    {"t": "Im Vergleich zu gestern ist die Schwellung gleich geblieben. Ein blauer Fleck ist dazugekommen. Ihre Finger sind schön warm, das ist gut.", "fr": "Par rapport à hier, le gonflement n'a pas changé. Un bleu est apparu. Vos doigts sont bien chauds, c'est bien.", "va": "kuehlen",
+     "relire": true, "relire_note": "Surveillance de la circulation des doigts.",
+     "puis": [{"qui": "weber", "air": "amuse", "t": "Ein blauer Fleck? Na, der passt wenigstens zu meiner Bluse.", "fr": "Un bleu ? Eh bien, au moins il va avec mon chemisier."}]},
+    {"faux": true, "t": "Oh, das ist bestimmt gebrochen!", "fr": "Oh, c'est sûrement cassé !",
+     "puis": [{"qui": "weber", "air": "surprise", "t": "Gebrochen? Um Gottes willen!", "fr": "Cassé ? Mon Dieu !"}],
+     "aide": {"fr": "<b>Tu ne poses pas de diagnostic : tu décris et tu compares.</b> « So geschwollen wie gestern, ein blauer Fleck ist dazugekommen. » Dire « c'est cassé » fait peur, et seul un médecin, avec une radio, peut le dire."}}
+   ]
+  },
+  "kuehlen": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich hole Ihnen eine kalte Kompresse. Ich wickle sie in ein Tuch, dann ist es nicht zu kalt.", "fr": "Je vais vous chercher une compresse froide. Je l'enveloppe dans un linge, comme ça ce n'est pas trop froid.", "va": "kissen",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Kalt ist gut. Gestern hat das auch geholfen.", "fr": "Le froid, c'est bien. Hier aussi, ça a aidé."}]},
+    {"t": "Wir kühlen das Handgelenk wieder, etwa zwanzig Minuten. Sagen Sie mir bitte, wenn es zu kalt wird.", "fr": "On refroidit de nouveau le poignet, une vingtaine de minutes. Dites-moi si ça devient trop froid, s'il vous plaît.", "va": "kissen",
+     "relire": true, "relire_note": "Durée du froid.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Kalt ist gut. Gestern hat das auch geholfen.", "fr": "Le froid, c'est bien. Hier aussi, ça a aidé."}]},
+    {"faux": true, "t": "Ich bringe Ihnen eine Wärmflasche. Wärme tut immer gut.", "fr": "Je vous apporte une bouillotte. La chaleur fait toujours du bien.",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Warm? Gestern hieß es doch: kühlen.", "fr": "Chaud ? Hier, on m'a dit de refroidir."}],
+     "aide": {"fr": "<b>Les premiers jours après une chute, on refroidit, on ne réchauffe pas.</b> La chaleur peut augmenter le gonflement. « Wir kühlen das Handgelenk wieder, etwa zwanzig Minuten. »"},
+     "relire": true, "relire_note": "Froid et non chaleur les premiers jours."}
+   ]
+  },
+  "kissen": {
+   "dit": [
+    {"recit": {"fr": "{olena} revient avec la compresse froide enveloppée dans un linge, et un coussin."}}
+   ],
+   "choix": [
+    {"t": "Den Arm lege ich auf das Kissen, ein bisschen höher. So kann die Schwellung zurückgehen. Lehnen Sie sich ruhig zurück.", "fr": "Je pose le bras sur le coussin, un peu plus haut. Comme ça, le gonflement peut diminuer. Appuyez-vous tranquillement en arrière.", "va": "trinken",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Ah, das ist angenehm.", "fr": "Ah, c'est agréable."}]},
+    {"t": "Machen Sie es sich bequem. Ich lege Ihnen ein Kissen unter den Arm, und die Kompresse kommt obendrauf.", "fr": "Installez-vous confortablement. Je vous mets un coussin sous le bras, et la compresse par-dessus.", "va": "trinken",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Ah, das ist angenehm.", "fr": "Ah, c'est agréable."}]},
+    {"faux": true, "t": "Lehnen Sie bitte zurück, ich lege das Kissen hin.", "fr": "« Appuyez » en arrière, je pose le coussin. (il manque « sich »)",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Was soll ich zurücklehnen? … Ach, mich!", "fr": "Qu'est-ce que je dois appuyer en arrière ? … Ah, moi !"}],
+     "aide": {"fr": "<b>« sich zurücklehnen » est réfléchi : « Lehnen Sie sich bitte zurück. »</b> De même : « Setzen Sie sich », « Machen Sie es sich bequem ». Avec « Sie », le pronom est « sich »."}}
+   ]
+  },
+  "trinken": {
+   "dit": [
+    {"recit": {"fr": "Sur la table, la tasse de thé du petit-déjeuner est encore presque pleine."}}
+   ],
+   "choix": [
+    {"t": "{weber}, Sie haben noch nicht viel getrunken. Möchten Sie einen frischen Tee mit Zitrone?", "fr": "{weber:voc}, vous n'avez pas encore beaucoup bu. Vous voulez un thé au citron tout frais ?", "va": "toilette",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Ach, wissen Sie, wenn ich viel trinke, muss ich nachts raus. Und genau da bin ich ja gestern gestürzt.", "fr": "Oh, vous savez, si je bois beaucoup, je dois me lever la nuit. Et c'est justement là que je suis tombée hier."}]},
+    {"t": "Bevor ich gehe: Trinken Sie bitte noch ein paar Schlucke. Soll ich Ihnen den Tee warm machen?", "fr": "Avant que je parte : buvez encore quelques gorgées, s'il vous plaît. Je vous réchauffe le thé ?", "va": "toilette",
+     "puis": [{"qui": "weber", "air": "attentive", "t": "Ach, wissen Sie, wenn ich viel trinke, muss ich nachts raus. Und genau da bin ich ja gestern gestürzt.", "fr": "Oh, vous savez, si je bois beaucoup, je dois me lever la nuit. Et c'est justement là que je suis tombée hier."}]},
+    {"faux": true, "t": "Sie müssen zwei Liter am Tag trinken, sonst werden Sie krank.", "fr": "Vous devez boire deux litres par jour, sinon vous allez tomber malade.",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Zwei Liter? Das schaffe ich nie.", "fr": "Deux litres ? Je n'y arriverai jamais."}],
+     "aide": {"fr": "<b>Encourage sans menacer, et propose ce qu'elle aime.</b> La quantité est fixée dans son plan de boisson, pas « deux litres » pour tout le monde. « Möchten Sie einen frischen Tee mit Zitrone? »"},
+     "relire": true, "relire_note": "Quantité de boisson individuelle (plan de boisson)."}
+   ]
+  },
+  "toilette": {
+   "dit": [],
+   "choix": [
+    {"t": "Das verstehe ich. Dann trinken Sie lieber tagsüber mehr und abends weniger. Und nachts klingeln Sie bitte, dann kommt jemand und begleitet Sie.", "fr": "Je comprends. Alors buvez plutôt plus dans la journée et moins le soir. Et la nuit, sonnez, s'il vous plaît : quelqu'un viendra vous accompagner.", "va": "aerztin",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Tagsüber mehr, abends weniger. Das kann ich mir merken.", "fr": "Plus dans la journée, moins le soir. Ça, je peux le retenir."}]},
+    {"t": "Das ist ein guter Grund. Aber wenn man zu wenig trinkt, wird einem leichter schwindelig, und dann stürzt man eher. Trinken Sie lieber tagsüber mehr und abends etwas weniger, und nachts bleibt jetzt das kleine Licht an.", "fr": "C'est une bonne raison. Mais quand on boit trop peu, on a plus facilement des vertiges, et on tombe plus facilement. Buvez plutôt plus dans la journée et un peu moins le soir, et la nuit, la petite lumière reste allumée maintenant.", "va": "aerztin",
+     "relire": true, "relire_note": "Lien entre déshydratation, vertiges et chute ; veilleuse.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Tagsüber mehr, abends weniger. Das kann ich mir merken.", "fr": "Plus dans la journée, moins le soir. Ça, je peux le retenir."}]},
+    {"faux": true, "t": "Das ist doch kein Problem, Sie haben ja Einlagen.", "fr": "Ce n'est pas un problème, vous avez des protections.",
+     "puis": [{"qui": "weber", "air": "surprise", "t": "Also wirklich … Das ist mir peinlich.", "fr": "Enfin, vraiment… Ça me gêne."}],
+     "aide": {"fr": "<b>Réponds à son inquiétude, sans remarque sur ses protections.</b> En parler ainsi la gêne, et ça ne règle rien : elle a peur de se lever la nuit. Propose de boire plutôt dans la journée, et de sonner la nuit."}}
+   ]
+  },
+  "aerztin": {
+   "dit": [
+    {"qui": "weber", "air": "question", "t": "Und muss ich nicht zum Röntgen? Meine Freundin hatte sich auch mal das Handgelenk gebrochen.", "fr": "Et je ne dois pas passer une radio ? Mon amie s'était cassé le poignet, elle aussi."}
+   ],
+   "choix": [
+    {"t": "Das entscheidet die Hausärztin. Sie kommt am Montag und sieht sich Ihr Handgelenk an. Bis dahin kühlen wir und schauen jeden Tag nach.", "fr": "C'est la médecin traitante qui décide. Elle passe lundi et regardera votre poignet. D'ici là, on refroidit et on regarde tous les jours.", "va": "ende",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Gut. Dann warte ich bis Montag. Ich laufe ja nicht weg.", "fr": "Bien. Alors j'attends lundi. Je ne vais pas m'enfuir."}]},
+    {"t": "Gute Frage. Die Hausärztin weiß Bescheid und kommt am Montag. Wenn die Schmerzen oder die Schwellung vorher zunehmen, rufen wir den ärztlichen Bereitschaftsdienst. Wenn die Finger kalt, blass oder taub werden, rufen wir sofort die 112.", "dit": "Gute Frage. Die Hausärztin weiß Bescheid und kommt am Montag. Wenn die Schmerzen oder die Schwellung vorher zunehmen, rufen wir den ärztlichen Bereitschaftsdienst. Wenn die Finger kalt, blass oder taub werden, rufen wir sofort die eins eins zwei.", "fr": "Bonne question. La médecin traitante est au courant, elle passe lundi. Si la douleur ou le gonflement augmentent avant, on appelle le service médical de garde. Si les doigts deviennent froids, pâles ou engourdis, on appelle tout de suite le 112.", "va": "ende",
+     "relire": true, "relire_note": "Attendre lundi ou faire une radio plus tôt ; service médical de garde le week-end.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Gut. Dann warte ich bis Montag. Ich laufe ja nicht weg.", "fr": "Bien. Alors j'attends lundi. Je ne vais pas m'enfuir."}]},
+    {"faux": true, "t": "Nein, nein, das ist nicht gebrochen, das sehe ich doch.", "fr": "Non, non, ce n'est pas cassé, je le vois bien.",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Sehen Sie das wirklich? Ohne Röntgen?", "fr": "Vous le voyez vraiment ? Sans radio ?"}],
+     "aide": {"fr": "<b>Ne promets pas ce que tu ne peux pas savoir : seul le médecin décide d'une radio.</b> Dis qui décide et quand : « Die Hausärztin kommt am Montag und sieht sich Ihr Handgelenk an. »"}}
+   ]
+  },
+  "ende": {
+   "dit": [],
+   "choix": [
+    {"t": "In zwanzig Minuten komme ich wieder und nehme die Kompresse ab. Wenn die Finger kalt werden oder kribbeln, klingeln Sie bitte sofort.", "fr": "Je reviens dans vingt minutes et j'enlève la compresse. Si les doigts deviennent froids ou fourmillent, sonnez tout de suite, s'il vous plaît.", "va": null,
+     "relire": true, "relire_note": "Signes d'alerte au poignet.",
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke, {olena}. Was würde ich nur ohne Sie machen?", "fr": "Merci, {olena}. Qu'est-ce que je ferais sans vous ?"}]},
+    {"t": "Ich komme in zwanzig Minuten wieder. Dann fragen wir noch einmal nach der Zahl. Die Klingel liegt hier, rechts von Ihnen.", "fr": "Je reviens dans vingt minutes. Là, on redemandera le chiffre. La sonnette est ici, à votre droite.", "va": null,
+     "puis": [{"qui": "weber", "air": "sourire", "t": "Danke, {olena}. Was würde ich nur ohne Sie machen?", "fr": "Merci, {olena}. Qu'est-ce que je ferais sans vous ?"}]},
+    {"faux": true, "t": "Lassen Sie die Kompresse einfach drauf, bis ich heute Mittag wiederkomme.", "fr": "Laissez simplement la compresse jusqu'à ce que je revienne à midi.",
+     "puis": [{"qui": "weber", "air": "perplexe", "t": "Bis Mittag? Wird das nicht zu kalt?", "fr": "Jusqu'à midi ? Ça ne va pas être trop froid ?"}],
+     "aide": {"fr": "<b>Le froid se pose une vingtaine de minutes, pas des heures.</b> Trop longtemps, il abîme la peau. Dis quand tu reviens l'enlever : « In zwanzig Minuten komme ich wieder. »"},
+     "relire": true, "relire_note": "Durée du froid."}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Wie stark ist der Schmerz von {weber} am Morgen?", "fr": "Quelle est la force de la douleur de {weber} le matin ?"}, "options": [{"t": "Eine Zwei.", "fr": "Un deux."}, {"t": "Eine Sieben.", "fr": "Un sept."}, {"t": "Eine Vier.", "fr": "Un quatre."}], "juste": 2},
+  {"q": {"t": "Was ist seit gestern neu?", "fr": "Qu'est-ce qui est nouveau depuis hier ?"}, "options": [{"t": "Ein kleiner blauer Fleck.", "fr": "Un petit bleu."}, {"t": "Eine Wunde.", "fr": "Une plaie."}, {"t": "Kalte Finger.", "fr": "Des doigts froids."}], "juste": 0},
+  {"q": {"t": "Warum trinkt {weber} wenig?", "fr": "Pourquoi {weber} boit-elle peu ?"}, "options": [{"t": "Sie mag keinen Tee.", "fr": "Elle n'aime pas le thé."}, {"t": "Sie will nachts nicht auf die Toilette.", "fr": "Elle ne veut pas aller aux toilettes la nuit."}, {"t": "Das Handgelenk tut beim Trinken weh.", "fr": "Le poignet lui fait mal quand elle boit."}], "juste": 1},
+  {"q": {"t": "Wann kommt die Hausärztin?", "fr": "Quand passe le médecin traitant ?"}, "options": [{"t": "Heute Nachmittag.", "fr": "Cet après-midi."}, {"t": "Morgen früh.", "fr": "Demain matin."}, {"t": "Am Montag.", "fr": "Lundi."}], "juste": 2}
+ ]
+}

@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "mural de recados",
    "ar": "لوحة الإعلانات",
    "pl": "tablica korkowa",
-   "ru": "доска объявлений"
+   "ru": "доска объявлений",
+   "es": "el tablero de anuncios (de corcho)"
   },
   {
    "id": "dienstplan",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "escala de trabalho",
    "ar": "جدول المناوبات",
    "pl": "grafik dyżurów",
-   "ru": "график смен"
+   "ru": "график смен",
+   "es": "el rol de turnos (cuadro de turnos)"
   },
   {
    "id": "medikamentenschrank",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "armário de medicamentos",
    "ar": "خزانة الأدوية",
    "pl": "szafka na leki",
-   "ru": "шкаф для лекарств"
+   "ru": "шкаф для лекарств",
+   "es": "el armario de medicamentos (del área)"
   },
   {
    "id": "btm-schrank",
@@ -176,7 +179,8 @@ window.SCENE = {
    "pt": "armário de medicamentos controlados",
    "ar": "خزانة المواد المخدّرة",
    "pl": "szafa na środki odurzające",
-   "ru": "сейф для наркотических средств"
+   "ru": "сейф для наркотических средств",
+   "es": "el armario de medicamentos controlados (estupefacientes)"
   },
   {
    "id": "fenster",
@@ -235,7 +239,8 @@ window.SCENE = {
    "pt": "desinfetante",
    "ar": "مطهّر",
    "pl": "środek dezynfekujący",
-   "ru": "дезинфицирующее средство"
+   "ru": "дезинфицирующее средство",
+   "es": "el desinfectante"
   },
   {
    "id": "kuehlschrank",
@@ -461,7 +466,8 @@ window.SCENE = {
    "pt": "prancheta",
    "ar": "لوح بمشبك",
    "pl": "podkładka z klipsem",
-   "ru": "планшет с зажимом"
+   "ru": "планшет с зажимом",
+   "es": "el portapapeles (la tabla con clip)"
   },
   {
    "id": "uebergabeliste",
@@ -490,7 +496,8 @@ window.SCENE = {
    "pt": "folha de passagem de plantão",
    "ar": "ورقة تسليم المناوبة",
    "pl": "lista do przekazania dyżuru",
-   "ru": "лист передачи смены"
+   "ru": "лист передачи смены",
+   "es": "la hoja de entrega de turno"
   },
   {
    "id": "tasse",
@@ -549,7 +556,8 @@ window.SCENE = {
    "pt": "aparelho de pressão",
    "ar": "جهاز قياس الضغط",
    "pl": "ciśnieniomierz",
-   "ru": "тонометр"
+   "ru": "тонометр",
+   "es": "el tensiómetro (baumanómetro)"
   },
   {
    "id": "blutzuckermessgeraet",
@@ -578,7 +586,8 @@ window.SCENE = {
    "pt": "glicosímetro",
    "ar": "جهاز قياس السكر",
    "pl": "glukometr",
-   "ru": "глюкометр"
+   "ru": "глюкометр",
+   "es": "el glucómetro"
   },
   {
    "id": "thermometer",
@@ -607,7 +616,8 @@ window.SCENE = {
    "pt": "termômetro",
    "ar": "ميزان الحرارة",
    "pl": "termometr",
-   "ru": "термометр"
+   "ru": "термометр",
+   "es": "el termómetro"
   },
   {
    "id": "schreibtisch",
@@ -696,7 +706,8 @@ window.SCENE = {
    "pt": "carrinho de medicação",
    "ar": "عربة الأدوية",
    "pl": "wózek z lekami",
-   "ru": "тележка для лекарств"
+   "ru": "тележка для лекарств",
+   "es": "el carro de medicamentos"
   },
   {
    "id": "dispenser",
@@ -725,7 +736,8 @@ window.SCENE = {
    "pt": "caixa organizadora de comprimidos",
    "ar": "علبة الأدوية الأسبوعية",
    "pl": "dozownik na leki",
-   "ru": "таблетница"
+   "ru": "таблетница",
+   "es": "el pastillero (organizador de medicamentos)"
   },
   {
    "id": "tabletten",
@@ -844,7 +856,8 @@ window.SCENE = {
    "pt": "coletor de perfurocortantes",
    "ar": "حاوية الأدوات الحادة",
    "pl": "pojemnik na ostre odpady",
-   "ru": "контейнер для острых отходов (игл)"
+   "ru": "контейнер для острых отходов (игл)",
+   "es": "el contenedor de punzocortantes (guardián)"
   },
   {
    "id": "notfallwagen",
@@ -873,7 +886,8 @@ window.SCENE = {
    "pt": "carrinho de emergência",
    "ar": "عربة الطوارئ",
    "pl": "wózek reanimacyjny",
-   "ru": "реанимационная тележка"
+   "ru": "реанимационная тележка",
+   "es": "el carro de paro (carro rojo)"
   },
   {
    "id": "defibrillator",
@@ -902,7 +916,8 @@ window.SCENE = {
    "pt": "desfibrilador (DEA: desfibrilador externo automático)",
    "ar": "جهاز إزالة الرجفان (AED: مزيل رجفان خارجي آلي)",
    "pl": "defibrylator (AED: automatyczny defibrylator zewnętrzny)",
-   "ru": "дефибриллятор (АНД: автоматический наружный)"
+   "ru": "дефибриллятор (АНД: автоматический наружный)",
+   "es": "el desfibrilador (DEA: desfibrilador externo automático)"
   }
  ],
  "grosPlans": [],
@@ -1244,14 +1259,14 @@ window.SCENE = {
     {
      "q": "Am Telefon fragt Dr. Krämer: „Hm. Das gefällt mir nicht. Was denken Sie?“",
      "c": [
-      "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.",
+      "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.",
       "Ich weiß nicht … vielleicht ist es auch nichts.",
       "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht."
      ],
      "f": "telefon",
      "type": "situation",
-     "phrase": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.",
-     "sens": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.",
+     "phrase": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.",
+     "sens": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. Je soupçonne quelque chose aux poumons.",
      "n": "<b>A comme Assessment (Einschätzung) : dis clairement ce que tu penses.</b> « Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss. » Ton inquiétude est une information pour le médecin. ⚕️",
      "source": "d07-sbar/einschaetzung"
     }
@@ -1298,7 +1313,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The reported past: <b>habe</b> + participle (schlafen takes haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S for Situation: who you are, where you're calling from, which patient it's about.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” The doctor doesn't know the patient yet.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>The patient doesn't perform the operation, he undergoes it: use the passive.</b> “Er ist am Dienstag operiert worden” (passive Perfekt) or “Er wurde am Dienstag operiert” (Präteritum). This is the B of SBAR (Background, Hintergrund in German): the background.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A for Assessment (Einschätzung): say clearly what you think.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Your concern is information for the doctor. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "The late shift starts at 1:30 pm.",
@@ -1326,7 +1341,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "The night shift reported that Mrs Lehmann had slept restlessly.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Sorry to disturb you, Dr. Krämer. This is Yusuf from ward 4B. It's about Mr. Brandt, room 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "He's 82 years old, and he had hip surgery on Tuesday. He has hardly been on his feet since.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "I'm worried. His condition has gotten noticeably worse over the last hour. I'm afraid it's something with his lungs."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "I'm worried. His condition has gotten noticeably worse over the last hour. I suspect it's something with his lungs."
    }
   },
   "tr": {
@@ -1368,7 +1383,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Aktarılan geçmiş: <b>habe</b> + Partizip II (schlafen, haben alır).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S, yani Situation: kim olduğun, nereden aradığın, hangi hasta için aradığın.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Doktor hastayı henüz tanımıyor.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Ameliyatı hasta yapmaz, ona yapılır: edilgen yapı.</b> “Er ist am Dienstag operiert worden” (edilgen Perfekt) ya da “Er wurde am Dienstag operiert” (Präteritum). Bu, SBAR'daki B (Background, Hintergrund): arka plan.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A, yani Assessment (Einschätzung): ne düşündüğünü açıkça söyle.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Endişen, doktor için bir bilgidir. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Öğleden sonra vardiyası 13.30'da başlar.",
@@ -1396,7 +1411,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Gece vardiyası, Bayan Lehmann'ın huzursuz uyuduğunu bildirdi.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Rahatsız ettiğim için kusura bakmayın, Doktor Krämer. Ben 4B servisinden Yusuf. Bay Brandt ile ilgili arıyorum, 12 numaralı oda.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 yaşında ve salı günü kalçasından ameliyat edildi. O zamandan beri neredeyse hiç ayağa kalkmadı.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Endişeliyim. Son bir saatte durumu belirgin şekilde kötüleşti. Akciğerleriyle ilgili bir şey olmasından korkuyorum."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Endişeliyim. Son bir saatte durumu belirgin şekilde kötüleşti. Akciğerleriyle ilgili bir şey olduğundan şüpheleniyorum."
    }
   },
   "uk": {
@@ -1438,7 +1453,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Минуле в непрямій мові: <b>habe</b> + Partizip II (schlafen вживається з haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: хто ти, звідки телефонуєш, щодо якого пацієнта.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Лікар ще не знає цього пацієнта.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пацієнт не робить операцію, її роблять йому: пасив.</b> «Er ist am Dienstag operiert worden» (Perfekt пасиву) або «Er wurde am Dienstag operiert» (Präteritum). Це B у SBAR (Background, Hintergrund): передісторія.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): чітко скажи, що думаєш.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоя тривога — це інформація для лікаря. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Друга зміна починається о 13:30.",
@@ -1466,7 +1481,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Нічна зміна повідомила, що пані Леман спала неспокійно.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Перепрошую, що турбую, пане лікарю Кремер. Це Юсуф з відділення 4B. Ідеться про пана Брандта, палата 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Йому 82 роки, у вівторок його прооперували на кульшовому суглобі. Відтоді він майже не вставав.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я стурбований. За останню годину його стан помітно погіршився. Боюся, що це щось із легенями."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Я стурбований. За останню годину його стан помітно погіршився. Підозрюю, що це щось із легенями."
    }
   },
   "fa": {
@@ -1508,7 +1523,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "گذشتهٔ نقل‌شده: <b>habe</b> + Partizip II (<span lang=\"de\">schlafen</span> با <span lang=\"de\">haben</span> می‌آید).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S یعنی Situation (وضعیت): تو کی هستی، از کجا زنگ می‌زنی، درباره‌ی کدام بیمار.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» پزشک هنوز بیمار را نمی‌شناسد.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>بیمار عمل را انجام نمی‌دهد، عمل روی او انجام می‌شود: مجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt مجهول) یا «Er wurde am Dienstag operiert» (Präteritum). این B در SBAR است (Background، Hintergrund): زمینه.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A یعنی Assessment (Einschätzung، ارزیابی): روشن بگو چه فکر می‌کنی.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» نگرانی تو برای پزشک یک اطلاع مهم است. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "شیفتِ عصر ساعتِ 13:30 شروع می‌شود.",
@@ -1536,7 +1551,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "شیفتِ شب گزارش داد که <span lang=\"de\">Frau Lehmann</span> ناآرام خوابیده است.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "ببخشید که مزاحمتان می‌شوم، آقای دکتر کرمر. یوسف هستم از بخش 4B. موضوع آقای برانت است، اتاق 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "82 سال دارد و سه‌شنبه لگنش را عمل کرده‌اند. از آن موقع تقریباً سر پا نبوده است.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "نگرانم. حالش در یک ساعت گذشته به‌وضوح بدتر شده است. می‌ترسم مشکلی در ریه‌ها باشد."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "نگرانم. حالش در یک ساعت گذشته به‌وضوح بدتر شده است. گمان می‌کنم مشکلی در ریه‌ها باشد."
    }
   },
   "ar": {
@@ -1578,7 +1593,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "الماضي المنقول: <b>habe</b> + اسم المفعول (<span lang=\"de\">schlafen</span> يأخذ <span lang=\"de\">haben</span>).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S تعني Situation (الوضع): من أنت، ومن أين تتصل، وبخصوص أي مريض.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» الطبيب لا يعرف المريض بعد.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>المريض لا يُجري العملية، بل تُجرى له: المبني للمجهول.</b> «Er ist am Dienstag operiert worden» (Perfekt المجهول) أو «Er wurde am Dienstag operiert» (Präteritum). هذا هو حرف B في SBAR (Background، Hintergrund): الخلفية.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A تعني Assessment (Einschätzung، التقييم): قل بوضوح ما تفكر فيه.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» قلقك معلومة مهمة للطبيب. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "تبدأ مناوبة بعد الظهر في الساعة 13:30.",
@@ -1606,7 +1621,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "أفاد فريق الليل بأن السيدة <span lang=\"de\">Lehmann</span> نامت نومًا مضطربًا.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "عذرًا على الإزعاج يا دكتور كريمر. معك يوسف من القسم 4B. الأمر يتعلق بالمريض السيد برانت، الغرفة 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "عمره 82 سنة، وأُجريت له عملية في الورك يوم الثلاثاء. ومنذ ذلك الحين لم يكد ينهض.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "أنا قلق. ساءت حالته بشكل واضح خلال الساعة الأخيرة. أخشى أن تكون المشكلة في الرئتين."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "أنا قلق. ساءت حالته بشكل واضح خلال الساعة الأخيرة. أشتبه في أن المشكلة في الرئتين."
    }
   },
   "pt": {
@@ -1648,7 +1663,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "O passado relatado: <b>habe</b> + particípio (schlafen leva haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situação: quem você é, de onde está ligando, sobre qual paciente.</b> “Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” O médico ainda não conhece o paciente.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>O paciente não faz a cirurgia, ele passa por ela: a voz passiva.</b> “Er ist am Dienstag operiert worden” (Perfekt da passiva) ou “Er wurde am Dienstag operiert” (Präteritum). É o B do SBAR (Background, Hintergrund): o contexto.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): diga claramente o que você pensa.</b> “Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” A sua preocupação é uma informação para o médico. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "O turno da tarde começa às 13h30.",
@@ -1676,7 +1691,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "A equipe da noite relatou que a sra. Lehmann tinha dormido mal.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Desculpe incomodar, doutor Krämer. Aqui é o Yusuf, da ala 4B. É sobre o Sr. Brandt, quarto 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ele tem 82 anos e foi operado do quadril na terça-feira. Desde então, quase não saiu da cama.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estou preocupado. O estado dele piorou bastante na última hora. Tenho medo de que seja alguma coisa no pulmão."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Estou preocupado. O estado dele piorou bastante na última hora. Suspeito que seja alguma coisa no pulmão."
    }
   },
   "pl": {
@@ -1718,7 +1733,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Przeszłość w mowie zależnej: <b>habe</b> + imiesłów (schlafen łączy się z haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S jak Situation: kim jesteś, skąd dzwonisz, w sprawie którego pacjenta.</b> „Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.” Lekarz jeszcze nie zna pacjenta.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Pacjent nie wykonuje operacji, tylko jej podlega: strona bierna.</b> „Er ist am Dienstag operiert worden” (Perfekt strony biernej) albo „Er wurde am Dienstag operiert” (Präteritum). To B w SBAR (Background, Hintergrund): tło.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A jak Assessment (Einschätzung): powiedz jasno, co myślisz.</b> „Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.” Twój niepokój to dla lekarza informacja. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Dyżur popołudniowy zaczyna się o 13:30.",
@@ -1746,7 +1761,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Zespół nocny przekazał, że pani Lehmann spała niespokojnie.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Przepraszam, że przeszkadzam, panie doktorze. Mówi Yusuf z oddziału 4B. Chodzi o pana Brandta, sala 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ma 82 lata i we wtorek przeszedł operację biodra. Od tego czasu prawie nie wstawał.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Niepokoję się. W ciągu ostatniej godziny jego stan wyraźnie się pogorszył. Boję się, że to coś z płucami."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Niepokoję się. W ciągu ostatniej godziny jego stan wyraźnie się pogorszył. Podejrzewam, że to coś z płucami."
    }
   },
   "ru": {
@@ -1788,7 +1803,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Прошедшее в косвенной речи: <b>habe</b> + причастие (schlafen спрягается с haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S — Situation: кто ты, откуда звонишь, по поводу какого пациента.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» Врач ещё не знает пациента.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>Пациент не делает операцию, ему её делают: это Passiv.</b> «Er ist am Dienstag operiert worden» (Perfekt пассива) или «Er wurde am Dienstag operiert» (Präteritum). Это B в SBAR (Background, Hintergrund): предыстория.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A — Assessment (Einschätzung): ясно скажи, что ты думаешь.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Твоё беспокойство — это информация для врача. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "Вторая смена начинается в 13:30.",
@@ -1816,7 +1831,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "Ночная смена сообщила, что госпожа Леман спала беспокойно.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Извините за беспокойство, доктор Крамер. Говорит Юсуф, отделение 4B. Речь о господине Брандте, палата 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Ему 82 года, во вторник его прооперировали на тазобедренном суставе. С тех пор он почти не вставал.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Я беспокоюсь. За последний час его состояние заметно ухудшилось. Боюсь, что это что-то с лёгкими."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Я беспокоюсь. За последний час его состояние заметно ухудшилось. Подозреваю, что это что-то с лёгкими."
    }
   },
   "es": {
@@ -1858,7 +1873,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El pasado en estilo indirecto: <b>habe</b> + participio (schlafen va con haben).",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "<b>S de Situación: quién eres, de dónde llamas, por cuál paciente.</b> «Hier ist …, Pflegekraft von der Station 4B. Ich rufe wegen Herrn Brandt an, Zimmer 12.» El médico todavía no conoce al paciente.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "<b>El paciente no hace la operación, la recibe: la pasiva.</b> «Er ist am Dienstag operiert worden» (Perfekt de la pasiva) o «Er wurde am Dienstag operiert» (Präteritum). Es la B de SBAR (Background, Hintergrund): los antecedentes.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): di claramente lo que piensas.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Tu preocupación es una información para el médico. ⚕️"
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "<b>A de Assessment (Einschätzung): di con claridad lo que piensas.</b> «Ich mache mir Sorgen. Ich glaube, dass er schnell untersucht werden muss.» Tu preocupación es una información para el médico. ⚕️"
    },
    "sens": {
     "A2 | Der Spätdienst beginnt um dreizehn Uhr dreißig.": "El turno de la tarde empieza a las 13:30.",
@@ -1886,7 +1901,7 @@ window.SCENE = {
     "C1 | Der Nachtdienst berichtete, Frau Lehmann habe unruhig geschlafen.": "El turno de la noche informó que la Sra. Lehmann había dormido intranquila.",
     "SIT | Entschuldigen Sie die Störung, Herr Dr. Krämer. Hier ist Yusuf von der Station vier B. Es geht um Herrn Brandt, Zimmer zwölf.": "Disculpe la molestia, doctor Krämer. Habla Yusuf, del servicio 4B. Se trata del Sr. Brandt, habitación 12.",
     "SIT | Er ist zweiundachtzig Jahre alt und wurde am Dienstag an der Hüfte operiert. Er war seitdem kaum auf den Beinen.": "Tiene 82 años y fue operado de la cadera el martes. Desde entonces casi no se ha levantado.",
-    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.": "Estoy preocupado. Su estado empeoró notablemente en la última hora. Temo que sea algo de los pulmones."
+    "SIT | Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.": "Estoy preocupado. Su estado ha empeorado claramente en la última hora. Sospecho que es algo de los pulmones."
    }
   }
  }

@@ -1,0 +1,388 @@
+{
+ "_langue": "es",
+ "_source": "pflege/sources/dialogues/d25-entlassung.json",
+ "cles": {
+  "titre": {
+   "fr": "La sortie : préparer le retour à la maison",
+   "de": "Die Entlassung",
+   "es": "El alta: preparar el regreso a casa"
+  },
+  "intro": {
+   "fr": "Vendredi 20 novembre, le matin. {lehmann} rentre chez elle ; sa fille, {lehmann_tochter}, est venue la chercher. Avant le départ, {elif} leur explique tout : les papiers, les médicaments, le pansement à la maison, la chaussure de décharge, les signes d'alerte et qui appeler. Tu joues {elif} : expliquer par étapes, simplement, puis vérifier qu'elles ont compris.",
+   "es": "Viernes 20 de noviembre, por la mañana. {lehmann} regresa a su casa; su hija, {lehmann_tochter}, vino a recogerla. Antes de la salida, {elif} les explica todo: los papeles, los medicamentos, la curación en casa, el zapato de descarga, las señales de alarma y a quién llamar. Juegas el papel de {elif}: explicar paso a paso, con sencillez, y luego comprobar que entendieron."
+  },
+  "but": {
+   "fr": "Préparer une sortie : annoncer l'entretien, remettre et expliquer les papiers (Entlassbrief, Medikamentenplan), donner des consignes claires (müssen, dürfen, sollen ; nicht müssen ≠ nicht dürfen), dire les signes d'alerte et qui appeler (wenn …, dann …), faire redire l'essentiel avec ses mots (teach-back).",
+   "es": "Preparar un alta: anunciar la conversación, entregar y explicar los papeles (Entlassbrief, Medikamentenplan), dar indicaciones claras (müssen, dürfen, sollen; nicht müssen ≠ nicht dürfen), decir las señales de alarma y a quién llamar (wenn …, dann …), pedir que repitan lo esencial con sus propias palabras (teach-back)."
+  },
+  "relire_notes": {
+   "fr": "Consignes de sortie d'un pied diabétique : décharge permanente avec la chaussure (aussi dans l'appartement), inspection quotidienne des pieds au miroir, signes d'infection (rougeur, chaleur, gonflement, odeur, fièvre) ; organisation : lettre de sortie pour la médecin traitante, plan de médicaments, rendez-vous lundi, soins à domicile pour le pansement quotidien ; la crème pour la peau sèche est inventée, à valider ; numéros 116 117 (permanence médicale) et 112 ; la méthode du teach-back.",
+   "es": "Indicaciones de alta de un pie diabético: descarga permanente con el zapato (también dentro del departamento), revisión diaria de los pies con un espejo, signos de infección (enrojecimiento, calor, hinchazón, olor, fiebre); organización: informe de alta para la médica de cabecera, plan de medicación, cita el lunes, atención domiciliaria para la curación diaria; la crema para la piel seca es inventada, hay que validarla; números 116 117 (servicio médico de guardia) y 112; el método del teach-back."
+  },
+  "redemittel.0": {
+   "fr": "Avant votre départ, j'aimerais encore voir avec vous tout ce qui est important.",
+   "de": "Bevor Sie gehen, möchte ich mit Ihnen noch alles Wichtige besprechen.",
+   "es": "Antes de que se vaya, quisiera revisar con usted todo lo importante."
+  },
+  "redemittel.1": {
+   "fr": "Voici la lettre de sortie pour votre médecin traitante.",
+   "de": "Das ist der Entlassbrief für Ihre Hausärztin.",
+   "es": "Este es el informe de alta para su médica de cabecera."
+  },
+  "redemittel.2": {
+   "fr": "La seule nouveauté, c'est une crème pour la peau sèche.",
+   "de": "Neu ist nur eine Creme für die trockene Haut.",
+   "es": "Lo único nuevo es una crema para la piel seca."
+  },
+  "redemittel.3": {
+   "fr": "Portez toujours la chaussure de décharge pour marcher, s'il vous plaît, même dans l'appartement.",
+   "de": "Bitte tragen Sie beim Gehen immer den Verbandsschuh, auch in der Wohnung.",
+   "es": "Por favor, use siempre el zapato de descarga para caminar, también dentro del departamento."
+  },
+  "redemittel.4": {
+   "fr": "Si la plaie devient rouge ou chaude, ou si vous avez de la fièvre, appelez tout de suite votre médecin traitante.",
+   "de": "Wenn die Wunde rot oder warm wird oder wenn Sie Fieber bekommen, rufen Sie bitte sofort Ihre Hausärztin an.",
+   "es": "Si la herida se pone roja o caliente, o si le da fiebre, llame enseguida a su médica de cabecera, por favor."
+  },
+  "redemittel.5": {
+   "fr": "Le week-end, vous joignez la permanence médicale au 116 117.",
+   "de": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter 116 117.",
+   "es": "El fin de semana puede comunicarse con el servicio médico de guardia al 116 117."
+  },
+  "redemittel.6": {
+   "fr": "Pouvez-vous me redire quand vous appelez la médecin ?",
+   "de": "Können Sie mir noch einmal sagen, wann Sie die Ärztin anrufen?",
+   "es": "¿Me puede decir otra vez cuándo llama a la doctora?"
+  },
+  "noeuds.zimmer.dit.0.recit": {
+   "fr": "Neuf heures. {lehmann} est assise sur son lit, habillée, son sac à côté d'elle. {lehmann_tochter} range les dernières affaires.",
+   "es": "Las nueve. {lehmann} está sentada en su cama, vestida, con su bolso al lado. {lehmann_tochter} guarda las últimas cosas."
+  },
+  "noeuds.zimmer.dit.1": {
+   "fr": "Alors, {elif}, ça y est, c'est aujourd'hui. Je rentre enfin à la maison !",
+   "de": "Na, {elif}, heute ist es so weit. Ich darf endlich nach Hause!",
+   "es": "Bueno, {elif}, hoy por fin llegó el día. ¡Ya me puedo ir a mi casa!"
+  },
+  "noeuds.zimmer.choix.0": {
+   "fr": "Oui, {lehmann:voc}, c'est votre grand jour ! Avant votre départ, j'aimerais encore voir avec vous et votre fille tout ce qui est important. Ça prend une dizaine de minutes.",
+   "de": "Ja, {lehmann}, heute ist Ihr großer Tag! Bevor Sie gehen, möchte ich mit Ihnen und Ihrer Tochter noch alles Wichtige besprechen. Das dauert etwa zehn Minuten.",
+   "es": "Sí, {lehmann:voc}, ¡hoy es su gran día! Antes de que se vaya, quisiera revisar con usted y con su hija todo lo importante. Nos toma unos diez minutos."
+  },
+  "noeuds.zimmer.choix.0.puis.0": {
+   "fr": "C'est pour ça que je suis là. J'ai aussi quelques questions.",
+   "de": "Deshalb bin ich ja da. Ich habe auch ein paar Fragen.",
+   "es": "Para eso estoy aquí. Yo también tengo algunas preguntas."
+  },
+  "noeuds.zimmer.choix.1": {
+   "fr": "Bonjour, {lehmann:voc}, bonjour, {lehmann_tochter:voc}. Je reprends encore rapidement la sortie avec vous, pour que tout se passe bien à la maison.",
+   "de": "Guten Morgen, {lehmann}, guten Morgen, {lehmann_tochter}. Ich gehe mit Ihnen noch kurz die Entlassung durch, damit zu Hause alles klappt.",
+   "es": "Buenos días, {lehmann:voc}; buenos días, {lehmann_tochter:voc}. Repaso rápidamente el alta con ustedes, para que en casa todo salga bien."
+  },
+  "noeuds.zimmer.choix.1.puis.0": {
+   "fr": "Bien. J'ai aussi quelques questions.",
+   "de": "Gut. Ich habe auch ein paar Fragen.",
+   "es": "Bien. Yo también tengo algunas preguntas."
+  },
+  "noeuds.zimmer.choix.2": {
+   "fr": "Voici vos papiers. Au revoir et bonne continuation !",
+   "de": "Hier sind Ihre Papiere. Tschüss und alles Gute!",
+   "es": "Aquí están sus papeles. ¡Adiós y que le vaya bien!"
+  },
+  "noeuds.zimmer.choix.2.puis.0": {
+   "fr": "Attendez, et qu'est-ce qu'on doit faire maintenant à la maison ?",
+   "de": "Moment, und was müssen wir jetzt zu Hause machen?",
+   "es": "Un momento, ¿y qué tenemos que hacer ahora en casa?"
+  },
+  "noeuds.zimmer.choix.2.aide": {
+   "fr": "<b>Une sortie s'explique, elle ne se remet pas.</b> Annonce l'entretien et sa durée : « Bevor Sie gehen, möchte ich mit Ihnen noch alles Wichtige besprechen. » La fille est là pour ça.",
+   "es": "<b>Un alta se explica, no se entrega nada más.</b> Anuncia la conversación y cuánto dura: «Bevor Sie gehen, möchte ich mit Ihnen noch alles Wichtige besprechen.» Para eso vino la hija."
+  },
+  "noeuds.papiere.choix.0": {
+   "fr": "Voici la lettre de sortie pour votre médecin traitante. Tout votre séjour y est décrit. Emportez-la à votre prochain rendez-vous, s'il vous plaît, lundi à neuf heures.",
+   "de": "Das ist der Entlassbrief für Ihre Hausärztin. Darin steht alles über Ihren Aufenthalt. Bitte nehmen Sie ihn zum nächsten Termin mit, am Montag um neun Uhr.",
+   "es": "Este es el informe de alta para su médica de cabecera. Ahí está todo sobre su hospitalización. Por favor, llévelo a su próxima cita, el lunes a las nueve."
+  },
+  "noeuds.papiere.choix.0.puis.0": {
+   "fr": "Lundi à neuf heures. Ma chérie, tu le notes ?",
+   "de": "Montag um neun. Kind, schreibst du dir das auf?",
+   "es": "El lunes a las nueve. Hija, ¿lo anotas?"
+  },
+  "noeuds.papiere.choix.0.puis.1": {
+   "fr": "C'est noté, maman. Est-ce que quelque chose a changé dans les médicaments ?",
+   "de": "Schon notiert, Mama. Hat sich bei den Medikamenten etwas geändert?",
+   "es": "Ya lo anoté, mamá. ¿Cambió algo en los medicamentos?"
+  },
+  "noeuds.papiere.choix.1": {
+   "fr": "Voici la lettre de sortie et le plan de médicaments. Lundi à neuf heures, vous avez rendez-vous chez votre médecin traitante ; emportez les deux, s'il vous plaît.",
+   "de": "Hier sind der Entlassbrief und der Medikamentenplan. Am Montag um neun Uhr haben Sie einen Termin bei Ihrer Hausärztin; da nehmen Sie bitte beides mit.",
+   "es": "Aquí están el informe de alta y el plan de medicación. El lunes a las nueve tiene cita con su médica de cabecera; por favor, lleve las dos cosas."
+  },
+  "noeuds.papiere.choix.1.puis.0": {
+   "fr": "Lundi à neuf heures. Ma chérie, tu le notes ?",
+   "de": "Montag um neun. Kind, schreibst du dir das auf?",
+   "es": "El lunes a las nueve. Hija, ¿lo anotas?"
+  },
+  "noeuds.papiere.choix.1.puis.1": {
+   "fr": "C'est noté, maman. Est-ce que quelque chose a changé dans les médicaments ?",
+   "de": "Schon notiert, Mama. Hat sich bei den Medikamenten etwas geändert?",
+   "es": "Ya lo anoté, mamá. ¿Cambió algo en los medicamentos?"
+  },
+  "noeuds.medikamente.choix.0": {
+   "fr": "Presque rien. Vous continuez l'insuline selon votre schéma. La seule nouveauté, c'est une crème pour la peau sèche des jambes, une fois par jour. Tout est dans le plan de médicaments.",
+   "de": "Fast nichts. Das Insulin spritzen Sie weiter nach Ihrem Schema. Neu ist nur eine Creme für die trockene Haut an den Beinen, einmal am Tag. Es steht alles im Medikamentenplan.",
+   "es": "Casi nada. Se sigue inyectando la insulina según su esquema. Lo único nuevo es una crema para la piel seca de las piernas, una vez al día. Todo está en el plan de medicación."
+  },
+  "noeuds.medikamente.choix.0.puis.0": {
+   "fr": "Une crème, ça, je devrais y arriver.",
+   "de": "Eine Creme, das schaffe ich gerade noch.",
+   "es": "Una crema… con eso sí puedo."
+  },
+  "noeuds.medikamente.choix.1": {
+   "fr": "La médecin a seulement ajouté une crème, pour les jambes sèches. Pour l'insuline, rien ne change, toujours selon votre schéma.",
+   "de": "Die Ärztin hat nur eine Hautcreme dazugeschrieben, für die trockenen Beine. Beim Insulin bleibt alles wie vorher, nach Ihrem Schema.",
+   "es": "La doctora solo agregó una crema para la piel, para las piernas secas. Con la insulina todo sigue como antes, según su esquema."
+  },
+  "noeuds.medikamente.choix.1.puis.0": {
+   "fr": "Une crème, ça, je devrais y arriver.",
+   "de": "Eine Creme, das schaffe ich gerade noch.",
+   "es": "Una crema… con eso sí puedo."
+  },
+  "noeuds.medikamente.choix.2": {
+   "fr": "Je crois que tout est comme d'habitude. Regardez simplement le plan.",
+   "de": "Ich glaube, es ist alles wie immer. Schauen Sie einfach mal in den Plan.",
+   "es": "Creo que todo está como siempre. Mire el plan y ya."
+  },
+  "noeuds.medikamente.choix.2.puis.0": {
+   "fr": "Vous croyez ? On ne voudrait pas se tromper.",
+   "de": "Sie glauben? Wir wollen ja nichts falsch machen.",
+   "es": "¿Cree? Es que no queremos equivocarnos."
+  },
+  "noeuds.medikamente.choix.2.aide": {
+   "fr": "<b>Pour les médicaments, on vérifie et on dit précisément.</b> « Neu ist nur … », « Beim Insulin bleibt alles wie vorher. » Le plan écrit complète l'explication, il ne la remplace pas.",
+   "es": "<b>Con los medicamentos, se verifica y se dice con precisión.</b> «Neu ist nur …», «Beim Insulin bleibt alles wie vorher.» El plan escrito completa la explicación, no la reemplaza."
+  },
+  "noeuds.wunde.choix.0": {
+   "fr": "Pour la plaie, le service de soins à domicile passe chez vous chaque jour à partir de demain et refait le pansement. Et portez toujours la chaussure de décharge pour marcher, s'il vous plaît, pour soulager le pied.",
+   "de": "Für die Wunde kommt ab morgen jeden Tag der Pflegedienst zu Ihnen und macht den Verbandswechsel. Und bitte tragen Sie beim Gehen immer den Verbandsschuh, damit der Fuß entlastet wird.",
+   "es": "Para la herida, a partir de mañana el servicio de atención domiciliaria va a su casa todos los días y le hace la curación. Y, por favor, use siempre el zapato de descarga para caminar, para que el pie no cargue peso."
+  },
+  "noeuds.wunde.choix.0.puis.0": {
+   "fr": "Toujours ? Même dans l'appartement ? Elle est si lourde, cette chaussure.",
+   "de": "Immer? Auch in der Wohnung? Der Schuh ist so klobig.",
+   "es": "¿Siempre? ¿También dentro del departamento? Es que ese zapato es tan tosco."
+  },
+  "noeuds.wunde.choix.1": {
+   "fr": "À partir de demain, le service de soins à domicile vient chaque jour pour le pansement. L'important, c'est de soulager le pied droit : pour marcher, vous portez donc toujours la chaussure de décharge.",
+   "de": "Ab morgen kommt jeden Tag der Pflegedienst für den Verbandswechsel. Wichtig ist, dass der rechte Fuß entlastet wird: Beim Gehen tragen Sie also immer den Verbandsschuh.",
+   "es": "A partir de mañana, el servicio de atención domiciliaria viene todos los días para la curación. Lo importante es que el pie derecho no cargue peso: entonces, para caminar, use siempre el zapato de descarga."
+  },
+  "noeuds.wunde.choix.1.puis.0": {
+   "fr": "Toujours ? Même dans l'appartement ? Elle est si lourde, cette chaussure.",
+   "de": "Immer? Auch in der Wohnung? Der Schuh ist so klobig.",
+   "es": "¿Siempre? ¿También dentro del departamento? Es que ese zapato es tan tosco."
+  },
+  "noeuds.schuh.choix.0": {
+   "fr": "Oui, même dans l'appartement, même pour quelques pas. Vous ne sentez presque plus votre pied : c'est pour ça que vous ne remarquez pas quand il reçoit de nouveau de la pression.",
+   "de": "Ja, auch in der Wohnung, auch nur für ein paar Schritte. Sie spüren den Fuß ja kaum, deshalb merken Sie nicht, wenn er wieder Druck bekommt.",
+   "es": "Sí, también dentro del departamento, aunque sea para unos pocos pasos. Usted casi no siente el pie; por eso no se da cuenta cuando vuelve a recibir presión."
+  },
+  "noeuds.schuh.choix.0.puis.0": {
+   "fr": "Bon, d'accord. Si ça aide.",
+   "de": "Na gut. Wenn's hilft.",
+   "es": "Bueno, está bien. Si ayuda…"
+  },
+  "noeuds.schuh.choix.1": {
+   "fr": "Malheureusement, oui. Comme vous sentez peu votre pied, vous ne remarquez pas la pression. La chaussure protège la plaie jusqu'à ce qu'elle soit complètement fermée.",
+   "de": "Leider ja. Weil Sie im Fuß wenig spüren, merken Sie den Druck nicht. Der Schuh schützt die Wunde, bis sie ganz zu ist.",
+   "es": "Lamentablemente, sí. Como siente poco el pie, no nota la presión. El zapato protege la herida hasta que esté completamente cerrada."
+  },
+  "noeuds.schuh.choix.1.puis.0": {
+   "fr": "Bon, d'accord. Si ça aide.",
+   "de": "Na gut. Wenn's hilft.",
+   "es": "Bueno, está bien. Si ayuda…"
+  },
+  "noeuds.schuh.choix.2": {
+   "fr": "Non, dans l'appartement, vous n'êtes pas obligée de la porter.",
+   "de": "Nein, in der Wohnung müssen Sie ihn nicht tragen.",
+   "es": "No, dentro del departamento no tiene que usarlo."
+  },
+  "noeuds.schuh.choix.2.puis.0": {
+   "fr": "Vraiment ? À l'hôpital, on nous a pourtant toujours dit : toute la journée.",
+   "de": "Wirklich? Im Krankenhaus hieß es aber immer: den ganzen Tag.",
+   "es": "¿De verdad? Pero en el hospital siempre nos dijeron: todo el día."
+  },
+  "noeuds.schuh.choix.2.aide": {
+   "fr": "<b>« nicht müssen » veut dire « pas obligé », « nicht dürfen » veut dire « interdit ».</b> Ici, la consigne est l'inverse : le pied ne doit jamais porter sans la chaussure. « Bitte tragen Sie ihn auch in der Wohnung. » Dire « Sie müssen ihn nicht tragen » autoriserait à s'en passer.",
+   "es": "<b>«nicht müssen» quiere decir «no es obligatorio»; «nicht dürfen» quiere decir «está prohibido».</b> Aquí la indicación es la contraria: el pie nunca debe apoyarse sin el zapato. «Bitte tragen Sie ihn auch in der Wohnung.» Decir «Sie müssen ihn nicht tragen» daría permiso para no usarlo."
+  },
+  "noeuds.warnzeichen.choix.0": {
+   "fr": "Regardez vos pieds chaque jour, s'il vous plaît, la plante aussi, avec un miroir. Si la plaie est rouge, chaude ou gonflée, si elle sent mauvais ou si vous avez de la fièvre, appelez tout de suite votre médecin traitante.",
+   "de": "Bitte schauen Sie sich jeden Tag die Füße an, auch die Sohle, mit einem Spiegel. Wenn die Wunde rot, warm oder geschwollen ist, wenn sie riecht oder wenn Sie Fieber bekommen, rufen Sie sofort Ihre Hausärztin an.",
+   "es": "Por favor, revísese los pies todos los días, también la planta, con un espejo. Si la herida está roja, caliente o hinchada, si huele mal o si le da fiebre, llame enseguida a su médica de cabecera."
+  },
+  "noeuds.warnzeichen.choix.0.puis.0": {
+   "fr": "Et si c'est le week-end ? Le cabinet est fermé.",
+   "de": "Und wenn das am Wochenende ist? Da ist die Praxis zu.",
+   "es": "¿Y si pasa el fin de semana? El consultorio está cerrado."
+  },
+  "noeuds.warnzeichen.choix.1": {
+   "fr": "L'important, ce sont les signes d'alerte : rougeur, gonflement, chaleur, mauvaise odeur ou fièvre. Dans ce cas, appelez tout de suite la médecin traitante ou prévenez le service de soins à domicile. Et contrôlez vos pieds chaque jour avec un miroir.",
+   "de": "Wichtig sind die Warnzeichen: Rötung, Schwellung, Wärme, ein schlechter Geruch oder Fieber. Dann bitte sofort die Hausärztin anrufen oder dem Pflegedienst Bescheid sagen. Und jeden Tag die Füße mit einem Spiegel kontrollieren.",
+   "es": "Lo importante son las señales de alarma: enrojecimiento, hinchazón, calor, mal olor o fiebre. En ese caso, por favor, llame enseguida a la médica de cabecera o avise al servicio de atención domiciliaria. Y revise los pies todos los días con un espejo."
+  },
+  "noeuds.warnzeichen.choix.1.puis.0": {
+   "fr": "Et si c'est le week-end ? Le cabinet est fermé.",
+   "de": "Und wenn das am Wochenende ist? Da ist die Praxis zu.",
+   "es": "¿Y si pasa el fin de semana? El consultorio está cerrado."
+  },
+  "noeuds.wochenende.choix.0": {
+   "fr": "Dans ce cas, vous appelez la permanence médicale, le 116 117. Et si votre mère va très mal, par exemple avec une forte fièvre et de la confusion, le 112.",
+   "de": "Dann rufen Sie den ärztlichen Bereitschaftsdienst an, die 116 117. Und wenn es Ihrer Mutter sehr schlecht geht, zum Beispiel mit hohem Fieber und Verwirrtheit, die 112.",
+   "es": "Entonces llama al servicio médico de guardia, el 116 117. Y si su mamá está muy mal, por ejemplo con fiebre alta y confusión, al 112."
+  },
+  "noeuds.wochenende.choix.0.puis.0": {
+   "fr": "116 117. Je l'enregistre tout de suite.",
+   "de": "116 117. Die speichere ich gleich ein.",
+   "es": "116 117. Ahora mismo lo guardo en el celular."
+  },
+  "noeuds.wochenende.choix.1": {
+   "fr": "Le week-end, vous joignez la permanence médicale au 116 117. En cas d'urgence, bien sûr, le 112.",
+   "de": "Am Wochenende erreichen Sie den ärztlichen Bereitschaftsdienst unter 116 117. Im Notfall natürlich die 112.",
+   "es": "El fin de semana puede comunicarse con el servicio médico de guardia al 116 117. En una emergencia, por supuesto, al 112."
+  },
+  "noeuds.wochenende.choix.1.puis.0": {
+   "fr": "116 117. Je l'enregistre tout de suite.",
+   "de": "116 117. Die speichere ich gleich ein.",
+   "es": "116 117. Ahora mismo lo guardo en el celular."
+  },
+  "noeuds.nachfragen.choix.0": {
+   "fr": "Pour être sûre d'avoir bien tout expliqué : pouvez-vous me redire quand vous portez la chaussure et quand vous appelez la médecin ?",
+   "de": "Damit ich sicher bin, dass ich alles gut erklärt habe: Können Sie mir noch einmal sagen, wann Sie den Schuh tragen und wann Sie die Ärztin anrufen?",
+   "es": "Para estar segura de que expliqué todo bien: ¿me puede decir otra vez cuándo usa el zapato y cuándo llama a la doctora?"
+  },
+  "noeuds.nachfragen.choix.0.puis.0": {
+   "fr": "La chaussure, toujours quand je marche, même à la maison. Et la médecin si la plaie est rouge ou sent mauvais, ou s'il y a de la fièvre.",
+   "de": "Den Schuh immer, wenn ich laufe, auch zu Hause. Und die Ärztin, wenn die Wunde rot ist oder riecht, oder bei Fieber.",
+   "es": "El zapato, siempre que camine, también en casa. Y a la doctora, si la herida está roja o huele mal, o si hay fiebre."
+  },
+  "noeuds.nachfragen.choix.0.puis.1": {
+   "fr": "Et le week-end, le 116 117.",
+   "de": "Und am Wochenende die 116 117.",
+   "es": "Y el fin de semana, el 116 117."
+  },
+  "noeuds.nachfragen.choix.1": {
+   "fr": "Pour finir, pouvez-vous me résumer ce qui est le plus important pour vous à la maison ?",
+   "de": "Fassen Sie mir zum Schluss bitte noch einmal zusammen, was für Sie zu Hause am wichtigsten ist?",
+   "es": "Para terminar, ¿me puede resumir, por favor, qué es lo más importante para usted en casa?"
+  },
+  "noeuds.nachfragen.choix.1.puis.0": {
+   "fr": "La chaussure, toujours quand je marche, même à la maison. Et la médecin si la plaie est rouge ou sent mauvais, ou s'il y a de la fièvre.",
+   "de": "Den Schuh immer, wenn ich laufe, auch zu Hause. Und die Ärztin, wenn die Wunde rot ist oder riecht, oder bei Fieber.",
+   "es": "El zapato, siempre que camine, también en casa. Y a la doctora, si la herida está roja o huele mal, o si hay fiebre."
+  },
+  "noeuds.nachfragen.choix.1.puis.1": {
+   "fr": "Et le week-end, le 116 117.",
+   "de": "Und am Wochenende die 116 117.",
+   "es": "Y el fin de semana, el 116 117."
+  },
+  "noeuds.nachfragen.choix.2": {
+   "fr": "Vous avez tout compris ?",
+   "de": "Haben Sie alles verstanden?",
+   "es": "¿Entendió todo?"
+  },
+  "noeuds.nachfragen.choix.2.puis.0": {
+   "fr": "Oui, oui…",
+   "de": "Ja, ja …",
+   "es": "Sí, sí…"
+  },
+  "noeuds.nachfragen.choix.2.puis.1": {
+   "fr": "Honnêtement, maman, je ne sais plus du tout quand on doit appeler.",
+   "de": "Ehrlich gesagt, Mama, ich weiß gar nicht mehr, wann wir anrufen sollen.",
+   "es": "La verdad, mamá, ya ni sé cuándo tenemos que llamar."
+  },
+  "noeuds.nachfragen.choix.2.aide": {
+   "fr": "<b>« Haben Sie alles verstanden? » appelle un « oui » poli.</b> Faire redire avec ses propres mots (teach-back) vérifie vraiment : « Können Sie mir noch einmal sagen, wann Sie … ? » On vérifie son explication, on ne teste pas la patiente.",
+   "es": "<b>«Haben Sie alles verstanden?» invita a un «sí» de cortesía.</b> Pedir que lo repitan con sus propias palabras (teach-back) verifica de verdad: «Können Sie mir noch einmal sagen, wann Sie … ?» Se verifica la propia explicación, no se pone a prueba a la paciente."
+  },
+  "noeuds.abschied.choix.0": {
+   "fr": "Exactement. Vous l'avez parfaitement résumé, toutes les deux. Je vous souhaite tout de bon, {lehmann:voc}, et un bon retour à la maison !",
+   "de": "Genau so. Das haben Sie beide wunderbar zusammengefasst. Ich wünsche Ihnen alles Gute, {lehmann}, und eine gute Heimfahrt!",
+   "es": "Exactamente. Lo resumieron muy bien las dos. ¡Le deseo lo mejor, {lehmann:voc}, y buen regreso a casa!"
+  },
+  "noeuds.abschied.choix.0.puis.0": {
+   "fr": "Merci, {elif}. Vous avez toujours été si patiente avec moi.",
+   "de": "Danke, {elif}. Sie waren immer so geduldig mit mir.",
+   "es": "Gracias, {elif}. Usted siempre fue tan paciente conmigo."
+  },
+  "noeuds.abschied.choix.1": {
+   "fr": "Parfait, alors rien ne peut mal tourner à la maison. Tout de bon à vous deux !",
+   "de": "Perfekt, dann kann zu Hause nichts schiefgehen. Alles Gute für Sie beide!",
+   "es": "Perfecto, entonces en casa nada puede salir mal. ¡Lo mejor para las dos!"
+  },
+  "noeuds.abschied.choix.1.puis.0": {
+   "fr": "Merci, {elif}. Vous avez toujours été si patiente avec moi.",
+   "de": "Danke, {elif}. Sie waren immer so geduldig mit mir.",
+   "es": "Gracias, {elif}. Usted siempre fue tan paciente conmigo."
+  },
+  "ecouter.0.q": {
+   "fr": "Quand {lehmann} a-t-elle rendez-vous chez sa médecin traitante ?",
+   "de": "Wann hat {lehmann} einen Termin bei der Hausärztin?",
+   "es": "¿Cuándo tiene cita {lehmann} con su médica de cabecera?"
+  },
+  "ecouter.0.options.0": {
+   "fr": "Lundi à neuf heures.",
+   "de": "Am Montag um neun Uhr.",
+   "es": "El lunes a las nueve."
+  },
+  "ecouter.0.options.1": {
+   "fr": "Demain matin.",
+   "de": "Morgen früh.",
+   "es": "Mañana temprano."
+  },
+  "ecouter.0.options.2": {
+   "fr": "Dans deux semaines.",
+   "de": "In zwei Wochen.",
+   "es": "En dos semanas."
+  },
+  "ecouter.1.q": {
+   "fr": "Quand {lehmann} doit-elle porter la chaussure de décharge ?",
+   "de": "Wann soll {lehmann} den Verbandsschuh tragen?",
+   "es": "¿Cuándo debe usar {lehmann} el zapato de descarga?"
+  },
+  "ecouter.1.options.0": {
+   "fr": "Seulement dehors.",
+   "de": "Nur draußen.",
+   "es": "Solo afuera."
+  },
+  "ecouter.1.options.1": {
+   "fr": "Seulement la nuit.",
+   "de": "Nur in der Nacht.",
+   "es": "Solo en la noche."
+  },
+  "ecouter.1.options.2": {
+   "fr": "Toujours pour marcher, même dans l'appartement.",
+   "de": "Immer beim Gehen, auch in der Wohnung.",
+   "es": "Siempre para caminar, también dentro del departamento."
+  },
+  "ecouter.2.q": {
+   "fr": "Qui appelle-t-on le week-end si la plaie devient rouge ?",
+   "de": "Wen ruft man am Wochenende an, wenn die Wunde rot wird?",
+   "es": "¿A quién se llama el fin de semana si la herida se pone roja?"
+  },
+  "ecouter.2.options.0": {
+   "fr": "La pharmacie.",
+   "de": "Die Apotheke.",
+   "es": "A la farmacia."
+  },
+  "ecouter.2.options.1": {
+   "fr": "La permanence médicale.",
+   "de": "Den ärztlichen Bereitschaftsdienst.",
+   "es": "Al servicio médico de guardia."
+  },
+  "ecouter.2.options.2": {
+   "fr": "Le service de l'hôpital.",
+   "de": "Die Station im Krankenhaus.",
+   "es": "Al área del hospital."
+  }
+ }
+}

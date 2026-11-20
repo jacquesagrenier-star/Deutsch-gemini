@@ -1,0 +1,168 @@
+{
+ "id": "d33-tochter-schmerzen",
+ "numero": 33,
+ "niveau": "B2",
+ "porte": "examen",
+ "registre": "Sie",
+ "lieu": "klinikum",
+ "scene_annexe": 5,
+ "role": "elif",
+ "personnes": ["lehmann_tochter"],
+ "titre": {"t": "„Niemand tut etwas!“", "fr": "« Personne ne fait rien ! »"},
+ "intro": {"fr": "Mercredi 11 novembre, midi, dans le couloir du {station}. {lehmann_tochter} sort de la chambre 14, très fâchée : sa mère lui a raconté ses nuits sans sommeil, les pieds qui brûlent. Ce matin, {lehmann} a refusé le nouveau médicament, par peur d'en devenir dépendante (dialogue 31). Elle a autorisé l'équipe à informer sa fille (c'est au dossier). Tu joues {elif} : reste calme, écoute, reformule, explique ce qui est fait sans accuser personne, rapporte la décision de la patiente avec respect, et propose un entretien avec {sommer}."},
+ "but": {"fr": "Désamorcer une colère : ne pas se défendre, écouter et reformuler ; dire ce qui a été fait ; rapporter les paroles de la patiente au discours indirect (sie habe …, sie wolle …) ; expliquer qu'on ne force pas une patiente, même quand la famille le demande (obwohl, auch wenn) ; proposer un entretien avec la médecin en demandant d'abord l'accord de la patiente."},
+ "grammaire": ["g07", "g18", "g17"],
+ "telc": ["oral-3"],
+ "relire_notes": {"fr": "Levée du secret pour la fille (dossier, dialogue 13 et e02) : on peut lui dire les soins, l'évaluation de la douleur, le médicament prescrit et le refus ; le diagnostic et le choix du traitement reviennent à la médecin. Droit de la patiente de refuser un traitement, même contre l'avis de la famille ; aucun médicament donné en cachette. Mesures déjà prises (dialogue 31 : arceau de lit, chaussettes amples, pas de bouillotte), réévaluation de la douleur la nuit, médecin informée le matin. Entretien commun patiente, fille et médecin : seulement avec l'accord de la patiente."},
+ "redemittel": [
+  {"t": "Ich sehe, dass Sie sehr aufgebracht sind. Wollen wir uns kurz in Ruhe hinsetzen?", "fr": "Je vois que vous êtes très en colère. Voulez-vous qu'on s'asseye un moment au calme ?", "fonction": "rassurer"},
+  {"t": "Wenn ich Sie richtig verstehe, haben Sie den Eindruck, dass niemand auf die Schmerzen Ihrer Mutter reagiert.", "fr": "Si je vous comprends bien, vous avez l'impression que personne ne réagit aux douleurs de votre mère.", "fonction": "reformuler"},
+  {"t": "Ihre Mutter hat erlaubt, dass wir Sie informieren. Deshalb kann ich Ihnen sagen, was wir gemacht haben.", "fr": "Votre mère a autorisé qu'on vous informe. C'est pourquoi je peux vous dire ce que nous avons fait.", "fonction": "transmettre"},
+  {"t": "Ihre Mutter hat gesagt, sie habe Angst, davon abhängig zu werden.", "fr": "Votre mère a dit qu'elle avait peur d'en devenir dépendante.", "fonction": "transmettre"},
+  {"t": "Auch wenn wir es gut meinen: Zwingen dürfen wir Ihre Mutter nicht.", "fr": "Même si c'est avec de bonnes intentions : nous n'avons pas le droit de forcer votre mère.", "fonction": "refuser", "relire": true, "relire_note": "Droit de refuser un traitement."},
+  {"t": "Ich habe die Ärztin heute Vormittag informiert.", "fr": "J'ai informé la médecin ce matin.", "fonction": "transmettre"},
+  {"t": "Wäre es Ihnen recht, wenn wir ein gemeinsames Gespräch mit der Ärztin vereinbaren?", "fr": "Seriez-vous d'accord pour qu'on organise un entretien commun avec la médecin ?", "fonction": "demander"},
+  {"t": "Vorher frage ich Ihre Mutter, ob sie damit einverstanden ist.", "fr": "Avant, je demande à votre mère si elle est d'accord.", "fonction": "annoncer"},
+  {"t": "Danke, dass Sie mir gesagt haben, was Sie beschäftigt.", "fr": "Merci de m'avoir dit ce qui vous préoccupe.", "fonction": "rassurer"}
+ ],
+ "debut": "flur",
+ "noeuds": {
+  "flur": {
+   "dit": [
+    {"recit": {"fr": "Midi, le couloir du service. {elif} pousse le chariot des repas. La porte de la chambre 14 s'ouvre brusquement : {lehmann_tochter} vient droit sur elle."}},
+    {"qui": "lehmann_tochter", "air": "surprise", "t": "{elif}, gut, dass ich Sie sehe! Meine Mutter hat Schmerzen, und niemand tut etwas! Sie hat zwei Nächte kaum geschlafen!", "fr": "{elif}, heureusement que je vous vois ! Ma mère a mal, et personne ne fait rien ! Elle n'a presque pas dormi depuis deux nuits !"}
+   ],
+   "choix": [
+    {"t": "Ich sehe, dass Sie sehr aufgebracht sind, {lehmann_tochter}. Wollen wir uns kurz da drüben hinsetzen? Dann können wir in Ruhe sprechen.", "fr": "Je vois que vous êtes très en colère, {lehmann_tochter:voc}. Voulez-vous qu'on s'asseye un moment là-bas ? Comme ça, on pourra parler au calme.", "va": "zuhoeren",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Na gut. Aber ich will eine Antwort. Sie hat mir erzählt, dass ihre Füße nachts brennen wie Feuer.", "fr": "Bon, d'accord. Mais je veux une réponse. Elle m'a raconté que la nuit, ses pieds brûlent comme du feu."}]},
+    {"t": "Das klingt, als hätten Sie sich große Sorgen gemacht. Erzählen Sie mir bitte, was Ihre Mutter Ihnen gesagt hat.", "fr": "On dirait que vous vous êtes fait beaucoup de souci. Racontez-moi, s'il vous plaît, ce que votre mère vous a dit.", "va": "zuhoeren",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Na gut. Aber ich will eine Antwort. Sie hat mir erzählt, dass ihre Füße nachts brennen wie Feuer.", "fr": "Bon, d'accord. Mais je veux une réponse. Elle m'a raconté que la nuit, ses pieds brûlent comme du feu."}]},
+    {"faux": true, "t": "Das stimmt nicht! Wir tun sehr viel für Ihre Mutter.", "fr": "Ce n'est pas vrai ! Nous faisons beaucoup pour votre mère.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Ach ja? Und warum liegt sie dann nachts wach?", "fr": "Ah oui ? Et pourquoi est-ce qu'elle reste éveillée la nuit, alors ?"}],
+     "aide": {"fr": "<b>Face à la colère, ne te défends pas : accueille-la d'abord.</b> « Ich sehe, dass Sie sehr aufgebracht sind. Wollen wir uns kurz in Ruhe hinsetzen? » Une défense attise la colère ; une écoute la calme."}}
+   ]
+  },
+  "zuhoeren": {
+   "dit": [
+    {"qui": "lehmann_tochter", "air": "perplexe", "t": "Sie liegt da und kann nicht schlafen. Und morgens sagt man mir, es sei alles in Ordnung. Ich kann doch nicht zusehen, wie sie leidet!", "fr": "Elle est couchée là et ne peut pas dormir. Et le matin, on me dit que tout va bien. Je ne peux quand même pas la regarder souffrir !"}
+   ],
+   "choix": [
+    {"t": "Wenn ich Sie richtig verstehe, haben Sie den Eindruck, dass niemand auf die Schmerzen Ihrer Mutter reagiert.", "fr": "Si je vous comprends bien, vous avez l'impression que personne ne réagit aux douleurs de votre mère.", "va": "erklaeren",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ja. Genau das.", "fr": "Oui. Exactement."}]},
+    {"t": "Sie machen sich also Sorgen, weil Ihre Mutter nachts vor Schmerzen nicht schlafen kann, und Sie haben das Gefühl, dass das niemand ernst nimmt. Habe ich das richtig verstanden?", "fr": "Vous vous inquiétez donc parce que votre mère ne peut pas dormir la nuit à cause de la douleur, et vous avez le sentiment que personne ne le prend au sérieux. J'ai bien compris ?", "va": "erklaeren",
+     "puis": [{"qui": "lehmann_tochter", "air": "attentive", "t": "Ja. Genau das.", "fr": "Oui. Exactement."}]},
+    {"faux": true, "t": "Ja, ja. Aber ich habe gerade keine Zeit, ich muss das Mittagessen verteilen.", "fr": "Oui, oui. Mais je n'ai pas le temps, là, je dois distribuer le déjeuner.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Sehen Sie? Genau das meine ich. Keiner hat Zeit.", "fr": "Vous voyez ? C'est exactement ce que je veux dire. Personne n'a le temps."}],
+     "aide": {"fr": "<b>Reformule ce que tu as compris, avant d'expliquer quoi que ce soit.</b> « Wenn ich Sie richtig verstehe, haben Sie den Eindruck, dass … » La personne se sent entendue, et elle est prête à écouter à son tour. Si tu n'as vraiment pas le temps, propose une heure précise."}}
+   ]
+  },
+  "erklaeren": {
+   "dit": [],
+   "choix": [
+    {"t": "Ihre Mutter hat erlaubt, dass wir Sie informieren. Deshalb kann ich Ihnen sagen, was wir gemacht haben: Wir haben die Schmerzen eingeschätzt, und {sommer} hat gestern ein Medikament gegen das Brennen verordnet.", "fr": "Votre mère a autorisé qu'on vous informe. C'est pourquoi je peux vous dire ce que nous avons fait : nous avons évalué la douleur, et {sommer} a prescrit hier un médicament contre les brûlures.", "va": "ablehnung",
+     "relire": true, "relire_note": "Ce qu'une soignante peut dire à une proche autorisée.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Ein Medikament? Und warum hilft es dann nicht?", "fr": "Un médicament ? Et pourquoi est-ce qu'il n'aide pas, alors ?"}]},
+    {"t": "Dann erzähle ich Ihnen, was bisher passiert ist; Ihre Mutter ist ja einverstanden, dass Sie informiert werden. Gestern hat sie {sommer} von dem Brennen erzählt, und {sommer} hat daraufhin ein Mittel angeordnet.", "fr": "Alors je vous raconte ce qui s'est passé jusqu'ici ; votre mère est d'accord pour que vous soyez informée. Hier, elle a parlé des brûlures à {sommer}, et {sommer} a prescrit un médicament.", "va": "ablehnung",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Ein Medikament? Und warum hilft es dann nicht?", "fr": "Un médicament ? Et pourquoi est-ce qu'il n'aide pas, alors ?"}]},
+    {"faux": true, "t": "Darüber darf ich Ihnen leider gar nichts sagen. Das ist Schweigepflicht.", "fr": "Malheureusement, je n'ai le droit de rien vous dire là-dessus. C'est le secret professionnel.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Wie bitte? Meine Mutter hat doch unterschrieben, dass ich alles wissen darf!", "fr": "Pardon ? Ma mère a bien signé que j'ai le droit de tout savoir !"}],
+     "aide": {"fr": "<b>Le secret ne vaut pas contre une proche que la patiente a autorisée.</b> Ici, la levée du secret est au dossier : tu peux dire ce qui a été fait pour la douleur. Sans cette autorisation, ta réponse serait la bonne. Le diagnostic et le choix du traitement, eux, reviennent à la médecin."},
+     "relire": true, "relire_note": "Secret professionnel et levée du secret pour la fille."}
+   ]
+  },
+  "ablehnung": {
+   "dit": [],
+   "choix": [
+    {"t": "Ihre Mutter hat die Tablette heute Morgen nicht nehmen wollen. Sie sagte, sie habe Angst, davon abhängig zu werden. Das haben wir respektiert.", "fr": "Votre mère n'a pas voulu prendre le comprimé ce matin. Elle a dit qu'elle avait peur d'en devenir dépendante. Nous l'avons respecté.", "va": "zwang",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Abhängig? So ein Unsinn! Dann reden Sie ihr das doch aus! Sie muss das nehmen!", "fr": "Dépendante ? N'importe quoi ! Alors faites-lui changer d'avis ! Elle doit le prendre !"}]},
+    {"t": "Heute Morgen hat sie das Mittel abgelehnt. Sie hat mir erklärt, sie wolle auf keinen Fall abhängig werden. Das ist ihre Entscheidung.", "fr": "Ce matin, elle a refusé le médicament. Elle m'a expliqué qu'elle ne voulait en aucun cas devenir dépendante. C'est sa décision.", "va": "zwang",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Abhängig? So ein Unsinn! Dann reden Sie ihr das doch aus! Sie muss das nehmen!", "fr": "Dépendante ? N'importe quoi ! Alors faites-lui changer d'avis ! Elle doit le prendre !"}]},
+    {"faux": true, "t": "Ihre Mutter ist selbst schuld. Sie will die Tablette ja nicht nehmen.", "fr": "C'est la faute de votre mère. Elle ne veut pas prendre le comprimé.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Selbst schuld? Sie ist vierundsiebzig und hat Angst!", "fr": "Sa faute ? Elle a soixante-quatorze ans et elle a peur !"}],
+     "aide": {"fr": "<b>Rapporte la décision de la patiente avec ses raisons, sans juger.</b> Au discours indirect : « Sie sagte, sie habe Angst, davon abhängig zu werden. » Le Konjunktiv I montre que ce sont ses mots à elle, pas ton avis."}}
+   ]
+  },
+  "zwang": {
+   "dit": [],
+   "choix": [
+    {"t": "Ich verstehe, dass Sie sich wünschen, dass sie es nimmt. Aber Ihre Mutter entscheidet selbst. Auch wenn wir es gut meinen: Zwingen dürfen wir sie nicht.", "fr": "Je comprends que vous souhaitiez qu'elle le prenne. Mais c'est votre mère qui décide. Même si c'est avec de bonnes intentions : nous n'avons pas le droit de la forcer.", "va": "massnahmen",
+     "relire": true, "relire_note": "Droit de refuser un traitement, même contre l'avis de la famille.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Und was machen Sie dann? Einfach zusehen?", "fr": "Et alors, vous faites quoi ? Vous regardez, c'est tout ?"}]},
+    {"t": "Obwohl ich Sie gut verstehe: Ihre Mutter darf ein Medikament ablehnen. Wir können ihr erklären, wozu es gut ist, und ihre Angst ernst nehmen, aber nicht über sie bestimmen.", "fr": "Même si je vous comprends bien : votre mère a le droit de refuser un médicament. Nous pouvons lui expliquer à quoi il sert et prendre sa peur au sérieux, mais pas décider à sa place.", "va": "massnahmen",
+     "relire": true, "relire_note": "Droit de refuser un traitement, même contre l'avis de la famille.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Und was machen Sie dann? Einfach zusehen?", "fr": "Et alors, vous faites quoi ? Vous regardez, c'est tout ?"}]},
+    {"faux": true, "t": "Sie haben recht. Ich sage ihr heute Abend, dass sie die Tablette nehmen muss.", "fr": "Vous avez raison. Ce soir, je lui dis qu'elle doit prendre le comprimé.",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Endlich! Und wenn sie Nein sagt, geben Sie sie ihr einfach ins Essen.", "fr": "Enfin ! Et si elle dit non, vous le lui mettez simplement dans la nourriture."}],
+     "aide": {"fr": "<b>Même la famille ne peut pas décider à la place de la patiente.</b> Un médicament ne s'impose pas et ne se donne jamais en cachette. Dis-le avec respect pour l'inquiétude de la fille : « Auch wenn wir es gut meinen: Zwingen dürfen wir Ihre Mutter nicht. »"},
+     "relire": true, "relire_note": "Aucune pression ni administration cachée."}
+   ]
+  },
+  "massnahmen": {
+   "dit": [],
+   "choix": [
+    {"t": "Nein, zusehen tun wir nicht. Heute Nacht bekommt sie einen Bettbogen, damit die Decke nicht auf den Füßen liegt, und weite Socken. Der Nachtdienst fragt nach den Schmerzen und schreibt sie auf.", "fr": "Non, on ne se contente pas de regarder. Cette nuit, elle aura un arceau de lit pour que la couverture ne pèse pas sur ses pieds, et des chaussettes amples. L'équipe de nuit lui demandera où en est la douleur et le notera.", "va": "aerztin",
+     "relire": true, "relire_note": "Mesures sans médicament et réévaluation de la douleur la nuit.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Hm. Und die Ärztin? Weiß die überhaupt, dass meine Mutter die Tablette nicht nimmt?", "fr": "Hum. Et la médecin ? Est-ce qu'elle sait seulement que ma mère ne prend pas le comprimé ?"}]},
+    {"t": "Wir haben mit Ihrer Mutter vereinbart, es heute Nacht ohne Tabletten zu versuchen: mit einem Bettbogen und lockeren Socken. Und nachts wird sie gefragt, wie stark die Schmerzen sind.", "fr": "Nous avons convenu avec votre mère d'essayer cette nuit sans comprimé : avec un arceau de lit et des chaussettes larges. Et la nuit, on lui demandera quelle est la force de la douleur.", "va": "aerztin",
+     "relire": true, "relire_note": "Mesures sans médicament et réévaluation de la douleur la nuit.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Hm. Und die Ärztin? Weiß die überhaupt, dass meine Mutter die Tablette nicht nimmt?", "fr": "Hum. Et la médecin ? Est-ce qu'elle sait seulement que ma mère ne prend pas le comprimé ?"}]},
+    {"faux": true, "t": "Wir können leider nichts machen, solange sie Nein sagt.", "fr": "Malheureusement, on ne peut rien faire tant qu'elle dit non.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Nichts? Das kann doch nicht Ihr Ernst sein!", "fr": "Rien ? Vous n'êtes pas sérieuse !"}],
+     "aide": {"fr": "<b>Un refus de médicament n'est pas un refus de soins : dis ce qui est fait malgré tout.</b> Les mesures sans médicament, et la douleur qu'on réévalue la nuit. La fille doit voir que sa mère n'est pas laissée seule."}}
+   ]
+  },
+  "aerztin": {
+   "dit": [],
+   "choix": [
+    {"t": "Ja, ich habe {sommer} heute Vormittag informiert. Sie möchte noch einmal mit Ihrer Mutter über das Mittel sprechen; vielleicht gibt es eine andere Möglichkeit.", "fr": "Oui, j'ai informé {sommer} ce matin. Elle veut reparler du médicament avec votre mère ; il y a peut-être une autre solution.", "va": "gespraech",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Kann ich bei diesem Gespräch dabei sein?", "fr": "Est-ce que je peux être présente à cet entretien ?"}]},
+    {"t": "Ja, {sommer} weiß Bescheid; ich habe es ihr heute Vormittag gesagt und in der Kurve dokumentiert. Welche anderen Mittel infrage kommen, kann nur sie beurteilen.", "fr": "Oui, {sommer} est au courant ; je le lui ai dit ce matin et je l'ai noté dans le dossier. Quels autres médicaments sont possibles, c'est à elle seule d'en juger.", "va": "gespraech",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Kann ich bei diesem Gespräch dabei sein?", "fr": "Est-ce que je peux être présente à cet entretien ?"}]},
+    {"faux": true, "t": "Das weiß ich nicht. Fragen Sie sie doch selbst.", "fr": "Je ne sais pas. Demandez-lui vous-même.",
+     "puis": [{"qui": "lehmann_tochter", "air": "surprise", "t": "Das ist doch Ihre Aufgabe! Sie arbeiten hier!", "fr": "Mais c'est votre travail ! C'est vous qui travaillez ici !"}],
+     "aide": {"fr": "<b>Dis ce que tu as transmis, et quand.</b> « Ich habe die Ärztin heute Vormittag informiert. » Si tu ne sais pas encore ce que la médecin décide, dis que tu te renseignes : ne renvoie pas la famille sans réponse."}}
+   ]
+  },
+  "gespraech": {
+   "dit": [],
+   "choix": [
+    {"t": "Wäre es Ihnen recht, wenn wir ein gemeinsames Gespräch mit {sommer} und Ihrer Mutter vereinbaren? Vorher frage ich Ihre Mutter, ob sie damit einverstanden ist.", "fr": "Seriez-vous d'accord pour qu'on organise un entretien commun avec {sommer} et votre mère ? Avant, je demande à votre mère si elle est d'accord.", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, das wäre gut. Ich bin heute bis vier Uhr hier.", "fr": "Oui, ce serait bien. Aujourd'hui, je suis là jusqu'à quatre heures."}]},
+    {"t": "Das kann ich gern organisieren, wenn Ihre Mutter es möchte. Ich frage sie gleich, und dann kläre ich mit {sommer}, wann es heute passt.", "fr": "Je peux l'organiser volontiers, si votre mère le souhaite. Je lui demande tout de suite, et ensuite je vois avec {sommer} quand ça convient aujourd'hui.", "va": "ende",
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Ja, das wäre gut. Ich bin heute bis vier Uhr hier.", "fr": "Oui, ce serait bien. Aujourd'hui, je suis là jusqu'à quatre heures."}]},
+    {"faux": true, "t": "Natürlich. Kommen Sie einfach um drei, dann hat {sommer} bestimmt Zeit.", "fr": "Bien sûr. Venez simplement à trois heures, {sommer} aura sûrement le temps.",
+     "puis": [{"qui": "lehmann_tochter", "air": "question", "t": "Bestimmt? Haben Sie das mit ihr abgesprochen? Und weiß meine Mutter davon?", "fr": "Sûrement ? Vous en avez parlé avec elle ? Et ma mère est au courant ?"}],
+     "aide": {"fr": "<b>Ne promets pas un rendez-vous que tu n'as pas organisé, et demande d'abord l'accord de la patiente.</b> « Vorher frage ich Ihre Mutter, ob sie damit einverstanden ist. » C'est elle, la patiente : l'entretien se fait avec elle, pas par-dessus sa tête."},
+     "relire": true, "relire_note": "Accord de la patiente pour un entretien avec sa fille."}
+   ]
+  },
+  "ende": {
+   "dit": [
+    {"qui": "lehmann_tochter", "air": "attentive", "t": "Entschuldigen Sie, dass ich vorhin so laut war. Ich bin einfach müde, und ich mache mir Sorgen.", "fr": "Excusez-moi d'avoir parlé si fort tout à l'heure. Je suis simplement fatiguée, et je m'inquiète."}
+   ],
+   "choix": [
+    {"t": "Das verstehe ich gut. Danke, dass Sie mir gesagt haben, was Sie beschäftigt. Ich melde mich bei Ihnen, sobald ich mit Ihrer Mutter und {sommer} gesprochen habe.", "fr": "Je le comprends bien. Merci de m'avoir dit ce qui vous préoccupe. Je reviens vers vous dès que j'ai parlé avec votre mère et {sommer}.", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Danke, {elif}. Dann gehe ich wieder zu ihr.", "fr": "Merci, {elif}. Alors je retourne auprès d'elle."}]},
+    {"t": "Kein Problem. Es zeigt, wie wichtig Ihnen Ihre Mutter ist. Ich sage Ihnen spätestens um drei Bescheid, ob das Gespräch heute klappt.", "fr": "Ce n'est rien. Ça montre combien votre mère compte pour vous. Je vous dis au plus tard à trois heures si l'entretien peut avoir lieu aujourd'hui.", "va": null,
+     "puis": [{"qui": "lehmann_tochter", "air": "sourire", "t": "Danke, {elif}. Dann gehe ich wieder zu ihr.", "fr": "Merci, {elif}. Alors je retourne auprès d'elle."}]},
+    {"faux": true, "t": "Ja, das war wirklich nicht nett.", "fr": "Oui, ce n'était vraiment pas gentil.",
+     "puis": [{"qui": "lehmann_tochter", "air": "perplexe", "t": "Ich habe mich doch gerade entschuldigt …", "fr": "Mais je viens de m'excuser…"}],
+     "aide": {"fr": "<b>Une excuse s'accepte simplement, sans reproche.</b> « Das verstehe ich gut. Danke, dass Sie mir gesagt haben, was Sie beschäftigt. » Puis dis ce qui va suivre, et quand."}}
+   ]
+  }
+ },
+ "ecouter": [
+  {"q": {"t": "Warum ist {lehmann_tochter} so aufgebracht?", "fr": "Pourquoi {lehmann_tochter} est-elle si en colère ?"},
+   "options": [{"t": "Ihre Mutter bekommt kein Mittagessen.", "fr": "Sa mère n'a pas de déjeuner."}, {"t": "Ihre Mutter hat Schmerzen und schläft kaum, und sie denkt, niemand tut etwas.", "fr": "Sa mère a mal et dort à peine, et elle pense que personne ne fait rien."}, {"t": "Niemand hat sie angerufen.", "fr": "Personne ne l'a appelée."}],
+   "juste": 1},
+  {"q": {"t": "Warum hat {lehmann} das Medikament abgelehnt?", "fr": "Pourquoi {lehmann} a-t-elle refusé le médicament ?"},
+   "options": [{"t": "Es war das falsche Medikament.", "fr": "C'était le mauvais médicament."}, {"t": "Die Tablette ist zu groß.", "fr": "Le comprimé est trop gros."}, {"t": "Sie hat Angst, abhängig zu werden.", "fr": "Elle a peur de devenir dépendante."}],
+   "juste": 2},
+  {"q": {"t": "Was möchte {lehmann_tochter} am Ende?", "fr": "Que veut {lehmann_tochter} à la fin ?"},
+   "options": [{"t": "Bei einem Gespräch mit der Ärztin dabei sein.", "fr": "Être présente à un entretien avec la médecin."}, {"t": "Ihre Mutter mit nach Hause nehmen.", "fr": "Ramener sa mère à la maison."}, {"t": "Sich bei der Stationsleitung beschweren.", "fr": "Se plaindre à la cadre du service."}],
+   "juste": 0},
+  {"q": {"t": "Was macht {elif}, bevor sie das Gespräch vereinbart?", "fr": "Que fait {elif} avant d'organiser l'entretien ?"},
+   "options": [{"t": "Sie ruft die Stationsleitung an.", "fr": "Elle appelle la cadre du service."}, {"t": "Sie fragt {lehmann}, ob sie einverstanden ist.", "fr": "Elle demande à {lehmann} si elle est d'accord."}, {"t": "Sie gibt {lehmann} die Tablette.", "fr": "Elle donne le comprimé à {lehmann}."}],
+   "juste": 1}
+ ]
+}

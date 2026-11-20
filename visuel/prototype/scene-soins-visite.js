@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "biombo",
    "ar": "حاجز الخصوصية",
    "pl": "parawan",
-   "ru": "ширма"
+   "ru": "ширма",
+   "es": "el biombo (la mampara)"
   },
   {
    "id": "infusionsstaender",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "suporte de soro",
    "ar": "حامل المحلول الوريدي",
    "pl": "stojak na kroplówkę",
-   "ru": "штатив для капельницы"
+   "ru": "штатив для капельницы",
+   "es": "el portasueros (el pie de suero)"
   },
   {
    "id": "infusion",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "soro, infusão",
    "ar": "محلول وريدي (تسريب)",
    "pl": "wlew, kroplówka",
-   "ru": "капельница, инфузия"
+   "ru": "капельница, инфузия",
+   "es": "la infusión (el suero, la venoclisis)"
   },
   {
    "id": "nachttisch",
@@ -206,7 +209,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "schnabelbecher",
@@ -235,7 +239,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "brille",
@@ -294,7 +299,8 @@ window.SCENE = {
    "pt": "caixinha da prótese dentária",
    "ar": "علبة طقم الأسنان",
    "pl": "pojemnik na protezę zębową",
-   "ru": "контейнер для зубного протеза"
+   "ru": "контейнер для зубного протеза",
+   "es": "el estuche para la prótesis dental"
   },
   {
    "id": "patient",
@@ -383,7 +389,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "bettdecke",
@@ -412,7 +419,8 @@ window.SCENE = {
    "pt": "cobertor, edredom",
    "ar": "لحاف، غطاء السرير",
    "pl": "kołdra",
-   "ru": "одеяло"
+   "ru": "одеяло",
+   "es": "la cobija, la frazada"
   },
   {
    "id": "fernbedienung",
@@ -471,7 +479,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "urinbeutel",
@@ -500,7 +509,8 @@ window.SCENE = {
    "pt": "bolsa coletora de urina",
    "ar": "كيس البول",
    "pl": "worek na mocz",
-   "ru": "мешок для мочи (мочеприёмник)"
+   "ru": "мешок для мочи (мочеприёмник)",
+   "es": "la bolsa colectora de orina"
   },
   {
    "id": "aerztin",
@@ -589,7 +599,8 @@ window.SCENE = {
    "pt": "jaleco",
    "ar": "المعطف الأبيض (المريلة)",
    "pl": "fartuch",
-   "ru": "халат"
+   "ru": "халат",
+   "es": "la bata"
   },
   {
    "id": "pflegefachfrau",
@@ -618,7 +629,8 @@ window.SCENE = {
    "pt": "enfermeira",
    "ar": "ممرّضة مؤهّلة",
    "pl": "pielęgniarka (dyplomowana)",
-   "ru": "медсестра (дипломированная)"
+   "ru": "медсестра (дипломированная)",
+   "es": "la enfermera (titulada; título alemán desde 2020)"
   },
   {
    "id": "notizblock",
@@ -647,7 +659,8 @@ window.SCENE = {
    "pt": "bloco de notas",
    "ar": "دفتر الملاحظات",
    "pl": "notes (notatnik)",
-   "ru": "блокнот"
+   "ru": "блокнот",
+   "es": "la libreta, el bloc de notas"
   },
   {
    "id": "kugelschreiber",
@@ -706,7 +719,8 @@ window.SCENE = {
    "pt": "carrinho de visita",
    "ar": "عربة الجولة الطبية",
    "pl": "wózek do obchodu",
-   "ru": "тележка для обхода"
+   "ru": "тележка для обхода",
+   "es": "el carro de visita"
   },
   {
    "id": "laptop",
@@ -765,7 +779,8 @@ window.SCENE = {
    "pt": "radiografia (imagem de raio X)",
    "ar": "صورة الأشعة السينية",
    "pl": "zdjęcie rentgenowskie",
-   "ru": "рентгеновский снимок"
+   "ru": "рентгеновский снимок",
+   "es": "la radiografía (la placa)"
   },
   {
    "id": "mappe",
@@ -794,7 +809,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "ملفّ، حافظة أوراق",
    "pl": "teczka",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta, el fólder"
   },
   {
    "id": "einmalhandschuhe",
@@ -823,7 +839,8 @@ window.SCENE = {
    "pt": "luva descartável",
    "ar": "قفاز يُستعمل مرّة واحدة",
    "pl": "rękawiczka jednorazowa",
-   "ru": "одноразовая перчатка"
+   "ru": "одноразовая перчатка",
+   "es": "el guante desechable"
   }
  ],
  "grosPlans": [],

@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "dispensador de álcool em gel",
    "ar": "موزّع المطهّر",
    "pl": "dozownik środka dezynfekcyjnego",
-   "ru": "дозатор антисептика"
+   "ru": "дозатор антисептика",
+   "es": "el dispensador de alcohol en gel (solución desinfectante)"
   },
   {
    "id": "infusionsstaender",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "suporte de soro",
    "ar": "حامل المحلول الوريدي",
    "pl": "stojak na kroplówkę",
-   "ru": "штатив для капельницы"
+   "ru": "штатив для капельницы",
+   "es": "el portasueros (el pie de suero)"
   },
   {
    "id": "infusion",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "soro, infusão",
    "ar": "محلول وريدي (تسريب)",
    "pl": "wlew, kroplówka",
-   "ru": "капельница, инфузия"
+   "ru": "капельница, инфузия",
+   "es": "la infusión (el suero, la venoclisis)"
   },
   {
    "id": "sichtschutz",
@@ -176,7 +179,8 @@ window.SCENE = {
    "pt": "biombo",
    "ar": "حاجز الخصوصية",
    "pl": "parawan",
-   "ru": "ширма"
+   "ru": "ширма",
+   "es": "el biombo (la mampara)"
   },
   {
    "id": "bett",
@@ -265,7 +269,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "schnabelbecher",
@@ -294,7 +299,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "brille",
@@ -353,7 +359,8 @@ window.SCENE = {
    "pt": "aparelho auditivo",
    "ar": "سمّاعة أذن طبية",
    "pl": "aparat słuchowy",
-   "ru": "слуховой аппарат"
+   "ru": "слуховой аппарат",
+   "es": "el audífono"
   },
   {
    "id": "prothesendose",
@@ -382,7 +389,8 @@ window.SCENE = {
    "pt": "prótese dentária, dentadura",
    "ar": "طقم أسنان، أسنان اصطناعية",
    "pl": "proteza zębowa",
-   "ru": "зубной протез"
+   "ru": "зубной протез",
+   "es": "la prótesis dental"
   },
   {
    "id": "bettgitter",
@@ -411,7 +419,8 @@ window.SCENE = {
    "pt": "grade da cama",
    "ar": "حاجز السرير",
    "pl": "barierka łóżka",
-   "ru": "боковое ограждение кровати"
+   "ru": "боковое ограждение кровати",
+   "es": "el barandal de la cama (la baranda)"
   },
   {
    "id": "fernbedienung",
@@ -470,7 +479,8 @@ window.SCENE = {
    "pt": "bolsa coletora de urina",
    "ar": "كيس البول",
    "pl": "worek na mocz",
-   "ru": "мешок для мочи (мочеприёмник)"
+   "ru": "мешок для мочи (мочеприёмник)",
+   "es": "la bolsa colectora de orina"
   },
   {
    "id": "rollstuhl",
@@ -546,7 +556,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "kissen",
@@ -682,7 +693,8 @@ window.SCENE = {
    "pt": "cateter nasal tipo óculos",
    "ar": "قُنية أنفية",
    "pl": "wąsy tlenowe (kaniula donosowa)",
-   "ru": "носовая канюля"
+   "ru": "носовая канюля",
+   "es": "la cánula nasal (puntas nasales)"
   },
   {
    "id": "armband-l",
@@ -711,7 +723,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "armband-r",
@@ -740,7 +753,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "klingel",
@@ -799,7 +813,8 @@ window.SCENE = {
    "pt": "andador com rodas",
    "ar": "مشّاية بعجلات",
    "pl": "rolator (balkonik na kółkach)",
-   "ru": "роллатор (ходунки на колёсах)"
+   "ru": "роллатор (ходунки на колёсах)",
+   "es": "el andador con ruedas"
   },
   {
    "id": "hausschuhe",
@@ -828,7 +843,8 @@ window.SCENE = {
    "pt": "chinelo, pantufa",
    "ar": "خُفّ، شبشب منزلي",
    "pl": "kapeć",
-   "ru": "тапочка"
+   "ru": "тапочка",
+   "es": "la pantufla"
   }
  ],
  "grosPlans": [],
@@ -843,14 +859,14 @@ window.SCENE = {
     {
      "q": "Sie helfen Herrn Brandt, sich aufzusetzen. Er sagt: „Ja, allein schaff ich das noch nicht.“",
      "c": [
-      "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
+      "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.",
       "Wenn Sie etwas brauchen, rufen Sie einfach laut.",
       "Stehen Sie jetzt auf. Wir müssen laufen."
      ],
      "f": "patient",
      "type": "situation",
-     "phrase": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.",
-     "sens": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt.",
+     "phrase": "Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.",
+     "sens": "Voici votre sonnette. S'il vous plaît, ne vous levez pas encore seul, sonnez plutôt. Nous vous dirons quand vous pourrez de nouveau vous lever seul.",
      "n": "<b>À l'hôpital, on montre la sonnette : « die Klingel ».</b> « Drücken Sie bitte hier » : appuyez ici. Un patient opéré ne doit pas avoir à crier pour être aidé. ⚕️",
      "source": "d01-vorstellung/klingel",
      "r": "klingel"
@@ -875,10 +891,10 @@ window.SCENE = {
     "SIT": "What do you answer?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>In hospital, you show the patient the call button: “die Klingel”.</b> “Drücken Sie bitte hier”: please press here. A patient after surgery should not have to shout to get help. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>In hospital, you show the patient the call button: “die Klingel”.</b> “Drücken Sie bitte hier”: please press here. A patient after surgery should not have to shout to get help. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Here's your call button. Please don't get up on your own yet; ring for us instead."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Here's your call button. Please don't get up on your own yet; ring for us instead. We'll tell you when you can get up on your own again."
    }
   },
   "tr": {
@@ -891,10 +907,10 @@ window.SCENE = {
     "SIT": "Ne cevap verirsiniz?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>Hastanede hastaya çağrı zili gösterilir: “die Klingel”.</b> “Drücken Sie bitte hier”: lütfen buraya basın. Ameliyat olmuş bir hasta yardım almak için bağırmak zorunda kalmamalı. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>Hastanede hastaya çağrı zili gösterilir: “die Klingel”.</b> “Drücken Sie bitte hier”: lütfen buraya basın. Ameliyat olmuş bir hasta yardım almak için bağırmak zorunda kalmamalı. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "İşte çağrı ziliniz. Lütfen henüz tek başınıza kalkmayın, onun yerine zili çalın."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "İşte çağrı ziliniz. Lütfen henüz tek başınıza kalkmayın, onun yerine zili çalın. Ne zaman yeniden tek başınıza kalkabileceğinizi size söyleyeceğiz."
    }
   },
   "uk": {
@@ -907,10 +923,10 @@ window.SCENE = {
     "SIT": "Що ви відповісте?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>У лікарні показують кнопку виклику: «die Klingel».</b> «Drücken Sie bitte hier»: натисніть ось тут. Прооперований пацієнт не повинен кричати, щоб отримати допомогу. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>У лікарні показують кнопку виклику: «die Klingel».</b> «Drücken Sie bitte hier»: натисніть ось тут. Прооперований пацієнт не повинен кричати, щоб отримати допомогу. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Ось ваша кнопка виклику. Будь ласка, поки що не вставайте самі, краще натисніть на кнопку."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Ось ваша кнопка виклику. Будь ласка, поки що не вставайте самі, краще натисніть на кнопку. Ми скажемо вам, коли знову можна буде вставати самому."
    }
   },
   "fa": {
@@ -923,10 +939,10 @@ window.SCENE = {
     "SIT": "چه جواب می‌دهید؟"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>در بیمارستان زنگ را نشان می‌دهیم: «die Klingel».</b> «Drücken Sie bitte hier»: لطفاً اینجا را فشار دهید. بیماری که عمل شده نباید برای کمک گرفتن مجبور به فریاد زدن باشد. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>در بیمارستان زنگ را نشان می‌دهیم: «die Klingel».</b> «Drücken Sie bitte hier»: لطفاً اینجا را فشار دهید. بیماری که عمل شده نباید برای کمک گرفتن مجبور به فریاد زدن باشد. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "این زنگ شماست. لطفاً هنوز تنهایی بلند نشوید، بهتر است زنگ بزنید."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "این زنگ شماست. لطفاً هنوز تنهایی بلند نشوید، بهتر است زنگ بزنید. به شما می‌گوییم کی دوباره می‌توانید تنهایی بلند شوید."
    }
   },
   "ar": {
@@ -939,10 +955,10 @@ window.SCENE = {
     "SIT": "ما الردّ المناسب؟"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>في المستشفى نُري المريض جرس الاستدعاء: «die Klingel».</b> «Drücken Sie bitte hier»: اضغط هنا من فضلك. يجب ألا يضطر مريض أُجريت له عملية إلى الصراخ ليحصل على المساعدة. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>في المستشفى نُري المريض جرس الاستدعاء: «die Klingel».</b> «Drücken Sie bitte hier»: اضغط هنا من فضلك. يجب ألا يضطر مريض أُجريت له عملية إلى الصراخ ليحصل على المساعدة. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "هذا جرس الاستدعاء. من فضلك لا تنهض وحدك بعد، بل اضغط على الجرس."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "هذا جرس الاستدعاء. من فضلك لا تنهض وحدك بعد، بل اضغط على الجرس. سنخبرك متى يمكنك أن تنهض وحدك من جديد."
    }
   },
   "pt": {
@@ -955,10 +971,10 @@ window.SCENE = {
     "SIT": "O que responder?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>No hospital, mostra-se a campainha ao paciente: “die Klingel”.</b> “Drücken Sie bitte hier”: aperte aqui, por favor. Um paciente operado não deve ter que gritar para ser atendido. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>No hospital, mostra-se a campainha ao paciente: “die Klingel”.</b> “Drücken Sie bitte hier”: aperte aqui, por favor. Um paciente operado não deve ter que gritar para ser atendido. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Aqui está a sua campainha. Por favor, não se levante sozinho ainda; é melhor tocar a campainha."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Aqui está a sua campainha. Por favor, não se levante sozinho ainda; é melhor tocar a campainha. Nós avisamos quando o senhor puder voltar a se levantar sozinho."
    }
   },
   "pl": {
@@ -971,10 +987,10 @@ window.SCENE = {
     "SIT": "Co odpowiedzieć?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>W szpitalu pokazuje się dzwonek: „die Klingel”.</b> „Drücken Sie bitte hier”: proszę nacisnąć tutaj. Pacjent po operacji nie powinien musieć krzyczeć, żeby dostać pomoc. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>W szpitalu pokazuje się dzwonek: „die Klingel”.</b> „Drücken Sie bitte hier”: proszę nacisnąć tutaj. Pacjent po operacji nie powinien musieć krzyczeć, żeby dostać pomoc. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Tu jest pana dzwonek. Proszę jeszcze nie wstawać samodzielnie, lepiej niech pan zadzwoni."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Tu jest pana dzwonek. Proszę jeszcze nie wstawać samodzielnie, lepiej niech pan zadzwoni. Powiemy panu, kiedy znów będzie pan mógł wstawać sam."
    }
   },
   "ru": {
@@ -987,10 +1003,10 @@ window.SCENE = {
     "SIT": "Что ответить?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>В больнице показывают кнопку вызова: «die Klingel».</b> «Drücken Sie bitte hier»: нажмите вот здесь. Прооперированному пациенту не нужно кричать, чтобы получить помощь. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>В больнице показывают кнопку вызова: «die Klingel».</b> «Drücken Sie bitte hier»: нажмите вот здесь. Прооперированному пациенту не нужно кричать, чтобы получить помощь. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Вот ваша кнопка вызова. Пожалуйста, пока не вставайте сами, лучше нажмите на кнопку."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Вот ваша кнопка вызова. Пожалуйста, пока не вставайте сами, лучше нажмите на кнопку. Мы скажем вам, когда снова можно будет вставать самому."
    }
   },
   "es": {
@@ -1003,10 +1019,10 @@ window.SCENE = {
     "SIT": "¿Qué respondes?"
    },
    "questions": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "<b>En el hospital, se le muestra el timbre al paciente: «die Klingel».</b> «Drücken Sie bitte hier»: presione aquí, por favor. Un paciente operado no debe tener que gritar para que lo ayuden. ⚕️"
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>En el hospital se muestra el timbre: «die Klingel».</b> «Drücken Sie bitte hier»: presione aquí, por favor. Un paciente operado no debe tener que gritar para que lo ayuden. ⚕️"
    },
    "sens": {
-    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber.": "Aquí está su timbre. Por favor, todavía no se levante solo, mejor toque el timbre."
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Aquí está su timbre. Por favor, todavía no se levante solo; mejor toque el timbre. Nosotros le avisamos cuándo puede volver a levantarse solo."
    }
   }
  }
