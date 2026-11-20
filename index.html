@@ -7499,10 +7499,12 @@ body[data-theme="dark"] .ra-echeance{color:#8ed3aa;}
 .ra-points.faux .ra-echeance{color:#9b2c20;}
 body[data-theme="dark"] .ra-points.faux .ra-echeance{color:#f2a197;}
 .seance-niveau.seance-pp{font-size:14px; padding:0 5px;}
-.cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56;}
+/* B6 (revue A a Z, 20 nov. 2026) : a 360 px l'etiquette se coupait en « Premiers / pas » sous sa pousse. */
+.cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56; white-space:nowrap;}
 .cp-mot-pp{font-size:30px; font-weight:900; text-align:center; margin:14px 0 4px; line-height:1.2;}
 .cp-sens-pp{text-align:center; font-size:17px;}
 .cp-fete-pp{text-align:center; padding:8px 4px 4px;}
+.cp-recommencer-pp{display:block; width:100%; margin:16px 0 0;}
 .cp-fete-pp .cp-fete-emoji{font-size:52px;}
 .cp-fete-pp h2{font-size:22px; margin:8px 0 6px;}
 .cp-fete-pp p{color:#4C566B; line-height:1.5; margin:0 0 6px;}
@@ -9756,6 +9758,10 @@ body[data-theme="dark"] #flashcards.active #cartePhrase:not(.hidden) .cp-actions
 body.cp-reste-dessous #flashcards.active #cartePhrase:not(.hidden) .cp-actions::before{opacity:1;}
 /* La notification d'un badge (« Badge debloque ») se posait sur le rond et la barre du bas : elle monte au-dessus. */
 body:has(#flashcards.active) .badge-toast{bottom:calc(160px + env(safe-area-inset-bottom, 0px));}
+/* A3 (revue A a Z, 20 nov. 2026) : pendant la visite guidee, « C'est note : un peu de tout dans ta seance. » (le
+   toast du profil, 4,2 s) se posait sur « COMMENCER LA VISITE » puis sur « CONTINUER », la premiere minute d'un
+   compte neuf. Il monte au-dessus de la barre du bas de la visite (.dec-bas). */
+body.en-decouverte .badge-toast{bottom:calc(112px + env(safe-area-inset-bottom, 0px));}
 
 /* 2. LE VERRE, une seule recette. */
 #flashcardActions .judge-button, #flashcards .cp-actions button, button.back, header .theme-icon-btn, header .avatar,
@@ -9973,7 +9979,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1226</span>
+        <span class="subtitle-version">v1227</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -49042,7 +49048,13 @@ function ouvrirBilanSemaine(ev, retour){
     const chiffres = creer("div", "bilan-chiffres");
     [[b.exercices, b.exercices === 1 ? "bilan_exercice" : "bilan_exercices"],
      [b.jours, b.jours === 1 ? "bilan_jour" : "bilan_jours"],
-     [b.acquis, b.acquis === 1 ? "bilan_acquis_1" : "bilan_acquis"]].forEach(([n, cle]) => {
+     [b.acquis, b.acquis === 1 ? "bilan_acquis_1" : "bilan_acquis"]]
+    // B3 (revue A a Z, 20 nov. 2026) : « 0 acquis » chaque semaine. Un mot n'est « acquis » qu'a son quatrieme point,
+    // soit au mieux trois ou quatre jours apres l'avoir appris ; un debutant en est loin la premiere semaine, et
+    // un zero en gros sous « 441 exercices » se lit comme un echec. Le chiffre ne s'affiche que s'il y a de quoi.
+    .filter(([n, cle]) => !(cle.indexOf("bilan_acquis") === 0 && !n))
+    .forEach(([n, cle], i, tous) => {
+        chiffres.style.gridTemplateColumns = "repeat(" + tous.length + ", 1fr)";
         const c = creer("div", "bilan-chiffre");
         c.appendChild(creer("b", "", String(n)));
         c.appendChild(creer("span", "", t(cle)));
@@ -64127,7 +64139,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1226;
+const APP_VERSION = 1227;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -72925,7 +72937,11 @@ function montrerCartePhrase(item){
             lancerRevoirNiveau("pp");
             try{ ouvrirPremiersPas(); }catch(e){}
         });
-        actions.appendChild(recommencer);
+        // B5 (revue A a Z, 20 nov. 2026) : dans la barre fixe du bas, ce second bouton flottait avec la fleche
+        // par-dessus le bloc « La suite · Ton A1 commence ». Il vit maintenant DANS la carte, a sa fin : seule la
+        // fleche reste en bas, comme sur les autres cartes.
+        recommencer.classList.add("cp-recommencer-pp");
+        el.appendChild(recommencer);
         suite.addEventListener("click", (ev) => {
             const s = lirePremiersPas();
             s.fini = true; s.a = false;
@@ -77278,6 +77294,13 @@ function majPartsSeance(){
     let pTitre = (segmentsSeance(paquet, P.parts).find(s => i >= s.debut && i < s.debut + s.n) || {}).p;
     if(pTitre === "scene" && c && c.forme !== "scene_arret") pTitre = "revisions";
     if(h) h.textContent = titrePartSeance(P.parts.get(c) === "fin" ? "fin" : pTitre, c);
+    // C2 (revue A a Z, 20 nov. 2026) : « Images » restait au-dessus de « Seance terminee ». L'ecran de fin pose
+    // bien l'en-tete de la seance, mais revenirDeLArret() redessine la barre APRES lui (14 nov., ligne 77) et
+    // remettait le nom de la derniere partie. Le paquet fini, l'en-tete est celui de la seance, d'ou qu'on vienne.
+    if(paquetTermine()){
+        if(k) k.textContent = t("seance_titre");
+        if(h) h.textContent = (currentTheme && currentTheme.name) || "";
+    }
     if(box) dessinerSegmentsSeance(box, segmentsSeance(paquet, P.parts));
     paysageSeance(clePaysagePartie(pTitre || "revisions", false));
 }
@@ -79700,12 +79723,18 @@ function majAnneauFin(el, finie){
         let f0 = 0;
         try{ f0 = getDailyActivityCount() || 0; }catch(e){}
         const tot = (currentCards || []).length;
-        el.style.setProperty("--p", tot ? Math.min(100, Math.round(100 * currentFlashcard / tot)) : 0);
+        // C5 (revue A a Z, 20 nov. 2026) : l'anneau disait « 6 / 28 » et la ligne d'en dessous « Il reste 16 cartes
+        // dans la seance » -- deux totaux. Le 28 etait la longueur du paquet, cartes remises en file comprises
+        // (« Encore », mots presentes qui reviennent) ; le 16 venait de la seance suivie (n prevues, p passees).
+        // L'anneau lit maintenant la meme source : passees sur prevues, et 6 + 16 font bien 22.
+        let faitS = Math.min(currentFlashcard, tot), totS = tot;
+        try{ const sv = seanceCourante(); if(sv && sv.n > 0){ totS = sv.n; faitS = Math.min(sv.p || 0, sv.n); } }catch(e){}
+        el.style.setProperty("--p", totS ? Math.min(100, Math.round(100 * faitS / totS)) : 0);
         el.classList.remove("atteint");
         // le rang dans la seance, pas le compte du jour : la phrase dessous le dit deja (« 4 4 cartes aujourd'hui »,
         // revue A a Z du 12 nov.)
-        el.querySelector("b").textContent = String(Math.min(currentFlashcard, tot));
-        el.querySelector("small").textContent = tot ? "/" + tot : "";
+        el.querySelector("b").textContent = String(faitS);
+        el.querySelector("small").textContent = totS ? "/" + totS : "";
         return { fait: f0, cible: 0 };
     }
     if(finie && objectifRetire()){

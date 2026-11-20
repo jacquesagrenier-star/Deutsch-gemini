@@ -65,7 +65,7 @@ body.avec-paysage .recit,body.avec-paysage .consigne,body.avec-paysage .titre sm
 .paysages button[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
 .plateau{position:relative;flex:none;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:16px;padding:6px 0 12px;
   background:color-mix(in srgb,var(--fond1) 90%,transparent);margin:0 -14px 6px;border-radius:0 0 22px 22px}
-.plateau:empty{display:none}
+.plateau:empty,.plateau[hidden]{display:none}
 .perso{margin:0;text-align:center;font:800 12px var(--police);color:var(--gris);transition:opacity .35s,transform .35s;opacity:.55;transform:scale(.86)}
 .perso[hidden]{display:none}
 .perso.arrive{animation:arrive .5s ease-out}
@@ -505,7 +505,7 @@ function visage(qui, air){
 }
 const persos = {};
 function plateauNeuf(){
-  plateau.textContent = "";
+  plateau.textContent = ""; plateau.hidden = false;
   Object.keys(persos).forEach(k => delete persos[k]);
   if (!C) return;
   C.personnes.forEach((qui, i) => {
@@ -922,7 +922,14 @@ function fin(){
     const ter = el("button", "gros second", u("terminer")); ter.type = "button"; ter.onclick = quitter;
     c.append(re, ter);
   }
-  fil.appendChild(c); defiler();
+  fil.appendChild(c);
+  // E4 (revue A a Z, 20 nov. 2026) : defiler() menait tout en bas, et le titre du resultat (« Parfait, sans une
+  // erreur ! ») restait a moitie cache sous le portrait. L'ecran de fin se lit depuis son titre : c'est le HAUT de
+  // la carte qu'on amene en vue. scrollTop, pas scrollIntoView ni un defilement doux (voir defiler()).
+  // Et le plateau se retire : plus personne ne parle, et ses 170 px sont ce qui manquait pour que le titre ET les
+  // boutons (« Continuer », « Terminer ») tiennent a l'ecran d'un telephone. plateauNeuf() le remet (« Rejouer »).
+  plateau.hidden = true;
+  setTimeout(() => { try{ fil.scrollTop += c.getBoundingClientRect().top - fil.getBoundingClientRect().top - 8; }catch(e){ defiler(); } }, 30);
 }
 
 // ---------------------------------------------------------------- les dialogues des Soins
