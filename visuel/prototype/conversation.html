@@ -708,7 +708,64 @@ function maReplique(c){
   b.appendChild(el("div", "fr", gabarit(trad(c), "fr")));
   ligne.appendChild(b); fil.appendChild(ligne); defiler();
 }
-const choixDe = id => (C.noeuds[id].choix || []).map((c, i) => Object.assign({ i }, c)).filter(c => vrai(c.si));
+// ===== L'ORDRE D'AFFICHAGE DES CHOIX (ligne 150, 20 nov. 2026) =====
+// Dans les donnees, la reponse fautive (« faux ») est ecrite EN DERNIER : 1 539 noeuds sur 1 644, jamais en premier.
+// Affichee dans l'ordre du fichier, elle apprenait « le dernier choix est le piege » (revue A a Z, a la suite du
+// defaut D9 des tuiles). Les donnees ne bougent pas -- un choix reste repere par son indice (c.i, S.essaye) -- :
+// c'est l'ordre d'AFFICHAGE qui change, calcule une fois par conversation, sans hasard, donc le meme a chaque
+// passage et quand les choix reviennent apres une erreur.
+//   - la place du piege est distribuee par paquets, dans l'ordre des noeuds : chaque place une fois par paquet,
+//     l'ordre du paquet venant d'une empreinte de l'id de la conversation et de l'id du noeud qui l'ouvre ;
+//   - les reponses justes gardent entre elles l'ordre du fichier ;
+//   - une demande de repetition (« repete ») reste a la fin : c'est un outil, pas une reponse a deviner ;
+//   - un noeud sans piege garde l'ordre du fichier.
+// Controle : node tests/conversations_ordre.js (il lit CE bloc, entre ses deux marques, et l'applique a toutes les
+// conversations : nulle part le piege ne tient la meme place dans plus de 60 % des noeuds).
+// [debut-ordre-choix]
+function empreinteChoix(s){
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function ordreDesChoix(conv){
+  const ordre = {}, sacs = {}, derniers = {}, nom = conv.id || "";
+  Object.keys(conv.noeuds || {}).forEach(id => {
+    const ch = conv.noeuds[id].choix || [];
+    const tous = ch.map((c, i) => i);
+    const pieges = tous.filter(i => ch[i].faux);
+    const repetes = tous.filter(i => ch[i].repete && !ch[i].faux);
+    const corps = tous.filter(i => repetes.indexOf(i) < 0);
+    if (!pieges.length || corps.length < 2){ ordre[id] = tous; return; }
+    const m = corps.length;
+    if (!(sacs[m] && sacs[m].length)){
+      const sac = corps.map((x, k) => ({ k, h: empreinteChoix(nom + "|" + id + "|" + m + "|" + k) }))
+                       .sort((a, b) => a.h - b.h || a.k - b.k).map(x => x.k);
+      // pas deux fois de suite la meme place d'un paquet au suivant
+      if (m > 2 && derniers[m] === sac[0]) sac.push(sac.shift());
+      sacs[m] = sac;
+    }
+    const cible = sacs[m].shift();
+    derniers[m] = cible;
+    let reste = corps.filter(i => pieges.indexOf(i) < 0);
+    // un deuxieme piege (21 noeuds) : sa place vient aussi d'une empreinte, il ne reste pas en queue
+    pieges.slice(1).forEach(f => reste.splice(empreinteChoix(nom + "|" + id + "|piege|" + f) % (reste.length + 1), 0, f));
+    reste.splice(Math.min(cible, reste.length), 0, pieges[0]);
+    ordre[id] = reste.concat(repetes);
+  });
+  return ordre;
+}
+// [fin-ordre-choix]
+let ORDRE_CHOIX = {}, ORDRE_CHOIX_DE = null;
+function ordreAffiche(id){
+  if (ORDRE_CHOIX_DE !== C){ ORDRE_CHOIX_DE = C; try{ ORDRE_CHOIX = ordreDesChoix(C); }catch(e){ ORDRE_CHOIX = {}; } }
+  return ORDRE_CHOIX[id];
+}
+// Les choix d'un noeud, DANS L'ORDRE D'AFFICHAGE ; chacun garde l'indice qu'il a dans les donnees (c.i).
+const choixDe = id => {
+  const tous = (C.noeuds[id].choix || []).map((c, i) => Object.assign({ i }, c));
+  const o = ordreAffiche(id);
+  return (o && o.length === tous.length ? o.map(i => tous[i]) : tous).filter(c => vrai(c.si));
+};
 const essayes = id => (S.essaye[id] = S.essaye[id] || new Set());
 
 function presentation(){

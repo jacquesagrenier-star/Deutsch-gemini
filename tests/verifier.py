@@ -674,6 +674,40 @@ def verifier_place_grammaire_soins(r, seuil, minimum):
           % (questions, " / ".join(str(total.get(k, 0)) for k in sorted(total)), trop, round(100 * seuil)))
 
 
+def verifier_piege_des_conversations(r):
+    """Dans une conversation, le piege ne tient pas toujours la meme place.
+
+    Suite du defaut D9 (ligne 150, 20 nov. 2026) : dans les donnees, la reponse
+    fautive (« faux ») est ecrite en dernier -- 1 539 noeuds sur 1 644 -- et la
+    page les affichait dans cet ordre. conversation.html calcule desormais un
+    ordre d'affichage (ordreDesChoix) ; le controle porte sur CET ordre, pas
+    sur le fichier : c'est tests/conversations_ordre.js, qui lit la fonction
+    dans la page. Il demande Node, comme tests/syntaxe.js ; sans lui, une
+    alerte dit que le controle n'est pas fait.
+    """
+    import shutil
+    import subprocess
+    script = os.path.join(RACINE, "tests", "conversations_ordre.js")
+    if not os.path.exists(script) or not os.path.isdir(os.path.join(RACINE, "visuel", "prototype", "conversation", "donnees")):
+        return
+    node = shutil.which("node")
+    if not node:
+        r.alerte("conversations", "Node absent : la place du piege dans les conversations n'est PAS controlee "
+                                  "(node tests/conversations_ordre.js)")
+        return
+    r.controle()
+    try:
+        res = subprocess.run([node, script], capture_output=True, timeout=120)
+        sortie = res.stdout.decode("utf-8", "replace").strip().splitlines()
+    except Exception as e:
+        r.echec("conversations", "tests/conversations_ordre.js n'a pas tourne : %s" % e)
+        return
+    if res.returncode != 0 or not sortie:
+        for ligne in ([l.strip() for l in sortie if l.startswith("   ")][:6] or ["tests/conversations_ordre.js : code %d, sans sortie" % res.returncode]):
+            r.echec("conversations", "place du piege (ordre affiche) : " + ligne)
+    print("   conversations   : " + (sortie[0] if sortie else "aucune sortie"))
+
+
 def verifier_comptes_figes(r, source):
     """Un libelle de bouton ne doit pas annoncer un NOMBRE d'exercices.
 
@@ -1983,6 +2017,7 @@ def main():
     verifier_jeux_exercices(r, source)
     verifier_indices_revelateurs(r)
     verifier_place_de_la_reponse(r)
+    verifier_piege_des_conversations(r)
     verifier_langue_enseignee(r, source)
     verifier_scenes_espagnol(r)
     verifier_arabe_espagnol(r)
