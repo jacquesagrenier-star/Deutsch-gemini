@@ -4,7 +4,8 @@ Traductions faites le 16 nov. 2026 (trois traducteurs, trois langues chacun). Le
 e01-e04 (pflege/sources/ecrit/). Rien n'est montré à un soignant avant cette relecture.
 
 ## L'allemand ⚕️
-- La fiche de Frau Weber : « Medikamente : gegen Bluthochdruck » (l'écrit e03 ne nomme pas le médicament).
+- La fiche de Frau Weber : « Medikamente : gegen Bluthochdruck » (l'écrit e03 ne nomme pas le médicament ;
+  l'hypertension figure bien dans ses diagnostics, vérifié le 19 nov. ; ni dose ni horaire ajoutés, e03 n'en donne pas).
 - Les mauvaises allergies proposées (« gegen Pflaster », « gegen Jod ») : choisies pour être plausibles.
 - L'alphabet des questions indirectes : « Darf ich fragen, ob Sie Wertsachen dabeihaben? » (dabeihaben en un mot).
 

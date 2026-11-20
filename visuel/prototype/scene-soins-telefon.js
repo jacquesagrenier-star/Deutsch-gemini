@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "mural de recados",
    "ar": "لوحة الإعلانات",
    "pl": "tablica korkowa",
-   "ru": "доска объявлений"
+   "ru": "доска объявлений",
+   "es": "el tablero de anuncios (de corcho)"
   },
   {
    "id": "dienstplan",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "escala de trabalho",
    "ar": "جدول المناوبات",
    "pl": "grafik dyżurów",
-   "ru": "график смен"
+   "ru": "график смен",
+   "es": "el rol de turnos (cuadro de turnos)"
   },
   {
    "id": "medikamentenschrank",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "armário de medicamentos",
    "ar": "خزانة الأدوية",
    "pl": "szafka na leki",
-   "ru": "шкаф для лекарств"
+   "ru": "шкаф для лекарств",
+   "es": "el armario de medicamentos (del área)"
   },
   {
    "id": "btm-schrank",
@@ -176,7 +179,8 @@ window.SCENE = {
    "pt": "armário de medicamentos controlados",
    "ar": "خزانة المواد المخدّرة",
    "pl": "szafa na środki odurzające",
-   "ru": "сейф для наркотических средств"
+   "ru": "сейф для наркотических средств",
+   "es": "el armario de medicamentos controlados (estupefacientes)"
   },
   {
    "id": "fenster",
@@ -235,7 +239,8 @@ window.SCENE = {
    "pt": "desinfetante",
    "ar": "مطهّر",
    "pl": "środek dezynfekujący",
-   "ru": "дезинфицирующее средство"
+   "ru": "дезинфицирующее средство",
+   "es": "el desinfectante"
   },
   {
    "id": "kuehlschrank",
@@ -294,7 +299,8 @@ window.SCENE = {
    "pt": "carrinho de emergência",
    "ar": "عربة الطوارئ",
    "pl": "wózek reanimacyjny",
-   "ru": "реанимационная тележка"
+   "ru": "реанимационная тележка",
+   "es": "el carro de paro (carro rojo)"
   },
   {
    "id": "defibrillator",
@@ -323,7 +329,8 @@ window.SCENE = {
    "pt": "desfibrilador (DEA: desfibrilador externo automático)",
    "ar": "جهاز إزالة الرجفان (AED: مزيل رجفان خارجي آلي)",
    "pl": "defibrylator (AED: automatyczny defibrylator zewnętrzny)",
-   "ru": "дефибриллятор (АНД: автоматический наружный)"
+   "ru": "дефибриллятор (АНД: автоматический наружный)",
+   "es": "el desfibrilador (DEA: desfibrilador externo automático)"
   },
   {
    "id": "computer",
@@ -532,7 +539,8 @@ window.SCENE = {
    "pt": "enfermeiro",
    "ar": "ممرّض مؤهّل",
    "pl": "pielęgniarz (dyplomowany)",
-   "ru": "медбрат (дипломированный)"
+   "ru": "медбрат (дипломированный)",
+   "es": "el enfermero (titulado; título alemán desde 2020)"
   },
   {
    "id": "hoerer",
@@ -591,7 +599,8 @@ window.SCENE = {
    "pt": "prancheta",
    "ar": "لوح بمشبك",
    "pl": "podkładka z klipsem",
-   "ru": "планшет с зажимом"
+   "ru": "планшет с зажимом",
+   "es": "el portapapeles (la tabla con clip)"
   },
   {
    "id": "mappe",
@@ -620,7 +629,8 @@ window.SCENE = {
    "pt": "pasta",
    "ar": "ملفّ، حافظة أوراق",
    "pl": "teczka",
-   "ru": "папка"
+   "ru": "папка",
+   "es": "la carpeta, el fólder"
   },
   {
    "id": "tasse",
@@ -679,7 +689,8 @@ window.SCENE = {
    "pt": "aparelho de pressão",
    "ar": "جهاز قياس الضغط",
    "pl": "ciśnieniomierz",
-   "ru": "тонометр"
+   "ru": "тонометр",
+   "es": "el tensiómetro (baumanómetro)"
   },
   {
    "id": "blutzuckermessgeraet",
@@ -708,7 +719,8 @@ window.SCENE = {
    "pt": "glicosímetro",
    "ar": "جهاز قياس السكر",
    "pl": "glukometr",
-   "ru": "глюкометр"
+   "ru": "глюкометр",
+   "es": "el glucómetro"
   },
   {
    "id": "thermometer",
@@ -737,7 +749,8 @@ window.SCENE = {
    "pt": "termômetro",
    "ar": "ميزان الحرارة",
    "pl": "termometr",
-   "ru": "термометр"
+   "ru": "термометр",
+   "es": "el termómetro"
   },
   {
    "id": "stuhl",
@@ -1095,7 +1108,7 @@ window.SCENE = {
      "type": "situation",
      "phrase": "Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?",
      "sens": "Pouvez-vous venir l'examiner, s'il vous plaît ? Et que dois-je faire en attendant ?",
-     "n": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant. ⚕️",
+     "n": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant. Les gestes de soins, eux, n'attendent pas : relever le buste, rester près du patient, reprendre les constantes. ⚕️",
      "source": "d07-sbar/empfehlung"
     },
     {
@@ -1165,7 +1178,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: the Konjunktiv I of <b>können</b>; you report an opinion without taking it on as your own.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: the Konjunktiv I of <b>haben</b>, in a written report ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: the Konjunktiv I of the future, in a written account.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R for Recommendation (Empfehlung): say what you are asking for.</b> “Können Sie bitte kommen?” And never give a medication without an order: ask what you should do in the meantime. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R for Recommendation (Empfehlung): say what you are asking for.</b> “Können Sie bitte kommen?” And never give a medication without an order: ask what you should do in the meantime. Nursing measures, though, don't wait: raise the head of the bed, stay with the patient, recheck the vital signs. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>A verbal order is read back to the doctor, word for word.</b> “Ich wiederhole: …” Then it is documented and signed later. That's what prevents mistakes over the phone. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>With the manager: “Sie”, your name and the reason.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” And you call early, before your shift starts."
    },
@@ -1231,7 +1244,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: <b>können</b> fiilinin Konjunktiv I biçimi; bir görüşü, onu sahiplenmeden aktarırsın.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: <b>haben</b> fiilinin Konjunktiv I biçimi, yazılı bir raporda ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: gelecek zamanın Konjunktiv I biçimi, bir raporda.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R, yani Recommendation (Empfehlung): ne istediğini söyle.</b> “Können Sie bitte kommen?” Ve talimat olmadan ilaç verme: beklerken ne yapman gerektiğini sor. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R, yani Recommendation (Empfehlung): ne istediğini söyle.</b> “Können Sie bitte kommen?” Ve talimat olmadan ilaç verme: beklerken ne yapman gerektiğini sor. Bakım önlemleri ise beklemez: hastanın üst gövdesini yükselt, yanında kal, yaşamsal bulgularını yeniden ölç. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Sözlü bir talimat doktora kelimesi kelimesine tekrarlanır.</b> “Ich wiederhole: …” Sonra kaydedilir ve daha sonra imzalatılır. Telefondaki hataları önleyen budur. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Sorumlu hemşireyle: “Sie”, adın ve nedeni.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” Ve erkenden, vardiya başlamadan önce aranır."
    },
@@ -1297,7 +1310,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: Konjunktiv I від <b>können</b>; чужу думку переказують, не підтверджуючи її від себе.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: Konjunktiv I від <b>haben</b>, у письмовому звіті ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: Konjunktiv I майбутнього часу, у звіті.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R — Recommendation (Empfehlung): скажи, про що просиш.</b> «Können Sie bitte kommen?» І не давай ліків без призначення: запитай, що робити до приходу лікаря. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R — Recommendation (Empfehlung): скажи, про що просиш.</b> «Können Sie bitte kommen?» І не давай ліків без призначення: запитай, що робити до приходу лікаря. А доглядові заходи не чекають: підняти верхню частину тіла, лишатися поруч із пацієнтом, ще раз виміряти життєві показники. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Усне призначення повторюють лікареві слово в слово.</b> «Ich wiederhole: …» Потім його записують і пізніше дають лікареві підписати. Саме це запобігає помилкам по телефону. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Зі старшою медсестрою: «Sie», своє імʼя і причина.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» І телефонують рано, до початку зміни."
    },
@@ -1363,7 +1376,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: <span lang=\"de\">Konjunktiv I</span> از <b>können</b>؛ نظری را نقل می‌کنیم، بی‌آنکه خودمان آن را تأیید کنیم.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: <span lang=\"de\">Konjunktiv I</span> از <b>haben</b>، در یک گزارشِ نوشتاری ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: <span lang=\"de\">Konjunktiv I</span> برای آینده، در یک گزارش.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R یعنی Recommendation (Empfehlung، درخواست): بگو چه می‌خواهی.</b> «Können Sie bitte kommen?» و بدون دستور پزشک دارو نده: بپرس در این فاصله چه باید بکنی. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R یعنی Recommendation (Empfehlung، درخواست): بگو چه می‌خواهی.</b> «Können Sie bitte kommen?» و بدون دستور پزشک دارو نده: بپرس در این فاصله چه باید بکنی. اما کارهای مراقبتی منتظر نمی‌مانند: بالاتنه را بالا بیاور، کنار بیمار بمان و علائم حیاتی را دوباره بگیر. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>دستور شفاهی را کلمه به کلمه برای پزشک تکرار می‌کنیم.</b> «Ich wiederhole: …» بعد آن را ثبت می‌کنیم و بعداً امضای پزشک را می‌گیریم. همین است که جلوی خطا پشت تلفن را می‌گیرد. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>با سرپرستار: «Sie»، نام خودت، و دلیل.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» و زود زنگ می‌زنیم، پیش از شروع شیفت."
    },
@@ -1429,7 +1442,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: صيغة <span lang=\"de\">Konjunktiv I</span> من <b>können</b>؛ ننقل رأيًا دون أن نتبنّاه.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: صيغة <span lang=\"de\">Konjunktiv I</span> من <b>haben</b>، في تقرير مكتوب ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: صيغة <span lang=\"de\">Konjunktiv I</span> للمستقبل، في تقرير.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R تعني Recommendation (Empfehlung، الطلب): قل ما تطلبه.</b> «Können Sie bitte kommen?» ولا تعطِ دواءً من دون وصفة: اسأل ماذا عليك أن تفعل إلى أن يصل الطبيب. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R تعني Recommendation (Empfehlung، الطلب): قل ما تطلبه.</b> «Können Sie bitte kommen?» ولا تعطِ دواءً من دون وصفة: اسأل ماذا عليك أن تفعل إلى أن يصل الطبيب. أما إجراءات الرعاية فلا تنتظر: ارفع الجزء العلوي من جسم المريض، وابقَ بجانبه، وأعد قياس العلامات الحيوية. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>الأمر الطبي الشفهي يُعاد على الطبيب كلمة بكلمة.</b> «Ich wiederhole: …» ثم يُدوَّن، ويُطلب توقيعه لاحقًا. هذا ما يمنع الأخطاء على الهاتف. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>مع رئيسة التمريض: «Sie»، واسمك، والسبب.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» ونتصل مبكرًا، قبل بداية المناوبة."
    },
@@ -1495,7 +1508,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: o Konjunktiv I de <b>können</b>; relata-se uma opinião sem assumi-la como sua.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: o Konjunktiv I de <b>haben</b>, num relatório escrito ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: o Konjunktiv I do futuro, num relato escrito.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R de Recommendation (Empfehlung): diga o que você está pedindo.</b> “Können Sie bitte kommen?” E não dê medicamento sem prescrição: pergunte o que você deve fazer enquanto espera. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R de Recommendation (Empfehlung): diga o que você está pedindo.</b> “Können Sie bitte kommen?” E não dê medicamento sem prescrição: pergunte o que você deve fazer enquanto espera. Já os cuidados de enfermagem não esperam: elevar a cabeceira, ficar perto do paciente, verificar de novo os sinais vitais. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Uma prescrição verbal se repete para o médico, palavra por palavra.</b> “Ich wiederhole: …” Depois, ela é registrada e assinada pelo médico mais tarde. É isso que evita erros por telefone. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Com a coordenadora: “Sie”, o seu nome e o motivo.</b> “Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” E liga-se cedo, antes do início do plantão."
    },
@@ -1561,7 +1574,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: Konjunktiv I od <b>können</b>; przekazuje się czyjąś opinię, nie przyjmując jej za własną.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: Konjunktiv I od <b>haben</b>, w pisemnym raporcie ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: Konjunktiv I czasu przyszłego, w sprawozdaniu.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R jak Recommendation (Empfehlung): powiedz, o co prosisz.</b> „Können Sie bitte kommen?” I nie podawaj leku bez zlecenia: zapytaj, co masz robić do czasu przyjścia lekarza. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R jak Recommendation (Empfehlung): powiedz, o co prosisz.</b> „Können Sie bitte kommen?” I nie podawaj leku bez zlecenia: zapytaj, co masz robić do czasu przyjścia lekarza. Czynności pielęgnacyjne nie czekają: unieś górną część ciała pacjenta, zostań przy nim, zmierz ponownie parametry życiowe. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Ustne zlecenie powtarza się lekarzowi słowo w słowo.</b> „Ich wiederhole: …” Potem się je zapisuje i później daje do podpisu. To właśnie chroni przed błędami przez telefon. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Z przełożoną: „Sie”, twoje nazwisko i powód.</b> „Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.” I dzwoni się wcześnie, przed początkiem dyżuru."
    },
@@ -1627,7 +1640,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: Konjunktiv I от <b>können</b>; передают чужое мнение, не выдавая его за своё.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: Konjunktiv I от <b>haben</b>, в письменном отчёте ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: Konjunktiv I будущего времени, в отчёте.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R — Recommendation (Empfehlung): скажи, о чём ты просишь.</b> «Können Sie bitte kommen?» И не давай лекарств без назначения: спроси, что делать до прихода врача. ⚕️",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R — Recommendation (Empfehlung): скажи, о чём ты просишь.</b> «Können Sie bitte kommen?» И не давай лекарств без назначения: спроси, что делать до прихода врача. А меры по уходу не ждут: приподнять верхнюю часть тела, оставаться рядом с пациентом, ещё раз измерить жизненные показатели. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Устное назначение повторяют врачу слово в слово.</b> «Ich wiederhole: …» Потом его записывают, а позже врач его подписывает. Именно это предотвращает ошибки по телефону. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Со старшей медсестрой — «Sie», своё имя и причина.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» И звонят рано, до начала смены."
    },
@@ -1693,7 +1706,6 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: el Konjunktiv I de <b>können</b>; se transmite una opinión sin hacerla propia.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: el Konjunktiv I de <b>haben</b>, en un informe escrito ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: el Konjunktiv I del futuro, en un informe.",
-    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R de Recommendation (Empfehlung): di lo que pides.</b> «Können Sie bitte kommen?» Y no des ningún medicamento sin indicación médica: pregunta qué debes hacer mientras tanto. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Una indicación verbal se le repite al médico, palabra por palabra.</b> «Ich wiederhole: …» Luego se anota y se hace firmar más tarde. Eso es lo que evita los errores por teléfono. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Con la jefa de la unidad: «Sie», tu nombre y el motivo.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» Y se llama temprano, antes de que empiece el turno."
    },

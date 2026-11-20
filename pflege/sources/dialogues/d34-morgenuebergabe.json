@@ -13,7 +13,7 @@
  "but": {"fr": "Écouter une relève courte ; redemander ce qu'on n'a pas compris : « Wie bitte? », « Welches Zimmer? », « Um wie viel Uhr? », « Kannst du das bitte wiederholen? » ; demander le sens d'un mot ; relire ses notes à la fin."},
  "grammaire": ["g21", "g06"],
  "telc": ["hoeren", "oral-1"],
- "relire_notes": {"fr": "{pohl} : admis à 23 h 30 par les urgences (calculs biliaires), opéré à 8 h, à jeun depuis minuit (rien manger, rien boire, ne pas fumer : selon le protocole de l'anesthésie) ; {lehmann} : kaliémie de contrôle 5,4 mmol/l, résultat à 22 h (la veille 6,2, dialogue 19 ; seuil d'appel 6, dialogue 27) : « mieux », encore un peu haut, à signaler à la médecin à la visite ? ; {brandt} : nuit calme, pas de douleur."},
+ "relire_notes": {"fr": "{pohl} : admis à 23 h 30 par les urgences (calculs biliaires), opéré à 8 h, à jeun depuis minuit (rien manger, rien boire, ne pas fumer : dit comme la consigne de l'anesthésie pour ce patient ; la règle dépend du protocole de la maison) ; {lehmann} : kaliémie de contrôle 5,4 mmol/l, résultat à 22 h (la veille 6,2, dialogue 19 ; seuil d'appel 6, dialogue 27) : « mieux », mais encore au-dessus de la norme, à transmettre à la médecin le matin même, au plus tard à la visite ; {brandt} : nuit calme, pas de douleur."},
  "redemittel": [
   {"t": "Das war zu schnell. Kannst du das bitte wiederholen?", "fr": "C'était trop rapide. Tu peux répéter, s'il te plaît ?", "fonction": "redemander"},
   {"t": "Wie bitte? Welches Zimmer?", "fr": "Pardon ? Quelle chambre ?", "fonction": "redemander"},
@@ -87,12 +87,12 @@
    ],
    "choix": [
     {"t": "Was bedeutet „nüchtern“?", "fr": "Que veut dire « nüchtern » ?", "va": "lehmann",
-     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération."}]},
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation. Das hat die Anästhesie so angeordnet.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération. C'est l'anesthésie qui l'a prescrit."}]},
     {"t": "„Nüchtern“? Das Wort kenne ich nicht. Kannst du es mir erklären?", "fr": "« Nüchtern » ? Je ne connais pas ce mot. Tu peux me l'expliquer ?", "va": "lehmann",
-     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération."}]},
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Er darf nichts essen und nichts trinken. Und nicht rauchen. Bis zur Operation. Das hat die Anästhesie so angeordnet.", "fr": "Il ne doit rien manger et rien boire. Et ne pas fumer. Jusqu'à l'opération. C'est l'anesthésie qui l'a prescrit."}]},
     {"faux": true, "t": "Ah, nüchtern: Er trinkt keinen Alkohol. Gut.", "fr": "Ah, « nüchtern » : il ne boit pas d'alcool. Bien.",
      "puis": [{"qui": "yusuf", "air": "amuse", "t": "Ha! Das auch. Aber hier heißt es: gar nichts essen und trinken.", "fr": "Ha ! Ça aussi. Mais ici, ça veut dire : ne rien manger et ne rien boire du tout."}],
-     "aide": {"fr": "<b>À l'hôpital, « nüchtern » veut dire « à jeun » : rien manger, rien boire.</b> Dans la vie de tous les jours, « nüchtern » veut aussi dire « pas ivre ». Un mot que tu ne connais pas, demande-le : « Was bedeutet …? »"}}
+     "aide": {"fr": "<b>À l'hôpital, « nüchtern » veut dire « à jeun » : rien manger, rien boire.</b> À partir de quelle heure exactement, c'est l'anesthésie qui le fixe pour chaque patient. Dans la vie de tous les jours, « nüchtern » veut aussi dire « pas ivre ». Un mot que tu ne connais pas, demande-le : « Was bedeutet …? »"}}
    ]
   },
   "lehmann": {
@@ -102,9 +102,9 @@
    ],
    "choix": [
     {"t": "Entschuldigung, wie viel? Kannst du die Zahl bitte noch einmal sagen?", "fr": "Pardon, combien ? Tu peux redire le chiffre, s'il te plaît ?", "va": "brandt",
-     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. Et elle a bien dormi."}]},
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Das ist noch etwas zu hoch: Sag es bitte heute Morgen der Ärztin. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. C'est encore un peu trop haut : dis-le à la médecin ce matin, s'il te plaît. Et elle a bien dormi."}]},
     {"t": "Fünf Komma wie viel? Das habe ich nicht verstanden.", "fr": "Cinq virgule combien ? Je n'ai pas compris.", "va": "brandt",
-     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. Et elle a bien dormi."}]},
+     "puis": [{"qui": "yusuf", "air": "sourire", "t": "Fünf Komma vier. Das Ergebnis war um zweiundzwanzig Uhr da. Das ist noch etwas zu hoch: Sag es bitte heute Morgen der Ärztin. Und sie hat gut geschlafen.", "fr": "Cinq virgule quatre. Le résultat est arrivé à vingt-deux heures. C'est encore un peu trop haut : dis-le à la médecin ce matin, s'il te plaît. Et elle a bien dormi."}]},
     {"faux": true, "t": "Fünf. Okay, dann ist alles gut.", "fr": "Cinq. D'accord, alors tout va bien.",
      "puis": [{"qui": "yusuf", "air": "perplexe", "t": "Nicht fünf: fünf Komma vier. Das ist ein Unterschied.", "fr": "Pas cinq : cinq virgule quatre. Ce n'est pas pareil."}],
      "aide": {"fr": "<b>Une valeur se note en entier, avec ce qui vient après la virgule.</b> Si tu n'as pas entendu la fin, demande : « Kannst du die Zahl bitte noch einmal sagen? »"}}
@@ -129,9 +129,9 @@
     {"qui": "yusuf", "air": "question", "t": "Das war's. Hast du alles?", "fr": "C'est tout. Tu as tout ?"}
    ],
    "choix": [
-    {"t": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer 15, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier. {brandt}: ruhige Nacht.", "dit": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer fünfzehn, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier. {brandt}: ruhige Nacht.", "fr": "Je relis ce que j'ai noté : {pohl}, chambre 15, opération à huit heures, à jeun. {lehmann} : potassium cinq virgule quatre. {brandt} : nuit calme.", "va": "ende",
+    {"t": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer 15, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier, der Ärztin sagen. {brandt}: ruhige Nacht.", "dit": "Ich lese vor, was ich notiert habe: {pohl}, Zimmer fünfzehn, Operation um acht, nüchtern. {lehmann}: Kalium fünf Komma vier, der Ärztin sagen. {brandt}: ruhige Nacht.", "fr": "Je relis ce que j'ai noté : {pohl}, chambre 15, opération à huit heures, à jeun. {lehmann} : potassium cinq virgule quatre, le dire à la médecin. {brandt} : nuit calme.", "va": "ende",
      "puis": [{"qui": "yusuf", "air": "sourire", "t": "Perfekt. Alles richtig.", "fr": "Parfait. Tout est juste."}]},
-    {"t": "Moment, ich lese kurz vor: Zimmer 15, {pohl}, OP um acht Uhr, nüchtern. Zimmer 14, Kalium fünf Komma vier. Zimmer 12, alles ruhig. Stimmt das?", "dit": "Moment, ich lese kurz vor: Zimmer fünfzehn, {pohl}, OP um acht Uhr, nüchtern. Zimmer vierzehn, Kalium fünf Komma vier. Zimmer zwölf, alles ruhig. Stimmt das?", "fr": "Attends, je relis vite : chambre 15, {pohl}, opération à huit heures, à jeun. Chambre 14, potassium cinq virgule quatre. Chambre 12, tout calme. C'est juste ?", "va": "ende",
+    {"t": "Moment, ich lese kurz vor: Zimmer 15, {pohl}, OP um acht Uhr, nüchtern. Zimmer 14, Kalium fünf Komma vier, Ärztin informieren. Zimmer 12, alles ruhig. Stimmt das?", "dit": "Moment, ich lese kurz vor: Zimmer fünfzehn, {pohl}, OP um acht Uhr, nüchtern. Zimmer vierzehn, Kalium fünf Komma vier, Ärztin informieren. Zimmer zwölf, alles ruhig. Stimmt das?", "fr": "Attends, je relis vite : chambre 15, {pohl}, opération à huit heures, à jeun. Chambre 14, potassium cinq virgule quatre, prévenir la médecin. Chambre 12, tout calme. C'est juste ?", "va": "ende",
      "puis": [{"qui": "yusuf", "air": "sourire", "t": "Perfekt. Alles richtig.", "fr": "Parfait. Tout est juste."}]},
     {"faux": true, "t": "Ja, alles. {pohl}, Zimmer 15, Operation um neun.", "dit": "Ja, alles. {pohl}, Zimmer fünfzehn, Operation um neun.", "fr": "Oui, tout. {pohl}, chambre 15, opération à neuf heures.",
      "puis": [{"qui": "yusuf", "air": "surprise", "t": "Um neun? Nein, um acht! Gut, dass du das gesagt hast.", "fr": "À neuf heures ? Non, à huit ! Heureusement que tu l'as dit."}],

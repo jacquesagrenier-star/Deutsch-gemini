@@ -16,7 +16,7 @@
  "redemittel": [
   {"t": "Hier ist {yusuf} von der {station}. Ich rufe wegen {brandt:dat} an, Zimmer 12.", "dit": "Hier ist {yusuf} von der {station:dit}. Ich rufe wegen {brandt:dat} an, Zimmer zwölf.", "fr": "Ici {yusuf}, du {station}. J'appelle pour {brandt}, chambre 12.", "fonction": "transmettre"},
   {"t": "Er hat seit einer Stunde Atemnot.", "fr": "Il est essoufflé depuis une heure.", "fonction": "transmettre"},
-  {"t": "Die Sauerstoffsättigung liegt bei 88 Prozent.", "dit": "Die Sauerstoffsättigung liegt bei achtundachtzig Prozent.", "fr": "La saturation en oxygène est à 88 %.", "relire": true, "relire_note": "Valeur d'alerte.", "fonction": "transmettre"},
+  {"t": "Die Sauerstoffsättigung liegt bei 88 Prozent bei Raumluft.", "dit": "Die Sauerstoffsättigung liegt bei achtundachtzig Prozent bei Raumluft.", "fr": "La saturation en oxygène est à 88 % à l'air ambiant.", "relire": true, "relire_note": "Valeur d'alerte.", "fonction": "transmettre"},
   {"t": "Er ist am Dienstag an der Hüfte operiert worden.", "fr": "Il a été opéré de la hanche mardi.", "fonction": "transmettre"},
   {"t": "Ich mache mir Sorgen. Ich glaube, er muss schnell untersucht werden.", "fr": "Je suis inquiet. Je pense qu'il doit être examiné rapidement.", "fonction": "transmettre"},
   {"t": "Können Sie bitte kommen und ihn sich ansehen?", "fr": "Pouvez-vous venir l'examiner, s'il vous plaît ?", "fonction": "demander"},
@@ -76,7 +76,7 @@
   "einschaetzung": {
    "dit": [],
    "choix": [
-    {"t": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich habe Angst, dass es etwas mit der Lunge ist.", "fr": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. J'ai peur que ce soit quelque chose aux poumons.", "va": "empfehlung",
+    {"t": "Ich mache mir Sorgen. Sein Zustand hat sich in der letzten Stunde deutlich verschlechtert. Ich vermute, dass es etwas mit der Lunge ist.", "fr": "Je suis inquiet. Son état s'est nettement aggravé depuis une heure. Je soupçonne quelque chose aux poumons.", "va": "empfehlung",
      "relire": true, "relire_note": "Évaluation infirmière (A de SBAR) : formulation sans poser de diagnostic.",
      "puis": [{"qui": "kraemer", "air": "sourire", "t": "Gut, dass Sie anrufen.", "fr": "Vous avez bien fait d'appeler."}]},
     {"t": "Ich finde, er hat sich deutlich verschlechtert. Ich glaube, dass er schnell ärztlich untersucht werden muss.", "fr": "Je trouve qu'il s'est nettement aggravé. Je pense qu'il doit être examiné rapidement par un médecin.", "va": "empfehlung",
@@ -95,7 +95,7 @@
      "puis": [{"qui": "kraemer", "air": "attentive", "t": "Ich komme in zehn Minuten. Geben Sie ihm zwei Liter Sauerstoff über die Nasenbrille und lagern Sie den Oberkörper hoch.", "fr": "J'arrive dans dix minutes. Donnez-lui deux litres d'oxygène aux lunettes et relevez-lui le buste.", "relire": true, "relire_note": "Prescription orale du cas."}]},
     {"faux": true, "t": "Ich habe ihm schon mal ein Schmerzmittel gegeben. Das reicht vielleicht.", "fr": "Je lui ai déjà donné un antidouleur. Ça suffira peut-être.",
      "puis": [{"qui": "kraemer", "air": "surprise", "t": "Was haben Sie ihm gegeben? Und wer hat das angeordnet?", "fr": "Vous lui avez donné quoi ? Et qui l'a prescrit ?"}],
-     "aide": {"fr": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant."},
+     "aide": {"fr": "<b>R comme Recommendation (Empfehlung) : dis ce que tu demandes.</b> « Können Sie bitte kommen? » Et ne donne pas de médicament sans prescription : demande ce que tu dois faire en attendant. Les gestes de soins, eux, n'attendent pas : relever le buste, rester près du patient, reprendre les constantes."},
      "relire": true, "relire_note": "Vérifier l'aide."}
    ]
   },
@@ -105,7 +105,7 @@
     {"t": "Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.", "fr": "Je répète : deux litres d'oxygène aux lunettes, buste relevé. Vous arrivez dans dix minutes.", "va": null,
      "relire": true, "relire_note": "Boucle fermée de la prescription orale.",
      "puis": [{"qui": "kraemer", "air": "sourire", "t": "Richtig. Ich bin gleich da.", "fr": "C'est ça. J'arrive tout de suite."}]},
-    {"t": "Also: zwei Liter Sauerstoff über die Nasenbrille und den Oberkörper hoch. Ich dokumentiere die Anordnung. Bis gleich.", "fr": "Donc : deux litres d'oxygène aux lunettes et le buste relevé. Je note la prescription. À tout de suite.", "va": null,
+    {"t": "Also: zwei Liter Sauerstoff über die Nasenbrille und den Oberkörper hoch. Danach kontrolliere ich die Sättigung noch einmal. Ich dokumentiere die Anordnung. Bis gleich.", "fr": "Donc : deux litres d'oxygène aux lunettes et le buste relevé. Ensuite, je recontrôle la saturation. Je note la prescription. À tout de suite.", "va": null,
      "relire": true, "relire_note": "Prescription orale : la noter, la faire signer ensuite.",
      "puis": [{"qui": "kraemer", "air": "sourire", "t": "Genau. Ich bin unterwegs.", "fr": "Exactement. Je suis en route."}]},
     {"faux": true, "t": "Okay, alles klar. Tschüss!", "fr": "OK, c'est bon. Salut !",

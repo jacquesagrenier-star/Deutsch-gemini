@@ -59,7 +59,7 @@ P = {
         "verlauf": [("kein Kopfanprall", "Sie ist nicht mit dem Kopf aufgeschlagen.", "Elle ne s'est pas cogné la tête."),
                     ("Hausärztin informiert, Sturzprotokoll geschrieben", "Die Hausärztin wurde informiert, das Sturzprotokoll ist geschrieben.",
                      "La médecin traitante a été informée, le rapport de chute est écrit.")],
-        "offen": [("Röntgen li. Handgelenk um 11:00", "Um elf Uhr wird das linke Handgelenk geröntgt.", "À 11 h, on fait une radio du poignet gauche.")],
+        "offen": [("Hausärztin kommt am Montag", "Am Montag kommt die Hausärztin und sieht sich das Handgelenk an.", "Lundi, la médecin traitante passe et regarde le poignet.")],
     },
     "schulze": {
         "de": "Herr Schulze", "fr": "M. Schulze", "lieu": "Haus Lindenhof", "zimmer": ("3", "drei"), "alter": ("87", "siebenundachtzig"),

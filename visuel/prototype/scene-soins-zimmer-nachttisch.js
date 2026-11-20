@@ -89,7 +89,8 @@ window.SCENE = {
    "pt": "aparelho auditivo",
    "ar": "سمّاعة أذن طبية",
    "pl": "aparat słuchowy",
-   "ru": "слуховой аппарат"
+   "ru": "слуховой аппарат",
+   "es": "el audífono"
   },
   {
    "id": "wasserglas",
@@ -118,7 +119,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "schnabelbecher",
@@ -147,7 +149,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "brille",
@@ -206,7 +209,8 @@ window.SCENE = {
    "pt": "prótese dentária, dentadura",
    "ar": "طقم أسنان، أسنان اصطناعية",
    "pl": "proteza zębowa",
-   "ru": "зубной протез"
+   "ru": "зубной протез",
+   "es": "la prótesis dental"
   },
   {
    "id": "infusionsstaender",
@@ -235,7 +239,8 @@ window.SCENE = {
    "pt": "suporte de soro",
    "ar": "حامل المحلول الوريدي",
    "pl": "stojak na kroplówkę",
-   "ru": "штатив для капельницы"
+   "ru": "штатив для капельницы",
+   "es": "el portasueros (el pie de suero)"
   },
   {
    "id": "sichtschutz",
@@ -264,7 +269,8 @@ window.SCENE = {
    "pt": "biombo",
    "ar": "حاجز الخصوصية",
    "pl": "parawan",
-   "ru": "ширма"
+   "ru": "ширма",
+   "es": "el biombo (la mampara)"
   },
   {
    "id": "pflegebett",
@@ -310,7 +316,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "bettgitter",
@@ -339,7 +346,8 @@ window.SCENE = {
    "pt": "grade da cama",
    "ar": "حاجز السرير",
    "pl": "barierka łóżka",
-   "ru": "боковое ограждение кровати"
+   "ru": "боковое ограждение кровати",
+   "es": "el barandal de la cama (la baranda)"
   },
   {
    "id": "kissen",
@@ -445,7 +453,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   }
  ],
  "grosPlans": [],

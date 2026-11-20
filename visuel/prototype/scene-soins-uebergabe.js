@@ -179,7 +179,8 @@ window.SCENE = {
    "pt": "caixinha da prótese dentária",
    "ar": "علبة طقم الأسنان",
    "pl": "pojemnik na protezę zębową",
-   "ru": "контейнер для зубного протеза"
+   "ru": "контейнер для зубного протеза",
+   "es": "el estuche para la prótesis dental"
   },
   {
    "id": "schnabelbecher",
@@ -208,7 +209,8 @@ window.SCENE = {
    "pt": "copo com bico",
    "ar": "كوب بفوهة للشرب",
    "pl": "kubek z dzióbkiem",
-   "ru": "поильник"
+   "ru": "поильник",
+   "es": "el vaso con boquilla"
   },
   {
    "id": "wasserglas",
@@ -237,7 +239,8 @@ window.SCENE = {
    "pt": "copo d'água",
    "ar": "كوب ماء",
    "pl": "szklanka na wodę",
-   "ru": "стакан для воды"
+   "ru": "стакан для воды",
+   "es": "el vaso de agua"
   },
   {
    "id": "trinkprotokoll",
@@ -266,7 +269,8 @@ window.SCENE = {
    "pt": "folha de controle de ingestão hídrica",
    "ar": "سجلّ السوائل المتناولة",
    "pl": "karta płynów wypitych",
-   "ru": "лист учёта выпитой жидкости"
+   "ru": "лист учёта выпитой жидкости",
+   "es": "el registro de ingesta de líquidos (hoja de control de líquidos)"
   },
   {
    "id": "kugelschreiber",
@@ -325,7 +329,8 @@ window.SCENE = {
    "pt": "oxímetro de pulso",
    "ar": "مقياس التأكسج النبضي",
    "pl": "pulsoksymetr",
-   "ru": "пульсоксиметр"
+   "ru": "пульсоксиметр",
+   "es": "el oxímetro de pulso (pulsioxímetro)"
   },
   {
    "id": "tisch",
@@ -444,7 +449,8 @@ window.SCENE = {
    "pt": "pulseira de identificação",
    "ar": "سوار تعريف المريض",
    "pl": "opaska identyfikacyjna pacjenta",
-   "ru": "идентификационный браслет пациента"
+   "ru": "идентификационный браслет пациента",
+   "es": "el brazalete de identificación"
   },
   {
    "id": "nachthemd",
@@ -473,7 +479,8 @@ window.SCENE = {
    "pt": "camisola",
    "ar": "قميص النوم",
    "pl": "koszula nocna",
-   "ru": "ночная рубашка"
+   "ru": "ночная рубашка",
+   "es": "el camisón"
   },
   {
    "id": "verband",
@@ -562,7 +569,8 @@ window.SCENE = {
    "pt": "cobertor, edredom",
    "ar": "لحاف، غطاء السرير",
    "pl": "kołdra",
-   "ru": "одеяло"
+   "ru": "одеяло",
+   "es": "la cobija, la frazada"
   },
   {
    "id": "pflegebett",
@@ -591,7 +599,8 @@ window.SCENE = {
    "pt": "cama hospitalar",
    "ar": "سرير طبي",
    "pl": "łóżko rehabilitacyjne (szpitalne)",
-   "ru": "функциональная кровать"
+   "ru": "функциональная кровать",
+   "es": "la cama hospitalaria (cama clínica)"
   },
   {
    "id": "fieberkurve",
@@ -620,7 +629,8 @@ window.SCENE = {
    "pt": "gráfico de temperatura",
    "ar": "مخطط الحرارة",
    "pl": "karta gorączkowa",
-   "ru": "температурный лист"
+   "ru": "температурный лист",
+   "es": "la hoja de signos vitales (gráfica de temperatura)"
   },
   {
    "id": "pflegefachfrau",
@@ -649,7 +659,8 @@ window.SCENE = {
    "pt": "enfermeira",
    "ar": "ممرّضة مؤهّلة",
    "pl": "pielęgniarka (dyplomowana)",
-   "ru": "медсестра (дипломированная)"
+   "ru": "медсестра (дипломированная)",
+   "es": "la enfermera (titulada; título alemán desde 2020)"
   },
   {
    "id": "tablet",
@@ -708,7 +719,8 @@ window.SCENE = {
    "pt": "enfermeiro",
    "ar": "ممرّض مؤهّل",
    "pl": "pielęgniarz (dyplomowany)",
-   "ru": "медбрат (дипломированный)"
+   "ru": "медбрат (дипломированный)",
+   "es": "el enfermero (titulado; título alemán desde 2020)"
   },
   {
    "id": "uebergabeliste",
@@ -737,7 +749,8 @@ window.SCENE = {
    "pt": "folha de passagem de plantão",
    "ar": "ورقة تسليم المناوبة",
    "pl": "lista do przekazania dyżuru",
-   "ru": "лист передачи смены"
+   "ru": "лист передачи смены",
+   "es": "la hoja de entrega de turno"
   },
   {
    "id": "tochter",
@@ -1014,16 +1027,16 @@ window.SCENE = {
      "n": "Préposition + relatif : <b>mit der</b> (mit + datif ; die Tochter → <b>der</b>)."
     },
     {
-     "q": "Das Kissen, ___ der Fuß liegt, soll so bleiben.",
+     "q": "Das Kissen, ___ der Fuß liegt, soll nach Anordnung so bleiben.",
      "c": [
       "auf dem",
       "auf das",
       "das"
      ],
      "f": "kissen",
-     "phrase": "Das Kissen, auf dem der Fuß liegt, soll so bleiben.",
-     "sens": "Le coussin sur lequel repose le pied doit rester comme ça.",
-     "n": "<b>liegen auf</b> + datif (où ? sans mouvement) : auf <b>dem</b>. Le pied surélevé fait partie de la consigne ⚕️."
+     "phrase": "Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.",
+     "sens": "Le coussin sur lequel repose le pied doit rester ainsi, selon la prescription.",
+     "n": "<b>liegen auf</b> + datif (où ? sans mouvement) : auf <b>dem</b>. La position du pied suit la prescription ⚕️."
     },
     {
      "q": "Alles, ___ du wissen musst, steht in der Akte.",
@@ -1197,7 +1210,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: for a man (der Herr), even if the noun that follows is feminine (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "The relative pronoun takes the gender of the noun (das Protokoll) and the case of its role: <b>das</b>, object of weiterführen. Between colleagues: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Preposition + relative pronoun: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (where? no movement): auf <b>dem</b>. Keeping the foot elevated is part of the instructions ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (where? no movement): auf <b>dem</b>. How the foot is positioned follows the order ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "After <b>alles</b>, <b>etwas</b>, <b>nichts</b>, the relative pronoun is <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: who the person is, and why we are talking about them now.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, in German <b>Hintergrund</b>.",
@@ -1226,7 +1239,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "The gentleman, whose hip was operated on, is in room twelve.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "This is the fluid intake chart, which you'll please keep filling in.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "The daughter, who I spoke to earlier, is coming back at three.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "The pillow the foot is resting on should stay like that.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "The pillow the foot is resting on should stay like that, as ordered.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Everything you need to know is in the file.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "First comes the situation: who, where, what is going on now.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Next comes the background: diagnosis, medical history, what has already been done.",
@@ -1269,7 +1282,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: eril bir kişi için (der Herr), ardından gelen isim dişil olsa bile (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "İlgi zamiri ismin cinsini (das Protokoll) ve cümledeki görevinin hâlini alır: <b>das</b>, weiterführen fiilinin nesnesi. Meslektaşlar arasında: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Edat + ilgi zamiri: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (nerede? hareket yok): auf <b>dem</b>. Ayağın yüksekte tutulması talimatın bir parçasıdır ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (nerede? hareket yok): auf <b>dem</b>. Ayağın pozisyonu talimata göre belirlenir ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "<b>alles</b>, <b>etwas</b>, <b>nichts</b> sözcüklerinden sonra ilgi zamiri <b>was</b> olur.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b> (durum): kişi kim ve şimdi neden ondan söz ediliyor.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background (arka plan), Almancası <b>Hintergrund</b>.",
@@ -1298,7 +1311,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "Kalçasından ameliyat olan bey on iki numaralı odada yatıyor.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Bu, lütfen doldurmaya devam edeceğin sıvı alım çizelgesi.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Az önce konuştuğum kızı saat üçte tekrar gelecek.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "Ayağın üzerinde durduğu yastık böyle kalmalı.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "Ayağın üzerinde durduğu yastık, talimata göre böyle kalmalı.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Bilmen gereken her şey dosyada yazıyor.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Önce durum gelir: kim, nerede, şu anda ne oluyor.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Sonra arka plan gelir: tanı, öykü, şimdiye kadar yapılanlar.",
@@ -1341,7 +1354,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: для чоловіка (der Herr), навіть якщо наступний іменник жіночого роду (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Відносний займенник бере рід іменника (das Protokoll) і відмінок за своєю роллю в реченні: <b>das</b>, додаток до weiterführen. Між колегами — <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Прийменник + відносний займенник: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (де? без руху): auf <b>dem</b>. Піднята стопа — частина вказівки ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (де? без руху): auf <b>dem</b>. Положення стопи визначає призначення ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Після <b>alles</b>, <b>etwas</b>, <b>nichts</b> відносний займенник — <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b> (ситуація): хто ця людина і чому про неї говорять саме зараз.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background (передумови), німецькою <b>Hintergrund</b>.",
@@ -1370,7 +1383,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "Пан, якому оперували кульшовий суглоб, лежить у дванадцятій палаті.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Ось листок обліку рідини, який ти, будь ласка, ведеш далі.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Донька, з якою я щойно говорила, повернеться о третій.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "Подушка, на якій лежить стопа, має лишатися так.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "Подушка, на якій лежить стопа, має лишатися так, як призначено.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Усе, що тобі треба знати, є в історії хвороби.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Спершу — ситуація: хто, де, що відбувається зараз.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Далі — передумови: діагноз, анамнез, що вже зроблено.",
@@ -1413,7 +1426,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: برای یک مرد (<span lang=\"de\">der Herr</span>)، حتی اگر اسمِ بعدی مؤنث باشد (<span lang=\"de\">die Hüfte</span>).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "ضمیرِ موصولی جنسِ اسم را می‌گیرد (<span lang=\"de\">das Protokoll</span>) و حالتِ نقشِ خودش را: <b>das</b>، مفعولِ <span lang=\"de\">weiterführen</span>. بینِ همکاران: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "حرفِ اضافه + ضمیرِ موصولی: <b>mit der</b> (<span lang=\"de\">mit</span> + Dativ؛ <span lang=\"de\">die Tochter → <b>der</b></span>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (کجا؟ بدونِ حرکت): <span lang=\"de\">auf <b>dem</b></span>. بالا نگه داشتنِ پا بخشی از دستور است ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (کجا؟ بدونِ حرکت): <span lang=\"de\">auf <b>dem</b></span>. وضعیتِ پا طبق دستور تعیین می‌شود ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "بعد از <b>alles</b>، <b>etwas</b> و <b>nichts</b>، ضمیرِ موصولی <b>was</b> است.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: بیمار کیست و چرا الان درباره‌اش صحبت می‌کنیم.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background، به آلمانی <b>Hintergrund</b>.",
@@ -1442,7 +1455,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "آقایی که لگنش عمل شد، در اتاقِ دوازده است.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "این برگهٔ ثبتِ مایعاتِ نوشیدنی است که لطفاً تو پر کردنش را ادامه می‌دهی.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "دخترش، که کمی پیش با او صحبت کردم، ساعتِ سه برمی‌گردد.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "بالشی که پا رویش قرار دارد، باید همین‌طور بماند.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "بالشی که پا رویش قرار دارد، طبق دستور باید همین‌طور بماند.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "هر چه باید بدانی در پرونده هست.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "اول وضعیت می‌آید: چه کسی، کجا، الان چه خبر است.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "بعد پیشینه می‌آید: تشخیص، سابقهٔ بیماری، کارهایی که تا حالا انجام شده است.",
@@ -1485,7 +1498,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: للمذكر (<span lang=\"de\">der Herr</span>)، حتى لو كان الاسم الذي يليه مؤنثًا (<span lang=\"de\">die Hüfte</span>).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "يأخذ اسم الموصول جنس الاسم (<span lang=\"de\">das Protokoll</span>) وحالة وظيفته: <b>das</b>، مفعول به لـ<span lang=\"de\">weiterführen</span>. بين الزملاء: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "حرف جرّ + اسم موصول: <b>mit der</b> (<span lang=\"de\">mit</span> + Dativ؛ <span lang=\"de\">die Tochter → <b>der</b></span>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (أين؟ بلا حركة): <span lang=\"de\">auf <b>dem</b></span>. رفع القدم جزء من التعليمات ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (أين؟ بلا حركة): <span lang=\"de\">auf <b>dem</b></span>. وضعية القدم تتبع التعليمات ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "بعد <b>alles</b> و<b>etwas</b> و<b>nichts</b> يكون اسم الموصول <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: من هو المريض، ولماذا نتحدّث عنه الآن.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background، وبالألمانية <b>Hintergrund</b>.",
@@ -1514,7 +1527,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "السيد الذي أُجريت عملية لوركه موجود في الغرفة رقم اثني عشر.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "هذه ورقة السوائل المشروبة، التي تواصل تعبئتها من فضلك.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "الابنة، التي تحدّثتُ معها قبل قليل، ستعود في الساعة الثالثة.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "الوسادة التي ترتكز عليها القدم يجب أن تبقى هكذا.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "الوسادة التي ترتكز عليها القدم يجب أن تبقى هكذا حسب التعليمات.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "كل ما يجب أن تعرفه موجود في الملف.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "أولًا تأتي الحالة: من، وأين، وما الذي يجري الآن.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "بعدها تأتي الخلفية: التشخيص، والسوابق المرضية، وما أُنجز حتى الآن.",
@@ -1557,7 +1570,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: para um homem (der Herr), mesmo que o substantivo seguinte seja feminino (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "O pronome relativo assume o gênero do substantivo (das Protokoll) e o caso da sua função: <b>das</b>, objeto de weiterführen. Entre colegas: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Preposição + pronome relativo: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (onde? sem movimento): auf <b>dem</b>. O pé elevado faz parte da orientação ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (onde? sem movimento): auf <b>dem</b>. A posição do pé segue a prescrição ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Depois de <b>alles</b>, <b>etwas</b>, <b>nichts</b>, o pronome relativo é <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: quem é a pessoa e por que se fala dela agora.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background (histórico), em alemão <b>Hintergrund</b>.",
@@ -1586,7 +1599,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "O senhor, cujo quadril foi operado, está no quarto doze.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Aqui está a folha de controle hídrico, que você continua preenchendo, por favor.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "A filha, com quem falei há pouco, volta às três.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "A almofada sobre a qual o pé está apoiado deve ficar assim.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "A almofada sobre a qual o pé está apoiado deve ficar assim, conforme a prescrição.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Tudo o que você precisa saber está no prontuário.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Primeiro vem a situação: quem, onde, o que está acontecendo agora.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Depois vem o histórico: diagnóstico, antecedentes, o que já foi feito.",
@@ -1629,7 +1642,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: o mężczyźnie (der Herr), nawet jeśli następny rzeczownik jest rodzaju żeńskiego (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Zaimek względny przyjmuje rodzaj rzeczownika (das Protokoll), a przypadek od swojej funkcji: <b>das</b>, dopełnienie czasownika weiterführen. W zespole: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Przyimek + zaimek względny: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (gdzie? bez ruchu): auf <b>dem</b>. Uniesiona stopa jest częścią zalecenia ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (gdzie? bez ruchu): auf <b>dem</b>. Ułożenie stopy wynika z zalecenia ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Po <b>alles</b>, <b>etwas</b>, <b>nichts</b> zaimek względny to <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: kim jest ta osoba i dlaczego mówi się o niej teraz.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, po niemiecku <b>Hintergrund</b>.",
@@ -1658,7 +1671,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "Pan, któremu operowano biodro, leży w sali dwunastej.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "To jest karta płynów, którą, proszę, prowadź dalej.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Córka, z którą przed chwilą rozmawiałam, wróci o trzeciej.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "Poduszka, na której leży stopa, ma tak zostać.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "Poduszka, na której leży stopa, ma tak zostać, zgodnie z zaleceniem.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Wszystko, co musisz wiedzieć, jest w dokumentacji.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Najpierw sytuacja: kto, gdzie, co się teraz dzieje.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Potem tło: diagnoza, wywiad, co już zrobiono.",
@@ -1701,7 +1714,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: для мужчины (der Herr), даже если следующее существительное женского рода (die Hüfte).",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Относительное местоимение берёт род существительного (das Protokoll), а падеж — по своей функции: <b>das</b>, дополнение к weiterführen. Между коллегами: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Предлог + относительное местоимение: <b>mit der</b> (mit + Dativ; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + Dativ (где? без движения): auf <b>dem</b>. Приподнятая стопа — часть указаний ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + Dativ (где? без движения): auf <b>dem</b>. Положение стопы определяется назначением ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "После <b>alles</b>, <b>etwas</b>, <b>nichts</b> относительное местоимение — <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: кто этот человек и почему о нём говорят сейчас.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, по-немецки <b>Hintergrund</b>.",
@@ -1730,7 +1743,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "Мужчина, которому прооперировали тазобедренный сустав, лежит в двенадцатой палате.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Вот лист учёта выпитой жидкости, который ты, пожалуйста, продолжишь вести.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Дочь, с которой я недавно разговаривала, вернётся в три.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "Подушку, на которой лежит стопа, нужно оставить как есть.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "Подушку, на которой лежит стопа, нужно оставить как есть, по назначению.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Всё, что тебе нужно знать, есть в документации.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Сначала ситуация: кто, где, что сейчас происходит.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Затем предыстория: диагноз, анамнез, что уже было сделано.",
@@ -1773,7 +1786,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "<b>dessen</b>: por un hombre (der Herr), aunque el sustantivo que sigue sea femenino (die Hüfte). Al revés que «cuyo», que concuerda con lo poseído.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "El relativo toma el género del sustantivo (das Protokoll) y el caso de su función: <b>das</b>, complemento de weiterführen. Entre colegas: <b>du</b>.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "Preposición + relativo: <b>mit der</b> (mit + dativo; die Tochter → <b>der</b>).",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "<b>liegen auf</b> + dativo (¿dónde?, sin movimiento): auf <b>dem</b>. El pie en alto forma parte de la indicación ⚕️.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "<b>liegen auf</b> + dativo (¿dónde?, sin movimiento): auf <b>dem</b>. La posición del pie sigue la indicación ⚕️.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Después de <b>alles</b>, <b>etwas</b>, <b>nichts</b>, el relativo es <b>was</b>.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "<b>S</b> = <b>Situation</b>: quién es la persona y por qué se habla de ella ahora.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "<b>B</b> = Background, en alemán <b>Hintergrund</b>.",
@@ -1802,7 +1815,7 @@ window.SCENE = {
     "B2 | Der Herr, dessen Hüfte operiert wurde, liegt in Zimmer zwölf.": "El señor, cuya cadera fue operada, está en la habitación doce.",
     "B2 | Das ist das Trinkprotokoll, das du bitte weiterführst.": "Este es el registro de líquidos, que por favor sigues llenando.",
     "B2 | Die Tochter, mit der ich vorhin gesprochen habe, kommt um drei wieder.": "La hija, con la que hablé hace un rato, vuelve a las tres.",
-    "B2 | Das Kissen, auf dem der Fuß liegt, soll so bleiben.": "La almohada sobre la que descansa el pie debe quedarse así.",
+    "B2 | Das Kissen, auf dem der Fuß liegt, soll nach Anordnung so bleiben.": "La almohada sobre la que descansa el pie debe quedarse así, según la indicación.",
     "B2 | Alles, was du wissen musst, steht in der Akte.": "Todo lo que tienes que saber está en el expediente.",
     "C1 | Zuerst kommt die Situation: wer, wo, was ist jetzt los.": "Primero viene la situación: quién, dónde, qué está pasando ahora.",
     "C1 | Danach kommt der Hintergrund: Diagnose, Vorgeschichte, was schon gemacht wurde.": "Después viene el contexto: diagnóstico, antecedentes, lo que ya se hizo.",

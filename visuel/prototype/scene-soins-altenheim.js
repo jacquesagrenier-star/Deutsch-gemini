@@ -179,7 +179,8 @@ window.SCENE = {
    "pt": "ponto de hidratação",
    "ar": "ركن المشروبات",
    "pl": "stanowisko z napojami",
-   "ru": "питьевой уголок"
+   "ru": "питьевой уголок",
+   "es": "la estación de hidratación (punto de bebidas)"
   },
   {
    "id": "wasser",
@@ -268,7 +269,8 @@ window.SCENE = {
    "pt": "copo (de plástico)",
    "ar": "كوب (بلاستيكي)",
    "pl": "kubek",
-   "ru": "стаканчик"
+   "ru": "стаканчик",
+   "es": "el vaso (de plástico, desechable)"
   },
   {
    "id": "handlauf",
@@ -297,7 +299,8 @@ window.SCENE = {
    "pt": "corrimão",
    "ar": "الدرابزين",
    "pl": "poręcz",
-   "ru": "поручень"
+   "ru": "поручень",
+   "es": "el pasamanos"
   },
   {
    "id": "rollstuhl",
@@ -389,7 +392,8 @@ window.SCENE = {
    "pt": "residente (moradora de casa de repouso)",
    "ar": "المقيمة (في دار المسنّين)",
    "pl": "mieszkanka (domu opieki)",
-   "ru": "постоялица (дома престарелых)"
+   "ru": "постоялица (дома престарелых)",
+   "es": "la residente (de un hogar de ancianos)"
   },
   {
    "id": "decke",
@@ -511,7 +515,8 @@ window.SCENE = {
    "pt": "aparelho auditivo",
    "ar": "سمّاعة أذن طبية",
    "pl": "aparat słuchowy",
-   "ru": "слуховой аппарат"
+   "ru": "слуховой аппарат",
+   "es": "el audífono"
   },
   {
    "id": "frau-weber",
@@ -573,7 +578,8 @@ window.SCENE = {
    "pt": "residente (moradora de casa de repouso)",
    "ar": "المقيمة (في دار المسنّين)",
    "pl": "mieszkanka (domu opieki)",
-   "ru": "постоялица (дома престарелых)"
+   "ru": "постоялица (дома престарелых)",
+   "es": "la residente (de un hogar de ancianos)"
   },
   {
    "id": "stuhl-l",
@@ -992,7 +998,8 @@ window.SCENE = {
    "pt": "andador com rodas",
    "ar": "مشّاية بعجلات",
    "pl": "rolator (balkonik na kółkach)",
-   "ru": "роллатор (ходунки на колёсах)"
+   "ru": "роллатор (ходунки на колёсах)",
+   "es": "el andador con ruedas"
   },
   {
    "id": "ball",

@@ -4,7 +4,8 @@ Traductions faites le 16 nov. 2026 (trois traducteurs, trois langues chacun). Le
 quelles, les valeurs gardent l'unité allemande (mg/dl). Rien n'est montré à un soignant avant cette relecture.
 
 ## L'allemand ⚕️
-- Les faits des feuilles qui ne viennent pas des dialogues : Frau Weber, NRS 5 à 6 h et radio du poignet à 11 h ;
+- Les faits des feuilles qui ne viennent pas des dialogues : Frau Weber, NRS 5 à 6 h (la radio du poignet à 11 h est retirée
+  le 19 nov. : la feuille dit, comme d32 et d36, que la médecin traitante passe lundi) ;
   Herr Schulze, température 36,8 à 7 h ; Frau Kowalski, glycémie 210 à 8 h. Chambres : Lehmann 14, Brandt 12 (d06),
   Weber 7 (e03), Schulze 3.
 - Les phrases « subjectives » proposées comme mauvaises réponses (« Er ist faul und will nicht laufen. », « Sie isst
