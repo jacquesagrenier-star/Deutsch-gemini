@@ -109,10 +109,12 @@ def juger(apprise, ui, e, reponses, bilan, nom):
         fautes.append("demande %s au lieu de %s" % (e["src"][-60:], chemin))
     if reponses.get(chemin) != 200:
         fautes.append("reponse %s" % reponses.get(chemin))
-    if (e["pos"] or 0) < 1.0:
-        fautes.append("ne joue pas (lecture %.1f s)" % (e["pos"] or 0))
     f = os.path.join(dossier, clip + ".mp3")
     d = duree_fichier(f) if os.path.exists(f) else None
+    # Un clip d'une seconde (« 60 », « 90 ») ne peut pas avoir joue une seconde entiere : la position est relevee
+    # toutes les 150 ms. Il suffit qu'il soit alle presque au bout.
+    if (e["pos"] or 0) < min(1.0, (d or 1.0) - 0.4):
+        fautes.append("ne joue pas (lecture %.1f s)" % (e["pos"] or 0))
     if d is None or e["duree"] is None or abs(d - e["duree"]) > 0.35:
         fautes.append("duree %s dans la page, %s dans le depot" % (e["duree"], d))
     vu = vv.composer([e["titre"], e["texte"]]) if clip in PAGE else vv.composer([e["etiquette"]])
