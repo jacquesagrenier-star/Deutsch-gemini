@@ -104,3 +104,36 @@ récit.
 
 Noms nouveaux du modèle 2, à ne pas reprendre : Wendt, Gerlach, Lea (apprentie), Kessler, Pohl, Sander, Hartwig,
 Kroll.
+
+## Aligné sur le troisième avis médical (19 nov. 2026)
+
+Le troisième avis (`pflege/relecture/TROISIEME-AVIS.md`, trois modèles, pas une personne du métier) a tranché des
+faits sur les quatre premiers chapitres de la Pflege. Le manuel et les deux examens blancs ont été relus pour ces
+faits, même dits autrement (outil de recherche hors dépôt ; environ 230 passages lus). Rien de clinique n'a été inventé.
+
+Changé :
+
+- **Les gouttes** (écoute d'entraînement, h101-2) : la pharmacie ne dit plus « zwanzig Tropfen » ; le nombre de
+  gouttes dépend de la concentration et se lit sur l'étiquette.
+- **Le secret au téléphone** (écoute d'entraînement, h102-g2 et son explication ; ch. 6, « Parler aux proches » :
+  le texte d'entrée, le piège, l'explication de la question 2) : d'abord l'accord du patient au dossier, puis
+  l'identité de la personne qui appelle ; la bonne réponse de la question 2 est la carte « Dazu darf ich Ihnen am
+  Telefon leider keine Auskunft geben. ».
+- **Le médicament « bei Bedarf »** (écoute d'entraînement, h102-g5) : Elif, en cours de reconnaissance, ne décide
+  pas seule ; elle signale la douleur à la Schichtleitung, qui décide.
+- **Le jeûne** (ch. 6, la relève, question 8) : « Er bleibt nach ärztlicher Anordnung ___ », comme la carte corrigée.
+- **La prescription par téléphone** (ch. 6, SBAR) : répétée en entier à voix haute (« Ich wiederhole: … »), notée
+  tout de suite avec l'heure et le nom du médecin, signée ensuite.
+
+Laissé tel quel, à montrer à l'infirmière :
+
+- examen blanc 2, écoute, conversation 2 : « Ab Mitternacht … nichts mehr essen », eau ou thé jusqu'à six heures.
+  C'est la médecin qui le dit à sa patiente : la consigne du cas, pas une règle ;
+- les seuils écrits dans un plan de soins ou une fiche de transfert sans dire qui les a fixés (« bei mehr als 2 kg
+  Zunahme in drei Tagen die Hausärztin informieren » : lecture d'entraînement 103, ch. 7 « Überleitung ») ;
+- écoute d'entraînement, h102-g2 : en proposant de porter le numéro à l'oncle, Elif confirme qu'il est hospitalisé ;
+- examen blanc 1, écoute, conversation 5 (déjà enregistrée) : Yusuf répète la prescription par « Also: … », pas
+  par « Ich wiederhole », et le seuil de rappel du médecin (« unter neunzig ») vient après sa répétition ;
+- la réévaluation après un antalgique : aucun délai fixe dans le manuel ; l'examen blanc 2 note la douleur « eine
+  Stunde später », dans la fourchette de 30 à 60 minutes ;
+- les doigts froids, pâles ou engourdis après un traumatisme : aucun cas de ce genre dans le manuel ni les examens.

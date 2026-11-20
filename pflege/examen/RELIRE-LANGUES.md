@@ -127,3 +127,13 @@ l'espagnol (`interface-es/CONSIGNES.md`). Sans relecture native. Ce qu'il a sign
 - reprises → « reformulaciones » ;
 - voisins trompeurs → « parecidos engañosos » ;
 - Version d'essai → « Versión preliminar ».
+
+## Textes réécrits le 19 nov. 2026 (troisième avis médical)
+
+Cinq textes du manuel et de l'écoute d'entraînement ont été réécrits dans les dix langues, sans relecture native :
+
+- ch. 6, « Parler aux proches » : le texte d'entrée (l'accord du patient au dossier, puis l'identité), le piège (« rien sans l'accord du patient ») et l'explication de la question 2 ;
+- ch. 6, SBAR : la prescription par téléphone (répétée en entier à voix haute, notée avec l'heure et le nom du médecin, signée ensuite) ;
+- écoute d'entraînement 102, question 7 : l'explication.
+
+À vérifier surtout : « accord / consentement du patient », « autorisé » et « dossier » dans chaque langue (prontuário, historial, документація, карта, dokumentacja, dosya, پرونده, الملف).
