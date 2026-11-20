@@ -49,7 +49,10 @@ PREPARER = r"""
 MESURE = r"""
 async ([cas]) => {
   const pause = ms => new Promise(r => setTimeout(r, ms));
-  const finir = () => { currentFlashcard = currentCards.length; return showFlashcardEnd(); };
+  // La fin du paquet comme dans nextFlashcard() : la seance suivie est close (finSeanceSuivie), donc n'est plus a
+  // reprendre. Sans elle (avant le 20 nov.), « Encore une seance » reprenait la MEME seance (v1192) et la sonde
+  // ne voyait jamais la 2e seance comptee ; un usager, si (deux_seances, 20 nov.).
+  const finir = () => { currentFlashcard = currentCards.length; try{ finSeanceSuivie(true); }catch(e){} return showFlashcardEnd(); };
   const lire = () => {
     const el = document.getElementById('finCiel'), v = el && !el.classList.contains('hidden') && el.offsetHeight > 0;
     if(!v) return { ciel: false, anneau: !document.getElementById('flashEndAnneau').classList.contains('hidden') };
@@ -234,7 +237,10 @@ async () => {
   // Les vraies distances d'abord (le plein ecran), puis la phrase la plus longue partout (l'ecran de fin et le plein ecran).
   const reel = feteLabels();
   Object.values(CIEL.constellations).forEach(c => c.etoiles.forEach(e => { e.affiche = 1100; e.environ = true; }));
-  const finir = () => { currentFlashcard = currentCards.length; return showFlashcardEnd(); };
+  // La fin du paquet comme dans nextFlashcard() : la seance suivie est close (finSeanceSuivie), donc n'est plus a
+  // reprendre. Sans elle (avant le 20 nov.), « Encore une seance » reprenait la MEME seance (v1192) et la sonde
+  // ne voyait jamais la 2e seance comptee ; un usager, si (deux_seances, 20 nov.).
+  const finir = () => { currentFlashcard = currentCards.length; try{ finSeanceSuivie(true); }catch(e){} return showFlashcardEnd(); };
   await ouvrirSeanceDuJour(); await pause(900);
   finir(); await pause(300);
   const ouvert = currentCards;
