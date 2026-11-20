@@ -90,12 +90,17 @@ def projeter(E, noms):
     return [(round(ox + x * s, 1), round(oy + y * s, 1)) for x, y in pts]
 
 
-def rayon(mag, mmin, r_max=6.6, r_min=2.3):
-    return max(r_min, r_max * 10 ** (-0.2 * (mag - mmin)))
+# Retour de Jacques du 20 nov. 2026 (« si je prends les Gemeaux, il y en a qui sont tres petites. On n'a pas l'impression
+# qu'ils sont completes ») : l'ancienne formule ramenait a 2,3 px et 0,55 d'eclat toute etoile a plus de 2,3 magnitudes
+# de la plus brillante de sa figure -- 7 des 12 etoiles des Gemeaux --, presque l'emplacement d'une etoile eteinte
+# (2 px a 0,34). L'ecart est maintenant compresse au lieu d'etre coupe : la plus brillante garde sa taille, l'ordre des
+# eclats reste lisible (plus de plancher commun), et la plus faible allumee depasse 3,2 px a 0,7 d'eclat.
+def rayon(mag, mmin, r_max=6.8, r_min=3.2):
+    return r_min + (r_max - r_min) * 10 ** (-0.2 * (mag - mmin))
 
 
 def luminosite(mag, mmin):
-    return max(.55, 10 ** (-0.12 * (mag - mmin)))
+    return .7 + .3 * 10 ** (-0.12 * (mag - mmin))
 
 
 def _mix(a, b, t):

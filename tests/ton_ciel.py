@@ -15,7 +15,10 @@ Sur un navigateur vierge, sans compte, l'etat pose dans le stockage :
 Dans la page, seulement ce qu'on a atteint (Jacques, 10 nov.) : la figure en cours et celles commencees ou finies, jamais une
 figure a venir, ni en pastille ni en dessin -- neuf et pp : 1 pastille, a1 : 2, a2 : 3, voyage : 1.
 A chaque fois : la bande coupee en deux sans debordement, puis la page, ses pastilles, une etoile touchee (nom et distance « de la
-Terre »), a 320 et 360 px, clair, nuit et RTL. Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
+Terre »), a 320 et 360 px, clair, nuit et RTL.
+La note « Touche une etoile pour la decouvrir. » (retour de Jacques du 20 nov.) : lue avant de toucher (entre les pastilles et
+le dessin, dans la largeur), encore la apres la premiere etoile touchee (le dessin ne saute pas sous le doigt), absente a la
+reouverture. Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
 import argparse
 import functools
@@ -62,6 +65,9 @@ async ([cas]) => {
   await ouvrirCiel(); await pause(400);
   const lire = () => ({ actif: (document.querySelector('.screen.active') || {}).id, pastilles: [...document.querySelectorAll('.tc-pastille')].map(b => b.textContent + (b.classList.contains('active') ? ' *' : '')), total: document.getElementById('tcTotal').textContent, info: document.getElementById('tcInfo').innerText.replace(/\n+/g, ' | '), noms: document.querySelectorAll('#tcSvg .fc-nom').length, cible: document.querySelectorAll('#tcSvg .fc-cible').length, allumes: document.querySelectorAll('#tcSvg .fc-allume').length, debord: document.getElementById('tonCiel').scrollWidth > document.getElementById('tonCiel').clientWidth + 1 || document.documentElement.scrollWidth > window.innerWidth });
   const page = lire();
+  const noteEl = document.getElementById('tcNote'), lireNote = () => { if(!noteEl) return null; const r = noteEl.getBoundingClientRect(), s = document.getElementById('tcSvg').getBoundingClientRect(), p = document.getElementById('tcPastilles').getBoundingClientRect();
+    return { visible: !noteEl.hidden && noteEl.offsetHeight > 0, texte: noteEl.textContent, avantDessin: r.bottom <= s.top + 1, apresPastilles: r.top >= p.bottom - 1, dansLargeur: r.left >= -1 && r.right <= window.innerWidth + 1, haut: Math.round(r.height) }; };
+  page.note = lireNote();
   // une etoile touchee : la premiere allumee, ou la cible
   const v = vueTonCiel(), svg = document.getElementById('tcSvg'), m = svg.getScreenCTM(), a = v.c.etoiles[Math.max(0, v.n - 1)];
   const cx = a.x * m.a + m.e, cy = a.y * m.d + m.f;
@@ -69,8 +75,18 @@ async ([cas]) => {
   const et = document.querySelector('#tcEtiq .fe-nom-et');
   const box = et && et.getBBox();
   const touche = et ? { texte: [...et.querySelectorAll('tspan')].map(x => x.textContent).join(' / '), x0: Math.round(box.x), x1: Math.round(box.x + box.width), y0: Math.round(box.y), y1: Math.round(box.y + box.height), dansCadre: box.x >= 0 && box.x + box.width <= 375 && box.y >= 0 && box.y + box.height <= 372, nomsCaches: svg.classList.contains('tc-choisie') } : null;
+  page.noteApres = lireNote();
   window.__captureTouche = true;
   return { accueil, page, touche };
+}
+"""
+
+REOUVRIR = r"""
+async () => {
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+  showScreen('home'); await pause(150); await ouvrirCiel(); await pause(300);
+  const el = document.getElementById('tcNote');
+  return { visible: !!el && !el.hidden && el.offsetHeight > 0 };
 }
 """
 
@@ -116,6 +132,13 @@ def juger(cas, r):
             f.append("figure a venir montree : %s" % x["pastille"])
     if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Gémeaux", "Géminis", "Zwillinge", "Gemini")):
         f.append("voyage : %s" % p["pastilles"])
+    n0, n1, n2 = p.get("note") or {}, p.get("noteApres") or {}, r.get("reouvert") or {}
+    if not n0.get("visible") or not n0.get("texte") or not n0.get("avantDessin") or not n0.get("apresPastilles") or not n0.get("dansLargeur"):
+        f.append("note avant de toucher : %s" % n0)
+    if not n1.get("visible"):
+        f.append("note partie pendant la visite")
+    if n2.get("visible") is not False:
+        f.append("note encore la a la reouverture : %s" % n2)
     t = r.get("touche")
     if not t or not t["texte"] or not t["dansCadre"]:
         f.append("etoile touchee : %s" % t)
@@ -149,7 +172,7 @@ def main():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     total = 0
     CAS = [("de", "fr", "light", 360, "neuf"), ("de", "fr", "dark", 320, "neuf"), ("de", "fr", "light", 360, "pp"), ("de", "fr", "light", 360, "a1"), ("de", "fr", "dark", 320, "a1"),
-           ("de", "ar", "dark", 320, "a1"), ("de", "ar", "light", 360, "a1"), ("de", "fa", "light", 320, "a1"), ("de", "ru", "light", 320, "a1"), ("de", "tr", "dark", 320, "a2"), ("de", "fr", "light", 360, "a2"),
+           ("de", "ar", "dark", 320, "a1"), ("de", "ar", "light", 360, "a1"), ("de", "fr", "dark", 360, "a1"), ("de", "ar", "dark", 360, "a1"), ("de", "fa", "light", 320, "a1"), ("de", "ru", "light", 320, "a1"), ("de", "tr", "dark", 320, "a2"), ("de", "fr", "light", 360, "a2"),
            ("es", "fr", "light", 360, "a1"), ("es", "fr", "dark", 320, "neuf"), ("es", "de", "light", 320, "a2"),
            ("de", "fr", "light", 360, "voyage"), ("es", "fr", "dark", 320, "voyage"), ("de", "ar", "dark", 320, "pp"), ("es", "ar", "light", 360, "pp"), ("de", "fr", "light", 360, "ancien"), ("en", "fr", "light", 360, "anglais")]
     try:
@@ -178,6 +201,7 @@ def main():
                         page.screenshot(path=os.path.join(a.captures, nom + "-page.png"))
                     if r["accueil"].get("ciel"):
                         r["pastilles"] = page.evaluate(AUTRE)
+                        r["reouvert"] = page.evaluate(REOUVRIR)
                     if a.captures:
                         os.makedirs(a.captures, exist_ok=True)
                         page.evaluate("() => { showScreen('home'); const g = document.getElementById('grilleAccueil'); if(g) g.scrollIntoView({ block: 'center' }); }")

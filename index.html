@@ -9025,6 +9025,7 @@ body[data-theme="dark"] .tc-total{color:#F6CE84;}
 .tc-pastille.active{background:#E8A23A; border-color:transparent; color:#1C2430; font-weight:900;}
 .tc-pastille.venir{background:transparent; border-style:dashed;}
 .tc-pastille:focus-visible{outline:2px solid #FFE3A8; outline-offset:2px;}
+.tc-note{margin:12px 0 0; text-align:center; font-size:13px; font-weight:700; line-height:1.35; opacity:.8;}
 .tc-svg{display:block; width:100%; max-width:440px; margin:10px auto 0; overflow:visible; cursor:pointer;}
 .tc-svg .fc-nom{direction:ltr;}
 .tc-svg.tc-choisie .fc-nom{display:none;}
@@ -11759,6 +11760,9 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="tc-tete"><h2 data-i18n="ciel_tuile">Ton ciel</h2><span class="tc-total" id="tcTotal"></span></div>
     <div class="tc-pastilles" id="tcPastilles"></div>
+    <!-- Retour de Jacques du 20 nov. 2026 : dire qu'une etoile touchee se raconte. Jusqu'a la premiere etoile touchee
+         (PREFIXE_STOCKAGE + "cielTouche"), puis plus jamais : apres, on sait. Voir noteTonCiel(). -->
+    <p class="tc-note" id="tcNote" data-i18n="ciel_toucher" hidden>Touche une étoile pour la découvrir.</p>
     <svg class="tc-svg" id="tcSvg" viewBox="0 0 375 372" role="group"></svg>
     <div class="tc-info" id="tcInfo"></div>
 </section>
@@ -16103,6 +16107,7 @@ const I18N = {
         ciel_complete: "Constellation complète",
         ciel_a_venir: "À venir",
         ciel_premiere: "Ta première étoile",
+        ciel_toucher: "Touche une étoile pour la découvrir.",
         ciel_nouvelle: "Nouvelle étoile : {s}",
         ciel_commence: "Le chemin vers {s} commence.",
         ciel_rapproche: "Tu te rapproches de {s}.",
@@ -18003,6 +18008,7 @@ const I18N = {
         ciel_complete: "Constellation complete",
         ciel_a_venir: "Coming up",
         ciel_premiere: "Your first star",
+        ciel_toucher: "Tap a star to learn about it.",
         ciel_nouvelle: "New star: {s}",
         ciel_commence: "The path to {s} begins.",
         ciel_rapproche: "You're getting closer to {s}.",
@@ -19920,6 +19926,7 @@ const I18N = {
         ciel_complete: "Takımyıldızı tamamlandı",
         ciel_a_venir: "Sırada",
         ciel_premiere: "İlk yıldızın",
+        ciel_toucher: "Bir yıldıza dokun, onu tanı.",
         ciel_nouvelle: "Yeni yıldız: {s}",
         ciel_commence: "{s} yolculuğu başlıyor.",
         ciel_rapproche: "{s} yıldızına yaklaşıyorsun.",
@@ -22244,6 +22251,7 @@ const I18N = {
         ciel_complete: "Сузірʼя завершено",
         ciel_a_venir: "Попереду",
         ciel_premiere: "Твоя перша зірка",
+        ciel_toucher: "Торкнися зірки, щоб дізнатися про неї.",
         ciel_nouvelle: "Нова зірка: {s}",
         ciel_commence: "Шлях до зірки {s} починається.",
         ciel_rapproche: "Ти наближаєшся до зірки {s}.",
@@ -24913,6 +24921,7 @@ const I18N = {
         ciel_complete: "صورت فلکی کامل شد",
         ciel_a_venir: "در پیش است",
         ciel_premiere: "نخستین ستاره‌ات",
+        ciel_toucher: "روی یک ستاره بزن تا با آن آشنا شوی.",
         ciel_nouvelle: "ستارهٔ تازه: {s}",
         ciel_commence: "راه به سوی {s} آغاز شد.",
         ciel_rapproche: "به {s} نزدیک‌تر می‌شوی.",
@@ -26929,6 +26938,7 @@ const I18N = {
         ciel_complete: "اكتملت الكوكبة",
         ciel_a_venir: "قادمة",
         ciel_premiere: "نجمتك الأولى",
+        ciel_toucher: "المس نجمة لتتعرّف عليها.",
         ciel_nouvelle: "نجمة جديدة: {s}",
         ciel_commence: "بدأ الطريق إلى {s}.",
         ciel_rapproche: "أنت تقترب من {s}.",
@@ -27456,6 +27466,7 @@ const I18N = {
         ciel_complete: "Constelação completa",
         ciel_a_venir: "Em breve",
         ciel_premiere: "Sua primeira estrela",
+        ciel_toucher: "Toque em uma estrela para conhecê-la.",
         ciel_nouvelle: "Nova estrela: {s}",
         ciel_commence: "O caminho até {s} começa.",
         ciel_rapproche: "Você está se aproximando de {s}.",
@@ -29360,6 +29371,7 @@ const I18N = {
         ciel_complete: "Konstelacja ukończona",
         ciel_a_venir: "Przed tobą",
         ciel_premiere: "Twoja pierwsza gwiazda",
+        ciel_toucher: "Dotknij gwiazdy, aby ją poznać.",
         ciel_nouvelle: "Nowa gwiazda: {s}",
         ciel_commence: "Zaczyna się droga do gwiazdy {s}.",
         ciel_rapproche: "Zbliżasz się do gwiazdy {s}.",
@@ -31264,6 +31276,7 @@ const I18N = {
         ciel_complete: "Созвездие завершено",
         ciel_a_venir: "Впереди",
         ciel_premiere: "Твоя первая звезда",
+        ciel_toucher: "Коснись звезды, чтобы узнать о ней.",
         ciel_nouvelle: "Новая звезда: {s}",
         ciel_commence: "Путь к звезде {s} начинается.",
         ciel_rapproche: "Ты приближаешься к звезде {s}.",
@@ -33171,6 +33184,7 @@ const I18N = {
         ciel_complete: "Sternbild vollständig",
         ciel_a_venir: "Kommt noch",
         ciel_premiere: "Dein erster Stern",
+        ciel_toucher: "Tippe auf einen Stern, um ihn zu entdecken.",
         ciel_nouvelle: "Neuer Stern: {s}",
         ciel_commence: "Der Weg zu {s} beginnt.",
         ciel_rapproche: "Du kommst {s} näher.",
@@ -35038,6 +35052,7 @@ const I18N = {
         ciel_complete: "Constelación completa",
         ciel_a_venir: "Por venir",
         ciel_premiere: "Tu primera estrella",
+        ciel_toucher: "Toca una estrella para descubrirla.",
         ciel_nouvelle: "Estrella nueva: {s}",
         ciel_commence: "Empieza el camino hacia {s}.",
         ciel_rapproche: "Te acercas a {s}.",
@@ -66998,9 +67013,11 @@ async function majTuileCiel(){
     }
     if(avant !== tuileCielPrete) majGrilleAccueil();
 }
+let CIEL_NOTE_VUE = false;   // une etoile touchee pendant cette visite : la note reste jusqu'a la sortie
 async function ouvrirCiel(){
     const e = await etatDuCiel();
     if(!e) return;
+    CIEL_NOTE_VUE = false;
     CIEL_ETAT = e;
     CIEL_VUE = e.courant;
     rendreTonCiel();
@@ -67034,6 +67051,15 @@ function rendreTonCiel(){
     CIEL_CHOISIE = -1;
     dessinerTonCiel();
     infoTonCiel();
+    noteTonCiel();
+}
+function noteTonCiel(){
+    const el = document.getElementById("tcNote");
+    if(!el) return;
+    let deja = false;
+    try{ deja = localStorage.getItem(PREFIXE_STOCKAGE + "cielTouche") === "1"; }catch(x){}
+    el.textContent = t("ciel_toucher");
+    if(!CIEL_NOTE_VUE) el.hidden = deja;
 }
 function vueTonCiel(){ return CIEL_ETAT.groupes.find(x => x.g === CIEL_VUE); }
 function dessinerTonCiel(){
@@ -67096,6 +67122,7 @@ function choisirEtoileCiel(i){
     if(!svg || !g) return;
     if(i === CIEL_CHOISIE) i = -1;
     CIEL_CHOISIE = i;
+    if(i >= 0 && !CIEL_NOTE_VUE){ CIEL_NOTE_VUE = true; try{ localStorage.setItem(PREFIXE_STOCKAGE + "cielTouche", "1"); }catch(x){} }
     svg.classList.toggle("tc-choisie", i >= 0);
     g.innerHTML = "";
     if(i < 0) return;
