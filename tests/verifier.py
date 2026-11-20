@@ -592,6 +592,42 @@ def verifier_indices_revelateurs(r):
                         % (nom, h[:48], len(rs), rs[0]))
 
 
+def verifier_place_de_la_reponse(r):
+    """La bonne reponse ne tient pas toujours la meme tuile.
+
+    Defaut D9 de la revue A a Z (19 nov. 2026) : douze series allemandes et six
+    espagnoles avaient la bonne reponse en PREMIERE tuile a 100 % -- les
+    options s'affichent dans l'ordre du fichier, et le fichier commencait par
+    la bonne. On apprenait a toucher la premiere tuile, pas la regle.
+
+    Comme l'indice revelateur ci-dessus, la fuite n'existe qu'a l'echelle de la
+    serie : chaque question, prise seule, est juste. Ce qui declenche : une
+    serie d'au moins six questions a tuiles ou la bonne reponse tient la meme
+    place dans plus de 60 % des questions. Le remede (deterministe, dans les
+    donnees) : python tests/ordre_options.py --ecrire.
+    """
+    import ordre_options
+    series = questions = trop = 0
+    for fichier in ordre_options.FICHIERS:
+        chemin = os.path.join(RACINE, *fichier.split("/"))
+        if not os.path.exists(chemin):
+            continue
+        try:
+            jeux = json.load(io.open(chemin, encoding="utf-8")).get("jeux", {})
+        except ValueError:
+            continue
+        for nom, liste in jeux.items():
+            if isinstance(liste, list) and ordre_options.mesure(liste)[2] >= ordre_options.MIN_CONTROLE:
+                r.controle()
+                series += 1
+                questions += ordre_options.mesure(liste)[2]
+        for message in ordre_options.controle(jeux, fichier):
+            trop += 1
+            r.echec("exercices", message)
+    print("   place des tuiles : %d series, %d questions, %d serie(s) ou une place depasse %d %%"
+          % (series, questions, trop, round(100 * ordre_options.SEUIL)))
+
+
 def verifier_comptes_figes(r, source):
     """Un libelle de bouton ne doit pas annoncer un NOMBRE d'exercices.
 
@@ -1900,6 +1936,7 @@ def main():
     cles = verifier_traductions(r, source)
     verifier_jeux_exercices(r, source)
     verifier_indices_revelateurs(r)
+    verifier_place_de_la_reponse(r)
     verifier_langue_enseignee(r, source)
     verifier_scenes_espagnol(r)
     verifier_arabe_espagnol(r)

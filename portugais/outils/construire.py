@@ -48,6 +48,20 @@ def ecrire(chemin, donnees):
         f.write("\n")
 
 
+def equilibre(nom, donnees):
+    """exercices.json : la bonne reponse ne tient pas la meme place dans plus de 60 % d'une serie (defaut D9 de la
+    revue, 19 nov. 2026). Le melange par question (random.Random(question)) penche parfois sur une petite serie :
+    tests/ordre_options.py la reequilibre, sur une COPIE -- le jeu en memoire, dont d'autres derivent, ne bouge pas."""
+    if nom != "exercices.json":
+        return donnees
+    import copy
+    sys.path.insert(0, os.path.join(RACINE, "tests"))
+    import ordre_options
+    donnees = copy.deepcopy(donnees)
+    ordre_options.equilibrer(donnees["jeux"])
+    return donnees
+
+
 def lignes(bloc):
     for l in (bloc or "").strip("\n").splitlines():
         if l.strip() and not l.strip().startswith("#"):
@@ -284,7 +298,7 @@ def construire():
     jeu["synonymes.json"] = {"_note": "Mots voisins du portugais : pas encore faits. Fichier derive (construire.py).",
                              "voisins": {}}
     for nom, donnees in jeu.items():
-        ecrire(DOSSIER + "/" + nom, donnees)
+        ecrire(DOSSIER + "/" + nom, equilibre(nom, donnees))
     # LA VARIANTE DU BRESIL (30 oct. 2026) : le meme jeu, converti par
     # bresil.py, dans portugais/datos-br (memes mots, meme ordre). Le rapport
     # (ce qui est ecarte, ce qui reste a relire) va a cote des outils.
@@ -292,7 +306,7 @@ def construire():
     jeu_br, rap = bresil.construire(jeu)
     jeu_br["synonymes.json"] = jeu["synonymes.json"]
     for nom, donnees in jeu_br.items():
-        ecrire(DOSSIER + "-br/" + nom, donnees)
+        ecrire(DOSSIER + "-br/" + nom, equilibre(nom, donnees))
     ecrire_rapport_bresil(rap)
     n = {k: (sum(len(t["mots"]) for t in v["themes"]) if k == "themes.json"
              else sum(len(x) for x in v.values() if isinstance(x, list))) for k, v in jeu.items()

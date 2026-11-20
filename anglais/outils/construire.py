@@ -48,6 +48,20 @@ def ecrire(chemin, donnees):
         f.write("\n")
 
 
+def equilibre(nom, donnees):
+    """exercices.json : la bonne reponse ne tient pas la meme place dans plus de 60 % d'une serie (defaut D9 de la
+    revue, 19 nov. 2026). Le melange par question (random.Random(question)) penche parfois sur une petite serie :
+    tests/ordre_options.py la reequilibre, sur une COPIE -- le jeu en memoire, dont d'autres derivent, ne bouge pas."""
+    if nom != "exercices.json":
+        return donnees
+    import copy
+    sys.path.insert(0, os.path.join(RACINE, "tests"))
+    import ordre_options
+    donnees = copy.deepcopy(donnees)
+    ordre_options.equilibrer(donnees["jeux"])
+    return donnees
+
+
 def lignes(bloc):
     for l in bloc.strip().splitlines():
         l = l.strip()
@@ -516,7 +530,7 @@ def construire():
     # allemande). La notice vit dans anglais/datos/LISEZ-MOI.md.
     for dossier, jeu in (("anglais/datos", us), ("anglais/datos-gb", gb)):
         for nom, donnees in jeu.items():
-            ecrire(dossier + "/" + nom, donnees)
+            ecrire(dossier + "/" + nom, equilibre(nom, donnees))
 
     n = {k: (sum(len(t["mots"]) for t in v["themes"]) if k == "themes.json"
              else sum(len(x) for x in v.values())) for k, v in us.items()}
