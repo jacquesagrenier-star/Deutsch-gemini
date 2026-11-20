@@ -3,6 +3,22 @@
 <head>
 <meta charset="utf-8">
 <script src="themes/acces.js?v=1"></script>
+<!-- LE PREMIER DESSIN EST DEJA LE BON (ligne 156, 20 nov. 2026 ; Jacques sur la v1229 : « quand je clique sur la tuile,
+     il y a un flash avant d'ouvrir »). Le script de la page est a la fin du corps, derriere un fichier externe : le
+     navigateur dessinait le corps en l'attendant -- la page CLAIRE en mode nuit pendant 200 ms, l'etiquette
+     « Maquette », puis le paysage qui arrivait (mesure image par image : tests/converser_flash.py). Donc, ici, avant
+     le corps : la nuit, et les dessins du paysage (des definitions, rien qui touche a la page). « Maquette » part
+     cachee, le script la montre hors de l'app. -->
+<script>
+(function(){
+  try{
+    var q = new URLSearchParams(location.search), app = window.parent && window.parent !== window;
+    if (q.get("nuit") === "1" || (!q.has("nuit") && !app && window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches))
+      document.documentElement.classList.add("nuit");
+  }catch(e){}
+})();
+</script>
+<script src="conversation/paysages.js?v=2"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Conversations</title>
 <!--
@@ -163,14 +179,13 @@ html[dir="rtl"] .appris{text-align:right}
 <div class="haut">
   <button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
   <div class="titre"><small id="surtitre">Conversations</small><span id="titre">Jouer une conversation</span></div>
-  <span class="maquette" id="marque">Maquette</span>
+  <span class="maquette" id="marque" hidden>Maquette</span>
 </div>
 <div id="paysage" aria-hidden="true"></div>
 <main>
   <div class="plateau" id="plateau"></div>
   <div id="ecran"></div>
 </main>
-<script src="conversation/paysages.js?v=2"></script>
 <script>
 "use strict";
 const Q = new URLSearchParams(location.search);
@@ -1096,7 +1111,7 @@ function quitter(){
 document.getElementById("retour").onclick = quitter;
 if (LANG === "ar" || LANG === "fa") document.getElementById("retour").textContent = "›";
 document.getElementById("retour").setAttribute("aria-label", u("retour"));
-if (DANS_APP) document.getElementById("marque").hidden = true;
+document.getElementById("marque").hidden = DANS_APP;   // elle part cachee (voir l'en-tete) : montree hors de l'app seulement
 
 // ---------------------------------------------------------------- le paysage
 // La teinte de l'ecran suit le dessin (fondEcran) ; les verres du plateau et des reponses prennent ses deux couleurs.
