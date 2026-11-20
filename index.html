@@ -3130,10 +3130,16 @@ body[data-theme="dark"] .soins-bascule button{color:rgba(255,255,255,.82);}
 body[data-theme="dark"] .soins-bascule button[aria-pressed="true"]{background:#E8A23A; color:#1C2430;}
 /* les deux portes, dans la rangee blanche des niveaux de la carte : la porte choisie a l'allure du niveau choisi */
 #home #seancePilule.pilule-soins .seance-niveaux{display:flex !important; width:100%; box-sizing:border-box;}
-#home #seancePilule.pilule-soins .seance-niveau.sn-porte{flex:1 1 0; min-width:0; padding:0 10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+/* 19 nov. : a 375 et 320 px « Je prépare l'examen » finissait en « … » et, a 320 px, la rangee elargissait la carte (le
+   texte d'un seul tenant fixait la largeur minimale de la colonne) : la porte passe sur deux lignes, la colonne peut retrecir */
+#home #seancePilule.pilule-soins{grid-template-columns:minmax(0, 1fr);}
+#home #seancePilule.pilule-soins .seance-niveau.sn-porte{flex:1 1 0; min-width:0; height:auto; min-height:38px; padding:3px 6px; font-size:13px; line-height:1.12;
+    white-space:normal; text-wrap:balance; overflow:hidden;}
 #home #seancePilule.pilule-soins .pa-anneau, #home #seancePilule.pilule-soins .pa-niv, #home #seancePilule.pilule-soins .pa-sens,
 #home #seancePilule.pilule-soins .pa-changer:not(.sn-changer), #home #seancePilule.pilule-soins .pa-placement{display:none !important;}
-#home #seancePilule.pilule-soins .pa-contenu{white-space:pre-line;}
+/* .pa-plan (la ligne du plan de seance, v1121) remettait white-space:normal a specificite egale : le titre du chapitre et
+   son sous-titre se suivaient sur une meme ligne coupee au hasard (« … capítulo 1 de / 14 Recibir… », sonde du 19 nov.) */
+#home #seancePilule.pilule-soins .pa-contenu, #home #seancePilule.pilule-soins .pa-contenu.pa-plan{white-space:pre-line;}
 #home #seancePilule .sn-niveau-ligne{order:3; font-size:13px; color:rgba(28,36,48,.80); text-align:center;}
 body[data-theme="dark"] #home #seancePilule .sn-niveau-ligne{color:rgba(255,255,255,.92);}
 /* l'interrupteur : la position choisie en verre noir (maquette validee) */
@@ -3144,6 +3150,10 @@ body[data-theme="dark"] #home #seancePilule .sn-niveau-ligne{color:rgba(255,255,
 body.fond-soins #fondMonde .fm-piste{background-image:url("visuel/fond/herbier-jour.svg");}
 body.fond-soins[data-theme="dark"] #fondMonde .fm-piste{background-image:url("visuel/fond/herbier-nuit.svg");}
 body.fond-soins .spf-piste{background-image:url("visuel/fond/herbier-filigrane.svg");}
+/* la nuit, la carte du filigrane est portee par .spf-piste::before (v1066) : c'est lui qui change d'image ; et le pays
+   de la langue apprise, calque de la carte du monde, n'a pas de sens sur l'herbier (sonde du 19 nov.) */
+body.fond-soins[data-theme="dark"] .spf-piste::before{background-image:url("visuel/fond/herbier-filigrane.svg");}
+body.fond-soins .fm-pays, body.fond-soins .spf-pays{display:none;}
 /* les ecrans « Ma journee au service » et du chapitre (maquette : ecrans Chapitres et Releve) */
 .ecran-soins .es-kick{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#2E3A48; margin:8px 0 2px;}
 .ecran-soins .es-titre{font-family:'Source Serif 4', Georgia, serif; font-size:28px; line-height:1.1; margin:4px 0 2px; color:#1C2430;}
