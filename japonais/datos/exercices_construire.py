@@ -26,6 +26,16 @@ import os
 ICI = os.path.dirname(os.path.abspath(__file__))
 
 
+def equilibrer_jeux(jeux):
+    """La bonne reponse ne tient pas la meme place dans plus de 60 % d'une serie (defaut D9 de la revue,
+    19 nov. 2026 ; controle de tests/verifier.py). tests/ordre_options.py reordonne les options en place, de facon
+    deterministe, et ne touche pas une serie deja equilibree."""
+    import sys
+    sys.path.insert(0, os.path.join(ICI, "..", "..", "tests"))
+    import ordre_options
+    ordre_options.equilibrer(jeux)
+
+
 def lire(nom):
     with io.open(os.path.join(ICI, nom), encoding="utf-8") as f:
         return json.load(f)
@@ -310,6 +320,7 @@ def main():
         "teJaExercises": te_items(verbes),
         "adjectifsJaExercises": adj_items(adjectifs),
     }
+    equilibrer_jeux(jeux)
     chemin = os.path.join(ICI, "exercices.json")
     with io.open(chemin, "w", encoding="utf-8", newline="\n") as fo:
         json.dump({"_note": "Derive de japonais/datos/exercices_construire.py : ne pas modifier a la main. Brouillon.",

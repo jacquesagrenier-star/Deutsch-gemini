@@ -36,6 +36,16 @@ import random
 ICI = os.path.dirname(os.path.abspath(__file__))
 
 
+def equilibrer_jeux(jeux):
+    """La bonne reponse ne tient pas la meme place dans plus de 60 % d'une serie (defaut D9 de la revue,
+    19 nov. 2026 ; controle de tests/verifier.py). tests/ordre_options.py reordonne les options en place, de facon
+    deterministe, et ne touche pas une serie deja equilibree."""
+    import sys
+    sys.path.insert(0, os.path.join(ICI, "..", "..", "tests"))
+    import ordre_options
+    ordre_options.equilibrer(jeux)
+
+
 def lire(nom):
     with io.open(os.path.join(ICI, nom), encoding="utf-8") as f:
         return json.load(f)
@@ -400,6 +410,7 @@ def main():
     verbes = [v for niv in ("A1", "A2") for v in lire("verbes.json").get(niv, [])]
     for k, l in series_formes(verbes).items():
         jeux[k + "JaExercises"] = l
+    equilibrer_jeux(jeux)
     ecrire("exercices.json", exos)
 
     g = lire("grammaire.json")

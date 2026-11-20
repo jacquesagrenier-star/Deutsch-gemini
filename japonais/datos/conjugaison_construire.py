@@ -30,6 +30,16 @@ import json
 import os
 
 ICI = os.path.dirname(os.path.abspath(__file__))
+
+
+def equilibrer_jeux(jeux):
+    """La bonne reponse ne tient pas la meme place dans plus de 60 % d'une serie (defaut D9 de la revue,
+    19 nov. 2026 ; controle de tests/verifier.py). tests/ordre_options.py reordonne les options en place, de facon
+    deterministe, et ne touche pas une serie deja equilibree."""
+    import sys
+    sys.path.insert(0, os.path.join(ICI, "..", "..", "tests"))
+    import ordre_options
+    ordre_options.equilibrer(jeux)
 JAPONAIS = os.path.normpath(os.path.join(ICI, ".."))
 
 spec = importlib.util.spec_from_file_location(
@@ -361,6 +371,7 @@ def main():
     exos["jeux"]["naiJaExercises"] = nai
     exos["jeux"]["taJaExercises"] = ta
     exos["jeux"]["formesJaExercises"] = formes
+    equilibrer_jeux(exos["jeux"])
     with io.open(os.path.join(ICI, "exercices.json"), "w", encoding="utf-8", newline="\n") as fo:
         json.dump(exos, fo, ensure_ascii=False, indent=1)
         fo.write("\n")
