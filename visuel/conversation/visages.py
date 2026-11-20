@@ -129,11 +129,16 @@ LOT2_EMPRUNTS = {
 # pied) est serieux, parfois severe (Carlos, Silvia), alors qu'il sert de « sourire » a l'accueil de la personne.
 LOT2_SOURIRES = {n: ["sourire"] for n in ("Bruno", "Carlos", "Hugo", "Irene", "Mario", "Nuria", "Paula", "Sergio",
                                           "Silvia")}
+# Les 3 « perplexe » encore empruntes apres le lot (vus sur la planche du 20 nov.) : Marta et Carmen = la main sur le
+# front (preocupado), Tomas = il se ronge les ongles (nervioso) -- de l'inquietude, pas la perplexite d'un echange.
+LOT2_PERPLEXES = {"Marta": ["perplexe"], "Carmen": ["perplexe"], "Tomas": ["perplexe"]}
 # Ce que Jacques a accorde (rempli APRES son mot dans la fenetre de la session, jamais avant) : les parties du lot
 # et le plafond en dollars, reprises comprises. Tant que PLAFOND_LOT2 vaut 0, le script refuse de payer le lot 2.
-LOT2_ACCORDE = ("base", "emprunts", "sourires")   # Jacques, 20 nov. 2026 : « Tout : 204, 33,60 $ max »
-PLAFOND_LOT2 = 33.60
-LOT2 = {"base": LOT2_BASE, "emprunts": LOT2_EMPRUNTS, "sourires": LOT2_SOURIRES}
+LOT2_ACCORDE = ("base", "emprunts", "sourires",   # Jacques, 20 nov. 2026 : « Tout : 204, 33,60 $ max »
+                "perplexes")                       # Jacques, 20 nov. 2026 : « Oui, les 3 » (0,45 $)
+# 30,60 $ payes pour les 204 + 0,45 $ pour les 3 : aucune reprise sans un nouveau mot de Jacques.
+PLAFOND_LOT2 = 31.05
+LOT2 = {"base": LOT2_BASE, "emprunts": LOT2_EMPRUNTS, "sourires": LOT2_SOURIRES, "perplexes": LOT2_PERPLEXES}
 
 # Les sources : le portrait carre des 27 (portraits.py), l'image en pied des reserves et des douze de Descripcion.
 _PERS = os.path.join(os.path.expanduser("~"), ".wortando", "personnes", "img")
