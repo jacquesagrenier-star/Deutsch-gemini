@@ -802,7 +802,9 @@ REGLES = [
      u"Dire ce que porte la poitrine, y compris rien : << the chest pocket is plain and empty >>. Et zoomer sur la "
      u"poitrine de tout uniforme avant de garder l'image : le badge fait quelques pixels sur la planche."),
     ("casque-amene-le-bureau", "doute",
-     r"(?i)\bheadset\b",
+     # Le casque DECRIT (« a light headset », « with a headset ») ; pas « the same glasses, headset… » d'une retouche,
+     # ou la reference porte deja son fond de studio (visages.py, 20 nov. 2026 : la regle accusait les 204 prompts).
+     r"(?i)\b(a|with a|wears a|wearing a)\s+(light\s+|telephone\s+|call[- ]centre\s+)?headset\b",
      u"Un casque-micro nomme : le centre d'appels vient avec lui, derriere la personne",
      u"16 nov. 2026, portraits des conversations : sur cinq personnes au casque, Priya est sortie devant un open "
      u"space (bureaux, telephone) et Stefan devant un dossier de chaise noire, malgre << Plain light grey studio "
