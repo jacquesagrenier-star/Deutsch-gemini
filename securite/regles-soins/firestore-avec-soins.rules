@@ -28,6 +28,10 @@
 //  6. Le mode sans compte (v1178, 12 nov. 2026) : un compte anonyme ecrit
 //     son resume avec une adresse vide ; la date du lien d'une adresse a ce
 //     compte (`adresseLieeLe`) s'ecrit une fois, a l'heure du serveur.
+//  7. Retire de la promesse du testeur a vie (decision de Jacques du
+//     20 nov. 2026) : `testeurRetire` entre dans accesReserves() -- seul
+//     l'admin le pose ou le retire, la personne ne peut ni se le poser ni se
+//     l'enlever, et l'admin, chez autrui, ne touche toujours qu'aux acces.
 // Un champ de droit d'acces AJOUTE plus tard doit entrer dans accesReserves(),
 // sinon chacun peut se le poser.
 // Tout le reste est identique : memes collections, memes lectures.
@@ -50,7 +54,7 @@ service cloud.firestore {
 
     // ---- Ce que seul l'admin accorde ----
     function accesReserves() {
-      return ['essais', 'vhsChaptersEnabled', 'accesAVie', 'accesJusqua'];
+      return ['essais', 'vhsChaptersEnabled', 'accesAVie', 'accesJusqua', 'testeurRetire'];
     }
     function creeSansAccesReserves() {
       return !request.resource.data.keys().hasAny(accesReserves());

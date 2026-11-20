@@ -120,6 +120,19 @@ function resume(email, extra){
     await cas("apres l'acces offert, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"c\":3}", updatedAt: serverTimestamp(), dailyGoalTarget: null }, { merge: true }));
     await cas("apres l'acces offert, le jeton de notification : accepte", true, () => setDoc(doc(anna, "users", "annaUid"), { fcmToken: null }, { merge: true }));
     await cas("apres les 4 mois offerts, la sauvegarde ordinaire : acceptee", true, () => setDoc(doc(bob, "users", "bobUid"), { progressJson: "{}", updatedAt: serverTimestamp() }, { merge: true }));
+    // RETIRE DE LA PROMESSE (decision de Jacques du 20 nov. 2026) : `testeurRetire`, l'admin seul. Les regles qui ne
+    // l'ont pas encore dans accesReserves() refusent aussi l'admin (attendu tant que le fichier n'est pas colle).
+    const avecRetrait = fs.readFileSync(REGLES, "utf8").includes("'testeurRetire'");
+    await cas("retrait : s'enleve lui-meme de la liste (testeurRetire false) : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { testeurRetire: false }));
+    await cas("retrait : se le pose dans une sauvegarde : refuse", false, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{}", updatedAt: serverTimestamp(), testeurRetire: true }, { merge: true }));
+    await cas("retrait : compte neuf cree avec testeurRetire : refuse", false, () => setDoc(doc(bob, "users", "bobRetire"), { email: "bob@example.com", testeurRetire: false }));
+    await cas("retrait : l'admin le pose : " + (avecRetrait ? "accepte" : "refuse, regles sans la cle"), avecRetrait, () => updateDoc(doc(admin, "users", "annaUid"), { testeurRetire: true }));
+    if(avecRetrait){
+        await cas("retrait : la personne l'efface ensuite : refuse", false, () => updateDoc(doc(anna, "users", "annaUid"), { testeurRetire: deleteField() }));
+        await cas("retrait : la sauvegarde ordinaire ensuite : acceptee", true, () => setDoc(doc(anna, "users", "annaUid"), { progressJson: "{\"r\":1}", updatedAt: serverTimestamp() }, { merge: true }));
+        await cas("retrait : l'admin le pose en touchant la progression : refuse", false, () => updateDoc(doc(admin, "users", "annaUid"), { testeurRetire: true, progressJson: "x" }));
+        await cas("retrait : l'admin l'annule", true, () => updateDoc(doc(admin, "users", "annaUid"), { testeurRetire: false }));
+    }
 
     // LE MODE SANS COMPTE (12 nov. 2026, refus d'Apple 5.1.1(v)) : un compte
     // Firebase Anonyme a un uid mais pas d'adresse dans son jeton.

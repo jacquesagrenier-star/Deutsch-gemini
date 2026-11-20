@@ -47529,6 +47529,7 @@ async function loadVhsKapitelAccessFlag(){
         vhsKapitelAccess = !!(snap.exists() && snap.data().vhsChaptersEnabled === true);
         // Testeur arrive apres la sortie : gratuit a vie, pose a la main (v691).
         accesAVieFirestore = !!(snap.exists() && snap.data().accesAVie === true);
+        testeurRetireFirestore = !!(snap.exists() && snap.data().testeurRetire === true);
         // Le mode sans compte (12 nov. 2026) : la date du lien et le code
         // consomme par CE compte (voir adresseLieeLeMs).
         adresseLieeLeMs = snap.exists() ? dateEnMs(snap.data().adresseLieeLe) : null;
@@ -54523,6 +54524,9 @@ const GRATUIT = {
 };
 
 let accesAVieFirestore = false;
+// Retire de la promesse du 2 oct. (decision de Jacques du 20 nov. 2026) : `users/<uid>.testeurRetire === true`,
+// pose par l'admin seul (bouton du tableau de bord, regle accesReserves). Voir etatEssaiPur.
+let testeurRetireFirestore = false;
 const APERCU_GRATUIT_KEY = PREFIXE_STOCKAGE + "apercuGratuit";
 
 function apercuGratuitActif(){
@@ -54557,12 +54561,13 @@ function accesCompteEnCache(uid){
     }catch(e){ return null; }
 }
 function retenirAccesCompte(uid){
-    try{ localStorage.setItem(CLE_ACCES_COMPTE + uid, JSON.stringify({ code: !!codeInvitationConsomme, lie: adresseLieeLeMs, vie: !!accesAVieFirestore })); }catch(e){}
+    try{ localStorage.setItem(CLE_ACCES_COMPTE + uid, JSON.stringify({ code: !!codeInvitationConsomme, lie: adresseLieeLeMs, vie: !!accesAVieFirestore, ret: !!testeurRetireFirestore })); }catch(e){}
 }
 function oublierAccesCompte(){
     accesCompteLu = false;
     codeInvitationConsomme = false;
     adresseLieeLeMs = null;
+    testeurRetireFirestore = false;
 }
 
 // ============ L'ESSAI DE 7 JOURS, GERE PAR L'APP (11 nov. 2026) ============
@@ -54596,7 +54601,7 @@ const ESSAI_RAPPEL_JOUR = 5;     // le rappel promis sur l'ecran d'abonnement (d
 
 // p = { actif, admin, accesAVie, lancementMs, creeMs, debutCompteMs,
 //       maintenantMs, plancherServeurMs, offertJusquaMs, abonne,
-//       anonyme, codeInvitation, lieMs }
+//       anonyme, codeInvitation, lieMs, retire }
 // Rend { etat, jour, restants, debut, fin, jusqua } ; etat parmi « ouvert »,
 // « testeur », « abonne », « offert », « essai », « gratuit ».
 function etatEssaiPur(p){
@@ -54608,7 +54613,11 @@ function etatEssaiPur(p){
     // compte a la date du lien (lieMs), pas a celle de l'anonyme ; et il faut
     // un code d'invitation consomme par ce compte (codeInvitation).
     const dateCompte = valide(p.lieMs) ? p.lieMs : p.creeMs;
-    if(p.admin || p.accesAVie || (!p.anonyme && p.codeInvitation && valide(p.lancementMs) && valide(dateCompte) && dateCompte < p.lancementMs)) return { etat: "testeur" };
+    // RETIRE DE LA PROMESSE (decision de Jacques du 20 nov. 2026 : six comptes jamais ou presque jamais
+    // utilises, liste hors du depot) : `testeurRetire` passe AVANT le code consomme et avant accesAVie ; le
+    // compte suit le chemin de tout le monde (7 jours offerts, puis gratuit ou abonnement). L'admin reste l'admin.
+    const testeur = !p.retire && (p.accesAVie || (!p.anonyme && p.codeInvitation && valide(p.lancementMs) && valide(dateCompte) && dateCompte < p.lancementMs));
+    if(p.admin || testeur) return { etat: "testeur" };
     if(p.abonne) return { etat: "abonne" };
     const maintenant = Math.max(valide(p.maintenantMs) ? p.maintenantMs : 0, valide(p.plancherServeurMs) ? p.plancherServeurMs : 0);
     // Les testeurs du Play Store et de TestFlight : 4 mois offerts (3 oct.),
@@ -54618,7 +54627,10 @@ function etatEssaiPur(p){
     // Compte pas encore connu (la session Firebase se retablit) : rien ne se
     // ferme sur une inconnue -- l'etat se recalcule des que le compte arrive.
     if(!debuts.length) return { etat: "essai", jour: 1, restants: ESSAI_JOURS, debut: null, fin: null };
-    const debut = Math.min.apply(null, debuts);
+    // PERSONNE N'A D'ESSAI AVANT LA SORTIE (20 nov. 2026) : un compte d'avant ACCES.lancement qui n'est pas
+    // testeur (retire de la promesse, sans compte, preuve de code perdue) a ses 7 jours a partir du jour de la
+    // sortie, au lieu de se fermer d'un coup le jour meme.
+    const debut = valide(p.lancementMs) ? Math.max(Math.min.apply(null, debuts), p.lancementMs) : Math.min.apply(null, debuts);
     const fin = debut + ESSAI_JOURS * JOUR_MS;
     const jour = Math.floor(Math.max(0, maintenant - debut) / JOUR_MS) + 1;
     if(maintenant < fin) return { etat: "essai", jour, restants: Math.ceil((fin - maintenant) / JOUR_MS), debut, fin };
@@ -54683,19 +54695,21 @@ function infoAcces(){
     try{ if(user && user.metadata && user.metadata.creationTime) creeMs = Date.parse(user.metadata.creationTime); }catch(e){}
     let plancher = plancherServeurMs;
     try{ if(user && user.metadata && user.metadata.lastSignInTime) plancher = Math.max(plancher, Date.parse(user.metadata.lastSignInTime) || 0); }catch(e){}
-    let code = codeInvitationConsomme, lie = adresseLieeLeMs, vie = accesAVieFirestore, enAttente = false;
+    let code = codeInvitationConsomme, lie = adresseLieeLeMs, vie = accesAVieFirestore, ret = testeurRetireFirestore, enAttente = false;
     if(user && !user.isAnonymous && !accesCompteLu){
         const c = accesCompteEnCache(user.uid);
         if(c){
             code = code || !!c.code;
             if(lie == null && typeof c.lie === "number") lie = c.lie;
             vie = vie || !!c.vie;
+            ret = ret || !!c.ret;
         } else enAttente = true;
     }
     const r = etatEssaiPur({
         actif: ACCES.actif,
         admin: isAdminUser(),
         accesAVie: vie,
+        retire: ret,
         lancementMs: ACCES.lancement ? new Date(ACCES.lancement + "T00:00:00").getTime() : null,
         creeMs: isNaN(creeMs) ? null : creeMs,
         anonyme: !!(user && user.isAnonymous),
@@ -57640,6 +57654,7 @@ async function verifierPreuvesTesteurs(forcer){
                 code: code ? code.slice(0, 20) : null,
                 preuve,
                 vie: u.accesAVie === true,
+                ret: u.testeurRetire === true,
                 cree: dateEnMs(u.createdAt) || null
             };
         });
@@ -57659,11 +57674,13 @@ function afficherPreuvesTesteurs(){
     const intactes = liste.filter(([, c]) => c.preuve === "code").length;
     const aVie = liste.filter(([, c]) => c.vie).length;
     // Une preuve manquante est REGLEE quand l'admin a pose accesAVie.
-    const manquantes = liste.filter(([, c]) => (c.preuve === "manquante" || c.preuve === "autre") && !c.vie);
+    // Un compte retire de la promesse (20 nov.) n'a pas de preuve a rendre.
+    const manquantes = liste.filter(([, c]) => (c.preuve === "manquante" || c.preuve === "autre") && !c.vie && !c.ret);
+    const retires = liste.filter(([, c]) => c.ret).length;
     const reglees = liste.filter(([, c]) => (c.preuve === "manquante" || c.preuve === "autre") && c.vie).length;
     const quand = timeAgoFr(new Date(preuvesTesteurs.lu));
     const reverifier = `<button class="secondary" style="width:auto; padding:6px 12px; font-size:12px; margin-top:8px;" onclick="verifierPreuvesTesteurs(true)">REVÉRIFIER</button>`;
-    const bilan = `${intactes} preuve${intactes > 1 ? "s" : ""} par code intacte${intactes > 1 ? "s" : ""} · ${aVie} accordé${aVie > 1 ? "s" : ""} à la main${reglees ? " (dont " + reglees + " preuve" + (reglees > 1 ? "s" : "") + " rendue" + (reglees > 1 ? "s" : "") + ")" : ""} · vérifié ${echapperCompte(quand)}`;
+    const bilan = `${intactes} preuve${intactes > 1 ? "s" : ""} par code intacte${intactes > 1 ? "s" : ""} · ${aVie} accordé${aVie > 1 ? "s" : ""} à la main${reglees ? " (dont " + reglees + " preuve" + (reglees > 1 ? "s" : "") + " rendue" + (reglees > 1 ? "s" : "") + ")" : ""} · vérifié ${echapperCompte(quand)}${retires ? " · " + retires + " retiré" + (retires > 1 ? "s" : "") + " de la promesse" : ""}`;
     if(!manquantes.length){
         zone.innerHTML = `<div class="card admin-preuves-ok"><strong>Testeurs à vie : aucune preuve manquante ✓</strong><br><small>${bilan}</small><br>${reverifier}</div>`;
         majBoutonsTesteurAVie();
@@ -57688,16 +57705,20 @@ function afficherPreuvesTesteurs(){
 // Sur la ligne de chaque compte : l'etat de sa preuve et le bouton.
 function libelleTesteurAVie(uid){
     const c = preuvesTesteurs && preuvesTesteurs.comptes ? preuvesTesteurs.comptes[uid] : null;
-    if(!c) return { bouton: "TESTEUR À VIE…", note: "" };
+    if(!c) return { bouton: "TESTEUR À VIE…", note: "", retrait: "RETIRER DE LA PROMESSE…" };
     const note = c.preuve === "code" ? "Testeur à vie par son code ✓"
         : (c.preuve === "manquante" || c.preuve === "autre") ? "⚠️ Preuve par code manquante"
         : "Sans code d'invitation";
-    return { bouton: c.vie ? "TESTEUR À VIE ✓ — RETIRER" : "RENDRE TESTEUR À VIE", note: c.vie ? note + " · accordé à la main ✓" : note };
+    const notes = (c.vie ? note + " · accordé à la main ✓" : note)
+        + (c.ret ? " · RETIRÉ de la promesse : 7 jours dès la sortie, puis gratuit ou abonnement" : "");
+    return { bouton: c.vie ? "TESTEUR À VIE ✓ — RETIRER" : "RENDRE TESTEUR À VIE", note: notes,
+             retrait: c.ret ? "RETIRÉ DE LA PROMESSE ✓ — ANNULER" : "RETIRER DE LA PROMESSE" };
 }
 function boutonTesteurAVie(uid){
     const l = libelleTesteurAVie(uid);
     return `<div class="admin-testeur" style="margin-top:8px;"><small data-testeur-note="${uid}">${echapperCompte(l.note)}</small>
-        <button class="secondary admin-vhs" data-testeur-uid="${uid}" data-testeur-ligne="1" onclick="basculerTesteurAVie('${uid}')">${l.bouton}</button></div>`;
+        <button class="secondary admin-vhs" data-testeur-uid="${uid}" data-testeur-ligne="1" onclick="basculerTesteurAVie('${uid}')">${l.bouton}</button>
+        <button class="secondary admin-vhs" data-retrait-uid="${uid}" onclick="basculerTesteurRetire('${uid}')">${l.retrait}</button></div>`;
 }
 function majBoutonsTesteurAVie(){
     document.querySelectorAll("#adminUsersList [data-testeur-ligne]").forEach(b => {
@@ -57706,6 +57727,8 @@ function majBoutonsTesteurAVie(){
         b.textContent = l.bouton;
         const n = document.querySelector(`#adminUsersList [data-testeur-note="${uid}"]`);
         if(n) n.textContent = l.note;
+        const r = document.querySelector(`#adminUsersList [data-retrait-uid="${uid}"]`);
+        if(r) r.textContent = l.retrait;
     });
 }
 
@@ -57739,6 +57762,39 @@ async function basculerTesteurAVie(uid){
             ? "Refusé par Firestore : colle d'abord les nouvelles règles (firestore.rules)."
             : t('admin_action_failed'));
         console.warn("basculerTesteurAVie", e);
+    }
+}
+
+// RETIRER DE LA PROMESSE (decision de Jacques du 20 nov. 2026, 227abcf) : les testeurs invites avec un code gardent
+// l'acces complet a vie, SAUF six comptes jamais ou presque jamais utilises (leurs prenoms : ~/.wortando/testeurs-retires.txt,
+// hors du depot). Pose ou retire `testeurRetire` dans users/<uid> (l'admin seul : regle accesReserves). Comme pour
+// accesAVie, on relit le document avant et on demande confirmation. Inerte tant que ACCES.actif vaut false.
+async function basculerTesteurRetire(uid){
+    if(!isAdminUser() || !idSurCompte(uid)) return;
+    try{
+        const ref = window.fsDoc(window.firestoreDb, 'users', uid);
+        const snap = await window.fsGetDoc(ref);
+        if(!snap.exists()){ showInfoToast("Ce compte n'a pas de document users : rien à changer."); return; }
+        const d = snap.data() || {};
+        const avant = d.testeurRetire === true;
+        const nom = String(d.firstName || d.email || ("compte " + uid.slice(0, 6))).trim().slice(0, 60);
+        const question = avant
+            ? `Rendre à « ${nom} » la promesse du testeur à vie ?` + (d.accesAVie === true || (preuvesTesteurs && preuvesTesteurs.comptes[uid] && preuvesTesteurs.comptes[uid].preuve === "code") ? "\n(Il redevient gratuit à vie.)" : "\n(Sans code ni accès accordé à la main, il reste en essai de 7 jours.)")
+            : `Retirer « ${nom} » de la promesse du testeur à vie ?\nÀ la sortie, il aura 7 jours offerts à partir du jour de la sortie, puis la version gratuite ou l'abonnement, même s'il a un code ou un accès accordé à la main.`;
+        if(!confirm(question)) return;
+        await window.fsUpdateDoc(ref, { testeurRetire: !avant });
+        if(!preuvesTesteurs) preuvesTesteurs = { lu: Date.now(), comptes: {} };
+        if(preuvesTesteurs.comptes[uid]) preuvesTesteurs.comptes[uid].ret = !avant;
+        else preuvesTesteurs.comptes[uid] = { nom, code: null, preuve: "sans", vie: d.accesAVie === true, ret: !avant, cree: dateEnMs(d.createdAt) || null };
+        retenirPreuvesTesteurs();
+        afficherPreuvesTesteurs();
+        showInfoToast(!avant ? "Retiré de la promesse ✓" : "Promesse rendue ✓");
+    }catch(e){
+        const code = String((e && (e.code || e.message)) || "?");
+        showInfoToast(code.indexOf("permission") !== -1
+            ? "Refusé par Firestore : colle d'abord les nouvelles règles (securite/regles-soins/firestore-avec-soins.rules)."
+            : t('admin_action_failed'));
+        console.warn("basculerTesteurRetire", e);
     }
 }
 

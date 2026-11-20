@@ -143,6 +143,33 @@ egal(etat({ creeMs: LANCEMENT - J, maintenantMs: au(30) }).etat, "gratuit", "com
     egal(r.etat, "gratuit", "anonyme du jour 1 relie au jour 6 : l'essai part du jour 1 (gratuit au jour 9)");
 }
 
+// ---------- 3 ter. Retire de la promesse, et pas d'essai avant la sortie (decision du 20 nov. 2026) ----------
+// `testeurRetire` (pose par l'admin) passe avant le code consomme et avant accesAVie ; l'essai d'un compte d'avant
+// la sortie part du jour de la sortie, au lieu de se fermer d'un coup.
+{
+    const avant = LANCEMENT - 40 * J;   // un testeur invite il y a 40 jours
+    const sortie = h => LANCEMENT + h * H;
+    egal(etat({ creeMs: avant, codeInvitation: true, maintenantMs: sortie(10) }).etat, "testeur", "testeur avec code, le jour de la sortie : testeur a vie");
+    const r1 = etat({ creeMs: avant, codeInvitation: true, retire: true, maintenantMs: sortie(10) });
+    egal(r1.etat, "essai", "retire de la promesse, le jour de la sortie : essai (pas ferme d'un coup)");
+    egal(r1.jour, 1, "retire : jour 1 le jour de la sortie");
+    egal(r1.restants, 7, "retire : 7 jours restants le jour de la sortie");
+    egal(r1.debut, LANCEMENT, "retire : l'essai part de la sortie");
+    egal(etat({ creeMs: avant, codeInvitation: true, retire: true, maintenantMs: LANCEMENT + 6 * J + 20 * H }).etat, "essai", "retire : encore en essai au 7e jour apres la sortie");
+    egal(etat({ creeMs: avant, codeInvitation: true, retire: true, maintenantMs: LANCEMENT + 7 * J + H }).etat, "gratuit", "retire : version gratuite au 8e jour apres la sortie");
+    egal(etat({ creeMs: avant, codeInvitation: true, retire: true, abonne: true, maintenantMs: LANCEMENT + 30 * J }).etat, "abonne", "retire et abonne : abonne");
+    egal(etat({ creeMs: avant, accesAVie: true, retire: true, maintenantMs: LANCEMENT + 30 * J }).etat, "gratuit", "retire passe aussi avant accesAVie");
+    egal(etat({ admin: true, retire: true, maintenantMs: LANCEMENT + 30 * J }).etat, "testeur", "l'admin reste l'admin, meme marque retire");
+    egal(etat({ creeMs: avant, codeInvitation: true, retire: false, maintenantMs: LANCEMENT + 30 * J }).etat, "testeur", "retire: false : testeur a vie");
+    const r2 = etat({ anonyme: true, creeMs: LANCEMENT - 5 * J, maintenantMs: sortie(10) });
+    egal(r2.etat, "essai", "sans compte, commence 5 jours avant la sortie : en essai le jour de la sortie");
+    egal(r2.restants, 7, "sans compte d'avant la sortie : 7 jours a partir de la sortie");
+    const r3 = etat({ creeMs: LANCEMENT + 2 * J, maintenantMs: LANCEMENT + 4 * J });
+    egal(r3.debut, LANCEMENT + 2 * J, "compte cree apres la sortie : l'essai part de sa creation, comme avant");
+    egal(etat({ creeMs: LANCEMENT + 2 * J, maintenantMs: LANCEMENT + 10 * J }).etat, "gratuit", "compte cree apres la sortie : gratuit 8 jours apres sa creation");
+    egal(E.etatEssaiPur({ actif: false, retire: true, creeMs: avant, maintenantMs: LANCEMENT + 30 * J }).etat, "ouvert", "ACCES.actif false : ouvert, meme retire");
+}
+
 // ---------- 4. Le testeur des magasins : 4 mois offerts ----------
 {
     const jusqua = E.dateEnMs("2027-04-01");
@@ -196,6 +223,11 @@ verifier(/cleAndroid: "goog_[A-Za-z0-9]{20,}",/.test(source) && /cleIos: "(appl_
 verifier(!/sk_[A-Za-z0-9]{10,}/.test(source), "aucune cle secrete RevenueCat (sk_…) dans index.html");
 verifier(/function achatsPermis\(\)\{ return ACCES\.actif \|\| isAdminUser\(\); \}/.test(source), "les achats restent reserves a l'admin avant la sortie");
 verifier(extrait("function majApresChangementAcces(){", 200).indexOf("if(!ACCES.actif && !apercuEssaiJour()) return;") >= 0, "majApresChangementAcces ne fait rien avant la sortie");
+// Retire de la promesse (20 nov.) : le drapeau est lu du compte, garde dans le cache et passe a etatEssaiPur.
+verifier(/testeurRetireFirestore = !!\(snap\.exists\(\) && snap\.data\(\)\.testeurRetire === true\);/.test(source), "testeurRetire est lu de users/<uid>");
+verifier(/ret: !!testeurRetireFirestore \}/.test(source) && /ret = ret \|\| !!c\.ret;/.test(source), "testeurRetire est garde dans le cache du compte");
+verifier(extrait("function infoAcces(){", 2500).indexOf("retire: ret,") >= 0, "infoAcces passe testeurRetire a etatEssaiPur");
+verifier(/async function basculerTesteurRetire\(uid\)\{\s*if\(!isAdminUser\(\)/.test(source), "seul l'admin bascule testeurRetire");
 verifier(extrait("function majAccesAccueil(){", 200).indexOf("if(!ACCES.actif && !apercuEssaiJour()) return;") >= 0, "ni rappel ni ecran du 8e jour avant la sortie");
 verifier(extrait("async function programmerRappelEssai(){", 400).indexOf("if(!ACCES.actif || apercuEssaiJour()) return;") >= 0, "aucune notification d'essai avant la sortie, ni pour une simulation");
 verifier(extrait("function lireAccesDuCompte(d, user){", 600).indexOf("if(ACCES.actif && user && !d.essaiDebut") >= 0, "essaiDebut n'est ecrit qu'apres la sortie");
@@ -243,7 +275,7 @@ verifier(/function ouvrirSceneLibre\(nom\)\{\s*if\(!pageOuverte\("scene:" \+ nom
         "conversation.html : une conversation fermee ouvre l'abonnement, dans la liste comme par ?c=");
 }
 verifier(/function ouvrirThemeIllustre\(nom, depuis\)\{[\s\S]{0,160}if\(!pageOuverte\("theme:" \+ nom\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des themes illustres");
-verifier(/function ouvrirConversations\(\)\{\s*if\(!famillePageOuverte\("conversation"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des conversations");
+verifier(/function ouvrirConversations\([^)]*\)\{\s*if\(!famillePageOuverte\("conversation"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte des conversations");
 verifier(/function ouvrirTelc\(partie\)\{[\s\S]{0,160}if\(!famillePageOuverte\("telc"\)\)\{ ouvrirAbonnement\(\); return; \}/.test(source), "la porte du telc");
 verifier(/const ouverts = themesIllustresOuverts\(\)\.filter\(nom => pageOuverte\("theme:" \+ nom\)\);/.test(source), "le theme de la seance parmi les themes ouverts");
 verifier(/if\(id && pageOuverte\("conversation:" \+ id\)\) sortie\.push\(/.test(source), "la conversation de Premiers pas seulement si elle est ouverte");
