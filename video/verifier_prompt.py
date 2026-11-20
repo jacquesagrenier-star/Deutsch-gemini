@@ -791,6 +791,26 @@ REGLES = [
      u"(la nuque, les cheveux, l'epaule, coupes par le bord). A la reprise : "
      u"aucun visage, Anna plus grande. Il est reste net et grand -- un vrai "
      u"champ-contrechamp, acceptable ; le flou ne se commande pas."),
+    ("uniforme-a-badge", "doute",
+     r"(?i)\b(airport|airline|staff|security|hotel|rental)\b[^.]{0,60}\buniform\b",
+     u"Un uniforme de metier nomme : il arrive avec un badge ECRIT a un nom",
+     u"16 nov. 2026, portraits des conversations (portraits.py), Omar, l'agent des bagages perdus : << a white "
+     u"short-sleeved airport staff uniform shirt >>, aucun badge demande, et << no text, no logos >> dans le cadre. "
+     u"Est venu un badge blanc << AHMED >> en lettres latines ET arabes -- un prenom qui n'est pas le sien. Efface "
+     u"gratuitement (visuel/effacer_texte.py). Meme mecanisme qu'<< affiche-qui-ecrit >> : le genre convoque son "
+     u"imagerie, badge compris.",
+     u"Dire ce que porte la poitrine, y compris rien : << the chest pocket is plain and empty >>. Et zoomer sur la "
+     u"poitrine de tout uniforme avant de garder l'image : le badge fait quelques pixels sur la planche."),
+    ("casque-amene-le-bureau", "doute",
+     r"(?i)\bheadset\b",
+     u"Un casque-micro nomme : le centre d'appels vient avec lui, derriere la personne",
+     u"16 nov. 2026, portraits des conversations : sur cinq personnes au casque, Priya est sortie devant un open "
+     u"space (bureaux, telephone) et Stefan devant un dossier de chaise noire, malgre << Plain light grey studio "
+     u"background... nothing else in the picture >>. 0,30 $ de reprise (fond seul, nano-banana-pro/edit). Mei, "
+     u"Renate et Grace sont sorties sur le fond juste avec le meme cadre : c'est une loterie, pas une regle sure.",
+     u"Si le fond deborde, ne pas regenerer le portrait (le visage changerait) : retoucher le FOND seul, << Change "
+     u"only what is behind the person: a plain light grey studio background... an empty seamless wall >> "
+     u"(portraits.py --fond), qui a rendu les deux visages a l'identique du premier coup."),
 ]
 
 # --------------------------------------------------------------------------
@@ -1345,7 +1365,7 @@ POUR_IMAGE = ("garde-negative", "rayons-sans-texte-blanchis", "comptoir-devant",
               "personne-sans-reference", "pose-pour-la-camera",
               "fruit-a-etiquette", "objet-sous-le-personnage",
               "personnage-qui-se-penche", "tete-calee-sur-le-fond",
-              "saynetes-en-foule", "retouche-de-style")
+              "saynetes-en-foule", "retouche-de-style", "uniforme-a-badge", "casque-amene-le-bureau")
 
 # Toute personne nommee dans une scene. Voir << saynetes-en-foule >>.
 FOULE = re.compile(r"(?i)\b(woman|man|girl|boy|lady|doctor|teacher|nurse|"
