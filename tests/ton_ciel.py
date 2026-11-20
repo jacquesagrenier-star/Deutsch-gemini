@@ -8,12 +8,12 @@ Sur un navigateur vierge, sans compte, l'etat pose dans le stockage :
   neuf      : rien d'atteint, la bande ne ressemble pas a une panne (« Ta premiere etoile ») ;
   pp        : Premiers pas, jour 3 : la Grande Ourse en cours ;
   a1        : A1 voyage, etape 6 : Grande Ourse finie, Gemeaux 5/12, Orion a venir ;
-  a2        : A2 et plus : les trois figures finies ;
-  voyage    : A1 voyage, etape 6, sans Premiers pas : les Gemeaux seuls ;
-  ancien    : A1 sans le voyage (ancien ordre) : pas de tuile, le tableau garde toute la bande ;
+  a2        : un compte A2 d'avant (ligne 158) : les 30 etoiles de l'A1 gardees, la Lyre ensuite (0/6) ;
+  voyage    : A1 voyage, etape 6, sans Premiers pas : ses 5 etoiles, dans l'ordre du voyage (la Grande Ourse 5/8) ;
+  ancien    : A1 sans le voyage (ancien ordre) : un ciel qui part de 0 (ligne 158 : les etoiles suivent les seances) ;
   anglais   : pas de ciel hors de l'allemand et de l'espagnol.
 Dans la page, seulement ce qu'on a atteint (Jacques, 10 nov.) : la figure en cours et celles commencees ou finies, jamais une
-figure a venir, ni en pastille ni en dessin -- neuf et pp : 1 pastille, a1 : 2, a2 : 3, voyage : 1.
+figure a venir, ni en pastille ni en dessin -- neuf, pp, voyage et ancien : 1 pastille, a1 : 2, a2 : 4.
 A chaque fois : la bande coupee en deux sans debordement, puis la page, ses pastilles, une etoile touchee (nom et distance « de la
 Terre »), a 320 et 360 px, clair, nuit et RTL.
 La note « Touche une etoile pour la decouvrir. » (retour de Jacques du 20 nov.) : lue avant de toucher (entre les pastilles et
@@ -43,7 +43,7 @@ POSER = """
   if(cas === 'pp'){ localStorage.setItem(NIVEAU_DECLARE_KEY, 'zero'); localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: true, k: 6 })); }
   if(cas === 'a1'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false, p: 999, fini: true })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 5, t: true, b: 0 }));
                     localStorage.setItem(CIEL_PART_KEY, JSON.stringify({ g: 'a1_escales', n: 5, p: .45 })); }
-  if(cas === 'a2'){ localStorage.setItem(NIVEAU_SEANCE_KEY, 'A2'); }
+  if(cas === 'a2'){ localStorage.setItem(NIVEAU_SEANCE_KEY, 'A2'); localStorage.setItem(CIEL_COMPTE_KEY, JSON.stringify({ n: 30, m: 1 })); }
   if(cas === 'voyage'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: true, e: 5, t: true, b: 0 })); }
   if(cas === 'ancien'){ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify({ a: false })); localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify({ a: false, e: 0 })); }
 }
@@ -109,7 +109,7 @@ def juger(cas, r):
     f = []
     if a["debord"] or not a["dedans"]:
         f.append("debordement a l'accueil")
-    if cas in ("ancien", "anglais"):
+    if cas == "anglais":
         if a["ciel"]:
             f.append("tuile presente")
         if a["tableau"] and a["deux"]:
@@ -124,13 +124,13 @@ def juger(cas, r):
         f.append("page non ouverte")
     if p["debord"]:
         f.append("debordement de la page")
-    attendu = {"neuf": 1, "pp": 1, "a1": 2, "a2": 3, "voyage": 1}.get(cas)
+    attendu = {"neuf": 1, "pp": 1, "a1": 2, "a2": 4, "voyage": 1, "ancien": 1}.get(cas)
     if len(p["pastilles"]) != attendu:
         f.append("pastilles %s (attendu %s)" % (p["pastilles"], attendu))
     for x in r.get("pastilles") or []:
         if "venir" in x["info"].lower() or "coming" in x["info"].lower():
             f.append("figure a venir montree : %s" % x["pastille"])
-    if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Gémeaux", "Géminis", "Zwillinge", "Gemini")):
+    if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Ourse", "Osa", "Wagen", "Bär")):
         f.append("voyage : %s" % p["pastilles"])
     n0, n1, n2 = p.get("note") or {}, p.get("noteApres") or {}, r.get("reouvert") or {}
     if not n0.get("visible") or not n0.get("texte") or not n0.get("avantDessin") or not n0.get("apresPastilles") or not n0.get("dansLargeur"):
@@ -142,12 +142,12 @@ def juger(cas, r):
     t = r.get("touche")
     if not t or not t["texte"] or not t["dansCadre"]:
         f.append("etoile touchee : %s" % t)
-    if cas == "neuf" and (a["compte"] == "" or "/" in a["compte"]):
+    if cas in ("neuf", "ancien") and (a["compte"] == "" or "/" in a["compte"]):
         f.append("neuf : %s" % a["compte"])
     if cas == "a1" and a["compte"] != "5/12":
         f.append("a1 : %s" % a["compte"])
-    if cas == "a2" and p["cible"]:
-        f.append("a2 : une cible")
+    if cas == "a2" and a["compte"] != "0/6":
+        f.append("a2 (30 etoiles gardees, la Lyre ensuite) : %s" % a["compte"])
     return f
 
 
