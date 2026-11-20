@@ -54,12 +54,18 @@
 
 <!-- ============================ FRANÇAIS ============================ -->
 <h1 id="fr">Politique de confidentialité</h1>
-<p class="date">Dernière mise à jour : 26 octobre 2026</p>
+<!-- BROUILLON du 20 nov. 2026, pour le lancement (decision du 19 nov. au soir) : verifie contre le
+     code de la v1226 -- mode sans compte (Firebase Anonyme), abonnement par RevenueCat (apps seulement),
+     App Check / reCAPTCHA Enterprise, Google Fonts, voix servies par Firebase Hosting, Google Analytics
+     retire le 15 nov. ; ce que voit l'editeur decrit tel quel. A relire par Jacques avant publication. -->
+<p class="date">Dernière mise à jour : 20 novembre 2026</p>
 
 <div class="resume">
-  <p><strong>En bref.</strong> Wortando conserve votre adresse courriel, votre
-  prénom et votre progression d'apprentissage, afin que vous retrouviez vos
-  cartes sur n'importe quel appareil.</p>
+  <p><strong>En bref.</strong> Wortando conserve votre progression
+  d'apprentissage, et, si vous créez un compte, votre adresse courriel et votre
+  prénom, afin que vous retrouviez vos cartes sur n'importe quel appareil. Vous
+  pouvez aussi apprendre sans compte : aucune adresse n'est alors
+  demandée.</p>
   <p><strong>Rien n'est vendu, loué ni transmis à des tiers à des fins
   publicitaires.</strong> Il n'y a aucune publicité dans l'application.</p>
   <p>Vous pouvez demander la suppression de votre compte et de toutes vos
@@ -69,28 +75,38 @@
 <h2>1. Qui est responsable</h2>
 <p>Wortando est édité par une personne physique établie au Québec (Canada).
 Pour toute question sur cette politique ou pour exercer vos droits :
-<strong><a href="mailto:jacques.a.grenier@gmail.com">jacques.a.grenier@gmail.com</a></strong>.</p>
+<strong><a href="mailto:contact@wortando.com">contact@wortando.com</a></strong>.</p>
 
 <h2>2. Ce qui est collecté, et pourquoi</h2>
 
-<h3>2.1 Votre compte</h3>
-<p>La création d'un compte est obligatoire pour utiliser l'application, et se
-fait sur invitation.</p>
+<h3>2.1 Sans compte</h3>
+<p>Vous pouvez apprendre sans créer de compte. L'application obtient alors de
+Firebase Authentication (Google) un <strong>identifiant tiré au hasard</strong>,
+sans adresse, sans nom ni mot de passe. Votre progression est enregistrée dans
+le nuage sous cet identifiant, comme pour un compte (point 2.3). Sans compte,
+seul cet appareil peut la retrouver : si vous désinstallez l'application ou
+effacez ses données, elle n'est plus accessible. Si vous créez ensuite un
+compte, la même progression y est rattachée, sans rien perdre.</p>
+
+<h3>2.2 Votre compte</h3>
+<p>La création d'un compte est facultative. Pendant la phase de test, un code
+d'invitation était demandé pour créer un compte ; depuis la sortie publique, il
+est facultatif.</p>
 <table>
   <tr><th>Donnée</th><th>Pourquoi</th></tr>
   <tr><td>Adresse courriel</td><td>Identifier votre compte, permettre la connexion et la réinitialisation du mot de passe</td></tr>
   <tr><td>Prénom</td><td>Vous saluer par votre prénom dans l'application</td></tr>
   <tr><td>Langue de l'interface et étapes de démarrage (date de la première visite de l'accueil, de la première carte affichée et de la première carte passée)</td><td>Comprendre à quelle étape les nouveaux inscrits s'arrêtent, pour améliorer le démarrage de l'application</td></tr>
-  <tr><td>Type d'appareil, en un seul mot (Android, iPhone, iPad ou ordinateur), sans modèle ni version du système ; et un court journal technique des mises à jour (version de l'application et date de ses vingt dernières ouvertures)</td><td>Savoir sur quels appareils l'application est testée, et vérifier qu'elle se met bien à jour</td></tr>
-  <tr><td>Code d'invitation utilisé</td><td>Vérifier que chaque code ne sert qu'une fois</td></tr>
-  <tr><td>Date de création du compte</td><td>Administration du service</td></tr>
+  <tr><td>Type d'appareil, en un seul mot (Android, iPhone, iPad ou ordinateur), sans modèle ni version du système ; et un court journal technique (version de l'application, date de ses vingt dernières ouvertures, et les fois où l'application s'est fermée sans prévenir)</td><td>Savoir sur quels appareils l'application est testée, et vérifier qu'elle se met bien à jour</td></tr>
+  <tr><td>Code d'invitation utilisé, s'il y en a un</td><td>Vérifier que chaque code ne sert qu'une fois, et reconnaître les testeurs invités avant la sortie, qui gardent l'accès complet</td></tr>
+  <tr><td>Date de création du compte (ou du premier lancement sans compte), date de début des 7 jours offerts et état de votre accès (7 jours offerts, version gratuite, abonnement, accès offert)</td><td>Ouvrir le contenu auquel vous avez droit, et compter les 7 jours offerts</td></tr>
   <tr><td>Votre façon d'apprendre, si vous répondez aux deux questions facultatives de l'inscription (pourquoi vous apprenez ; ce qui vous ressemble : images, écoute, règles ou un peu de tout)</td><td>Choisir les scènes et le dosage de la séance du jour</td></tr>
 </table>
 <p><strong>Votre mot de passe n'est jamais visible par l'application.</strong>
 Il est géré par Firebase Authentication (Google), qui n'en conserve qu'une
 empreinte chiffrée.</p>
 
-<h3>2.2 Votre progression</h3>
+<h3>2.3 Votre progression</h3>
 <p>Pour que vous retrouviez votre travail sur un autre appareil, la
 progression est enregistrée dans le nuage :</p>
 <ul>
@@ -104,34 +120,37 @@ progression est enregistrée dans le nuage :</p>
       jour (cartes passées sur prévues), les phrases à revoir, les badges, les
       tableaux de la mosaïque et l'avancement des parcours (dont la date de
       départ en voyage, si vous l'indiquez) ;</li>
-  <li>le niveau choisi, la langue de l'interface et les réponses faites hors
-      ligne, une fois le réseau revenu.</li>
+  <li>le résultat du test de niveau, si vous le passez, et le nombre de fois
+      où chaque partie de l'application a été ouverte, par jour (des nombres
+      seulement) ;</li>
+  <li>le niveau choisi, la langue apprise, la langue de l'interface et les
+      réponses faites hors ligne, une fois le réseau revenu.</li>
 </ul>
 
-<h3>2.3 Notifications et rappel quotidien</h3>
+<h3>2.4 Notifications et rappel quotidien</h3>
 <p>Dans l'application installée, le rappel quotidien est programmé <strong>sur
 votre appareil</strong> : rien n'est envoyé pour cela. Dans le navigateur, et
 uniquement si vous activez les notifications, un identifiant technique
 d'appareil (jeton Firebase Cloud Messaging) est conservé pour vous envoyer le
 rappel ; il est effacé dès que vous désactivez les notifications.</p>
 
-<h3>2.4 Mesure d'usage</h3>
-<p>L'application utilise <strong>Google Analytics pour Firebase</strong>, qui
-collecte des informations techniques et d'usage : modèle d'appareil, système
-d'exploitation, langue, écrans consultés, ainsi qu'un identifiant d'instance
-d'application et une localisation approximative déduite de l'adresse IP (pays
-ou région, jamais une adresse précise). Ces données servent à comprendre quelles
-parties du cours sont utilisées et à les améliorer. Elles ne servent
-<strong>pas</strong> à la publicité.</p>
+<h3>2.5 Aucune mesure d'audience</h3>
+<p>L'application n'utilise <strong>aucun outil de mesure d'audience</strong>
+(comme Google Analytics) ni aucun traceur publicitaire. Pour savoir quelles
+parties du cours servent, Wortando s'appuie seulement sur les données décrites
+dans cette politique, en particulier la progression (point 2.3).</p>
 
-<h3>2.5 Vos messages « Signaler un problème ou une idée »</h3>
+<h3>2.6 Vos messages « Signaler un problème ou une idée »</h3>
 <p>Quand vous utilisez ce bouton, votre message est enregistré avec votre
-compte. Il est accompagné d'un court journal technique de l'appareil (version
-de l'application, dernières actions techniques comme la lecture d'un son ou
-l'affichage d'un écran), qui sert uniquement à reproduire et corriger le
-problème signalé. Rien n'est envoyé tant que vous ne touchez pas le bouton.</p>
+compte (ou avec l'identifiant tiré au hasard, si vous apprenez sans compte).
+Il est accompagné de la date, de la version de l'application, de la langue de
+l'interface, de l'écran où vous étiez et d'un court journal technique de
+l'appareil (dernières actions techniques comme la lecture d'un son), qui
+servent uniquement à reproduire et corriger le problème signalé. Rien n'est
+envoyé tant que vous ne touchez pas le bouton. L'éditeur lit ces messages
+(point 4).</p>
 
-<h3>2.6 Micro et reconnaissance vocale</h3>
+<h3>2.7 Micro et reconnaissance vocale</h3>
 <p>Le micro ne sert qu'aux exercices où vous répétez une phrase à voix haute,
 et seulement si vous l'autorisez. <strong>L'enregistrement de votre voix reste
 sur votre appareil</strong>, pour que vous puissiez le réécouter ; Wortando ne
@@ -142,6 +161,27 @@ dans Chrome. Selon l'appareil, ce service traite le son sur l'appareil ou sur
 les serveurs d'Apple ou de Google, selon leurs propres règles de
 confidentialité. Seul le résultat (phrase comprise ou non) sert à
 l'exercice.</p>
+
+<h3>2.8 L'abonnement</h3>
+<p>L'abonnement se paie dans l'App Store ou dans Google Play :
+<strong>Wortando ne voit jamais votre carte ni vos coordonnées de
+paiement</strong>. Pour savoir si votre abonnement est actif, sur tous vos
+appareils, l'application passe par <strong>RevenueCat</strong>, un service
+spécialisé : il reçoit l'identifiant de votre compte Wortando (une suite de
+caractères, sans nom ni adresse), l'historique de vos achats transmis par le
+magasin (produit, dates, renouvellement, annulation) et des informations
+techniques sur l'appareil (système, version de l'application, pays du
+magasin). Dans l'application installée, RevenueCat est consulté à l'ouverture
+et au retour dans l'application, pour connaître l'état de l'abonnement ; sur le
+site wortando.com, il ne l'est pas.</p>
+
+<h3>2.9 Sécurité du service</h3>
+<p>Pour vérifier que les demandes envoyées à la base de données viennent bien de
+l'application Wortando, et non d'un programme qui l'imiterait, l'application
+utilise <strong>Firebase App Check</strong> avec <strong>reCAPTCHA
+Enterprise</strong> (Google). Ce contrôle se fait sans rien vous demander : il
+analyse des signaux techniques du navigateur ou de l'appareil, selon les règles
+de confidentialité de Google. Il ne sert à rien d'autre.</p>
 
 <h2>3. Ce qui reste sur votre appareil</h2>
 <p>Certains réglages ne quittent jamais votre téléphone : langue d'interface,
@@ -154,17 +194,34 @@ vous effacez les données du site ou désinstallez l'application.</p>
 
 <h2>4. Qui peut voir vos données</h2>
 <ul>
-  <li><strong>L'éditeur de Wortando.</strong> Pendant la phase de test, un
-  tableau de bord d'administration affiche, pour chaque personne inscrite, son
-  adresse courriel, son prénom et l'avancement de sa progression. Il ne donne
-  accès ni au mot de passe ni au contenu de vos messages.</li>
+  <li><strong>L'éditeur de Wortando</strong> peut consulter les données
+  enregistrées dans le nuage (points 2.1 à 2.6), pour répondre à vos demandes,
+  corriger les problèmes et améliorer l'application. Un tableau de bord
+  d'administration affiche en particulier, pour chaque compte, son adresse
+  courriel, son prénom, l'avancement de sa progression, sa série de jours,
+  l'état de son accès (point 2.2), la langue de l'interface, son type
+  d'appareil et la version de l'application, les mots cherchés puis mis de
+  côté, et <strong>les messages envoyés par le bouton « Signaler un problème ou
+  une idée »</strong>, avec leur journal technique. Personne n'a accès à votre
+  mot de passe. Une personne qui apprend sans compte n'y apparaît que par son
+  identifiant tiré au hasard.</li>
   <li><strong>Google (Firebase)</strong>, en qualité de sous-traitant
-  technique : authentification, base de données, notifications et mesure
-  d'usage. Les données sont hébergées sur l'infrastructure Google Cloud.</li>
+  technique : authentification, base de données, notifications, contrôle
+  App Check (reCAPTCHA Enterprise) et envoi des fichiers audio des voix
+  (Firebase Hosting, qui voit l'adresse IP de l'appareil qui les charge). Les
+  données sont hébergées sur l'infrastructure Google Cloud.</li>
+  <li><strong>RevenueCat</strong>, en qualité de sous-traitant, pour l'état de
+  l'abonnement (voir 2.8).</li>
+  <li><strong>Apple ou Google</strong>, comme magasins : ils vendent
+  l'abonnement et encaissent le paiement, selon leurs propres règles de
+  confidentialité.</li>
   <li><strong>Cloudflare</strong>, qui héberge le site wortando.com : comme tout
   hébergeur, il voit l'adresse IP de l'appareil qui charge la page.</li>
+  <li><strong>Google Fonts</strong>, qui fournit deux polices de caractères de
+  l'application : en les chargeant, l'appareil transmet son adresse IP à
+  Google.</li>
   <li><strong>Apple ou Google</strong>, pour la reconnaissance vocale, seulement
-  pendant les exercices oraux (voir 2.6).</li>
+  pendant les exercices oraux (voir 2.7).</li>
 </ul>
 <p><strong>Aucune donnée n'est vendue, louée, échangée ni transmise à un tiers
 à des fins commerciales ou publicitaires.</strong> Il n'y a aucun réseau
@@ -173,11 +230,18 @@ publicitaire dans l'application.</p>
 <h2>5. Combien de temps</h2>
 <p>Vos données sont conservées tant que votre compte existe. À la suppression
 du compte, le compte d'authentification et l'enregistrement de progression sont
-effacés. Les statistiques agrégées et anonymes de mesure d'usage peuvent
-subsister sans permettre de vous identifier.</p>
+effacés. L'historique des achats est
+conservé par le magasin et par RevenueCat selon leurs obligations comptables.</p>
+
+<p><strong>Sans compte</strong>, la même règle vaut pour l'identifiant tiré au
+hasard : vous effacez vos données vous-même, sans mot de passe, depuis
+l'application (Réglages → Compte et aide → Supprimer mon compte). Si vous
+avez désinstallé l'application sans créer de compte, ces données restent
+enregistrées sous l'identifiant tiré au hasard, sans nom ni adresse, et plus
+rien ne les relie à vous.</p>
 
 <p><strong>Vous supprimez votre compte vous-même, depuis l'application :
-Réglages → Compte → Supprimer mon compte.</strong> La suppression est immédiate
+Réglages → Compte et aide → Supprimer mon compte.</strong> La suppression est immédiate
 et définitive : elle efface le compte d'authentification, l'enregistrement de
 progression, le résumé affiché au tableau de bord et les données gardées sur
 l'appareil. Aucune demande écrite n'est nécessaire, et rien ne peut être
@@ -218,12 +282,13 @@ l'application.</p>
 
 <!-- ============================ ENGLISH ============================ -->
 <h1 id="en" style="margin-top:52px">Privacy Policy</h1>
-<p class="date">Last updated: 26 October 2026</p>
+<p class="date">Last updated: 20 November 2026</p>
 
 <div class="resume">
-  <p><strong>In short.</strong> Wortando stores your email address, first name
-  and learning progress, so that your cards follow you from one device to
-  another.</p>
+  <p><strong>In short.</strong> Wortando stores your learning progress and, if
+  you create an account, your email address and first name, so that your cards
+  follow you from one device to another. You can also learn without an account:
+  no email address is asked for.</p>
   <p><strong>Nothing is sold, rented or shared with third parties for
   advertising.</strong> There are no ads in the app.</p>
   <p>You may request deletion of your account and all your data at any time,
@@ -233,25 +298,36 @@ l'application.</p>
 <h2>1. Who is responsible</h2>
 <p>Wortando is published by an individual based in Quebec, Canada. For any
 question about this policy, or to exercise your rights:
-<strong><a href="mailto:jacques.a.grenier@gmail.com">jacques.a.grenier@gmail.com</a></strong>.</p>
+<strong><a href="mailto:contact@wortando.com">contact@wortando.com</a></strong>.</p>
 
 <h2>2. What is collected, and why</h2>
-<h3>2.1 Your account</h3>
-<p>An account is required to use the app, and is created by invitation.</p>
+<h3>2.1 Without an account</h3>
+<p>You can learn without creating an account. The app then gets a
+<strong>randomly generated identifier</strong> from Firebase Authentication
+(Google), with no email address, no name and no password. Your progress is
+stored in the cloud under this identifier, as for an account (section 2.3).
+Without an account, only this device can find it again: if you uninstall the
+app or clear its data, it can no longer be reached. If you create an account
+later, the same progress is attached to it, without losing anything.</p>
+
+<h3>2.2 Your account</h3>
+<p>Creating an account is optional. During the test phase, an invitation code
+was required to create an account; since the public release, it is
+optional.</p>
 <table>
   <tr><th>Data</th><th>Purpose</th></tr>
   <tr><td>Email address</td><td>Identify your account, sign in, reset your password</td></tr>
   <tr><td>First name</td><td>Greet you by name in the app</td></tr>
   <tr><td>Interface language and getting-started steps (date of the first home-screen visit, the first card shown and the first card completed)</td><td>Understand at which step new users stop, to improve how the app gets started</td></tr>
-  <tr><td>Device type, as a single word (Android, iPhone, iPad or computer), with no model or system version; and a short technical update log (app version and time of its last twenty openings)</td><td>Know which devices the app is tested on, and check that it updates properly</td></tr>
-  <tr><td>Invitation code used</td><td>Ensure each code is used only once</td></tr>
-  <tr><td>Account creation date</td><td>Service administration</td></tr>
+  <tr><td>Device type, as a single word (Android, iPhone, iPad or computer), with no model or system version; and a short technical log (app version, time of its last twenty openings, and the times the app closed unexpectedly)</td><td>Know which devices the app is tested on, and check that it updates properly</td></tr>
+  <tr><td>Invitation code used, if any</td><td>Ensure each code is used only once, and recognise testers invited before the launch, who keep full access</td></tr>
+  <tr><td>Date the account was created (or of the first launch without an account), start date of the 7 free days, and the state of your access (7 free days, free version, subscription, access offered)</td><td>Open the content you are entitled to, and count the 7 free days</td></tr>
   <tr><td>How you like to learn, if you answer the two optional sign-up questions (why you are learning; what suits you: pictures, listening, rules, or a bit of everything)</td><td>Choose the scenes and the mix of the daily session</td></tr>
 </table>
 <p><strong>Your password is never visible to the app.</strong> It is handled by
 Firebase Authentication (Google), which stores only a hashed form of it.</p>
 
-<h3>2.2 Your progress</h3>
+<h3>2.3 Your progress</h3>
 <p>So that your work follows you across devices, progress is stored in the
 cloud: the state of each word you have practised (seen, correct, mastered);
 mastered and total counts; day streak, experience points, daily goal and
@@ -259,31 +335,33 @@ today's activity; and the words you searched and saved, or added to your
 vocabulary — at most 150 of each, the most recent; the days you practised and
 the number of exercises on each, daily sessions (cards done out of planned),
 sentences to review, badges, mosaic paintings and path progress (including your
-travel departure date, if you enter it); your chosen level, interface language,
-and answers given offline, once the network is back.</p>
+travel departure date, if you enter it); your placement test result, if you
+take it, and how many times each part of the app was opened, per day (numbers
+only); your chosen level, the language you learn, interface language, and
+answers given offline, once the network is back.</p>
 
-<h3>2.3 Notifications and daily reminder</h3>
+<h3>2.4 Notifications and daily reminder</h3>
 <p>In the installed app, the daily reminder is scheduled <strong>on your
 device</strong>: nothing is sent for it. In the browser, and only if you enable
 notifications, a technical device identifier (Firebase Cloud Messaging token)
 is stored so the reminder can be sent; it is erased as soon as you turn
 notifications off.</p>
 
-<h3>2.4 Usage measurement</h3>
-<p>The app uses <strong>Google Analytics for Firebase</strong>, which collects
-technical and usage information: device model, operating system, language,
-screens viewed, an app instance identifier, and an approximate location derived
-from the IP address (country or region, never a precise address). This is used
-to understand which parts of the course are used, and to improve them. It is
-<strong>not</strong> used for advertising.</p>
+<h3>2.5 No audience measurement</h3>
+<p>The app uses <strong>no audience measurement tool</strong> (such as Google
+Analytics) and no advertising tracker. To know which parts of the course are
+used, Wortando relies only on the data described in this policy, in particular
+your progress (section 2.3).</p>
 
-<h3>2.5 Your "Report a problem or an idea" messages</h3>
-<p>When you use this button, your message is stored with your account, together
-with a short technical log from the device (app version, recent technical
-events such as playing a sound or drawing a screen), used only to reproduce and
-fix the reported problem. Nothing is sent until you tap the button.</p>
+<h3>2.6 Your "Report a problem or an idea" messages</h3>
+<p>When you use this button, your message is stored with your account (or
+with the random identifier, if you learn without an account), together with the
+date, the app version, the interface language, the screen you were on and a
+short technical log from the device (recent technical events such as playing a
+sound), used only to reproduce and fix the reported problem. Nothing is sent
+until you tap the button. The publisher reads these messages (section 4).</p>
 
-<h3>2.6 Microphone and speech recognition</h3>
+<h3>2.7 Microphone and speech recognition</h3>
 <p>The microphone is used only in exercises where you repeat a sentence aloud,
 and only if you allow it. <strong>The recording of your voice stays on your
 device</strong> so you can play it back; Wortando does not receive or keep it.
@@ -292,6 +370,26 @@ device's speech recognition service: Apple's on iPhone and iPad, Google's on
 Android and in Chrome. Depending on the device, that service processes the
 sound on the device or on Apple's or Google's servers, under their own privacy
 terms. Only the result (understood or not) is used by the exercise.</p>
+
+<h3>2.8 The subscription</h3>
+<p>The subscription is paid through the App Store or Google Play:
+<strong>Wortando never sees your card or payment details</strong>. To know
+whether your subscription is active, on all your devices, the app uses
+<strong>RevenueCat</strong>, a specialised service: it receives your Wortando
+account identifier (a string of characters, with no name or address), the
+purchase history passed on by the store (product, dates, renewal, cancellation)
+and technical information about the device (system, app version, store
+country). In the installed app, RevenueCat is checked when the app opens and
+when you come back to it, to know the state of the subscription; on the
+wortando.com website, it is not.</p>
+
+<h3>2.9 Service security</h3>
+<p>To check that requests sent to the database really come from the Wortando
+app, and not from a program imitating it, the app uses <strong>Firebase App
+Check</strong> with <strong>reCAPTCHA Enterprise</strong> (Google). This check
+happens without asking you anything: it analyses technical signals from the
+browser or the device, under Google's privacy terms. It is used for nothing
+else.</p>
 
 <h2>3. What stays on your device</h2>
 <p>Some settings never leave your phone: interface language, light or dark
@@ -303,17 +401,30 @@ you clear site data or uninstall the app.</p>
 
 <h2>4. Who can see your data</h2>
 <ul>
-  <li><strong>The publisher of Wortando.</strong> During the testing phase, an
-  administration dashboard shows each registered person's email address, first
-  name and progress. It gives access neither to your password nor to the
-  content of your messages.</li>
+  <li><strong>The publisher of Wortando</strong> can consult the data stored
+  in the cloud (sections 2.1 to 2.6), to answer your requests, fix problems and
+  improve the app. An administration dashboard shows in particular, for each
+  account, its email address, first name, progress, day streak, the state of
+  its access (section 2.2), interface language, device type and app version,
+  the words looked up and saved, and <strong>the messages sent with the "Report
+  a problem or an idea" button</strong>, with their technical log. No one has
+  access to your password. A person learning without an account appears there
+  only by their random identifier.</li>
   <li><strong>Google (Firebase)</strong>, as a technical processor:
-  authentication, database, notifications and usage measurement. Data is hosted
-  on Google Cloud infrastructure.</li>
+  authentication, database, notifications, the App Check control
+  (reCAPTCHA Enterprise) and delivery of the voice audio files (Firebase
+  Hosting, which sees the IP address of the device loading them). Data is
+  hosted on Google Cloud infrastructure.</li>
+  <li><strong>RevenueCat</strong>, as a processor, for the state of the
+  subscription (see 2.8).</li>
+  <li><strong>Apple or Google</strong>, as stores: they sell the subscription
+  and collect the payment, under their own privacy terms.</li>
   <li><strong>Cloudflare</strong>, which hosts the wortando.com website: like
   any host, it sees the IP address of the device loading the page.</li>
+  <li><strong>Google Fonts</strong>, which provides two of the app's typefaces:
+  when loading them, the device sends its IP address to Google.</li>
   <li><strong>Apple or Google</strong>, for speech recognition, only during
-  speaking exercises (see 2.6).</li>
+  speaking exercises (see 2.7).</li>
 </ul>
 <p><strong>No data is sold, rented, traded or passed to any third party for
 commercial or advertising purposes.</strong> There is no advertising network in
@@ -322,10 +433,18 @@ the app.</p>
 <h2>5. How long</h2>
 <p>Your data is kept for as long as your account exists. On deletion of the
 account, the authentication record and the progress record are erased.
-Aggregated, anonymous usage statistics may remain, without identifying you.</p>
+Purchase history is kept by the store and by RevenueCat as their accounting
+obligations require.</p>
+
+<p><strong>Without an account</strong>, the same rule applies to the random
+identifier: you erase your data yourself, with no password, from within the app
+(Settings → Account and help → Delete my account). If you uninstalled the app
+without creating an account, that data stays stored under the random
+identifier, with no name or address, and nothing links it to you any
+more.</p>
 
 <p><strong>You delete your account yourself, from within the app:
-Settings → Account → Delete my account.</strong> Deletion is immediate and
+Settings → Account and help → Delete my account.</strong> Deletion is immediate and
 permanent: it erases the authentication record, the progress record, the summary
 shown on the dashboard and the data kept on the device. No written request is
 needed, and nothing can be recovered afterwards.</p>
