@@ -8933,6 +8933,35 @@ body[data-theme="dark"] .cp-passage-ok svg{stroke:#8ED3AA;}
 html[lang="fa"] .tg-lib, html[lang="ar"] .tg-lib, html[dir="rtl"] .tg-lib,
 html[lang="fa"] .tg-tab-titre, html[lang="ar"] .tg-tab-titre, html[dir="rtl"] .tg-tab-titre{letter-spacing:0; text-transform:none; font-size:12px;}
 body[data-theme="dark"] .tg{box-shadow:0 10px 22px -6px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.25);}
+/* Ligne 156b (20 nov. 2026) : JAMAIS UNE TUILE SEULE SUR SA RANGEE. Quatre tuiles : 2 + 2 ; sept : 3 + 2 + 2 (cinq : 3 + 2,
+   que la grille fait d'elle-meme). majGrilleAccueil() marque la paire a centrer : ses deux marges remplissent la
+   rangee (a 2 px pres, pour qu'un arrondi ne renvoie jamais la seconde a la ligne), la tuile suivante passe dessous. */
+.tg.tg-paire-debut{margin-inline-start:calc((100% - 24px) / 6 + 5px);}
+.tg.tg-paire-fin{margin-inline-end:calc((100% - 24px) / 6 + 5px);}
+/* « TOUT LE CONTENU », UNE LIGNE (piste C, choix de Jacques du 20 nov. 2026). Le verre de la carte « Progression du
+   vocabulaire » (60 % de blanc le jour, 66 % de bleu nuit, sans flou : la carte du monde bouge dessous) ; l'icone
+   dans un carre ardoise au filet blanc, comme une petite tuile. Discrete : elle mene a tout, elle ne tient pas la
+   vedette. Le chevron se retourne en arabe et en persan. */
+.tg-ligne{flex:0 0 100%; box-sizing:border-box; display:flex; align-items:center; gap:12px; min-height:62px; padding:9px 14px 9px 10px;
+    border:0; border-radius:20px; cursor:pointer; font:inherit; text-align:start; color:#1C2430; -webkit-tap-highlight-color:transparent;
+    background:rgba(255,255,255,.60); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.80), 0 8px 20px -10px rgba(20,40,60,.30);
+    transition:transform .12s ease;}
+.tg-ligne.hidden{display:none !important;}
+.tg-ligne:active{transform:scale(.985);}
+.tg-ligne:focus-visible{outline:2px solid #E8A23A; outline-offset:3px;}
+.tgl-ico{flex:0 0 42px; width:42px; height:42px; border-radius:11px; display:grid; place-items:center; color:#fff;
+    background:linear-gradient(180deg, #5C636C 0%, #262C36 100%);
+    box-shadow:inset 0 0 0 3px #3A414B, inset 0 0 0 4.5px rgba(255,255,255,.92), 0 3px 8px -3px rgba(20,28,40,.45);}
+.tgl-ico svg{display:block; width:20px; height:20px;}
+.tgl-txt{flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:1px;}
+.tgl-txt strong{font-size:16px; font-weight:900; line-height:1.2; overflow-wrap:anywhere;}
+.tgl-sous{font-size:13.5px; font-weight:500; line-height:1.25; color:#4C566B; overflow-wrap:anywhere;}
+.tgl-chevron{flex:0 0 auto; display:grid; place-items:center; color:#4C566B;}
+.tgl-chevron svg{display:block; width:15px; height:15px;}
+html[dir="rtl"] .tgl-chevron svg{transform:scaleX(-1);}
+html[dir="rtl"] .tg-ligne{padding:9px 10px 9px 14px;}
+body[data-theme="dark"] .tg-ligne{background:rgba(20,36,50,.66); color:#EEF2F5; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.10), 0 8px 20px -10px rgba(0,0,0,.55);}
+body[data-theme="dark"] .tgl-sous, body[data-theme="dark"] .tgl-chevron{color:#B4C0CC;}
 /* 7 nov. 2026 : LA TUILE DU TABLEAU (piste 2 retouchee, accord de Jacques). « Je preferais lorsqu'on avait un
    tableau complet dans l'image » : pleine largeur, de la meme famille que les autres, la toile ENTIERE a gauche
    (sa forme gardee, en largeur comme en hauteur), « N % » et « Ton tableau » a droite, en bas, sur le plus fonce. */
@@ -9967,7 +9996,7 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1231</span>
+        <span class="subtitle-version">v1232</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -10750,7 +10779,11 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
             <button type="button" class="tg hidden" data-tg="soins_dialogues" onclick="SOINS_RETOUR = 'accueil'; ouvrirDialoguesSoins()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 5.5h11v7.5H8.6l-3.6 3v-3H3.5z"/><path d="M14.5 9h6v7.2h-1.6v2.6l-3.1-2.6H10.5v-3.2"/></svg></span><span class="tg-lib" data-i18n="sn_tuile_dialogues">Dialogues</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg hidden" data-tg="soins_ecouter" onclick="ouvrirPhrasesSoins()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5.5 10.2v3.6M8.75 7.6v8.8M12 4.6v14.8M15.25 7.6v8.8M18.5 10.2v3.6"/></svg></span><span class="tg-lib" data-i18n="orb_ecouter_title">Écouter</span><span class="tg-filet" aria-hidden="true"></span></button>
             <button type="button" class="tg hidden" data-tg="soins_telc" onclick="SOINS_RETOUR = 'accueil'; ouvrirTelcPflege('')"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3.5h7.5L18 7v13.5H7z"/><path d="M14.5 3.5V7H18"/><path d="M9.6 12.2l1.8 1.8 3.4-3.6"/><path d="M9.6 17.2h5.6"/></svg></span><span class="tg-lib" data-i18n="sn_tuile_telc">Examen telc</span><span class="tg-filet" aria-hidden="true"></span></button>
-            <button type="button" class="tg" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tg-lib" data-i18n="accueil_tout_titre">Tout le contenu</span><span class="tg-filet" aria-hidden="true"></span></button>
+            <!-- Ligne 156b (20 nov. 2026, choix de Jacques : la piste C) : TOUT LE CONTENU N'EST PLUS UNE TUILE. Une ligne en verre
+                 sous les tuiles, avant Ton tableau / Ton ciel : le verre de la carte « Progression du vocabulaire », l'icone
+                 dans un petit carre ardoise (la famille des tuiles), le titre, « Mots, grammaire, pratique », un chevron.
+                 « Je ne veux pas que ca prenne la vedette de la page d'accueil. » -->
+            <button type="button" class="tg-ligne hidden" data-tg="tout" onclick="ouvrirToutLeContenu()"><span class="tgl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span><span class="tgl-txt"><strong data-i18n="accueil_tout_titre">Tout le contenu</strong><span class="tgl-sous" data-i18n="accueil_tout_sous">Mots, grammaire, pratique</span></span><span class="tgl-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M9 6l6 6-6 6"/></svg></span></button>
             <div class="tg-rangee">
                 <button type="button" class="tg tg-tab hidden" data-tg="tableau" onclick="ouvrirGalerieMosaiques()" data-i18n-aria-label="tableau_tuile" aria-label="Ton tableau"><span class="tg-filet"></span><span class="tg-tab-corps"><img id="grilleTableauImg" alt="" hidden><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleTableauPct"></span><span class="tg-tab-titre" data-i18n="tableau_tuile">Ton tableau</span></span></span></button>
                 <button type="button" class="tg tg-tab tg-ciel hidden" data-tg="ciel" onclick="ouvrirCiel()" data-i18n-aria-label="ciel_tuile" aria-label="Ton ciel"><span class="tg-filet"></span><span class="tg-tab-corps"><span class="tg-ciel-dessin" id="grilleCielDessin"></span><span class="tg-tab-texte"><span class="tg-tab-pct" id="grilleCielCompte"></span><span class="tg-tab-titre" data-i18n="ciel_tuile">Ton ciel</span></span></span></button>
@@ -53655,6 +53688,22 @@ function majGrilleAccueil(){
         b.classList.toggle("tg-ambre", rang % 2 === 0); b.classList.toggle("tg-ardoise", rang % 2 === 1);
         i++;
     });
+    // Ligne 156b : « Tout le contenu » est une ligne sous les tuiles (elle n'est plus du compte des carrees).
+    const ligneTout = g.querySelector(".tg-ligne");
+    if(ligneTout){ const v = !!vis.tout; ligneTout.classList.toggle("hidden", !v); if(v) i++; }
+    // Jamais une tuile seule sur sa rangee : quand il en reste une (4, 7…), les quatre dernieres font 2 + 2.
+    const carrees = Array.from(g.querySelectorAll(".tg:not(.tg-tab)")).filter(b => !b.classList.contains("hidden"));
+    // Et les couleurs en DAMIER, rangee par rangee : au fil de l'eau (ambre, ardoise, ambre…), deux rangees de deux
+    // donnaient deux colonnes unies. Les rangees de trois gardent la couleur qu'elles avaient.
+    const seule = carrees.length >= 4 && carrees.length % 3 === 1;
+    let rg = 0, col = 0;
+    carrees.forEach((b, k) => {
+        b.classList.toggle("tg-paire-debut", seule && k === carrees.length - 4);
+        b.classList.toggle("tg-paire-fin", seule && k === carrees.length - 3);
+        const ambre = (rg + col) % 2 === 0;
+        b.classList.toggle("tg-ambre", ambre); b.classList.toggle("tg-ardoise", !ambre);
+        if(++col >= ((seule && k >= carrees.length - 4) ? 2 : 3)){ col = 0; rg++; }
+    });
     g.classList.toggle("hidden", !i);
     const rangee = g.querySelector(".tg-rangee");
     if(rangee){
@@ -64188,7 +64237,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1231;
+const APP_VERSION = 1232;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -76991,8 +77040,8 @@ const TEINTES_PAYSAGE = { pp:"#5E9B1E", rev:"#2565C9", mots:"#E0791A", conj:"#8A
 // prochaine conversation ; depuis le 20 nov. (ligne 154, decision de Jacques : « traiter la tuile exactement comme
 // les autres […] lorsqu'on clique dessus, on voit toutes les conversations ») UNE TUILE DE LA GRILLE, qui ouvre la
 // liste. Elle se montre des qu'une conversation PUBLIEE (index.json, « publies ») existe dans la langue apprise : la
-// liste, et la tuile avec elle, grandissent toutes seules quand un lot est publie. Paliers 2 et 3 (palierAccueil),
-// comme la ligne avant elle, en de, es et en ; jamais en ja ni en pt (aucune conversation), ni en mode Soins (qui a
+// liste, et la tuile avec elle, grandissent toutes seules quand un lot est publie. Des le premier jour (156b ; la
+// ligne, elle, attendait le palier 2), en de, es et en ; jamais en ja ni en pt (aucune conversation), ni en mode Soins (qui a
 // ses dialogues). Une conversation compte jouee a sa fin (« fini » avec son id), par la tuile ou la seance ;
 // seulement sur cet appareil (CONVERSATIONS_JOUEES_KEY, pas dans le nuage : les regles Firestore n'ont pas ce champ).
 // ⚠️ var et non const : majPaliersAccueil() passe avant que ce bloc soit lu.
@@ -77043,10 +77092,11 @@ function poserFondsConversation(){
 // une dans la langue apprise ; son etat change, la grille se redessine (tuilesProposees le lit).
 async function majTuileConverser(){
     const tour = ++tuileConverserTour;
-    let p = 3, prete = false;
-    try{ p = palierAccueil(); }catch(e){}
+    // Ligne 156b (Jacques, 20 nov. 2026 : « On a l'idee de mettre converser tout de suite. ») : des le premier jour, plus
+    // seulement aux paliers 2 et 3.
+    let prete = false;
     const L = langueConversations();
-    if(p >= 2 && L){
+    if(L){
         const liste = await chargerConversationsPubliees();
         if(tour !== tuileConverserTour) return;
         prete = Array.isArray(liste) && liste.some(c => c.langues.indexOf(L) >= 0);

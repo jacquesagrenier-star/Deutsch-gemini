@@ -8,7 +8,7 @@ place de la ligne posee sous « Ecouter, repeter » le 16 nov. A 360 x 740 :
     apprise (index.json, « publies » : elle grandit toute seule) ; « ‹ » ramene a l'accueil ;
   - l'espagnol appris : la meme tuile, la liste espagnole ;
   - les 11 langues d'interface : le libelle tient dans la tuile ;
-  - un debutant (palier 1) ne la voit pas, comme il ne voyait pas la ligne.
+  - un debutant (palier 1) la voit des le premier jour (depuis la ligne 156b ; avant, elle attendait le palier 2).
 Navigateur : SOUS LE VERROU du parcours. Derniere ligne : « BILAN OK » ou « BILAN A REVOIR : … ».
     python tests/converser_tuile.py <racine> <port> <dossier-captures> [<index-avant.html>]
 (avec l'index d'avant en 4e argument, la sonde montre l'etat d'avant : la ligne, pas de tuile ; elle ne juge pas)"""
@@ -146,7 +146,8 @@ def main():
                         voir("%s : une icone dessinee, pas d'emoji" % nom, tu["svg"] and not re.search("[\U0001F300-\U0001FAFF☀-➿]", tu["lib"]), tu["lib"])
                         voir("%s : le libelle « %s » tient dans la tuile" % (nom, tu["lib"]), bool(tu["lib"]) and tu["libTient"])
                         ordre = [x["tg"] for x in s["tuiles"]]
-                        voir("%s : elle est dans la rangee du bas, avant « Tout le contenu »" % nom, "tout" in ordre and ordre.index("converser") == ordre.index("tout") - 1 and ordre.index("converser") >= 3, str(ordre))
+                        # ligne 156b : « Tout le contenu » n'est plus une tuile (une ligne dessous) ; Converser ferme les tuiles
+                        voir("%s : elle est la derniere des tuiles, dans la rangee du bas" % nom, ordre[-1] == "converser" and "tout" not in ordre and len(ordre) >= 4, str(ordre))
                         voir("%s : les couleurs alternent toujours" % nom, all(s["tuiles"][k]["couleur"] != s["tuiles"][k + 1]["couleur"] for k in range(len(s["tuiles"]) - 1)), str([x["couleur"] for x in s["tuiles"]]))
                     voir("%s : la nuit est bien %s" % (nom, "allumee" if nuit else "eteinte"), s["nuit"] == nuit)
                     voir("%s : la page tient en 360 px" % nom, s["page"] <= 360, "%d px" % s["page"])
@@ -208,11 +209,12 @@ def main():
                             page.screenshot(path=os.path.join(OUT, "converser-%s-%s.png" % (apprise, ui)))
                         ctx.close()
 
-                # ---- 4. le debutant (palier 1) ne la voit pas
+                # ---- 4. le debutant (palier 1) la voit des le premier jour (ligne 156b, Jacques, 20 nov. :
+                #         « On a l'idee de mettre converser tout de suite. »)
                 ctx, page = ouvrir("de", "fr", "A1")
                 s = page.evaluate(ACCUEIL, False)
                 print("  debutant : %s, tuiles %s" % (s["palier"], [x["tg"] for x in s["tuiles"]]), flush=True)
-                voir("debutant (palier 1) : pas de tuile Converser, comme il n'y avait pas de ligne", s["palier"] == "palier-1" and not tuile(s), "%s, %s" % (s["palier"], [x["tg"] for x in s["tuiles"]]))
+                voir("debutant (palier 1) : la tuile Converser est la des le premier jour", s["palier"] == "palier-1" and bool(tuile(s)), "%s, %s" % (s["palier"], [x["tg"] for x in s["tuiles"]]))
                 ctx.close()
             nav.close()
     finally:
