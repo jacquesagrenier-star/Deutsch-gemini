@@ -626,6 +626,52 @@ def verifier_place_de_la_reponse(r):
             r.echec("exercices", message)
     print("   place des tuiles : %d series, %d questions, %d serie(s) ou une place depasse %d %%"
           % (series, questions, trop, round(100 * ordre_options.SEUIL)))
+    verifier_place_grammaire_soins(r, ordre_options.SEUIL, ordre_options.MIN_CONTROLE)
+
+
+def verifier_place_grammaire_soins(r, seuil, minimum):
+    """La meme regle pour la grammaire des Soins (pflege/datos/grammaire.json).
+
+    Le 19 nov. 2026, la bonne reponse y tenait la premiere place dans 164
+    questions sur 184 : les auteurs l'ecrivent en premier dans les sources. Le
+    fichier est derive ; c'est le generateur qui replace les options
+    (placer_bonne() de pflege/outils/textes.py), et « bon », un indice, suit.
+    Ce qui declenche : une place au-dessus du seuil dans le fichier entier, ou
+    dans une serie d'au moins six questions a choix. Le remede :
+    python pflege/outils/textes.py construire.
+    """
+    chemin = os.path.join(RACINE, "pflege", "datos", "grammaire.json")
+    if not os.path.exists(chemin):
+        return
+    try:
+        points = json.load(io.open(chemin, encoding="utf-8")).get("points", [])
+    except ValueError:
+        r.echec("soins", "pflege/datos/grammaire.json illisible")
+        return
+    total, trop, questions = {}, 0, 0
+    for p in points:
+        places = [q.get("bon") for q in p.get("serie", []) if q.get("type") == "choix" and isinstance(q.get("bon"), int)]
+        for q in p.get("serie", []):
+            if q.get("type") == "choix" and not (isinstance(q.get("bon"), int) and 0 <= q["bon"] < len(q.get("choix", []))):
+                r.echec("soins", "grammaire des Soins, %s : « bon » ne designe aucune option (%s)" % (p.get("source", p.get("id")), q.get("phrase", "")[:50]))
+        questions += len(places)
+        for b in places:
+            total[b] = total.get(b, 0) + 1
+        if len(places) >= minimum:
+            r.controle()
+            place, n = max(((b, places.count(b)) for b in set(places)), key=lambda x: x[1])
+            if n > seuil * len(places):
+                trop += 1
+                r.echec("soins", "grammaire des Soins, %s : la bonne reponse est a la place %d dans %d questions sur %d -- relancer : python pflege/outils/textes.py construire"
+                        % (p.get("source", p.get("id")), place + 1, n, len(places)))
+    if questions:
+        r.controle()
+        place, n = max(total.items(), key=lambda x: x[1])
+        if n > seuil * questions:
+            trop += 1
+            r.echec("soins", "grammaire des Soins : la bonne reponse est a la place %d dans %d questions sur %d" % (place + 1, n, questions))
+    print("   grammaire des Soins : %d questions a choix, places %s, %d depassement(s) de %d %%"
+          % (questions, " / ".join(str(total.get(k, 0)) for k in sorted(total)), trop, round(100 * seuil)))
 
 
 def verifier_comptes_figes(r, source):

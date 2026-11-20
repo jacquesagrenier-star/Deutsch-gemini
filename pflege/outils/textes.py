@@ -9,7 +9,7 @@
 Regle d'unite : tout objet qui a une cle "fr" est un texte a traduire ; ses traductions sont ses cles soeurs.
 Les noms sont des gabarits ({elif}, {brandt:dat}) remplaces a la construction depuis noms.json.
 """
-import copy, io, json, os, re, sys
+import copy, hashlib, io, json, os, re, sys
 
 RACINE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PFLEGE = os.path.join(RACINE, "pflege")
@@ -78,6 +78,25 @@ def unites(obj, chemin=""):
     elif isinstance(obj, list):
         for i, v in enumerate(obj):
             yield from unites(v, (chemin + "." if chemin else "") + str(i))
+
+
+def placer_bonne(serie, rang, options, bon):
+    """La bonne reponse ne tient pas toujours la meme place (defaut D9 de la revue A a Z, 19 nov. 2026 : dans les
+    sources, l'auteur ecrit presque toujours la bonne reponse en premier ; a l'ecran, on apprendrait a toucher la
+    premiere). Les sources ne changent pas : c'est ici, a la construction, que les options sont replacees, de facon
+    DETERMINISTE (aucun hasard : deux constructions donnent le meme fichier).
+
+    Les places sont distribuees par paquets, dans l'ordre de la serie : chaque place une fois par paquet (trois
+    questions pour trois options), l'ordre du paquet venant d'une empreinte de l'identifiant de la serie. Aucune place
+    ne depasse donc un tiers de la serie a une question pres, et jamais plus de deux fois de suite la meme. Les
+    leurres gardent leur ordre. Rend (les options replacees, l'indice de la bonne) : « bon » est un indice, il suit."""
+    n = len(options)
+    paquet, i = divmod(rang, n)
+    ordre = sorted(range(n), key=lambda place: hashlib.sha1(("%s/%d/%d" % (serie, paquet, place)).encode("utf-8")).hexdigest())
+    cible = ordre[i]
+    replacees = [o for k, o in enumerate(options) if k != bon]
+    replacees.insert(cible, options[bon])
+    return replacees, cible
 
 
 def chemin_traduction(langue, famille, ident):
@@ -383,12 +402,17 @@ def exporter(res):
     points = []
     for p in res["grammaire"]["points"]:
         serie = []
+        rang = 0   # le rang parmi les questions a choix de la serie, pour la place de la bonne reponse
         for q in p["serie"]:
             x = {"type": "ordre" if q["type"] == "ordre" else "choix"}
             if q["type"] == "trou":
-                x.update({"de": q["t"], "choix": q["options"], "bon": q["options"].index(q["juste"])})
+                choix, bon = placer_bonne(p["id"], rang, q["options"], q["options"].index(q["juste"]))
+                x.update({"de": q["t"], "choix": choix, "bon": bon})
+                rang += 1
             elif q["type"] == "choix":
-                x.update({"de": "___", "choix": q["options"], "bon": q["juste"]})
+                choix, bon = placer_bonne(p["id"], rang, q["options"], q["juste"])
+                x.update({"de": "___", "choix": choix, "bon": bon})
+                rang += 1
             else:
                 x["mots"] = q["morceaux"]
             if q.get("consigne"):
