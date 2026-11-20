@@ -2091,6 +2091,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "<b>Sie meinen, …?</b>: se propone el término exacto. <b>allergisch gegen</b> + acusativo.",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "Precisar sin juzgar: el Konjunktiv II de cortesía (<b>Könnten Sie</b>) y opciones concretas para proponer.",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "Se anuncia el resumen (<b>Darf ich kurz zusammenfassen</b>) y luego se pide confirmarlo con una pregunta.",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "<b>No generalices («bei alten Leuten») y toma en serio la preocupación.</b> Una confusión nueva no es «normal»: es una señal que hay que reportarle a la médica. Mejor di lo que observaste hoy. ⚕️",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "<b>No prometas nada sobre el diagnóstico ni sobre una operación.</b> No es tu función, y una promesa falsa destruye la confianza. Remite a la doctora: «Zu den Untersuchungsergebnissen kann Ihnen die Ärztin mehr sagen.» ⚕️",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "<b>Ofrece tu ayuda para organizar la conversación.</b> «Soll ich ein Gespräch mit der Ärztin für Sie vereinbaren?»: «Soll ich …?» ofrece un favor, con cortesía."
    },
@@ -2118,6 +2119,7 @@ window.SCENE = {
     "C1 | Sie meinen, Sie sind gegen Penizillin allergisch?": "¿Quiere decir que es alérgica a la penicilina?",
     "C1 | Könnten Sie das etwas genauer sagen: seit Tagen, seit Wochen oder seit Monaten?": "¿Podría decirlo con un poco más de precisión: desde hace días, semanas o meses?",
     "C1 | Darf ich kurz zusammenfassen: Sie leben allein, und Ihre Tochter kommt jeden Tag?": "¿Puedo resumir un momento: usted vive sola y su hija viene todos los días?",
+    "SIT | Ich kann gut verstehen, dass Sie sich Sorgen machen. Heute ist Ihre Mutter wach und gut orientiert. Dass sie gestern am Telefon durcheinander war, gebe ich an die Ärztin weiter.": "Entiendo muy bien que esté preocupada. Hoy su mamá está despierta y bien orientada. Le voy a avisar a la doctora que ayer estaba confundida por teléfono.",
     "SIT | Zu den Untersuchungsergebnissen und zur Behandlung kann Ihnen die Ärztin mehr sagen. Ich kann Ihnen sagen, dass wir die Wunde jeden Tag versorgen.": "Sobre los resultados de los exámenes y el tratamiento, la doctora puede decirle más. Yo puedo decirle que curamos la herida todos los días.",
     "SIT | Soll ich ein Gespräch mit Dr. Sommer für Sie vereinbaren? Nach der Visite hat sie meistens Zeit.": "¿Quiere que le programe una conversación con la Dra. Sommer? Después de la visita médica casi siempre tiene tiempo."
    }

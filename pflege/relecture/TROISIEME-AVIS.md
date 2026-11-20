@@ -123,7 +123,7 @@ Règles suivies : les sources seulement, jamais les fichiers dérivés ; la form
 - **d39** : « Der Nachtdienst hat den Dienstarzt informiert » est un fait d'histoire ajouté ; ce que le médecin a décidé n'est pas dit.
 - **d50** : « innerhalb der nächsten Stunde », jugé long par deux avis ; laissé.
 - **Vocabulaire** : « Abdominalschmerzen » (les trois avis écrivent « Bauchschmerzen » dans la phrase ; le mot de la carte est gardé, sa traduction dit que le dossier écrit le plus souvent « Bauchschmerzen ») ; deux phrases écrites faute de texte commun (Bezugsperson, beidseits) ; « klagt über » reste dans quatre autres exemples.
-- **Le jeûne** (d44, d34) : présenté comme la consigne de l'anesthésie pour ce patient, sans délai chiffré. « Ab Mitternacht » reste dit comme une règle générale dans quatre cartes de vocabulaire, une carte-phrase de la relève et deux fiches de grammaire (voir « Ce qui reste »).
+- **Le jeûne** : présenté partout comme la consigne de l'anesthésie (ou du médecin, pour une gastroscopie), sans délai chiffré. Dans d44 et d34, « ab Mitternacht » reste, comme la consigne donnée à ce patient ; ailleurs il a été retiré (voir « Ce qui a été harmonisé en plus »).
 
 ## Appliqué : 77 points
 
@@ -1073,14 +1073,16 @@ Règles suivies : les sources seulement, jamais les fichiers dérivés ; la form
 ## Ce qui a été harmonisé en plus
 
 - **d32** (le poignet le lendemain) aligné sur d36 : le 112 pour les doigts froids, pâles ou engourdis (réplique et note de relecture, 10 langues).
+- **« Ab Mitternacht » n'est plus dit comme une règle** (demande du chef d'orchestre, même fait que les trois avis ont confirmé) : quatre exemples de vocabulaire (« die Nahrungskarenz », « der OP », « Pat. / Bew. », la paire « nüchtern bleiben ») et une carte-phrase de la relève disent maintenant « nach Vorgabe der Anästhesie » ou, pour la gastroscopie, « nach ärztlicher Anordnung », dans les 10 langues. Les fiches g17 et g18 parlent du jeûne sans citer minuit : rien à y changer.
 - **Le thème illustré de la relève** : la radio de 11 h retirée de la feuille de Frau Weber (voir ch08-d6d7ec).
+- **L'espagnol des situations de scènes** : le script des situations écrit 8 langues, pas l'espagnol ; les 7 textes espagnols des situations changées (admission, poste de soins, téléphone, lever) sont repris mot pour mot de l'espagnol des dialogues.
 - **Les scènes** : leurs situations parlées sont reprises mot pour mot des dialogues (`situations_scenes.py`) ; les scènes de l'admission, du poste de soins, du téléphone, de la relève et du lever suivent donc les dialogues corrigés. La reconstruction a aussi ajouté aux 12 scènes de soins les traductions espagnoles des mots, présentes dans le vocabulaire depuis le 16 nov. et que les scènes n'avaient pas encore reprises.
 - **Les dérivés** refaits : `pflege/datos/` (dialogues, écrit, cartes-phrases, vocabulaire, chapitres), les quatre thèmes illustrés, les 14 feuilles de relecture.
 
 ## Ce qui reste (non touché)
 
 - **« Verbandsschuh » ou « Vorfußentlastungsschuh »** pour Frau Lehmann : question à la soignante (ch01-ec373b). La carte « der Wundrand » (« Der Wundrand ist leicht gerötet ») garde aussi l'ancien mot, alors que d45 dit maintenant « Wundumgebung ».
-- **« Ab Mitternacht » comme règle générale** : `vocabulaire/t06_ernaehrung.py`, `t09_dokumentation.py`, `t12_sprache.py` (2 phrases), `redemittel/releve.json`, fiches g17 et g18. Hors des 98 points.
+- **Des traductions espagnoles périmées dans les scènes** (antérieures à ce travail) : le contrôle des scènes signale des entrées espagnoles sans question dans l'admission, le poste de soins, la relève et le lever (phrases changées avant le 19 nov.) ; sans effet à l'écran, à nettoyer par la session des scènes.
 - **d17 (la visite)**, hors des quatre chapitres : sonde urinaire retirée au 3e jour (jugée longue), antibiotique commencé le jeudi 12 pour un diagnostic du mercredi 11 ; d35, d38 et d39 citent ces dates.
 - **d06** : pas de date, mais les faits de Frau Lehmann sont ceux de l'écrit e09, daté du 13.11. ; s'il est du vendredi 13, Herr Brandt y a 7 sur 10 et refuse la mobilisation alors qu'il s'est levé le jeudi 12 (d27). Et « schon etwas kleiner » reste à l'oral dans d06 alors qu'e09 ne le dit plus.
 - **La note de la carte « vorlesen »** (`t09_dokumentation.py`) demande encore « vorlesen, zurücklesen, wiederholen ? » ; les trois avis répondent « Ich wiederhole ».

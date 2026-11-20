@@ -1018,8 +1018,12 @@ window.SCENE = {
    "couches": {
     "SIT": "¿Qué respondes?"
    },
-   "questions": {},
-   "sens": {}
+   "questions": {
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "<b>En el hospital se muestra el timbre: «die Klingel».</b> «Drücken Sie bitte hier»: presione aquí, por favor. Un paciente operado no debe tener que gritar para que lo ayuden. ⚕️"
+   },
+   "sens": {
+    "SIT | Hier ist Ihre Klingel. Bitte stehen Sie noch nicht allein auf, klingeln Sie lieber. Wir sagen Ihnen, wann Sie wieder allein aufstehen dürfen.": "Aquí está su timbre. Por favor, todavía no se levante solo; mejor toque el timbre. Nosotros le avisamos cuándo puede volver a levantarse solo."
+   }
   }
  }
 };

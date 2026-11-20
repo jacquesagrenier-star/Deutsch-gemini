@@ -1706,6 +1706,7 @@ window.SCENE = {
     "C1 | Der Arzt meint, es könne etwas mit der Lunge sein.": "<b>es könne</b>: el Konjunktiv I de <b>können</b>; se transmite una opinión sin hacerla propia.",
     "C1 | Im Bericht steht, der Patient habe seit einer Stunde Atemnot.": "<b>er habe</b>: el Konjunktiv I de <b>haben</b>, en un informe escrito ⚕️.",
     "C1 | Die Angehörigen wurden informiert, die Ärztin werde morgen mit ihnen sprechen.": "<b>sie werde</b>: el Konjunktiv I del futuro, en un informe.",
+    "SIT | Können Sie bitte kommen und ihn sich ansehen? Und was soll ich bis dahin tun?": "<b>R de Recommendation (Empfehlung): di lo que pides.</b> «Können Sie bitte kommen?» Y no des ningún medicamento sin indicación médica: pregunta qué debes hacer mientras tanto. Los cuidados de enfermería, en cambio, no esperan: elevar la cabecera, quedarte junto al paciente y volver a tomar los signos vitales. ⚕️",
     "SIT | Ich wiederhole: zwei Liter Sauerstoff über die Nasenbrille, Oberkörper hoch lagern. Sie kommen in zehn Minuten.": "<b>Una indicación verbal se le repite al médico, palabra por palabra.</b> «Ich wiederhole: …» Luego se anota y se hace firmar más tarde. Eso es lo que evita los errores por teléfono. ⚕️",
     "SIT | Guten Morgen, Frau Hoffmann, hier ist Elif. Ich bin leider krank und kann heute nicht zum Frühdienst kommen.": "<b>Con la jefa de la unidad: «Sie», tu nombre y el motivo.</b> «Guten Morgen, Frau Hoffmann, hier ist … Ich bin leider krank und kann heute nicht kommen.» Y se llama temprano, antes de que empiece el turno."
    },
