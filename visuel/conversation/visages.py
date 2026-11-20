@@ -191,7 +191,10 @@ def depense_lot2():
 
 def controle_fond(nom):
     """Instrument gratuit : l'ecart-type du bord de l'image (3 % de chaque cote). Un fond de studio uni reste bas ; un
-    bureau, une chaise ou une table le font monter. Ne juge ni le visage ni l'expression : la planche le fait."""
+    bureau, une chaise ou une table le font monter. Ne juge ni le visage ni l'expression : la planche le fait.
+    ⚠️ Il ne voit PAS la brume du bas (20 nov. : Elena, Sergio, Irene, depuis une source en pied -- le corps se perd
+    dans un fondu gris ou flottent les chaussures) : le bas est occupe par les vetements, on ne peut pas le mesurer
+    comme un fond. Regarder le bas de chaque image sur la planche."""
     from PIL import Image, ImageStat
     im = Image.open(os.path.join(DOSSIER, nom + ".png")).convert("L").resize((400, 400))
     b = 12
@@ -203,6 +206,24 @@ def controle_fond(nom):
 # Kellnerin-accueil (11 nov.) : le modele a recule, la tete au tiers du cadre et un coin de table en bas.
 RECADRAGE = {"Kellnerin-accueil": (0.2, 0.08, 0.6), "Kellnerin-question": (0.1, 0.02, 0.8),
              "Kellnerin-surprise": (0.1, 0.02, 0.8), "Kellnerin-perplexe": (0.1, 0.02, 0.8)}
+# Lot 2 (20 nov.) : Elena, retouchee depuis son image EN PIED, est sortie a mi-corps, et en « attentive » et
+# « surprise » le bas du corps se perd dans une brume ou flottent ses baskets. Le haut est juste : on recadre ces
+# deux-la au-dessus de la brume (un recadrage commun aux cinq serrait trop les tetes deja grandes).
+RECADRAGE["Elena-attentive"] = (0.12, 0.0, 0.76)
+RECADRAGE["Elena-surprise"] = (0.14, 0.02, 0.72)
+# Javier « perplexe » est sorti a mi-corps (son image source est en pied) : l'expression est juste, le cadre non.
+RECADRAGE["Javier-perplexe"] = (0.2, 0.03, 0.56)
+# Sergio (cinq expressions, pas le sourire) et Irene (le sourire) : la meme brume aux chaussures flottantes, des 77 %
+# de la hauteur. Meme cause qu'Elena : une source EN PIED, que le modele termine en fondu plutot que de couper.
+for _e in ("question", "attentive", "surprise", "perplexe", "amuse"):
+    RECADRAGE["Sergio-" + _e] = (0.14, 0.03, 0.72)
+RECADRAGE["Irene-sourire"] = (0.12, 0.02, 0.76)
+# Et Diego (question), Mario (question, sourire), Nuria (amuse), Rosa (attentive, perplexe, amuse) : la meme brume,
+# de 80 a 85 % de la hauteur. Onze images sur 204, toutes depuis une source EN PIED, aucune depuis un portrait carre.
+RECADRAGE.update({"Diego-question": (0.08, 0.0, 0.84), "Mario-question": (0.1, 0.02, 0.8),
+                  "Mario-sourire": (0.12, 0.02, 0.76), "Nuria-amuse": (0.1, 0.04, 0.8),
+                  "Rosa-attentive": (0.12, 0.02, 0.76), "Rosa-perplexe": (0.1, 0.02, 0.8),
+                  "Rosa-amuse": (0.12, 0.02, 0.76)})
 
 
 def web(nom):
