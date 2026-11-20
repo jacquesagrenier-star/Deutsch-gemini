@@ -176,6 +176,6 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
 
 1. **Les titres** : « Schneider Hanım », « Lange Bey », avec le suffixe après l'apostrophe (« Başvuru Schneider Hanım'a gönderiliyor. », « Lange Bey'e ») ; la lettre « Sayın Schneider Hanım, », « Sayın Lange Bey, ».
-2. **L'impersonnel des annonces** : « Haftada 40 saat çalışılıyor. », « Ayda 3.000 € kazanılıyor. », « İşe 1 Aralık'ta başlanıyor. », « Nazik olmak gerekiyor. ».
-3. **Les qualités** : dakik, güvenilir, nazik (freundlich), esnek, çalışkan, bağımsız, düzenli, « takım çalışmasına yatkın » (teamfähig) ; « Dakik ve güvenilir biriyim. ».
+2. **L'impersonnel des annonces** : « Haftada 40 saat çalışılıyor. », « Ayda 3.000 € kazanılıyor. », « İşe 1 Aralık'ta başlanıyor. », « Cana yakın olmak gerekiyor. ».
+3. **Les qualités** : les mots de la glose du corpus, affichée sous le mot visé : dakik, güvenilir, « cana yakın » (freundlich), esnek, çalışkan, bağımsız, « derli toplu » (ordentlich), « takım çalışmasına yatkın » (teamfähig) ; « Dakik ve güvenilir biriyim. ».
 4. **Du / Sie** : « Pazartesi başlayabilir misiniz? » / « Bana biraz yardım edebilir misin? », « Nerelisiniz? » / « Nerelisin? » ; « Bu ön yazı. » pour l'Anschreiben.

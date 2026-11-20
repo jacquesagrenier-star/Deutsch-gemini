@@ -143,6 +143,6 @@ La page traduit maintenant ses phrases (demander s'il y a un lieu, comment y all
 La page traduit maintenant ses phrases comme le français : annonces, qualités, entretien (la question puis la réponse), lettre, CV (« rubrique = traduction »), contrat, du ou Sie, l'appel où Mark se déclare malade, qui est qui et les papiers. Elles sont fabriquées par `visuel/travail/langues.py`, versées dans `travail.json` par `travail.py`. Les noms d'entreprise (Sonnenweg Reisen, Viajes Solano) restent en lettres latines, comme les rues du plan de la ville. À relire :
 
 1. **Le Sie** : l'arabe n'a pas de vouvoiement ; « حضرتك » le marque dans du ou Sie (« هل يمكن لحضرتك أن تبدأ يوم الاثنين؟ » / « هل يمكنك مساعدتي قليلًا؟ ») : à confirmer, sinon les deux phrases se traduisent pareil.
-2. **L'accord du nombre** : « 40 ساعة »، « 8 ساعات »، « 6 أشهر »، « شهرين »، « 28 يومًا » ; les qualités au féminin (« ليزا منضبطة في المواعيد »، « تتأخر »).
+2. **L'accord du nombre** : « 40 ساعة »، « 8 ساعات »، « 6 أشهر »، « شهرين »، « 28 يومًا » ; les qualités au féminin (« ليزا دقيقة في المواعيد »، « تتأخر ») ; les mots de la glose du corpus (دقيق في المواعيد، ودود، « قادر على العمل ضمن فريق »، « رسالة التحفيز »), sauf « جدير بالثقة » gardé pour zuverlässig (glose : موثوق، يُعتمَد عليه).
 3. **Les noms** : شنايدر، لانغه، كراوزه، فولف، زومر، برانت، غارنييه ; pour l'espagnol نافارو، خيل، لوبيز، رويز، فيغا، سانز، خورخي، لوسيا.
 4. **L'entreprise** jamais en tête de phrase (le sens de la ligne) : « جهة عمل مارك هي Sonnenweg Reisen. »، « إن Viajes Solano شركة سفريات. ».

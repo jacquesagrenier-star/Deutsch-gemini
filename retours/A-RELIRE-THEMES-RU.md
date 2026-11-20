@@ -177,5 +177,5 @@ La page traduit maintenant ses phrases comme le français : annonces, qualités,
 
 1. **Les titres** : « госпожа Шнайдер », « господину Ланге / Вольфу / Брандту », « Уважаемый господин Вольф, » (sans vocatif), « Выздоравливайте, господин Гарнье! ».
 2. **L'impersonnel** : « Работают 40 часов в неделю. », « Зарабатывают 3000 € в месяц. », « Нужно быть приветливым. ».
-3. **Les métiers** : « администратор » pour Rezeptionist, « гостиница » pour Hotel, « Новый водитель работает на аптеку. ».
+3. **Les métiers** : « администратор » pour Rezeptionist, « гостиница » pour Hotel, « Новый водитель работает на аптеку. » ; « миниджоб », comme la glose du corpus.
 4. **Les qualités au masculin et au féminin** : « Лиза пунктуальная. », « Госпожа Шнайдер аккуратная. » (forme longue, plus parlée que « пунктуальна »).

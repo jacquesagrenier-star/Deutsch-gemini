@@ -141,5 +141,5 @@ La page traduit maintenant ses phrases comme le français : annonces, qualités,
 
 1. **Les titres** : « خانم اشنایدر »، « آقای لانگه »، la lettre « خانم اشنایدر گرامی، » ; les noms : کراوزه، ولف، زومر، برانت، گارنیه.
 2. **L'ezafe écrit** : « فروشندهٔ جدید »، « رانندهٔ جدید » ; « متصدی پذیرش » pour Rezeptionist.
-3. **Les qualités** : وقت‌شناس، قابل‌اعتماد، خوش‌برخورد (freundlich)، انعطاف‌پذیر، سخت‌کوش، مستقل، منظم ; « روحیهٔ کار تیمی دارد » (teamfähig).
+3. **Les qualités** : les mots de la glose du corpus (قابل اعتماد، خوش‌برخورد، انعطاف‌پذیر، کوشا، مرتب، « اهل کار گروهی »، « نامهٔ انگیزشی »، « مینی‌جاب »), sauf trois où la phrase garde un mot plus courant que la glose, à trancher : « وقت‌شناس » (glose : سر وقت), « مستقل » (glose : خودگردان), « رزومه » (glose : کارنامک).
 4. **Du / Sie** : « می‌توانید … » / « می‌توانی … »، « اهل کجا هستید؟ » / « اهل کجایی؟ » ; l'entreprise après le verbe : « کارفرمای مارک Sonnenweg Reisen است. ».
