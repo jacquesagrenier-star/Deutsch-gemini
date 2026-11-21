@@ -88,6 +88,8 @@ async ([cas]) => {
   await toucher(Math.max(0, v.n - 1));
   page.detail = detail();
   page.lumiere = v.n > 0 ? phraseLumiereEtoile(a) : '';
+  page.prochaine = { texte: (document.querySelector('#tcInfo .tc-proch') || {}).textContent || '', attendu: t('ciel_prochaine_mystere'), dist: !!document.querySelector('#tcInfo .tc-dist'),
+                     enCours: v.n < v.t && (v.g === CIEL_ETAT.courant || v.n > 0) };
   const et = document.querySelector('#tcEtiq .fe-nom-et');
   const box = et && et.getBBox();
   const touche = et ? { texte: [...et.querySelectorAll('tspan')].map(x => x.textContent).join(' / '), x0: Math.round(box.x), x1: Math.round(box.x + box.width), y0: Math.round(box.y), y1: Math.round(box.y + box.height), dansCadre: box.x >= 0 && box.x + box.width <= 375 && box.y >= 0 && box.y + box.height <= 372, nomsCaches: svg.classList.contains('tc-choisie') } : null;
@@ -161,6 +163,9 @@ def juger(cas, r):
             f.append("etoile allumee, l'annee de sa lumiere : %s / %s" % (d, p.get("lumiere")))
     elif n0.get("visible") or n2.get("visible"):
         f.append("phrase sans etoile allumee : %s" % n0)
+    pr = p.get("prochaine") or {}
+    if pr.get("enCours") and (pr.get("texte") != pr.get("attendu") or pr.get("dist")):
+        f.append("prochaine etoile devoilee : %s" % pr)
     e = p.get("eteinte")
     if e is not None and (e.get("texte") != e.get("attendu") or e["detail"].get("visible") or e.get("aria") != e.get("attendu")):
         f.append("etoile eteinte, le mystere : %s" % e)
