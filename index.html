@@ -9027,6 +9027,10 @@ body[data-theme="dark"] .tc-total{color:#F6CE84;}
 .tc-pastille:focus-visible{outline:2px solid #FFE3A8; outline-offset:2px;}
 .tc-note{margin:10px 0 0; text-align:center; font-size:13px; font-weight:700; line-height:1.35; opacity:.8;}
 .tc-detail{margin:8px 0 0; text-align:center; font-size:14px; font-weight:800; line-height:1.4;}
+.tc-detail > div + div{margin-top:4px;}
+.tc-detail .tc-origine{font-style:italic; font-weight:700; opacity:.92;}
+.tc-detail .tc-portrait{font-weight:700; opacity:.88;}
+.tc-histoire{margin:10px auto 0; max-width:34em; text-align:center; font-size:14px; font-weight:600; line-height:1.5; opacity:.92;}
 .tc-appris{display:flex; align-items:center; justify-content:center; gap:6px; margin:2px 0 4px; font-size:15px; font-weight:800; opacity:.92;}
 .tc-appris .tc-hp{display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:0; border-radius:50%; background:rgba(255,255,255,.14); color:inherit; cursor:pointer; padding:0;}
 .tc-appris .tc-hp svg{width:18px; height:18px;}
@@ -66649,6 +66653,44 @@ function chargerCiel(){
     }
     return chargementCiel;
 }
+// Ce que les etoiles racontent (ligne 160, livraison B) : l'origine du nom, le portrait, l'histoire de la figure. Un fichier
+// par langue d'interface (etoiles/infos/<langue>.json, DERIVE de etoiles/outils/infos.py), charge a l'ouverture de Ton ciel.
+let INFOS_CIEL = null, INFOS_CIEL_LANGUE = "", chargementInfosCiel = null;
+function chargerInfosCiel(){
+    const lg = getUiLang();
+    if(INFOS_CIEL && INFOS_CIEL_LANGUE === lg) return Promise.resolve(INFOS_CIEL);
+    if(!chargementInfosCiel){
+        chargementInfosCiel = fetch(cacheBustedUrl(RACINE_DEPOT + "etoiles/infos/" + lg + ".json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { if(d && d.portraits){ INFOS_CIEL = d; INFOS_CIEL_LANGUE = lg; } return INFOS_CIEL; })
+            .catch(() => null)
+            .finally(() => { chargementInfosCiel = null; });
+    }
+    return chargementInfosCiel;
+}
+// Le portrait d'une etoile, en gabarits : « Une geante orange. Sa surface est un peu moins chaude que celle du Soleil. Environ
+// 9 fois le diametre du Soleil. » La taille seulement quand SIMBAD a un diametre mesure.
+function portraitEtoile(cle, i){
+    const I = INFOS_CIEL, T = I && I.textes, p = I && I.portraits && I.portraits[cle] && I.portraits[cle][i];
+    if(!T || !p) return [];
+    const [lettre, cl, r] = p.split(","), k = { O: 0, B: 0, A: 1, F: 2, G: 3, K: 4, M: 5 }[lettre];
+    const classes = ["sg", "g", "sous", "e"], gab = T[cl];
+    if(k === undefined || !gab) return [];
+    const genre = (T.genre || "")[classes.indexOf(cl)] === "f" ? "f" : "m";
+    let un = gab.replace("{c}", (T[genre] || [])[k] || "");
+    un = un.charAt(0).toLocaleUpperCase(getUiLang()) + un.slice(1) + ".";
+    const lignes = [un + " " + (T.temp[k] || "")];
+    const n = parseFloat(r);
+    if(n > 0){
+        if(n < 1.5) lignes.push(T.pareil);
+        else {
+            let txt = String(n);
+            try{ txt = new Intl.NumberFormat(getUiLang(), { maximumFractionDigits: 1 }).format(n); }catch(x){}
+            lignes.push(T.taille.replace("{n}", txt));
+        }
+    }
+    return lignes;
+}
 function chargerJeSais(){
     if(JE_SAIS) return Promise.resolve(JE_SAIS);
     if(!chargementJeSais){
@@ -67158,6 +67200,8 @@ async function majTuileCiel(){
 async function ouvrirCiel(){
     const e = await etatDuCiel();
     if(!e) return;
+    // ce que les etoiles racontent : charge sans attendre, redessine a l'arrivee (rien ne bloque l'ouverture)
+    chargerInfosCiel().then(d => { if(d && document.getElementById("tonCiel").classList.contains("active")){ infoTonCiel(); if(CIEL_CHOISIE >= 0) detailTonCiel(vueTonCiel().c.etoiles[CIEL_CHOISIE], vueTonCiel().g, CIEL_CHOISIE); } });
     CIEL_ETAT = e;
     CIEL_VUE = e.courant;
     rendreTonCiel();
@@ -67223,14 +67267,19 @@ function phraseLumiereEtoile(e){
     try{ txt = new Intl.NumberFormat(lg, { useGrouping: false }).format(an); }catch(x){}
     return tf("ciel_lumiere_vers", { annee: txt });
 }
-// Sous le dessin, ce que l'etoile touchee raconte (allumee seulement : une etoile eteinte reste un mystere).
-function detailTonCiel(e){
+// Sous le dessin, ce que l'etoile touchee raconte (allumee seulement : une etoile eteinte reste un mystere) : l'origine de
+// son nom (une etoile nommee, quand elle est sure), son portrait, puis l'annee ou sa lumiere est partie (ligne 160).
+function detailTonCiel(e, cle, i){
     const el = document.getElementById("tcDetail");
     if(!el) return;
-    const txt = e ? phraseLumiereEtoile(e) : "";
-    el.textContent = txt;
-    el.setAttribute("dir", "auto");
-    el.hidden = !txt;
+    el.textContent = "";
+    if(!e){ el.hidden = true; return; }
+    const ajouter = (cls, txt) => { if(!txt) return; const d = document.createElement("div"); d.className = cls; d.textContent = txt; d.setAttribute("dir", "auto"); el.appendChild(d); };
+    const I = INFOS_CIEL;
+    ajouter("tc-origine", I && I.origines && !e.noms ? I.origines[e.nom] : "");
+    if(cle) portraitEtoile(cle, i).forEach(l => ajouter("tc-portrait", l));
+    ajouter("tc-lumiere", phraseLumiereEtoile(e));
+    el.hidden = !el.childNodes.length;
 }
 function vueTonCiel(){ return CIEL_ETAT.groupes.find(x => x.g === CIEL_VUE); }
 function dessinerTonCiel(){
@@ -67305,7 +67354,7 @@ function choisirEtoileCiel(i){
     // mystere ») : ni nom ni distance, seulement « A decouvrir ».
     const allumee = i < v.n;
     const nom = allumee ? nomEtoileAffiche(a, lg) : t("ciel_a_decouvrir"), dist = allumee ? phraseDistanceEtoile(a) : "", lignes = lignesDistanceEtoile(dist);
-    if(allumee) detailTonCiel(a);
+    if(allumee) detailTonCiel(a, v.g, i);
     g.innerHTML = '<circle class="tc-choix" cx="' + a.x + '" cy="' + a.y + '" r="' + Math.max(10, rayons[i] + 6).toFixed(1) + '"/>'
                 + etiquetteEtoileSvg(E, rayons, traits, i, nom, dist, 15, W, H);
     const ne = g.querySelector(".fe-ne-nom");
@@ -67330,7 +67379,13 @@ function infoTonCiel(){
         d.appendChild(sp); d.appendChild(hp);
     }
     const fini = v.n >= v.t, enCours = v.g === e.courant || v.n > 0;
-    if(fini){ ligne("div", "tc-etape", t("ciel_complete")); return; }
+    if(fini){
+        ligne("div", "tc-etape", t("ciel_complete"));
+        // sa petite histoire, debloquee quand la figure est complete (ligne 160 ; d'apres Ian Ridpath, Star Tales)
+        const h = INFOS_CIEL && INFOS_CIEL.histoires && INFOS_CIEL.histoires[v.g];
+        if(h) ligne("p", "tc-histoire", h).setAttribute("dir", "auto");
+        return;
+    }
     if(!enCours){ ligne("div", "tc-etape", t("ciel_a_venir")); return; }
     // « encore 7 seances » : une etoile par seance (ligne 158)
     const reste = v.t - v.n;

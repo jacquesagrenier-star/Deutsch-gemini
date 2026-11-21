@@ -63,7 +63,7 @@ async ([cas]) => {
   const accueil = { ciel: tv, tableau: tabv, deux: !!document.querySelector('.tg-rangee.deux'), compte: tv ? document.getElementById('grilleCielCompte').textContent : '', titre: tv ? ciel.querySelector('.tg-tab-titre').textContent : '',
                     rects: [tv && rect(ciel), tabv && rect(tab)], dedans: (!tv || inner(ciel)) && (!tabv || inner(tab)), debord: document.documentElement.scrollWidth > window.innerWidth, dessin: tv ? document.querySelectorAll('#grilleCielDessin circle').length : 0 };
   if(!tv) return { accueil };
-  await ouvrirCiel(); await pause(400);
+  await ouvrirCiel(); await chargerInfosCiel(); await pause(400);
   const lire = () => ({ actif: (document.querySelector('.screen.active') || {}).id, pastilles: [...document.querySelectorAll('.tc-pastille')].map(b => b.textContent + (b.classList.contains('active') ? ' *' : '')), total: document.getElementById('tcTotal').textContent, info: document.getElementById('tcInfo').innerText.replace(/\n+/g, ' | '), noms: document.querySelectorAll('#tcSvg .fc-nom').length, cible: document.querySelectorAll('#tcSvg .fc-cible').length, allumes: document.querySelectorAll('#tcSvg .fc-allume').length, debord: document.getElementById('tonCiel').scrollWidth > document.getElementById('tonCiel').clientWidth + 1 || document.documentElement.scrollWidth > window.innerWidth });
   const page = lire();
   const noteEl = document.getElementById('tcNote'), lireNote = () => { if(!noteEl) return null; const r = noteEl.getBoundingClientRect(), s = document.getElementById('tcSvg').getBoundingClientRect(), p = document.getElementById('tcPastilles').getBoundingClientRect();
@@ -74,7 +74,9 @@ async ([cas]) => {
   page.appris = { texte: (document.querySelector('#tcInfo .tc-appris span') || {}).textContent || '', hp: !!hp, langue: LANGUE_APPRISE, attendu: (vueTonCiel().c.noms || {})[LANGUE_APPRISE] || '' };
   const v = vueTonCiel(), svg = document.getElementById('tcSvg'), m = svg.getScreenCTM();
   const toucher = async k => { const b2 = v.c.etoiles[k]; svg.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX: b2.x * m.a + m.e, clientY: b2.y * m.d + m.f })); await pause(120); };
-  const detail = () => { const d = document.getElementById('tcDetail'); return { visible: !!d && !d.hidden && d.offsetHeight > 0, texte: d ? d.textContent : '' }; };
+  const detail = () => { const d = document.getElementById('tcDetail'); return { visible: !!d && !d.hidden && d.offsetHeight > 0, texte: d ? d.textContent : '',
+      lumiere: (d && d.querySelector('.tc-lumiere') || {}).textContent || '', portrait: d ? d.querySelectorAll('.tc-portrait').length : 0, origine: (d && d.querySelector('.tc-origine') || {}).textContent || '',
+      dansLargeur: !d || d.getBoundingClientRect().right <= window.innerWidth + 1 }; };
   // une etoile eteinte (la cible) : le mystere
   if(v.n < v.c.etoiles.length){
     await toucher(v.n);
@@ -115,7 +117,8 @@ async () => {
   const bs = () => [...document.querySelectorAll('.tc-pastille')];
   for(let i = 0; i < bs().length; i++){
     bs()[i].click(); await pause(100);
-    res.push({ pastille: bs()[i].textContent, info: document.getElementById('tcInfo').innerText.replace(/\n+/g, ' | '), allumes: document.querySelectorAll('#tcSvg .fc-allume').length, cible: document.querySelectorAll('#tcSvg .fc-cible').length });
+    res.push({ pastille: bs()[i].textContent, info: document.getElementById('tcInfo').innerText.replace(/\n+/g, ' | '), allumes: document.querySelectorAll('#tcSvg .fc-allume').length, cible: document.querySelectorAll('#tcSvg .fc-cible').length,
+               fini: vueTonCiel().n >= vueTonCiel().t, histoire: (document.querySelector('#tcInfo .tc-histoire') || {}).textContent || '' });
   }
   return res;
 }
@@ -146,6 +149,10 @@ def juger(cas, r):
     if len(p["pastilles"]) != attendu:
         f.append("pastilles %s (attendu %s)" % (p["pastilles"], attendu))
     for x in r.get("pastilles") or []:
+        if x.get("fini") and not x.get("histoire"):
+            f.append("figure complete sans son histoire : %s" % x["pastille"])
+        if not x.get("fini") and x.get("histoire"):
+            f.append("histoire d'une figure pas finie : %s" % x["pastille"])
         if "venir" in x["info"].lower() or "coming" in x["info"].lower():
             f.append("figure a venir montree : %s" % x["pastille"])
     if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Ourse", "Osa", "Wagen", "Bär")):
@@ -159,7 +166,7 @@ def juger(cas, r):
         if not n2.get("visible"):
             f.append("phrase absente a la reouverture : %s" % n2)
         d = p.get("detail") or {}
-        if not d.get("visible") or d.get("texte") != p.get("lumiere") or not p.get("lumiere"):
+        if not d.get("visible") or d.get("lumiere") != p.get("lumiere") or not p.get("lumiere") or d.get("portrait", 0) < 1 or not d.get("dansLargeur"):
             f.append("etoile allumee, l'annee de sa lumiere : %s / %s" % (d, p.get("lumiere")))
     elif n0.get("visible") or n2.get("visible"):
         f.append("phrase sans etoile allumee : %s" % n0)

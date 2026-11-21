@@ -124,3 +124,12 @@ Les étoiles sans nom propre des nouvelles figures suivent la règle du 7 nov. (
 | 55 | le Toucan | der Tukan | el Tucán | Tucana | o Tucano | きょしちょう座 | Tukan | Tukan | Тукан | Тукан | الطوقان | توکان |
 | 56 | la Mouche | die Fliege | la Mosca | Musca | a Mosca | はえ座 | Sinek | Mucha | Муха | Муха | الذبابة | مگس جنوبی |
 | 57 | l'Hydre mâle | die Kleine Wasserschlange | la Hidra Macho | Hydrus | a Hidra Macho | みずへび座 | Küçük Suyılanı | Wąż Wodny | Южная Гидра | Південна Гідра | حية الماء | آبمار |
+
+## 6. Ce que les étoiles racontent (ligne 160, 20 nov. 2026)
+
+Écrit par Claude en français et en anglais, puis traduit par Claude dans les 9 autres langues d'interface : **tout est à relire par des natifs** (tr, uk, fa, ar, pt, pl, ru, de, es).
+
+- **Les cinq clés de l'écran** (`index.html`, bloc `I18N` de chaque langue) : `ciel_toucher` (la phrase permanente sous le dessin), `ciel_a_decouvrir` (l'étoile éteinte touchée), `ciel_prochaine_mystere` (préparée, pas encore montrée), `ciel_lumiere_vers` (« Sa lumière est partie vers {annee}. ») et `ciel_lumiere_il_y_a` (« … il y a environ {n} ans. », n toujours arrondi à la centaine : vérifier l'accord du nom après le nombre en uk, ru, pl, ar).
+- **L'origine des noms** (`etoiles/outils/origines.txt`, 220 lignes) : le préfixe par langue d'origine (`PREFIXES` de `etoiles/outils/infos.py`) et le sens, entre guillemets ou décrit. Points d'attention : les guillemets de chaque langue (`PATRONS`), les noms arabes donnés en arabe dans l'interface arabe (ex. « الذَّنَب » pour Deneb), le genre des sens courts (« la solitaire », « celle qui scintille »).
+- **Le portrait** (`TEXTES` de `etoiles/outils/infos.py`) : la classe et la couleur accordées au genre (uk, ru, pl : supergéante / géante / sous-géante au masculin, « étoile » au féminin ; de : tout au masculin avec « ein »), les six phrases de chaleur, la taille. ⚠️ En uk, ru, pl et ar, la taille est écrite « comme le Soleil × N » pour éviter l'accord du nombre : une tournure plus naturelle est bienvenue. ⚠️ En arabe, le portrait parle de l'étoile au masculin (« عملاق », « سطحه ») et la phrase de la lumière au féminin (« ضوؤها », comme « نجمة » de la phrase permanente) : à harmoniser si un natif le juge utile.
+- **Les 57 histoires** (`etoiles/outils/histoires.txt`) : 2 à 3 phrases par figure, résumées de Ian Ridpath, *Star Tales*. Les noms propres de la mythologie suivent l'usage de chaque langue (Héraclès / Herakles / Heracles / Геракл…) ; en persan, Céphée est écrit « کفئوس ».

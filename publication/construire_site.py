@@ -70,6 +70,8 @@ DOSSIERS = {
     "dict/": {"json"},
     # Le ciel des etoiles.
     "etoiles/ciel.json": None,
+    # Ce que les etoiles racontent dans Ton ciel, un fichier par langue d'interface (ligne 160).
+    "etoiles/infos/": {"json"},
     # La visite guidee, en voix.
     "voix-visite/": SONS | {"json"},
     # Les videos de l'app (ouverture, demarrage) et le schema de preparation.

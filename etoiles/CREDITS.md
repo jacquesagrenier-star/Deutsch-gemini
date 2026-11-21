@@ -12,6 +12,9 @@
 | Contrôle des noms des constellations | Titres des articles de Wikipedia, via **Wikidata** (`sources/wikipedia_noms.json`) | Wikidata : **CC0**. Ne sert qu'à vérifier ; aucun texte de Wikipedia n'est repris. |
 | Tracés des figures | Dessinés pour Wortando (`outils/figures.py`, `outils/voyage.py`) à partir des positions réelles, en suivant le dessin usuel de chaque constellation | Les nôtres. Aucun tracé copié d'une carte publiée. |
 | Noms des constellations dans les 12 langues | Usage de chaque langue, écrits pour Wortando et comparés aux titres de Wikipedia (`outils/controle.py`) | Les nôtres (des noms usuels, non protégeables). |
+| Origine des noms d'étoiles (ligne 160) | **UAI, catalogue des noms d'étoiles du WGSN**, colonne « origine » (https://exopla.net/star-names/modern-iau-star-names/, version du 15 oct. 2026, relevée le 20 nov. ; `sources/wgsn_origines.tsv`) ; référence principale du WGSN : Kunitzsch & Smart 2006, *A Dictionary of Modern Star Names* | Produits de l'UAI sous **CC BY** (déjà cités). Les lignes affichées sont écrites à nos mots (`outils/origines.txt`), une par étoile, rien de recopié. |
+| Types spectraux et diamètres mesurés (ligne 160) | **SIMBAD**, CDS, Strasbourg (miroir de Harvard), tables `basic` et `mesDiameter`, relevé du 20 nov. 2026 (`sources/simbad_types.tsv`, `simbad_diametres.tsv`) | Comme les autres mesures SIMBAD. Le portrait est fait de gabarits (`outils/infos.py`). |
+| Petite histoire de chaque constellation (ligne 160) | **Ian Ridpath, *Star Tales*** (ianridpath.com/startales), une page par figure (`sources/histoires_sources.tsv`) | Résumées à nos mots en 2 à 3 phrases (`outils/histoires.txt`), aucune phrase reprise ; la source est gardée par courtoisie et pour la vérification. |
 
 ## Ce que l'app devrait afficher
 
@@ -28,5 +31,7 @@ Elles sont dans la carte « Crédits » des réglages (groupe « Compte et aide 
 
 - `python etoiles/outils/releve_voyage.py` : refait les relevés des 42 figures du voyage (réseau requis ; seulement si l'on change les étoiles d'une figure).
 - `python etoiles/outils/construire.py` : refait `ciel.json` à partir des relevés, sans réseau.
+- `python etoiles/outils/simbad_portrait.py` et `python etoiles/outils/wgsn_origines.py` : refont les relevés du portrait (SIMBAD) et des origines (WGSN) ; réseau requis, seulement pour rafraîchir.
+- `python etoiles/outils/infos.py` : refait `etoiles/infos/<langue>.json` (origine, portrait, histoire ; un fichier par langue d'interface) à partir de `outils/origines.txt`, `outils/histoires.txt` et des relevés, sans réseau.
 - `python etoiles/outils/controle.py` : contrôle chaque figure, chaque étoile, chaque nom.
 - `python etoiles/outils/planche.py [sortie.png] [--toutes]` : la planche des figures, pour les montrer.
