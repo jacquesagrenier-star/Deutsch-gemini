@@ -16,9 +16,10 @@ Dans la page, seulement ce qu'on a atteint (Jacques, 10 nov.) : la figure en cou
 figure a venir, ni en pastille ni en dessin -- neuf, pp, voyage et ancien : 1 pastille, a1 : 2, a2 : 4.
 A chaque fois : la bande coupee en deux sans debordement, puis la page, ses pastilles, une etoile touchee (nom et distance « de la
 Terre »), a 320 et 360 px, clair, nuit et RTL.
-La note « Touche une etoile pour la decouvrir. » (retour de Jacques du 20 nov.) : lue avant de toucher (entre les pastilles et
-le dessin, dans la largeur), encore la apres la premiere etoile touchee (le dessin ne saute pas sous le doigt), absente a la
-reouverture. Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
+Ligne 160 (Jacques, 20 nov.) : sous le dessin, la phrase PERMANENTE « Touche une etoile allumee… » des qu'une etoile de la figure
+est allumee (et a la reouverture), jamais sans etoile allumee ; une etoile eteinte touchee ne dit que « A decouvrir » (ni nom,
+ni distance, ni detail) ; une etoile allumee touchee, son nom, sa distance et, sous le dessin, l'annee ou sa lumiere est
+partie ; le nom de la figure dans la langue apprise, avec son haut-parleur. Il ouvre un navigateur : a lancer SOUS LE VERROU (~/.wortando/REGLE-VERROU-PARCOURS.txt).
 """
 import argparse
 import functools
@@ -66,12 +67,27 @@ async ([cas]) => {
   const lire = () => ({ actif: (document.querySelector('.screen.active') || {}).id, pastilles: [...document.querySelectorAll('.tc-pastille')].map(b => b.textContent + (b.classList.contains('active') ? ' *' : '')), total: document.getElementById('tcTotal').textContent, info: document.getElementById('tcInfo').innerText.replace(/\n+/g, ' | '), noms: document.querySelectorAll('#tcSvg .fc-nom').length, cible: document.querySelectorAll('#tcSvg .fc-cible').length, allumes: document.querySelectorAll('#tcSvg .fc-allume').length, debord: document.getElementById('tonCiel').scrollWidth > document.getElementById('tonCiel').clientWidth + 1 || document.documentElement.scrollWidth > window.innerWidth });
   const page = lire();
   const noteEl = document.getElementById('tcNote'), lireNote = () => { if(!noteEl) return null; const r = noteEl.getBoundingClientRect(), s = document.getElementById('tcSvg').getBoundingClientRect(), p = document.getElementById('tcPastilles').getBoundingClientRect();
-    return { visible: !noteEl.hidden && noteEl.offsetHeight > 0, texte: noteEl.textContent, avantDessin: r.bottom <= s.top + 1, apresPastilles: r.top >= p.bottom - 1, dansLargeur: r.left >= -1 && r.right <= window.innerWidth + 1, haut: Math.round(r.height) }; };
+    return { visible: !noteEl.hidden && noteEl.offsetHeight > 0, texte: noteEl.textContent, apresDessin: r.top >= s.bottom - 1, dansLargeur: r.left >= -1 && r.right <= window.innerWidth + 1, haut: Math.round(r.height) }; };
   page.note = lireNote();
-  // une etoile touchee : la premiere allumee, ou la cible
-  const v = vueTonCiel(), svg = document.getElementById('tcSvg'), m = svg.getScreenCTM(), a = v.c.etoiles[Math.max(0, v.n - 1)];
-  const cx = a.x * m.a + m.e, cy = a.y * m.d + m.f;
-  svg.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX: cx, clientY: cy })); await pause(120);
+  page.allumees = vueTonCiel().n;
+  const hp = document.querySelector('#tcInfo .tc-appris .tc-hp');
+  page.appris = { texte: (document.querySelector('#tcInfo .tc-appris span') || {}).textContent || '', hp: !!hp, langue: LANGUE_APPRISE, attendu: (vueTonCiel().c.noms || {})[LANGUE_APPRISE] || '' };
+  const v = vueTonCiel(), svg = document.getElementById('tcSvg'), m = svg.getScreenCTM();
+  const toucher = async k => { const b2 = v.c.etoiles[k]; svg.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX: b2.x * m.a + m.e, clientY: b2.y * m.d + m.f })); await pause(120); };
+  const detail = () => { const d = document.getElementById('tcDetail'); return { visible: !!d && !d.hidden && d.offsetHeight > 0, texte: d ? d.textContent : '' }; };
+  // une etoile eteinte (la cible) : le mystere
+  if(v.n < v.c.etoiles.length){
+    await toucher(v.n);
+    const e2 = document.querySelector('#tcEtiq .fe-nom-et');
+    page.eteinte = { texte: e2 ? [...e2.querySelectorAll('tspan')].map(x => x.textContent).filter(Boolean).join(' / ') : null, attendu: t('ciel_a_decouvrir'), detail: detail(),
+                     aria: (svg.querySelector('.tc-tact[data-i="' + v.n + '"]') || { getAttribute: () => '' }).getAttribute('aria-label') };
+    await toucher(v.n);   // le deuxieme toucher referme
+  }
+  // une etoile allumee (la derniere) : son nom, sa distance, l'annee de sa lumiere
+  const a = v.c.etoiles[Math.max(0, v.n - 1)];
+  await toucher(Math.max(0, v.n - 1));
+  page.detail = detail();
+  page.lumiere = v.n > 0 ? phraseLumiereEtoile(a) : '';
   const et = document.querySelector('#tcEtiq .fe-nom-et');
   const box = et && et.getBBox();
   const touche = et ? { texte: [...et.querySelectorAll('tspan')].map(x => x.textContent).join(' / '), x0: Math.round(box.x), x1: Math.round(box.x + box.width), y0: Math.round(box.y), y1: Math.round(box.y + box.height), dansCadre: box.x >= 0 && box.x + box.width <= 375 && box.y >= 0 && box.y + box.height <= 372, nomsCaches: svg.classList.contains('tc-choisie') } : null;
@@ -86,7 +102,7 @@ async () => {
   const pause = ms => new Promise(r => setTimeout(r, ms));
   showScreen('home'); await pause(150); await ouvrirCiel(); await pause(300);
   const el = document.getElementById('tcNote');
-  return { visible: !!el && !el.hidden && el.offsetHeight > 0 };
+  return { visible: !!el && !el.hidden && el.offsetHeight > 0, allumees: vueTonCiel().n };
 }
 """
 
@@ -133,12 +149,24 @@ def juger(cas, r):
     if cas == "voyage" and p["pastilles"] and not any(x in p["pastilles"][0] for x in ("Ourse", "Osa", "Wagen", "Bär")):
         f.append("voyage : %s" % p["pastilles"])
     n0, n1, n2 = p.get("note") or {}, p.get("noteApres") or {}, r.get("reouvert") or {}
-    if not n0.get("visible") or not n0.get("texte") or not n0.get("avantDessin") or not n0.get("apresPastilles") or not n0.get("dansLargeur"):
-        f.append("note avant de toucher : %s" % n0)
-    if not n1.get("visible"):
-        f.append("note partie pendant la visite")
-    if n2.get("visible") is not False:
-        f.append("note encore la a la reouverture : %s" % n2)
+    if p.get("allumees"):
+        if not n0.get("visible") or not n0.get("texte") or not n0.get("apresDessin") or not n0.get("dansLargeur"):
+            f.append("phrase avant de toucher : %s" % n0)
+        if not n1.get("visible"):
+            f.append("phrase partie pendant la visite")
+        if not n2.get("visible"):
+            f.append("phrase absente a la reouverture : %s" % n2)
+        d = p.get("detail") or {}
+        if not d.get("visible") or d.get("texte") != p.get("lumiere") or not p.get("lumiere"):
+            f.append("etoile allumee, l'annee de sa lumiere : %s / %s" % (d, p.get("lumiere")))
+    elif n0.get("visible") or n2.get("visible"):
+        f.append("phrase sans etoile allumee : %s" % n0)
+    e = p.get("eteinte")
+    if e is not None and (e.get("texte") != e.get("attendu") or e["detail"].get("visible") or e.get("aria") != e.get("attendu")):
+        f.append("etoile eteinte, le mystere : %s" % e)
+    ap = p.get("appris") or {}
+    if ap.get("attendu") and (ap.get("texte") != ap.get("attendu") or not ap.get("hp")):
+        f.append("nom dans la langue apprise : %s" % ap)
     t = r.get("touche")
     if not t or not t["texte"] or not t["dansCadre"]:
         f.append("etoile touchee : %s" % t)

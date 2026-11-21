@@ -9025,7 +9025,11 @@ body[data-theme="dark"] .tc-total{color:#F6CE84;}
 .tc-pastille.active{background:#E8A23A; border-color:transparent; color:#1C2430; font-weight:900;}
 .tc-pastille.venir{background:transparent; border-style:dashed;}
 .tc-pastille:focus-visible{outline:2px solid #FFE3A8; outline-offset:2px;}
-.tc-note{margin:12px 0 0; text-align:center; font-size:13px; font-weight:700; line-height:1.35; opacity:.8;}
+.tc-note{margin:10px 0 0; text-align:center; font-size:13px; font-weight:700; line-height:1.35; opacity:.8;}
+.tc-detail{margin:8px 0 0; text-align:center; font-size:14px; font-weight:800; line-height:1.4;}
+.tc-appris{display:flex; align-items:center; justify-content:center; gap:6px; margin:2px 0 4px; font-size:15px; font-weight:800; opacity:.92;}
+.tc-appris .tc-hp{display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:0; border-radius:50%; background:rgba(255,255,255,.14); color:inherit; cursor:pointer; padding:0;}
+.tc-appris .tc-hp svg{width:18px; height:18px;}
 .tc-svg{display:block; width:100%; max-width:440px; margin:10px auto 0; overflow:visible; cursor:pointer;}
 .tc-svg .fc-nom{direction:ltr;}
 .tc-svg.tc-choisie .fc-nom{display:none;}
@@ -11760,10 +11764,12 @@ body[data-theme="dark"] .cp-dic-phrase{color:#8ED3AA;}
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
     <div class="tc-tete"><h2 data-i18n="ciel_tuile">Ton ciel</h2><span class="tc-total" id="tcTotal"></span></div>
     <div class="tc-pastilles" id="tcPastilles"></div>
-    <!-- Retour de Jacques du 20 nov. 2026 : dire qu'une etoile touchee se raconte. Jusqu'a la premiere etoile touchee
-         (PREFIXE_STOCKAGE + "cielTouche"), puis plus jamais : apres, on sait. Voir noteTonCiel(). -->
-    <p class="tc-note" id="tcNote" data-i18n="ciel_toucher" hidden>Touche une étoile pour la découvrir.</p>
     <svg class="tc-svg" id="tcSvg" viewBox="0 0 375 372" role="group"></svg>
+    <!-- Ligne 160 (Jacques, 20 nov. 2026 : « il n'y a rien qui m'indique que je pourrais ») : sous le dessin, tant que la
+         figure a une etoile allumee, une phrase PERMANENTE (la note de la v1233 disparaissait apres le premier toucher).
+         Le detail de l'etoile touchee (allumee seulement) vient juste au-dessus. Voir noteTonCiel(), detailTonCiel(). -->
+    <div class="tc-detail" id="tcDetail" hidden></div>
+    <p class="tc-note" id="tcNote" data-i18n="ciel_toucher" hidden>Touche une étoile allumée pour voir d'où vient sa lumière.</p>
     <div class="tc-info" id="tcInfo"></div>
 </section>
 
@@ -16107,7 +16113,11 @@ const I18N = {
         ciel_complete: "Constellation complète",
         ciel_a_venir: "À venir",
         ciel_premiere: "Ta première étoile",
-        ciel_toucher: "Touche une étoile pour la découvrir.",
+        ciel_toucher: "Touche une étoile allumée pour voir d'où vient sa lumière.",
+        ciel_a_decouvrir: "À découvrir",
+        ciel_prochaine_mystere: "Prochaine étoile : à découvrir",
+        ciel_lumiere_vers: "Sa lumière est partie vers {annee}.",
+        ciel_lumiere_il_y_a: "Sa lumière est partie il y a environ {n} ans.",
         ciel_encore_1: "encore {n} séance",
         ciel_encore: "encore {n} séances",
         ciel_tour: "Tour {n}",
@@ -18011,7 +18021,11 @@ const I18N = {
         ciel_complete: "Constellation complete",
         ciel_a_venir: "Coming up",
         ciel_premiere: "Your first star",
-        ciel_toucher: "Tap a star to learn about it.",
+        ciel_toucher: "Tap a lit star to see where its light comes from.",
+        ciel_a_decouvrir: "Yet to be discovered",
+        ciel_prochaine_mystere: "Next star: yet to be discovered",
+        ciel_lumiere_vers: "Its light set out around {annee}.",
+        ciel_lumiere_il_y_a: "Its light set out about {n} years ago.",
         ciel_encore_1: "{n} session to go",
         ciel_encore: "{n} sessions to go",
         ciel_tour: "Round {n}",
@@ -19932,7 +19946,11 @@ const I18N = {
         ciel_complete: "Takımyıldızı tamamlandı",
         ciel_a_venir: "Sırada",
         ciel_premiere: "İlk yıldızın",
-        ciel_toucher: "Bir yıldıza dokun, onu tanı.",
+        ciel_toucher: "Işığının nereden geldiğini görmek için yanan bir yıldıza dokun.",
+        ciel_a_decouvrir: "Keşfedilecek",
+        ciel_prochaine_mystere: "Sıradaki yıldız: keşfedilecek",
+        ciel_lumiere_vers: "Işığı yaklaşık {annee} yılında yola çıktı.",
+        ciel_lumiere_il_y_a: "Işığı yaklaşık {n} yıl önce yola çıktı.",
         ciel_encore_1: "{n} oturum kaldı",
         ciel_encore: "{n} oturum kaldı",
         ciel_tour: "{n}. tur",
@@ -22260,7 +22278,11 @@ const I18N = {
         ciel_complete: "Сузірʼя завершено",
         ciel_a_venir: "Попереду",
         ciel_premiere: "Твоя перша зірка",
-        ciel_toucher: "Торкнися зірки, щоб дізнатися про неї.",
+        ciel_toucher: "Торкнися зірки, що світиться, щоб побачити, звідки її світло.",
+        ciel_a_decouvrir: "Ще не відкрита",
+        ciel_prochaine_mystere: "Наступна зірка: ще не відкрита",
+        ciel_lumiere_vers: "Її світло вирушило близько {annee} року.",
+        ciel_lumiere_il_y_a: "Її світло вирушило приблизно {n} років тому.",
         ciel_encore_1: "Залишилося занять: {n}",
         ciel_encore: "Залишилося занять: {n}",
         ciel_tour: "Коло {n}",
@@ -24933,7 +24955,11 @@ const I18N = {
         ciel_complete: "صورت فلکی کامل شد",
         ciel_a_venir: "در پیش است",
         ciel_premiere: "نخستین ستاره‌ات",
-        ciel_toucher: "روی یک ستاره بزن تا با آن آشنا شوی.",
+        ciel_toucher: "روی یک ستارهٔ روشن بزن تا ببینی نورش از کجا می‌آید.",
+        ciel_a_decouvrir: "هنوز کشف نشده",
+        ciel_prochaine_mystere: "ستارهٔ بعدی: هنوز کشف نشده",
+        ciel_lumiere_vers: "نورش حدود سال {annee} راه افتاده است.",
+        ciel_lumiere_il_y_a: "نورش حدود {n} سال پیش راه افتاده است.",
         ciel_encore_1: "{n} جلسه مانده",
         ciel_encore: "{n} جلسه مانده",
         ciel_tour: "دور {n}",
@@ -26953,7 +26979,11 @@ const I18N = {
         ciel_complete: "اكتملت الكوكبة",
         ciel_a_venir: "قادمة",
         ciel_premiere: "نجمتك الأولى",
-        ciel_toucher: "المس نجمة لتتعرّف عليها.",
+        ciel_toucher: "المس نجمة مضيئة لترى من أين يأتي ضوؤها.",
+        ciel_a_decouvrir: "لم تُكتشف بعد",
+        ciel_prochaine_mystere: "النجمة التالية: لم تُكتشف بعد",
+        ciel_lumiere_vers: "انطلق ضوؤها نحو عام {annee}.",
+        ciel_lumiere_il_y_a: "انطلق ضوؤها قبل نحو {n} سنة.",
         ciel_encore_1: "الحصص المتبقية: {n}",
         ciel_encore: "الحصص المتبقية: {n}",
         ciel_tour: "الجولة {n}",
@@ -27484,7 +27514,11 @@ const I18N = {
         ciel_complete: "Constelação completa",
         ciel_a_venir: "Em breve",
         ciel_premiere: "Sua primeira estrela",
-        ciel_toucher: "Toque em uma estrela para conhecê-la.",
+        ciel_toucher: "Toque em uma estrela acesa para ver de onde vem a luz dela.",
+        ciel_a_decouvrir: "A descobrir",
+        ciel_prochaine_mystere: "Próxima estrela: a descobrir",
+        ciel_lumiere_vers: "A luz dela partiu por volta de {annee}.",
+        ciel_lumiere_il_y_a: "A luz dela partiu há cerca de {n} anos.",
         ciel_encore_1: "falta {n} sessão",
         ciel_encore: "faltam {n} sessões",
         ciel_tour: "Volta {n}",
@@ -29392,7 +29426,11 @@ const I18N = {
         ciel_complete: "Konstelacja ukończona",
         ciel_a_venir: "Przed tobą",
         ciel_premiere: "Twoja pierwsza gwiazda",
-        ciel_toucher: "Dotknij gwiazdy, aby ją poznać.",
+        ciel_toucher: "Dotknij świecącej gwiazdy, aby zobaczyć, skąd pochodzi jej światło.",
+        ciel_a_decouvrir: "Do odkrycia",
+        ciel_prochaine_mystere: "Następna gwiazda: do odkrycia",
+        ciel_lumiere_vers: "Jej światło wyruszyło około {annee} roku.",
+        ciel_lumiere_il_y_a: "Jej światło wyruszyło około {n} lat temu.",
         ciel_encore_1: "Pozostało sesji: {n}",
         ciel_encore: "Pozostało sesji: {n}",
         ciel_tour: "Okrążenie {n}",
@@ -31300,7 +31338,11 @@ const I18N = {
         ciel_complete: "Созвездие завершено",
         ciel_a_venir: "Впереди",
         ciel_premiere: "Твоя первая звезда",
-        ciel_toucher: "Коснись звезды, чтобы узнать о ней.",
+        ciel_toucher: "Коснись светящейся звезды, чтобы увидеть, откуда идёт её свет.",
+        ciel_a_decouvrir: "Ещё не открыта",
+        ciel_prochaine_mystere: "Следующая звезда: ещё не открыта",
+        ciel_lumiere_vers: "Её свет отправился в путь около {annee} года.",
+        ciel_lumiere_il_y_a: "Её свет отправился в путь примерно {n} лет назад.",
         ciel_encore_1: "Осталось занятий: {n}",
         ciel_encore: "Осталось занятий: {n}",
         ciel_tour: "Круг {n}",
@@ -33211,7 +33253,11 @@ const I18N = {
         ciel_complete: "Sternbild vollständig",
         ciel_a_venir: "Kommt noch",
         ciel_premiere: "Dein erster Stern",
-        ciel_toucher: "Tippe auf einen Stern, um ihn zu entdecken.",
+        ciel_toucher: "Tippe auf einen leuchtenden Stern, um zu sehen, woher sein Licht kommt.",
+        ciel_a_decouvrir: "Noch zu entdecken",
+        ciel_prochaine_mystere: "Nächster Stern: noch zu entdecken",
+        ciel_lumiere_vers: "Sein Licht hat sich um das Jahr {annee} auf den Weg gemacht.",
+        ciel_lumiere_il_y_a: "Sein Licht hat sich vor etwa {n} Jahren auf den Weg gemacht.",
         ciel_encore_1: "noch {n} Einheit",
         ciel_encore: "noch {n} Einheiten",
         ciel_tour: "Runde {n}",
@@ -35082,7 +35128,11 @@ const I18N = {
         ciel_complete: "Constelación completa",
         ciel_a_venir: "Por venir",
         ciel_premiere: "Tu primera estrella",
-        ciel_toucher: "Toca una estrella para descubrirla.",
+        ciel_toucher: "Toca una estrella encendida para ver de dónde viene su luz.",
+        ciel_a_decouvrir: "Por descubrir",
+        ciel_prochaine_mystere: "Próxima estrella: por descubrir",
+        ciel_lumiere_vers: "Su luz partió hacia el año {annee}.",
+        ciel_lumiere_il_y_a: "Su luz partió hace unos {n} años.",
         ciel_encore_1: "falta {n} práctica",
         ciel_encore: "faltan {n} prácticas",
         ciel_tour: "Vuelta {n}",
@@ -67105,11 +67155,9 @@ async function majTuileCiel(){
     }
     if(avant !== tuileCielPrete) majGrilleAccueil();
 }
-let CIEL_NOTE_VUE = false;   // une etoile touchee pendant cette visite : la note reste jusqu'a la sortie
 async function ouvrirCiel(){
     const e = await etatDuCiel();
     if(!e) return;
-    CIEL_NOTE_VUE = false;
     CIEL_ETAT = e;
     CIEL_VUE = e.courant;
     rendreTonCiel();
@@ -67145,13 +67193,44 @@ function rendreTonCiel(){
     infoTonCiel();
     noteTonCiel();
 }
+// « Prochaine etoile : Iota des Gemeaux · a 136 annees-lumiere » devoile l'etoile pas encore atteinte. Sous le mystere
+// (ligne 160, question posee a Jacques le 20 nov. 2026) : « Prochaine etoile : a decouvrir », sans nom ni distance, dans
+// Ton ciel et sur l'ecran de fin (quand l'etoile n'est pas allumee). Eteint tant qu'il n'a pas repondu.
+let CIEL_PROCHAINE_MYSTERE = false;
+// La phrase sous le dessin : toujours la quand la figure montree a au moins une etoile allumee (ligne 160).
 function noteTonCiel(){
     const el = document.getElementById("tcNote");
     if(!el) return;
-    let deja = false;
-    try{ deja = localStorage.getItem(PREFIXE_STOCKAGE + "cielTouche") === "1"; }catch(x){}
     el.textContent = t("ciel_toucher");
-    if(!CIEL_NOTE_VUE) el.hidden = deja;
+    el.hidden = !(vueTonCiel().n > 0);
+    detailTonCiel(null);
+}
+// Quand la lumiere de l'etoile est partie (ligne 160, Jacques : « fais 1 jusque 5 ») : l'annee courante moins la distance
+// en annees-lumiere. L'annee exacte sous 200 annees-lumiere quand la distance l'est ; a la dizaine si elle est arrondie
+// (environ) ou de 200 a 999 ; au-dela de 1 000, « il y a environ N ans », a deux chiffres significatifs.
+function phraseLumiereEtoile(e){
+    if(!e || !(e.al > 0)) return "";
+    const lg = getUiLang();
+    if(e.al >= 1000){
+        const puiss = Math.pow(10, Math.floor(Math.log10(e.al)) - 1), n = Math.round(e.al / puiss) * puiss;
+        let txt = String(n);
+        try{ txt = new Intl.NumberFormat(lg).format(n); }catch(x){}
+        return tf("ciel_lumiere_il_y_a", { n: txt });
+    }
+    let an = new Date().getFullYear() - e.al;
+    an = (e.environ || e.al >= 200) ? Math.round(an / 10) * 10 : Math.round(an);
+    let txt = String(an);
+    try{ txt = new Intl.NumberFormat(lg, { useGrouping: false }).format(an); }catch(x){}
+    return tf("ciel_lumiere_vers", { annee: txt });
+}
+// Sous le dessin, ce que l'etoile touchee raconte (allumee seulement : une etoile eteinte reste un mystere).
+function detailTonCiel(e){
+    const el = document.getElementById("tcDetail");
+    if(!el) return;
+    const txt = e ? phraseLumiereEtoile(e) : "";
+    el.textContent = txt;
+    el.setAttribute("dir", "auto");
+    el.hidden = !txt;
 }
 function vueTonCiel(){ return CIEL_ETAT.groupes.find(x => x.g === CIEL_VUE); }
 function dessinerTonCiel(){
@@ -67184,7 +67263,8 @@ function dessinerTonCiel(){
     svg.classList.remove("tc-choisie");
     svg.innerHTML = o.join("") + '<g id="tcEtiq"></g>';
     svg.setAttribute("aria-label", nomFigure(c, lg) + " : " + tf("etoile_compte", { n: n, t: E.length }));
-    svg.querySelectorAll(".tc-tact").forEach(x => { const a = E[+x.dataset.i]; x.setAttribute("aria-label", nomEtoileAffiche(a, lg) + ", " + phraseDistanceEtoile(a)); });
+    svg.querySelectorAll(".tc-tact").forEach(x => { const k = +x.dataset.i, a = E[k];
+        x.setAttribute("aria-label", k < n ? nomEtoileAffiche(a, lg) + ", " + phraseDistanceEtoile(a) : t("ciel_a_decouvrir")); });
     const noms = E.slice(0, n).map(a => nomCourtEtoile(a, lg));
     placerNomsCiel(E, rayons, segs, W, H, noms, 12).forEach(x => {
         const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -67214,14 +67294,18 @@ function choisirEtoileCiel(i){
     if(!svg || !g) return;
     if(i === CIEL_CHOISIE) i = -1;
     CIEL_CHOISIE = i;
-    if(i >= 0 && !CIEL_NOTE_VUE){ CIEL_NOTE_VUE = true; try{ localStorage.setItem(PREFIXE_STOCKAGE + "cielTouche", "1"); }catch(x){} }
     svg.classList.toggle("tc-choisie", i >= 0);
     g.innerHTML = "";
+    detailTonCiel(null);
     if(i < 0) return;
     const v = vueTonCiel(), lg = getUiLang(), c = v.c, E = c.etoiles, a = E[i], W = 375, H = 372;
     const rayons = E.map((x, k) => k < v.n ? x.r * 1.15 : (k === v.n ? 5 : 2.3));
     const traits = c.traits.filter(([p, q]) => p < v.n && q < v.n);
-    const nom = nomEtoileAffiche(a, lg), dist = phraseDistanceEtoile(a), lignes = lignesDistanceEtoile(dist);
+    // Une etoile pas encore allumee reste un mystere (Jacques, 20 nov. 2026 : « les autres devraient rester comme un
+    // mystere ») : ni nom ni distance, seulement « A decouvrir ».
+    const allumee = i < v.n;
+    const nom = allumee ? nomEtoileAffiche(a, lg) : t("ciel_a_decouvrir"), dist = allumee ? phraseDistanceEtoile(a) : "", lignes = lignesDistanceEtoile(dist);
+    if(allumee) detailTonCiel(a);
     g.innerHTML = '<circle class="tc-choix" cx="' + a.x + '" cy="' + a.y + '" r="' + Math.max(10, rayons[i] + 6).toFixed(1) + '"/>'
                 + etiquetteEtoileSvg(E, rayons, traits, i, nom, dist, 15, W, H);
     const ne = g.querySelector(".fe-ne-nom");
@@ -67235,12 +67319,23 @@ function infoTonCiel(){
     el.textContent = "";
     const ligne = (tag, cls, txt) => { const x = document.createElement(tag); if(cls) x.className = cls; x.textContent = txt; el.appendChild(x); return x; };
     ligne("h3", "", nomFigure(v.c, lg));
+    // Le nom de la figure dans la langue apprise (ligne 160), dit par sa voix : le fichier s'il existe, sinon le telephone.
+    const appris = v.c.noms && v.c.noms[LANGUE_APPRISE];
+    if(appris && appris !== nomFigure(v.c, lg)){
+        const d = ligne("div", "tc-appris", "");
+        const sp = document.createElement("span"); sp.textContent = appris; sp.setAttribute("lang", LANGUE_APPRISE); sp.setAttribute("dir", "auto");
+        const hp = document.createElement("button"); hp.type = "button"; hp.className = "tc-hp"; hp.setAttribute("aria-label", t("cp_ecouter") + " : " + appris);
+        hp.innerHTML = HP_SVG;
+        hp.addEventListener("click", () => { try{ direAllemand(appris); }catch(x){} });
+        d.appendChild(sp); d.appendChild(hp);
+    }
     const fini = v.n >= v.t, enCours = v.g === e.courant || v.n > 0;
     if(fini){ ligne("div", "tc-etape", t("ciel_complete")); return; }
     if(!enCours){ ligne("div", "tc-etape", t("ciel_a_venir")); return; }
     // « encore 7 seances » : une etoile par seance (ligne 158)
     const reste = v.t - v.n;
     ligne("div", "tc-etape", tf(reste === 1 ? "ciel_encore_1" : "ciel_encore", { n: reste }));
+    if(CIEL_PROCHAINE_MYSTERE){ ligne("div", "tc-proch", t("ciel_prochaine_mystere")).setAttribute("dir", "auto"); return; }
     const prochaine = v.c.etoiles[v.n], nom = nomEtoileAffiche(prochaine, lg), brut = t("ciel_prochaine"), k = brut.indexOf("{s}");
     const p = ligne("div", "tc-proch", "");
     p.setAttribute("dir", "auto");
@@ -67352,10 +67447,13 @@ function rendreCielFin(fin){
     };
     avecNom(q(".fc-proch-t"), e.lit ? "ciel_nouvelle" : "ciel_prochaine");
     q(".fc-proch-d").textContent = phraseDistanceEtoile(vise);
+    const mystere = CIEL_PROCHAINE_MYSTERE && !e.lit;
+    if(mystere){ q(".fc-proch-t").textContent = t("ciel_prochaine_mystere"); q(".fc-proch-d").textContent = ""; }
     // A partir de la 2e seance du jour, la phrase le dit (decision du 8 nov. 2026, plus de « ×2 ») ; Premiers pas garde son titre.
     q(".fc-titre").textContent = e.pp ? t("fin_seance_titre") : n > 1 ? tf("legere_fin_n", { n: n }) : t("legere_fin_une");
     const sansAvance = !e.lit && e.de > 0 && e.a <= e.de;
     avecNom(q(".fc-phrase"), e.lit ? "ciel_une_de_plus" : sansAvance ? "ciel_tiennent" : e.a >= .75 ? "ciel_tout_pres" : e.a < 1 / 3 ? "ciel_commence" : "ciel_rapproche");
+    if(mystere) q(".fc-phrase").textContent = "";
     const encore = document.getElementById("encoreNeufsBtn");
     if(encore && !encore.classList.contains("hidden")){
         encore.classList.remove("primary", "secondary");
